@@ -32,6 +32,6 @@ jobs:
       - run: yarn export:smarthr_ui
 
       - name: craete pull request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           title: 'Update build files'
