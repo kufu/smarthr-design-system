@@ -1,0 +1,148 @@
+---
+title: 'ウェブアクセシビリティ方針'
+author: 'u'
+description: 'SmartHRのウェブアクセシビリティ方針です。社会の非合理を作り出さず、一人でも多くの人が価値ある仕事に取り組めるようなプロダクトを目標にしています。'
+date: '2021-03-23'
+order: 1
+---
+
+import { Table, Body, Head, Row, Cell, Text } from 'smarthr-ui'
+
+## 社会の非合理をつくりださない
+
+SmartHRは「[社会の非合理を、ハックする。](https://smarthr.co.jp/about/)」というミッションを掲げ、働くすべての人を後押しするプラットフォームをつくっています。
+
+そのため働く人の権利や仕事の楽しさについて考え、一人でも多くの人が価値ある仕事に取り組めるようなプロダクトを目標にアクセシビリティの向上に取り組んでいます。
+
+<!-- textlint-disable -->
+
+具体的には「JIS X 8341-3:2016 高齢者・障害者等配慮設計指針－情報通信における機器、ソフトウェア及びサービス－第3部：ウェブコンテンツ」、に加えて「Web Content Accessibility Guidelines 2.1」に対応することを目標としています。
+
+<!-- textlint-enable -->
+
+## 対象範囲
+
+- SmartHR UI
+- SmartHR 製品のうち、従業員の方が触れる画面
+
+## 目標とする適合レベルと対応度
+
+<!-- textlint-disable -->
+
+本方針における「準拠」とはウェブアクセシビリティ基盤委員会による「[ウェブコンテンツの JIS X 8341-3:2016 対応度表記ガイドライン](https://waic.jp/docs/jis2016/compliance-guidelines/201603/)」で定められた表記を指します。
+
+<!-- textlint-enable -->
+
+### SmartHR UIの目標とする適合レベルと対応度
+
+- JIS X 8341-3:2016のレベルAに準拠
+- WCAG 2.1のレベルAに準拠
+
+#### 追加する達成基準
+
+- [達成基準 1.4.3 コントラスト (最低限)](https://waic.jp/docs/WCAG21/#contrast-minimum)（レベルAA）
+- [達成基準 1.4.4 テキストのサイズ変更](https://waic.jp/docs/WCAG21/#resize-text)（レベルAA）
+- [達成基準 1.4.5 文字画像](https://waic.jp/docs/WCAG21/#images-of-text)（レベルAA）
+- [達成基準 2.4.7 フォーカスの可視化](https://waic.jp/docs/WCAG21/#focus-visible)（レベルAA）
+
+### SmartHR 製品の目標とする適合レベルと対応度
+
+- JIS X 8341-3:2016のレベルAに準拠
+
+#### 追加する達成基準
+
+- [達成基準 1.4.3 コントラスト (最低限)](https://waic.jp/docs/WCAG21/#contrast-minimum)（レベルAA）
+- [達成基準 2.4.7 フォーカスの可視化](https://waic.jp/docs/WCAG21/#focus-visible)（レベルAA）
+
+## 目標達成に向けたスケジュール
+
+### SmartHR UIのスケジュール
+
+<Table>
+  <Head>
+    <Row>
+      <Cell>
+        時期
+      </Cell>
+      <Cell>
+        目標
+      </Cell>
+      <Cell>
+        結果
+      </Cell>
+    </Row>
+  </Head>
+  <Body>
+    <Row>
+      <Cell> <time datatime="2021-06" style="white-space: nowrap">2021年6月</time> </Cell>
+      <Cell> レベルA一部準拠 <div><small>開発中のコンポーネント、または試験開始時点で完成していなかったコンポーネントをのぞく</small></div> </Cell>
+      <Cell> レベルA一部準拠 </Cell>
+    </Row>
+    <Row>
+      <Cell> <time datatime="2021-12" style="white-space: nowrap">2021年12月</time> </Cell>
+      <Cell> レベルA準拠 </Cell>
+      <Cell> レベルA一部準拠 </Cell>
+    </Row>
+    <Row>
+      <Cell> <time datatime="2022-06" style="white-space: nowrap">2022年6月</time> </Cell>
+      <Cell> JIS X 8341-3:2016 レベルAと追加する達成基準に準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Cell>
+      <Cell></Cell>
+    </Row>
+    <Row>
+      <Cell> <time datatime="2022-12" style="white-space: nowrap">2022年12月</time> </Cell>
+      <Cell> JIS X 8341-3:2016 レベルAAに準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Cell>
+      <Cell></Cell>
+    </Row>
+  </Body>
+</Table>
+
+### SmartHR 製品の目標とスケジュール
+
+- 2022年06月: レベルAの適合試験に向けた準備、社内教育
+- 2022年12月: レベルAの試験実施と改善点の洗い出し
+- 2023年以降: レベルA準拠
+
+## 試験結果
+
+<Table>
+  <Head>
+    <Row>
+      <Cell>試験年月</Cell>
+      <Cell>試験対象</Cell>
+      <Cell>達成した等級</Cell>
+    </Row>
+  </Head>
+  <Body>
+    <Row>
+      <Cell>
+        <a href="../test/202105/">
+          <time datatime="2021-05" style={{ whiteSpace: "no-wrap" }}>2021年5月</time>
+        </a>
+      </Cell>
+      <Cell>
+        SmartHR UIのコンポーネント
+        <small>（開発中のコンポーネントを除く）</small>
+      </Cell>
+      <Cell>
+        レベルA一部準拠
+      </Cell>
+    </Row>
+    <Row>
+      <Cell>
+        <a href="../test/202112/">
+          <time datatime="2021-12" style={{ whiteSpace: "no-wrap" }}>2021年12月</time>
+        </a>
+      </Cell>
+      <Cell>
+        SmartHR UIのコンポーネント
+      </Cell>
+      <Cell>
+        レベルA一部準拠
+      </Cell>
+    </Row>
+  </Body>
+</Table>
+
+## 問い合わせ先
+
+https://github.com/kufu/smarthr-ui/issues

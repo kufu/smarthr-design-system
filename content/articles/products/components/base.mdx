@@ -1,0 +1,53 @@
+---
+title: 'Base'
+author: 'versionfive'
+description: ' '
+date: '2021-11-02'
+smarthr-ui: 'Base'
+order: 7
+---
+
+import { Base, DialogBase } from 'smarthr-ui'
+import { ComponentStory } from 'Components/ComponentStory'
+import { ComponentPropsTable } from 'Components/ComponentPropsTable'
+
+Baseコンポーネントは、主要なコンテンツを強調するための可視コンテナです。
+
+<ComponentStory name="Base" />
+
+## 種類
+
+### Base
+SmartHR UIでは`Base`です。  
+テーブルや設定情報など、ユーザーに関心を向けたい、主要なコンテンツを表すエリアに使用します。
+
+```tsx live=true
+<Base style={{'padding': '16px'}}>Base</Base>
+```
+
+### DialogBase
+SmartHR UIでは`DialogBase`です。  
+[Dialog](/products/components/dialog/)や[Dropdown](/products/components/dropdown/)など、主要なコンテンツよりも上位のレイヤーで表示するコンテンツやメニューに利用します。
+
+多用するとBaseとの差がなくなります。高低差を意識させる必要のない、コンポーネントやコンテンツへの利用は控えてください。
+
+```tsx live=true
+<DialogBase style={{'padding': '16px'}}>DialogBase</DialogBase>
+```
+
+
+## Props
+
+<ComponentPropsTable name="Base" showTitle />
+
+<ComponentPropsTable name="DialogBase" showTitle />
+
+
+## 関連リンク
+
+* [レイヤー順序](/products/design-tokens/z-index/)
+
+
+## 参考文献
+
+* https://design-system.service.gov.uk/components/panel/

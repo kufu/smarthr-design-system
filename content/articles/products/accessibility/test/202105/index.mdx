@@ -1,0 +1,424 @@
+---
+title: 'ウェブアクセシビリティ試験結果 - 2021年5月'
+author: 'masuP9'
+description: '2021年5月に実施したSmartHRのウェブアクセシビリティ試験結果です。'
+date: '2021-05-20'
+order: 1
+---
+
+import { Table, Body, Head, Row, Cell, DefinitionList } from 'smarthr-ui'
+
+<!-- textlint-disable -->
+
+## 試験の結果および実施方法
+
+<DefinitionList items={
+  [
+    {
+      term: '表明日',
+      description: <time datatime="2021-05-20">2021年5月20日</time>
+    },
+    {
+      term: '規格の規格番号および改正年',
+      description: 'JIS X 8341-3:2016'
+    },
+    {
+      term: '満たしている適合レベル及び対応度',
+      description: <div>
+        <div>レベルA 一部準拠</div>
+        <p><small>※ 本試験結果における「準拠」という対応度の表記は、情報通信アクセス協議会のウェブアクセシビリティ基盤委員会による<a href="https://waic.jp/docs/jis2016/compliance-guidelines/201603/">ウェブコンテンツのJIS X 8341-3:2016 対応度表記ガイドライン 2016年3月版</a>で定められた表記によるものです。</small></p>
+        </div>
+    },
+    {
+      term: '対象となるウェブページに関する簡潔な説明',
+      description: '開発中のコンポーネントを除く、SmartHR UIの全コンポーネント'
+    },
+    {
+      term: '依存したウェブコンテンツ技術',
+      description: 'HTML5、CSS、JavaScript、WAI-ARIA'
+    },
+    {
+      term: '試験実施期間',
+      description: <span><time datatime="2020-08-17">2020年8月17日</time> 〜 <time datatime="2021-05-11">2021年5月11日</time></span>
+    },
+    {
+      term: '試験を行なったウェブページのURL',
+      description: <span>末尾に<a href="#h2-3">試験を行なったウェブページのURL</a>をまとめて掲載</span>
+    },
+    {
+      term: '例外事項',
+      description: '試験開始時に開発中だったコンポーネント'
+    }
+  ]
+} />
+
+## 達成基準チェックリスト
+
+その達成基準に該当するコンポーネントがある場合には適用を「○」、該当箇所がない場合「－」と表記し、その達成基準を満たしている場合に結果を「○」、満たしていない場合「×」と表記します。
+
+該当箇所がなく、適用が「－」の場合、その達成基準を満たしているとみなすため、結果は「○」とします。
+
+達成基準のリンクは<abbr title="Web Contents Accessibility Guidelines">WCAG</abbr> 2.0解説書へのリンクです。
+
+<Table>
+  <Head>
+    <Row>
+      <Cell>達成基準</Cell>
+      <Cell>等級</Cell>
+      <Cell>適用</Cell>
+      <Cell>結果</Cell>
+    </Row>
+  </Head>
+  <Body>
+
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/text-equiv-all.html">1.1.1 非テキストコンテンツ</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html">1.2.1 音声だけ及び映像だけ（収録済み）</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/media-equiv-captions.html">1.2.2 キャプション（収録済み）</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/media-equiv-audio-desc.html">1.2.3 音声解説又はメディアに対する代替コンテンツ（収録済み）</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">1.3.1 情報及び関係性</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>×</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/content-structure-separation-sequence.html">1.3.2 意味のある順序</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/content-structure-separation-understanding.html">1.3.3 感覚的な特徴</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/use-of-color.html">1.4.1 色の使用</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/visual-audio-contrast-dis-audio.html">1.4.2 音声の制御</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/contrast-minimum.html">1.4.3 コントラスト（最低限）</a></Cell>
+    <Cell>AA</Cell>
+    <Cell>○</Cell>
+    <Cell>×</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/resize-text.html">1.4.4 テキストのサイズ変更</a></Cell>
+    <Cell>AA</Cell>
+    <Cell>○</Cell>
+    <Cell>×</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/images-of-text.html">1.4.5 文字画像</a></Cell>
+    <Cell>AA</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/keyboard.html">2.1.1 キーボード</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/no-keyboard-trap.html">2.1.2 キーボードトラップなし</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/time-limits-required-behaviors.html">2.2.1 タイミング調整可能</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>×</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/time-limits-pause.html">2.2.2 一時停止、停止、非表示</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/seizure-does-not-violate.html">2.3.1 3回のせん（閃）光、又はしきい（閾）値以下</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/navigation-mechanisms-skip.html">2.4.1 ブロックスキップ</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html">2.4.2 ページタイトル</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/focus-order.html">2.4.3 フォーカス順序</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/link-purpose-in-context.html">2.4.4 リンクの目的（コンテキスト内）</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/focus-visible.html">2.4.7 フォーカスの可視化</a></Cell>
+    <Cell>AA</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/meaning-doc-lang-id.html">3.1.1 ページの言語</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/on-focus.html">3.2.1 フォーカス時</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/on-input.html">3.2.2 入力時</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/error-identification.html">3.3.1 エラーの特定</a></Cell>
+    <Cell>A</Cell>
+    <Cell>－</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/labels-or-instructions.html">3.3.2 ラベル又は説明</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>×</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/parsing.html">4.1.1 構文解析</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>○</Cell>
+</Row>
+<Row>
+    <Cell><a href="https://waic.jp/docs/WCAG21/Understanding/name-role-value.html">4.1.2 名前（name），役割（role）及び値（value）</a></Cell>
+    <Cell>A</Cell>
+    <Cell>○</Cell>
+    <Cell>×</Cell>
+</Row>
+  </Body>
+</Table>
+
+- 「2.4.2 ページタイトル」および「3.1.1 ページの言語」は、ページが検証対象ではないため該当箇所なしとした。
+- 「3.2.1 フォーカス時」および「3.2.2 入力時」は、実際の操作が与えられない状態での検証のため該当箇所なしとした。
+- 「3.3.1 エラーの特定」は、コンポーネント単体で検討できないため該当箇所なしとした。
+
+## 満たしていない達成基準の事例と対応策
+
+今回の試験で見つかった、達成基準を満たせていない事例とそれらへの対応策を示します。<small style={{ display: 'block' }}>※すべての事例を紹介するものではありません。</small>
+
+### 1.3.1 情報及び関係性
+
+#### `<FieldSet>` 入力要素とラベルが関連付けされていない
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <a href="https://smarthr-ui.netlify.app/iframe.html?id=fieldset--all">FieldSet</a>
+  },
+  {
+    term: '対応方法',
+    description: 'Filedsetコンポーネントは非推奨とし、代わりに適合したFormGroupコンポーネントの利用を推奨する'
+  },
+  ]} />
+
+### 1.3.2 意味のある順序
+
+#### `<DatePicker>` 表形式の日付選択と入力欄のDOMが離れているが関連付けられていない
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=datepicker">DatePicker</a></>
+  },
+  {
+    term: '対応方法',
+    description: 'aria-controlsとaria-expandedで関連付けをする'
+  }
+  ]} />
+
+### 1.4.3 コントラスト (最低限)
+
+#### ブランドカラーと白の組み合わせ
+
+![Headerコンポーネントのスクリーンショット](./images/1.4.3-1_brandcolor-white.png)
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=header">Header</a>, <a href="https://smarthr-ui.netlify.app/iframe.html?id=footer">Footer</a></>
+  },
+  {
+    term: '対応方法',
+    description: 'Header, Footer コンポーネントをコントラスト比も担保される形で作り直す予定です'
+  }
+  ]} />
+
+#### オレンジと白の組み合わせ
+
+![StatusLabelコンポーネントのスクリーンショット。オレンジの背景に白背景の警告ラベルが矢印で示されている](./images/1.4.3-2_statuslabel1.png)
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=statuslabel">StatusLabel</a>, <a href="https://smarthr-ui.netlify.app/iframe.html?id=header">Header</a></>
+  },
+  {
+    term: '対応方法',
+    description: '白との組み合わせでコントラスト比が確保される警告色を検討します'
+  }
+  ]} />
+
+### 1.4.4 テキストのサイズ変更
+
+#### テキストサイズを200%に拡大すると、隠れて読めないテキストがある
+
+![200%に拡大したHeaderコンポーネントのスクリーンショット。上下に文字が見切れて項目のラベルが読めなくなっている](./images/1.4.4-1_header1.png)
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=header">Header</a>, <a href="https://smarthr-ui.netlify.app/iframe.html?id=footer">Footer</a></>
+  },
+  {
+    term: '対応方法',
+    description: 'Headerを作り直す際にテキストの拡大に対応します'
+  }
+  ]} />
+
+### 2.2.1 タイミング調整可能
+
+#### `<FlashMessage>` の標準動作が8秒で消える
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=flashmessage--demo">FlashMessage - Demo</a></>
+  },
+  {
+    term: '対応方法',
+    description: 'FlashMessageに重要なコンテンツを記載しない、または重要なコンテンツをFlashMessageで表示せざるを得ない場合は、自動で消えない設定で利用する'
+  }
+  ]} />
+
+### 3.3.2 ラベル、または説明
+
+#### `<RightFixedNote>` のtextareaにラベルがない
+
+![RightFixedNoteのスクリーンショット。コンポーネント下部の入力欄にラベルが無い](./images/3.3.2-1_rightfixednote1.png)
+
+### 4.1.2 名前（name），役割（role）及び値（value）
+
+#### `<MultiCombobox>` で選択された項目がvalueとなっていない
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=combobox">Combobox</a></>
+  },
+  {
+    term: '内容',
+    description: 'すでに選択した項目がComboboxのvalueとして機械可読な形になっていない'
+  },
+  {
+    term: '対応方法',
+    description: 'すでに選択した項目に選択していることを示すセマンティクスを付与する'
+  }
+  ]} />
+
+## 試験を行なったウェブページのURL
+
+試験をしたコンポーネントの代表的なURLのみを掲載します。
+
+- [AccordionPanel](https://smarthr-ui.netlify.app/iframe.html?id=accordionpanel)
+- [AppNavi](https://smarthr-ui.netlify.app/iframe.html?id=appnavi)
+- [Balloon](https://smarthr-ui.netlify.app/iframe.html?id=balloon)
+- [Base](https://smarthr-ui.netlify.app/iframe.html?id=base)
+- [BottomFixedArea](https://smarthr-ui.netlify.app/iframe.html?id=bottomfixedarea)
+- [Button](https://smarthr-ui.netlify.app/iframe.html?id=button)
+- [Calendar](https://smarthr-ui.netlify.app/iframe.html?id=calendar)
+- [CheckBox](https://smarthr-ui.netlify.app/iframe.html?id=checkbox)
+- [CheckBoxLabel](https://smarthr-ui.netlify.app/iframe.html?id=checkboxlabel)
+- [Combobox](https://smarthr-ui.netlify.app/iframe.html?id=combobox)
+- [DatePicker](https://smarthr-ui.netlify.app/iframe.html?id=datepicker)
+- [DefinitionList](https://smarthr-ui.netlify.app/iframe.html?id=definitionlist)
+- [Dialog](https://smarthr-ui.netlify.app/iframe.html?id=dialog)
+- [DropZone](https://smarthr-ui.netlify.app/iframe.html?id=dropzone)
+- [Dropdown](https://smarthr-ui.netlify.app/iframe.html?id=dropdown)
+- [FilterDropdown](https://smarthr-ui.netlify.app/iframe.html?id=filterdropdown)
+- [FieldSet](https://smarthr-ui.netlify.app/iframe.html?id=fieldset)
+- [FlashMessage](https://smarthr-ui.netlify.app/iframe.html?id=flashmessage)
+- [Footer](https://smarthr-ui.netlify.app/iframe.html?id=footer)
+- [Header](https://smarthr-ui.netlify.app/iframe.html?id=header)
+- [Heading](https://smarthr-ui.netlify.app/iframe.html?id=heading)
+- [HeadlineArea](https://smarthr-ui.netlify.app/iframe.html?id=headlinearea)
+- [Icon](https://smarthr-ui.netlify.app/iframe.html?id=icon)
+- [BlankImage](https://smarthr-ui.netlify.app/iframe.html?id=image)
+- [IndexNav](https://smarthr-ui.netlify.app/iframe.html?id=indexnav)
+- [InformationPanel](https://smarthr-ui.netlify.app/iframe.html?id=informationpanel)
+- [Input](https://smarthr-ui.netlify.app/iframe.html?id=input)
+- [Loader](https://smarthr-ui.netlify.app/iframe.html?id=loader)
+- [MessageScreen](https://smarthr-ui.netlify.app/iframe.html?id=messagescreen)
+- [Pagination](https://smarthr-ui.netlify.app/iframe.html?id=pagination)
+- [RadioButton](https://smarthr-ui.netlify.app/iframe.html?id=radiobutton)
+- [RadioButtonLabel](https://smarthr-ui.netlify.app/iframe.html?id=radiobuttonlabel)
+- [RightFixedNote](https://smarthr-ui.netlify.app/iframe.html?id=rightfixednote)
+- [SegmentedControl](https://smarthr-ui.netlify.app/iframe.html?id=segmentedcontrol)
+- [Select](https://smarthr-ui.netlify.app/iframe.html?id=select)
+- [SmartHRLogo](https://smarthr-ui.netlify.app/iframe.html?id=smarthrlogo)
+- [StatusLabel](https://smarthr-ui.netlify.app/iframe.html?id=statuslabel)
+- [TabBar](https://smarthr-ui.netlify.app/iframe.html?id=tabbar)
+- [Table](https://smarthr-ui.netlify.app/iframe.html?id=table)
+- [Textarea](https://smarthr-ui.netlify.app/iframe.html?id=textarea)
+- [Tooltip](https://smarthr-ui.netlify.app/iframe.html?id=tooltip)
+
+<!-- textlint-enable -->

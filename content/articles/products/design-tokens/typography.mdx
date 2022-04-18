@@ -1,0 +1,162 @@
+---
+title: 'タイポグラフィ'
+author: 'versionfive'
+description: '最小限に整理したフォントスタイルは可読性を高め、読み手の体験を妨げません。'
+date: '2021-08-18'
+order: 2
+---
+
+import { createTheme } from 'smarthr-ui'
+import { Table, Body, Head, Row, Cell } from 'smarthr-ui'
+
+
+export const Sampletext = ({size = 'M', children}) => {
+  const theme = createTheme()
+  return (<p style={{fontSize: `${theme.fontSize[size]}`}}>{children}</p>)
+}
+
+
+## 書体
+ユーザーが慣れ親しんでいる環境を尊重し、以下の書体を指定します。
+
+```css
+font-family: system-ui, sans-serif;
+```
+
+## フォントサイズ
+基準値は`16px`です。
+
+### セマンティクストークン
+
+| トークン名 | 値（rem）| 基準値を基にした実値（px）|
+| :--- | :--- | :--- | :--- |
+| `XXS` | 0.667rem | 10.67px |
+| `XS` | 0.75rem | 12px |
+| `S` | 0.857rem | 13.71px |
+| `M` | 1rem | 16px |
+| `L` | 1.2rem | 19.2px |
+| `XL` | 1.5rem | 24px |
+| `XXL` | 2rem | 32px |
+
+#### セマンティクストークン（旧）
+`SHORT / TALL / GRANDE / VENTI`による定義は、抽象的な名前から実値を予想しづらいため非推奨となりました。（SmartHR UI v13以降）
+
+| トークン名 | 値（rem）| 基準値を基にした実値（px）|
+| :--- | :--- | :--- | :--- |
+| `SHORT` | 0.6875rem | 11px |
+| `TALL` | 0.875rem | 14px |
+| `GRANDE` | 1.125rem | 18px |
+| `VENTI` | 1.5rem | 24px |
+
+### トークンの新旧対応
+新旧における対応は以下のとおりです。
+
+| 現トークン | 旧トークン |
+| :--- | :--- | :--- |
+| `XXS` | - |
+| `XS` | - |
+| `S` | `SHORT` |
+| `M` | `TALL` |
+| `L` | `GRANDE` |
+| `XL` | `VENTI` |
+| `XXL` | - |
+
+- <small>- は対応する値がありません。</small>
+
+
+## 行送り
+テキストスタイルによって使用する[行送り](/products/design-tokens/leading/)が異なります。以下を参照してください。
+
+
+## テキストスタイル
+
+### 見出し
+[Headingコンポーネント](/products/components/heading/)を参照してください。
+
+### 段落テキスト
+段落テキストに使用し、強調やリンクのスタイルを併せてとることがあります。  
+行送りは、基本的にフォントサイズの1.5倍（[`NORMAL`](/products/design-tokens/leading/)）です。
+
+サイズ小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
+
+<Table>
+  <Head>
+    <Row>
+      <Cell>種類</Cell>
+      <Cell>フォントサイズ</Cell>
+      <Cell>サンプル</Cell>
+    </Row>
+  </Head>
+  <Body>
+    <Row>
+      <Cell>標準</Cell>
+      <Cell>M</Cell>
+      <Cell><Sampletext size={'M'}>社会の非合理を、ハックする。</Sampletext></Cell>
+    </Row>
+    <Row>
+      <Cell>サイズ小</Cell>
+      <Cell>S</Cell>
+      <Cell><Sampletext size={'S'}>社会の非合理を、ハックする。</Sampletext></Cell>
+    </Row>
+  </Body>
+</Table>
+
+
+### ラベルテキスト
+段落ではないボタンなどのラベルテキストに使用します。  
+行送りは、フォントサイズの1倍（[`NONE`](/products/design-tokens/leading/)）です。
+
+サイズ小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
+
+<Table>
+  <Head>
+    <Row>
+      <Cell>種類</Cell>
+      <Cell>フォントサイズ</Cell>
+      <Cell>サンプル</Cell>
+    </Row>
+  </Head>
+  <Body>
+    <Row>
+      <Cell>標準</Cell>
+      <Cell>M</Cell>
+      <Cell><Sampletext size={'M'}>社会の非合理を、ハックする。</Sampletext></Cell>
+    </Row>
+    <Row>
+      <Cell>サイズ小</Cell>
+      <Cell>S</Cell>
+      <Cell><Sampletext size={'S'}>社会の非合理を、ハックする。</Sampletext></Cell>
+    </Row>
+  </Body>
+</Table>
+
+### 表
+表中のテキストは、基本的に段落テキストと同じスタイルを使用します。表で固有のスタイルは以下のとおりです。
+
+- 表の見出し（`th`）の文字揃えは、データ（`td`）の文字揃えに合わせます。
+- 表のデータに数字を表示する場合は、列を縦に読んだときに桁数を比較できるように右揃えにします。
+
+### 強調
+WIP
+
+### リンク
+テキストリンクは、以下の場合に使用します。  
+リンク以外の操作を表す場合は、[Buttonコンポーネント](/products/components/button/)を使用してください。
+
+- 他の画面やヘルプページに遷移させるために、画面の説明文や補助テキストにリンクを設置する場合
+- 一覧コレクションからシングルに遷移させるために、そのインスタンス名にリンクを設置する場合
+
+テキストリンクの色は[`TEXT_LINK`](/products/design-tokens/color/#h2-2)を使用し、マウスオーバー時を除いて下線は表示しません。
+
+新規ウィンドウを開くリンクや、ヘルプセンターのポップアップダイアログを表示するリンクでは、遷移先を事前に認知できるようにアイコンを組み合わせて使います。
+[Iconコンポーネントの使い方](/products/components/icon/#h2-4)を参照してください。
+
+
+## 関連情報
+
+- [SmartHR UI v13 を取り込む場合の注意点 | DocBase](https://smarthr-inc.docbase.io/posts/1927229)
+
+
+## 参考
+
+- https://atlassian.design/foundations/typography/

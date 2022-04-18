@@ -1,0 +1,99 @@
+---
+title: 'Icon'
+author: 'kgsi'
+description: ' '
+date: '2021-03-11'
+smarthr-ui: Icon
+order: 27
+---
+
+import {
+  FaAddressBookIcon,
+  FaAddressCardIcon,
+  FaAngleDoubleDownIcon,
+  FaAngleDoubleLeftIcon,
+  FaAngleDoubleRightIcon,
+  FaPlusCircleIcon,
+  PrimaryButton,
+} from 'smarthr-ui'
+import { ComponentPreview } from '../../../../src/components/ComponentPreview'
+import { ComponentStory } from 'Components/ComponentStory'
+import { ComponentPropsTable } from 'Components/ComponentPropsTable'
+
+Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
+一目でメッセージを伝え、重要な情報への注意を促します。
+
+SmartHR UIでは`Icon`です。
+
+<ComponentStory name="Icon" />
+
+## アイコンを使う際の注意
+
+アイコンは、情報の認知の手助けとして使ってください。
+
+アイコンのみで利用する場合、ラベルと合わせて使うよりも認知負荷を与えます。利用場面を十分に検討して使ってください。
+
+### アクセシビリティ
+
+アイコンのみで利用する場合、適切なラベルを付与してください。特にリンクやボタンにアイコンのみで利用する場合は必須です。
+
+<ComponentPreview>
+  <PrimaryButton square>
+    <FaPlusCircleIcon visuallyHiddenText="追加" size={16} />
+  </PrimaryButton>
+</ComponentPreview>
+
+```
+<PrimaryButton>
+  <FaPlusCircleIcon visuallyHiddenText="追加する" />
+</PrimaryButton>
+```
+
+また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
+
+## アイコンの参照元
+SmartHRプロダクトのアイコンは、[Font Awesome](https://fontawesome.com/)を使っています。アイコンのデザインコンセプトはFont Awesomeの[公式サイト](https://fontawesome.com/)を確認してください。
+
+SmartHR UIでは、[React Icons](https://github.com/react-icons/react-icons)を通してFont Awesomeのライブラリを利用しています。
+
+Font Awesomeアイコンはプロダクトに必要なアイコンのみインポートしています。新たに追加したい場合は、新たにインポートしたいアイコンを追加し、[プロジェクト](https://github.com/kufu/smarthr-ui)にPull Requestを出してください。
+
+
+## 種類
+Font Awesomeのアイコンをすべて網羅したものではありません。
+
+実際に登録されてるアイコンを確認する際は、[Storybook](https://smarthr-ui.netlify.app/?path=/story/icon--all)を確認してください。
+
+<ComponentPreview>
+  <FaAddressBookIcon size={16} />
+  <FaAddressCardIcon size={16} />
+  <FaAngleDoubleDownIcon size={16} />
+  <FaAngleDoubleLeftIcon size={16} />
+  <FaAngleDoubleRightIcon size={16} />
+</ComponentPreview>
+
+## 状態
+
+アイコンの色は、使う場所のテキストの色に準拠します。SmartHR UIではcolorを指定せず、使われているコンポーネントの色の指定に従います。
+
+## 使い方
+
+import { FaExternalLinkAltIcon, FaQuestionCircleIcon } from 'smarthr-ui'
+
+特定のテキストリンクを表す場合は、以下のアイコンを装飾として使用します。これはリンクされるテキストが異なっていても、クリック時に同じ挙動になることを示すためです。
+
+| 使用箇所 | 設置するアイコン | 備考 |
+| :--- | :--- | :--- |
+| 新規ウィンドウ（新規タブ）で開くテキストリンク | テキストの後ろに「<FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" color="#0071C1" size={16} />」アイコン（`fa-external-link`）を設置 | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウで開く場合は付与します。 |
+| [ヘルプセンター](https://knowledge.smarthr.jp/hc/ja)のポップアップダイアログを開くテキストリンク | テキストの後ろに「<FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" color="#0071C1" size={16} />」アイコン（`fa-question-circle`）を設置 |  |
+
+
+## 参考文献
+
+* https://www.lightningdesignsystem.com/icons/
+* https://www.carbondesignsystem.com/guidelines/icons/usage/
+
+
+## Props
+
+<ComponentPropsTable name="FaAddressBookIcon" />

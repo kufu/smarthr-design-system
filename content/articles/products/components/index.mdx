@@ -1,0 +1,40 @@
+---
+title: 'コンポーネント'
+author: ''
+description: ''
+date: '2021-11-25'
+order: 3
+---
+## SmartHR UI
+SmartHRのUIコンポーネント「SmartHR UI」は、オープンソースとして開発しています。
+
+### 目的
+SmartHRは、SmartHR基本機能からはじまり、今では多くのオプション機能を提供しています。  
+そのすべてのアプリケーションのUIコンポーネントを共通化して、デザイン・実装の速度や完成度を向上させるためにSmartHR UIは存在します。
+
+### OSSであるということ
+SmartHRが将来的に構想しているプラットフォーム化が叶った際に、サードパーティの開発者がSmartHR APIとSmartHR UIを利用して開発できる状態を目指してOSS化しています。
+
+## 設計
+SmartHR UIのユーザーがimportするコンポーネントの単位がディレクトリの分割単位です。  
+UIパーツの単位で分割しています。
+
+例外として、例えば`Button`というディレクトリからは`PrimaryButton`,`SecondaryButton`,`TextButton`といったようなテーマごとの`Button`コンポーネントをexportしていたりします。
+
+コンポーネントの内部の記述として、基本的には難しい処理を持たせるべきではないと考えていますが、必要になる場合は hooks の使用を推奨しています。
+
+## リソース
+SmartHR UIのGitHubリポジトリ  
+https://github.com/kufu/smarthr-ui
+
+Storybookでカタログを確認できます。  
+https://smarthr-ui.netlify.app/
+
+Figma Communityでも、SmartHR UIを公開しています。  
+https://www.figma.com/community/file/978607227374353992
+
+
+## SmartHR UIに関する記事
+* [プロダクト間共通の React コンポーネントライブラリを運用する話｜SmartHR Tech Blog](https://tech.smarthr.jp/entry/2019/08/01/151100)  
+* [「プロダクト間共通の React コンポーネントライブラリ」がどうなったか、という話｜SmartHR Tech Blog](https://tech.smarthr.jp/entry/2020/06/08/114108)  
+* [SmartHR UIの3つの推しポイント｜note](https://note.com/sachplakat/n/n7a3b8d8f6edf)

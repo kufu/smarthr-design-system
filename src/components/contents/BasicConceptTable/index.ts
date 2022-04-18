@@ -1,0 +1,1 @@
+export { BasicConceptTable } from './BasicConceptTable'

@@ -1,0 +1,360 @@
+---
+title: 'Tooltip'
+author: '310'
+description: ''
+date: '2021-11-01'
+smarthr-ui: 'Tooltip'
+order: 50
+---
+import {
+  FaArrowAltCircleDownIcon,
+  FaArrowAltCircleLeftIcon,
+  FaArrowAltCircleRightIcon,
+  FaArrowAltCircleUpIcon,
+  FaExternalLinkAltIcon,
+  FaQuestionCircleIcon,
+  FaInfoCircleIcon,
+  FaExclamationTriangleIcon,
+  FaUserAltIcon,
+  FaFileIcon,
+  FaPlusCircleIcon,
+} from 'smarthr-ui'
+import { Tooltip, SecondaryButton } from 'smarthr-ui'
+import { Text, LineUp } from 'smarthr-ui'
+import { ComponentPreview } from 'Components/ComponentPreview'
+import { ComponentStory } from 'Components/ComponentStory'
+import { ComponentPropsTable } from 'Components/ComponentPropsTable'
+
+
+Tooltipコンポーネントは、スペースが限られている場所で、補足テキストを一時的に表示するために使います。
+
+SmartHR UIでは`Tooltip`です。
+
+<ComponentStory name="Tooltip" />
+
+## 使いどころ
+Tooltipは、UI上のスペースに余裕がない場合に、以下の目的で必要に応じて使用されます。
+- 補足的な説明テキストを表示する場合
+- アイコンだけのボタンにラベルを表示する場合
+- 省略されたテキストを全文表示する場合
+
+### Tooltipの使用を避けるケース
+Tooltip内の情報は隠れることになるため、知らないと操作が進められないような重要な情報での使用は避けて、常に目に見える状態での表示を検討してください。
+
+重要な情報としては、フォームの入力に必要な情報などが該当します。具体例は次の通りです。
+- パスワードに使用できる文字や、エラーになる入力値などの入力要件
+- 入力エラーとなった際のエラーメッセージ
+
+## 種類
+Tooltipはトリガー要素に`focus`や`hover`で表示します。詳しくは[トリガーパターン](#h3-3)を参照してください。
+
+<ComponentPreview>
+  <DynamicTooltip
+    message="補足テキストがはいります。"
+    triggerType="icon"
+    horizontal="left"
+    vertical="bottom">
+      <LineUp vAlign="center" gap={0.25}>
+        <FaInfoCircleIcon color="TEXT_LINK" size={16} />
+        <Text color="TEXT_LINK">Tooltipを表示する</Text>
+      </LineUp>
+  </DynamicTooltip>
+</ComponentPreview>
+
+## レイアウト
+
+### 構成
+1. [Tooltip](#h4-0)  
+2. [トリガー](#h4-1)
+
+![Tooltipによる補足情報の構成要素](./images/tooltip-overview.png)
+
+#### 1. Tooltip
+Tooltipそのものです。吹き出し形式で補足的なテキストを表示します。
+
+#### 2. トリガー
+Tooltipが表示されるきっかけとなる要素を「トリガー」と呼びます。  
+トリガーは、Tooltipが表示されることをユーザーに示唆するために、マウスオーバーが可能な要素であることを想起させるテキスト、アイコン、色を組み合わせます。
+
+### Tooltipの配置
+Tooltipの配置は8種類の選択肢があります。
+
+- 矢印の出る方向を`horizontal`（横）と`vertical`（縦）の組み合わせで指定します。
+- レイアウトによってTooltipの一部が見切れる場合があるため、Tooltip全体が表示されるように指定してください。
+- `horizontal`（横）と`vertical`（縦）の両方に`auto`を指定すると、レイアウトを加味して自動的に方向を決めてくれます。
+
+export const DynamicTooltip = ({children, ...props}) => {
+  if (typeof window !== 'undefined') {
+    return (
+      <Tooltip {...props}>
+        {children}
+      </Tooltip>
+    )
+  } else {
+    return null
+  }
+}
+
+#### 上配置
+<ComponentPreview>
+  <DynamicTooltip
+    message="horizontal=left & vertical=bottom (default)"
+    triggerType="icon"
+    horizontal="left"
+    vertical="bottom">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleUpIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">left & bottom</Text>
+    </LineUp>
+  </DynamicTooltip>
+
+  <DynamicTooltip
+    message="horizontal=center & vertical=bottom"
+    triggerType="icon"
+    horizontal="center"
+    vertical="bottom">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleUpIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">center & bottom</Text>
+    </LineUp>
+  </DynamicTooltip>
+
+  <DynamicTooltip
+    message="horizontal=right & vertical=bottom"
+    triggerType="icon"
+    horizontal="right"
+    vertical="bottom">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleUpIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">right & bottom</Text>
+    </LineUp>
+  </DynamicTooltip>
+</ComponentPreview>
+
+#### 下配置
+<ComponentPreview>
+  <DynamicTooltip
+    message="horizontal=left & vertical=top (default)"
+    triggerType="icon"
+    horizontal="left"
+    vertical="top">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleDownIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">left & top</Text>
+    </LineUp>
+  </DynamicTooltip>
+
+  <DynamicTooltip
+    message="horizontal=center & vertical=top"
+    triggerType="icon"
+    horizontal="center"
+    vertical="top">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleDownIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">center & top</Text>
+    </LineUp>
+  </DynamicTooltip>
+
+  <DynamicTooltip
+    message="horizontal=right & vertical=top"
+    triggerType="icon"
+    horizontal="right"
+    vertical="top">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleDownIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">right & top</Text>
+    </LineUp>
+  </DynamicTooltip>
+</ComponentPreview>
+
+#### 横配置
+<ComponentPreview>
+    <DynamicTooltip
+    message="horizontal=left & vertical=middle"
+    triggerType="icon"
+    horizontal="left"
+    vertical="middle">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleRightIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">left & middle</Text>
+    </LineUp>
+  </DynamicTooltip>
+  <DynamicTooltip
+    message="horizontal=right & vertical=middle"
+    triggerType="icon"
+    horizontal="right"
+    vertical="middle">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleLeftIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">right & middle</Text>
+    </LineUp>
+  </DynamicTooltip>
+
+</ComponentPreview>
+
+
+#### 自動配置
+<ComponentPreview>
+    <DynamicTooltip
+    message="horizontal=auto & vertical=auto"
+    triggerType="icon"
+    horizontal="auto"
+    vertical="auto">
+    <LineUp vAlign="center" gap={0.25}>
+      <FaArrowAltCircleDownIcon color="TEXT_LINK" size={16} />
+      <Text color="TEXT_LINK">auto & auto</Text>
+    </LineUp>
+  </DynamicTooltip>
+</ComponentPreview>
+
+
+## ライティング
+- 文章は、簡潔なテキストになるよう心がけてください。
+- 1文のみの場合でも、文章には句点をつけます。
+- 単語/ラベルのみの場合は句点を省略します。
+
+## 設計ガイド
+
+### Tooltipのトリガーパターン
+トリガーは、用途によっていくつかの種類に分けられます。
+
+- A. [テキスト＋アイコン](#h4-6)
+- B. [アイコンのみ](#h4-7)
+- C. [アイコンボタン](#h4-8)
+- D. [省略テキスト](#h4-9)
+
+#### A. テキスト＋アイコン
+<ComponentPreview>
+  <DynamicTooltip
+    message="補足テキストがはいります。"
+    triggerType="icon"
+    horizontal="left"
+    vertical="bottom">
+      <LineUp vAlign="center" gap={0.25}>
+        <Text color="TEXT_LINK">テキスト</Text>
+        <FaInfoCircleIcon color="TEXT_LINK" size={16} />
+      </LineUp>
+  </DynamicTooltip>
+</ComponentPreview>
+
+文章でさらに補足したい内容がある場合に使用します。  
+補足する対象となるテキストの横に「<FaInfoCircleIcon color="TEXT_LINK" size={14} />」アイコン(`fa-info-circle`) を配置し、補足情報の存在を明確に表示します。
+アイコンの色は、テキストと同様に[`TEXT_LINK`](/products/design-tokens/color/#h2-2)とすることで、マウスオーバーが可能であることを示唆します。
+
+#### B. アイコンのみ
+<ComponentPreview>
+  <DynamicTooltip
+    message="ユーザーの名前"
+    triggerType="icon"
+    horizontal="left"
+    vertical="bottom">
+      <FaUserAltIcon color="TEXT_LINK" size={16} />
+  </DynamicTooltip>
+  <DynamicTooltip
+    message="書類の名称"
+    triggerType="icon"
+    horizontal="left"
+    vertical="bottom">
+      <FaFileIcon color="TEXT_LINK" size={16} />
+  </DynamicTooltip>
+</ComponentPreview>
+
+充分にスペースを確保できないときに、アイコン単体をトリガーにするパターンですが、**どうしても他に方法がないときだけ**使用してください。  
+何を対象とした補足説明なのかを明確にするために、可能な限り「[テキスト＋アイコン](#h4-6)」を採用することを推奨します。
+
+アイコンは、マウスオーバーが可能であることを示唆するためにリンク色（[`TEXT_LINK`](/products/design-tokens/color/#h2-2)）を使用します。
+
+##### テキストとあわせて使用
+<ComponentPreview>
+  <LineUp vAlign="center" gap={0.25}>
+    <Text color="TEXT_BLACK">テキスト</Text>
+    <DynamicTooltip
+      message="補足テキストがはいります。"
+      triggerType="icon"
+      horizontal="left"
+      vertical="bottom">
+        <FaInfoCircleIcon color="TEXT_GREY" size={16} />
+    </DynamicTooltip>
+  </LineUp>
+  <LineUp vAlign="center" gap={0.25}>
+    <Text color="TEXT_BLACK" weight="bold">タイトル</Text>
+    <DynamicTooltip
+      message="補足テキストがはいります。"
+      triggerType="icon"
+      horizontal="left"
+      vertical="bottom">
+        <FaInfoCircleIcon color="TEXT_GREY" size={16} />
+    </DynamicTooltip>
+  </LineUp>
+</ComponentPreview>
+
+トリガーとなるのはアイコンのみで、タイトルや[よくあるテーブルのオブジェクト名](/products/design-guide/smarthr-table#h4-0)のテキストとあわせて使用します。  
+タイトルや[よくあるテーブルのオブジェクト名の遷移リンク](/products/design-guide/smarthr-table/#h5-3)の役割を阻害しないために、アイコンのみに[`TEXT_GRAY`](/products/design-tokens/color/#h2-2)を使用します。
+
+##### ステータスの補足に使用
+<ComponentPreview>
+  <LineUp vAlign="center" gap={0.25}>
+    <DynamicTooltip
+      message="ステータスがはいります。"
+      triggerType="icon"
+      horizontal="left"
+      vertical="bottom">
+        <FaExclamationTriangleIcon color="WARNING" size={16} />
+    </DynamicTooltip>
+    <Text color="TEXT_LINK">テキスト</Text>
+  </LineUp>
+  <LineUp vAlign="center" gap={0.25}>
+    <DynamicTooltip
+      message="ステータスがはいります。"
+      triggerType="icon"
+      horizontal="left"
+      vertical="bottom">
+        <FaInfoCircleIcon color="DANGER" size={16} />
+    </DynamicTooltip>
+    <Text color="TEXT_LINK">テキスト</Text>
+  </LineUp>
+</ComponentPreview>
+
+ステータスの補足説明を加えるときにはテキストの左に配置し、ステータスの色に合わせます。  
+トリガーはステータスアイコンのみとなるので、テキストはリンクとして使用できます。
+#### C. アイコンボタン
+<ComponentPreview>
+  <DynamicTooltip
+    message="ラベルがはいります。"
+    triggerType="icon"
+    horizontal="left"
+    vertical="bottom">
+      <SecondaryButton><FaPlusCircleIcon /></SecondaryButton>
+  </DynamicTooltip>
+</ComponentPreview>
+
+[Buttonのアイコンボタン](/products/components/button/#h4-1)のように、ラベルテキストを表示できないボタンに、（ラベルテキスト相当の）機能を表す補足をTooltipで表示するパターンです。
+
+[TextButton](/products/components/button/#h3-3)のアイコンボタンには使用しません。
+
+ボタンは明確なアクションを促す役割を持つため、ラベルテキスト以上の説明を表示したい場合は、ラベルテキストがあるボタンの採用や、説明テキストが入るようなレイアウトを検討しましょう。
+
+#### D. 省略テキスト
+<ComponentPreview>
+  <DynamicTooltip
+    message="省略されたすべてのテキストがはいります。"
+    triggerType="icon"
+    horizontal="left"
+    vertical="bottom">
+      <LineUp vAlign="center" gap={0.25}>
+        <Text color="TEXT_BLACK">テキストを省略...</Text>
+      </LineUp>
+  </DynamicTooltip>
+</ComponentPreview>
+
+テキストを表示するスペースを十分確保できないときに、テキスト全体をトリガーとして、省略したすべてのテキストをTooltipで表示するパターンです。  
+
+テキストは、`ellipsis`を使い省略されていることを示します。  
+
+単純に文章を省略したい場合には、[LineClampコンポーネント](/products/components/line-clamp/)を使用してください。
+
+## Props
+
+<ComponentPropsTable name="Tooltip" />
+
+

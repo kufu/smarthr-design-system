@@ -1,0 +1,63 @@
+{
+  "extends": [
+    ":timezone(Asia/Tokyo)",
+    "group:monorepos",
+    "packages:stylelint",
+    ":widenPeerDependencies",
+    ":label(renovate)",
+    ":semanticCommitScopeDisabled"
+  ],
+  "schedule": ["before 12pm on Monday"],
+  "npm": {
+    "extends": [
+      ":noUnscheduledUpdates",
+      "npm:unpublishSafe",
+      "helpers:disableTypesNodeMajor"
+    ],
+    "rangeStrategy": "bump",
+    "semanticCommitType": "chore",
+    "separateMinorPatch": true,
+    "packageRules": [
+      {
+        "matchDepTypes": [
+          "devDependencies", "dependencies"
+        ],
+        "matchUpdateTypes": [
+          "patch",
+          "minor",
+          "major"
+        ],
+        "automerge": true
+      },
+      {
+        "matchPackageNames": [
+          "smarthr-ui"
+        ],
+        "matchUpdateTypes": [
+          "minor",
+          "major"
+        ],
+        "automerge": false
+      },
+      {
+        "groupName": "ESLint and Prettier",
+        "matchPackageNames": [
+          "eslint",
+          "prettier"
+        ],
+        "matchPackagePatterns": [
+          "^eslint-",
+          "^prettier-"
+        ],
+        "automerge": true
+      },
+      {
+        "groupName": "definitelyTyped",
+        "matchPackagePrefixes": [
+          "@types/"
+        ],
+        "automerge": true
+      }
+    ]
+  }
+}

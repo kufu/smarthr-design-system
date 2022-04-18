@@ -1,0 +1,20 @@
+{
+  "overrides": [
+    {
+      "files": ["src/**/*.ts{,x}"],
+      "customSyntax": "postcss-jsx",
+      "rules": {
+        "at-rule-no-unknown": null,
+        "function-no-unknown": [true,
+          {"ignoreFunctions": ["/^\\$\\{/"]}]
+      }
+    }
+  ],
+  "extends": [
+    "stylelint-config-smarthr"
+  ],
+  "rules": {
+    "value-list-comma-space-after": null,
+    "custom-property-no-missing-var-function": null
+  }
+}

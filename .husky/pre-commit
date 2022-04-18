@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 画像またはreadme.txtに変更がった場合はzipファイルを作り直し、コミットに含める
+files_diff=`git diff --cached --name-only`
+img_files=`echo "$files_diff" | sed -n '/scripts\/downloads\/readme\.txt/p'`
+readme_file=`echo "$files_diff" | sed -n '/content\/articles\/basics\/illustration\/images\//p'`
+
+if [ -n "$img_files" ] || [ -n "$readme_file" ]; then
+  yarn export:zip-images
+  git add 'static/downloads/*'
+fi
+
+yarn lint-staged
