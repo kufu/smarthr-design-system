@@ -1,3 +1,5 @@
+hoge
+
 ![smarthr-design-system](https://user-images.githubusercontent.com/4032232/106590029-06e06f80-6590-11eb-9c34-c34ad3125963.png)
 
 ## Preview Guideline Page
