@@ -1,9 +1,9 @@
 ---
-title: '共通設定の操作権限項目（SmartHR基本機能）'
+title: '共通設定の操作権限項目'
 author: 'wentz'
 description: 'SmartHR基本機能の共通設定おける、操作権限を設定する項目のレイアウトパターンをまとめています。'
 date: '2021-07-13'
-order: 11
+order: 2
 ---
 
 import { DoAndDont } from 'Components/DoAndDont'
@@ -20,24 +20,24 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 1. タイトルエリア
 2. コンテンツエリア
 
-![スクリーンショット: 操作権限項目の構成](./images/functional/access-control-setting-pattern1.png)
+![スクリーンショット: 操作権限項目の構成](./images/access-control-setting-pattern1.png)
 
 ### 1. タイトルエリア
 
 #### タイトル
 タイトルは[ブロックタイトル](/products/components/heading/#h3-2)を使用し、操作権限の内容がわかるテキストを表示します。  
 
-![スクリーンショット: 操作権限項目のタイトルと説明テキスト](./images/functional/access-control-setting-pattern2.png)
+![スクリーンショット: 操作権限項目のタイトルと説明テキスト](./images/access-control-setting-pattern2.png)
 
 1つの項目に複数の操作権限がある場合、上位のタイトルには[ブロックタイトル](/products/components/heading/#h3-2)、下位のタイトルには[サブ・ブロックタイトル](/products/components/heading/#h3-3)を使用して、抱合関係を示します。
 
-![スクリーンショット: 複数の操作権限項目の抱合関係の例](./images/functional/access-control-setting-pattern4.png)
+![スクリーンショット: 複数の操作権限項目の抱合関係の例](./images/access-control-setting-pattern4.png)
 
 #### 説明テキスト
 説明テキストは、操作権限について全体的な説明が必要な場合に、1行程度で簡潔に収まるテキストを挿入します。  
 より詳細な説明が必要な場合は、[Iconの使い方](https://smarthr.design/products/components/icon/#h2-4)を参照してヘルプページへのリンクの挿入を検討してください。
 
-![スクリーンショット: ヘルプリンクの挿入例](./images/functional/access-control-setting-pattern3.png)
+![スクリーンショット: ヘルプリンクの挿入例](./images/access-control-setting-pattern3.png)
 
 ### 2. コンテンツエリア
 
@@ -55,25 +55,25 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 - 任意の数の設定項目を同時に有効・無効にできる場合は、チェックボックスを使用します。
 - 複数の選択肢から1つを選択する場合は、ラジオボタンを使用します。
 
-![スクリーンショット: 設定項目でのチェックボックスとラジオボタンの使用例](./images/functional/access-control-setting-pattern5.png)
+![スクリーンショット: 設定項目でのチェックボックスとラジオボタンの使用例](./images/access-control-setting-pattern5.png)
 
 #### B. 補足テキスト
 
-補足テキストは、設定項目について補足する必要がある場合に、[余白のレイアウトパターン](/products/design-patterns/spacing-layout-pattern)に従ってエリア内に挿入します。  
+補足テキストは、設定項目について補足する必要がある場合に、[余白の取り方](/products/design-patterns/spacing-layout-pattern)に従ってエリア内に挿入します。  
 より詳細な内容の説明が必要な場合は、[Iconの使い方](https://smarthr.design/products/components/icon/#h2-4)を参照してヘルプページへのリンクの挿入を検討してください。
 
-![スクリーンショット: 補足テキストの挿入例](./images/functional/access-control-setting-pattern8.png)
+![スクリーンショット: 補足テキストの挿入例](./images/access-control-setting-pattern8.png)
 
 影響する範囲が複雑な場合など特殊な条件が含まれる設定項目には、「<FaExclamationTriangleIcon visuallyHiddenText="警告" color="WARNING" size={16} />」アイコン（`fa-exclamation-triangle`）と補足テキストを設定項目の下部に表示しユーザーに注意を促すことで、意図しない選択状態になることを防ぎます。
 
-![スクリーンショット: ユーザーに注意を促す補足テキストの挿入例](./images/functional/access-control-setting-pattern9.png)
+![スクリーンショット: ユーザーに注意を促す補足テキストの挿入例](./images/access-control-setting-pattern9.png)
 
 ## レイアウト
 
-基本的に[余白のレイアウトパターン](/products/design-patterns/spacing-layout-pattern)にしたがって配置します。  
+基本的に[余白の取り方](/products/design-patterns/spacing-layout-pattern)にしたがって配置します。  
 要素感の余白は以下のとおりです。（コンポーネント内の余白は省略）
 
-![スクリーンショット: 操作権限項目の要素間の余白](./images/functional/access-control-setting-pattern10.png)
+![スクリーンショット: 操作権限項目の要素間の余白](./images/access-control-setting-pattern10.png)
 
 ### 設定項目間の余白
 
@@ -83,12 +83,12 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 - 横並び時の要素間の余白は`24px`
 - 縦並び時の要素間の余白は`16px`
 
-![スクリーンショット: 設定項目の横並び時と縦並び時の余白](./images/functional/access-control-setting-pattern19.png)
+![スクリーンショット: 設定項目の横並び時と縦並び時の余白](./images/access-control-setting-pattern19.png)
 
 また、操作権限項目の親要素（Baseなど）の幅が狭くなる状況では、設定項目に折り返しが発生します。  
 折り返す際の余白も、それぞれ横方向は`24px`、縦方向は`16px`となります。
 
-![スクリーンショット: 横並びの設定項目が折り返す場合の余白](./images/functional/access-control-setting-pattern20.png)
+![スクリーンショット: 横並びの設定項目が折り返す場合の余白](./images/access-control-setting-pattern20.png)
 
 ### コンテンツエリアの幅
 
@@ -100,8 +100,8 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 
 横幅に十分なスペースがある場合は、基本的に横ならびにすることで縦幅が長くなりすぎることを防ぎます。
 
-import imageUrl6Do from './images/functional/access-control-setting-pattern6-do.png';
-import imageUrl6Dont from './images/functional/access-control-setting-pattern6-dont.png';
+import imageUrl6Do from './images/access-control-setting-pattern6-do.png';
+import imageUrl6Dont from './images/access-control-setting-pattern6-dont.png';
 
 <LineUp gap="XS">
     <DoAndDont
@@ -118,15 +118,15 @@ import imageUrl6Dont from './images/functional/access-control-setting-pattern6-d
 
 ただし、選択肢の文字が長くなる場合は縦並びを検討します。
 
-![スクリーンショット: 設定項目の縦並びレイアウトの例](./images/functional/access-control-setting-pattern7.png)
+![スクリーンショット: 設定項目の縦並びレイアウトの例](./images/access-control-setting-pattern7.png)
 
 ### 組み合わせが決まっている操作権限項目で、一部未対応の設定項目がある場合
 
 CRUDなど、設定項目の組み合わせが決まっている操作権限項目が連続して複数並ぶケースで、一部の設定項目が対応していない場合は該当の設定項目を非表示にします。その際、設定項目が表示されていた箇所はそのまま空白として残します。  
 この場合のコンテンツ領域の横幅は、選択肢が存在しているときと同じ横幅になるように固定します。
 
-import imageUrl13Do from './images/functional/access-control-setting-pattern13-do.png';
-import imageUrl13Dont from './images/functional/access-control-setting-pattern13-dont.png';
+import imageUrl13Do from './images/access-control-setting-pattern13-do.png';
+import imageUrl13Dont from './images/access-control-setting-pattern13-dont.png';
 
 <LineUp gap="XS">
     <DoAndDont
@@ -156,18 +156,18 @@ import imageUrl13Dont from './images/functional/access-control-setting-pattern13
 
 CRUD操作は、SmartHR基本機能の大部分を占める、もっとも基本的な操作権限です。
 
-![スクリーンショット: CRUDの操作権限項目の例](./images/functional/access-control-setting-pattern11.png)
+![スクリーンショット: CRUDの操作権限項目の例](./images/access-control-setting-pattern11.png)
 
 CRUD操作の「作成」「更新」「削除」は、基本的に「閲覧」が許可されていない場合は操作できないため、「閲覧」が不許可の場合は`Disabled`で選択不可にします。
 
-![スクリーンショット: CRUD操作で「閲覧」が不許可の場合の挙動](./images/functional/access-control-setting-pattern12.png)
+![スクリーンショット: CRUD操作で「閲覧」が不許可の場合の挙動](./images/access-control-setting-pattern12.png)
 
 #### その他の複数選択パターンの例
 
 依頼や承認など、ある機能に対して複数の操作権限を持つ場合、複数選択パターンを使用します。  
 設定項目の内容が異なる以外は、基本的なレイアウトはCRUDと同様です。
 
-![スクリーンショット: その他の複数選択パターンの例](./images/functional/access-control-setting-pattern14.png)
+![スクリーンショット: その他の複数選択パターンの例](./images/access-control-setting-pattern14.png)
 
 ### 単一選択パターン
 
@@ -178,18 +178,18 @@ CRUD操作の「作成」「更新」「削除」は、基本的に「閲覧」�
 
 特定の操作権限に対して、「できる」または「できない」の2択で選択するパターンです。
 
-![スクリーンショット: できる・できないを選択する操作権限項目の例](./images/functional/access-control-setting-pattern15.png)
+![スクリーンショット: できる・できないを選択する操作権限項目の例](./images/access-control-setting-pattern15.png)
 
 #### 操作権限に条件や範囲指定を含める例
 
 あるオブジェクトに対する操作について、操作権限を条件や範囲で指定したい場合に使用します。  
 代表的な例としては、本人が作成したオブジェクトのみ操作可能としたい場合などがあります。
 
-![スクリーンショット: 操作権限項目を条件や範囲で指定したい場合の例](./images/functional/access-control-setting-pattern16.png)
+![スクリーンショット: 操作権限項目を条件や範囲で指定したい場合の例](./images/access-control-setting-pattern16.png)
 
 より詳細に条件や範囲を指定したい場合は、[Select](/products/components/select/)や[MultiComboBox](/products/components/combo-box/)などの使用を検討します。
 
-![スクリーンショット: ドロップダウンリストやマルチコンボボックスを使用した操作権限項目の例](./images/functional/access-control-setting-pattern17.png)
+![スクリーンショット: ドロップダウンリストやマルチコンボボックスを使用した操作権限項目の例](./images/access-control-setting-pattern17.png)
 
 ### 複合権限パターン
 
@@ -206,4 +206,4 @@ CRUD操作の「作成」「更新」「削除」は、基本的に「閲覧」�
 - 「閲覧」権限がある場合、操作権限１の「作成」「更新」「削除」および、操作権限２は選択可能の`Enable`となる。
 - 「閲覧」権限がない場合、操作権限１の「作成」「更新」「削除」および、操作権限２は選択不可の`Disabled`となる。
 
-![スクリーンショット: CRUD操作の「閲覧」が他の操作権限項目に影響する場合の挙動](./images/functional/access-control-setting-pattern18.png)
+![スクリーンショット: CRUD操作の「閲覧」が他の操作権限項目に影響する場合の挙動](./images/access-control-setting-pattern18.png)

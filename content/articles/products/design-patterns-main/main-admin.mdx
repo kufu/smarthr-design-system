@@ -1,9 +1,9 @@
 ---
-title: '共通設定（SmartHR基本機能）'
+title: '共通設定'
 author: 'versionfive'
 description: 'SmartHR基本機能の共通設定のレイアウトパターンをまとめています。'
 date: '2021-11-04'
-order: 10
+order: 1
 ---
 SmartHR基本機能の共通設定のレイアウトパターンをまとめています。
 
@@ -29,7 +29,7 @@ OOUIでは`コレクションのビュー`と呼ばれる画面で、基本的�
 3. [タブ](#h4-2)
 4. [よくあるテーブル](#h4-3)
 
-![スクリーンショット: 一覧ビュー](./images/functional/main-admin1.png)
+![スクリーンショット: 一覧ビュー](./images/main-admin1.png)
 
 #### A-1. 画面タイトル
 一覧ビューの[画面タイトル](/products/components/heading/#h3-0)です。タイトルの付け方は[Headingのライティング](/products/components/heading/#h2-3)を参照してください。
@@ -54,13 +54,13 @@ OOUIでは`コレクションのビュー`と呼ばれる画面で、基本的�
 ##### タイトルエリアの省略
 `画面タイトル`と`よくあるテーブルの見出し`が同一で、冗長と判断した場合は[よくあるテーブルのタイトルエリア](/products/design-patterns/smarthr-table/#h3-1)を省略できます。
 
-![スクリーンショット: よくあるテーブルのタイトル（見出し、説明テキスト）を省略した一覧ビュー](./images/functional/main-admin2.png)
+![スクリーンショット: よくあるテーブルのタイトル（見出し、説明テキスト）を省略した一覧ビュー](./images/main-admin2.png)
 
 
 ### レイアウト
-要素間の余白は以下のとおりです。詳細は[余白のレイアウトパターン](/products/design-patterns/spacing-layout-pattern/)を参照してください。
+要素間の余白は以下のとおりです。詳細は[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
 
-![スクリーンショット: 一覧ビューのレイアウト](./images/functional/main-admin4.png)
+![スクリーンショット: 一覧ビューのレイアウト](./images/main-admin4.png)
 
 要素内やコンポーネント内の配置や余白は以下を参照してください。
 
@@ -85,7 +85,7 @@ OOUIでは`コレクションのビュー`と呼ばれる画面で、基本的�
 4. [タブ](#h4-8)
 5. [コンテンツ](#h4-9)
 
-![スクリーンショット: 詳細ビュー](./images/functional/main-admin5.png)
+![スクリーンショット: 詳細ビュー](./images/main-admin5.png)
 
 #### B-1. 「上階層に戻る」リンク
 一階層上のコンテンツに誘導するためのリンクです。詳細は、[「上階層に戻る」リンク](/products/design-patterns/upward-navigation/)を参照してください。
@@ -128,9 +128,9 @@ OOUIでは`コレクションのビュー`と呼ばれる画面で、基本的�
 
 
 ### レイアウト
-要素間の余白は以下のとおりです。詳細は[余白のレイアウトパターン](/products/design-patterns/spacing-layout-pattern/)を参照してください。
+要素間の余白は以下のとおりです。詳細は[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
 
-![スクリーンショット: 詳細ビューのレイアウト](./images/functional/main-admin6.png)
+![スクリーンショット: 詳細ビューのレイアウト](./images/main-admin6.png)
 
 要素内やコンポーネント内の配置や余白は以下を参照してください。
 
@@ -159,7 +159,7 @@ OOUIにおける`モーダル`画面の一種で、一覧ビューの[よくあ�
 4. [タブ](#h4-15)
 5. [フォーム送信エリア](#h4-16)（必須）
 
-![スクリーンショット: アクションビュー](./images/functional/main-admin7.png)
+![スクリーンショット: アクションビュー](./images/main-admin7.png)
 
 #### C-1. 「上階層に戻る」リンク
 一階層上のコンテンツに誘導するためのリンクです。キャンセルボタンと同様に、フォームの編集内容を破棄して画面から離脱します。  
@@ -197,7 +197,7 @@ OOUIにおける`モーダル`画面の一種で、一覧ビューの[よくあ�
 
 #### C-3. フォーム入力エリア - オブジェクトのプロパティ
 オブジェクトの持つさまざまなプロパティを設定するフォーム入力要素を配置するエリアです。
-代表的なフォーム入力要素としては、[FormGroup](/products/components/form-group/)や[Input](/products/components/input/)を使用したテキスト入力のほか、[共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern)といったチェックボックスやラジオボタンを組み合わせた設定項目などがあります。
+代表的なフォーム入力要素としては、[FormGroup](/products/components/form-group/)や[Input](/products/components/input/)を使用したテキスト入力のほか、[共通設定の操作権限項目](/products/design-patterns-main/access-control-setting-pattern)といったチェックボックスやラジオボタンを組み合わせた設定項目などがあります。
 
 #### C-4. タブ
 対象オブジェクトのフォームが長大になることが想定される場合、フォームを分割表示し俯瞰性を高めるために[TabBar](/products/components/tab-bar/)の使用を検討します。
@@ -209,11 +209,11 @@ OOUIにおける`モーダル`画面の一種で、一覧ビューの[よくあ�
 フォーム入力エリアの内容を反映するためのアクションをまとめたエリアで、[FloatArea](/products/components/float-area/)を使用します。  
 構成要素は次の通りです。
 
-1. [送信ボタン](/products/design-patterns/main-admin/#h5-5)
-2. [キャンセルボタン](/products/design-patterns/main-admin/#h5-6)
+1. [送信ボタン](#h5-5)
+2. [キャンセルボタン](#h5-6)
 3. ［WIP］エラーメッセージ
 
-![スクリーンショット: アクションビューのフォーム送信エリア](./images/functional/main-admin9.png)
+![スクリーンショット: アクションビューのフォーム送信エリア](./images/main-admin9.png)
 
 ##### C-5-1. 送信ボタン
 フォーム入力エリアの内容を送信する`submit`属性のアクションボタンです。  
@@ -227,18 +227,18 @@ OOUIにおける`モーダル`画面の一種で、一覧ビューの[よくあ�
 
 ### レイアウト
 
-要素間の余白は以下のとおりです。詳細は[余白のレイアウトパターン](/products/design-patterns/spacing-layout-pattern/)を参照してください。
+要素間の余白は以下のとおりです。詳細は[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
 
-![スクリーンショット: アクションビューのレイアウト](./images/functional/main-admin8.png)
+![スクリーンショット: アクションビューのレイアウト](./images/main-admin8.png)
 
 要素内やコンポーネント内の配置や余白は以下を参照してください。
 
 - [「上階層に戻る」リンクのレイアウト](/products/design-patterns/upward-navigation/#h2-1)
-- [共通設定の操作権限項目のレイアウトパターン（SmartHR共通設定）](/products/design-patterns/access-control-setting-pattern)
+- [共通設定の操作権限項目（SmartHR共通設定）](/products/design-patterns-main/access-control-setting-pattern)
 
 #### フォーム送信エリアの位置
 
 フォーム送信エリアは、右側のコンテンツエリアに対して縦方向の中心位置に幅を左右に`8px`ずつ広くとり、画面の描画領域の下辺から`24px`上の位置で配置します。
 このとき、画面上の他のコンテンツの前面に表示されるよう[レイヤー順序](/products/design-tokens/z-index/)を参考に調節してください。
 
-![スクリーンショット: アクションビューのフォーム送信エリアの位置](./images/functional/main-admin10.png)
+![スクリーンショット: アクションビューのフォーム送信エリアの位置](./images/main-admin10.png)
