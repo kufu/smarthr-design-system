@@ -1,4 +1,4 @@
-import { Cluster, Dialog, FaBarsIcon, FaSearchIcon, SecondaryButtonAnchor, defaultColor } from 'smarthr-ui'
+import { Cluster, FaBarsIcon, FaSearchIcon, SecondaryButtonAnchor, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
 import React, { VFC, useContext, useState } from 'react'
 import { useLocation } from '@reach/router'
 import styled, { createGlobalStyle, css } from 'styled-components'
@@ -320,6 +320,12 @@ const StyledOpenButton = styled.button`
   border: 0;
   background: transparent;
   cursor: pointer;
+`
+
+const Dialog = styled(shrDialog)`
+  > div {
+    height: 100%;
+  }
 `
 
 const MenuContentsContainer = styled.div`
