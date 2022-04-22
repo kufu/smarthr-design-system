@@ -110,6 +110,8 @@ export const ComponentStory: VFC<Props> = ({ name }) => {
       .replace(/([A-Z])/g, (s) => {
         return '-' + s.charAt(0).toLowerCase()
       })
+      // 小文字のみの場合に `-item-name` とならないので補完
+      .replace(/^[a-z]+$/, (s) => `-${s.charAt(0)}`)
       // コンポーネントとStoryが同名の場合に、頭に'_'がついていることがあるので、削除
       .replace(/^_/, '')
     return `${componentName.toLowerCase()}-${kebab}`

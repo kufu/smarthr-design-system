@@ -291,6 +291,10 @@ const Article: VFC<Props> = ({ data }) => {
   depth3Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
+  if (slug.includes('/products/components')) {
+    // プロダクト/コンポーネントは名前の順
+    depth3Items.sort(({ title: a }, { title: b }) => (a < b ? -1 : a > b ? 1 : 0))
+  }
   depth4Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
