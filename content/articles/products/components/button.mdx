@@ -72,7 +72,7 @@ SmartHR UIでは`DangerButton`です。
 破壊的なアクション（データの永久消去など）の実行前に、ユーザーに一歩立ち止まって考えてもらいたいときに使います。
 
 - DangerButtonが頻出すると効果がありません。
-- ユーザーにこのアクションを実行させる場合は、必ず確認を求めるステップを追加してください。（例：[削除ダイアログ](/products/design-guide/delete/)）
+- ユーザーにこのアクションを実行させる場合は、必ず確認を求めるステップを追加してください。（例：[削除ダイアログ](/products/design-patterns/delete-dialog/)）
 - すべてのユーザーが色を見たり、理解できるわけではないため、警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h2-1)）に頼らないでください。ボタン配置のコンテキストやラベルテキストは重要です。
 
 ```tsx live=true
@@ -90,7 +90,7 @@ SmartHR UIでは`DangerButton`です。
 SmartHR UIでは`TextButton`です。  
 SecondaryButtonよりもさらに優先度が低いアクションのボタンとして使います。
 
-また、[ドロップダウンメニュー](/products/design-guide/dropdown-button/#h3-1)として使用したり、[アイコンボタン](#h4-1)として使用するなど、ボタンではあるもののボタンの装飾を必要としない場合に使います。
+また、[ドロップダウンメニュー](/products/design-patterns/dropdown-button/#h3-1)として使用したり、[アイコンボタン](#h4-1)として使用するなど、ボタンではあるもののボタンの装飾を必要としない場合に使います。
 
 ```tsx live=true
 <Cluster gap="XS">
@@ -143,7 +143,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 | 種類 | 表示例 | アイコンの役割 |
 | :--- | :--- | :--- |
 | `アイコン付き（左）` | <Cluster><SecondaryButton prefix={<FaPlusCircleIcon />}>項目を追加</SecondaryButton><SecondaryButton prefix={<FaCloudDownloadAltIcon />}>ダウンロード</SecondaryButton></Cluster> | ボタンのアクション（機能）を表すために使います。<br />同じアクションのボタンには、同じアイコンを採用してください。 |
-| `アイコン付き（右）` | <Cluster><SecondaryButton suffix={<FaCaretDownIcon />}>一括操作</SecondaryButton><SecondaryButton suffix={<FaFilterIcon />}>絞り込み</SecondaryButton></Cluster> | ドロップダウンのように、ボタン押下後に表示するUIを想起させるために使います。<br />（例：[複数の操作をまとめるボタン](/products/design-guide/dropdown-button/)、[Dropdown](/products/components/dropdown/)、[FilterDropdown](/products/components/filter-dropdown/)） |
+| `アイコン付き（右）` | <Cluster><SecondaryButton suffix={<FaCaretDownIcon />}>一括操作</SecondaryButton><SecondaryButton suffix={<FaFilterIcon />}>絞り込み</SecondaryButton></Cluster> | ドロップダウンのように、ボタン押下後に表示するUIを想起させるために使います。<br />（例：[複数の操作をまとめるボタン](/products/design-patterns/dropdown-button/)、[Dropdown](/products/components/dropdown/)、[FilterDropdown](/products/components/filter-dropdown/)） |
 
 #### アイコンボタン
 アイコンのみのボタンです。ラベルテキストを表示するレイアウト上の余裕がない場合などに使います。  
@@ -171,7 +171,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 ボタンの操作ができない状態を表現したスタイルです。  
 無効状態のボタンはコントラストが低くユーザーを混乱させるため、できるだけ使わないようにしてください。
 
-ユーザーはなぜ無効になっているのかわからないことがあります。「[権限による表示制御](/products/design-guide/access-control-pattern/)」の設計ガイドを参考にして、無効状態の理由を表示したり、無効ではなくボタン自体を非表示にすることを検討してください。
+ユーザーはなぜ無効になっているのかわからないことがあります。「[権限による表示制御](/products/design-patterns/access-control-pattern/)」のデザインパターンを参考にして、無効状態の理由を表示したり、無効ではなくボタン自体を非表示にすることを検討してください。
 
 ```tsx live=true
 <Cluster gap="XS">
@@ -196,7 +196,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 - 「申請を取り消し」
 
 
-## 設計ガイド
+## デザインパターン
 
 ### type="button" について
 SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="button"`がついています。
