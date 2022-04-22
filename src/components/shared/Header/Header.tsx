@@ -191,7 +191,7 @@ const SiteName = styled(LinkComponent)`
   }
 `
 
-const StyledNav = styled(Cluster).attrs({ as: 'nav', justify: 'flex-end' })`
+const StyledNav = styled(Cluster).attrs({ justify: 'flex-end', as: 'nav' })`
   margin-inline-start: auto;
 
   ul {
