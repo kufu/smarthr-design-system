@@ -173,7 +173,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
         `}
 `
 
-const Container = styled(Cluster).attrs({ gap: { row: 0.5, column: 1 }, align: 'center', justify: 'space-between' })``
+const Container = styled(Cluster).attrs({ gap: { row: 0.75, column: 1 }, align: 'center', justify: 'space-between' })``
 
 const SiteName = styled(LinkComponent)`
   padding: 6px 10px;
@@ -191,7 +191,7 @@ const SiteName = styled(LinkComponent)`
   }
 `
 
-const StyledNav = styled(Cluster).attrs({ justify: 'flex-start', as: 'nav' })`
+const StyledNav = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justify: 'flex-start', as: 'nav' })`
   flex-direction: row-reverse;
   margin-inline-start: auto;
 
