@@ -1,4 +1,4 @@
-import { Dialog, FaBarsIcon, FaSearchIcon, SecondaryButtonAnchor, defaultColor } from 'smarthr-ui'
+import { Cluster, FaBarsIcon, FaSearchIcon, SecondaryButtonAnchor, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
 import React, { VFC, useContext, useState } from 'react'
 import { useLocation } from '@reach/router'
 import styled, { createGlobalStyle, css } from 'styled-components'
@@ -36,22 +36,11 @@ export const Header: VFC<Props> = ({ isIndex = false }) => {
   return (
     <>
       <Wrapper isIndex={isIndex}>
-        <Container isIndex={isIndex}>
-          <SiteName>
-            <LinkComponent to="/">
-              <img src="/images/logo_smarthr design_system.svg" alt="SmartHR Design System" width="264" height="24" />
-            </LinkComponent>
+        <Container>
+          <SiteName to="/">
+            <img src="/images/logo_smarthr design_system.svg" alt="SmartHR Design System" width="264" height="24" />
           </SiteName>
           <StyledNav>
-            <ul>
-              {headerContents.map(({ title, key, path }) => (
-                <li key={key}>
-                  <StyledLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
-                    {title}
-                  </StyledLink>
-                </li>
-              ))}
-            </ul>
             <ul className="-optional">
               <li>
                 <StyledSecondaryButtonAnchor
@@ -68,6 +57,15 @@ export const Header: VFC<Props> = ({ isIndex = false }) => {
                   さがす
                 </StyledSearchLink>
               </li>
+            </ul>
+            <ul>
+              {headerContents.map(({ title, key, path }) => (
+                <li key={key}>
+                  <StyledLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
+                    {title}
+                  </StyledLink>
+                </li>
+              ))}
             </ul>
             <MenuContainer>
               <StyledOpenButton
@@ -146,24 +144,18 @@ export const Header: VFC<Props> = ({ isIndex = false }) => {
 }
 
 const Wrapper = styled.header<{ isIndex: boolean }>`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding-inline: 40px;
-  height: var(--header-height, 112px);
+  /* サイト名やリンクに 10px の padding をもたせたので差し引いてる */
+  padding-block: 30px;
+  padding-inline: 110px;
   background-color: ${CSS_COLOR.WHITE};
   ${({ isIndex }) =>
     !isIndex &&
     css`
-      border: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
+      border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
     `}
   ${({ isIndex }) =>
     isIndex
       ? css`
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
-            padding-inline: 80px;
-          }
           @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
             padding-inline: 48px;
           }
@@ -172,34 +164,24 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
           }
         `
       : css`
+          @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
+            padding-inline: 40px;
+          }
           @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
             padding-inline: 24px;
           }
         `}
 `
 
-const Container = styled.div<{ isIndex: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-  width: 100%;
-  height: 100%;
-  max-width: ${CSS_SIZE.CONTENT_WIDTH};
-  margin-inline: auto;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_4}) {
-    gap: 14px;
-  }
-  ${({ isIndex }) =>
-    isIndex &&
-    css`
-      @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
-        max-width: 921px;
-      }
-    `}
-`
+const Container = styled(Cluster).attrs({ gap: { row: 0.75, column: 1 }, align: 'center', justify: 'space-between' })``
 
-const SiteName = styled.div`
+const SiteName = styled(LinkComponent)`
+  padding: 6px 10px;
+
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    padding: revert;
+  }
+
   img {
     display: block;
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
@@ -209,19 +191,16 @@ const SiteName = styled.div`
   }
 `
 
-const StyledNav = styled.nav`
-  display: flex;
-  gap: 28px;
-  height: 100%;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_4}) {
-    gap: 14px;
-  }
+const StyledNav = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justify: 'flex-start', as: 'nav' })`
+  flex-direction: row-reverse;
+  margin-inline-start: auto;
+
   ul {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 28px;
+    gap: 8px;
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_4}) {
       gap: 14px;
     }
@@ -229,7 +208,7 @@ const StyledNav = styled.nav`
       display: none;
     }
     &.-optional {
-      @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+      @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
         display: none;
       }
     }
@@ -237,12 +216,12 @@ const StyledNav = styled.nav`
   li {
     display: flex;
     align-items: center;
-    height: var(--header-height);
   }
 `
 
 /* SmartHR UIのSecondaryButtonAnchorコンポーネントをカスタマイズする */
 const StyledSecondaryButtonAnchor = styled(SecondaryButtonAnchor)`
+  margin-inline: 10px;
   min-width: 150px;
   &:not([href]) {
     border: 0;
@@ -258,9 +237,11 @@ const StyledSearchLink = styled(LinkComponent)`
   display: inline-flex;
   gap: 8px;
   align-items: center;
+  padding: 10px;
   color: inherit;
   text-decoration: none;
   font-weight: bold;
+  line-height: 1;
   white-space: nowrap;
 
   &:hover {
@@ -272,9 +253,10 @@ const StyledLink = styled(LinkComponent)`
   position: relative;
   display: inline-flex;
   align-items: center;
-  height: 100%;
+  padding: 10px;
   text-decoration: none;
   font-weight: bold;
+  line-height: 1;
   color: ${defaultColor.TEXT_BLACK};
 
   &:hover {
@@ -287,11 +269,9 @@ const StyledLink = styled(LinkComponent)`
     &::before {
       content: '';
       position: absolute;
-      width: 100%;
-      padding-inline: 0.5rem;
-      height: 7px;
-      bottom: 0;
-      left: -0.5rem;
+      height: 8px;
+      inset-inline: -4px;
+      inset-block-end: -32px;
       background-color: ${CSS_COLOR.NAV_ACTIVE};
     }
   }
@@ -328,7 +308,7 @@ const MenuContainer = styled.div`
   display: none;
   align-items: center;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: flex;
   }
 `
@@ -341,6 +321,12 @@ const StyledOpenButton = styled.button`
   border: 0;
   background: transparent;
   cursor: pointer;
+`
+
+const Dialog = styled(shrDialog)`
+  > div {
+    height: 100%;
+  }
 `
 
 const MenuContentsContainer = styled.div`
