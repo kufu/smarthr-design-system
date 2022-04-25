@@ -41,15 +41,6 @@ export const Header: VFC<Props> = ({ isIndex = false }) => {
             <img src="/images/logo_smarthr design_system.svg" alt="SmartHR Design System" width="264" height="24" />
           </SiteName>
           <StyledNav>
-            <ul>
-              {headerContents.map(({ title, key, path }) => (
-                <li key={key}>
-                  <StyledLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
-                    {title}
-                  </StyledLink>
-                </li>
-              ))}
-            </ul>
             <ul className="-optional">
               <li>
                 <StyledSecondaryButtonAnchor
@@ -66,6 +57,15 @@ export const Header: VFC<Props> = ({ isIndex = false }) => {
                   さがす
                 </StyledSearchLink>
               </li>
+            </ul>
+            <ul>
+              {headerContents.map(({ title, key, path }) => (
+                <li key={key}>
+                  <StyledLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
+                    {title}
+                  </StyledLink>
+                </li>
+              ))}
             </ul>
             <MenuContainer>
               <StyledOpenButton
@@ -176,7 +176,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
 const Container = styled(Cluster).attrs({ gap: { row: 0.5, column: 1 }, align: 'center', justify: 'space-between' })``
 
 const SiteName = styled(LinkComponent)`
-  padding: 10px;
+  padding: 6px 10px;
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding: revert;
@@ -191,7 +191,8 @@ const SiteName = styled(LinkComponent)`
   }
 `
 
-const StyledNav = styled(Cluster).attrs({ justify: 'flex-end', as: 'nav' })`
+const StyledNav = styled(Cluster).attrs({ justify: 'flex-start', as: 'nav' })`
+  flex-direction: row-reverse;
   margin-inline-start: auto;
 
   ul {
@@ -268,9 +269,9 @@ const StyledLink = styled(LinkComponent)`
     &::before {
       content: '';
       position: absolute;
-      height: 4px;
+      height: 8px;
       inset-inline: -4px;
-      inset-block-end: 0;
+      inset-block-end: -32px;
       background-color: ${CSS_COLOR.NAV_ACTIVE};
     }
   }
