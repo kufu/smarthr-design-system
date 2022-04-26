@@ -194,6 +194,7 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
 }
 
 const Wrapper = styled.div`
+  overflow-x: scroll;
   & th,
   td {
     vertical-align: baseline;
