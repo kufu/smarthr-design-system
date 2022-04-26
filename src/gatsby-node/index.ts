@@ -100,9 +100,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       frontmatter: MdxFrontmatter
     }
     type MdxFrontmatter {
-      author: String!
-      date: Date @dateformat
-      tags: [String!]!
+      title: String!
+      description: String!
     }
   `
 
