@@ -1,15 +1,8 @@
-import dotenv from 'dotenv'
-dotenv.config({
+require('dotenv').config({
   path: '.env',
 })
 
-import path from 'path'
-import type { GatsbyConfig } from 'gatsby'
-import { AIRTABLE_CONTENTS } from './src/constants/airtable'
-import { algoliaConfig } from './gatsby-plugin-algolia-config'
-import emoji from 'remark-emoji'
-
-const config: GatsbyConfig = {
+module.exports = {
   siteMetadata: {
     title: 'SmartHR Design System',
     description: 'SmartHR Design Systemは、だれでも・効率よく・迷わずにSmartHRらしい表現をするためのデザインシステムです。',
@@ -45,13 +38,13 @@ const config: GatsbyConfig = {
     },
     {
       resolve: 'gatsby-plugin-algolia',
-      options: algoliaConfig,
+      options: require('./gatsby-plugin-algolia-config.js'),
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'articles',
-        path: path.resolve(`content/articles`),
+        path: `${__dirname}/content/articles`,
       },
     },
     {
@@ -59,10 +52,10 @@ const config: GatsbyConfig = {
       options: {
         extensions: ['.mdx'],
         defaultLayouts: {
-          defaults: path.resolve('src/templates/article.tsx'),
+          defaults: require.resolve('./src/templates/article.tsx'),
         },
         gatsbyRemarkPlugins: [
-          { resolve: path.resolve(`src/plugins/gatsby-remark-index-id-header/index.js`) },
+          { resolve: require.resolve(`./src/plugins/gatsby-remark-index-id-header/index.js`) },
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -79,7 +72,7 @@ const config: GatsbyConfig = {
             },
           },
         ],
-        remarkPlugins: [emoji],
+        remarkPlugins: [require('remark-emoji')],
       },
     },
     {
@@ -87,16 +80,24 @@ const config: GatsbyConfig = {
       options: {
         apiKey: process.env.AIRTABLE_API_KEY, // may instead specify via env, see below
         concurrency: 5, // default, see using markdown and attachments for more information
-        tables: AIRTABLE_CONTENTS.map((item) => {
-          return {
+        tables: [
+          {
             baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: item.tableName,
+            tableName: `用字用語：一覧`,
             tableView: `design system表示用`,
-          }
-        }),
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `用字用語：理由`,
+            tableView: `design system表示用`,
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `基本的な考え方や表記`,
+            tableView: `design system表示用`,
+          },
+        ],
       },
     },
   ],
 }
-
-export default config

@@ -348,8 +348,8 @@ type MdxFrontmatter = {
   readonly date: Maybe<Scalars['Date']>;
   readonly tags: ReadonlyArray<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
-  readonly order: Maybe<Scalars['Int']>;
   readonly smarthr_ui: Maybe<Scalars['String']>;
+  readonly order: Maybe<Scalars['Int']>;
 };
 
 
@@ -808,8 +808,8 @@ type MdxFrontmatterFilterInput = {
   readonly date: Maybe<DateQueryOperatorInput>;
   readonly tags: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
-  readonly order: Maybe<IntQueryOperatorInput>;
   readonly smarthr_ui: Maybe<StringQueryOperatorInput>;
+  readonly order: Maybe<IntQueryOperatorInput>;
 };
 
 type MdxHeadingMdxFilterListInput = {
@@ -969,8 +969,8 @@ type FileFieldsEnum =
   | 'childrenMdx.frontmatter.date'
   | 'childrenMdx.frontmatter.tags'
   | 'childrenMdx.frontmatter.description'
-  | 'childrenMdx.frontmatter.order'
   | 'childrenMdx.frontmatter.smarthr_ui'
+  | 'childrenMdx.frontmatter.order'
   | 'childrenMdx.slug'
   | 'childrenMdx.body'
   | 'childrenMdx.excerpt'
@@ -1032,8 +1032,8 @@ type FileFieldsEnum =
   | 'childMdx.frontmatter.date'
   | 'childMdx.frontmatter.tags'
   | 'childMdx.frontmatter.description'
-  | 'childMdx.frontmatter.order'
   | 'childMdx.frontmatter.smarthr_ui'
+  | 'childMdx.frontmatter.order'
   | 'childMdx.slug'
   | 'childMdx.body'
   | 'childMdx.excerpt'
@@ -2617,8 +2617,8 @@ type MdxFieldsEnum =
   | 'frontmatter.date'
   | 'frontmatter.tags'
   | 'frontmatter.description'
-  | 'frontmatter.order'
   | 'frontmatter.smarthr_ui'
+  | 'frontmatter.order'
   | 'slug'
   | 'body'
   | 'excerpt'
