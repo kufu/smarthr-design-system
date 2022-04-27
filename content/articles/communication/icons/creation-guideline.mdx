@@ -1,5 +1,5 @@
 ---
-title: アイコン作成ガイドライン
+title: 作成ガイドライン
 author: ‘omame’
 description: ‘アイコンを作成する際のガイドラインです。’
 date: ‘2022-4-22’
@@ -15,34 +15,34 @@ order: 2
 - マスターデータは完成したアイコンを管理するものです。新規アイコンを作成する際は、**複製してから**作業をしてください。
 - マスターデータの更新はすべて @omame が担当しますので、アイコン作成後にお声かけください。
 
-## 原則
-- Font AwesomeのFreeプランのアイコンを使用し、Font Awesomeにないアイコンのみ独自作成しています。
-- 独自に作成するアイコンはFont Awesomeアイコンと並んだときに違和感のないよう作成してください。
-- outlineとsolidの2種類を作成してください。
-- outlineはFont AwesomeのRegular、solidはFont AwesomeのSolidに見た目を合わせています。
-- アイコンは単色で作成してください。
-- 既存アイコンがFont Awesomeか、独自作成か知りたい場合は[アイコン | Figma](https://www.figma.com/file/wTjPGUsrbI0OqSLIEtwvvG/%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%EF%BC%88Communication%EF%BC%89?node-id=610%3A347)で確認できます。
+## 概要
+- **アイコンは、基本的にFont Awsome(Freeプラン)から選定します。適したアイコンがない場合は、トンマナを合わせてオリジナルで作成します。**これは、アイコンのデザイントンマナをプロダクトで数多く利用しているFont Awsomeに合わせて統一することで、サービス全体で一環した印象を保つためです。
+- 既存アイコンがFont Awesomeか、オリジナルかは[アイコン | Figma](https://www.figma.com/file/wTjPGUsrbI0OqSLIEtwvvG/%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%EF%BC%88Communication%EF%BC%89?node-id=610%3A347)に記載しています。
+- アイコンはoutlineとsolidの2種類を用意します。
 
-## Font Awesomeをそのまま利用する場合
-- Freeプランのアイコンのみを使用してください。
-- SolidのみFreeでoutline（Font Awesome内での表記はRegular）はProの場合があります。その場合は以下のルールで作成してください。
+## 1.Font Awesomeを利用する方法
+- outline・solidどちらも、Font Awosome のFreeプランから選定して、利用してください。
+- solidがFreeプランに含まれていても、outline（Font Awesome内での表記はRegular）は別プランの場合があります。その場合は以下のルールで作成してください。
 
 | 事例 | 作成方法 |
 | --- | --- |
-|Regular（Pro）がSolid（Free）を反転した形状 | outline、solidどちらも形を変えて独自作成 |
-|Rutline（Pro）がsolid（Free）と違う形状 | solidはそのまま使用、outlineはsolidを反転する形で独自作成 |
+|outline（Regular）がsolidを反転した形状 | outline、solidどちらもオリジナルで作成 |
+|outline（Regular）がsolidの反転とは違う形状 | solidはFontAwesomeを利用。outlineはsolidを反転する形でオリジナルで作成 |
 
-※2022年4月時点のFontAwesome最新 ver 6.0.0
+※FontAwesome ver 6.0.0 時点
 
-## 新規作成する場合
+## 2.オリジナルで作成する方法
+オリジナルで作成する場合は、Font Awesomeアイコンのトーンに合わせ、並んだときに違和感のないよう作成してください。  
+outlineはFont AwesomeのRegular、solidはFont AwesomeのSolidに見た目を合わせます。
+
 ### アートボードサイズ
-128 × 128pxで作成してください。
+128×128pxで作成してください。
 ![アートボードの横幅と縦幅に128pxと記載されている](./images/artboard-size.jpeg)
 ### レイアウト
 アイコンの周りには上下左右に各8pxの余白を確保してください
 ![アートボードの外枠から上下左右の余白に8px、アイコンを作成するエリアの横幅と縦幅に112pxと記載されている](./images/layout.jpeg)
 ### 基本形状
-マスターデータ内に、Font Awesomeのアイコンと並んだときに違和感のないようなKeylineを配置しています。
+マスターデータ内に、Font Awesomeのアイコンと並んだときに違和感のないようなKeylineを配置しています。  
 できるだけKeylineに合わせることで、サイズ感や形状など見た目を統一できます。
 ![Keyline、Keylineに図形を合わせた場合の図 (Square、Vertical、Horizontal、Circle)](./images/shape.jpg)
 #### 線
@@ -52,23 +52,21 @@ order: 2
 基本を8pxとして作成してください。
 ![8pxの角丸、8pxと4pxの角丸で構成されたアイコン](./images/rounded-corners.jpeg)
 
-## その他
-### SolidとOutlineのサイズ感を揃える方法
+### その他
+#### SolidとOutlineのサイズ感を揃える方法
 - 先にoutlineのアイコンを作成します。
 - solidを作成する際はoutlineの線を残したまま塗りをつけるとサイズ感が変わらずに作成できます。
 ![線色がONになっているアイコン、線色と塗りがONになっているアイコン](./images/align-sizes.jpeg)
-### 線のみで構成されているアイコン
+#### 線のみで構成されているアイコン
 outlineアイコンを先に作成し、Font AwesomeのOutlineをベースに線の太さを調整してsolidアイコンを作成してください。  
 Font Awesomeの**Regular**と**Solid**の関係を参考にして作成してください。
-### 空白のサイズ
+#### 空白のサイズ
 solid作成時、隣接した色ベタの間に空白を入れる場合は6px空けてください。
 ![solidのアイコン、solidのアイコンの余白部分がハイライトされている](./images/blank.jpeg)
-
-## ガイドラインに当てはめられない場合
+#### ガイドラインに当てはめられない場合
 ガイドラインに沿って作成するのが難しい場合は、ガイドラインを逸脱し作成しても構いません。
 認識しやすい形状であり、なおかつ他のアイコンと見た目が統一されていることを優先し作成してください。
 
 ## お問い合わせ
-アイコンの利用方法に関する相談・お問い合わせ
-- 社内Slack: `#ext_design_system`  
-- Twitter: https://twitter.com/SHRDesignSystem
+アイコンの作成方法に関する相談・お問い合わせ
+- 社内Slack: `#design_system_相談`  
