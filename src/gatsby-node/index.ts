@@ -102,6 +102,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     type MdxFrontmatter {
       title: String!
       description: String!
+      order: Int
+      smarthr_ui: String
     }
   `
 
