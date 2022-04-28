@@ -2985,15 +2985,15 @@ type AirtableSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type BasicConceptTableQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BasicConceptTableQuery = { readonly basicConceptData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id'>> } }> } };
-
 type IdiomaticUsageTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type IdiomaticUsageTableQuery = { readonly idiomaticUsageData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'label' | 'ng_example' | 'ok_example' | 'expected' | 'reason' | 'record_id'>> } }> }, readonly idiomaticUsageReason: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'data'>> } }> }, readonly writingStyle: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'data' | 'record_id'>> } }> } };
+
+type BasicConceptTableQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BasicConceptTableQuery = { readonly basicConceptData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id'>> } }> } };
 
 type HeadQueryVariables = Exact<{ [key: string]: never; }>;
 

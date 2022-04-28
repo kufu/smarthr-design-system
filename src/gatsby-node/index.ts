@@ -103,7 +103,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       title: String!
       description: String!
       order: Int
-      smarthr_ui: String
     }
   `
 
