@@ -105,6 +105,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       order: Int
     }
   `
+  // MdxFrontmatterには`smarthr-ui`もあるが、型定義（`smarthr_ui: String`）を追加すると値が取得できない現象が起こるため、未定義。
 
   createTypes(typeDefs)
 }
