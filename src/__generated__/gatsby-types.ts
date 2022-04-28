@@ -344,20 +344,9 @@ type SiteBuildMetadata_buildTimeArgs = {
 
 type MdxFrontmatter = {
   readonly title: Scalars['String'];
-  readonly author: Scalars['String'];
-  readonly date: Maybe<Scalars['Date']>;
-  readonly tags: ReadonlyArray<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly smarthr_ui: Maybe<Scalars['String']>;
+  readonly description: Scalars['String'];
   readonly order: Maybe<Scalars['Int']>;
-};
-
-
-type MdxFrontmatter_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
+  readonly smarthr_ui: Maybe<Scalars['String']>;
 };
 
 type MdxHeadingMdx = {
@@ -804,12 +793,9 @@ type MdxFilterInput = {
 
 type MdxFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly author: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
-  readonly tags: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
-  readonly smarthr_ui: Maybe<StringQueryOperatorInput>;
   readonly order: Maybe<IntQueryOperatorInput>;
+  readonly smarthr_ui: Maybe<StringQueryOperatorInput>;
 };
 
 type MdxHeadingMdxFilterListInput = {
@@ -965,12 +951,9 @@ type FileFieldsEnum =
   | 'childrenMdx.rawBody'
   | 'childrenMdx.fileAbsolutePath'
   | 'childrenMdx.frontmatter.title'
-  | 'childrenMdx.frontmatter.author'
-  | 'childrenMdx.frontmatter.date'
-  | 'childrenMdx.frontmatter.tags'
   | 'childrenMdx.frontmatter.description'
-  | 'childrenMdx.frontmatter.smarthr_ui'
   | 'childrenMdx.frontmatter.order'
+  | 'childrenMdx.frontmatter.smarthr_ui'
   | 'childrenMdx.slug'
   | 'childrenMdx.body'
   | 'childrenMdx.excerpt'
@@ -1028,12 +1011,9 @@ type FileFieldsEnum =
   | 'childMdx.rawBody'
   | 'childMdx.fileAbsolutePath'
   | 'childMdx.frontmatter.title'
-  | 'childMdx.frontmatter.author'
-  | 'childMdx.frontmatter.date'
-  | 'childMdx.frontmatter.tags'
   | 'childMdx.frontmatter.description'
-  | 'childMdx.frontmatter.smarthr_ui'
   | 'childMdx.frontmatter.order'
+  | 'childMdx.frontmatter.smarthr_ui'
   | 'childMdx.slug'
   | 'childMdx.body'
   | 'childMdx.excerpt'
@@ -2613,12 +2593,9 @@ type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter.title'
-  | 'frontmatter.author'
-  | 'frontmatter.date'
-  | 'frontmatter.tags'
   | 'frontmatter.description'
-  | 'frontmatter.smarthr_ui'
   | 'frontmatter.order'
+  | 'frontmatter.smarthr_ui'
   | 'slug'
   | 'body'
   | 'excerpt'
@@ -3061,7 +3038,7 @@ type ArticleQueryVariables = Exact<{
 
 type ArticleQuery = { readonly mdx: Maybe<(
     Pick<Mdx, 'id' | 'body'>
-    & { readonly headings: Maybe<ReadonlyArray<Maybe<Pick<MdxHeadingMdx, 'depth' | 'value'>>>>, readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'author' | 'description' | 'smarthr_ui' | 'date'>>, readonly fields: Maybe<Pick<MdxFields, 'category' | 'hierarchy' | 'slug'>> }
+    & { readonly headings: Maybe<ReadonlyArray<Maybe<Pick<MdxHeadingMdx, 'depth' | 'value'>>>>, readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'description' | 'smarthr_ui'>>, readonly fields: Maybe<Pick<MdxFields, 'category' | 'hierarchy' | 'slug'>> }
   )>, readonly parentCategoryAllMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'category' | 'slug'>> } }> }, readonly depth1Mdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> } }> }, readonly depth2Mdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> } }> }, readonly depth3Mdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> } }> }, readonly depth4Mdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> } }> }, readonly airTable: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id'>> } }> } };
 
 }

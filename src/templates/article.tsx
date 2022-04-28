@@ -73,10 +73,8 @@ export const query = graphql`
       }
       frontmatter {
         title
-        author
         description
         smarthr_ui
-        date(formatString: "MMMM DD, YYYY")
       }
       fields {
         category
