@@ -40,6 +40,49 @@
         "automerge": false
       },
       {
+        "matchPackageNames": [
+          "gatsby"
+        ],
+        "matchUpdateTypes": [
+          "minor",
+          "major"
+        ],
+        "enabled": false,
+        "automerge": false
+      },
+      {
+        "groupName": "React",
+        "matchPackagePrefixes": [
+          "react",
+          "@types/react"
+        ],
+        "automerge": true
+      },
+      {
+        "groupName": "MDX",
+        "matchPackagePrefixes": [
+          "@mdx-js",
+          "@types/mdx-js"
+        ],
+        "automerge": true
+      },
+      {
+        "groupName": "adm-zip",
+        "matchPackageNames": [
+          "adm-zip",
+          "@types/adm-zip"
+        ],
+        "automerge": true
+      },
+      {
+        "groupName": "styled-components",
+        "matchPackageNames": [
+          "styled-components",
+          "@types/styled-components"
+        ],
+        "automerge": true
+      },
+      {
         "groupName": "ESLint and Prettier",
         "matchPackageNames": [
           "eslint",
@@ -48,13 +91,6 @@
         "matchPackagePatterns": [
           "^eslint-",
           "^prettier-"
-        ],
-        "automerge": true
-      },
-      {
-        "groupName": "definitelyTyped",
-        "matchPackagePrefixes": [
-          "@types/"
         ],
         "automerge": true
       }

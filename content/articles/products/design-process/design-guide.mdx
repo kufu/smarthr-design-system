@@ -1,23 +1,21 @@
 ---
-title: 'デザインデータ設計ガイド'
-author: 'versionfive'
-description: 'デザインデータを作成する際に必要な情報と、守って欲しいルールをまとめています'
-date: '2021-05-26'
-order: 1
+title: 'デザインデータ(Figma)の作り方'
+description: 'Figmaでデザインデータを作成する際に必要な情報と、守って欲しいルールをまとめています'
+order: 2
 ---
 
 ## 概要
 SmartHR UIのコンポーネントをデザイナーが追加・更新する場合、デザインツールでUI設計する場合があります。
 
-本項ではデザインデータを作成する際に必要な情報と、守って欲しいルールをまとめています。
+デザインデータを作成する際に必要な情報と、守って欲しいルールをまとめています。
 
 
 ## ツール
-SmartHRで利用しているデザインツールは以下の通りです。これらツールを利用開始したい場合は、社内情シスに利用申請してください。
+SmartHRのプロダクト開発で利用しているデザインツールは以下の通りです。これらツールを利用開始したい場合は、社内情シスに利用申請してください。
 
 | ツール名 | 用途 |
 | :--- | :--- |
-| [Figma](https://figma.com/) | 推奨のUIデザインツール、兼モックアップ作成ツール |
+| [Figma](https://figma.com/) | UIデザインツール、兼モックアップ作成ツール |
 | [Contrast](https://apps.apple.com/jp/app/contrast-color-accessibility/id1254981365?mt=12) | 色のアクセシビリティをチェックするためのユーティリティソフト |
 
 
@@ -31,7 +29,7 @@ https://www.figma.com/community/file/978607227374353992
 
 ## 設計ルール
 ### 前提
-Figmaを使ったSmartHR UIのコンポーネントのデザインモック作成を前提としています。
+Figmaを使ったSmartHR UIのコンポーネントのデザインモック作成を前提にした設計ルールですが、SmartHR UIのFigmaライブラリを利用してプロダクトのUI設計をする場合にも流用可能です。
 
 
 ### 実装を意識したコンポーネントの設計
@@ -42,14 +40,14 @@ FigmaのAutoLayoutを活用することで実装（CSS）に近いコンポー�
 また、InstanceやVariantsを使用して、単一コンポーネントとして運用をしてください。
 
 
-### AutoLayoutとResizing
-コンポーネント化する際は、コンポーネントが内部のデータにより可変かどうかを考慮して、適切にAutoLayoutとResizingを設定してください。
+### Branchの利用
+意図しない更新から保護するために、SmartHR UIのFigmaファイルは**[Branch機能](https://help.figma.com/hc/en-us/articles/360063144053-Create-branches-and-merge-changes)の利用が必須になりました。**（2022年4月より）
 
+Branchの利用によって、誰でも安全に更新できるようになります。
 
-### レイヤー順序
-実装に合わせたレイヤーの順序や構造を意識してください。
+Publishやコミュニティへの公開は管理者メンバーのみ実施できます。  
+具体的な使用方法は、[FigmaのSmartHR UI（UIコンポーネントライブラリ）に追加や編集を加えて適用する方法｜DocBase](https://smarthr-inc.docbase.io/posts/2372849)を参照してください。
 
-ただし、FigmaでAutoLayoutを設定すると、レイヤーの順序が下にいくほどFrame内では上部に表示されるため、**レイヤーの順序は表層の表示順の逆順とします。**
 
 #### コンポーネントのFrameの整理
 
@@ -58,13 +56,15 @@ FigmaのAutoLayoutを活用することで実装（CSS）に近いコンポー�
 
 ![コンポーネントのFrameの並び順の例](./images/design-guide-figma-frame-order.png)
 
-### Version historyの活用
-2021年5月現在、SketchからFigmaへの移行期であることから、ライブラリのバージョン管理を厳密にしていません。
-自由に修正し、適度にPublishしてください。破壊的変更を加える場合は、事前に`#design_system`で共有しましょう。
 
-破壊的変更の可能性がある作業や、一度に多くのコンポーネントを修正する作業をする際は、Restoreのしやすさから**新しいversionを作成して作業することを推奨します。**
+### AutoLayoutとResizing
+コンポーネント化する際は、コンポーネントが内部のデータにより可変かどうかを考慮して、適切にAutoLayoutとResizingを設定してください。
 
-https://help.figma.com/hc/en-us/articles/360038006754-View-a-file-s-version-history
+
+### レイヤー順序
+実装に合わせたレイヤーの順序や構造を意識してください。
+
+ただし、FigmaでAutoLayoutを設定すると、レイヤーの順序が下にいくほどFrame内では上部に表示されるため、**レイヤーの順序は表層の表示順の逆順とします。**
 
 
 ### アイコン
@@ -139,4 +139,8 @@ https://help.figma.com/hc/en-us/articles/360040449513-Add-icons-to-text-layers-w
 
 ## Figma Communityへの公開方法
 管理者権限を持っているメンバーのみが可能です。
-追加・修正したコンポーネントを公開（Publish）したい場合は`#design_system`でお知らせください。
+
+Branchの利用が開始したことにより、Reviewerに管理者メンバーを含めることで、Merge後にCommunityへ公開（Publish）します。  
+お急ぎの場合は、社内Slack`#ext_design_system`チャンネルでお知らせください。
+
+- [FigmaのSmartHR UI（UIコンポーネントライブラリ）に追加や編集を加えて適用する方法｜DocBase](https://smarthr-inc.docbase.io/posts/2372849)
