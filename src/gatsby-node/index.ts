@@ -100,11 +100,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       frontmatter: MdxFrontmatter
     }
     type MdxFrontmatter {
-      author: String!
-      date: Date @dateformat
-      tags: [String!]!
+      title: String!
+      description: String!
+      order: Int
     }
   `
+  // MdxFrontmatterには`smarthr-ui`もあるが、型定義（`smarthr_ui: String`）を追加すると値が取得できない現象が起こるため、未定義。
 
   createTypes(typeDefs)
 }
