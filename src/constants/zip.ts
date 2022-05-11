@@ -22,6 +22,6 @@ export const ZIP_IMAGE_TARGETS: zipImageTarget[] = [
   },
   {
     zipName: 'icon',
-    rootPath: '/content/articles/basics/icons/images',
+    rootPath: '/content/articles/basics/icons/images/icons',
   },
 ]
