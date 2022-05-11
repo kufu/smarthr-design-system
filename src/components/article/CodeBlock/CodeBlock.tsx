@@ -11,7 +11,7 @@ import { CopyButton } from './CopyButton'
 type Props = {
   children: string
   className?: Language
-  live: boolean
+  editable?: boolean
 }
 
 const theme = {
@@ -23,11 +23,11 @@ const theme = {
   },
 }
 
-export const CodeBlock: VFC<Props> = ({ children, className, live }) => {
+export const CodeBlock: VFC<Props> = ({ children, className, editable = false }) => {
   const language = className ? className.replace(/language-/, '') : ''
   const code = children.trim()
 
-  if (live) {
+  if (editable) {
     return (
       <Wrapper>
         <LiveProvider code={code} scope={ui} theme={theme}>
