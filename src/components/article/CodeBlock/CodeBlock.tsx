@@ -2,6 +2,8 @@ import React, { ReactNode, VFC } from 'react'
 import styled from 'styled-components'
 import Highlight, { Language, defaultProps } from 'prism-react-renderer'
 import github from 'prism-react-renderer/themes/github'
+// TODO SmartHR な Dark テーマほしいな!!!
+import vscode from 'prism-react-renderer/themes/vsDark'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
@@ -30,15 +32,25 @@ export const CodeBlock: VFC<Props> = ({ children, className, editable = false })
   if (editable) {
     return (
       <Wrapper>
-        <LiveProvider code={code} scope={ui} theme={theme}>
+        <LiveProvider
+          code={code}
+          scope={ui}
+          theme={{
+            ...vscode,
+            plain: {
+              color: CSS_COLOR.LIGHT_GREY_3,
+              backgroundColor: CSS_COLOR.TEXT_BLACK,
+            },
+          }}
+        >
           <ComponentPreview>
             <LivePreview />
           </ComponentPreview>
           <StyledLiveEditorContainer>
             <CopyButton text={code} />
-            <LiveEditor />
-            <LiveError />
+            <LiveEditor padding={0} />
           </StyledLiveEditorContainer>
+          <LiveError />
         </LiveProvider>
       </Wrapper>
     )
@@ -71,7 +83,7 @@ const Wrapper = styled.div`
 const PreContainer = styled.pre`
   position: relative;
   margin-block: 16px 0;
-  padding: 3.25rem 1.5rem 1.5rem;
+  padding: 2.75rem 1.5rem 1.5rem;
   border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
   background-color: ${CSS_COLOR.SEMANTICS_COLUMN};
 
@@ -90,4 +102,5 @@ const PreContainer = styled.pre`
 const StyledLiveEditorContainer = styled(PreContainer)`
   margin: 0;
   border-width: 0 1px 1px;
+  background-color: ${CSS_COLOR.TEXT_BLACK};
 `
