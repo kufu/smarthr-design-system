@@ -1,6 +1,6 @@
-import { SecondaryButtonAnchor } from 'smarthr-ui'
 import React, { VFC, useContext } from 'react'
 import styled from 'styled-components'
+import { AnchorButton } from 'smarthr-ui'
 import { CSS_COLOR, CSS_FONT_SIZE } from '../../../constants/style'
 import { Link } from 'gatsby'
 
@@ -54,13 +54,13 @@ export const FootStaticLinks: VFC<Props> = () => {
 
   return (
     <>
-      <StyledSecondaryButtonAnchor
+      <StyledAnchorButton
         size="s"
         className={loginStatus === 'pending' ? 'loginStatusPending loginButton' : 'loginButton'}
         {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
       >
         {loginLabel}
-      </StyledSecondaryButtonAnchor>
+      </StyledAnchorButton>
 
       <StyledUl large>
         {Link1.map(({ title, path, isExternal }, index) => (
@@ -118,7 +118,7 @@ const StyledUl = styled.ul<{ large?: boolean }>`
   }
 `
 
-const StyledSecondaryButtonAnchor = styled(SecondaryButtonAnchor)`
+const StyledAnchorButton = styled(AnchorButton)`
   min-width: 120px;
   text-align: center;
   &:not([href]) {

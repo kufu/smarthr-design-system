@@ -7,8 +7,8 @@ order: 21
 
 import { useState } from 'react'
 import {
+  Button,
   FlashMessage,
-  PrimaryButton,
 } from 'smarthr-ui'
 import { ComponentPreview } from '../../../../src/components/ComponentPreview'
 import { ComponentStory } from 'Components/ComponentStory'
@@ -40,7 +40,7 @@ export const DynamicFlashMessage = () => {
   const [visible, setVisible] = useState(false)
   return (
     <>
-        <PrimaryButton onClick={() => setVisible(true)}>Show FlashMessage</PrimaryButton>
+        <Button variant="primary" onClick={() => setVisible(true)}>FlashMessageを表示</Button>
         <FlashMessage type="success" text="Hello, FlashMessage." visible={visible} onClose={() => { setVisible(false) }} />
     </>
   )
@@ -61,7 +61,7 @@ export const DynamicFlashMessage = () => {
 
 FlashMessageは8秒表示されると自動的に非表示となります。
 
-FlashMessageの上にカーソルを置くと、FlashMessageが消えることはありません。
+FlashMessageの上にカーソルが置かれている間は、FlashMessageが消えることはありません。
 カーソルがFlashMessageから離れると、FlashMessageのタイムアウトが再開されます。
 
 
@@ -74,7 +74,7 @@ FlashMessageの上にカーソルを置くと、FlashMessageが消えること�
 
 ### 【閉じる】ボタン
 
-「×（閉じる）」ボタンをクリックして手動でFlashMessageの表示を消すこともできます。
+「×（閉じる）」ボタンを押して手動でFlashMessageの表示を消すこともできます。
 
 
 ## Props

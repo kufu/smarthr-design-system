@@ -5,6 +5,8 @@ smarthr-ui: 'Button'
 order: 2
 ---
 
+import { ComponentPropsTable } from '../../../../src/components/ComponentPropsTable'
+
 ## 使いどころ
 
 コンポーネント（全体）の使用目的や、使用上の注意、基準などを書きます。種類ごとの使いどころは[種類](#h2-1)に書きます。
@@ -19,18 +21,21 @@ order: 2
 
 #### 単品
 
-```tsx live=true
-<PrimaryButton>Button</PrimaryButton>
+```tsx editable
+// ```tsx editable
+// <>この中に JSX を書きます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため import なしに使えます。</>
+// ```
+<Button>ボタン</Button>
 ```
 
 #### 複数
 
-```tsx live=true
+```tsx editable
 <>
-  <PrimaryButton>Button</PrimaryButton>
-  <SecondaryButton>Button</SecondaryButton>
-  <DangerButton>Button</DangerButton>
-  <TextButton>Button</TextButton>
+  <Button variant="primary">ボタン</Button>
+  <Button>ボタン</Button>
+  <Button variant="danger">ボタン</Button>
+  <Button variant="text">ボタン</Button>
 </>
 ```
 
@@ -58,7 +63,7 @@ order: 2
 
 コンポーネントが持つPropsを網羅して書きます。
 
-<ComponentPropsTable name="PrimaryButton" />
+<ComponentPropsTable name="Button" />
 
 ## 関連リンク
 
