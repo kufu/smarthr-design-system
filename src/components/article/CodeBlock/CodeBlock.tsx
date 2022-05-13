@@ -1,20 +1,24 @@
 import React, { ReactNode, VFC } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider, css } from 'styled-components'
 import Highlight, { Language, defaultProps } from 'prism-react-renderer'
 import github from 'prism-react-renderer/themes/github'
 // TODO SmartHR な Dark テーマほしいな!!!
 import vscode from 'prism-react-renderer/themes/vsDark'
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
+import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } from 'react-live'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
 import { CSS_COLOR } from '../../../constants/style'
 import { CopyButton } from './CopyButton'
+import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
 
 type Props = {
   children: string
   className?: Language
   editable?: boolean
-}
+} & Pick<LiveProviderProps, 'scope' | 'noInline'> & {
+    gap?: Gap | SeparateGap
+    align?: CSSProperties['alignItems']
+  }
 
 const theme = {
   ...github,
@@ -25,33 +29,39 @@ const theme = {
   },
 }
 
-export const CodeBlock: VFC<Props> = ({ children, className, editable = false }) => {
+const smarthrTheme = ui.createTheme()
+
+export const CodeBlock: VFC<Props> = ({ children, className, editable = false, scope, noInline = false, gap, align }) => {
   const language = className ? className.replace(/language-/, '') : ''
   const code = children.trim()
 
   if (editable) {
     return (
       <Wrapper>
-        <LiveProvider
-          code={code}
-          scope={ui}
-          theme={{
-            ...vscode,
-            plain: {
-              color: CSS_COLOR.LIGHT_GREY_3,
-              backgroundColor: CSS_COLOR.TEXT_BLACK,
-            },
-          }}
-        >
-          <ComponentPreview>
-            <LivePreview />
-          </ComponentPreview>
-          <StyledLiveEditorContainer>
-            <CopyButton text={code} />
-            <LiveEditor padding={0} />
-          </StyledLiveEditorContainer>
-          <LiveError />
-        </LiveProvider>
+        <ThemeProvider theme={smarthrTheme}>
+          <LiveProvider
+            code={code}
+            language={language as Language}
+            scope={{ ...ui, styled, css, ...scope }}
+            theme={{
+              ...vscode,
+              plain: {
+                color: CSS_COLOR.LIGHT_GREY_3,
+                backgroundColor: CSS_COLOR.TEXT_BLACK,
+              },
+            }}
+            noInline={noInline}
+          >
+            <ComponentPreview gap={gap} align={align}>
+              <LivePreview Component={React.Fragment} />
+            </ComponentPreview>
+            <StyledLiveEditorContainer>
+              <CopyButton text={code} />
+              <LiveEditor padding={0} />
+            </StyledLiveEditorContainer>
+            <LiveError />
+          </LiveProvider>
+        </ThemeProvider>
       </Wrapper>
     )
   }

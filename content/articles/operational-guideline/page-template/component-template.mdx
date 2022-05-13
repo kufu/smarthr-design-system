@@ -23,7 +23,7 @@ import { ComponentPropsTable } from '../../../../src/components/ComponentPropsTa
 
 ```tsx editable
 // ```tsx editable
-// <>この中に JSX を書きます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため import なしに使えます。</>
+// <>この中に JSX が書けます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため明示的に import しないでも使えます。</>
 // ```
 <Button>ボタン</Button>
 ```
@@ -31,6 +31,7 @@ import { ComponentPropsTable } from '../../../../src/components/ComponentPropsTa
 #### 複数
 
 ```tsx editable
+// この編集可能な領域は Cluster で包まれ、gap と align を渡せます。
 <>
   <Button variant="primary">ボタン</Button>
   <Button>ボタン</Button>
