@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import type { VFC } from 'react'
-import { FaExclamationCircleIcon, FaLockIcon, SecondaryButtonAnchor } from 'smarthr-ui'
+import { AnchorButton, FaExclamationCircleIcon, FaLockIcon } from 'smarthr-ui'
 import styled from 'styled-components'
 import { micromark } from 'micromark'
 import { mdxjs } from 'micromark-extension-mdxjs'
@@ -76,7 +76,7 @@ export const Private: VFC<Props> = ({ path }) => {
         <br />
         従業員は必ずパスワードを入力して閲覧・利用してください。
       </p>
-      <SecondaryButtonAnchor href="/login">パスワード入力</SecondaryButtonAnchor>
+      <AnchorButton href="/login">パスワード入力</AnchorButton>
     </UnAuthView>
   )
 }

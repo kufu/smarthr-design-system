@@ -11,8 +11,7 @@ import {
   FaAngleDoubleDownIcon,
   FaAngleDoubleLeftIcon,
   FaAngleDoubleRightIcon,
-  FaPlusCircleIcon,
-  PrimaryButton,
+  FaPlusCircleIcon
 } from 'smarthr-ui'
 import { ComponentPreview } from '../../../../src/components/ComponentPreview'
 import { ComponentStory } from 'Components/ComponentStory'
@@ -35,16 +34,10 @@ SmartHR UIでは`Icon`です。
 
 アイコンのみで利用する場合、適切なラベルを付与してください。特にリンクやボタンにアイコンのみで利用する場合は必須です。
 
-<ComponentPreview>
-  <PrimaryButton square>
-    <FaPlusCircleIcon visuallyHiddenText="追加" size={16} />
-  </PrimaryButton>
-</ComponentPreview>
-
-```
-<PrimaryButton>
-  <FaPlusCircleIcon visuallyHiddenText="追加する" />
-</PrimaryButton>
+```tsx editable
+<Button variant="primary" square>
+  <FaPlusCircleIcon visuallyHiddenText="追加" />
+</Button>
 ```
 
 また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
@@ -62,13 +55,15 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 
 実際に登録されてるアイコンを確認する際は、[Storybook](https://smarthr-ui.netlify.app/?path=/story/icon--all)を確認してください。
 
-<ComponentPreview>
-  <FaAddressBookIcon size={16} />
-  <FaAddressCardIcon size={16} />
-  <FaAngleDoubleDownIcon size={16} />
-  <FaAngleDoubleLeftIcon size={16} />
-  <FaAngleDoubleRightIcon size={16} />
-</ComponentPreview>
+```tsx editable
+<>
+  <FaAddressBookIcon />
+  <FaAddressCardIcon />
+  <FaAngleDoubleDownIcon />
+  <FaAngleDoubleLeftIcon />
+  <FaAngleDoubleRightIcon />
+</>
+```
 
 ## 状態
 
@@ -82,8 +77,8 @@ import { FaExternalLinkAltIcon, FaQuestionCircleIcon } from 'smarthr-ui'
 
 | 使用箇所 | 設置するアイコン | 備考 |
 | :--- | :--- | :--- |
-| 新規ウィンドウ（新規タブ）で開くテキストリンク | テキストの後ろに「<FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" color="#0071C1" size={16} />」アイコン（`fa-external-link`）を設置 | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウで開く場合は付与します。 |
-| [ヘルプセンター](https://knowledge.smarthr.jp/hc/ja)のポップアップダイアログを開くテキストリンク | テキストの後ろに「<FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" color="#0071C1" size={16} />」アイコン（`fa-question-circle`）を設置 |  |
+| 新規ウィンドウ（新規タブ）で開くテキストリンク | テキストの後ろに「<FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" color="#0071C1" />」アイコン（`fa-external-link`）を設置 | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウで開く場合は付与します。 |
+| [ヘルプセンター](https://knowledge.smarthr.jp/hc/ja)のポップアップダイアログを開くテキストリンク | テキストの後ろに「<FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" color="#0071C1" />」アイコン（`fa-question-circle`）を設置 |  |
 
 
 ## 参考文献
