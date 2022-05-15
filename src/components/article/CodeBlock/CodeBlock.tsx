@@ -5,6 +5,7 @@ import github from 'prism-react-renderer/themes/github'
 // TODO SmartHR な Dark テーマほしいな!!!
 import vscode from 'prism-react-renderer/themes/vsDark'
 import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } from 'react-live'
+import ts, { transpile } from 'typescript'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
 import { CSS_COLOR } from '../../../constants/style'
@@ -51,6 +52,12 @@ export const CodeBlock: VFC<Props> = ({ children, className, editable = false, s
               },
             }}
             noInline={noInline}
+            transformCode={(snippet) =>
+              transpile(snippet, {
+                jsx: ts.JsxEmit.React,
+                target: ts.ScriptTarget.ES2020,
+              })
+            }
           >
             <ComponentPreview gap={gap} align={align}>
               <LivePreview Component={React.Fragment} />
