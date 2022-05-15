@@ -40,6 +40,37 @@ import { ComponentPropsTable } from '../../../../src/components/ComponentPropsTa
 </>
 ```
 
+#### プロダクト
+
+```tsx editable withStyled layout=product
+const AwesomeComponent:React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <Wrapper>
+      <Heading>編集可能なコードブロック</Heading>
+      <InformationPanel title="使い方">{children}</InformationPanel>
+    </Wrapper>
+  )
+}
+
+// withStyled を渡すと styled-components を扱えるようになります。
+// ただし必ず render() を呼ぶ必要があります。
+render (
+  <AwesomeComponent>
+    <p>
+      <code>withStyled</code> を渡すと styled-components を扱えるようになります。
+      <br />
+      また、<code>layout=product</code> を使うと擬似的にプロダクトのような見た目になります。
+    </p>
+  </AwesomeComponent>
+)
+
+const Wrapper = styled(Stack)`
+  ${({ theme: { spacingByChar } }) => css`
+    margin-block: ${spacingByChar(2)} ${spacingByChar(1)};
+  `}
+`
+```
+
 ## レイアウト
 
 メインの種類でなく、コンポーネントが持つその他の種類（サイズやアイコン付きなど）がある場合に書きます。

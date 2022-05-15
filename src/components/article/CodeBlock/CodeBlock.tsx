@@ -1,4 +1,4 @@
-import React, { ReactNode, VFC } from 'react'
+import React, { CSSProperties, ReactNode, VFC } from 'react'
 import styled, { ThemeProvider, css } from 'styled-components'
 import Highlight, { Language, defaultProps } from 'prism-react-renderer'
 import github from 'prism-react-renderer/themes/github'
@@ -16,9 +16,11 @@ type Props = {
   children: string
   className?: Language
   editable?: boolean
-} & Pick<LiveProviderProps, 'scope' | 'noInline'> & {
+  withStyled?: boolean
+} & Pick<LiveProviderProps, 'scope'> & {
     gap?: Gap | SeparateGap
     align?: CSSProperties['alignItems']
+    layout?: 'none' | 'product'
   }
 
 const theme = {
@@ -32,7 +34,16 @@ const theme = {
 
 const smarthrTheme = ui.createTheme()
 
-export const CodeBlock: VFC<Props> = ({ children, className, editable = false, scope, noInline = false, gap, align }) => {
+export const CodeBlock: VFC<Props> = ({
+  children,
+  className,
+  editable = false,
+  scope,
+  withStyled = false,
+  gap,
+  align,
+  layout,
+}) => {
   const language = className ? className.replace(/language-/, '') : ''
   const code = children.trim()
 
@@ -51,7 +62,7 @@ export const CodeBlock: VFC<Props> = ({ children, className, editable = false, s
                 backgroundColor: CSS_COLOR.TEXT_BLACK,
               },
             }}
-            noInline={noInline}
+            noInline={withStyled}
             transformCode={(snippet) =>
               transpile(snippet, {
                 jsx: ts.JsxEmit.React,
@@ -59,7 +70,7 @@ export const CodeBlock: VFC<Props> = ({ children, className, editable = false, s
               })
             }
           >
-            <ComponentPreview gap={gap} align={align}>
+            <ComponentPreview gap={gap} align={align} layout={layout}>
               <LivePreview Component={React.Fragment} />
             </ComponentPreview>
             <StyledLiveEditorContainer>
