@@ -1,4 +1,4 @@
-import { Cluster, FaBarsIcon, FaSearchIcon, SecondaryButtonAnchor, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
+import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
 import React, { VFC, useContext, useState } from 'react'
 import { useLocation } from '@reach/router'
 import styled, { createGlobalStyle, css } from 'styled-components'
@@ -43,13 +43,13 @@ export const Header: VFC<Props> = ({ isIndex = false }) => {
           <StyledNav>
             <ul className="-optional">
               <li>
-                <StyledSecondaryButtonAnchor
+                <StyledAnchorButton
                   className={loginStatus === 'pending' ? 'loginStatusPending' : ''}
                   size="s"
                   {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
                 >
                   {loginLabel}
-                </StyledSecondaryButtonAnchor>
+                </StyledAnchorButton>
               </li>
               <li>
                 <StyledSearchLink to="/search/">
@@ -219,8 +219,8 @@ const StyledNav = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justi
   }
 `
 
-/* SmartHR UIのSecondaryButtonAnchorコンポーネントをカスタマイズする */
-const StyledSecondaryButtonAnchor = styled(SecondaryButtonAnchor)`
+/* SmartHR UIのAnchorButtonコンポーネントをカスタマイズする */
+const StyledAnchorButton = styled(AnchorButton)`
   margin-inline: 10px;
   min-width: 150px;
   &:not([href]) {

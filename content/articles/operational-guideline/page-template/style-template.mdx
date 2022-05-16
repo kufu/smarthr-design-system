@@ -4,6 +4,11 @@ description: 'ページの概要はヘッダーに書けます。ページの概
 order: 1
 ---
 
+import { Body, Button, Cell, Cluster, FaPlusCircleIcon, Head, LineUp, Row, Stack, Table, Text } from 'smarthr-ui'
+import { ComponentPreview } from 'Components/ComponentPreview'
+import { DoAndDont } from 'Components/DoAndDont'
+import { StaticImage } from 'Components/StaticImage'
+
 ## h2 相当のタイトル
 
 文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。文章が記入できます。
@@ -32,42 +37,30 @@ order: 1
 
 ## プレビュー
 
-import { PrimaryButton, PrimaryButtonAnchor } from 'smarthr-ui'
-import { SecondaryButton, SecondaryButtonAnchor } from 'smarthr-ui'
-import { DangerButton, DangerButtonAnchor } from 'smarthr-ui'
-import { SkeletonButton, SkeletonButtonAnchor } from 'smarthr-ui'
-import { TextButton, TextButtonAnchor } from 'smarthr-ui'
-import { Cluster, LineUp, Stack } from 'smarthr-ui'
-import { Text } from 'smarthr-ui'
-import { FaPlusCircleIcon } from 'smarthr-ui'
-import { ComponentPreview } from 'Components/ComponentPreview'
-import { DoAndDont } from 'Components/DoAndDont'
-import { StaticImage } from 'Components/StaticImage'
-
 <ComponentPreview>
-  <PrimaryButton>Button</PrimaryButton>
-  <SecondaryButton>Button</SecondaryButton>
-  <DangerButton>Button</DangerButton>
-  <SkeletonButton>Button</SkeletonButton>
-  <TextButton>Button</TextButton>
+  <Button variant="primary">Button</Button>
+  <Button>Button</Button>
+  <Button variant="danger">Button</Button>
+  <Button variant="text">Button</Button>
+  <Button variant="skeleton">Button</Button>
 </ComponentPreview>
 
 ## コード（ライブコード）
 
 基本的に、1コード1コンポーネントで利用してください。
 
-```tsx live=true
-<PrimaryButton>Button</PrimaryButton>
+```tsx editable
+<Button variant="primary">Button</Button>
 ```
 
 ## コード
 
 ```tsx
-<PrimaryButton>Button</PrimaryButton>
-<SecondaryButton>Button</SecondaryButton>
-<DangerButton>Button</DangerButton>
-<SkeletonButton>Button</SkeletonButton>
-<TextButton>Button</TextButton>
+<Button variant="primary">Primary</Button>
+<Button>Secondary</Button>
+<Button variant="danger">Danger</Button>
+<Button variant="skeleton">Skeleton</Button>
+<Button variant="text">Text</Button>
 ```
 
 ## Markdown テーブル
@@ -79,8 +72,6 @@ import { StaticImage } from 'Components/StaticImage'
 | ![sample image](./images/sample.jpg)  | cell  | cell  |
 
 ### SmartHR UI テーブル
-
-import { Table, Body, Head, Row, Cell } from 'smarthr-ui'
 
 <Table>
   <Head>
@@ -95,14 +86,14 @@ import { Table, Body, Head, Row, Cell } from 'smarthr-ui'
       <Cell>cell</Cell>
       <Cell>cell</Cell>
       <Cell>
-        <PrimaryButton>Button</PrimaryButton>
+        <Button variant="primary">Button</Button>
       </Cell>
     </Row>
     <Row>
       <Cell>cell</Cell>
       <Cell>cell</Cell>
       <Cell>
-        <PrimaryButton>Button</PrimaryButton>
+        <Button variant="primary">Button</Button>
       </Cell>
     </Row>
   </Body>
