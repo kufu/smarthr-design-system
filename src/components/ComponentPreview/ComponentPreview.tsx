@@ -40,8 +40,8 @@ export const ComponentPreview = ({
   }, [layout])
 
 const Wrapper = styled(WrapperBase)(
-  ({ theme: { spacingByChar } }) => css`
-    padding: ${spacingByChar(1.5)};
+  ({ theme: { space } }) => css`
+    padding: ${space(1.5)};
   `,
 )
 const NoLayoutWrapper = WrapperBase

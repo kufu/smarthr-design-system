@@ -65,8 +65,8 @@ render (
 )
 
 const Wrapper = styled(Stack)`
-  ${({ theme: { spacingByChar } }) => css`
-    margin-block: ${spacingByChar(2)} ${spacingByChar(1)};
+  ${({ theme: { space } }) => css`
+    margin-block: ${space(2)} ${space(1)};
   `}
 `
 ```
