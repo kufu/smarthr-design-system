@@ -1,28 +1,47 @@
-import React, { VFC } from 'react'
-import styled from 'styled-components'
-import { CSS_COLOR } from '../../constants/style'
+import React, { CSSProperties, useMemo } from 'react'
+import styled, { css } from 'styled-components'
+import { Cluster } from 'smarthr-ui'
+import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
+
+import { WrapperBase } from './WrapperBase'
+import { ProductWrapper } from './ProductWrapper'
 
 type Props = {
   children: React.ReactNode
+  gap?: Gap | SeparateGap
+  align?: CSSProperties['alignItems']
+  layout?: 'none' | 'product'
 }
 
-export const ComponentPreview: VFC<Props> = (props) => {
-  return <Wrapper>{props.children}</Wrapper>
-}
+export const ComponentPreview = ({
+  children,
+  gap = 1,
+  align = 'center', // 無指定で stretch されると困るため
+  layout,
+}: Props) =>
+  useMemo(() => {
+    switch (layout) {
+      default: {
+        return (
+          <Wrapper>
+            <Cluster gap={gap} align={align}>
+              {children}
+            </Cluster>
+          </Wrapper>
+        )
+      }
+      case 'product': {
+        return <ProductWrapper>{children}</ProductWrapper>
+      }
+      case 'none': {
+        return <NoLayoutWrapper>{children}</NoLayoutWrapper>
+      }
+    }
+  }, [layout])
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  margin-block: 16px 0;
-  padding: 3rem 1rem;
-  gap: 1rem;
-  border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
-  font-family: system-ui, sans-serif;
-
-  > * {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-`
+const Wrapper = styled(WrapperBase)(
+  ({ theme: { space } }) => css`
+    padding: ${space(1.5)};
+  `,
+)
+const NoLayoutWrapper = WrapperBase

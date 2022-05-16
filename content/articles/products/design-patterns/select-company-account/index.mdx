@@ -1,0 +1,103 @@
+---
+title: '企業アカウント選択'
+description: 'SmartHR基本機能からオプション機能に遷移する際に、企業アカウントを選択する画面を定義します。'
+order: 12
+---
+SmartHR基本機能からプラスアプリに遷移する際に、企業アカウントを選択する画面を定義します。
+
+## 基本的な考え方
+
+ユーザーが企業アカウントを選択する操作と、次の画面に遷移する動作は、それぞれ意図が異なるためアクションを分けて配置します。  
+企業アカウントの選択と同時に画面が遷移すると、企業アカウントを誤って選択した場合に意図しない選択状態で遷移してしまうことになるため、この誤操作を防ぐ狙いがあります。
+
+
+## 構成
+
+企業アカウント選択画面の構成は次の通りです。
+
+1. 見出し
+2. 企業アカウントの選択リスト
+3. 「次へ」ボタン
+
+![企業アカウント選択画面の構成](select-company-account1.png)
+
+### 1. 見出し
+[セクションタイトル](/products/components/heading/#h3-1)を使用し、`{機能名}を利用する企業アカウントを選択してください。`と表記します。  
+`{機能名}`には、遷移先のプラスアプリの機能名を挿入します。
+
+### 2. 企業アカウントの選択リスト
+プラスアプリにログインしたい企業アカウントを1つ選択するリストです。  
+リストの選択には[RadioButton](/products/components/radio-button/)を使用し、[Base](/products/components/base/)で囲むことでオブジェクトを選択していることを強調します。
+
+### 3. 「次へ」ボタン
+次の画面へ遷移します。[Primaryボタン](/products/components/button/#h3-0)を使用します。
+
+
+## レイアウト
+
+企業アカウント選択画面のレイアウトは次の通りです。
+
+```tsx editable withStyled layout=product
+const companyList = [
+  { id: 0, name: '株式会社スマートエイチアール' },
+  { id: 1, name: '株式会社スマートエイチアール1' },
+  { id: 2, name: '株式会社スマートエイチアール2' },
+  { id: 3, name: '株式会社スマートエイチアール3' },
+]
+
+const SelectCompanyAccount = () => {
+  const [selectedId, setSelectedId] = React.useState<number>(0)
+
+  return (
+    <Wrapper>
+      <Heading type="sectionTitle">&#x7B;機能名&#x7D;を利用する企業アカウントを選択してください。</Heading>
+      <CompanyList>
+        {companyList.map(({ id, name }) => <li key={id}>
+          <CompanyItem onClick={() => setSelectedId(id)}>
+            <RadioButton name="companyAccount" checked={id === selectedId}>
+              {name}
+            </RadioButton>
+          </CompanyItem>
+        </li>)}
+      </CompanyList>
+      <div>
+        <SubmitButton>次へ</SubmitButton>
+      </div>
+    </Wrapper>
+  )
+}
+
+const Wrapper = styled(Stack).attrs({ gap: 1.5 })`
+  ${({ theme: { space } }) => css`
+    padding-block: ${space(3)};
+  `}
+`
+const CompanyList = styled(Stack).attrs({ as: 'ul' })``
+const CompanyItem = styled(Base)`
+  ${({ theme: { leading, shadow, space } }) => css`
+    cursor: pointer;
+    padding: ${space(1)};
+    line-height: ${leading.NONE};
+
+    :focus-within {
+      ${shadow.focusIndicatorStyles}
+    }
+
+    .smarthr-ui-RadioButton-radioButton:focus + span {
+      box-shadow: revert;
+    }
+
+    .smarthr-ui-RadioButton-label {
+      // 視覚的な調整
+      margin-inline-start: ${space(0.75)};
+    }
+  `}
+`
+const SubmitButton = styled(PrimaryButton)`
+  padding-inline: 3em;
+`
+
+render(
+  <SelectCompanyAccount />
+)
+```

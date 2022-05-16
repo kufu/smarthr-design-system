@@ -23,7 +23,7 @@ import { ComponentPropsTable } from '../../../../src/components/ComponentPropsTa
 
 ```tsx editable
 // ```tsx editable
-// <>この中に JSX を書きます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため import なしに使えます。</>
+// <>この中に JSX が書けます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため明示的に import しないでも使えます。</>
 // ```
 <Button>ボタン</Button>
 ```
@@ -31,12 +31,44 @@ import { ComponentPropsTable } from '../../../../src/components/ComponentPropsTa
 #### 複数
 
 ```tsx editable
+// この編集可能な領域は Cluster で包まれ、gap と align を渡せます。
 <>
   <Button variant="primary">ボタン</Button>
   <Button>ボタン</Button>
   <Button variant="danger">ボタン</Button>
   <Button variant="text">ボタン</Button>
 </>
+```
+
+#### プロダクト
+
+```tsx editable withStyled layout=product
+const AwesomeComponent:React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <Wrapper>
+      <Heading>編集可能なコードブロック</Heading>
+      <InformationPanel title="使い方">{children}</InformationPanel>
+    </Wrapper>
+  )
+}
+
+// withStyled を渡すと styled-components を扱えるようになります。
+// ただし必ず render() を呼ぶ必要があります。
+render (
+  <AwesomeComponent>
+    <p>
+      <code>withStyled</code> を渡すと styled-components を扱えるようになります。
+      <br />
+      また、<code>layout=product</code> を使うと擬似的にプロダクトのような見た目になります。
+    </p>
+  </AwesomeComponent>
+)
+
+const Wrapper = styled(Stack)`
+  ${({ theme: { space } }) => css`
+    margin-block: ${space(2)} ${space(1)};
+  `}
+`
 ```
 
 ## レイアウト
