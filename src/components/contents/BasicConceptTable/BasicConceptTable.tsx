@@ -4,6 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { Text } from 'smarthr-ui'
 import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
 import reactStringReplace from 'react-string-replace'
+import { marked } from 'marked'
 
 const query = graphql`
   query BasicConceptTable {
@@ -28,7 +29,7 @@ export const BasicConceptTable: VFC = () => {
   const basicConceptData = data.basicConceptData.edges
     .map(({ node }) => ({
       name: node.data?.name,
-      description: node.data?.description,
+      description: marked.parse(node.data?.description || ''),
       discussion: node.data?.discussion,
       source: node.data?.source,
       recordId: node.data?.record_id,
@@ -68,7 +69,7 @@ export const BasicConceptTable: VFC = () => {
                   説明
                 </FragmentTitle>
               )}
-              {description && getReplaceLinkText(description)}
+              {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
               {discussion && (
                 <FragmentTitle tag="h3" id={fragmentId('2')}>
                   議事録
