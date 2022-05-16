@@ -74,9 +74,10 @@ const Wrapper = styled(Stack).attrs({ gap: 1.5 })`
 `
 const CompanyList = styled(Stack).attrs({ as: 'ul' })``
 const CompanyItem = styled(Base)`
-  ${({ theme: { shadow, space } }) => css`
+  ${({ theme: { leading, shadow, space } }) => css`
     cursor: pointer;
     padding: ${space(1)};
+    line-height: ${leading.NONE};
 
     :focus-within {
       ${shadow.focusIndicatorStyles}
