@@ -140,7 +140,7 @@ const NavigationLinks = styled.ul`
     display: block;
   }
   > li {
-    /* flex: 1; */
+    flex: 1;
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       &:not(:first-child) {
         margin-top: 24px;
