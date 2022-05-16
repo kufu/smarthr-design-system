@@ -128,7 +128,9 @@ const PreContainer = styled.pre`
 `
 
 const StyledLiveEditorContainer = styled(PreContainer)`
+  overflow: auto;
   margin: 0;
   border-width: 0 1px 1px;
   background-color: ${CSS_COLOR.TEXT_BLACK};
+  max-height: 40em;
 `
