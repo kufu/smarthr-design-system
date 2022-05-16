@@ -68,7 +68,7 @@ const padding = css(
     }
   `,
 )
-const Header = styled(Cluster).attrs({ forwardedAs: 'header' })`
+const Header = styled(Cluster).attrs({ as: 'header' })`
   ${({ theme: { color, space } }) => css`
     background-color: ${color.BRAND};
     padding-block: ${space(0.75)};
