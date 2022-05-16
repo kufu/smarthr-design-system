@@ -40,6 +40,11 @@ const Wrapper = styled(WrapperBase)(
       margin-block: 0;
     }
 
+    ul {
+      list-style-type: none;
+      padding-inline-start: unset;
+    }
+
     /* FIXME!: プロダクトのスタイルを反映できていません。
      * line-height など継承されるスタイルを当てる必要があります。
      */
