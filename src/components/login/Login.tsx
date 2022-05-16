@@ -1,5 +1,5 @@
 import React, { VFC, useContext, useState } from 'react'
-import { FaLockIcon, Input, PrimaryButton } from 'smarthr-ui'
+import { Button, FaLockIcon, Input } from 'smarthr-ui'
 import styled from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '../../constants/style'
 import { LoginContext, LoginStatusKey } from '../../context/LoginContext'
@@ -25,13 +25,13 @@ export const LoginPage: VFC = () => {
           value={password}
         />
 
-        <PrimaryButton
-          type="button"
+        <Button
+          variant="primary"
           wide={true}
           onClick={() => login(password, () => setPassword(''), setErrMessage, updateLoginStatus)}
         >
           ログイン
-        </PrimaryButton>
+        </Button>
 
         {errMessage !== '' && <span className="warn">{errMessage}</span>}
 
