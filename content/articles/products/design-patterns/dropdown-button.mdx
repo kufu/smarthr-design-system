@@ -97,3 +97,99 @@ import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
 | :--- | :--- |
 | アクションボタン | [Secondaryボタン](/products/components/button/#h3-1)の`アイコンのみ`タイプで「<FaEllipsisHIcon visuallyHiddenText="その他の操作" />」アイコン（`fa-ellipsis-h`）を使用します。ラベルは視覚的に省略しますが、**必ず代替テキストを含めて**何のボタンなのかを伝えるようにしましょう。 |
 | ドロップダウン | 「D. 異なる複数の操作」と同様です。 |
+
+## レイアウト
+
+複数の操作をまとめるボタンのレイアウトは次のとおりです。
+
+```tsx editable withStyled
+type Actions = ActionItem | ActionItem[]
+// これでコンポーネントを絞れるわけではないが Button[variant=text] を使ってほしいんだよ! という気持ち
+type ActionItem =
+  | ReactElement<ComponentProps<typeof Button>>
+  | ReactElement<ComponentProps<typeof AnchorButton>>
+type Props = {
+  /** 引き金となるボタンラベル。デフォルトは “その他の操作” */
+  label?: string
+  /** 操作群 */
+  children: Actions
+  /** 引き金となるボタンの大きさ */
+  triggerSize?: 's'
+  /** 引き金となるボタンをアイコンのみとするかどうか */
+  onlyIconTrigger?: boolean
+}
+
+const DropdownButtons: React.FC<Props> = ({ label = 'その他の操作', children, triggerSize, onlyIconTrigger = false }) => {
+  const triggerLabel = useMemo(() => onlyIconTrigger ? <FaEllipsisHIcon visuallyHiddenText={label} /> : label, [onlyIconTrigger, label])
+  const triggerSuffix = useMemo(() => onlyIconTrigger ? <></> : <FaCaretDownIcon visuallyHiddenText="候補を開く" />, [onlyIconTrigger])
+
+  return (
+    <Dropdown>
+      <DropdownTrigger>
+        <Trigger suffix={triggerSuffix} size={triggerSize}>
+          {triggerLabel}
+        </Trigger>
+      </DropdownTrigger>
+      <DropdownContent>
+        <ActionList>
+          {React.Children.map(children, (item, i) => (
+            <li key={i}>{actionItem(item)}</li>
+          ))}
+        </ActionList>
+      </DropdownContent>
+    </Dropdown>
+  )
+}
+
+const Trigger = styled(Button)`
+  &[aria-expanded='true'] .smarthr-ui-Icon {
+    transform: rotate(0.5turn);
+  }
+`
+const ActionList = styled(Stack).attrs({ as: 'ul', gap: 0})`
+  ${({ theme: { space } }) => css`
+    list-style: none;
+    margin-block: 0;
+    padding-block: ${space(0.5)};
+    padding-inline-start: 0;
+
+    .smarthr-ui-Button,
+    .smarthr-ui-AnchorButton {
+      justify-content: flex-start;
+
+      padding-block: ${space(0.5)};
+      font-weight: normal;
+    }
+  `}
+`
+const actionItem = (item: ReactElement) => cloneElement(item, { variant: 'text', wide: true})
+
+render (
+  <>
+    <DropdownButtons>
+      <Button>評価を開始</Button>
+      <Button disabled>評価を確定</Button>
+      <Button>ヒントメッセージの設定</Button>
+      <AnchorButton href="#h2-2">ログアウト</AnchorButton>
+    </DropdownButtons>
+    <DropdownButtons onlyIconTrigger>
+      <Button>評価を開始</Button>
+      <Button disabled>評価を確定</Button>
+      <Button>ヒントメッセージの設定</Button>
+      <AnchorButton href="#h2-2">ログアウト</AnchorButton>
+    </DropdownButtons>
+    <DropdownButtons triggerSize="s" label="操作">
+      <Button>評価を開始</Button>
+      <Button disabled>評価を確定</Button>
+      <Button>ヒントメッセージの設定</Button>
+      <AnchorButton href="#h2-2">ログアウト</AnchorButton>
+    </DropdownButtons>
+    <DropdownButtons triggerSize="s" onlyIconTrigger>
+      <Button>評価を開始</Button>
+      <Button disabled>評価を確定</Button>
+      <Button>ヒントメッセージの設定</Button>
+      <AnchorButton href="#h2-2">ログアウト</AnchorButton>
+    </DropdownButtons>
+  </>
+)
+```
