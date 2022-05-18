@@ -14,7 +14,7 @@ export const ProductWrapper: React.FC<{ children: React.ReactNode }> = ({ childr
 )
 
 const Wrapper = styled(WrapperBase)(
-  ({ theme: { color } }) => css`
+  ({ theme: { color, leading } }) => css`
     background-color: ${color.BACKGROUND};
 
     /* FIXME: @scope が来たら書き直したい! */
@@ -36,8 +36,18 @@ const Wrapper = styled(WrapperBase)(
       line-height: revert;
     }
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      line-height: ${leading.TIGHT};
+    }
+
     p {
       margin-block: 0;
+      line-height: ${leading.NORMAL};
     }
 
     ul {
