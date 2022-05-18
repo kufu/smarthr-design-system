@@ -1,5 +1,5 @@
 ---
-title: '複数の操作をまとめるボタン'
+title: 'ドロップダウンボタン'
 description: '複数の操作を1つのボタンにまとめる場合のパターンを定義します。'
 order: 8
 ---
@@ -8,13 +8,15 @@ import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
 
 複数の操作を1つのボタンにまとめる場合のパターンを定義します。
 
+正しくは「複数の操作をまとめるボタン」ですが、呼びにくいため「ドロップダウンボタン」としています。ドロップダウンの引き金となるボタン（アクションボタン）だけでなく、ドロップダウンも合わせた総称として指します。
+
 ## 構成
-複数の操作をまとめるボタンは、以下の要素で構成されています。
+ドロップダウンボタンは、以下の要素で構成されています。
 
 1. アクションボタン
 2. ドロップダウン
 
-![複数の操作をまとめるボタンの構成図](./images/button/multiple-operation-button-overview.png)
+![ドロップダウンボタンの構成図](./images/button/multiple-operation-button-overview.png)
 
 ### 1. アクションボタン
 複数の操作がまとまっていることを示唆するために、[Secondaryボタン](/products/components/button/#h3-1)の`アイコン付き（右）`を使い、アイコンには「<FaCaretDownIcon visuallyHiddenText="展開" />（`FaCaretDownIcon`）」を使います。
@@ -105,7 +107,7 @@ import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
 
 ## レイアウト
 
-複数の操作をまとめるボタンのレイアウトは次のとおりです。
+ドロップダウンボタンのレイアウトは次のとおりです。
 
 ```tsx editable withStyled
 type Actions = ActionItem | ActionItem[]
