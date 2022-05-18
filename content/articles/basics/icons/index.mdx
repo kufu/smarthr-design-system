@@ -1,16 +1,19 @@
 ---
 title: 'アイコン'
-author: 'samemaru'
 description: ''
-date: '2022-04-20'
 order: 4
 ---
+
+import { SecondaryButtonAnchor } from 'smarthr-ui'
 
 SmartHRサービス全体で利用するアイコンです。
 
 ## 利用ガイドライン
-SmartHRに関するシーンでどこでも利用できます。
-利用の際は各アイコンの利用方法にしたがってください。
+- SmartHRに関するシーンでどこでも使用できます。
+- solidとoutlineの2種類があります。シーンに合わせて適したほうを選んでください。
+![outlineのアイコンとsolidのアイコン](./images/outline-solid.png)
+- 基本的に、視認性の高いoutlineを使用してください。
+- solidとoutlineの混在は避けてください。
 
 ## アイコン一覧
 
@@ -21,32 +24,32 @@ SmartHRに関するシーンでどこでも利用できます。
 
 | 分類 | 意味 | アイコン | 補足 |
 | --- | --- | :---: | --- |
-| SmartHR基本機能 | 従業員データベース | ![従業員データベースアイコン](./images/outline/Black/従業員データベース.png) | 「従業員リスト」「従業員情報」として利用することもあります |
-| SmartHR基本機能 | 手続き | ![手続きアイコン](./images/outline/Black/手続き.png) |  |
-| SmartHR基本機能 | 申請 | ![申請アイコン](./images/outline/Black/申請.png) |  |
-| SmartHR基本機能 | 給与明細 | ![給与明細アイコン](./images/outline/Black/給与明細.png) |  |
-| SmartHR基本機能 | お知らせ掲示板 | ![お知らせ掲示板アイコン](./images/旧デザイン/Black/お知らせ掲示板（旧デザインのため非推奨）.png) |  |
-| SmartHR基本機能 | マイナンバー | ![マイナンバーアイコン](./images/outline/Black/マイナンバー.png) |  |
-| SmartHR基本機能 | 電子申請 | ![電子申請アイコン](./images/outline/Black/電子申請.png) |  |
-| SmartHR基本機能 | 源泉徴収票 | ![源泉徴収票アイコン](./images/outline/Black/源泉徴収票.png) |  |
-| SmartHR基本機能 | 設定 | ![設定アイコン](./images/outline/Black/設定.png) |  |
-| SmartHRオプション機能 | カスタム社員名簿 | ![カスタム社員名簿アイコン](./images/outline/Black/カスタム社員名簿.png) |  |
-| SmartHRオプション機能 | 組織図 | ![組織図アイコン](./images/outline/Black/組織図.png) |  |
-| SmartHRオプション機能 | 年末調整 | ![年末調整アイコン](./images/outline/Black/年末調整.png) |  |
-| SmartHRオプション機能 | 文書配布 | ![文書配布アイコン](./images/outline/Black/文書配布.png) |  |
-| SmartHRオプション機能 | 分析レポート | ![分析レポートアイコン](./images/outline/Black/分析レポート.png) |  |
-| SmartHRオプション機能 | 従業員サーベイ | ![従業員サーベイアイコン](./images/outline/Black/従業員サーベイ.png) |  |
-| SmartHRオプション機能 | 人事評価 | ![人事評価アイコン](./images/outline/Black/人事評価.png) |  |
-| SmartHRオプション機能 | ファイル一括アップロード | ![ファイル一括アップロードアイコン](./images/outline/Black/ファイル一括アップロード.png) |  |
-| SmartHRオプション機能 | 通勤経路検索 | ![通勤経路検索アイコン](./images/outline/Black/通勤経路検索.png) |  |
-| 仕様・サービス | サービス連携 | ![サービス連携アイコン](./images/outline/Black/サービス連携.png) |  |
-| 仕様・サービス | 多言語化対応 | ![多言語化対応アイコン](./images/旧デザイン/Black/多言語化対応（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| 仕様・サービス | SAML/SSO認証 | ![SAML/SSO認証アイコン](./images/旧デザイン/Black/SAML_SSO認証（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| 仕様・サービス | API連携 | ![API連携アイコン](./images/outline/Black/API連携.png) |  |
-| 仕様・サービス | 履歴閲覧・編集 | ![履歴閲覧・編集アイコン](./images/旧デザイン/Black/履歴閲覧・編集（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| 仕様・サービス | 履歴登録 | ![履歴登録アイコン](./images/旧デザイン/Black/履歴登録（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| 仕様・サービス | 予約管理 | ![予約管理アイコン](./images/旧デザイン/Black/予約管理（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| 仕様・サービス | CSVカスタムダウンロード | ![SVカスタムダウンロードアイコン](./images/旧デザイン/Black/CSVカスタムダウンロード（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| SmartHR基本機能 | 従業員データベース | ![従業員データベースアイコン](./images/icons/outline/Black/従業員データベース.png) | 「従業員リスト」「従業員情報」として利用することもあります |
+| SmartHR基本機能 | 手続き | ![手続きアイコン](./images/icons/outline/Black/手続き.png) |  |
+| SmartHR基本機能 | 申請 | ![申請アイコン](./images/icons/outline/Black/申請.png) |  |
+| SmartHR基本機能 | 給与明細 | ![給与明細アイコン](./images/icons/outline/Black/給与明細.png) |  |
+| SmartHR基本機能 | お知らせ掲示板 | ![お知らせ掲示板アイコン](./images/icons/旧デザイン/Black/お知らせ掲示板（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。　　2022/5 新アイコンリリース予定 |
+| SmartHR基本機能 | マイナンバー | ![マイナンバーアイコン](./images/icons/outline/Black/マイナンバー.png) |  |
+| SmartHR基本機能 | 電子申請 | ![電子申請アイコン](./images/icons/outline/Black/電子申請.png) |  |
+| SmartHR基本機能 | 源泉徴収票 | ![源泉徴収票アイコン](./images/icons/outline/Black/源泉徴収票.png) |  |
+| SmartHR基本機能 | 設定 | ![設定アイコン](./images/icons/outline/Black/設定.png) |  |
+| SmartHRオプション機能 | カスタム社員名簿 | ![カスタム社員名簿アイコン](./images/icons/outline/Black/カスタム社員名簿.png) |  |
+| SmartHRオプション機能 | 組織図 | ![組織図アイコン](./images/icons/outline/Black/組織図.png) |  |
+| SmartHRオプション機能 | 年末調整 | ![年末調整アイコン](./images/icons/outline/Black/年末調整.png) |  |
+| SmartHRオプション機能 | 文書配布 | ![文書配布アイコン](./images/icons/outline/Black/文書配布.png) |  |
+| SmartHRオプション機能 | 分析レポート | ![分析レポートアイコン](./images/icons/outline/Black/分析レポート.png) |  |
+| SmartHRオプション機能 | 従業員サーベイ | ![従業員サーベイアイコン](./images/icons/outline/Black/従業員サーベイ.png) |  |
+| SmartHRオプション機能 | 人事評価 | ![人事評価アイコン](./images/icons/outline/Black/人事評価.png) |  |
+| SmartHRオプション機能 | ファイル一括アップロード | ![ファイル一括アップロードアイコン](./images/icons/outline/Black/ファイル一括アップロード.png) |  |
+| SmartHRオプション機能 | 通勤経路検索 | ![通勤経路検索アイコン](./images/icons/outline/Black/通勤経路検索.png) |  |
+| 仕様・サービス | サービス連携 | ![サービス連携アイコン](./images/icons/outline/Black/サービス連携.png) |  |
+| 仕様・サービス | 多言語化対応 | ![多言語化対応アイコン](./images/icons/旧デザイン/Black/多言語化対応（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| 仕様・サービス | SAML/SSO認証 | ![SAML/SSO認証アイコン](./images/icons/旧デザイン/Black/SAML_SSO認証（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| 仕様・サービス | API連携 | ![API連携アイコン](./images/icons/outline/Black/API連携.png) |  |
+| 仕様・サービス | 履歴閲覧・編集 | ![履歴閲覧・編集アイコン](./images/icons/旧デザイン/Black/履歴閲覧・編集（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| 仕様・サービス | 履歴登録 | ![履歴登録アイコン](./images/icons/旧デザイン/Black/履歴登録（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。　　2022/5 新アイコンリリース予定 |
+| 仕様・サービス | 予約管理 | ![予約管理アイコン](./images/icons/旧デザイン/Black/予約管理（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。　　2022/5 新アイコンリリース予定 |
+| 仕様・サービス | CSVカスタムダウンロード | ![SVカスタムダウンロードアイコン](./images/icons/旧デザイン/Black/CSVカスタムダウンロード（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。　　2022/5 新アイコンリリース予定 |
 
 
 ### 意味を限定しないアイコン
@@ -55,22 +58,20 @@ SmartHRに関するシーンでどこでも利用できます。
 
 | アイコン | 補足 |
 | --- | --- |
-| ![calculator](./images/旧デザイン/Black/calculator（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| ![calendar](./images/旧デザイン/Black/calendar（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| ![clock](./images/旧デザイン/Black/clock（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| ![person_clock](./images/旧デザイン/Black/person_clock（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| ![persons](./images/旧デザイン/Black/persons（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
-| ![security](./images/outline/Black/意味を限定しないアイコン/security.png) |  |
-| ![support](./images/outline/Black/意味を限定しないアイコン/support.png) |  |
-| ![yen](./images/outline/Black/意味を限定しないアイコン/yen.png) |  |
+| ![calculator](./images/icons/旧デザイン/Black/calculator（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| ![calendar](./images/icons/旧デザイン/Black/calendar（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| ![clock](./images/icons/旧デザイン/Black/clock（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| ![person_clock](./images/icons/旧デザイン/Black/person_clock（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| ![persons](./images/icons/旧デザイン/Black/persons（旧デザインのため非推奨）.png) | 旧デザインのため、利用は非推奨です。 |
+| ![security](./images/icons/outline/Black/意味を限定しないアイコン/security.png) |  |
+| ![support](./images/icons/outline/Black/意味を限定しないアイコン/support.png) |  |
+| ![yen](./images/icons/outline/Black/意味を限定しないアイコン/yen.png) |  |
 
 
 ## ダウンロード
 
 svg,png形式のアイコンデータをダウンロードできます。
 
-![どのような種類の画像がDLできるかを伝える画像](./images/icon-zip.png)
+<SecondaryButtonAnchor href="/downloads/icon.zip" downloads>まとめてダウンロード</SecondaryButtonAnchor>
 
-<!--
-<SecondaryButtonAnchor href="/downloads/item.zip" downloads>まとめてダウンロード</SecondaryButtonAnchor>
--->
+![どのような種類の画像がDLできるかを伝える画像](./images/icon-zip.png)

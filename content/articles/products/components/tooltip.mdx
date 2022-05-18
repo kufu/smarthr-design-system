@@ -17,7 +17,7 @@ import {
   FaFileIcon,
   FaPlusCircleIcon,
 } from 'smarthr-ui'
-import { Tooltip, SecondaryButton } from 'smarthr-ui'
+import { Button, Tooltip } from 'smarthr-ui'
 import { Text, LineUp } from 'smarthr-ui'
 import { ComponentPreview } from 'Components/ComponentPreview'
 import { ComponentStory } from 'Components/ComponentStory'
@@ -322,13 +322,13 @@ export const DynamicTooltip = ({children, ...props}) => {
     triggerType="icon"
     horizontal="left"
     vertical="bottom">
-      <SecondaryButton><FaPlusCircleIcon /></SecondaryButton>
+      <Button square><FaPlusCircleIcon visuallyHiddenText="追加" /></Button>
   </DynamicTooltip>
 </ComponentPreview>
 
 [Buttonのアイコンボタン](/products/components/button/#h4-1)のように、ラベルテキストを表示できないボタンに、（ラベルテキスト相当の）機能を表す補足をTooltipで表示するパターンです。
 
-[TextButton](/products/components/button/#h3-3)のアイコンボタンには使用しません。
+[Textボタン](/products/components/button/#h3-3)のアイコンボタンには使用しません。
 
 ボタンは明確なアクションを促す役割を持つため、ラベルテキスト以上の説明を表示したい場合は、ラベルテキストがあるボタンの採用や、説明テキストが入るようなレイアウトを検討しましょう。
 

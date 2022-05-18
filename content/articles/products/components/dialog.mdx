@@ -5,19 +5,19 @@ smarthr-ui: 'Dialog'
 order: 16
 ---
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
-  Dialog,
-  MessageDialog,
   ActionDialog,
-  PrimaryButton,
-  ModelessDialog,
   Body,
+  Button,
   Cell,
+  CheckBox,
+  Dialog,
   Head,
+  MessageDialog,
+  ModelessDialog,
   Row,
   Table,
-  CheckBox,
 } from 'smarthr-ui'
 import { ComponentPreview } from '../../../../src/components/ComponentPreview'
 import { ComponentStory } from 'Components/ComponentStory'
@@ -51,14 +51,14 @@ Dialogコンポーネントは、ユーザーに集中してほしい確認や�
 ## 種類
 ### ActionDialog
 SmartHR UIでは`ActionDialog`です。  
-ActionDialogは、ユーザーに選択の確認や操作を求める場合に使用するモーダルダイアログです。アクションボタンを[PrimaryButton](/products/components/button/#h3-0)で強調表示します。
+ActionDialogは、ユーザーに選択の確認や操作を求める場合に使用するモーダルダイアログです。[Primaryボタン](/products/components/button/#h3-0)を使い強調します。
 
 export const DynamicActionDialog = () => {
+  const [isOpen, setIsOpen] = useState(false)
   if (typeof window !== 'undefined') {
-    const [isOpen, setIsOpen] = useState(false)
     return (
       <>
-        <PrimaryButton onClick={() => setIsOpen(true)}>ActionDialogを開く</PrimaryButton>
+        <Button variant="primary" onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
         <ActionDialog
           isOpen={isOpen}
           title="アクションダイアログタイトル"
@@ -66,6 +66,7 @@ export const DynamicActionDialog = () => {
           actionText="実行"
           actionTheme="primary"
           onClickClose={()=> {setIsOpen(false)}}
+          onPressEscape={() => setIsOpen(false)}
           onClickAction={()=> {setIsOpen(false)}}
         >
           <div style={{'box-sizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
@@ -88,20 +89,21 @@ export const DynamicActionDialog = () => {
 SmartHR UIでは`MessageDialog`です。  
 MessageDialogは、ユーザーの操作を中断させて、ユーザーへの警告や確認を明示的にしたい場合に利用するモーダルダイアログです。
 
-ユーザーの操作を中断させる必要がない場合は、[FlashMessage](/products/components/flash-message/)や[CompactInformationPanel](https://smarthr.design/products/components/compact-information-panel/)、[InformationPanel](/products/components/information-panel/)の採用を検討してください。
+ユーザーの操作を中断させる必要がない場合は、[InformationPanel](/products/components/information-panel/)や[CompactInformationPanel](https://smarthr.design/products/components/compact-information-panel/)の使用を検討してください。
 
 export const DynamicMessageDialog = () => {
+  const [isOpen, setIsOpen] = useState(false)
   if (typeof window !== 'undefined') {
-    const [isOpen, setIsOpen] = useState(false)
     return (
       <>
-        <PrimaryButton onClick={() => setIsOpen(true)}>MessageDialogを開く</PrimaryButton>
+        <Button variant="primary" onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
         <MessageDialog
           isOpen={isOpen}
           title="メッセージダイアログタイトル"
           description={<p style={{'box-sizing': 'border-box', 'width': '432px', 'margin': '0', 'padding': '24px 0'}}>本文が入ります。</p>}
           closeText="閉じる"
           onClickClose={() => setIsOpen(false)}
+          onPressEscape={() => setIsOpen(false)}
           id="dialog-message"
         />
       </>
@@ -121,18 +123,19 @@ SmartHR UIでは`ModelessDialog`です。
 ModelessDialogは、ユーザーに任意のタイミングや順序で、情報の確認や操作をさせたい場合に使用します。
 
 export const DynamicModelessDialog = () => {
+  const [isOpen, setIsOpen] = useState(false)
   if (typeof window !== 'undefined') {
-    const [isOpen, setIsOpen] = useState(false)
     return (
       <>
-        <PrimaryButton
+        <Button
+          variant="primary"
           onClick={() => setIsOpen(!isOpen)}
           data-test="dialog-trigger"
           aria-haspopup="dialog"
           aria-controls="modeless-dialog"
         >
           ModelessDialogを開く
-        </PrimaryButton>
+        </Button>
         <ModelessDialog
           isOpen={isOpen}
           header={<ModelessHeading>モードレスダイアログ</ModelessHeading>}

@@ -5,6 +5,8 @@ smarthr-ui: 'Button'
 order: 2
 ---
 
+import { ComponentPropsTable } from '../../../../src/components/ComponentPropsTable'
+
 ## 使いどころ
 
 コンポーネント（全体）の使用目的や、使用上の注意、基準などを書きます。種類ごとの使いどころは[種類](#h2-1)に書きます。
@@ -19,19 +21,54 @@ order: 2
 
 #### 単品
 
-```tsx live=true
-<PrimaryButton>Button</PrimaryButton>
+```tsx editable
+// ```tsx editable
+// <>この中に JSX が書けます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため明示的に import しないでも使えます。</>
+// ```
+<Button>ボタン</Button>
 ```
 
 #### 複数
 
-```tsx live=true
+```tsx editable
+// この編集可能な領域は Cluster で包まれ、gap と align を渡せます。
 <>
-  <PrimaryButton>Button</PrimaryButton>
-  <SecondaryButton>Button</SecondaryButton>
-  <DangerButton>Button</DangerButton>
-  <TextButton>Button</TextButton>
+  <Button variant="primary">ボタン</Button>
+  <Button>ボタン</Button>
+  <Button variant="danger">ボタン</Button>
+  <Button variant="text">ボタン</Button>
 </>
+```
+
+#### プロダクト
+
+```tsx editable withStyled layout=product
+const AwesomeComponent:React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <Wrapper>
+      <Heading>編集可能なコードブロック</Heading>
+      <InformationPanel title="使い方">{children}</InformationPanel>
+    </Wrapper>
+  )
+}
+
+// withStyled を渡すと styled-components を扱えるようになります。
+// ただし必ず render() を呼ぶ必要があります。
+render (
+  <AwesomeComponent>
+    <p>
+      <code>withStyled</code> を渡すと styled-components を扱えるようになります。
+      <br />
+      また、<code>layout=product</code> を使うと擬似的にプロダクトのような見た目になります。
+    </p>
+  </AwesomeComponent>
+)
+
+const Wrapper = styled(Stack)`
+  ${({ theme: { space } }) => css`
+    margin-block: ${space(2)} ${space(1)};
+  `}
+`
 ```
 
 ## レイアウト
@@ -58,7 +95,7 @@ order: 2
 
 コンポーネントが持つPropsを網羅して書きます。
 
-<ComponentPropsTable name="PrimaryButton" />
+<ComponentPropsTable name="Button" />
 
 ## 関連リンク
 

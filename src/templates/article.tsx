@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { PageProps, graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
+import { Theme } from './Theme'
 import { Head } from '../components/Head'
 import { CodeBlock } from '../components/article/CodeBlock'
 import { Sidebar } from '../components/article/Sidebar/Sidebar'
@@ -333,7 +334,7 @@ const Article: VFC<Props> = ({ data }) => {
   const nextPageIndex: number | null = currentPageIndex === sidebarItems.length - 1 ? null : currentPageIndex + 1
 
   return (
-    <>
+    <Theme>
       <Head title={headTitle} description={description} />
       <GlobalStyle />
 
@@ -371,7 +372,7 @@ const Article: VFC<Props> = ({ data }) => {
 
         <Footer isArticlePage />
       </Wrapper>
-    </>
+    </Theme>
   )
 }
 

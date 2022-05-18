@@ -148,9 +148,7 @@ export const ComponentStory: VFC<Props> = ({ name }) => {
       )}
       <CodeWrapper>
         <StoryLoader className={isCodeLoaded ? '' : '-show'} />
-        <CodeBlock className="tsx" live={false}>
-          {storiesCode}
-        </CodeBlock>
+        <CodeBlock className="tsx">{storiesCode}</CodeBlock>
       </CodeWrapper>
     </>
   )
