@@ -54,7 +54,7 @@ export const CodeBlock: VFC<Props> = ({
           <LiveProvider
             code={code}
             language={language as Language}
-            scope={{ ...ui, styled, css, ...scope }}
+            scope={{ ...React, ...ui, styled, css, ...scope }}
             theme={{
               ...vscode,
               plain: {
