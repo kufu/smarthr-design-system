@@ -411,7 +411,7 @@ const MainSidebar = styled.div`
   grid-area: sidebar;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: [space] minmax(40px, 1fr) [nav] 200px;
+  grid-template-columns: [space] minmax(40px, 1fr) [nav] 232px;
   border-right: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   margin-right: 40px;
 
