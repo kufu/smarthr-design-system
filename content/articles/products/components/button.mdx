@@ -5,115 +5,102 @@ smarthr-ui: 'Button'
 order: 9
 ---
 
-import { Cluster } from 'smarthr-ui'
-import { PrimaryButton, PrimaryButtonAnchor } from 'smarthr-ui'
-import { SecondaryButton, SecondaryButtonAnchor } from 'smarthr-ui'
-import { DangerButton, DangerButtonAnchor } from 'smarthr-ui'
-import { TextButton, TextButtonAnchor } from 'smarthr-ui'
-import { FaPlusCircleIcon, FaCaretDownIcon, FaCloudDownloadAltIcon, FaFilterIcon } from 'smarthr-ui'
-import { ComponentPreview } from '../../../../src/components/ComponentPreview'
+import { Button, Cluster, FaCaretDownIcon, FaCloudDownloadAltIcon, FaFilterIcon, FaPlusCircleIcon } from 'smarthr-ui'
 import { ComponentStory } from 'Components/ComponentStory'
 import { ComponentPropsTable } from 'Components/ComponentPropsTable'
 
-
 Buttonコンポーネントは、ユーザーが情報の保存や検索などの操作をできるようにします。
-
-<ComponentStory name="Button" />
 
 ## 種類
 ボタンの優先度や役割に合わせた4種類のコンポーネントを総称して、Buttonコンポーネントとして定義しています。
 
-<ComponentPreview>
-  <Cluster gap="XS">
-    <PrimaryButton>PrimaryButton</PrimaryButton>
-    <SecondaryButton>SecondaryButton</SecondaryButton>
-    <DangerButton>DangerButton</DangerButton>
-    <TextButton>TextButton</TextButton>
-  </Cluster>
-</ComponentPreview>
-
-### PrimaryButton
-SmartHR UIでは`PrimaryButton`です。画面の主要なアクションを促すボタンです。
-
-1つの画面に複数のPrimaryButtonを使わないでください。複数のPrimaryButtonがあるとユーザーは何をすればいいかわからなくなります。
-
-```tsx live=true
-<Cluster gap="XS">
-  <PrimaryButton>ボタン</PrimaryButton>
-  <PrimaryButton prefix={<FaPlusCircleIcon />}>ボタン</PrimaryButton>
-  <PrimaryButton suffix={<FaCaretDownIcon />}>ボタン</PrimaryButton>
-  <PrimaryButton square>
-    <FaPlusCircleIcon visuallyHiddenText="追加" />
-  </PrimaryButton>
-</Cluster>
+```tsx editable
+<>
+  <Button variant="primary">Primary</Button>
+  <Button>Secondary</Button>
+  <Button variant="danger">Danger</Button>
+  <Button variant="text">Text</Button>
+</>
 ```
 
-### SecondaryButton
-SmartHR UIでは`SecondaryButton`です。  
-画面でのアクションを促す、PrimaryButtonに対する副次的なボタンとして使います。
+### Primary
+画面の主要なアクションを促すボタンです。
+
+1つの画面に複数のPrimaryボタンを使わないでください。複数のPrimaryボタンがあるとユーザーは何をすればいいかわからなくなります。
+
+```tsx editable
+<>
+  <Button variant="primary">ボタン</Button>
+  <Button variant="primary" prefix={<FaPlusCircleIcon />}>ボタン</Button>
+  <Button variant="primary" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="primary" square>
+    <FaPlusCircleIcon visuallyHiddenText="追加" />
+  </Button>
+</>
+```
+
+### Secondary
+画面でのアクションを促す、Primaryボタンに対する副次的なボタンとして使います。  
+SmartHR UI では特に種類の指定をしない場合はSecondaryになります。
 
 画面内にボタンが多すぎる場合、ユーザーは次に何をすればいいのか戸惑うかもしれません。その場合はボタンを減らしたり、画面を簡略化したり、複数の画面に分けることを検討しましょう。
 
-```tsx live=true
-<Cluster gap="XS">
-  <SecondaryButton>ボタン</SecondaryButton>
-  <SecondaryButton prefix={<FaPlusCircleIcon />}>ボタン</SecondaryButton>
-  <SecondaryButton suffix={<FaCaretDownIcon />}>ボタン</SecondaryButton>
-  <SecondaryButton square>
+```tsx editable
+<>
+  <Button>ボタン</Button>
+  <Button prefix={<FaPlusCircleIcon />}>ボタン</Button>
+  <Button suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button square>
     <FaPlusCircleIcon visuallyHiddenText="追加" />
-  </SecondaryButton>
-</Cluster>
+  </Button>
+</>
 ```
 
-### DangerButton
-SmartHR UIでは`DangerButton`です。  
+### Danger
 破壊的なアクション（データの永久消去など）の実行前に、ユーザーに一歩立ち止まって考えてもらいたいときに使います。
 
-- DangerButtonが頻出すると効果がありません。
+- Dangerボタンが頻出すると効果がありません。
 - ユーザーにこのアクションを実行させる場合は、必ず確認を求めるステップを追加してください。（例：[削除ダイアログ](/products/design-patterns/delete-dialog/)）
 - すべてのユーザーが色を見たり、理解できるわけではないため、警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h2-1)）に頼らないでください。ボタン配置のコンテキストやラベルテキストは重要です。
 
-```tsx live=true
-<Cluster gap="XS">
-  <DangerButton>ボタン</DangerButton>
-  <DangerButton prefix={<FaPlusCircleIcon />}>ボタン</DangerButton>
-  <DangerButton suffix={<FaCaretDownIcon />}>ボタン</DangerButton>
-  <DangerButton square>
+```tsx editable
+<>
+  <Button variant="danger">ボタン</Button>
+  <Button variant="danger" prefix={<FaPlusCircleIcon />}>ボタン</Button>
+  <Button variant="danger" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="danger" square>
     <FaPlusCircleIcon visuallyHiddenText="追加" />
-  </DangerButton>
-</Cluster>
+  </Button>
+</>
 ```
 
-### TextButton
-SmartHR UIでは`TextButton`です。  
-SecondaryButtonよりもさらに優先度が低いアクションのボタンとして使います。
+### Text
+Secondaryボタンよりもさらに優先度が低いアクションのボタンとして使います。
 
 また、[ドロップダウンメニュー](/products/design-patterns/dropdown-button/#h3-1)として使用したり、[アイコンボタン](#h4-1)として使用するなど、ボタンではあるもののボタンの装飾を必要としない場合に使います。
 
-```tsx live=true
-<Cluster gap="XS">
-  <TextButton>ボタン</TextButton>
-  <TextButton prefix={<FaPlusCircleIcon />}>ボタン</TextButton>
-  <TextButton suffix={<FaCaretDownIcon />}>ボタン</TextButton>
-  <TextButton square>
+```tsx editable
+<>
+  <Button variant="text">ボタン</Button>
+  <Button variant="text" prefix={<FaPlusCircleIcon />}>ボタン</Button>
+  <Button variant="text" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="text" square>
     <FaPlusCircleIcon visuallyHiddenText="追加" />
-  </TextButton>
-</Cluster>
+  </Button>
+</>
 ```
 
-### ButtonAnchor
-SmartHR UIでは`PrimaryButtonAnchor`, `SecondaryButtonAnchor`, `DangerButtonAnchor`, `TextButtonAnchor`です。
-
+### AnchorButton
 リンク（`a`要素）をボタンのように見せるためのコンポーネントですが、どうしようもないときだけ使います。
-アクションボタンとして表現したい場合は、素直に`PrimaryButton`や`SecondaryButton`などを使いましょう。
+アクションボタンとして表現したい場合は、素直に`Button`を使いましょう。
 
-```tsx live=true
-<Cluster gap="XS">
-  <PrimaryButtonAnchor href="#">ボタン</PrimaryButtonAnchor>
-  <SecondaryButtonAnchor href="#">ボタン</SecondaryButtonAnchor>
-  <DangerButtonAnchor href="#">ボタン</DangerButtonAnchor>
-  <TextButtonAnchor href="#">ボタン</TextButtonAnchor>
-</Cluster>
+```tsx editable
+<>
+  <AnchorButton variant="primary" href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton variant="danger" href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton variant="text" href="#h3-4">ボタン</AnchorButton>
+</>
 ```
 
 
@@ -127,8 +114,8 @@ SmartHR UIでは、サイズ（`size`props）で指定できます。
 
 | 種類 | 表示例 | 説明 |
 | :--- | :--- | :--- |
-| `通常` | <SecondaryButton prefix={<FaPlusCircleIcon />} size="default">ボタン</SecondaryButton> | 通常のサイズです。 |
-| `サイズ小` | <SecondaryButton prefix={<FaPlusCircleIcon />} size="s">ボタン</SecondaryButton> | レイアウトの都合上、どうしようもない場合に使うサイズです。 |
+| `通常` | <Button prefix={<FaPlusCircleIcon />} size="default">ボタン</Button> | 通常のサイズです。 |
+| `小` | <Button prefix={<FaPlusCircleIcon />} size="s">ボタン</Button> | レイアウトの都合上、どうしようもない場合に使うサイズです。 |
 
 ### アイコンの有無
 
@@ -140,22 +127,22 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 
 | 種類 | 表示例 | アイコンの役割 |
 | :--- | :--- | :--- |
-| `アイコン付き（左）` | <Cluster><SecondaryButton prefix={<FaPlusCircleIcon />}>項目を追加</SecondaryButton><SecondaryButton prefix={<FaCloudDownloadAltIcon />}>ダウンロード</SecondaryButton></Cluster> | ボタンのアクション（機能）を表すために使います。<br />同じアクションのボタンには、同じアイコンを採用してください。 |
-| `アイコン付き（右）` | <Cluster><SecondaryButton suffix={<FaCaretDownIcon />}>一括操作</SecondaryButton><SecondaryButton suffix={<FaFilterIcon />}>絞り込み</SecondaryButton></Cluster> | ドロップダウンのように、ボタン押下後に表示するUIを想起させるために使います。<br />（例：[複数の操作をまとめるボタン](/products/design-patterns/dropdown-button/)、[Dropdown](/products/components/dropdown/)、[FilterDropdown](/products/components/filter-dropdown/)） |
+| `アイコン付き（左）` | <Cluster><Button prefix={<FaPlusCircleIcon />}>項目を追加</Button><Button prefix={<FaCloudDownloadAltIcon />}>ダウンロード</Button></Cluster> | ボタンのアクション（機能）を表すために使います。<br />同じアクションのボタンには、同じアイコンを採用してください。 |
+| `アイコン付き（右）` | <Cluster><Button suffix={<FaCaretDownIcon />}>一括操作</Button><Button suffix={<FaFilterIcon />}>絞り込み</Button></Cluster> | ドロップダウンのように、ボタン押下後に表示するUIを想起させるために使います。<br />（例：[ドロップダウンボタン](/products/design-patterns/dropdown-button/)、[Dropdown](/products/components/dropdown/)、[FilterDropdown](/products/components/filter-dropdown/)） |
 
 #### アイコンボタン
 アイコンのみのボタンです。ラベルテキストを表示するレイアウト上の余裕がない場合などに使います。  
 ラベルテキストがないため、[アイコンには必ず代替テキストを含めてください。](/products/components/icon/#h3-0)
 
-```tsx live=true
-<Cluster gap="XS" align="center">
-  <SecondaryButton square>
+```tsx editable
+<>
+  <Button square>
     <FaPlusCircleIcon visuallyHiddenText="追加" />
-  </SecondaryButton>
-  <SecondaryButton square size="s">
+  </Button>
+  <Button square size="s">
     <FaPlusCircleIcon visuallyHiddenText="追加" />
-  </SecondaryButton>
-</Cluster>
+  </Button>
+</>
 ```
 
 
@@ -171,11 +158,11 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 
 ユーザーはなぜ無効になっているのかわからないことがあります。「[権限による表示制御](/products/design-patterns/access-control-pattern/)」のデザインパターンを参考にして、無効状態の理由を表示したり、無効ではなくボタン自体を非表示にすることを検討してください。
 
-```tsx live=true
-<Cluster gap="XS">
-  <PrimaryButton prefix={<FaPlusCircleIcon />} disabled>ボタン</PrimaryButton>
-  <SecondaryButton prefix={<FaPlusCircleIcon />} disabled>ボタン</SecondaryButton>
-</Cluster>
+```tsx editable
+<>
+  <Button variant="primary" prefix={<FaPlusCircleIcon />} disabled>ボタン</Button>
+  <Button prefix={<FaPlusCircleIcon />} disabled>ボタン</Button>
+</>
 ```
 
 
@@ -194,7 +181,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 - 「申請を取り消し」
 
 
-## デザインパターン
+## その他
 
 ### type="button" について
 SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="button"`がついています。
@@ -203,9 +190,9 @@ SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="butt
 
 ## Props
 
-<ComponentPropsTable name="PrimaryButton" />
+<ComponentPropsTable name="Button" />
 
 
 ## 参考文献
 
-- https://design-system.service.gov.uk/components/button/
+- [Button – GOV.UK Design System](https://design-system.service.gov.uk/components/button/)
