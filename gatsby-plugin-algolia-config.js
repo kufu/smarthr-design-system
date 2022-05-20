@@ -2,8 +2,12 @@
 // https://github.com/kufu/smarthr-design-system/issues/807
 const AIRTABLE_CONTENTS = [
   {
-    pageTitle: 'ライティングガイドライン',
+    pageTitle: 'ライティングスタイル',
     tableName: '基本的な考え方や表記',
+  },
+  {
+    pageTitle: 'UIテキスト',
+    tableName: 'UIテキスト',
   },
   {
     pageTitle: '用字用語：一覧',
@@ -84,6 +88,7 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
             node {
               data {
                 name
+                heading
                 description
                 discussion
                 source
@@ -93,6 +98,7 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
                 expected
                 reason
                 record_id
+                order
               }
             }
           }

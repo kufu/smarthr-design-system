@@ -96,6 +96,11 @@ module.exports = {
             tableName: `基本的な考え方や表記`,
             tableView: `design system表示用`,
           },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `UIテキスト`,
+            tableView: `design system表示用`,
+          },
         ],
       },
     },
