@@ -88,7 +88,6 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
             node {
               data {
                 name
-                heading
                 description
                 discussion
                 source

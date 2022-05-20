@@ -422,7 +422,6 @@ type Airtable = Node & {
 };
 
 type AirtableData = {
-  readonly heading: Maybe<Scalars['String']>;
   readonly label: Maybe<Scalars['String']>;
   readonly ng_example: Maybe<Scalars['String']>;
   readonly ok_example: Maybe<Scalars['String']>;
@@ -2748,7 +2747,6 @@ type MdxSortInput = {
 };
 
 type AirtableDataFilterInput = {
-  readonly heading: Maybe<StringQueryOperatorInput>;
   readonly label: Maybe<StringQueryOperatorInput>;
   readonly ng_example: Maybe<StringQueryOperatorInput>;
   readonly ok_example: Maybe<StringQueryOperatorInput>;
@@ -2909,7 +2907,6 @@ type AirtableFieldsEnum =
   | 'table'
   | 'recordId'
   | 'rowIndex'
-  | 'data.heading'
   | 'data.label'
   | 'data.ng_example'
   | 'data.ok_example'
@@ -3004,7 +3001,7 @@ type BasicConceptTableQuery = { readonly basicConceptData: { readonly edges: Rea
 type AppWritingTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AppWritingTableQuery = { readonly appWritingData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'heading' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
+type AppWritingTableQuery = { readonly appWritingData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
 
 type HeadQueryVariables = Exact<{ [key: string]: never; }>;
 

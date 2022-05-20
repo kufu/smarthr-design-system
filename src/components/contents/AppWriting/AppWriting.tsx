@@ -12,7 +12,7 @@ const query = graphql`
       edges {
         node {
           data {
-            heading
+            name
             description
             discussion
             source
@@ -29,7 +29,7 @@ export const AppWriting: VFC = () => {
 
   const appWritingData = data.appWritingData.edges
     .map(({ node }) => ({
-      heading: node.data?.heading,
+      name: node.data?.name,
       description: marked.parse(node.data?.description || ''),
       discussion: node.data?.discussion,
       source: node.data?.source,
@@ -54,16 +54,16 @@ export const AppWriting: VFC = () => {
     <>
       {appWritingData
         .filter((item) => {
-          return item.heading
+          return item.name
         })
-        .map(({ heading, description, discussion, source, recordId }, index) => {
+        .map(({ name, description, discussion, source, recordId }, index) => {
           const fragmentId = (suffixId: string) => {
             return recordId ? `${recordId}-${suffixId}` : ''
           }
           return (
             <Wrapper key={index}>
               <FragmentTitle tag="h2" id={fragmentId('0')}>
-                {heading}
+                {name}
               </FragmentTitle>
               {description && (
                 <FragmentTitle tag="h3" id={fragmentId('1')}>
