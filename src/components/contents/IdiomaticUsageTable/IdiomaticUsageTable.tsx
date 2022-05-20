@@ -47,11 +47,11 @@ const query = graphql`
         }
       }
     }
-    appWriting: allAirtable(filter: { table: { eq: "基本的な考え方や表記" } }) {
+    appWriting: allAirtable(filter: { table: { eq: "UIテキスト" } }) {
       edges {
         node {
           data {
-            heading
+            name
             data
             record_id
           }
@@ -62,7 +62,7 @@ const query = graphql`
 `
 
 type Props = {
-  type: 'data' | 'usage'
+  type: 'data' | 'reason'
 }
 
 export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
@@ -161,7 +161,7 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
           </Table>
         </Wrapper>
       )}
-      {type === 'usage' && (
+      {type === 'reason' && (
         <>
           {idiomaticUsageReason
             .filter((item) => {
