@@ -1,0 +1,120 @@
+---
+title: 'ThemeProvider'
+description: ''
+---
+
+import { InformationPanel } from 'smarthr-ui'
+import { ComponentPreview } from 'Components/ComponentPreview'
+import { ComponentPropsTable } from 'Components/ComponentPropsTable'
+
+import { PreviewThemeSwitch } from './PreviewThemeSwitch'
+
+ThemeProviderは色やタイポグラフィといった[デザイントークン](/products/design-tokens/)をアプリケーション全体で共有するためのコンポーネントです。
+
+<ComponentPreview layout="none">
+  <PreviewThemeSwitch />
+</ComponentPreview>
+
+## 使い方
+
+各コンポーネントからデザイントークンを参照するためには、アプリケーションルートに`ThemeProvider`を追加する必要があります。
+
+```tsx
+import { ThemeProvider, createTheme } from 'smarthr-ui'
+
+const theme = createTheme()
+
+export const App = () => (
+  <ThemeProvider theme={theme}>
+    ...
+  </ThemeProvider>
+)
+```
+
+`createTheme`は色やタイポグラフィといったデザイントークンを含む`theme`オブジェクトを返します。  
+また、`styled-components`を使う場合は同じ`theme`オブジェクトを`styled-components`用の`ThemeProvider`にも渡す必要があります。
+
+```tsx
+import { ThemeProvider } from 'styled-components'
+import { ThemeProvider as SHRThemeProvider, createTheme } from 'smarthr-ui'
+
+const theme = createTheme()
+
+export const App = () => (
+  <ThemeProvider theme={theme}>
+    <SHRThemeProvider theme={theme}>
+      ...
+    </SHRThemeProvider>
+  </ThemeProvider>
+)
+```
+
+
+## デザイントークンの差し替え
+
+<!-- FIXME レイアウトを Stack でやりたさ（InformationPanel の上部に margin をつける面倒さがすごい -->
+<br />
+
+<InformationPanel type="warning" title="デザイントークンの差し替えは非推奨です。" togglable={false}>
+  SmartHRでは利用者に対して一貫した見た目と振る舞いを提供したいため、プロダクト独自のスタイリングは避けてください。
+  <br />
+  旧UIからの移行や新しいデザイントークンを試したい場合など、開発における影響範囲が広い場合はこの限りではありません。
+</InformationPanel>
+
+SmartHR UI の推奨するデフォルトスタイリングを変えたい場合は、`createTheme`の引数を使ってデザイントークンを差し替えてください。  
+
+以下は、`html { font-size: 62.5%; }`を指定しているような旧環境向けの実装例です。
+
+```tsx
+import { ThemeProvider } from 'styled-components'
+import { ThemeProvider as SHRThemeProvider, createTheme } from 'smarthr-ui'
+
+const customTheme = createTheme({
+  fontSize: {
+    htmlFontSize: 10,
+    S: '1.1rem',
+    M: '1.4rem',
+    L: '1.8rem',
+    XL: '2.4rem',
+  },
+})
+
+export const App = () => (
+  <ThemeProvider theme={customTheme}>
+    <SHRThemeProvider theme={customTheme}>
+      ...
+    </SHRThemeProvider>
+  </ThemeProvider>
+)
+```
+
+プロダクト独自の色を使いたい場合など、デフォルトデザイントークンにはない`theme`オブジェクトを使うこともできます。  
+補完機能を効かせるには、以下のような型定義を宣言してください。
+
+```ts
+import { createTheme } from 'smarthr-ui'
+
+const customTheme = createTheme(/* 省略 */)
+type Theme = typeof customTheme
+
+declare module 'styled-components' {
+  export interface DefaultTheme extends Theme {}
+}
+```
+
+## デザイントークンの使い方
+
+`ThemeProvider`を使うことに依って、すべてのコンポーネントにデザイントークンの含まれた`theme`オブジェクトが流し込まれているため次のように呼び出すことができます。
+
+```tsx
+const Container = styled(Stack).attrs({ align: 'flex-start' })`
+  ${({ theme: { color } }) => css`
+    background-color: ${color.BACKGROUND};
+  `}
+`
+```
+
+
+## Props
+
+<ComponentPropsTable name="ThemeProvider" />

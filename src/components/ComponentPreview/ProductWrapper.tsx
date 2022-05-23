@@ -60,7 +60,7 @@ const Wrapper = styled(WrapperBase)(
      */
   `,
 )
-const padding = css(
+export const padding = css(
   ({ theme: { space } }) => css`
     padding-inline: ${space(1.5)};
 
@@ -78,7 +78,7 @@ const padding = css(
     }
   `,
 )
-const Header = styled(Cluster).attrs({ as: 'header' })`
+export const Header = styled(Cluster).attrs({ as: 'header' })`
   ${({ theme: { color, space } }) => css`
     background-color: ${color.BRAND};
     padding-block: ${space(0.75)};
