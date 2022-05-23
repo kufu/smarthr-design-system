@@ -444,6 +444,7 @@ type AirtableData = {
   readonly slack: Maybe<Scalars['Boolean']>;
   readonly data: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly Not_used_textlint: Maybe<Scalars['Boolean']>;
+  readonly order: Maybe<Scalars['Int']>;
 };
 
 type Query = {
@@ -2768,6 +2769,7 @@ type AirtableDataFilterInput = {
   readonly slack: Maybe<BooleanQueryOperatorInput>;
   readonly data: Maybe<StringQueryOperatorInput>;
   readonly Not_used_textlint: Maybe<BooleanQueryOperatorInput>;
+  readonly order: Maybe<IntQueryOperatorInput>;
 };
 
 type AirtableConnection = {
@@ -2926,7 +2928,8 @@ type AirtableFieldsEnum =
   | 'data.source'
   | 'data.slack'
   | 'data.data'
-  | 'data.Not_used_textlint';
+  | 'data.Not_used_textlint'
+  | 'data.order';
 
 type AirtableGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -2988,12 +2991,17 @@ type AirtableSortInput = {
 type IdiomaticUsageTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IdiomaticUsageTableQuery = { readonly idiomaticUsageData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'label' | 'ng_example' | 'ok_example' | 'expected' | 'reason' | 'record_id'>> } }> }, readonly idiomaticUsageReason: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'data'>> } }> }, readonly writingStyle: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'data' | 'record_id'>> } }> } };
+type IdiomaticUsageTableQuery = { readonly idiomaticUsageData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'label' | 'ng_example' | 'ok_example' | 'expected' | 'basic_reason' |'reason' | 'record_id'>> } }> }, readonly idiomaticUsageReason: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'data'>> } }> }, readonly writingStyle: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'data' | 'record_id'>> } }> } };
 
 type BasicConceptTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type BasicConceptTableQuery = { readonly basicConceptData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id'>> } }> } };
+type BasicConceptTableQuery = { readonly basicConceptData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
+
+type AppWritingTableQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AppWritingTableQuery = { readonly appWritingData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
 
 type HeadQueryVariables = Exact<{ [key: string]: never; }>;
 
