@@ -156,7 +156,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
   ${({ isIndex }) =>
     isIndex
       ? css`
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+          @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
             padding-inline: 48px;
           }
           @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
@@ -165,7 +165,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
         `
       : css`
           @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
-            padding-inline: 70px;
+            padding-inline: 48px;
           }
           @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
             padding-inline: 24px;
