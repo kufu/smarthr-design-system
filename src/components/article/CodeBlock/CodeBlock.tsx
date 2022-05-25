@@ -34,6 +34,14 @@ const theme = {
 
 const smarthrTheme = ui.createTheme()
 
+const transformCode = (snippet: string) => {
+  const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '')
+  return transpile(code, {
+    jsx: ts.JsxEmit.React,
+    target: ts.ScriptTarget.ES2020,
+  })
+}
+
 export const CodeBlock: VFC<Props> = ({
   children,
   className,
@@ -63,12 +71,7 @@ export const CodeBlock: VFC<Props> = ({
               },
             }}
             noInline={withStyled}
-            transformCode={(snippet) =>
-              transpile(snippet, {
-                jsx: ts.JsxEmit.React,
-                target: ts.ScriptTarget.ES2020,
-              })
-            }
+            transformCode={transformCode}
           >
             <ComponentPreview gap={gap} align={align} layout={layout}>
               <LivePreview Component={React.Fragment} />
