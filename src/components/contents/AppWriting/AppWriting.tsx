@@ -34,8 +34,9 @@ export const AppWriting: VFC = () => {
       discussion: node.data?.discussion,
       source: node.data?.source,
       recordId: node.data?.record_id,
+      order: node.data?.order,
     }))
-    .reverse()
+    .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
   const getReplaceLinkText = (text: string) => {
     return (

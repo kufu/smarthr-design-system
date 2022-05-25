@@ -157,6 +157,7 @@ export const query = graphql`
             discussion
             source
             record_id
+            order
           }
         }
       }
@@ -214,6 +215,7 @@ const Article: VFC<Props> = ({ data }) => {
       value: edge.node.data?.name ?? '',
       recordId: edge.node.data?.record_id ?? '',
       name: edge.node.data?.name ?? '',
+      order: edge.node.data?.order ?? Number.MAX_SAFE_INTEGER,
     }
   })
   // Airtableコンテンツは、ページによりソート方法が異なるので、headingの順序もそれに合わせる
@@ -227,6 +229,9 @@ const Article: VFC<Props> = ({ data }) => {
   }
   if (airtableSortType === 'CHARACTER') {
     airTableHeadings.sort((x, y) => (x.name && y.name ? x.name.localeCompare(y.name, 'ja') : -1))
+  }
+  if (airtableSortType === 'AIRTABLE') {
+    airTableHeadings.sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
   }
 
   // Mdxコンテンツのheading
