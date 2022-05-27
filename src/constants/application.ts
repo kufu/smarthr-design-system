@@ -1,5 +1,3 @@
-export const CONTENT_WIDTH = '58rem'
-
 export const INDEXED_DEPTH = 3 // h3まではインデックスされる。
 
 // ログイン状態の確認用にアクセスするドキュメント

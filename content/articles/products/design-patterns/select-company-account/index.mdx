@@ -43,10 +43,10 @@ const companyList = [
   { id: 1, name: '株式会社スマートエイチアール1' },
   { id: 2, name: '株式会社スマートエイチアール2' },
   { id: 3, name: '株式会社スマートエイチアール3' },
-]
+] as const
 
 const SelectCompanyAccount = () => {
-  const [selectedId, setSelectedId] = React.useState<number>(0)
+  const [selectedId, setSelectedId] = useState<number>(0)
 
   return (
     <Wrapper>
@@ -88,7 +88,7 @@ const CompanyItem = styled(Base)`
     }
 
     .smarthr-ui-RadioButton-label {
-      // 視覚的な調整
+      /* 視覚的な調整 */
       margin-inline-start: ${space(0.75)};
     }
   `}

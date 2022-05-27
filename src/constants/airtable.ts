@@ -9,9 +9,15 @@ export type airtableContents = {
 
 export const AIRTABLE_CONTENTS: airtableContents[] = [
   {
-    pageTitle: 'ライティングガイドライン',
+    pageTitle: 'ライティングスタイル',
     pagePath: '/products/contents/writing-style/',
     tableName: '基本的な考え方や表記',
+    sort: 'REVERSE',
+  },
+  {
+    pageTitle: 'UIテキスト',
+    pagePath: '/products/contents/app-writing/',
+    tableName: 'UIテキスト',
     sort: 'REVERSE',
   },
   {

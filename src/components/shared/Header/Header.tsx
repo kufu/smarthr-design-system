@@ -146,7 +146,7 @@ export const Header: VFC<Props> = ({ isIndex = false }) => {
 const Wrapper = styled.header<{ isIndex: boolean }>`
   /* サイト名やリンクに 10px の padding をもたせたので差し引いてる */
   padding-block: 30px;
-  padding-inline: 110px;
+  padding-inline: 70px;
   background-color: ${CSS_COLOR.WHITE};
   ${({ isIndex }) =>
     !isIndex &&
@@ -156,7 +156,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
   ${({ isIndex }) =>
     isIndex
       ? css`
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+          @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
             padding-inline: 48px;
           }
           @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
@@ -165,7 +165,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
         `
       : css`
           @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
-            padding-inline: 40px;
+            padding-inline: 48px;
           }
           @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
             padding-inline: 24px;
@@ -201,9 +201,6 @@ const StyledNav = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justi
     margin: 0;
     padding: 0;
     gap: 8px;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_4}) {
-      gap: 14px;
-    }
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       display: none;
     }

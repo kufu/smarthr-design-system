@@ -47,6 +47,17 @@ const query = graphql`
         }
       }
     }
+    appWriting: allAirtable(filter: { table: { eq: "UIテキスト" } }) {
+      edges {
+        node {
+          data {
+            name
+            data
+            record_id
+          }
+        }
+      }
+    }
   }
 `
 
