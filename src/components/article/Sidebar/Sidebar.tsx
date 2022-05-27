@@ -42,8 +42,8 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
     savePosition(newPosition)
   }
 
-  const onClickCaret = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    const clicked = e.currentTarget
+  const onClickCaret = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    const clicked = event.currentTarget
     const isOpen = clicked.getAttribute('aria-expanded') === 'true'
     const targetId = clicked.getAttribute('aria-controls')
     const targetUl = document.querySelector(`#${targetId}`)
@@ -79,7 +79,11 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
                         aria-expanded={path.includes(depth2Item.link)}
                         onClick={onClickCaret}
                       >
-                        <FaChevronDownIcon color="TEXT_GREY" size={14} />
+                        <FaChevronDownIcon
+                          color="TEXT_GREY"
+                          size={14}
+                          visuallyHiddenText={path.includes(depth2Item.link) ? '閉じる' : '開く'}
+                        />
                       </CaretButton>
                     )}
                   </Depth2Item>
@@ -99,7 +103,11 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
                                 aria-expanded={path.includes(depth3Item.link)}
                                 onClick={onClickCaret}
                               >
-                                <FaChevronDownIcon color="TEXT_GREY" size={14} />
+                                <FaChevronDownIcon
+                                  color="TEXT_GREY"
+                                  size={14}
+                                  visuallyHiddenText={path.includes(depth3Item.link) ? '閉じる' : '開く'}
+                                />
                               </CaretButton>
                             )}
                           </Depth3Item>
@@ -216,13 +224,24 @@ const Depth4Item = styled.div`
   line-height: 1.2;
 `
 const CaretButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  top: 50%;
-  right: 0.5rem;
-  transform: translateY(-50%);
+  width: 2rem;
+  height: 100%;
+  top: 0;
+  right: 0;
   border: 0;
   background: none;
-  &[aria-expanded='true'] {
-    transform: rotate(180deg) translateY(50%);
+  cursor: pointer;
+  &:hover {
+    background-color: ${CSS_COLOR.LIGHT_GREY_1};
+  }
+  > span {
+    top: 0; /* -1pxだとフォーカスリングがずれて見えるため */
+  }
+  &[aria-expanded='true'] > .smarthr-ui-Icon {
+    transform: rotate(180deg);
   }
 `
