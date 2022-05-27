@@ -235,7 +235,8 @@ const CaretButton = styled.button`
   border: 0;
   background: none;
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: ${CSS_COLOR.LIGHT_GREY_1};
   }
   > span {
