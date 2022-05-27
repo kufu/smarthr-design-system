@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import React, { Fragment, VFC, useContext, useLayoutEffect, useRef } from 'react'
 import { useLocation } from '@reach/router'
-import { defaultColor } from 'smarthr-ui'
+import { FaChevronDownIcon, defaultColor } from 'smarthr-ui'
 import styled from 'styled-components'
 import { CSS_COLOR, CSS_SIZE } from '../../../constants/style'
 import type { SidebarItem } from '../../../templates/article'
@@ -10,15 +10,10 @@ import { SidebarScrollContext } from '../../../context/SidebarScrollContext'
 
 type Props = {
   path: string
-  sidebarItems: SidebarItem[]
+  nestedSidebarItems: SidebarItem[]
 }
 
-export const Sidebar: VFC<Props> = ({ path, sidebarItems }) => {
-  const depth1Items = sidebarItems.filter(({ depth }) => depth === 1)
-  const depth2Items = sidebarItems.filter(({ depth }) => depth === 2)
-  const depth3Items = sidebarItems.filter(({ depth }) => depth === 3)
-  const depth4Items = sidebarItems.filter(({ depth }) => depth === 4)
-
+export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
   const location = useLocation()
   const sidebarRef = useRef<null | HTMLDivElement>(null)
   const { position, savePosition } = useContext(SidebarScrollContext)
@@ -47,9 +42,20 @@ export const Sidebar: VFC<Props> = ({ path, sidebarItems }) => {
     savePosition(newPosition)
   }
 
+  const onClickCaret = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const clicked = e.currentTarget
+    const isOpen = clicked.getAttribute('aria-expanded') === 'true'
+    const targetId = clicked.getAttribute('aria-controls')
+    const targetUl = document.querySelector(`#${targetId}`)
+    if (targetUl === null) return
+
+    targetUl.setAttribute('aria-hidden', isOpen ? 'true' : 'false')
+    clicked.setAttribute('aria-expanded', isOpen ? 'false' : 'true')
+  }
+
   return (
     <Nav ref={sidebarRef} onScroll={handleScroll}>
-      {depth1Items.map((depth1Item) => (
+      {nestedSidebarItems.map((depth1Item) => (
         <Fragment key={depth1Item.link}>
           {/* 第1階層 */}
           <Depth1Item>
@@ -59,31 +65,49 @@ export const Sidebar: VFC<Props> = ({ path, sidebarItems }) => {
           </Depth1Item>
 
           {/* 第2階層 */}
-          {depth2Items.length !== 0 && depth2Items[0].link.includes(depth1Item.link) && (
+          {depth1Item.children.length > 0 && (
             <ul>
-              {depth2Items.map((depth2Item) => (
+              {depth1Item.children.map((depth2Item) => (
                 <li key={depth2Item.link}>
                   <Depth2Item>
                     <Link to={depth2Item.link} aria-current={path === depth2Item.link}>
                       {depth2Item.title}
                     </Link>
+                    {depth2Item.children.length > 0 && (
+                      <CaretButton
+                        aria-controls={`Depth3Items__${depth2Item.order}`}
+                        aria-expanded={path.includes(depth2Item.link)}
+                        onClick={onClickCaret}
+                      >
+                        <FaChevronDownIcon color="TEXT_GREY" size={14} />
+                      </CaretButton>
+                    )}
                   </Depth2Item>
 
                   {/* 第3階層 */}
-                  {depth3Items.length !== 0 && depth3Items[0].link.includes(depth2Item.link) && (
-                    <ul>
-                      {depth3Items.map((depth3Item) => (
+                  {depth2Item.children.length > 0 && (
+                    <ul id={`Depth3Items__${depth2Item.order}`} aria-hidden={!path.includes(depth2Item.link)}>
+                      {depth2Item.children.map((depth3Item) => (
                         <li key={depth3Item.link}>
                           <Depth3Item>
                             <Link to={depth3Item.link} aria-current={path === depth3Item.link}>
                               {depth3Item.title}
                             </Link>
+                            {depth3Item.children.length > 0 && (
+                              <CaretButton
+                                aria-controls={`Depth4Items__${depth3Item.order}`}
+                                aria-expanded={path.includes(depth3Item.link)}
+                                onClick={onClickCaret}
+                              >
+                                <FaChevronDownIcon color="TEXT_GREY" size={14} />
+                              </CaretButton>
+                            )}
                           </Depth3Item>
 
                           {/* 第4階層 */}
-                          {depth4Items.length !== 0 && depth4Items[0].link.includes(depth3Item.link) && (
-                            <ul>
-                              {depth4Items.map((depth4Item) => (
+                          {depth3Item.children.length > 0 && (
+                            <ul id={`Depth4Items__${depth3Item.order}`} aria-hidden={!path.includes(depth3Item.link)}>
+                              {depth3Item.children.map((depth4Item) => (
                                 <li key={depth4Item.link}>
                                   <Depth4Item>
                                     <Link to={depth4Item.link} aria-current={path === depth4Item.link}>
@@ -121,6 +145,9 @@ const Nav = styled.nav`
     margin: 0;
     padding: 0;
     list-style: none;
+    &[aria-hidden='true'] {
+      display: none;
+    }
   }
 
   /* 第3階層目 */
@@ -139,7 +166,7 @@ const Nav = styled.nav`
     display: block;
     color: inherit;
     text-decoration: none;
-    padding: 8px 16px 8px 8px;
+    padding: 8px 32px 8px 8px;
 
     &[aria-current='true'],
     &[aria-current='true']:hover {
@@ -176,13 +203,26 @@ const Depth2Item = styled.div`
   font-size: 18px;
   font-weight: bold;
   line-height: 1.33;
+  position: relative;
 `
 const Depth3Item = styled.div`
   font-size: 16px;
   font-weight: bold;
   line-height: 1.2;
+  position: relative;
 `
 const Depth4Item = styled.div`
   font-size: 16px;
   line-height: 1.2;
+`
+const CaretButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  border: 0;
+  background: none;
+  &[aria-expanded='true'] {
+    transform: rotate(180deg) translateY(50%);
+  }
 `

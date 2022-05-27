@@ -56,15 +56,7 @@ const shortcodes = {
 }
 
 export const query = graphql`
-  query Article(
-    $id: String
-    $category: String
-    $depth1Glob: String
-    $depth2Glob: String
-    $depth3Glob: String
-    $depth4Glob: String
-    $airTableName: String
-  ) {
+  query Article($id: String, $category: String, $airTableName: String) {
     mdx(id: { eq: $id }) {
       id
       body
@@ -88,61 +80,10 @@ export const query = graphql`
         node {
           frontmatter {
             title
+            order
           }
           fields {
             category
-            slug
-          }
-        }
-      }
-    }
-    depth1Mdx: allMdx(sort: { fields: fields___slug, order: ASC }, filter: { fields: { hierarchy: { glob: $depth1Glob } } }) {
-      edges {
-        node {
-          frontmatter {
-            title
-            order
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-    depth2Mdx: allMdx(sort: { fields: fields___slug, order: ASC }, filter: { fields: { hierarchy: { glob: $depth2Glob } } }) {
-      edges {
-        node {
-          frontmatter {
-            title
-            order
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-    depth3Mdx: allMdx(sort: { fields: fields___slug, order: ASC }, filter: { fields: { hierarchy: { glob: $depth3Glob } } }) {
-      edges {
-        node {
-          frontmatter {
-            title
-            order
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-    depth4Mdx: allMdx(sort: { fields: fields___slug, order: ASC }, filter: { fields: { hierarchy: { glob: $depth4Glob } } }) {
-      edges {
-        node {
-          frontmatter {
-            title
-            order
-          }
-          fields {
             slug
           }
         }
@@ -172,17 +113,11 @@ export type SidebarItem = {
   order: number
   title: string
   depth: number
+  children: SidebarItem[]
 }
 
 const Article: VFC<Props> = ({ data }) => {
-  const {
-    mdx: article,
-    parentCategoryAllMdx: parentCategory,
-    depth1Mdx: { edges: depth1Mdx },
-    depth2Mdx: { edges: depth2Mdx },
-    depth3Mdx: { edges: depth3Mdx },
-    depth4Mdx: { edges: depth4Mdx },
-  } = data
+  const { mdx: article, parentCategoryAllMdx: parentCategory } = data
 
   if (article == null) {
     return null
@@ -247,41 +182,39 @@ const Article: VFC<Props> = ({ data }) => {
       ?.filter(({ depth }) => depth <= INDEXED_DEPTH) ?? []
 
   const headingList = [...airTableHeadings, ...mdxHeadings]
+
   //
   // サイドバー、「次へ」コンポーネントのための配列作成
   //
 
   // 1. Maybe型を排除して
-  const depth1Items: SidebarItem[] = depth1Mdx.map(({ node }) => {
-    return {
-      link: node.fields?.slug ?? '',
+  const depth1Items: SidebarItem[] = []
+  const depth2Items: SidebarItem[] = []
+  const depth3Items: SidebarItem[] = []
+  const depth4Items: SidebarItem[] = []
+
+  parentCategory.edges.forEach(({ node }) => {
+    const link = node.fields?.slug ?? ''
+
+    const item = {
+      link: link,
       order: node.frontmatter?.order ?? Number.MAX_SAFE_INTEGER,
       title: node.frontmatter?.title ?? '',
-      depth: 1,
+      depth: link.split('/').length - 2,
+      children: [],
     }
-  })
-  const depth2Items: SidebarItem[] = depth2Mdx.map(({ node }) => {
-    return {
-      link: node.fields?.slug ?? '',
-      order: node.frontmatter?.order ?? Number.MAX_SAFE_INTEGER,
-      title: node.frontmatter?.title ?? '',
-      depth: 2,
+
+    if (item.depth === 1) {
+      depth1Items.push(item)
     }
-  })
-  const depth3Items: SidebarItem[] = depth3Mdx.map(({ node }) => {
-    return {
-      link: node.fields?.slug ?? '',
-      order: node.frontmatter?.order ?? Number.MAX_SAFE_INTEGER,
-      title: node.frontmatter?.title ?? '',
-      depth: 3,
+    if (item.depth === 2) {
+      depth2Items.push(item)
     }
-  })
-  const depth4Items: SidebarItem[] = depth4Mdx.map(({ node }) => {
-    return {
-      link: node.fields?.slug ?? '',
-      order: node.frontmatter?.order ?? Number.MAX_SAFE_INTEGER,
-      title: node.frontmatter?.title ?? '',
-      depth: 4,
+    if (item.depth === 3) {
+      depth3Items.push(item)
+    }
+    if (item.depth === 4) {
+      depth4Items.push(item)
     }
   })
 
@@ -305,22 +238,28 @@ const Article: VFC<Props> = ({ data }) => {
 
   // 3. 一つの配列にする
   const sidebarItems = []
+  // サイドバー用にネストした配列も作成する
+  const nestedSidebarItems = []
 
   for (const depth1Item of depth1Items) {
     sidebarItems.push(depth1Item)
+    nestedSidebarItems.push(depth1Item)
 
     for (const depth2Item of depth2Items) {
       sidebarItems.push(depth2Item)
+      depth1Item.children.push(depth2Item)
 
       for (const depth3Item of depth3Items) {
         if (!depth3Item.link.includes(depth2Item.link)) continue
 
         sidebarItems.push(depth3Item)
+        depth2Item.children.push(depth3Item)
 
         for (const depth4Item of depth4Items) {
           if (!depth4Item.link.includes(depth3Item.link)) continue
 
           sidebarItems.push(depth4Item)
+          depth3Item.children.push(depth4Item)
         }
       }
     }
@@ -348,7 +287,7 @@ const Article: VFC<Props> = ({ data }) => {
 
         <Main>
           <MainSidebar>
-            <Sidebar path={slug ?? ''} sidebarItems={sidebarItems} />
+            <Sidebar path={slug ?? ''} nestedSidebarItems={nestedSidebarItems} />
           </MainSidebar>
 
           <MainIndexNav>
