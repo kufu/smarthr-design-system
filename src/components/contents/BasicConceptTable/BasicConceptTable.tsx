@@ -34,7 +34,7 @@ export const BasicConceptTable: VFC = () => {
       discussion: node.data?.discussion,
       source: node.data?.source,
       recordId: node.data?.record_id,
-      order: node.data?.order,
+      order: node.data?.order || Number.MAX_SAFE_INTEGER,
     }))
     .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 

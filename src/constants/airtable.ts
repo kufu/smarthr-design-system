@@ -30,6 +30,6 @@ export const AIRTABLE_CONTENTS: airtableContents[] = [
     pageTitle: '用字用語：理由',
     pagePath: '/products/contents/idiomatic-usage/usage/',
     tableName: '用字用語：理由',
-    sort: 'CHARACTER',
+    sort: 'AIRTABLE',
   },
 ]
