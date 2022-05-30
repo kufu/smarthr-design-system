@@ -31,15 +31,15 @@ SmartHR UIでは`Tooltip`です。
 <ComponentStory name="Tooltip" />
 
 ## 使いどころ
-Tooltipは、UI上のスペースに余裕がない場合に、以下の目的で必要に応じて使用されます。
+Tooltipは、UI上のスペースに余裕がない場合に、以下の目的で使います。
 - 補足的な説明テキストを表示する場合
 - アイコンだけのボタンにラベルを表示する場合
 - 省略されたテキストを全文表示する場合
 
 ### Tooltipの使用を避けるケース
-Tooltip内の情報は隠れることになるため、知らないと操作が進められないような重要な情報での使用は避けて、常に目に見える状態での表示を検討してください。
+Tooltip内の情報は隠れるため、操作に必要な情報の表示への使用は避けましょう。ユーザーが把握しておかないと操作が進められないような重要な情報は、常に表示しておく方法を検討してください。
 
-重要な情報としては、フォームの入力に必要な情報などが該当します。具体例は次の通りです。
+重要な情報とは、フォームの入力に必要な情報などが該当します。具体例は次の通りです。
 - パスワードに使用できる文字や、エラーになる入力値などの入力要件
 - 入力エラーとなった際のエラーメッセージ
 
@@ -235,7 +235,7 @@ export const DynamicTooltip = ({children, ...props}) => {
   </DynamicTooltip>
 </ComponentPreview>
 
-文章でさらに補足したい内容がある場合に使用します。  
+文章でさらに補足したい内容がある場合に使います。  
 補足する対象となるテキストの横に「<FaInfoCircleIcon color="TEXT_LINK" size={14} />」アイコン(`fa-info-circle`) を配置し、補足情報の存在を明確に表示します。
 アイコンの色は、テキストと同様に[`TEXT_LINK`](/products/design-tokens/color/#h2-2)とすることで、マウスオーバーが可能であることを示唆します。
 
@@ -260,7 +260,7 @@ export const DynamicTooltip = ({children, ...props}) => {
 充分にスペースを確保できないときに、アイコン単体をトリガーにするパターンですが、**どうしても他に方法がないときだけ**使用してください。  
 何を対象とした補足説明なのかを明確にするために、可能な限り「[テキスト＋アイコン](#h4-6)」を採用することを推奨します。
 
-アイコンは、マウスオーバーが可能であることを示唆するためにリンク色（[`TEXT_LINK`](/products/design-tokens/color/#h2-2)）を使用します。
+アイコンは、マウスオーバーが可能であることを示唆するためにリンク色（[`TEXT_LINK`](/products/design-tokens/color/#h2-2)）を使います。
 
 ##### テキストとあわせて使用
 <ComponentPreview>
@@ -286,8 +286,8 @@ export const DynamicTooltip = ({children, ...props}) => {
   </LineUp>
 </ComponentPreview>
 
-トリガーとなるのはアイコンのみで、タイトルや[よくあるテーブルのオブジェクト名](/products/design-patterns/smarthr-table#h4-0)のテキストとあわせて使用します。  
-タイトルや[よくあるテーブルのオブジェクト名の遷移リンク](/products/design-patterns/smarthr-table/#h5-3)の役割を阻害しないために、アイコンのみに[`TEXT_GRAY`](/products/design-tokens/color/#h2-2)を使用します。
+トリガーとなるのはアイコンのみで、タイトルや[よくあるテーブルのオブジェクト名](/products/design-patterns/smarthr-table#h4-0)のテキストとあわせて使います。  
+タイトルや[よくあるテーブルのオブジェクト名の遷移リンク](/products/design-patterns/smarthr-table/#h5-3)の役割を阻害しないために、アイコンのみに[`TEXT_GRAY`](/products/design-tokens/color/#h2-2)を使います。
 
 ##### ステータスの補足に使用
 <ComponentPreview>
