@@ -29,7 +29,7 @@ Dialogコンポーネントは、ユーザーに集中してほしい確認や�
 <ComponentStory name="Dialog" />
 
 ## 使いどころ
-ダイアログは、ユーザーの能動的なアクションを起点に、主に以下の目的で使用されます。  
+ダイアログは、ユーザーの能動的なアクションを起点に、主に以下の目的で使います。  
 
 * 別の情報を操作する必要がある場合
 * 作業の確認（参照・追加・編集・削除）を促す場合
@@ -87,7 +87,7 @@ export const DynamicActionDialog = () => {
 
 ### MessageDialog
 SmartHR UIでは`MessageDialog`です。  
-MessageDialogは、ユーザーの操作を中断させて、ユーザーへの警告や確認を明示的にしたい場合に利用するモーダルダイアログです。
+MessageDialogは、ユーザーの操作を中断させて、ユーザーへの警告や確認を明示的にしたい場合に使うモーダルダイアログです。
 
 ユーザーの操作を中断させる必要がない場合は、[InformationPanel](/products/components/information-panel/)や[CompactInformationPanel](https://smarthr.design/products/components/compact-information-panel/)の使用を検討してください。
 
@@ -120,7 +120,7 @@ export const DynamicMessageDialog = () => {
 
 ### ModelessDialog
 SmartHR UIでは`ModelessDialog`です。  
-ModelessDialogは、ユーザーに任意のタイミングや順序で、情報の確認や操作をさせたい場合に使用します。
+ModelessDialogは、ユーザーに任意のタイミングや順序で、情報の確認や操作をさせたい場合に使います。
 
 export const DynamicModelessDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -242,7 +242,7 @@ export const DynamicModelessDialog = () => {
 
 ## デザインパターン
 ### サブタイトルの使い方
-原則利用しません。タイトルだけではオブジェクトや機能を特定できない場合にのみ利用してください。
+原則として、使いません。タイトルだけではオブジェクトや機能を特定できない場合にのみ使ってください。
 
 
 ### ダイアログ外領域への操作
