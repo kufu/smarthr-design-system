@@ -32,22 +32,12 @@ const query = graphql`
             source
             record_id
             data
+            order
           }
         }
       }
     }
     writingStyle: allAirtable(filter: { table: { eq: "基本的な考え方や表記" } }) {
-      edges {
-        node {
-          data {
-            name
-            data
-            record_id
-          }
-        }
-      }
-    }
-    appWriting: allAirtable(filter: { table: { eq: "UIテキスト" } }) {
       edges {
         node {
           data {
@@ -86,8 +76,9 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
       source: node.data?.source,
       recordId: node.data?.record_id,
       data: node.data?.data,
+      order: node.data?.order || Number.MAX_SAFE_INTEGER,
     }))
-    .sort((x, y) => (x.name && y.name ? x.name.localeCompare(y.name, 'ja') : -1))
+    .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
   const writingStyle = data.writingStyle.edges
     .map(({ node }) => ({
