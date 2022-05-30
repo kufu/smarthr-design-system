@@ -2987,6 +2987,16 @@ type AppWritingTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 type AppWritingTableQuery = { readonly appWritingData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
 
+type BasicConceptTableQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BasicConceptTableQuery = { readonly basicConceptData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
+
+type IdiomaticUsageTableQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IdiomaticUsageTableQuery = { readonly idiomaticUsageData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'label' | 'ng_example' | 'ok_example' | 'expected' | 'reason' | 'record_id'>> } }> }, readonly idiomaticUsageReason: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'data' | 'order'>> } }> }, readonly writingStyle: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'data' | 'record_id'>> } }> } };
+
 type HeadQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2996,11 +3006,6 @@ type SearchQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SearchQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<{ readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'category' | 'hierarchy' | 'slug'>> }> } };
-
-type BasicConceptTableQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BasicConceptTableQuery = { readonly basicConceptData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
 
 type FooterQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3022,18 +3027,9 @@ type FooterQuery = { readonly concept: { readonly nodes: ReadonlyArray<(
       & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> }
     )> } };
 
-type IdiomaticUsageTableQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type IdiomaticUsageTableQuery = { readonly idiomaticUsageData: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'label' | 'ng_example' | 'ok_example' | 'expected' | 'reason' | 'record_id'>> } }> }, readonly idiomaticUsageReason: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'data' | 'order'>> } }> }, readonly writingStyle: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'data' | 'record_id'>> } }> } };
-
 type ArticleQueryVariables = Exact<{
   id: Maybe<Scalars['String']>;
   category: Maybe<Scalars['String']>;
-  depth1Glob: Maybe<Scalars['String']>;
-  depth2Glob: Maybe<Scalars['String']>;
-  depth3Glob: Maybe<Scalars['String']>;
-  depth4Glob: Maybe<Scalars['String']>;
   airTableName: Maybe<Scalars['String']>;
 }>;
 
@@ -3041,6 +3037,6 @@ type ArticleQueryVariables = Exact<{
 type ArticleQuery = { readonly mdx: Maybe<(
     Pick<Mdx, 'id' | 'body'>
     & { readonly headings: Maybe<ReadonlyArray<Maybe<Pick<MdxHeadingMdx, 'depth' | 'value'>>>>, readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'description' | 'smarthr_ui'>>, readonly fields: Maybe<Pick<MdxFields, 'category' | 'hierarchy' | 'slug'>> }
-  )>, readonly parentCategoryAllMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'category' | 'slug'>> } }> }, readonly depth1Mdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> } }> }, readonly depth2Mdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> } }> }, readonly depth3Mdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> } }> }, readonly depth4Mdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> } }> }, readonly airTable: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
+  )>, readonly parentCategoryAllMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'order'>>, readonly fields: Maybe<Pick<MdxFields, 'category' | 'slug'>> } }> }, readonly airTable: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<AirtableData, 'name' | 'description' | 'discussion' | 'source' | 'record_id' | 'order'>> } }> } };
 
 }

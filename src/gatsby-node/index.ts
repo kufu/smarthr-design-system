@@ -65,11 +65,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
   allMdx.edges.forEach(({ node }) => {
     const slug = node.fields?.slug
     const component = path.resolve(`./src/templates/article.tsx`)
-    const fileNameArray = node.fields?.hierarchy?.split('/') ?? ''
-    const depth1Glob = `${fileNameArray[0]}`
-    const depth2Glob = `${fileNameArray[0]}/*`
-    const depth3Glob = `${fileNameArray[0]}/${fileNameArray[1]}/*`
-    const depth4Glob = `${fileNameArray[0]}/${fileNameArray[1]}/${fileNameArray[2]}/*`
 
     const targetAirtable = AIRTABLE_CONTENTS.filter((item: airtableContents) => {
       return item.pagePath === slug
@@ -82,10 +77,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
         context: {
           id: node.id,
           category: node.fields?.category,
-          depth1Glob,
-          depth2Glob,
-          depth3Glob,
-          depth4Glob,
           airTableName: targetAirtable[0]?.tableName || '',
         },
       })
