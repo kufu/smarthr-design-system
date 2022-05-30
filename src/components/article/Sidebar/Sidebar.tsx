@@ -79,11 +79,7 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
                         aria-expanded={path.includes(depth2Item.link)}
                         onClick={onClickCaret}
                       >
-                        <FaChevronDownIcon
-                          color="TEXT_GREY"
-                          size={14}
-                          visuallyHiddenText={path.includes(depth2Item.link) ? '閉じる' : '開く'}
-                        />
+                        <FaChevronDownIcon size={14} visuallyHiddenText={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
                       </CaretButton>
                     )}
                   </Depth2Item>
@@ -104,7 +100,6 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
                                 onClick={onClickCaret}
                               >
                                 <FaChevronDownIcon
-                                  color="TEXT_GREY"
                                   size={14}
                                   visuallyHiddenText={path.includes(depth3Item.link) ? '閉じる' : '開く'}
                                 />
@@ -180,16 +175,33 @@ const Nav = styled.nav`
     &[aria-current='true']:hover {
       background-color: ${CSS_COLOR.DARK_GREY_1};
       color: ${CSS_COLOR.WHITE};
+      + button {
+        color: ${CSS_COLOR.WHITE};
+      }
     }
     &:hover {
       background-color: ${CSS_COLOR.DIVIDER};
-      + button {
-        background-color: ${CSS_COLOR.LIGHT_GREY_1};
-      }
     }
 
     &:focus-visible {
       outline-offset: -1px;
+    }
+  }
+
+  & li:hover > div {
+    > a {
+      background-color: ${CSS_COLOR.DIVIDER};
+    }
+    > a[aria-current='true'] {
+      background-color: ${CSS_COLOR.DARK_GREY_1};
+      color: ${CSS_COLOR.WHITE};
+      + button {
+        background-color: ${CSS_COLOR.DARK_GREY_1};
+        color: ${CSS_COLOR.WHITE};
+        &:hover {
+          background-color: ${CSS_COLOR.TEXT_GREY};
+        }
+      }
     }
   }
 `
@@ -237,14 +249,17 @@ const CaretButton = styled.button`
   right: 0;
   border: 0;
   background: none;
+  color: ${CSS_COLOR.TEXT_GREY};
   cursor: pointer;
-  &:hover,
-  &:focus-visible {
+
+  &:hover {
     background-color: ${CSS_COLOR.LIGHT_GREY_1};
   }
+
   > span {
     top: 0; /* -1pxだとフォーカスリングがずれて見えるため */
   }
+
   &[aria-expanded='true'] > .smarthr-ui-Icon {
     transform: rotate(180deg);
   }
