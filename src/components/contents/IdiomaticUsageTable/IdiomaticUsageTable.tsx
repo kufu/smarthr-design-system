@@ -1,9 +1,9 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import { Body, Cell, Head, Row, Table, Text } from 'smarthr-ui'
+import { Body, Cell, Head, Row, Table } from 'smarthr-ui'
+import { TextAnchor } from '../shared/TextAnchor'
 import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
-import reactStringReplace from 'react-string-replace'
 import { marked } from 'marked'
 
 const query = graphql`
@@ -78,6 +78,9 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
       data: node.data?.data,
       order: node.data?.order || Number.MAX_SAFE_INTEGER,
     }))
+    .filter((item) => {
+      return item.name
+    })
     .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
   const writingStyle = data.writingStyle.edges
@@ -87,18 +90,6 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
       recordId: node.data?.record_id,
     }))
     .sort((x, y) => (x.name && y.name ? x.name.localeCompare(y.name, 'ja') : -1))
-
-  const getReplaceLinkText = (text: string) => {
-    return (
-      <StyledText as="p">
-        {reactStringReplace(text, /(https?:\/\/\S+)/g, (match: string, strIndex: number) => (
-          <a key={strIndex} href={match}>
-            {match}
-          </a>
-        ))}
-      </StyledText>
-    )
-  }
 
   return (
     <>
@@ -154,41 +145,37 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
       )}
       {type === 'reason' && (
         <>
-          {idiomaticUsageReason
-            .filter((item) => {
-              return item.name
-            })
-            .map(({ name, description, discussion, source, recordId }, index) => {
-              const fragmentId = (suffixId: string) => {
-                return recordId ? `${recordId}-${suffixId}` : ''
-              }
+          {idiomaticUsageReason.map(({ name, description, discussion, source, recordId }, index) => {
+            const generateFragmentId = (suffixId: string) => {
+              return recordId ? `${recordId}-${suffixId}` : `${index}-${suffixId}`
+            }
 
-              return (
-                <Wrapper key={index}>
-                  <FragmentTitle tag="h2" id={fragmentId('0')}>
-                    {name}
+            return (
+              <Wrapper key={index}>
+                <FragmentTitle tag="h2" id={generateFragmentId('0')}>
+                  {name}
+                </FragmentTitle>
+                {description && (
+                  <FragmentTitle tag="h3" id={generateFragmentId('1')}>
+                    説明
                   </FragmentTitle>
-                  {description && (
-                    <FragmentTitle tag="h3" id={fragmentId('1')}>
-                      説明
-                    </FragmentTitle>
-                  )}
-                  {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
-                  {discussion && (
-                    <FragmentTitle tag="h3" id={fragmentId('2')}>
-                      議事録
-                    </FragmentTitle>
-                  )}
-                  {discussion && getReplaceLinkText(discussion)}
-                  {source && (
-                    <FragmentTitle tag="h3" id={fragmentId('3')}>
-                      出典
-                    </FragmentTitle>
-                  )}
-                  {source && getReplaceLinkText(source)}
-                </Wrapper>
-              )
-            })}
+                )}
+                {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
+                {discussion && (
+                  <FragmentTitle tag="h3" id={generateFragmentId('2')}>
+                    議事録
+                  </FragmentTitle>
+                )}
+                {discussion && <TextAnchor text={discussion} />}
+                {source && (
+                  <FragmentTitle tag="h3" id={generateFragmentId('3')}>
+                    出典
+                  </FragmentTitle>
+                )}
+                {source && <TextAnchor text={source} />}
+              </Wrapper>
+            )
+          })}
         </>
       )}
     </>
@@ -200,10 +187,6 @@ const Wrapper = styled.div`
   td {
     vertical-align: baseline;
   }
-`
-const StyledText = styled(Text)`
-  white-space: pre-wrap;
-  word-wrap: break-word;
 `
 const RecommendCell = styled(Cell)`
   white-space: nowrap;
