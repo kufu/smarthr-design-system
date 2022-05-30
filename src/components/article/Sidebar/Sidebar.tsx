@@ -183,6 +183,9 @@ const Nav = styled.nav`
     }
     &:hover {
       background-color: ${CSS_COLOR.DIVIDER};
+      + button {
+        background-color: ${CSS_COLOR.LIGHT_GREY_1};
+      }
     }
 
     &:focus-visible {
