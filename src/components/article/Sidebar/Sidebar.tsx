@@ -188,7 +188,7 @@ const Nav = styled.nav`
     }
   }
 
-  & li:hover > div {
+  & div:hover {
     > a {
       background-color: ${CSS_COLOR.DIVIDER};
     }
