@@ -7,7 +7,7 @@ import reactStringReplace from 'react-string-replace'
 import { marked } from 'marked'
 
 const query = graphql`
-  query AppWriting {
+  query AppWritingTable {
     appWritingData: allAirtable(filter: { table: { eq: "UIテキスト" } }) {
       edges {
         node {
@@ -34,8 +34,9 @@ export const AppWriting: VFC = () => {
       discussion: node.data?.discussion,
       source: node.data?.source,
       recordId: node.data?.record_id,
+      order: node.data?.order || Number.MAX_SAFE_INTEGER,
     }))
-    .reverse()
+    .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
   const getReplaceLinkText = (text: string) => {
     return (
