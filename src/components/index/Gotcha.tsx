@@ -4,7 +4,7 @@ import gotchaItemJson from '../../data/gotchaItem.json'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import { FaRedoIcon } from 'smarthr-ui'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '../../constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 const BUTTON_TEXT: string = 'GOTCHA!' // アニメーションするため、css、reactのどちらでも必要なのでここで
 
 type GotchaItem = {

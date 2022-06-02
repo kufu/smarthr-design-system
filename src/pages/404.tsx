@@ -1,10 +1,10 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 
-import { Head } from '../components/Head'
-import { GlobalStyle } from '../components/shared/GlobalStyle/GlobalStyle'
-import { Header } from '../components/shared/Header/Header'
-import { Footer } from '../components/shared/Footer/Footer'
+import { Head } from '@Components/Head'
+import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
+import { Header } from '@Components/shared/Header/Header'
+import { Footer } from '@Components/shared/Footer/Footer'
 
 const NotFoundPage: VFC = () => (
   <>

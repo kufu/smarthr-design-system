@@ -1,10 +1,10 @@
 import React, { VFC, useContext } from 'react'
 import styled from 'styled-components'
 import { AnchorButton } from 'smarthr-ui'
-import { CSS_COLOR, CSS_FONT_SIZE } from '../../../constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { Link } from 'gatsby'
 
-import { LoginContext } from '../../../context/LoginContext'
+import { LoginContext } from '@Context/LoginContext'
 
 type Props = unknown
 

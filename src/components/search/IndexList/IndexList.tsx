@@ -1,6 +1,6 @@
 import React, { Fragment, VFC } from 'react'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_FONT_SIZE } from '../../../constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 
 const SUB_LINKS = [`downloads`, `terms`, `contact`] // リンク表示を別扱いにするページ

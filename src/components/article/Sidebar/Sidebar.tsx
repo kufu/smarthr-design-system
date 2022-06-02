@@ -3,10 +3,10 @@ import React, { Fragment, VFC, useContext, useLayoutEffect, useRef } from 'react
 import { useLocation } from '@reach/router'
 import { FaChevronDownIcon, defaultColor } from 'smarthr-ui'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_SIZE } from '../../../constants/style'
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import type { SidebarItem } from '../../../templates/article'
 
-import { SidebarScrollContext } from '../../../context/SidebarScrollContext'
+import { SidebarScrollContext } from '@Context/SidebarScrollContext'
 
 type Props = {
   path: string

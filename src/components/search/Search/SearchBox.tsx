@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { FaSearchIcon, Input } from 'smarthr-ui'
 import { HitComponent } from './HitComponent'
 import { SearchResultOuter } from './SearchResultOuter'
-import { CSS_FONT_SIZE } from '../../../constants/style'
+import { CSS_FONT_SIZE } from '@Constants/style'
 import { useLocation } from '@reach/router'
 
 const SearchBox: VFC<SearchBoxProvided> = ({ refine }) => {

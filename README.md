@@ -55,7 +55,7 @@ index.mdxがないディレクトリがあった場合、左側のサイドバ�
 
 ### 3. Reactコンポーネントを使う際の注意
 
-`/src/components`までのエイリアスが`Components`として設定されているので、 mdxファイル内で
+`/src/components`までのエイリアスが`@Components`として設定されているので、 mdxファイル内で
 
 ```mdx
 import { hoge } from '../../../../src/components/hoge'
@@ -64,7 +64,7 @@ import { hoge } from '../../../../src/components/hoge'
 ではなく、
 
 ```mdx
-import { hoge } from 'Components/hoge'
+import { hoge } from '@Components/hoge'
 ```
 
 と書けるようになっています。積極的に利用してください。
