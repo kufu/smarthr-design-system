@@ -1,8 +1,8 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import { Body, Cell, Head, Row, Table } from 'smarthr-ui'
-import { TextAnchor } from '../shared/TextAnchor'
+import { Body, Cell, Head, Row, Table, Text } from 'smarthr-ui'
+import { TextUrlToLink } from '../shared/TextUrlToLink'
 import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
 import { marked } from 'marked'
 
@@ -166,13 +166,21 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
                     議事録
                   </FragmentTitle>
                 )}
-                {discussion && <TextAnchor text={discussion} />}
+                {discussion && (
+                  <StyledText as="p">
+                    <TextUrlToLink text={discussion} />
+                  </StyledText>
+                )}
                 {source && (
                   <FragmentTitle tag="h3" id={generateFragmentId('3')}>
                     出典
                   </FragmentTitle>
                 )}
-                {source && <TextAnchor text={source} />}
+                {source && (
+                  <StyledText as="p">
+                    <TextUrlToLink text={source} />
+                  </StyledText>
+                )}
               </Wrapper>
             )
           })}
@@ -198,4 +206,8 @@ const NGCell = styled(Cell)`
 const ReasonCell = styled(Cell)`
   min-width: 22em;
   width: auto;
+`
+const StyledText = styled(Text)`
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `

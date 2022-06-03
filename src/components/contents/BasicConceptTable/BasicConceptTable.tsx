@@ -1,7 +1,8 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
-import { TextAnchor } from '../shared/TextAnchor'
+import { Text } from 'smarthr-ui'
+import { TextUrlToLink } from '../shared/TextUrlToLink'
 import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
 import { marked } from 'marked'
 
@@ -62,13 +63,21 @@ export const BasicConceptTable: VFC = () => {
                 議事録
               </FragmentTitle>
             )}
-            {discussion && <TextAnchor text={discussion} />}
+            {discussion && (
+              <StyledText as="p">
+                <TextUrlToLink text={discussion} />
+              </StyledText>
+            )}
             {source && (
               <FragmentTitle tag="h3" id={generateFragmentId('3')}>
                 出典
               </FragmentTitle>
             )}
-            {source && <TextAnchor text={source} />}
+            {source && (
+              <StyledText as="p">
+                <TextUrlToLink text={source} />
+              </StyledText>
+            )}
           </Wrapper>
         )
       })}
@@ -77,3 +86,7 @@ export const BasicConceptTable: VFC = () => {
 }
 
 const Wrapper = styled.div``
+const StyledText = styled(Text)`
+  white-space: pre-wrap;
+  word-wrap: break-word;
+`
