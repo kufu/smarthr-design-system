@@ -71,10 +71,12 @@ export const CodeBlock: VFC<Props> = ({
             }
           >
             <ComponentPreview gap={gap} align={align} layout={layout}>
+              {/* @ts-ignore -- LivePreviewの型定義が正しくないようなので、エラーを無視。https://github.com/FormidableLabs/react-live/pull/304 */}
               <LivePreview Component={React.Fragment} />
             </ComponentPreview>
             <StyledLiveEditorContainer>
               <CopyButton text={code} />
+              {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
               <LiveEditor padding={0} />
             </StyledLiveEditorContainer>
             <LiveError />
