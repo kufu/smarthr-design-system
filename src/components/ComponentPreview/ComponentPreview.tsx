@@ -37,7 +37,7 @@ export const ComponentPreview = ({
         return <NoLayoutWrapper>{children}</NoLayoutWrapper>
       }
     }
-  }, [layout])
+  }, [layout, align, children, gap])
 
 const Wrapper = styled(WrapperBase)(
   ({ theme: { space } }) => css`
