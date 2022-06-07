@@ -3,12 +3,12 @@ import React, { VFC, useContext, useState } from 'react'
 import { useLocation } from '@reach/router'
 import styled, { createGlobalStyle, css } from 'styled-components'
 import { Link as LinkComponent } from 'gatsby'
-import { CSS_COLOR, CSS_SIZE } from '../../../constants/style'
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 
 import { FootStaticLinks } from '../Footer/FootStaticLinks'
 import headerContentJson from '../../../data/headerContent.json'
 
-import { LoginContext } from '../../../context/LoginContext'
+import { LoginContext } from '@Context/LoginContext'
 
 type HeaderContents = Array<{
   title: string

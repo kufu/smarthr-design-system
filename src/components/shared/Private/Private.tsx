@@ -4,9 +4,9 @@ import { AnchorButton, FaExclamationCircleIcon, FaLockIcon } from 'smarthr-ui'
 import styled from 'styled-components'
 import { micromark } from 'micromark'
 import { mdxjs } from 'micromark-extension-mdxjs'
-import { CSS_COLOR, CSS_FONT_SIZE } from '../../../constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 
-import { LoginContext } from '../../../context/LoginContext'
+import { LoginContext } from '@Context/LoginContext'
 
 type Props = {
   /** .mdファイルまでのパス。

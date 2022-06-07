@@ -1,7 +1,7 @@
 import React from 'react'
 import { GatsbyBrowser } from 'gatsby'
-import { LoginContextProvider } from './src/context/LoginContext'
-import { SidebarScrollContextProvider } from './src/context/SidebarScrollContext'
+import { LoginContextProvider } from '@Context/LoginContext'
+import { SidebarScrollContextProvider } from '@Context/SidebarScrollContext'
 
 export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({ element, props }) => {
   return (

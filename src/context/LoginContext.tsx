@@ -1,5 +1,5 @@
 import React, { ReactNode, VFC, createContext, useContext, useState } from 'react'
-import { PRIVATE_DOC_PATH } from '../constants/application'
+import { PRIVATE_DOC_PATH } from '@Constants/application'
 
 export type LoginStatusKey = 'pending' | 'loggedIn' | 'loggedOut'
 type Props = {

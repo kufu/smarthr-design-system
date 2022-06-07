@@ -1,17 +1,17 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
-import { CSS_SIZE } from '../constants/style'
+import { CSS_SIZE } from '@Constants/style'
 
-import { Head } from '../components/Head'
-import { GlobalStyle } from '../components/shared/GlobalStyle/GlobalStyle'
-import { Header } from '../components/shared/Header/Header'
-import { Footer } from '../components/shared/Footer/Footer'
+import { Head } from '@Components/Head'
+import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
+import { Header } from '@Components/shared/Header/Header'
+import { Footer } from '@Components/shared/Footer/Footer'
 
-import { Introduction } from '../components/index/Introduction'
-import { ContentNavigation } from '../components/index/ContentNavigation'
-import { SearchLink } from '../components/index/SearchLink'
-import { FaqList } from '../components/index/Faq'
-import { Gotcha } from '../components/index/Gotcha'
+import { Introduction } from '@Components/index/Introduction'
+import { ContentNavigation } from '@Components/index/ContentNavigation'
+import { SearchLink } from '@Components/index/SearchLink'
+import { FaqList } from '@Components/index/Faq'
+import { Gotcha } from '@Components/index/Gotcha'
 
 const Home: VFC = () => {
   return (

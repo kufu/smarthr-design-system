@@ -1,6 +1,6 @@
 import { defaultColor, defaultLeading } from 'smarthr-ui'
 import { createGlobalStyle } from 'styled-components'
-import { CSS_SIZE } from '../../../constants/style'
+import { CSS_SIZE } from '@Constants/style'
 
 export const GlobalStyle = createGlobalStyle`
   :root {

@@ -1,7 +1,7 @@
 import React, { VFC, useState } from 'react'
 import styled from 'styled-components'
 import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui'
-import { CSS_COLOR } from '../../../constants/style'
+import { CSS_COLOR } from '@Constants/style'
 
 type CopyButtonProps = {
   text: string

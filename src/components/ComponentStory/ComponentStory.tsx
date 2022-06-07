@@ -2,8 +2,8 @@ import React, { VFC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Loader, TabBar, TabItem } from 'smarthr-ui'
 
-import { SHRUI_GITHUB_RAW, SHRUI_STORYBOOK_IFRAME } from '../../constants/application'
-import { CSS_COLOR } from '../../constants/style'
+import { SHRUI_GITHUB_RAW, SHRUI_STORYBOOK_IFRAME } from '@Constants/application'
+import { CSS_COLOR } from '@Constants/style'
 import { CodeBlock } from '../article/CodeBlock'
 
 type Props = {

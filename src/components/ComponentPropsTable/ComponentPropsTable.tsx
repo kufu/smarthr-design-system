@@ -9,10 +9,27 @@ type Props = {
   showTitle?: boolean
 }
 
+interface UIPropValue {
+  value: string
+  description?: string
+  fullComment?: string
+  tags?: { [key: string]: string }
+}
+
+interface UIProps {
+  name: string
+  required: boolean
+  description: string
+  defaultValue: { [key: string]: string } | null
+  declarations: Array<{ fileName: string; name: string }>
+  type: { name: string; raw?: string; value?: UIPropValue[] }
+}
+
 export const ComponentPropsTable: VFC<Props> = ({ name, showTitle }) => {
   const data = uiProps.filter((uiProp) => {
     return uiProp.displayName === name
   })[0]
+  const propsData: UIProps[] = data ? data.props : []
   const fragmentId = (propsName: string) => {
     return `props-${propsName.replace(' ', '-')}`
   }
@@ -24,7 +41,7 @@ export const ComponentPropsTable: VFC<Props> = ({ name, showTitle }) => {
         </FragmentTitle>
       )}
 
-      {data && data.props.length > 0 ? (
+      {propsData.length > 0 ? (
         <Wrapper>
           <Table>
             <Head>
@@ -36,7 +53,7 @@ export const ComponentPropsTable: VFC<Props> = ({ name, showTitle }) => {
               </Row>
             </Head>
             <Body>
-              {data.props.map((prop, i) => {
+              {propsData.map((prop, i) => {
                 return (
                   <Row key={i}>
                     <NameCell>

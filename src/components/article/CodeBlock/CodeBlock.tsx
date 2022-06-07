@@ -8,7 +8,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } f
 import ts, { transpile } from 'typescript'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
-import { CSS_COLOR } from '../../../constants/style'
+import { CSS_COLOR } from '@Constants/style'
 import { CopyButton } from './CopyButton'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
 
@@ -71,10 +71,12 @@ export const CodeBlock: VFC<Props> = ({
             }
           >
             <ComponentPreview gap={gap} align={align} layout={layout}>
+              {/* @ts-ignore -- LivePreviewの型定義が正しくないようなので、エラーを無視。https://github.com/FormidableLabs/react-live/pull/304 */}
               <LivePreview Component={React.Fragment} />
             </ComponentPreview>
             <StyledLiveEditorContainer>
               <CopyButton text={code} />
+              {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
               <LiveEditor padding={0} />
             </StyledLiveEditorContainer>
             <LiveError />
