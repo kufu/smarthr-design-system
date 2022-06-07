@@ -8,7 +8,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } f
 import ts, { transpile } from 'typescript'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
-import { CSS_COLOR } from '../../../constants/style'
+import { CSS_COLOR } from '@Constants/style'
 import { CopyButton } from './CopyButton'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
 

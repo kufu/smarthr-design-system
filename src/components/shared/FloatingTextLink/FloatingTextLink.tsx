@@ -1,7 +1,7 @@
 import React, { VFC } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_FONT_SIZE } from '../../../constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 
 type Props = {
   path: string

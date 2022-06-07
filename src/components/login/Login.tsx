@@ -1,8 +1,8 @@
 import React, { VFC, useContext, useState } from 'react'
 import { Button, FaLockIcon, Input } from 'smarthr-ui'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '../../constants/style'
-import { LoginContext, LoginStatusKey } from '../../context/LoginContext'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 
 export const LoginPage: VFC = () => {
   const [password, setPassword] = useState('')

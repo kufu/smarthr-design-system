@@ -1,6 +1,6 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
-import { CSS_SIZE } from '../../../constants/style'
+import { CSS_SIZE } from '@Constants/style'
 
 import { Category } from './Category'
 

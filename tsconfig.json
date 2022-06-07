@@ -16,7 +16,13 @@
     "noUnusedParameters": true,
     "strict": true,
     "sourceMap": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@Components/*": ["src/components/*"],
+      "@Constants/*": ["src/constants/*"],
+      "@Context/*": ["src/context/*"],
+    }
   },
   "ts-node": {
     "compilerOptions": {

@@ -1,10 +1,10 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
-import { Head } from '../components/Head'
-import { GlobalStyle } from '../components/shared/GlobalStyle/GlobalStyle'
-import { Header } from '../components/shared/Header/Header'
-import { LoginPage } from '../components/login/Login'
-import { CSS_SIZE } from '../constants/style'
+import { Head } from '@Components/Head'
+import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
+import { Header } from '@Components/shared/Header/Header'
+import { LoginPage } from '@Components/login/Login'
+import { CSS_SIZE } from '@Constants/style'
 
 const Login: VFC = () => {
   return (

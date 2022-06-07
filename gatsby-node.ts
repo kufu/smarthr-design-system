@@ -11,7 +11,9 @@ export const onCreateWebpackConfig = ({ actions }: CreateWebpackConfigArgs) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        Components: path.resolve('src/components'),
+        '@Components': path.resolve('src/components'),
+        '@Constants': path.resolve('src/constants'),
+        '@Context': path.resolve('src/context'),
       },
     },
   })

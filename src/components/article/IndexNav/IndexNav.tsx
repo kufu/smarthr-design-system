@@ -1,6 +1,6 @@
 import React, { VFC } from 'react'
 import { Link } from 'gatsby'
-import { CSS_COLOR } from '../../../constants/style'
+import { CSS_COLOR } from '@Constants/style'
 import styled from 'styled-components'
 
 type Props = {
