@@ -17,6 +17,7 @@ type Props = {
   className?: Language
   editable?: boolean
   withStyled?: boolean
+  renderingComponent?: string
 } & Pick<LiveProviderProps, 'scope'> & {
     gap?: Gap | SeparateGap
     align?: CSSProperties['alignItems']
@@ -35,7 +36,7 @@ const theme = {
 const smarthrTheme = ui.createTheme()
 
 const transformCode = (snippet: string) => {
-  const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '')
+  const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '')
   return transpile(code, {
     jsx: ts.JsxEmit.React,
     target: ts.ScriptTarget.ES2020,
@@ -48,12 +49,13 @@ export const CodeBlock: VFC<Props> = ({
   editable = false,
   scope,
   withStyled = false,
+  renderingComponent = null,
   gap,
   align,
   layout,
 }) => {
   const language = className ? className.replace(/language-/, '') : ''
-  const code = children.trim()
+  const code = renderingComponent ? children.trim() + `\nrender(<${renderingComponent} />)` : children.trim()
 
   if (editable) {
     return (

@@ -8,7 +8,7 @@ type Props = {
 
 export const DesignPatternCodeBlock: VFC<Props> = ({ componentName }) => {
   return (
-    <CodeBlock className="tsx" editable={true} withStyled={true} layout="product">
+    <CodeBlock className="tsx" editable={true} withStyled={true} renderingComponent={componentName} layout="product">
       {Components[componentName]}
     </CodeBlock>
   )
