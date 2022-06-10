@@ -36,6 +36,7 @@ const theme = {
 const smarthrTheme = ui.createTheme()
 
 const transformCode = (snippet: string) => {
+  // Storybookでも利用するため、コード内に`import`・`export`が記述されているが、ここではエラーになるので削除する。
   const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '')
   return transpile(code, {
     jsx: ts.JsxEmit.React,
@@ -49,13 +50,15 @@ export const CodeBlock: VFC<Props> = ({
   editable = false,
   scope,
   withStyled = false,
-  renderingComponent = null,
+  renderingComponent,
   gap,
   align,
   layout,
 }) => {
   const language = className ? className.replace(/language-/, '') : ''
-  const code = renderingComponent ? children.trim() + `\nrender(<${renderingComponent} />)` : children.trim()
+
+  // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
+  const code = renderingComponent ? `${children.trim()}\nrender(<${renderingComponent} />)` : children.trim()
 
   if (editable) {
     return (
