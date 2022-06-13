@@ -1,6 +1,7 @@
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import React, { VFC } from 'react'
 import styled from 'styled-components'
+import { marked } from 'marked'
 import { CSS_FONT_SIZE } from '@Constants/style'
 
 type Props = {
@@ -53,12 +54,16 @@ export const PageIndex: VFC<Props> = ({ path, excludes, children }) => {
     .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
   const injectedDescriptions: { [key: string]: string } = {}
+  marked.setOptions({ breaks: true }) //改行の手前にスペース*2がなくても<br>に変換したいので
   React.Children.toArray(children)
     .filter((child: any) => {
-      return child.props?.mdxType === 'Description'
+      // <Description>タグ以外は除外
+      if (child.props?.mdxType !== 'Description') return false
+      // 子要素が文字列または配列（`{'\n'}`を含む場合は配列になる）以外は除外
+      return typeof child.props.children === 'string' || Array.isArray(child.props.children)
     })
     .forEach((child: any) => {
-      injectedDescriptions[child.props?.name] = child.props.children
+      injectedDescriptions[child.props?.name] = marked.parse(React.Children.toArray(child.props.children).join(''))
     })
 
   return (
@@ -71,7 +76,11 @@ export const PageIndex: VFC<Props> = ({ path, excludes, children }) => {
               <PageTitle>
                 <Link to={item.slug}>{item.title}</Link>
               </PageTitle>
-              <PageDescription>{injectedDescriptions[itemName] || item.description}</PageDescription>
+              {injectedDescriptions[itemName] ? (
+                <PageDescription dangerouslySetInnerHTML={{ __html: injectedDescriptions[itemName] }} />
+              ) : (
+                <PageDescription>{item.description}</PageDescription>
+              )}
             </li>
           )
         })}
