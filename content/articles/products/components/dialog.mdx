@@ -69,7 +69,7 @@ export const DynamicActionDialog = () => {
           onPressEscape={() => setIsOpen(false)}
           onClickAction={()=> {setIsOpen(false)}}
         >
-          <div style={{'box-sizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
+          <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
             本文が入ります。
           </div>
         </ActionDialog>
@@ -100,7 +100,7 @@ export const DynamicMessageDialog = () => {
         <MessageDialog
           isOpen={isOpen}
           title="メッセージダイアログタイトル"
-          description={<p style={{'box-sizing': 'border-box', 'width': '432px', 'margin': '0', 'padding': '24px 0'}}>本文が入ります。</p>}
+          description={<p style={{'boxSizing': 'border-box', 'width': '432px', 'margin': '0', 'padding': '24px 0'}}>本文が入ります。</p>}
           closeText="閉じる"
           onClickClose={() => setIsOpen(false)}
           onPressEscape={() => setIsOpen(false)}
