@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Base, Heading, PrimaryButton, RadioButton, Stack } from 'smarthr-ui'
+import { Base, Button, Heading, RadioButton, Stack } from 'smarthr-ui'
 import styled, { css } from 'styled-components'
-import { render } from 'react-dom'
 
 const companyList = [
   { id: 0, name: '株式会社スマートエイチアール' },
@@ -10,7 +9,7 @@ const companyList = [
   { id: 3, name: '株式会社スマートエイチアール3' },
 ] as const
 
-const SelectCompanyAccount = () => {
+export const SelectCompanyAccount = () => {
   const [selectedId, setSelectedId] = useState<number>(0)
 
   return (
@@ -60,8 +59,6 @@ const CompanyItem = styled(Base)`
     }
   `}
 `
-const SubmitButton = styled(PrimaryButton)`
+const SubmitButton = styled(Button).attrs({ variant: 'primary' })`
   padding-inline: 3em;
 `
-
-render(<SelectCompanyAccount />)
