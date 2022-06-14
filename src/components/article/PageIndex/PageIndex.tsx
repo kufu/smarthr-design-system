@@ -72,7 +72,7 @@ export const PageIndex: VFC<Props> = ({ path, excludes, children }) => {
         {pageData.map((item, idx: number) => {
           const itemName = item.pathList[item.pathList.length - 2]
           return (
-            <li key={idx}>
+            <React.Fragment key={idx}>
               <PageTitle>
                 <Link to={item.slug}>{item.title}</Link>
               </PageTitle>
@@ -81,7 +81,7 @@ export const PageIndex: VFC<Props> = ({ path, excludes, children }) => {
               ) : (
                 <PageDescription>{item.description}</PageDescription>
               )}
-            </li>
+            </React.Fragment>
           )
         })}
       </PageList>
@@ -93,7 +93,7 @@ const Wrapper = styled.div`
   margin-block: 4rem;
 `
 
-const PageList = styled.ul`
+const PageList = styled.div`
   padding: 0;
   list-style: none;
   > li {
@@ -101,9 +101,18 @@ const PageList = styled.ul`
   }
 `
 
-const PageTitle = styled.div`
+const PageTitle = styled.h2`
   font-size: ${CSS_FONT_SIZE.PX_20};
   font-weight: bold;
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
 `
 
 const PageDescription = styled.div``
