@@ -225,13 +225,13 @@ const Article: VFC<Props> = ({ data }) => {
   depth2Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
-  depth3Items.sort(({ order: a }, { order: b }) => {
-    return a - b
+  depth3Items.sort((a, b) => {
+    // プロダクト/コンポーネントは名前の順でソートする
+    if (a.link.includes('/products/components/') && b.link.includes('/products/components/')) {
+      return a.title < b.title ? -1 : a.title > b.title ? 1 : 0
+    }
+    return a.order - b.order
   })
-  if (slug.includes('/products/components')) {
-    // プロダクト/コンポーネントは名前の順
-    depth3Items.sort(({ title: a }, { title: b }) => (a < b ? -1 : a > b ? 1 : 0))
-  }
   depth4Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
