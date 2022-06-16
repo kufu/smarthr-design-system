@@ -447,7 +447,7 @@ const MainArticleNav = styled.ul`
   padding: 0;
   display: grid;
   gap: 1rem;
-  grid-template: 'left right' 1fr/50%;
+  grid-template: 'left right' 1fr/1fr 1fr;
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     grid-template:
       'left' 1fr
