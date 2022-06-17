@@ -6,6 +6,8 @@ import { SHRUI_GITHUB_RAW, SHRUI_STORYBOOK_IFRAME } from '@Constants/application
 import { CSS_COLOR } from '@Constants/style'
 import { CodeBlock } from '../article/CodeBlock'
 
+import { ResizableContainer } from './ResizableContainer'
+
 type Props = {
   name: string
 }
@@ -132,10 +134,10 @@ export const ComponentStory: VFC<Props> = ({ name }) => {
         })}
       </Tab>
       {currentIFrame !== '' && (
-        <IFrameWrapper>
+        <ResizableContainer defaultWidth="100%" defaultHeight="300px">
           <StoryLoader className={isIFrameLoaded ? '' : '-show'} />
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-          <iframe
+          <StoryIframe
             title={
               storyItems.find((item) => {
                 return item.name === currentIFrame
@@ -143,8 +145,8 @@ export const ComponentStory: VFC<Props> = ({ name }) => {
             }
             src={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}`}
             onLoad={() => setIsIFrameLoaded(true)}
-          ></iframe>
-        </IFrameWrapper>
+          />
+        </ResizableContainer>
       )}
       <CodeWrapper>
         <StoryLoader className={isCodeLoaded ? '' : '-show'} />
@@ -160,22 +162,10 @@ const Tab = styled(TabBar)`
   gap: 4px 0;
 `
 
-const IFrameWrapper = styled.div`
-  position: relative;
+const StoryIframe = styled.iframe`
   width: 100%;
-  height: 300px;
-  margin-block: 16px 0;
-  padding-bottom: 10px; /* Safariで右下のリサイズUIがスクロールバーで隠れてしまうため、下部を空けておく */
-  border: solid 1px ${CSS_COLOR.LIGHT_GREY_1};
-  border-bottom: 0;
-  resize: vertical;
-  box-sizing: border-box;
-  overflow: hidden;
-  > iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
+  height: 100%;
+  border: 0;
 `
 
 const StoryLoader = styled(Loader)`
