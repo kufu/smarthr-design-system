@@ -7,6 +7,7 @@ import { CSS_FONT_SIZE } from '@Constants/style'
 type Props = {
   children: React.ReactNode
   path: string
+  heading?: 'h2' | 'h3'
   excludes?: string[]
 }
 
@@ -29,7 +30,7 @@ const query = graphql`
   }
 `
 
-export const PageIndex: VFC<Props> = ({ path, excludes, children }) => {
+export const PageIndex: VFC<Props> = ({ path, excludes, heading = 'h2', children }) => {
   const currentDepth = path.split('/').length
   const data = useStaticQuery<GatsbyTypes.PageListQuery>(query)
   const pageData = data.childPageAllMdx.edges
@@ -73,7 +74,7 @@ export const PageIndex: VFC<Props> = ({ path, excludes, children }) => {
           const itemName = item.pathList[item.pathList.length - 2]
           return (
             <React.Fragment key={idx}>
-              <PageTitle>
+              <PageTitle as={heading}>
                 <Link to={item.slug}>{item.title}</Link>
               </PageTitle>
               {injectedDescriptions[itemName] ? (
