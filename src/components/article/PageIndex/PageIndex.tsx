@@ -80,7 +80,9 @@ export const PageIndex: VFC<Props> = ({ path, excludes, heading = 'h2', children
               {injectedDescriptions[itemName] ? (
                 <PageDescription dangerouslySetInnerHTML={{ __html: injectedDescriptions[itemName] }} />
               ) : (
-                <PageDescription>{item.description}</PageDescription>
+                <PageDescription>
+                  <p>{item.description}</p>
+                </PageDescription>
               )}
             </React.Fragment>
           )
