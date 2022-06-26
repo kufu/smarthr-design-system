@@ -5084,6 +5084,11 @@
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-12.1.1.tgz#189cdc932a50b9dd14b6829848408c22bb72f976"
   integrity sha512-5/XK9S1177UYetOY6407o1RDuNVndaYfuzsZwhmo52V367s4ZuUD2064WhbmCd6TPyKD4dVr2zoWjfNDfzUZQg==
 
+"@textlint/ast-node-types@^12.2.1":
+  version "12.2.1"
+  resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-12.2.1.tgz#bec1e4b02e97ff1167d057c71feeee1a80015aef"
+  integrity sha512-NXYza6aG1+LdZ4g83gjRhDht+gdrTjJYkdcQhpvzNCtTar/sVpaykkauRcAKLhkIWrQpfb311pfMlU6qNDW76Q==
+
 "@textlint/ast-node-types@^4.2.4", "@textlint/ast-node-types@^4.4.2", "@textlint/ast-node-types@^4.4.3":
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-4.4.3.tgz#fdba16e8126cddc50f45433ce7f6c55e7829566c"
@@ -5182,6 +5187,20 @@
     traverse "^0.6.6"
     unified "^9.2.2"
 
+"@textlint/markdown-to-ast@^12.2.1":
+  version "12.2.1"
+  resolved "https://registry.yarnpkg.com/@textlint/markdown-to-ast/-/markdown-to-ast-12.2.1.tgz#e9ec19be71e4513d882986d14ab9a993dec74511"
+  integrity sha512-p+LlVcrgHnSNEWWflYU412uu+v4Cejs6hmI4SgZCheNg4u7Ik78aKgpe4jT5BhjLSBZ/KP6IrJxtCUOoJIUWmQ==
+  dependencies:
+    "@textlint/ast-node-types" "^12.2.1"
+    debug "^4.3.4"
+    remark-footnotes "^3.0.0"
+    remark-frontmatter "^3.0.0"
+    remark-gfm "^1.0.0"
+    remark-parse "^9.0.0"
+    traverse "^0.6.6"
+    unified "^9.2.2"
+
 "@textlint/module-interop@^12.1.0":
   version "12.1.0"
   resolved "https://registry.yarnpkg.com/@textlint/module-interop/-/module-interop-12.1.0.tgz#fb8dc6ae7cded574ce04ed0e7854645c6486eff0"
@@ -5225,6 +5244,13 @@
   integrity sha512-gzQ205ClqECTblIdkpFkWL6M4nxr5oMON/jU6xbRdZ/Shy+OHLY7fP3R2L2RmAmMSE7C6ZWK5Lk7k9XaaUpgVA==
   dependencies:
     "@textlint/markdown-to-ast" "^12.1.1"
+
+"@textlint/textlint-plugin-markdown@^12.2.1":
+  version "12.2.1"
+  resolved "https://registry.yarnpkg.com/@textlint/textlint-plugin-markdown/-/textlint-plugin-markdown-12.2.1.tgz#fe0c13dde33ce191e74b560deed86bce61aa485c"
+  integrity sha512-BAjkVPMO5fzf6n5M5SwgHNyTwByE86BmjaNpBDhKNcSBctUnfX7nLCvQY8mGMkvefHufyi3oWIqDcZoZQn0PYQ==
+  dependencies:
+    "@textlint/markdown-to-ast" "^12.2.1"
 
 "@textlint/textlint-plugin-text@^12.1.1":
   version "12.1.1"
