@@ -112,7 +112,7 @@ const Container = styled.div``
 const ResizeArea = styled.div`
   position: relative;
   max-width: 100%;
-  margin-block: 16px 0;
+  margin-block: 8px 0;
   padding: 0 16px 16px 0;
   border: solid 1px ${CSS_COLOR.LIGHT_GREY_1};
   border-bottom: 0;
