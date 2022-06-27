@@ -155,31 +155,49 @@ const Wrapper = styled.div`
 const Heading = styled.div`
   position: relative;
   width: 100%;
-  height: calc((100vw - 160px) / 1272 * 352);
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    height: calc((100vw - 32px) / 1272 * 352);
-  }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
-    height: calc(100vw / 1272 * 352);
+  aspect-ratio: 1272 / 352;
+  @supports not (aspect-ratio: 1272 / 352) {
+    height: calc((100vw - 160px) / 1272 * 352);
+    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+      height: calc((100vw - 32px) / 1272 * 352);
+    }
+    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+      height: calc(100vw / 1272 * 352);
+    }
   }
 `
 
 const ImageContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
-  border: solid 1px ${CSS_COLOR.SMARTHR_BLUE};
   border-radius: 4px;
   background-color: ${CSS_COLOR.SMARTHR_BLUE};
   overflow: hidden;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: solid 1px ${CSS_COLOR.SMARTHR_BLUE};
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
-    border-left: 0;
-    border-right: 0;
     border-radius: 0;
+    &::after {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
   }
   img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     transform: translateY(-100%);
   }
   &.runAnimation {
@@ -214,7 +232,7 @@ const GotchaButton = styled.button`
   height: 36px;
   padding: 0;
   position: absolute;
-  bottom: -6px;
+  bottom: -4px;
   left: 40px;
   font-weight: bold;
 
@@ -356,6 +374,7 @@ const Label = styled.p`
   right: 40px;
   top: 100%;
   margin: 0;
+  margin-top: -2px;
   color: ${CSS_COLOR.TEXT_GREY};
   font-weight: bold;
   font-size: ${CSS_FONT_SIZE.PX_12};
