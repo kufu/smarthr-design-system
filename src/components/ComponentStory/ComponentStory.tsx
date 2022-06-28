@@ -1,6 +1,6 @@
 import React, { VFC, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Loader, TabBar, TabItem } from 'smarthr-ui'
+import { Loader, TabBar, TabItem, TextLink } from 'smarthr-ui'
 
 import { SHRUI_GITHUB_RAW, SHRUI_STORYBOOK_IFRAME } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
@@ -134,19 +134,26 @@ export const ComponentStory: VFC<Props> = ({ name }) => {
         })}
       </Tab>
       {currentIFrame !== '' && (
-        <ResizableContainer defaultWidth="100%" defaultHeight="300px">
-          <StoryLoader className={isIFrameLoaded ? '' : '-show'} />
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-          <StoryIframe
-            title={
-              storyItems.find((item) => {
-                return item.name === currentIFrame
-              })?.label || ''
-            }
-            src={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}`}
-            onLoad={() => setIsIFrameLoaded(true)}
-          />
-        </ResizableContainer>
+        <>
+          <LinkWrapper>
+            <TextLink href={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}&viewMode=story`} target="_blank">
+              別画面で開く
+            </TextLink>
+          </LinkWrapper>
+          <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+            <StoryLoader className={isIFrameLoaded ? '' : '-show'} />
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+            <StoryIframe
+              title={
+                storyItems.find((item) => {
+                  return item.name === currentIFrame
+                })?.label || ''
+              }
+              src={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}`}
+              onLoad={() => setIsIFrameLoaded(true)}
+            />
+          </ResizableContainer>
+        </>
       )}
       <CodeWrapper>
         <StoryLoader className={isCodeLoaded ? '' : '-show'} />
@@ -160,6 +167,12 @@ const Tab = styled(TabBar)`
   margin-block: 48px 0;
   flex-wrap: wrap;
   gap: 4px 0;
+`
+
+const LinkWrapper = styled.div`
+  margin-block: 16px 0;
+  font-size: 0.8rem;
+  text-align: right;
 `
 
 const StoryIframe = styled.iframe`
