@@ -8,6 +8,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } f
 import ts, { transpile } from 'typescript'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
+import { SDS_STORYBOOK_IFRAME } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import { CopyButton } from './CopyButton'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
@@ -59,10 +60,17 @@ export const CodeBlock: VFC<Props> = ({
 
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
   const code = renderingComponent ? `${children.trim()}\nrender(<${renderingComponent} />)` : children.trim()
-
+  const TextLink = ui.TextLink
   if (editable) {
     return (
       <Wrapper>
+        {renderingComponent && (
+          <LinkWrapper>
+            <TextLink href={`${SDS_STORYBOOK_IFRAME}?id=${renderingComponent.toLowerCase()}&viewMode=story`} target="_blank">
+              別画面で開く
+            </TextLink>
+          </LinkWrapper>
+        )}
         <ThemeProvider theme={smarthrTheme}>
           <LiveProvider
             code={code}
@@ -116,6 +124,11 @@ export const CodeBlock: VFC<Props> = ({
 
 const Wrapper = styled.div`
   margin-block: 16px 0;
+`
+
+const LinkWrapper = styled.div`
+  font-size: 0.8rem;
+  text-align: right;
 `
 
 const PreContainer = styled.pre`

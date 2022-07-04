@@ -12,6 +12,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  layout: 'fullscreen',
 }
 
 const theme = createTheme()

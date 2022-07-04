@@ -12,11 +12,11 @@ import { FragmentTitle } from '@Components/article/FragmentTitle/FragmentTitle'
 import { INDEXED_DEPTH } from '@Constants/application'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
+import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Private } from '@Components/shared/Private'
 import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
 import { Footer } from '@Components/shared/Footer/Footer'
-import { FloatingTextLink } from '@Components/shared/FloatingTextLink'
 
 import { AIRTABLE_CONTENTS } from '@Constants/airtable'
 import type { airtableContents } from '@Constants/airtable'
@@ -184,7 +184,7 @@ const Article: VFC<Props> = ({ data }) => {
   const headingList = [...airTableHeadings, ...mdxHeadings]
 
   //
-  // サイドバー、「次へ」コンポーネントのための配列作成
+  // サイドバー、「前へ」「次へ」コンポーネントのための配列作成
   //
 
   // 1. Maybe型を排除して
@@ -225,13 +225,13 @@ const Article: VFC<Props> = ({ data }) => {
   depth2Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
-  depth3Items.sort(({ order: a }, { order: b }) => {
-    return a - b
+  depth3Items.sort((a, b) => {
+    // プロダクト/コンポーネントは名前の順でソートする
+    if (a.link.includes('/products/components/') && b.link.includes('/products/components/')) {
+      return a.title < b.title ? -1 : a.title > b.title ? 1 : 0
+    }
+    return a.order - b.order
   })
-  if (slug.includes('/products/components')) {
-    // プロダクト/コンポーネントは名前の順
-    depth3Items.sort(({ title: a }, { title: b }) => (a < b ? -1 : a > b ? 1 : 0))
-  }
   depth4Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
@@ -266,7 +266,7 @@ const Article: VFC<Props> = ({ data }) => {
   }
 
   //
-  // 次のページのindexを準備
+  // 前・次のページのindexを準備
   //
   const currentPageIndex = sidebarItems.findIndex(({ link }) => {
     // hierarchyはfrontmatterで定義されている値ではなく、
@@ -274,7 +274,8 @@ const Article: VFC<Props> = ({ data }) => {
     return link === `/${fields!.hierarchy!}/`
   })
 
-  // 同カテゴリ最後のページの場合はnullになる
+  // 同カテゴリ最初or最後のページの場合はnullになる
+  const prevPageIndex: number | null = currentPageIndex <= 0 ? null : currentPageIndex - 1
   const nextPageIndex: number | null = currentPageIndex === sidebarItems.length - 1 ? null : currentPageIndex + 1
 
   return (
@@ -305,12 +306,31 @@ const Article: VFC<Props> = ({ data }) => {
               </MDXProvider>
             </MDXStyledWrapper>
 
-            {/* 次へ表示 */}
-            {nextPageIndex !== null && (
-              <FloatingTextLinkOuter>
-                <FloatingTextLink path={sidebarItems[nextPageIndex].link}>次へ</FloatingTextLink>
-              </FloatingTextLinkOuter>
-            )}
+            {/* 前へ・次へ表示 */}
+            <MainArticleNav>
+              {prevPageIndex !== null && (
+                <PrevArticleLink>
+                  <RoundedBoxLink
+                    path={sidebarItems[prevPageIndex].link}
+                    label="前へ"
+                    title={sidebarItems[prevPageIndex].title}
+                    align="left"
+                    caretPosition="left"
+                  />
+                </PrevArticleLink>
+              )}
+              {nextPageIndex !== null && (
+                <NextArticleLink>
+                  <RoundedBoxLink
+                    path={sidebarItems[nextPageIndex].link}
+                    label="次へ"
+                    title={sidebarItems[nextPageIndex].title}
+                    align="right"
+                    caretPosition="right"
+                  />
+                </NextArticleLink>
+              )}
+            </MainArticleNav>
           </MainArticle>
         </Main>
 
@@ -421,6 +441,29 @@ const MainArticleTitle = styled.div`
   }
 `
 
+const MainArticleNav = styled.ul`
+  list-style: none;
+  margin-block: 5rem;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template: 'left right' 1fr/1fr 1fr;
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    grid-template:
+      'left' 1fr
+      'right' 1fr
+      /100%;
+  }
+`
+
+const PrevArticleLink = styled.li`
+  grid-area: left;
+`
+
+const NextArticleLink = styled.li`
+  grid-area: right;
+`
+
 /* MarkDownで書き出されるコンテンツ用のスタイル */
 const MDXStyledWrapper = styled.div`
   /* 画像 */
@@ -509,8 +552,4 @@ const MDXStyledWrapper = styled.div`
     width: 100%;
     max-width: 100%;
   }
-`
-const FloatingTextLinkOuter = styled.div`
-  margin-top: 120px;
-  text-align: right;
 `

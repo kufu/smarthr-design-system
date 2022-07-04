@@ -1,5 +1,5 @@
 import React, { VFC } from 'react'
-import { CodeBlock } from '../../../../src/components/article/CodeBlock'
+import { CodeBlock } from '@Components/article/CodeBlock'
 import * as Components from './components'
 
 type Props = {
