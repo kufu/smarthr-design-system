@@ -63,8 +63,11 @@ const Thumbnail = styled.div<{
 const Informations = styled.div``
 const ColorName = styled.div`
   font-weight: bold;
+  word-break: break-all;
 `
-const ColorCode = styled.div``
+const ColorCode = styled.div`
+  word-break: break-all;
+`
 const ColorContrast: VFC<{ fgColor: string; bgColor: string }> = ({ fgColor, bgColor }) => {
   const contrastRatio = Math.round(Color(convertHexToRGBA(fgColor)).contrast(Color(convertHexToRGBA(bgColor))) * 100) / 100
   const score = contrastRatio >= 7 ? 'AAA' : contrastRatio >= 4.5 ? 'AA' : contrastRatio >= 3 ? 'AA+' : 'Fail'
@@ -72,4 +75,6 @@ const ColorContrast: VFC<{ fgColor: string; bgColor: string }> = ({ fgColor, bgC
   return <p>{`${contrastRatio} (${score})`}</p>
 }
 
-const Description = styled.p``
+const Description = styled.p`
+  word-break: break-all;
+`
