@@ -43,7 +43,6 @@ const check = async () => {
     for (const heading of headingList) {
       const level = heading[1].length
       sdsPageList.push(`${pagePath}#h${level}-${headingCount[level]}`)
-      sdsPageList.push(`${pagePath.replace(/\/$/, '')}#h${level}-${headingCount[level]}`) //末尾「/」はなくても良いので
       headingCount[level] += 1
     }
   }
@@ -81,14 +80,14 @@ const check = async () => {
 
     //「/」で始まるルートパス表記の場合
     if (/^\//.test(srcPath)) {
-      if (!sdsPageList.includes(srcPath) && !sdsPageList.includes(`${srcPath}/`)) errorList.push(linkItem)
+      if (!sdsPageList.includes(srcPath)) errorList.push(linkItem)
       continue
     }
 
     // 上記以外（間接パス表記）の場合 - リンク
     if (linkItem.type === 'link') {
       const pagePath = path.normalize(`${linkItem.pagePath}/${srcPath}`).replace(/^.*\/content\/articles/, '')
-      if (!sdsPageList.includes(pagePath) && !sdsPageList.includes(`${pagePath}/`)) errorList.push(linkItem)
+      if (!sdsPageList.includes(pagePath)) errorList.push(linkItem)
     }
 
     // 間接パス表記の場合 - 画像
