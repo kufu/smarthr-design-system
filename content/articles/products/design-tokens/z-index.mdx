@@ -8,10 +8,10 @@ order: 6
 CSSでは`z-index`を指しています。
 
 ## 前提
-- 定義した抽象トークンの値は、[ポータル（portal）](https://ja.reactjs.org/docs/portals.html)として提供するUIコンポーネント<sup>※</sup>が、[Dialogコンポーネント](/products/components/dialog)よりも背面に表示されないことを前提に定義しています。
+- 定義した抽象トークンの値は、[ポータル（portal）](https://ja.reactjs.org/docs/portals.html)として提供するUIコンポーネント<sup>※</sup>が、[Dialogコンポーネント](/products/components/dialog/)よりも背面に表示されないことを前提に定義しています。
 - [ポータル（portal）](https://ja.reactjs.org/docs/portals.html)として提供されるコンポーネントを多重に表示することは想定していません（排他制御）。
 
-*※ [DatePicker](/products/components/date-picker/), [Dialog](/products/components/dialog), [Dropdown](/products/components/dropdown/), [Tooltip](/products/components/tooltip/) などが対象*
+*※ [DatePicker](/products/components/date-picker/), [Dialog](/products/components/dialog/), [Dropdown](/products/components/dropdown/), [Tooltip](/products/components/tooltip/) などが対象*
 
 ## 値の考え方
 - `z-index`の値は外部サービスの値に合わせています。
@@ -26,10 +26,10 @@ CSSでは`z-index`を指しています。
 | `DEFALUT` | 0 |  |
 | `FIXED_MENU` | 100 | [BottomFixedArea](/products/components/bottom-fixed-area/)<br />[RightFixedNote](/products/components/right-fixed-note/) |
 | *zendesk*（外部サービス） | 1040 | Zendeskのポップアップダイアログで利用されている値 |
-| `OVERLAP_BASE` | 9000 | [Dropdown](/products/components/dropdown)<br />[Dialog](/products/components/dialog) |
+| `OVERLAP_BASE` | 9000 | [Dropdown](/products/components/dropdown/)<br />[Dialog](/products/components/dialog/) |
 | *chatplus*（外部サービス） | 9999 | ChatPlusが利用している値。root設置の前提で、この要素よりも上位レイヤーにコンポーネントを配置したい場合、9999以上の値を設定する。 |
 | `OVERLAP` | 10000 | [DatePicker](/products/components/date-picker/)<br />[Tooltip](/products/components/tooltip/) |
-| `FLASH_MESSAGE` | 11000 | [FlashMessage](/products/components/flash-message) |
+| `FLASH_MESSAGE` | 11000 | [FlashMessage](/products/components/flash-message/) |
 | *intercom*（外部サービス） | 2147483000 | ChatPlusから起動するオンラインチャットウィンドウの値 |
 | *karte*（外部サービス） | 2147483640 | Karteで利用されている値 |
 
