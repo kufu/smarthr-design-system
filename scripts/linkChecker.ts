@@ -6,6 +6,8 @@ const CONTENT_PATH = path.join(__dirname, '../content/articles/**/*.mdx')
 const IMAGE_PATH = path.join(__dirname, '../content/articles/**/*.+(png|jpg|jpeg)')
 const DOWNLOAD_PATH = path.join(__dirname, '../static/**/*')
 
+const IGNORE_LIST = ['URL', '#ページ内リンク']
+
 type LinkItem = { link: string; filePath: string; pagePath: string; lineNo: number; type: 'link' | 'image' }
 
 const check = async () => {
@@ -63,6 +65,8 @@ const check = async () => {
 
   // 見つかったリンク表記のパスが存在するかどうか確認していく
   for (const linkItem of linkList) {
+    if (IGNORE_LIST.includes(linkItem.link)) continue
+
     // 「https://smarthr.design」部分は不要なので削除
     const srcPath = linkItem.link.replace(/^https:\/\/smarthr.design/, '')
 
