@@ -11,9 +11,9 @@ const IGNORE_LIST = ['URL', '#ページ内リンク']
 type LinkItem = { link: string; filePath: string; pagePath: string; lineNo: number; type: 'link' | 'image' }
 
 const check = async () => {
-  const sdsPageList: string[] = []
+  const existPathList: string[] = []
   const linkList: LinkItem[] = []
-  const errorList: LinkItem[] = []
+  const missingLinkList: LinkItem[] = []
 
   for await (const file of await glob.sync(CONTENT_PATH)) {
     // ビルド後のパス
@@ -22,7 +22,7 @@ const check = async () => {
       .replace(/\/index\.mdx$/, '/')
       .replace(/\.mdx$/, '/')
     // ファイル自体のビルド後のパスを配列に入れておく
-    sdsPageList.push(pagePath)
+    existPathList.push(pagePath)
 
     // ファイル内のリンク表記を探す
     const content = await fs.readFile(file, 'utf8')
@@ -44,7 +44,7 @@ const check = async () => {
     const headingCount: { [key in number]: number } = { 2: 0, 3: 0, 4: 0, 5: 0 }
     for (const heading of headingList) {
       const level = heading[1].length
-      sdsPageList.push(`${pagePath}#h${level}-${headingCount[level]}`)
+      existPathList.push(`${pagePath}#h${level}-${headingCount[level]}`)
       headingCount[level] += 1
     }
   }
@@ -53,14 +53,14 @@ const check = async () => {
   for await (const file of await glob.sync(IMAGE_PATH)) {
     //ビルド後のパスを配列に入れておく
     const filePath = file.replace(/^.*\/content\/articles/, '')
-    sdsPageList.push(filePath)
+    existPathList.push(filePath)
   }
 
   // ダウンロード用のファイル
   for await (const file of await glob.sync(DOWNLOAD_PATH)) {
     //ビルド後のパスを配列に入れておく
     const filePath = file.replace(/^.*\/static/, '')
-    sdsPageList.push(filePath)
+    existPathList.push(filePath)
   }
 
   // 見つかったリンク表記のパスが存在するかどうか確認していく
@@ -78,30 +78,30 @@ const check = async () => {
 
     // 同じページ内のアンカーへのリンクの場合（「#h2-0」など）
     if (/^#/.test(srcPath)) {
-      if (!sdsPageList.includes(`${linkItem.pagePath}${srcPath}`)) errorList.push(linkItem)
+      if (!existPathList.includes(`${linkItem.pagePath}${srcPath}`)) missingLinkList.push(linkItem)
       continue
     }
 
     //「/」で始まるルートパス表記の場合
     if (/^\//.test(srcPath)) {
-      if (!sdsPageList.includes(srcPath)) errorList.push(linkItem)
+      if (!existPathList.includes(srcPath)) missingLinkList.push(linkItem)
       continue
     }
 
     // 上記以外（間接パス表記）の場合 - リンク
     if (linkItem.type === 'link') {
       const pagePath = path.normalize(`${linkItem.pagePath}/${srcPath}`).replace(/^.*\/content\/articles/, '')
-      if (!sdsPageList.includes(pagePath)) errorList.push(linkItem)
+      if (!existPathList.includes(pagePath)) missingLinkList.push(linkItem)
     }
 
     // 間接パス表記の場合 - 画像
     if (linkItem.type === 'image') {
       const imagePath = path.normalize(`${path.dirname(linkItem.filePath)}/${srcPath}`).replace(/^.*\/content\/articles/, '')
-      if (!sdsPageList.includes(imagePath)) errorList.push(linkItem)
+      if (!existPathList.includes(imagePath)) missingLinkList.push(linkItem)
     }
   }
 
-  return errorList
+  return missingLinkList
 }
 
 check().then(
