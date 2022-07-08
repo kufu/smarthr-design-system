@@ -10,11 +10,9 @@ const IGNORE_LIST = ['URL', '#ページ内リンク']
 
 type LinkItem = { link: string; filePath: string; pagePath: string; lineNo: number; type: 'link' | 'image' }
 
-const check = async () => {
+const collectExistLinks = async () => {
   const existPathList: string[] = []
   const linkList: LinkItem[] = []
-  const missingLinkList: LinkItem[] = []
-
   for await (const file of await glob.sync(CONTENT_PATH)) {
     // ビルド後のパス
     const pagePath = file
@@ -63,6 +61,11 @@ const check = async () => {
     existPathList.push(filePath)
   }
 
+  return { existPathList, linkList }
+}
+
+const check = async (existPathList: string[], linkList: LinkItem[]) => {
+  const list: LinkItem[] = []
   // 見つかったリンク表記のパスが存在するかどうか確認していく
   for (const linkItem of linkList) {
     if (IGNORE_LIST.includes(linkItem.link)) continue
@@ -78,50 +81,52 @@ const check = async () => {
 
     // 同じページ内のアンカーへのリンクの場合（「#h2-0」など）
     if (/^#/.test(srcPath)) {
-      if (!existPathList.includes(`${linkItem.pagePath}${srcPath}`)) missingLinkList.push(linkItem)
+      if (!existPathList.includes(`${linkItem.pagePath}${srcPath}`)) list.push(linkItem)
       continue
     }
 
     //「/」で始まるルートパス表記の場合
     if (/^\//.test(srcPath)) {
-      if (!existPathList.includes(srcPath)) missingLinkList.push(linkItem)
+      if (!existPathList.includes(srcPath)) list.push(linkItem)
       continue
     }
 
     // 上記以外（間接パス表記）の場合 - リンク
     if (linkItem.type === 'link') {
       const pagePath = path.normalize(`${linkItem.pagePath}/${srcPath}`).replace(/^.*\/content\/articles/, '')
-      if (!existPathList.includes(pagePath)) missingLinkList.push(linkItem)
+      if (!existPathList.includes(pagePath)) list.push(linkItem)
     }
 
     // 間接パス表記の場合 - 画像
     if (linkItem.type === 'image') {
       const imagePath = path.normalize(`${path.dirname(linkItem.filePath)}/${srcPath}`).replace(/^.*\/content\/articles/, '')
-      if (!existPathList.includes(imagePath)) missingLinkList.push(linkItem)
+      if (!existPathList.includes(imagePath)) list.push(linkItem)
     }
   }
 
-  return missingLinkList
+  return list
 }
 
-check().then(
-  (res) => {
-    if (res.length > 0) {
-      res.forEach((r) => {
-        console.error(
-          `Missing ${r.type === 'image' ? 'image source' : 'link'}: ${r.link} in /${path.relative(
-            `${__dirname}/../`,
-            r.filePath,
-          )} at L:${r.lineNo}`,
-        )
-      })
-      console.log(`Found ${res.length} missing links. Link check finished.`)
-      process.exit(1)
-    }
-    console.log('✨ No missing link was found. Link check finished.')
-  },
-  (err) => {
+;(async () => {
+  const { existPathList, linkList } = await collectExistLinks().catch((err) => {
     console.error(err)
     process.exit(1)
-  },
-)
+  })
+  const missingLinkList: LinkItem[] = await check(existPathList, linkList).catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
+  if (missingLinkList.length > 0) {
+    missingLinkList.forEach((item) => {
+      console.error(
+        `Missing ${item.type === 'image' ? 'image source' : 'link'}: ${item.link} in /${path.relative(
+          `${__dirname}/../`,
+          item.filePath,
+        )} at L:${item.lineNo}`,
+      )
+    })
+    console.log(`Found ${missingLinkList.length} missing links. Link check finished.`)
+    process.exit(1)
+  }
+  console.log('✨ No missing link was found. Link check finished.')
+})()
