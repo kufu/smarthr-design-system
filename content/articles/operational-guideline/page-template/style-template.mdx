@@ -4,7 +4,7 @@ description: 'ページの概要はヘッダーに書けます。ページの概
 order: 1
 ---
 
-import { Body, Button, Cell, Cluster, FaPlusCircleIcon, Head, LineUp, Row, Stack, Table, Text } from 'smarthr-ui'
+import { Button, Cluster, FaPlusCircleIcon, LineUp, Stack, Table, Td, Th, Text } from 'smarthr-ui'
 import { ComponentPreview } from '@Components/ComponentPreview'
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
@@ -74,29 +74,29 @@ import { StaticImage } from '@Components/StaticImage'
 ### SmartHR UI テーブル
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>thead</Cell>
-      <Cell>thead</Cell>
-      <Cell>thead</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>cell</Cell>
-      <Cell>cell</Cell>
-      <Cell>
+  <thead>
+    <tr>
+      <Th>thead</Th>
+      <Th>thead</Th>
+      <Th>thead</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>cell</Td>
+      <Td>cell</Td>
+      <Td>
         <Button variant="primary">Button</Button>
-      </Cell>
-    </Row>
-    <Row>
-      <Cell>cell</Cell>
-      <Cell>cell</Cell>
-      <Cell>
+      </Td>
+    </tr>
+    <tr>
+      <Td>cell</Td>
+      <Td>cell</Td>
+      <Td>
         <Button variant="primary">Button</Button>
-      </Cell>
-    </Row>
-  </Body>
+      </Td>
+    </tr>
+  </tbody>
 </Table>
 
 ## レイアウト

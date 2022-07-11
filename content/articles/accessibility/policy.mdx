@@ -4,7 +4,7 @@ description: 'SmartHRのウェブアクセシビリティ方針です。社会�
 order: 1
 ---
 
-import { Table, Body, Head, Row, Cell, Text } from 'smarthr-ui'
+import { Table, Text, Td, Th } from 'smarthr-ui'
 
 ## 社会の非合理をつくりださない
 
@@ -64,41 +64,41 @@ SmartHRは「[社会の非合理を、ハックする。](https://smarthr.co.jp/
 ### SmartHR UIのスケジュール
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>
+  <thead>
+    <tr>
+      <Th>
         時期
-      </Cell>
-      <Cell>
+      </Th>
+      <Th>
         目標
-      </Cell>
-      <Cell>
+      </Th>
+      <Th>
         結果
-      </Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell> <time datatime="2021-06" style="white-space: nowrap">2021年6月</time> </Cell>
-      <Cell> レベルA一部準拠 <div><small>開発中のコンポーネント、または試験開始時点で完成していなかったコンポーネントをのぞく</small></div> </Cell>
-      <Cell> レベルA一部準拠 </Cell>
-    </Row>
-    <Row>
-      <Cell> <time datatime="2021-12" style="white-space: nowrap">2021年12月</time> </Cell>
-      <Cell> レベルA準拠 </Cell>
-      <Cell> レベルA一部準拠 </Cell>
-    </Row>
-    <Row>
-      <Cell> <time datatime="2022-06" style="white-space: nowrap">2022年6月</time> </Cell>
-      <Cell> JIS X 8341-3:2016 レベルAと追加する達成基準に準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Cell>
-      <Cell></Cell>
-    </Row>
-    <Row>
-      <Cell> <time datatime="2022-12" style="white-space: nowrap">2022年12月</time> </Cell>
-      <Cell> JIS X 8341-3:2016 レベルAAに準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Cell>
-      <Cell></Cell>
-    </Row>
-  </Body>
+      </Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td> <time datatime="2021-06" style="white-space: nowrap">2021年6月</time> </Td>
+      <Td> レベルA一部準拠 <div><small>開発中のコンポーネント、または試験開始時点で完成していなかったコンポーネントをのぞく</small></div> </Td>
+      <Td> レベルA一部準拠 </Td>
+    </tr>
+    <tr>
+      <Td> <time datatime="2021-12" style="white-space: nowrap">2021年12月</time> </Td>
+      <Td> レベルA準拠 </Td>
+      <Td> レベルA一部準拠 </Td>
+    </tr>
+    <tr>
+      <Td> <time datatime="2022-06" style="white-space: nowrap">2022年6月</time> </Td>
+      <Td> JIS X 8341-3:2016 レベルAと追加する達成基準に準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Td>
+      <Td></Td>
+    </tr>
+    <tr>
+      <Td> <time datatime="2022-12" style="white-space: nowrap">2022年12月</time> </Td>
+      <Td> JIS X 8341-3:2016 レベルAAに準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Td>
+      <Td></Td>
+    </tr>
+  </tbody>
 </Table>
 
 ### SmartHR 製品の目標とスケジュール
@@ -110,42 +110,42 @@ SmartHRは「[社会の非合理を、ハックする。](https://smarthr.co.jp/
 ## 試験結果
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>試験年月</Cell>
-      <Cell>試験対象</Cell>
-      <Cell>達成した等級</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>
+  <thead>
+    <tr>
+      <Th>試験年月</Th>
+      <Th>試験対象</Th>
+      <Th>達成した等級</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>
         <a href="../test/202105/">
           <time datatime="2021-05" style={{ whiteSpace: "no-wrap" }}>2021年5月</time>
         </a>
-      </Cell>
-      <Cell>
+      </Td>
+      <Td>
         SmartHR UIのコンポーネント
         <small>（開発中のコンポーネントを除く）</small>
-      </Cell>
-      <Cell>
+      </Td>
+      <Td>
         レベルA一部準拠
-      </Cell>
-    </Row>
-    <Row>
-      <Cell>
+      </Td>
+    </tr>
+    <tr>
+      <Td>
         <a href="../test/202112/">
           <time datatime="2021-12" style={{ whiteSpace: "no-wrap" }}>2021年12月</time>
         </a>
-      </Cell>
-      <Cell>
+      </Td>
+      <Td>
         SmartHR UIのコンポーネント
-      </Cell>
-      <Cell>
+      </Td>
+      <Td>
         レベルA一部準拠
-      </Cell>
-    </Row>
-  </Body>
+      </Td>
+    </tr>
+  </tbody>
 </Table>
 
 ## 問い合わせ先

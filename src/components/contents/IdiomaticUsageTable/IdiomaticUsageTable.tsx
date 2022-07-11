@@ -1,7 +1,7 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import { Body, Cell, Head, Row, Table, Text } from 'smarthr-ui'
+import { Table, Td, Text, Th } from 'smarthr-ui'
 import { TextUrlToLink } from '../shared/TextUrlToLink'
 import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
 import { marked } from 'marked'
@@ -96,14 +96,14 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
       {type === 'data' && (
         <Wrapper>
           <Table>
-            <Head>
-              <Row>
-                <RecommendCell>推奨する表記</RecommendCell>
-                <NGCell>NG例</NGCell>
-                <ReasonCell>理由</ReasonCell>
-              </Row>
-            </Head>
-            <Body>
+            <thead>
+              <tr>
+                <Th>推奨する表記</Th>
+                <Th>NG例</Th>
+                <Th>理由</Th>
+              </tr>
+            </thead>
+            <tbody>
               {idiomaticUsageData.map((prop, index) => {
                 const matchReason = idiomaticUsageReason.find((reason) => prop.reason && prop.reason.includes(reason.recordId))
                 const matchWritingStyle = writingStyle.find((style) => style.data && style.data.includes(prop.recordId))
@@ -113,7 +113,7 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
                 // console.log(writingStyle)
 
                 return (
-                  <Row key={index}>
+                  <tr key={index}>
                     <RecommendCell>
                       <strong>{prop.okExample}</strong>
                     </RecommendCell>
@@ -136,10 +136,10 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
                         )}
                       </ul>
                     </ReasonCell>
-                  </Row>
+                  </tr>
                 )
               })}
-            </Body>
+            </tbody>
           </Table>
         </Wrapper>
       )}
@@ -196,14 +196,14 @@ const Wrapper = styled.div`
     vertical-align: baseline;
   }
 `
-const RecommendCell = styled(Cell)`
+const RecommendCell = styled(Td)`
   white-space: nowrap;
 `
-const NGCell = styled(Cell)`
+const NGCell = styled(Td)`
   min-width: 11em;
   width: 22em;
 `
-const ReasonCell = styled(Cell)`
+const ReasonCell = styled(Td)`
   min-width: 22em;
   width: auto;
 `

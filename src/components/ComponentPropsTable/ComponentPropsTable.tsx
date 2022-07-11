@@ -1,6 +1,6 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
-import { Body, Cell, Head, Row, Table, Text } from 'smarthr-ui'
+import { Table, Td, Text, Th } from 'smarthr-ui'
 import uiProps from '../../../smarthr-ui-props.json'
 import { FragmentTitle } from '../article/FragmentTitle/FragmentTitle'
 
@@ -44,18 +44,18 @@ export const ComponentPropsTable: VFC<Props> = ({ name, showTitle }) => {
       {propsData.length > 0 ? (
         <Wrapper>
           <Table>
-            <Head>
-              <Row>
-                <NameCell>Name</NameCell>
-                <RequiredCell>Required</RequiredCell>
-                <TypeCell>Type</TypeCell>
-                <DescriptionCell>Description</DescriptionCell>
-              </Row>
-            </Head>
-            <Body>
+            <thead>
+              <tr>
+                <Th>Name</Th>
+                <Th>Required</Th>
+                <Th>Type</Th>
+                <Th>Description</Th>
+              </tr>
+            </thead>
+            <tbody>
               {propsData.map((prop, i) => {
                 return (
-                  <Row key={i}>
+                  <tr key={i}>
                     <NameCell>
                       <strong>{prop.name}</strong>
                     </NameCell>
@@ -76,10 +76,10 @@ export const ComponentPropsTable: VFC<Props> = ({ name, showTitle }) => {
                       )}
                     </TypeCell>
                     <DescriptionCell>{prop.description}</DescriptionCell>
-                  </Row>
+                  </tr>
                 )
               })}
-            </Body>
+            </tbody>
           </Table>
         </Wrapper>
       ) : (
@@ -96,20 +96,20 @@ const Wrapper = styled.div`
     vertical-align: baseline;
   }
 `
-const NameCell = styled(Cell)`
+const NameCell = styled(Td)`
   white-space: nowrap;
 `
-const RequiredCell = styled(Cell)`
+const RequiredCell = styled(Td)`
   white-space: nowrap;
 `
-const TypeCell = styled(Cell)`
+const TypeCell = styled(Td)`
   min-width: 11em;
   width: 22em;
   & code {
     white-space: nowrap;
   }
 `
-const DescriptionCell = styled(Cell)`
+const DescriptionCell = styled(Td)`
   min-width: 22em;
   width: auto;
 `

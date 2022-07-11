@@ -5,7 +5,7 @@ order: 2
 ---
 
 import { createTheme } from 'smarthr-ui'
-import { Table, Body, Head, Row, Cell } from 'smarthr-ui'
+import { Table, Td, Th } from 'smarthr-ui'
 
 
 export const Sampletext = ({size = 'M', children}) => {
@@ -78,25 +78,25 @@ font-family: system-ui, sans-serif;
 サイズ小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>種類</Cell>
-      <Cell>フォントサイズ</Cell>
-      <Cell>サンプル</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>標準</Cell>
-      <Cell>M</Cell>
-      <Cell><Sampletext size={'M'}>社会の非合理を、ハックする。</Sampletext></Cell>
-    </Row>
-    <Row>
-      <Cell>サイズ小</Cell>
-      <Cell>S</Cell>
-      <Cell><Sampletext size={'S'}>社会の非合理を、ハックする。</Sampletext></Cell>
-    </Row>
-  </Body>
+  <thead>
+    <tr>
+      <Th>種類</Th>
+      <Th>フォントサイズ</Th>
+      <Th>サンプル</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>標準</Td>
+      <Td>M</Td>
+      <Td><Sampletext size={'M'}>社会の非合理を、ハックする。</Sampletext></Td>
+    </tr>
+    <tr>
+      <Td>サイズ小</Td>
+      <Td>S</Td>
+      <Td><Sampletext size={'S'}>社会の非合理を、ハックする。</Sampletext></Td>
+    </tr>
+  </tbody>
 </Table>
 
 
@@ -107,25 +107,25 @@ font-family: system-ui, sans-serif;
 サイズ小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>種類</Cell>
-      <Cell>フォントサイズ</Cell>
-      <Cell>サンプル</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>標準</Cell>
-      <Cell>M</Cell>
-      <Cell><Sampletext size={'M'}>社会の非合理を、ハックする。</Sampletext></Cell>
-    </Row>
-    <Row>
-      <Cell>サイズ小</Cell>
-      <Cell>S</Cell>
-      <Cell><Sampletext size={'S'}>社会の非合理を、ハックする。</Sampletext></Cell>
-    </Row>
-  </Body>
+  <thead>
+    <tr>
+      <Th>種類</Th>
+      <Th>フォントサイズ</Th>
+      <Th>サンプル</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>標準</Td>
+      <Td>M</Td>
+      <Td><Sampletext size={'M'}>社会の非合理を、ハックする。</Sampletext></Td>
+    </tr>
+    <tr>
+      <Td>サイズ小</Td>
+      <Td>S</Td>
+      <Td><Sampletext size={'S'}>社会の非合理を、ハックする。</Sampletext></Td>
+    </tr>
+  </tbody>
 </Table>
 
 ### 表
