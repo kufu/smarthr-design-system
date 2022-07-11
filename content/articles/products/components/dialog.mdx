@@ -8,16 +8,14 @@ order: 16
 import { useEffect, useState } from 'react'
 import {
   ActionDialog,
-  Body,
   Button,
-  Cell,
   CheckBox,
   Dialog,
-  Head,
   MessageDialog,
   ModelessDialog,
-  Row,
   Table,
+  Td,
+  Th
 } from 'smarthr-ui'
 import { ComponentPreview } from '@Components/ComponentPreview'
 import { ComponentStory } from '@Components/ComponentStory'
@@ -150,28 +148,28 @@ export const DynamicModelessDialog = () => {
           <ModelessContent>
             <Stack gap="S">
               <Table>
-                <Head>
-                  <Row>
-                    <Cell>
+                <thead>
+                  <tr>
+                    <Th>
                       <CheckBox />
-                    </Cell>
-                    <Cell>テーブル見出し1</Cell>
-                    <Cell>テーブル見出し2</Cell>
-                    <Cell>テーブル見出し3</Cell>
-                  </Row>
-                </Head>
-                <Body>
+                    </Th>
+                    <Th>テーブル見出し1</Th>
+                    <Th>テーブル見出し2</Th>
+                    <Th>テーブル見出し3</Th>
+                  </tr>
+                </thead>
+                <tbody>
                   {Array.from(Array(10).keys()).map((i) => (
-                    <Row key={i}>
-                      <Cell>
+                    <tr key={i}>
+                      <Td>
                         <CheckBox />
-                      </Cell>
-                      <Cell>データ1-{i}</Cell>
-                      <Cell>データ2-{i}</Cell>
-                      <Cell>データ3-{i}</Cell>
-                    </Row>
+                      </Td>
+                      <Td>データ1-{i}</Td>
+                      <Td>データ2-{i}</Td>
+                      <Td>データ3-{i}</Td>
+                    </tr>
                   ))}
-                </Body>
+                </tbody>
               </Table>
             </Stack>
           </ModelessContent>

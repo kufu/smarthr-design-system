@@ -5,7 +5,7 @@ smarthr-ui: 'Heading'
 order: 25
 ---
 
-import { Body, Cell, Head, Heading, Row, Stack, Table } from 'smarthr-ui'
+import { Heading, Stack, Table, Td, Th } from 'smarthr-ui'
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
@@ -40,116 +40,116 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 画面のタイトルとして、画面ごとに1度しか使えません。
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>タイプ</Cell>
-      <Cell>フォントサイズ</Cell>
-      <Cell>ウェイト</Cell>
-      <Cell>色</Cell>
-      <Cell>サンプル</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>screenTitle</Cell>
-      <Cell><a href="/products/design-tokens/typography/">XL</a></Cell>
-      <Cell>normal</Cell>
-      <Cell><a href="/products/design-tokens/color/#h3-2">TEXT_BLACK</a></Cell>
-      <Cell><Heading type="screenTitle" tag="span">社会の非合理を、ハックする</Heading></Cell>
-    </Row>
-  </Body>
+  <thead>
+    <tr>
+      <Th>タイプ</Th>
+      <Th>フォントサイズ</Th>
+      <Th>ウェイト</Th>
+      <Th>色</Th>
+      <Th>サンプル</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>screenTitle</Td>
+      <Td><a href="/products/design-tokens/typography/">XL</a></Td>
+      <Td>normal</Td>
+      <Td><a href="/products/design-tokens/color/#h3-2">TEXT_BLACK</a></Td>
+      <Td><Heading type="screenTitle" tag="span">社会の非合理を、ハックする</Heading></Td>
+    </tr>
+  </tbody>
 </Table>
 
 ### セクションタイトル
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>タイプ</Cell>
-      <Cell>フォントサイズ</Cell>
-      <Cell>ウェイト</Cell>
-      <Cell>色</Cell>
-      <Cell>サンプル</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>sectionTitle</Cell>
-      <Cell><a href="/products/design-tokens/typography/">L</a></Cell>
-      <Cell>normal</Cell>
-      <Cell><a href="/products/design-tokens/color/#h3-2">TEXT_BLACK</a></Cell>
-      <Cell><Heading type="sectionTitle" tag="span">社会の非合理を、ハックする</Heading></Cell>
-    </Row>
-  </Body>
+  <thead>
+    <tr>
+      <Th>タイプ</Th>
+      <Th>フォントサイズ</Th>
+      <Th>ウェイト</Th>
+      <Th>色</Th>
+      <Th>サンプル</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>sectionTitle</Td>
+      <Td><a href="/products/design-tokens/typography/">L</a></Td>
+      <Td>normal</Td>
+      <Td><a href="/products/design-tokens/color/#h3-2">TEXT_BLACK</a></Td>
+      <Td><Heading type="sectionTitle" tag="span">社会の非合理を、ハックする</Heading></Td>
+    </tr>
+  </tbody>
 </Table>
 
 ### ブロックタイトル
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>タイプ</Cell>
-      <Cell>フォントサイズ</Cell>
-      <Cell>ウェイト</Cell>
-      <Cell>色</Cell>
-      <Cell>サンプル</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>blockTitle</Cell>
-      <Cell><a href="/products/design-tokens/typography/">M</a></Cell>
-      <Cell>bold</Cell>
-      <Cell><a href="/products/design-tokens/color/#h3-2">TEXT_BLACK</a></Cell>
-      <Cell><Heading type="blockTitle" tag="span">社会の非合理を、ハックする</Heading></Cell>
-    </Row>
-  </Body>
+  <thead>
+    <tr>
+      <Th>タイプ</Th>
+      <Th>フォントサイズ</Th>
+      <Th>ウェイト</Th>
+      <Th>色</Th>
+      <Th>サンプル</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>blockTitle</Td>
+      <Td><a href="/products/design-tokens/typography/">M</a></Td>
+      <Td>bold</Td>
+      <Td><a href="/products/design-tokens/color/#h3-2">TEXT_BLACK</a></Td>
+      <Td><Heading type="blockTitle" tag="span">社会の非合理を、ハックする</Heading></Td>
+    </tr>
+  </tbody>
 </Table>
 
 ### サブ・ブロックタイトル
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>タイプ</Cell>
-      <Cell>フォントサイズ</Cell>
-      <Cell>ウェイト</Cell>
-      <Cell>色</Cell>
-      <Cell>サンプル</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>subBlockTitle</Cell>
-      <Cell><a href="/products/design-tokens/typography/">M</a></Cell>
-      <Cell>bold</Cell>
-      <Cell><a href="/products/design-tokens/color/#h3-2">TEXT_GREY</a></Cell>
-      <Cell><Heading type="subBlockTitle" tag="span">社会の非合理を、ハックする</Heading></Cell>
-    </Row>
-  </Body>
+  <thead>
+    <tr>
+      <Th>タイプ</Th>
+      <Th>フォントサイズ</Th>
+      <Th>ウェイト</Th>
+      <Th>色</Th>
+      <Th>サンプル</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>subBlockTitle</Td>
+      <Td><a href="/products/design-tokens/typography/">M</a></Td>
+      <Td>bold</Td>
+      <Td><a href="/products/design-tokens/color/#h3-2">TEXT_GREY</a></Td>
+      <Td><Heading type="subBlockTitle" tag="span">社会の非合理を、ハックする</Heading></Td>
+    </tr>
+  </tbody>
 </Table>
 
 ### サブ・サブ・ブロックタイトル
 
 <Table>
-  <Head>
-    <Row>
-      <Cell>タイプ</Cell>
-      <Cell>フォントサイズ</Cell>
-      <Cell>ウェイト</Cell>
-      <Cell>色</Cell>
-      <Cell>サンプル</Cell>
-    </Row>
-  </Head>
-  <Body>
-    <Row>
-      <Cell>subSubBlockTitle</Cell>
-      <Cell><a href="/products/design-tokens/typography/">S</a></Cell>
-      <Cell>bold</Cell>
-      <Cell><a href="/products/design-tokens/color/#h3-2">TEXT_GREY</a></Cell>
-      <Cell><Heading type="subSubBlockTitle" tag="span">社会の非合理を、ハックする</Heading></Cell>
-    </Row>
-  </Body>
+  <thead>
+    <tr>
+      <Th>タイプ</Th>
+      <Th>フォントサイズ</Th>
+      <Th>ウェイト</Th>
+      <Th>色</Th>
+      <Th>サンプル</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>subSubBlockTitle</Td>
+      <Td><a href="/products/design-tokens/typography/">S</a></Td>
+      <Td>bold</Td>
+      <Td><a href="/products/design-tokens/color/#h3-2">TEXT_GREY</a></Td>
+      <Td><Heading type="subSubBlockTitle" tag="span">社会の非合理を、ハックする</Heading></Td>
+    </tr>
+  </tbody>
 </Table>
 
 
