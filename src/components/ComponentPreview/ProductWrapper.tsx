@@ -1,14 +1,12 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Cluster, SmartHRLogo } from 'smarthr-ui'
+import { Header } from 'smarthr-ui'
 
 import { WrapperBase } from './WrapperBase'
 
 export const ProductWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Wrapper>
-    <Header>
-      <SmartHRLogo />
-    </Header>
+    <Header logoHref="#" />
     <Body>{children}</Body>
   </Wrapper>
 )
@@ -78,17 +76,6 @@ const padding = css(
     }
   `,
 )
-const Header = styled(Cluster).attrs({ as: 'header' })`
-  ${({ theme: { color, space } }) => css`
-    background-color: ${color.BRAND};
-    padding-block: ${space(0.75)};
-    ${padding}
-
-    @media (max-width: 768px) {
-      padding-block: ${space(0.5)};
-    }
-  `}
-`
 const Body = styled.div`
   ${padding}
 `
