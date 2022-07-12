@@ -191,6 +191,7 @@ const Article: VFC<Props> = ({ data }) => {
   const depth1Items: SidebarItem[] = []
   const depth2Items: SidebarItem[] = []
   const depth3Items: SidebarItem[] = []
+  const depth3ComponentItems: SidebarItem[] = []
   const depth4Items: SidebarItem[] = []
 
   parentCategory.edges.forEach(({ node }) => {
@@ -211,7 +212,11 @@ const Article: VFC<Props> = ({ data }) => {
       depth2Items.push(item)
     }
     if (item.depth === 3) {
-      depth3Items.push(item)
+      if (item.link.includes('/products/components/')) {
+        depth3ComponentItems.push(item)
+      } else {
+        depth3Items.push(item)
+      }
     }
     if (item.depth === 4) {
       depth4Items.push(item)
@@ -225,12 +230,12 @@ const Article: VFC<Props> = ({ data }) => {
   depth2Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
-  depth3Items.sort((a, b) => {
-    // プロダクト/コンポーネントは名前の順でソートする
-    if (a.link.includes('/products/components/') && b.link.includes('/products/components/')) {
-      return a.title < b.title ? -1 : a.title > b.title ? 1 : 0
-    }
-    return a.order - b.order
+  // /products/components/以下のコンポーネントページは名前の順でソートするので、別途並べ替える
+  depth3ComponentItems.sort(({ title: a }, { title: b }) => {
+    return a < b ? -1 : a > b ? 1 : 0
+  })
+  depth3Items.sort(({ order: a }, { order: b }) => {
+    return a - b
   })
   depth4Items.sort(({ order: a }, { order: b }) => {
     return a - b
@@ -249,7 +254,7 @@ const Article: VFC<Props> = ({ data }) => {
       sidebarItems.push(depth2Item)
       depth1Item.children.push(depth2Item)
 
-      for (const depth3Item of depth3Items) {
+      for (const depth3Item of [...depth3Items, ...depth3ComponentItems]) {
         if (!depth3Item.link.includes(depth2Item.link)) continue
 
         sidebarItems.push(depth3Item)
