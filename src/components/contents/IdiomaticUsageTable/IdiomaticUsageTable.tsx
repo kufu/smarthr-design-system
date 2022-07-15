@@ -98,9 +98,9 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
           <Table>
             <thead>
               <tr>
-                <Th>推奨する表記</Th>
-                <Th>NG例</Th>
-                <Th>理由</Th>
+                <RecommendTh>推奨する表記</RecommendTh>
+                <NGTh>NG例</NGTh>
+                <ReasonTh>理由</ReasonTh>
               </tr>
             </thead>
             <tbody>
@@ -114,11 +114,11 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
 
                 return (
                   <tr key={index}>
-                    <RecommendCell>
+                    <RecommendTd>
                       <strong>{prop.okExample}</strong>
-                    </RecommendCell>
-                    <NGCell>{prop.ngExample}</NGCell>
-                    <ReasonCell>
+                    </RecommendTd>
+                    <NGTd>{prop.ngExample}</NGTd>
+                    <ReasonTd>
                       <ul>
                         {matchWritingStyle && (
                           <li>
@@ -135,7 +135,7 @@ export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
                           </li>
                         )}
                       </ul>
-                    </ReasonCell>
+                    </ReasonTd>
                   </tr>
                 )
               })}
@@ -196,14 +196,25 @@ const Wrapper = styled.div`
     vertical-align: baseline;
   }
 `
-const RecommendCell = styled(Td)`
+const RecommendTh = styled(Th)`
   white-space: nowrap;
 `
-const NGCell = styled(Td)`
+const NGTh = styled(Th)`
   min-width: 11em;
   width: 22em;
 `
-const ReasonCell = styled(Td)`
+const ReasonTh = styled(Th)`
+  min-width: 22em;
+  width: auto;
+`
+const RecommendTd = styled(Td)`
+  white-space: nowrap;
+`
+const NGTd = styled(Td)`
+  min-width: 11em;
+  width: 22em;
+`
+const ReasonTd = styled(Td)`
   min-width: 22em;
   width: auto;
 `

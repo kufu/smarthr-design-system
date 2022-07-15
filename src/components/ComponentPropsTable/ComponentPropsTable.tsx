@@ -46,21 +46,21 @@ export const ComponentPropsTable: VFC<Props> = ({ name, showTitle }) => {
           <Table>
             <thead>
               <tr>
-                <Th>Name</Th>
-                <Th>Required</Th>
-                <Th>Type</Th>
-                <Th>Description</Th>
+                <NameTh>Name</NameTh>
+                <RequiredTh>Required</RequiredTh>
+                <TypeTh>Type</TypeTh>
+                <DescriptionTh>Description</DescriptionTh>
               </tr>
             </thead>
             <tbody>
               {propsData.map((prop, i) => {
                 return (
                   <tr key={i}>
-                    <NameCell>
+                    <NameTd>
                       <strong>{prop.name}</strong>
-                    </NameCell>
-                    <RequiredCell>{prop.required ? 'true' : '-'}</RequiredCell>
-                    <TypeCell>
+                    </NameTd>
+                    <RequiredTd>{prop.required ? 'true' : '-'}</RequiredTd>
+                    <TypeTd>
                       {prop.type.name === 'enum' ? (
                         prop.type.value &&
                         prop.type.value.map((item, y, array) => {
@@ -74,8 +74,8 @@ export const ComponentPropsTable: VFC<Props> = ({ name, showTitle }) => {
                       ) : (
                         <code>{prop.type.name}</code>
                       )}
-                    </TypeCell>
-                    <DescriptionCell>{prop.description}</DescriptionCell>
+                    </TypeTd>
+                    <DescriptionTd>{prop.description}</DescriptionTd>
                   </tr>
                 )
               })}
@@ -96,20 +96,37 @@ const Wrapper = styled.div`
     vertical-align: baseline;
   }
 `
-const NameCell = styled(Td)`
+const NameTh = styled(Th)`
   white-space: nowrap;
 `
-const RequiredCell = styled(Td)`
+const RequiredTh = styled(Th)`
   white-space: nowrap;
 `
-const TypeCell = styled(Td)`
+const TypeTh = styled(Th)`
   min-width: 11em;
   width: 22em;
   & code {
     white-space: nowrap;
   }
 `
-const DescriptionCell = styled(Td)`
+const DescriptionTh = styled(Th)`
+  min-width: 22em;
+  width: auto;
+`
+const NameTd = styled(Td)`
+  white-space: nowrap;
+`
+const RequiredTd = styled(Td)`
+  white-space: nowrap;
+`
+const TypeTd = styled(Td)`
+  min-width: 11em;
+  width: 22em;
+  & code {
+    white-space: nowrap;
+  }
+`
+const DescriptionTd = styled(Td)`
   min-width: 22em;
   width: auto;
 `
