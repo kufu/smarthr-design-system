@@ -471,6 +471,12 @@ const NextArticleLink = styled.li`
 
 /* MarkDownで書き出されるコンテンツ用のスタイル */
 const MDXStyledWrapper = styled.div`
+  padding-block-start: 40px;
+
+  *:first-child {
+    margin-block-start: 0;
+  }
+
   /* 画像 */
   img {
     max-width: 100%;
