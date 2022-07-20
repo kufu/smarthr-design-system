@@ -67,7 +67,7 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
           {/* 第2階層 */}
           {depth1Item.children.length > 0 && (
             <ul>
-              {depth1Item.children.map((depth2Item) => (
+              {depth1Item.children.map((depth2Item, depth2Index) => (
                 <li key={depth2Item.link}>
                   <Depth2Item>
                     <Link to={depth2Item.link} aria-current={path === depth2Item.link}>
@@ -75,7 +75,7 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
                     </Link>
                     {depth2Item.children.length > 0 && (
                       <CaretButton
-                        aria-controls={`Depth3Items__${depth2Item.order}`}
+                        aria-controls={`Depth3Items__${depth2Index}`}
                         aria-expanded={path.includes(depth2Item.link)}
                         onClick={onClickCaret}
                       >
@@ -86,8 +86,8 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
 
                   {/* 第3階層 */}
                   {depth2Item.children.length > 0 && (
-                    <ul id={`Depth3Items__${depth2Item.order}`} aria-hidden={!path.includes(depth2Item.link)}>
-                      {depth2Item.children.map((depth3Item) => (
+                    <ul id={`Depth3Items__${depth2Index}`} aria-hidden={!path.includes(depth2Item.link)}>
+                      {depth2Item.children.map((depth3Item, depth3Index) => (
                         <li key={depth3Item.link}>
                           <Depth3Item>
                             <Link to={depth3Item.link} aria-current={path === depth3Item.link}>
@@ -95,7 +95,7 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
                             </Link>
                             {depth3Item.children.length > 0 && (
                               <CaretButton
-                                aria-controls={`Depth4Items__${depth3Item.order}`}
+                                aria-controls={`Depth4Items__${depth3Index}`}
                                 aria-expanded={path.includes(depth3Item.link)}
                                 onClick={onClickCaret}
                               >
@@ -109,7 +109,7 @@ export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
 
                           {/* 第4階層 */}
                           {depth3Item.children.length > 0 && (
-                            <ul id={`Depth4Items__${depth3Item.order}`} aria-hidden={!path.includes(depth3Item.link)}>
+                            <ul id={`Depth4Items__${depth3Index}`} aria-hidden={!path.includes(depth3Item.link)}>
                               {depth3Item.children.map((depth4Item) => (
                                 <li key={depth4Item.link}>
                                   <Depth4Item>
