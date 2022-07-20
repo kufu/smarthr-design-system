@@ -1,5 +1,5 @@
 ---
-title: 'FlashMessage'
+title: 'FlashMessage（非推奨）'
 description: ' '
 smarthr-ui: 'FlashMessage'
 ---
@@ -8,10 +8,17 @@ import { useState } from 'react'
 import {
   Button,
   FlashMessage,
+  CompactInformationPanel,
 } from 'smarthr-ui'
 import { ComponentPreview } from '@Components/ComponentPreview'
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+
+
+<CompactInformationPanel type="warning">
+  <Message>FlashMessageは気づきにくいため、安易な使用はお勧めしません。<a href="/products/components/notification-bar/">NotificationBar</a>や<a href="/products/components/dialog/">Dialog</a>の使用を検討してください。</Message>
+</CompactInformationPanel>
+
 
 FlashMessageコンポーネントは、インターフェイス上に表示されるメッセージパネルです。  
 ユーザー操作やシステムの処理結果を、ユーザーに素早くフィードバックするために使います。
@@ -19,8 +26,8 @@ FlashMessageコンポーネントは、インターフェイス上に表示さ�
 SmartHR UIでは`FlashMessage`です。
 
 
-
 <ComponentStory name="FlashMessage" />
+
 
 ## メッセージの書き方
 
