@@ -200,7 +200,7 @@ const StyledNav = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justi
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 8px;
+    gap: 6px;
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       display: none;
     }
@@ -255,6 +255,10 @@ const StyledLink = styled(LinkComponent)`
   font-weight: bold;
   line-height: 1;
   color: ${defaultColor.TEXT_BLACK};
+
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+    padding-inline: 6px;
+  }
 
   &:hover {
     color: ${CSS_COLOR.NAV_ACTIVE};
