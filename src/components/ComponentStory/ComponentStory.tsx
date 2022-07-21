@@ -47,8 +47,9 @@ export const ComponentStory: VFC<Props> = ({ name }) => {
   useEffect(() => {
     if (storiesCode === '') return
 
-    // "export const AccordionStyle: Story" のような、Storyをexportするコードから名前を抜き出す
-    const matchStoryNames = storiesCode.matchAll(/export\sconst\s(\S*):\sStory/g)
+    // "export const AccordionStyle: Story" や "export const All = Template.bind({})" のような、Story名をexportするコードから名前を抜き出す
+    // 注意：export { Default as DropdownButton } from ...のようなコードにはマッチしない
+    const matchStoryNames = storiesCode.matchAll(/export\sconst\s(\w*)/g)
     const items1 = [...matchStoryNames].map((result) => {
       // '_'を削除
       const storyName = result[1].replace('_', '')
