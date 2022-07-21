@@ -193,6 +193,7 @@ const Article: VFC<Props> = ({ data }) => {
   const depth3Items: SidebarItem[] = []
   const depth3ComponentItems: SidebarItem[] = []
   const depth4Items: SidebarItem[] = []
+  const depth4ComponentItems: SidebarItem[] = []
 
   parentCategory.edges.forEach(({ node }) => {
     const link = node.fields?.slug ?? ''
@@ -219,7 +220,11 @@ const Article: VFC<Props> = ({ data }) => {
       }
     }
     if (item.depth === 4) {
-      depth4Items.push(item)
+      if (item.link.includes('/products/components/')) {
+        depth4ComponentItems.push(item)
+      } else {
+        depth4Items.push(item)
+      }
     }
   })
 
@@ -236,6 +241,10 @@ const Article: VFC<Props> = ({ data }) => {
   })
   depth3Items.sort(({ order: a }, { order: b }) => {
     return a - b
+  })
+  // /products/components/*/以下のコンポーネントページは名前の順でソートするので、別途並べ替える
+  depth4ComponentItems.sort(({ title: a }, { title: b }) => {
+    return a < b ? -1 : a > b ? 1 : 0
   })
   depth4Items.sort(({ order: a }, { order: b }) => {
     return a - b
@@ -260,7 +269,7 @@ const Article: VFC<Props> = ({ data }) => {
         sidebarItems.push(depth3Item)
         depth2Item.children.push(depth3Item)
 
-        for (const depth4Item of depth4Items) {
+        for (const depth4Item of [...depth4Items, ...depth4ComponentItems]) {
           if (!depth4Item.link.includes(depth3Item.link)) continue
 
           sidebarItems.push(depth4Item)
