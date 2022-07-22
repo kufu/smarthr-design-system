@@ -16,7 +16,7 @@ import { Gotcha } from '@Components/index/Gotcha'
 const Home: VFC = () => {
   return (
     <>
-      <Head />
+      <Head ogimageFile={'/images/ogp-top.png'} />
       <GlobalStyle />
       <Header isIndex />
       <GotchaContainer>

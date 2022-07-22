@@ -19,19 +19,20 @@ const query = graphql`
 type Props = {
   title?: string
   description?: string
+  ogimageFile?: string
   meta?: Array<{
     name: string
     content: string
   }>
 }
 
-export const Head: VFC<Props> = ({ title, description, meta = [] }) => {
+export const Head: VFC<Props> = ({ title, description, ogimageFile, meta = [] }) => {
   const data = useStaticQuery<GatsbyTypes.HeadQuery>(query)
   const siteMetadata = data.site?.siteMetadata
 
   const pageTitle = title ? `${title} | ${siteMetadata?.title}` : siteMetadata?.title
   const metaDescription = description || siteMetadata?.description
-  const ogImagePath = `${siteMetadata?.siteUrl}${siteMetadata?.ogimage}`
+  const ogImagePath = ogimageFile ? `${siteMetadata?.siteUrl}${ogimageFile}` : `${siteMetadata?.siteUrl}/${siteMetadata?.ogimage}`
 
   return (
     <Helmet
