@@ -283,9 +283,15 @@ const Article: VFC<Props> = ({ data }) => {
   const prevPageIndex: number | null = currentPageIndex <= 0 ? null : currentPageIndex - 1
   const nextPageIndex: number | null = currentPageIndex === sidebarItems.length - 1 ? null : currentPageIndex + 1
 
+  const ogimageFile = `/images/ogp${slug
+    .replace(/^.*?content\/articles\//, '')
+    .replace(/\/$/, '/index.mdx')
+    .split('/')
+    .join('-')}.png`
+
   return (
     <Theme>
-      <Head title={headTitle} description={description} />
+      <Head title={headTitle} description={description} ogimageFile={ogimageFile} />
       <GlobalStyle />
 
       <Wrapper>

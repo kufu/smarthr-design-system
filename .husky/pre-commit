@@ -12,4 +12,15 @@ if [ -n "$img_files" ] || [ -n "$icon_files" ] || [ -n "$readme_file" ]; then
   git add 'static/downloads/*'
 fi
 
+# .mdxファイルに変更があった場合はOGP画像を作り直し、コミットに含める
+mdx_files=`echo "$files_diff" | sed -n '/content\/articles\/.*\.mdx/p'`
+
+if [ -n "$mdx_files" ]; then
+  for line in $mdx_files
+  do
+    npx ts-node ./scripts/ogpImage/generateSingleOgImage.ts "./"$line""
+  done
+  git add 'static/images/*'
+fi
+
 yarn lint-staged
