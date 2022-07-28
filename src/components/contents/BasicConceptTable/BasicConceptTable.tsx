@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import { Text } from 'smarthr-ui'
@@ -24,7 +24,7 @@ const query = graphql`
     }
   }
 `
-export const BasicConceptTable: VFC = () => {
+export const BasicConceptTable: FC = () => {
   const data = useStaticQuery<GatsbyTypes.BasicConceptTableQuery>(query)
 
   const basicConceptData = data.basicConceptData.edges

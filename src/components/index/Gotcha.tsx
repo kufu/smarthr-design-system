@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { VFC } from 'react'
+import type { FC } from 'react'
 import gotchaItemJson from '../../data/gotchaItem.json'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
@@ -16,7 +16,7 @@ type GotchaItem = {
 
 const gotchaItem = gotchaItemJson as GotchaItem[]
 
-export const Gotcha: VFC<unknown> = () => {
+export const Gotcha: FC<unknown> = () => {
   const initialIndex = getRandomNum(gotchaItem.length, -1)
   const [currentItemIndex, setCurrentItemIndex] = useState(initialIndex)
   const [nextItemIndex, setNextItemIndex] = useState(getRandomNum(gotchaItem.length, initialIndex))

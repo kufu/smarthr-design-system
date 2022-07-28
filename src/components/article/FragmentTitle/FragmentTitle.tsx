@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { FaLinkIcon } from 'smarthr-ui'
 
@@ -10,7 +10,7 @@ type Props = {
 
 type HeadingTagTypes = 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span'
 
-export const FragmentTitle: VFC<Props> = ({ tag = 'h2', id, children }) => {
+export const FragmentTitle: FC<Props> = ({ tag = 'h2', id, children }) => {
   return (
     <Wrapper as={tag} id={id}>
       <a href={`#${id}`}>

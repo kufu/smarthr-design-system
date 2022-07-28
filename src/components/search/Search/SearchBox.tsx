@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import type { VFC } from 'react'
+import type { FC } from 'react'
 import { navigate } from 'gatsby'
 import { Hits, connectSearchBox } from 'react-instantsearch-dom'
 import type { SearchBoxProvided } from 'react-instantsearch-core'
@@ -10,7 +10,7 @@ import { SearchResultOuter } from './SearchResultOuter'
 import { CSS_FONT_SIZE } from '@Constants/style'
 import { useLocation } from '@reach/router'
 
-const SearchBox: VFC<SearchBoxProvided> = ({ refine }) => {
+const SearchBox: FC<SearchBoxProvided> = ({ refine }) => {
   const [searchState, setSearchState] = useState<string | undefined>()
 
   // クエリ付きURLでアクセスされた場合

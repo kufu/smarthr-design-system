@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { CSS_SIZE } from '@Constants/style'
 
@@ -22,7 +22,7 @@ type IndexJsonObject = {
 
 const data = indexContentJson as IndexJsonObject[]
 
-export const ContentNavigation: VFC = () => {
+export const ContentNavigation: FC = () => {
   return (
     <IndexNavigationContainer>
       {data.map((child, i) => {

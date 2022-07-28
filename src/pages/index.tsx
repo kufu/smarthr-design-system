@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { CSS_SIZE } from '@Constants/style'
 
@@ -13,7 +13,7 @@ import { SearchLink } from '@Components/index/SearchLink'
 import { FaqList } from '@Components/index/Faq'
 import { Gotcha } from '@Components/index/Gotcha'
 
-const Home: VFC = () => {
+const Home: FC = () => {
   return (
     <>
       <Head />

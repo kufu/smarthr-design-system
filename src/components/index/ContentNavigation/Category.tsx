@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
@@ -25,7 +25,7 @@ type Props = {
   data: ItemJsonType
 }
 
-export const Category: VFC<Props> = ({ data }) => {
+export const Category: FC<Props> = ({ data }) => {
   return (
     <NavigationContainer>
       <NavigationText>

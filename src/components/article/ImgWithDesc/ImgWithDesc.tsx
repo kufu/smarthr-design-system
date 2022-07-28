@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const ImgWithDesc: VFC<Props> = ({ description, children }) => {
+export const ImgWithDesc: FC<Props> = ({ description, children }) => {
   return (
     <Figure>
       {children}

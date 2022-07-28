@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const Grid: VFC<Props> = ({ gap = '24px', size = '344px', autoRepeat = 'auto-fit', children }) => {
+export const Grid: FC<Props> = ({ gap = '24px', size = '344px', autoRepeat = 'auto-fit', children }) => {
   return (
     <Wrapper gap={gap} size={size} autoRepeat={autoRepeat}>
       {children}

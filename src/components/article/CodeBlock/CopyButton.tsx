@@ -1,4 +1,4 @@
-import React, { VFC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import styled from 'styled-components'
 import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui'
 import { CSS_COLOR } from '@Constants/style'
@@ -7,7 +7,7 @@ type CopyButtonProps = {
   text: string
 }
 
-export const CopyButton: VFC<CopyButtonProps> = ({ text }) => {
+export const CopyButton: FC<CopyButtonProps> = ({ text }) => {
   const [copied, setCopied] = useState(false)
   return (
     <StyledButton

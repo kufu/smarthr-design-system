@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import { CodeBlock } from '@Components/article/CodeBlock'
 import * as Components from './components'
 
@@ -6,7 +6,7 @@ type Props = {
   componentName: 'SelectCompanyAccount'
 }
 
-export const DesignPatternCodeBlock: VFC<Props> = ({ componentName }) => {
+export const DesignPatternCodeBlock: FC<Props> = ({ componentName }) => {
   return (
     <CodeBlock className="tsx" editable={true} withStyled={true} renderingComponent={componentName} layout="product">
       {Components[componentName]}

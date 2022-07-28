@@ -5,7 +5,12 @@ import { Base, defaultBreakpoint } from 'smarthr-ui'
 import type { StateResultsProvided } from 'react-instantsearch-core'
 import { connectStateResults } from 'react-instantsearch-core'
 
-const SearchResultOuterComponent: FC<StateResultsProvided> = ({ children, searchResults, searchState: { query } }) => {
+// StateResultsProvided の型定義に`children`が含まれていないようでエラーになるため
+type _StateResultsProvided = StateResultsProvided & {
+  children: React.ReactNode
+}
+
+const SearchResultOuterComponent: FC<_StateResultsProvided> = ({ children, searchResults, searchState: { query } }) => {
   // まだ検索してない時は出さない
   if (query === undefined) return null
   // 検索したあと、文字を削除したときも出さない

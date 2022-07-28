@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
 
@@ -9,7 +9,7 @@ type Props = {
 const STORYBOOK_PATH = 'https://smarthr-ui.netlify.app/?path=/story/'
 const GITHUB_PATH = `https://github.com/kufu/smarthr-ui/tree/v${packageInfo.version}/src/components/`
 
-export const SmartHRUIMetaInfo: VFC<Props> = ({ name }) => {
+export const SmartHRUIMetaInfo: FC<Props> = ({ name }) => {
   return (
     <StyledUl>
       <li>SmartHR UI v{packageInfo.version}</li>

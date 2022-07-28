@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { Table, Td, Text, Th } from 'smarthr-ui'
 import uiProps from '../../../smarthr-ui-props.json'
@@ -25,7 +25,7 @@ interface UIProps {
   type: { name: string; raw?: string; value?: UIPropValue[] }
 }
 
-export const ComponentPropsTable: VFC<Props> = ({ name, showTitle }) => {
+export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
   const data = uiProps.filter((uiProp) => {
     return uiProp.displayName === name
   })[0]

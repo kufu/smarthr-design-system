@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { FaCheckCircleIcon, FaTimesCircleIcon, defaultColor, defaultSpacing } from 'smarthr-ui'
 
@@ -8,7 +8,7 @@ type Props = {
   label: React.ReactNode
 }
 
-export const DoAndDont: VFC<Props> = ({ type, img, label }) => {
+export const DoAndDont: FC<Props> = ({ type, img, label }) => {
   return (
     <Wrapper>
       <ImageArea>{img}</ImageArea>

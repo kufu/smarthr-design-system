@@ -1,5 +1,5 @@
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { FootStaticLinks } from './FootStaticLinks'
@@ -81,7 +81,7 @@ const query = graphql`
     }
   }
 `
-export const Footer: VFC<Props> = ({ isArticlePage = false }) => {
+export const Footer: FC<Props> = ({ isArticlePage = false }) => {
   const {
     concept: { nodes: concept },
     foundation: { nodes: foundation },

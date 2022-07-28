@@ -1,11 +1,11 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
   children: React.ReactNode
 }
 
-export const ColorPalettesWrapper: VFC<Props> = ({ children }) => {
+export const ColorPalettesWrapper: FC<Props> = ({ children }) => {
   return <Wrapper>{children}</Wrapper>
 }
 

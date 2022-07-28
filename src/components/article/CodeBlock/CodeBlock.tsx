@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, VFC } from 'react'
+import React, { CSSProperties, FC, ReactNode } from 'react'
 import styled, { ThemeProvider, css } from 'styled-components'
 import Highlight, { Language, defaultProps } from 'prism-react-renderer'
 import github from 'prism-react-renderer/themes/github'
@@ -45,7 +45,7 @@ const transformCode = (snippet: string) => {
   })
 }
 
-export const CodeBlock: VFC<Props> = ({
+export const CodeBlock: FC<Props> = ({
   children,
   className,
   editable = false,

@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 import { Text } from 'smarthr-ui'
@@ -24,7 +24,7 @@ const query = graphql`
     }
   }
 `
-export const AppWriting: VFC = () => {
+export const AppWriting: FC = () => {
   const data = useStaticQuery<GatsbyTypes.AppWritingTableQuery>(query)
 
   const appWritingData = data.appWritingData.edges

@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'gatsby'
 import { CSS_COLOR } from '@Constants/style'
 import styled from 'styled-components'
@@ -6,7 +6,7 @@ import styled from 'styled-components'
 type Props = {
   headings: Array<{ value: string; recordId: string; depth: number }> | null
 }
-export const IndexNav: VFC<Props> = ({ headings }) => {
+export const IndexNav: FC<Props> = ({ headings }) => {
   if (headings === null) return null
 
   const nestedHeadings: Array<{ value: string; recordId: string; children: Array<{ value: string }>; depth: number }> = []

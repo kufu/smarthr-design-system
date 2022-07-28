@@ -1,8 +1,8 @@
-import React, { HTMLAttributes, VFC } from 'react'
+import React, { FC, HTMLAttributes } from 'react'
 
 type Props = HTMLAttributes<HTMLImageElement>
 
-export const StaticImage: VFC<Props> = (props) => {
+export const StaticImage: FC<Props> = (props) => {
   // eslint-disable-next-line jsx-a11y/alt-text
   return <img {...props} />
 }

@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 
@@ -17,7 +17,7 @@ type ItemJsonType = FaqJsonObject
 
 const data = indexFaqJson as ItemJsonType[]
 
-export const FaqList: VFC = () => {
+export const FaqList: FC = () => {
   return (
     <IndexFaqContainer>
       <h2>よくあるご質問</h2>

@@ -1,4 +1,4 @@
-import React, { VFC, useContext } from 'react'
+import React, { FC, useContext } from 'react'
 import styled from 'styled-components'
 import { AnchorButton } from 'smarthr-ui'
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
@@ -49,7 +49,7 @@ const Link2 = [
   },
 ]
 
-export const FootStaticLinks: VFC<Props> = () => {
+export const FootStaticLinks: FC<Props> = () => {
   const { loginStatus, loginLabel } = useContext(LoginContext)
 
   return (
