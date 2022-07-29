@@ -43,6 +43,12 @@ export const ResizableContainer: VFC<Props> = ({ defaultWidth, defaultHeight, ch
       document.removeEventListener('pointermove', handlePointerMove, false)
       document.removeEventListener('pointerup', handlePointerUp, false)
     }
+
+    // コンテナ幅 - 20pxまで近づいていたらコンテナと同じ幅に吸着させる
+    if (container.current === null || boxSizeRef.current.width === null) return
+    if (container.current.offsetWidth - boxSizeRef.current.width < 20) {
+      setBoxSize({ width: container.current.offsetWidth, height: boxSizeRef.current.height })
+    }
   }
 
   const handlePointerMove = (event: PointerEvent) => {
