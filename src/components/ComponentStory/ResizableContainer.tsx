@@ -107,7 +107,9 @@ export const ResizableContainer: VFC<Props> = ({ defaultWidth, defaultHeight, ch
   )
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  user-select: none;
+`
 
 const ResizeArea = styled.div`
   position: relative;
