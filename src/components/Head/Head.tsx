@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import { Helmet } from 'react-helmet'
 import { graphql, useStaticQuery } from 'gatsby'
 
@@ -25,7 +25,7 @@ type Props = {
   }>
 }
 
-export const Head: VFC<Props> = ({ title, description, meta = [] }) => {
+export const Head: FC<Props> = ({ title, description, meta = [] }) => {
   const data = useStaticQuery<GatsbyTypes.HeadQuery>(query)
   const siteMetadata = data.site?.siteMetadata
 

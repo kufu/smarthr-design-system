@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
@@ -11,7 +11,7 @@ type Props = {
   caretPosition?: 'left' | 'right'
 }
 
-export const RoundedBoxLink: VFC<Props> = ({ path, label, title, align = 'left', caretPosition = 'right' }) => {
+export const RoundedBoxLink: FC<Props> = ({ path, label, title, align = 'left', caretPosition = 'right' }) => {
   return (
     <BoxLink to={path} align={align} caret={caretPosition}>
       <p className="labelText">{label}</p>

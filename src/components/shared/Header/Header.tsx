@@ -1,5 +1,5 @@
 import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
-import React, { VFC, useContext, useState } from 'react'
+import React, { FC, useContext, useState } from 'react'
 import { useLocation } from '@reach/router'
 import styled, { createGlobalStyle, css } from 'styled-components'
 import { Link as LinkComponent } from 'gatsby'
@@ -21,7 +21,7 @@ const headerContents: HeaderContents = headerContentJson
 type Props = {
   isIndex?: boolean
 }
-export const Header: VFC<Props> = ({ isIndex = false }) => {
+export const Header: FC<Props> = ({ isIndex = false }) => {
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
 

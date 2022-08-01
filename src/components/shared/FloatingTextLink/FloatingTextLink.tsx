@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const FloatingTextLink: VFC<Props> = ({ path, children }) => {
+export const FloatingTextLink: FC<Props> = ({ path, children }) => {
   return (
     <Wrapper>
       <Link to={path} aria-disabled={path === ''}>

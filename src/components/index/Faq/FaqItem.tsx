@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 
@@ -17,7 +17,7 @@ type Props = {
   data: ItemJsonType
 }
 
-export const FaqItem: VFC<Props> = ({ data }) => {
+export const FaqItem: FC<Props> = ({ data }) => {
   return (
     <Wrapper>
       <QuestionText>{data.question}</QuestionText>

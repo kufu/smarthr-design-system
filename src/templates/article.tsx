@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { PageProps, graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
@@ -116,7 +116,7 @@ export type SidebarItem = {
   children: SidebarItem[]
 }
 
-const Article: VFC<Props> = ({ data }) => {
+const Article: FC<Props> = ({ data }) => {
   const { mdx: article, parentCategoryAllMdx: parentCategory } = data
 
   if (article == null) {

@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 
@@ -18,7 +18,7 @@ type LinkJsonObject = {
 
 const data = indexSearchLinkJson as LinkJsonObject
 
-export const SearchLink: VFC = () => {
+export const SearchLink: FC = () => {
   return (
     <SearchContainer>
       <h2>ほしいものを探す</h2>

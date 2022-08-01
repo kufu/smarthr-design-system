@@ -1,4 +1,4 @@
-import React, { Fragment, VFC } from 'react'
+import React, { FC, Fragment } from 'react'
 import styled from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
@@ -29,7 +29,7 @@ type ListItem = {
   parent: string
   order: number
 }
-export const IndexList: VFC = () => {
+export const IndexList: FC = () => {
   const {
     allMdx: { nodes },
   } = useStaticQuery<GatsbyTypes.SearchQuery>(query)

@@ -1,4 +1,4 @@
-import React, { VFC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui'
 
@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const ResizableContainer: VFC<Props> = ({ defaultWidth, defaultHeight, children }) => {
+export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, children }) => {
   const [pointerPosition, setPointerPosition] = useState<{ x: number | null; y: number | null }>({ x: null, y: null })
   const pointerPositionRef = useRef<{ x: number | null; y: number | null }>({ x: null, y: null })
   pointerPositionRef.current = pointerPosition

@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import { Link as LinkComponent } from 'gatsby'
 import styled from 'styled-components'
 
@@ -18,7 +18,7 @@ const categories = {
   employees: '従業員向け',
 } as Categories
 
-export const HitComponent: VFC = (props: any) => {
+export const HitComponent: FC = (props: any) => {
   const categoryKey: keyof Categories = props.hit.category
 
   return (

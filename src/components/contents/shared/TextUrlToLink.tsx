@@ -1,11 +1,11 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import reactStringReplace from 'react-string-replace'
 
 type Props = {
   text: string
 }
 
-export const TextUrlToLink: VFC<Props> = ({ text }) => {
+export const TextUrlToLink: FC<Props> = ({ text }) => {
   return (
     <>
       {reactStringReplace(text, /(https?:\/\/\S+)/g, (match: string, strIndex: number) => {

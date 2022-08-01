@@ -1,4 +1,4 @@
-import React, { VFC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Loader, TabBar, TabItem, TextLink } from 'smarthr-ui'
 
@@ -17,7 +17,7 @@ type StoryItem = {
   label: string
 }
 
-export const ComponentStory: VFC<Props> = ({ name }) => {
+export const ComponentStory: FC<Props> = ({ name }) => {
   const fileName = name.replace(/^.*\//, '') // "Layout/Cluster"のような階層のある名前に対応
   const filePath = `${SHRUI_GITHUB_RAW}/src/components/${name}/${fileName}.stories.tsx`
 

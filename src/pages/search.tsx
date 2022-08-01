@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { Head } from '@Components/Head'
 import algoliasearch from 'algoliasearch/lite'
@@ -13,7 +13,7 @@ import { IndexList } from '@Components/search/IndexList/IndexList'
 
 const searchClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID || '', process.env.GATSBY_ALGOLIA_SEARCH_API_KEY || '')
 
-const SearchPage: VFC = () => {
+const SearchPage: FC = () => {
   return (
     <>
       <Head title="検索" description="検索ページです。" />

@@ -1,10 +1,10 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 
 import { FloatingTextLink } from '../../shared/FloatingTextLink'
 
-export const Introduction: VFC = () => {
+export const Introduction: FC = () => {
   return (
     <>
       <IntroductionContainer>

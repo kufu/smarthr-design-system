@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import React, { Fragment, VFC, useContext, useLayoutEffect, useRef } from 'react'
+import React, { FC, Fragment, useContext, useLayoutEffect, useRef } from 'react'
 import { useLocation } from '@reach/router'
 import { FaChevronDownIcon, defaultColor } from 'smarthr-ui'
 import styled from 'styled-components'
@@ -13,7 +13,7 @@ type Props = {
   nestedSidebarItems: SidebarItem[]
 }
 
-export const Sidebar: VFC<Props> = ({ path, nestedSidebarItems }) => {
+export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
   const location = useLocation()
   const sidebarRef = useRef<null | HTMLDivElement>(null)
   const { position, savePosition } = useContext(SidebarScrollContext)

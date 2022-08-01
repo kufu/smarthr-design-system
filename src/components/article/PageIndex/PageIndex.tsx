@@ -1,5 +1,5 @@
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { marked } from 'marked'
 import { CSS_FONT_SIZE } from '@Constants/style'
@@ -30,7 +30,7 @@ const query = graphql`
   }
 `
 
-export const PageIndex: VFC<Props> = ({ path, excludes, heading = 'h2', children }) => {
+export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children }) => {
   const currentDepth = path.split('/').length
   const data = useStaticQuery<GatsbyTypes.PageListQuery>(query)
   const pageData = data.childPageAllMdx.edges

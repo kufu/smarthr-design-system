@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import { Table, Td, Text, Th } from 'smarthr-ui'
@@ -55,7 +55,7 @@ type Props = {
   type: 'data' | 'reason'
 }
 
-export const IdiomaticUsageTable: VFC<Props> = ({ type }) => {
+export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
   const data = useStaticQuery<GatsbyTypes.IdiomaticUsageTableQuery>(query)
 
   const idiomaticUsageData = data.idiomaticUsageData.edges

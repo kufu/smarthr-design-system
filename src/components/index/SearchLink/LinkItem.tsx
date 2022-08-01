@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
@@ -15,7 +15,7 @@ type Props = {
   large?: boolean
 }
 
-export const LinkItem: VFC<Props> = ({ data, large }) => {
+export const LinkItem: FC<Props> = ({ data, large }) => {
   return (
     <Wrapper $large={large === true}>
       <Link to={data.path}>

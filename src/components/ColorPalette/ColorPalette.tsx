@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 import Color from 'color'
 import { defaultBreakpoint, defaultColor } from 'smarthr-ui'
@@ -24,7 +24,7 @@ type Props = {
   description: string
 }
 
-export const ColorPalette: VFC<Props> = ({ colorName, hexCode, description }) => {
+export const ColorPalette: FC<Props> = ({ colorName, hexCode, description }) => {
   return (
     <Wrapper>
       <Thumbnail $color={hexCode}></Thumbnail>
@@ -68,7 +68,7 @@ const ColorName = styled.div`
 const ColorCode = styled.div`
   word-break: break-all;
 `
-const ColorContrast: VFC<{ fgColor: string; bgColor: string }> = ({ fgColor, bgColor }) => {
+const ColorContrast: FC<{ fgColor: string; bgColor: string }> = ({ fgColor, bgColor }) => {
   const contrastRatio = Math.round(Color(convertHexToRGBA(fgColor)).contrast(Color(convertHexToRGBA(bgColor))) * 100) / 100
   const score = contrastRatio >= 7 ? 'AAA' : contrastRatio >= 4.5 ? 'AA' : contrastRatio >= 3 ? 'AA+' : 'Fail'
 

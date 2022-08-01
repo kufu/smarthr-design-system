@@ -1,4 +1,4 @@
-import React, { ReactNode, VFC, createContext, useContext, useState } from 'react'
+import React, { FC, ReactNode, createContext, useContext, useState } from 'react'
 import { PRIVATE_DOC_PATH } from '@Constants/application'
 
 export type LoginStatusKey = 'pending' | 'loggedIn' | 'loggedOut'
@@ -19,7 +19,7 @@ export const LoginContext = createContext<LoginStatus>({
   },
 })
 
-export const LoginContextProvider: VFC<Props> = ({ children }) => {
+export const LoginContextProvider: FC<Props> = ({ children }) => {
   const state = useContext(LoginContext)
   const [loginStatus, setLoginStatus] = useState<LoginStatusKey>(state.loginStatus)
   const labels: { [key in LoginStatusKey]: string } = {

@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import { Head } from '@Components/Head'
@@ -6,7 +6,7 @@ import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
 import { Footer } from '@Components/shared/Footer/Footer'
 
-const NotFoundPage: VFC = () => (
+const NotFoundPage: FC = () => (
   <>
     <Head
       title="404 Page not found"

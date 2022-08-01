@@ -1,4 +1,4 @@
-import React, { ReactNode, VFC, createContext, useContext, useState } from 'react'
+import React, { FC, ReactNode, createContext, useContext, useState } from 'react'
 
 type Props = {
   children?: ReactNode
@@ -15,7 +15,7 @@ export const SidebarScrollContext = createContext<SidebarScrollStatus>({
   },
 })
 
-export const SidebarScrollContextProvider: VFC<Props> = ({ children }) => {
+export const SidebarScrollContextProvider: FC<Props> = ({ children }) => {
   const state = useContext(SidebarScrollContext)
   const [position, setPosition] = useState<number>(state.position)
 

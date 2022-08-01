@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import type { VFC } from 'react'
+import type { FC } from 'react'
 import { AnchorButton, FaExclamationCircleIcon, FaLockIcon } from 'smarthr-ui'
 import styled from 'styled-components'
 import { micromark } from 'micromark'
@@ -16,7 +16,7 @@ type Props = {
   path: string | undefined
 }
 
-export const Private: VFC<Props> = ({ path }) => {
+export const Private: FC<Props> = ({ path }) => {
   const [privateData, setPrivateData] = useState('')
   const [isShow, setIsShow] = useState(false)
   const { loginStatus } = useContext(LoginContext)
