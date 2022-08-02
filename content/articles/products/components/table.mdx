@@ -23,7 +23,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 参照には`<label>`を用いても良いですが、識別するためのテキストはオブジェクト詳細へのリンクとなることも多いため `aria-labelledby` を用いるのが良いでしょう。
 
-```tsx
+```tsx codeBlock
 <tr key={key}>
   <CheckBoxCell>
     <CheckBox aria-labelledby={object.id} />
