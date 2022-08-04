@@ -3,19 +3,23 @@ import { Link as LinkComponent } from 'gatsby'
 import styled from 'styled-components'
 
 interface Categories {
-  about: string
-  foundations: string
+  concept: string
+  foundation: string
+  basics: string
   products: string
-  marketing: string
-  employees: string
+  accessibility: string
+  communication: string
+  'operational-guideline': string
 }
 
 const categories = {
-  about: '概要',
-  foundations: '基本原則',
+  concept: 'コンセプト',
+  foundation: '基本原則',
+  basics: '基本要素',
   products: 'プロダクト',
-  marketing: 'マーケティング',
-  employees: '従業員向け',
+  accessibility: 'アクセシビリティ',
+  communication: 'コミュニケーション',
+  'operational-guideline': '運用ガイドライン',
 } as Categories
 
 export const HitComponent: FC = (props: any) => {
