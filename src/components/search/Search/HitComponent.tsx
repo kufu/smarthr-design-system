@@ -28,7 +28,7 @@ export const HitComponent: FC = (props: any) => {
   return (
     <Wrapper>
       <LinkComponent to={`/${props.hit.path}`}>
-        {props.hit.title}&nbsp;|&nbsp;{categories[categoryKey]}
+        {props.hit.title}&nbsp;{categories[categoryKey] ? `|${'\u00A0'}${categories[categoryKey]}` : ''}
       </LinkComponent>
       {props.hit.description && <StyledParagraph>{props.hit.description}</StyledParagraph>}
     </Wrapper>
