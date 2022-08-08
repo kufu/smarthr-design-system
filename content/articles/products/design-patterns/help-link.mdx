@@ -35,12 +35,12 @@ import { FaExternalLinkAltIcon, FaQuestionCircleIcon } from 'smarthr-ui'
 - スペースの都合がある場合は、短くリライトして構いません。
 
 ### アイコン
-別タブで開く場合、プロダクト内でモーダルダイアログとして表示する場合で使い分けます。
-- 別タブで開く場合は、テキストリンクの装飾ルールの「外部サイトにいくテキストリンク」に準じて <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" color="#0071C1" size={16} /> をテキストリンクの文末に配置します。
-- ヘルプセンターのポップアップダイアログが開く場合は、 <FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" color="#0071C1" size={16} /> をテキストリンクの文頭に配置し、ヘルプページのURLをhrefに設定します。
+- ヘルプセンターのリンクであることを表すために、<FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaQuestionCircleIcon`）をテキストリンクの文頭に配置できます。（推奨）
+    - モードレスダイアログや新規ウィンドウ（新規タブ）など表示に関わらず、ヘルプセンターのリンクとして認知させたいときに採用可能です。
+- 新規ウィンドウで開く場合は、[「新規ウィンドウ（新規タブ）で開くテキストリンク」の装飾](/products/components/icon/#h2-4)に準じて <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaExternalLinkAltIcon`）をテキストリンクの文末に配置します。（必須）
 
 ## アクセシビリティの観点
-- <FaQuestionCircleIcon visuallyHiddenText="FaQuestionCircleIcon" color="#0071C1" size={16} /> アイコンだけでヘルプページへのリンクを設定してもよいか。
+- <FaQuestionCircleIcon visuallyHiddenText="FaQuestionCircleIcon" color="TEXT_LINK" /> アイコンだけでヘルプページへのリンクを設定してもよいか。
 
     - 構いません。`visuallyHiddenText`を記述したうえで、前後の文脈から関連したヘルプページに移動することが推測できれば良いです。
 - リンクテキストとリンク先ページタイトルが違っても問題ないか。
