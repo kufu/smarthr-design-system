@@ -1,19 +1,21 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Header } from 'smarthr-ui'
-
+import { ResizableContainer } from '../ComponentStory/ResizableContainer'
 import { WrapperBase } from './WrapperBase'
 
 export const ProductWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Wrapper>
-    <Header logoHref="#" />
-    <Body>{children}</Body>
+    <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+      <Header logoHref="#" />
+      <Body>{children}</Body>
+    </ResizableContainer>
   </Wrapper>
 )
 
 const Wrapper = styled(WrapperBase)(
-  ({ theme: { color, leading } }) => css`
-    background-color: ${color.BACKGROUND};
+  ({ theme: { leading } }) => css`
+    border-width: 0 0 1px; /* CodeBlockには上ボーダーがないので、下のみボーダーをつける */
 
     /* FIXME: @scope が来たら書き直したい! */
 
