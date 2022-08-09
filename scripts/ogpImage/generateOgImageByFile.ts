@@ -1,7 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
-//@ts-ignore
-import TinySegmenter from 'tiny-segmenter'
+import { loadDefaultJapaneseParser } from 'budoux'
 import { CanvasRenderingContext2D, createCanvas, loadImage } from 'canvas'
 import fm from 'front-matter'
 import { CSS_COLOR } from '../../src/constants/style'
@@ -9,30 +8,23 @@ import { CSS_COLOR } from '../../src/constants/style'
 const fragmentText = (text: string, maxWidth: number, ctx: CanvasRenderingContext2D) => {
   const line1: string[] = []
   const line2: string[] = []
-  const segmenter = new TinySegmenter()
-  for (const word of segmenter.segment(text)) {
+  const parser = loadDefaultJapaneseParser()
+  for (const word of parser.parse(text)) {
     if (line2.length === 0) {
       line1.push(word)
       //2単語目以降で横幅がはみ出る場合は2行目に送る
-      //ただし、句読点などは除く（行頭の禁則処理）
-      if (ctx.measureText(line1.join('')).width > maxWidth && line1.length > 1 && !['、', '。', ')', '）'].includes(word)) {
+      if (line1.length > 1 && ctx.measureText(line1.join('')).width > maxWidth) {
         line1.pop()
         line2.push(word)
       }
     } else {
       line2.push(word)
       //2単語目以降で横幅がはみ出る場合
-      if (ctx.measureText(line2.join('')).width > maxWidth && line2.length > 1) {
-        line2.pop()
+      if (line2.length > 1 && ctx.measureText(line2.join('')).width > maxWidth) {
         line2.pop()
         line2.push('…')
         break
       }
-    }
-    //行末の禁食処理
-    if (['(', '（'].includes(line1[line1.length - 1])) {
-      line2.unshift(line1[line1.length - 1])
-      line1.pop()
     }
   }
 
