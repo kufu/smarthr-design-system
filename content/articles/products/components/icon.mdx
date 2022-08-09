@@ -33,7 +33,7 @@ SmartHR UIでは`Icon`です。
 
 アイコンのみ表示する場合、適切なラベルを付与してください。特にリンクやボタンにアイコンのみ表示する場合は必須です。
 
-```tsx editable
+```tsx editable codeBlock
 <Button variant="primary" square>
   <FaPlusCircleIcon visuallyHiddenText="追加" />
 </Button>
@@ -54,7 +54,7 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 
 実際に登録されてるアイコンを確認する際は、[Storybook](https://smarthr-ui.netlify.app/?path=/story/icon--all)を確認してください。
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <FaAddressBookIcon />
   <FaAddressCardIcon />
@@ -76,8 +76,8 @@ import { FaExternalLinkAltIcon, FaQuestionCircleIcon } from 'smarthr-ui'
 
 | 使用箇所 | 設置するアイコン | 備考 |
 | :--- | :--- | :--- |
-| 新規ウィンドウ（新規タブ）で開くテキストリンク | テキストの後ろに「<FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" color="#0071C1" />」アイコン（`fa-external-link`）を設置 | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウで開く場合は付与します。 |
-| [ヘルプセンター](https://knowledge.smarthr.jp/hc/ja)のポップアップダイアログを開くテキストリンク | テキストの後ろに「<FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" color="#0071C1" />」アイコン（`fa-question-circle`）を設置 |  |
+| 新規ウィンドウで開くテキストリンク | **テキストの右側**に <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaExternalLinkAltIcon`）を配置（必須） | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウ（新規タブ）で開く場合は表示します。 |
+| [ヘルプセンター](https://knowledge.smarthr.jp/hc/ja)を開くテキストリンク | **テキストの左側**に <FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaQuestionCircleIcon`）を配置（推奨） | 詳細は[ヘルプページへの動線](/products/design-patterns/help-link/#h3-2)を参照してください。 |
 
 
 ## 参考文献

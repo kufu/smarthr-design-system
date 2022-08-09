@@ -16,7 +16,7 @@ Buttonコンポーネントは、ユーザーが情報の保存や検索など�
 ## 種類
 ボタンの優先度や役割に合わせた4種類のコンポーネントを総称して、Buttonコンポーネントとして定義しています。
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <Button variant="primary">Primary</Button>
   <Button>Secondary</Button>
@@ -30,7 +30,7 @@ Buttonコンポーネントは、ユーザーが情報の保存や検索など�
 
 1つの画面に複数のPrimaryボタンを使わないでください。複数のPrimaryボタンがあるとユーザーは何をすればいいかわからなくなります。
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <Button variant="primary">ボタン</Button>
   <Button variant="primary" prefix={<FaPlusCircleIcon />}>ボタン</Button>
@@ -47,7 +47,7 @@ SmartHR UI では特に種類の指定をしない場合はSecondaryになりま
 
 画面内にボタンが多すぎる場合、ユーザーは次に何をすればいいのか戸惑うかもしれません。その場合はボタンを減らしたり、画面を簡略化したり、複数の画面に分けることを検討しましょう。
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <Button>ボタン</Button>
   <Button prefix={<FaPlusCircleIcon />}>ボタン</Button>
@@ -65,7 +65,7 @@ SmartHR UI では特に種類の指定をしない場合はSecondaryになりま
 - ユーザーにこのアクションを実行させる場合は、必ず確認を求めるステップを追加してください。（例：[削除ダイアログ](/products/design-patterns/delete-dialog/)）
 - すべてのユーザーが色を見たり、理解できるわけではないため、警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h2-1)）に頼らないでください。ボタン配置のコンテキストやラベルテキストは重要です。
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <Button variant="danger">ボタン</Button>
   <Button variant="danger" prefix={<FaPlusCircleIcon />}>ボタン</Button>
@@ -81,7 +81,7 @@ Secondaryボタンよりもさらに優先度が低いアクションのボタ�
 
 また、[ドロップダウンメニュー](/products/design-patterns/dropdown-button/#h3-1)として使用したり、[アイコンボタン](#h4-1)として使用するなど、ボタンではあるもののボタンの装飾を必要としない場合に使います。
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <Button variant="text">ボタン</Button>
   <Button variant="text" prefix={<FaPlusCircleIcon />}>ボタン</Button>
@@ -96,7 +96,7 @@ Secondaryボタンよりもさらに優先度が低いアクションのボタ�
 リンク（`a`要素）をボタンのように見せるためのコンポーネントですが、どうしようもないときだけ使います。
 アクションボタンとして表現したい場合は、素直に`Button`を使いましょう。
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <AnchorButton variant="primary" href="#h3-4">ボタン</AnchorButton>
   <AnchorButton href="#h3-4">ボタン</AnchorButton>
@@ -136,7 +136,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 アイコンのみのボタンです。ラベルテキストを表示するレイアウト上の余裕がない場合などに使います。  
 ラベルテキストがないため、[アイコンには必ず代替テキストを含めてください。](/products/components/icon/#h3-0)
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <Button square>
     <FaPlusCircleIcon visuallyHiddenText="追加" />
@@ -160,7 +160,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 
 ユーザーはなぜ無効になっているのかわからないことがあります。「[権限による表示制御](/products/design-patterns/access-control-pattern/)」のデザインパターンを参考にして、無効状態の理由を表示したり、無効ではなくボタン自体を非表示にすることを検討してください。
 
-```tsx editable
+```tsx editable codeBlock
 <>
   <Button variant="primary" prefix={<FaPlusCircleIcon />} disabled>ボタン</Button>
   <Button prefix={<FaPlusCircleIcon />} disabled>ボタン</Button>

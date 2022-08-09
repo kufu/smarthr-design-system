@@ -23,7 +23,9 @@ import type { airtableContents } from '@Constants/airtable'
 
 const components: MDXProviderComponents = {
   pre: (props) => <div {...props} />,
-  code: CodeBlock,
+  code: ({ children, codeBlock, ...props }) => {
+    return codeBlock ? <CodeBlock {...props}>{children}</CodeBlock> : <code {...props}>{children}</code>
+  },
   h2: ({ children, id }) => (
     <FragmentTitle tag="h2" id={id}>
       {children}

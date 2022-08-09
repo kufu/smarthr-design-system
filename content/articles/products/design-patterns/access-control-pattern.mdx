@@ -20,7 +20,7 @@ import { FaInfoCircleIcon } from 'smarthr-ui'
 | 表示パターン | 説明 | 権限一覧での例 |
 | :--- | :--- | :--- |
 | A | 操作に関わるUIは非表示とし、理由も明示しない。 | （管理者権限以外は権限設定を操作できないため、この条件には当てはまらない） |
-| B | 操作に関わるUIは非表示とし、その理由を明示する。<br />表示方法は個別に検討する。（オブジェクト横に「<FaInfoCircleIcon visuallyHiddenText="情報通知" color="TEXT_GREY" size={16} />」アイコン（`fa-info-circle`）を出すなど） | システム標準の権限は削除できないため、非表示にする。<br />理由は、権限名の横の <FaInfoCircleIcon visuallyHiddenText="情報通知" color="TEXT_GREY" size={16} /> アイコンで伝える。 |
+| B | 操作に関わるUIは非表示とし、その理由を明示する。<br />表示方法は個別に検討する。（オブジェクト横に <FaInfoCircleIcon visuallyHiddenText="情報通知" color="TEXT_GREY" /> アイコン（`FaInfoCircleIcon`）を出すなど） | システム標準の権限は削除できないため、非表示にする。<br />理由は、権限名の横の <FaInfoCircleIcon visuallyHiddenText="情報通知" color="TEXT_GREY" /> アイコンで伝える。 |
 | C | 操作に関わるUIはdisabledとし、その理由を明示する。（disabledボタンに[Tooltip](/products/components/tooltip/)で伝えるなど） | アカウントに紐づいているカスタム権限は削除できないため、disabledにする。<br />理由は、disabledボタンの[Tooltip](/products/components/tooltip/)で伝える。 |
 | D | 操作に関わるUIを表示する。 | 上記に当てはまらない場合に編集・複製・削除ボタンを表示する。 |
 
