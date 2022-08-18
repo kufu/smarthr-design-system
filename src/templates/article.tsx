@@ -544,6 +544,11 @@ const MDXStyledWrapper = styled.div`
     font-size: ${CSS_FONT_SIZE.PX_16};
     line-height: 2.12;
     margin-block: 20px 0;
+
+    ul,
+    ol {
+      margin-block-start: 0;
+    }
   }
 
   /* 表組み */
@@ -556,6 +561,14 @@ const MDXStyledWrapper = styled.div`
       vertical-align: middle;
       font-size: ${CSS_FONT_SIZE.PX_14};
       background-color: ${CSS_COLOR.DIVIDER};
+    }
+
+    td {
+      p:first-child,
+      ul:first-child,
+      ol:first-child {
+        margin-block-start: 0;
+      }
     }
   }
 
