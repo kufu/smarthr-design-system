@@ -545,8 +545,8 @@ const MDXStyledWrapper = styled.div`
     line-height: 2.12;
     margin-block: 20px 0;
 
-    ul:first-child,
-    ol:first-child {
+    ul,
+    ol {
       margin-block-start: 0;
     }
   }
