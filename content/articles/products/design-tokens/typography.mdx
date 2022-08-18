@@ -63,7 +63,7 @@ font-family: system-ui, sans-serif;
 
 
 ## 行送り
-テキストスタイルによって使用する[行送り](/products/design-tokens/leading/)が異なります。以下を参照してください。
+テキストスタイルによって使用する[行送り](/products/design-tokens/leading/)が異なります。以下のテキストスタイルを参照してください。
 
 
 ## テキストスタイル
@@ -138,13 +138,13 @@ font-family: system-ui, sans-serif;
 WIP
 
 ### リンク
-テキストリンクは、以下の場合に使います。  
-リンク以外の操作を表す場合は、[Buttonコンポーネント](/products/components/button/)を使用してください。
+テキストリンクは、以下の場合に[TextLinkコンポーネント](/products/components/text-link/)を使用して表します。  
+操作を表す場合は、[Buttonコンポーネント](/products/components/button/)を使用してください。
 
-- 他の画面やヘルプページに遷移させるために、画面の説明文や補助テキストにリンクを設置する場合
-- 一覧コレクションからシングルに遷移させるために、そのインスタンス名にリンクを設置する場合
+- 他の画面やヘルプセンターなどに遷移させるために、画面の説明文や補助テキストにリンクを設置する場合
+- 一覧ビュー（コレクション）から詳細ビュー（シングル）に遷移させるために、そのインスタンス名にリンクを設置する場合（[「よくあるテーブル」の遷移リンクのスタイル](/products/design-patterns/smarthr-table/#h5-0)を参照）
 
-テキストリンクの色は[`TEXT_LINK`](/products/design-tokens/color/#h2-2)を使用し、マウスオーバー時を除いて下線は表示しません。
+[TextLink](/products/components/text-link/)が使えない場合は、テキストの色に[`TEXT_LINK`](/products/design-tokens/color/#h2-2)を使い、基本的に下線を表示します。
 
 新規ウィンドウを開くリンクや、ヘルプセンターのポップアップダイアログを表示するリンクでは、遷移先を事前に認知できるようにアイコンを組み合わせて使います。
 [Iconコンポーネントの使い方](/products/components/icon/#h2-4)を参照してください。
