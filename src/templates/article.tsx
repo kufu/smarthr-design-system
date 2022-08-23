@@ -296,7 +296,7 @@ const Article: FC<Props> = ({ data }) => {
 
   return (
     <Theme>
-      <Head title={headTitle} description={description} />
+      <Head title={headTitle} ogTitle={title} description={description} />
       <GlobalStyle />
 
       <Wrapper>
