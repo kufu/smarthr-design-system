@@ -24,37 +24,37 @@ order: 3
 ### コンテンツエリア（Base）の余白
 
 | 対象エリア | 天地余白 | 左右余白 |
-| -------- | -------- | -------- |
+| :------- | :------- | :------- |
 | コンテンツ全体 | 24px | 24px |
 
-![スクリーンショット:Baseのパディングのルール](./images/spacing-layout-pattern1.png)
+![スクリーンショット:Baseのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern1.png)
 
 ### コンテンツエリア内のグループ（BaseColumn）の余白
 基本的に、セクション（主に[セクションタイトル](/products/components/heading/#h3-1)で括られるエリア）内で[FormGroup](/products/components/form-group/)などを複数配置するようなパターンで適用し、中の要素がつまったり狭くなることが想定されるため、`16px`とします。
 
 | 対象エリア | 天地余白 | 左右余白 |
-| -------- | -------- | -------- |
+| :------- | :------- | :------- |
 | コンテンツ全体 | 16px | 16px |
 
-![スクリーンショット:BaseColumnのパディングのルール](./images/spacing-layout-pattern2.png)
+![スクリーンショット:BaseColumnのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern2.png)
 
 ### ダイアログの余白
 見出しとボタンエリアは横長になるため、天地左右`16px`のほうがすわりがよいですが、本文エリアの読み開始位置と一致させるため、左右を`24px`とし、天地に`16px`とします。
 
 | 対象エリア | 天地余白 | 左右余白 |
-| -------- | -------- | -------- |
+| :------- | :------- | :------- |
 | 見出しエリア | 16px | 24px |
 | 本文エリア | 24px | 24px |
 | ボタンエリア | 16px | 24px |
 
-![スクリーンショット:Dialogのパディングのルール](./images/spacing-layout-pattern3.png)
+![スクリーンショット:Dialogのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern3.png)
 
 
 ## マージン（Margin）
 セクションやブロックの見出しレベルや階層を下げるにつれて、`32px`、`24px`、`16px`の順で段階的に使います。
 ただし、段階的に使用した結果、間隔がつまったり開きすぎてしまうなど視覚的なグルーピングが不適切と判断される場合は、段階を超えて適切な大きさを使います。
 
-具体的な配置のルールは次の通りです。
+具体的な配置の基準は次の通りです。
 
 - 原則、要素に対して上方向に適用する。
 - 同じ意味階層となる要素同士は、ぞれぞれ同じ大きさのマージンを適用する。
@@ -62,22 +62,22 @@ order: 3
 ### セクション同士の間
 `32px`とします。
 
-![スクリーンショット:セクション同士のマージンのルール](./images/spacing-layout-pattern4.png)
+![スクリーンショット:セクション同士のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern4.png)
 
 ### 画面タイトルエリアとセクションの間
 `24px`とします。
 
-![スクリーンショット:画面タイトルエリアとセクション間のマージンのルール](./images/spacing-layout-pattern5.png)
+![スクリーンショット:画面タイトルエリアとセクション間のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern5.png)
 
 ### 見出しと本文（またはBase）の間
 `16px`とします。
 
-![スクリーンショット:タイトルと本文間のマージンのルール](./images/spacing-layout-pattern6.png)
+![スクリーンショット:タイトルと本文間のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern6.png)
 
 ### セクション内の要素同士の間
 見出しレベルやコンテンツの階層を下げるにつれて、`32px`、`24px`、`16px`の順で段階的に適用します。
 
-![スクリーンショット:セクション内の要素のマージンのルール](./images/spacing-layout-pattern7.png)
+![スクリーンショット:セクション内の要素のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern7.png)
 
 ### アイコンやラベルなどの小さい要素間
 アイコンやラベルといった小さい要素を組み合わせる場合は、基本的に`8px`とします。
@@ -85,9 +85,9 @@ order: 3
 - [InfomationPanel](/products/components/information-panel/)や[FormGroup](/products/components/form-group/)などのように、ブロックの見出しや[Input](/products/components/input/)にアイコンやラベルを複合的に組み合わせる場合は、`16px`と`8px`を段階的に組み合わせて適用します。
 - インラインテキスト内でテキストリンクにアイコンを付加する場合は、`4px`とします。
 
-![スクリーンショット:アイコンやラベルなどの小さい要素間](./images/spacing-layout-pattern8.png)
+![スクリーンショット:アイコンやラベルなどの小さい要素間](./images/spacing-layout-pattern/spacing-layout-pattern8.png)
 
 ### ダイアログの本文エリア内の要素間
 見出しレベルやコンテンツの階層を下げるにつれて、`32px`、`24px`、`16px`の順で段階的に適用します。
 
-![スクリーンショット:タイトルと本文間のマージンのルール](./images/spacing-layout-pattern9.png)
+![スクリーンショット:タイトルと本文間のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern9.png)
