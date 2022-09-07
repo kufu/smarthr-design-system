@@ -1,0 +1,92 @@
+---
+title: 'SmartHR UI（Figmaライブラリ）の更新方法'
+description: 'SmartHR UIのライブラリを更新する際の手順と守ってほしいルールをまとめています。'
+order: 7
+---
+<!-- textlint-disable -->
+## 概要
+
+- FigmaのSmartHR UI（ライブラリ）でコンポーネントやスタイルを追加・編集したい方を対象とした更新方法の操作ガイドです。
+- SmartHR UIは全社で利用しているライブラリなので、意図しない更新から保護するために編集権限を制限しています。
+- SmartHR UIに変更を加えたい場合はブランチ機能を利用し、レビュワーに必ずSmartHR UI のEdit権限があるメンバーをアサインしてください。
+- 質問や相談は社内Slack`#design_products`チャンネルまでお問い合わせください。
+
+## 操作手順
+
+1. [「SmartHR UI」ファイルの更新作業用ブランチを作成する](#h3-0)
+2. [ブランチ内で更新作業を行う](#h3-1)
+3. [レビューリクエストを作成する](#h3-2)
+4. [レビュワーが変更内容を確認して承認する（プロダクトデザイングループの作業）](#h3-3)
+5. [ブランチをマージする（プロダクトデザイングループの作業）](#h3-4)
+6. [ライブラリの更新を適用・公開する（プロダクトデザイングループの作業）](#h3-5)
+
+### 1. 「SmartHR UI」ファイルの更新作業用ブランチを作成する
+
+![スクリーンショット: ](./images/figma-branch-operation1.png)
+
+### 2. ブランチ内で更新作業を行う
+
+#### 「Create branch」を押す
+![スクリーンショット: ](./images/figma-branch-operation2.png)
+
+#### Branch にわかりやすい名前をつけて「Create」押す
+![スクリーンショット: ](./images/figma-branch-operation3.png)
+
+#### 該当箇所の変更や追加の作業を行う
+![スクリーンショット: ](./images/figma-branch-operation4.png)
+
+![スクリーンショット: ](./images/figma-branch-operation5.png)
+
+### 3. レビューリクエストを作成する
+
+#### 「Review and merge changes」を押す
+![スクリーンショット: ](./images/figma-branch-operation6.png)
+
+#### 変更内容を記入して「Request Review」を押す
+- タイトルは変更内容がわかるように書く
+- Description に変更内容を書く（やりたいこと、やったこと、やらなかったこと etc）
+- SmartHR UI のEdit権限があるメンバーを含むレビュワーを２名以上設定する
+- Reviewers にアサインした人にlackなどで Approve 依頼してください
+
+![スクリーンショット: ](./images/figma-branch-operation7.png)
+
+![スクリーンショット: ](./images/figma-branch-operation8.png)
+
+![スクリーンショット: ](./images/figma-branch-operation9.png)
+
+### 4. レビュワーが変更内容を確認して承認する（プロダクトデザイングループの作業）
+
+#### Reviewer が Branch を開く
+- 元ファイルのタイトル横の「1 branch」をクリックすると対象 Branch が選択できます
+
+#### Branch タイトル横の「In review」をクリックする
+
+#### 変更内容を確認して「Approve」を押す
+
+### 5. ブランチをマージする（プロダクトデザイングループの作業）
+- Reviewer から Approve をもらえたら、「Merge branch」を押してください
+
+![スクリーンショット: ](./images/figma-branch-operation10.png)
+
+### 6. ライブラリの更新を適用・公開する（プロダクトデザイングループの作業）
+
+- これをしないとライブラリとして読み込んでいるファイルに適用されません。
+- 現状はSmartHR UI のEdit権限があるメンバーしかできないようになっていますので、お急ぎの場合はslackでお知らせください。
+- Figma Community（外部）への公開作業もあわせてEdit権限があるメンバーが行います
+
+## 利用上の注意点
+
+### 守って欲しいルール
+
+
+
+### 推奨ルール
+
+
+
+## 社内のサポート体制
+
+
+## 資料集
+
+<!-- textlint-enable -->
