@@ -95,7 +95,7 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
                             </Link>
                             {depth3Item.children.length > 0 && (
                               <CaretButton
-                                aria-controls={`Depth4Items__${depth3Index}`}
+                                aria-controls={`Depth4Items__${depth2Index}__${depth3Index}`}
                                 aria-expanded={path.includes(depth3Item.link)}
                                 onClick={onClickCaret}
                               >
@@ -109,7 +109,7 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
 
                           {/* 第4階層 */}
                           {depth3Item.children.length > 0 && (
-                            <ul id={`Depth4Items__${depth3Index}`} aria-hidden={!path.includes(depth3Item.link)}>
+                            <ul id={`Depth4Items__${depth2Index}__${depth3Index}`} aria-hidden={!path.includes(depth3Item.link)}>
                               {depth3Item.children.map((depth4Item) => (
                                 <li key={depth4Item.link}>
                                   <Depth4Item>
