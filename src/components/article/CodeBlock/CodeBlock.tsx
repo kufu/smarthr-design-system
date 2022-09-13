@@ -8,7 +8,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } f
 import ts, { transpile } from 'typescript'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
-import { SDS_STORYBOOK_URL } from '@Constants/application'
+import { PATTERNS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import { CopyButton } from './CopyButton'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
@@ -19,6 +19,7 @@ type Props = {
   editable?: boolean
   withStyled?: boolean
   renderingComponent?: string
+  componentTitle?: string
 } & Pick<LiveProviderProps, 'scope'> & {
     gap?: Gap | SeparateGap
     align?: CSSProperties['alignItems']
@@ -52,6 +53,7 @@ export const CodeBlock: FC<Props> = ({
   scope,
   withStyled = false,
   renderingComponent,
+  componentTitle,
   gap,
   align,
   layout,
@@ -75,7 +77,7 @@ export const CodeBlock: FC<Props> = ({
       <Wrapper>
         {renderingComponent && (
           <LinkWrapper>
-            <TextLink href={`${SDS_STORYBOOK_URL}?path=/story/${renderingComponent.toLowerCase()}`} target="_blank">
+            <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
               別画面で開く
             </TextLink>
           </LinkWrapper>
