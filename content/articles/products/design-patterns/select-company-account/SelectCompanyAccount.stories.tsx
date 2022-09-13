@@ -3,6 +3,7 @@ import React from 'react'
 import { Header } from 'smarthr-ui'
 
 import { ComponentMeta } from '@storybook/react'
+// @ts-ignore
 import { SelectCompanyAccount as StoryComponent } from 'smarthr-patterns/src/patterns/SelectCompanyAccount/SelectCompanyAccount'
 
 export const SelectCompanyAccount = () => {

@@ -6,9 +6,16 @@ type Props = {
   componentName: 'SelectCompanyAccount'
 }
 
-export const DesignPatternCodeBlock: FC<Props> = ({ componentName }) => {
+export const DesignPatternCodeBlock: FC<Props> = ({ componentName, ...componentProps }) => {
   return (
-    <CodeBlock className="tsx" editable={true} withStyled={true} renderingComponent={componentName} layout="product">
+    <CodeBlock
+      className="tsx"
+      editable={true}
+      withStyled={true}
+      renderingComponent={componentName}
+      layout="product"
+      {...componentProps}
+    >
       {Components[componentName]}
     </CodeBlock>
   )

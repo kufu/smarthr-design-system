@@ -55,11 +55,20 @@ export const CodeBlock: FC<Props> = ({
   gap,
   align,
   layout,
+  ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }) => {
   const language = className ? className.replace(/language-/, '') : ''
-
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
-  const code = renderingComponent ? `${children.trim()}\nrender(<${renderingComponent} />)` : children.trim()
+
+  const renderingPropsText = Object.keys(componentProps)
+    .map((key) => {
+      return `${key}="${componentProps[key as keyof typeof componentProps]}"`
+    })
+    .join(' ')
+
+  const code = renderingComponent
+    ? `${children.trim()}\nrender(<${renderingComponent} ${renderingPropsText} />)`
+    : children.trim()
   const TextLink = ui.TextLink
   if (editable) {
     return (

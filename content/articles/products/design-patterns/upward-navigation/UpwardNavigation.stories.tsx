@@ -3,10 +3,11 @@ import React from 'react'
 import { Header } from 'smarthr-ui'
 
 import { ComponentMeta } from '@storybook/react'
-import { UpwardNavigation as StoryComponent } from './UpwardNavigation'
+// @ts-ignore
+import { UpwardNavigation as StoryComponent } from 'smarthr-patterns/src/patterns/UpwardNavigation/UpwardNavigation'
 
 export const UpwardNavigation = () => {
-  return <StoryComponent />
+  return <StoryComponent withUpwardLink={true} withAppNavi={false} />
 }
 
 export default {
