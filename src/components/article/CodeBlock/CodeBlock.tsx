@@ -8,7 +8,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } f
 import ts, { transpile } from 'typescript'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
-import { SDS_STORYBOOK_IFRAME } from '@Constants/application'
+import { SDS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import { CopyButton } from './CopyButton'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
@@ -75,7 +75,7 @@ export const CodeBlock: FC<Props> = ({
       <Wrapper>
         {renderingComponent && (
           <LinkWrapper>
-            <TextLink href={`${SDS_STORYBOOK_IFRAME}?id=${renderingComponent.toLowerCase()}&viewMode=story`} target="_blank">
+            <TextLink href={`${SDS_STORYBOOK_URL}?path=/story/${renderingComponent.toLowerCase()}`} target="_blank">
               別画面で開く
             </TextLink>
           </LinkWrapper>
