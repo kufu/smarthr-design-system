@@ -37,7 +37,7 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
   let ogCloudinaryUrl: string | null = null
   if (ogTitle) {
     ogCloudinaryUrl = `https://res.cloudinary.com/${
-      process.env.CLOUDINARY_CLOUD_NAME
+      process.env.GATSBY_CLOUDINARY_CLOUD_NAME
     }/image/upload/w_1200,c_fit,fl_relative,l_text:sds:notosansbold.otf_72_bold_normal_center:${encodeURIComponent(
       ogTitle,
     )},w_1100/fl_layer_apply,g_center,y_-0.05/sds/sds_ogp_base.jpg`
