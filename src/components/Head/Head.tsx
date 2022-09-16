@@ -18,6 +18,7 @@ const query = graphql`
 
 type Props = {
   title?: string
+  ogTitle?: string
   description?: string
   meta?: Array<{
     name: string
@@ -25,13 +26,22 @@ type Props = {
   }>
 }
 
-export const Head: FC<Props> = ({ title, description, meta = [] }) => {
+export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
   const data = useStaticQuery<GatsbyTypes.HeadQuery>(query)
   const siteMetadata = data.site?.siteMetadata
 
   const pageTitle = title ? `${title} | ${siteMetadata?.title}` : siteMetadata?.title
   const metaDescription = description || siteMetadata?.description
   const ogImagePath = `${siteMetadata?.siteUrl}${siteMetadata?.ogimage}`
+
+  let ogCloudinaryUrl: string | null = null
+  if (ogTitle) {
+    ogCloudinaryUrl = `https://res.cloudinary.com/${
+      process.env.GATSBY_CLOUDINARY_CLOUD_NAME
+    }/image/upload/w_1200,c_fit,fl_relative,l_text:sds:notosansbold.otf_72_bold_normal_center:${encodeURIComponent(
+      ogTitle,
+    )},w_1100/fl_layer_apply,g_center,y_-0.05/sds/sds_ogp_base.jpg`
+  }
 
   return (
     <Helmet
@@ -54,7 +64,7 @@ export const Head: FC<Props> = ({ title, description, meta = [] }) => {
           property: 'og:type',
           content: 'website',
         },
-        { property: 'og:image', content: ogImagePath },
+        { property: 'og:image', content: ogCloudinaryUrl || ogImagePath },
         {
           name: 'twitter:card',
           content: 'summary',
