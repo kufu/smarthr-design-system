@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Header } from 'smarthr-ui'
-import { ResizableContainer } from '../ComponentStory/ResizableContainer'
+import { ResizableContainer } from '@Components/ComponentStory'
 import { WrapperBase } from './WrapperBase'
 
 export const ProductWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (

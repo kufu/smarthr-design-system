@@ -35,20 +35,20 @@ export const Category: FC<Props> = ({ data }) => {
       </NavigationText>
       <NavigationLinksContainer>
         {data.imagePath ? (
-          <CategoryImage>
+          <CategoryImageWrapper>
             <Link to={data.path}>
               <img src={data.imagePath} width="832" height="144" alt="基本原則" />
             </Link>
-          </CategoryImage>
+          </CategoryImageWrapper>
         ) : (
           <NavigationLinks>
             {data.items.map((item, i) => {
               return (
                 <li key={i}>
                   <Link to={item.path}>
-                    <ThumbnailImage>
-                      <img src={item.imagePath} width="262" height="144" alt="" />
-                    </ThumbnailImage>
+                    <ThumbnailImageWrapper>
+                      <img src={item.imagePath} width="262" height="144" alt={item.title} />
+                    </ThumbnailImageWrapper>
                     <p>{item.title}</p>
                   </Link>
                 </li>
@@ -99,7 +99,7 @@ const NavigationLinksContainer = styled.div`
   }
 `
 
-const ThumbnailImage = styled.div`
+const ThumbnailImageWrapper = styled.div`
   position: relative;
   width: 100%;
   max-height: 144px;
@@ -156,7 +156,7 @@ const NavigationLinks = styled.ul`
         line-height: 1.3;
       }
       &:hover {
-        ${ThumbnailImage} {
+        ${ThumbnailImageWrapper} {
           border-color: ${CSS_COLOR.TEXT_GREY};
           &::after {
             width: 100%;
@@ -170,7 +170,7 @@ const NavigationLinks = styled.ul`
   }
 `
 
-const CategoryImage = styled.div`
+const CategoryImageWrapper = styled.div`
   width: 100%;
   height: 144px;
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
