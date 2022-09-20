@@ -44,9 +44,9 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
             <ul className="-optional">
               <li>
                 <StyledAnchorButton
+                  {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
                   className={loginStatus === 'pending' ? 'loginStatusPending' : ''}
                   size="s"
-                  {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
                 >
                   {loginLabel}
                 </StyledAnchorButton>

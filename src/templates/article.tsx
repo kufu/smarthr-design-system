@@ -325,7 +325,7 @@ const Article: FC<Props> = ({ data }) => {
             {/* 前へ・次へ表示 */}
             <MainArticleNav>
               {prevPageIndex !== null && (
-                <PrevArticleLink>
+                <PrevArticleLinkWrapper>
                   <RoundedBoxLink
                     path={sidebarItems[prevPageIndex].link}
                     label="前へ"
@@ -333,10 +333,10 @@ const Article: FC<Props> = ({ data }) => {
                     align="left"
                     caretPosition="left"
                   />
-                </PrevArticleLink>
+                </PrevArticleLinkWrapper>
               )}
               {nextPageIndex !== null && (
-                <NextArticleLink>
+                <NextArticleLinkWrapper>
                   <RoundedBoxLink
                     path={sidebarItems[nextPageIndex].link}
                     label="次へ"
@@ -344,7 +344,7 @@ const Article: FC<Props> = ({ data }) => {
                     align="right"
                     caretPosition="right"
                   />
-                </NextArticleLink>
+                </NextArticleLinkWrapper>
               )}
             </MainArticleNav>
           </MainArticle>
@@ -472,11 +472,11 @@ const MainArticleNav = styled.ul`
   }
 `
 
-const PrevArticleLink = styled.li`
+const PrevArticleLinkWrapper = styled.li`
   grid-area: left;
 `
 
-const NextArticleLink = styled.li`
+const NextArticleLinkWrapper = styled.li`
   grid-area: right;
 `
 
