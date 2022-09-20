@@ -47,7 +47,9 @@ export const Category: FC<Props> = ({ data }) => {
                 <li key={i}>
                   <Link to={item.path}>
                     <ThumbnailImageWrapper>
-                      <img src={item.imagePath} width="262" height="144" alt={item.title} />
+                      {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
+                      {/* eslint-disable-next-line smarthr/a11y-image-has-alt-attribute */}
+                      <img src={item.imagePath} width="262" height="144" alt="" />
                     </ThumbnailImageWrapper>
                     <p>{item.title}</p>
                   </Link>
