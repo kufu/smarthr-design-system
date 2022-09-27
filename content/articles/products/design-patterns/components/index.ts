@@ -1,4 +1,6 @@
-import SelectCompanyAccount from '!!raw-loader!../select-company-account/SelectCompanyAccount'
-import UpwardNavigation from '!!raw-loader!../upward-navigation/UpwardNavigation'
+// @ts-ignore
+import SelectCompanyAccount from '!!raw-loader!smarthr-patterns/src/patterns/SelectCompanyAccount/SelectCompanyAccount'
+// @ts-ignore
+import UpwardNavigation from '!!raw-loader!smarthr-patterns/src/patterns/UpwardNavigation/UpwardNavigation'
 
 export { SelectCompanyAccount, UpwardNavigation }

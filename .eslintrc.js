@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['smarthr', 'plugin:storybook/recommended'],
+  extends: ['smarthr'],
   overrides: [{
     files: '*.mdx',
     extends: ['smarthr', 'plugin:mdx/recommended'],

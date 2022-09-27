@@ -55,9 +55,9 @@ export const FootStaticLinks: FC<Props> = () => {
   return (
     <>
       <StyledAnchorButton
+        {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
         size="s"
         className={loginStatus === 'pending' ? 'loginStatusPending loginButton' : 'loginButton'}
-        {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
       >
         {loginLabel}
       </StyledAnchorButton>

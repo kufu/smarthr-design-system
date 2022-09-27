@@ -1,14 +1,16 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Header } from 'smarthr-ui'
-import { ResizableContainer } from '../ComponentStory/ResizableContainer'
+import { ResizableContainer } from '@Components/ComponentStory'
 import { WrapperBase } from './WrapperBase'
 
 export const ProductWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Wrapper>
     <ResizableContainer defaultWidth="100%" defaultHeight="300px">
-      <Header logoHref="#" />
-      <Body>{children}</Body>
+      <BodyWrapper>
+        <Header logoHref="#" />
+        <Body>{children}</Body>
+      </BodyWrapper>
     </ResizableContainer>
   </Wrapper>
 )
@@ -80,4 +82,10 @@ const padding = css(
 )
 const Body = styled.div`
   ${padding}
+`
+
+const BodyWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
 `
