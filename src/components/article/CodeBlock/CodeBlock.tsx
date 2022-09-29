@@ -8,7 +8,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } f
 import ts, { transpile } from 'typescript'
 import { ComponentPreview } from '../../ComponentPreview'
 import * as ui from 'smarthr-ui'
-import { SDS_STORYBOOK_IFRAME } from '@Constants/application'
+import { PATTERNS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import { CopyButton } from './CopyButton'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
@@ -19,6 +19,7 @@ type Props = {
   editable?: boolean
   withStyled?: boolean
   renderingComponent?: string
+  componentTitle?: string
 } & Pick<LiveProviderProps, 'scope'> & {
     gap?: Gap | SeparateGap
     align?: CSSProperties['alignItems']
@@ -52,21 +53,31 @@ export const CodeBlock: FC<Props> = ({
   scope,
   withStyled = false,
   renderingComponent,
+  componentTitle,
   gap,
   align,
   layout,
+  ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }) => {
   const language = className ? className.replace(/language-/, '') : ''
-
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
-  const code = renderingComponent ? `${children.trim()}\nrender(<${renderingComponent} />)` : children.trim()
+
+  const renderingPropsText = Object.keys(componentProps)
+    .map((key) => {
+      return `${key}="${componentProps[key as keyof typeof componentProps]}"`
+    })
+    .join(' ')
+
+  const code = renderingComponent
+    ? `${children.trim()}\nrender(<${renderingComponent} ${renderingPropsText} />)`
+    : children.trim()
   const TextLink = ui.TextLink
   if (editable) {
     return (
       <Wrapper>
         {renderingComponent && (
           <LinkWrapper>
-            <TextLink href={`${SDS_STORYBOOK_IFRAME}?id=${renderingComponent.toLowerCase()}&viewMode=story`} target="_blank">
+            <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
               別画面で開く
             </TextLink>
           </LinkWrapper>
@@ -109,9 +120,9 @@ export const CodeBlock: FC<Props> = ({
           <CopyButton text={code} />
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
+              <div {...getLineProps({ line, key: i })} key={i}>
                 {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
+                  <span {...getTokenProps({ token, key })} key={key} />
                 ))}
               </div>
             ))}
