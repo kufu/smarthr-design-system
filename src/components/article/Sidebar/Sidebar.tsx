@@ -79,7 +79,7 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
                         aria-expanded={path.includes(depth2Item.link)}
                         onClick={onClickCaret}
                       >
-                        <FaChevronDownIcon size={14} visuallyHiddenText={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
+                        <FaChevronDownIcon size={14} alt={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
                       </CaretButton>
                     )}
                   </Depth2Item>
@@ -99,10 +99,7 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
                                 aria-expanded={path.includes(depth3Item.link)}
                                 onClick={onClickCaret}
                               >
-                                <FaChevronDownIcon
-                                  size={14}
-                                  visuallyHiddenText={path.includes(depth3Item.link) ? '閉じる' : '開く'}
-                                />
+                                <FaChevronDownIcon size={14} alt={path.includes(depth3Item.link) ? '閉じる' : '開く'} />
                               </CaretButton>
                             )}
                           </Depth3Item>

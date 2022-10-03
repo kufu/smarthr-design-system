@@ -19,7 +19,7 @@ import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
 ![ドロップダウンボタンの構成図](./images/button/multiple-operation-button-overview.png)
 
 ### 1. アクションボタン
-複数の操作がまとまっていることを示唆するために、[Secondaryボタン](/products/components/button/#h3-1)の`アイコン付き（右）`を使い、アイコンには「<FaCaretDownIcon visuallyHiddenText="展開" />（`FaCaretDownIcon`）」を使います。
+複数の操作がまとまっていることを示唆するために、[Secondaryボタン](/products/components/button/#h3-1)の`アイコン付き（右）`を使い、アイコンには「<FaCaretDownIcon alt="展開" />（`FaCaretDownIcon`）」を使います。
 
 ### 2. ドロップダウン
 
@@ -102,7 +102,7 @@ import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
 
 | 要素 | 説明 |
 | :--- | :--- |
-| <span style={{ whiteSpace: 'nowrap' }}>アクションボタン</span> | [Secondaryボタン](/products/components/button/#h3-1)の`アイコンのみ`で、アイコンには「<FaEllipsisHIcon visuallyHiddenText="その他の操作" />（`FaEllipsisHIcon`）」を使います。ラベルは視覚的に省けますが、**必ず代替テキストを含めて**何のボタンなのかを伝えましょう。 |
+| <span style={{ whiteSpace: 'nowrap' }}>アクションボタン</span> | [Secondaryボタン](/products/components/button/#h3-1)の`アイコンのみ`で、アイコンには「<FaEllipsisHIcon alt="その他の操作" />（`FaEllipsisHIcon`）」を使います。ラベルは視覚的に省けますが、**必ず代替テキストを含めて**何のボタンなのかを伝えましょう。 |
 | ドロップダウン | 「D. 異なる複数の操作」と同じです。 |
 
 ## レイアウト
@@ -127,8 +127,8 @@ type Props = {
 }
 
 const DropdownButtons: React.FC<Props> = ({ label = 'その他の操作', children, triggerSize, onlyIconTrigger = false }) => {
-  const triggerLabel = useMemo(() => onlyIconTrigger ? <FaEllipsisHIcon visuallyHiddenText={label} /> : label, [onlyIconTrigger, label])
-  const triggerSuffix = useMemo(() => onlyIconTrigger ? <></> : <FaCaretDownIcon visuallyHiddenText="候補を開く" />, [onlyIconTrigger])
+  const triggerLabel = useMemo(() => onlyIconTrigger ? <FaEllipsisHIcon alt={label} /> : label, [onlyIconTrigger, label])
+  const triggerSuffix = useMemo(() => onlyIconTrigger ? <></> : <FaCaretDownIcon alt="候補を開く" />, [onlyIconTrigger])
 
   return (
     <Dropdown>
