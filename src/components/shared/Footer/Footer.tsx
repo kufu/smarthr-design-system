@@ -51,6 +51,20 @@ const query = graphql`
         }
       }
     }
+    accessibility: allMdx(
+      filter: { fields: { category: { eq: "accessibility" }, hierarchy: { glob: "*/*" } } }
+      sort: { fields: frontmatter___order }
+    ) {
+      nodes {
+        id
+        frontmatter {
+          title
+        }
+        fields {
+          slug
+        }
+      }
+    }
     products: allMdx(
       filter: { fields: { category: { eq: "products" }, hierarchy: { glob: "*/*" } } }
       sort: { fields: frontmatter___order }
@@ -86,6 +100,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
     concept: { nodes: concept },
     foundation: { nodes: foundation },
     basics: { nodes: basics },
+    accessibility: { nodes: accessibility },
     products: { nodes: products },
     communication: { nodes: communication },
   } = useStaticQuery<GatsbyTypes.FooterQuery>(query)
@@ -115,8 +130,6 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                 })}
               </StyledUl>
             )}
-          </div>
-          <div>
             <StyledH3>
               <Link to="/foundation/">基本原則</Link>
               {foundation.length > 0 && (
@@ -133,12 +146,30 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                 </StyledUl>
               )}
             </StyledH3>
+          </div>
+          <div>
             <StyledH3>
               <Link to="/basics/">基本要素</Link>
             </StyledH3>
             {basics.length > 0 && (
               <StyledUl>
                 {basics.map(({ fields, frontmatter }) => {
+                  if (fields?.slug === undefined) return null
+                  if (frontmatter?.title === undefined) return null
+                  return (
+                    <li key={fields.slug}>
+                      <Link to={fields.slug}>{frontmatter.title}</Link>
+                    </li>
+                  )
+                })}
+              </StyledUl>
+            )}
+            <StyledH3>
+              <Link to="/products/">アクセシビリティ</Link>
+            </StyledH3>
+            {accessibility.length > 0 && (
+              <StyledUl>
+                {accessibility.map(({ fields, frontmatter }) => {
                   if (fields?.slug === undefined) return null
                   if (frontmatter?.title === undefined) return null
                   return (
@@ -330,7 +361,7 @@ const StyledH3 = styled.h3`
 `
 
 const StyledUl = styled.ul`
-  margin: 0;
+  margin: 0 0 16px;
   padding: 0;
   list-style: none;
   color: ${CSS_COLOR.TEXT_BLACK};
