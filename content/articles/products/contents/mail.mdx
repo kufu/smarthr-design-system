@@ -1,0 +1,67 @@
+---
+title: '通知メール'
+description: 'アプリケーションから送信するメールのライティングについてまとめています。'
+order: 7
+---
+
+通知メールのライティングは、基本的にライティングガイドライン、用字用語に準拠します。  
+通知メール特有の気をつけるべきポイントとライティングパターンを記載しています。
+
+## 件名
+
+### 件名の基本的な考え方
+
+通知メールの件名には、目にしたユーザーが、求められているアクションを把握できるよう簡潔に記載します。  
+ユーザーにメール本文の概要を伝え、ユーザーがすぐにメールを開封する必要があるかなどの判断が下せる情報を書くことを意識します。
+
+**例**  
+「評価対象者を確認してください。評価開始のお知らせ「{評価プロジェクトタイトル}」｜{会社名}［人事評価］」
+
+![](https://s3-ap-northeast-1.amazonaws.com/kufutools-codimd/uploads/upload_62a886f6893c70a50af28aa0ec00d9a5.png)
+
+
+### 件名のライティングルール
+
+1. 句点はHeadingのルール準じ、省略する
+    * 基本的に省略とし、2文以上になる場合は記載します。
+2. 会社名、機能名の表記
+    * 件名の後ろに`｜{会社名}`を追加します。
+        * `｜`は、全角
+        * 会社名は、SmartHR基本情報に登録してある情報
+    * Suffixとして、`［{機能名}］`を付けても構いません。
+      * 例えば、［分析レポート］
+    * 「SmartHR」は、送信元として明記されるので省略します。
+3. 従業員名の表記
+    * 姓名の間は半角アキ
+    * 従業員情報に紐づいていない場合は、アカウント情報（＝ユーザー）のメールアドレスを表記します
+
+4. リマインド通知の表記
+    * Prefixとして、`【再送】`を追加します。
+
+
+## 本文
+
+### 本文の基本的な考え方
+
+### メール本文のライティングルール
+
+1. URLへの誘導文で、`アクセス`という表現は使わないようにします。
+
+
+例えば、
+`下記URLから確認してください。`
+
+
+## フッター
+
+### メールフッターの基本的な考え方
+
+<iframe class="airtable-embed" src="https://airtable.com/embed/shrQEmyeGDOobmZr2?backgroundColor=teal&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+
+### フッターのライティングルール
+1. アプリケーション提供会社名の表記
+  * `株式会社SmartHR　https://smarthr.jp/`の部分は、サードパーティー製アプリケーションの場合、各社の社名とリンクに置き換えてください。
+
+### 参照ページ
+* [記述記号は全角を使用し、前後にスペースは入れない｜SmartHR Design System](https://smarthr.design/products/contents/writing-style/#recrVEn3NYr2AV33o-0)
+* [日付、時刻の形式｜SmartHR Design System](https://smarthr.design/products/contents/idiomatic-usage/usage/#recwR0nuqmNcXu06t-0)
