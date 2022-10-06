@@ -103,10 +103,10 @@ export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, chi
       >
         {children}
         <VerticalResizeHandler onPointerDown={handleVerticalPointerDown}>
-          <FaGripLinesVerticalIcon visuallyHiddenText="ドラッグして幅を変更" />
+          <FaGripLinesVerticalIcon alt="ドラッグして幅を変更" />
         </VerticalResizeHandler>
         <HorizontalResizeHandler onPointerDown={handleHorizontalPointerDown}>
-          <FaGripLinesIcon visuallyHiddenText="ドラッグして高さを変更" />
+          <FaGripLinesIcon alt="ドラッグして高さを変更" />
         </HorizontalResizeHandler>
       </ResizeArea>
     </Container>

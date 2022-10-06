@@ -32,7 +32,7 @@ import { DesignPatternCodeBlock } from '../DesignPatternCodeBlock'
 
 
 ### 2. アイコン
-階層構造を認知させるために[TextLink](/products/components/text-link/)の`prefix`を使い、リンクテキストの左側に <FaArrowLeftIcon visuallyHiddenText="左矢印" /> アイコン（`FaArrowLeftIcon`）を置きます。  
+階層構造を認知させるために[TextLink](/products/components/text-link/)の`prefix`を使い、リンクテキストの左側に <FaArrowLeftIcon alt="左矢印" /> アイコン（`FaArrowLeftIcon`）を置きます。  
 ※ [TextLink](/products/components/text-link/)が使えない場合は、アイコンの色に[`TEXT_LINK`](/products/design-tokens/color/#h2-2)を使います。
 
 
@@ -57,18 +57,18 @@ import { DesignPatternCodeBlock } from '../DesignPatternCodeBlock'
 ### インデント
 基本的に、リンクテキストとメインコンテンツの左端を揃えます。
 
-<FaArrowLeftIcon visuallyHiddenText="左矢印" /> アイコンとリンクテキストとの余白（4px）分だけ、メインコンテンツより左に飛び出して配置します。
+<FaArrowLeftIcon alt="左矢印" /> アイコンとリンクテキストとの余白（4px）分だけ、メインコンテンツより左に飛び出して配置します。
 これは「一階層上に遷移するリンクである」ことをユーザーに示し、認知を促すための装飾です。
 
-ただし、以下に示すように、<FaArrowLeftIcon visuallyHiddenText="左矢印" /> アイコンのインデント分の余白を十分に確保できない場合は例外とします。
+ただし、以下に示すように、<FaArrowLeftIcon alt="左矢印" /> アイコンのインデント分の余白を十分に確保できない場合は例外とします。
 
 #### 例外1. メインコンテンツにサイドナビゲーションが隣接する場合
-[基本機能の共通設定](/products/design-patterns-core-features/main-admin/)のように、メインコンテンツにサイドナビゲーションが隣接する場合は、<FaArrowLeftIcon visuallyHiddenText="左矢印" /> アイコンをメインコンテンツの左端に合わせて配置します。
+[基本機能の共通設定](/products/design-patterns-core-features/main-admin/)のように、メインコンテンツにサイドナビゲーションが隣接する場合は、<FaArrowLeftIcon alt="左矢印" /> アイコンをメインコンテンツの左端に合わせて配置します。
 
 ![スクリーンショット:見出しや本文といったメインコンテンツの左端とアイコンの左端が揃っている](./images/upward-navigation-withsidenav.png)
 
 #### 例外2. モバイルでの表示
-モバイル（スマートフォンや画面幅が狭い場合）では、<FaArrowLeftIcon visuallyHiddenText="左矢印" /> アイコンをメインコンテンツの左端に合わせて配置します。
+モバイル（スマートフォンや画面幅が狭い場合）では、<FaArrowLeftIcon alt="左矢印" /> アイコンをメインコンテンツの左端に合わせて配置します。
 （参考：[メディアクエリ](/products/design-tokens/media-query/)）
 
 ![画面幅が狭い場合のスクリーンショット:見出しや本文といったメインコンテンツの左端とアイコンの左端が揃っている](./images/upward-navigation-mobile.png)
