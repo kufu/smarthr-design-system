@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import type { FC } from 'react'
 import gotchaItemJson from '../../data/gotchaItem.json'
 import styled, { css } from 'styled-components'
@@ -17,9 +17,16 @@ type GotchaItem = {
 const gotchaItem = gotchaItemJson as GotchaItem[]
 
 export const Gotcha: FC<unknown> = () => {
-  const initialIndex = getRandomNum(gotchaItem.length, -1)
-  const [currentItemIndex, setCurrentItemIndex] = useState(initialIndex)
-  const [nextItemIndex, setNextItemIndex] = useState(getRandomNum(gotchaItem.length, initialIndex))
+  // ランダムな画像＋説明文の表示をするため、SSR/CSRで表示内容が異なる可能性があり、コンソールにエラーが出る。
+  // エラー回避のためSSR時はindexを固定し、CSR時のみ実行される`useEffect`内でランダムアイテムの選択を行う。
+  const [currentItemIndex, setCurrentItemIndex] = useState(-1)
+  const [nextItemIndex, setNextItemIndex] = useState(-1)
+  useEffect(() => {
+    const initialIndex = getRandomNum(gotchaItem.length, -1)
+    setCurrentItemIndex(initialIndex)
+    setNextItemIndex(getRandomNum(gotchaItem.length, initialIndex))
+  }, [])
+
   const [isAnimated, setIsAnimated] = useState(false)
   const [shouldDisabled, setShouldDisabled] = useState(true)
 
@@ -76,9 +83,9 @@ export const Gotcha: FC<unknown> = () => {
   return (
     <Wrapper>
       <Heading>
-        {typeof window !== 'undefined' ? (
-          <ImageContainer className={isAnimated ? 'runAnimation' : ''} aria-busy={isAnimated}>
-            {/* 次の画像 */}
+        <ImageContainer className={isAnimated ? 'runAnimation' : ''} aria-busy={isAnimated}>
+          {/* 次の画像 */}
+          {nextItemIndex > -1 && (
             <img
               src={gotchaItem[nextItemIndex].image}
               width="1272"
@@ -87,8 +94,10 @@ export const Gotcha: FC<unknown> = () => {
               aria-hidden="true"
               onLoad={() => nextImgOnload()}
             />
-            {/* 表示中の画像 */}
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+          )}
+          {/* 表示中の画像 */}
+          {currentItemIndex > -1 && (
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
             <img
               src={gotchaItem[currentItemIndex].image}
               width="1272"
@@ -97,8 +106,8 @@ export const Gotcha: FC<unknown> = () => {
               onAnimationEnd={() => finishAnimation()}
               onLoad={() => currentImgOnLoad()}
             />
-          </ImageContainer>
-        ) : null}
+          )}
+        </ImageContainer>
         {/* ガチャボタン */}
         <GotchaButton type="button" onClick={() => runGotcha()} disabled={shouldDisabled}>
           <FaRedoIcon />
@@ -116,16 +125,18 @@ export const Gotcha: FC<unknown> = () => {
       </Heading>
 
       {/* 関連リンク */}
-      <GotchaLinks>
-        <p>{gotchaItem[currentItemIndex].title}</p>
-        <ul>
-          {gotchaItem[currentItemIndex].links.map((link, index) => (
-            <li key={index}>
-              <Link to={link.url}>{link.text}</Link>
-            </li>
-          ))}
-        </ul>
-      </GotchaLinks>
+      {currentItemIndex > -1 && (
+        <GotchaLinks>
+          <p>{gotchaItem[currentItemIndex].title}</p>
+          <ul>
+            {gotchaItem[currentItemIndex].links.map((link, index) => (
+              <li key={index}>
+                <Link to={link.url}>{link.text}</Link>
+              </li>
+            ))}
+          </ul>
+        </GotchaLinks>
+      )}
     </Wrapper>
   )
 }
