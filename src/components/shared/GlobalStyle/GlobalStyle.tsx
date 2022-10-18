@@ -41,6 +41,6 @@ export const GlobalStyle = createGlobalStyle`
   table td {
     box-sizing: border-box;
     padding: 0.5rem 1rem;
-    word-break: break-all;
+    word-break: break-word;
   }
 `
