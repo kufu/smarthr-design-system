@@ -272,7 +272,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
     'col1 . col2' auto
     'col1 . col2' auto
     'copy   copy copy' auto
-    / auto minmax(40px, 1fr) auto;
+    / auto minmax(80px, 1fr) auto;
   align-items: start;
   max-width: 1192px;
   ${({ isArticlePage }) =>
@@ -287,13 +287,13 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
           padding-top: 72px;
         `}
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
       'col1 . col2' auto
       'col1 . col2' auto
       'col1 . col2' auto
       'copy   copy copy' auto
-      / auto 40px 1fr;
+      / auto 80px 1fr;
     padding-top: 32px;
   }
 
@@ -330,7 +330,7 @@ const Col2Container = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template-columns: 1fr;
     gap: 8px;
   }
