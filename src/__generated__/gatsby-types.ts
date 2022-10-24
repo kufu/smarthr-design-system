@@ -3026,6 +3026,9 @@ type FooterQuery = { readonly concept: { readonly nodes: ReadonlyArray<(
     )> }, readonly basics: { readonly nodes: ReadonlyArray<(
       Pick<Mdx, 'id'>
       & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> }
+    )> },readonly accessibility: { readonly nodes: ReadonlyArray<(
+      Pick<Mdx, 'id'>
+      & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> }
     )> }, readonly products: { readonly nodes: ReadonlyArray<(
       Pick<Mdx, 'id'>
       & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'slug'>> }
