@@ -32,7 +32,7 @@ module.exports = ({ markdownAST }) => {
     // 参考
     // - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/index.js
     patch(data, `id`, id)
-    patch(data, `htmlAttributes`, id)
+    patch(data, `htmlAttributes`, {})
     patch(data, `hProperties`, {})
     patch(data.htmlAttributes, `id`, id)
     patch(data.hProperties, `id`, id)
