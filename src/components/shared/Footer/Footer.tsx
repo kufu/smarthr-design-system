@@ -165,7 +165,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
               </StyledUl>
             )}
             <StyledH3>
-              <Link to="/products/">アクセシビリティ</Link>
+              <Link to="/accessibility/">アクセシビリティ</Link>
             </StyledH3>
             {accessibility.length > 0 && (
               <StyledUl>
