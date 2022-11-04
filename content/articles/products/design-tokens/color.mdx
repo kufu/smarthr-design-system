@@ -12,8 +12,9 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 
 色は情報を伝え、動作を示し、反応を促しますが、唯一の視覚的手段にしてはいけません。すべての利用者が同じ情報を知覚できる必要があります。
 
+## セマンティック
 
-## メイン
+### メイン
 
 プライマリーカラーである`MAIN`と、コンポーネントのベースカラーとなる`WHITE`を定めています。
 
@@ -25,7 +26,7 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 </ColorPalettesWrapper>
 
 
-## アクセント
+### アクセント
 コンテキストに応じた色を定めています。
 
 `MAIN`と合わせて、ユーザーのメインアクションや、アクションに対する結果、ヘルプの表示、オブジェクトの状態を表します。
@@ -38,7 +39,7 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 </ColorPalettesWrapper>
 
 
-## 文字
+### 文字
 
 テキストの状態に応じた文字の色を定めています。
 
@@ -53,7 +54,7 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 </ColorPalettesWrapper>
 
 
-## コンポーネント
+### コンポーネント
 
 コンポーネントを構成する要素に必要な色を定めています。
 
@@ -71,6 +72,39 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
   <ColorPalette hexCode="#ffffff00" colorName="TRANSPARENT" description="デザインツールだけで使う専用スタイル。コンポーネントの枠線などを消すときのAppearanceに使用" />
 </ColorPalettesWrapper>
 
+## カラーパレット
+意味を持たない視覚設計等に色を使用する場合は以下のカラーパレットから選んでください。
+
+### プリミティブ
+<ColorPalettesWrapper>
+  <ColorPalette hexCode="#030302" colorName="BLACK" />
+  <ColorPalette hexCode="#fff" colorName="WHITE"/>
+  <ColorPalette hexCode="#0077c7" colorName="BLUE_100" />
+  <ColorPalette hexCode="#0071c1" colorName="BLUE_101" />
+  <ColorPalette hexCode="#e01e5a" colorName="RED_100" />
+  <ColorPalette hexCode="#ff8800" colorName="ORANGE_100" />
+  <ColorPalette hexCode="#ffcc17" colorName="YELLOW_100" />
+  <ColorPalette hexCode="#00c4cc" colorName="SMARTHR_BLUE"/>
+</ColorPalettesWrapper>
+
+### グレースケール
+<ColorPalettesWrapper>
+  <ColorPalette hexCode="#f8f7f6" colorName="GREY_5" />
+  <ColorPalette hexCode="#f5f4f3" colorName="GREY_6"/>
+  <ColorPalette hexCode="#f2f1f0" colorName="GREY_7" />
+  <ColorPalette hexCode="#edebe8" colorName="GREY_9" />
+  <ColorPalette hexCode="#d6d3d0" colorName="GREY_20" />
+  <ColorPalette hexCode="#c1bdb7" colorName="GREY_30" />
+  <ColorPalette hexCode="#706d65" colorName="GREY_65" />
+  <ColorPalette hexCode="#23221e" colorName="GREY_100"/>
+</ColorPalettesWrapper>
+
+### 透明色
+<ColorPalettesWrapper>
+  <ColorPalette isHexCode={false} hexCode="rgba(3,3,2,0.15)" colorName="TRANSPARENCY_15"/>
+  <ColorPalette isHexCode={false} hexCode="rgba(3,3,2,0.30)" colorName="TRANSPARENCY_30" />
+  <ColorPalette isHexCode={false} hexCode="rgba(3,3,2,0.50)" colorName="TRANSPARENCY_50" />
+</ColorPalettesWrapper>
 
 ## 色の新旧比較
 2021年2月にプロダクトの色をアップデートしました。
@@ -81,124 +115,124 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 #### MAIN
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#0077c7" colorName="新" description="" />
-  <ColorPalette hexCode="#00a5ab" colorName="旧" description="" />
+  <ColorPalette hexCode="#0077c7" colorName="新" />
+  <ColorPalette hexCode="#00a5ab" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### WHITE
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#ffffff" colorName="新 ※変更なし" description="" />
-  <ColorPalette hexCode="#ffffff" colorName="旧" description="" />
+  <ColorPalette hexCode="#ffffff" colorName="新 ※変更なし" />
+  <ColorPalette hexCode="#ffffff" colorName="旧" />
 </ColorPalettesWrapper>
 
 ### アクセント
 #### DANGER
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#e01e5a" colorName="新" description="" />
-  <ColorPalette hexCode="#ef475b" colorName="旧" description="" />
+  <ColorPalette hexCode="#e01e5a" colorName="新" />
+  <ColorPalette hexCode="#ef475b" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### WARNING（WARNING_YELLOW）
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#ffcc17" colorName="新" description="" />
-  <ColorPalette hexCode="#ff8800" colorName="旧" description="" />
+  <ColorPalette hexCode="#ffcc17" colorName="新" />
+  <ColorPalette hexCode="#ff8800" colorName="旧" />
 </ColorPalettesWrapper>
 
 ### 文字
 #### TEXT_BLACK
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#23221e" colorName="新" description="" />
-  <ColorPalette hexCode="#333333" colorName="旧" description="" />
+  <ColorPalette hexCode="#23221e" colorName="新" />
+  <ColorPalette hexCode="#333333" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### TEXT_GREY
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#706d65" colorName="新" description="" />
-  <ColorPalette hexCode="#767676" colorName="旧" description="" />
+  <ColorPalette hexCode="#706d65" colorName="新" />
+  <ColorPalette hexCode="#767676" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### TEXT_LINK
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#0071c1" colorName="新" description="" />
-  <ColorPalette hexCode="#007bc2" colorName="旧" description="" />
+  <ColorPalette hexCode="#0071c1" colorName="新" />
+  <ColorPalette hexCode="#007bc2" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### TEXT_DISABLED
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#c1bdb7" colorName="新" description="" />
-  <ColorPalette hexCode="#c1c1c1" colorName="旧" description="" />
+  <ColorPalette hexCode="#c1bdb7" colorName="新" />
+  <ColorPalette hexCode="#c1c1c1" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### TEXT_WHITE（新のみ）
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#ffffff" colorName="新" description="" />
+  <ColorPalette hexCode="#ffffff" colorName="新" />
 </ColorPalettesWrapper>
 
 ### コンポーネント
 #### BORDER
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#d6d3d0" colorName="新" description="" />
-  <ColorPalette hexCode="#d6d6d6" colorName="旧" description="" />
+  <ColorPalette hexCode="#d6d3d0" colorName="新" />
+  <ColorPalette hexCode="#d6d6d6" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### ACTION_BACKGROUND（新のみ）
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#d6d3d0" colorName="新" description="" />
+  <ColorPalette hexCode="#d6d3d0" colorName="新" />
 </ColorPalettesWrapper>
 
 #### HEAD（新のみ）
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#edebe8" colorName="新" description="" />
+  <ColorPalette hexCode="#edebe8" colorName="新" />
 </ColorPalettesWrapper>
 
 #### OVER_BACKGROUND（新のみ）
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#f2f1f0" colorName="新" description="" />
+  <ColorPalette hexCode="#f2f1f0" colorName="新" />
 </ColorPalettesWrapper>
 
 #### COLUMN
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#f8f7f6" colorName="新" description="" />
-  <ColorPalette hexCode="#f9f9f9" colorName="旧" description="" />
+  <ColorPalette hexCode="#f8f7f6" colorName="新" />
+  <ColorPalette hexCode="#f9f9f9" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### BACKGROUND
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#f8f7f6" colorName="新" description="" />
-  <ColorPalette hexCode="#f5f6fa" colorName="旧" description="" />
+  <ColorPalette hexCode="#f8f7f6" colorName="新" />
+  <ColorPalette hexCode="#f5f6fa" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### OVERLAY
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#03030226" colorName="新" description="" />
-  <ColorPalette hexCode="#00000026" colorName="旧" description="" />
+  <ColorPalette hexCode="#03030226" colorName="新" />
+  <ColorPalette hexCode="#00000026" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### SCRIM
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#03030280" colorName="新" description="" />
-  <ColorPalette hexCode="#0000007f" colorName="旧" description="" />
+  <ColorPalette hexCode="#03030280" colorName="新" />
+  <ColorPalette hexCode="#0000007f" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### TRANSPARENT
 
 <ColorPalettesWrapper>
-  <ColorPalette hexCode="#ffffff00" colorName="新 ※変更なし" description="" />
-  <ColorPalette hexCode="#ffffff00" colorName="旧" description="" />
+  <ColorPalette hexCode="#ffffff00" colorName="新 ※変更なし" />
+  <ColorPalette hexCode="#ffffff00" colorName="旧" />
 </ColorPalettesWrapper>
