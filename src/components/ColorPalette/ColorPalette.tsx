@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import Color from 'color'
 import { defaultBreakpoint, defaultColor } from 'smarthr-ui'
 
-// soruce: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
+// source: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
 const convertHexToRGBA = (hexCode: string): string => {
   let hex = hexCode && hexCode.replace('#', '')
 
@@ -20,19 +20,19 @@ const convertHexToRGBA = (hexCode: string): string => {
 
 type Props = {
   isHexCode?: boolean
-  hexCode: string
+  colorValue: string
   colorName: string
   description: string
 }
 
-export const ColorPalette: FC<Props> = ({ isHexCode = true, colorName, hexCode, description }) => {
+export const ColorPalette: FC<Props> = ({ isHexCode = true, colorName, colorValue, description }) => {
   return (
     <Wrapper>
-      <Thumbnail $color={hexCode}></Thumbnail>
+      <Thumbnail $color={colorValue}></Thumbnail>
       <Informations>
         <ColorName>{colorName}</ColorName>
-        <ColorCode>{hexCode}</ColorCode>
-        {isHexCode && <ColorCode>{convertHexToRGBA(hexCode)}</ColorCode>}
+        <ColorCode>{colorValue}</ColorCode>
+        {isHexCode && <ColorCode>{convertHexToRGBA(colorValue)}</ColorCode>}
         <Description>{description}</Description>
       </Informations>
     </Wrapper>
