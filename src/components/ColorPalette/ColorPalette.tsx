@@ -19,7 +19,7 @@ const convertHexToRGBA = (hexCode: string, opacity: number = 1): string => {
     opacity = opacity / 100
   }
 
-  return `rgba(${r},${g},${b},${opacity})`
+  return `rgb(${r},${g},${b})`
 }
 
 type Props = {
@@ -37,7 +37,6 @@ export const ColorPalette: FC<Props> = ({ isHexCode = true, colorName, hexCode, 
         <ColorName>{colorName}</ColorName>
         <ColorCode>{hexCode}</ColorCode>
         {isHexCode && <ColorCode>{convertHexToRGBA(hexCode)}</ColorCode>}
-        {/* <ColorContrast fgColor={hexCode} bgColor={defaultColor.BACKGROUND} /> */}
         <Description>{description}</Description>
       </Informations>
     </Wrapper>
