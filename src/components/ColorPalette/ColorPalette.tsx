@@ -4,7 +4,7 @@ import Color from 'color'
 import { defaultBreakpoint, defaultColor } from 'smarthr-ui'
 
 // soruce: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
-const convertHexToRGBA = (hexCode: string, opacity: number = 1): string => {
+const convertHexToRGBA = (hexCode: string): string => {
   let hex = hexCode && hexCode.replace('#', '')
 
   if (hex.length === 3) {
@@ -14,10 +14,6 @@ const convertHexToRGBA = (hexCode: string, opacity: number = 1): string => {
   const r = parseInt(hex.substring(0, 2), 16)
   const g = parseInt(hex.substring(2, 4), 16)
   const b = parseInt(hex.substring(4, 6), 16)
-
-  if (opacity > 1 && opacity <= 100) {
-    opacity = opacity / 100
-  }
 
   return `rgb(${r},${g},${b})`
 }
