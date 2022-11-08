@@ -19,20 +19,26 @@ const convertHexToRGBA = (colorValue: string): string => {
 }
 
 type Props = {
-  isHexCode?: boolean
-  colorValue: string
   colorName: string
+  colorValue: string
   description: string
 }
 
-export const ColorPalette: FC<Props> = ({ isHexCode = true, colorName, colorValue, description }) => {
+export const ColorPalette: FC<Props> = ({ colorName, colorValue, description }) => {
   return (
     <Wrapper>
       <Thumbnail $color={colorValue}></Thumbnail>
       <Informations>
         <ColorName>{colorName}</ColorName>
-        <ColorCode>{colorValue}</ColorCode>
-        {isHexCode && <ColorCode>{convertHexToRGBA(colorValue)}</ColorCode>}
+
+        {colorValue.startsWith('#') ? (
+          <>
+            <ColorCode>{colorValue}</ColorCode>
+            <ColorCode>{convertHexToRGBA(colorValue)}</ColorCode>
+          </>
+        ) : (
+          <ColorCode>{colorValue}</ColorCode>
+        )}
         <Description>{description}</Description>
       </Informations>
     </Wrapper>

@@ -12,7 +12,7 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 
 色は情報を伝え、動作を示し、反応を促しますが、唯一の視覚的手段にしてはいけません。すべての利用者が同じ情報を知覚できる必要があります。
 
-## セマンティックトークン
+## セマンティクストークン
 
 ### メイン
 
@@ -67,13 +67,13 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
   <ColorPalette colorValue="#f2f1f0" colorName="OVER_BACKGROUND" description="BACKGROUNDの上で使う囲み色（要素をグルーピングするときに使う色）" />
   <ColorPalette colorValue="#f8f7f6" colorName="COLUMN" description="WHITEの上で使う囲み色（要素をグルーピングするときに使う色）" />
   <ColorPalette colorValue="#f8f7f6" colorName="BACKGROUND" description="画面の背景色" />
-  <ColorPalette colorValue="#03030226" colorName="OVERLAY" description="ボタンなどhover時に重ねる色" />
-  <ColorPalette colorValue="#03030280" colorName="SCRIM" description="モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色" />
-  <ColorPalette colorValue="#ffffff00" colorName="TRANSPARENT" description="デザインツールだけで使う専用スタイル。コンポーネントの枠線などを消すときのAppearanceに使用" />
+  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="OVERLAY" description="ボタンなどhover時に重ねる色" />
+  <ColorPalette colorValue="rgba(3,3,2,0.5)" colorName="SCRIM" description="モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色" />
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="TRANSPARENT" description="デザインツールだけで使う専用スタイル。コンポーネントの枠線などを消すときのAppearanceに使用" />
 </ColorPalettesWrapper>
 
 ## プリミティブトークン
-**セマンティックトークンだけで視覚設計を十分に行なえない場合のみ**、プリミティブトークンから色を使用できます。
+**セマンティクストークンだけで視覚設計を十分に行なえない場合のみ**、プリミティブトークンから色を使用できます。
 
 ### 基本色
 <ColorPalettesWrapper>
@@ -101,9 +101,9 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 
 ### 透明色
 <ColorPalettesWrapper>
-  <ColorPalette isHexCode={false} colorValue="rgba(3,3,2,0.15)" colorName="TRANSPARENCY_15"/>
-  <ColorPalette isHexCode={false} colorValue="rgba(3,3,2,0.30)" colorName="TRANSPARENCY_30" />
-  <ColorPalette isHexCode={false} colorValue="rgba(3,3,2,0.50)" colorName="TRANSPARENCY_50" />
+  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="TRANSPARENCY_15"/>
+  <ColorPalette colorValue="rgba(3,3,2,0.30)" colorName="TRANSPARENCY_30" />
+  <ColorPalette colorValue="rgba(3,3,2,0.50)" colorName="TRANSPARENCY_50" />
 </ColorPalettesWrapper>
 
 ## 色の新旧比較
@@ -122,8 +122,8 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 #### WHITE
 
 <ColorPalettesWrapper>
-  <ColorPalette colorValue="#ffffff" colorName="新 ※変更なし" />
-  <ColorPalette colorValue="#ffffff" colorName="旧" />
+  <ColorPalette colorValue="#fff" colorName="新 ※変更なし" />
+  <ColorPalette colorValue="#fff" colorName="旧" />
 </ColorPalettesWrapper>
 
 ### アクセント
@@ -173,7 +173,7 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 #### TEXT_WHITE（新のみ）
 
 <ColorPalettesWrapper>
-  <ColorPalette colorValue="#ffffff" colorName="新" />
+  <ColorPalette colorValue="#fff" colorName="新" />
 </ColorPalettesWrapper>
 
 ### コンポーネント
@@ -219,20 +219,20 @@ import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
 #### OVERLAY
 
 <ColorPalettesWrapper>
-  <ColorPalette colorValue="#03030226" colorName="新" />
-  <ColorPalette colorValue="#00000026" colorName="旧" />
+  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="新" />
+  <ColorPalette colorValue="rgba(0,0,0,0.15)" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### SCRIM
 
 <ColorPalettesWrapper>
-  <ColorPalette colorValue="#03030280" colorName="新" />
-  <ColorPalette colorValue="#0000007f" colorName="旧" />
+  <ColorPalette colorValue="rgba(3,3,3,0.4)" colorName="新" />
+  <ColorPalette colorValue="rgba(0,0,0,0.5)" colorName="旧" />
 </ColorPalettesWrapper>
 
 #### TRANSPARENT
 
 <ColorPalettesWrapper>
-  <ColorPalette colorValue="#ffffff00" colorName="新 ※変更なし" />
-  <ColorPalette colorValue="#ffffff00" colorName="旧" />
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="新 ※変更なし" />
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="旧" />
 </ColorPalettesWrapper>
