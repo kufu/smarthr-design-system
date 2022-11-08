@@ -4,8 +4,8 @@ import Color from 'color'
 import { defaultBreakpoint, defaultColor } from 'smarthr-ui'
 
 // source: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
-const convertHexToRGBA = (colorValue: string): string => {
-  let hex = colorValue && colorValue.replace('#', '')
+const convertHexToRGBA = (hexCode: string): string => {
+  let hex = hexCode && hexCode.replace('#', '')
 
   if (hex.length === 3) {
     hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
