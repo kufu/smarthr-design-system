@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components'
 import Color from 'color'
 import { defaultBreakpoint, defaultColor } from 'smarthr-ui'
 
-// soruce: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
-const convertHexToRGBA = (hexCode: string): string => {
-  let hex = hexCode && hexCode.replace('#', '')
+// source: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
+const convertHexToRGBA = (colorValue: string): string => {
+  let hex = colorValue && colorValue.replace('#', '')
 
   if (hex.length === 3) {
     hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
@@ -15,24 +15,30 @@ const convertHexToRGBA = (hexCode: string): string => {
   const g = parseInt(hex.substring(2, 4), 16)
   const b = parseInt(hex.substring(4, 6), 16)
 
-  return `rgba(${r},${g},${b})`
+  return `rgb(${r},${g},${b})`
 }
 
 type Props = {
-  hexCode: string
   colorName: string
+  colorValue: string
   description: string
 }
 
-export const ColorPalette: FC<Props> = ({ colorName, hexCode, description }) => {
+export const ColorPalette: FC<Props> = ({ colorName, colorValue, description }) => {
   return (
     <Wrapper>
-      <Thumbnail $color={hexCode}></Thumbnail>
+      <Thumbnail $color={colorValue}></Thumbnail>
       <Informations>
         <ColorName>{colorName}</ColorName>
-        <ColorCode>{hexCode}</ColorCode>
-        <ColorCode>{convertHexToRGBA(hexCode)}</ColorCode>
-        {/* <ColorContrast fgColor={hexCode} bgColor={defaultColor.BACKGROUND} /> */}
+
+        {colorValue.startsWith('#') ? (
+          <>
+            <ColorCode>{colorValue}</ColorCode>
+            <ColorCode>{convertHexToRGBA(colorValue)}</ColorCode>
+          </>
+        ) : (
+          <ColorCode>{colorValue}</ColorCode>
+        )}
         <Description>{description}</Description>
       </Informations>
     </Wrapper>
