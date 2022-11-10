@@ -1,0 +1,59 @@
+---
+title: '運用'
+description: ''
+order: 3
+---
+
+## コミット・ PR のルール
+
+SmartHR UI は [standard-version](https://github.com/conventional-changelog/standard-version) というツールを使ってリリースを行なっています。
+このツールは、 [Semantic Versioning](https://semver.org/lang/ja/) におけるどのバージョンを上げるかを、コミットコメントによって判断します。
+そのため、 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) をコミットコメントのルールとして設けています。
+
+具体的にどのようなコミットコメントになるかは公式のドキュメントを参照してください。
+簡単に言うと、コミットコメントの頭に特定のラベルを付与することでどのようなタイプの変更かを表現します。
+
+[commitlint](https://github.com/conventional-changelog/commitlint) が導入されているので、コミット時に正しい形式のコミットコメントかをチェックします。
+
+Pull Request に関しては[テンプレートがある](https://github.com/kufu/smarthr-ui/blob/master/.github/PULL_REQUEST_TEMPLATE.md)ので、それに合わせて作成してください。
+日本語を使うか英語を使うかは特に決めてはいないのでお任せします！
+
+
+## CI
+
+SmartHR UI では [CircleCI](https://circleci.com/) を使用しています。
+
+CI では以下のタスクを回しています。
+
+- lint
+    - ESLint による文法チェック
+    - stylelint によるスタイルの記述チェック
+    - `tsc --noEmit` による TypeScript の文法チェック
+- ユニットテスト
+    - [Jest](https://jestjs.io/ja/), [enzyme](https://github.com/enzymejs/enzyme) を使ったユニットテストとコンポーネントテスト
+- 画像回帰テスト
+    - [reg-suit](https://github.com/reg-viz/reg-suit) を使った画像回帰テスト
+    - 画像回帰テストとは
+        - [ビジュアルリグレッションテストを導入して見た目の変化に気づける様にする](https://tech.misoca.jp/entry/2018/04/27/153000)
+- Netlify にホスト
+    - PR 単位で Netlify に環境を立ち上げて、ローカルで立ち上げなくても動作確認できるようにする
+
+上記のどれかが落ちている場合はコードの修正を行なってください。
+reg-suit だけ若干扱いが特殊なので、落ちている場合は以下の内容を確認してみてください :pray: 
+[PR・レビュー | SmartHR UI の実装からリリースまでのフロー](https://smarthr-inc.docbase.io/posts/1316778#pr%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC)
+
+PR をマージすると、自動で master ブランチが以下の URL にビルドされます。
+https://smarthr-ui.netlify.com/
+
+この URL で表示されるコンポーネントが、 SmartHR UI の最新の状態になります。
+
+## リリース手順
+
+準備中
+
+### パッケージのアップデート
+
+[Renovate](https://github.com/renovatebot/renovate) によって依存パッケージのアップデートの PR が自動で作られます。
+フロントエンドエンジニアの誰かがランダムにレビュワーとしてアサインされるので該当者が CI の確認や、ライブラリの変更点の確認を行ない、問題がなさそうであれば approve してマージを行なってください。
+
+CI が落ちていた場合はレビュワーが落ちた箇所をチェックして修正してマージしてください。

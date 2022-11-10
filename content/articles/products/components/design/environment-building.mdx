@@ -1,0 +1,39 @@
+---
+title: '環境構築'
+description: ''
+order: 2
+---
+
+## リポジトリのクローン
+
+[kufu/smarthr-ui](https://github.com/kufu/smarthr-ui/) を fork し、 fork した自身のリポジトリから clone します。
+
+```bash
+$ git clone git@github.com:{{YOUR_GITHUB_ID}}/smarthr-ui.git
+```
+
+clone したリポジトリに移動して、親リポジトリ(kufu/smarthr-ui)を upstream リポジトリとして登録します。
+
+```bash
+$ cd smarthr-ui
+$ git remote add upstream git@github.com:kufu/smarthr-ui.git
+```
+
+## Node.js のインストール
+
+事前にNode.jsのインストールが必要です。
+
+## Yarn のインストール
+
+[公式の手順](https://classic.yarnpkg.com/ja/docs/install#mac-stable)に従って Yarn をインストールします。
+
+## Storybook 起動
+
+```bash
+$ yarn install
+$ yarn storybook
+```
+
+Storybook の起動が完了したら自動でブラウザでページが開かれます。
+コードに変更を加えると、再読み込みすることなくページに変更が反映されます。
+
