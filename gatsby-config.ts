@@ -45,23 +45,6 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: 'gatsby-plugin-favicons',
-      options: {
-        logo: './src/images/favicon.svg',
-        appName: 'SmartHR Design System',
-        background: '#FFFFFF',
-        icons: {
-          android: false,
-          appleIcon: false,
-          appleStartup: false,
-          coast: false,
-          favicons: true,
-          yandex: false,
-          windows: false,
-        },
-      },
-    },
-    {
       resolve: 'gatsby-plugin-algolia',
       options: algoliaConfig,
     },

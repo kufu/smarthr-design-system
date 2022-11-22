@@ -83,6 +83,18 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
         },
         ...meta,
       ]}
+      link={[
+        {
+          rel: 'icon',
+          href: '/favicon-32x32.png',
+          type: 'image/png',
+        },
+        {
+          rel: 'icon',
+          href: '/favicon.svg',
+          type: 'image/svg+xml',
+        },
+      ]}
     />
   )
 }
