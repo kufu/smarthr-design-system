@@ -4,7 +4,6 @@ description: ' '
 smarthr-ui: 'Button'
 ---
 
-import { Button, Cluster, FaCaretDownIcon, FaCloudDownloadAltIcon, FaFilterIcon, FaPlusCircleIcon } from 'smarthr-ui'
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
@@ -63,7 +62,7 @@ SmartHR UI では特に種類の指定をしない場合はSecondaryになりま
 
 - Dangerボタンが頻出すると効果がありません。
 - ユーザーにこのアクションを実行させる場合は、必ず確認を求めるステップを追加してください。（例：[削除ダイアログ](/products/design-patterns/delete-dialog/)）
-- すべてのユーザーが色を見たり、理解できるわけではないため、警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h2-1)）に頼らないでください。ボタン配置のコンテキストやラベルテキストは重要です。
+- すべてのユーザーが色を見たり、理解できるわけではないため、警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h3-8)）に頼らないでください。ボタン配置のコンテキストやラベルテキストは重要です。
 
 ```tsx editable codeBlock
 <>
@@ -130,7 +129,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 | 種類 | 表示例 | アイコンの役割 |
 | :--- | :--- | :--- |
 | `アイコン付き（左）` | <Cluster><Button prefix={<FaPlusCircleIcon />}>項目を追加</Button><Button prefix={<FaCloudDownloadAltIcon />}>ダウンロード</Button></Cluster> | ボタンのアクション（機能）を表すために使います。<br />同じアクションのボタンには、同じアイコンを採用してください。 |
-| `アイコン付き（右）` | <Cluster><Button suffix={<FaCaretDownIcon />}>一括操作</Button><Button suffix={<FaFilterIcon />}>絞り込み</Button></Cluster> | ドロップダウンのように、ボタン押下後に表示するUIを想起させるために使います。<br />（例：[ドロップダウンボタン](/products/design-patterns/dropdown-button/)、[Dropdown](/products/components/dropdown/)、[FilterDropdown](/products/components/filter-dropdown/)） |
+| `アイコン付き（右）` | <Cluster><Button suffix={<FaCaretDownIcon />}>一括操作</Button><Button suffix={<FaFilterIcon />}>絞り込み</Button></Cluster> | ドロップダウンのように、ボタン押下後に表示するUIを想起させるために使います。<br />（例：[ドロップダウンボタン](/products/design-patterns/dropdown-button/)、[Dropdown](/products/components/dropdown/)、[FilterDropdown](/products/components/dropdown/filter-dropdown/)） |
 
 #### アイコンボタン
 アイコンのみのボタンです。ラベルテキストを表示するレイアウト上の余裕がない場合などに使います。  
@@ -152,7 +151,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 
 ### マウスオーバー
 マウスポインタでボタンに触れている状態（hover状態）のスタイルです。
-マウスオーバーを認知できるように、標準時の背景色に[`OVERLAY`](/products/design-tokens/color/#h2-3)を重ねて表現します。
+マウスオーバーを認知できるように、標準時の背景色に[`OVERLAY`](/products/design-tokens/color/#h3-3)を重ねて表現します。
 
 ### 無効（disabled）
 ボタンの操作ができない状態を表現したスタイルです。  
