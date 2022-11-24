@@ -94,7 +94,7 @@ yarn export:zip-images
 ローカルで動作させるためには[Netlify CLI](https://docs.netlify.com/cli/get-started/)が必要です。
 
 ```
-npm install netlify-cli 
+npm install netlify-cli -g
 ```
 
 で、`netlify-cli`をインストールし
@@ -103,16 +103,4 @@ npm install netlify-cli
 netlify dev
 ```
 
-コマンドでサーバーを立ち上げてください。(デフォルトで`http://localhost:8888`)
-
-それとは別に、
-
-```
-yarn dev
-```
-
-でGatsbyのサーバーを立ち上げます。(デフォルトで`http://localhost:8000`)
-
-そうすれば、netlify-cliで立ち上げたほうのサーバー( http://localhost:8888 )から確認できます。
-
-
+コマンドを実行すると、立ち上がったNetlifyサーバー( http://localhost:8888 )から確認できます。
