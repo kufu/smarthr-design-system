@@ -1,13 +1,13 @@
 import dotenv from 'dotenv'
-dotenv.config({
-  path: '.env',
-})
-
 import path from 'path'
 import type { GatsbyConfig } from 'gatsby'
 import { AIRTABLE_CONTENTS } from './src/constants/airtable'
 import { algoliaConfig } from './gatsby-plugin-algolia-config'
 import emoji from 'remark-emoji'
+
+dotenv.config({
+  path: '.env',
+})
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -40,7 +40,8 @@ const config: GatsbyConfig = {
         start_url: '/',
         background_color: '#FFFFFF',
         theme_color: '#00C4CC',
-        icon: 'src/images/favicon.svg',
+        icon: 'src/images/touch-icon.png',
+        include_favicon: false,
       },
     },
     {

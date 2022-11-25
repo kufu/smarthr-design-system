@@ -118,12 +118,11 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
   })
   if (missingLinkList.length > 0) {
     missingLinkList.forEach((item) => {
-      console.error(
-        `Missing ${item.type === 'image' ? 'image source' : 'link'}: ${item.link} in /${path.relative(
-          `${__dirname}/../`,
-          item.filePath,
-        )} at L:${item.lineNo}`,
-      )
+      let errorType = `Missing ${item.type === 'image' ? 'image source' : 'link'}`
+      if (existPathList.includes(`${item.link}/`)) {
+        errorType = `No trailing slash`
+      }
+      console.error(`${errorType}: ${item.link} in /${path.relative(`${__dirname}/../`, item.filePath)} at L:${item.lineNo}`)
     })
     console.log(`Found ${missingLinkList.length} missing links. Link check finished.`)
     process.exit(1)

@@ -5,7 +5,11 @@ order: 2
 ---
 
 import { DoAndDont } from '@Components/DoAndDont'
-import { LineUp, FaQuestionCircleIcon, FaExclamationTriangleIcon } from 'smarthr-ui'
+import { LineUp } from 'smarthr-ui'
+import imageUrl6Do from './images/access-control-setting-pattern6-do.png'
+import imageUrl6Dont from './images/access-control-setting-pattern6-dont.png'
+import imageUrl13Do from './images/access-control-setting-pattern13-do.png'
+import imageUrl13Dont from './images/access-control-setting-pattern13-dont.png'
 
 SmartHR基本機能の共通設定おける、操作権限を設定する項目のレイアウトパターンをまとめています。
 
@@ -39,7 +43,7 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 
 ### 2. コンテンツエリア
 
-コンテンツエリアは、背景色に[`COLMUN`](/products/design-tokens/color/#h2-3)を指定して各項目の範囲を明示します。  
+コンテンツエリアは、背景色に[`COLMUN`](/products/design-tokens/color/#h3-3)を指定して各項目の範囲を明示します。
 内容は、以下の要素で構成されています。
 
 - A. [設定項目](#h4-2)
@@ -98,9 +102,6 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 
 横幅に十分なスペースがある場合は、基本的に横ならびにすることで縦幅が長くなりすぎることを防ぎます。
 
-import imageUrl6Do from './images/access-control-setting-pattern6-do.png';
-import imageUrl6Dont from './images/access-control-setting-pattern6-dont.png';
-
 <LineUp gap="XS">
     <DoAndDont
         type="do"
@@ -122,9 +123,6 @@ import imageUrl6Dont from './images/access-control-setting-pattern6-dont.png';
 
 CRUDなど、設定項目の組み合わせが決まっている操作権限項目が連続して複数並ぶケースで、一部の設定項目が対応していない場合は該当の設定項目を非表示にします。その際、設定項目が表示されていた箇所はそのまま空白として残します。  
 この場合のコンテンツ領域の横幅は、選択肢が存在しているときと同じ横幅になるように固定します。
-
-import imageUrl13Do from './images/access-control-setting-pattern13-do.png';
-import imageUrl13Dont from './images/access-control-setting-pattern13-dont.png';
 
 <LineUp gap="XS">
     <DoAndDont
