@@ -1,7 +1,8 @@
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+
 import { FootStaticLinks } from './FootStaticLinks'
 
 type Props = {

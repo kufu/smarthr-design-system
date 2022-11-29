@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import styled from 'styled-components'
 import { FaLinkIcon } from 'smarthr-ui'
+import styled from 'styled-components'
 
 type Props = {
   children: React.ReactNode

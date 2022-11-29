@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import type { FC } from 'react'
-import gotchaItemJson from '../../data/gotchaItem.json'
-import styled, { css } from 'styled-components'
-import { Link } from 'gatsby'
-import { FaRedoIcon } from 'smarthr-ui'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { Link } from 'gatsby'
+import React, { useEffect, useState } from 'react'
+import { FaRedoIcon } from 'smarthr-ui'
+import styled, { css } from 'styled-components'
+
+import gotchaItemJson from '../../data/gotchaItem.json'
+
+import type { FC } from 'react'
+
 const BUTTON_TEXT: string = 'GOTCHA!' // アニメーションするため、css、reactのどちらでも必要なのでここで
 
 type GotchaItem = {

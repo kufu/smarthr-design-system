@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
-import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui'
-
 import { CSS_COLOR } from '@Constants/style'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui'
+import styled from 'styled-components'
 
 type Props = {
   defaultWidth?: string

@@ -1,8 +1,8 @@
+import { CSS_FONT_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
+import { marked } from 'marked'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { marked } from 'marked'
-import { CSS_FONT_SIZE } from '@Constants/style'
 
 type Props = {
   children: React.ReactNode
@@ -41,8 +41,8 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
         title: node.frontmatter?.title || '',
         description: node.frontmatter?.description || '',
         order: node.frontmatter?.order || Number.MAX_SAFE_INTEGER,
-        slug: slug,
-        pathList: pathList,
+        slug,
+        pathList,
       }
     })
     .filter((item) => {

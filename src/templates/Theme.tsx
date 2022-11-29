@@ -1,6 +1,6 @@
 import React from 'react'
-import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { ThemeProvider as ShrThemeProvider, createTheme } from 'smarthr-ui'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 
 const createdTheme = createTheme()
 

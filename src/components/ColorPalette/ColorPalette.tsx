@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
-import styled, { css } from 'styled-components'
 import Color from 'color'
+import React, { FC } from 'react'
 import { defaultBreakpoint, defaultColor } from 'smarthr-ui'
+import styled, { css } from 'styled-components'
 
 // source: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
 const convertHexToRGBA = (colorValue: string): string => {

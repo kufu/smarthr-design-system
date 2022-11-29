@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import type { FC } from 'react'
-import { navigate } from 'gatsby'
-import { Hits, connectSearchBox } from 'react-instantsearch-dom'
-import type { SearchBoxProvided } from 'react-instantsearch-core'
-import styled from 'styled-components'
-import { FaSearchIcon, Input } from 'smarthr-ui'
-import { HitComponent } from './HitComponent'
-import { SearchResultOuter } from './SearchResultOuter'
 import { CSS_FONT_SIZE } from '@Constants/style'
 import { useLocation } from '@reach/router'
+import { navigate } from 'gatsby'
+import React, { useEffect, useState } from 'react'
+import { Hits, connectSearchBox } from 'react-instantsearch-dom'
+import { FaSearchIcon, Input } from 'smarthr-ui'
+import styled from 'styled-components'
+
+import { HitComponent } from './HitComponent'
+import { SearchResultOuter } from './SearchResultOuter'
+
+import type { FC } from 'react'
+import type { SearchBoxProvided } from 'react-instantsearch-core'
 
 const SearchBox: FC<SearchBoxProvided> = ({ refine }) => {
   const [searchState, setSearchState] = useState<string | undefined>()

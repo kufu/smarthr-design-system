@@ -1,6 +1,6 @@
+import { graphql, useStaticQuery } from 'gatsby'
 import React, { FC } from 'react'
 import { Helmet } from 'react-helmet'
-import { graphql, useStaticQuery } from 'gatsby'
 
 const query = graphql`
   query Head {

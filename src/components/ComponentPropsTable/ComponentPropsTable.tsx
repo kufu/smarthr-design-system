@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
-import styled from 'styled-components'
 import { Table, Td, Text, Th } from 'smarthr-ui'
+import styled from 'styled-components'
+
 import uiProps from '../../../smarthr-ui-props.json'
 import { FragmentTitle } from '../article/FragmentTitle/FragmentTitle'
 

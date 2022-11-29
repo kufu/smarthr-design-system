@@ -1,10 +1,11 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
-import { Text } from 'smarthr-ui'
-import { TextUrlToLink } from '../shared/TextUrlToLink'
-import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
 import { marked } from 'marked'
+import React, { FC } from 'react'
+import { Text } from 'smarthr-ui'
+import styled from 'styled-components'
+
+import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
+import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query AppWritingTable {

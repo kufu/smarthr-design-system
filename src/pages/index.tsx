@@ -1,17 +1,15 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
-import { CSS_SIZE } from '@Constants/style'
-
 import { Head } from '@Components/Head'
-import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
-import { Header } from '@Components/shared/Header/Header'
-import { Footer } from '@Components/shared/Footer/Footer'
-
-import { Introduction } from '@Components/index/Introduction'
 import { ContentNavigation } from '@Components/index/ContentNavigation'
-import { SearchLink } from '@Components/index/SearchLink'
 import { FaqList } from '@Components/index/Faq'
 import { Gotcha } from '@Components/index/Gotcha'
+import { Introduction } from '@Components/index/Introduction'
+import { SearchLink } from '@Components/index/SearchLink'
+import { Footer } from '@Components/shared/Footer/Footer'
+import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
+import { Header } from '@Components/shared/Header/Header'
+import { CSS_SIZE } from '@Constants/style'
+import React, { FC } from 'react'
+import styled from 'styled-components'
 
 const Home: FC = () => {
   return (

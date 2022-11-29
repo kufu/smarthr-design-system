@@ -1,8 +1,7 @@
+import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
+import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-
-import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
 
 type FaqJsonObject = {
   question: string

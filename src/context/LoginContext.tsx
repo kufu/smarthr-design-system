@@ -1,5 +1,5 @@
-import React, { FC, ReactNode, createContext, useContext, useState } from 'react'
 import { PRIVATE_DOC_PATH } from '@Constants/application'
+import React, { FC, ReactNode, createContext, useContext, useState } from 'react'
 
 export type LoginStatusKey = 'pending' | 'loggedIn' | 'loggedOut'
 type Props = {
@@ -64,7 +64,7 @@ export const LoginContextProvider: FC<Props> = ({ children }) => {
     })
   }
 
-  const value = { loginStatus: loginStatus, loginLabel: labels[loginStatus], updateLoginStatus: updateLoginStatus }
+  const value = { loginStatus, loginLabel: labels[loginStatus], updateLoginStatus }
 
   return <LoginContext.Provider value={value}>{children}</LoginContext.Provider>
 }

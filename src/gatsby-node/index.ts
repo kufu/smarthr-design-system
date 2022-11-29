@@ -1,8 +1,10 @@
 import path from 'path'
+
 import { Actions, GatsbyNode } from 'gatsby'
 import { createFilePath } from 'gatsby-source-filesystem'
 
 import { AIRTABLE_CONTENTS } from '../constants/airtable'
+
 import type { airtableContents } from '../constants/airtable'
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({ actions, node, getNode }) => {
@@ -73,7 +75,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
     if (slug) {
       createPage({
         path: slug || '',
-        component: component,
+        component,
         context: {
           id: node.id,
           category: node.fields?.category,

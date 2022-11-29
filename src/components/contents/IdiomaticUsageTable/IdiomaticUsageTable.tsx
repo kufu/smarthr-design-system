@@ -1,10 +1,11 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import { Table, Td, Text, Th } from 'smarthr-ui'
-import { TextUrlToLink } from '../shared/TextUrlToLink'
-import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
 import { marked } from 'marked'
+import React, { FC } from 'react'
+import { Table, Td, Text, Th } from 'smarthr-ui'
+import styled from 'styled-components'
+
+import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
+import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query IdiomaticUsageTable {

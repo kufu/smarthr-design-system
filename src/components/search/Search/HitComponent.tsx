@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
 import { Link as LinkComponent } from 'gatsby'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 interface Categories {

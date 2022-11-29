@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
-import type { FC } from 'react'
-import { AnchorButton, FaExclamationCircleIcon, FaLockIcon } from 'smarthr-ui'
-import styled from 'styled-components'
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
+import { LoginContext } from '@Context/LoginContext'
 import { micromark } from 'micromark'
 import { mdxjs } from 'micromark-extension-mdxjs'
-import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
+import React, { useContext, useEffect, useState } from 'react'
+import { AnchorButton, FaExclamationCircleIcon, FaLockIcon } from 'smarthr-ui'
+import styled from 'styled-components'
 
-import { LoginContext } from '@Context/LoginContext'
+import type { FC } from 'react'
 
 type Props = {
   /** .mdファイルまでのパス。

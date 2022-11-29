@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import styled, { css } from 'styled-components'
 import { FaCheckCircleIcon, FaTimesCircleIcon, defaultColor, defaultSpacing } from 'smarthr-ui'
+import styled, { css } from 'styled-components'
 
 type Props = {
   type: 'do' | 'dont'

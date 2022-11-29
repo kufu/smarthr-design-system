@@ -1,10 +1,10 @@
+import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-
-import { LinkItem } from './LinkItem'
 
 import indexSearchLinkJson from '../../../data/indexSearchLink.json'
+
+import { LinkItem } from './LinkItem'
 
 type LinkItemObject = {
   title: string

@@ -1,8 +1,8 @@
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 import React, { FC, useContext, useState } from 'react'
 import { Button, FaLockIcon, Input } from 'smarthr-ui'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 
 export const LoginPage: FC = () => {
   const [password, setPassword] = useState('')

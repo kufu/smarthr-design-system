@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react'
-import styled from 'styled-components'
-import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui'
 import { CSS_COLOR } from '@Constants/style'
+import React, { FC, useState } from 'react'
+import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui'
+import styled from 'styled-components'
 
 type CopyButtonProps = {
   text: string
