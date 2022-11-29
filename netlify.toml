@@ -2,3 +2,8 @@
 command = 'yarn build'
 [context.deploy-preview]
 command = 'yarn build'
+[dev]
+command = 'yarn dev'
+targetPort = 8000
+port = 8888
+publish = 'public'
