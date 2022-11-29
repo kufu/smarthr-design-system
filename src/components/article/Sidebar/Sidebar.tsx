@@ -1,12 +1,12 @@
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
+import { SidebarScrollContext } from '@Context/SidebarScrollContext'
+import { useLocation } from '@reach/router'
 import { Link } from 'gatsby'
 import React, { FC, Fragment, useContext, useLayoutEffect, useRef } from 'react'
-import { useLocation } from '@reach/router'
 import { FaChevronDownIcon, defaultColor } from 'smarthr-ui'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
-import type { SidebarItem } from '../../../templates/article'
 
-import { SidebarScrollContext } from '@Context/SidebarScrollContext'
+import type { SidebarItem } from '../../../templates/article'
 
 type Props = {
   path: string

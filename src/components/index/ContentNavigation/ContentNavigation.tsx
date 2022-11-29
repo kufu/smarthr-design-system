@@ -1,10 +1,10 @@
+import { CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { CSS_SIZE } from '@Constants/style'
-
-import { Category } from './Category'
 
 import indexContentJson from '../../../data/indexContent.json'
+
+import { Category } from './Category'
 
 type IndexJsonItem = {
   title: string

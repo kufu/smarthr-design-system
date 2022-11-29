@@ -23,7 +23,7 @@ export const SidebarScrollContextProvider: FC<Props> = ({ children }) => {
     setPosition(newPosition)
   }
 
-  const value = { position: position, savePosition: savePosition }
+  const value = { position, savePosition }
 
   return <SidebarScrollContext.Provider value={value}>{children}</SidebarScrollContext.Provider>
 }

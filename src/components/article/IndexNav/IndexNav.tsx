@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { Link } from 'gatsby'
 import { CSS_COLOR } from '@Constants/style'
+import { Link } from 'gatsby'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {

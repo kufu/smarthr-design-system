@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
 import { Head } from '@Components/Head'
+import { LoginPage } from '@Components/login/Login'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
-import { LoginPage } from '@Components/login/Login'
 import { CSS_SIZE } from '@Constants/style'
+import React, { FC } from 'react'
+import styled from 'styled-components'
 
 const Login: FC = () => {
   return (

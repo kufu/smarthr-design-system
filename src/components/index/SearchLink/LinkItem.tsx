@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
-import { Link } from 'gatsby'
-import styled, { css } from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { Link } from 'gatsby'
+import React, { FC } from 'react'
+import styled, { css } from 'styled-components'
 
 type LinkJsonObject = {
   title: string

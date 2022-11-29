@@ -1,15 +1,14 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
 import { Head } from '@Components/Head'
-import algoliasearch from 'algoliasearch/lite'
-import { InstantSearch } from 'react-instantsearch-dom'
-
+import { IndexList } from '@Components/search/IndexList/IndexList'
 import { CustomSearchBox } from '@Components/search/Search'
+import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
 import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
-import { Footer } from '@Components/shared/Footer/Footer'
-import { IndexList } from '@Components/search/IndexList/IndexList'
+import algoliasearch from 'algoliasearch/lite'
+import React, { FC } from 'react'
+import { InstantSearch } from 'react-instantsearch-dom'
+import styled from 'styled-components'
 
 const searchClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID || '', process.env.GATSBY_ALGOLIA_SEARCH_API_KEY || '')
 

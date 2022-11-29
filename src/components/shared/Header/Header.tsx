@@ -1,14 +1,13 @@
-import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
-import React, { FC, useContext, useState } from 'react'
-import { useLocation } from '@reach/router'
-import styled, { createGlobalStyle, css } from 'styled-components'
-import { Link as LinkComponent } from 'gatsby'
 import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
-
-import { FootStaticLinks } from '../Footer/FootStaticLinks'
-import headerContentJson from '../../../data/headerContent.json'
-
 import { LoginContext } from '@Context/LoginContext'
+import { useLocation } from '@reach/router'
+import { Link as LinkComponent } from 'gatsby'
+import React, { FC, useContext, useState } from 'react'
+import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
+import styled, { createGlobalStyle, css } from 'styled-components'
+
+import headerContentJson from '../../../data/headerContent.json'
+import { FootStaticLinks } from '../Footer/FootStaticLinks'
 
 type HeaderContents = Array<{
   title: string

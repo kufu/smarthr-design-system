@@ -1,10 +1,9 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
-
 import { Head } from '@Components/Head'
+import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
-import { Footer } from '@Components/shared/Footer/Footer'
+import React, { FC } from 'react'
+import styled from 'styled-components'
 
 const NotFoundPage: FC = () => (
   <>

@@ -1,10 +1,10 @@
 import React, { CSSProperties, useMemo } from 'react'
-import styled, { css } from 'styled-components'
 import { Cluster } from 'smarthr-ui'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
+import styled, { css } from 'styled-components'
 
-import { WrapperBase } from './WrapperBase'
 import { ProductWrapper } from './ProductWrapper'
+import { WrapperBase } from './WrapperBase'
 
 type Props = {
   children: React.ReactNode

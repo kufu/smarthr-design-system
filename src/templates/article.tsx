@@ -1,24 +1,25 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
-import { PageProps, graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
-import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
-import { Theme } from './Theme'
 import { Head } from '@Components/Head'
+import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
 import { CodeBlock } from '@Components/article/CodeBlock'
-import { Sidebar } from '@Components/article/Sidebar/Sidebar'
-import { IndexNav } from '@Components/article/IndexNav/IndexNav'
 import { FragmentTitle } from '@Components/article/FragmentTitle/FragmentTitle'
-import { INDEXED_DEPTH } from '@Constants/application'
+import { IndexNav } from '@Components/article/IndexNav/IndexNav'
+import { Sidebar } from '@Components/article/Sidebar/Sidebar'
+import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
-import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Private } from '@Components/shared/Private'
-import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
-import { Footer } from '@Components/shared/Footer/Footer'
-
+import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
 import { AIRTABLE_CONTENTS } from '@Constants/airtable'
+import { INDEXED_DEPTH } from '@Constants/application'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
+import { PageProps, graphql } from 'gatsby'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
+import React, { FC } from 'react'
+import styled from 'styled-components'
+
+import { Theme } from './Theme'
+
 import type { airtableContents } from '@Constants/airtable'
 
 const components: MDXProviderComponents = {
@@ -121,7 +122,7 @@ export type SidebarItem = {
 const Article: FC<Props> = ({ data }) => {
   const { mdx: article, parentCategoryAllMdx: parentCategory } = data
 
-  if (article == null) {
+  if (!article) {
     return null
   }
 
@@ -201,7 +202,7 @@ const Article: FC<Props> = ({ data }) => {
     const link = node.fields?.slug ?? ''
 
     const item = {
-      link: link,
+      link,
       order: node.frontmatter?.order ?? Number.MAX_SAFE_INTEGER,
       title: node.frontmatter?.title ?? '',
       depth: link.split('/').length - 2,

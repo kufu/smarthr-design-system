@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Loader, TabBar, TabItem, TextLink } from 'smarthr-ui'
-
 import { SHRUI_GITHUB_RAW, SHRUI_STORYBOOK_IFRAME } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
+import React, { FC, useEffect, useState } from 'react'
+import { Loader, TabBar, TabItem, TextLink } from 'smarthr-ui'
+import styled from 'styled-components'
+
 import { CodeBlock } from '../article/CodeBlock'
 
 import { ResizableContainer } from './ResizableContainer'

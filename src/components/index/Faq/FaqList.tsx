@@ -1,10 +1,10 @@
+import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-
-import { FaqItem } from './FaqItem'
 
 import indexFaqJson from '../../../data/indexFaq.json'
+
+import { FaqItem } from './FaqItem'
 
 type FaqJsonObject = {
   question: string

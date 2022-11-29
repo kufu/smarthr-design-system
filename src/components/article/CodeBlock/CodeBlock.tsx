@@ -1,17 +1,19 @@
-import React, { CSSProperties, FC, ReactNode } from 'react'
-import styled, { ThemeProvider, css } from 'styled-components'
-import Highlight, { Language, defaultProps } from 'prism-react-renderer'
-import github from 'prism-react-renderer/themes/github'
-// TODO SmartHR な Dark テーマほしいな!!!
-import vscode from 'prism-react-renderer/themes/vsDark'
-import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } from 'react-live'
-import ts, { transpile } from 'typescript'
-import { ComponentPreview } from '../../ComponentPreview'
-import * as ui from 'smarthr-ui'
 import { PATTERNS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
-import { CopyButton } from './CopyButton'
+import Highlight, { Language, defaultProps } from 'prism-react-renderer'
+import github from 'prism-react-renderer/themes/github'
+import vscode from 'prism-react-renderer/themes/vsDark'
+import React, { CSSProperties, FC, ReactNode } from 'react'
+import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } from 'react-live'
+import * as ui from 'smarthr-ui'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
+import styled, { ThemeProvider, css } from 'styled-components'
+// TODO SmartHR な Dark テーマほしいな!!!
+import ts, { transpile } from 'typescript'
+
+import { ComponentPreview } from '../../ComponentPreview'
+
+import { CopyButton } from './CopyButton'
 
 type Props = {
   children: string
