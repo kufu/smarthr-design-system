@@ -2791,6 +2791,11 @@
     escape-string-regexp "^2.0.0"
     lodash.deburr "^4.1.0"
 
+"@smarthr/wareki@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@smarthr/wareki/-/wareki-1.2.0.tgz#140fc252f1cf2f5b93abf29f50be9d714a1b078b"
+  integrity sha512-uoJQhnvPD8/iWrLWxmqk1yS6w4A+GJhxOZ1mG7lSsRgAOIL59gToyTIz0fM9w7irYfcPWXA+WnPCWZWu1p4pHA==
+
 "@swc/helpers@^0.4.2":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.4.3.tgz#16593dfc248c53b699d4b5026040f88ddb497012"
@@ -5754,6 +5759,11 @@ dayjs@^1.11.5:
   version "1.11.5"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.5.tgz#00e8cc627f231f9499c19b38af49f56dc0ac5e93"
   integrity sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==
+
+dayjs@^1.11.6:
+  version "1.11.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.6.tgz#2e79a226314ec3ec904e3ee1dd5a4f5e5b1c7afb"
+  integrity sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==
 
 debug@2, debug@2.6.9, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
@@ -12824,6 +12834,16 @@ react-icons@^4.4.0:
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.4.0.tgz#a13a8a20c254854e1ec9aecef28a95cdf24ef703"
   integrity sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==
 
+react-icons@^4.6.0:
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.7.1.tgz#0f4b25a5694e6972677cb189d2a72eabea7a8345"
+  integrity sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==
+
+react-innertext@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-innertext/-/react-innertext-1.1.5.tgz#8147ac54db3f7067d95f49e2d2c05a720d27d8d0"
+  integrity sha512-PWAqdqhxhHIv80dT9znP2KvS+hfkbRovFp4zFYHFFlOoQLRiawIic81gKb3U1wEyJZgMwgs3JoLtwryASRWP3Q==
+
 react-instantsearch-core@6.38.1:
   version "6.38.1"
   resolved "https://registry.yarnpkg.com/react-instantsearch-core/-/react-instantsearch-core-6.38.1.tgz#74a123c81537c1f0ed51f34d36248795f14d30f9"
@@ -13938,17 +13958,19 @@ smarthr-ui@^23.0.0:
     react-icons "^4.4.0"
     react-transition-group "^4.4.5"
 
-smarthr-ui@^23.0.2:
-  version "23.0.2"
-  resolved "https://registry.yarnpkg.com/smarthr-ui/-/smarthr-ui-23.0.2.tgz#e12a376a05f5020850bc420a164b09e0c383d6c4"
-  integrity sha512-5WVfzS8A38Hd7bANzJz6a/ajP7OdxOxQa5zlcb3S1cVltdaJR9IZv7EBP3p3Wd14UfNBp7oPcZf+KljUkmJusg==
+smarthr-ui@^24.1.0:
+  version "24.1.0"
+  resolved "https://registry.yarnpkg.com/smarthr-ui/-/smarthr-ui-24.1.0.tgz#35c4e051633e904722e536593796aa84a43d5c9d"
+  integrity sha512-dqzmO9IP725LdAlNwz9M5Z+DXCCPmJyxwHEyBLySz3u3nOUVwdtI1SGWyMnD6G1mhB3EGM6NMeOq7ODlOHFHUA==
   dependencies:
-    dayjs "^1.11.5"
+    "@smarthr/wareki" "^1.2.0"
+    dayjs "^1.11.6"
     lodash.merge "^4.6.2"
     lodash.range "^3.2.0"
     polished "^4.2.2"
     react-draggable "^4.4.5"
-    react-icons "^4.4.0"
+    react-icons "^4.6.0"
+    react-innertext "^1.1.5"
     react-transition-group "^4.4.5"
 
 snake-case@^2.1.0:
