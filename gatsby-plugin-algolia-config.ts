@@ -17,14 +17,18 @@ const mdxQueries = [
               id
               slug
               rawBody
+              internal {
+                contentDigest
+              }
             }
           }
         }
       }
     `,
     transformer: ({ data }: { data: { allMdx: GatsbyTypes.Query['allMdx'] } }) =>
-      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug } }) => ({
+      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
         id,
+        internal,
         title: frontmatter?.title || '',
         category: fields?.category || '',
         description: frontmatter?.description || '',
@@ -51,12 +55,19 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
               id
               slug
               rawBody
+              internal {
+                contentDigest
+              }
             }
           }
         }
         allAirtable(filter: { table: { eq: "${item.tableName}" } }) {
           edges {
             node {
+              id
+              internal {
+                contentDigest
+              }
               data {
                 name
                 description
@@ -76,8 +87,9 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
       }
     `,
     transformer: ({ data }: { data: { allMdx: GatsbyTypes.Query['allMdx']; allAirtable: GatsbyTypes.Query['allAirtable'] } }) =>
-      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug } }) => ({
+      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
         id,
+        internal,
         title: frontmatter?.title || '',
         category: fields?.category || '',
         description: frontmatter?.description || '',
@@ -102,6 +114,6 @@ export const algoliaConfig = {
   apiKey: process.env.GATSBY_ALGOLIA_ADMIN_API_KEY,
   indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
   queries: [...mdxQueries, ...airtableQueries],
-  skipIndexing: process.env.BRANCH !== 'main',
+  dryRun: process.env.BRANCH !== 'main',
   continueOnFailure: false,
 }
