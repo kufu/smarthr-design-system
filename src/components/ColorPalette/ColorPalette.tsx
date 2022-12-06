@@ -1,6 +1,5 @@
-import Color from 'color'
 import React, { FC } from 'react'
-import { defaultBreakpoint, defaultColor } from 'smarthr-ui'
+import { defaultBreakpoint } from 'smarthr-ui'
 import styled, { css } from 'styled-components'
 
 // source: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
@@ -74,13 +73,6 @@ const ColorName = styled.div`
 const ColorCode = styled.div`
   word-break: break-all;
 `
-const ColorContrast: FC<{ fgColor: string; bgColor: string }> = ({ fgColor, bgColor }) => {
-  const contrastRatio = Math.round(Color(convertHexToRGBA(fgColor)).contrast(Color(convertHexToRGBA(bgColor))) * 100) / 100
-  const score = contrastRatio >= 7 ? 'AAA' : contrastRatio >= 4.5 ? 'AA' : contrastRatio >= 3 ? 'AA+' : 'Fail'
-
-  return <p>{`${contrastRatio} (${score})`}</p>
-}
-
 const Description = styled.p`
   word-break: break-all;
 `
