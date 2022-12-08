@@ -1,0 +1,52 @@
+# 週1回リンクチェッカーを実行し、エラーがあればissueを作成します。
+
+name: Link check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 1' # Monday, 2am(UTC+0)
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Setup Node.js
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+
+      # Install npm packages
+      - name: Install dependencies
+        run: yarn
+      # リンクチェックの実行
+      - id: linkCheck
+        name: Execute link checker
+        #リンクエラーが見つかるとスクリプトはexit(1)で終了するが、このactionは中止しない。
+        continue-on-error: true
+        # linkChecker.tsを実行し、`console.error()`の内容をerrors.txtに出力する
+        # link-check-issue.mdを作成し、タイトル（Link check failed + 日付）と本文（`console.error()`の中身）を出力する
+        run: |
+          npx ts-node scripts/linkChecker.ts 2> errors.txt || true
+          echo errors=`cat errors.txt` >> $GITHUB_OUTPUT
+          echo '---' >> link-check-issue.md
+          today=$(date "+%Y-%m-%d")
+          echo "title: Link check failed ${today}" >> link-check-issue.md
+          echo '---' >> link-check-issue.md
+          echo '```' >> link-check-issue.md
+          while read error; do
+            echo "$error" >> link-check-issue.md
+          done <errors.txt
+          echo '```'
+      # GitHub issueを作成する
+      - name: Create an issue
+        # 前のstepでエラーがあった場合のみ作成
+        if: steps.linkCheck.outputs.errors != ''
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # 前のstepで書き出したlink-check-issue.mdをの内容でissueを作る
+          filename: link-check-issue.md
