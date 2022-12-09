@@ -1,6 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import React, { FC } from 'react'
-import { Helmet } from 'react-helmet'
 
 const query = graphql`
   query Head {
@@ -44,57 +43,22 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
   }
 
   return (
-    <Helmet
-      htmlAttributes={{ lang: 'ja' }}
-      title={pageTitle}
-      meta={[
-        {
-          name: 'description',
-          content: metaDescription,
-        },
-        {
-          property: 'og:title',
-          content: pageTitle,
-        },
-        {
-          property: 'og:description',
-          content: metaDescription,
-        },
-        {
-          property: 'og:type',
-          content: 'website',
-        },
-        { property: 'og:image', content: ogCloudinaryUrl || ogImagePath },
-        {
-          name: 'twitter:card',
-          content: 'summary',
-        },
-        {
-          name: 'twitter:creator',
-          content: siteMetadata?.author || '',
-        },
-        {
-          name: 'twitter:title',
-          content: pageTitle,
-        },
-        {
-          name: 'twitter:description',
-          content: metaDescription,
-        },
-        ...meta,
-      ]}
-      link={[
-        {
-          rel: 'icon',
-          href: '/favicon-32x32.png',
-          type: 'image/png',
-        },
-        {
-          rel: 'icon',
-          href: '/favicon.svg',
-          type: 'image/svg+xml',
-        },
-      ]}
-    />
+    <>
+      <title>{pageTitle}</title>
+      <meta name="description" content={metaDescription} />
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={ogCloudinaryUrl || ogImagePath} />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:creator" content={siteMetadata?.author || ''} />
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:description" content={metaDescription} />
+      {meta.map((item, index) => {
+        return <meta key={index} name={item.name} content={item.content} />
+      })}
+      <link rel="icon" href="/favicon-32x32.png" type="image/png" />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    </>
   )
 }

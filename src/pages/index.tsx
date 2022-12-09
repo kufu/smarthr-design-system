@@ -1,4 +1,4 @@
-import { Head } from '@Components/Head'
+export { Head } from '@Components/Head'
 import { ContentNavigation } from '@Components/index/ContentNavigation'
 import { FaqList } from '@Components/index/Faq'
 import { Gotcha } from '@Components/index/Gotcha'
@@ -14,7 +14,6 @@ import styled from 'styled-components'
 const Home: FC = () => {
   return (
     <>
-      <Head />
       <GlobalStyle />
       <Header isIndex />
       <GotchaContainer>

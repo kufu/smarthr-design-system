@@ -1,4 +1,4 @@
-import { Head } from '@Components/Head'
+import { Head as HeadComponent } from '@Components/Head'
 import { IndexList } from '@Components/search/IndexList/IndexList'
 import { CustomSearchBox } from '@Components/search/Search'
 import { Footer } from '@Components/shared/Footer/Footer'
@@ -10,12 +10,15 @@ import React, { FC } from 'react'
 import { InstantSearch } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 
+export const Head = () => {
+  return <HeadComponent title="検索" description="検索ページです。" />
+}
+
 const searchClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID || '', process.env.GATSBY_ALGOLIA_SEARCH_API_KEY || '')
 
 const SearchPage: FC = () => {
   return (
     <>
-      <Head title="検索" description="検索ページです。" />
       <GlobalStyle />
 
       <Wrapper>

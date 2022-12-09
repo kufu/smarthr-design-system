@@ -1,9 +1,12 @@
-import dotenv from 'dotenv'
 import path from 'path'
-import type { GatsbyConfig } from 'gatsby'
-import { AIRTABLE_CONTENTS } from './src/constants/airtable'
-import { algoliaConfig } from './gatsby-plugin-algolia-config'
+
+import dotenv from 'dotenv'
 import emoji from 'remark-emoji'
+
+import { algoliaConfig } from './gatsby-plugin-algolia-config'
+import { AIRTABLE_CONTENTS } from './src/constants/airtable'
+
+import type { GatsbyConfig } from 'gatsby'
 
 dotenv.config({
   path: '.env',
@@ -29,7 +32,6 @@ const config: GatsbyConfig = {
       },
     },
     ...(process.env.IS_TYPE_GEN ? ['gatsby-plugin-typegen'] : []),
-    'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     {

@@ -1,4 +1,4 @@
-import { Head } from '@Components/Head'
+import { Head as HeadComponent } from '@Components/Head'
 import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
 import { CodeBlock } from '@Components/article/CodeBlock'
 import { FragmentTitle } from '@Components/article/FragmentTitle/FragmentTitle'
@@ -130,21 +130,6 @@ const Article: FC<Props> = ({ data }) => {
   const slug = fields?.slug || ''
 
   const title = frontmatter?.title || ''
-  const description = frontmatter?.description || ''
-
-  // 親階層のノードを探す
-  const parentCategorySlug = slug.replace(/[^/]+\/$/, '') //例・'/basics/typography/'→'/basics/'
-  const parentCategoryNode =
-    parentCategory.edges.find((edge) => {
-      if (edge.node?.fields?.slug === parentCategorySlug) {
-        return true
-      }
-      return false
-    }) ?? null
-  const parentCategoryName = parentCategoryNode?.node.frontmatter?.title ?? title
-
-  // memo: カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
-  const headTitle = title === parentCategoryName ? title : `${title} | ${parentCategoryName}`
 
   // Airtableコンテンツのheading。各項目をh2として扱う
   const airTableHeadings = data.airTable.edges.map((edge) => {
@@ -297,7 +282,6 @@ const Article: FC<Props> = ({ data }) => {
 
   return (
     <Theme>
-      <Head title={headTitle} ogTitle={title} description={description} />
       <GlobalStyle />
 
       <Wrapper>
@@ -358,6 +342,36 @@ const Article: FC<Props> = ({ data }) => {
 }
 
 export default Article
+
+export const Head: FC<Props> = ({ data }) => {
+  const { mdx: article, parentCategoryAllMdx: parentCategory } = data
+
+  if (!article) {
+    return <HeadComponent />
+  }
+
+  const { frontmatter, fields } = article
+  const slug = fields?.slug || ''
+
+  const title = frontmatter?.title || ''
+  const description = frontmatter?.description || ''
+
+  // 親階層のノードを探す
+  const parentCategorySlug = slug.replace(/[^/]+\/$/, '') //例・'/basics/typography/'→'/basics/'
+  const parentCategoryNode =
+    parentCategory.edges.find((edge) => {
+      if (edge.node?.fields?.slug === parentCategorySlug) {
+        return true
+      }
+      return false
+    }) ?? null
+  const parentCategoryName = parentCategoryNode?.node.frontmatter?.title ?? title
+
+  // memo: カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
+  const headTitle = title === parentCategoryName ? title : `${title} | ${parentCategoryName}`
+
+  return <HeadComponent title={headTitle} description={description} />
+}
 
 const Wrapper = styled.div`
   display: flex;
