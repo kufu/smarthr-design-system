@@ -21,15 +21,6 @@ export const Head = () => {
 
 const NotFoundPage: FC = () => (
   <>
-    {/* <Head
-      title="404 Page not found"
-      meta={[
-        {
-          name: 'robots',
-          content: 'noindex',
-        },
-      ]}
-    /> */}
     <GlobalStyle />
     <Header />
 
