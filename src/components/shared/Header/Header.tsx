@@ -37,7 +37,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
       <Wrapper isIndex={isIndex}>
         <Container>
           <SiteName to="/">
-            <img src="/images/logo_smarthr design_system.svg" alt="SmartHR Design System" width="264" height="24" />
+            <img src="/images/logo_smarthr_design_system.svg" alt="SmartHR Design System" width="264" height="24" />
           </SiteName>
           <StyledNav>
             <ul className="-optional">
