@@ -1,13 +1,13 @@
-import { Head } from '@Components/Head'
+import { Head as HeadComponent } from '@Components/Head'
 import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-const NotFoundPage: FC = () => (
-  <>
-    <Head
+export const Head = () => {
+  return (
+    <HeadComponent
       title="404 Page not found"
       meta={[
         {
@@ -16,6 +16,11 @@ const NotFoundPage: FC = () => (
         },
       ]}
     />
+  )
+}
+
+const NotFoundPage: FC = () => (
+  <>
     <GlobalStyle />
     <Header />
 

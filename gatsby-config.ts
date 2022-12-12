@@ -32,7 +32,6 @@ const config: GatsbyConfig = {
       },
     },
     ...(process.env.IS_TYPE_GEN ? ['gatsby-plugin-typegen'] : []),
-    'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     {
