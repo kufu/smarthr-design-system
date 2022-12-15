@@ -115,5 +115,5 @@ export const algoliaConfig = {
   indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
   queries: [...mdxQueries, ...airtableQueries],
   dryRun: process.env.BRANCH !== 'main',
-  continueOnFailure: true,
+  continueOnFailure: false,
 }
