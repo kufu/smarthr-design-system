@@ -2,7 +2,7 @@ import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { LoginContext } from '@Context/LoginContext'
 import { useLocation } from '@reach/router'
 import { Link as LinkComponent } from 'gatsby'
-import React, { FC, useContext, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
 import styled, { createGlobalStyle, css } from 'styled-components'
 
@@ -23,8 +23,13 @@ type Props = {
 export const Header: FC<Props> = ({ isIndex = false }) => {
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   const { loginStatus, loginLabel } = useContext(LoginContext)
+
+  useEffect(() => {
+    setIsClient(typeof window !== 'undefined')
+  }, [])
 
   const isCurrent = (url: string) => {
     const regexp = new RegExp(`${url}`)
@@ -68,17 +73,19 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
             </ul>
             <MenuContainer>
               <StyledOpenButton
+                // サーバー時は対象となるDialogコンポーネントをレンダリングできないため、aria-controlsは出力しない
+                {...(isClient && { 'aria-controls': 'panel-menu' })}
                 type="button"
                 onClick={() => {
                   setIsOpen(true)
                 }}
                 title="メニューを開く"
                 aria-haspopup="true"
-                aria-controls="panel-menu"
               >
                 <FaBarsIcon size={24} />
               </StyledOpenButton>
-              {typeof window !== 'undefined' ? (
+              {/* サーバー時は`document`が存在せずエラーになるため、Dialogコンポーネントをレンダリングしない */}
+              {isClient ? (
                 <Dialog
                   isOpen={isOpen}
                   top={0}
