@@ -1,3 +1,8 @@
+import dotenv from 'dotenv'
+dotenv.config({
+  path: '.env',
+})
+
 import { AIRTABLE_CONTENTS } from './src/constants/airtable'
 
 const mdxQueries = [
