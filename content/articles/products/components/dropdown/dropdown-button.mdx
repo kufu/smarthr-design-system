@@ -5,6 +5,8 @@ smarthr-ui: 'Dropdown/DropdownButton'
 ---
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
+
 
 <ComponentStory name="Dropdown/DropdownButton" />
 
@@ -20,7 +22,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 1. アクションボタン
 2. ドロップダウン
 
-![ドロップダウンボタンの構成図](./images/button/multiple-operation-button-overview.png)
+![ドロップダウンボタンの構成図](./images/multiple-operation-button-overview.png)
 
 ### 1. アクションボタン
 複数の操作がまとまっていることを示唆するために、[Secondaryボタン](/products/components/button/#h3-1)の`アイコン付き（右）`を使い、アイコンには「<FaCaretDownIcon alt="展開" />（`FaCaretDownIcon`）」を使います。
@@ -43,7 +45,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 **使用頻度が高い順**を推奨しますが、破壊的なアクション（例：オブジェクトの削除）に関しては、順序を下げて配置してください。  
 操作の順序の典型的な例は以下のとおりです。  
 
-![開かれた操作ドロップダウン。編集・複製・削除の順に操作が並んでいる。](./images/button/multiple-operation-button-smaple.png)
+![開かれた操作ドロップダウン。編集・複製・削除の順に操作が並んでいる。](./images/multiple-operation-button-smaple.png)
 
 
 ## 種類
@@ -58,7 +60,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 | E | 異なる複数の操作（ラベル省略） | Dのパターンに該当し、ボタンを配置するスペースを十分確保できないときに使います。   |
 
 ### A. 単一のオブジェクトに対する操作
-![{オブジェクト名}の操作ボタン](./images/button/multiple-operation-button-object.png)
+![{オブジェクト名}の操作ボタン](./images/multiple-operation-button-object.png)
 
 オブジェクトに関する操作をまとめるときに使います。
 
@@ -68,7 +70,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 | ドロップダウン | オブジェクトに対して行なう操作を入れます。 |
 
 ### B. 単一のオブジェクトに対する操作（オブジェクト名省略）
-![操作ボタン](./images/button/multiple-operation-button-operation.png)
+![操作ボタン](./images/multiple-operation-button-operation.png)
 
 操作の対象になるオブジェクトがレイアウト上、明らかなときに使います。  
 例： [よくあるテーブル](/products/design-patterns/smarthr-table/)の行の中など
@@ -80,7 +82,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 ### C. 同一の操作
 
-![同じ種類の操作ボタン](./images/button/multiple-operation-button-same-type.png)
+![同じ種類の操作ボタン](./images/multiple-operation-button-same-type.png)
 
 同じ種類の操作をまとめるときに使います。
 
@@ -90,7 +92,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 | ドロップダウン | 同じ種類の操作を入れます。 |
 
 ### D. 異なる複数の操作
-![その他のボタン](./images/button/multiple-operation-button-otheres.png)
+![その他のボタン](./images/multiple-operation-button-otheres.png)
 
 他のA~Cのパターンに該当しないときに、異なる複数の操作をまとめるために使います。
 
@@ -100,7 +102,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 | ドロップダウン | 異なる複数の操作を入れます。 |
 
 ### E. 異なる複数の操作（ラベル省略）
-![ラベル省略ボタン](./images/button/multiple-operation-button-omit.png)
+![ラベル省略ボタン](./images/multiple-operation-button-omit.png)
 
 「D. 異なる複数の操作」に該当し、ボタンを配置するスペースを十分確保できないときに使います。
 
