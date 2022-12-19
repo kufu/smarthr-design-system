@@ -119,9 +119,9 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
                       <MenuStyledCategoryUl>
                         {headerContents.map(({ title, key, path }) => (
                           <li key={key}>
-                            <LinkComponent to={path} className={key && (isCurrent(key) ? '-active' : '')}>
+                            <StyledMenuLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
                               {title}
-                            </LinkComponent>
+                            </StyledMenuLink>
                           </li>
                         ))}
                       </MenuStyledCategoryUl>
@@ -378,6 +378,11 @@ const MenuStyledCategoryUl = styled.ul`
       text-decoration: underline;
     }
   }
+`
+
+const StyledMenuLink = styled(LinkComponent)`
+  display: inline-block;
+  width: 100%;
 `
 
 const MenuFootLinkContainer = styled.div`

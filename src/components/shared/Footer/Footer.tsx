@@ -116,7 +116,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
         <Col2Container>
           <div>
             <StyledH3>
-              <Link to="/concept/">コンセプト</Link>
+              <StyledLink to="/concept/">コンセプト</StyledLink>
             </StyledH3>
             {concept.length > 0 && (
               <StyledUl>
@@ -125,14 +125,14 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
+                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
               </StyledUl>
             )}
             <StyledH3>
-              <Link to="/foundation/">基本原則</Link>
+              <StyledLink to="/foundation/">基本原則</StyledLink>
               {foundation.length > 0 && (
                 <StyledUl>
                   {foundation.map(({ fields, frontmatter }) => {
@@ -140,7 +140,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                     if (frontmatter?.title === undefined) return null
                     return (
                       <li key={fields.slug}>
-                        <Link to={fields.slug}>{frontmatter.title}</Link>
+                        <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
                       </li>
                     )
                   })}
@@ -150,7 +150,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
           </div>
           <div>
             <StyledH3>
-              <Link to="/basics/">基本要素</Link>
+              <StyledLink to="/basics/">基本要素</StyledLink>
             </StyledH3>
             {basics.length > 0 && (
               <StyledUl>
@@ -159,14 +159,14 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
+                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
               </StyledUl>
             )}
             <StyledH3>
-              <Link to="/accessibility/">アクセシビリティ</Link>
+              <StyledLink to="/accessibility/">アクセシビリティ</StyledLink>
             </StyledH3>
             {accessibility.length > 0 && (
               <StyledUl>
@@ -175,7 +175,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
+                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
@@ -184,7 +184,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
           </div>
           <div>
             <StyledH3>
-              <Link to="/products/">プロダクト</Link>
+              <StyledLink to="/products/">プロダクト</StyledLink>
             </StyledH3>
             {products.length > 0 && (
               <StyledUl>
@@ -193,7 +193,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
+                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
@@ -202,7 +202,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
           </div>
           <div>
             <StyledH3>
-              <Link to="/communication/">コミュニケーション</Link>
+              <StyledLink to="/communication/">コミュニケーション</StyledLink>
             </StyledH3>
             {communication.length > 0 && (
               <StyledUl>
@@ -211,7 +211,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
+                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
@@ -377,6 +377,11 @@ const StyledUl = styled.ul`
       margin-bottom: 4px;
     }
   }
+`
+
+const StyledLink = styled(Link)`
+  display: inline-block;
+  width: 100%;
 `
 
 const StyledCopyright = styled.p`
