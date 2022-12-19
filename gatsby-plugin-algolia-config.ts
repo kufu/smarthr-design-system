@@ -1,3 +1,8 @@
+import dotenv from 'dotenv'
+dotenv.config({
+  path: '.env',
+})
+
 import { AIRTABLE_CONTENTS } from './src/constants/airtable'
 
 const mdxQueries = [
@@ -115,5 +120,5 @@ export const algoliaConfig = {
   indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
   queries: [...mdxQueries, ...airtableQueries],
   dryRun: process.env.BRANCH !== 'main',
-  continueOnFailure: false,
+  continueOnFailure: process.env.BRANCH !== 'main',
 }
