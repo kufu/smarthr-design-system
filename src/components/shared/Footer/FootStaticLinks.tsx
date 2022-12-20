@@ -65,11 +65,11 @@ export const FootStaticLinks: FC<Props> = () => {
         {Link1.map(({ title, path, isExternal }, index) => (
           <li key={index}>
             {isExternal ? (
-              <a href={path} target="_blank" rel="noopener noreferrer">
+              <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
                 {title}
-              </a>
+              </StyledAnchor>
             ) : (
-              <Link to={path}>{title}</Link>
+              <StyledLink to={path}>{title}</StyledLink>
             )}
           </li>
         ))}
@@ -79,11 +79,11 @@ export const FootStaticLinks: FC<Props> = () => {
         {Link2.map(({ title, path, isExternal }, index) => (
           <li key={index}>
             {isExternal ? (
-              <a href={path} target="_blank" rel="noopener noreferrer">
+              <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
                 {title}
-              </a>
+              </StyledAnchor>
             ) : (
-              <Link to={path}>{title}</Link>
+              <StyledLink to={path}>{title}</StyledLink>
             )}
           </li>
         ))}
@@ -131,4 +131,14 @@ const StyledAnchorButton = styled(AnchorButton)`
   &.loginStatusPending {
     visibility: hidden;
   }
+`
+
+const StyledAnchor = styled.a`
+  display: inline-block;
+  width: 100%;
+`
+
+const StyledLink = styled(Link)`
+  display: inline-block;
+  width: 100%;
 `
