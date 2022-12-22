@@ -1,1 +1,1 @@
-export { CaptureImageWithDescription } from './CaptureImageWithDescription'
+export { CaptureImageWithDesc } from './CaptureImageWithDesc'

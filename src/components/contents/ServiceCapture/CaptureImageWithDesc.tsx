@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const CaptureImageWithDescription: FC<Props> = ({ description, children }) => {
+export const CaptureImageWithDesc: FC<Props> = ({ description, children }) => {
   return (
     <Figure>
       {children}
