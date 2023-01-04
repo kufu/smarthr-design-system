@@ -223,7 +223,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
         <CopyrightContainer>
           <StyledCopyright>
             <img src="/images/logo_smarthr.svg" alt="SmartHR" width="84" height="15" />
-            <small>© 2022, SmartHR, Inc.</small>
+            <small>© SmartHR, Inc.</small>
           </StyledCopyright>
         </CopyrightContainer>
       </LayoutContainer>
