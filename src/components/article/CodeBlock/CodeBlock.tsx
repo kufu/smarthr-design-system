@@ -9,11 +9,18 @@ import * as ui from 'smarthr-ui'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
 import styled, { ThemeProvider, css } from 'styled-components'
 // TODO SmartHR な Dark テーマほしいな!!!
-import ts, { transpile } from 'typescript'
 
 import { ComponentPreview } from '../../ComponentPreview'
 
 import { CopyButton } from './CopyButton'
+
+declare type TsType = typeof import('typescript/lib/typescript.js')
+
+declare global {
+  interface Window {
+    ts: TsType
+  }
+}
 
 type Props = {
   children: string
@@ -40,11 +47,12 @@ const theme = {
 const smarthrTheme = ui.createTheme()
 
 const transformCode = (snippet: string) => {
+  if (window.ts === undefined) return ''
   // Storybookでも利用するため、コード内に`import`・`export`が記述されているが、ここではエラーになるので削除する。
   const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '')
-  return transpile(code, {
-    jsx: ts.JsxEmit.React,
-    target: ts.ScriptTarget.ES2020,
+  return window.ts.transpile(code, {
+    jsx: window.ts.JsxEmit.React,
+    target: window.ts.ScriptTarget.ES2020,
   })
 }
 
@@ -77,6 +85,8 @@ export const CodeBlock: FC<Props> = ({
   if (editable) {
     return (
       <Wrapper>
+        {/* ライブエディタ内のコードのトランスパイルに使用するTS（容量が大きいためCDNを利用） */}
+        <script src="https://unpkg.com/typescript@latest/lib/typescriptServices.js"></script>
         {renderingComponent && (
           <LinkWrapper>
             <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
@@ -85,31 +95,33 @@ export const CodeBlock: FC<Props> = ({
           </LinkWrapper>
         )}
         <ThemeProvider theme={smarthrTheme}>
-          <LiveProvider
-            code={code}
-            language={language as Language}
-            scope={{ ...React, ...ui, styled, css, ...scope }}
-            theme={{
-              ...vscode,
-              plain: {
-                color: CSS_COLOR.LIGHT_GREY_3,
-                backgroundColor: CSS_COLOR.TEXT_BLACK,
-              },
-            }}
-            noInline={withStyled}
-            transformCode={transformCode}
-          >
-            <ComponentPreview gap={gap} align={align} layout={layout}>
-              {/* @ts-ignore -- LivePreviewの型定義が正しくないようなので、エラーを無視。https://github.com/FormidableLabs/react-live/pull/304 */}
-              <LivePreview Component={React.Fragment} />
-            </ComponentPreview>
-            <StyledLiveEditorContainer>
-              <CopyButton text={code} />
-              {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-              <LiveEditor padding={0} />
-            </StyledLiveEditorContainer>
-            <LiveError />
-          </LiveProvider>
+          {typeof window && (
+            <LiveProvider
+              code={code}
+              language={language as Language}
+              scope={{ ...React, ...ui, styled, css, ...scope }}
+              theme={{
+                ...vscode,
+                plain: {
+                  color: CSS_COLOR.LIGHT_GREY_3,
+                  backgroundColor: CSS_COLOR.TEXT_BLACK,
+                },
+              }}
+              noInline={withStyled}
+              transformCode={transformCode}
+            >
+              <ComponentPreview gap={gap} align={align} layout={layout}>
+                {/* @ts-ignore -- LivePreviewの型定義が正しくないようなので、エラーを無視。https://github.com/FormidableLabs/react-live/pull/304 */}
+                <LivePreview Component={React.Fragment} />
+              </ComponentPreview>
+              <StyledLiveEditorContainer>
+                <CopyButton text={code} />
+                {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
+                <LiveEditor padding={0} />
+              </StyledLiveEditorContainer>
+              <LiveError />
+            </LiveProvider>
+          )}
         </ThemeProvider>
       </Wrapper>
     )
