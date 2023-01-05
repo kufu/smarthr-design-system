@@ -14,14 +14,6 @@ import { ComponentPreview } from '../../ComponentPreview'
 
 import { CopyButton } from './CopyButton'
 
-declare type TsType = typeof import('typescript/lib/typescript.js')
-
-declare global {
-  interface Window {
-    ts: TsType
-  }
-}
-
 type Props = {
   children: string
   className?: Language
@@ -46,7 +38,7 @@ const theme = {
 
 const smarthrTheme = ui.createTheme()
 
-const transformCode = (snippet: string, tslib: TsType | undefined) => {
+const transformCode = (snippet: string, tslib: typeof window.ts) => {
   if (tslib === undefined) return ''
   // Storybookでも利用するため、コード内に`import`・`export`が記述されているが、ここではエラーになるので削除する。
   const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '')
