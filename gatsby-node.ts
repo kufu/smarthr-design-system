@@ -1,7 +1,8 @@
 import path from 'path'
-import type { CreateWebpackConfigArgs, GatsbyNode } from 'gatsby'
 
-import * as gatsbyNode from './src/gatsby-node/index'
+import * as gatsbyNode from './src/gatsby-node'
+
+import type { CreateWebpackConfigArgs, GatsbyNode } from 'gatsby'
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = gatsbyNode.onCreateNode
 export const createPages: GatsbyNode['createPages'] = gatsbyNode.createPages
@@ -17,4 +18,9 @@ export const onCreateWebpackConfig = ({ actions }: CreateWebpackConfigArgs) => {
       },
     },
   })
+  if (process.env.BRANCH === 'main') {
+    actions.setWebpackConfig({
+      devtool: false,
+    })
+  }
 }
