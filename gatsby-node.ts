@@ -18,6 +18,7 @@ export const onCreateWebpackConfig = ({ actions }: CreateWebpackConfigArgs) => {
       },
     },
   })
+  // Gatsbyではビルド時には常にNODE_ENV=productionになるため、ブランチで判定
   if (process.env.BRANCH === 'main') {
     actions.setWebpackConfig({
       devtool: false,
