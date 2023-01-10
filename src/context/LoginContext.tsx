@@ -32,7 +32,7 @@ export const LoginContextProvider: FC<Props> = ({ children }) => {
     // Chromeで、history.back()後のfetchが失敗する現象が起こるため、setTimeout()からタスクに追加してバグを回避する。
     // https://bugs.chromium.org/p/chromium/issues/detail?id=1244230
     setTimeout(() => {
-      fetch(PRIVATE_DOC_PATH).then(
+      fetch(PRIVATE_DOC_PATH, { method: 'HEAD' }).then(
         (res) => {
           if (res.status === 200) {
             setLoginStatus('loggedIn')
