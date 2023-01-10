@@ -18,9 +18,9 @@ export const onCreateWebpackConfig = ({ actions }: CreateWebpackConfigArgs) => {
       },
     },
   })
-  if (process.env.BRANCH === 'main') {
-    actions.setWebpackConfig({
-      devtool: false,
-    })
-  }
+  // if (process.env.BRANCH === 'main') {
+  actions.setWebpackConfig({
+    devtool: false,
+  })
+  // }
 }
