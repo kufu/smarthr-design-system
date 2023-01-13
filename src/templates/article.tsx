@@ -132,15 +132,20 @@ const Article: FC<Props> = ({ data }) => {
   const title = frontmatter?.title || ''
 
   // Airtableコンテンツのheading。各項目をh2として扱う
-  const airTableHeadings = data.airTable.edges.map((edge) => {
-    return {
-      depth: 2,
-      value: edge.node.data?.name ?? '',
-      recordId: edge.node.data?.record_id ?? '',
-      name: edge.node.data?.name ?? '',
-      order: edge.node.data?.order ?? Number.MAX_SAFE_INTEGER,
-    }
-  })
+  const airTableHeadings = data.airTable.edges
+    .filter((edge) => {
+      return edge.node.data?.name && edge.node.data?.name !== ''
+    })
+    .map((edge) => {
+      return {
+        depth: 2,
+        value: edge.node.data?.name ?? '',
+        recordId: edge.node.data?.record_id ?? '',
+        name: edge.node.data?.name ?? '',
+        order: edge.node.data?.order ?? Number.MAX_SAFE_INTEGER,
+      }
+    })
+
   // Airtableコンテンツは、ページによりソート方法が異なるので、headingの順序もそれに合わせる
   const airtableSortType =
     AIRTABLE_CONTENTS.filter((item: airtableContents) => {
