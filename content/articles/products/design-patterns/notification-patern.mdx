@@ -1,0 +1,65 @@
+---
+title: 'ユーザーへの通知'
+description: 'ユーザーへのフィードバックをどう表すかを定義しています。'
+order: 11
+---
+
+import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
+
+ユーザーへのフィードバックをどう表すかを定義しています。
+
+
+## 基本的な考え方
+<!--{方針や原則があれば書きます。概要的な説明はなるべくここには書きません。}-->
+
+ユーザーへの通知方法は、操作の種類、操作後の状態などによって分類できます。
+
+- 操作後に画面が切り替わるとき
+  - [アクション通知](#action-notification)
+- ダイアログから操作し、画面に戻るとき
+  - [アクション通知](#action-notification)
+- 特別で重要な情報を出したいとき
+  - [インフォメーション通知](#info-notification)
+- 入力された値へフィードバックしたいとき
+  - [隣接エリアの通知](#notificationbar)
+
+## 種類
+
+### アクション通知
+
+アクションへの通知としてユーザーにメッセージを伝えたいケースに使うパターンです。非推奨となった`FlashMessage`の代替として使います。
+アクション通知は「操作後に画面が切り替わるとき」や「ダイアログから操作し、画面に戻るとき」など、画面の状態が大きく切り替わるときに使います。
+
+アクション通知では、[`NotificationBar`](/products/components/notification-bar)コンポーネントを使ってメッセージを表示します。
+
+- ユーザーに通知が表示されたことを示唆させやすくするために、`NotificationBar`のanimationプロパティを`true`にします。
+- ユーザーへのアテンションを高めるために、`NotificationBar`のスタイルは`bold`にすることを推奨しています。
+- `NotificationBar`は時間経過してもユーザーに表示されます。閉じるボタンを押したら、`NotificationBar`を非表示にします。(※1.)
+
+#### 使い方
+
+以下の動画はコレクションにオブジェクトを追加する際に`NotificationBar`を使ってメッセージを出す典型的な例です。
+この例ではアクションが成功したため、`NotificationBar`の`type`は`success`にしていますが、エラーの場合は`error`を指定してメッセージを返します。
+
+![](./images/notification-patern/notification-patern-notificationbar.gif)
+
+
+### インフォメーション通知
+
+アクションへの通知としてユーザーにメッセージを伝えたいケースに使うパターンです。非推奨となった`FlashMessage`の代替として使います。
+アクション通知は「操作後に画面が切り替わるとき」や「ダイアログから操作し、画面に戻るとき」など、画面の状態が大きく切り替わるときに使います。
+
+インフォメーション通知では、[`NotificationBar`](/products/components/notification-bar)コンポーネント、[`InformationPanel`](/products/components/information-panel)、[`CompactInformationPanel`](/products/components/information-panel)
+
+#### 使い方
+
+### 隣接エリアの通知
+
+入力された値へフィードバックしたいときに使うパターンです。主にフォームバリデーションなどに使われるパターンです。
+
+{WIP}
+
+
+## 参考文献
+
+※1. [Web Content Accessibility Guidelines - 2.2.1 タイミング調整可能を理解する](https://waic.jp/docs/UNDERSTANDING-WCAG20/time-limits-required-behaviors.html)
