@@ -69,10 +69,12 @@ export const Gotcha: FC<unknown> = () => {
     }
     nextImgIsReady = false
     nextImg.srcset = `
-      ${CLOUDINARY_URL}f_auto/w_1272/sds/${gotchaItem[randomNum].image} 1272w,
+      ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[randomNum].image} 2720w,
+      ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[randomNum].image} 1536w,
       ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[randomNum].image} 768w
     `
     nextImg.src = `${CLOUDINARY_URL}f_auto/sds/${gotchaItem[randomNum].image}`
+    nextImg.sizes = '(min-width: 1024px) 2720px, 100vw'
     setNextItemIndex(randomNum)
   }
 
@@ -92,12 +94,14 @@ export const Gotcha: FC<unknown> = () => {
           {nextItemIndex > -1 && (
             <img
               srcSet={`
-                ${CLOUDINARY_URL}f_auto/w_1272/sds/${gotchaItem[nextItemIndex].image} 1272w,
+                ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[nextItemIndex].image} 2720w,
+                ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[nextItemIndex].image} 1536w,
                 ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[nextItemIndex].image} 768w
               `}
               src={`${CLOUDINARY_URL}f_auto/sds/${gotchaItem[nextItemIndex].image}`}
               width="1272"
               height="352"
+              sizes="(min-width: 1024px) 2720px, 100vw"
               alt={gotchaItem[nextItemIndex].alt}
               aria-hidden="true"
               onLoad={() => nextImgOnload()}
@@ -108,10 +112,12 @@ export const Gotcha: FC<unknown> = () => {
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
             <img
               srcSet={`
-                ${CLOUDINARY_URL}f_auto/w_1272/sds/${gotchaItem[currentItemIndex].image} 1272w,
+                ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[currentItemIndex].image} 2720w,
+                ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[currentItemIndex].image} 1536w,
                 ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[currentItemIndex].image} 768w
               `}
               src={`${CLOUDINARY_URL}f_auto/sds/${gotchaItem[currentItemIndex].image}`}
+              sizes="(min-width: 1024px) 2720px, 100vw"
               width="1272"
               height="352"
               alt={gotchaItem[currentItemIndex].alt}
