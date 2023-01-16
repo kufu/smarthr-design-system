@@ -122,6 +122,7 @@ const config: GatsbyConfig = {
               disableBgImage: false,
             },
           },
+          'gatsby-remark-gifs',
           {
             resolve: `gatsby-remark-image-attributes`,
             options: {
