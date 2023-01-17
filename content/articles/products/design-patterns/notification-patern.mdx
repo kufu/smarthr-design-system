@@ -14,24 +14,24 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 ユーザーへの通知方法は、操作の種類、操作後の状態などによって分類できます。
 
 - 操作後に画面が切り替わるとき
-  - [アクション通知](#h3-0)
+  - [「アクション通知」](#h3-0)
 - ダイアログから操作し、画面に戻るとき
-  - [アクション通知](#h3-0)
+  - [「アクション通知」](#h3-0)
 - 特別で重要な情報やお知らせを出したいとき
-  - [インフォメーション通知](#h3-1)
+  - [「インフォメーション通知」](#h3-1)
 - 入力された値へフィードバックしたいとき
-  - [[WIP]隣接エリアの通知](#h3-2)
+  - [「[WIP]隣接エリアへの通知」](#h3-2)
 
 ## 種類
 
-### アクション通知
+### 「アクション通知」
 
 主に「操作後に画面が切り替わるとき」や「ダイアログから操作し、画面に戻るとき」などに使います。
 
-- アクション通知では、[`NotificationBar`](/products/components/notification-bar)コンポーネントを使ってメッセージを表示します。
-- アクション通知は非推奨となった`FlashMessage`による通知の代替パターンです。
+- 「アクション通知」では、[`NotificationBar`](/products/components/notification-bar)コンポーネントを使ってメッセージを表示します。
+- 「アクション通知」は非推奨となった`FlashMessage`による通知の代替パターンです。
 - ユーザーに通知が表示されたことを示唆させやすくするために、`NotificationBar`のanimationプロパティを`true`にします。
-- ユーザーへのアテンションを高めるために、`NotificationBar`の`bold`を`true`にすることを推奨しています。
+- ユーザーへのアテンションを高めるために、`NotificationBar`の`bold`を`true`にすることを推奨します。
 - `NotificationBar`は時間経過してもユーザーに表示されます。閉じるボタンを押したら、`NotificationBar`を非表示にします。(※1.)
 
 #### 使い方
@@ -46,13 +46,13 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 
 ![`NotificationBar`を`positon: stikcy`で追従表示している例](./images/notification-patern/notification-patern-notificationbar-sticky.gif)
 
-### インフォメーション通知
+### 「インフォメーション通知」
 
 主に「特別で重要な情報やお知らせを出したいとき」に使います。
 
-- インフォメーション通知では、[`NotificationBar`](/products/components/notification-bar)、[`InformationPanel`](/products/components/information-panel)、[`CompactInformationPanel`](/products/components/information-panel)コンポーネントを使います。
+- 「インフォメーション通知」では、[`NotificationBar`](/products/components/notification-bar)、[`InformationPanel`](/products/components/information-panel)、[`CompactInformationPanel`](/products/components/information-panel)コンポーネントを使います。
 - 常時表示する場合、視覚的に強い表示を常に行なうと通常操作に影響を与えてしまうため、通常は`NotificationBar`の`bold`は`false`にすることを推奨します。ただし、破壊的な変更や必ず見てほしい重要情報などを表示させたいケースではその限りではありません。
-- インフォメーション通知で設置するコンポーネントと表示位置は、情報構造に合わせて設計します。代表的な使い方は次項の[使い方](#h4-1)で述べています。
+- 「インフォメーション通知」で設置するコンポーネントと表示位置は、情報構造に合わせて設計します。代表的な使い方は次項の[使い方](#h4-1)で述べています。
 
 #### 使い方
 
@@ -69,9 +69,9 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 ![`InformationPanel`を使ってメッセージを表示している例](./images/notification-patern/notification-patern-static3.png)
 
 
-### [WIP]隣接エリアの通知
+### 「[WIP]隣接エリアへの通知」
 
-入力された値へフィードバックしたいときに使うパターンです。主にフォームバリデーションなどに使われるパターンです。
+入力された値へフィードバックしたいときに使うパターンです。主にフォームバリデーションなどに使います。
 
 {WIP}
 
