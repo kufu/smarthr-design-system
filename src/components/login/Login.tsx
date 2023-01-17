@@ -23,6 +23,7 @@ export const LoginPage: FC = () => {
           width="100%"
           onChange={(e) => setPassword(e.currentTarget.value)}
           value={password}
+          name="password"
         />
 
         <Button
