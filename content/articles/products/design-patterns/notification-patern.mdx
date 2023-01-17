@@ -1,39 +1,38 @@
 ---
 title: 'ユーザーへの通知'
-description: 'ユーザーへのフィードバックをどう表すかを定義しています。'
+description: 'ユーザーへ伝えたいフィードバックやメッセージをどう表すかを定義しています。'
 order: 11
 ---
 
 import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 
-ユーザーへのフィードバックをどう表すかを定義しています。
+ユーザーへ伝えたいフィードバックやメッセージをどう表すかを定義しています。
 
 
 ## 基本的な考え方
-<!--{方針や原則があれば書きます。概要的な説明はなるべくここには書きません。}-->
 
 ユーザーへの通知方法は、操作の種類、操作後の状態などによって分類できます。
 
 - 操作後に画面が切り替わるとき
-  - [アクション通知](#action-notification)
+  - [アクション通知](#h3-0)
 - ダイアログから操作し、画面に戻るとき
-  - [アクション通知](#action-notification)
+  - [アクション通知](#h3-0)
 - 特別で重要な情報を出したいとき
-  - [インフォメーション通知](#info-notification)
+  - [インフォメーション通知](#h3-1)
 - 入力された値へフィードバックしたいとき
-  - [隣接エリアの通知](#notificationbar)
+  - [[WIP]隣接エリアの通知](#h3-2)
 
 ## 種類
 
 ### アクション通知
 
-アクションへの通知としてユーザーにメッセージを伝えたいケースに使うパターンです。非推奨となった`FlashMessage`の代替として使います。
-アクション通知は「操作後に画面が切り替わるとき」や「ダイアログから操作し、画面に戻るとき」など、画面の状態が大きく切り替わるときに使います。
+アクションへの通知としてユーザーにメッセージを伝えたいケースに使うパターンです。
+主に「操作後に画面が切り替わるとき」や「ダイアログから操作し、画面に戻るとき」などに使います。
 
-アクション通知では、[`NotificationBar`](/products/components/notification-bar)コンポーネントを使ってメッセージを表示します。
-
+- アクション通知では、[`NotificationBar`](/products/components/notification-bar)コンポーネントを使ってメッセージを表示します。
+- アクション通知は非推奨となった`FlashMessage`による通知の代替パターンです。
 - ユーザーに通知が表示されたことを示唆させやすくするために、`NotificationBar`のanimationプロパティを`true`にします。
-- ユーザーへのアテンションを高めるために、`NotificationBar`のスタイルは`bold`にすることを推奨しています。
+- ユーザーへのアテンションを高めるために、`NotificationBar`の`bold`を`true`にすることを推奨しています。
 - `NotificationBar`は時間経過してもユーザーに表示されます。閉じるボタンを押したら、`NotificationBar`を非表示にします。(※1.)
 
 #### 使い方
@@ -41,24 +40,42 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 以下の動画はコレクションにオブジェクトを追加する際に`NotificationBar`を使ってメッセージを出す典型的な例です。
 この例ではアクションが成功したため、`NotificationBar`の`type`は`success`にしていますが、エラーの場合は`error`を指定してメッセージを返します。
 
-![](./images/notification-patern/notification-patern-notificationbar.gif)
+![コレクションにオブジェクトを追加する際に`NotificationBar`を使ってメッセージを出す典型的な例](./images/notification-patern/notification-patern-notificationbar.gif)
 
+また、アクション後にスクロールが長く`NotificationBar`の通知に気づきにくい問題がある場合は、`positon: stikcy`でスクロールに追従した表示をすることを推奨します。
+以下の動画ではアクション実行後に縦スクロールしても`NotificationBar`が画面上部に表示されるようになっています。
+
+![`NotificationBar`を`positon: stikcy`で追従表示している例](./images/notification-patern/notification-patern-notificationbar-sticky.gif)
 
 ### インフォメーション通知
 
-アクションへの通知としてユーザーにメッセージを伝えたいケースに使うパターンです。非推奨となった`FlashMessage`の代替として使います。
-アクション通知は「操作後に画面が切り替わるとき」や「ダイアログから操作し、画面に戻るとき」など、画面の状態が大きく切り替わるときに使います。
+ユーザーへ常に伝えたい、注意のメッセージを伝えたい際に使うパターンです。
+主に「特別で重要な情報を出したいとき」などに使います。
 
-インフォメーション通知では、[`NotificationBar`](/products/components/notification-bar)コンポーネント、[`InformationPanel`](/products/components/information-panel)、[`CompactInformationPanel`](/products/components/information-panel)
+- インフォメーション通知では、[`NotificationBar`](/products/components/notification-bar)、[`InformationPanel`](/products/components/information-panel)、[`CompactInformationPanel`](/products/components/information-panel)コンポーネントを使います。
+- 常時表示する場合、視覚的に強い表示を常に行なうと通常操作に影響を与えてしまうため、通常は`NotificationBar`の`bold`は`false`にすることを推奨します。ただし、破壊的な変更や必ず見てほしい重要情報などを表示させたいケースではその限りではありません。
+- インフォメーション通知で設置するコンポーネントの表示位置は、情報構造に合わせて設定します。代表的な配置は次項の[使い方](#h4-1)で述べています。
 
 #### 使い方
 
-### 隣接エリアの通知
+以下の画面は`NotificationBar`を使ってアプリケーション全体へメッセージを表示している例です。アプリケーション内で画面を切り替えてもメッセージが表示され続けることを示唆するため、`Header`よりも上に配置しています。
+
+![`NotificationBar`を使ってアプリケーション全体へメッセージを表示している例](./images/notification-patern/notification-patern-static1.png)
+
+次の画面は`NotificationBar`を使ってページ内にメッセージを表示している例です。この例で`AppNavi`の下に`NotificationBar`を配置しているのは、「ダッシュボード」の配下のみにかかる情報だと示唆するためです。
+
+![`NotificationBar`を使ってページ内にメッセージを表示している例](./images/notification-patern/notification-patern-static2.png)
+
+最後の画面は`InformationPanel`を使ってメッセージを表示している例です。この例ではダッシュボード画面にのみに関係する情報を表示しています。なお`InformationPanel`は表示領域を大きく取るコンポーネントなので、表示する情報が少ない場合は`CompactInformationPanel`を使うことを推奨します。
+
+![`InformationPanel`を使ってメッセージを表示している例](./images/notification-patern/notification-patern-static3.png)
+
+
+### [WIP]隣接エリアの通知
 
 入力された値へフィードバックしたいときに使うパターンです。主にフォームバリデーションなどに使われるパターンです。
 
 {WIP}
-
 
 ## 参考文献
 
