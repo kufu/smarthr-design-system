@@ -297,9 +297,7 @@ const Article: FC<Props> = ({ data }) => {
             <Sidebar path={slug ?? ''} nestedSidebarItems={nestedSidebarItems} />
           </MainSidebar>
 
-          <MainIndexNav>
-            <IndexNav headings={headingList} />
-          </MainIndexNav>
+          <MainIndexNav>{headingList.length > 0 && <IndexNav headings={headingList} />}</MainIndexNav>
 
           <MainArticle>
             <MainArticleTitle>
