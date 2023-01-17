@@ -17,7 +17,7 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
   - [アクション通知](#h3-0)
 - ダイアログから操作し、画面に戻るとき
   - [アクション通知](#h3-0)
-- 特別で重要な情報を出したいとき
+- 特別で重要な情報やお知らせを出したいとき
   - [インフォメーション通知](#h3-1)
 - 入力された値へフィードバックしたいとき
   - [[WIP]隣接エリアの通知](#h3-2)
@@ -26,7 +26,6 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 
 ### アクション通知
 
-アクションへの通知としてユーザーにメッセージを伝えたいケースに使うパターンです。
 主に「操作後に画面が切り替わるとき」や「ダイアログから操作し、画面に戻るとき」などに使います。
 
 - アクション通知では、[`NotificationBar`](/products/components/notification-bar)コンポーネントを使ってメッセージを表示します。
@@ -49,12 +48,11 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 
 ### インフォメーション通知
 
-ユーザーへ常に伝えたい、注意のメッセージを伝えたい際に使うパターンです。
-主に「特別で重要な情報を出したいとき」などに使います。
+主に「特別で重要な情報やお知らせを出したいとき」に使います。
 
 - インフォメーション通知では、[`NotificationBar`](/products/components/notification-bar)、[`InformationPanel`](/products/components/information-panel)、[`CompactInformationPanel`](/products/components/information-panel)コンポーネントを使います。
 - 常時表示する場合、視覚的に強い表示を常に行なうと通常操作に影響を与えてしまうため、通常は`NotificationBar`の`bold`は`false`にすることを推奨します。ただし、破壊的な変更や必ず見てほしい重要情報などを表示させたいケースではその限りではありません。
-- インフォメーション通知で設置するコンポーネントの表示位置は、情報構造に合わせて設定します。代表的な配置は次項の[使い方](#h4-1)で述べています。
+- インフォメーション通知で設置するコンポーネントと表示位置は、情報構造に合わせて設計します。代表的な使い方は次項の[使い方](#h4-1)で述べています。
 
 #### 使い方
 
