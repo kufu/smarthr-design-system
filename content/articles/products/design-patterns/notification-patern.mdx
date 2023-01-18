@@ -56,13 +56,13 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 
 ![動画:NotificationBarを`positon: sticky`で追従表示している](./images/notification-patern/notification-patern-notificationbar-sticky.gif)
 
-## インフォメーション通知
+### インフォメーション通知
 
-主に「特別で重要な情報やお知らせを出したいとき」に使います。
+主に「特別で重要な情報やお知らせを出したいとき」に使います。  
+インフォメーション通知では、[NotificationBar](/products/components/notification-bar)、[InformationPanel](/products/components/information-panel)、[CompactInformationPanel](/products/components/information-panel)コンポーネントを使います。
 
-- インフォメーション通知では、[NotificationBar](/products/components/notification-bar)、[InformationPanel](/products/components/information-panel)、[CompactInformationPanel](/products/components/information-panel)コンポーネントを使います。
-- 基本的に[NotificationBar](/products/components/notification-bar)の`bold`は`false`で使うことを推奨します。破壊的な変更や必ず見てほしい重要情報など必要に応じて`bold`を使ってください。
-- インフォメーション通知で設置するコンポーネントと表示位置は、情報構造に合わせて設計します。代表的な使い方は次項の[使い方](#h3-1)で述べています。
+- 基本的に、[NotificationBar](/products/components/notification-bar)は`bold={false}`で使うことを推奨します。破壊的な変更や必ず見てほしい重要情報など必要に応じて強調してください。
+- インフォメーション通知で設置するコンポーネントと表示位置は、情報構造に合わせて設計します。代表的な使い方は次項の使い方を参照してください。
 
 ### 使い方
 
