@@ -51,7 +51,7 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 主に「特別で重要な情報やお知らせを出したいとき」に使います。
 
 - 「インフォメーション通知」では、[`NotificationBar`](/products/components/notification-bar)、[`InformationPanel`](/products/components/information-panel)、[`CompactInformationPanel`](/products/components/information-panel)コンポーネントを使います。
-- 常時表示する場合、視覚的に強い表示を常に行なうと通常操作に影響を与えてしまうため、通常は`NotificationBar`の`bold`は`false`にすることを推奨します。ただし、破壊的な変更や必ず見てほしい重要情報などを表示させたいケースではその限りではありません。
+- 基本的に`NotificationBar`の`bold`は`false`で使うことを推奨します。破壊的な変更や必ず見てほしい重要情報など必要に応じて`bold`を使ってください。
 - 「インフォメーション通知」で設置するコンポーネントと表示位置は、情報構造に合わせて設計します。代表的な使い方は次項の[使い方](#h4-1)で述べています。
 
 #### 使い方
