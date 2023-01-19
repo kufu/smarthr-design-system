@@ -50,11 +50,11 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     if (storiesCode === '') return
 
     //親グループ名（例："Buttons（ボタン）"）を取得
-    const matchGroupNames = storiesCode.matchAll(/export\sdefault\s\{\s+title:.*?'(.*?)\//gm)
+    const matchGroupNames = storiesCode.matchAll(/export\sdefault\s\{\s+title:.*?'(.*?)'/gm)
     const groupNames = [...matchGroupNames].map((result) => {
       return result
     })
-    setGroupPath(groupNames.length > 0 ? `${groupNames[0][1].replace(/\s/, '-').toLowerCase()}-` : '')
+    setGroupPath(groupNames.length > 0 ? `${groupNames[0][1].replace(/\s|\//g, '-').toLowerCase()}` : '')
 
     // "export const AccordionStyle: Story" や "export const All = Template.bind({})" のような、Story名をexportするコードから名前を抜き出す
     // 注意1：export { Default as DropdownButton } from ...のようなコードにはマッチしない
@@ -86,7 +86,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     })
 
     const items = [...items1, ...items2]
-
+    console.log(items)
     // "AccordionStyle.storyName = 'Accordion style'" のような表示名の定義があればラベルとして利用する
     const matchStoryLabels = storiesCode.matchAll(/(\S*)\.storyName\s=\s'(.*)'/g)
     Array.from(matchStoryLabels).forEach((result) => {
@@ -108,17 +108,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     return
   }
 
-  const getStoryName = (componentName: string, itemName: string) => {
-    // 'Layout/Cluster' のような階層ありの場合
-    if (componentName.includes('/')) {
-      return componentName
-        .replace(/([A-Z])/g, (s) => {
-          return '-' + s.charAt(0).toLowerCase()
-        })
-        .replace('/', '-')
-        .replace(/^_|-/, '')
-    }
-
+  const getStoryName = (itemName: string) => {
     // 階層なしの場合
     const kebab = itemName
       // UpperCamel case -> Kebab case
@@ -129,7 +119,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       .replace(/^[a-z]+$/, (s) => `-${s.charAt(0)}`)
       // コンポーネントとStoryが同名の場合に、頭に'_'がついていることがあるので、削除
       .replace(/^_/, '')
-    return `${componentName.toLowerCase()}-${kebab}`
+    return `${kebab}`
   }
 
   if (typeof window === undefined || storiesCode === '') {
@@ -151,7 +141,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         <>
           <LinkWrapper>
             <TextLink
-              href={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}${getStoryName(name, currentIFrame)}&viewMode=story`}
+              href={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(currentIFrame)}&viewMode=story`}
               target="_blank"
             >
               別画面で開く
@@ -166,7 +156,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
                   return item.name === currentIFrame
                 })?.label || ''
               }
-              src={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}${getStoryName(name, currentIFrame)}`}
+              src={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(currentIFrame)}`}
               onLoad={() => setIsIFrameLoaded(true)}
             />
           </ResizableContainer>

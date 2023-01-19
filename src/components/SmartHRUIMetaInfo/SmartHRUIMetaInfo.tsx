@@ -13,7 +13,7 @@ export const SmartHRUIMetaInfo: FC<Props> = ({ name, groupPath }) => {
     <StyledUl>
       <li>SmartHR UI v{packageInfo.version}</li>
       <li>
-        <a href={`${SHRUI_STORYBOOK_PATH}${groupPath}${name}`}>Storybook</a>
+        <a href={`${SHRUI_STORYBOOK_PATH}${groupPath}`}>Storybook</a>
       </li>
       <li>
         <a href={`${SHRUI_GITHUB_PATH}${name}`}>ソースコード（GitHub）</a>
