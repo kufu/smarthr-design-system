@@ -23,6 +23,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
   const [storiesCode, setStoriesCode] = useState<string>('')
   const [storyItems, setStoryItems] = useState<StoryItem[]>([])
+  const [groupPath, setGroupPath] = useState<string>('')
   const [currentIFrame, setCurrentIFrame] = useState<string>('')
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [isCodeLoaded, setIsCodeLoaded] = useState<boolean>(false)
@@ -46,6 +47,13 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
   useEffect(() => {
     if (storiesCode === '') return
+
+    //親グループ名（例："Buttons（ボタン）"）を取得
+    const matchGroupNames = storiesCode.matchAll(/export\sdefault\s\{\s+title:.*?'(.*?)\//gm)
+    const groupNames = [...matchGroupNames].map((result) => {
+      return result
+    })
+    setGroupPath(groupNames.length > 0 ? `${groupNames[0][1].replace(/\s/, '-').toLowerCase()}-` : '')
 
     // "export const AccordionStyle: Story" や "export const All = Template.bind({})" のような、Story名をexportするコードから名前を抜き出す
     // 注意1：export { Default as DropdownButton } from ...のようなコードにはマッチしない
@@ -140,7 +148,10 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       {currentIFrame !== '' && (
         <>
           <LinkWrapper>
-            <TextLink href={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}&viewMode=story`} target="_blank">
+            <TextLink
+              href={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}${getStoryName(name, currentIFrame)}&viewMode=story`}
+              target="_blank"
+            >
               別画面で開く
             </TextLink>
           </LinkWrapper>
@@ -153,7 +164,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
                   return item.name === currentIFrame
                 })?.label || ''
               }
-              src={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}`}
+              src={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}${getStoryName(name, currentIFrame)}`}
               onLoad={() => setIsIFrameLoaded(true)}
             />
           </ResizableContainer>
