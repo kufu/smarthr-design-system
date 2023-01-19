@@ -57,8 +57,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     setGroupPath(groupNames.length > 0 ? `${groupNames[0][1].replace(/\s|\//g, '-').toLowerCase()}` : '')
 
     // "export const AccordionStyle: Story" や "export const All = Template.bind({})" のような、Story名をexportするコードから名前を抜き出す
-    // 注意1：export { Default as DropdownButton } from ...のようなコードにはマッチしない
-    // 注意2：ストーリー名に全角文字が入るケースがある（例：Body以外のPortalParent）
+    // 注意：ストーリー名に全角文字が入るケースがある（例：Body以外のPortalParent）
     const matchStoryNames = storiesCode.matchAll(
       /export\sconst\s([\w\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]*)/g,
     )
@@ -85,8 +84,19 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       return { name: storyName, label: result[1] }
     })
 
-    const items = [...items1, ...items2]
-    console.log(items)
+    //export { Default as DropdownButton } from ...のようなケースに対応
+    const matchDefaultNames = storiesCode.matchAll(/export\s\{\sDefault\sas\s(.*?)\s\}.*\.stories'/g)
+    const items3 = [...matchDefaultNames].map((result) => {
+      const storyName = result[1]
+      // 文字列中の大文字の前にスペースを追加してラベルにする
+      const storyLabel = storyName.replace(/.([A-Z])/g, (s) => {
+        return `${s.charAt(0)} ${s.slice(1, s.length)}`
+      })
+      return { name: storyName, label: storyLabel }
+    })
+
+    const items = [...items1, ...items2, ...items3]
+
     // "AccordionStyle.storyName = 'Accordion style'" のような表示名の定義があればラベルとして利用する
     const matchStoryLabels = storiesCode.matchAll(/(\S*)\.storyName\s=\s'(.*)'/g)
     Array.from(matchStoryLabels).forEach((result) => {
