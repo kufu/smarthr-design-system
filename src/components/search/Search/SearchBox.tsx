@@ -51,6 +51,7 @@ const SearchBox: FC<SearchBoxProvided> = ({ refine }) => {
           autoFocus // eslint-disable-line jsx-a11y/no-autofocus
           aria-labelledby="label-for-search-input"
           aria-describedby="desc-for-search-input"
+          name="query"
         />
       </InputOuter>
 
