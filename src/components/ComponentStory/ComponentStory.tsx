@@ -1,3 +1,4 @@
+import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
 import { SHRUI_GITHUB_RAW, SHRUI_STORYBOOK_IFRAME } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import React, { FC, useEffect, useState } from 'react'
@@ -136,6 +137,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   }
   return (
     <>
+      <SmartHRUIMetaInfo name={name} groupPath={groupPath} />
       <Tab>
         {storyItems.map((item: StoryItem, index: number) => {
           return (

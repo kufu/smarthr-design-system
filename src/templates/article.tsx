@@ -1,5 +1,4 @@
 import { Head as HeadComponent } from '@Components/Head'
-import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
 import { CodeBlock } from '@Components/article/CodeBlock'
 import { FragmentTitle } from '@Components/article/FragmentTitle/FragmentTitle'
 import { IndexNav } from '@Components/article/IndexNav/IndexNav'
@@ -302,7 +301,6 @@ const Article: FC<Props> = ({ data }) => {
           <MainArticle>
             <MainArticleTitle>
               <h1>{title}</h1>
-              {frontmatter?.smarthr_ui && <SmartHRUIMetaInfo name={frontmatter.smarthr_ui} />}
             </MainArticleTitle>
             <MDXStyledWrapper>
               <MDXProvider components={{ ...components, ...shortcodes }}>

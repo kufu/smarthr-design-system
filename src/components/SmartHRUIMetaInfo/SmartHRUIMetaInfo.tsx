@@ -1,28 +1,29 @@
+import { SHRUI_GITHUB_PATH, SHRUI_STORYBOOK_PATH } from '@Constants/application'
 import React, { FC } from 'react'
 import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
 
 type Props = {
   name?: string
+  groupPath?: string
 }
 
-const STORYBOOK_PATH = 'https://smarthr-ui.netlify.app/?path=/story/'
-const GITHUB_PATH = `https://github.com/kufu/smarthr-ui/tree/v${packageInfo.version}/src/components/`
-
-export const SmartHRUIMetaInfo: FC<Props> = ({ name }) => {
+export const SmartHRUIMetaInfo: FC<Props> = ({ name, groupPath }) => {
   return (
     <StyledUl>
       <li>SmartHR UI v{packageInfo.version}</li>
       <li>
-        <a href={`${STORYBOOK_PATH}${name}`}>Storybook</a>
+        <a href={`${SHRUI_STORYBOOK_PATH}${groupPath}${name}`}>Storybook</a>
       </li>
       <li>
-        <a href={`${GITHUB_PATH}${name}`}>ソースコード（GitHub）</a>
+        <a href={`${SHRUI_GITHUB_PATH}${name}`}>ソースコード（GitHub）</a>
       </li>
     </StyledUl>
   )
 }
 
 const StyledUl = styled.ul`
-  margin-block: 16px 0;
+  > li {
+    line-height: 1.75;
+  }
 `
