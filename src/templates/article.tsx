@@ -69,7 +69,6 @@ export const query = graphql`
       frontmatter {
         title
         description
-        smarthr_ui
       }
       fields {
         category
