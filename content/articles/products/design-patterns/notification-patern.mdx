@@ -36,7 +36,7 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 主に「操作後に画面全体が切り替わるとき」や「ダイアログで操作し、元の画面に戻るとき」などに使います。   
 [NotificationBar](/products/components/notification-bar)コンポーネントを使ってメッセージを表示します。
 
-- ユーザーに通知が表示されたことを強調するために、[NotificationBar](/products/components/notification-bar)の`animation={true}`にします。
+- ユーザーにメッセージが表示されたことを強調するために、[NotificationBar](/products/components/notification-bar)の`animation={true}`にします。
 - ユーザーへのアテンションを高めたい場合は、[NotificationBar](/products/components/notification-bar)の`bold={true}`にすることを検討します。
 - [NotificationBar](/products/components/notification-bar)は、ユーザーの明示的な操作で非表示にします。時間の経過で閉じることは非推奨されません(※1)。
 
@@ -44,14 +44,14 @@ import { Button, ActionDialog, NotificationBar } from 'smarthr-ui'
 
 ##### 操作通知の典型例
 
-コレクションにオブジェクトを追加する際に、操作通知を表示する典型的な例です。  
-この例ではアクションが成功したため、[NotificationBar](/products/components/notification-bar)の`type`は`success`にしていますが、エラーの場合は`error`を指定してメッセージを返します。
+コレクションにオブジェクトを追加する際に、アクションフィードバックを表示する典型的な例です。  
+この例ではアクションが成功したため、[NotificationBar](/products/components/notification-bar)の`type="success"`にしていますが、エラーの場合は`error`を指定してメッセージを返します。
 
 ![動画:コレクションにオブジェクトを、ダイアログから登録する際にNotificationBarを使い成功した旨のメッセージを表示している](./images/notification-patern/notification-patern-notificationbar.gif)
 
 ##### スクロール追従するNotificationBar
 
-また、操作と [NotificationBar](/products/components/notification-bar)によるメッセージの距離が離れていて気づかれにくい場合は、`positon: stikcy`でスクロールに追従させることを推奨します。
+また、操作と [NotificationBar](/products/components/notification-bar)によるメッセージの距離が離れていて気づかれにくい場合は、`positon: sticky`でスクロールに追従させることを推奨します。
 以下の動画では操作後に縦スクロールしても[NotificationBar](/products/components/notification-bar)が画面上部に表示されるようになっています。
 
 ![動画:NotificationBarを`positon: sticky`で追従表示している](./images/notification-patern/notification-patern-notificationbar-sticky.gif)
