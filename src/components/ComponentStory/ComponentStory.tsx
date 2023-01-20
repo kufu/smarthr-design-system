@@ -143,7 +143,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
   const getStoryName = (componentName: string, itemName: string) => {
     // 'Dropdown/FilterDropdown' のような階層ありの場合
-    if (componentName.includes('/')) {
+    if (parentCode !== '') {
       return componentName.replace(/^.*\//, '').replace(/([A-Z])/g, (s) => {
         return '-' + s.charAt(0).toLowerCase()
       })
