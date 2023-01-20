@@ -19,15 +19,23 @@ type StoryItem = {
 }
 
 export const ComponentStory: FC<Props> = ({ name }) => {
-  const fileName = name.replace(/^.*\//, '') // "Layout/Cluster"のような階層のある名前に対応
+  const storyPaths = name.split('/')
+  const fileName = storyPaths[storyPaths.length - 1]
+
+  // "Dropdown/DropdownButton"のような階層のある名前に対応
+  const parentName = storyPaths.length > 1 ? storyPaths[0] : null
+
   const filePath = `${SHRUI_GITHUB_RAW}/src/components/${name}/${fileName}.stories.tsx`
+  const parentPath = `${SHRUI_GITHUB_RAW}/src/components/${parentName}/${parentName}.stories.tsx`
 
   const [storiesCode, setStoriesCode] = useState<string>('')
+  const [parentCode, setParentCode] = useState<string>('')
   const [storyItems, setStoryItems] = useState<StoryItem[]>([])
   const [groupPath, setGroupPath] = useState<string>('')
   const [currentIFrame, setCurrentIFrame] = useState<string>('')
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [isCodeLoaded, setIsCodeLoaded] = useState<boolean>(false)
+  const [isParentCodeLoaded, setIsParentCodeLoaded] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchCode = async () => {
@@ -41,23 +49,49 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
       const text = await res.text()
       setStoriesCode(text)
+
       setIsCodeLoaded(true)
     }
     fetchCode()
   }, [filePath])
 
   useEffect(() => {
-    if (storiesCode === '') return
+    if (parentPath === null) {
+      setIsParentCodeLoaded(true)
+      return
+    }
+
+    const fetchCode = async () => {
+      const res = await fetch(parentPath)
+
+      // 404の場合など
+      if (res.status >= 400) {
+        setIsParentCodeLoaded(true)
+        return
+      }
+
+      const text = await res.text()
+      setParentCode(text)
+
+      setIsParentCodeLoaded(true)
+    }
+    fetchCode()
+  }, [parentPath])
+
+  useEffect(() => {
+    if (!(isCodeLoaded && isParentCodeLoaded)) return
 
     //親グループ名（例："Buttons（ボタン）"）を取得
-    const matchGroupNames = storiesCode.matchAll(/export\sdefault\s\{\s+title:.*?'(.*?)'/gm)
+    const targetCode = parentCode === '' ? storiesCode : parentCode
+    const matchGroupNames = targetCode.matchAll(/export\sdefault\s\{\s+title:.*?'(.*?)'/gm)
     const groupNames = [...matchGroupNames].map((result) => {
       return result
     })
     setGroupPath(groupNames.length > 0 ? `${groupNames[0][1].replace(/\s|\//g, '-').toLowerCase()}` : '')
 
     // "export const AccordionStyle: Story" や "export const All = Template.bind({})" のような、Story名をexportするコードから名前を抜き出す
-    // 注意：ストーリー名に全角文字が入るケースがある（例：Body以外のPortalParent）
+    // 注意1：export { Default as DropdownButton } from ...のようなコードにはマッチしない
+    // 注意2：ストーリー名に全角文字が入るケースがある（例：Body以外のPortalParent）
     const matchStoryNames = storiesCode.matchAll(
       /export\sconst\s([\w\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]*)/g,
     )
@@ -84,18 +118,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       return { name: storyName, label: result[1] }
     })
 
-    //export { Default as DropdownButton } from ...のようなケースに対応
-    const matchDefaultNames = storiesCode.matchAll(/export\s\{\sDefault\sas\s(.*?)\s\}.*\.stories'/g)
-    const items3 = [...matchDefaultNames].map((result) => {
-      const storyName = result[1]
-      // 文字列中の大文字の前にスペースを追加してラベルにする
-      const storyLabel = storyName.replace(/.([A-Z])/g, (s) => {
-        return `${s.charAt(0)} ${s.slice(1, s.length)}`
-      })
-      return { name: storyName, label: storyLabel }
-    })
-
-    const items = [...items1, ...items2, ...items3]
+    const items = [...items1, ...items2]
 
     // "AccordionStyle.storyName = 'Accordion style'" のような表示名の定義があればラベルとして利用する
     const matchStoryLabels = storiesCode.matchAll(/(\S*)\.storyName\s=\s'(.*)'/g)
@@ -108,7 +131,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
     if (items.length > 0) setCurrentIFrame(items[0].name)
     setStoryItems(items)
-  }, [storiesCode])
+  }, [storiesCode, parentCode, isCodeLoaded, isParentCodeLoaded])
 
   const onClickTab = (itemId: string): void => {
     if (itemId === currentIFrame) return
@@ -118,8 +141,13 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     return
   }
 
-  const getStoryName = (itemName: string) => {
-    // 階層なしの場合
+  const getStoryName = (componentName: string, itemName: string) => {
+    // 'Dropdown/FilterDropdown' のような階層ありの場合
+    if (componentName.includes('/')) {
+      return componentName.replace(/^.*\//, '').replace(/([A-Z])/g, (s) => {
+        return '-' + s.charAt(0).toLowerCase()
+      })
+    }
     const kebab = itemName
       // UpperCamel case -> Kebab case
       .replace(/([A-Z])/g, (s) => {
@@ -151,7 +179,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         <>
           <LinkWrapper>
             <TextLink
-              href={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(currentIFrame)}&viewMode=story`}
+              href={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(name, currentIFrame)}&viewMode=story`}
               target="_blank"
             >
               別画面で開く
@@ -166,14 +194,14 @@ export const ComponentStory: FC<Props> = ({ name }) => {
                   return item.name === currentIFrame
                 })?.label || ''
               }
-              src={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(currentIFrame)}`}
+              src={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(name, currentIFrame)}`}
               onLoad={() => setIsIFrameLoaded(true)}
             />
           </ResizableContainer>
         </>
       )}
       <CodeWrapper>
-        <StoryLoader className={isCodeLoaded ? '' : '-show'} />
+        <StoryLoader className={isCodeLoaded && isParentCodeLoaded ? '' : '-show'} />
         <CodeBlock className="tsx">{storiesCode}</CodeBlock>
       </CodeWrapper>
     </>
