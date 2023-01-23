@@ -3,8 +3,11 @@ title: 'NotificationBar'
 description: 'NotificationBarは、ユーザーへ伝えたいフィードバックやメッセージを伝えるために使います。'
 smarthr-ui: 'NotificationBar'
 ---
+import { useEffect, useState } from 'react'
+import { ComponentPreview } from '@Components/ComponentPreview'
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { NotificationBar, Button, Stack} from 'smarthr-ui'
 
 <ComponentStory name="NotificationBar" />
 
@@ -42,9 +45,41 @@ NotificationBarは、ユーザーへ伝えたいフィードバックやメッ�
 </Stack>
 ```
 
+### アニメーション
+
+ユーザーにメッセージが表示されたことを強調するために使います。
+
+<!-- textlint-disable -->
+export const AnimateNotificationBar = () => {
+  const [visible, setVisible] = useState(false)
+  if (typeof window !== 'undefined') {
+    return (
+      <Stack style={{ width: '100%', background: '#f8f7f6', padding: '8px', }}>
+        {visible && (
+          <NotificationBar
+            type="success"
+            bold={true}
+            message="タスクの登録に成功しました。"
+            animate={true}
+            onClose={() => setVisible(!visible)}
+          />
+        )}
+        <Button onClick={() => setVisible(!visible)}>NotificationBarを{visible ? '隠す' : '表示'}</Button>
+      </Stack>
+    )
+  } else {
+    return null
+  }
+}
+
+<ComponentPreview>
+  <AnimateNotificationBar />
+</ComponentPreview>
+<!-- textlint-enable -->
+
 ### その他
 
-ボタンやリンクを渡せたり、常時表示したい場合は「閉じる」ボタンを消せます。
+ボタンやリンクを渡せたり、常時表示したいときは「閉じる」ボタンを消せます。
 また、非推奨ですが[LineClamp](/products/components/line-clamp)コンポーネントも使えます。
 
 ```tsx editable codeBlock
@@ -67,7 +102,7 @@ NotificationBarは、ユーザーへ伝えたいフィードバックやメッ�
 
 主に「操作後に画面全体が切り替わるとき」や「ダイアログで操作し、元の画面に戻るとき」などに使います。  
 
-- ユーザーにメッセージが表示されたことを強調するために、`animation={true}`にします。
+- ユーザーにメッセージが表示されたことを強調するために、`animate={true}`にします。
 - ユーザーの明示的な操作で非表示にします。時間の経過で閉じることは非推奨されません(※1)。
 
 #### ダイアログからコレクションにオブジェクトを新規追加した後のメッセージ
