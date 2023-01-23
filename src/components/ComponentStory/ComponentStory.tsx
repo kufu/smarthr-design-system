@@ -1,3 +1,4 @@
+import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
 import { SHRUI_GITHUB_RAW, SHRUI_STORYBOOK_IFRAME } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import React, { FC, useEffect, useState } from 'react'
@@ -18,14 +19,23 @@ type StoryItem = {
 }
 
 export const ComponentStory: FC<Props> = ({ name }) => {
-  const fileName = name.replace(/^.*\//, '') // "Layout/Cluster"のような階層のある名前に対応
+  const storyPaths = name.split('/')
+  const fileName = storyPaths[storyPaths.length - 1]
+
+  // "Dropdown/DropdownButton"のような階層のある名前に対応
+  const parentName = storyPaths.length > 1 ? storyPaths[0] : null
+
   const filePath = `${SHRUI_GITHUB_RAW}/src/components/${name}/${fileName}.stories.tsx`
+  const parentPath = `${SHRUI_GITHUB_RAW}/src/components/${parentName}/${parentName}.stories.tsx`
 
   const [storiesCode, setStoriesCode] = useState<string>('')
+  const [parentCode, setParentCode] = useState<string>('')
   const [storyItems, setStoryItems] = useState<StoryItem[]>([])
+  const [groupPath, setGroupPath] = useState<string>('')
   const [currentIFrame, setCurrentIFrame] = useState<string>('')
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [isCodeLoaded, setIsCodeLoaded] = useState<boolean>(false)
+  const [isParentCodeLoaded, setIsParentCodeLoaded] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchCode = async () => {
@@ -39,13 +49,45 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
       const text = await res.text()
       setStoriesCode(text)
+
       setIsCodeLoaded(true)
     }
     fetchCode()
   }, [filePath])
 
   useEffect(() => {
-    if (storiesCode === '') return
+    if (parentPath === null) {
+      setIsParentCodeLoaded(true)
+      return
+    }
+
+    const fetchCode = async () => {
+      const res = await fetch(parentPath)
+
+      // 404の場合など
+      if (res.status >= 400) {
+        setIsParentCodeLoaded(true)
+        return
+      }
+
+      const text = await res.text()
+      setParentCode(text)
+
+      setIsParentCodeLoaded(true)
+    }
+    fetchCode()
+  }, [parentPath])
+
+  useEffect(() => {
+    if (!(isCodeLoaded && isParentCodeLoaded)) return
+
+    //親グループ名（例："Buttons（ボタン）"）を取得
+    const targetCode = parentCode === '' ? storiesCode : parentCode
+    const matchGroupNames = targetCode.matchAll(/export\sdefault\s\{\s+title:.*?'(.*?)'/gm)
+    const groupNames = [...matchGroupNames].map((result) => {
+      return result
+    })
+    setGroupPath(groupNames.length > 0 ? `${groupNames[0][1].replace(/\s|\//g, '-').toLowerCase()}` : '')
 
     // "export const AccordionStyle: Story" や "export const All = Template.bind({})" のような、Story名をexportするコードから名前を抜き出す
     // 注意1：export { Default as DropdownButton } from ...のようなコードにはマッチしない
@@ -89,7 +131,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
     if (items.length > 0) setCurrentIFrame(items[0].name)
     setStoryItems(items)
-  }, [storiesCode])
+  }, [storiesCode, parentCode, isCodeLoaded, isParentCodeLoaded])
 
   const onClickTab = (itemId: string): void => {
     if (itemId === currentIFrame) return
@@ -100,17 +142,12 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   }
 
   const getStoryName = (componentName: string, itemName: string) => {
-    // 'Layout/Cluster' のような階層ありの場合
-    if (componentName.includes('/')) {
-      return componentName
-        .replace(/([A-Z])/g, (s) => {
-          return '-' + s.charAt(0).toLowerCase()
-        })
-        .replace('/', '-')
-        .replace(/^_|-/, '')
+    // 'Dropdown/FilterDropdown' のような階層ありの場合
+    if (parentCode !== '') {
+      return componentName.replace(/^.*\//, '').replace(/([A-Z])/g, (s) => {
+        return '-' + s.charAt(0).toLowerCase()
+      })
     }
-
-    // 階層なしの場合
     const kebab = itemName
       // UpperCamel case -> Kebab case
       .replace(/([A-Z])/g, (s) => {
@@ -120,7 +157,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       .replace(/^[a-z]+$/, (s) => `-${s.charAt(0)}`)
       // コンポーネントとStoryが同名の場合に、頭に'_'がついていることがあるので、削除
       .replace(/^_/, '')
-    return `${componentName.toLowerCase()}-${kebab}`
+    return `${kebab}`
   }
 
   if (typeof window === undefined || storiesCode === '') {
@@ -128,6 +165,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   }
   return (
     <>
+      <SmartHRUIMetaInfo name={name} groupPath={groupPath} />
       <Tab>
         {storyItems.map((item: StoryItem, index: number) => {
           return (
@@ -140,7 +178,10 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       {currentIFrame !== '' && (
         <>
           <LinkWrapper>
-            <TextLink href={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}&viewMode=story`} target="_blank">
+            <TextLink
+              href={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(name, currentIFrame)}&viewMode=story`}
+              target="_blank"
+            >
               別画面で開く
             </TextLink>
           </LinkWrapper>
@@ -153,14 +194,14 @@ export const ComponentStory: FC<Props> = ({ name }) => {
                   return item.name === currentIFrame
                 })?.label || ''
               }
-              src={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}`}
+              src={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(name, currentIFrame)}`}
               onLoad={() => setIsIFrameLoaded(true)}
             />
           </ResizableContainer>
         </>
       )}
       <CodeWrapper>
-        <StoryLoader className={isCodeLoaded ? '' : '-show'} />
+        <StoryLoader className={isCodeLoaded && isParentCodeLoaded ? '' : '-show'} />
         <CodeBlock className="tsx">{storiesCode}</CodeBlock>
       </CodeWrapper>
     </>
