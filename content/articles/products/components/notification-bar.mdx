@@ -79,10 +79,19 @@ export const AnimateNotificationBar = () => {
   <AnimateNotificationBar />
 </ComponentPreview>
 
+### レイアウト
+
+非推奨ですが[LineClamp](/products/components/line-clamp)コンポーネントも使えます。
+
+```tsx editable codeBlock
+<Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
+  <NotificationBar type="warning" message={<LineClamp maxLines={1} withTooltip>非推奨ですが、LineClampを使用して省略もできます。そのでっかい領域によるヘッダー（のナビゲーション）へのアクセス性の低下をフォローするために多くのウェブサイトはヘッダーを固定していますが、それでは同時にコンテンツの閲覧性に影響を与えてしまいます。</LineClamp>} onClose={()=>{}} />
+</Stack>
+```
+
 ### その他
 
 ボタンやリンクを渡せたり、常時表示したいときは「閉じる」ボタンを消せます。
-また、非推奨ですが[LineClamp](/products/components/line-clamp)コンポーネントも使えます。
 
 ```tsx editable codeBlock
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
@@ -93,10 +102,8 @@ export const AnimateNotificationBar = () => {
     </TextLink>
   </NotificationBar>
   <NotificationBar type="success" message="onClose を省略すると、閉じるボタンが消えます。" />
-  <NotificationBar type="warning" message={<LineClamp maxLines={1} withTooltip>非推奨ですが、LineClampを使用して省略もできます。そのでっかい領域によるヘッダー（のナビゲーション）へのアクセス性の低下をフォローするために多くのウェブサイトはヘッダーを固定していますが、それでは同時にコンテンツの閲覧性に影響を与えてしまいます。</LineClamp>} onClose={()=>{}} />
 </Stack>
 ```
-
 
 ## 使い方
 
