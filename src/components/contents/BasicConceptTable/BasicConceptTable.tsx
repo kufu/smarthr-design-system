@@ -9,7 +9,7 @@ import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query BasicConceptTable {
-    basicConceptData: allAirtable(filter: { table: { eq: "基本的な考え方や表記" } }) {
+    basicConceptData: allAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
       edges {
         node {
           data {
