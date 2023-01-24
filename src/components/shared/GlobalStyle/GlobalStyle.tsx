@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Yu Gothic Medium, 游ゴシック Medium, YuGothic, 游ゴシック体, sans-serif;
     line-height: ${defaultLeading.RELAXED};
     color: ${defaultColor.TEXT_BLACK};
+    overflow-wrap: break-word;
   }
 
   /* stylelint-disable */
@@ -26,7 +27,6 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: ${defaultColor.TEXT_LINK};
     text-decoration: underline;
-    overflow-wrap: break-word;
   }
 
   table {
@@ -41,6 +41,5 @@ export const GlobalStyle = createGlobalStyle`
   table td {
     box-sizing: border-box;
     padding: 0.5rem 1rem;
-    word-break: break-word;
   }
 `
