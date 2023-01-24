@@ -128,6 +128,7 @@ const config: GatsbyConfig = {
               dataAttributes: true,
             },
           },
+          'gatsby-remark-gifs',
         ],
         remarkPlugins: [emoji],
       },
