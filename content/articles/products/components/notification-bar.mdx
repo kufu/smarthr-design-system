@@ -95,13 +95,13 @@ export const AnimateNotificationBar = () => {
 
 ```tsx editable codeBlock
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar type="info" message="ボタンやリンクを渡せます。" onClose={()=>{}}>
+  <NotificationBar type="info" message="ボタンやテキストリンクを表示できます。" onClose={()=>{}}>
     <Button size="s">編集</Button>
     <TextLink href="#">
       <Text size="S">ヘルプ</Text>
     </TextLink>
   </NotificationBar>
-  <NotificationBar type="success" message="onClose を省略すると、閉じるボタンが消えます。" />
+  <NotificationBar type="success" message="onClose を省略すると、閉じるボタンを非表示にできます。" />
 </Stack>
 ```
 
