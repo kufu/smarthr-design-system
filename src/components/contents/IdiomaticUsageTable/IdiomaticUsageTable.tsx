@@ -221,5 +221,5 @@ const ReasonTd = styled(Td)`
 `
 const StyledText = styled(Text)`
   white-space: pre-wrap;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 `
