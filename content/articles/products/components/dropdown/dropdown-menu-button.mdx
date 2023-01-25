@@ -1,5 +1,5 @@
 ---
-title: 'DropdownButton'
+title: 'DropdownMenuButton'
 description: ''
 ---
 import { ComponentStory } from '@Components/ComponentStory'
@@ -7,21 +7,21 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
 
 
-<ComponentStory name="Dropdown/DropdownButton" />
+<ComponentStory name="Dropdown/DropdownMenuButton" />
 
 
 
 
 ## 構成
 
-ドロップダウンの引き金となるボタン（アクションボタン）とドロップダウンをあわせて、「*ドロップダウンボタン*」と呼びます。
+ドロップダウンの引き金となるボタン（アクションボタン）とドロップダウンをあわせて、「*ドロップダウンメニューボタン*」と呼びます。
 
-ドロップダウンボタンは、以下の要素で構成されています。
+ドロップダウンメニューボタンは、以下の要素で構成されています。
 
 1. アクションボタン
 2. ドロップダウン
 
-![ドロップダウンボタンの構成図](./images/multiple-operation-button-overview.png)
+![ドロップダウンメニューボタンの構成図](./images/multiple-operation-button-overview.png)
 
 ### 1. アクションボタン
 複数の操作がまとまっていることを示唆するために、[Secondaryボタン](/products/components/button/#h3-1)の`アイコン付き（右）`を使い、アイコンには「<FaCaretDownIcon alt="展開" />（`FaCaretDownIcon`）」を使います。
@@ -112,7 +112,7 @@ import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
 
 ## レイアウト
 
-ドロップダウンボタンのレイアウトは次のとおりです。
+ドロップダウンメニューボタンのレイアウトは次のとおりです。
 
 ```tsx editable withStyled codeBlock
 type Actions = ActionItem | ActionItem[]
