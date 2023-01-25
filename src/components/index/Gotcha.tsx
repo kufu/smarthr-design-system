@@ -10,7 +10,7 @@ import type { FC } from 'react'
 
 const BUTTON_TEXT: string = 'GOTCHA!' // アニメーションするため、css、reactのどちらでも必要なのでここで
 
-const CLOUDINARY_URL = `https://res.cloudinary.com/dxxditmn9/image/upload/`
+const CLOUDINARY_URL = `https://res.cloudinary.com/${process.env.GATSBY_CLOUDINARY_CLOUD_NAME}/image/upload/`
 
 type GotchaItem = {
   image: string
