@@ -92,8 +92,8 @@ SmartHR UIではこのエリアを`BulkActionRow`と呼んでいます。
 #### 一括操作ボタン
 一括操作エリア内の要素として、データの削除・一括変更など、選択したオブジェクトを一括で操作するためのボタンを配置できます。
 
-- [Button](/products/components/button/)や、類似する操作をまとめた[DropdownButton](/products/components/dropdown/dropdown-button/)を配置できます。
-- ユーザーが迷わないよう、配置するボタンは多くても4つ程度とします。多数の操作ができる場合には、アクションの優先度を検討し、優先度が低いアクションは減らしたり、[DropdownButton](/products/components/dropdown/dropdown-button/)としてまとめて配置するなどを検討しましょう。
+- [Button](/products/components/button/)や、類似する操作をまとめた[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)を配置できます。
+- ユーザーが迷わないよう、配置するボタンは多くても4つ程度とします。多数の操作ができる場合には、アクションの優先度を検討し、優先度が低いアクションは減らしたり、[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)としてまとめて配置するなどを検討しましょう。
 
 ![スクリーンショット: テーブル内の一括操作エリアの一括操作ボタン](./images/table-bulk-action/table-bulk-action5.png)
 
@@ -106,7 +106,7 @@ SmartHR UIではこのエリアを`BulkActionRow`と呼んでいます。
 | オブジェクトへの一括操作 | `一括削除`,`一括ダウンロード` | オブジェクトへの一括操作をするためのボタンです。「一括`{操作名}`」と表記します。<br />クリックすると、多くの場合、操作実行内容の確認ダイアログを表示します。 |
 | オブジェクトに関する通知 | `通知を一括送信`,`依頼を一括送信` | オブジェクトに関する通知や依頼を対象者に送信するためのボタンです。「`{送信対象名}`を一括送信」と表記します。<br />クリックすると、多くの場合、送信内容の確認ダイアログを表示します。 |
 | タスクとしての一括操作 | `一括承認`,`一括確定`,`一括取り消し`,`PDFファイルを一括アップロード` | オブジェクトに対するタスクを実行するためのボタンです。「一括`{操作名}`」と表記します。一括操作の選択対象と操作対象が異なる場合、「`{操作対象オブジェクト名}`を一括`{操作名}`」とし、選択対象に対する操作対象を明示します。<br />クリックすると、多くの場合、操作実行内容の確認ダイアログを表示します。 |
-| その他の操作 | `その他の操作` | 多数の操作ができる場合、一括操作をまとめて配置するために使用する[DropdownButton](/products/components/dropdown/dropdown-button/)です。 |
+| その他の操作 | `その他の操作` | 多数の操作ができる場合、一括操作をまとめて配置するために使用する[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)です。 |
 
 
 
