@@ -1,6 +1,6 @@
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Link } from 'gatsby'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { FaRedoIcon } from 'smarthr-ui'
 import styled, { css } from 'styled-components'
 
@@ -9,6 +9,8 @@ import gotchaItemJson from '../../data/gotchaItem.json'
 import type { FC } from 'react'
 
 const BUTTON_TEXT: string = 'GOTCHA!' // アニメーションするため、css、reactのどちらでも必要なのでここで
+
+const CLOUDINARY_URL = `https://res.cloudinary.com/${process.env.GATSBY_CLOUDINARY_CLOUD_NAME}/image/upload/`
 
 type GotchaItem = {
   image: string
@@ -31,12 +33,15 @@ export const Gotcha: FC<unknown> = () => {
   }, [])
 
   const [isAnimated, setIsAnimated] = useState(false)
-  const [shouldDisabled, setShouldDisabled] = useState(true)
-
-  if (gotchaItem.length === 0) return null
 
   let currentImgIsReady = false
   let nextImgIsReady = false
+
+  const shouldDisabled: boolean = useMemo(() => {
+    return currentImgIsReady && nextImgIsReady
+  }, [currentImgIsReady, nextImgIsReady])
+
+  if (gotchaItem.length === 0) return null
 
   const runGotcha = (): void => {
     //ボタンが押されたらアニメーションする
@@ -46,7 +51,7 @@ export const Gotcha: FC<unknown> = () => {
   const finishAnimation = (): void => {
     setCurrentItemIndex(nextItemIndex)
 
-    //画像の入れ替えが終わっていないとチラつくことがあるので、100ms待つ。
+    //画像の入れ替えが終わっていないとチラつくことがあるので、200ms待つ。
     setTimeout(() => {
       //アニメーション開始位置に要素を戻しておく
       setIsAnimated(false)
@@ -61,26 +66,24 @@ export const Gotcha: FC<unknown> = () => {
     const nextImg = new Image()
     nextImg.onload = () => {
       nextImgIsReady = true
-      setShouldDisabled(false)
     }
     nextImgIsReady = false
-    nextImg.src = gotchaItem[randomNum].image
+    nextImg.srcset = `
+      ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[randomNum].image} 2720w,
+      ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[randomNum].image} 1536w,
+      ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[randomNum].image} 768w
+    `
+    nextImg.src = `${CLOUDINARY_URL}f_auto/sds/${gotchaItem[randomNum].image}`
+    nextImg.sizes = '(min-width: 1024px) 2720px, 100vw'
     setNextItemIndex(randomNum)
-
-    //100ms以内に画像が読み込めていなかったらいったんボタンをdisabledにする
-    setTimeout(() => {
-      if (!nextImgIsReady) setShouldDisabled(true)
-    }, 100)
   }
 
   const currentImgOnLoad = (): void => {
     currentImgIsReady = true
-    if (nextImgIsReady) setShouldDisabled(false)
   }
 
   const nextImgOnload = (): void => {
     nextImgIsReady = true
-    if (currentImgIsReady) setShouldDisabled(false)
   }
 
   return (
@@ -90,9 +93,15 @@ export const Gotcha: FC<unknown> = () => {
           {/* 次の画像 */}
           {nextItemIndex > -1 && (
             <img
-              src={gotchaItem[nextItemIndex].image}
+              srcSet={`
+                ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[nextItemIndex].image} 2720w,
+                ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[nextItemIndex].image} 1536w,
+                ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[nextItemIndex].image} 768w
+              `}
+              src={`${CLOUDINARY_URL}f_auto/sds/${gotchaItem[nextItemIndex].image}`}
               width="1272"
               height="352"
+              sizes="(min-width: 1024px) 2720px, 100vw"
               alt={gotchaItem[nextItemIndex].alt}
               aria-hidden="true"
               onLoad={() => nextImgOnload()}
@@ -102,7 +111,13 @@ export const Gotcha: FC<unknown> = () => {
           {currentItemIndex > -1 && (
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
             <img
-              src={gotchaItem[currentItemIndex].image}
+              srcSet={`
+                ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[currentItemIndex].image} 2720w,
+                ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[currentItemIndex].image} 1536w,
+                ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[currentItemIndex].image} 768w
+              `}
+              src={`${CLOUDINARY_URL}f_auto/sds/${gotchaItem[currentItemIndex].image}`}
+              sizes="(min-width: 1024px) 2720px, 100vw"
               width="1272"
               height="352"
               alt={gotchaItem[currentItemIndex].alt}
