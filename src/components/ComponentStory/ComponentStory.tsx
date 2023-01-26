@@ -160,12 +160,19 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     return `${kebab}`
   }
 
+  const getChildStoryName = (componentName: string) => {
+    if (parentCode === '') return ''
+    return componentName.replace(/^.*\//, '-').replace(/([A-Z])/g, (s) => {
+      return '-' + s.charAt(0).toLowerCase()
+    })
+  }
+
   if (typeof window === undefined || storiesCode === '') {
     return null
   }
   return (
     <>
-      <SmartHRUIMetaInfo name={name} groupPath={groupPath} />
+      <SmartHRUIMetaInfo name={name} groupPath={`${groupPath}${getChildStoryName(name)}`} />
       <Tab>
         {storyItems.map((item: StoryItem, index: number) => {
           return (
