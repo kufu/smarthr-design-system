@@ -3,6 +3,7 @@ import { CodeBlock } from '@Components/article/CodeBlock'
 import { FragmentTitle } from '@Components/article/FragmentTitle/FragmentTitle'
 import { IndexNav } from '@Components/article/IndexNav/IndexNav'
 import { Sidebar } from '@Components/article/Sidebar/Sidebar'
+import { TableWrapper } from '@Components/contents/shared/TableWrapper'
 import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
@@ -51,6 +52,7 @@ const components: MDXProviderComponents = {
       {children}
     </FragmentTitle>
   ),
+  table: ({ children }) => <TableWrapper mdTable={true}>{children}</TableWrapper>,
 }
 
 const shortcodes = {
