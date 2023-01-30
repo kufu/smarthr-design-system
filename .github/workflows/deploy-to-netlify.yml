@@ -23,6 +23,7 @@ jobs:
           echo -e "GATSBY_ALGOLIA_APP_ID=${{ secrets.GATSBY_ALGOLIA_APP_ID }}" >> .env
           echo -e "GATSBY_ALGOLIA_INDEX_NAME=${{ secrets.GATSBY_ALGOLIA_INDEX_NAME }}" >> .env
           echo -e "GATSBY_ALGOLIA_SEARCH_API_KEY=${{ secrets.GATSBY_ALGOLIA_SEARCH_API_KEY }}" >> .env
+          echo -e "GATSBY_CLOUDINARY_CLOUD_NAME=${{ secrets.GATSBY_CLOUDINARY_CLOUD_NAME }}" >> .env
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
