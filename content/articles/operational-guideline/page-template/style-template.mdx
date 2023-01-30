@@ -8,6 +8,7 @@ import { Button, Cluster, FaPlusCircleIcon, LineUp, Stack, Table, Td, Th, Text }
 import { ComponentPreview } from '@Components/ComponentPreview'
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
+import { TableWrapper } from '@Components/contents/shared/TableWrapper'
 
 ## h2 相当のタイトル
 
@@ -77,31 +78,33 @@ import { StaticImage } from '@Components/StaticImage'
 
 ### SmartHR UI テーブル
 
-<Table>
-  <thead>
-    <tr>
-      <Th>thead</Th>
-      <Th>thead</Th>
-      <Th>thead</Th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <Td>cell</Td>
-      <Td>cell</Td>
-      <Td>
-        <Button variant="primary">Button</Button>
-      </Td>
-    </tr>
-    <tr>
-      <Td>cell</Td>
-      <Td>cell</Td>
-      <Td>
-        <Button variant="primary">Button</Button>
-      </Td>
-    </tr>
-  </tbody>
-</Table>
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>thead</Th>
+        <Th>thead</Th>
+        <Th>thead</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>cell</Td>
+        <Td>cell</Td>
+        <Td>
+          <Button variant="primary">Button</Button>
+        </Td>
+      </tr>
+      <tr>
+        <Td>cell</Td>
+        <Td>cell</Td>
+        <Td>
+          <Button variant="primary">Button</Button>
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 ## レイアウト
 SmartHR UI Layoutコンポーネントを使用できます。

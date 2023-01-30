@@ -6,6 +6,8 @@ order: 1
 
 import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
+import { TableWrapper } from '@Components/contents/shared/TableWrapper'
+
 ## 試験概要
 
 [ウェブアクセシビリティ試験結果 - 2021年5月](../202105/)にて満たせていなかった達成基準の改善と、新規に開発されたコンポーネントについての試験です。
@@ -65,16 +67,17 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
 達成基準のリンクは<abbr title="Web Contents Accessibility Guidelines">WCAG</abbr> 2.0解説書へのリンクです。
 
-<Table>
-  <thead>
-    <tr>
-      <Th>達成基準</Th>
-      <Th>等級</Th>
-      <Th>適用</Th>
-      <Th>結果</Th>
-    </tr>
-  </thead>
-  <tbody>
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>達成基準</Th>
+        <Th>等級</Th>
+        <Th>適用</Th>
+        <Th>結果</Th>
+      </tr>
+    </thead>
+    <tbody>
 
 <tr>
     <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/text-equiv-all.html">1.1.1 非テキストコンテンツ</a></Td>
@@ -250,8 +253,9 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
     <Td>○</Td>
     <Td>×</Td>
 </tr>
-  </tbody>
-</Table>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 - 「2.4.2 ページタイトル」および「3.1.1 ページの言語」は、ページが検証対象ではないため該当箇所なしとした。
 - 「3.2.1 フォーカス時」および「3.2.2 入力時」は、実際の操作が与えられない状態での検証のため該当箇所なしとした。
