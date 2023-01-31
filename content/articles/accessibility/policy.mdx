@@ -6,6 +6,8 @@ order: 1
 
 import { Table, Text, Td, Th } from 'smarthr-ui'
 
+import { TableWrapper } from '@Components/contents/shared/TableWrapper'
+
 ## 社会の非合理をつくりださない
 
 SmartHRは「[社会の非合理を、ハックする。](https://smarthr.co.jp/about/)」というミッションを掲げ、働くすべての人を後押しするプラットフォームをつくっています。
@@ -63,43 +65,45 @@ SmartHRは「[社会の非合理を、ハックする。](https://smarthr.co.jp/
 
 ### SmartHR UIのスケジュール
 
-<Table>
-  <thead>
-    <tr>
-      <Th>
-        時期
-      </Th>
-      <Th>
-        目標
-      </Th>
-      <Th>
-        結果
-      </Th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <Td> <time datatime="2021-06" style="white-space: nowrap">2021年6月</time> </Td>
-      <Td> レベルA一部準拠 <div><small>開発中のコンポーネント、または試験開始時点で完成していなかったコンポーネントをのぞく</small></div> </Td>
-      <Td> レベルA一部準拠 </Td>
-    </tr>
-    <tr>
-      <Td> <time datatime="2021-12" style="white-space: nowrap">2021年12月</time> </Td>
-      <Td> レベルA準拠 </Td>
-      <Td> レベルA一部準拠 </Td>
-    </tr>
-    <tr>
-      <Td> <time datatime="2022-06" style="white-space: nowrap">2022年6月</time> </Td>
-      <Td> JIS X 8341-3:2016 レベルAと追加する達成基準に準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Td>
-      <Td></Td>
-    </tr>
-    <tr>
-      <Td> <time datatime="2022-12" style="white-space: nowrap">2022年12月</time> </Td>
-      <Td> JIS X 8341-3:2016 レベルAAに準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Td>
-      <Td></Td>
-    </tr>
-  </tbody>
-</Table>
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>
+          時期
+        </Th>
+        <Th>
+          目標
+        </Th>
+        <Th>
+          結果
+        </Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td> <time datatime="2021-06" style="white-space: nowrap">2021年6月</time> </Td>
+        <Td> レベルA一部準拠 <div><small>開発中のコンポーネント、または試験開始時点で完成していなかったコンポーネントをのぞく</small></div> </Td>
+        <Td> レベルA一部準拠 </Td>
+      </tr>
+      <tr>
+        <Td> <time datatime="2021-12" style="white-space: nowrap">2021年12月</time> </Td>
+        <Td> レベルA準拠 </Td>
+        <Td> レベルA一部準拠 </Td>
+      </tr>
+      <tr>
+        <Td> <time datatime="2022-06" style="white-space: nowrap">2022年6月</time> </Td>
+        <Td> JIS X 8341-3:2016 レベルAと追加する達成基準に準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Td>
+        <Td></Td>
+      </tr>
+      <tr>
+        <Td> <time datatime="2022-12" style="white-space: nowrap">2022年12月</time> </Td>
+        <Td> JIS X 8341-3:2016 レベルAAに準拠、およびWCAG 2.1 レベルAの達成基準に適合 </Td>
+        <Td></Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 ### SmartHR 製品の目標とスケジュール
 
@@ -109,44 +113,46 @@ SmartHRは「[社会の非合理を、ハックする。](https://smarthr.co.jp/
 
 ## 試験結果
 
-<Table>
-  <thead>
-    <tr>
-      <Th>試験年月</Th>
-      <Th>試験対象</Th>
-      <Th>達成した等級</Th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <Td>
-        <a href="../test/202105/">
-          <time datatime="2021-05" style={{ whiteSpace: "no-wrap" }}>2021年5月</time>
-        </a>
-      </Td>
-      <Td>
-        SmartHR UIのコンポーネント
-        <small>（開発中のコンポーネントを除く）</small>
-      </Td>
-      <Td>
-        レベルA一部準拠
-      </Td>
-    </tr>
-    <tr>
-      <Td>
-        <a href="../test/202112/">
-          <time datatime="2021-12" style={{ whiteSpace: "no-wrap" }}>2021年12月</time>
-        </a>
-      </Td>
-      <Td>
-        SmartHR UIのコンポーネント
-      </Td>
-      <Td>
-        レベルA一部準拠
-      </Td>
-    </tr>
-  </tbody>
-</Table>
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>試験年月</Th>
+        <Th>試験対象</Th>
+        <Th>達成した等級</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>
+          <a href="../test/202105/">
+            <time datatime="2021-05" style={{ whiteSpace: "no-wrap" }}>2021年5月</time>
+          </a>
+        </Td>
+        <Td>
+          SmartHR UIのコンポーネント
+          <small>（開発中のコンポーネントを除く）</small>
+        </Td>
+        <Td>
+          レベルA一部準拠
+        </Td>
+      </tr>
+      <tr>
+        <Td>
+          <a href="../test/202112/">
+            <time datatime="2021-12" style={{ whiteSpace: "no-wrap" }}>2021年12月</time>
+          </a>
+        </Td>
+        <Td>
+          SmartHR UIのコンポーネント
+        </Td>
+        <Td>
+          レベルA一部準拠
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 ## 問い合わせ先
 
