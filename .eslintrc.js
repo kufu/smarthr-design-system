@@ -9,4 +9,8 @@ module.exports = {
       },
     },
   ],
+  rules: {
+    // GatsbyのLinkコンポーネントで警告が出てしまうためoffにする
+    'smarthr/a11y-anchor-has-href-attribute': 0,
+  },
 }
