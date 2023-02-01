@@ -39,7 +39,7 @@ const query = graphql`
         }
       }
     }
-    writingStyle: allAirtable(filter: { table: { eq: "基本的な考え方や表記" } }) {
+    writingStyle: allAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
       edges {
         node {
           data {

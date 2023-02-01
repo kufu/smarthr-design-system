@@ -11,7 +11,7 @@ export const AIRTABLE_CONTENTS: airtableContents[] = [
   {
     pageTitle: 'ライティングスタイル',
     pagePath: '/products/contents/writing-style/',
-    tableName: '基本的な考え方や表記',
+    tableName: 'ライティングスタイル',
     sort: 'AIRTABLE',
   },
   {
