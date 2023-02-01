@@ -5,6 +5,7 @@ import { Table, Td, Text, Th } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
+import { TableWrapper } from '../shared/TableWrapper'
 import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
@@ -191,7 +192,7 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(TableWrapper)`
   & th,
   td {
     vertical-align: baseline;
@@ -221,5 +222,5 @@ const ReasonTd = styled(Td)`
 `
 const StyledText = styled(Text)`
   white-space: pre-wrap;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 `

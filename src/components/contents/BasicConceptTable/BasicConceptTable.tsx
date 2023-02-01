@@ -89,5 +89,5 @@ export const BasicConceptTable: FC = () => {
 const Wrapper = styled.div``
 const StyledText = styled(Text)`
   white-space: pre-wrap;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 `
