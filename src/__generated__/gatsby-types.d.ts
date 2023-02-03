@@ -860,12 +860,16 @@ type FileFieldsEnum =
   | 'childMdx.fields.category'
   | 'childMdx.fields.hierarchy'
   | 'childMdx.fields.slug'
+  | 'childMdx.fields.storyData.code'
+  | 'childMdx.fields.storyData.groupPath'
+  | 'childMdx.fields.storyData.storyItems'
   | 'childMdx.fileAbsolutePath'
   | 'childMdx.frontmatter.author'
   | 'childMdx.frontmatter.date'
   | 'childMdx.frontmatter.description'
   | 'childMdx.frontmatter.order'
   | 'childMdx.frontmatter.smarthr_ui'
+  | 'childMdx.frontmatter.storyName'
   | 'childMdx.frontmatter.title'
   | 'childMdx.headings'
   | 'childMdx.headings.depth'
@@ -927,12 +931,16 @@ type FileFieldsEnum =
   | 'childrenMdx.fields.category'
   | 'childrenMdx.fields.hierarchy'
   | 'childrenMdx.fields.slug'
+  | 'childrenMdx.fields.storyData.code'
+  | 'childrenMdx.fields.storyData.groupPath'
+  | 'childrenMdx.fields.storyData.storyItems'
   | 'childrenMdx.fileAbsolutePath'
   | 'childrenMdx.frontmatter.author'
   | 'childrenMdx.frontmatter.date'
   | 'childrenMdx.frontmatter.description'
   | 'childrenMdx.frontmatter.order'
   | 'childrenMdx.frontmatter.smarthr_ui'
+  | 'childrenMdx.frontmatter.storyName'
   | 'childrenMdx.frontmatter.title'
   | 'childrenMdx.headings'
   | 'childrenMdx.headings.depth'
@@ -1324,6 +1332,7 @@ type MdxFields = {
   readonly category: Maybe<Scalars['String']>;
   readonly hierarchy: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly storyData: Maybe<MdxFieldsStoryData>;
 };
 
 type MdxFieldsEnum =
@@ -1374,12 +1383,19 @@ type MdxFieldsEnum =
   | 'fields.category'
   | 'fields.hierarchy'
   | 'fields.slug'
+  | 'fields.storyData.code'
+  | 'fields.storyData.groupPath'
+  | 'fields.storyData.storyItems'
+  | 'fields.storyData.storyItems.iframeName'
+  | 'fields.storyData.storyItems.label'
+  | 'fields.storyData.storyItems.name'
   | 'fileAbsolutePath'
   | 'frontmatter.author'
   | 'frontmatter.date'
   | 'frontmatter.description'
   | 'frontmatter.order'
   | 'frontmatter.smarthr_ui'
+  | 'frontmatter.storyName'
   | 'frontmatter.title'
   | 'headings'
   | 'headings.depth'
@@ -1449,6 +1465,35 @@ type MdxFieldsFilterInput = {
   readonly category: InputMaybe<StringQueryOperatorInput>;
   readonly hierarchy: InputMaybe<StringQueryOperatorInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly storyData: InputMaybe<MdxFieldsStoryDataFilterInput>;
+};
+
+type MdxFieldsStoryData = {
+  readonly code: Maybe<Scalars['String']>;
+  readonly groupPath: Maybe<Scalars['String']>;
+  readonly storyItems: Maybe<ReadonlyArray<Maybe<MdxFieldsStoryDataStoryItems>>>;
+};
+
+type MdxFieldsStoryDataFilterInput = {
+  readonly code: InputMaybe<StringQueryOperatorInput>;
+  readonly groupPath: InputMaybe<StringQueryOperatorInput>;
+  readonly storyItems: InputMaybe<MdxFieldsStoryDataStoryItemsFilterListInput>;
+};
+
+type MdxFieldsStoryDataStoryItems = {
+  readonly iframeName: Maybe<Scalars['String']>;
+  readonly label: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+};
+
+type MdxFieldsStoryDataStoryItemsFilterInput = {
+  readonly iframeName: InputMaybe<StringQueryOperatorInput>;
+  readonly label: InputMaybe<StringQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+};
+
+type MdxFieldsStoryDataStoryItemsFilterListInput = {
+  readonly elemMatch: InputMaybe<MdxFieldsStoryDataStoryItemsFilterInput>;
 };
 
 type MdxFilterInput = {
@@ -1481,6 +1526,7 @@ type MdxFrontmatter = {
   readonly description: Scalars['String'];
   readonly order: Maybe<Scalars['Int']>;
   readonly smarthr_ui: Maybe<Scalars['String']>;
+  readonly storyName: Maybe<Scalars['String']>;
   readonly title: Scalars['String'];
 };
 
@@ -1490,6 +1536,7 @@ type MdxFrontmatterFilterInput = {
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly order: InputMaybe<IntQueryOperatorInput>;
   readonly smarthr_ui: InputMaybe<StringQueryOperatorInput>;
+  readonly storyName: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -3108,6 +3155,11 @@ type SearchQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SearchQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string, readonly order: number | null } | null, readonly fields: { readonly category: string | null, readonly hierarchy: string | null, readonly slug: string | null } | null }> } };
+
+type StoryDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type StoryDataQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly storyName: string | null } | null, readonly fields: { readonly storyData: { readonly code: string | null, readonly groupPath: string | null, readonly storyItems: ReadonlyArray<{ readonly label: string | null, readonly name: string | null, readonly iframeName: string | null } | null> | null } | null } | null }> } };
 
 
 }
