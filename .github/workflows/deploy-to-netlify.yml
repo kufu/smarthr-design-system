@@ -1,4 +1,4 @@
-name: Deploy to netlify
+name: (Test) Deploy to netlify
 
 on:
   workflow_dispatch:
@@ -17,13 +17,10 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo -e "AIRTABLE_API_KEY=${{ secrets.AIRTABLE_API_KEY }}" >> .env
-          echo -e "AIRTABLE_BASE_ID=${{ secrets.AIRTABLE_BASE_ID }}" >> .env
-          echo -e "GATSBY_ALGOLIA_ADMIN_API_KEY=${{ secrets.GATSBY_ALGOLIA_ADMIN_API_KEY }}" >> .env
-          echo -e "GATSBY_ALGOLIA_APP_ID=${{ secrets.GATSBY_ALGOLIA_APP_ID }}" >> .env
-          echo -e "GATSBY_ALGOLIA_INDEX_NAME=${{ secrets.GATSBY_ALGOLIA_INDEX_NAME }}" >> .env
-          echo -e "GATSBY_ALGOLIA_SEARCH_API_KEY=${{ secrets.GATSBY_ALGOLIA_SEARCH_API_KEY }}" >> .env
-          echo -e "GATSBY_CLOUDINARY_CLOUD_NAME=${{ secrets.GATSBY_CLOUDINARY_CLOUD_NAME }}" >> .env
+          npx netlify-cli env:list --plain >> .env
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
@@ -31,7 +28,12 @@ jobs:
       - run: yarn clean
       - run: yarn build
 
-      - run: npx netlify-cli deploy --prod --dir=./public
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: 生成されたpublicディレクトリを確認
+        uses: actions/upload-artifact@v2
+        with:
+          path: public
+
+      # - run: npx netlify-cli deploy --prod --dir=./public
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
