@@ -1,4 +1,4 @@
-name: (Test) Deploy to netlify
+name: Deploy to netlify
 
 on:
   workflow_dispatch:
@@ -28,8 +28,7 @@ jobs:
       - run: yarn clean
       - run: yarn build
 
-      - run: npx netlify-cli deploy --dir=./public
-      # - run: npx netlify-cli deploy --prod --dir=./public
+      - run: npx netlify-cli deploy --prod --dir=./public
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
