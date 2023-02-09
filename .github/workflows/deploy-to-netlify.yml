@@ -28,12 +28,8 @@ jobs:
       - run: yarn clean
       - run: yarn build
 
-      - name: 生成されたpublicディレクトリを確認
-        uses: actions/upload-artifact@v2
-        with:
-          path: public
-
+      - run: npx netlify-cli deploy --dir=./public
       # - run: npx netlify-cli deploy --prod --dir=./public
-      #   env:
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
