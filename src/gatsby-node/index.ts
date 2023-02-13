@@ -5,9 +5,11 @@ import { createFilePath } from 'gatsby-source-filesystem'
 
 import { AIRTABLE_CONTENTS } from '../constants/airtable'
 
+import { fetchStoryData } from './fetchStoryData'
+
 import type { airtableContents } from '../constants/airtable'
 
-export const onCreateNode: GatsbyNode['onCreateNode'] = ({ actions, node, getNode }) => {
+export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === 'Mdx') {
@@ -31,6 +33,18 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({ actions, node, getNod
       node,
       value: fileNameArray.join('/'),
     })
+
+    const frontmatter = node.frontmatter as typeof node & {
+      storyName: string
+    }
+    if (frontmatter && frontmatter.storyName) {
+      const storyData = await fetchStoryData(frontmatter.storyName)
+      createNodeField({
+        name: 'storyData',
+        node,
+        value: storyData,
+      })
+    }
   }
 }
 
@@ -48,6 +62,9 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
               slug
               category
               hierarchy
+            }
+            frontmatter {
+              storyName
             }
           }
         }
