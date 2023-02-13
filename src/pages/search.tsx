@@ -27,7 +27,7 @@ const SearchPage: FC = () => {
         <Main>
           <PageTitle id="label-for-search-input">SmartHR Design Systemを検索</PageTitle>
           <Search className="ais-SearchBox__root">
-            <InstantSearch indexName="content" searchClient={searchClient}>
+            <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME || ''} searchClient={searchClient}>
               <CustomSearchBox
                 isAvailable={process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_API_KEY ? true : false}
               />
