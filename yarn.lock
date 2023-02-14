@@ -7022,6 +7022,11 @@ external-editor@^3.0.3:
     iconv-lite "^0.4.24"
     tmp "^0.0.33"
 
+faker@^5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/faker/-/faker-5.5.3.tgz#c57974ee484431b25205c2c8dc09fda861e51e0e"
+  integrity sha512-wLTv2a28wjUyWkbnX7u/ABZBkUkIF2fCd73V6P2oFqEGEktDfzWx4UxrSqtPRw0xPRAcjeAOIiJWqZm3pP4u3g==
+
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
@@ -7825,6 +7830,13 @@ gatsby-source-filesystem@^4.25.0:
     pretty-bytes "^5.4.1"
     valid-url "^1.0.9"
     xstate "4.32.1"
+
+gatsby-source-mock@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/gatsby-source-mock/-/gatsby-source-mock-1.2.1.tgz#831f8f457a02954674c1db979668b8b0abc0ea55"
+  integrity sha512-UwmNLBUxoGf2dT5uvsoPCtKY9dNp300STMxCMn9geCcpxQgJH5YfDjhBOaKDjxmoLMpV4r4kI7K1C/oWbNDXzA==
+  dependencies:
+    faker "^5.5.3"
 
 gatsby-telemetry@^3.25.0:
   version "3.25.0"
