@@ -54,9 +54,7 @@ const SearchBox: FC<SearchBoxProvided & Props> = ({ refine, isAvailable }) => {
           aria-describedby="desc-for-search-input"
           name="query"
         />
-        {!isAvailable && searchState && process.env.BRANCH !== 'main' && (
-          <WarningMessage>検索処理を実行するにはAlgoliaのAPIキーの設定が必要です</WarningMessage>
-        )}
+        {!isAvailable && searchState && <WarningMessage>検索処理を実行するにはAlgoliaのAPIキーの設定が必要です</WarningMessage>}
       </InputOuter>
 
       {/* 検索結果 */}
