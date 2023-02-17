@@ -19,7 +19,7 @@ jobs:
           touch .env
           echo -e "AIRTABLE_API_KEY=${{ secrets.AIRTABLE_API_KEY }}" >> .env
           echo -e "AIRTABLE_BASE_ID=${{ secrets.AIRTABLE_BASE_ID }}" >> .env
-          echo -e "GATSBY_ALGOLIA_ADMIN_API_KEY=${{ secrets.GATSBY_ALGOLIA_ADMIN_API_KEY }}" >> .env
+          echo -e "ALGOLIA_ADMIN_API_KEY=${{ secrets.ALGOLIA_ADMIN_API_KEY }}" >> .env
           echo -e "GATSBY_ALGOLIA_APP_ID=${{ secrets.GATSBY_ALGOLIA_APP_ID }}" >> .env
           echo -e "GATSBY_ALGOLIA_INDEX_NAME=${{ secrets.GATSBY_ALGOLIA_INDEX_NAME }}" >> .env
           echo -e "GATSBY_ALGOLIA_SEARCH_API_KEY=${{ secrets.GATSBY_ALGOLIA_SEARCH_API_KEY }}" >> .env
