@@ -1,3 +1,4 @@
+import { CLOUDINARY_CLOUD_NAME } from '@Constants/application'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Link } from 'gatsby'
 import React, { useEffect, useMemo, useState } from 'react'
@@ -10,7 +11,7 @@ import type { FC } from 'react'
 
 const BUTTON_TEXT: string = 'GOTCHA!' // アニメーションするため、css、reactのどちらでも必要なのでここで
 
-const CLOUDINARY_URL = `https://res.cloudinary.com/${process.env.GATSBY_CLOUDINARY_CLOUD_NAME}/image/upload/`
+const CLOUDINARY_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/`
 
 type GotchaItem = {
   image: string

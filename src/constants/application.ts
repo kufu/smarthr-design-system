@@ -12,3 +12,5 @@ export const SHRUI_STORYBOOK_IFRAME = 'https://story.smarthr-ui.dev/iframe.html'
 export const SHRUI_STORYBOOK_PATH = 'https://story.smarthr-ui.dev/?path=/story/'
 
 export const PATTERNS_STORYBOOK_URL = `https://main--62f0ae48c21b0728fd1a5c85.chromatic.com/`
+
+export const CLOUDINARY_CLOUD_NAME = `kufu`
