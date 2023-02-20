@@ -26,7 +26,7 @@ type Props = {
 }
 
 export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
-  const data = useStaticQuery<GatsbyTypes.HeadQuery>(query)
+  const data = useStaticQuery<Queries.HeadQuery>(query)
   const siteMetadata = data.site?.siteMetadata
 
   const pageTitle = title ? `${title} | ${siteMetadata?.title}` : siteMetadata?.title

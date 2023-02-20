@@ -59,7 +59,7 @@ type Props = {
 }
 
 export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
-  const data = useStaticQuery<GatsbyTypes.IdiomaticUsageTableQuery>(query)
+  const data = useStaticQuery<Queries.IdiomaticUsageTableQuery>(query)
 
   const idiomaticUsageData = data.idiomaticUsageData.edges
     .map(({ node }) => ({

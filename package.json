@@ -34,7 +34,6 @@
     "lint": "run-p lint:*",
     "format": "eslint --fix 'src/**/*.ts{,x}'",
     "format:text": "textlint --fix 'content/**/*.md{,x}'",
-    "typegen": "IS_TYPE_GEN=true gatsby build",
     "export:ui-props": "ts-node scripts/exportUIProps.ts",
     "export:zip-images": "ts-node scripts/zipImages.ts",
     "postinstall": "husky install"
@@ -83,7 +82,6 @@
     "gatsby-plugin-react-helmet": "^5.25.0",
     "gatsby-plugin-sharp": "^4.25.0",
     "gatsby-plugin-styled-components": "^5.25.0",
-    "gatsby-plugin-typegen": "^3.1.0",
     "gatsby-remark-emoji": "^0.0.3",
     "gatsby-remark-image-attributes": "^1.1.0",
     "gatsby-remark-images": "^6.25.0",

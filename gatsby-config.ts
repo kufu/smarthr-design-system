@@ -20,6 +20,7 @@ const config: GatsbyConfig = {
     author: '@smarthr',
     ogimage: '/images/ogp.png',
   },
+  graphqlTypegen: true,
   plugins: [
     {
       resolve: 'gatsby-plugin-google-gtag',

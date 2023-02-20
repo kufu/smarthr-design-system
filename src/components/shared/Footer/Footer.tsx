@@ -104,7 +104,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
     accessibility: { nodes: accessibility },
     products: { nodes: products },
     communication: { nodes: communication },
-  } = useStaticQuery<GatsbyTypes.FooterQuery>(query)
+  } = useStaticQuery<Queries.FooterQuery>(query)
   return (
     <Wrapper isArticlePage={isArticlePage}>
       <LayoutContainer isArticlePage={isArticlePage}>

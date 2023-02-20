@@ -27,7 +27,7 @@ const query = graphql`
   }
 `
 export const AppWriting: FC = () => {
-  const data = useStaticQuery<GatsbyTypes.AppWritingTableQuery>(query)
+  const data = useStaticQuery<Queries.AppWritingTableQuery>(query)
 
   const appWritingData = data.appWritingData.edges
     .map(({ node }) => ({
