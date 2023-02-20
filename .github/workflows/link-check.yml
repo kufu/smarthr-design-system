@@ -27,26 +27,27 @@ jobs:
         #リンクエラーが見つかるとスクリプトはexit(1)で終了するが、このactionは中止しない。
         continue-on-error: true
         # linkChecker.tsを実行し、`console.error()`の内容をerrors.txtに出力する
-        # link-check-issue.mdを作成し、タイトル（Link check failed + 日付）と本文（`console.error()`の中身）を出力する
+        # link-check-issue.jsonを作成し、タイトル（Link check failed + 日付）と本文（`console.error()`の中身）を出力する
         run: |
           npx ts-node scripts/linkChecker.ts 2> errors.txt || true
           echo errors=`cat errors.txt` >> $GITHUB_OUTPUT
-          echo '---' >> link-check-issue.md
           today=$(date "+%Y-%m-%d")
-          echo "title: Link check failed ${today}" >> link-check-issue.md
-          echo '---' >> link-check-issue.md
-          echo '```' >> link-check-issue.md
+          echo "{\"title\": \"Link check failed ${today}\", \"body\": \"" >> link-check-issue.json
+          echo '```\r\n' >> link-check-issue.json
           while read error; do
-            echo "$error" >> link-check-issue.md
+            echo "$error" >> link-check-issue.json
+            echo '\r\n' >> link-check-issue.json
           done <errors.txt
-          echo '```'
+          echo '```"}' >> link-check-issue.json
       # GitHub issueを作成する
       - name: Create an issue
         # 前のstepでエラーがあった場合のみ作成
         if: steps.linkCheck.outputs.errors != ''
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          # 前のstepで書き出したlink-check-issue.mdをの内容でissueを作る
-          filename: link-check-issue.md
+        run: |
+            curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{secrets.CREATE_ISSUE_TOKEN}}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/kufu/smarthr-design-system-issues/issues \
+            -d @link-check-issue.json
