@@ -40,7 +40,7 @@ const query = graphql`
 export const ComponentStory: FC<Props> = ({ name }) => {
   const {
     allMdx: { nodes },
-  } = useStaticQuery<GatsbyTypes.StoryDataQuery>(query)
+  } = useStaticQuery<Queries.StoryDataQuery>(query)
   const storyData = nodes.find((node) => {
     return node.frontmatter?.storyName === name
   })?.fields?.storyData

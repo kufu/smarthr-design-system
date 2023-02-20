@@ -51,7 +51,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, 
 export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
   const result = await graphql<{
-    allMdx: GatsbyTypes.Query['allMdx']
+    allMdx: Queries.Query['allMdx']
   }>(`
     query {
       allMdx {

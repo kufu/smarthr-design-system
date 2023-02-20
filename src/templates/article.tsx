@@ -109,7 +109,7 @@ export const query = graphql`
   }
 `
 
-type Props = PageProps<GatsbyTypes.ArticleQuery>
+type Props = PageProps<Queries.ArticleQuery>
 
 export type SidebarItem = {
   link: string

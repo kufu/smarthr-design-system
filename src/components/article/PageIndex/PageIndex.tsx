@@ -32,7 +32,7 @@ const query = graphql`
 
 export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children }) => {
   const currentDepth = path.split('/').length
-  const data = useStaticQuery<GatsbyTypes.PageListQuery>(query)
+  const data = useStaticQuery<Queries.PageListQuery>(query)
   const pageData = data.childPageAllMdx.edges
     .map(({ node }) => {
       const slug = node.fields?.slug || ''

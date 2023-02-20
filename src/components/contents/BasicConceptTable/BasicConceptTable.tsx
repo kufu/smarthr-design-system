@@ -27,7 +27,7 @@ const query = graphql`
   }
 `
 export const BasicConceptTable: FC = () => {
-  const data = useStaticQuery<GatsbyTypes.BasicConceptTableQuery>(query)
+  const data = useStaticQuery<Queries.BasicConceptTableQuery>(query)
 
   const basicConceptData = data.basicConceptData.edges
     .map(({ node }) => ({

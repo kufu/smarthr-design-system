@@ -26,7 +26,7 @@ type Props = {
 }
 
 export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
-  const data = useStaticQuery<GatsbyTypes.HeadQuery>(query)
+  const data = useStaticQuery<Queries.HeadQuery>(query)
   const siteMetadata = data.site?.siteMetadata
 
   const pageTitle = title ? `${title} | ${siteMetadata?.title}` : siteMetadata?.title
@@ -45,15 +45,15 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
   return (
     <>
       <title>{pageTitle}</title>
-      <meta name="description" content={metaDescription} />
-      <meta property="og:title" content={pageTitle} />
-      <meta property="og:description" content={metaDescription} />
+      <meta name="description" content={metaDescription ?? ''} />
+      <meta property="og:title" content={pageTitle ?? ''} />
+      <meta property="og:description" content={metaDescription ?? ''} />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content={ogCloudinaryUrl || ogImagePath} />
+      <meta property="og:image" content={ogCloudinaryUrl ?? ogImagePath} />
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:creator" content={siteMetadata?.author || ''} />
-      <meta name="twitter:title" content={pageTitle} />
-      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:creator" content={siteMetadata?.author ?? ''} />
+      <meta name="twitter:title" content={pageTitle ?? ''} />
+      <meta name="twitter:description" content={metaDescription ?? ''} />
       {meta.map((item, index) => {
         return <meta key={index} name={item.name} content={item.content} />
       })}

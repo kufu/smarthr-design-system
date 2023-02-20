@@ -59,7 +59,7 @@ type Props = {
 }
 
 export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
-  const data = useStaticQuery<GatsbyTypes.IdiomaticUsageTableQuery>(query)
+  const data = useStaticQuery<Queries.IdiomaticUsageTableQuery>(query)
 
   const idiomaticUsageData = data.idiomaticUsageData.edges
     .map(({ node }) => ({
@@ -111,8 +111,10 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
             </thead>
             <tbody>
               {idiomaticUsageData.map((prop, index) => {
-                const matchReason = idiomaticUsageReason.find((reason) => prop.reason && prop.reason.includes(reason.recordId))
-                const matchWritingStyle = writingStyle.find((style) => style.data && style.data.includes(prop.recordId))
+                const matchReason = idiomaticUsageReason.find(
+                  (reason) => prop.reason && prop.reason.includes(reason.recordId ?? ''),
+                )
+                const matchWritingStyle = writingStyle.find((style) => style.data && style.data.includes(prop.recordId ?? ''))
 
                 // recordId: "recWCPX1UhchVaFjO"
                 // "平仮名にしたほうが読みやすい漢字は平仮名にする"

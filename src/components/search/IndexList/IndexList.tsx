@@ -32,7 +32,7 @@ type ListItem = {
 export const IndexList: FC = () => {
   const {
     allMdx: { nodes },
-  } = useStaticQuery<GatsbyTypes.SearchQuery>(query)
+  } = useStaticQuery<Queries.SearchQuery>(query)
 
   const level2Items: ListItem[] = []
   // allとついているのは全てのカテゴリのやつが入っているから
