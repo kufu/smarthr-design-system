@@ -6,6 +6,8 @@ main branch: https://smarthr-design-system.netlify.app
 
 ## Local development
 
+`.node-version`に記載されているバージョンのNode.jsとyarnがインストールされている必要があります。
+
 1. Clone this repo
 2. In the terminal, navigate (`cd`) to the repo directory
 3. `yarn` to install dependencies

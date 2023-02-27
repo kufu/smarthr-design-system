@@ -116,7 +116,7 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
 
 export const algoliaConfig = {
   appId: process.env.GATSBY_ALGOLIA_APP_ID,
-  apiKey: process.env.GATSBY_ALGOLIA_ADMIN_API_KEY,
+  apiKey: process.env.ALGOLIA_ADMIN_API_KEY,
   indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
   queries: [...mdxQueries, ...airtableQueries],
   dryRun: process.env.BRANCH !== 'main',
