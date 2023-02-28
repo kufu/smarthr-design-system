@@ -7,16 +7,16 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 <ComponentStory name="StatusLabel" />
 
-## Props
+## 種類
 
-<ComponentPropsTable name="StatusLabel" />
-
-## 色
+### 色
 
 特殊なステータスを表す場合は、背景色または文字色に警告色（黄・赤）を使います。  
 その他のステータスを表す場合は、プロダクトの状況に応じて適宜色を選択します。
 
-## 強調の有無
+## 状態
+
+### 強調の有無
 
 ユーザーがアクションをしないと次に進めないなど、ユーザーに注意喚起を促したい場合は、背景色と文字色を反転させた「強調あり」のラベルを使います。
 
@@ -61,3 +61,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 ##### 推奨例
 - `差し戻し`、`要○○`：ユーザーがアクションを取ったが、管理者などの第三者が確認した結果、不備があったため、やり直しを依頼している状態
 - `失敗`、`○○失敗`：ユーザーがアクションを取ったが、不備によりシステムエラーが発生し、処理が完了しなかった状態
+
+## Props
+
+<ComponentPropsTable name="StatusLabel" />
