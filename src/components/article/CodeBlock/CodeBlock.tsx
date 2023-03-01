@@ -151,7 +151,8 @@ const LinkWrapper = styled.div`
   text-align: right;
 `
 
-const PreContainer = styled.pre`
+const PreContainer = styled.div`
+  font-family: monospace;
   position: relative;
   margin-block: 16px 0;
   padding: 2.75rem 1.5rem 1.5rem;

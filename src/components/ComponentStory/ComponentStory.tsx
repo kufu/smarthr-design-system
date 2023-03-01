@@ -142,12 +142,11 @@ const StoryLoader = styled(Loader)`
 const CodeWrapper = styled.div`
   position: relative;
   border: solid 1px ${CSS_COLOR.LIGHT_GREY_1};
-  > pre {
+  > * {
     margin: 0;
     height: 300px;
     border: 0;
-    overflow: hidden;
-    overflow-y: scroll;
+    overflow: scroll;
     resize: vertical;
   }
 `
