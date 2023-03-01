@@ -41,5 +41,6 @@ export const GlobalStyle = createGlobalStyle`
   table td {
     box-sizing: border-box;
     padding: 0.5rem 1rem;
+    min-width: 7em; /* 5em+padding */
   }
 `
