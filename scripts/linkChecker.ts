@@ -1,9 +1,10 @@
 import fs from 'fs/promises'
 import path from 'path'
+
 import glob from 'glob'
 
 const CONTENT_PATH = path.join(__dirname, '../content/articles/**/*.mdx')
-const IMAGE_PATH = path.join(__dirname, '../content/articles/**/*.+(png|jpg|jpeg)')
+const IMAGE_PATH = path.join(__dirname, '../content/articles/**/*.+(png|jpg|jpeg|gif)')
 const DOWNLOAD_PATH = path.join(__dirname, '../static/**/*')
 
 const IGNORE_LIST = ['URL', '#ページ内リンク']
@@ -30,7 +31,7 @@ const collectExistLinks = async () => {
         linkList.push({
           link: link[1].split(' ')[0], // "![sample image](./images/sample.jpg '#width=300px')"のような表記が可能なので
           filePath: file,
-          pagePath: pagePath,
+          pagePath,
           lineNo: index + 1,
           type: /^!/.test(link[0]) ? 'image' : 'link',
         })
