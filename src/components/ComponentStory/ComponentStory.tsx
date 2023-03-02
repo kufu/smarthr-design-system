@@ -104,7 +104,9 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         </>
       )}
       <CodeWrapper>
-        <CodeBlock className="tsx">{code}</CodeBlock>
+        <CodeBlock className="tsx" isStorybook={true}>
+          {code}
+        </CodeBlock>
       </CodeWrapper>
     </>
   )
@@ -142,11 +144,4 @@ const StoryLoader = styled(Loader)`
 const CodeWrapper = styled.div`
   position: relative;
   border: solid 1px ${CSS_COLOR.LIGHT_GREY_1};
-  > * {
-    margin: 0;
-    height: 300px;
-    border: 0;
-    overflow: scroll;
-    resize: vertical;
-  }
 `
