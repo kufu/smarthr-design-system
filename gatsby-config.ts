@@ -162,6 +162,7 @@ const config: GatsbyConfig = {
             },
           },
         ]),
+    { resolve: `gatsby-source-ui-versions` },
   ],
 }
 
