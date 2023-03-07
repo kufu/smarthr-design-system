@@ -1,9 +1,9 @@
-import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
-import { SHRUI_STORYBOOK_IFRAME } from '@Constants/application'
-import { CSS_COLOR } from '@Constants/style'
+import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@Constants/application'
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { graphql, useStaticQuery } from 'gatsby'
 import React, { FC, useState } from 'react'
-import { Loader, TabBar, TabItem, TextLink } from 'smarthr-ui'
+import { Cluster, FaExternalLinkAltIcon, Loader, Select, TabBar, TabItem, TextLink } from 'smarthr-ui'
+import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
 
 import { CodeBlock } from '../article/CodeBlock'
@@ -34,16 +34,27 @@ const query = graphql`
         }
       }
     }
+    allUiVersion {
+      nodes {
+        version
+        commitHash
+      }
+    }
   }
 `
 
 export const ComponentStory: FC<Props> = ({ name }) => {
-  const {
-    allMdx: { nodes },
-  } = useStaticQuery<Queries.StoryDataQuery>(query)
-  const storyData = nodes.find((node) => {
+  const { allMdx, allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
+  const storyData = allMdx.nodes.find((node) => {
     return node.frontmatter?.storyName === name
   })?.fields?.storyData
+
+  const versions = allUiVersion.nodes.map((node) => {
+    return {
+      version: node.version,
+      commitHash: node.commitHash,
+    }
+  })
 
   const code = storyData?.code ?? ''
   const groupPath = storyData?.groupPath ?? ''
@@ -51,6 +62,27 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [currentIFrame, setCurrentIFrame] = useState<string>(storyItems[0]?.name ?? '')
+  const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
+
+  const options =
+    versions?.map((version) => {
+      return {
+        label: `v${version.version}`,
+        value: version.version,
+      }
+    }) ?? []
+
+  const onChangeVersion = (version: string) => {
+    setDisplayVersion(version)
+  }
+
+  const currentCommitHash = () => {
+    return (
+      versions?.find((version) => {
+        return version.version === displayVersion
+      })?.commitHash ?? 'master'
+    )
+  }
 
   const onClickTab = (itemId: string): void => {
     if (itemId === currentIFrame) return
@@ -68,7 +100,28 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
   return (
     <>
-      <SmartHRUIMetaInfo name={name} groupPath={groupPath} />
+      <MetaWrapper justify="space-between" align="center">
+        <Cluster align="center" as="label">
+          <span>SmartHR UI</span>
+          <Select width="100px" name="displayVersion" options={options} onChangeValue={onChangeVersion} />
+        </Cluster>
+        <StyledUl>
+          <li>
+            <a
+              href={`https://${currentCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${groupPath}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaExternalLinkAltIcon /> Storybook
+            </a>
+          </li>
+          <li>
+            <a href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`} target="_blank" rel="noreferrer">
+              <FaExternalLinkAltIcon /> ソースコード（GitHub）
+            </a>
+          </li>
+        </StyledUl>
+      </MetaWrapper>
       <Tab>
         {storyItems.map((item, index: number) => {
           return (
@@ -82,7 +135,9 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         <>
           <LinkWrapper>
             <TextLink
-              href={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(currentIFrame)}&viewMode=story`}
+              href={`https://${currentCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${groupPath}-${getStoryName(
+                currentIFrame,
+              )}&viewMode=story`}
               target="_blank"
             >
               別画面で開く
@@ -97,7 +152,9 @@ export const ComponentStory: FC<Props> = ({ name }) => {
                   return item?.name === currentIFrame
                 })?.label || ''
               }
-              src={`${SHRUI_STORYBOOK_IFRAME}?id=${groupPath}-${getStoryName(currentIFrame)}`}
+              src={`https://${currentCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${groupPath}-${getStoryName(
+                currentIFrame,
+              )}`}
               onLoad={() => setIsIFrameLoaded(true)}
             />
           </ResizableContainer>
@@ -111,6 +168,24 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     </>
   )
 }
+
+const MetaWrapper = styled(Cluster)`
+  flex-direction: row-reverse;
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    > ul {
+      width: 100%;
+    }
+  }
+`
+
+const StyledUl = styled.ul`
+  list-style: none;
+  margin-block: 16px 0;
+  padding: 0;
+  > li {
+    line-height: 2;
+  }
+`
 
 const Tab = styled(TabBar)`
   margin-block: 48px 0;
