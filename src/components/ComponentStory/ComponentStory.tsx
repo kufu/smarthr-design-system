@@ -6,6 +6,7 @@ import { Cluster, FaExternalLinkAltIcon, Loader, Select, TabBar, TabItem, TextLi
 import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
 
+import { fetchStoryData } from '../../lib/fetchStoryData'
 import { CodeBlock } from '../article/CodeBlock'
 
 import { ResizableContainer } from './ResizableContainer'
@@ -45,40 +46,39 @@ const query = graphql`
 
 export const ComponentStory: FC<Props> = ({ name }) => {
   const { allMdx, allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
-  const storyData = allMdx.nodes.find((node) => {
+  const defaultStoryData = allMdx.nodes.find((node) => {
     return node.frontmatter?.storyName === name
   })?.fields?.storyData
 
-  const versions = allUiVersion.nodes.map((node) => {
-    return {
-      version: node.version,
-      commitHash: node.commitHash,
-    }
+  const [storyData, setStoryData] = useState({
+    code: defaultStoryData?.code ?? '',
+    groupPath: defaultStoryData?.groupPath ?? '',
+    storyItems: defaultStoryData?.storyItems ?? [],
   })
 
-  const code = storyData?.code ?? ''
-  const groupPath = storyData?.groupPath ?? ''
-  const storyItems = storyData?.storyItems ?? []
-
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
-  const [currentIFrame, setCurrentIFrame] = useState<string>(storyItems[0]?.name ?? '')
+  const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.name ?? '')
   const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
 
-  const options =
-    versions?.map((version) => {
+  const versionOptions =
+    allUiVersion.nodes?.map((version) => {
       return {
         label: `v${version.version}`,
         value: version.version,
       }
     }) ?? []
 
-  const onChangeVersion = (version: string) => {
+  const onChangeVersion = async (version: string) => {
     setDisplayVersion(version)
+    setIsIFrameLoaded(false)
+    const newData = await fetchStoryData(name, version)
+    setStoryData(newData)
+    setCurrentIFrame(newData.storyItems[0]?.name ?? '')
   }
 
-  const currentCommitHash = () => {
+  const getCommitHash = () => {
     return (
-      versions?.find((version) => {
+      allUiVersion.nodes?.find((version) => {
         return version.version === displayVersion
       })?.commitHash ?? 'master'
     )
@@ -93,7 +93,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   }
 
   const getStoryName = (currentName: string) => {
-    return storyItems?.find((item) => {
+    return storyData.storyItems?.find((item) => {
       return item?.name === currentName
     })?.iframeName
   }
@@ -103,12 +103,12 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       <MetaWrapper justify="space-between" align="center">
         <Cluster align="center" as="label">
           <span>SmartHR UI</span>
-          <Select width="100px" name="displayVersion" options={options} onChangeValue={onChangeVersion} />
+          <Select width="100px" name="displayVersion" options={versionOptions} onChangeValue={onChangeVersion} />
         </Cluster>
         <StyledUl>
           <li>
             <a
-              href={`https://${currentCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${groupPath}`}
+              href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${storyData.groupPath}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -123,7 +123,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         </StyledUl>
       </MetaWrapper>
       <Tab>
-        {storyItems.map((item, index: number) => {
+        {storyData.storyItems.map((item, index: number) => {
           return (
             <TabItem id={item?.name ?? ''} key={index} onClick={onClickTab} selected={item?.name === currentIFrame}>
               {item?.label}
@@ -135,9 +135,9 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         <>
           <LinkWrapper>
             <TextLink
-              href={`https://${currentCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${groupPath}-${getStoryName(
-                currentIFrame,
-              )}&viewMode=story`}
+              href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
+                storyData.groupPath
+              }-${getStoryName(currentIFrame)}&viewMode=story`}
               target="_blank"
             >
               別画面で開く
@@ -148,13 +148,13 @@ export const ComponentStory: FC<Props> = ({ name }) => {
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
             <StoryIframe
               title={
-                storyItems.find((item) => {
+                storyData.storyItems.find((item) => {
                   return item?.name === currentIFrame
                 })?.label || ''
               }
-              src={`https://${currentCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${groupPath}-${getStoryName(
-                currentIFrame,
-              )}`}
+              src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
+                storyData.groupPath
+              }-${getStoryName(currentIFrame)}`}
               onLoad={() => setIsIFrameLoaded(true)}
             />
           </ResizableContainer>
@@ -162,7 +162,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       )}
       <CodeWrapper>
         <CodeBlock className="tsx" isStorybook={true}>
-          {code}
+          {storyData.code}
         </CodeBlock>
       </CodeWrapper>
     </>
