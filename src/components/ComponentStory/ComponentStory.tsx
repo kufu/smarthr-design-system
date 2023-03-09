@@ -1,7 +1,8 @@
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@Constants/application'
 import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
-import { graphql, useStaticQuery } from 'gatsby'
-import React, { FC, useState } from 'react'
+import { useLocation } from '@reach/router'
+import { graphql, navigate, useStaticQuery } from 'gatsby'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import { Cluster, InformationPanel, Loader, Select, TabBar, TabItem, TextLink } from 'smarthr-ui'
 import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
@@ -56,11 +57,6 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     storyItems: defaultStoryData?.storyItems ?? [],
   })
 
-  const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
-  const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.name ?? '')
-  const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
-  const [showError, setShowError] = useState<boolean>(false)
-
   const versionOptions =
     allUiVersion.nodes?.map((version) => {
       return {
@@ -69,24 +65,49 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       }
     }) ?? []
 
-  const onChangeVersion = async (version: string) => {
-    setDisplayVersion(version)
-    setIsIFrameLoaded(false)
-    const newData = await fetchStoryData(name, version).catch(() => {
-      setShowError(true)
-      return null
-    })
-    if (newData === null) return
-    setStoryData(newData)
-    setCurrentIFrame(newData.storyItems[0]?.name ?? '')
-    setShowError(false)
+  const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
+  const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.name ?? '')
+  const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
+  const [showError, setShowError] = useState<boolean>(false)
+
+  const fetchData = useCallback(
+    async (version: string) => {
+      setDisplayVersion(version)
+      setIsIFrameLoaded(false)
+      const newData = await fetchStoryData(name, version).catch(() => {
+        return null
+      })
+      if (newData === null || newData.code === '') {
+        setShowError(true)
+        return
+      }
+      setStoryData(newData)
+      setCurrentIFrame(newData.storyItems[0]?.name ?? '')
+      setShowError(false)
+    },
+    [name],
+  )
+
+  // クエリ付きURLでアクセスされた場合
+  const location = useLocation()
+  useEffect(() => {
+    const { search } = location
+    const params = new URLSearchParams(search)
+    const version = params.get('v')
+    if (version === null || version === displayVersion) return
+
+    fetchData(version)
+  }, [location, displayVersion, fetchData])
+
+  const onChangeVersion = (version: string) => {
+    navigate(`?v=${encodeURI(version)}`)
   }
 
   const getCommitHash = () => {
     return (
       allUiVersion.nodes?.find((version) => {
         return version.version === displayVersion
-      })?.commitHash ?? 'master'
+      })?.commitHash ?? ''
     )
   }
 
@@ -109,7 +130,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       <MetaWrapper justify="space-between" align="center">
         <Cluster align="center" as="label">
           <span>SmartHR UI</span>
-          <Select width="100px" name="displayVersion" options={versionOptions} onChangeValue={onChangeVersion} />
+          <Select width="100px" name="version" options={versionOptions} onChangeValue={onChangeVersion} value={displayVersion} />
         </Cluster>
         <StyledUl>
           <li>
