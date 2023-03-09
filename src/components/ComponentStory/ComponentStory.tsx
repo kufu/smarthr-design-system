@@ -2,7 +2,7 @@ import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@Constants/application'
 import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { graphql, useStaticQuery } from 'gatsby'
 import React, { FC, useState } from 'react'
-import { Cluster, FaExternalLinkAltIcon, Loader, Select, TabBar, TabItem, TextLink } from 'smarthr-ui'
+import { Cluster, InformationPanel, Loader, Select, TabBar, TabItem, TextLink } from 'smarthr-ui'
 import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
 
@@ -59,6 +59,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.name ?? '')
   const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
+  const [showError, setShowError] = useState<boolean>(false)
 
   const versionOptions =
     allUiVersion.nodes?.map((version) => {
@@ -71,9 +72,14 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   const onChangeVersion = async (version: string) => {
     setDisplayVersion(version)
     setIsIFrameLoaded(false)
-    const newData = await fetchStoryData(name, version)
+    const newData = await fetchStoryData(name, version).catch(() => {
+      setShowError(true)
+      return null
+    })
+    if (newData === null) return
     setStoryData(newData)
     setCurrentIFrame(newData.storyItems[0]?.name ?? '')
+    setShowError(false)
   }
 
   const getCommitHash = () => {
@@ -107,64 +113,76 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         </Cluster>
         <StyledUl>
           <li>
-            <a
+            <TextLink
               href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${storyData.groupPath}`}
               target="_blank"
-              rel="noreferrer"
             >
-              <FaExternalLinkAltIcon /> Storybook
-            </a>
+              Storybook
+            </TextLink>
           </li>
           <li>
-            <a href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`} target="_blank" rel="noreferrer">
-              <FaExternalLinkAltIcon /> ソースコード（GitHub）
-            </a>
+            <TextLink href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`} target="_blank">
+              ソースコード（GitHub）
+            </TextLink>
           </li>
         </StyledUl>
       </MetaWrapper>
-      <Tab>
-        {storyData.storyItems.map((item, index: number) => {
-          return (
-            <TabItem id={item?.name ?? ''} key={index} onClick={onClickTab} selected={item?.name === currentIFrame}>
-              {item?.label}
-            </TabItem>
-          )
-        })}
-      </Tab>
-      {currentIFrame !== '' && (
+      {showError && (
+        <ErrorPanel title="指定されたバージョンのコンポーネントの情報を取得できませんでした。" type="error" togglable={false}>
+          通信状況に問題が発生しているか、次のような理由が考えられます。
+          <ul>
+            <li>コンポーネント名が変更された</li>
+            <li>このバージョンではコンポーネントが存在しない</li>
+          </ul>
+        </ErrorPanel>
+      )}
+      {!showError && (
         <>
-          <LinkWrapper>
-            <TextLink
-              href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
-                storyData.groupPath
-              }-${getStoryName(currentIFrame)}&viewMode=story`}
-              target="_blank"
-            >
-              別画面で開く
-            </TextLink>
-          </LinkWrapper>
-          <ResizableContainer defaultWidth="100%" defaultHeight="300px">
-            <StoryLoader className={isIFrameLoaded ? '' : '-show'} />
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-            <StoryIframe
-              title={
-                storyData.storyItems.find((item) => {
-                  return item?.name === currentIFrame
-                })?.label || ''
-              }
-              src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
-                storyData.groupPath
-              }-${getStoryName(currentIFrame)}`}
-              onLoad={() => setIsIFrameLoaded(true)}
-            />
-          </ResizableContainer>
+          <Tab>
+            {storyData.storyItems.map((item, index: number) => {
+              return (
+                <TabItem id={item?.name ?? ''} key={index} onClick={onClickTab} selected={item?.name === currentIFrame}>
+                  {item?.label}
+                </TabItem>
+              )
+            })}
+          </Tab>
+          {currentIFrame !== '' && (
+            <>
+              <LinkWrapper>
+                <TextLink
+                  href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
+                    storyData.groupPath
+                  }-${getStoryName(currentIFrame)}&viewMode=story`}
+                  target="_blank"
+                >
+                  別画面で開く
+                </TextLink>
+              </LinkWrapper>
+              <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+                <StoryLoader className={isIFrameLoaded ? '' : '-show'} />
+                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+                <StoryIframe
+                  title={
+                    storyData.storyItems.find((item) => {
+                      return item?.name === currentIFrame
+                    })?.label || ''
+                  }
+                  src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
+                    storyData.groupPath
+                  }-${getStoryName(currentIFrame)}`}
+                  onLoad={() => setIsIFrameLoaded(true)}
+                />
+              </ResizableContainer>
+            </>
+          )}
+          <CodeWrapper>
+            <CodeBlock className="tsx" isStorybook={true}>
+              {storyData.code}
+            </CodeBlock>
+          </CodeWrapper>
         </>
       )}
-      <CodeWrapper>
-        <CodeBlock className="tsx" isStorybook={true}>
-          {storyData.code}
-        </CodeBlock>
-      </CodeWrapper>
     </>
   )
 }
@@ -184,6 +202,14 @@ const StyledUl = styled.ul`
   padding: 0;
   > li {
     line-height: 2;
+  }
+`
+
+const ErrorPanel = styled(InformationPanel)`
+  margin-block: 24px;
+  .smarthr-ui-InformationPanel-title {
+    margin-block: 0;
+    font-size: 1rem;
   }
 `
 
