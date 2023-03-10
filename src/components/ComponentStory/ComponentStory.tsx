@@ -136,7 +136,19 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     <>
       <Cluster align="center" as="label">
         <span>SmartHR UI</span>
-        <Select width="100px" name="version" options={versionOptions} onChangeValue={onChangeVersion} value={displayVersion} />
+        <Select
+          width="170px"
+          name="version"
+          options={versionOptions}
+          onChangeValue={onChangeVersion}
+          value={displayVersion}
+          hasBlank={true}
+          decorators={{
+            blankLabel: () =>
+              versionOptions.find((option) => option.value === displayVersion) ? '選択してください' : `v${displayVersion}`,
+          }}
+          error={showError}
+        />
       </Cluster>
       <StyledUl>
         <li>
