@@ -134,7 +134,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
   return (
     <>
-      <Cluster align="center" as="label">
+      <StyledCluster align="center" as="label">
         <span>SmartHR UI</span>
         <Select
           width="170px"
@@ -149,7 +149,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
           }}
           error={showError}
         />
-      </Cluster>
+      </StyledCluster>
       <StyledUl>
         <li>
           <TextLink
@@ -225,6 +225,10 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     </>
   )
 }
+
+const StyledCluster = styled(Cluster)`
+  margin-block: 20px;
+`
 
 const StyledUl = styled.ul`
   list-style: none;
