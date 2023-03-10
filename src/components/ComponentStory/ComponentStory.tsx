@@ -1,5 +1,5 @@
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@Constants/application'
-import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
+import { CSS_COLOR } from '@Constants/style'
 import { useLocation } from '@reach/router'
 import { graphql, navigate, useStaticQuery } from 'gatsby'
 import React, { FC, useCallback, useEffect, useState } from 'react'
@@ -134,27 +134,25 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
   return (
     <>
-      <MetaWrapper justify="space-between" align="center">
-        <Cluster align="center" as="label">
-          <span>SmartHR UI</span>
-          <Select width="100px" name="version" options={versionOptions} onChangeValue={onChangeVersion} value={displayVersion} />
-        </Cluster>
-        <StyledUl>
-          <li>
-            <TextLink
-              href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${storyData.groupPath}`}
-              target="_blank"
-            >
-              Storybook
-            </TextLink>
-          </li>
-          <li>
-            <TextLink href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`} target="_blank">
-              ソースコード（GitHub）
-            </TextLink>
-          </li>
-        </StyledUl>
-      </MetaWrapper>
+      <Cluster align="center" as="label">
+        <span>SmartHR UI</span>
+        <Select width="100px" name="version" options={versionOptions} onChangeValue={onChangeVersion} value={displayVersion} />
+      </Cluster>
+      <StyledUl>
+        <li>
+          <TextLink
+            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${storyData.groupPath}`}
+            target="_blank"
+          >
+            Storybook
+          </TextLink>
+        </li>
+        <li>
+          <TextLink href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`} target="_blank">
+            ソースコード（GitHub）
+          </TextLink>
+        </li>
+      </StyledUl>
       {showError && (
         <ErrorPanel title="指定されたバージョンのコンポーネント情報を取得できませんでした" type="error" togglable={false}>
           通信状況に問題が発生しているか、次のような理由が考えられます。
@@ -215,15 +213,6 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     </>
   )
 }
-
-const MetaWrapper = styled(Cluster)`
-  flex-direction: row-reverse;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    > ul {
-      width: 100%;
-    }
-  }
-`
 
 const StyledUl = styled.ul`
   list-style: none;
