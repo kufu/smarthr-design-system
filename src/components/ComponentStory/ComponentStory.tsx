@@ -149,7 +149,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         </StyledUl>
       </MetaWrapper>
       {showError && (
-        <ErrorPanel title="指定されたバージョンのコンポーネントの情報を取得できませんでした。" type="error" togglable={false}>
+        <ErrorPanel title="指定されたバージョンのコンポーネント情報を取得できませんでした" type="error" togglable={false}>
           通信状況に問題が発生しているか、次のような理由が考えられます。
           <ul>
             <li>コンポーネント名が変更された</li>
