@@ -66,6 +66,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     }) ?? []
 
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
+  const [isStoryLoaded, setIsStoryLoaded] = useState<boolean>(false)
   const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.name ?? '')
   const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
   const [showError, setShowError] = useState<boolean>(false)
@@ -73,6 +74,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   const fetchData = useCallback(
     async (version: string) => {
       setDisplayVersion(version)
+      setIsStoryLoaded(false)
       setIsIFrameLoaded(false)
       const newData = await fetchStoryData(name, version).catch(() => {
         return null
@@ -123,6 +125,11 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     return storyData.storyItems?.find((item) => {
       return item?.name === currentName
     })?.iframeName
+  }
+
+  const onIFrameLoaded = () => {
+    setIsStoryLoaded(true)
+    setIsIFrameLoaded(true)
   }
 
   return (
@@ -192,7 +199,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
                   src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
                     storyData.groupPath
                   }-${getStoryName(currentIFrame)}`}
-                  onLoad={() => setIsIFrameLoaded(true)}
+                  onLoad={() => onIFrameLoaded()}
                 />
               </ResizableContainer>
             </>
@@ -201,6 +208,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
             <CodeBlock className="tsx" isStorybook={true}>
               {storyData.code}
             </CodeBlock>
+            <StoryLoader className={isStoryLoaded ? '' : '-show'} />
           </CodeWrapper>
         </>
       )}
