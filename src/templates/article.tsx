@@ -109,7 +109,7 @@ export const query = graphql`
   }
 `
 
-type Props = PageProps<GatsbyTypes.ArticleQuery>
+type Props = PageProps<Queries.ArticleQuery>
 
 export type SidebarItem = {
   link: string
@@ -376,7 +376,7 @@ export const Head: FC<Props> = ({ data }) => {
   // memo: カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
   const headTitle = title === parentCategoryName ? title : `${title} | ${parentCategoryName}`
 
-  return <HeadComponent title={headTitle} description={description} />
+  return <HeadComponent title={headTitle} description={description} ogTitle={title} />
 }
 
 const Wrapper = styled.div`

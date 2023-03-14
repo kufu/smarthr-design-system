@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import emoji from 'remark-emoji'
 
 import { algoliaConfig } from './gatsby-plugin-algolia-config'
-import { AIRTABLE_CONTENTS } from './src/constants/airtable'
+import { AIRTABLE_CONTENTS, AIRTABLE_MOCK_DATA } from './src/constants/airtable'
 
 import type { GatsbyConfig } from 'gatsby'
 
@@ -20,6 +20,7 @@ const config: GatsbyConfig = {
     author: '@smarthr',
     ogimage: '/images/ogp.png',
   },
+  graphqlTypegen: true,
   plugins: [
     {
       resolve: 'gatsby-plugin-google-gtag',
@@ -133,20 +134,34 @@ const config: GatsbyConfig = {
         remarkPlugins: [emoji],
       },
     },
-    {
-      resolve: 'gatsby-source-airtable',
-      options: {
-        apiKey: process.env.AIRTABLE_API_KEY, // may instead specify via env, see below
-        concurrency: 5, // default, see using markdown and attachments for more information
-        tables: AIRTABLE_CONTENTS.map((item) => {
-          return {
-            baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: item.tableName,
-            tableView: `design system表示用`,
-          }
-        }),
-      },
-    },
+    // AIRTABLEキーが設定されているか、本番環境の場合はgatsby-source-airtable、それ以外ではモックデータを利用する
+    ...((process.env.AIRTABLE_API_KEY && process.env.AIRTABLE_BASE_ID) || process.env.BRANCH === 'main'
+      ? [
+          {
+            resolve: 'gatsby-source-airtable',
+            options: {
+              apiKey: process.env.AIRTABLE_API_KEY, // may instead specify via env, see below
+              concurrency: 5, // default, see using markdown and attachments for more information
+              tables: AIRTABLE_CONTENTS.map((item) => {
+                return {
+                  baseId: process.env.AIRTABLE_BASE_ID,
+                  tableName: item.tableName,
+                  tableView: `design system表示用`,
+                }
+              }),
+            },
+          },
+        ]
+      : [
+          {
+            resolve: `gatsby-source-mock`,
+            options: {
+              schema: AIRTABLE_MOCK_DATA,
+              count: AIRTABLE_MOCK_DATA.length,
+              type: 'Airtable',
+            },
+          },
+        ]),
   ],
 }
 

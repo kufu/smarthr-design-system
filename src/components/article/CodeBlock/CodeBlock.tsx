@@ -19,6 +19,7 @@ type Props = {
   children: string
   className?: Language
   editable?: boolean
+  isStorybook?: boolean
   withStyled?: boolean
   renderingComponent?: string
   componentTitle?: string
@@ -54,6 +55,7 @@ export const CodeBlock: FC<Props> = ({
   children,
   className,
   editable = false,
+  isStorybook = false,
   scope,
   withStyled = false,
   renderingComponent,
@@ -109,11 +111,13 @@ export const CodeBlock: FC<Props> = ({
                 {/* @ts-ignore -- LivePreviewの型定義が正しくないようなので、エラーを無視。https://github.com/FormidableLabs/react-live/pull/304 */}
                 <LivePreview Component={React.Fragment} />
               </ComponentPreview>
-              <StyledLiveEditorContainer>
-                <CopyButton text={code} />
-                {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-                <LiveEditor padding={0} />
-              </StyledLiveEditorContainer>
+              <CodeWrapper>
+                <StyledLiveEditorContainer>
+                  <CopyButton text={code} />
+                  {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
+                  <LiveEditor padding={0} />
+                </StyledLiveEditorContainer>
+              </CodeWrapper>
               <LiveError />
             </LiveProvider>
           )}
@@ -125,18 +129,20 @@ export const CodeBlock: FC<Props> = ({
   return (
     <Highlight {...defaultProps} code={code} language={language as Language} theme={theme}>
       {({ style, tokens, getLineProps, getTokenProps }): ReactNode => (
-        <PreContainer>
-          <CopyButton text={code} />
-          <pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })} key={i}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} key={key} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        </PreContainer>
+        <CodeWrapper>
+          <PreContainer isStorybook={isStorybook}>
+            <CopyButton text={code} />
+            <pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div {...getLineProps({ line, key: i })} key={i}>
+                  {line.map((token, key) => (
+                    <span {...getTokenProps({ token, key })} key={key} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          </PreContainer>
+        </CodeWrapper>
       )}
     </Highlight>
   )
@@ -151,12 +157,17 @@ const LinkWrapper = styled.div`
   text-align: right;
 `
 
-const PreContainer = styled.pre`
+const CodeWrapper = styled.div`
   position: relative;
+`
+
+const PreContainer = styled.div<{ isStorybook?: boolean }>`
+  font-family: monospace;
   margin-block: 16px 0;
   padding: 2.75rem 1.5rem 1.5rem;
   border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
   background-color: ${CSS_COLOR.SEMANTICS_COLUMN};
+  overflow-x: scroll;
 
   & > button {
     position: absolute;
@@ -164,10 +175,25 @@ const PreContainer = styled.pre`
     right: 1.5rem;
   }
 
-  /* pre内のコードやLiveEditorのtextareaなどの文字を強制的に折り返すようにする */
+  /* preのデフォルトは display: block; で幅100%になるが、100%を超えられるように上書き(祖先要素には横スクロールを適用) */
+  pre {
+    width: fit-content;
+  }
+
+  /* LiveEditor内で preに white-space: pre-wrap; が適用されているため、文字を強制的に折り返すようにする */
   * {
     word-break: break-all;
   }
+
+  ${({ isStorybook }) =>
+    isStorybook &&
+    `
+      margin: 0;
+      height: 300px;
+      border: 0;
+      overflow: scroll;
+      resize: vertical;
+    `};
 `
 
 const StyledLiveEditorContainer = styled(PreContainer)`

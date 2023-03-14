@@ -104,7 +104,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
     accessibility: { nodes: accessibility },
     products: { nodes: products },
     communication: { nodes: communication },
-  } = useStaticQuery<GatsbyTypes.FooterQuery>(query)
+  } = useStaticQuery<Queries.FooterQuery>(query)
   return (
     <Wrapper isArticlePage={isArticlePage}>
       <LayoutContainer isArticlePage={isArticlePage}>
@@ -125,7 +125,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
+                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
@@ -140,7 +140,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                     if (frontmatter?.title === undefined) return null
                     return (
                       <li key={fields.slug}>
-                        <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
+                        <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
                       </li>
                     )
                   })}
@@ -159,7 +159,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
+                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
@@ -175,7 +175,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
+                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
@@ -193,7 +193,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
+                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
@@ -211,7 +211,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                   if (frontmatter?.title === undefined) return null
                   return (
                     <li key={fields.slug}>
-                      <StyledLink to={fields.slug}>{frontmatter.title}</StyledLink>
+                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
                     </li>
                   )
                 })}
