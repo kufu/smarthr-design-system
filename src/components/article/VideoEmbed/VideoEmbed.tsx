@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, TrackHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -6,9 +6,10 @@ type Props = {
   poster: string
   title: string
   youtubeUrl?: string
+  tracks?: Array<TrackHTMLAttributes<HTMLTrackElement>>
 }
 
-export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl }) => {
+export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl, tracks = [] }) => {
   return (
     <>
       <Video controls poster={poster}>
@@ -18,6 +19,9 @@ export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl }) => 
         ) : (
           <p>動画再生に対応した環境でご覧ください。</p>
         )}
+        {tracks.map((track, index) => {
+          return <track {...track} key={index} />
+        })}
       </Video>
 
       {youtubeUrl && (
