@@ -143,9 +143,9 @@ export const ComponentStory: FC<Props> = ({ name }) => {
           onChangeValue={onChangeVersion}
           value={displayVersion}
           hasBlank={true}
+          //存在しないバージョンでエラーになるの場合は「-」を表示する（空白文字だとデフォルトの「選択してください」になるため）
           decorators={{
-            blankLabel: () =>
-              versionOptions.find((option) => option.value === displayVersion) ? '選択してください' : `v${displayVersion}`,
+            blankLabel: () => (showError || !isStoryLoaded ? '-' : `v${displayVersion}`),
           }}
           error={showError}
         />
