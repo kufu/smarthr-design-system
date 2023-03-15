@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 
-import glob from 'glob'
+import { glob } from 'glob'
 
 const CONTENT_PATH = path.join(__dirname, '../content/articles/**/*.mdx')
 const IMAGE_PATH = path.join(__dirname, '../content/articles/**/*.+(png|jpg|jpeg|gif)')
@@ -14,7 +14,7 @@ type LinkItem = { link: string; filePath: string; pagePath: string; lineNo: numb
 const collectExistLinks = async () => {
   const existPathList: string[] = []
   const linkList: LinkItem[] = []
-  for await (const file of await glob.sync(CONTENT_PATH)) {
+  for (const file of await glob(CONTENT_PATH)) {
     // ビルド後のパス
     const pagePath = file
       .replace(/^.*\/content\/articles/, '')
@@ -49,14 +49,14 @@ const collectExistLinks = async () => {
   }
 
   // 画像ファイル
-  for await (const file of await glob.sync(IMAGE_PATH)) {
+  for (const file of await glob(IMAGE_PATH)) {
     //ビルド後のパスを配列に入れておく
     const filePath = file.replace(/^.*\/content\/articles/, '')
     existPathList.push(filePath)
   }
 
   // ダウンロード用のファイル
-  for await (const file of await glob.sync(DOWNLOAD_PATH)) {
+  for (const file of await glob(DOWNLOAD_PATH)) {
     //ビルド後のパスを配列に入れておく
     const filePath = file.replace(/^.*\/static/, '')
     existPathList.push(filePath)
