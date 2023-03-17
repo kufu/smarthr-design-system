@@ -153,7 +153,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       <StyledUl>
         <li>
           <TextLink
-            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${storyData.groupPath}`}
+            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?path=/story/${storyData.groupPath}`}
             target="_blank"
           >
             Storybook
