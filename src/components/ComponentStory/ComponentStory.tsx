@@ -3,7 +3,18 @@ import { CSS_COLOR } from '@Constants/style'
 import { useLocation } from '@reach/router'
 import { graphql, navigate, useStaticQuery } from 'gatsby'
 import React, { FC, useCallback, useEffect, useState } from 'react'
-import { Cluster, InformationPanel, Loader, Select, TabBar, TabItem, TextLink } from 'smarthr-ui'
+import {
+  AnchorButton,
+  Cluster,
+  FaExternalLinkAltIcon,
+  InformationPanel,
+  Loader,
+  Select,
+  TabBar,
+  TabItem,
+  TextLink,
+  defaultColor,
+} from 'smarthr-ui'
 import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
 
@@ -134,37 +145,43 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
   return (
     <>
-      <StyledCluster align="center" as="label">
-        <span>SmartHR UI</span>
-        <Select
-          width="170px"
-          name="version"
-          options={versionOptions}
-          onChangeValue={onChangeVersion}
-          value={displayVersion}
-          hasBlank={true}
-          //存在しないバージョンでエラーになるの場合は「-」を表示する（空白文字だとデフォルトの「選択してください」になるため）
-          decorators={{
-            blankLabel: () => (showError || !isStoryLoaded ? '-' : `v${displayVersion}`),
-          }}
-          error={showError}
-        />
-      </StyledCluster>
-      <StyledUl>
-        <li>
-          <TextLink
+      <StyledCluster align="center" justify="space-between" gap={1}>
+        <Cluster align="center" as="label">
+          <span>SmartHR UI</span>
+          <Select
+            width="9rem"
+            name="version"
+            size="s"
+            options={versionOptions}
+            onChangeValue={onChangeVersion}
+            value={displayVersion}
+            hasBlank={true}
+            //存在しないバージョンでエラーになるの場合は「-」を表示する（空白文字だとデフォルトの「選択してください」になるため）
+            decorators={{
+              blankLabel: () => (showError || !isStoryLoaded ? '-' : `v${displayVersion}`),
+            }}
+            error={showError}
+          />
+        </Cluster>
+        <Cluster>
+          <AnchorButton
             href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${storyData.groupPath}`}
             target="_blank"
+            size="s"
+            suffix={<FaExternalLinkAltIcon />}
           >
             Storybook
-          </TextLink>
-        </li>
-        <li>
-          <TextLink href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`} target="_blank">
-            ソースコード（GitHub）
-          </TextLink>
-        </li>
-      </StyledUl>
+          </AnchorButton>
+          <AnchorButton
+            href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`}
+            target="_blank"
+            size="s"
+            suffix={<FaExternalLinkAltIcon />}
+          >
+            GitHub
+          </AnchorButton>
+        </Cluster>
+      </StyledCluster>
       {showError && (
         <ErrorPanel title="指定されたバージョンのコンポーネント情報を取得できませんでした" type="error" togglable={false}>
           通信状況に問題が発生しているか、次のような理由が考えられます。
@@ -227,16 +244,9 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 }
 
 const StyledCluster = styled(Cluster)`
-  margin-block: 20px;
-`
-
-const StyledUl = styled.ul`
-  list-style: none;
-  margin-block: 16px 0;
-  padding: 0;
-  > li {
-    line-height: 2;
-  }
+  margin-block: 48px 0;
+  padding: 16px 24px;
+  background-color: ${defaultColor.COLUMN};
 `
 
 const ErrorPanel = styled(InformationPanel)`
@@ -248,7 +258,7 @@ const ErrorPanel = styled(InformationPanel)`
 `
 
 const Tab = styled(TabBar)`
-  margin-block: 48px 0;
+  margin-block: 16px 0;
   flex-wrap: wrap;
   gap: 4px 0;
 `
