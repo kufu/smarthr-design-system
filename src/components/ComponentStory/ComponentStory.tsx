@@ -144,8 +144,16 @@ export const ComponentStory: FC<Props> = ({ name }) => {
           value={displayVersion}
           hasBlank={true}
           //存在しないバージョンでエラーになるの場合は「-」を表示する（空白文字だとデフォルトの「選択してください」になるため）
+          //プルダウンに存在しないが、コード表示はできるバージョン（例：v25.0.0）の場合は、そのバージョンを表示する
           decorators={{
-            blankLabel: () => (showError || !isStoryLoaded ? '-' : `v${displayVersion}`),
+            blankLabel: () =>
+              showError ||
+              !isStoryLoaded ||
+              versionOptions.find((option) => {
+                return option.value === displayVersion
+              })
+                ? '-'
+                : `v${displayVersion}`,
           }}
           error={showError}
         />
@@ -153,7 +161,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       <StyledUl>
         <li>
           <TextLink
-            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?${storyData.groupPath}`}
+            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?path=/story/${storyData.groupPath}`}
             target="_blank"
           >
             Storybook
