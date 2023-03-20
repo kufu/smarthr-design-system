@@ -91,7 +91,7 @@ export const CodeBlock: FC<Props> = ({
         )}
         <ThemeProvider theme={smarthrTheme}>
           {/* ライブエディタ内のコードのトランスパイルに使用するTS（容量が大きいためCDNを利用） */}
-          <Script src="https://unpkg.com/typescript@latest/lib/typescriptServices.js" onLoad={() => setTsLoaded(true)} />
+          <Script src="https://unpkg.com/typescript@latest/lib/typescript.js" onLoad={() => setTsLoaded(true)} />
           {tsLoaded && (
             <LiveProvider
               code={code}
