@@ -13,7 +13,6 @@ import {
   TabBar,
   TabItem,
   TextLink,
-  defaultColor,
 } from 'smarthr-ui'
 import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
@@ -144,8 +143,8 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   }
 
   return (
-    <>
-      <StyledCluster align="center" justify="space-between" gap={1}>
+    <StoryWrapper>
+      <Cluster align="center" justify="space-between" gap={1}>
         <Cluster align="center" as="label">
           <span>SmartHR UI</span>
           <Select
@@ -189,7 +188,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
             GitHub
           </AnchorButton>
         </Cluster>
-      </StyledCluster>
+      </Cluster>
       {showError && (
         <ErrorPanel title="指定されたバージョンのコンポーネント情報を取得できませんでした" type="error" togglable={false}>
           通信状況に問題が発生しているか、次のような理由が考えられます。
@@ -247,14 +246,14 @@ export const ComponentStory: FC<Props> = ({ name }) => {
           </CodeWrapper>
         </>
       )}
-    </>
+    </StoryWrapper>
   )
 }
 
-const StyledCluster = styled(Cluster)`
+const StoryWrapper = styled.div`
   margin-block: 48px 0;
   padding: 16px 24px;
-  background-color: ${defaultColor.COLUMN};
+  background-color: ${CSS_COLOR.LIGHT_GREY_3};
 `
 
 const ErrorPanel = styled(InformationPanel)`
@@ -281,6 +280,7 @@ const StoryIframe = styled.iframe`
   width: 100%;
   height: 100%;
   border: 0;
+  background-color: ${CSS_COLOR.WHITE};
 `
 
 const StoryLoader = styled(Loader)`
