@@ -177,6 +177,7 @@ const PreContainer = styled.div<{ isStorybook?: boolean }>`
   /* preのデフォルトは display: block; で幅100%になるが、100%を超えられるように上書き(祖先要素には横スクロールを適用) */
   pre {
     width: max-content;
+    min-width: 100%;
     margin: 0;
     padding: 2.75rem 1.5rem 1.5rem;
     box-sizing: border-box;
