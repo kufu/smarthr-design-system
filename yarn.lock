@@ -2515,6 +2515,11 @@
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-13.3.1.tgz#469cab986e43f4ffb39aa5c31d148888a36d2286"
   integrity sha512-/qeEjW3hIFpGwESsCkJRroja7mBOlo9wqyx8G4fwayq4FZRvJMm/9DhIo77jd/4wm/VSJcVVr+fs+rVa4jrY5A==
 
+"@textlint/ast-node-types@^13.3.2":
+  version "13.3.2"
+  resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-13.3.2.tgz#ff314f24c43ef8fa43ba6bd53126ec82b873843b"
+  integrity sha512-d9WXBahsAgRDWcfUE7pQs8E9SNbF0nxrEaYE2g01tLgQ/dYdlOLngNPXi0Lk+C+yU58kvmFSdO6nicIAe3WIiw==
+
 "@textlint/ast-node-types@^4.2.4", "@textlint/ast-node-types@^4.4.2":
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-4.4.3.tgz#fdba16e8126cddc50f45433ce7f6c55e7829566c"
@@ -2627,6 +2632,21 @@
     traverse "^0.6.7"
     unified "^9.2.2"
 
+"@textlint/markdown-to-ast@^13.3.2":
+  version "13.3.2"
+  resolved "https://registry.yarnpkg.com/@textlint/markdown-to-ast/-/markdown-to-ast-13.3.2.tgz#cf3ac4a232a3563048ecea1b8e13b4e6ef206db3"
+  integrity sha512-tnXk7YO8rIPbnd6rDi6LwhxoExdg6ge8v5ggiun76qLfX2uKR0ExhJEL2K+zziATi1AqalBva3WD3exU1sfjeg==
+  dependencies:
+    "@textlint/ast-node-types" "^13.3.2"
+    debug "^4.3.4"
+    mdast-util-gfm-autolink-literal "^0.1.3"
+    remark-footnotes "^3.0.0"
+    remark-frontmatter "^3.0.0"
+    remark-gfm "^1.0.0"
+    remark-parse "^9.0.0"
+    traverse "^0.6.7"
+    unified "^9.2.2"
+
 "@textlint/module-interop@^12.2.1":
   version "12.6.0"
   resolved "https://registry.yarnpkg.com/@textlint/module-interop/-/module-interop-12.6.0.tgz#21d403c4022695c0999ea4f57406efe11bbe0e74"
@@ -2680,6 +2700,13 @@
   integrity sha512-w3Vjlc064VqKx7y1FNSyh0WeQUfXKbe5uqRQPU/+inzkNs9BWMHofDp36hDZiI4nojQLhm5juBcJbxv7F0g5eg==
   dependencies:
     "@textlint/markdown-to-ast" "^13.3.1"
+
+"@textlint/textlint-plugin-markdown@^13.3.2":
+  version "13.3.2"
+  resolved "https://registry.yarnpkg.com/@textlint/textlint-plugin-markdown/-/textlint-plugin-markdown-13.3.2.tgz#30405cec88fe861c1293bcc46d8f8a0684fe5733"
+  integrity sha512-iI/UuzUz4k5qnrPnm7U7d8oC/Hwj41MtllusBSArG3mimn5gHsS+Etzm5Zs3oxXMINdzvWNNEFJ/xbs1bZvEJg==
+  dependencies:
+    "@textlint/markdown-to-ast" "^13.3.2"
 
 "@textlint/textlint-plugin-text@^13.3.1":
   version "13.3.1"
