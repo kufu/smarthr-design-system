@@ -127,7 +127,7 @@ export const CodeBlock: FC<Props> = ({
   }
 
   return (
-    <Highlight {...defaultProps} code={code} language={language as Language} theme={theme}>
+    <Highlight {...defaultProps} code={code} language={language as Language} theme={isStorybook ? vscode : theme}>
       {({ style, tokens, getLineProps, getTokenProps }): ReactNode => (
         <CodeWrapper>
           <PreContainer isStorybook={isStorybook}>
@@ -164,9 +164,8 @@ const CodeWrapper = styled.div`
 const PreContainer = styled.div<{ isStorybook?: boolean }>`
   font-family: monospace;
   margin-block: 16px 0;
-  padding: 2.75rem 1.5rem 1.5rem;
   border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
-  background-color: ${CSS_COLOR.SEMANTICS_COLUMN};
+  background-color: ${CSS_COLOR.LIGHT_GREY_3};
   overflow-x: scroll;
 
   & > button {
@@ -177,7 +176,11 @@ const PreContainer = styled.div<{ isStorybook?: boolean }>`
 
   /* preのデフォルトは display: block; で幅100%になるが、100%を超えられるように上書き(祖先要素には横スクロールを適用) */
   pre {
-    width: fit-content;
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    padding: 2.75rem 1.5rem 1.5rem;
+    box-sizing: border-box;
   }
 
   /* LiveEditor内で preに white-space: pre-wrap; が適用されているため、文字を強制的に折り返すようにする */
@@ -199,7 +202,13 @@ const PreContainer = styled.div<{ isStorybook?: boolean }>`
 const StyledLiveEditorContainer = styled(PreContainer)`
   overflow: auto;
   margin: 0;
+
+  /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
+  padding: 2.75rem 1.5rem 1.5rem;
   border-width: 0 1px 1px;
   background-color: ${CSS_COLOR.TEXT_BLACK};
   max-height: 40em;
+  pre {
+    width: fit-content;
+  }
 `
