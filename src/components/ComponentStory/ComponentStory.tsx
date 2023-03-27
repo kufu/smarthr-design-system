@@ -265,7 +265,7 @@ const ErrorPanel = styled(InformationPanel)`
 `
 
 const Tab = styled(TabBar)`
-  margin-block: 16px 0;
+  margin-block: 24px 0;
   flex-wrap: wrap;
   gap: 4px 0;
 `
