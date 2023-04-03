@@ -14727,12 +14727,12 @@ textlint-rule-ja-hiragana-hojodoushi@^1.1.0:
     morpheme-match-all "^1.1.0"
     untildify "^4.0.0"
 
-textlint-rule-ja-keishikimeishi@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/textlint-rule-ja-keishikimeishi/-/textlint-rule-ja-keishikimeishi-1.0.4.tgz#734abc0d98f277ddb305a1eed58e6dee13ecbfba"
-  integrity sha512-mAxb4fdvjst4j0iZgFQrnoK1nf9NRkFQJuxRJmbqKZhgvXilSq19cqOalIc+pMTHEF+VdUCdEC43+2Ave2QMFA==
+textlint-rule-ja-keishikimeishi@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/textlint-rule-ja-keishikimeishi/-/textlint-rule-ja-keishikimeishi-1.0.5.tgz#3a2193bf207ca9ca07ed01d184efbc0035d87edd"
+  integrity sha512-FJrVbz6LLeQiUTFkVhpGgmVAHSGbyFYixzwb7Kb2xj3E4TZ8gOtm8X2mwHWtOP+wQs6JRpRyV9ZZc3rTyvk20w==
   dependencies:
-    kuromojin "^2.1.1"
+    kuromojin "^3.0.0"
     morpheme-match-all "^1.1.0"
 
 textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana@^2.2.0:
@@ -14911,16 +14911,16 @@ textlint-rule-no-nfd@^2.0.1:
     textlint-rule-helper "^2.3.0"
     unorm "^1.4.1"
 
-textlint-rule-preset-smarthr@^1.22.0:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/textlint-rule-preset-smarthr/-/textlint-rule-preset-smarthr-1.22.0.tgz#7e2c66bfe5bf4787c0d9637d5e08b74d6cec08d8"
-  integrity sha512-KOUPeK1PxzwEovrFWz36jQtoHWj03HcOYKKWumGkdblZ6igbg0agWifBeTMnZt1AGnNlpqt3s4xvD740gd4KVw==
+textlint-rule-preset-smarthr@^1.23.0:
+  version "1.23.0"
+  resolved "https://registry.yarnpkg.com/textlint-rule-preset-smarthr/-/textlint-rule-preset-smarthr-1.23.0.tgz#aaa803e250b0b881c3f1a65311fbd7093318d15e"
+  integrity sha512-wMy8wJq/PeUaSKjEYJ2TsMlnPJ2O+4iJXPexKVZzXA5LJezvXSgSH0cOu5SbZAzH4M4QwNj/fhK5g82OPMOB+A==
   dependencies:
     "@textlint-rule/textlint-rule-no-unmatched-pair" "^1.0.9"
     "@textlint/module-interop" "^12.2.1"
     textlint-rule-ja-hiragana-daimeishi "^1.0.0"
     textlint-rule-ja-hiragana-hojodoushi "^1.1.0"
-    textlint-rule-ja-keishikimeishi "^1.0.4"
+    textlint-rule-ja-keishikimeishi "^1.0.5"
     textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana "^2.2.0"
     textlint-rule-ja-no-abusage "^3.0.0"
     textlint-rule-ja-no-mixed-period "^3.0.1"
