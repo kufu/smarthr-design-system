@@ -69,11 +69,13 @@ Tooltipの配置は8種類の選択肢があります。
 
 export const DynamicTooltip = ({children, ...props}) => {
   if (typeof window !== 'undefined') {
+    // <!-- textlint-disable -->
     return (
       <Tooltip {...props}>
         {children}
       </Tooltip>
     )
+    // <!-- textlint-enable -->
   } else {
     return null
   }
