@@ -133,7 +133,8 @@ const ThumbnailImageWrapper = styled.div`
 `
 
 const NavigationLinks = styled.ul`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   list-style: none;
   margin: 0;
