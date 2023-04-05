@@ -36,4 +36,14 @@ export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl, track
 const Video = styled.video`
   max-width: 100%;
   width: 100%;
+
+  /* Firefoxでは::cue(<selector>)が効かないため::cueに背景色を指定 */
+  ::cue {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Firefox以外のブラウザでは::cueが効かないため、セレクタを指定 */
+  ::cue(.bgBlack50) {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 `
