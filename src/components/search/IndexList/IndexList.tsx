@@ -37,7 +37,12 @@ export const IndexList: FC = () => {
   const level2Items: ListItem[] = []
   // allとついているのは全てのカテゴリのやつが入っているから
   const allLevel3Items: ListItem[] = []
-  const allLevel4Items: ListItem[] = []
+
+  // frontmatterのorderで並び替えるページ
+  const level4NumberedItems: ListItem[] = []
+  // products/components/以下の、コンポーネント名で並び替えるページ
+  const level4ComponentItems: ListItem[] = []
+
   const subLinks: ListItem[] = []
 
   for (const node of nodes) {
@@ -63,7 +68,11 @@ export const IndexList: FC = () => {
         allLevel3Items.push(listItem)
         continue
       case 3:
-        allLevel4Items.push(listItem)
+        if (listItem.link.includes('products/components/')) {
+          level4ComponentItems.push(listItem)
+        } else {
+          level4NumberedItems.push(listItem)
+        }
         continue
     }
   }
@@ -75,9 +84,15 @@ export const IndexList: FC = () => {
   allLevel3Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
-  allLevel4Items.sort(({ order: a }, { order: b }) => {
+  level4NumberedItems.sort(({ order: a }, { order: b }) => {
     return a - b
   })
+  // /products/components/以下のコンポーネントページは名前の順でソートするので、別途並べ替える
+  level4ComponentItems.sort(({ title: a }, { title: b }) => {
+    return a < b ? -1 : a > b ? 1 : 0
+  })
+
+  const allLevel4Items: ListItem[] = [...level4NumberedItems, ...level4ComponentItems]
 
   return (
     <Wrapper id="sitemap">
