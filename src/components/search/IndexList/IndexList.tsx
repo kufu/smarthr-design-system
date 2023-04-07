@@ -3,7 +3,9 @@ import { Link, graphql, useStaticQuery } from 'gatsby'
 import React, { FC, Fragment } from 'react'
 import styled from 'styled-components'
 
-const SUB_LINKS = [`downloads`, `terms`, `contact`] // リンク表示を別扱いにするページ
+import navigationItem from '../../../data/navigationItem.json'
+
+const SUB_LINKS = [`downloads`, `terms`, `contact`, `operational-guideline`] // リンク表示を別扱いにするページ
 
 const query = graphql`
   query Search {
@@ -34,16 +36,16 @@ export const IndexList: FC = () => {
     allMdx: { nodes },
   } = useStaticQuery<Queries.SearchQuery>(query)
 
-  const level2Items: ListItem[] = []
-  // allとついているのは全てのカテゴリのやつが入っているから
+  // level2の並び順はJSON由来で定義しているので、配列ではなくパスをキーにしたオブジェクトにしておく
+  const level2Items: { [key: string]: ListItem } = {}
+
+  // allとついているのは全てのカテゴリのページが入っているから
   const allLevel3Items: ListItem[] = []
 
   // frontmatterのorderで並び替えるページ
   const level4NumberedItems: ListItem[] = []
   // products/components/以下の、コンポーネント名で並び替えるページ
   const level4ComponentItems: ListItem[] = []
-
-  const subLinks: ListItem[] = []
 
   for (const node of nodes) {
     const path = node.fields?.hierarchy?.split('/') ?? []
@@ -62,7 +64,7 @@ export const IndexList: FC = () => {
     // 該当の階層にpush
     switch (path.length) {
       case 1:
-        level2Items.push(listItem)
+        level2Items[path[0]] = listItem
         continue
       case 2:
         allLevel3Items.push(listItem)
@@ -77,10 +79,7 @@ export const IndexList: FC = () => {
     }
   }
 
-  // 最後に並び替え
-  level2Items.sort(({ order: a }, { order: b }) => {
-    return a - b
-  })
+  // 下層ページを並び替え
   allLevel3Items.sort(({ order: a }, { order: b }) => {
     return a - b
   })
@@ -97,11 +96,9 @@ export const IndexList: FC = () => {
   return (
     <Wrapper id="sitemap">
       {/* 第2階層 */}
-      {level2Items.map((level2Item) => {
-        if (SUB_LINKS.some((link) => new RegExp(`^${link}$`).test(level2Item.link))) {
-          subLinks.push(level2Item)
-          return null
-        }
+      {navigationItem.map(({ key }) => {
+        const level2Item = level2Items[key]
+        if (!level2Item) return null
         const level3Items = allLevel3Items.filter((level3item) => level3item.parent === level2Item.link)
         return (
           <Fragment key={level2Item.link}>
@@ -138,10 +135,12 @@ export const IndexList: FC = () => {
       })}
 
       <hr />
-      {subLinks.map((item) => {
+      {SUB_LINKS.map((item) => {
+        const level2Item = level2Items[item]
+        if (!level2Item) return null
         return (
-          <h3 key={item.link}>
-            <Link to={`/${item.link}/`}>{item.title}</Link>
+          <h3 key={level2Item.link}>
+            <Link to={`/${level2Item.link}/`}>{level2Item.title}</Link>
           </h3>
         )
       })}

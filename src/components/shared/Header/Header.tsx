@@ -6,16 +6,8 @@ import React, { FC, useContext, useState } from 'react'
 import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
 import styled, { createGlobalStyle, css } from 'styled-components'
 
-import headerContentJson from '../../../data/headerContent.json'
+import navigationItem from '../../../data/navigationItem.json'
 import { FootStaticLinks } from '../Footer/FootStaticLinks'
-
-type HeaderContents = Array<{
-  title: string
-  key: string
-  path: string
-}>
-
-const headerContents: HeaderContents = headerContentJson
 
 type Props = {
   isIndex?: boolean
@@ -58,7 +50,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
               </li>
             </ul>
             <ul>
-              {headerContents.map(({ title, key, path }) => (
+              {navigationItem.map(({ title, key, path }) => (
                 <li key={key}>
                   <StyledLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
                     {title}
@@ -117,7 +109,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
                     </StyledCloseButton>
                     <MenuLinkContainer>
                       <MenuStyledCategoryUl>
-                        {headerContents.map(({ title, key, path }) => (
+                        {navigationItem.map(({ title, key, path }) => (
                           <li key={key}>
                             <StyledMenuLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
                               {title}
