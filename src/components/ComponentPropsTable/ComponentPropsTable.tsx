@@ -62,40 +62,40 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
     return <Text as={'p'}>Propsは設定されていません。</Text>
   }
   return (
-    <Wrapper>
+    <>
       {showTitle && (
-        <PropTitle>
-          <FragmentTitle tag="h3" id={fragmentId(name)}>
-            {name} props
-          </FragmentTitle>
-        </PropTitle>
+        <FragmentTitle tag="h3" id={fragmentId(name)}>
+          {name} props
+        </FragmentTitle>
       )}
-      <>
-        {propsData.map((prop) => (
-          <PropContent key={prop.name}>
-            <PropName>
-              {prop.name}
-              {prop.required && <RequiredMark>*</RequiredMark>}
-            </PropName>
-            <PropTypes>
-              {prop.type.name === 'enum' ? (
-                prop.type.value &&
-                prop.type.value.map((item, y) => {
-                  return (
-                    <TypeTag key={y} color={pickTypeColor(item.value)}>
-                      {item.value}
-                    </TypeTag>
-                  )
-                })
-              ) : (
-                <TypeTag color={pickTypeColor(prop.type.name)}>{prop.type.name}</TypeTag>
-              )}
-            </PropTypes>
-            <PropDescription dangerouslySetInnerHTML={{ __html: marked.parse(prop.description) }} />
-          </PropContent>
-        ))}
-      </>
-    </Wrapper>
+      <Wrapper>
+        <>
+          {propsData.map((prop) => (
+            <PropContent key={prop.name}>
+              <PropName>
+                {prop.name}
+                {prop.required && <RequiredMark>*</RequiredMark>}
+              </PropName>
+              <PropTypes>
+                {prop.type.name === 'enum' ? (
+                  prop.type.value &&
+                  prop.type.value.map((item, y) => {
+                    return (
+                      <TypeTag key={y} color={pickTypeColor(item.value)}>
+                        {item.value}
+                      </TypeTag>
+                    )
+                  })
+                ) : (
+                  <TypeTag color={pickTypeColor(prop.type.name)}>{prop.type.name}</TypeTag>
+                )}
+              </PropTypes>
+              <PropDescription dangerouslySetInnerHTML={{ __html: marked.parse(prop.description) }} />
+            </PropContent>
+          ))}
+        </>
+      </Wrapper>
+    </>
   )
 }
 
@@ -104,19 +104,10 @@ const Wrapper = styled.div`
   border-radius: 4px;
   margin-top: 20px;
 `
-const PropTitle = styled.div`
-  border-top-left-radius: 4px;
-  padding: 8px 32px;
-  background: ${CSS_COLOR.LIGHT_GREY_2};
-  && h3 {
-    margin: 0;
-    font-size: 18px;
-  }
-`
 const PropContent = styled.div`
   display: grid;
   gap: 8px;
-  padding: 8px 32px;
+  padding: 8px 24px;
   &:last-child {
     border-bottom-left-radius: 4px;
   }
