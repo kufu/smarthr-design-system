@@ -1,5 +1,7 @@
+import { CSS_COLOR } from '@Constants/style'
+import { marked } from 'marked'
 import React, { FC } from 'react'
-import { Table, Td, Text, Th } from 'smarthr-ui'
+import { Text } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import uiProps from '../../../smarthr-ui-props.json'
@@ -26,6 +28,28 @@ interface UIProps {
   type: { name: string; raw?: string; value?: UIPropValue[] }
 }
 
+const TYPE_COLOR = {
+  string: '#1376a0',
+  number: '#378445',
+  boolean: '#a53f3f',
+  literal: '#6e4ca6',
+  func: '#76533e',
+  other: '#4e4c49',
+} as const
+
+const pickType = (typeValue: string): keyof typeof TYPE_COLOR => {
+  if (typeValue === 'string') return 'string'
+  if (typeValue === 'number') return 'number'
+  if (typeValue === 'true' || typeValue === 'false') return 'boolean'
+  if (/^".*"$/g.test(typeValue)) return 'literal'
+  if (/^\(.*\)\s*=>\s*.+$/g.test(typeValue)) return 'func'
+  return 'other'
+}
+
+const pickTypeColor = (value: string): string => {
+  return TYPE_COLOR[pickType(value)]
+}
+
 export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
   const data = uiProps.filter((uiProp) => {
     return uiProp.displayName === name
@@ -34,100 +58,89 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
   const fragmentId = (propsName: string) => {
     return `props-${propsName.replace(' ', '-')}`
   }
+  if (propsData.length === 0) {
+    return <Text as={'p'}>Propsは設定されていません。</Text>
+  }
   return (
-    <>
+    <Wrapper>
       {showTitle && (
-        <FragmentTitle tag="h3" id={fragmentId(name)}>
-          {name} props
-        </FragmentTitle>
+        <PropTitle>
+          <FragmentTitle tag="h3" id={fragmentId(name)}>
+            {name} props
+          </FragmentTitle>
+        </PropTitle>
       )}
-
-      {propsData.length > 0 ? (
-        <Wrapper>
-          <Table>
-            <thead>
-              <tr>
-                <NameTh>Name</NameTh>
-                <RequiredTh>Required</RequiredTh>
-                <TypeTh>Type</TypeTh>
-                <DescriptionTh>Description</DescriptionTh>
-              </tr>
-            </thead>
-            <tbody>
-              {propsData.map((prop, i) => {
-                return (
-                  <tr key={i}>
-                    <NameTd>
-                      <strong>{prop.name}</strong>
-                    </NameTd>
-                    <RequiredTd>{prop.required ? 'true' : '-'}</RequiredTd>
-                    <TypeTd>
-                      {prop.type.name === 'enum' ? (
-                        prop.type.value &&
-                        prop.type.value.map((item, y, array) => {
-                          return (
-                            <React.Fragment key={y}>
-                              <code>{item.value}</code>
-                              {array.length - 1 !== y ? ',\n' : null}
-                            </React.Fragment>
-                          )
-                        })
-                      ) : (
-                        <code>{prop.type.name}</code>
-                      )}
-                    </TypeTd>
-                    <DescriptionTd>{prop.description}</DescriptionTd>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </Table>
-        </Wrapper>
-      ) : (
-        <Text as={'p'}>Propsは設定されていません。</Text>
-      )}
-    </>
+      <>
+        {propsData.map((prop) => (
+          <PropContent key={prop.name}>
+            <PropName>
+              {prop.name}
+              {prop.required && <RequiredMark>*</RequiredMark>}
+            </PropName>
+            <PropTypes>
+              {prop.type.name === 'enum' ? (
+                prop.type.value &&
+                prop.type.value.map((item, y) => {
+                  return (
+                    <TypeTag key={y} color={pickTypeColor(item.value)}>
+                      {item.value}
+                    </TypeTag>
+                  )
+                })
+              ) : (
+                <TypeTag color={pickTypeColor(prop.type.name)}>{prop.type.name}</TypeTag>
+              )}
+            </PropTypes>
+            <PropDescription dangerouslySetInnerHTML={{ __html: marked.parse(prop.description) }} />
+          </PropContent>
+        ))}
+      </>
+    </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
-  overflow-x: auto;
-  & th,
-  td {
-    vertical-align: baseline;
+  border: 1px solid ${CSS_COLOR.LIGHT_GREY_4};
+  border-radius: 4px;
+  margin-top: 20px;
+`
+const PropTitle = styled.div`
+  border-top-left-radius: 4px;
+  padding: 8px 32px;
+  background: ${CSS_COLOR.LIGHT_GREY_2};
+  && h3 {
+    margin: 0;
+    font-size: 18px;
   }
 `
-const NameTh = styled(Th)`
-  white-space: nowrap;
-`
-const RequiredTh = styled(Th)`
-  white-space: nowrap;
-`
-const TypeTh = styled(Th)`
-  min-width: 11em;
-  width: 22em;
-  & code {
-    white-space: nowrap;
+const PropContent = styled.div`
+  display: grid;
+  gap: 8px;
+  padding: 8px 32px;
+  &:last-child {
+    border-bottom-left-radius: 4px;
+  }
+  &:not(:last-child) {
+    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_4};
   }
 `
-const DescriptionTh = styled(Th)`
-  min-width: 22em;
-  width: auto;
+const PropName = styled.div`
+  padding-top: 8px;
+  font-weight: bold;
 `
-const NameTd = styled(Td)`
-  white-space: nowrap;
+const RequiredMark = styled.span`
+  color: #bb1212;
 `
-const RequiredTd = styled(Td)`
-  white-space: nowrap;
+const PropTypes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
 `
-const TypeTd = styled(Td)`
-  min-width: 11em;
-  width: 22em;
-  & code {
-    white-space: nowrap;
-  }
+const TypeTag = styled.span<{ color: string }>`
+  font-size: 0.8rem;
+  color: ${CSS_COLOR.WHITE};
+  padding: 4px 8px;
+  border-radius: 8px;
+  background-color: ${(props) => props.color};
 `
-const DescriptionTd = styled(Td)`
-  min-width: 22em;
-  width: auto;
-`
+const PropDescription = styled.div``
