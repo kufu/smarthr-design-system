@@ -250,7 +250,9 @@ const Col2Container = styled.div`
   gap: 40px;
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
-    grid-template-columns: 1fr;
+    grid-template:
+      'concept' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
+      / 1fr;
     gap: 8px;
   }
 `
