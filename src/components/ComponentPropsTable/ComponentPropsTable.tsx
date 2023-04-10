@@ -100,7 +100,7 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
 }
 
 const Wrapper = styled.div`
-  border: 1px solid ${CSS_COLOR.LIGHT_GREY_4};
+  border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
   border-radius: 4px;
   margin-top: 20px;
 `
@@ -112,7 +112,7 @@ const PropContent = styled.div`
     border-bottom-left-radius: 4px;
   }
   &:not(:last-child) {
-    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_4};
+    border-bottom: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
   }
 `
 const PropName = styled.div`
