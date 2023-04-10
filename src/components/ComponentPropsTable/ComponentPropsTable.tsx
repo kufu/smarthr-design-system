@@ -42,7 +42,7 @@ const pickType = (typeValue: string): keyof typeof TYPE_COLOR => {
   if (typeValue === 'number') return 'number'
   if (typeValue === 'true' || typeValue === 'false') return 'boolean'
   if (/^".*"$/g.test(typeValue)) return 'literal'
-  if (/^\(.*\)\s*=>\s*.+$/g.test(typeValue)) return 'func'
+  if (/^\(.*\)\s*=>\s*.+$/g.test(typeValue)) return 'func' // 予約語を避けるため、これのみ省略
   return 'other'
 }
 
