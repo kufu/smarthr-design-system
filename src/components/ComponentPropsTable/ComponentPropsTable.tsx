@@ -101,16 +101,12 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
 
 const Wrapper = styled.div`
   border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
-  border-radius: 4px;
   margin-top: 20px;
 `
 const PropContent = styled.div`
   display: grid;
   gap: 8px;
   padding: 8px 24px;
-  &:last-child {
-    border-bottom-left-radius: 4px;
-  }
   &:not(:last-child) {
     border-bottom: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
   }
