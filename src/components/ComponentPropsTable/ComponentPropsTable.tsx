@@ -74,7 +74,7 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
             <PropContent key={prop.name}>
               <PropName>
                 {prop.name}
-                {prop.required && <RequiredMark>*</RequiredMark>}
+                {prop.required && <RequiredMark>必須</RequiredMark>}
               </PropName>
               <PropTypes>
                 {prop.type.name === 'enum' ? (
@@ -116,7 +116,12 @@ const PropName = styled.div`
   font-weight: bold;
 `
 const RequiredMark = styled.span`
+  margin-left: 4px;
+  font-size: ${CSS_FONT_SIZE.PX_12};
   color: #bb1212;
+  &::before {
+    content: '*';
+  }
 `
 const PropTypes = styled.div`
   display: flex;
