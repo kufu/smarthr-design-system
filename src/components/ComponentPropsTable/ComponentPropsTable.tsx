@@ -1,4 +1,4 @@
-import { CSS_COLOR } from '@Constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { marked } from 'marked'
 import React, { FC } from 'react'
 import { Text } from 'smarthr-ui'
@@ -124,7 +124,7 @@ const PropTypes = styled.div`
   gap: 4px;
 `
 const TypeTag = styled.span<{ color: string }>`
-  font-size: 0.8rem;
+  font-size: ${CSS_FONT_SIZE.PX_14};
   color: ${CSS_COLOR.WHITE};
   padding: 4px 8px;
   border-radius: 8px;
