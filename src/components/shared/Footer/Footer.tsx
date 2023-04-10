@@ -3,6 +3,8 @@ import { Link, graphql, useStaticQuery } from 'gatsby'
 import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 
+import navigationItem from '../../../data/navigationItem.json'
+
 import { FootStaticLinks } from './FootStaticLinks'
 
 type Props = {
@@ -97,14 +99,7 @@ const query = graphql`
   }
 `
 export const Footer: FC<Props> = ({ isArticlePage = false }) => {
-  const {
-    concept: { nodes: concept },
-    foundation: { nodes: foundation },
-    basics: { nodes: basics },
-    accessibility: { nodes: accessibility },
-    products: { nodes: products },
-    communication: { nodes: communication },
-  } = useStaticQuery<Queries.FooterQuery>(query)
+  const footerCategories = useStaticQuery<Queries.FooterQuery>(query)
   return (
     <Wrapper isArticlePage={isArticlePage}>
       <LayoutContainer isArticlePage={isArticlePage}>
@@ -114,110 +109,29 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
         </Col1Container>
 
         <Col2Container>
-          <div>
-            <StyledH3>
-              <StyledLink to="/concept/">コンセプト</StyledLink>
-            </StyledH3>
-            {concept.length > 0 && (
-              <StyledUl>
-                {concept.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-            <StyledH3>
-              <StyledLink to="/foundation/">基本原則</StyledLink>
-              {foundation.length > 0 && (
-                <StyledUl>
-                  {foundation.map(({ fields, frontmatter }) => {
-                    if (fields?.slug === undefined) return null
-                    if (frontmatter?.title === undefined) return null
-                    return (
-                      <li key={fields.slug}>
-                        <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
-                      </li>
-                    )
-                  })}
-                </StyledUl>
-              )}
-            </StyledH3>
-          </div>
-          <div>
-            <StyledH3>
-              <StyledLink to="/basics/">基本要素</StyledLink>
-            </StyledH3>
-            {basics.length > 0 && (
-              <StyledUl>
-                {basics.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-            <StyledH3>
-              <StyledLink to="/accessibility/">アクセシビリティ</StyledLink>
-            </StyledH3>
-            {accessibility.length > 0 && (
-              <StyledUl>
-                {accessibility.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-          </div>
-          <div>
-            <StyledH3>
-              <StyledLink to="/products/">プロダクト</StyledLink>
-            </StyledH3>
-            {products.length > 0 && (
-              <StyledUl>
-                {products.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-          </div>
-          <div>
-            <StyledH3>
-              <StyledLink to="/communication/">コミュニケーション</StyledLink>
-            </StyledH3>
-            {communication.length > 0 && (
-              <StyledUl>
-                {communication.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-          </div>
+          {navigationItem.map(({ title, key, path }) => {
+            const items = footerCategories[key as keyof Queries.FooterQuery]?.nodes ?? []
+            return (
+              <div key={key} style={{ gridArea: key }}>
+                <StyledH3>
+                  <StyledLink to={path}>{title}</StyledLink>
+                </StyledH3>
+                {items.length > 0 && (
+                  <StyledUl>
+                    {items.map(({ fields, frontmatter }) => {
+                      if (fields?.slug === undefined) return null
+                      if (frontmatter?.title === undefined) return null
+                      return (
+                        <li key={fields.slug}>
+                          <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
+                        </li>
+                      )
+                    })}
+                  </StyledUl>
+                )}
+              </div>
+            )
+          })}
         </Col2Container>
 
         <CopyrightContainer>
@@ -328,11 +242,17 @@ const Col1Container = styled.div`
 const Col2Container = styled.div`
   grid-area: col2;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template:
+    'concept basics products communication' auto
+    'foundation accessibility products communication' auto
+    / 1fr 1fr 1fr 1fr;
+  align-items: start;
   gap: 40px;
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
-    grid-template-columns: 1fr;
+    grid-template:
+      'concept' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
+      / 1fr;
     gap: 8px;
   }
 `
