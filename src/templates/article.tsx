@@ -64,6 +64,7 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      rawBody
       headings {
         depth
         value
@@ -126,7 +127,7 @@ const Article: FC<Props> = ({ data }) => {
     return null
   }
 
-  const { frontmatter, headings, fields } = article
+  const { frontmatter, headings, fields, rawBody } = article
   const slug = fields?.slug || ''
 
   const title = frontmatter?.title || ''
@@ -143,6 +144,7 @@ const Article: FC<Props> = ({ data }) => {
         recordId: edge.node.data?.record_id ?? '',
         name: edge.node.data?.name ?? '',
         order: edge.node.data?.order ?? Number.MAX_SAFE_INTEGER,
+        fragmentId: '',
       }
     })
 
@@ -170,11 +172,34 @@ const Article: FC<Props> = ({ data }) => {
           value: heading?.value ?? '',
           depth: heading?.depth ?? -1,
           recordId: '',
+          fragmentId: '',
         }
       })
       ?.filter(({ depth }) => depth <= INDEXED_DEPTH) ?? []
 
   const headingList = [...airTableHeadings, ...mdxHeadings]
+
+  // コンポーネントのページのPropsをheadingListに追加する
+  if (fields?.hierarchy && /^products\/components/.test(fields?.hierarchy)) {
+    // ページ内の全ての<ComponentPropsTable name="{対象}" showTitle />から、name属性の値を取り出す
+    const regex = /<ComponentPropsTable(?:\s+[^>]*?)?(?:\s+name="([^"]+)")(?:\s+[^>]*?)?(?:\s+showTitle(?:={true})?)\s*\/?>/gms
+    const propsHeadingList = []
+    let match
+    while ((match = regex.exec(rawBody)) !== null) {
+      propsHeadingList.push(match[1])
+    }
+    const propsIndex = headingList.findIndex((item) => item.value === 'Props')
+    if (propsIndex > -1 && propsHeadingList.length > 0) {
+      propsHeadingList.forEach((heading, index) => {
+        headingList.splice(propsIndex + index + 1, 0, {
+          value: `${heading} props`,
+          depth: 3,
+          recordId: '',
+          fragmentId: `props-${heading}`,
+        })
+      })
+    }
+  }
 
   //
   // サイドバー、「前へ」「次へ」コンポーネントのための配列作成
