@@ -112,7 +112,6 @@ const PropContent = styled.div`
   }
 `
 const PropName = styled.div`
-  padding-top: 8px;
   font-weight: bold;
 `
 const RequiredMark = styled.span`
