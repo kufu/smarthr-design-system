@@ -125,7 +125,7 @@ const RequiredMark = styled.span`
 const PropTypes = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 8px;
 `
 const TypeTag = styled.span<{ color: string }>`
   font-size: ${CSS_FONT_SIZE.PX_14};
