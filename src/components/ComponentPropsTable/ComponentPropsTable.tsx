@@ -134,4 +134,8 @@ const TypeTag = styled.span<{ color: string }>`
   border-radius: 8px;
   background-color: ${(props) => props.color};
 `
-const PropDescription = styled.div``
+const PropDescription = styled.div`
+  p {
+    margin-block-start: 0;
+  }
+`
