@@ -105,8 +105,8 @@ const Wrapper = styled.div`
 `
 const PropContent = styled.div`
   display: grid;
-  gap: 8px;
-  padding: 8px 24px;
+  gap: 16px;
+  padding: 16px 24px;
   &:not(:last-child) {
     border-bottom: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
   }
