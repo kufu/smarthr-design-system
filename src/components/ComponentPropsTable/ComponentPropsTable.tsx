@@ -1,7 +1,7 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { marked } from 'marked'
 import React, { FC } from 'react'
-import { Text } from 'smarthr-ui'
+import { StatusLabel, Text } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import uiProps from '../../../smarthr-ui-props.json'
@@ -73,8 +73,8 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
           {propsData.map((prop) => (
             <PropContent key={prop.name}>
               <PropName>
-                {prop.name}
-                {prop.required && <RequiredMark>必須</RequiredMark>}
+                <span>{prop.name}</span>
+                {prop.required && <StatusLabel type="red">必須</StatusLabel>}
               </PropName>
               <PropTypes>
                 {prop.type.name === 'enum' ? (
@@ -113,13 +113,9 @@ const PropContent = styled.div`
 `
 const PropName = styled.div`
   font-weight: bold;
-`
-const RequiredMark = styled.span`
-  margin-left: 4px;
-  font-size: ${CSS_FONT_SIZE.PX_12};
-  color: #bb1212;
-  &::before {
-    content: '*';
+
+  > span {
+    margin-right: 8px;
   }
 `
 const PropTypes = styled.div`
