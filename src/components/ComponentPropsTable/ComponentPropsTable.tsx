@@ -75,7 +75,7 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
               <PropName>
                 <span>{prop.name}</span>
                 {prop.required && <StatusLabel type="red">必須</StatusLabel>}
-                {prop.description.includes('@deprecated') && <WarningIcon />}
+                {prop.description.includes('@deprecated') && <WarningIcon alt="非推奨" />}
               </PropName>
               <PropTypes>
                 {prop.type.name === 'enum' ? (
