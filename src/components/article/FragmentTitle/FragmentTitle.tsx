@@ -23,7 +23,7 @@ export const FragmentTitle: FC<Props> = ({ tag = 'h2', id, children }) => {
 
 const Wrapper = styled.div`
   position: relative;
-  scroll-margin-top: 225px;
+  scroll-margin-top: 20px;
 
   .icon {
     position: absolute;
