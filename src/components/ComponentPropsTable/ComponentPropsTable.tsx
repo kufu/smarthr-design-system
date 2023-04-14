@@ -1,7 +1,7 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { marked } from 'marked'
 import React, { FC } from 'react'
-import { StatusLabel, Text } from 'smarthr-ui'
+import { StatusLabel, Text, WarningIcon } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import uiProps from '../../../smarthr-ui-props.json'
@@ -75,6 +75,7 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
               <PropName>
                 <span>{prop.name}</span>
                 {prop.required && <StatusLabel type="red">必須</StatusLabel>}
+                {prop.description.includes('@deprecated') && <WarningIcon alt="非推奨" />}
               </PropName>
               <PropTypes>
                 {prop.type.name === 'enum' ? (
@@ -112,6 +113,8 @@ const PropContent = styled.div`
   }
 `
 const PropName = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: bold;
 
   > span {
