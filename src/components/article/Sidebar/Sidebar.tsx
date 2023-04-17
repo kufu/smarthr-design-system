@@ -1,4 +1,4 @@
-import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { SidebarScrollContext } from '@Context/SidebarScrollContext'
 import { useLocation } from '@reach/router'
 import { Link } from 'gatsby'
@@ -79,7 +79,7 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
                         aria-expanded={path.includes(depth2Item.link)}
                         onClick={onClickCaret}
                       >
-                        <FaChevronDownIcon size={14} alt={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
+                        <FaChevronDownIcon alt={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
                       </CaretButton>
                     )}
                   </Depth2Item>
@@ -99,7 +99,7 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
                                 aria-expanded={path.includes(depth3Item.link)}
                                 onClick={onClickCaret}
                               >
-                                <FaChevronDownIcon size={14} alt={path.includes(depth3Item.link) ? '閉じる' : '開く'} />
+                                <FaChevronDownIcon alt={path.includes(depth3Item.link) ? '閉じる' : '開く'} />
                               </CaretButton>
                             )}
                           </Depth3Item>
@@ -248,6 +248,7 @@ const CaretButton = styled.button`
   background: none;
   color: ${CSS_COLOR.TEXT_GREY};
   cursor: pointer;
+  font-size: ${CSS_FONT_SIZE.PX_14};
 
   &:hover {
     background-color: ${CSS_COLOR.LIGHT_GREY_1};

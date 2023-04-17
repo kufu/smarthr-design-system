@@ -1,3 +1,4 @@
+import { CSS_FONT_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import { FaLinkIcon } from 'smarthr-ui'
 import styled from 'styled-components'
@@ -14,7 +15,7 @@ export const FragmentTitle: FC<Props> = ({ tag = 'h2', id, children }) => {
   return (
     <Wrapper as={tag} id={id}>
       <a href={`#${id}`}>
-        <FaLinkIcon size={16} className="icon" />
+        <FaLinkIcon className="icon" />
         {children}
       </a>
     </Wrapper>
@@ -32,6 +33,7 @@ const Wrapper = styled.div`
     margin: auto;
     left: -24px;
     visibility: hidden;
+    font-size: ${CSS_FONT_SIZE.PX_16};
   }
 
   a {

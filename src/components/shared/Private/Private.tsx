@@ -59,10 +59,10 @@ export const Private: FC<Props> = ({ path }) => {
     // ログイン済みの時の表示
     <AuthView>
       <AuthViewTitle>
-        <FaLockIcon size={16} />
+        <StyledLockIcon size={16} />
         <span>SmartHR社従業員限定コンテンツ</span>
         <Tooltip>
-          <FaExclamationCircleIcon size={14} />
+          <StyledExclamationIcon />
           <p className="message">制作パートナー・グループ会社への共有は可能ですが、SNS等へのシェアはしないでください。</p>
         </Tooltip>
       </AuthViewTitle>
@@ -151,6 +151,14 @@ const AuthViewTitle = styled.h2`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+`
+
+const StyledLockIcon = styled(FaLockIcon)`
+  font-size: ${CSS_FONT_SIZE.PX_16};
+`
+
+const StyledExclamationIcon = styled(FaExclamationCircleIcon)`
+  font-size: ${CSS_FONT_SIZE.PX_14};
 `
 
 const Tooltip = styled.div`

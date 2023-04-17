@@ -46,7 +46,7 @@ const SearchBox: FC<SearchBoxProvided & Props> = ({ refine, isAvailable }) => {
         <p id="desc-for-search-input">例：Button、画面キャプチャ、用字用語、須磨英知など</p>
         <Input
           width="100%"
-          prefix={<FaSearchIcon size={24} aria-label="検索" />}
+          prefix={<StyledSearchIcon aria-label="検索" />}
           value={searchState}
           onChange={onSearchStateChange}
           autoFocus // eslint-disable-line jsx-a11y/no-autofocus
@@ -88,6 +88,10 @@ const InputOuter = styled.div`
     border-radius: 12px;
     font-size: 1.5rem;
   }
+`
+
+const StyledSearchIcon = styled(FaSearchIcon)`
+  font-size: ${CSS_FONT_SIZE.PX_24};
 `
 
 const WarningMessage = styled.div`

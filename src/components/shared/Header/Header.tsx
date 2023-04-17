@@ -1,4 +1,4 @@
-import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { LoginContext } from '@Context/LoginContext'
 import { useLocation } from '@reach/router'
 import { Link as LinkComponent } from 'gatsby'
@@ -68,7 +68,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
                 aria-haspopup="true"
                 aria-controls="panel-menu"
               >
-                <FaBarsIcon size={24} />
+                <FaBarsIcon />
               </StyledOpenButton>
               {typeof window !== 'undefined' ? (
                 <Dialog
@@ -313,6 +313,7 @@ const StyledOpenButton = styled.button`
   border: 0;
   background: transparent;
   cursor: pointer;
+  font-size: ${CSS_FONT_SIZE.PX_24};
 `
 
 const Dialog = styled(shrDialog)`
