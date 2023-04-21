@@ -76,18 +76,12 @@ export const fetchStoryData = async (storyName: string, version: string) => {
 
   const storyItems: StoryItem[] = [...items1, ...items2].map((item) => {
     // iframeのURL用にケバブケースの名前を作る
-    const kebab =
-      parentCode === '' // 階層あり・なしの場合分け
-        ? item.name
-            .replace(/([A-Z])/g, (s) => {
-              return '-' + s.charAt(0).toLowerCase()
-            })
-            .replace(/^[a-z]+$/, (s) => `-${s.charAt(0)}`)
-            .replace(/^_/, '') // コンポーネントとStoryが同名の場合に、頭に'_'がついていることがあるので、削除
-        : storyName.replace(/^.*\//, '').replace(/([A-Z])/g, (s) => {
-            return '-' + s.charAt(0).toLowerCase()
-          })
-
+    const childName = parentCode === '' ? item.name : storyName.replace(/^.*\//, '') //親階層がある場合は削除
+    const kebab = childName
+      .replace(/(_?[A-Z])/g, (s) => {
+        return '-' + s.replace('_', '').charAt(0).toLowerCase() // 大文字→ハイフン＋小文字に変換、大文字の前に'_'があるケースもある
+      })
+      .replace(/^[^-]/, (s) => `-${s.charAt(0)}`) // 先頭に'-'がない場合はつける
     return {
       name: item.name,
       label: storyLabels[item.name] || item.name,
