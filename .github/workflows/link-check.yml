@@ -27,7 +27,7 @@ jobs:
         #リンクエラーが見つかるとスクリプトはexit(1)で終了するが、このactionは中止しない。
         # linkChecker.tsを実行し、`console.log()`と`console.error()`の内容をファイルに出力する
         run: |
-          npx ts-node scripts/linkChecker.ts 1>output.txt 2> errors.txt || true
+          npx ts-node scripts/content-checker/linkChecker.ts 1>output.txt 2> errors.txt || true
           echo errors=`cat errors.txt` >> $GITHUB_OUTPUT
       - name: Output log to summary
         # 実行結果をActionsのサマリーに出力
