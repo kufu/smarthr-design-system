@@ -3,7 +3,6 @@ import path from 'path'
 
 import { glob } from 'glob'
 import puppeteer from 'puppeteer'
-import packageInfo from 'smarthr-ui/package.json'
 
 import { fetchUiVersions } from '../../plugins/gatsby-source-ui-versions/fetchUiVersions'
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '../../src/constants/application'
@@ -15,11 +14,13 @@ type PageItem = {
   storybookUrl: string
 }
 
-const defaultVersion = packageInfo.version
 const CONTENT_PATH = path.join(__dirname, '../../content/articles/products/components/**/*.mdx')
 
 const getPageList = async () => {
   const pageList: PageItem[] = []
+
+  const parentPackageJson = JSON.parse(await fs.readFile(path.join(__dirname, '../../package.json'), 'utf8'))
+  const defaultVersion = parentPackageJson.dependencies['smarthr-ui'].replace('^', '')
   const versionsData = await fetchUiVersions()
   const commitHash =
     versionsData.find((item) => {
