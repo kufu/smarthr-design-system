@@ -110,7 +110,6 @@ export const CodeBlock: FC<Props> = ({
               transformCode={transformCode}
             >
               <ComponentPreview gap={gap} align={align} layout={layout}>
-                {/* @ts-ignore -- LivePreviewの型定義が正しくないようなので、エラーを無視。https://github.com/FormidableLabs/react-live/pull/304 */}
                 <LivePreview Component={React.Fragment} />
               </ComponentPreview>
               <CodeWrapper>
