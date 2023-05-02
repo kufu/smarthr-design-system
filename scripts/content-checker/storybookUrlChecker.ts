@@ -69,7 +69,7 @@ const checkStorybook = async (pageList: PageItem[]) => {
   const errorList: string[] = []
 
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: 'new',
   })
   const page = await browser.newPage()
 
