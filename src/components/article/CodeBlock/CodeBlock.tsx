@@ -5,7 +5,7 @@ import Highlight, { Language, defaultProps } from 'prism-react-renderer'
 import github from 'prism-react-renderer/themes/github'
 import vscode from 'prism-react-renderer/themes/vsDark'
 import React, { CSSProperties, FC, ReactNode, useState } from 'react'
-import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } from 'react-live'
+import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import * as ui from 'smarthr-ui'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
 import styled, { ThemeProvider, css } from 'styled-components'
@@ -14,6 +14,8 @@ import styled, { ThemeProvider, css } from 'styled-components'
 import { ComponentPreview } from '../../ComponentPreview'
 
 import { CopyButton } from './CopyButton'
+
+type LiveProviderProps = React.ComponentProps<typeof LiveProvider>
 
 type Props = {
   children: string
@@ -108,7 +110,6 @@ export const CodeBlock: FC<Props> = ({
               transformCode={transformCode}
             >
               <ComponentPreview gap={gap} align={align} layout={layout}>
-                {/* @ts-ignore -- LivePreviewの型定義が正しくないようなので、エラーを無視。https://github.com/FormidableLabs/react-live/pull/304 */}
                 <LivePreview Component={React.Fragment} />
               </ComponentPreview>
               <CodeWrapper>
