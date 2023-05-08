@@ -1,4 +1,4 @@
-import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { LoginContext } from '@Context/LoginContext'
 import { useLocation } from '@reach/router'
 import { Link as LinkComponent } from 'gatsby'
@@ -6,16 +6,8 @@ import React, { FC, useContext, useState } from 'react'
 import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
 import styled, { createGlobalStyle, css } from 'styled-components'
 
-import headerContentJson from '../../../data/headerContent.json'
+import navigationItem from '../../../data/navigationItem.json'
 import { FootStaticLinks } from '../Footer/FootStaticLinks'
-
-type HeaderContents = Array<{
-  title: string
-  key: string
-  path: string
-}>
-
-const headerContents: HeaderContents = headerContentJson
 
 type Props = {
   isIndex?: boolean
@@ -58,7 +50,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
               </li>
             </ul>
             <ul>
-              {headerContents.map(({ title, key, path }) => (
+              {navigationItem.map(({ title, key, path }) => (
                 <li key={key}>
                   <StyledLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
                     {title}
@@ -76,7 +68,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
                 aria-haspopup="true"
                 aria-controls="panel-menu"
               >
-                <FaBarsIcon size={24} />
+                <FaBarsIcon />
               </StyledOpenButton>
               {typeof window !== 'undefined' ? (
                 <Dialog
@@ -117,7 +109,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
                     </StyledCloseButton>
                     <MenuLinkContainer>
                       <MenuStyledCategoryUl>
-                        {headerContents.map(({ title, key, path }) => (
+                        {navigationItem.map(({ title, key, path }) => (
                           <li key={key}>
                             <StyledMenuLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
                               {title}
@@ -321,6 +313,7 @@ const StyledOpenButton = styled.button`
   border: 0;
   background: transparent;
   cursor: pointer;
+  font-size: ${CSS_FONT_SIZE.PX_24};
 `
 
 const Dialog = styled(shrDialog)`

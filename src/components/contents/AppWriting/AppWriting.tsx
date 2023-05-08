@@ -1,3 +1,4 @@
+import { CSS_COLOR } from '@Constants/style'
 import { graphql, useStaticQuery } from 'gatsby'
 import { marked } from 'marked'
 import React, { FC } from 'react'
@@ -26,7 +27,7 @@ const query = graphql`
   }
 `
 export const AppWriting: FC = () => {
-  const data = useStaticQuery<GatsbyTypes.AppWritingTableQuery>(query)
+  const data = useStaticQuery<Queries.AppWritingTableQuery>(query)
 
   const appWritingData = data.appWritingData.edges
     .map(({ node }) => ({
@@ -44,6 +45,9 @@ export const AppWriting: FC = () => {
 
   return (
     <>
+      {appWritingData[0].recordId?.includes('MOCKDATA') && (
+        <WarningMessage>このページを正しく表示するにはAirtableのAPIキーの設定が必要です</WarningMessage>
+      )}
       {appWritingData.map(({ name, description, discussion, source, recordId }, index) => {
         const generateFragmentId = (suffixId: string) => {
           return recordId ? `${recordId}-${suffixId}` : `${index}-${suffixId}`
@@ -91,4 +95,11 @@ const Wrapper = styled.div``
 const StyledText = styled(Text)`
   white-space: pre-wrap;
   overflow-wrap: break-word;
+`
+const WarningMessage = styled.div`
+  margin-block: 16px;
+  padding: 16px;
+  background-color: ${CSS_COLOR.CAUTION_LIGHT};
+  color: ${CSS_COLOR.CAUTION_HEAVY};
+  text-align: center;
 `

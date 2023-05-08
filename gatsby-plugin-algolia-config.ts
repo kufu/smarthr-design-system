@@ -30,7 +30,7 @@ const mdxQueries = [
         }
       }
     `,
-    transformer: ({ data }: { data: { allMdx: GatsbyTypes.Query['allMdx'] } }) =>
+    transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx'] } }) =>
       data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
         id,
         internal,
@@ -91,7 +91,7 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
         }
       }
     `,
-    transformer: ({ data }: { data: { allMdx: GatsbyTypes.Query['allMdx']; allAirtable: GatsbyTypes.Query['allAirtable'] } }) =>
+    transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx']; allAirtable: Queries.Query['allAirtable'] } }) =>
       data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
         id,
         internal,
@@ -116,7 +116,7 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
 
 export const algoliaConfig = {
   appId: process.env.GATSBY_ALGOLIA_APP_ID,
-  apiKey: process.env.GATSBY_ALGOLIA_ADMIN_API_KEY,
+  apiKey: process.env.ALGOLIA_ADMIN_API_KEY,
   indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
   queries: [...mdxQueries, ...airtableQueries],
   dryRun: process.env.BRANCH !== 'main',

@@ -6,20 +6,21 @@ order: 2
 
 import { Grid } from '@Components/shared/Grid/Grid'
 import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
+import { VideoEmbed } from '@Components/article/VideoEmbed/VideoEmbed'
 
-<video controls style="max-width: 100%; width: 100%;" poster="/images/jingle_movie_thumb.png" >
-  <source src="/video/jingle_movie.mp4" type="video/mp4" title="SmartHR jingle movie" ></source>
-  <p>動画を再生できない場合は以下のYouTubeリンクよりご覧ください</p>
-</video>
+<VideoEmbed
+  poster="/images/jingle_movie_thumb.png"
+  source="/video/jingle_movie.mp4"
+  title="SmartHR jingle movie"
+  youtubeUrl="https://www.youtube.com/watch?v=EKpYFkLSIjY"
+/>
 
-
-（ <a href="https://www.youtube.com/watch?v=EKpYFkLSIjY" target="_blank">SmartHR ジングルムービー | YouTube</a> ）  
 イベントやライブストリーミングで利用できるジングルムービーです。  
 SmartHRジングルムービーを本ガイドラインおよび[利用規約](/terms/)に違反する態様での複製・転用・変更することを禁止します。
 
 ## ガイドライン
 ### 利用方法
-- プレゼンテーションの始まりや場面の転換など、コンテンツを印象付ける場面で使用してください。
+- プレゼンテーションの始まりや場面の転換など、コンテンツを印象づける場面で使用してください。
 - ロゴマークとして添えたいときは、[モーションロゴ](/basics/logos/motion/)を使用してください。
 - ジングルムービーの前後を延長し、クロスフェードやフェードイン／アウトなどの透明度を用いたカットの切り替わり表現が可能です。
 

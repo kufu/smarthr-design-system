@@ -5,6 +5,7 @@ order: 7
 ---
 
 import { ComponentPreview } from '@Components/ComponentPreview'
+import { defaultColor } from 'smarthr-ui'
 
 影のトークンは、要素の周りに落とす影（シャドウ）の大きさを定義します。
 
@@ -14,16 +15,16 @@ export const ShadowSample = ({depth = 1}) => {
   return (
     <div
       style={{
-        width: '72px',
-        height: '72px',
+        width: '96px',
+        height: '96px',
         borderRadius: '4px',
         backgroundColor: 'white',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: `${depth === 0 ? 'none' : `0 ${depth}px ${depth * 2}px ${((depth / 2) >= 1) ? (depth / 2) : 0}px rgba(0,0,0,0.24)`}`,
+        boxShadow: `${depth === 0 ? 'none' : `0 ${depth}px ${depth * 2}px ${((depth / 2) >= 1) ? (depth / 2) : 0}px ${defaultColor.TRANSPARENCY_30}`}`,
       }}
-    >{depth}</div>
+    >LAYER{depth}</div>
   )
 }
 
@@ -47,39 +48,27 @@ CSSでは`box-shadow`や`drop-shadow`を指しています。
   <ShadowSample depth={1} />
   <ShadowSample depth={2} />
   <ShadowSample depth={4} />
-  <ShadowSample depth={8} />
 </ComponentPreview>
-
-
-## プリミティブトークン
-
-`0`は影なし
-
-| トークン名 | 値（`box-shadow`） |
-| :--- | :--- |
-| `0` | none |
-| `1` | 0 1px 2px 0 rgba(0,0,0,0.24) |
-| `2` | 0 2px 4px 1px rgba(0,0,0,0.24) |
-| `4` | 0 4px 8px 2px rgba(0,0,0,0.24) |
-| `8` | 0 8px 16px 4px rgba(0,0,0,0.24) |
 
 ## セマンティクストークン
 
-`LAYER0`は影なし
+`LAYER0`は影なし。
+色は[透明色](/products/design-tokens/color/#h3-6)を使用しています。
 
 | トークン名 | 値（`box-shadow`） |
 | :--- | :--- | :--- |
 | `LAYER0` | none |
-| `LAYER1` | 0 1px 2px 0 rgba(0,0,0,0.24) |
-| `LAYER2` | 0 2px 4px 1px rgba(0,0,0,0.24) |
-| `LAYER3` | 0 4px 8px 2px rgba(0,0,0,0.24) |
-| `LAYER4` | 0 8px 16px 4px rgba(0,0,0,0.24) |
+| `LAYER1` | 0 1px 2px 0 [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) |
+| `LAYER2` | 0 2px 4px 1px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) |
+| `LAYER3` | 0 4px 8px 2px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) |
+| `LAYER4` | 0 8px 16px 4px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) |
 
-高低差と[レイヤー順序](/products/design-tokens/z-index/)は原則連動します。ここでは連動した値も提供します。
+## レイヤー順序との関係
+高低差と[レイヤー順序](/products/design-tokens/z-index/)は原則連動します。
 
 | レイヤー順序 | 影 | 利用コンポーネント |
 | :--- | :--- | :--- | :--- |
-| `BASE` | `LAYER1` | [Base](/products/components/base/#h3-0) |
-| `FIXED_MENU` | `LAYER2` | [BottomFixedArea](/products/components/bottom-fixed-area/)<br />[RightFixedNote](/products/components/right-fixed-note/) |
-| `OVERLAP` | `LAYER3` | [CompactInformationPanel](/products/components/compact-information-panel/)<br />[DialogBase](/products/components/base/#h3-1)<br />[FloatArea](/products/components/float-area/)<br />[InformationPanel](/products/components/information-panel/) |
+| - | `LAYER1` | [AppNavi](/products/components/app-navi/)<br />[Base](/products/components/base/#h3-0) |
+| `FIXED_MENU` | `LAYER2` | [RightFixedNote](/products/components/right-fixed-note/) |
+| `OVERLAP_BASE`<br />`OVERLAP` | `LAYER3` | [BottomFixedArea](/products/components/bottom-fixed-area/)<br />[Calendar](/products/components/calendar/)<br />[CompactInformationPanel](/products/components/compact-information-panel/)<br />[DialogBase](/products/components/base/#h3-1)<br />[Dropdown](/products/components/dropdown/)<br />[FloatArea](/products/components/float-area/)<br />[InformationPanel](/products/components/information-panel/) |
 | `FLASH_MESSAGE` | `LAYER4` | [FlashMessage](/products/components/flash-message/) |

@@ -1,3 +1,4 @@
+import { CSS_COLOR } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import { marked } from 'marked'
 import React, { FC } from 'react'
@@ -5,6 +6,7 @@ import { Table, Td, Text, Th } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
+import { TableWrapper } from '../shared/TableWrapper'
 import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
@@ -38,7 +40,7 @@ const query = graphql`
         }
       }
     }
-    writingStyle: allAirtable(filter: { table: { eq: "基本的な考え方や表記" } }) {
+    writingStyle: allAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
       edges {
         node {
           data {
@@ -57,7 +59,7 @@ type Props = {
 }
 
 export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
-  const data = useStaticQuery<GatsbyTypes.IdiomaticUsageTableQuery>(query)
+  const data = useStaticQuery<Queries.IdiomaticUsageTableQuery>(query)
 
   const idiomaticUsageData = data.idiomaticUsageData.edges
     .map(({ node }) => ({
@@ -94,6 +96,9 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
 
   return (
     <>
+      {idiomaticUsageData[0].recordId?.includes('MOCKDATA') && (
+        <WarningMessage>このページを正しく表示するにはAirtableのAPIキーの設定が必要です</WarningMessage>
+      )}
       {type === 'data' && (
         <Wrapper>
           <Table>
@@ -106,8 +111,10 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
             </thead>
             <tbody>
               {idiomaticUsageData.map((prop, index) => {
-                const matchReason = idiomaticUsageReason.find((reason) => prop.reason && prop.reason.includes(reason.recordId))
-                const matchWritingStyle = writingStyle.find((style) => style.data && style.data.includes(prop.recordId))
+                const matchReason = idiomaticUsageReason.find(
+                  (reason) => prop.reason && prop.reason.includes(reason.recordId ?? ''),
+                )
+                const matchWritingStyle = writingStyle.find((style) => style.data && style.data.includes(prop.recordId ?? ''))
 
                 // recordId: "recWCPX1UhchVaFjO"
                 // "平仮名にしたほうが読みやすい漢字は平仮名にする"
@@ -191,7 +198,7 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(TableWrapper)`
   & th,
   td {
     vertical-align: baseline;
@@ -222,4 +229,11 @@ const ReasonTd = styled(Td)`
 const StyledText = styled(Text)`
   white-space: pre-wrap;
   overflow-wrap: break-word;
+`
+const WarningMessage = styled.div`
+  margin-block: 16px;
+  padding: 16px;
+  background-color: ${CSS_COLOR.CAUTION_LIGHT};
+  color: ${CSS_COLOR.CAUTION_HEAVY};
+  text-align: center;
 `

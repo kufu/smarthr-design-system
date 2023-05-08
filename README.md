@@ -6,6 +6,8 @@ main branch: https://smarthr-design-system.netlify.app
 
 ## Local development
 
+`.node-version`に記載されているバージョンのNode.jsとyarnがインストールされている必要があります。
+
 1. Clone this repo
 2. In the terminal, navigate (`cd`) to the repo directory
 3. `yarn` to install dependencies
@@ -55,6 +57,8 @@ index.mdxがないディレクトリがあった場合、左側のサイドバ�
 
 例外的に`/products/components/`以下の各コンポーネントのページではorderは適用されません。コンポーネントの名前順に並びます。
 
+また、第2階層（「コンセプト」「基本原則」など）については別途`/src/data/navigationItem.json`に定義された順序が適用されます。このJSONはヘッダー・フッター・検索ページ下部のサイトマップに反映されます。
+
 ### 3. Reactコンポーネントを使う際の注意
 
 `/src/components`までのエイリアスが`@Components`として設定されているので、 mdxファイル内で
@@ -78,6 +82,16 @@ import { hoge } from '@Components/hoge'
 ```
 yarn export:zip-images
 ```
+
+### Gotchaアイテムの追加・削除・編集方法
+
+Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](https://cloudinary.com/)を利用しています。画像の追加・更新の際はCloudinaryの`sds`フォルダに追加したい画像をアップロードしてください。
+
+アップロードすると、Cloudinary上で名前がつきますので、`/src/data/gotchaItem.json`にその画像名と、タイトル等の情報を記載してください。
+
+※Cloudinaryは、1回目の画像アクセス時に画像の最適化・キャッシュを行うので、初回表示時のみ数秒程度の時間がかかるかもしれません。2回目以降の表示が高速であれば問題ありません。
+
+アイテムを削除したい場合は、`/src/data/gotchaItem.json`から該当の項目を削除すれば表示されなくなります。Cloudinary上の画像もあわせて削除しても構いません。
 
 ## ローカルで従業員ログインを動作させる
 

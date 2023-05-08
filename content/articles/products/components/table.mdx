@@ -1,9 +1,10 @@
 ---
 title: 'Table'
 description: ''
+storyName: 'Table'
 ---
-import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
 
 <ComponentStory name="Table" />
 
@@ -11,22 +12,19 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 <ComponentPropsTable name="Table" showTitle />
 <ComponentPropsTable name="Th" showTitle />
+<ComponentPropsTable name="ThCheckbox" showTitle />
 <ComponentPropsTable name="Td" showTitle />
+<ComponentPropsTable name="TdCheckbox" showTitle />
 
 ## アクセシビリティ
 
 ### 行を選択するチェックボックスのラベル
 
-行を選択するチェックボックスには同じセル内にラベルを配置できないため、同じ行の中のいずれかのテキストを参照します。
-行のオブジェクトを識別するためのテキストがある場合はそれを参照してください。
-
-参照には`<label>`を用いても良いですが、識別するためのテキストはオブジェクト詳細へのリンクとなることも多いため `aria-labelledby` を用いるのが良いでしょう。
+`<TdCheckbox>`を用いて`aria-labelledby`で行のオブジェクトを識別するためのテキストを参照してください。
 
 ```tsx codeBlock
 <tr key={key}>
-  <CheckBoxCell>
-    <CheckBox aria-labelledby={object.id} />
-  </CheckBoxCell>
+  <TdCheckbox aria-labelledby={object.id} />
   <Td>
     <a href={`/hoge/${object.id}`} id={object.id}>{name}</a>
   </Td>

@@ -1,4 +1,4 @@
-# 週1回リンクチェッカーを実行し、エラーがあればissueを作成します。
+# 週1回リンクチェッカーを実行します。
 
 name: Link check
 
@@ -20,33 +20,29 @@ jobs:
 
       # Install npm packages
       - name: Install dependencies
-        run: yarn
+        run: yarn --frozen-lockfile --cwd scripts/content-checker
       # リンクチェックの実行
       - id: linkCheck
         name: Execute link checker
-        #リンクエラーが見つかるとスクリプトはexit(1)で終了するが、このactionは中止しない。
-        continue-on-error: true
-        # linkChecker.tsを実行し、`console.error()`の内容をerrors.txtに出力する
-        # link-check-issue.mdを作成し、タイトル（Link check failed + 日付）と本文（`console.error()`の中身）を出力する
+        # リンクエラーが見つかるとスクリプトはexit(1)で終了するが、このactionは中止しない。
+        # linkChecker.tsを実行し、`console.log()`と`console.error()`の内容をファイルに出力する
         run: |
-          npx ts-node scripts/linkChecker.ts 2> errors.txt || true
-          echo errors=`cat errors.txt` >> $GITHUB_OUTPUT
-          echo '---' >> link-check-issue.md
+          cd scripts/content-checker && npx ts-node linkChecker.ts 1>../../output.txt 2>../../errors.txt || true
+          echo errors=`cat ../../errors.txt` >> $GITHUB_OUTPUT
+      - name: Output log to summary
+        # 実行結果をActionsのサマリーに出力
+        run: |
           today=$(date "+%Y-%m-%d")
-          echo "title: Link check failed ${today}" >> link-check-issue.md
-          echo '---' >> link-check-issue.md
-          echo '```' >> link-check-issue.md
-          while read error; do
-            echo "$error" >> link-check-issue.md
-          done <errors.txt
-          echo '```'
-      # GitHub issueを作成する
-      - name: Create an issue
-        # 前のstepでエラーがあった場合のみ作成
+          echo "### Link check ${today}" >> $GITHUB_STEP_SUMMARY
+          while read output; do
+            echo "$output" >> $GITHUB_STEP_SUMMARY
+          done <output.txt
+      - name: Output errors to summary
+        # 前のstepでエラーがあった場合はエラーも出力
         if: steps.linkCheck.outputs.errors != ''
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          # 前のstepで書き出したlink-check-issue.mdをの内容でissueを作る
-          filename: link-check-issue.md
+        run: |
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          while read error; do
+            echo "$error" >> $GITHUB_STEP_SUMMARY
+          done <errors.txt
+          echo '```' >> $GITHUB_STEP_SUMMARY
