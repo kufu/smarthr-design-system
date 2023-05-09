@@ -74,10 +74,16 @@ export const fetchStoryData = async (storyName: string, version: string) => {
     storyLabels[result[1]] = result[2]
   })
 
+  // "Default.storyName = 'SearchInput'" のような記述がある場合はURLに必要なので取得しておく（Storybook v6まで）
+  const matchDefaultNames = storiesCode.matchAll(/Default\.storyName\s=\s'(.*)'/g)
+  let defaultName: string | null = null
+  Array.from(matchDefaultNames).forEach((result) => {
+    defaultName = result[1]
+  })
+
   const storyItems: StoryItem[] = [...items1, ...items2].map((item) => {
     // iframeのURL用にケバブケースの名前を作る
-    const childName = parentCode === '' ? item.name : storyName.replace(/^.*\//, '') //親階層がある場合は削除
-    const kebab = childName
+    const kebab = (defaultName || item.name)
       .replace(/(_?[A-Z])/g, (s) => {
         return '-' + s.replace('_', '').charAt(0).toLowerCase() // 大文字→ハイフン＋小文字に変換、大文字の前に'_'があるケースもある
       })
