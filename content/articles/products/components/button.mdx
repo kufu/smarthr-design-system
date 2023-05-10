@@ -157,12 +157,15 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 ボタンの操作ができない状態を表現したスタイルです。  
 無効状態のボタンはコントラストが低くユーザーを混乱させるため、できるだけ使わないようにしてください。
 
-ユーザーはなぜ無効になっているのかわからないことがあります。「[権限による表示制御](/products/design-patterns/access-control-pattern/)」のデザインパターンを参考にして、無効状態の理由を表示したり、無効ではなくボタン自体を非表示にすることを検討してください。
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、無効ではなくボタン自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+無効状態の理由を配置するスペースがどうしてもない場合、`disabledDetail`を使用して理由を表示するように検討します。
 
 ```tsx editable codeBlock
 <>
   <Button variant="primary" prefix={<FaPlusCircleIcon />} disabled>ボタン</Button>
   <Button prefix={<FaPlusCircleIcon />} disabled>ボタン</Button>
+  <Button prefix={<FaPlusCircleIcon />} disabled disabledDetail={{ message: '無効状態の理由（理由を配置するスペースがない場合）' }}>ボタン</Button>
 </>
 ```
 
