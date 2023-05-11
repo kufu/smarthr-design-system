@@ -22,7 +22,9 @@ export const ShadowSample = ({depth = 1}) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: `${depth === 0 ? 'none' : `0 ${depth}px ${depth * 2}px ${((depth / 2) >= 1) ? (depth / 2) : 0}px ${defaultColor.TRANSPARENCY_30}`}`,
+        boxShadow: `${depth === 0
+          ? 'none'
+          : `0 ${2 ** (depth - 1)}px ${2 ** depth}px ${((depth - 1) >= 0) ? (2 ** (depth - 2)) : 0}px ${defaultColor.TRANSPARENCY_30}`}`,
       }}
     >LAYER{depth}</div>
   )
@@ -47,6 +49,7 @@ CSSでは`box-shadow`や`drop-shadow`を指しています。
   <ShadowSample depth={0} />
   <ShadowSample depth={1} />
   <ShadowSample depth={2} />
+  <ShadowSample depth={3} />
   <ShadowSample depth={4} />
 </ComponentPreview>
 
