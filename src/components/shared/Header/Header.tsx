@@ -147,18 +147,18 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
   ${({ isIndex }) =>
     isIndex
       ? css`
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
+          @media (width <= ${CSS_SIZE.BREAKPOINT_PC_2}) {
             padding-inline: 48px;
           }
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+          @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
             padding-inline: 24px;
           }
         `
       : css`
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
+          @media (width <= ${CSS_SIZE.BREAKPOINT_PC_2}) {
             padding-inline: 48px;
           }
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+          @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
             padding-inline: 24px;
           }
         `}
@@ -169,13 +169,13 @@ const Container = styled(Cluster).attrs({ gap: { row: 0.75, column: 1 }, align: 
 const SiteName = styled(LinkComponent)`
   padding: 6px 10px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding: revert;
   }
 
   img {
     display: block;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       width: 204px;
       height: auto;
     }
@@ -192,11 +192,11 @@ const StyledNav = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justi
     margin: 0;
     padding: 0;
     gap: 6px;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       display: none;
     }
     &.-optional {
-      @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+      @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
         display: none;
       }
     }
@@ -247,7 +247,7 @@ const StyledLink = styled(LinkComponent)`
   line-height: 1;
   color: ${defaultColor.TEXT_BLACK};
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     padding-inline: 6px;
   }
 
@@ -284,11 +284,11 @@ const GlobalStyleForMenu = createGlobalStyle`
     box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.24);
     bottom: 16px;
     max-height: 678px;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       top: 1rem;
       right: calc(3rem - 12px);
     }
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       width: auto;
       right: calc(1.5rem - 12px);
       left: calc(1.5rem - 12px);
@@ -300,7 +300,7 @@ const MenuContainer = styled.div`
   display: none;
   align-items: center;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: flex;
   }
 `
