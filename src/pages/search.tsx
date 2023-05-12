@@ -55,7 +55,7 @@ const Wrapper = styled.div`
 const Main = styled.main`
   padding-inline: 16px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 0;
   }
 `

@@ -55,10 +55,10 @@ const SearchContainer = styled.div`
     font-weight: bold;
     line-height: 1.3;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 120px;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     margin: 120px 16px 0;
   }
 `
@@ -82,11 +82,11 @@ const SearchLinks = styled.div`
       margin-top: 8px;
     }
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin: 56px 0 0;
     gap: 40px;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     flex-wrap: wrap;
     gap: 24px;
     > ul {

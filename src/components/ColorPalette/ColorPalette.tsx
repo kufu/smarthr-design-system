@@ -48,7 +48,7 @@ const Wrapper = styled.div`
   width: calc(25% - 24px);
   height: auto;
 
-  @media (max-width: ${defaultBreakpoint.SP}px) {
+  @media (width <= ${defaultBreakpoint.SP}px) {
     width: calc(50% - 24px);
   }
 `

@@ -102,7 +102,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding: 1rem;
   }
 

@@ -188,10 +188,10 @@ const Heading = styled.div`
   aspect-ratio: 1272 / 352;
   @supports not (aspect-ratio: 1272 / 352) {
     height: calc((100vw - 160px) / 1272 * 352);
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       height: calc((100vw - 32px) / 1272 * 352);
     }
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       height: calc(100vw / 1272 * 352);
     }
   }
@@ -216,7 +216,7 @@ const ImageContainer = styled.div`
     border-radius: 4px;
     box-sizing: border-box;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     border-radius: 0;
     &::after {
       border-radius: 0;
@@ -266,11 +266,11 @@ const GotchaButton = styled.button`
   left: 40px;
   font-weight: bold;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     bottom: -27px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     right: 16px;
     left: auto;
   }
@@ -364,10 +364,10 @@ const GotchaLinks = styled.div`
   left: 40px;
   width: 20%;
   max-width: 232px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     top: calc(100% + 46px);
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     width: auto;
     max-width: 100%;
     position: relative;
@@ -408,7 +408,7 @@ const Label = styled.p`
   color: ${CSS_COLOR.TEXT_GREY};
   font-weight: bold;
   font-size: ${CSS_FONT_SIZE.PX_12};
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     left: 32px;
     right: auto;
   }
