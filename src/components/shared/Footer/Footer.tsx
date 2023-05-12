@@ -159,11 +159,11 @@ const Wrapper = styled.footer<{ isArticlePage: boolean }>`
           border: none;
         `}
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-inline: 48px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding-inline: 16px;
   }
 
@@ -202,7 +202,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
           padding-top: 72px;
         `}
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
       'col1 . col2' auto
       'col1 . col2' auto
@@ -212,7 +212,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
     padding-top: 32px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     grid-template:
       'col2' auto
       '.   ' 80px
@@ -249,7 +249,7 @@ const Col2Container = styled.div`
   align-items: start;
   gap: 40px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
       'concept' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
       / 1fr;
@@ -272,7 +272,7 @@ const StyledH3 = styled.h3`
     margin-top: -8px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-bottom: 0;
 
     & + & {
@@ -287,7 +287,7 @@ const StyledUl = styled.ul`
   list-style: none;
   color: ${CSS_COLOR.TEXT_BLACK};
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: none;
   }
 
@@ -307,7 +307,7 @@ const StyledLink = styled(Link)`
 const StyledCopyright = styled.p`
   margin-top: 64px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 40px;
   }
 

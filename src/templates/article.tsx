@@ -423,11 +423,11 @@ const Main = styled.main`
   display: grid;
   grid-template: 'sidebar article index' auto / 1fr minmax(auto, 712px) 1fr;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template: 'sidebar article .' auto / 1fr minmax(auto, 712px) minmax(40px, 1fr);
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     grid-template: '. article .' auto / minmax(40px, 1fr) minmax(auto, 712px) minmax(40px, 1fr);
     margin-top: 0;
   }
@@ -451,7 +451,7 @@ const MainSidebar = styled.div`
     grid-column: nav;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     grid-column: article;
     display: block;
     position: static;
@@ -479,7 +479,7 @@ const MainIndexNav = styled.div`
     grid-column: nav;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     display: none;
   }
 `
@@ -490,7 +490,7 @@ const MainArticle = styled.article`
   padding-top: 112px;
   padding-bottom: 240px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-bottom: 112px;
   }
 `
@@ -510,7 +510,7 @@ const MainArticleNav = styled.ul`
   display: grid;
   gap: 1rem;
   grid-template: 'left right' 1fr/1fr 1fr;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     grid-template:
       'left' 1fr
       'right' 1fr

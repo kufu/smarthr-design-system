@@ -66,7 +66,7 @@ export const Category: FC<Props> = ({ data }) => {
 const NavigationContainer = styled.div`
   display: flex;
   gap: 40px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: block;
     gap: 0;
   }
@@ -74,7 +74,7 @@ const NavigationContainer = styled.div`
 
 const NavigationText = styled.div`
   width: 320px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     width: 100%;
   }
   h2 {
@@ -93,10 +93,10 @@ const NavigationText = styled.div`
 const NavigationLinksContainer = styled.div`
   width: 832px;
   max-width: 100%;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 40px;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     width: 100%;
   }
 `
@@ -127,7 +127,7 @@ const ThumbnailImageWrapper = styled.div`
     height: 100%;
     object-fit: cover;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     max-height: 100%;
   }
 `
@@ -139,11 +139,11 @@ const NavigationLinks = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     display: block;
   }
   > li {
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       &:not(:first-child) {
         margin-top: 24px;
       }
@@ -176,7 +176,7 @@ const NavigationLinks = styled.ul`
 const CategoryImageWrapper = styled.div`
   width: 100%;
   height: 144px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     width: auto;
 
     /*
@@ -218,7 +218,7 @@ const CategoryImageWrapper = styled.div`
         transition: background-color 0.2s;
       }
     }
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       border-left: 0;
       border-right: 0;
       border-radius: 0;
