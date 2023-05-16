@@ -29,7 +29,7 @@ export const fetchComponentCaptures = async () => {
 
     const groupName = kind.split('/')[0]
     const displayName = kind.split('/')[1]
-    const iframeUrl = `${STORYBOOK_URL}/iframe.html?args=&id=${encodeURIComponent(id)}&viewMode=story`
+    const iframeUrl = `${STORYBOOK_URL}/iframe.html?id=${encodeURIComponent(id)}&viewMode=story&shortcuts=false&singleStory=true`
 
     // Groupが存在しない場合は新規作成
     const storyGroup = storyGroups.find((item) => item.groupName === groupName)
