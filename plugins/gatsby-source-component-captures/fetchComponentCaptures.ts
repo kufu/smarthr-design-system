@@ -1,82 +1,67 @@
-import * as cheerio from 'cheerio'
+const STORYBOOK_URL = 'https://story.smarthr-ui.dev'
 
-/**
- * SDS内にサムネイルキャプチャ付きのコンポーネント一覧を作るためにChromaticのコンポーネント一覧ページからコンポーネントのキャプチャ情報を取得する
- */
-const TARGET_URL = 'https://www.chromatic.com/library?appId=63d0ccabb5d2dd29825524ab&branch=master'
-
-type ApolloValue = {
-  id: string
-  __typename: string
-  resourceKey: string
-  displayName: string
-  csfId: string
-  name: string
-  path: string[]
+type Story = {
+  kind: string
+  tags: string[]
 }
 
-type Capture = {
-  resourceKey: string
+type StoryKind = {
+  kindName: string
+  iframeUrl: string
   displayName: string
+  numberOfStories: number
 }
 
-type CaptureByGroup = {
+type StoryGroup = {
   groupName: string
-  captures: Capture[]
+  storyKinds: StoryKind[]
 }
 
 export const fetchComponentCaptures = async () => {
-  const response = await fetch(TARGET_URL)
-  const html = await response.text()
+  const response = await fetch(`${STORYBOOK_URL}/stories.json`)
+  const jsonData = await response.json()
+  const storiesMap: { [id: string]: Story } = jsonData.stories
 
-  const $ = cheerio.load(html)
-  /**
-   * ページ内の<script>タグ内にあるJSONデータを取得する
-   */
-  const jsonScript = $('script#__NEXT_DATA__').html()
-  if (!jsonScript) throw new Error('JSON script not found')
+  const storyGroups: StoryGroup[] = []
+  Object.keys(storiesMap).forEach((id) => {
+    const { kind, tags } = storiesMap[id]
+    if (tags.includes('docs')) return // ドキュメントはコンポーネント一覧として表示しない
 
-  const jsonData = JSON.parse(jsonScript)
-  const apolloData = jsonData.props.pageProps.serverState.apollo.data
-  const apolloValues: ApolloValue[] = Object.values(apolloData)
-  const componentCaptures = apolloValues
-    .filter((item) => item.__typename === 'Component')
-    .map((component) => {
-      const componentKey = `Component:${component.id}`
-      /**
-       * キャプチャ情報はComponent情報の3つ先にある
-       * keysは並び順を保証しないため、このように取得するべきではないが、JSONの構造上他に方法がない
-       */
-      const componentIndex = Object.keys(apolloData).findIndex((key) => key === componentKey)
-      const capture = apolloValues[componentIndex + 3]
-      return {
-        resourceKey: capture ? capture.resourceKey : '',
-        displayName: component.displayName,
-        csfId: component.csfId,
-        name: component.name,
-        path: component.path,
-      }
-    })
+    const groupName = kind.split('/')[0]
+    const displayName = kind.split('/')[1]
+    const iframeUrl = `${STORYBOOK_URL}/iframe.html?args=&id=${encodeURIComponent(id)}&viewMode=story`
 
-  const capturesByGroup: CaptureByGroup[] = []
-  componentCaptures.forEach((componentCapture) => {
-    const groupItem = capturesByGroup.find((item) => item.groupName === componentCapture.path[0])
-    if (groupItem) {
-      groupItem.captures.push({
-        displayName: componentCapture.displayName,
-        resourceKey: componentCapture.resourceKey,
-      })
-    } else {
-      capturesByGroup.push({
-        groupName: componentCapture.path[0],
-        captures: [
+    // Groupが存在しない場合は新規作成
+    const storyGroup = storyGroups.find((item) => item.groupName === groupName)
+    if (!storyGroup) {
+      storyGroups.push({
+        groupName,
+        storyKinds: [
           {
-            displayName: componentCapture.displayName,
-            resourceKey: componentCapture.resourceKey,
+            kindName: kind,
+            iframeUrl,
+            displayName,
+            numberOfStories: 1,
           },
         ],
       })
+      return
     }
+
+    // Kindが存在しない場合は新規作成
+    const storyKind = storyGroup.storyKinds.find((item) => item.kindName === kind)
+    if (!storyKind) {
+      storyGroup.storyKinds.push({
+        kindName: kind,
+        iframeUrl,
+        displayName,
+        numberOfStories: 1,
+      })
+      return
+    }
+
+    // GroupもKindも既に存在すればカウントアップ
+    storyKind.numberOfStories += 1
   })
-  return capturesByGroup
+  return storyGroups
 }

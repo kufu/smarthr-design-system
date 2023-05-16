@@ -12,7 +12,7 @@ exports.sourceNodes = async ({ actions, createContentDigest, createNodeId }: Sou
   data.forEach((item) =>
     createNode({
       groupName: item.groupName,
-      captures: item.captures,
+      storyKinds: item.storyKinds,
       id: createNodeId(`${NODE_TYPE}-${item.groupName}`),
       parent: null,
       children: [],
@@ -32,11 +32,13 @@ exports.createSchemaCustomization = async ({ actions }: { actions: Actions }) =>
   createTypes(`
     type ${NODE_TYPE} implements Node {
       groupName: String!
-      captures: [Capture!]!
+      storyKinds: [StoryKind!]!
     }
-    type Capture {
-      resourceKey: String
+    type StoryKind {
+      kindName: String!
+      iframeUrl: String!
       displayName: String!
+      numberOfStories: Int!
     }
   `)
 }

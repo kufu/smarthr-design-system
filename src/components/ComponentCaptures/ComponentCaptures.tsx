@@ -1,6 +1,6 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { graphql, useStaticQuery } from 'gatsby'
-import React, { FC, useCallback } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 const query = graphql`
@@ -8,11 +8,13 @@ const query = graphql`
     allComponentCapture {
       nodes {
         id
-        captures {
-          displayName
-          resourceKey
-        }
         groupName
+        storyKinds {
+          kindName
+          iframeUrl
+          displayName
+          numberOfStories
+        }
       }
     }
   }
@@ -20,27 +22,20 @@ const query = graphql`
 
 export const ComponentCaptures: FC = () => {
   const { allComponentCapture } = useStaticQuery<Queries.ComponentCaptureDataQuery>(query)
-  const convertKebab = useCallback((target: string) => {
-    return target
-      .replace(/[^a-zA-Z0-9-]/g, '') // 全角文字などの半角英数字以外を除去
-      .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-      .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
-      .toLowerCase()
-  }, [])
 
   return (
     <Wrapper>
       {allComponentCapture.nodes.map((node) => (
-        <ComponentGroup key={node.id}>
+        <ComponentGroup key={node.groupName}>
           <h2>{node.groupName}</h2>
           <ComponentList>
-            {node.captures.map((capture) => {
-              return capture.resourceKey ? (
-                <li key={capture.resourceKey}>
-                  <ComponentLink href={convertKebab(capture.displayName)}>
-                    <img src={`https://snapshots.chromatic.com/snapshots/${capture.resourceKey}/thumb/capture.png`} alt={``} />
-                  </ComponentLink>
-                  <span>{capture.displayName}</span>
+            {node.storyKinds.map((storyKind) => {
+              return storyKind.iframeUrl ? (
+                <li key={storyKind.iframeUrl}>
+                  <div>
+                    <iframe title={storyKind.displayName} src={storyKind.iframeUrl} />
+                  </div>
+                  <span>{storyKind.displayName}</span>
                 </li>
               ) : null
             })}
@@ -73,19 +68,8 @@ const ComponentList = styled.ul`
     width: 100%;
     height: 100%;
   }
-`
-const ComponentLink = styled.a`
-  display: inline-block;
-  border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
-  width: 100%;
-  height: 200px;
 
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: 0 0;
-    vertical-align: top;
+  iframe {
+    border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
   }
 `
