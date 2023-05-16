@@ -1,6 +1,6 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { graphql, useStaticQuery } from 'gatsby'
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import styled from 'styled-components'
 
 const query = graphql`
@@ -22,6 +22,13 @@ const query = graphql`
 
 export const ComponentCaptures: FC = () => {
   const { allComponentCapture } = useStaticQuery<Queries.ComponentCaptureDataQuery>(query)
+  const convertKebab = useCallback((target: string) => {
+    return target
+      .replace(/[^a-zA-Z0-9-]/g, '') // 全角文字などの半角英数字以外を除去
+      .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+      .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
+      .toLowerCase()
+  }, [])
 
   return (
     <Wrapper>
@@ -35,7 +42,7 @@ export const ComponentCaptures: FC = () => {
                   <div>
                     <iframe title={storyKind.displayName} src={storyKind.iframeUrl} />
                   </div>
-                  <span>{storyKind.displayName}</span>
+                  <a href={convertKebab(storyKind.displayName)}>{storyKind.displayName}</a>
                 </li>
               ) : null
             })}
