@@ -3,6 +3,8 @@ import { graphql, useStaticQuery } from 'gatsby'
 import React, { FC, useCallback } from 'react'
 import styled from 'styled-components'
 
+const THUMBNAIL_SIZE = '200'
+
 const query = graphql`
   query ComponentCaptureData {
     allComponentCapture {
@@ -40,7 +42,12 @@ export const ComponentCaptures: FC = () => {
               return storyKind.iframeUrl ? (
                 <li key={storyKind.iframeUrl}>
                   <div>
-                    <iframe title={storyKind.displayName} src={storyKind.iframeUrl} />
+                    <iframe
+                      width={THUMBNAIL_SIZE}
+                      height={THUMBNAIL_SIZE}
+                      title={storyKind.displayName}
+                      src={storyKind.iframeUrl}
+                    />
                   </div>
                   <a href={convertKebab(storyKind.displayName)}>{storyKind.displayName}</a>
                 </li>
@@ -65,15 +72,13 @@ const ComponentGroup = styled.div`
 const ComponentList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 16px 8px;
   list-style: none;
   margin: 16px 0 0;
   padding: 0;
 
-  > li {
-    flex-basis: 200px;
-    width: 100%;
-    height: 100%;
+  li {
+    width: ${THUMBNAIL_SIZE}px;
   }
 
   iframe {
