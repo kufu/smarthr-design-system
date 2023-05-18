@@ -7,7 +7,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 export const Head = () => {
-  return <HeadComponent title="従業員向けログイン" description="従業員向けのログインページです。" />
+  return <HeadComponent title="従業員用ログイン" description="従業員限定の素材をダウンロードするには、ログインが必要です。" />
 }
 
 const Login: FC = () => {
