@@ -19,7 +19,7 @@ export const Introduction: FC = () => {
           <span>SmartHRに関わる人はどなたでも利用・参加できます。</span>
         </StyledText>
         <StyledText>
-          <FloatingTextLink path="/concept/">デザインシステムとは？（コンセプト）</FloatingTextLink>
+          <FloatingTextLink path="/introduction/">デザインシステムとは？</FloatingTextLink>
         </StyledText>
       </IntroductionContainer>
       <IndexImageContainer>

@@ -13,7 +13,7 @@ interface Categories {
 }
 
 const categories = {
-  concept: 'コンセプト',
+  introduction: 'はじめに',
   foundation: '基本原則',
   basics: '基本要素',
   products: 'プロダクト',
