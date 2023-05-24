@@ -15,6 +15,7 @@ export const onCreateWebpackConfig = ({ actions }: CreateWebpackConfigArgs) => {
         '@Components': path.resolve('src/components'),
         '@Constants': path.resolve('src/constants'),
         '@Context': path.resolve('src/context'),
+        '@Lib': path.resolve('src/lib'),
       },
     },
   })
