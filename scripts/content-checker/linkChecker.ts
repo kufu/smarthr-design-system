@@ -3,9 +3,9 @@ import path from 'path'
 
 import { glob } from 'glob'
 
-const CONTENT_PATH = path.join(__dirname, '../content/articles/**/*.mdx')
-const IMAGE_PATH = path.join(__dirname, '../content/articles/**/*.+(png|jpg|jpeg|gif)')
-const DOWNLOAD_PATH = path.join(__dirname, '../static/**/*')
+const CONTENT_PATH = path.join(__dirname, '../../content/articles/**/*.mdx')
+const IMAGE_PATH = path.join(__dirname, '../../content/articles/**/*.+(png|jpg|jpeg|gif)')
+const DOWNLOAD_PATH = path.join(__dirname, '../../static/**/*')
 
 const IGNORE_LIST = ['URL', '#ページ内リンク']
 
