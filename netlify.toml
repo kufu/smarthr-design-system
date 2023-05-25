@@ -8,6 +8,6 @@ targetPort = 8000
 port = 8888
 publish = 'public'
 [[headers]]
-   for = "/products/components"
+   for = "/*"
    [headers.values]
-      Access-Control-Allow-Origin = "https://story.smarthr-ui.dev"
+      Access-Control-Allow-Origin = "*"
