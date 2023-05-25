@@ -7,3 +7,7 @@ command = 'yarn dev'
 targetPort = 8000
 port = 8888
 publish = 'public'
+[[headers]]
+   for = "/products/components"
+   [headers.values]
+      Access-Control-Allow-Origin = "https://story.smarthr-ui.dev"
