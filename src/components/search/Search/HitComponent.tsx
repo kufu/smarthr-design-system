@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 interface Categories {
-  concept: string
+  introduction: string
   foundation: string
   basics: string
   products: string
