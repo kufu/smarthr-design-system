@@ -25,7 +25,7 @@ export const LoginContextProvider: FC<Props> = ({ children }) => {
   const labels: { [key in LoginStatusKey]: string } = {
     pending: '',
     loggedIn: 'ログイン中',
-    loggedOut: '従業員用ログイン',
+    loggedOut: 'ログイン',
   }
 
   const fetchPrivateContent = (): void => {

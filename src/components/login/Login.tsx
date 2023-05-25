@@ -12,10 +12,8 @@ export const LoginPage: FC = () => {
 
   return (
     <Wrapper>
-      <h1>パスワード入力</h1>
-      <p>
-        株式会社SmartHRならびにグループ会社の従業員、制作パートナーが社内限定のリソースを閲覧・ダウンロードする場合は、ログインしてください。
-      </p>
+      <h1>限定コンテンツログイン</h1>
+      <p>SmartHR社従業員・制作パートナーが社内限定のリソースを閲覧・ダウンロードする場合は、ログインしてください。</p>
       <div className="inputs">
         <Input
           type="password"
