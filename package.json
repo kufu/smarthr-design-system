@@ -34,7 +34,6 @@
     "lint": "run-p lint:*",
     "format": "eslint --fix 'src/**/*.ts{,x}'",
     "format:text": "textlint --fix 'content/**/*.md{,x}'",
-    "export:ui-props": "ts-node scripts/exportUIProps.ts",
     "export:zip-images": "ts-node scripts/zipImages.ts",
     "postinstall": "husky install"
   },

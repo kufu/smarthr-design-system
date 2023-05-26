@@ -13,6 +13,7 @@ exports.sourceNodes = async ({ actions, createContentDigest, createNodeId }: Sou
     createNode({
       version: item.version,
       commitHash: item.commitHash,
+      uiProps: item.uiProps,
       id: createNodeId(`${NODE_TYPE}-${item.version}`),
       parent: null,
       children: [],
@@ -33,6 +34,24 @@ exports.createSchemaCustomization = async ({ actions }: { actions: Actions }) =>
     type ${NODE_TYPE} implements Node {
       commitHash: String!
       version: String!
+      uiProps: [UiProps]!
+    }
+    type UiProps {
+      displayName: String!
+      props: [PropsData]!
+    }
+    type PropsData {
+      description: String!
+      name: String!
+      required: Boolean!
+      type: PropsType
+    }
+    type PropsType {
+      name: String
+      value: [PropsValue]
+    }
+    type PropsValue {
+      value: String
     }
   `)
 }

@@ -1,6 +1,12 @@
+export type UiProps = {
+  displayName: string
+  props: []
+}
+
 type UiVersion = {
   commitHash: string
   version: string
+  uiProps: UiProps[]
 }
 
 type UiResponse = {
@@ -12,22 +18,55 @@ type UiResponse = {
 
 const uiRepoApi = 'https://api.github.com/repos/kufu/smarthr-ui'
 const releaseBotEmail = '41898282+github-actions[bot]@users.noreply.github.com'
+const chromaticDomain = '63d0ccabb5d2dd29825524ab.chromatic.com'
 
 export const fetchUiVersions = async (): Promise<UiVersion[]> => {
   const res = await fetch(`${uiRepoApi}/commits?since=2023-02-02&author=${encodeURIComponent(releaseBotEmail)}`)
   if (!res.ok) return []
-  const json = await res.json()
+  const json: UiResponse[] = await res.json().catch(() => {
+    return []
+  })
 
-  return json
-    .map((item: UiResponse) => {
-      const versionText = item.commit.message.match(/chore\(release\):\s(\d+\.\d+\.\d+)\s/)
-      const version = versionText && versionText.length > 1 ? versionText[1] : null
+  const versions: UiVersion[] = []
+
+  for (const item of json) {
+    const versionText = item.commit.message.match(/chore\(release\):\s(\d+\.\d+\.\d+)\s/)
+    const version = versionText && versionText.length > 1 ? versionText[1] : null
+    if (version === null) continue
+
+    const commitHash = item.sha.substring(0, 7)
+
+    const propsRes = await fetch(`https://${commitHash}--${chromaticDomain}/exports/smarthr-ui-props.json`)
+    let props: [] = []
+    if (propsRes.status === 200) {
+      props = await propsRes.json().catch(() => {
+        return []
+      })
+    }
+
+    const uiProps = props.map((propsItem: any) => {
       return {
-        commitHash: item.sha.substring(0, 7),
-        version,
+        displayName: propsItem.displayName || '',
+        props: propsItem.props?.map((prop: any) => {
+          return {
+            description: prop.description || '',
+            name: prop.name || '',
+            required: prop.required || false,
+            type: {
+              name: prop.type?.name || '',
+              value: prop.type?.value || [],
+            },
+          }
+        }),
       }
     })
-    .filter((item: UiVersion) => {
-      return item.version !== null
+
+    versions.push({
+      version,
+      commitHash,
+      uiProps,
     })
+  }
+
+  return versions
 }
