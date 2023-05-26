@@ -24,6 +24,7 @@ import { ResizableContainer } from './ResizableContainer'
 
 type Props = {
   name: string
+  children?: React.ReactNode
 }
 
 const query = graphql`
@@ -55,7 +56,7 @@ const query = graphql`
   }
 `
 
-export const ComponentStory: FC<Props> = ({ name }) => {
+export const ComponentStory: FC<Props> = ({ name, children }) => {
   const { allMdx, allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
   const defaultStoryData = allMdx.nodes.find((node) => {
     return node.frontmatter?.storyName === name
@@ -143,8 +144,9 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   }
 
   return (
-    <StoryWrapper>
-      <Cluster align="center" justify="space-between" gap={1}>
+    // article.tsxで MDXStyledWrapper > :first-childにマージンが設定されており、それをこの要素に適用させたいので`<>`ではなく`<div>`にする必要がある
+    <div>
+      <StyledCluster align="center" justify="space-between" gap={1}>
         <Cluster align="center" as="label">
           <span>SmartHR UI</span>
           <Select
@@ -188,7 +190,8 @@ export const ComponentStory: FC<Props> = ({ name }) => {
             GitHub
           </AnchorButton>
         </Cluster>
-      </Cluster>
+      </StyledCluster>
+      {children && children}
       {showError && (
         <ErrorPanel title="指定されたバージョンのコンポーネント情報を取得できませんでした" type="error" togglable={false}>
           通信状況に問題が発生しているか、次のような理由が考えられます。
@@ -246,14 +249,12 @@ export const ComponentStory: FC<Props> = ({ name }) => {
           </CodeWrapper>
         </>
       )}
-    </StoryWrapper>
+    </div>
   )
 }
 
-const StoryWrapper = styled.div`
-  margin-block: 48px 0;
-  padding: 16px 24px;
-  background-color: ${CSS_COLOR.LIGHT_GREY_3};
+const StyledCluster = styled(Cluster)`
+  margin-block: -32px 60px; /* article.tsxで MDXStyledWrapperにmargin-block-start: 40pxが設定されているので、相殺して8pxになるようにする */
 `
 
 const ErrorPanel = styled(InformationPanel)`
