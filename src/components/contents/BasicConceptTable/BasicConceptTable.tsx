@@ -26,6 +26,9 @@ const query = graphql`
     }
   }
 `
+
+marked.setOptions({ headerIds: false, mangle: false })
+
 export const BasicConceptTable: FC = () => {
   const data = useStaticQuery<Queries.BasicConceptTableQuery>(query)
 
