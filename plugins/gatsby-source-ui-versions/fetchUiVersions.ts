@@ -1,6 +1,6 @@
 export type UiProps = {
   displayName: string
-  props: []
+  props: PropsData[]
 }
 
 type UiVersion = {
@@ -13,6 +13,21 @@ type UiResponse = {
   sha: string
   commit: {
     message: string
+  }
+}
+
+type PropsResponse = {
+  displayName: string
+  props: PropsData[]
+}
+
+type PropsData = {
+  description: string
+  name: string
+  required: boolean
+  type: {
+    name: string
+    value: Array<{ value: string }>
   }
 }
 
@@ -44,10 +59,10 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
       })
     }
 
-    const uiProps = props.map((propsItem: any) => {
+    const uiProps = props.map((propsItem: PropsResponse) => {
       return {
         displayName: propsItem.displayName || '',
-        props: propsItem.props?.map((prop: any) => {
+        props: propsItem.props?.map((prop) => {
           return {
             description: prop.description || '',
             name: prop.name || '',

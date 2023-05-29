@@ -78,14 +78,14 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
   const versionData =
     allUiVersion.nodes.find((node) => {
       // 指定されたバージョンかつsmarthr-ui-props.jsonが取得できているデータを探す
-      return node.version === displayVersion && node.uiProps.length > 0
+      return node.version === displayVersion && node.uiProps && node.uiProps.length > 0
     }) ||
     // 該当のデータがなければ最新バージョンのデータを表示する
     allUiVersion.nodes[0] ||
     // それもなければnullを返す（通常はありえない）
     null
 
-  const data = versionData.uiProps.filter((uiProp) => {
+  const data = versionData.uiProps?.filter((uiProp) => {
     return uiProp?.displayName === name
   })[0]
   const propsData = data ? data.props : []
