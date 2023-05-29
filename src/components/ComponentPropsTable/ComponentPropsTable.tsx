@@ -50,6 +50,8 @@ const pickTypeColor = (value: string): string => {
   return TYPE_COLOR[pickType(value)]
 }
 
+marked.setOptions({ headerIds: false, mangle: false })
+
 export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
   const data = uiProps.filter((uiProp) => {
     return uiProp.displayName === name
