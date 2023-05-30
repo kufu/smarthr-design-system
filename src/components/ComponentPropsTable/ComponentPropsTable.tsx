@@ -104,7 +104,7 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
           {name} props
         </FragmentTitle>
       )}
-      {displayVersion !== versionData.version && <Text as={'p'}>{`v${versionData.version}の情報を表示しています`}</Text>}
+      {displayVersion !== versionData.version && <Text as={'p'}>{`v${versionData.version}の情報を表示しています。`}</Text>}
       <Wrapper>
         <>
           {propsData.map((prop) => (
