@@ -23,7 +23,6 @@ const Home: FC = () => {
       <IndexPageContainer>
         <Introduction />
         <ContentNavigation />
-        <SearchLink />
         <FaqList />
       </IndexPageContainer>
 
