@@ -128,8 +128,4 @@ const Wrapper = styled.div`
     color: ${CSS_COLOR.TEXT_BLACK};
     line-height: 1.6;
   }
-
-  #login {
-    font-weight: bold;
-  }
 `
