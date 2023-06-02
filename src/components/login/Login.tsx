@@ -12,10 +12,10 @@ export const LoginPage: FC = () => {
 
   return (
     <Wrapper>
-      <h1>パスワード入力</h1>
-      <p>
-        株式会社SmartHRならびにグループ会社の従業員、制作パートナーが社内限定のリソースを閲覧・ダウンロードする場合は、ログインしてください。
-      </p>
+      <h1>従業員ログイン</h1>
+      <p>ログインすると限定コンテンツにアクセスできます。パスワードの確認方法は2つあります。</p>
+      <p>・SmartHR社の1Passwordを利用する</p>
+      <p>・SmartHR社のSlackに「SDSパスワード」と入力する（自動レスポンスがあります）</p>
       <div className="inputs">
         <Input
           type="password"
@@ -35,8 +35,6 @@ export const LoginPage: FC = () => {
         </Button>
 
         {errMessage !== '' && <span className="warn">{errMessage}</span>}
-
-        <span className="note">パスワードは1Password、または社内Slack bot「SDSパスワード」から確認できます。</span>
       </div>
     </Wrapper>
   )
@@ -131,9 +129,7 @@ const Wrapper = styled.div`
     line-height: 1.6;
   }
 
-  .note {
-    font-size: ${CSS_FONT_SIZE.PX_12};
-    line-height: 1.6;
-    color: ${CSS_COLOR.TEXT_GREY};
+  #login {
+    font-weight: bold;
   }
 `
