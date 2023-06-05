@@ -15,8 +15,12 @@ export const LoginPage: FC = () => {
       <h1>従業員ログイン</h1>
       <p>ログインすると限定コンテンツにアクセスできます。パスワードの確認方法は2つあります。</p>
       <ul>
-        <li><p>SmartHR社の1Passwordを利用する</p></li>
-        <li><p>SmartHR社のSlackに「SDSパスワード」と入力する（自動レスポンスがあります）</p></li>
+        <li>
+          <p>SmartHR社の1Passwordを利用する</p>
+        </li>
+        <li>
+          <p>SmartHR社のSlackに「SDSパスワード」と入力する（自動レスポンスがあります）</p>
+        </li>
       </ul>
       <div className="inputs">
         <Input
