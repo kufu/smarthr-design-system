@@ -37,6 +37,7 @@ exports.createSchemaCustomization = async ({ actions }: { actions: Actions }) =>
     type StoryKind {
       kindName: String!
       iframeUrl: String!
+      thumbnailFileName: String!
       displayName: String!
       numberOfStories: Int!
     }

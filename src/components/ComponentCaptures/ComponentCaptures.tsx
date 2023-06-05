@@ -12,6 +12,7 @@ const query = graphql`
         storyKinds {
           kindName
           iframeUrl
+          thumbnailFileName
           displayName
           numberOfStories
         }
@@ -20,6 +21,7 @@ const query = graphql`
   }
 `
 
+// 一覧表示するサムネイル用画像は、`ts-node ./scripts/component-thumbnails/componentThumbnails.ts`を実行して生成します
 export const ComponentCaptures: FC = () => {
   const { allComponentCapture } = useStaticQuery<Queries.ComponentCaptureDataQuery>(query)
   const convertKebab = useCallback((target: string) => {
@@ -39,10 +41,17 @@ export const ComponentCaptures: FC = () => {
             {node.storyKinds.map((storyKind) => {
               return storyKind.iframeUrl ? (
                 <li key={storyKind.iframeUrl}>
-                  <div>
-                    <iframe title={storyKind.displayName} src={storyKind.iframeUrl} />
-                  </div>
-                  <a href={convertKebab(storyKind.displayName)}>{storyKind.displayName}</a>
+                  <a href={convertKebab(storyKind.displayName)}>
+                    <div>
+                      <img
+                        width={300}
+                        height={200}
+                        src={`/thumbnails/component-stories/${storyKind.thumbnailFileName}`}
+                        alt={storyKind.displayName}
+                      />
+                    </div>
+                    <p>{storyKind.displayName}</p>
+                  </a>
                 </li>
               ) : null
             })}
@@ -57,29 +66,32 @@ const Wrapper = styled.div``
 const ComponentGroup = styled.div`
   && {
     > h2 {
-      margin-top: 32px;
+      margin-top: 64px;
       font-size: ${CSS_FONT_SIZE.PX_20};
     }
   }
 `
 const ComponentList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 8px;
-  list-style: none;
-  margin: 16px 0 0;
-  padding: 0;
+  && {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 8px;
+    list-style: none;
+    margin-block-start: 16px;
+    padding: 0;
 
-  li {
-    width: 300px;
-  }
+    img {
+      display: block;
+    }
 
-  div {
-    overflow: hidden;
-    border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
-  }
+    div {
+      margin: 0;
+      padding: 0;
+      border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
+    }
 
-  iframe {
-    border: none;
+    p {
+      margin-block-start: 0;
+    }
   }
 `
