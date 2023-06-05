@@ -8,11 +8,12 @@ type Story = {
 type StoryKind = {
   kindName: string
   iframeUrl: string
+  thumbnailFileName: string
   displayName: string
   numberOfStories: number
 }
 
-type StoryGroup = {
+export type StoryGroup = {
   groupName: string
   storyKinds: StoryKind[]
 }
@@ -30,6 +31,7 @@ export const fetchComponentCaptures = async () => {
     const groupName = kind.split('/')[0]
     const displayName = kind.split('/')[1]
     const iframeUrl = `${STORYBOOK_URL}/iframe.html?id=${encodeURIComponent(id)}&viewMode=story&shortcuts=false&singleStory=true`
+    const thumbnailFileName = `${groupName}-${displayName}.png`
 
     // Groupが存在しない場合は新規作成
     const storyGroup = storyGroups.find((item) => item.groupName === groupName)
@@ -40,6 +42,7 @@ export const fetchComponentCaptures = async () => {
           {
             kindName: kind,
             iframeUrl,
+            thumbnailFileName,
             displayName,
             numberOfStories: 1,
           },
@@ -54,6 +57,7 @@ export const fetchComponentCaptures = async () => {
       storyGroup.storyKinds.push({
         kindName: kind,
         iframeUrl,
+        thumbnailFileName,
         displayName,
         numberOfStories: 1,
       })
