@@ -1,10 +1,12 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
+import { useLocation } from '@reach/router'
+import { graphql, useStaticQuery } from 'gatsby'
 import { marked } from 'marked'
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { StatusLabel, Text, WarningIcon } from 'smarthr-ui'
+import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
 
-import uiProps from '../../../smarthr-ui-props.json'
 import { FragmentTitle } from '../article/FragmentTitle/FragmentTitle'
 
 type Props = {
@@ -12,21 +14,30 @@ type Props = {
   showTitle?: boolean
 }
 
-interface UIPropValue {
-  value: string
-  description?: string
-  fullComment?: string
-  tags?: { [key: string]: string }
-}
-
-interface UIProps {
-  name: string
-  required: boolean
-  description: string
-  defaultValue: { [key: string]: string } | null
-  declarations: Array<{ fileName: string; name: string }>
-  type: { name: string; raw?: string; value?: UIPropValue[] }
-}
+const query = graphql`
+  query PropsData {
+    allUiVersion {
+      nodes {
+        version
+        commitHash
+        uiProps {
+          displayName
+          props {
+            description
+            name
+            required
+            type {
+              name
+              value {
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 const TYPE_COLOR = {
   string: '#1376a0',
@@ -53,16 +64,41 @@ const pickTypeColor = (value: string): string => {
 marked.setOptions({ headerIds: false, mangle: false })
 
 export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
-  const data = uiProps.filter((uiProp) => {
-    return uiProp.displayName === name
+  const { allUiVersion } = useStaticQuery<Queries.PropsDataQuery>(query)
+
+  const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
+
+  // クエリストリングのバージョン指定が変わったらPropsの内容も切り替える
+  const location = useLocation()
+  useEffect(() => {
+    const { search } = location
+    const params = new URLSearchParams(search)
+    const version = params.get('v')
+    setDisplayVersion(version || packageInfo.version)
+  }, [location, displayVersion])
+
+  const versionData =
+    allUiVersion.nodes.find((node) => {
+      // 指定されたバージョンかつsmarthr-ui-props.jsonが取得できているデータを探す
+      return node.version === displayVersion && node.uiProps && node.uiProps.length > 0
+    }) ||
+    // 該当のデータがなければ最新バージョンのデータを表示する
+    allUiVersion.nodes[0] ||
+    // それもなければnullを返す（通常はありえない）
+    null
+
+  const data = versionData.uiProps?.filter((uiProp) => {
+    return uiProp?.displayName === name
   })[0]
-  const propsData: UIProps[] = data ? data.props : []
+  const propsData = data ? data.props : []
+
   const fragmentId = (propsName: string) => {
     return `props-${propsName.replace(' ', '-')}`
   }
-  if (propsData.length === 0) {
+  if (propsData === null || propsData.length === 0) {
     return <Text as={'p'}>Propsは設定されていません。</Text>
   }
+
   return (
     <>
       {showTitle && (
@@ -70,30 +106,31 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
           {name} props
         </FragmentTitle>
       )}
+      {displayVersion !== versionData.version && <Text as={'p'}>{`v${versionData.version}の情報を表示しています。`}</Text>}
       <Wrapper>
         <>
           {propsData.map((prop) => (
-            <PropContent key={prop.name}>
+            <PropContent key={prop?.name}>
               <PropName>
-                <span>{prop.name}</span>
-                {prop.required && <StatusLabel type="red">必須</StatusLabel>}
-                {prop.description.includes('@deprecated') && <WarningIcon alt="非推奨" />}
+                <span>{prop?.name}</span>
+                {prop?.required && <StatusLabel type="red">必須</StatusLabel>}
+                {prop?.description?.includes('@deprecated') && <WarningIcon alt="非推奨" />}
               </PropName>
               <PropTypes>
-                {prop.type.name === 'enum' ? (
-                  prop.type.value &&
+                {prop?.type?.name === 'enum' ? (
+                  prop?.type.value &&
                   prop.type.value.map((item, y) => {
                     return (
-                      <TypeTag key={y} color={pickTypeColor(item.value)}>
-                        {item.value}
+                      <TypeTag key={y} color={pickTypeColor(item?.value ?? '')}>
+                        {item?.value}
                       </TypeTag>
                     )
                   })
                 ) : (
-                  <TypeTag color={pickTypeColor(prop.type.name)}>{prop.type.name}</TypeTag>
+                  <TypeTag color={pickTypeColor(prop?.type?.name ?? '')}>{prop?.type?.name}</TypeTag>
                 )}
               </PropTypes>
-              <PropDescription dangerouslySetInnerHTML={{ __html: marked.parse(prop.description) }} />
+              <PropDescription dangerouslySetInnerHTML={{ __html: marked.parse(prop?.description ?? '') }} />
             </PropContent>
           ))}
         </>

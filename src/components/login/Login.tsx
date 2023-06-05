@@ -1,4 +1,4 @@
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 import React, { FC, useContext, useState } from 'react'
 import { Button, FaLockIcon, Input } from 'smarthr-ui'
@@ -12,8 +12,16 @@ export const LoginPage: FC = () => {
 
   return (
     <Wrapper>
-      <h1>限定コンテンツログイン</h1>
-      <p>SmartHR社従業員・制作パートナーが社内限定のリソースを閲覧・ダウンロードする場合は、ログインしてください。</p>
+      <h1>従業員ログイン</h1>
+      <p>ログインすると限定コンテンツにアクセスできます。パスワードの確認方法は2つあります。</p>
+      <ul>
+        <li>
+          <p>SmartHR社の1Passwordを利用する</p>
+        </li>
+        <li>
+          <p>SmartHR社のSlackに「SDSパスワード」と入力する（自動レスポンスがあります）</p>
+        </li>
+      </ul>
       <div className="inputs">
         <Input
           type="password"
@@ -33,8 +41,6 @@ export const LoginPage: FC = () => {
         </Button>
 
         {errMessage !== '' && <span className="warn">{errMessage}</span>}
-
-        <span className="note">パスワードは1Password、または社内Slack bot「SDSパスワード」から確認できます。</span>
       </div>
     </Wrapper>
   )
@@ -127,11 +133,5 @@ const Wrapper = styled.div`
     margin: 0;
     color: ${CSS_COLOR.TEXT_BLACK};
     line-height: 1.6;
-  }
-
-  .note {
-    font-size: ${CSS_FONT_SIZE.PX_12};
-    line-height: 1.6;
-    color: ${CSS_COLOR.TEXT_GREY};
   }
 `
