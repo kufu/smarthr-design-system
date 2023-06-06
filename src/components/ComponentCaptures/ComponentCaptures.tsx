@@ -43,12 +43,9 @@ export const ComponentCaptures: FC = () => {
                 <li key={storyKind.iframeUrl}>
                   <a href={`${convertKebab(storyKind.displayName)}/`}>
                     <div>
-                      <img
-                        width={300}
-                        height={200}
-                        src={`/thumbnails/component-stories/${storyKind.thumbnailFileName}`}
-                        alt={storyKind.displayName}
-                      />
+                      {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
+                      {/* eslint-disable-next-line smarthr/a11y-image-has-alt-attribute */}
+                      <img width={300} height={200} src={`/thumbnails/component-stories/${storyKind.thumbnailFileName}`} alt="" />
                     </div>
                     <p>{storyKind.displayName}</p>
                   </a>
