@@ -41,7 +41,7 @@ export const ComponentCaptures: FC = () => {
             {node.storyKinds.map((storyKind) => {
               return storyKind.iframeUrl ? (
                 <li key={storyKind.iframeUrl}>
-                  <a href={convertKebab(storyKind.displayName)}>
+                  <a href={`${convertKebab(storyKind.displayName)}/`}>
                     <div>
                       <img
                         width={300}
