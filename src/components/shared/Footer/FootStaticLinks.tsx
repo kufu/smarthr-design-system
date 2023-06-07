@@ -13,11 +13,6 @@ const Link1 = [
     path: '/search/',
     isExternal: false,
   },
-  {
-    title: 'ダウンロード一覧',
-    path: '/downloads/',
-    isExternal: false,
-  },
 ]
 
 const Link2 = [
