@@ -12,4 +12,4 @@ if [ -n "$img_files" ] || [ -n "$icon_files" ] || [ -n "$readme_file" ]; then
   git add 'static/downloads/*'
 fi
 
-yarn run lint-staged
+yarn lint-staged
