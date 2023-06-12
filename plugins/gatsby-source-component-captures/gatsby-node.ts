@@ -39,6 +39,7 @@ exports.createSchemaCustomization = async ({ actions }: { actions: Actions }) =>
       iframeUrl: String!
       thumbnailFileName: String!
       displayName: String!
+      componentPath: String!
       numberOfStories: Int!
     }
   `)

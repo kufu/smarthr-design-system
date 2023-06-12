@@ -1,6 +1,6 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { graphql, useStaticQuery } from 'gatsby'
-import React, { FC, useCallback } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 const query = graphql`
@@ -14,6 +14,7 @@ const query = graphql`
           iframeUrl
           thumbnailFileName
           displayName
+          componentPath
           numberOfStories
         }
       }
@@ -24,14 +25,6 @@ const query = graphql`
 // 一覧表示するサムネイル用画像は、`ts-node ./scripts/component-thumbnails/componentThumbnails.ts`を実行して生成します
 export const ComponentCaptures: FC = () => {
   const { allComponentCapture } = useStaticQuery<Queries.ComponentCaptureDataQuery>(query)
-  const convertKebab = useCallback((target: string) => {
-    return target
-      .replace(/[^a-zA-Z0-9-]/g, '') // 全角文字などの半角英数字以外を除去
-      .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-      .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
-      .toLowerCase()
-  }, [])
-
   return (
     <Wrapper>
       {allComponentCapture.nodes.map((node) => (
@@ -41,7 +34,7 @@ export const ComponentCaptures: FC = () => {
             {node.storyKinds.map((storyKind) => {
               return storyKind.iframeUrl ? (
                 <li key={storyKind.iframeUrl}>
-                  <a href={`${convertKebab(storyKind.displayName)}/`}>
+                  <a href={`/products/components/${storyKind.componentPath}/`}>
                     <div>
                       {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
                       {/* eslint-disable-next-line smarthr/a11y-image-has-alt-attribute */}
