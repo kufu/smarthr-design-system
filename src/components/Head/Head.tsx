@@ -56,7 +56,7 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
       {meta.map((item, index) => {
         return <meta key={index} name={item.name} content={item.content} />
       })}
-      <link rel="icon" href="/favicon-32x32.png" type="image/png" />
+      <link rel="icon" href="/favicon_48x48.png" type="image/png" />
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     </>
   )
