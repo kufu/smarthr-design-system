@@ -57,6 +57,11 @@ export const fetchComponentCaptures = async () => {
     const iframeUrl = `${STORYBOOK_URL}/iframe.html?id=${encodeURIComponent(id)}&viewMode=story&shortcuts=false&singleStory=true`
     const componentPath = convertComponentPath(importPath, displayName)
 
+    // 下記のものはSDSにページが無いので排除する
+    // TODO: 修正のための一時的な対応で、動的にSDSにコンポーネント用ページが存在するか判定するように修正する（もしくはSDSにもページを追加する）
+    if (groupName === 'Experimental（実験的）') return
+    if (['Balloon', 'SpreadsheetTable', 'FormControl', 'Fieldset', 'RadioButtonPanel', 'SideMenu'].includes(displayName)) return
+
     // Groupが存在しない場合は新規作成
     const storyGroup = storyGroups.find((item) => item.groupName === groupName)
     if (!storyGroup) {
