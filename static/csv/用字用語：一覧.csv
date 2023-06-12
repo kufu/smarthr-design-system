@@ -1,0 +1,105 @@
+label,slack,ok-example,ng-example,basic-reason,reason,expected,pattern,prh,spec:from,spec:to,status,only use textlint,record_id,add next to textlint,use textlint,UIテキスト,assign
+〜,true,〜,"-,−,―,ー","[""recrVEn3NYr2AV33o""]","[""recwR0nuqmNcXu06t""]",,,,,,,,recJRylxdhcy00ejJ,,,,
+！,,！（全角）,!（半角）,,"[""recAha5XdRwtCl2sE""]",$1！,/([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])![^!\?]/,「！」と「？」は単独で使う場合は全角、ペアで使う場合は半角で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,,,"[""定義済""]",,recBOtTW6XgtM6Nb4,,true,,
+!!,,!!（半角）,！！（全角）,,"[""recAha5XdRwtCl2sE""]",!!,！！,「！」と「？」は単独で使う場合は全角、ペアで使う場合は半角で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,！！,!!,"[""定義済""]",,recVsWLMwGNiDmKk5,,true,,
+!?,,??（半角）,？？（全角）,,"[""recAha5XdRwtCl2sE""]",!?,！？,「！」と「？」は単独で使う場合は全角、ペアで使う場合は半角で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,！？,!?,"[""定義済""]",,rec1cJYSPB8HG0w2L,,true,,
+？,,？（全角）,?（半角）,,"[""recAha5XdRwtCl2sE""]",$1？,/([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])\?[^!\?]/,「！」と「？」は単独で使う場合は全角、ペアで使う場合は半角で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,,,"[""定義済""]",,recIF7OMSRaxeqUhG,,true,,
+??,,!?（半角）,！？（全角）,,"[""recAha5XdRwtCl2sE""]",??,？？,「！」と「？」は単独で使う場合は全角、ペアで使う場合は半角で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,？？,??,"[""定義済""]",,recgdPOwQDCuGbA38,,true,,
+hh:mm:ss,,"15:35, 15:35:05","15時35分, 15時35分5秒, 3:35:5 PM",,"[""recwR0nuqmNcXu06t""]",$1:$3,/((0?|1)[0-9]|2[0-4])時([0-5][0-9])分([0-5][0-9])秒/,,"00:00:00,01:25:05,6:30:05,15:35:05","00時00分00秒,01時25分05秒,6時30分05秒,15時35分05秒","[""定義予定"",""定義不能""]",,recEBdserXPNNrLbd,,,,むずそうなので保留
+yyyy/mm/dd,,2019/01/01,2019年1月1日,,"[""recwR0nuqmNcXu06t""]",$1/$2/$3,/([0-9]{4})年([1-9]|0[1-9]|1[0-2])月([1-9]|0[1-9]|[12][0-9]|3[01])日/,日付はYYYY/MM/DDの形式で記載する,"2019/01/01,2019/01/01,2019/01/31,2019/12/01,2019/12/31","2019年01月01日,2019年1月1日,2019年1月31日,2019年12月01日,2019年12月31日","[""定義予定"",""定義不能""]",,recqt3laRJINjR51p,,,,むずそうなので保留
+あいこん,,アイコン,マーク,,"[""rec7Fw59rzaFSP96z""]",アイコン,/(?<!ウォーター|ベル|チェック|サービス|ランド|ロゴ|合意済み|合意済|破棄済み|破棄済|合意|合意前|「合意済み」|「破棄済み」|見本|アット|ブック)マーク(?![ァ-ヶ])(?=.*)/,「マーク」ではなく「アイコン」と表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,マーク,アイコン,"[""定義済""]",,recI1rZ1SXXlXjQZH,,true,,kuvanov
+あくせしびりてぃ,,アクセシビリティ,アクセシビリティー,,"[""recKk3i3NODrXp6D3""]",アクセシビリティ,アクセシビリティー,‐er、‐or、‐arで終わる単語は「長音あり」、-yで終わる単語は「長音なし」とする（例外あり） https://smarthr.design/products/contents/idiomatic-usage/usage/,アクセシビリティー,アクセシビリティ,"[""定義済""]",,recNir4NEwDQUOilj,,true,,
+あっぷろーど,,アップロード,-,,"[""recRxfQ11NyiacwiO""]",,,,,,"[""定義不要""]",,recFSU4oYYsBPapJg,,,,
+あとで,,あとで,後で,"[""recWCPX1UhchVaFjO""]",,あとで,/(?<![始了直])後で/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,"後でやります。,評価開始後でも編集できます。","あとでやります。,評価開始後でも編集できます。","[""定義済""]",,recktTsP42wM4qJTL,,true,,
+あらかじめ,,あらかじめ,予め,"[""recWCPX1UhchVaFjO""]",,あらかじめ,予め,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,予め,あらかじめ,"[""定義済""]",,recQeq6srYsQZfb9Q,,true,,
+あらためて,true,改めて,あらためて,,,改$1,/あらた([めま])/,,あらためて,改めて,"[""定義済""]",,recEt2ssyVOkVrtFi,,true,,
+ある,,ある,有る,"[""recWCPX1UhchVaFjO""]",,あ$1,/有(っ|り|る|れ|ろ)/,"平仮名にしたほうが読みやすい漢字は平仮名にする
+https://smarthr.design/products/contents/writing-style/","有った,有り,有る,有れば,有ろう","あった,あり,ある,あれば,あろう","[""定義済""]",,reciqeoyFk70eiqbQ,,true,,aguringo
+あわせて,,あわせて,"合わせて, 併せて","[""recWCPX1UhchVaFjO""]","[""recUxtcs2EldiKQ1U""]",あわせて,/(?<![を|と|に|へ|は|も|組み|問い|掛け])(合わせて|併せて)/,「あわせて」は平仮名で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/#recUxtcs2EldiKQ1U-0,"合わせて,併せて,AとBを併せて入力,問い合わせて","あわせて,あわせて,AとBを併せて入力,問い合わせて","[""定義済""]",,recu2Rpya38KFEnsw,,true,,mad
+いたします,,いたします,致します,"[""recWCPX1UhchVaFjO""]",,いたします,致します,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,致します,いたします,"[""定義済""]",,reclDQgpmJnILDoV8,,true,,
+いただく,,いただく,頂く,"[""recWCPX1UhchVaFjO""]",,いただく,頂く,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,頂く,いただく,"[""定義済"",""外部プラグインで定義済""]",,receR2cN2NG4x5JD5,,true,,
+いどう,,移動,遷移,,"[""rec6f6OqHl88LkYmw""]",移動,遷移,「移動」と表現し、「遷移」の使用は控える https://smarthr.design/products/contents/idiomatic-usage/usage/,遷移,移動,"[""定義済""]",,recJjqCpyqHOI9KcG,true,true,,snow
+うぃんどう,true,ウィンドウ,ウインドウ,,"[""recvhB6VJstpBQKeV""]",ウィンドウ,ウインドウ,「ウィ/ウェ/ウォ」を使用する https://smarthr.design/products/contents/idiomatic-usage/usage/,ウインドウ,ウィンドウ,"[""定義不要""]",,recyKtglJB6DIWBMX,,,,kuvanov
+うぇいと,true,ウェイト,ウエイト,,"[""recvhB6VJstpBQKeV""]",ウェイト,ウエイト,「ウィ/ウェ/ウォ」を使用する https://smarthr.design/products/contents/idiomatic-usage/usage/#recvhB6VJstpBQKeV-0,大きなウエイトを占める,大きなウェイトを占める,"[""定義済""]",,rec3CKNaYraO6ItBv,,true,,mad
+うぇぶ,,ウェブ,"Web, web",,"[""rec8ZIzDZQ47CFM5l""]",ウェブ,/(Web|web|WEB)(?!ブラウザ)/,「ウェブ」はカタカナで表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,"Web,web,Webブラウザ","ウェブ,ウェブ,Webブラウザ","[""定義予定"",""定義不能""]",,recquC39pwKLsgNJy,,,,むずそうなので保留
+うぇぶさいと,,ウェブサイト,"Webサイト, webサイト",,"[""rec8ZIzDZQ47CFM5l""]",ウェブサイト,"Webサイト,webサイト",固有名詞でない限り、「ウェブ」とする,ウェブサイト,"Webサイト, webサイト","[""定義予定"",""定義不能""]",,rec4A9tg1ssS8TgD0,,,,むずそうなので保留
+うぇぶぺーじ,,ウェブページ,"Webページ, webページ",,"[""rec8ZIzDZQ47CFM5l""]",ウェブページ,"Webページ,webページ",固有名詞でない限り、「ウェブ」とする,ウェブページ,"Webページ, webページ","[""定義予定"",""定義不能""]",,rec9xW47AjGnr9Dm8,,,,むずそうなので保留
+おきゃくさま,,お客さま,お客様,"[""recWCPX1UhchVaFjO""]","[""recmtqX0vFmEftHk2""]",お客さま,お客様,お客さま、管理者さま、担当者さま、ユーザーさまを使い分ける https://smarthr.design/products/writing/idiomatic-usage/usage/,お客さま,お客様,"[""別の行で定義""]",,recXDNwYwTGHYJhTK,,,,
+おこなう,,行なう,行う,,"[""recE569ZU4tA37EpN""]",行な$1,/おこな|行([いうえおわっ])/,「行なう」と表現し、「行う」の使用は控える https://smarthr.design/products/contents/idiomatic-usage/usage/,"行い,行う,行え,行おう,行わない,行って,おこない,おこなう,おこなえ,おこなおう,おこなわない,おこなって","行ない,行なう,行なえ,行なおう,行なわない,行なって,行ない,行なう,行なえ,行なおう,行なわない,行なって","[""定義済""]",,rec185zxKtQArUznm,,true,,kero
+おす,,"（ボタンを,メニューを）押す","クリックする, タップする",,"[""recVAeJr4Di3vQHeA""]",,,プロダクト内でユーザーにボタン押下を促す際は「押す」を使用する,押す,"クリックする, タップする","[""定義予定"",""定義不能""]",,recSw0NmKax89t0ng,,,,無理
+おもな,,主な,おもな,,,主な,おもな,,おもな作業はhogeです,主な作業はhogeです,"[""定義済""]",,recRKD2EqZUfKXWjQ,true,true,,kawakichi
+おもに,,主に,おもに,,,主に,おもに,,おもに労務担当者が使用します,主に労務担当者が使用します,"[""定義済""]",,recycDPrn5IJsxfyl,true,true,,kuny
+および,,および,及び,"[""recWCPX1UhchVaFjO""]",,および,及び,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,及び,および,"[""定義済""]",,recLmYtBIbXpwg8ZJ,,true,,
+かいぜん,,改善,カイゼン,,"[""recynRvLnjTngv5h0""]",改善,カイゼン,「改善」と漢字で表記し、「カイゼン」の使用は控える https://smarthr.design/products/contents/idiomatic-usage/usage/,カイゼンしました,改善しました,"[""定義済""]",,recsqvuS3CYxoCPIU,,true,,
+かきだし,,書き出し,エクスポート,,"[""rechkOJowITF3hkaX""]",書き出し,エクスポート,「エクスポート」ではなく、「書き出し」を使用する,書き出し,エクスポート,"[""定義予定"",""定義不能""]",,reclc0ZMahgi4vfpa,,,,影響でかそうなので保留
+かげつ,true,か月,"ヶ月, ケ月, 箇月, 個月, ヵ月, カ月",,"[""rec1wuNfx5bfUqAxd""]",か月,/ヶ月|ケ月|箇月|個月|ヵ月|カ月/,「か所」「か月」と表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,"給与明細が1ヶ月単位で発行されます,給与明細が1箇月単位で発行されます","給与明細が1か月単位で発行されます,給与明細が1か月単位で発行されます","[""定義済""]",,rect1QdTqfTZe0WRm,true,true,,snow
+かしょ,true,か所,"ヶ所,ケ所,箇所,個所,ヵ所,カ所",,"[""rec1wuNfx5bfUqAxd""]",か所,/(?<![^\x01-\x7E])(ヶ|ケ|箇|個|ヵ|カ)所/,「か所」「か月」と表記する https://smarthr.design/products/contents/idiomatic-usage/usage/#rec1wuNfx5bfUqAxd-0,"3ヶ所,3ケ所,3箇所,3個所,3ヵ所,3カ所","3か所,3か所,3か所,3か所,3か所,3か所","[""定義済""]",,rectxy0LrSOPnpmDs,true,true,,keroyama
+かすたむますたー,true,カスタムマスター,"カスタムマスタ, カスタムマスターデータ",,"[""recOUKORjYkZyMeY6""]",カスタムマスター,/(カスタムマスターデータ|カスタムマスタ(?!ー))/,マスターデータの総称は「マスターデータ」、総称以外は「◯◯マスター」と表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,"カスタムマスタ,カスタムマスターデータ,カスタムマスター","カスタムマスター,カスタムマスター,カスタムマスター","[""定義済""]",,recTMQAGxVPuTA0wz,,true,,
+がめん,true,画面,"ウィンドウ, ダイアログ, モーダル",,"[""recuyZUYZxqRrVbeB""]",画面,/モーダルウィンドウ|モーダルダイアログ|ウィンドウ|ダイアログ|モーダル/,アプリケーションの操作画面は「画面」で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/#recuyZUYZxqRrVbeB-0,"別ウィンドウで開く,削除ダイアログ,モーダルを閉じる","別画面で開く,削除画面,画面を閉じる","[""定義済""]",,recz0dfmniPZObCVI,true,true,,kuny
+かんりしゃさま,,管理者さま,管理者様,"[""recWCPX1UhchVaFjO""]","[""recmtqX0vFmEftHk2""]",管理者さま,管理者様,お客さま、管理者さま、担当者さま、ユーザーさまを使い分ける,管理者さま,管理者様,"[""別の行で定義""]",,recHIIRu6SnFyZsnU,,,,
+ぎがばいと,,GB,ギガバイト,,"[""recmk5vIbS65cWjA6""]",GB,ギガバイト,ファイルサイズは基本的に英字2文字で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/#recmk5vIbS65cWjA6-0,ギガバイト,GB,"[""定義済""]",,rec14ESrmCzUEPyM8,true,true,,keroyama
+きぎょうあかうんと,true,企業アカウント,テナント,,"[""reclmu4XVUXg51Y0p""]",企業アカウント,/テナント(?!ID)/,「企業アカウント」と表現し、「テナント」の使用は控える https://smarthr.design/products/contents/idiomatic-usage/usage/,テナント,企業アカウント,"[""定義済""]",,recLD6SGDN1YlGH0r,,true,,
+きろばいと,,KB,キロバイト,,"[""recmk5vIbS65cWjA6""]",KB,キロバイト,"ファイルサイズは基本的に英字2文字で表記する
+https://smarthr.design/products/contents/idiomatic-usage/usage/#recmk5vIbS65cWjA6-0",1キロバイト,1KB,"[""定義済""]",,recvcfMgckdZKYBon,,true,,aguringo
+くえり,,クエリ,クエリー,,"[""recKk3i3NODrXp6D3""]",クエリ,クエリー,‐er、‐or、‐arで終わる単語は「長音あり」、-yで終わる単語は「長音なし」とする（例外あり） https://smarthr.design/products/contents/idiomatic-usage/usage/,クエリー,クエリ,"[""定義済""]",,rec74jL4Dz7yaGLUN,,true,,
+ください,,ください,下さい,"[""recWCPX1UhchVaFjO""]",,ください,下さい,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,下さい,ください,"[""定義済""]",,recawRZOeupB4AM9k,,true,,
+くわしく,true,詳しく,くわしく,,,詳し,くわし,,くわしくは,詳しくは,"[""定義済""]",,rec6DgxHjZep44H09,,true,,
+ごぞんじ,,ご存じ,ご存知,"[""recWCPX1UhchVaFjO""]",,ご存じ,ご存知,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,ご存知,ご存じ,"[""定義済""]",,recOX3nNJ9AhLrd7a,,true,,
+こと,,こと,事,"[""recWCPX1UhchVaFjO""]",,こと,/(?<![記|大|仕|返|無|食|見|議|当])事(?!情|件|前|後|象|例|実|体|態|項|務|業|柄|故)/,平仮名にしたほうが読みやすい漢字は平仮名にする,"設定された事により,発生する事があります,記事,事件","設定されたことにより,発生することがあります,記事,事件","[""外部プラグインで定義済""]",,recFdaJC14sJ97tUz,,,,
+ごと,,ごと,毎,"[""recWCPX1UhchVaFjO""]",,ごと$1,/毎([にので])/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,"口座毎に,項目毎の,フォーム毎で","口座ごとに,項目ごとの,フォームごとで","[""定義済"",""外部プラグインで定義済""]",,recLS9EdkzODMFcyb,,true,,
+こぴーあんどぺーすと,true,コピーアンドペースト,"コピー＆ペースト, コピー・ペースト, コピペ",,,コピーアンドペースト,/コピー&ペースト|コピー＆ペースト|コピー・ペースト|コピペ/,,"コピー&ペースト,コピー＆ペースト,コピー・ペースト,コピペ","コピーアンドペースト,コピーアンドペースト,コピーアンドペースト,コピーアンドペースト","[""定義済""]",,reclIzV268RLlEDN5,true,true,,keroyama
+ころ,true,頃,"ころ, ごろ",,"[""recoMZY4zaXJlHIiH""]",頃,/[^まご|^こ|^み|^ん]+(ころ|ごろ)[^がす|^っ|^ん]/,「頃」は漢字で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,"ころ,ごろ","頃,頃","[""定義予定""]",,recIW0Yu9wjEC8S3E,,,,kuvanov
+さーばー,,サーバー,サーバ,,"[""recKk3i3NODrXp6D3""]",サーバー,/サーバ(?!ー)/,‐er、‐or、‐arで終わる単語は「長音あり」、-yで終わる単語は「長音なし」とする（例外あり） https://smarthr.design/products/contents/idiomatic-usage/usage/,受信サーバに拒否されました,受信サーバーに拒否されました,"[""定義済""]",,rec4NXOMaZmUywRLH,,true,,
+ざいしょくちゅう,,在職中,在籍中,,"[""rech4j4ZvDVJ3XisV""]",在職中,在籍中,従業員の休職や退職を表すステータスの総称は「在籍状況」と表現し、勤務中の状態は「在職中」と表現する https://smarthr.design/products/contents/idiomatic-usage/usage/,在籍中,在職中,"[""定義済""]",,recJsRiFWMnKkS3vP,,true,,
+ざいせきじょうきょう,,在籍状況,在職状況,,"[""rech4j4ZvDVJ3XisV""]",在籍状況,在職状況,従業員の休職や退職を表すステータスの総称は「在籍状況」と表現し、勤務中の状態は「在職中」と表現する https://smarthr.design/products/contents/idiomatic-usage/usage/,在職状況,在籍状況,"[""定義済""]",,recyQC9SuJwF2oxaR,,true,,
+さいよみこみ,,再読み込み,"再読込,リロード","[""rec2dXhsgUwiy472Q""]","[""recK31GhX5zoFsAnA""]",再読み込み,/再(読込み|読込)|リロード/,「再読み込み」と表現し、「更新」「リロード」の使用は控える https://smarthr.design/products/contents/idiomatic-usage/usage/,"再読込み,再読込,リロード,再読み込み","再読み込み,再読み込み,再読み込み,再読み込み","[""定義済""]",,recndzwXZhR8qEpTH,,true,,
+さきほど,,さきほど,先程,"[""recWCPX1UhchVaFjO""]",,さきほど,先程,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,先程,さきほど,"[""定義済"",""外部プラグインで定義済""]",,recBYWt4Uga7HURqa,,true,,
+さしもどし,,差し戻し,差戻し,,"[""recm8V38MkxhYrKNr""]",差し戻し,差戻し,送りがなを付けて表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,差戻し,差し戻し,"[""定義済""]",,recqbfgHx3OyH147z,,true,,
+さぶどめいん,true,サブドメイン,-,,,サブドメイン,テナントID,「テナントID」は社内用語のため、「サブドメイン」に置き換えます。内部的に使用する「tenant_id」はそのまま表記してください。,テナントID,サブドメイン,"[""定義済""]",,receS8shqB0sGIXpp,,true,,
+さま,,さま,様,"[""recWCPX1UhchVaFjO""]",,$1さま,/(従業員|お客|ユーザー|皆)様/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,"従業員様,お客様,ユーザー様,皆様","従業員さま,お客さま,ユーザーさま,皆さま","[""定義済""]",,recCWNDneO2Napx4L,,true,,
+さまざま,,さまざま,様々,"[""recWCPX1UhchVaFjO""]",,さまざま,様々,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,様々,さまざま,"[""定義済"",""外部プラグインで定義済""]",,recesgpQxBXJYRyyK,,true,,
+さらに,,さらに,更に,"[""recWCPX1UhchVaFjO""]",,さら$1,/(?<!変)更(に|なる)/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,"更に,更なる","さらに,さらなる","[""定義済""]",,recun7l5rJsIv90Ao,,true,,
+さんしょう,true,参照してください,"ご確認ください, 御覧ください, ご覧ください, ご参照ください","[""rec9dReP9sC65CpJU""]","[""recQYlscCrhLSGpyI""]",,,,,,"[""定義不能""]",,recwYlIdPbBWYmecb,,,,
+しすてむひょうじゅんますたー,true,システム標準マスター,"システム標準マスタ, システム標準マスターデータ",,"[""recOUKORjYkZyMeY6""]",システム標準マスター,/(システム標準マスターデータ|システム標準マスタ(?!ー))/,マスターデータの総称は「マスターデータ」、総称以外は「◯◯マスター」と表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,"システム標準マスタ,システム標準マスターデータ,システム標準マスター","システム標準マスター,システム標準マスター,システム標準マスター","[""定義済""]",,rec714J5wde9rhuKp,,true,,
+したうえで,,〜したうえで,〜した上で,"[""recWCPX1UhchVaFjO""]",,したうえで,した上で,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,した上で,したうえで,"[""定義済""]",,recAWk1zgjIdFRBVx,,true,,
+しばらく,,しばらく,暫く,"[""recWCPX1UhchVaFjO""]",,しばらく,暫く,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,暫く,しばらく,"[""定義済""]",,rec5apgRIHrfWgHwO,,true,,
+しよう,,使用,利用（主語がプロダクトの時）,,"[""rec1tzzEajk67xOYe""]",,,,,,"[""定義不能""]",,rec01SVOOL9aT8Fhs,,,,
+すでに,,すでに,既に,"[""recWCPX1UhchVaFjO""]",,すでに,既に,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,既に,すでに,"[""定義済"",""外部プラグインで定義済""]",,recLbP6SQU4QHpbCJ,,true,,
+すなわち,,すなわち,即ち,"[""recWCPX1UhchVaFjO""]",,すなわち,即ち,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,即ち,すなわち,"[""定義済""]",,recEdzDLEwH13QFtb,,true,,
+すべて,,すべて,全て,"[""recWCPX1UhchVaFjO""]",,すべて,全て,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,全て,すべて,"[""定義済""]",,rechdxIh4sX7YEpsR,,true,,
+すまーとえいちあーるおぷしょんきのう,true,"SmartHRオプション機能, オプション機能",プラスアプリ,,"[""recIMc9ARxOlEBnrr""]",オプション機能,プラスアプリ,アプリケーションの呼び方には「SmartHR基本機能」と「オプション機能」を使用する https://smarthr.design/products/contents/idiomatic-usage/usage/,通勤経路検索機能はプラスアプリです,通勤経路検索機能はオプション機能です,"[""定義済""]",,rec8mGz5fgn4mIN16,true,true,,snow
+すまーとえいちあーるおぷしょんきのうのかんりしゃ,true,"SmartHRオプション機能の管理者,組織図機能管理者,サーベイ機能管理者,評価機能管理者,配置シミュレーション管理者","SmartHR管理者,SmartHRの管理者",,"[""reciifo0d9bgVfEzj""]",,,,,,,,reciHwBKt5HDSVWz4,,,,
+すまーとえいちあーるきほんきのう,true,"SmartHR基本機能, 
+基本機能","SmartHR本体, 本体アプリ",,"[""recIMc9ARxOlEBnrr""]",SmartHR基本機能,/SmartHR本体アプリ|本体アプリ|SmartHR本体/,アプリケーションの呼び方には「SmartHR基本機能」と「オプション機能」を使用する https://smarthr.design/products/contents/idiomatic-usage/usage/,"SmartHR本体アプリの権限ごとに設定します,SmartHR本体の権限ごとに設定します,本体アプリの権限ごとに設定します","SmartHR基本機能の権限ごとに設定します,SmartHR基本機能の権限ごとに設定します,SmartHR基本機能の権限ごとに設定します","[""定義済""]",,recZuLjSqMcKqbEVe,true,true,,snow
+すまーとえいちあーるきほんきのうのかんりしゃ,true,"SmartHR基本機能の管理者,基本機能管理者","SmartHR管理者,SmartHRの管理者",,"[""reciifo0d9bgVfEzj""]",,,,,,,,rec5aCnTqNTPU3snX,,,,
+すまーとふぉん,,スマートフォン,"スマホ, スマフォ, スマートホン",,"[""recfxwmTf7qQv8yFa""]",スマートフォン,"スマートホン,スマフォ,スマホ",「スマートフォン」と表現し、「スマホ」などの表現は控える https://smarthr.design/products/writing/idiomatic-usage/usage/,"スマートホン,スマフォ,スマホ","スマートフォン,スマートフォン,スマートフォン","[""定義済""]",,recZlCK7QRBtUOIBm,,true,,
+せきゅりてぃ,,セキュリティ,セキュリティー,,"[""recKk3i3NODrXp6D3""]",セキュリティ,セキュリティー,‐er、‐or、‐arで終わる単語は「長音あり」、-yで終わる単語は「長音なし」とする（例外あり） https://smarthr.design/products/contents/idiomatic-usage/usage/,セキュリティー,セキュリティ,"[""定義済""]",,rec5V5BCUc6CcdBFP,,true,,
+ぜひ,,ぜひ,是非,"[""recWCPX1UhchVaFjO""]",,ぜひ,/是非(?!を|に|にも)/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,是非,ぜひ,"[""定義済""]",,recX2BIUvTVB2Oywy,,true,,
+せんたくする,true,選択する,選ぶ,,,,,,,,"[""定義予定""]",,rec2kOyPVSIErIO5E,,,,影響でかそうなので保留
+せんたくする,true,（ラジオボタンを）選択する,,,,,,,,,"[""定義不能""]",,recvPqSnfsTFiqNDy,,,,
+そば,,そば,側,"[""recWCPX1UhchVaFjO""]",,そば$1,/(?<![々〇〻\u3400-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF])側([にへが])/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,ボタンの側にある,ボタンのそばにある,"[""定義済""]",,recpkEiU0mJ7NbF4U,,true,,
+そふとうぇあ,,ソフトウェア,ソフトウエア,,"[""recvhB6VJstpBQKeV""]",ソフトウェア,ソフトウエア,「ウィ/ウェ/ウォ」を使用する https://smarthr.design/products/writing/idiomatic-usage/usage/,ソフトウエア,ソフトウェア,"[""定義済""]",,recBW07R2RyqFOHMw,,true,,
+たいぽぐらふぃ,,タイポグラフィ,タイポグラフィー,,"[""recKk3i3NODrXp6D3""]",タイポグラフィ,タイポグラフィー,‐er、‐or、‐arで終わる単語は「長音あり」、-yで終わる単語は「長音なし」とする（例外あり） https://smarthr.design/products/contents/idiomatic-usage/usage/,タイポグラフィー,タイポグラフィ,"[""定義済""]",,recLHVZKwHfbcIsFD,,true,,
+だうんろーど,,ダウンロード,-,,"[""recRxfQ11NyiacwiO""]",,,,,,"[""定義不要""]",,recktiTgd8d6ozIWy,,,,
+たくさん,,たくさん,沢山,"[""recWCPX1UhchVaFjO""]",,たくさん,沢山,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,沢山,たくさん,"[""定義済"",""外部プラグインで定義済""]",,recVUPwlgr8J0rSJ5,,true,,
+ただ,,ただ,只,"[""recWCPX1UhchVaFjO""]",,ただ,只,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,只,ただ,"[""定義済""]",,recJkDfSJ5I9L57AY,,true,,
+ただし,,ただし,但し,"[""recWCPX1UhchVaFjO""]",,ただし,但し,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,但し,ただし,"[""定義済""]",,recvHhRzLycoX5bmT,,true,,
+ため,,ため,為,"[""recWCPX1UhchVaFjO""]",,ため$1,/為([にで])/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,為です,ためです,"[""定義済"",""外部プラグインで定義済""]",,recup47l9UVN9Sxkd,,true,,
+たんとうしゃさま,,担当者さま,担当者様,,"[""recmtqX0vFmEftHk2""]",担当者さま,担当者様,お客さま、管理者さま、担当者さま、ユーザーさまを使い分ける,担当者さま,担当者様,"[""別の行で定義""]",,recWfSTUkD6Uz5WCq,,,,
+ちぇっくをいれる,true,（チェックボックスに）チェックを入れる/外す,チェックする,,,,,,,,"[""定義不能""]",,recaodAeS373hiKHo,,,,
+つける,,つける,付ける,"[""recWCPX1UhchVaFjO""]",,つけ$1,/(?<!受け|貼り|紐)付け([なてるれよ])/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/writing/idiomatic-usage/usage/,"付けない,付けて,付ける,付ければ,付けよう","つけない,つけて,つける,つければ,つけよう","[""定義済""]",,rec9rHtmUUf4TyaTj,,true,,ibulog
+できる,,できる,出来る,"[""recWCPX1UhchVaFjO""]",,でき$1,/出来([かがのをは過す損ずなまるたれてそ])/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/,出来る,できる,"[""定義済""]",,recXqUKacKZXtOfP1,,true,,
+てびき,true,手引き,手引,,"[""recm8V38MkxhYrKNr""]",手引き,/手引(?!き)/,送りがなを付けて表記する https://smarthr.design/products/contents/idiomatic-usage/usage/#recm8V38MkxhYrKNr-0,"サーベイ実施の手引を参照,手引き","サーベイ実施の手引きを参照,手引き","[""定義済""]",,recln33xhC5i3nbIB,,true,,mad
+てらばいと,,TB,テラバイト,,"[""recmk5vIbS65cWjA6""]",TB,テラバイト,ファイルサイズは基本的に英字2文字で表記する https://smarthr.design/products/contents/idiomatic-usage/usage/#recmk5vIbS65cWjA6-0,1テラバイト,1TB,"[""定義済""]",,reckCwB1Kp8vZxcn4,true,true,,kuny
+といあわせ,,問い合わせ,問合せ,,"[""recm8V38MkxhYrKNr""]",問い合わせ,問合せ,送りがなを付けて表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,問合せ,問い合わせ,"[""定義済""]",,recZ9wwhBZRLO8OXO,,true,,
+どうさかんきょう,true,動作環境,推奨環境,,"[""recrOBmlqFtzIUKDh""]",動作環境,推奨環境,"「動作環境」と表現し、「推奨環境」の使用は控える
+https://smarthr.design/products/contents/idiomatic-usage/usage/#recrOBmlqFtzIUKDh-0",推奨環境,動作環境,"[""定義済""]",,recbT0uEN4cVLVThj,,true,,aguringo
+とおり,,とおり,通り,"[""recWCPX1UhchVaFjO""]",,,,,,,"[""外部プラグインで定義済""]",,rectaSxsNgUdJxZXS,,,,
+とき,,とき,時,"[""recWCPX1UhchVaFjO""]",,,,,,,"[""外部プラグインで定義済""]",,recdqcT5thhyFhQqF,,,,
+とくいなげんご,true,得意な言語,"母語, 母国語",,"[""recYdKTei4hYuiFYX""]",,,,,,"[""定義不要""]",,recCIrk9LwoUirHnr,,,,
+とも,,とも,共に,"[""recWCPX1UhchVaFjO""]",,ともに,/(?<!公)共に/,平仮名にしたほうが読みやすい漢字は平仮名にする https://smarthr.design/products/contents/writing-style/#recWCPX1UhchVaFjO-0,"共にする,公共のために","ともにする,公共のために","[""定義済""]",,reclqUnFOVe1n75uS,true,true,,kuny
+ともなう,true,伴う,ともなう,,,伴$1,/ともな([いうえおわっ])/,,"ともない,ともなう,ともなえ,ともなおう,ともなわない,ともなって","伴い,伴う,伴え,伴おう,伴わない,伴って","[""定義済""]",,recGwltCr9bOed7Y2,,true,,aguringo
+どらっぐあんどどろっぷ,,ドラッグアンドドロップ,"ドラッグ＆ドロップ, ドラッグ・ドロップ",,,ドラッグアンドドロップ,"ドラッグ＆ドロップ,ドラッグ・ドロップ",,"ドラッグ＆ドロップ,ドラッグ・ドロップ","ドラッグアンドドロップ,ドラッグアンドドロップ","[""定義済""]",,rec0PR2CBjlabUsub,,true,,
+とりけし,,取り消し,取消,,"[""recm8V38MkxhYrKNr""]",取り消し,取消,送りがなを付けて表記する https://smarthr.design/products/contents/idiomatic-usage/usage/,取消,取り消し,"[""定義済""]",,recH9Rc7GnNUYeyzF,,true,,
+とりこみ,,取り込み,インポート,,"[""recmIiinydl9c2TVi""]",取り込み,インポート,「インポート」ではなく「取り込み」を使用する,取り込み,インポート,"[""定義予定"",""定義不能""]",,recB00Gi70BYWePay,,,,影響でかそうなので保留
+どろっぷだうんりすと,true,ドロップダウンリスト,"プルダウン,プルダウンメニュー,プルダウンリスト,ドロップダウン,ドロップダウンメニュー",,"[""recNvOzAMwrpwYJiT""]",ドロップダウンリスト,/プルダウン(メニュー|リスト)|プルダウン|ドロップダウンメニュー|ドロップダウン(?!リスト)/,「ドロップダウンリスト」と表現し、「プルダウンメニュー」などの使用は控える https://smarthr.design/products/contents/idiomatic-usage/usage/,"プルダウンから選ぶ,プルダウンリストから選ぶ,ドロップダウンメニューから選ぶ,プルダウンメニューから選ぶ,ドロップダウンから選ぶ","ドロップダウンリストから選ぶ,ドロップダウンリストから選ぶ,ドロップダウンリストから選ぶ,ドロップダウンリストから選ぶ,ドロップダウンリストから選ぶ","[""定義済""]",,recRO2ZZWQGtKK0pn,,true,,inaba

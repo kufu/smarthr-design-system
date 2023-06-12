@@ -10,7 +10,7 @@ import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query AppWritingTable {
-    appWritingData: allAirtable(filter: { table: { eq: "UIテキスト" } }) {
+    appWritingData: allSdsAirtable(filter: { table: { eq: "UIテキスト" } }) {
       edges {
         node {
           data {

@@ -93,7 +93,7 @@ export const query = graphql`
         }
       }
     }
-    airTable: allAirtable(filter: { table: { eq: $airTableName } }) {
+    airTable: allSdsAirtable(filter: { table: { eq: $airTableName } }) {
       edges {
         node {
           data {
