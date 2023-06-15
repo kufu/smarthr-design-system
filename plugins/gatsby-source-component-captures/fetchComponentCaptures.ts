@@ -1,3 +1,7 @@
+import fs from 'fs/promises'
+import { cwd } from 'node:process'
+import path from 'path'
+
 const STORYBOOK_URL = 'https://story.smarthr-ui.dev'
 
 type Story = {
@@ -41,15 +45,25 @@ const convertComponentPath = (importPath: string, displayName: string) => {
   return componentDirPath === '' ? componentPathName : `${componentDirPath}/${componentPathName}`
 }
 
+const isExistsFile = async (filePath: string) => {
+  try {
+    await fs.stat(filePath)
+    return true
+  } catch (err) {
+    return false
+  }
+}
+
 export const fetchComponentCaptures = async () => {
   const response = await fetch(`${STORYBOOK_URL}/stories.json`)
   const jsonData = await response.json()
   const storiesMap: { [id: string]: Story } = jsonData.stories
 
   const storyGroups: StoryGroup[] = []
-  Object.keys(storiesMap).forEach((id) => {
+
+  for (const id in storiesMap) {
     const { kind, tags, importPath } = storiesMap[id]
-    if (tags.includes('docs')) return // ドキュメントはコンポーネント一覧として表示しない
+    if (tags.includes('docs')) continue // ドキュメントはコンポーネント一覧として表示しない
 
     const groupName = kind.split('/')[0]
     const displayName = kind.split('/')[1]
@@ -57,8 +71,14 @@ export const fetchComponentCaptures = async () => {
     const iframeUrl = `${STORYBOOK_URL}/iframe.html?id=${encodeURIComponent(id)}&viewMode=story&shortcuts=false&singleStory=true`
     const componentPath = convertComponentPath(importPath, displayName)
 
-    // 下記のものはSDSにページが無いので排除する
-    if (['Balloon', 'SideMenu'].includes(displayName)) return
+    const componentsDirPath = path.resolve(cwd(), 'content', 'articles', 'products', 'components')
+    const mdxFilePath = `${componentsDirPath}/${componentPath}.mdx`
+    const indexMdxFilePath = `${componentsDirPath}/${componentPath}/index.mdx`
+
+    const isExistsMdx = (await isExistsFile(mdxFilePath)) || (await isExistsFile(indexMdxFilePath))
+    if (!isExistsMdx) {
+      continue
+    }
 
     // Groupが存在しない場合は新規作成
     const storyGroup = storyGroups.find((item) => item.groupName === groupName)
@@ -76,7 +96,7 @@ export const fetchComponentCaptures = async () => {
           },
         ],
       })
-      return
+      continue
     }
 
     // Kindが存在しない場合は新規作成
@@ -90,11 +110,11 @@ export const fetchComponentCaptures = async () => {
         componentPath,
         numberOfStories: 1,
       })
-      return
+      continue
     }
 
     // GroupもKindも既に存在すればカウントアップ
     storyKind.numberOfStories += 1
-  })
+  }
   return storyGroups
 }
