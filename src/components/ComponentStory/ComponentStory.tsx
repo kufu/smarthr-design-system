@@ -24,7 +24,7 @@ import { ResizableContainer } from './ResizableContainer'
 
 type Props = {
   name: string
-  dirName: string | null
+  dirName?: string
 }
 
 const query = graphql`

@@ -37,11 +37,11 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, 
 
     const frontmatter = node.frontmatter as typeof node & {
       storyName: string
-      storyDirName: string | null
+      storyDirName?: string
       patternName: string
     }
     if (frontmatter && frontmatter.storyName) {
-      const storyData = await fetchStoryData(frontmatter.storyName, frontmatter.storyDirName || null, packageInfo.version)
+      const storyData = await fetchStoryData(frontmatter.storyName, frontmatter.storyDirName, packageInfo.version)
       createNodeField({
         name: 'storyData',
         node,

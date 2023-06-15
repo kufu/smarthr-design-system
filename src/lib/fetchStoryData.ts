@@ -6,7 +6,7 @@ export type StoryItem = {
   readonly iframeName: string | null
 } | null
 
-export const fetchStoryData = async (storyName: string, storyDirName: string | null, version: string) => {
+export const fetchStoryData = async (storyName: string, storyDirName: string | undefined, version: string) => {
   let storiesCode = ''
   let parentCode = ''
 
@@ -18,7 +18,7 @@ export const fetchStoryData = async (storyName: string, storyDirName: string | n
 
   const filePath =
     storyName && storyFileName
-      ? `${SHRUI_GITHUB_RAW}v${version}/src/components/${storyDirName ?? storyName}/${storyFileName}.stories.tsx`
+      ? `${SHRUI_GITHUB_RAW}v${version}/src/components/${storyDirName || storyName}/${storyFileName}.stories.tsx`
       : null
   const parentPath = parentName ? `${SHRUI_GITHUB_RAW}v${version}/src/components/${parentName}/${parentName}.stories.tsx` : null
 

@@ -36,13 +36,16 @@ const getPageList = async () => {
     const matchStoryName = content.match(/<ComponentStory\sname="(.+?)"/)
     if (matchStoryName === null) continue
 
+    const matchDirName = content.match(/<ComponentStory.*dirName="(.+?)"/)
+    const storyDirName = matchDirName?.[1]
+
     const storyName = matchStoryName[1]
-    const storyData = await fetchStoryData(storyName, defaultVersion)
+    const storyData = await fetchStoryData(storyName, storyDirName, defaultVersion)
     const defaultStory = storyData.storyItems[0]?.iframeName ?? ''
 
     pageList.push({
       filePath: file,
-      githubUrl: `${SHRUI_GITHUB_PATH}v${defaultVersion}/src/components/${storyName}`,
+      githubUrl: `${SHRUI_GITHUB_PATH}v${defaultVersion}/src/components/${storyDirName || storyName}`,
       storybookUrl: `https://${commitHash}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${storyData.groupPath}-${defaultStory}&viewMode=story`,
     })
   }
