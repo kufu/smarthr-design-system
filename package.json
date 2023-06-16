@@ -35,6 +35,7 @@
     "format": "eslint --fix 'src/**/*.ts{,x}'",
     "format:text": "textlint --fix 'content/**/*.md{,x}'",
     "export:zip-images": "ts-node scripts/zipImages.ts",
+    "generate:thumbnails": "ts-node scripts/component-thumbnails/componentThumbnails.ts",
     "postinstall": "husky install"
   },
   "dependencies": {
