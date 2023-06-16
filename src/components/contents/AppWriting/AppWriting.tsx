@@ -26,6 +26,9 @@ const query = graphql`
     }
   }
 `
+
+marked.setOptions({ headerIds: false, mangle: false })
+
 export const AppWriting: FC = () => {
   const data = useStaticQuery<Queries.AppWritingTableQuery>(query)
 

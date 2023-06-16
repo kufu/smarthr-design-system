@@ -252,8 +252,6 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
 const StoryWrapper = styled.div`
   margin-block: 48px 0;
-  padding: 16px 24px;
-  background-color: ${CSS_COLOR.LIGHT_GREY_3};
 `
 
 const ErrorPanel = styled(InformationPanel)`

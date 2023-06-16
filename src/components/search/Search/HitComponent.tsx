@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 interface Categories {
-  concept: string
+  introduction: string
   foundation: string
   basics: string
   products: string
@@ -13,7 +13,7 @@ interface Categories {
 }
 
 const categories = {
-  concept: 'コンセプト',
+  introduction: 'はじめに',
   foundation: '基本原則',
   basics: '基本要素',
   products: 'プロダクト',

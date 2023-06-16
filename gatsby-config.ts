@@ -163,6 +163,7 @@ const config: GatsbyConfig = {
           },
         ]),
     { resolve: `gatsby-source-ui-versions` },
+    { resolve: `gatsby-source-component-captures` },
   ],
 }
 

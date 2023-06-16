@@ -19,12 +19,12 @@ CSSでは`z-index`を指しています。
 レイヤー順序は`z-index`のスタックレベルだけでなく、要素がもつスタッキングコンテキストによっても変動します。詳しい仕様は参考情報を確認してください。
 
 
-## セマンティクストークン
+## セマンティックトークン
 
 | トークン名 | 値 | 利用コンポーネント |
 | :--- | :--- | :--- |
 | `AUTO` | auto |  |
-| `DEFALUT` | 0 |  |
+| `DEFAULT` | 0 |  |
 | `FIXED_MENU` | 100 | [BottomFixedArea](/products/components/bottom-fixed-area/)<br />[RightFixedNote](/products/components/right-fixed-note/)<br />[thead](/products/components/table/)（`fixedHead={true}`） |
 | *chatplus*（外部サービス） | 9999 | ChatPlusが利用している値。root設置の前提で、この要素よりも上位レイヤーにコンポーネントを配置したい場合、9999以上の値を設定する。 |
 | `OVERLAP_BASE` | 10000 | [Dropdown](/products/components/dropdown/)<br />[Dialog](/products/components/dialog/) |

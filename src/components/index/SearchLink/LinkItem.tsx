@@ -52,7 +52,7 @@ const Wrapper = styled.div<{
         border-color: ${CSS_COLOR.TEXT_GREY};
       }
     }
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       > a {
         min-height: ${$large ? 96 : 64}px;
       }

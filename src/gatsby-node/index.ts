@@ -5,6 +5,7 @@ import { createFilePath } from 'gatsby-source-filesystem'
 import packageInfo from 'smarthr-ui/package.json'
 
 import { AIRTABLE_CONTENTS } from '../constants/airtable'
+import { fetchPatternCode } from '../lib/fetchPatternCode'
 import { fetchStoryData } from '../lib/fetchStoryData'
 
 import type { airtableContents } from '../constants/airtable'
@@ -36,6 +37,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, 
 
     const frontmatter = node.frontmatter as typeof node & {
       storyName: string
+      patternName: string
     }
     if (frontmatter && frontmatter.storyName) {
       const storyData = await fetchStoryData(frontmatter.storyName, packageInfo.version)
@@ -43,6 +45,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, 
         name: 'storyData',
         node,
         value: storyData,
+      })
+    }
+    if (frontmatter && frontmatter.patternName) {
+      const patternCode = await fetchPatternCode(frontmatter.patternName)
+      createNodeField({
+        name: 'patternCode',
+        node,
+        value: patternCode,
       })
     }
   }
@@ -65,6 +75,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
             }
             frontmatter {
               storyName
+              patternName
             }
           }
         }

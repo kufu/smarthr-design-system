@@ -58,6 +58,8 @@ type Props = {
   type: 'data' | 'reason'
 }
 
+marked.setOptions({ headerIds: false, mangle: false })
+
 export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
   const data = useStaticQuery<Queries.IdiomaticUsageTableQuery>(query)
 

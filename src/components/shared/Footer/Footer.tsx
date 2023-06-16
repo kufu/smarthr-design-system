@@ -12,8 +12,8 @@ type Props = {
 }
 const query = graphql`
   query Footer {
-    concept: allMdx(
-      filter: { fields: { category: { eq: "concept" }, hierarchy: { glob: "*/*" } } }
+    introduction: allMdx(
+      filter: { fields: { category: { eq: "introduction" }, hierarchy: { glob: "*/*" } } }
       sort: { fields: frontmatter___order }
     ) {
       nodes {
@@ -159,11 +159,11 @@ const Wrapper = styled.footer<{ isArticlePage: boolean }>`
           border: none;
         `}
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-inline: 48px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding-inline: 16px;
   }
 
@@ -202,7 +202,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
           padding-top: 72px;
         `}
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
       'col1 . col2' auto
       'col1 . col2' auto
@@ -212,7 +212,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
     padding-top: 32px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     grid-template:
       'col2' auto
       '.   ' 80px
@@ -243,15 +243,15 @@ const Col2Container = styled.div`
   grid-area: col2;
   display: grid;
   grid-template:
-    'concept basics products communication' auto
+    'introduction basics products communication' auto
     'foundation accessibility products communication' auto
     / 1fr 1fr 1fr 1fr;
   align-items: start;
   gap: 40px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
-      'concept' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
+      'introduction' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
       / 1fr;
     gap: 8px;
   }
@@ -272,7 +272,7 @@ const StyledH3 = styled.h3`
     margin-top: -8px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-bottom: 0;
 
     & + & {
@@ -287,7 +287,7 @@ const StyledUl = styled.ul`
   list-style: none;
   color: ${CSS_COLOR.TEXT_BLACK};
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: none;
   }
 
@@ -307,7 +307,7 @@ const StyledLink = styled(Link)`
 const StyledCopyright = styled.p`
   margin-top: 64px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 40px;
   }
 

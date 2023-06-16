@@ -136,7 +136,7 @@ const Nav = styled.nav`
   padding-block: 120px 48px;
   overflow-y: auto;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-block: 0;
     overflow-y: visible;
   }

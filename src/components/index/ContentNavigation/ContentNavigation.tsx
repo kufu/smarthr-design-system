@@ -46,7 +46,7 @@ const IndexNavigationContainer = styled.ul`
       margin-top: 104px;
     }
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     margin: 80px 16px 0;
     > li:not(:first-child) {
       margin-top: 80px;
