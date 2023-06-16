@@ -37,10 +37,11 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, 
 
     const frontmatter = node.frontmatter as typeof node & {
       storyName: string
+      storyDirName?: string
       patternName: string
     }
     if (frontmatter && frontmatter.storyName) {
-      const storyData = await fetchStoryData(frontmatter.storyName, packageInfo.version)
+      const storyData = await fetchStoryData(frontmatter.storyName, packageInfo.version, frontmatter.storyDirName)
       createNodeField({
         name: 'storyData',
         node,
@@ -76,6 +77,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
             frontmatter {
               storyName
               patternName
+              storyDirName
             }
           }
         }
