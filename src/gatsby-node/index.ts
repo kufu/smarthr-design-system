@@ -41,7 +41,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, 
       patternName: string
     }
     if (frontmatter && frontmatter.storyName) {
-      const storyData = await fetchStoryData(frontmatter.storyName, frontmatter.storyDirName, packageInfo.version)
+      const storyData = await fetchStoryData(frontmatter.storyName, packageInfo.version, frontmatter.storyDirName)
       createNodeField({
         name: 'storyData',
         node,

@@ -6,7 +6,7 @@ export type StoryItem = {
   readonly iframeName: string | null
 } | null
 
-export const fetchStoryData = async (storyName: string, storyDirName: string | undefined, version: string) => {
+export const fetchStoryData = async (storyName: string, version: string, storyDirName?: string) => {
   let storiesCode = ''
   let parentCode = ''
 

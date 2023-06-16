@@ -87,7 +87,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
       setDisplayVersion(version)
       setIsStoryLoaded(false)
       setIsIFrameLoaded(false)
-      const newData = await fetchStoryData(name, dirName, version).catch(() => {
+      const newData = await fetchStoryData(name, version, dirName).catch(() => {
         return null
       })
       if (newData === null || newData.code === '') {

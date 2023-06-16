@@ -40,7 +40,7 @@ const getPageList = async () => {
     const storyDirName = matchDirName?.[1]
 
     const storyName = matchStoryName[1]
-    const storyData = await fetchStoryData(storyName, storyDirName, defaultVersion)
+    const storyData = await fetchStoryData(storyName, defaultVersion, storyDirName)
     const defaultStory = storyData.storyItems[0]?.iframeName ?? ''
 
     pageList.push({
