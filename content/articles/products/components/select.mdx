@@ -8,6 +8,25 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 <ComponentStory name="Select" />
 
+## 使いどころ
+
+複数の選択肢から1つだけ選択する場合に使います。
+
+同様に[RadioButton](../radio-button/)も、複数から1つを選択するコンポーネントです。  
+それぞれの特長を考慮して、使い分けましょう。
+
+### SelectとRadioButtonの特長と使い分け
+
+それぞれの特長は以下の通りです。状況に応じて適切なコンポーネントを使いましょう。
+
+| | Select | RadioButton | 
+| --- | --- | --- |
+| 選択肢 | 格納されていて見えない | 最初から表示されている | 
+| メリット | RadioButtonに比べ、たくさんの項目を少しのスペースに表示できる | Selectよりも、ひと手間少なく選択できる | 
+
+「選択肢の数が多い場合」、「限られたスペースに表示する場合」は、Selectを使うとよいでしょう。
+「選択肢の数が少ない場合」、「選択肢を連続して選択する場合」は、RaddioButtonを使うとよいでしょう。  
+
 ## Props
 
 <ComponentPropsTable name="Select" />
