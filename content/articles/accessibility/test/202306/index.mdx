@@ -20,7 +20,7 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
   [
     {
       term: '表明日',
-      description: <time datatime="2021-12-24">2021年12月24日</time>
+      description: <time datatime="2023-06-30">2023年6月30日</time>
     },
     {
       term: '規格の規格番号および改正年',
@@ -43,11 +43,11 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
     },
     {
       term: '試験実施期間',
-      description: <span><time datatime="2021-08-11">2021年8月11日</time> 〜 <time datatime="2021-11-30">2021年11月30日</time></span>
+      description: <span><time datatime="2023-06-16">2023年6月16日</time> 〜 <time datatime="2023-06-30">2023年6月30日</time></span>
     },
     {
       term: '試験を行なったウェブページのURI',
-      description: <span>末尾に<a href="#h2-5">試験を行なったウェブページのURI</a>をまとめて掲載</span>
+      description: <span>末尾に<a href="#h2-4">試験を行なったウェブページのURI</a>をまとめて掲載</span>
     }
   ]
 } />
@@ -125,13 +125,13 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
     <Td>○</Td>
 </tr>
 <tr>
-    <Td><a href="https://waic.jp/docs/WCAG21/Understanding/use-of-color.html">1.4.1 色の使用</a></Td>
+    <Td><a href="https://waic.jp/translations/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html">1.4.1 色の使用</a></Td>
     <Td>A</Td>
     <Td>○</Td>
     <Td>○</Td>
 </tr>
 <tr>
-    <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/visual-audio-contrast-dis-audio.html">1.4.2 音声の制御</a></Td>
+    <Td><a href="https://waic.jp/translations/UNDERSTANDING-WCAG20/visual-audio-contrast-dis-audio.html">1.4.2 音声の制御</a></Td>
     <Td>A</Td>
     <Td>－</Td>
     <Td>○</Td>
@@ -140,13 +140,13 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/contrast-minimum.html">1.4.3 コントラスト（最低限）</a></Td>
     <Td>AA</Td>
     <Td>○</Td>
-    <Td>×</Td>
+    <Td>○</Td>
 </tr>
 <tr>
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/resize-text.html">1.4.4 テキストのサイズ変更</a></Td>
     <Td>AA</Td>
     <Td>○</Td>
-    <Td>×</Td>
+    <Td>○</Td>
 </tr>
 <tr>
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/images-of-text.html">1.4.5 文字画像</a></Td>
@@ -170,7 +170,7 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
     <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/time-limits-required-behaviors.html">2.2.1 タイミング調整可能</a></Td>
     <Td>A</Td>
     <Td>○</Td>
-    <Td>×</Td>
+    <Td>○</Td>
 </tr>
 <tr>
     <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/time-limits-pause.html">2.2.2 一時停止、停止、非表示</a></Td>
@@ -248,13 +248,13 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/parsing.html">4.1.1 構文解析</a></Td>
     <Td>A</Td>
     <Td>○</Td>
-    <Td>○</Td>
+    <Td>×</Td>
 </tr>
 <tr>
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/name-role-value.html">4.1.2 名前（name），役割（role）及び値（value）</a></Td>
     <Td>A</Td>
     <Td>○</Td>
-    <Td>×</Td>
+    <Td>○</Td>
 </tr>
     </tbody>
   </Table>
@@ -266,33 +266,6 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
 
 
 ## 前回試験から改善した事例
-
-<!-- textlint-disable -->
-
-### 1.3.1 情報及び関係性
-
-<!-- textlint-enable -->
-
-#### `<MultiCombobox>` で選択された項目がvalueとなっていない
-
-<!-- textlint-disable -->
-
-<DefinitionList items={[
-  {
-    term: '対象のページ',
-    description: <a href="https://story.smarthr-ui.dev/iframe.html?args=&id=forms（フォーム）-combobox--multi">MultiComboBox</a>
-  },
-  {
-    term: '対応方法',
-    description: 'すでに選択した項目に選択していることを示すセマンティクスを付与する'
-  },
-  {
-    term: '改善',
-    description: <a href="https://github.com/kufu/smarthr-ui/pull/2427">chore: コンボボックスのアクセシビリティ改善</a>
-  }
-  ]} />
-
-<!-- textlint-enable -->
 
 ### 1.4.3 コントラスト (最低限)
 
@@ -341,11 +314,30 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
   }
   ]} />
 
+### 4.1.2 名前（name），役割（role）及び値（value）
+
 <!-- textlint-enable -->
 
-## 満たしていない達成基準の事例と対応策
+#### `<MultiCombobox>` で選択された項目がvalueとなっていない
 
-現時点で達成基準を満たせていない事例とそれらへの対応策を示します。<small style={{ display: 'block' }}>※すべての事例を紹介するものではありません。</small>
+<!-- textlint-disable -->
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <a href="https://story.smarthr-ui.dev/iframe.html?args=&id=forms（フォーム）-combobox--multi">MultiComboBox</a>
+  },
+  {
+    term: '対応方法',
+    description: 'すでに選択した項目に選択していることを示すセマンティクスを付与する'
+  },
+  {
+    term: '改善',
+    description: <a href="https://github.com/kufu/smarthr-ui/pull/2427">chore: コンボボックスのアクセシビリティ改善</a>
+  }
+  ]} />
+
+<!-- textlint-enable -->
 
 ## 試験したウェブページのURI
 
