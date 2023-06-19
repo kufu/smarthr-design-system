@@ -5,7 +5,7 @@ import { Highlight, themes } from 'prism-react-renderer'
 import React, { CSSProperties, FC, useState } from 'react'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import * as ui from 'smarthr-ui'
-import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
+import { Gap, SeparateGap } from 'smarthr-ui/lib/types'
 import styled, { ThemeProvider, css } from 'styled-components'
 // TODO SmartHR な Dark テーマほしいな!!!
 
