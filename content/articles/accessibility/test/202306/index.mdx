@@ -1,16 +1,16 @@
 ---
-title: 'ウェブアクセシビリティ試験結果 - 2021年12月'
-description: '2021年12月に実施したSmartHRのウェブアクセシビリティ試験結果です。'
+title: 'ウェブアクセシビリティ試験結果 - 2023年6月'
+description: '2023年6月に実施したSmartHR UIのウェブアクセシビリティ試験結果です。'
 order: 1
 ---
 
-import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
-
 import { TableWrapper } from '@Components/contents/shared/TableWrapper'
+import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
+
 
 ## 試験概要
 
-[ウェブアクセシビリティ試験結果 - 2021年5月](../202105/)にて満たせていなかった達成基準の改善と、新規に開発されたコンポーネントについての試験です。
+[ウェブアクセシビリティ試験結果 - 2021年12月](../202112/)にて満たせていなかった達成基準の改善と、新規に開発されたコンポーネントについての試験です。
 
 ## 試験の結果および実施方法
 
@@ -20,7 +20,7 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
   [
     {
       term: '表明日',
-      description: <time datatime="2021-12-24">2021年12月24日</time>
+      description: <time datatime="2023-06-21">2023年6月21日</time>
     },
     {
       term: '規格の規格番号および改正年',
@@ -43,21 +43,24 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
     },
     {
       term: '試験実施期間',
-      description: <span><time datatime="2021-08-11">2021年8月11日</time> 〜 <time datatime="2021-11-30">2021年11月30日</time></span>
+      description: <span><time datatime="2023-06-16">2023年6月16日</time> 〜 <time datatime="2023-06-20">2023年6月20日</time></span>
     },
     {
-      term: '試験を行なったウェブページのURL',
-      description: <span>末尾に<a href="#h2-5">試験を行なったウェブページのURL</a>をまとめて掲載</span>
+      term: '試験を行なったウェブページのURI',
+      description: <span>末尾に<a href="#h2-4">試験を行なったウェブページのURI</a>をまとめて掲載</span>
     }
   ]
 } />
 
 <!-- textlint-enable -->
 
-### 非推奨のコンポーネント
+### 対象外のコンポーネント
 
-- [FieldSet](https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-fieldset（非推奨）--all)
-- Header（削除済）
+- [FieldSet（非推奨）](https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-fieldset（非推奨）--all)
+- [HeadlineArea（非推奨）](https://story.smarthr-ui.dev/?path=/story/data-display（データ表示）-headlinearea（非推奨）--all)
+- [FormGroup（非推奨）](https://story.smarthr-ui.dev/?path=/docs/forms（フォーム）-formgroup（非推奨）--all)
+- [LineUp（非推奨）](https://story.smarthr-ui.dev/?path=/story/layouts（レイアウト）-lineup（非推奨）--all)
+- [FlashMessage（非推奨）](https://story.smarthr-ui.dev/?path=/docs/states（状態）-flashmessage（非推奨）--docs)
 
 ## 達成基準チェックリスト
 
@@ -122,13 +125,13 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
     <Td>○</Td>
 </tr>
 <tr>
-    <Td><a href="https://waic.jp/docs/WCAG21/Understanding/use-of-color.html">1.4.1 色の使用</a></Td>
+    <Td><a href="https://waic.jp/translations/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html">1.4.1 色の使用</a></Td>
     <Td>A</Td>
     <Td>○</Td>
     <Td>○</Td>
 </tr>
 <tr>
-    <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/visual-audio-contrast-dis-audio.html">1.4.2 音声の制御</a></Td>
+    <Td><a href="https://waic.jp/translations/UNDERSTANDING-WCAG20/visual-audio-contrast-dis-audio.html">1.4.2 音声の制御</a></Td>
     <Td>A</Td>
     <Td>－</Td>
     <Td>○</Td>
@@ -167,7 +170,7 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
     <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/time-limits-required-behaviors.html">2.2.1 タイミング調整可能</a></Td>
     <Td>A</Td>
     <Td>○</Td>
-    <Td>×</Td>
+    <Td>○</Td>
 </tr>
 <tr>
     <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/time-limits-pause.html">2.2.2 一時停止、停止、非表示</a></Td>
@@ -251,7 +254,7 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/name-role-value.html">4.1.2 名前（name），役割（role）及び値（value）</a></Td>
     <Td>A</Td>
     <Td>○</Td>
-    <Td>×</Td>
+    <Td>○</Td>
 </tr>
     </tbody>
   </Table>
@@ -264,62 +267,9 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
 
 ## 前回試験から改善した事例
 
-### 1.3.2 意味のある順序
-
-#### `<DatePicker>` 表形式の日付選択と入力欄のDOMが離れているが関連付けられていない
-
-<!-- textlint-disable -->
-
-<DefinitionList items={[
-  {
-    term: '対象のページ',
-    description: <a href="https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-datepicker">DatePicker</a>
-  },
-  {
-    term: '対応方法',
-    description: 'aria-controlsとaria-expandedで関連付けをする'
-  },
-  {
-    term: '改善',
-    description: <a href="https://github.com/kufu/smarthr-ui/pull/1629">fix: added some attributes for accessibility SHRUI-382
-#1629</a>
-  }
-  ]} />
-
-<!-- textlint-enable -->
-
-### 3.3.2 ラベル、または説明
-
-#### `<RightFixedNote>` のtextareaにラベルがない
-
-<!-- textlint-disable -->
-
-<DefinitionList items={[
-  {
-    term: '対象のページ',
-    description: <a href="https://story.smarthr-ui.dev/?path=/story/data-display（データ表示）-rightfixednote--all">RightFixedNote</a>
-  },
-  {
-    term: '対応方法',
-    description: 'textareaに可視のラベルを追加'
-  },
-  {
-    term: '改善',
-    description: <a href="https://github.com/kufu/smarthr-ui/pull/1744">feat!: RightFixedNote の textareaLabel を表示する (SHRUI-404) #1744</a>
-  }
-  ]} />
-
-<!-- textlint-enable -->
-
-## 満たしていない達成基準の事例と対応策
-
-現時点で達成基準を満たせていない事例とそれらへの対応策を示します。<small style={{ display: 'block' }}>※すべての事例を紹介するものではありません。</small>
-
 ### 1.4.3 コントラスト (最低限)
 
-#### `<StatusLabel>` の `warning`
-
-![StatusLabelコンポーネントのスクリーンショット。オレンジの背景に白背景の警告ラベルが矢印で示されている](./images/1.4.3-2_statuslabel1.png)
+#### `<StatusLabel>` の `warning` が白との組み合わせでコントラスト比を保てていない
 
 <!-- textlint-disable -->
 
@@ -331,6 +281,10 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
   {
     term: '対応方法',
     description: '白との組み合わせでコントラスト比が確保される警告色を検討します'
+  },
+  {
+    term: '改善',
+    description: <a href="https://github.com/kufu/smarthr-ui/pull/2578">feat!: 黄色の使い方と注意アイコンの使い方を見直す</a>
   }
   ]} />
 
@@ -350,8 +304,17 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
   {
     term: '対応方法',
     description: 'FlashMessageを自動で消さないオプションの追加、およびFlashMessageに変わるコンポーネントの作成'
+  },
+  {
+    term: '改善',
+    description: <ul style={{ marginBlockStart: 'unset' }}>
+      <li><a href="https://github.com/kufu/smarthr-ui/pull/2168">feat: FlashMessage に autoClose オプションを追加</a></li>
+      <li><a href="https://github.com/kufu/smarthr-ui/pull/2193">feat: NotificationBar を作成</a></li>
+    </ul>
   }
   ]} />
+
+### 4.1.2 名前（name），役割（role）及び値（value）
 
 <!-- textlint-enable -->
 
@@ -362,47 +325,65 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-combobox">Combobox</a></>
-  },
-  {
-    term: '内容',
-    description: 'すでに選択した項目がComboboxのvalueとして機械可読な形になっていない'
+    description: <a href="https://story.smarthr-ui.dev/iframe.html?args=&id=forms（フォーム）-combobox--multi">MultiComboBox</a>
   },
   {
     term: '対応方法',
     description: 'すでに選択した項目に選択していることを示すセマンティクスを付与する'
+  },
+  {
+    term: '改善',
+    description: <a href="https://github.com/kufu/smarthr-ui/pull/2427">chore: コンボボックスのアクセシビリティ改善</a>
   }
   ]} />
 
 <!-- textlint-enable -->
 
-## 適合としたが注意が必要なコンポーネント
+## 満たしていない達成基準の事例と対応策
 
-### `<FormGroup>`
+### 1.4.3 コントラスト (最低限)
+
+#### `<Header>` の文字色
 
 <!-- textlint-disable -->
 
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-formgroup--all">FormGroup</a></>
+    description: <a href="https://story.smarthr-ui.dev/iframe.html?args=&id=navigation（ナビゲーション）-header--all&viewMode=story">Header</a>
   },
   {
-    term: '内容',
-    description: '複数の入力をグルーピングする目的で利用する場合、role="group"を利用者側が付与する必要がある。'
+    term: '対応方法',
+    description: '背景色と文字色の組み合わせでコントラスト比が確保される意匠を検討します'
   }
   ]} />
 
-## 試験したウェブページのURL
-
 <!-- textlint-enable -->
 
-試験をしたコンポーネントの代表的なURLのみを掲載します。
+## 試験したウェブページのURI
 
-- [FloatArea](https://story.smarthr-ui.dev/?path=/story/navigation（ナビゲーション）-floatarea--all)
-- [FormGroup](https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-formgroup--all)
-- [InputFile](https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-inputfile--all)
-- [LineClamp](https://story.smarthr-ui.dev/?path=/story/data-display（データ表示）-lineclamp--all)
-- [SegmentedControl](https://story.smarthr-ui.dev/?path=/story/buttons（ボタン）-segmentedcontrol--all)
-- [TextLink](https://story.smarthr-ui.dev/?path=/story/text（テキスト）-textlink--all)
-- [FilterDropdown](https://story.smarthr-ui.dev/?path=/story/buttons（ボタン）-dropdown--filter-dropdown)
+試験をしたコンポーネントの代表的なURIのみを掲載します。
+
+- [InputFile](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-inputfile--all)
+- [StatusLabel](https://story.smarthr-ui.dev/iframe.html?args=&id=states（状態）-statuslabel--all)
+- [MultiComboBox](https://story.smarthr-ui.dev/iframe.html?args=&id=forms（フォーム）-combobox--multi)
+- [NotificationBar](https://story.smarthr-ui.dev/iframe.html?args=&id=states（状態）-notificationbar--all)
+- [Reel](https://story.smarthr-ui.dev/iframe.html?args=&id=layouts（レイアウト）-reel--all)
+- [Th](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-table--all)
+- [Td](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-table--all)
+- [DropdownMenuButton](https://story.smarthr-ui.dev/iframe.html?args=&id=buttons（ボタン）-dropdown--dropdown-menu-story)
+- [SearchInput](https://story.smarthr-ui.dev/iframe.html?args=&id=forms（フォーム）-input--default)
+- [Center](https://story.smarthr-ui.dev/iframe.html?args=&id=layouts（レイアウト）-center--all)
+- [PageCounter](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-pagecounter--all)
+- [AppLauncher](https://story.smarthr-ui.dev/iframe.html?args=&id=navigation（ナビゲーション）-header--all)
+- [EmptyTableBody](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-table--all)
+- [BaseColumn](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-base--base-column-story)
+- [SideMenu](https://story.smarthr-ui.dev/iframe.html?args=&id=experimental（実験的）-sidemenu--default)
+- [ThCheckbox](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-table--all)
+- [TdCheckbox](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-table--all)
+- [RadioButtonPanel](https://story.smarthr-ui.dev/iframe.html?args=&id=forms（フォーム）-radiobuttonpanel--all)
+- [TableReel](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-table--with-reel)
+- [FormDialog](https://story.smarthr-ui.dev/iframe.html?args=&id=dialog（ダイアログ）-dialog--form-dialog)
+- [FormControl](https://story.smarthr-ui.dev/iframe.html?args=&id=forms（フォーム）-formcontrol--all)
+- [Filedset](https://story.smarthr-ui.dev/iframe.html?args=&id=forms（フォーム）-fieldset--all)
+- [SpreadsheetTable](https://story.smarthr-ui.dev/iframe.html?args=&id=data-display（データ表示）-spreadsheettable--all)
