@@ -140,7 +140,7 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/contrast-minimum.html">1.4.3 コントラスト（最低限）</a></Td>
     <Td>AA</Td>
     <Td>○</Td>
-    <Td>○</Td>
+    <Td>×</Td>
 </tr>
 <tr>
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/resize-text.html">1.4.4 テキストのサイズ変更</a></Td>
@@ -334,6 +334,27 @@ import { DefinitionList, Table, Td, Th } from 'smarthr-ui'
   {
     term: '改善',
     description: <a href="https://github.com/kufu/smarthr-ui/pull/2427">chore: コンボボックスのアクセシビリティ改善</a>
+  }
+  ]} />
+
+<!-- textlint-enable -->
+
+## 満たしていない達成基準の事例と対応策
+
+### 1.4.3 コントラスト (最低限)
+
+#### `<Header>` の文字色
+
+<!-- textlint-disable -->
+
+<DefinitionList items={[
+  {
+    term: '対象のページ',
+    description: <a href="https://story.smarthr-ui.dev/iframe.html?args=&id=navigation（ナビゲーション）-header--all&viewMode=story">Header</a>
+  },
+  {
+    term: '対応方法',
+    description: '背景色と文字色の組み合わせでコントラスト比が確保される意匠を検討します'
   }
   ]} />
 
