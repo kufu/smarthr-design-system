@@ -11,7 +11,7 @@ import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query IdiomaticUsageTable {
-    idiomaticUsageData: allAirtable(filter: { table: { eq: "用字用語：一覧" } }) {
+    idiomaticUsageData: allSdsAirtable(filter: { table: { eq: "用字用語：一覧" } }) {
       edges {
         node {
           data {
@@ -25,7 +25,7 @@ const query = graphql`
         }
       }
     }
-    idiomaticUsageReason: allAirtable(filter: { table: { eq: "用字用語：理由" } }) {
+    idiomaticUsageReason: allSdsAirtable(filter: { table: { eq: "用字用語：理由" } }) {
       edges {
         node {
           data {
@@ -40,7 +40,7 @@ const query = graphql`
         }
       }
     }
-    writingStyle: allAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
+    writingStyle: allSdsAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
       edges {
         node {
           data {

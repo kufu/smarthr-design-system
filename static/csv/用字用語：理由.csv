@@ -1,0 +1,268 @@
+﻿name,order,description,discussion,source,reason,record_id,status,50音順並び替え用
+送りがなを付けて表記する,1,"内閣告示の「送り仮名の付け方」に従い、送りがなを付けて表記します。  
+
+**例外**  
+書類名などの固有名詞は正式名称にあわせます。  
+
+OK例： 書き込み、取り消し  
+NG例： 書込、取消",,https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/okurikana/index.html,"[""recZ9wwhBZRLO8OXO"",""reciXtZYeP91wNK9V"",""recDPYkL59rbuzkHV"",""recH9Rc7GnNUYeyzF"",""recqbfgHx3OyH147z"",""recln33xhC5i3nbIB""]",recm8V38MkxhYrKNr,done,
+‐er、‐or、‐arで終わる単語は「長音あり」、-yで終わる単語は「長音なし」とする（例外あり）,2,"日本語としてカナ表記が一般化している単語は、英語表記をしたときの語尾によって長音（ー）の有無を決定します。
+
+- `‐er`、`‐or`、`‐ar`で終わる単語は長音をつける
+- 例：ユーザー、マスター、フィルター
+
+
+- `-y`で終わる単語は基本的に長音をつけない
+- 例：セキュリティ、アクセシビリティ
+
+**例外**
+- browserは、ブラウザ
+- folderは、フォルダ",https://smarthr-inc.docbase.io/posts/1781503,,"[""rec74jL4Dz7yaGLUN"",""rec4NXOMaZmUywRLH"",""recLHVZKwHfbcIsFD"",""recIeByRZ6HCcPFsj"",""recvClJuyoeCn6qKd"",""recBQtydyWQK8dOdt"",""recGrIay6YHajjWCz"",""reccpHREIzwGKS6IH"",""recWflu0cYa1o3Yup"",""recuUVsM0wNILrlFm"",""recSHHvGvBUs2G0jp"",""recYgGO3oR4yDtq7z"",""rectHyeemRASLTu8l"",""recwsTqQtaA7bTBHk"",""recJnVtvJs1zuFoCT"",""recbiCoGch7cmxY8e"",""rec5V5BCUc6CcdBFP"",""recNir4NEwDQUOilj"",""rec4DWnAItji4CXDj"",""recpCcb8vvDrDxErW""]",recKk3i3NODrXp6D3,done,
+「ウィ/ウェ/ウォ」を使用する,3,"外来語の「wi/we/wo」をカタカナで表記する場合は、「ウィ/ウェ/ウォ」と表記します。  
+
+「ウイ/ウエ/ウオ」と表記すると、別のものを指している印象を与える可能性があるため、「ウィ/ウェ/ウォ」に統一しました。  
+
+OK例： ウィンドウ、ウェイト、ソフトウェア  
+NG例： ウインドウ、ウエイト、ソフトウエア",https://kufuinc.slack.com/archives/CJX59GJFR/p1601863186019500,"NHKの調査（2012年）では「ソフトウェア」が主流
+https://www.nhk.or.jp/bunken/summary/kotoba/yougo/pdf/091.pdf","[""recBW07R2RyqFOHMw"",""recyKtglJB6DIWBMX"",""rec3CKNaYraO6ItBv""]",recvhB6VJstpBQKeV,done,
+数字は半角の算用数字で表記する,4,"「1つ・2つ」「1回・2回」と数えられるものは算用数字で表記します。  
+丸数字については「丸数字（数字を丸で囲っているもの）の使用は控える」を参照してください。  
+
+OK例： 本人確認書類1点  
+NG例： 本人確認書類一点
+
+**例外**  
+固有名詞や慣用句は例外です。「単一」、「一部」、「一語一句」や「一を聞いて十を知る」など、熟語やことわざは漢数字を用います。  
+漢数字か算用数字か確認する際は、数字部分を別の数字に変えてみてください。  
+確認例： 一語一句→二語三句（変えると不自然なため、漢数字のままが正しい） ",https://kufuinc.slack.com/archives/CJX59GJFR/p1629940901001400,,"[""recY1HCXQu2AcTLeH"",""recu0pTxCASSAr9Mq"",""rec7E95d9OpH2kuT7""]",rec4b3ku3T09ggRcB,done,
+丸数字（数字を丸で囲っているもの）の使用は控える,5,"環境依存文字のため、丸数字は使用せず、算用数字を使用します。  
+
+**例外**  
+書類上で使われている丸数字をアプリケーション上でも示したい場合のみ、丸数字を使用できます。  
+この場合は、含まれる文字数が多く、可読性も高いUnicodeを推奨します。  
+ただし、NG例の通り、文字サイズが小さいものや、黒丸、二重丸は使いません。  
+
+OK例： ⓪（U+24EA）、①（U+2460）〜⑳（U+2473）、㉑（U+3251）〜㊿（U+32BF）  
+NG例： ➀〜➉（U+2780〜U+2789）、❶（U+2776）、⓵（U+24F5）",https://kufuinc.slack.com/archives/CJX59GJFR/p1648186028804249,,,rec1nfF3dEe1efUGY,done,
+「！」と「？」は単独で使う場合は全角、ペアで使う場合は半角で表記する,6,「！」「？」「!?」「!!」という単位で1文字に相当するため、「！」「？」は全角で表記し、「!?」「!!」は半角で表記します。,,,"[""recIF7OMSRaxeqUhG"",""recBOtTW6XgtM6Nb4"",""rec1cJYSPB8HG0w2L"",""recVsWLMwGNiDmKk5"",""recgdPOwQDCuGbA38""]",recAha5XdRwtCl2sE,done,
+日付は「YYYY/MM/DD」、時刻は「hh:mm:ss」と表記し、期間を表す記号は「〜」を使用する,7,"他社のアプリケーションと連携しやすいように、日付（date）の文字列形式は、YYYY/MM/DDで表記します。日付の要素は`/`で区切ります。  
+- YYYY：西暦年4桁
+- MM：2桁の月
+- DD：2桁の日
+
+時刻（time）の文字列形式は、hh:mm:ssで表記します。状況に応じて、`ss`は省略しても構いません。 
+- hh：24時間制の2桁の時
+- mm：2桁の分
+- ss：2桁の秒
+
+また、期間を表す場合には、`〜`（波線）を使います。
+
+OK例： 2022/01/01、23:00:05、2022/01/01〜2022/03/01
+NG例： 2022/1/1、PM11:00:05、2022/01/01 - 2022/03/01、2022/01/01−2022/03/01",,,"[""recqt3laRJINjR51p"",""recEBdserXPNNrLbd"",""recJRylxdhcy00ejJ""]",recwR0nuqmNcXu06t,done,
+「◯◯ファイル」の◯◯の部分は大文字か開発元公式の書き方で表記し、拡張子は省略する,8,"「◯◯ファイル」の◯◯の部分は、略称の場合はすべて大文字で表記するか、開発元公式の書き方に合わせます。  
+
+OK例： CSVファイル、Excelファイル、Wordファイル  
+NG例： .csvファイル、.xlsxファイル",https://kufuinc.slack.com/archives/C01AF112SMS/p1613974530019200?thread_ts=1613968249.010600&cid=C01AF112SMS,,"[""recyA0PZmK4cQOkLb"",""recqUooQ2b1ZVFT1e"",""recx3mhTKTZwXTt6I""]",rec9D1UfNQQFTzlZG,done,
+ファイルサイズは英字2文字で表記する,9,"数字と単位の間にはスペースを入れず、「5GB」のように表記します。  
+
+**例外**  
+byte単独で使う場合のみ、例外的にカタカナで表記します。  
+OK例： 5GB、10TB、2バイト  
+NG例： 5 GB、10テラバイト、2byte",https://kufuinc.slack.com/archives/CJX59GJFR/p1621227498284100,,"[""rectMG8AGiEURLJtM"",""recvcfMgckdZKYBon"",""recV6BngITcjP7GkY"",""reckCwB1Kp8vZxcn4"",""rec14ESrmCzUEPyM8""]",recmk5vIbS65cWjA6,done,
+他社製品の名称は正式名で記載し、TMなどの表記は不要とする,10,"OK例： Microsoft Excel  
+NG例： Excel、Word
+
+**例外**  
+SmartHRがベンダーなどの立場でライセンス契約を結んでいる場合には、契約先のレギュレーションに則ります。  
+例：NPS®",https://kufuinc.slack.com/archives/CJX59GJFR/p1622015870019300,,,recGqYotdLs38Iy10,done,
+社内用語など、一般的でない言葉を使わない,11,"どのようなユーザーにも伝わりやすいように、辞書に載っている一般的な言葉を使いましょう。  
+
+社内用語・専門用語・独自の用語など、ユーザーに伝わらない可能性がある言葉は避けましょう。  
+
+OK例： 企業アカウント   
+NG例： テナント",https://kufuinc.slack.com/archives/CJX59GJFR/p1652166634163919,,"[""recLD6SGDN1YlGH0r""]",reclmu4XVUXg51Y0p,done,
+管理者の呼称は、基本機能とオプション機能の区別がわかるように表記する,29,"通称「SmartHR本体」とされているアプリケーションの呼称を「SmartHR基本機能」に統一したことに伴い、管理者の呼称は「SmartHR管理者」ではなく「SmartHR基本機能の管理者」とします。
+
+同様に「SmartHRオプション機能」の管理者の呼称は「◯◯機能管理者」など、各機能で定められた呼称を使用します。
+
+**例外**  
+「SmartHR基本機能の管理者」は、初出でない場合は「基本機能管理者」としても構いません。  ",,,"[""rec5aCnTqNTPU3snX"",""reciHwBKt5HDSVWz4""]",reciifo0d9bgVfEzj,,
+「アイコン」と表現し、「マーク」の使用は控える,12,"アプリケーション上で使用されている[アイコン](https://smarthr.design/products/components/icon/)は、「鉛筆アイコン」「紙飛行機アイコン」など「◯◯アイコン」という形式で表現します。  
+
+別のものを指している印象を与えかねないため、「マーク」は使いません。 ",,,"[""recI1rZ1SXXlXjQZH""]",rec7Fw59rzaFSP96z,done,アイコン
+「アップロード」と「ダウンロード」を使用する,13,"SmartHRにファイルを転送する操作は「アップロード」と表現します。
+
+SmartHRからファイルを入手する（ストレージにあるデータをそのまま落としてくる）操作は「ダウンロード」と表現します。",https://smarthr-inc.docbase.io/posts/1650767,,"[""recFSU4oYYsBPapJg"",""recktiTgd8d6ozIWy""]",recRxfQ11NyiacwiO,done,アップロード
+「あわせて」は平仮名で表記する,14,"漢字の「合わせて」「併せて」は基本的に使用せず、平仮名の「あわせて」で表記します。  
+理由は以下の3点です。
+
+- 漢字表記を見る機会が少なく、漢字表記よりもひらがな表記の方が馴染みがある
+- ひらがなにしても、2つの意味を混同する場合はレアケースである
+- SmartHRのパーソナリティ「親しみやすい」の観点からも、必要以上に格式ばった表現をしない（ひらがな表記の方がやわらかいイメージを与えられる）
+
+**注意点**  
+「合わせて」「併せて」どちらの意味かわからなくなるような表現は避けます。  
+「AとBをあわせてhogeに入力してください」という場合、AとBの合計を入力するのか、併記して入力するのかの判別が難しくなります。こういう場合には、  
+「AとBの合計をhogeに入力してください。」（合計を入力する場合）  
+「AとBをhogeに併記してください。」（併記して入力する場合）  
+のように、明確な表現をしましょう。",https://kufuinc.slack.com/archives/CJX59GJFR/p1629108934076300,日本語スタイルガイドでは漢字表記だが、SmartHRでは平仮名表記とする。,"[""recu2Rpya38KFEnsw""]",recUxtcs2EldiKQ1U,done,あわせて
+「移動」と表現し、「遷移」の使用は控える,15,「遷移」よりも「移動」の方が、ユーザーにとって馴染みがあると判断しました。,https://kufuinc.slack.com/archives/CJX59GJFR/p1603697989037600,,"[""recJjqCpyqHOI9KcG""]",rec6f6OqHl88LkYmw,done,いどう
+「ウェブ」はカタカナで表記する,16,"固有名詞でない限り、「ウェブ」と表記します。  
+
+広報での議論を参考に、プロダクト側も同じガイドラインで統一することにしました。広報で「ウェブ」を採用した根拠は以下の通りです。  
+- 元はWorld Wide Web（略してWeb）
+- 現在は欧米では「The web」と表記されることが多い
+- カタカナ表記の「ウェブ」は日本語として定着している
+
+**例外**  
+「Webhook」「PCAクラウドWeb-API」のような固有名詞は「Web」と表現します。また「ウェブブラウザ」は、単に「ブラウザ」とします。",,,"[""recquC39pwKLsgNJy"",""rec9xW47AjGnr9Dm8"",""rec4A9tg1ssS8TgD0"",""recocYSrUSNPK0JBu""]",rec8ZIzDZQ47CFM5l,done,うぇぶ
+ユーザーを示す言葉は「お客さま」「管理者さま」「担当者さま」「ユーザーさま」を使い分ける,17,"ユーザーを示す言葉は、以下の基準で使い分けます。  
+
+* お客さま： SmartHRが、外部に対して情報を発信するときに使用します。
+
+* 管理者さま： SmartHR上のユーザーの役割を具体的に指したいときのみ使用します。なお、ヘルプページでは、役割自体を指す場合は「管理者」、役割を持つユーザーを指す場合は「管理者さま」と表現しています。
+ 
+* 担当者さま： 「人事労務の担当者さま」などと言う場合のみ使用します。「ご担当者さま」としても構いません。
+ 
+* ユーザーさま： SmartHRのすべての利用者、つまり管理者と従業員の両方を含めて呼びたいときに使用します。",,,"[""recXDNwYwTGHYJhTK"",""recHIIRu6SnFyZsnU"",""recWfSTUkD6Uz5WCq"",""recCi4VjELpT8kL49""]",recmtqX0vFmEftHk2,done,おきゃくさま
+「行なう」と表現し、「行う」の使用は控える,18,"日本語としては、「行なう」と「行う」のいずれも正しい表現です。  
+しかし、「行った（おこなった）」と表現した場合、「いった」と誤読する可能性があります。  
+このため、「行なう」と表現した方が、ユーザーにとって親切だと判断しました。  
+
+**注意点**  
+「行なう」は表現として固いため、可能な場合は「○○する」「○○してください」などの表現に置き換えてください。",https://kufuinc.slack.com/archives/CJX59GJFR/p1597665779077700,,"[""rec185zxKtQArUznm""]",recE569ZU4tA37EpN,done,おこなう
+アプリケーション上でボタンを押下する操作は「押す」と表現し、「クリック」「タップ」の使用は控える,19,PCでもスマートフォンでも違和感のない言葉として、「押す」が適切だと判断しました。,https://smarthr-inc.docbase.io/posts/1726802,,"[""recSw0NmKax89t0ng""]",recVAeJr4Di3vQHeA,done,おす
+「改善」と漢字で表記し、「カイゼン」の使用は控える,20,"機能の「改善」は、製造業の現場やアジャイル開発で使われる「カイゼン」とは意味が異なるため、漢字で表記します。
+
+開発チーム内で「カイゼンチケット」のような使い方をしても構いません。",https://kufuinc.slack.com/archives/CJX59GJFR/p1636958186072400,,"[""recsqvuS3CYxoCPIU""]",recynRvLnjTngv5h0,done,かいぜん
+「書き出し」と表現し、「エクスポート」の使用は控える,21,SmartHRからデータを抽出する操作は「書き出し」と表現し、「エクスポート」という表現は使いません。,https://smarthr-inc.docbase.io/posts/1650767,,"[""reclc0ZMahgi4vfpa""]",rechkOJowITF3hkaX,done,かきだし
+「か所」「か月」と表記する,22,"日本語スタイルガイド（第3版）にならい、「か所」「か月」と表記します。
+表記ゆれを防ぐため、「箇所」「個所」など、そのほかの表記は基本的に使いません。 
+
+**注意点**  
+ただし、公文書などの書類にある表記は、そのまま表記します。「か所」「か月」への置き換えは不要です。",https://kufuinc.slack.com/archives/CJX59GJFR/p1666141958261579,,"[""rectxy0LrSOPnpmDs"",""rect1QdTqfTZe0WRm""]",rec1wuNfx5bfUqAxd,,かしょ
+「頃」は漢字で表記する,23,"「頃」は漢字で表記し、平仮名では表記しません。  
+「頃」はユーザーにとって馴染みがあり、読みづらかったり、読み間違えたりするリスクが低いと判断しました。  ",https://kufuinc.slack.com/archives/CJX59GJFR/p1649998111788489,,"[""recIW0Yu9wjEC8S3E""]",recoMZY4zaXJlHIiH,done,ころ
+従業員の休職や退職を表すステータスの総称は「在籍状況」と表現し、勤務中の状態は「在職中」と表現する,24,"従業員の休職や退職を表すステータスは、「在籍状況」と表現します。「在職状況」は使用しません。  
+在籍状況には、「在職中」、「休職中」、「退職済み」の3つのステータスがあります。
+
+ステータスの中で、勤務に従事している状態は「在職中」と表現します。「在籍中」は使用しません。
+
+**理由**
+休職中にも会社に籍はあるので、「在籍中」という表現には休職中も含むことになる。  
+在職中と休職中の両方を指したい場合は「在籍中」を使っても構いません。",,,"[""recJsRiFWMnKkS3vP"",""recyQC9SuJwF2oxaR""]",rech4j4ZvDVJ3XisV,done,ざいせきじょうきょう
+「再読み込み」と表現し、「更新」「リロード」の使用は控える,25,"画面を最新の状態にする操作は、「再読み込み」と表現します。  
+
+SmartHRでは、従業員情報などを編集して保存することを「更新」と表記しているので、混同を避けるために「再読み込み」としました。  
+
+なお、特別な理由がない限りは「画面を再読み込み」と表現し、「ブラウザを再読み込み」「ページを再読み込み」は使いません。  ","https://kufuinc.slack.com/archives/CJX59GJFR/p1640048227260600
+https://smarthr-inc.docbase.io/posts/2222090#%E8%AD%B0%E8%AB%96-1",,"[""recndzwXZhR8qEpTH""]",recK31GhX5zoFsAnA,done,さいよみこみ
+ヘルプページなどのリファレンスの閲覧を促す場合は「参照」と表現し、「確認」の使用は控える,26,アプリケーション上での「確認」を求める場合と明確に書き分けるため、「参照」としました。 ,,,"[""recwYlIdPbBWYmecb""]",recQYlscCrhLSGpyI,done,さんしょう
+アプリケーションが主語のときは「使用」と表現し、「利用」の使用は控える,27,"アプリケーションが主語で、アプリケーション内でオブジェクトなどを使う操作は、「使用」と表現します。「使用」と「利用」の表記ユレが発生しないようにしてください。  
+
+**例外**  
+ユーザーが主語の場合は、コンテキストによって「使用」と「利用」を使い分けます。  
+
+OK例： SmartHR基本機能では、登録された従業員情報を、管理者が指定した用途でのみ使用します。 ",https://kufuinc.slack.com/archives/CJX59GJFR/p1638842362239100,,"[""rec01SVOOL9aT8Fhs""]",rec1tzzEajk67xOYe,done,しよう
+アプリケーションの呼び方には「SmartHR基本機能」と「オプション機能」を使用する,28,"通称「SmartHR本体」とされているアプリケーションは、「SmartHR基本機能」とします。  
+加えて、「プラスアプリ」と呼ばれている機能は、「SmartHRオプション機能」とします。具体的には、年末調整、カスタム社員名簿、文書配付、分析レポート、従業員サーベイ、組織図、人事評価、配置シミュレーションを指します。  
+
+**例外**  
+SmartHRであることが明らかにわかる文脈では「基本機能」「オプション機能」としても構いません。  
+例えば、SmartHR基本機能とSmartHRオプション機能を1つの文で併記するときは、「SmartHR基本機能」、「オプション機能」として、一方のSmartHRを省略可能です。  
+文中では、初出時に「SmartHR基本機能」と記載し、以降は「基本機能」として、SmartHRを省略可能です。",,,"[""recZuLjSqMcKqbEVe"",""rec8mGz5fgn4mIN16""]",recIMc9ARxOlEBnrr,done,スマートエイチアールきほんきのう
+「スマートフォン」と表現し、「スマホ」などの表現は控える,30,"アプリケーションやヘルプセンターでは「スマートフォン」に表記を統一し、誤解を生まないようにします。  
+ただし、マーケティングなど別のコミュニケーションでは、この限りではありません。",https://kufuinc.slack.com/archives/CJX59GJFR/p1604647711088000,,"[""recZlCK7QRBtUOIBm""]",recfxwmTf7qQv8yFa,done,スマートフォン
+アプリケーションの操作画面は「画面」で表記する,32,"アプリケーションの操作画面は「画面」と表記します。「ウィンドウ」、「ダイアログ」、「モーダル」という表記は使いません。
+
+ユーザーの関心は、画面で「何ができるか」です。その画面が「ダイアログなのか？ウィンドウなのか？」といったUIの書き分けは、ユーザーの使い勝手に影響しないと判断しました。
+
+UI上のテキストやヘルプページでは、画面のタイトルを明示して、何ができるかを案内してください。",https://kufuinc.slack.com/archives/CJX59GJFR/p1649969573941349,,"[""recz0dfmniPZObCVI""]",recuyZUYZxqRrVbeB,,だいあろぐ
+「動作環境」と表現し、「推奨環境」の使用は控える,31,"SmartHRが不具合なく動作する環境のことを「動作環境」と表現します。  
+
+「推奨環境」と表現すると、要件を満たさない環境でも正常に動作するように受け取れるため、「動作環境」の方が適切だと判断しました。","議論
+https://kufuinc.slack.com/archives/CJX59GJFR/p1633931378142200
+議論のまとめ
+https://smarthr-inc.docbase.io/posts/2172951
+
+社外向けのお知らせ
+https://smarthr.jp/news/32446",,"[""recbT0uEN4cVLVThj""]",recrOBmlqFtzIUKDh,done,どうさかんきょう
+「得意な言語」と表記し、「母国語」「母語」の使用は控える,33,"多言語対応に関する記載において、「その人が十分に理解できる言語」は「得意な言語」と表記します。
+
+SmartHRが提供する多言語対応は、「その言語を子供の頃に自然に身につけた人」だけでなく「その言語を後から学んで十分に理解できるようになった人」も対象としているため、「母語」や「母国語」ではなく「得意な言語」と表記します。
+
+また、習熟度や使われる地域の限定がない場合は、単に「言語」と表記します。
+
+OK例：外国人従業員は、得意な言語で情報を入力できます。
+NG例：外国人従業員は、母国語で情報を入力できます。
+
+OK例：SmartHRでは、様々な言語の従業員の利用を想定して、多言語化対応を進めております。
+NG例：SmartHRでは、様々な母国語の従業員の利用を想定して、多言語化対応を進めております。",https://smarthr-inc.docbase.io/posts/2735905,,"[""recCIrk9LwoUirHnr""]",recYdKTei4hYuiFYX,,とくいなげんご
+「取り込み」と表現し、「インポート」の使用は控える,34,SmartHRにデータを適用する操作は「取り込み」と表現します。,https://smarthr-inc.docbase.io/posts/1650767,,"[""recB00Gi70BYWePay""]",recmIiinydl9c2TVi,done,とりこみ
+「ドロップダウンリスト」と表現し、「プルダウンメニュー」などの使用は控える,35,"UIコンポーネントの[Dropdown](https://smarthr.design/products/components/dropdown/)や[Select](https://smarthr.design/products/components/select/)のような、クリックで展開するリストは「ドロップダウンリスト」と表現します。  
+理由は以下の通りです。
+- 「プルダウン」よりも「ドロップダウン」の方が検索のヒット数で優勢
+- 操作メニューだけに使用されるとは限らない（項目の一覧から選択させる場合にも使用する）ため、「メニュー」より「リスト」が適切",https://kufuinc.slack.com/archives/CJX59GJFR/p1649397466415699,,"[""recRO2ZZWQGtKK0pn""]",recNvOzAMwrpwYJiT,done,どろっぷだうん
+「入力必須」と表現し、「必須入力」の使用は控える,36,"入力が必要な場合は「入力必須」と表記します。「必須入力」は使用しません。
+
+**理由**  
+管理者が入力フォームを作成する際、「従業員が入力する時の必須項目にしたい」というメンタルモデルを持っているため、ラベルとして［入力（を）必須（にする）］の順序が自然と判断。
+
+**項目を指すとき**  
+OK：［入力必須項目］
+NG：［必須入力項目］
+
+**設定時のラベル**  
+OK：［入力必須］または［必須］ ※UIによって、どちらを使用するかを判断する。
+NG：［必須入力］",https://smarthr-inc.docbase.io/posts/2178376,,"[""recpl3LZi4dEkgc02""]",recUVMSOhVDbQjMMN,done,にゅうりょくひっす
+「パソコン」と表記し、「PC」の使用は控える,37,PCは略語のため、パソコンの方がさまざまなユーザーにとって馴染みがあると判断しました。,https://kufuinc.slack.com/archives/C01L7GK9APK/p1661762776670439,,"[""recTeETnZwytw9WUF""]",recw4wmIL3QqcKmoc,done,ぱそこんと
+「紐づけ」と表現し、「紐付け」の使用は控える,38,「[平仮名にしたほうが読みやすい漢字は平仮名にする](https://smarthr.design/products/contents/writing-style/#recWCPX1UhchVaFjO-0)」というルールに従い、「付ける」を「つける」と表現するのに準じて、「紐づけ」と表現します。,,,"[""recP3ooNXfzEv5aTq""]",rec5PdPTnbdwUVyDO,done,ひもづけ
+アプリケーション上でテキストリンクを押下する操作は「開く」と表現し、「クリック」「タップ」の使用は控える,39,"[ボタンに関しては「押す」を採用](https://smarthr.design/products/contents/idiomatic-usage/usage/#recVAeJr4Di3vQHeA-0)しますが、英文ドキュメントにおいて""open the link"" すると書かれている点からも、リンクは「開く」を採用します。
+
+",https://kufuinc.slack.com/archives/CJX59GJFR/p1667907876477849,,"[""recR5RsTNs2i3SbS8""]",recICAHH7k4x44Dmz,,ひらく
+「複製」と表現し、「コピー」の使用は控える,40,"「コピー」は情報をテンポラリ領域に保持することを表し、「複製」はコピーした情報を別のデータとして作成まですることを表すため、「複製」が適切だと判断しました。  
+
+**例外**  
+コピー後に貼り付けを伴う動作の場合に限り、「コピー」と表現して構いません。",https://kufuinc.slack.com/archives/CJX59GJFR/p1588576567030800,,"[""recfPDtZFOwl1kzJi""]",recVdD5DujIvNuR8G,done,ふくせい
+アプリケーションで最初に表示される画面は「ホーム」と表現し、「トップ」「トップページ」の使用は控える,41,"「SmartHRのホーム」「従業員サーベイのホーム」のように表現します。  
+どのアプリケーションを指しているか自明な場合は、「ホーム」と記載して構いません。  
+「トップページ」は和製英語であり、「画面の最上部」と混同することもあるため、「トップ」は使いません。また、画面であることを強調する必要はないため、「ホーム画面」は使いません。  
+
+**例外**  
+「ホーム」を画面以外の何かと混同する場合のみ、「ホーム画面」と記載することを検討します。  ","https://kufuinc.slack.com/archives/CJX59GJFR/p1644813459805809
+https://kufuinc.slack.com/archives/C01KY3WRX8Q/p1647337887984939?thread_ts=1647306156.369359&cid=C01KY3WRX8Q",,"[""rec1v1hVhRRe8dWpj""]",recYNynP9kXNRdD0T,done,ほーむ
+マスターデータの総称は「マスターデータ」、総称以外は「◯◯マスター」と表記する,42,"マスターとなるデータすべてを指す総称として「マスターデータ」を使用します。「マスター」だけでは、何のマスターなのかが不明瞭なため、単体では使いません。  
+
+また、マスターデータの配下にあるマスターデータは、「システム標準マスター」「カスタムマスター」など、「◯◯マスター」の形式で表現します。マスターデータであることが自明である点、および冗長さを避ける観点から、「システム標準マスターデータ」、「カスタムマスターデータ」とは表現しません。  
+
+OK例：マスターデータ、システム標準マスター、カスタムマスター、部署マスター、役職マスター  
+NG例：マスター、システム標準マスターデータ、カスタムマスターデータ  
+
+**例外**  
+システム標準マスターまたはカスタムマスターの配下にあり、マスターデータであることが明白な場合は、冗長さを避ける観点から、「マスター」を付けずに表現します。  
+
+また、「システム標準マスターの〇〇」と表現するか「〇〇マスター」と表現するかは、ユーザーにシステム標準マスター（またはカスタムマスター）配下であることを意識させたいかどうかで判断してください。  
+
+- 意識させる必要がない場合：「〇〇マスター」
+- 意識させる必要があるが、「マスター」を繰り返すことで意味が伝わりづらくなる場合：「システム標準マスターの雇用形態」
+※「システム標準マスターの雇用形態マスター」とは表現しない   
+
+OK例： マスターデータ > システム標準マスター > 雇用形態  
+NG例： マスターデータ > システム標準マスター > 雇用形態マスター","決定経緯（〇〇マスター）
+https://kufuinc.slack.com/archives/C01L7GK9APK/p1630288792240500
+
+決定経緯（マスター単体で使わない）
+https://kufuinc.slack.com/archives/C012HA3JEGH/p1625190009156800?thread_ts=1625131554.123300&cid=C012HA3JEGH
+
+決定経緯（長音をつける）
+https://kufuinc.slack.com/archives/CJX59GJFR/p1599529484034300",,"[""recVrsjw28KxrB6T7"",""rec714J5wde9rhuKp"",""recTMQAGxVPuTA0wz""]",recOUKORjYkZyMeY6,done,ますたー
+前の工程に戻る場合の「元」は漢字で表記する,43,"前の工程に戻る場合の操作は「元に戻す」「元へ戻る」などと表現します。  
+
+「もとに」や「もとへ」と表記するよりも、漢字を使用した方がひと目で「前の工程に戻ること」を認知できると判断しました。","https://kufuinc.slack.com/archives/CJX59GJFR/p1612859054114400
+https://kufuinc.slack.com/archives/CJX59GJFR/p1649829413588279",,"[""rec9STuXnkN7U9MFH""]",recyoJ3d3USyzSqd0,done,もと
+拠り所や根拠を示す「もと」は平仮名で表記する,44,"拠り所や根拠とする「もと」は平仮名で表記し、漢字の「基」は使いません。  
+
+漢字よりも平仮名の方がユーザーにとって読みやすく馴染みのある表記と判断しました。  
+
+OK例： 給与額をもとに  
+NG例： 給与額を基に",https://kufuinc.slack.com/archives/CJX59GJFR/p1649829413588279,,"[""recjsSGmEaT2tj5Xq""]",recwriblj4bLsRwiR,done,もと
