@@ -88,7 +88,7 @@ exports.sourceNodes = async (
       return record.fields
     })
 
-    json2csv(csvData, { keys: csvFields, emptyFieldValue: '' }).then((csv) => {
+    json2csv(csvData, { keys: csvFields, emptyFieldValue: '', excelBOM: true }).then((csv) => {
       fs.writeFile(`${csvDir}/${table.name}.csv`, csv)
     })
   }
