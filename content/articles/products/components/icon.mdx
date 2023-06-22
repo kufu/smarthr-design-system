@@ -4,34 +4,32 @@ description: ' '
 storyName: 'Icon'
 ---
 
+import { ComponentPreview } from '@Components/ComponentPreview'
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
 import {
   FaAddressBookIcon,
   FaAddressCardIcon,
   FaAngleDoubleDownIcon,
   FaAngleDoubleLeftIcon,
   FaAngleDoubleRightIcon,
-  FaPlusCircleIcon
+  FaExternalLinkAltIcon,
+  FaPlusCircleIcon,
+  FaQuestionCircleIcon
 } from 'smarthr-ui'
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
 一目でメッセージを伝え、重要な情報への注意を促します。
 
-SmartHR UIでは`Icon`です。
-
 <ComponentStory name="Icon" />
 
-## アイコンを使う際の注意
+## 使用上の注意
 
 アイコンは、情報の認知の手助けとして使ってください。
 
-アイコンのみ表示する場合、ラベルと合わせて使うよりも認知負荷を与えます。十分に検討して使ってください。
-
 ### アクセシビリティ
 
-アイコンのみ表示する場合、適切なラベルを付与してください。特にリンクやボタンにアイコンのみ表示する場合は必須です。
+アイコンのみ表示する場合、ラベルと合わせて使うよりも認知負荷を与えます。適切なラベルを付与してください。特にリンクやボタンにアイコンのみ表示する場合は必須です。
 
 ```tsx editable codeBlock
 <Button variant="primary" square>
@@ -42,6 +40,7 @@ SmartHR UIでは`Icon`です。
 また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
 
 ## アイコンの参照元
+
 SmartHRプロダクトのアイコンは、[Font Awesome](https://fontawesome.com/)を使っています。アイコンのデザインコンセプトはFont Awesomeの[公式サイト](https://fontawesome.com/)を確認してください。
 
 SmartHR UIでは、[React Icons](https://github.com/react-icons/react-icons)を通してFont Awesomeのライブラリを利用しています。
@@ -50,6 +49,7 @@ Font Awesomeアイコンはプロダクトに必要なアイコンのみイン�
 
 
 ## 種類
+
 Font Awesomeのアイコンをすべて網羅したものではありません。
 
 実際に登録されてるアイコンを確認する際は、[Storybook](https://story.smarthr-ui.dev/?path=/story/media（メディア）-icon--all)を確認してください。
@@ -68,9 +68,9 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 
 アイコンの色は、使う場所のテキストの色に準拠します。SmartHR UIではcolorを指定せず、使われているコンポーネントの色の指定に従います。
 
-## 使い方
+## デザインパターン
 
-import { FaExternalLinkAltIcon, FaQuestionCircleIcon } from 'smarthr-ui'
+### 特別なテキストリンク
 
 特定のテキストリンクを表す場合は、以下のアイコンを装飾として使います。これはリンクされるテキストが異なっていても、クリック時に同じ挙動になることを示すためです。
 
