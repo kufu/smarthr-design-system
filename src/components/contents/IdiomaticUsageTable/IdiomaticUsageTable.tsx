@@ -125,9 +125,18 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
                 return (
                   <tr key={index}>
                     <RecommendTd>
-                      <strong>{prop.okExample}</strong>
+                      <strong>
+                        {prop.okExample?.split(/(\u3000)/).map((word) => {
+                          // 全角スペース（u3000）があれば改行に変換
+                          return word === '　' ? <br /> : word
+                        })}
+                      </strong>
                     </RecommendTd>
-                    <NGTd>{prop.ngExample}</NGTd>
+                    <NGTd>
+                      {prop.ngExample?.split(/(\u3000)/).map((word) => {
+                        return word === '　' ? <br /> : word
+                      })}
+                    </NGTd>
                     <ReasonTd>
                       <ul>
                         {matchWritingStyle && (
