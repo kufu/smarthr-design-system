@@ -3,16 +3,16 @@ import path from 'path'
 
 import { glob } from 'glob'
 
-const CONTENT_PATH = path.join(__dirname, '../content/articles/**/*.mdx')
-const IMAGE_PATH = path.join(__dirname, '../content/articles/**/*.+(png|jpg|jpeg|gif)')
-const DOWNLOAD_PATH = path.join(__dirname, '../static/**/*')
+const CONTENT_PATH = path.join(__dirname, '../../content/articles/**/*.mdx')
+const IMAGE_PATH = path.join(__dirname, '../../content/articles/**/*.+(png|jpg|jpeg|gif)')
+const DOWNLOAD_PATH = path.join(__dirname, '../../static/**/*')
 
 const IGNORE_LIST = ['URL', '#ページ内リンク']
 
 type LinkItem = { link: string; filePath: string; pagePath: string; lineNo: number; type: 'link' | 'image' }
 
 const collectExistLinks = async () => {
-  const existPathList: string[] = []
+  const existPathList: string[] = ['/login/', '/search/'] // /src/pages/以下に存在するページ
   const linkList: LinkItem[] = []
   for (const file of await glob(CONTENT_PATH)) {
     // ビルド後のパス
@@ -26,7 +26,7 @@ const collectExistLinks = async () => {
     // ファイル内のリンク表記を探す
     const content = await fs.readFile(file, 'utf8')
     content.split('\n').forEach((line, index) => {
-      const sdsLinks = line.matchAll(/!?\[.*?\]\(([^[]+)\)/g)
+      const sdsLinks = line.matchAll(/!?\[.*?\]\(([^[|*<>]+)\)/g)
       for (const link of sdsLinks) {
         linkList.push({
           link: link[1].split(' ')[0], // "![sample image](./images/sample.jpg '#width=300px')"のような表記が可能なので
@@ -86,8 +86,8 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
       continue
     }
 
-    //「/」で始まるルートパス表記の場合
-    if (/^\//.test(srcPath)) {
+    //「/」で始まるルートパス表記の場合 - リンク
+    if (/^\//.test(srcPath) && linkItem.type === 'link') {
       if (!existPathList.includes(srcPath)) list.push(linkItem)
       continue
     }
@@ -98,7 +98,7 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
       if (!existPathList.includes(pagePath)) list.push(linkItem)
     }
 
-    // 間接パス表記の場合 - 画像
+    // 画像全般
     if (linkItem.type === 'image') {
       const imagePath = path.normalize(`${path.dirname(linkItem.filePath)}/${srcPath}`).replace(/^.*\/content\/articles/, '')
       if (!existPathList.includes(imagePath)) list.push(linkItem)
@@ -120,7 +120,8 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
   if (missingLinkList.length > 0) {
     missingLinkList.forEach((item) => {
       let errorType = `Missing ${item.type === 'image' ? 'image source' : 'link'}`
-      if (existPathList.includes(`${item.link}/`)) {
+      const normalizedLink = path.normalize(`${item.pagePath}/${item.link}`).replace(/^.*\/content\/articles/, '')
+      if (existPathList.includes(`${item.link}/`) || existPathList.includes(`${normalizedLink}/`)) {
         errorType = `No trailing slash`
       }
       console.error(`${errorType}: ${item.link} in /${path.relative(`${__dirname}/../`, item.filePath)} at L:${item.lineNo}`)

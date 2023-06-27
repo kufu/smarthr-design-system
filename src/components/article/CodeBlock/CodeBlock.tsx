@@ -1,13 +1,11 @@
 import { PATTERNS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import { Script } from 'gatsby'
-import Highlight, { Language, defaultProps } from 'prism-react-renderer'
-import github from 'prism-react-renderer/themes/github'
-import vscode from 'prism-react-renderer/themes/vsDark'
-import React, { CSSProperties, FC, ReactNode, useState } from 'react'
+import { Highlight, themes } from 'prism-react-renderer'
+import React, { CSSProperties, FC, useState } from 'react'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import * as ui from 'smarthr-ui'
-import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
+import { Gap, SeparateGap } from 'smarthr-ui/lib/types'
 import styled, { ThemeProvider, css } from 'styled-components'
 // TODO SmartHR な Dark テーマほしいな!!!
 
@@ -19,7 +17,7 @@ type LiveProviderProps = React.ComponentProps<typeof LiveProvider>
 
 type Props = {
   children: string
-  className?: Language
+  className?: string
   editable?: boolean
   isStorybook?: boolean
   withStyled?: boolean
@@ -32,7 +30,7 @@ type Props = {
   }
 
 const theme = {
-  ...github,
+  ...themes.github,
   ...{
     plain: {
       backgroundColor: CSS_COLOR.SEMANTICS_COLUMN,
@@ -97,10 +95,10 @@ export const CodeBlock: FC<Props> = ({
           {tsLoaded && (
             <LiveProvider
               code={code}
-              language={language as Language}
+              language={language}
               scope={{ ...React, ...ui, styled, css, ...scope }}
               theme={{
-                ...vscode,
+                ...themes.vsDark,
                 plain: {
                   color: CSS_COLOR.LIGHT_GREY_3,
                   backgroundColor: CSS_COLOR.TEXT_BLACK,
@@ -128,8 +126,8 @@ export const CodeBlock: FC<Props> = ({
   }
 
   return (
-    <Highlight {...defaultProps} code={code} language={language as Language} theme={isStorybook ? vscode : theme}>
-      {({ style, tokens, getLineProps, getTokenProps }): ReactNode => (
+    <Highlight code={code} language={language} theme={isStorybook ? themes.vsDark : theme}>
+      {({ style, tokens, getLineProps, getTokenProps }) => (
         <CodeWrapper>
           <PreContainer isStorybook={isStorybook}>
             <CopyButton text={code} />

@@ -10,7 +10,7 @@ import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query BasicConceptTable {
-    basicConceptData: allAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
+    basicConceptData: allSdsAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
       edges {
         node {
           data {
@@ -26,6 +26,9 @@ const query = graphql`
     }
   }
 `
+
+marked.setOptions({ headerIds: false, mangle: false })
+
 export const BasicConceptTable: FC = () => {
   const data = useStaticQuery<Queries.BasicConceptTableQuery>(query)
 

@@ -10,7 +10,7 @@ import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query AppWritingTable {
-    appWritingData: allAirtable(filter: { table: { eq: "UIテキスト" } }) {
+    appWritingData: allSdsAirtable(filter: { table: { eq: "UIテキスト" } }) {
       edges {
         node {
           data {
@@ -26,6 +26,9 @@ const query = graphql`
     }
   }
 `
+
+marked.setOptions({ headerIds: false, mangle: false })
+
 export const AppWriting: FC = () => {
   const data = useStaticQuery<Queries.AppWritingTableQuery>(query)
 

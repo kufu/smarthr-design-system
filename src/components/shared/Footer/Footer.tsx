@@ -12,8 +12,8 @@ type Props = {
 }
 const query = graphql`
   query Footer {
-    concept: allMdx(
-      filter: { fields: { category: { eq: "concept" }, hierarchy: { glob: "*/*" } } }
+    introduction: allMdx(
+      filter: { fields: { category: { eq: "introduction" }, hierarchy: { glob: "*/*" } } }
       sort: { fields: frontmatter___order }
     ) {
       nodes {
@@ -243,7 +243,7 @@ const Col2Container = styled.div`
   grid-area: col2;
   display: grid;
   grid-template:
-    'concept basics products communication' auto
+    'introduction basics products communication' auto
     'foundation accessibility products communication' auto
     / 1fr 1fr 1fr 1fr;
   align-items: start;
@@ -251,7 +251,7 @@ const Col2Container = styled.div`
 
   @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
-      'concept' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
+      'introduction' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
       / 1fr;
     gap: 8px;
   }

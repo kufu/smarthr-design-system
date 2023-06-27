@@ -1,0 +1,1 @@
+export { ComponentCaptures } from './ComponentCaptures'

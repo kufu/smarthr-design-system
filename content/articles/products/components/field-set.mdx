@@ -3,13 +3,17 @@ title: 'FieldSet（非推奨）'
 description: ''
 storyName: 'FieldSet'
 ---
-import { CompactInformationPanel } from 'smarthr-ui'
-import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+import { BaseColumn, WarningIcon } from 'smarthr-ui'
 
-<CompactInformationPanel type="warning">
-  <Message>FieldSetコンポーネントは非推奨です。<a href="/products/components/form-group/">FormGroup</a>コンポーネントを使用してください。</Message>
-</CompactInformationPanel>
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+    FieldSetコンポーネントは非推奨です。<a href="/products/components/fieldset/">Fieldset</a>コンポーネントを使用してください。
+    </span>}
+    />
+</BaseColumn>
 
 <ComponentStory name="FieldSet" />
 

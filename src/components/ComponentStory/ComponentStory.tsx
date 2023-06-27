@@ -24,6 +24,7 @@ import { ResizableContainer } from './ResizableContainer'
 
 type Props = {
   name: string
+  dirName?: string
 }
 
 const query = graphql`
@@ -55,7 +56,7 @@ const query = graphql`
   }
 `
 
-export const ComponentStory: FC<Props> = ({ name }) => {
+export const ComponentStory: FC<Props> = ({ name, dirName }) => {
   const { allMdx, allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
   const defaultStoryData = allMdx.nodes.find((node) => {
     return node.frontmatter?.storyName === name
@@ -86,7 +87,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       setDisplayVersion(version)
       setIsStoryLoaded(false)
       setIsIFrameLoaded(false)
-      const newData = await fetchStoryData(name, version).catch(() => {
+      const newData = await fetchStoryData(name, version, dirName).catch(() => {
         return null
       })
       if (newData === null || newData.code === '') {
@@ -97,7 +98,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       setCurrentIFrame(newData.storyItems[0]?.name ?? '')
       setShowError(false)
     },
-    [name],
+    [name, dirName],
   )
 
   // クエリ付きURLでアクセスされた場合
@@ -172,7 +173,9 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         </Cluster>
         <Cluster>
           <AnchorButton
-            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?path=/story/${storyData.groupPath}`}
+            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?path=/story/${
+              storyData.groupPath
+            }-${getStoryName(storyData?.storyItems[0]?.name ?? '')}`}
             target="_blank"
             size="s"
             suffix={<FaExternalLinkAltIcon />}
@@ -180,7 +183,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
             Storybook
           </AnchorButton>
           <AnchorButton
-            href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`}
+            href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${dirName ?? name}`}
             target="_blank"
             size="s"
             suffix={<FaExternalLinkAltIcon />}
@@ -252,8 +255,6 @@ export const ComponentStory: FC<Props> = ({ name }) => {
 
 const StoryWrapper = styled.div`
   margin-block: 48px 0;
-  padding: 16px 24px;
-  background-color: ${CSS_COLOR.LIGHT_GREY_3};
 `
 
 const ErrorPanel = styled(InformationPanel)`
