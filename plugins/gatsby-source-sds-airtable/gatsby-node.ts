@@ -54,9 +54,9 @@ exports.sourceNodes = async (
     const url = `https://api.airtable.com/v0/${baseId}/${table.id}?view=${encodeURIComponent(viewOption)}`
     const records = []
     let hasNext = true
-    let offset = ''
+    let offsetId = ''
     while (hasNext) {
-      const res = await fetch(`${url}&offset=${offset}`, {
+      const res = await fetch(`${url}&offset=${offsetId}`, {
         headers: {
           Authorization: `Bearer ${process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN}`,
         },
@@ -64,8 +64,8 @@ exports.sourceNodes = async (
       if (!res.ok) break
       const data = await res.json()
       records.push(...data.records)
-      offset = data.offset
-      if (offset === '') hasNext = false
+      offsetId = data.offset
+      if (offsetId === '') hasNext = false
     }
 
     for (const record of records) {
