@@ -19,34 +19,17 @@ import {
 } from 'smarthr-ui'
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
-一目でメッセージを伝え、重要な情報への注意を促します。
+一目でメッセージを伝え、重要な情報への注意を促します。適切なアイコンは、認知を手助けします。
 
 <ComponentStory name="Icon" />
 
 ## 使用上の注意
-
-アイコンは、情報の認知の手助けとして使ってください。
-
-### アクセシビリティ
-
-アイコンのみ表示する場合、ラベルと合わせて使うよりも認知負荷を与えます。適切なラベルを付与してください。特にリンクやボタンにアイコンのみ表示する場合は必須です。
-
-```tsx editable codeBlock
-<Button variant="primary" square>
-  <FaPlusCircleIcon alt="追加" />
-</Button>
-```
-
-また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
-
-## アイコンの参照元
 
 SmartHRプロダクトのアイコンは、[Font Awesome](https://fontawesome.com/)を使っています。アイコンのデザインコンセプトはFont Awesomeの[公式サイト](https://fontawesome.com/)を確認してください。
 
 SmartHR UIでは、[React Icons](https://github.com/react-icons/react-icons)を通してFont Awesomeのライブラリを利用しています。
 
 Font Awesomeアイコンはプロダクトに必要なアイコンのみインポートしています。新たに追加したい場合は、新たにインポートしたいアイコンを追加し、[プロジェクト](https://github.com/kufu/smarthr-ui)にPull Requestを出してください。
-
 
 ## 種類
 
@@ -67,6 +50,18 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 ## 状態
 
 アイコンの色は、使う場所のテキストの色に準拠します。SmartHR UIではcolorを指定せず、使われているコンポーネントの色の指定に従います。
+
+## アクセシビリティ
+
+アイコンのみ表示する場合、ラベルと合わせて使うよりも認知負荷を与えます。適切なラベルを付与してください。特にリンクやボタンにアイコンのみ表示する場合は必須です。
+
+```tsx editable codeBlock
+<Button variant="primary" square>
+  <FaPlusCircleIcon alt="追加" />
+</Button>
+```
+
+また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
 
 ## デザインパターン
 
