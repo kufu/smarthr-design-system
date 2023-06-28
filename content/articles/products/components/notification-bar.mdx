@@ -10,15 +10,13 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { NotificationBar, Button, Stack} from 'smarthr-ui'
 import { VideoEmbed } from '@Components/article/VideoEmbed/VideoEmbed'
 
-<ComponentStory name="NotificationBar" />
-
-
-## 使いどころ
 NotificationBarは、フィードバックやメッセージを伝えるために使います。
 
 * 操作後に、ダイアログ内や画面全体が切り替わるとき
 * ダイアログで操作し、元の画面に戻るとき
 * 特別で重要な情報やお知らせを表示するとき
+
+<ComponentStory name="NotificationBar" />
 
 ## 種類
 
@@ -106,16 +104,16 @@ export const AnimateNotificationBar = () => {
 </Stack>
 ```
 
-## 使い方
+## デザインパターン
 
 ### 操作のフィードバック
 
-主に「操作後に、ダイアログ内や画面全体が切り替わるとき」や「ダイアログで操作し、元の画面に戻るとき」などに使います。  
+主に「操作後に、ダイアログ内や画面全体が切り替わるとき」や「ダイアログで操作し、元の画面に戻るとき」などに使います。
 
 - ユーザーにメッセージが表示されたことを強調するために、[アニメーションを有効](#h3-1)にします。
-- ユーザーの明示的な操作で非表示にします。時間の経過で閉じることは非推奨されません（[※1](#h2-5)）。
+- ユーザーの明示的な操作で非表示にします。時間の経過で閉じることは非推奨です（[※1](#h2-5)）。
 
-#### ダイアログからコレクションにオブジェクトを新規追加した後のメッセージ
+#### コレクションにオブジェクトを追加した後のメッセージ
 
 コレクションにオブジェクトを追加した際に、フィードバックを表示する典型的な例です。  
 以下の例では操作が成功したため`type="success"`にしていますが、エラーの場合は`error`を指定してメッセージを返します。
@@ -129,7 +127,7 @@ export const AnimateNotificationBar = () => {
 
 #### スクロール追従するNotificationBar
 
-操作するボタンなどと、NotificationBarによるメッセージの距離が離れている場合は、`positon: sticky`でスクロールに追従させ、メッセージに気づきやすくすることを推奨します。
+操作するボタンなどと、NotificationBarによるメッセージの距離が離れている場合は、`positon: sticky`でスクロールに追従させ、メッセージに気づきやすくすることを推奨します。  
 以下の例では、スクロールに関わらずNotificationBarを画面上部に固定表示しています。
 
 <VideoEmbed
@@ -141,7 +139,7 @@ export const AnimateNotificationBar = () => {
 
 ### 特別な情報やお知らせ
 
-主に「特別で重要な情報やお知らせを出したいとき」に使うケースです。  
+主に「特別で重要な情報やお知らせを出したいとき」に使うパターンです。
 
 - 基本的に、`bold={false}`で使うことを推奨します。破壊的な変更や必ず見てほしい重要情報など必要に応じて強調してください。
 - 特別な情報やお知らせで設置するコンポーネントと表示位置は、情報構造に合わせて設計します。NotificationBarでの代表的な使い方は以下を参照してください。
