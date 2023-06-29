@@ -1,11 +1,16 @@
 import path from 'path'
+
 import { Actions, GatsbyNode } from 'gatsby'
 import { createFilePath } from 'gatsby-source-filesystem'
+import packageInfo from 'smarthr-ui/package.json'
 
 import { AIRTABLE_CONTENTS } from '../constants/airtable'
+import { fetchPatternCode } from '../lib/fetchPatternCode'
+import { fetchStoryData } from '../lib/fetchStoryData'
+
 import type { airtableContents } from '../constants/airtable'
 
-export const onCreateNode: GatsbyNode['onCreateNode'] = ({ actions, node, getNode }) => {
+export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === 'Mdx') {
@@ -29,13 +34,35 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({ actions, node, getNod
       node,
       value: fileNameArray.join('/'),
     })
+
+    const frontmatter = node.frontmatter as typeof node & {
+      storyName: string
+      storyDirName?: string
+      patternName: string
+    }
+    if (frontmatter && frontmatter.storyName) {
+      const storyData = await fetchStoryData(frontmatter.storyName, packageInfo.version, frontmatter.storyDirName)
+      createNodeField({
+        name: 'storyData',
+        node,
+        value: storyData,
+      })
+    }
+    if (frontmatter && frontmatter.patternName) {
+      const patternCode = await fetchPatternCode(frontmatter.patternName)
+      createNodeField({
+        name: 'patternCode',
+        node,
+        value: patternCode,
+      })
+    }
   }
 }
 
 export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
   const result = await graphql<{
-    allMdx: GatsbyTypes.Query['allMdx']
+    allMdx: Queries.Query['allMdx']
   }>(`
     query {
       allMdx {
@@ -46,6 +73,11 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
               slug
               category
               hierarchy
+            }
+            frontmatter {
+              storyName
+              patternName
+              storyDirName
             }
           }
         }
@@ -73,7 +105,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
     if (slug) {
       createPage({
         path: slug || '',
-        component: component,
+        component,
         context: {
           id: node.id,
           category: node.fields?.category,
@@ -96,7 +128,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       order: Int
     }
   `
-  // MdxFrontmatterには`smarthr-ui`もあるが、型定義（`smarthr_ui: String`）を追加すると値が取得できない現象が起こるため、未定義。
 
   createTypes(typeDefs)
 }

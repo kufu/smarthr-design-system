@@ -7,6 +7,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "allowJs": false,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -22,6 +23,7 @@
       "@Components/*": ["src/components/*"],
       "@Constants/*": ["src/constants/*"],
       "@Context/*": ["src/context/*"],
+      "@Lib/*": ["src/lib/*"],
     }
   },
   "ts-node": {

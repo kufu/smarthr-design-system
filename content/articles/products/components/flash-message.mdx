@@ -1,32 +1,40 @@
 ---
 title: 'FlashMessage（非推奨）'
 description: ' '
-smarthr-ui: 'FlashMessage'
+storyName: 'FlashMessage'
 ---
 
+import { ComponentPreview } from '@Components/ComponentPreview'
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
 import { useState } from 'react'
 import {
+  BaseColumn,
   Button,
   FlashMessage,
-  CompactInformationPanel,
+  WarningIcon,
 } from 'smarthr-ui'
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 
-<CompactInformationPanel type="warning">
-  <Message>FlashMessageは気づきにくいため、安易な使用はお勧めしません。<a href="/products/components/notification-bar/">NotificationBar</a>や<a href="/products/components/dialog/">Dialog</a>の使用を検討してください。</Message>
-</CompactInformationPanel>
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+  FlashMessageは気づきにくいため、安易な使用はお勧めしません。<a href="/products/components/notification-bar/">NotificationBar</a>や<a href="/products/components/dialog/">Dialog</a>の使用を検討してください。
+    </span>}
+    />
+</BaseColumn>
 
 
 FlashMessageコンポーネントは、インターフェイス上に表示されるメッセージパネルです。  
 ユーザー操作やシステムの処理結果を、ユーザーに素早くフィードバックするために使います。
 
-SmartHR UIでは`FlashMessage`です。
-
 
 <ComponentStory name="FlashMessage" />
+
+
+## 使用上の注意
+
+他の操作に影響を及ぼさない便利な反面、注意を強く引くことはできません。ユーザーに大きな影響を及ぼす更新の通知をしたい場合は、[Dialogコンポーネント](/products/components/dialog/)を使うことを検討してください。
 
 
 ## メッセージの書き方
@@ -34,11 +42,6 @@ SmartHR UIでは`FlashMessage`です。
 * 表示するメッセージが複数行になると可読性を下げるため、テキストは1行に収めます。
 * 1文のみの場合でも、文章には句点をつけます。
 * 単語のみ/体言止め（「など」で終わる場合も含む）は句点を省略します。
-
-
-## FlashMessageを使う際の注意
-
-他の操作に影響を及ぼさない便利な反面、アテンションとして強くはありません。ユーザーに大きな影響を及ぼす更新の通知をしたい場合は、[Dialogコンポーネント](/products/components/dialog/)を使うことを検討してください。
 
 ## 種類
 

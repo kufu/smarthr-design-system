@@ -6,6 +6,8 @@ order: 1
 
 import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
+import { TableWrapper } from '@Components/contents/shared/TableWrapper'
+
 <!-- textlint-disable -->
 
 ## 試験の結果および実施方法
@@ -58,16 +60,17 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
 達成基準のリンクは<abbr title="Web Contents Accessibility Guidelines">WCAG</abbr> 2.0解説書へのリンクです。
 
-<Table>
-  <thead>
-    <tr>
-      <Th>達成基準</Th>
-      <Th>等級</Th>
-      <Th>適用</Th>
-      <Th>結果</Th>
-    </tr>
-  </thead>
-  <tbody>
+<TableWrapper type="narrow">
+  <Table>
+    <thead>
+      <tr>
+        <Th>達成基準</Th>
+        <Th>等級</Th>
+        <Th>適用</Th>
+        <Th>結果</Th>
+      </tr>
+    </thead>
+    <tbody>
 
 <tr>
     <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/text-equiv-all.html">1.1.1 非テキストコンテンツ</a></Td>
@@ -243,8 +246,9 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
     <Td>○</Td>
     <Td>×</Td>
 </tr>
-  </tbody>
-</Table>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 - 「2.4.2 ページタイトル」および「3.1.1 ページの言語」は、ページが検証対象ではないため該当箇所なしとした。
 - 「3.2.1 フォーカス時」および「3.2.2 入力時」は、実際の操作が与えられない状態での検証のため該当箇所なしとした。
@@ -261,7 +265,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <a href="https://smarthr-ui.netlify.app/iframe.html?id=fieldset--all">FieldSet</a>
+    description: <a href="https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-fieldset（非推奨）--all">FieldSet</a>
   },
   {
     term: '対応方法',
@@ -276,7 +280,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=datepicker">DatePicker</a></>
+    description: <><a href="https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-datepicker--all">DatePicker</a></>
   },
   {
     term: '対応方法',
@@ -293,7 +297,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=header">Header</a>, <a href="https://smarthr-ui.netlify.app/iframe.html?id=footer">Footer</a></>
+    description: <><a href="https://story.smarthr-ui.dev/iframe.html?id=navigation（ナビゲーション）-header">Header</a>, Footer</>
   },
   {
     term: '対応方法',
@@ -308,7 +312,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=statuslabel">StatusLabel</a>, <a href="https://smarthr-ui.netlify.app/iframe.html?id=header">Header</a></>
+    description: <><a href="https://story.smarthr-ui.dev/iframe.html?id=states（状態）-statuslabel">StatusLabel</a>, <a href="https://story.smarthr-ui.dev/iframe.html?id=navigation（ナビゲーション）-header">Header</a></>
   },
   {
     term: '対応方法',
@@ -325,7 +329,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=header">Header</a>, <a href="https://smarthr-ui.netlify.app/iframe.html?id=footer">Footer</a></>
+    description: <><a href="https://story.smarthr-ui.dev/iframe.html?id=navigation（ナビゲーション）-header">Header</a>, Footer</>
   },
   {
     term: '対応方法',
@@ -340,7 +344,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=flashmessage--demo">FlashMessage - Demo</a></>
+    description: <><a href="https://story.smarthr-ui.dev/iframe.html?id=states（状態）-flashmessage（非推奨）--demo">FlashMessage - Demo</a></>
   },
   {
     term: '対応方法',
@@ -361,7 +365,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=combobox">Combobox</a></>
+    description: <><a href="https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-combobox">Combobox</a></>
   },
   {
     term: '内容',
@@ -377,46 +381,46 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
 試験をしたコンポーネントの代表的なURLのみを掲載します。
 
-- [AccordionPanel](https://smarthr-ui.netlify.app/iframe.html?id=accordionpanel)
-- [AppNavi](https://smarthr-ui.netlify.app/iframe.html?id=appnavi)
-- [Balloon](https://smarthr-ui.netlify.app/iframe.html?id=balloon)
-- [Base](https://smarthr-ui.netlify.app/iframe.html?id=base)
-- [BottomFixedArea](https://smarthr-ui.netlify.app/iframe.html?id=bottomfixedarea)
-- [Button](https://smarthr-ui.netlify.app/iframe.html?id=button)
-- [Calendar](https://smarthr-ui.netlify.app/iframe.html?id=calendar)
-- [CheckBox](https://smarthr-ui.netlify.app/iframe.html?id=checkbox)
-- [CheckBoxLabel](https://smarthr-ui.netlify.app/iframe.html?id=checkboxlabel)
-- [Combobox](https://smarthr-ui.netlify.app/iframe.html?id=combobox)
-- [DatePicker](https://smarthr-ui.netlify.app/iframe.html?id=datepicker)
-- [DefinitionList](https://smarthr-ui.netlify.app/iframe.html?id=definitionlist)
-- [Dialog](https://smarthr-ui.netlify.app/iframe.html?id=dialog)
-- [DropZone](https://smarthr-ui.netlify.app/iframe.html?id=dropzone)
-- [Dropdown](https://smarthr-ui.netlify.app/iframe.html?id=dropdown)
-- [FilterDropdown](https://smarthr-ui.netlify.app/iframe.html?id=filterdropdown)
-- [FieldSet](https://smarthr-ui.netlify.app/iframe.html?id=fieldset)
-- [FlashMessage](https://smarthr-ui.netlify.app/iframe.html?id=flashmessage)
-- [Footer](https://smarthr-ui.netlify.app/iframe.html?id=footer)
-- [Header](https://smarthr-ui.netlify.app/iframe.html?id=header)
-- [Heading](https://smarthr-ui.netlify.app/iframe.html?id=heading)
-- [HeadlineArea](https://smarthr-ui.netlify.app/iframe.html?id=headlinearea)
-- [Icon](https://smarthr-ui.netlify.app/iframe.html?id=icon)
-- [BlankImage](https://smarthr-ui.netlify.app/iframe.html?id=image)
-- [IndexNav](https://smarthr-ui.netlify.app/iframe.html?id=indexnav)
-- [InformationPanel](https://smarthr-ui.netlify.app/iframe.html?id=informationpanel)
-- [Input](https://smarthr-ui.netlify.app/iframe.html?id=input)
-- [Loader](https://smarthr-ui.netlify.app/iframe.html?id=loader)
-- [MessageScreen](https://smarthr-ui.netlify.app/iframe.html?id=messagescreen)
-- [Pagination](https://smarthr-ui.netlify.app/iframe.html?id=pagination)
-- [RadioButton](https://smarthr-ui.netlify.app/iframe.html?id=radiobutton)
-- [RadioButtonLabel](https://smarthr-ui.netlify.app/iframe.html?id=radiobuttonlabel)
-- [RightFixedNote](https://smarthr-ui.netlify.app/iframe.html?id=rightfixednote)
-- [SegmentedControl](https://smarthr-ui.netlify.app/iframe.html?id=segmentedcontrol)
-- [Select](https://smarthr-ui.netlify.app/iframe.html?id=select)
-- [SmartHRLogo](https://smarthr-ui.netlify.app/iframe.html?id=smarthrlogo)
-- [StatusLabel](https://smarthr-ui.netlify.app/iframe.html?id=statuslabel)
-- [TabBar](https://smarthr-ui.netlify.app/iframe.html?id=tabbar)
-- [Table](https://smarthr-ui.netlify.app/iframe.html?id=table)
-- [Textarea](https://smarthr-ui.netlify.app/iframe.html?id=textarea)
-- [Tooltip](https://smarthr-ui.netlify.app/iframe.html?id=tooltip)
+- [AccordionPanel](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-accordionpanel)
+- [AppNavi](https://story.smarthr-ui.dev/iframe.html?id=navigation（ナビゲーション）-appnavi)
+- [Balloon](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-balloon)
+- [Base](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-base)
+- [BottomFixedArea](https://story.smarthr-ui.dev/iframe.html?id=navigation（ナビゲーション）-bottomfixedarea)
+- [Button](https://story.smarthr-ui.dev/iframe.html?id=buttons（ボタン）-button)
+- [Calendar](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-calendar)
+- [CheckBox](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-checkbox)
+- CheckBoxLabel
+- [Combobox](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-combobox)
+- [DatePicker](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-datepicker)
+- [DefinitionList](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-definitionlist)
+- [Dialog](https://story.smarthr-ui.dev/iframe.html?id=dialog（ダイアログ）-dialog)
+- [DropZone](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-dropzone)
+- [Dropdown](https://story.smarthr-ui.dev/iframe.html?id=buttons（ボタン）-dropdown)
+- [FilterDropdown](https://story.smarthr-ui.dev/iframe.html?id=buttons（ボタン）-dropdown--filter-dropdown)
+- [FieldSet](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-fieldset（非推奨）)
+- [FlashMessage](https://story.smarthr-ui.dev/iframe.html?id=states（状態）-flashmessage（非推奨）)
+- Footer
+- [Header](https://story.smarthr-ui.dev/iframe.html?id=navigation（ナビゲーション）-header)
+- [Heading](https://story.smarthr-ui.dev/iframe.html?id=text（テキスト）-heading)
+- [HeadlineArea](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-headlinearea)
+- [Icon](https://story.smarthr-ui.dev/iframe.html?id=media（メディア）-icon)
+- BlankImage
+- IndexNav
+- [InformationPanel](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-informationpanel)
+- [Input](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-input)
+- [Loader](https://story.smarthr-ui.dev/iframe.html?id=states（状態）-loader)
+- [MessageScreen](https://story.smarthr-ui.dev/iframe.html?id=page-templates（ページテンプレート）-messagescreen)
+- [Pagination](https://story.smarthr-ui.dev/iframe.html?id=navigation（ナビゲーション）-pagination)
+- [RadioButton](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-radiobutton)
+- RadioButtonLabel
+- [RightFixedNote](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-rightfixednote)
+- [SegmentedControl](https://story.smarthr-ui.dev/iframe.html?id=buttons（ボタン）-segmentedcontrol)
+- [Select](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-select)
+- [SmartHRLogo](https://story.smarthr-ui.dev/iframe.html?id=media（メディア）-smarthrlogo)
+- [StatusLabel](https://story.smarthr-ui.dev/iframe.html?id=states（状態）-statuslabel)
+- [TabBar](https://story.smarthr-ui.dev/iframe.html?id=navigation（ナビゲーション）-tabbar)
+- [Table](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-table)
+- [Textarea](https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-textarea)
+- [Tooltip](https://story.smarthr-ui.dev/iframe.html?id=data-display（データ表示）-tooltip)
 
 <!-- textlint-enable -->

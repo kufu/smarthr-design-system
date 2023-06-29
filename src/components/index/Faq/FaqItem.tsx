@@ -1,8 +1,7 @@
+import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
+import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-
-import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
 
 type FaqJsonObject = {
   question: string
@@ -37,7 +36,7 @@ const QuestionText = styled.h3`
   font-size: ${CSS_FONT_SIZE.PX_28};
   line-height: 1.5;
   font-weight: normal;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     font-size: ${CSS_FONT_SIZE.PX_24};
   }
 `

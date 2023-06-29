@@ -1,24 +1,28 @@
-import React, { CSSProperties, FC, ReactNode } from 'react'
-import styled, { ThemeProvider, css } from 'styled-components'
-import Highlight, { Language, defaultProps } from 'prism-react-renderer'
-import github from 'prism-react-renderer/themes/github'
-// TODO SmartHR な Dark テーマほしいな!!!
-import vscode from 'prism-react-renderer/themes/vsDark'
-import { LiveEditor, LiveError, LivePreview, LiveProvider, LiveProviderProps } from 'react-live'
-import ts, { transpile } from 'typescript'
-import { ComponentPreview } from '../../ComponentPreview'
-import * as ui from 'smarthr-ui'
-import { SDS_STORYBOOK_IFRAME } from '@Constants/application'
+import { PATTERNS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
+import { Script } from 'gatsby'
+import { Highlight, themes } from 'prism-react-renderer'
+import React, { CSSProperties, FC, useState } from 'react'
+import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
+import * as ui from 'smarthr-ui'
+import { Gap, SeparateGap } from 'smarthr-ui/lib/types'
+import styled, { ThemeProvider, css } from 'styled-components'
+// TODO SmartHR な Dark テーマほしいな!!!
+
+import { ComponentPreview } from '../../ComponentPreview'
+
 import { CopyButton } from './CopyButton'
-import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
+
+type LiveProviderProps = React.ComponentProps<typeof LiveProvider>
 
 type Props = {
   children: string
-  className?: Language
+  className?: string
   editable?: boolean
+  isStorybook?: boolean
   withStyled?: boolean
   renderingComponent?: string
+  componentTitle?: string
 } & Pick<LiveProviderProps, 'scope'> & {
     gap?: Gap | SeparateGap
     align?: CSSProperties['alignItems']
@@ -26,7 +30,7 @@ type Props = {
   }
 
 const theme = {
-  ...github,
+  ...themes.github,
   ...{
     plain: {
       backgroundColor: CSS_COLOR.SEMANTICS_COLUMN,
@@ -37,11 +41,13 @@ const theme = {
 const smarthrTheme = ui.createTheme()
 
 const transformCode = (snippet: string) => {
+  if (window.ts === undefined) return '' // TSスクリプトロード後にライブエディタをレンダリングするので、ここには入らないはず。
+
   // Storybookでも利用するため、コード内に`import`・`export`が記述されているが、ここではエラーになるので削除する。
   const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '')
-  return transpile(code, {
-    jsx: ts.JsxEmit.React,
-    target: ts.ScriptTarget.ES2020,
+  return window.ts.transpile(code, {
+    jsx: window.ts.JsxEmit.React,
+    target: window.ts.ScriptTarget.ES2020,
   })
 }
 
@@ -49,74 +55,93 @@ export const CodeBlock: FC<Props> = ({
   children,
   className,
   editable = false,
+  isStorybook = false,
   scope,
   withStyled = false,
   renderingComponent,
+  componentTitle,
   gap,
   align,
   layout,
+  ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }) => {
+  const [tsLoaded, setTsLoaded] = useState(false)
   const language = className ? className.replace(/language-/, '') : ''
-
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
-  const code = renderingComponent ? `${children.trim()}\nrender(<${renderingComponent} />)` : children.trim()
+
+  const renderingPropsText = Object.keys(componentProps)
+    .map((key) => {
+      return `${key}="${componentProps[key as keyof typeof componentProps]}"`
+    })
+    .join(' ')
+
+  const code = renderingComponent
+    ? `${children.trim()}\nrender(<${renderingComponent} ${renderingPropsText} />)`
+    : children.trim()
   const TextLink = ui.TextLink
   if (editable) {
     return (
       <Wrapper>
         {renderingComponent && (
           <LinkWrapper>
-            <TextLink href={`${SDS_STORYBOOK_IFRAME}?id=${renderingComponent.toLowerCase()}&viewMode=story`} target="_blank">
+            <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
               別画面で開く
             </TextLink>
           </LinkWrapper>
         )}
         <ThemeProvider theme={smarthrTheme}>
-          <LiveProvider
-            code={code}
-            language={language as Language}
-            scope={{ ...React, ...ui, styled, css, ...scope }}
-            theme={{
-              ...vscode,
-              plain: {
-                color: CSS_COLOR.LIGHT_GREY_3,
-                backgroundColor: CSS_COLOR.TEXT_BLACK,
-              },
-            }}
-            noInline={withStyled}
-            transformCode={transformCode}
-          >
-            <ComponentPreview gap={gap} align={align} layout={layout}>
-              {/* @ts-ignore -- LivePreviewの型定義が正しくないようなので、エラーを無視。https://github.com/FormidableLabs/react-live/pull/304 */}
-              <LivePreview Component={React.Fragment} />
-            </ComponentPreview>
-            <StyledLiveEditorContainer>
-              <CopyButton text={code} />
-              {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-              <LiveEditor padding={0} />
-            </StyledLiveEditorContainer>
-            <LiveError />
-          </LiveProvider>
+          {/* ライブエディタ内のコードのトランスパイルに使用するTS（容量が大きいためCDNを利用） */}
+          <Script src="https://unpkg.com/typescript@latest/lib/typescript.js" onLoad={() => setTsLoaded(true)} />
+          {tsLoaded && (
+            <LiveProvider
+              code={code}
+              language={language}
+              scope={{ ...React, ...ui, styled, css, ...scope }}
+              theme={{
+                ...themes.vsDark,
+                plain: {
+                  color: CSS_COLOR.LIGHT_GREY_3,
+                  backgroundColor: CSS_COLOR.TEXT_BLACK,
+                },
+              }}
+              noInline={withStyled}
+              transformCode={transformCode}
+            >
+              <ComponentPreview gap={gap} align={align} layout={layout}>
+                <LivePreview Component={React.Fragment} />
+              </ComponentPreview>
+              <CodeWrapper>
+                <StyledLiveEditorContainer>
+                  <CopyButton text={code} />
+                  {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
+                  <LiveEditor padding={0} />
+                </StyledLiveEditorContainer>
+              </CodeWrapper>
+              <LiveError />
+            </LiveProvider>
+          )}
         </ThemeProvider>
       </Wrapper>
     )
   }
 
   return (
-    <Highlight {...defaultProps} code={code} language={language as Language} theme={theme}>
-      {({ style, tokens, getLineProps, getTokenProps }): ReactNode => (
-        <PreContainer>
-          <CopyButton text={code} />
-          <pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        </PreContainer>
+    <Highlight code={code} language={language} theme={isStorybook ? themes.vsDark : theme}>
+      {({ style, tokens, getLineProps, getTokenProps }) => (
+        <CodeWrapper>
+          <PreContainer isStorybook={isStorybook}>
+            <CopyButton text={code} />
+            <pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div {...getLineProps({ line, key: i })} key={i}>
+                  {line.map((token, key) => (
+                    <span {...getTokenProps({ token, key })} key={key} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          </PreContainer>
+        </CodeWrapper>
       )}
     </Highlight>
   )
@@ -131,12 +156,16 @@ const LinkWrapper = styled.div`
   text-align: right;
 `
 
-const PreContainer = styled.pre`
+const CodeWrapper = styled.div`
   position: relative;
+`
+
+const PreContainer = styled.div<{ isStorybook?: boolean }>`
+  font-family: monospace;
   margin-block: 16px 0;
-  padding: 2.75rem 1.5rem 1.5rem;
   border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
-  background-color: ${CSS_COLOR.SEMANTICS_COLUMN};
+  background-color: ${CSS_COLOR.LIGHT_GREY_3};
+  overflow-x: scroll;
 
   & > button {
     position: absolute;
@@ -144,16 +173,41 @@ const PreContainer = styled.pre`
     right: 1.5rem;
   }
 
-  /* pre内のコードやLiveEditorのtextareaなどの文字を強制的に折り返すようにする */
+  /* preのデフォルトは display: block; で幅100%になるが、100%を超えられるように上書き(祖先要素には横スクロールを適用) */
+  pre {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    padding: 2.75rem 1.5rem 1.5rem;
+    box-sizing: border-box;
+  }
+
+  /* LiveEditor内で preに white-space: pre-wrap; が適用されているため、文字を強制的に折り返すようにする */
   * {
     word-break: break-all;
   }
+
+  ${({ isStorybook }) =>
+    isStorybook &&
+    `
+      margin: 0;
+      height: 300px;
+      border: 0;
+      overflow: scroll;
+      resize: vertical;
+    `};
 `
 
 const StyledLiveEditorContainer = styled(PreContainer)`
   overflow: auto;
   margin: 0;
+
+  /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
+  padding: 2.75rem 1.5rem 1.5rem;
   border-width: 0 1px 1px;
   background-color: ${CSS_COLOR.TEXT_BLACK};
   max-height: 40em;
+  pre {
+    width: fit-content;
+  }
 `

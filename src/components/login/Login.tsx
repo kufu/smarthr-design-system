@@ -1,8 +1,8 @@
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
+import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 import React, { FC, useContext, useState } from 'react'
 import { Button, FaLockIcon, Input } from 'smarthr-ui'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 
 export const LoginPage: FC = () => {
   const [password, setPassword] = useState('')
@@ -12,10 +12,16 @@ export const LoginPage: FC = () => {
 
   return (
     <Wrapper>
-      <h1>パスワード入力</h1>
-      <p>
-        株式会社SmartHRの従業員、制作パートナー、グループ会社のメンバーは、パスワードを入力することで限定コンテンツを閲覧・利用できます。
-      </p>
+      <h1>従業員ログイン</h1>
+      <p>ログインすると限定コンテンツにアクセスできます。パスワードの確認方法は2つあります。</p>
+      <ul>
+        <li>
+          <p>SmartHR社の1Passwordを利用する</p>
+        </li>
+        <li>
+          <p>SmartHR社のSlackに「SDSパスワード」と入力する（自動レスポンスがあります）</p>
+        </li>
+      </ul>
       <div className="inputs">
         <Input
           type="password"
@@ -23,6 +29,7 @@ export const LoginPage: FC = () => {
           width="100%"
           onChange={(e) => setPassword(e.currentTarget.value)}
           value={password}
+          name="password"
         />
 
         <Button
@@ -34,8 +41,6 @@ export const LoginPage: FC = () => {
         </Button>
 
         {errMessage !== '' && <span className="warn">{errMessage}</span>}
-
-        <span className="note">パスワードは1Password、または社内Slack bot「SDSパスワード」から確認できます。</span>
       </div>
     </Wrapper>
   )
@@ -101,7 +106,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding: 1rem;
   }
 
@@ -128,11 +133,5 @@ const Wrapper = styled.div`
     margin: 0;
     color: ${CSS_COLOR.TEXT_BLACK};
     line-height: 1.6;
-  }
-
-  .note {
-    font-size: ${CSS_FONT_SIZE.PX_12};
-    line-height: 1.6;
-    color: ${CSS_COLOR.TEXT_GREY};
   }
 `

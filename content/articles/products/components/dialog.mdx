@@ -1,9 +1,12 @@
 ---
 title: 'Dialog'
 description: ' '
-smarthr-ui: 'Dialog'
+storyName: 'Dialog'
 ---
 
+import { ComponentPreview } from '@Components/ComponentPreview'
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
 import { useEffect, useState } from 'react'
 import {
   ActionDialog,
@@ -16,17 +19,10 @@ import {
   Td,
   Th
 } from 'smarthr-ui'
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 Dialogコンポーネントは、ユーザーに集中してほしい確認や操作を示します。
 
-
-<ComponentStory name="Dialog" />
-
-## 使いどころ
-ダイアログは、ユーザーの能動的なアクションを起点に、主に以下の目的で使います。  
+ユーザーの能動的なアクションを起点に、主に以下の目的で使います。
 
 * 別の情報を操作する必要がある場合
 * 作業の確認（参照・追加・編集・削除）を促す場合
@@ -34,15 +30,19 @@ Dialogコンポーネントは、ユーザーに集中してほしい確認や�
 
 情報設計をしっかり行ない、ダイアログで表示したい内容が上記に挙げた目的に合うものか、メインコンテンツの画面で表示するよりも適切な整理なのかをよく考えましょう。
 
+<ComponentStory name="Dialog" />
+
+## 使用上の注意
 
 ### ダイアログの乱用は避ける
+
 ダイアログの乱用は避けましょう。  
 ダイアログの表示中は、メインコンテンツの情報・状態は保持されますが、ユーザーは（それまでの操作を中断し）ダイアログでの操作に集中させられることになります。
+
 また、以下も推奨されません。
 
 * ダイアログの上にダイアログを表示すること
 * 複数のダイアログを同時に表示すること
-
 
 
 ## 種類
@@ -136,7 +136,7 @@ export const DynamicModelessDialog = () => {
         <ModelessDialog
           isOpen={isOpen}
           header={<ModelessHeading>モードレスダイアログ</ModelessHeading>}
-          footer={<ModelessFooter>フッタ</ModelessFooter>}
+          footer={<ModelessFooter>フッター</ModelessFooter>}
           onClickClose={() => setIsOpen(false)}
           onPressEscape={() => setIsOpen(false)}
           width="50%"
@@ -279,6 +279,8 @@ export const DynamicModelessDialog = () => {
 
 
 ## Props
+
+<ComponentPropsTable name="Dialog" showTitle />
 
 <ComponentPropsTable name="ActionDialog" showTitle />
 

@@ -1,13 +1,16 @@
+import path from 'path'
+
 import dotenv from 'dotenv'
+import emoji from 'remark-emoji'
+
+import { algoliaConfig } from './gatsby-plugin-algolia-config'
+import { AIRTABLE_MOCK_DATA } from './src/constants/airtable'
+
+import type { GatsbyConfig } from 'gatsby'
+
 dotenv.config({
   path: '.env',
 })
-
-import path from 'path'
-import type { GatsbyConfig } from 'gatsby'
-import { AIRTABLE_CONTENTS } from './src/constants/airtable'
-import { algoliaConfig } from './gatsby-plugin-algolia-config'
-import emoji from 'remark-emoji'
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -17,6 +20,7 @@ const config: GatsbyConfig = {
     author: '@smarthr',
     ogimage: '/images/ogp.png',
   },
+  graphqlTypegen: true,
   plugins: [
     {
       resolve: 'gatsby-plugin-google-gtag',
@@ -29,7 +33,6 @@ const config: GatsbyConfig = {
       },
     },
     ...(process.env.IS_TYPE_GEN ? ['gatsby-plugin-typegen'] : []),
-    'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     {
@@ -40,7 +43,55 @@ const config: GatsbyConfig = {
         start_url: '/',
         background_color: '#FFFFFF',
         theme_color: '#00C4CC',
-        icon: 'src/images/favicon.svg',
+        icons: [
+          {
+            src: '/icons/icon-48x48.png',
+            sizes: '48x48',
+            type: 'image/png',
+          },
+          {
+            src: '/icons/icon-72x72.png',
+            sizes: '72x72',
+            type: 'image/png',
+          },
+          {
+            src: '/icons/icon-96x96.png',
+            sizes: '96x96',
+            type: 'image/png',
+          },
+          {
+            src: '/icons/icon-144x144.png',
+            sizes: '144x144',
+            type: 'image/png',
+          },
+          {
+            src: '/icons/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/icons/icon-256x256.png',
+            sizes: '256x256',
+            type: 'image/png',
+          },
+          {
+            src: '/icons/icon-384x384.png',
+            sizes: '384x384',
+            type: 'image/png',
+          },
+          {
+            src: '/icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: '/icons/maskable-icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+        include_favicon: false,
       },
     },
     {
@@ -78,24 +129,35 @@ const config: GatsbyConfig = {
               dataAttributes: true,
             },
           },
+          'gatsby-remark-gifs',
         ],
         remarkPlugins: [emoji],
       },
     },
-    {
-      resolve: 'gatsby-source-airtable',
-      options: {
-        apiKey: process.env.AIRTABLE_API_KEY, // may instead specify via env, see below
-        concurrency: 5, // default, see using markdown and attachments for more information
-        tables: AIRTABLE_CONTENTS.map((item) => {
-          return {
-            baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: item.tableName,
-            tableView: `design system表示用`,
-          }
-        }),
-      },
-    },
+    // AIRTABLEキーが設定されているか、本番環境の場合はgatsby-source-airtable、それ以外ではモックデータを利用する
+    ...((process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN && process.env.AIRTABLE_BASE_ID) || process.env.BRANCH === 'main'
+      ? [
+          {
+            resolve: `gatsby-source-sds-airtable`,
+            options: {
+              personalAccessToken: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN,
+              baseId: process.env.AIRTABLE_BASE_ID,
+              tableView: 'design system表示用',
+            },
+          },
+        ]
+      : [
+          {
+            resolve: `gatsby-source-mock`,
+            options: {
+              schema: AIRTABLE_MOCK_DATA,
+              count: AIRTABLE_MOCK_DATA.length,
+              type: 'SdsAirtable',
+            },
+          },
+        ]),
+    { resolve: `gatsby-source-ui-versions` },
+    { resolve: `gatsby-source-component-captures` },
   ],
 }
 

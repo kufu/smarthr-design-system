@@ -1,6 +1,6 @@
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 
 import { FloatingTextLink } from '../../shared/FloatingTextLink'
 
@@ -19,7 +19,7 @@ export const Introduction: FC = () => {
           <span>SmartHRに関わる人はどなたでも利用・参加できます。</span>
         </StyledText>
         <StyledText>
-          <FloatingTextLink path="/concept/">デザインシステムとは？（コンセプト）</FloatingTextLink>
+          <FloatingTextLink path="/introduction/">デザインシステムとは？</FloatingTextLink>
         </StyledText>
       </IntroductionContainer>
       <IndexImageContainer>
@@ -37,14 +37,14 @@ export const Introduction: FC = () => {
 const IntroductionContainer = styled.div`
   width: 70%;
   margin: 0 0 0 auto;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     box-sizing: border-box;
     width: 100%;
     max-width: 420px;
     padding: 0 16px;
     margin-left: 0;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_1}) {
     margin: 0;
   }
 `
@@ -59,7 +59,7 @@ const StyledHeading = styled.h1`
   > span {
     display: inline-block;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     font-size: ${CSS_FONT_SIZE.PX_48};
     line-height: 1.5;
   }
@@ -75,7 +75,7 @@ const StyledText = styled.p`
   > span {
     display: inline-block;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     font-size: ${CSS_FONT_SIZE.PX_16};
     line-height: 2;
     > span {
@@ -93,14 +93,14 @@ const IndexImageContainer = styled.div`
     max-width: 50%;
     height: auto;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin: 72px 0 120px;
     border-bottom: solid 1px ${CSS_COLOR.LIGHT_GREY_1};
     > img {
       max-width: 192px;
     }
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     margin: 80px 0 0;
     padding: 0;
     > img {

@@ -1,12 +1,16 @@
 module.exports = {
-  extends: ['smarthr', 'plugin:storybook/recommended'],
-  overrides: [{
-    files: '*.mdx',
-    extends: ['smarthr', 'plugin:mdx/recommended'],
-    rules: {
-      'react/jsx-filename-extension': [1, {
-        extensions: ['.jsx', '.tsx', '.mdx']
-      }]
-    }
-  }]
-};
+  extends: ['smarthr'],
+  overrides: [
+    {
+      files: '*.mdx',
+      extends: ['smarthr', 'plugin:mdx/recommended'],
+      rules: {
+        'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx', '.mdx'] }],
+      },
+    },
+  ],
+  rules: {
+    // GatsbyのLinkコンポーネントで警告が出てしまうためoffにする
+    'smarthr/a11y-anchor-has-href-attribute': 0,
+  },
+}

@@ -3,20 +3,25 @@
     "comments": true,
     "allowlist": {
       "allow": [
-        "/<a(?: .+?)?>.*?</a>/"
+        "/<a(?: .+?)?>.*?</a>/",
+        "ウィンドウ",
+        "ダイアログ",
+        "モーダル",
+        "ドロップダウン"
       ]
     }
   },
   "rules": {
-    "preset-smarthr": true,
-    "smarthr/ja-no-mixed-period": false,
-    "smarthr/sentence-length": false,
-    "smarthr/ja-space-between-half-and-full-width": false,
-    "smarthr/ja-no-space-around-parentheses": false,
     "prh": {
       "rulePaths": [
         "./dict/prh-books.yml"
       ]
+    },
+    "preset-smarthr": {
+      "ja-no-mixed-period": false,
+      "sentence-length": false,
+      "ja-space-between-half-and-full-width": false,
+      "ja-no-space-around-parentheses": false
     }
   },
   "plugins": {

@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
-import { Link } from 'gatsby'
-import styled from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
+import { Link } from 'gatsby'
+import React, { FC } from 'react'
+import styled from 'styled-components'
 
 type Props = {
   path: string
@@ -13,7 +13,7 @@ type Props = {
 
 export const RoundedBoxLink: FC<Props> = ({ path, label, title, align = 'left', caretPosition = 'right' }) => {
   return (
-    <BoxLink to={path} align={align} caret={caretPosition}>
+    <BoxLink to={path} data-align={align} data-caret={caretPosition}>
       <p className="labelText">{label}</p>
       <div className="linkText">
         <span>{title}</span>
@@ -22,7 +22,7 @@ export const RoundedBoxLink: FC<Props> = ({ path, label, title, align = 'left', 
   )
 }
 
-const BoxLink = styled(Link)<{ align: 'left' | 'center' | 'right'; caret: 'left' | 'right' }>`
+const BoxLink = styled(Link)<{ 'data-align': 'left' | 'center' | 'right'; 'data-caret': 'left' | 'right' }>`
   display: block;
   padding: 24px;
   border: solid 1px ${CSS_COLOR.LIGHT_GREY_1};
@@ -31,7 +31,7 @@ const BoxLink = styled(Link)<{ align: 'left' | 'center' | 'right'; caret: 'left'
   font-weight: bold;
   line-height: 1.4;
   text-decoration: none;
-  text-align: ${({ align }) => align};
+  text-align: ${(props) => props['data-align']};
   transition: background-color 1.5s cubic-bezier(0, 0.7, 0, 1);
   > .labelText {
     margin: 0 0 8px;
@@ -42,8 +42,8 @@ const BoxLink = styled(Link)<{ align: 'left' | 'center' | 'right'; caret: 'left'
     display: inline-block;
     color: ${CSS_COLOR.MAIN_DARKEN};
     position: relative;
-    padding-left: ${({ caret }) => (caret === 'left' ? '1.8em' : 0)};
-    padding-right: ${({ caret }) => (caret === 'left' ? 0 : '1.8em')};
+    padding-left: ${(props) => (props['data-caret'] === 'left' ? '1.8em' : 0)};
+    padding-right: ${(props) => (props['data-caret'] === 'left' ? 0 : '1.8em')};
     border-bottom: solid 1px currentColor;
     &::after {
       content: '';
@@ -52,9 +52,9 @@ const BoxLink = styled(Link)<{ align: 'left' | 'center' | 'right'; caret: 'left'
       width: 0.8em;
       height: 0.8em;
       top: 50%;
-      right: ${({ caret }) => (caret === 'left' ? 'auto' : 0)};
-      left: ${({ caret }) => (caret === 'left' ? 0 : 'auto')};
-      transform: ${({ caret }) => (caret === 'left' ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)')};
+      right: ${(props) => (props['data-caret'] === 'left' ? 'auto' : 0)};
+      left: ${(props) => (props['data-caret'] === 'left' ? 0 : 'auto')};
+      transform: ${(props) => (props['data-caret'] === 'left' ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)')};
       background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1Ljg3MiA3LjMzNzAzTDAgMC42MDMwMjdWMi4wODUwM0wxNC4yNiA4LjAxMzAzTDAgMTMuOTE1VjE1LjM5N0wxNS44NzIgOC42NjMwM1Y3LjMzNzAzWiIgZmlsbD0iIzAwNjVBOSIvPgo8L3N2Zz4K');
       background-size: contain;
       background-repeat: no-repeat;
@@ -69,8 +69,10 @@ const BoxLink = styled(Link)<{ align: 'left' | 'center' | 'right'; caret: 'left'
       border-bottom-color: transparent;
       &::after {
         transition: transform 0.2s;
-        transform: ${({ caret }) =>
-          caret === 'left' ? 'translateY(-50%) rotate(180deg) translateX(4px)' : 'translateY(-50%) translateX(4px)'};
+        transform: ${(props) =>
+          props['data-caret'] === 'left'
+            ? 'translateY(-50%) rotate(180deg) translateX(4px)'
+            : 'translateY(-50%) translateX(4px)'};
       }
     }
   }

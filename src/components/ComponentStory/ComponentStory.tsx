@@ -1,95 +1,128 @@
-import React, { FC, useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Loader, TabBar, TabItem, TextLink } from 'smarthr-ui'
-
-import { SHRUI_GITHUB_RAW, SHRUI_STORYBOOK_IFRAME } from '@Constants/application'
+import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
+import { useLocation } from '@reach/router'
+import { graphql, navigate, useStaticQuery } from 'gatsby'
+import React, { FC, useCallback, useEffect, useState } from 'react'
+import {
+  AnchorButton,
+  Cluster,
+  FaExternalLinkAltIcon,
+  InformationPanel,
+  Loader,
+  Select,
+  TabBar,
+  TabItem,
+  TextLink,
+} from 'smarthr-ui'
+import packageInfo from 'smarthr-ui/package.json'
+import styled from 'styled-components'
+
+import { fetchStoryData } from '../../lib/fetchStoryData'
 import { CodeBlock } from '../article/CodeBlock'
 
 import { ResizableContainer } from './ResizableContainer'
 
 type Props = {
   name: string
+  dirName?: string
 }
 
-type StoryItem = {
-  name: string
-  label: string
-}
+const query = graphql`
+  query StoryData {
+    allMdx(filter: { frontmatter: { storyName: { ne: null } } }) {
+      nodes {
+        frontmatter {
+          storyName
+        }
+        fields {
+          storyData {
+            code
+            storyItems {
+              label
+              name
+              iframeName
+            }
+            groupPath
+          }
+        }
+      }
+    }
+    allUiVersion {
+      nodes {
+        version
+        commitHash
+      }
+    }
+  }
+`
 
-export const ComponentStory: FC<Props> = ({ name }) => {
-  const fileName = name.replace(/^.*\//, '') // "Layout/Cluster"のような階層のある名前に対応
-  const filePath = `${SHRUI_GITHUB_RAW}/src/components/${name}/${fileName}.stories.tsx`
+export const ComponentStory: FC<Props> = ({ name, dirName }) => {
+  const { allMdx, allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
+  const defaultStoryData = allMdx.nodes.find((node) => {
+    return node.frontmatter?.storyName === name
+  })?.fields?.storyData
 
-  const [storiesCode, setStoriesCode] = useState<string>('')
-  const [storyItems, setStoryItems] = useState<StoryItem[]>([])
-  const [currentIFrame, setCurrentIFrame] = useState<string>('')
+  const [storyData, setStoryData] = useState({
+    code: defaultStoryData?.code ?? '',
+    groupPath: defaultStoryData?.groupPath ?? '',
+    storyItems: defaultStoryData?.storyItems ?? [],
+  })
+
+  const versionOptions =
+    allUiVersion.nodes?.map((version) => {
+      return {
+        label: `v${version.version}`,
+        value: version.version,
+      }
+    }) ?? []
+
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
-  const [isCodeLoaded, setIsCodeLoaded] = useState<boolean>(false)
+  const [isStoryLoaded, setIsStoryLoaded] = useState<boolean>(false)
+  const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.name ?? '')
+  const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
+  const [showError, setShowError] = useState<boolean>(false)
 
-  useEffect(() => {
-    const fetchCode = async () => {
-      const res = await fetch(filePath)
-
-      // 404の場合など
-      if (res.status >= 400) {
-        setIsCodeLoaded(true)
+  const fetchData = useCallback(
+    async (version: string) => {
+      setDisplayVersion(version)
+      setIsStoryLoaded(false)
+      setIsIFrameLoaded(false)
+      const newData = await fetchStoryData(name, version, dirName).catch(() => {
+        return null
+      })
+      if (newData === null || newData.code === '') {
+        setShowError(true)
         return
       }
+      setStoryData(newData)
+      setCurrentIFrame(newData.storyItems[0]?.name ?? '')
+      setShowError(false)
+    },
+    [name, dirName],
+  )
 
-      const text = await res.text()
-      setStoriesCode(text)
-      setIsCodeLoaded(true)
-    }
-    fetchCode()
-  }, [filePath])
-
+  // クエリ付きURLでアクセスされた場合
+  const location = useLocation()
   useEffect(() => {
-    if (storiesCode === '') return
+    const { search } = location
+    const params = new URLSearchParams(search)
+    const version = params.get('v')
+    if (version === null || version === displayVersion) return
 
-    // "export const AccordionStyle: Story" や "export const All = Template.bind({})" のような、Story名をexportするコードから名前を抜き出す
-    // 注意1：export { Default as DropdownButton } from ...のようなコードにはマッチしない
-    // 注意2：ストーリー名に全角文字が入るケースがある（例：Body以外のPortalParent）
-    const matchStoryNames = storiesCode.matchAll(
-      /export\sconst\s([\w\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]*)/g,
+    fetchData(version)
+  }, [location, displayVersion, fetchData])
+
+  const onChangeVersion = (version: string) => {
+    navigate(`?v=${encodeURI(version)}`)
+  }
+
+  const getCommitHash = () => {
+    return (
+      allUiVersion.nodes?.find((version) => {
+        return version.version === displayVersion
+      })?.commitHash ?? ''
     )
-    const items1 = [...matchStoryNames].map((result) => {
-      // '_'を削除
-      const storyName = result[1].replace('_', '')
-      // 文字列中の大文字の前にスペースを追加してラベルにする
-      const storyLabel = storyName.replace(/.([A-Z])/g, (s) => {
-        return `${s.charAt(0)} ${s.slice(1, s.length)}`
-      })
-      return { name: storyName, label: storyLabel }
-    })
-
-    // ".add('full', "のようなケースもある（e.g. MessageScreen.stories.tsx）
-    const matchAddNames = storiesCode.matchAll(/\.add\('(.*?)',\s/g)
-    const items2 = [...matchAddNames].map((result) => {
-      // UpperCamel caseにする
-      const storyName = result[1]
-        .split(' ')
-        .map((word) => {
-          return word.charAt(0).toUpperCase() + word.slice(1, word.length)
-        })
-        .join('')
-      return { name: storyName, label: result[1] }
-    })
-
-    const items = [...items1, ...items2]
-
-    // "AccordionStyle.storyName = 'Accordion style'" のような表示名の定義があればラベルとして利用する
-    const matchStoryLabels = storiesCode.matchAll(/(\S*)\.storyName\s=\s'(.*)'/g)
-    Array.from(matchStoryLabels).forEach((result) => {
-      const targetItem = items.find((item) => {
-        return item.name === result[1]
-      })
-      if (targetItem) targetItem.label = result[2]
-    })
-
-    if (items.length > 0) setCurrentIFrame(items[0].name)
-    setStoryItems(items)
-  }, [storiesCode])
+  }
 
   const onClickTab = (itemId: string): void => {
     if (itemId === currentIFrame) return
@@ -99,76 +132,141 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     return
   }
 
-  const getStoryName = (componentName: string, itemName: string) => {
-    // 'Layout/Cluster' のような階層ありの場合
-    if (componentName.includes('/')) {
-      return componentName
-        .replace(/([A-Z])/g, (s) => {
-          return '-' + s.charAt(0).toLowerCase()
-        })
-        .replace('/', '-')
-        .replace(/^_|-/, '')
-    }
-
-    // 階層なしの場合
-    const kebab = itemName
-      // UpperCamel case -> Kebab case
-      .replace(/([A-Z])/g, (s) => {
-        return '-' + s.charAt(0).toLowerCase()
-      })
-      // 小文字のみの場合に `-item-name` とならないので補完
-      .replace(/^[a-z]+$/, (s) => `-${s.charAt(0)}`)
-      // コンポーネントとStoryが同名の場合に、頭に'_'がついていることがあるので、削除
-      .replace(/^_/, '')
-    return `${componentName.toLowerCase()}-${kebab}`
+  const getStoryName = (currentName: string) => {
+    return storyData.storyItems?.find((item) => {
+      return item?.name === currentName
+    })?.iframeName
   }
 
-  if (typeof window === undefined || storiesCode === '') {
-    return null
+  const onIFrameLoaded = () => {
+    setIsStoryLoaded(true)
+    setIsIFrameLoaded(true)
   }
+
   return (
-    <>
-      <Tab>
-        {storyItems.map((item: StoryItem, index: number) => {
-          return (
-            <TabItem id={item.name} key={index} onClick={onClickTab} selected={item.name === currentIFrame}>
-              {item.label}
-            </TabItem>
-          )
-        })}
-      </Tab>
-      {currentIFrame !== '' && (
+    <StoryWrapper>
+      <Cluster align="center" justify="space-between" gap={1}>
+        <Cluster align="center" as="label">
+          <span>SmartHR UI</span>
+          <Select
+            width="9rem"
+            name="version"
+            size="s"
+            options={versionOptions}
+            onChangeValue={onChangeVersion}
+            value={displayVersion}
+            hasBlank={true}
+            //存在しないバージョンでエラーになるの場合は「-」を表示する（空白文字だとデフォルトの「選択してください」になるため）
+            //プルダウンに存在しないが、コード表示はできるバージョン（例：v25.0.0）の場合は、そのバージョンを表示する
+            decorators={{
+              blankLabel: () =>
+                showError ||
+                !isStoryLoaded ||
+                versionOptions.find((option) => {
+                  return option.value === displayVersion
+                })
+                  ? '-'
+                  : `v${displayVersion}`,
+            }}
+            error={showError}
+          />
+        </Cluster>
+        <Cluster>
+          <AnchorButton
+            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?path=/story/${
+              storyData.groupPath
+            }-${getStoryName(storyData?.storyItems[0]?.name ?? '')}`}
+            target="_blank"
+            size="s"
+            suffix={<FaExternalLinkAltIcon />}
+          >
+            Storybook
+          </AnchorButton>
+          <AnchorButton
+            href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${dirName ?? name}`}
+            target="_blank"
+            size="s"
+            suffix={<FaExternalLinkAltIcon />}
+          >
+            GitHub
+          </AnchorButton>
+        </Cluster>
+      </Cluster>
+      {showError && (
+        <ErrorPanel title="指定されたバージョンのコンポーネント情報を取得できませんでした" type="error" togglable={false}>
+          通信状況に問題が発生しているか、次のような理由が考えられます。
+          <ul>
+            <li>コンポーネント名が変更された</li>
+            <li>このバージョンではコンポーネントが存在しない</li>
+          </ul>
+        </ErrorPanel>
+      )}
+      {!showError && (
         <>
-          <LinkWrapper>
-            <TextLink href={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}&viewMode=story`} target="_blank">
-              別画面で開く
-            </TextLink>
-          </LinkWrapper>
-          <ResizableContainer defaultWidth="100%" defaultHeight="300px">
-            <StoryLoader className={isIFrameLoaded ? '' : '-show'} />
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-            <StoryIframe
-              title={
-                storyItems.find((item) => {
-                  return item.name === currentIFrame
-                })?.label || ''
-              }
-              src={`${SHRUI_STORYBOOK_IFRAME}?id=${getStoryName(name, currentIFrame)}`}
-              onLoad={() => setIsIFrameLoaded(true)}
-            />
-          </ResizableContainer>
+          <Tab>
+            {storyData.storyItems.map((item, index: number) => {
+              return (
+                <TabItem id={item?.name ?? ''} key={index} onClick={onClickTab} selected={item?.name === currentIFrame}>
+                  {item?.label}
+                </TabItem>
+              )
+            })}
+          </Tab>
+          {currentIFrame !== '' && (
+            <>
+              <LinkWrapper>
+                <TextLink
+                  href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
+                    storyData.groupPath
+                  }-${getStoryName(currentIFrame)}&viewMode=story`}
+                  target="_blank"
+                >
+                  別画面で開く
+                </TextLink>
+              </LinkWrapper>
+              <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+                <StoryLoader className={isIFrameLoaded ? '' : '-show'} />
+                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+                <StoryIframe
+                  title={
+                    storyData.storyItems.find((item) => {
+                      return item?.name === currentIFrame
+                    })?.label || ''
+                  }
+                  src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
+                    storyData.groupPath
+                  }-${getStoryName(currentIFrame)}`}
+                  onLoad={() => onIFrameLoaded()}
+                />
+              </ResizableContainer>
+            </>
+          )}
+          <CodeWrapper>
+            <CodeBlock className="tsx" isStorybook={true}>
+              {storyData.code}
+            </CodeBlock>
+            <StoryLoader className={isStoryLoaded ? '' : '-show'} />
+          </CodeWrapper>
         </>
       )}
-      <CodeWrapper>
-        <StoryLoader className={isCodeLoaded ? '' : '-show'} />
-        <CodeBlock className="tsx">{storiesCode}</CodeBlock>
-      </CodeWrapper>
-    </>
+    </StoryWrapper>
   )
 }
 
-const Tab = styled(TabBar)`
+const StoryWrapper = styled.div`
   margin-block: 48px 0;
+`
+
+const ErrorPanel = styled(InformationPanel)`
+  margin-block: 24px;
+  .smarthr-ui-InformationPanel-title {
+    margin-block: 0;
+    font-size: 1rem;
+  }
+`
+
+const Tab = styled(TabBar)`
+  margin-block: 24px 0;
   flex-wrap: wrap;
   gap: 4px 0;
 `
@@ -183,6 +281,7 @@ const StoryIframe = styled.iframe`
   width: 100%;
   height: 100%;
   border: 0;
+  background-color: ${CSS_COLOR.WHITE};
 `
 
 const StoryLoader = styled(Loader)`
@@ -199,12 +298,4 @@ const StoryLoader = styled(Loader)`
 const CodeWrapper = styled.div`
   position: relative;
   border: solid 1px ${CSS_COLOR.LIGHT_GREY_1};
-  > pre {
-    margin: 0;
-    height: 300px;
-    border: 0;
-    overflow: hidden;
-    overflow-y: scroll;
-    resize: vertical;
-  }
 `

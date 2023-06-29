@@ -1,12 +1,12 @@
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { SidebarScrollContext } from '@Context/SidebarScrollContext'
+import { useLocation } from '@reach/router'
 import { Link } from 'gatsby'
 import React, { FC, Fragment, useContext, useLayoutEffect, useRef } from 'react'
-import { useLocation } from '@reach/router'
 import { FaChevronDownIcon, defaultColor } from 'smarthr-ui'
 import styled from 'styled-components'
-import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
-import type { SidebarItem } from '../../../templates/article'
 
-import { SidebarScrollContext } from '@Context/SidebarScrollContext'
+import type { SidebarItem } from '../../../templates/article'
 
 type Props = {
   path: string
@@ -79,7 +79,7 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
                         aria-expanded={path.includes(depth2Item.link)}
                         onClick={onClickCaret}
                       >
-                        <FaChevronDownIcon size={14} visuallyHiddenText={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
+                        <FaChevronDownIcon alt={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
                       </CaretButton>
                     )}
                   </Depth2Item>
@@ -95,21 +95,18 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
                             </Link>
                             {depth3Item.children.length > 0 && (
                               <CaretButton
-                                aria-controls={`Depth4Items__${depth3Index}`}
+                                aria-controls={`Depth4Items__${depth2Index}__${depth3Index}`}
                                 aria-expanded={path.includes(depth3Item.link)}
                                 onClick={onClickCaret}
                               >
-                                <FaChevronDownIcon
-                                  size={14}
-                                  visuallyHiddenText={path.includes(depth3Item.link) ? '閉じる' : '開く'}
-                                />
+                                <FaChevronDownIcon alt={path.includes(depth3Item.link) ? '閉じる' : '開く'} />
                               </CaretButton>
                             )}
                           </Depth3Item>
 
                           {/* 第4階層 */}
                           {depth3Item.children.length > 0 && (
-                            <ul id={`Depth4Items__${depth3Index}`} aria-hidden={!path.includes(depth3Item.link)}>
+                            <ul id={`Depth4Items__${depth2Index}__${depth3Index}`} aria-hidden={!path.includes(depth3Item.link)}>
                               {depth3Item.children.map((depth4Item) => (
                                 <li key={depth4Item.link}>
                                   <Depth4Item>
@@ -139,7 +136,7 @@ const Nav = styled.nav`
   padding-block: 120px 48px;
   overflow-y: auto;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-block: 0;
     overflow-y: visible;
   }
@@ -251,6 +248,7 @@ const CaretButton = styled.button`
   background: none;
   color: ${CSS_COLOR.TEXT_GREY};
   cursor: pointer;
+  font-size: ${CSS_FONT_SIZE.PX_14};
 
   &:hover {
     background-color: ${CSS_COLOR.LIGHT_GREY_1};

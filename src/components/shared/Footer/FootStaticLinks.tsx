@@ -1,10 +1,9 @@
-import React, { FC, useContext } from 'react'
-import styled from 'styled-components'
-import { AnchorButton } from 'smarthr-ui'
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
-import { Link } from 'gatsby'
-
 import { LoginContext } from '@Context/LoginContext'
+import { Link } from 'gatsby'
+import React, { FC, useContext } from 'react'
+import { AnchorButton } from 'smarthr-ui'
+import styled from 'styled-components'
 
 type Props = unknown
 
@@ -12,11 +11,6 @@ const Link1 = [
   {
     title: 'さがす',
     path: '/search/',
-    isExternal: false,
-  },
-  {
-    title: 'ダウンロード一覧',
-    path: '/downloads/',
     isExternal: false,
   },
 ]
@@ -55,9 +49,9 @@ export const FootStaticLinks: FC<Props> = () => {
   return (
     <>
       <StyledAnchorButton
+        {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
         size="s"
         className={loginStatus === 'pending' ? 'loginStatusPending loginButton' : 'loginButton'}
-        {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
       >
         {loginLabel}
       </StyledAnchorButton>
@@ -66,11 +60,11 @@ export const FootStaticLinks: FC<Props> = () => {
         {Link1.map(({ title, path, isExternal }, index) => (
           <li key={index}>
             {isExternal ? (
-              <a href={path} target="_blank" rel="noopener noreferrer">
+              <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
                 {title}
-              </a>
+              </StyledAnchor>
             ) : (
-              <Link to={path}>{title}</Link>
+              <StyledLink to={path}>{title}</StyledLink>
             )}
           </li>
         ))}
@@ -80,11 +74,11 @@ export const FootStaticLinks: FC<Props> = () => {
         {Link2.map(({ title, path, isExternal }, index) => (
           <li key={index}>
             {isExternal ? (
-              <a href={path} target="_blank" rel="noopener noreferrer">
+              <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
                 {title}
-              </a>
+              </StyledAnchor>
             ) : (
-              <Link to={path}>{title}</Link>
+              <StyledLink to={path}>{title}</StyledLink>
             )}
           </li>
         ))}
@@ -132,4 +126,14 @@ const StyledAnchorButton = styled(AnchorButton)`
   &.loginStatusPending {
     visibility: hidden;
   }
+`
+
+const StyledAnchor = styled.a`
+  display: inline-block;
+  width: 100%;
+`
+
+const StyledLink = styled(Link)`
+  display: inline-block;
+  width: 100%;
 `

@@ -1,7 +1,8 @@
 import path from 'path'
-import type { CreateWebpackConfigArgs, GatsbyNode } from 'gatsby'
 
-import * as gatsbyNode from './src/gatsby-node/index'
+import * as gatsbyNode from './src/gatsby-node'
+
+import type { CreateWebpackConfigArgs, GatsbyNode } from 'gatsby'
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = gatsbyNode.onCreateNode
 export const createPages: GatsbyNode['createPages'] = gatsbyNode.createPages
@@ -14,7 +15,14 @@ export const onCreateWebpackConfig = ({ actions }: CreateWebpackConfigArgs) => {
         '@Components': path.resolve('src/components'),
         '@Constants': path.resolve('src/constants'),
         '@Context': path.resolve('src/context'),
+        '@Lib': path.resolve('src/lib'),
       },
     },
   })
+  // Gatsbyではビルド時には常にNODE_ENV=productionになるため、ブランチで判定
+  if (process.env.BRANCH === 'main') {
+    actions.setWebpackConfig({
+      devtool: false,
+    })
+  }
 }

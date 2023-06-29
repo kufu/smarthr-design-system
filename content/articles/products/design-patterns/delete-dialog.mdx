@@ -1,7 +1,7 @@
 ---
 title: '削除ダイアログ'
 description: 'データの消去に関連する操作をしたときに表示するアクションダイアログを定義します。'
-order: 10
+order: 9
 ---
 
 import { useEffect, useState } from 'react'
@@ -12,6 +12,8 @@ import {
   MessageDialog,
 } from 'smarthr-ui'
 import { ComponentPreview } from '@Components/ComponentPreview'
+
+import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
 
 データの消去に関連する操作をしたときに表示するアクションダイアログを定義します。
 
@@ -75,7 +77,7 @@ export const DynamicActionDialog = () => {
 ### 2. 本文
 本文は、3つのセクションから構成されています。
 
-![削除ダイアログの本文](./images/delete-dialog-text.png)
+![削除ダイアログの本文](./images/delete-dialog/delete-dialog-text.png)
 
 #### A. 削除対象の提示
 可能な限り、**対象オブジェクトのインスタンス名を表示**したうえで、本文にも「削除します」という表現を用いて、注意を促します。
@@ -90,7 +92,7 @@ export const DynamicActionDialog = () => {
 
 | どのような影響があるか | 追加する文言 |
 | :--- | :--- |
-| マスターやカスタム項目などの削除に伴い、SmartHR内のデータも失われる場合 | `{関連するオブジェクト名など}に登録されているデータも削除されます。` |
+| マスターデータやカスタム項目などの削除に伴い、SmartHR内のデータも失われる場合 | `{関連するオブジェクト名など}に登録されているデータも削除されます。` |
 | 上位オブジェクトの削除に伴い、下位オブジェクトも失われる場合 | `{選択したオブジェクトのインスタンス名}に含まれる{オブジェクト名}も削除されます。` |
 | 完全削除される場合 | `削除した{オブジェクト名}は元に戻せません。` |
 
@@ -103,7 +105,9 @@ export const DynamicActionDialog = () => {
 
 
 ## ライティングパターン
-<iframe className="airtable-embed" src="https://airtable.com/embed/shr4uUQHE55YM8F1W?backgroundColor=teal&viewControls=on" frameBorder="0" width="100%" height="400px" style="background: transparent; border: 1px solid #ccc;"></iframe>
+<AirtableEmbed tableName="削除ダイアログ">
+  <iframe className="airtable-embed" src="https://airtable.com/embed/shr4uUQHE55YM8F1W?backgroundColor=teal&viewControls=on" frameBorder="0" width="100%" height="400px" style="background: transparent; border: 1px solid #ccc;"></iframe>
+</AirtableEmbed>
 
 
 ## 類似する種類

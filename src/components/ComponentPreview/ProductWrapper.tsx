@@ -1,19 +1,24 @@
+import { ResizableContainer } from '@Components/ComponentStory'
 import React from 'react'
-import styled, { css } from 'styled-components'
 import { Header } from 'smarthr-ui'
+import styled, { css } from 'styled-components'
 
 import { WrapperBase } from './WrapperBase'
 
 export const ProductWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Wrapper>
-    <Header logoHref="#" />
-    <Body>{children}</Body>
+    <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+      <BodyWrapper>
+        <Header logoHref="#" />
+        <Body>{children}</Body>
+      </BodyWrapper>
+    </ResizableContainer>
   </Wrapper>
 )
 
 const Wrapper = styled(WrapperBase)(
-  ({ theme: { color, leading } }) => css`
-    background-color: ${color.BACKGROUND};
+  ({ theme: { leading } }) => css`
+    border-width: 0 0 1px; /* CodeBlockには上ボーダーがないので、下のみボーダーをつける */
 
     /* FIXME: @scope が来たら書き直したい! */
 
@@ -62,20 +67,26 @@ const padding = css(
   ({ theme: { space } }) => css`
     padding-inline: ${space(1.5)};
 
-    @media (max-width: 1440px) {
+    @media (width <= 1440px) {
       padding-inline: ${space(1.25)};
     }
-    @media (max-width: 1024px) {
+    @media (width <= 1024px) {
       padding-inline: ${space(1)};
     }
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       padding-inline: ${space(0.75)};
     }
-    @media (max-width: 480px) {
+    @media (width <= 480px) {
       padding-inline: ${space(0.5)};
     }
   `,
 )
 const Body = styled.div`
   ${padding}
+`
+
+const BodyWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
 `

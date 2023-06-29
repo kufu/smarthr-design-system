@@ -1,9 +1,10 @@
 import React from 'react'
-import type { FC } from 'react'
-import styled from 'styled-components'
-import { Base, defaultBreakpoint } from 'smarthr-ui'
-import type { StateResultsProvided } from 'react-instantsearch-core'
 import { connectStateResults } from 'react-instantsearch-core'
+import { Base, defaultBreakpoint } from 'smarthr-ui'
+import styled from 'styled-components'
+
+import type { FC } from 'react'
+import type { StateResultsProvided } from 'react-instantsearch-core'
 
 // StateResultsProvided の型定義に`children`が含まれていないようでエラーになるため
 type _StateResultsProvided = StateResultsProvided & {
@@ -46,7 +47,7 @@ const SearchPanel = styled(Base)`
   padding: 8px;
   box-sizing: border-box;
 
-  @media (max-width: ${defaultBreakpoint.SP}px) {
+  @media (width <= ${defaultBreakpoint.SP}px) {
     left: 0;
     width: 100%;
   }

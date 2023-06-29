@@ -1,3 +1,8 @@
+import dotenv from 'dotenv'
+dotenv.config({
+  path: '.env',
+})
+
 import { AIRTABLE_CONTENTS } from './src/constants/airtable'
 
 const mdxQueries = [
@@ -17,14 +22,18 @@ const mdxQueries = [
               id
               slug
               rawBody
+              internal {
+                contentDigest
+              }
             }
           }
         }
       }
     `,
-    transformer: ({ data }: { data: { allMdx: GatsbyTypes.Query['allMdx'] } }) =>
-      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug } }) => ({
+    transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx'] } }) =>
+      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
         id,
+        internal,
         title: frontmatter?.title || '',
         category: fields?.category || '',
         description: frontmatter?.description || '',
@@ -51,12 +60,19 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
               id
               slug
               rawBody
+              internal {
+                contentDigest
+              }
             }
           }
         }
-        allAirtable(filter: { table: { eq: "${item.tableName}" } }) {
+        allSdsAirtable(filter: { table: { eq: "${item.tableName}" } }) {
           edges {
             node {
+              id
+              internal {
+                contentDigest
+              }
               data {
                 name
                 description
@@ -75,15 +91,16 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
         }
       }
     `,
-    transformer: ({ data }: { data: { allMdx: GatsbyTypes.Query['allMdx']; allAirtable: GatsbyTypes.Query['allAirtable'] } }) =>
-      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug } }) => ({
+    transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx']; allSdsAirtable: Queries.Query['allSdsAirtable'] } }) =>
+      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
         id,
+        internal,
         title: frontmatter?.title || '',
         category: fields?.category || '',
         description: frontmatter?.description || '',
         body:
           rawBody +
-          data.allAirtable.edges
+          data.allSdsAirtable.edges
             .map((edge) => {
               return Object.values(edge.node?.data || {})
                 .filter((value) => {
@@ -99,9 +116,9 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
 
 export const algoliaConfig = {
   appId: process.env.GATSBY_ALGOLIA_APP_ID,
-  apiKey: process.env.GATSBY_ALGOLIA_ADMIN_API_KEY,
+  apiKey: process.env.ALGOLIA_ADMIN_API_KEY,
   indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
   queries: [...mdxQueries, ...airtableQueries],
-  skipIndexing: process.env.BRANCH !== 'main',
-  continueOnFailure: false,
+  dryRun: process.env.BRANCH !== 'main',
+  continueOnFailure: process.env.BRANCH !== 'main',
 }

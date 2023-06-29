@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
-import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui'
-
 import { CSS_COLOR } from '@Constants/style'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui'
+import styled from 'styled-components'
 
 type Props = {
   defaultWidth?: string
@@ -103,10 +102,10 @@ export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, chi
       >
         {children}
         <VerticalResizeHandler onPointerDown={handleVerticalPointerDown}>
-          <FaGripLinesVerticalIcon visuallyHiddenText="ドラッグして幅を変更" />
+          <FaGripLinesVerticalIcon alt="ドラッグして幅を変更" />
         </VerticalResizeHandler>
         <HorizontalResizeHandler onPointerDown={handleHorizontalPointerDown}>
-          <FaGripLinesIcon visuallyHiddenText="ドラッグして高さを変更" />
+          <FaGripLinesIcon alt="ドラッグして高さを変更" />
         </HorizontalResizeHandler>
       </ResizeArea>
     </Container>

@@ -1,7 +1,7 @@
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import React, { FC, useState } from 'react'
-import styled from 'styled-components'
 import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui'
-import { CSS_COLOR } from '@Constants/style'
+import styled from 'styled-components'
 
 type CopyButtonProps = {
   text: string
@@ -21,7 +21,7 @@ export const CopyButton: FC<CopyButtonProps> = ({ text }) => {
       title={`${text}をクリップボードにコピーする`}
       disabled={copied}
     >
-      {copied ? <FaCheckIcon size={20} /> : <FaCopyIcon size={20} />}
+      {copied ? <FaCheckIcon /> : <FaCopyIcon />}
     </StyledButton>
   )
 }
@@ -34,4 +34,5 @@ const StyledButton = styled.button`
   color: ${CSS_COLOR.TEXT_GREY};
   background: transparent;
   cursor: pointer;
+  font-size: ${CSS_FONT_SIZE.PX_20};
 `

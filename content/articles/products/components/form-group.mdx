@@ -1,10 +1,19 @@
 ---
-title: 'FormGroup'
+title: 'FormGroup（非推奨）'
 description: ''
-smarthr-ui: 'FormGroup'
+storyName: 'FormGroup'
 ---
-import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+import { BaseColumn, WarningIcon } from 'smarthr-ui'
+
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+    FormgGroupコンポーネントは非推奨です。<a href="/products/components/form-control/">FormControl</a>か<a href="/products/components/fieldset/">Fieldset</a>コンポーネントを使用してください。
+    </span>}
+    />
+</BaseColumn>
 
 <ComponentStory name="FormGroup" />
 

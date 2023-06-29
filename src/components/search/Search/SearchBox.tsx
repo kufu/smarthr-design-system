@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import type { FC } from 'react'
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
+import { useLocation } from '@reach/router'
 import { navigate } from 'gatsby'
+import React, { useEffect, useState } from 'react'
 import { Hits, connectSearchBox } from 'react-instantsearch-dom'
-import type { SearchBoxProvided } from 'react-instantsearch-core'
-import styled from 'styled-components'
 import { FaSearchIcon, Input } from 'smarthr-ui'
+import styled from 'styled-components'
+
 import { HitComponent } from './HitComponent'
 import { SearchResultOuter } from './SearchResultOuter'
-import { CSS_FONT_SIZE } from '@Constants/style'
-import { useLocation } from '@reach/router'
 
-const SearchBox: FC<SearchBoxProvided> = ({ refine }) => {
+import type { FC } from 'react'
+import type { SearchBoxProvided } from 'react-instantsearch-core'
+
+type Props = { isAvailable: boolean }
+
+const SearchBox: FC<SearchBoxProvided & Props> = ({ refine, isAvailable }) => {
   const [searchState, setSearchState] = useState<string | undefined>()
 
   // クエリ付きURLでアクセスされた場合
@@ -40,16 +44,17 @@ const SearchBox: FC<SearchBoxProvided> = ({ refine }) => {
       {/* 検索インプット部分 */}
       <InputOuter>
         <p id="desc-for-search-input">例：Button、画面キャプチャ、用字用語、須磨英知など</p>
-
         <Input
           width="100%"
-          prefix={<FaSearchIcon size={24} aria-label="検索" />}
+          prefix={<StyledSearchIcon aria-label="検索" />}
           value={searchState}
           onChange={onSearchStateChange}
           autoFocus // eslint-disable-line jsx-a11y/no-autofocus
           aria-labelledby="label-for-search-input"
           aria-describedby="desc-for-search-input"
+          name="query"
         />
+        {!isAvailable && searchState && <WarningMessage>検索処理を実行するにはAlgoliaのAPIキーの設定が必要です</WarningMessage>}
       </InputOuter>
 
       {/* 検索結果 */}
@@ -83,4 +88,16 @@ const InputOuter = styled.div`
     border-radius: 12px;
     font-size: 1.5rem;
   }
+`
+
+const StyledSearchIcon = styled(FaSearchIcon)`
+  font-size: ${CSS_FONT_SIZE.PX_24};
+`
+
+const WarningMessage = styled.div`
+  margin-block: 16px;
+  padding: 16px;
+  background-color: ${CSS_COLOR.CAUTION_LIGHT};
+  color: ${CSS_COLOR.CAUTION_HEAVY};
+  text-align: center;
 `

@@ -1,14 +1,16 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
+import { CSS_COLOR } from '@Constants/style'
 import { graphql, useStaticQuery } from 'gatsby'
-import { Text } from 'smarthr-ui'
-import { TextUrlToLink } from '../shared/TextUrlToLink'
-import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
 import { marked } from 'marked'
+import React, { FC } from 'react'
+import { Text } from 'smarthr-ui'
+import styled from 'styled-components'
+
+import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
+import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query BasicConceptTable {
-    basicConceptData: allAirtable(filter: { table: { eq: "基本的な考え方や表記" } }) {
+    basicConceptData: allSdsAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
       edges {
         node {
           data {
@@ -24,8 +26,11 @@ const query = graphql`
     }
   }
 `
+
+marked.setOptions({ headerIds: false, mangle: false })
+
 export const BasicConceptTable: FC = () => {
-  const data = useStaticQuery<GatsbyTypes.BasicConceptTableQuery>(query)
+  const data = useStaticQuery<Queries.BasicConceptTableQuery>(query)
 
   const basicConceptData = data.basicConceptData.edges
     .map(({ node }) => ({
@@ -43,6 +48,9 @@ export const BasicConceptTable: FC = () => {
 
   return (
     <>
+      {basicConceptData[0].recordId?.includes('MOCKDATA') && (
+        <WarningMessage>このページを正しく表示するにはAirtableのAPIキーの設定が必要です</WarningMessage>
+      )}
       {basicConceptData.map(({ name, description, discussion, source, recordId }, index) => {
         const generateFragmentId = (suffixId: string) => {
           return recordId ? `${recordId}-${suffixId}` : `${index}-${suffixId}`
@@ -88,5 +96,12 @@ export const BasicConceptTable: FC = () => {
 const Wrapper = styled.div``
 const StyledText = styled(Text)`
   white-space: pre-wrap;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
+`
+const WarningMessage = styled.div`
+  margin-block: 16px;
+  padding: 16px;
+  background-color: ${CSS_COLOR.CAUTION_LIGHT};
+  color: ${CSS_COLOR.CAUTION_HEAVY};
+  text-align: center;
 `

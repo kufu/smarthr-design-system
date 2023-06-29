@@ -1,25 +1,44 @@
-import React, { FC } from 'react'
-import { Link } from 'gatsby'
 import { CSS_COLOR } from '@Constants/style'
+import { Link } from 'gatsby'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
-  headings: Array<{ value: string; recordId: string; depth: number }> | null
+  headings: Array<{ value: string; recordId: string; depth: number; fragmentId: string }> | null
 }
 export const IndexNav: FC<Props> = ({ headings }) => {
   if (headings === null) return null
 
-  const nestedHeadings: Array<{ value: string; recordId: string; children: Array<{ value: string }>; depth: number }> = []
+  const nestedHeadings: Array<{
+    value: string
+    recordId: string
+    children: Array<{ value: string; fragmentId?: string }>
+    depth: number
+    fragmentId: string
+  }> = []
   headings.forEach((heading) => {
     if (heading.depth > 3) return
     if (heading.depth === 1)
-      nestedHeadings.push({ value: heading.value, recordId: heading.recordId || '', children: [], depth: 1 })
+      nestedHeadings.push({
+        value: heading.value,
+        recordId: heading.recordId || '',
+        children: [],
+        depth: 1,
+        fragmentId: heading.fragmentId || '',
+      })
     if (heading.depth === 2)
-      nestedHeadings.push({ value: heading.value, recordId: heading.recordId || '', children: [], depth: 2 })
+      nestedHeadings.push({
+        value: heading.value,
+        recordId: heading.recordId || '',
+        children: [],
+        depth: 2,
+        fragmentId: heading.fragmentId || '',
+      })
     if (heading.depth === 3) {
       // 親となる第2階層がない場合、仮の親となるアイテムをpushする。
-      if (!nestedHeadings[nestedHeadings.length - 1]) nestedHeadings.push({ value: '', recordId: '', children: [], depth: 0 })
-      nestedHeadings[nestedHeadings.length - 1].children.push({ value: heading.value })
+      if (!nestedHeadings[nestedHeadings.length - 1])
+        nestedHeadings.push({ value: '', recordId: '', children: [], depth: 0, fragmentId: '' })
+      nestedHeadings[nestedHeadings.length - 1].children.push({ value: heading.value, fragmentId: heading.fragmentId || '' })
     }
   })
 
@@ -30,7 +49,8 @@ export const IndexNav: FC<Props> = ({ headings }) => {
       <ul>
         {nestedHeadings.map((depth2Item, depth2Index) => {
           /* Airtable由来のコンテンツではrecord_idをアンカーとして使用する */
-          const depth2Id = depth2Item.recordId === '' ? `h2-${depth2Index}` : `${depth2Item.recordId}-0`
+          const recordId = depth2Item.recordId === '' ? `h2-${depth2Index}` : `${depth2Item.recordId}-0`
+          const depth2Id = depth2Item.fragmentId !== '' ? depth2Item.fragmentId : recordId
           return (
             <li key={depth2Id}>
               {(() => {
@@ -56,7 +76,7 @@ export const IndexNav: FC<Props> = ({ headings }) => {
               })()}
               <ul>
                 {depth2Item.children.map((depth3Item) => {
-                  const depth3Id = `h3-${depth3Index}`
+                  const depth3Id = depth3Item.fragmentId !== '' ? depth3Item.fragmentId : `h3-${depth3Index}`
                   depth3Index += 1
                   return (
                     <li key={depth3Id}>

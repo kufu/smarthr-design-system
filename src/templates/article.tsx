@@ -1,24 +1,25 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
-import { PageProps, graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
-import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
-import { Theme } from './Theme'
-import { Head } from '@Components/Head'
+import { Head as HeadComponent } from '@Components/Head'
 import { CodeBlock } from '@Components/article/CodeBlock'
-import { Sidebar } from '@Components/article/Sidebar/Sidebar'
-import { IndexNav } from '@Components/article/IndexNav/IndexNav'
 import { FragmentTitle } from '@Components/article/FragmentTitle/FragmentTitle'
-import { INDEXED_DEPTH } from '@Constants/application'
+import { IndexNav } from '@Components/article/IndexNav/IndexNav'
+import { Sidebar } from '@Components/article/Sidebar/Sidebar'
+import { TableWrapper } from '@Components/contents/shared/TableWrapper'
+import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
-import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Private } from '@Components/shared/Private'
-import { SmartHRUIMetaInfo } from '@Components/SmartHRUIMetaInfo'
-import { Footer } from '@Components/shared/Footer/Footer'
-
+import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
 import { AIRTABLE_CONTENTS } from '@Constants/airtable'
+import { INDEXED_DEPTH } from '@Constants/application'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
+import { PageProps, graphql } from 'gatsby'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
+import React, { FC } from 'react'
+import styled from 'styled-components'
+
+import { Theme } from './Theme'
+
 import type { airtableContents } from '@Constants/airtable'
 
 const components: MDXProviderComponents = {
@@ -51,6 +52,7 @@ const components: MDXProviderComponents = {
       {children}
     </FragmentTitle>
   ),
+  table: ({ children }) => <TableWrapper mdTable={true}>{children}</TableWrapper>,
 }
 
 const shortcodes = {
@@ -62,6 +64,7 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      rawBody
       headings {
         depth
         value
@@ -69,7 +72,6 @@ export const query = graphql`
       frontmatter {
         title
         description
-        smarthr_ui
       }
       fields {
         category
@@ -91,7 +93,7 @@ export const query = graphql`
         }
       }
     }
-    airTable: allAirtable(filter: { table: { eq: $airTableName } }) {
+    airTable: allSdsAirtable(filter: { table: { eq: $airTableName } }) {
       edges {
         node {
           data {
@@ -108,7 +110,7 @@ export const query = graphql`
   }
 `
 
-type Props = PageProps<GatsbyTypes.ArticleQuery>
+type Props = PageProps<Queries.ArticleQuery>
 
 export type SidebarItem = {
   link: string
@@ -121,40 +123,31 @@ export type SidebarItem = {
 const Article: FC<Props> = ({ data }) => {
   const { mdx: article, parentCategoryAllMdx: parentCategory } = data
 
-  if (article == null) {
+  if (!article) {
     return null
   }
 
-  const { frontmatter, headings, fields } = article
+  const { frontmatter, headings, fields, rawBody } = article
   const slug = fields?.slug || ''
 
   const title = frontmatter?.title || ''
-  const description = frontmatter?.description || ''
-
-  // 親階層のノードを探す
-  const parentCategorySlug = slug.replace(/[^/]+\/$/, '') //例・'/basics/typography/'→'/basics/'
-  const parentCategoryNode =
-    parentCategory.edges.find((edge) => {
-      if (edge.node?.fields?.slug === parentCategorySlug) {
-        return true
-      }
-      return false
-    }) ?? null
-  const parentCategoryName = parentCategoryNode?.node.frontmatter?.title ?? title
-
-  // memo: カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
-  const headTitle = title === parentCategoryName ? title : `${title} | ${parentCategoryName}`
 
   // Airtableコンテンツのheading。各項目をh2として扱う
-  const airTableHeadings = data.airTable.edges.map((edge) => {
-    return {
-      depth: 2,
-      value: edge.node.data?.name ?? '',
-      recordId: edge.node.data?.record_id ?? '',
-      name: edge.node.data?.name ?? '',
-      order: edge.node.data?.order ?? Number.MAX_SAFE_INTEGER,
-    }
-  })
+  const airTableHeadings = data.airTable.edges
+    .filter((edge) => {
+      return edge.node.data?.name && edge.node.data?.name !== ''
+    })
+    .map((edge) => {
+      return {
+        depth: 2,
+        value: edge.node.data?.name ?? '',
+        recordId: edge.node.data?.record_id ?? '',
+        name: edge.node.data?.name ?? '',
+        order: edge.node.data?.order ?? Number.MAX_SAFE_INTEGER,
+        fragmentId: '',
+      }
+    })
+
   // Airtableコンテンツは、ページによりソート方法が異なるので、headingの順序もそれに合わせる
   const airtableSortType =
     AIRTABLE_CONTENTS.filter((item: airtableContents) => {
@@ -179,11 +172,34 @@ const Article: FC<Props> = ({ data }) => {
           value: heading?.value ?? '',
           depth: heading?.depth ?? -1,
           recordId: '',
+          fragmentId: '',
         }
       })
       ?.filter(({ depth }) => depth <= INDEXED_DEPTH) ?? []
 
   const headingList = [...airTableHeadings, ...mdxHeadings]
+
+  // コンポーネントのページのPropsをheadingListに追加する
+  if (fields?.hierarchy && /^products\/components/.test(fields?.hierarchy)) {
+    // ページ内の全ての<ComponentPropsTable name="{対象}" showTitle />から、name属性の値を取り出す
+    const regex = /<ComponentPropsTable(?:\s+[^>]*?)?(?:\s+name="([^"]+)")(?:\s+[^>]*?)?(?:\s+showTitle(?:={true})?)\s*\/?>/gms
+    const propsHeadingList = []
+    let match
+    while ((match = regex.exec(rawBody)) !== null) {
+      propsHeadingList.push(match[1])
+    }
+    const propsIndex = headingList.findIndex((item) => item.value === 'Props')
+    if (propsIndex > -1 && propsHeadingList.length > 0) {
+      propsHeadingList.forEach((heading, index) => {
+        headingList.splice(propsIndex + index + 1, 0, {
+          value: `${heading} props`,
+          depth: 3,
+          recordId: '',
+          fragmentId: `props-${heading}`,
+        })
+      })
+    }
+  }
 
   //
   // サイドバー、「前へ」「次へ」コンポーネントのための配列作成
@@ -201,7 +217,7 @@ const Article: FC<Props> = ({ data }) => {
     const link = node.fields?.slug ?? ''
 
     const item = {
-      link: link,
+      link,
       order: node.frontmatter?.order ?? Number.MAX_SAFE_INTEGER,
       title: node.frontmatter?.title ?? '',
       depth: link.split('/').length - 2,
@@ -296,7 +312,6 @@ const Article: FC<Props> = ({ data }) => {
 
   return (
     <Theme>
-      <Head title={headTitle} description={description} />
       <GlobalStyle />
 
       <Wrapper>
@@ -307,14 +322,15 @@ const Article: FC<Props> = ({ data }) => {
             <Sidebar path={slug ?? ''} nestedSidebarItems={nestedSidebarItems} />
           </MainSidebar>
 
-          <MainIndexNav>
-            <IndexNav headings={headingList} />
-          </MainIndexNav>
+          {headingList.length > 0 && (
+            <MainIndexNav>
+              <IndexNav headings={headingList} />
+            </MainIndexNav>
+          )}
 
           <MainArticle>
             <MainArticleTitle>
               <h1>{title}</h1>
-              {frontmatter?.smarthr_ui && <SmartHRUIMetaInfo name={frontmatter.smarthr_ui} />}
             </MainArticleTitle>
             <MDXStyledWrapper>
               <MDXProvider components={{ ...components, ...shortcodes }}>
@@ -325,7 +341,7 @@ const Article: FC<Props> = ({ data }) => {
             {/* 前へ・次へ表示 */}
             <MainArticleNav>
               {prevPageIndex !== null && (
-                <PrevArticleLink>
+                <PrevArticleLinkWrapper>
                   <RoundedBoxLink
                     path={sidebarItems[prevPageIndex].link}
                     label="前へ"
@@ -333,10 +349,10 @@ const Article: FC<Props> = ({ data }) => {
                     align="left"
                     caretPosition="left"
                   />
-                </PrevArticleLink>
+                </PrevArticleLinkWrapper>
               )}
               {nextPageIndex !== null && (
-                <NextArticleLink>
+                <NextArticleLinkWrapper>
                   <RoundedBoxLink
                     path={sidebarItems[nextPageIndex].link}
                     label="次へ"
@@ -344,7 +360,7 @@ const Article: FC<Props> = ({ data }) => {
                     align="right"
                     caretPosition="right"
                   />
-                </NextArticleLink>
+                </NextArticleLinkWrapper>
               )}
             </MainArticleNav>
           </MainArticle>
@@ -357,6 +373,36 @@ const Article: FC<Props> = ({ data }) => {
 }
 
 export default Article
+
+export const Head: FC<Props> = ({ data }) => {
+  const { mdx: article, parentCategoryAllMdx: parentCategory } = data
+
+  if (!article) {
+    return <HeadComponent />
+  }
+
+  const { frontmatter, fields } = article
+  const slug = fields?.slug || ''
+
+  const title = frontmatter?.title || ''
+  const description = frontmatter?.description || ''
+
+  // 親階層のノードを探す
+  const parentCategorySlug = slug.replace(/[^/]+\/$/, '') //例・'/basics/typography/'→'/basics/'
+  const parentCategoryNode =
+    parentCategory.edges.find((edge) => {
+      if (edge.node?.fields?.slug === parentCategorySlug) {
+        return true
+      }
+      return false
+    }) ?? null
+  const parentCategoryName = parentCategoryNode?.node.frontmatter?.title ?? title
+
+  // memo: カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
+  const headTitle = title === parentCategoryName ? title : `${title} | ${parentCategoryName}`
+
+  return <HeadComponent title={headTitle} description={description} ogTitle={title} />
+}
 
 const Wrapper = styled.div`
   display: flex;
@@ -377,11 +423,11 @@ const Main = styled.main`
   display: grid;
   grid-template: 'sidebar article index' auto / 1fr minmax(auto, 712px) 1fr;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template: 'sidebar article .' auto / 1fr minmax(auto, 712px) minmax(40px, 1fr);
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     grid-template: '. article .' auto / minmax(40px, 1fr) minmax(auto, 712px) minmax(40px, 1fr);
     margin-top: 0;
   }
@@ -405,7 +451,7 @@ const MainSidebar = styled.div`
     grid-column: nav;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     grid-column: article;
     display: block;
     position: static;
@@ -433,7 +479,7 @@ const MainIndexNav = styled.div`
     grid-column: nav;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     display: none;
   }
 `
@@ -444,7 +490,7 @@ const MainArticle = styled.article`
   padding-top: 112px;
   padding-bottom: 240px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-bottom: 112px;
   }
 `
@@ -464,7 +510,7 @@ const MainArticleNav = styled.ul`
   display: grid;
   gap: 1rem;
   grid-template: 'left right' 1fr/1fr 1fr;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     grid-template:
       'left' 1fr
       'right' 1fr
@@ -472,11 +518,11 @@ const MainArticleNav = styled.ul`
   }
 `
 
-const PrevArticleLink = styled.li`
+const PrevArticleLinkWrapper = styled.li`
   grid-area: left;
 `
 
-const NextArticleLink = styled.li`
+const NextArticleLinkWrapper = styled.li`
   grid-area: right;
 `
 
@@ -544,6 +590,11 @@ const MDXStyledWrapper = styled.div`
     font-size: ${CSS_FONT_SIZE.PX_16};
     line-height: 2.12;
     margin-block: 20px 0;
+
+    ul,
+    ol {
+      margin-block-start: 0;
+    }
   }
 
   /* 表組み */
@@ -556,6 +607,14 @@ const MDXStyledWrapper = styled.div`
       vertical-align: middle;
       font-size: ${CSS_FONT_SIZE.PX_14};
       background-color: ${CSS_COLOR.DIVIDER};
+    }
+
+    td {
+      p:first-child,
+      ul:first-child,
+      ol:first-child {
+        margin-block-start: 0;
+      }
     }
   }
 

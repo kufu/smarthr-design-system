@@ -1,22 +1,13 @@
-import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
-import React, { FC, useContext, useState } from 'react'
-import { useLocation } from '@reach/router'
-import styled, { createGlobalStyle, css } from 'styled-components'
-import { Link as LinkComponent } from 'gatsby'
-import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
-
-import { FootStaticLinks } from '../Footer/FootStaticLinks'
-import headerContentJson from '../../../data/headerContent.json'
-
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { LoginContext } from '@Context/LoginContext'
+import { useLocation } from '@reach/router'
+import { Link as LinkComponent } from 'gatsby'
+import React, { FC, useContext, useState } from 'react'
+import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
+import styled, { createGlobalStyle, css } from 'styled-components'
 
-type HeaderContents = Array<{
-  title: string
-  key: string
-  path: string
-}>
-
-const headerContents: HeaderContents = headerContentJson
+import navigationItem from '../../../data/navigationItem.json'
+import { FootStaticLinks } from '../Footer/FootStaticLinks'
 
 type Props = {
   isIndex?: boolean
@@ -38,15 +29,15 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
       <Wrapper isIndex={isIndex}>
         <Container>
           <SiteName to="/">
-            <img src="/images/logo_smarthr design_system.svg" alt="SmartHR Design System" width="264" height="24" />
+            <img src="/images/logo_smarthr_design_system.svg" alt="SmartHR Design System" width="264" height="24" />
           </SiteName>
           <StyledNav>
             <ul className="-optional">
               <li>
                 <StyledAnchorButton
+                  {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
                   className={loginStatus === 'pending' ? 'loginStatusPending' : ''}
                   size="s"
-                  {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
                 >
                   {loginLabel}
                 </StyledAnchorButton>
@@ -59,7 +50,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
               </li>
             </ul>
             <ul>
-              {headerContents.map(({ title, key, path }) => (
+              {navigationItem.map(({ title, key, path }) => (
                 <li key={key}>
                   <StyledLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
                     {title}
@@ -77,7 +68,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
                 aria-haspopup="true"
                 aria-controls="panel-menu"
               >
-                <FaBarsIcon size={24} />
+                <FaBarsIcon />
               </StyledOpenButton>
               {typeof window !== 'undefined' ? (
                 <Dialog
@@ -118,11 +109,11 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
                     </StyledCloseButton>
                     <MenuLinkContainer>
                       <MenuStyledCategoryUl>
-                        {headerContents.map(({ title, key, path }) => (
+                        {navigationItem.map(({ title, key, path }) => (
                           <li key={key}>
-                            <LinkComponent to={path} className={key && (isCurrent(key) ? '-active' : '')}>
+                            <StyledMenuLink to={path} className={key && (isCurrent(key) ? '-active' : '')}>
                               {title}
-                            </LinkComponent>
+                            </StyledMenuLink>
                           </li>
                         ))}
                       </MenuStyledCategoryUl>
@@ -156,18 +147,18 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
   ${({ isIndex }) =>
     isIndex
       ? css`
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
+          @media (width <= ${CSS_SIZE.BREAKPOINT_PC_2}) {
             padding-inline: 48px;
           }
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+          @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
             padding-inline: 24px;
           }
         `
       : css`
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
+          @media (width <= ${CSS_SIZE.BREAKPOINT_PC_2}) {
             padding-inline: 48px;
           }
-          @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+          @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
             padding-inline: 24px;
           }
         `}
@@ -178,13 +169,13 @@ const Container = styled(Cluster).attrs({ gap: { row: 0.75, column: 1 }, align: 
 const SiteName = styled(LinkComponent)`
   padding: 6px 10px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding: revert;
   }
 
   img {
     display: block;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       width: 204px;
       height: auto;
     }
@@ -201,11 +192,11 @@ const StyledNav = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justi
     margin: 0;
     padding: 0;
     gap: 6px;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       display: none;
     }
     &.-optional {
-      @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+      @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
         display: none;
       }
     }
@@ -256,7 +247,7 @@ const StyledLink = styled(LinkComponent)`
   line-height: 1;
   color: ${defaultColor.TEXT_BLACK};
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     padding-inline: 6px;
   }
 
@@ -293,11 +284,11 @@ const GlobalStyleForMenu = createGlobalStyle`
     box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.24);
     bottom: 16px;
     max-height: 678px;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       top: 1rem;
       right: calc(3rem - 12px);
     }
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       width: auto;
       right: calc(1.5rem - 12px);
       left: calc(1.5rem - 12px);
@@ -309,7 +300,7 @@ const MenuContainer = styled.div`
   display: none;
   align-items: center;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: flex;
   }
 `
@@ -322,6 +313,7 @@ const StyledOpenButton = styled.button`
   border: 0;
   background: transparent;
   cursor: pointer;
+  font-size: ${CSS_FONT_SIZE.PX_24};
 `
 
 const Dialog = styled(shrDialog)`
@@ -379,6 +371,11 @@ const MenuStyledCategoryUl = styled.ul`
       text-decoration: underline;
     }
   }
+`
+
+const StyledMenuLink = styled(LinkComponent)`
+  display: inline-block;
+  width: 100%;
 `
 
 const MenuFootLinkContainer = styled.div`

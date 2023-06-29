@@ -1,8 +1,8 @@
+import { CSS_FONT_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
+import { marked } from 'marked'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { marked } from 'marked'
-import { CSS_FONT_SIZE } from '@Constants/style'
 
 type Props = {
   children: React.ReactNode
@@ -32,7 +32,7 @@ const query = graphql`
 
 export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children }) => {
   const currentDepth = path.split('/').length
-  const data = useStaticQuery<GatsbyTypes.PageListQuery>(query)
+  const data = useStaticQuery<Queries.PageListQuery>(query)
   const pageData = data.childPageAllMdx.edges
     .map(({ node }) => {
       const slug = node.fields?.slug || ''
@@ -41,8 +41,8 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
         title: node.frontmatter?.title || '',
         description: node.frontmatter?.description || '',
         order: node.frontmatter?.order || Number.MAX_SAFE_INTEGER,
-        slug: slug,
-        pathList: pathList,
+        slug,
+        pathList,
       }
     })
     .filter((item) => {
@@ -55,7 +55,7 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
     .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
   const injectedDescriptions: { [key: string]: string } = {}
-  marked.setOptions({ breaks: true }) //改行の手前にスペース*2がなくても<br>に変換したいので
+  marked.setOptions({ breaks: true, headerIds: false, mangle: false }) //改行の手前にスペース*2がなくても<br>に変換したいので
   React.Children.toArray(children)
     .filter((child: any) => {
       // <Description>タグ以外は除外

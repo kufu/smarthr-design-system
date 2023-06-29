@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
-import { Link } from 'gatsby'
-import styled from 'styled-components'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { Link } from 'gatsby'
+import React, { FC } from 'react'
+import styled from 'styled-components'
 
 import { FloatingTextLink } from '../../shared/FloatingTextLink'
 
@@ -35,20 +35,22 @@ export const Category: FC<Props> = ({ data }) => {
       </NavigationText>
       <NavigationLinksContainer>
         {data.imagePath ? (
-          <CategoryImage>
+          <CategoryImageWrapper>
             <Link to={data.path}>
               <img src={data.imagePath} width="832" height="144" alt="基本原則" />
             </Link>
-          </CategoryImage>
+          </CategoryImageWrapper>
         ) : (
           <NavigationLinks>
             {data.items.map((item, i) => {
               return (
                 <li key={i}>
                   <Link to={item.path}>
-                    <ThumbnailImage>
+                    <ThumbnailImageWrapper>
+                      {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
+                      {/* eslint-disable-next-line smarthr/a11y-image-has-alt-attribute */}
                       <img src={item.imagePath} width="262" height="144" alt="" />
-                    </ThumbnailImage>
+                    </ThumbnailImageWrapper>
                     <p>{item.title}</p>
                   </Link>
                 </li>
@@ -64,7 +66,7 @@ export const Category: FC<Props> = ({ data }) => {
 const NavigationContainer = styled.div`
   display: flex;
   gap: 40px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: block;
     gap: 0;
   }
@@ -72,7 +74,7 @@ const NavigationContainer = styled.div`
 
 const NavigationText = styled.div`
   width: 320px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     width: 100%;
   }
   h2 {
@@ -91,15 +93,15 @@ const NavigationText = styled.div`
 const NavigationLinksContainer = styled.div`
   width: 832px;
   max-width: 100%;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 40px;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     width: 100%;
   }
 `
 
-const ThumbnailImage = styled.div`
+const ThumbnailImageWrapper = styled.div`
   position: relative;
   width: 100%;
   max-height: 144px;
@@ -125,22 +127,23 @@ const ThumbnailImage = styled.div`
     height: 100%;
     object-fit: cover;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     max-height: 100%;
   }
 `
 
 const NavigationLinks = styled.ul`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   list-style: none;
   margin: 0;
   padding: 0;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     display: block;
   }
   > li {
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       &:not(:first-child) {
         margin-top: 24px;
       }
@@ -156,7 +159,7 @@ const NavigationLinks = styled.ul`
         line-height: 1.3;
       }
       &:hover {
-        ${ThumbnailImage} {
+        ${ThumbnailImageWrapper} {
           border-color: ${CSS_COLOR.TEXT_GREY};
           &::after {
             width: 100%;
@@ -170,10 +173,10 @@ const NavigationLinks = styled.ul`
   }
 `
 
-const CategoryImage = styled.div`
+const CategoryImageWrapper = styled.div`
   width: 100%;
   height: 144px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     width: auto;
 
     /*
@@ -215,7 +218,7 @@ const CategoryImage = styled.div`
         transition: background-color 0.2s;
       }
     }
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       border-left: 0;
       border-right: 0;
       border-radius: 0;

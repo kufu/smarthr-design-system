@@ -1,10 +1,10 @@
+import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-
-import { FaqItem } from './FaqItem'
 
 import indexFaqJson from '../../../data/indexFaq.json'
+
+import { FaqItem } from './FaqItem'
 
 type FaqJsonObject = {
   question: string
@@ -58,7 +58,7 @@ const IndexFaqContainer = styled.div`
       padding: 0;
     }
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 120px;
     > ul {
       gap: 56px 40px;
@@ -69,7 +69,7 @@ const IndexFaqContainer = styled.div`
       }
     }
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     margin: 120px 16px 0;
     > ul > li {
       width: 100%;

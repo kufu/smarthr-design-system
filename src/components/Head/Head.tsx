@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { Helmet } from 'react-helmet'
+import { CLOUDINARY_CLOUD_NAME } from '@Constants/application'
 import { graphql, useStaticQuery } from 'gatsby'
+import React, { FC } from 'react'
 
 const query = graphql`
   query Head {
@@ -18,6 +18,7 @@ const query = graphql`
 
 type Props = {
   title?: string
+  ogTitle?: string
   description?: string
   meta?: Array<{
     name: string
@@ -25,54 +26,38 @@ type Props = {
   }>
 }
 
-export const Head: FC<Props> = ({ title, description, meta = [] }) => {
-  const data = useStaticQuery<GatsbyTypes.HeadQuery>(query)
+export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
+  const data = useStaticQuery<Queries.HeadQuery>(query)
   const siteMetadata = data.site?.siteMetadata
 
   const pageTitle = title ? `${title} | ${siteMetadata?.title}` : siteMetadata?.title
   const metaDescription = description || siteMetadata?.description
   const ogImagePath = `${siteMetadata?.siteUrl}${siteMetadata?.ogimage}`
 
+  let ogCloudinaryUrl: string | null = null
+  if (ogTitle) {
+    ogCloudinaryUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/w_1200,c_fit,fl_relative,l_text:sds:notosansbold.otf_72_bold_normal_center:${encodeURIComponent(
+      ogTitle,
+    )},w_1100/fl_layer_apply,g_center,y_-0.05/sds/sds_ogp_base.jpg`
+  }
+
   return (
-    <Helmet
-      htmlAttributes={{ lang: 'ja' }}
-      title={pageTitle}
-      meta={[
-        {
-          name: 'description',
-          content: metaDescription,
-        },
-        {
-          property: 'og:title',
-          content: pageTitle,
-        },
-        {
-          property: 'og:description',
-          content: metaDescription,
-        },
-        {
-          property: 'og:type',
-          content: 'website',
-        },
-        { property: 'og:image', content: ogImagePath },
-        {
-          name: 'twitter:card',
-          content: 'summary',
-        },
-        {
-          name: 'twitter:creator',
-          content: siteMetadata?.author || '',
-        },
-        {
-          name: 'twitter:title',
-          content: pageTitle,
-        },
-        {
-          name: 'twitter:description',
-          content: metaDescription,
-        },
-        ...meta,
-      ]}
-    />
+    <>
+      <title>{pageTitle}</title>
+      <meta name="description" content={metaDescription ?? ''} />
+      <meta property="og:title" content={pageTitle ?? ''} />
+      <meta property="og:description" content={metaDescription ?? ''} />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={ogCloudinaryUrl ?? ogImagePath} />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:creator" content={siteMetadata?.author ?? ''} />
+      <meta name="twitter:title" content={pageTitle ?? ''} />
+      <meta name="twitter:description" content={metaDescription ?? ''} />
+      {meta.map((item, index) => {
+        return <meta key={index} name={item.name} content={item.content} />
+      })}
+      <link rel="icon" href="/favicon_48x48.png" type="image/png" />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    </>
   )
 }

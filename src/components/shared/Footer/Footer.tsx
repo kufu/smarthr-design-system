@@ -1,7 +1,10 @@
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+
+import navigationItem from '../../../data/navigationItem.json'
+
 import { FootStaticLinks } from './FootStaticLinks'
 
 type Props = {
@@ -9,8 +12,8 @@ type Props = {
 }
 const query = graphql`
   query Footer {
-    concept: allMdx(
-      filter: { fields: { category: { eq: "concept" }, hierarchy: { glob: "*/*" } } }
+    introduction: allMdx(
+      filter: { fields: { category: { eq: "introduction" }, hierarchy: { glob: "*/*" } } }
       sort: { fields: frontmatter___order }
     ) {
       nodes {
@@ -39,6 +42,20 @@ const query = graphql`
     }
     basics: allMdx(
       filter: { fields: { category: { eq: "basics" }, hierarchy: { glob: "*/*" } } }
+      sort: { fields: frontmatter___order }
+    ) {
+      nodes {
+        id
+        frontmatter {
+          title
+        }
+        fields {
+          slug
+        }
+      }
+    }
+    accessibility: allMdx(
+      filter: { fields: { category: { eq: "accessibility" }, hierarchy: { glob: "*/*" } } }
       sort: { fields: frontmatter___order }
     ) {
       nodes {
@@ -82,13 +99,7 @@ const query = graphql`
   }
 `
 export const Footer: FC<Props> = ({ isArticlePage = false }) => {
-  const {
-    concept: { nodes: concept },
-    foundation: { nodes: foundation },
-    basics: { nodes: basics },
-    products: { nodes: products },
-    communication: { nodes: communication },
-  } = useStaticQuery<GatsbyTypes.FooterQuery>(query)
+  const footerCategories = useStaticQuery<Queries.FooterQuery>(query)
   return (
     <Wrapper isArticlePage={isArticlePage}>
       <LayoutContainer isArticlePage={isArticlePage}>
@@ -98,100 +109,35 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
         </Col1Container>
 
         <Col2Container>
-          <div>
-            <StyledH3>
-              <Link to="/concept/">コンセプト</Link>
-            </StyledH3>
-            {concept.length > 0 && (
-              <StyledUl>
-                {concept.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-          </div>
-          <div>
-            <StyledH3>
-              <Link to="/foundation/">基本原則</Link>
-              {foundation.length > 0 && (
-                <StyledUl>
-                  {foundation.map(({ fields, frontmatter }) => {
-                    if (fields?.slug === undefined) return null
-                    if (frontmatter?.title === undefined) return null
-                    return (
-                      <li key={fields.slug}>
-                        <Link to={fields.slug}>{frontmatter.title}</Link>
-                      </li>
-                    )
-                  })}
-                </StyledUl>
-              )}
-            </StyledH3>
-            <StyledH3>
-              <Link to="/basics/">基本要素</Link>
-            </StyledH3>
-            {basics.length > 0 && (
-              <StyledUl>
-                {basics.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-          </div>
-          <div>
-            <StyledH3>
-              <Link to="/products/">プロダクト</Link>
-            </StyledH3>
-            {products.length > 0 && (
-              <StyledUl>
-                {products.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-          </div>
-          <div>
-            <StyledH3>
-              <Link to="/communication/">コミュニケーション</Link>
-            </StyledH3>
-            {communication.length > 0 && (
-              <StyledUl>
-                {communication.map(({ fields, frontmatter }) => {
-                  if (fields?.slug === undefined) return null
-                  if (frontmatter?.title === undefined) return null
-                  return (
-                    <li key={fields.slug}>
-                      <Link to={fields.slug}>{frontmatter.title}</Link>
-                    </li>
-                  )
-                })}
-              </StyledUl>
-            )}
-          </div>
+          {navigationItem.map(({ title, key, path }) => {
+            const items = footerCategories[key as keyof Queries.FooterQuery]?.nodes ?? []
+            return (
+              <div key={key} style={{ gridArea: key }}>
+                <StyledH3>
+                  <StyledLink to={path}>{title}</StyledLink>
+                </StyledH3>
+                {items.length > 0 && (
+                  <StyledUl>
+                    {items.map(({ fields, frontmatter }) => {
+                      if (fields?.slug === undefined) return null
+                      if (frontmatter?.title === undefined) return null
+                      return (
+                        <li key={fields.slug}>
+                          <StyledLink to={fields.slug ?? ''}>{frontmatter.title}</StyledLink>
+                        </li>
+                      )
+                    })}
+                  </StyledUl>
+                )}
+              </div>
+            )
+          })}
         </Col2Container>
 
         <CopyrightContainer>
           <StyledCopyright>
             <img src="/images/logo_smarthr.svg" alt="SmartHR" width="84" height="15" />
-            <small>© 2022, SmartHR, Inc.</small>
+            <small>© SmartHR, Inc.</small>
           </StyledCopyright>
         </CopyrightContainer>
       </LayoutContainer>
@@ -213,11 +159,11 @@ const Wrapper = styled.footer<{ isArticlePage: boolean }>`
           border: none;
         `}
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-inline: 48px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding-inline: 16px;
   }
 
@@ -241,7 +187,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
     'col1 . col2' auto
     'col1 . col2' auto
     'copy   copy copy' auto
-    / auto minmax(40px, 1fr) auto;
+    / auto minmax(80px, 1fr) auto;
   align-items: start;
   max-width: 1192px;
   ${({ isArticlePage }) =>
@@ -256,17 +202,17 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
           padding-top: 72px;
         `}
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
       'col1 . col2' auto
       'col1 . col2' auto
       'col1 . col2' auto
       'copy   copy copy' auto
-      / auto 40px 1fr;
+      / auto 80px 1fr;
     padding-top: 32px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     grid-template:
       'col2' auto
       '.   ' 80px
@@ -296,11 +242,17 @@ const Col1Container = styled.div`
 const Col2Container = styled.div`
   grid-area: col2;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template:
+    'introduction basics products communication' auto
+    'foundation accessibility products communication' auto
+    / 1fr 1fr 1fr 1fr;
+  align-items: start;
   gap: 40px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    grid-template-columns: 1fr;
+  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
+    grid-template:
+      'introduction' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
+      / 1fr;
     gap: 8px;
   }
 `
@@ -320,7 +272,7 @@ const StyledH3 = styled.h3`
     margin-top: -8px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-bottom: 0;
 
     & + & {
@@ -330,12 +282,12 @@ const StyledH3 = styled.h3`
 `
 
 const StyledUl = styled.ul`
-  margin: 0;
+  margin: 0 0 16px;
   padding: 0;
   list-style: none;
   color: ${CSS_COLOR.TEXT_BLACK};
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: none;
   }
 
@@ -347,10 +299,15 @@ const StyledUl = styled.ul`
   }
 `
 
+const StyledLink = styled(Link)`
+  display: inline-block;
+  width: 100%;
+`
+
 const StyledCopyright = styled.p`
   margin-top: 64px;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 40px;
   }
 

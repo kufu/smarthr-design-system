@@ -6,6 +6,8 @@ main branch: https://smarthr-design-system.netlify.app
 
 ## Local development
 
+`.node-version`に記載されているバージョンのNode.jsとyarnがインストールされている必要があります。
+
 1. Clone this repo
 2. In the terminal, navigate (`cd`) to the repo directory
 3. `yarn` to install dependencies
@@ -27,9 +29,9 @@ https://smarthr-inc.docbase.io/posts/2289638
 
 ## コンテンツを編集するときに注意すること
 
-### 1. ディクレトリにはindex.mdxが必要です。
+### 1. ディレクトリにはindex.mdxが必要です。
 
-index.mdxがないディレクトリがあった場合、左側のサイドバーや、探すページのサイトマップの表示が狂うので注意して下い。
+index.mdxがないディレクトリがあった場合、左側のサイドバーや、探すページのサイトマップの表示が狂うので注意してください。
 
 ### 2. フロントマターのorderには**同階層と比べた位置**を指定する
 
@@ -55,6 +57,8 @@ index.mdxがないディレクトリがあった場合、左側のサイドバ�
 
 例外的に`/products/components/`以下の各コンポーネントのページではorderは適用されません。コンポーネントの名前順に並びます。
 
+また、第2階層（「はじめに」「基本原則」など）については別途`/src/data/navigationItem.json`に定義された順序が適用されます。このJSONはヘッダー・フッター・検索ページ下部のサイトマップに反映されます。
+
 ### 3. Reactコンポーネントを使う際の注意
 
 `/src/components`までのエイリアスが`@Components`として設定されているので、 mdxファイル内で
@@ -79,6 +83,16 @@ import { hoge } from '@Components/hoge'
 yarn export:zip-images
 ```
 
+### Gotchaアイテムの追加・削除・編集方法
+
+Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](https://cloudinary.com/)を利用しています。画像の追加・更新の際はCloudinaryの`sds`フォルダに追加したい画像をアップロードしてください。
+
+アップロードすると、Cloudinary上で名前がつきますので、`/src/data/gotchaItem.json`にその画像名と、タイトル等の情報を記載してください。
+
+※Cloudinaryは、1回目の画像アクセス時に画像の最適化・キャッシュを行うので、初回表示時のみ数秒程度の時間がかかるかもしれません。2回目以降の表示が高速であれば問題ありません。
+
+アイテムを削除したい場合は、`/src/data/gotchaItem.json`から該当の項目を削除すれば表示されなくなります。Cloudinary上の画像もあわせて削除しても構いません。
+
 ## ローカルで従業員ログインを動作させる
 
 `yarn dev`で実行される`gatsby develop`コマンドで立ち上げたローカル環境では従業員ログインが動作しません。
@@ -94,7 +108,7 @@ yarn export:zip-images
 ローカルで動作させるためには[Netlify CLI](https://docs.netlify.com/cli/get-started/)が必要です。
 
 ```
-npm install netlify-cli 
+npm install netlify-cli -g
 ```
 
 で、`netlify-cli`をインストールし
@@ -103,16 +117,4 @@ npm install netlify-cli
 netlify dev
 ```
 
-コマンドでサーバーを立ち上げてください。(デフォルトで`http://localhost:8888`)
-
-それとは別に、
-
-```
-yarn dev
-```
-
-でGatsbyのサーバーを立ち上げます。(デフォルトで`http://localhost:8000`)
-
-そうすれば、netlify-cliで立ち上げたほうのサーバー( http://localhost:8888 )から確認できます。
-
-
+コマンドを実行すると、立ち上がったNetlifyサーバー( http://localhost:8888 )から確認できます。

@@ -29,28 +29,28 @@ import { FaQuestionCircleIcon } from 'smarthr-ui'
 
 #### SmartHRロゴ
 
-SmartHRの基本機能のトップページへ遷移するためのボタンです。
+SmartHRの基本機能のトップページへ移動するためのボタンです。
 すべてのグローバルヘッダーに必ず配置します。
-遷移先は、SmartHR基本機能のトップページです。
+移動先は、SmartHR基本機能のトップページです。
 
 - ロゴの表示には、[SmartHRLogo](/products/components/smarthr-logo/)を使います。
 - ロゴを使用する際は、[基本要素](/basics/logos/)のガイドラインに準拠します。
 
-![グローバルヘッダーにSmartHRロゴを配置した例](./images/navigation/smarthrlogo-in-grobal-header.png)
+![グローバルヘッダーにSmartHRロゴを配置した例](./images/navigation/smarthrlogo-in-global-header.png)
 
 #### ヘルプボタン
 
-SmartHRの基本機能と各プラスアプリに対応した[ヘルプセンター](https://knowledge.smarthr.jp/hc/ja)のページへ遷移するためのボタンです。
+SmartHRの基本機能と各オプション機能に対応した[ヘルプセンター](https://support.smarthr.jp/ja/help)のページへ移動するためのボタンです。
 すべてのグローバルヘッダーに必ず配置します。
 
-- テキストリンクの左に「<FaQuestionCircleIcon visuallyHiddenText="ヘルプ" size={16} />」アイコン（`fa-question-circle`）を配置します。
+- テキストリンクの左に <FaQuestionCircleIcon alt="ヘルプ" /> アイコン（`FaQuestionCircleIcon`）を配置します。
 - アイコンの色は、テキストの色に準拠して[`WHITE`](/products/design-tokens/color/#h2-0)とします。
 
 ![ヘルプボタンの構成](./images/navigation/help-button.png)
 
-遷移先は機能によって異なります。
+移動先は機能によって異なります。
 
-| 機能 | 遷移先 | 備考 |
+| 機能 | 移動先 | 備考 |
 | :--- | :--- | :--- |
 | 基本機能 | ヘルプセンターのトップページ |  |
-| プラスアプリ | ヘルプセンターのアプリごとに対応したセクションページ | 例：年末調整のグローバルヘッダーのヘルプボタンをクリックすると、年末調整のヘルプページへ遷移します。 |
+| オプション機能 | ヘルプセンターのアプリごとに対応したセクションページ | 例：年末調整のグローバルヘッダーのヘルプボタンをクリックすると、年末調整のヘルプページへ移動します。 |

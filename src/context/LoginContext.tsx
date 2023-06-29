@@ -1,5 +1,5 @@
-import React, { FC, ReactNode, createContext, useContext, useState } from 'react'
 import { PRIVATE_DOC_PATH } from '@Constants/application'
+import React, { FC, ReactNode, createContext, useContext, useState } from 'react'
 
 export type LoginStatusKey = 'pending' | 'loggedIn' | 'loggedOut'
 type Props = {
@@ -25,14 +25,14 @@ export const LoginContextProvider: FC<Props> = ({ children }) => {
   const labels: { [key in LoginStatusKey]: string } = {
     pending: '',
     loggedIn: 'ログイン中',
-    loggedOut: '従業員向けログイン',
+    loggedOut: 'ログイン',
   }
 
   const fetchPrivateContent = (): void => {
     // Chromeで、history.back()後のfetchが失敗する現象が起こるため、setTimeout()からタスクに追加してバグを回避する。
     // https://bugs.chromium.org/p/chromium/issues/detail?id=1244230
     setTimeout(() => {
-      fetch(PRIVATE_DOC_PATH).then(
+      fetch(PRIVATE_DOC_PATH, { method: 'HEAD' }).then(
         (res) => {
           if (res.status === 200) {
             setLoginStatus('loggedIn')
@@ -64,7 +64,7 @@ export const LoginContextProvider: FC<Props> = ({ children }) => {
     })
   }
 
-  const value = { loginStatus: loginStatus, loginLabel: labels[loginStatus], updateLoginStatus: updateLoginStatus }
+  const value = { loginStatus, loginLabel: labels[loginStatus], updateLoginStatus }
 
   return <LoginContext.Provider value={value}>{children}</LoginContext.Provider>
 }

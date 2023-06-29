@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
-import type { FC } from 'react'
-import gotchaItemJson from '../../data/gotchaItem.json'
-import styled, { css } from 'styled-components'
-import { Link } from 'gatsby'
-import { FaRedoIcon } from 'smarthr-ui'
+import { CLOUDINARY_CLOUD_NAME } from '@Constants/application'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { Link } from 'gatsby'
+import React, { useEffect, useMemo, useState } from 'react'
+import { FaRedoIcon } from 'smarthr-ui'
+import styled, { css } from 'styled-components'
+
+import gotchaItemJson from '../../data/gotchaItem.json'
+
+import type { FC } from 'react'
+
 const BUTTON_TEXT: string = 'GOTCHA!' // アニメーションするため、css、reactのどちらでも必要なのでここで
+
+const CLOUDINARY_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/`
 
 type GotchaItem = {
   image: string
@@ -17,16 +23,26 @@ type GotchaItem = {
 const gotchaItem = gotchaItemJson as GotchaItem[]
 
 export const Gotcha: FC<unknown> = () => {
-  const initialIndex = getRandomNum(gotchaItem.length, -1)
-  const [currentItemIndex, setCurrentItemIndex] = useState(initialIndex)
-  const [nextItemIndex, setNextItemIndex] = useState(getRandomNum(gotchaItem.length, initialIndex))
-  const [isAnimated, setIsAnimated] = useState(false)
-  const [shouldDisabled, setShouldDisabled] = useState(true)
+  // ランダムな画像＋説明文の表示をするため、SSR/CSRで表示内容が異なる可能性があり、コンソールにエラーが出る。
+  // エラー回避のためSSR時はindexを固定し、CSR時のみ実行される`useEffect`内でランダムアイテムの選択を行う。
+  const [currentItemIndex, setCurrentItemIndex] = useState(-1)
+  const [nextItemIndex, setNextItemIndex] = useState(-1)
+  useEffect(() => {
+    const initialIndex = getRandomNum(gotchaItem.length, -1)
+    setCurrentItemIndex(initialIndex)
+    setNextItemIndex(getRandomNum(gotchaItem.length, initialIndex))
+  }, [])
 
-  if (gotchaItem.length === 0) return null
+  const [isAnimated, setIsAnimated] = useState(false)
 
   let currentImgIsReady = false
   let nextImgIsReady = false
+
+  const shouldDisabled: boolean = useMemo(() => {
+    return currentImgIsReady && nextImgIsReady
+  }, [currentImgIsReady, nextImgIsReady])
+
+  if (gotchaItem.length === 0) return null
 
   const runGotcha = (): void => {
     //ボタンが押されたらアニメーションする
@@ -36,7 +52,7 @@ export const Gotcha: FC<unknown> = () => {
   const finishAnimation = (): void => {
     setCurrentItemIndex(nextItemIndex)
 
-    //画像の入れ替えが終わっていないとチラつくことがあるので、100ms待つ。
+    //画像の入れ替えが終わっていないとチラつくことがあるので、200ms待つ。
     setTimeout(() => {
       //アニメーション開始位置に要素を戻しておく
       setIsAnimated(false)
@@ -51,54 +67,66 @@ export const Gotcha: FC<unknown> = () => {
     const nextImg = new Image()
     nextImg.onload = () => {
       nextImgIsReady = true
-      setShouldDisabled(false)
     }
     nextImgIsReady = false
-    nextImg.src = gotchaItem[randomNum].image
+    nextImg.srcset = `
+      ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[randomNum].image} 2720w,
+      ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[randomNum].image} 1536w,
+      ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[randomNum].image} 768w
+    `
+    nextImg.src = `${CLOUDINARY_URL}f_auto/sds/${gotchaItem[randomNum].image}`
+    nextImg.sizes = '(min-width: 1024px) 2720px, 100vw'
     setNextItemIndex(randomNum)
-
-    //100ms以内に画像が読み込めていなかったらいったんボタンをdisabledにする
-    setTimeout(() => {
-      if (!nextImgIsReady) setShouldDisabled(true)
-    }, 100)
   }
 
   const currentImgOnLoad = (): void => {
     currentImgIsReady = true
-    if (nextImgIsReady) setShouldDisabled(false)
   }
 
   const nextImgOnload = (): void => {
     nextImgIsReady = true
-    if (currentImgIsReady) setShouldDisabled(false)
   }
 
   return (
     <Wrapper>
       <Heading>
-        {typeof window !== 'undefined' ? (
-          <ImageContainer className={isAnimated ? 'runAnimation' : ''} aria-busy={isAnimated}>
-            {/* 次の画像 */}
+        <ImageContainer className={isAnimated ? 'runAnimation' : ''} aria-busy={isAnimated}>
+          {/* 次の画像 */}
+          {nextItemIndex > -1 && (
             <img
-              src={gotchaItem[nextItemIndex].image}
+              srcSet={`
+                ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[nextItemIndex].image} 2720w,
+                ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[nextItemIndex].image} 1536w,
+                ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[nextItemIndex].image} 768w
+              `}
+              src={`${CLOUDINARY_URL}f_auto/sds/${gotchaItem[nextItemIndex].image}`}
               width="1272"
               height="352"
+              sizes="(min-width: 1024px) 2720px, 100vw"
               alt={gotchaItem[nextItemIndex].alt}
               aria-hidden="true"
               onLoad={() => nextImgOnload()}
             />
-            {/* 表示中の画像 */}
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+          )}
+          {/* 表示中の画像 */}
+          {currentItemIndex > -1 && (
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
             <img
-              src={gotchaItem[currentItemIndex].image}
+              srcSet={`
+                ${CLOUDINARY_URL}f_auto/w_2720/sds/${gotchaItem[currentItemIndex].image} 2720w,
+                ${CLOUDINARY_URL}f_auto/w_1536/sds/${gotchaItem[currentItemIndex].image} 1536w,
+                ${CLOUDINARY_URL}f_auto/w_768/sds/${gotchaItem[currentItemIndex].image} 768w
+              `}
+              src={`${CLOUDINARY_URL}f_auto/sds/${gotchaItem[currentItemIndex].image}`}
+              sizes="(min-width: 1024px) 2720px, 100vw"
               width="1272"
               height="352"
               alt={gotchaItem[currentItemIndex].alt}
               onAnimationEnd={() => finishAnimation()}
               onLoad={() => currentImgOnLoad()}
             />
-          </ImageContainer>
-        ) : null}
+          )}
+        </ImageContainer>
         {/* ガチャボタン */}
         <GotchaButton type="button" onClick={() => runGotcha()} disabled={shouldDisabled}>
           <FaRedoIcon />
@@ -116,16 +144,18 @@ export const Gotcha: FC<unknown> = () => {
       </Heading>
 
       {/* 関連リンク */}
-      <GotchaLinks>
-        <p>{gotchaItem[currentItemIndex].title}</p>
-        <ul>
-          {gotchaItem[currentItemIndex].links.map((link, index) => (
-            <li key={index}>
-              <Link to={link.url}>{link.text}</Link>
-            </li>
-          ))}
-        </ul>
-      </GotchaLinks>
+      {currentItemIndex > -1 && (
+        <GotchaLinks>
+          <p>{gotchaItem[currentItemIndex].title}</p>
+          <ul>
+            {gotchaItem[currentItemIndex].links.map((link, index) => (
+              <li key={index}>
+                <Link to={link.url}>{link.text}</Link>
+              </li>
+            ))}
+          </ul>
+        </GotchaLinks>
+      )}
     </Wrapper>
   )
 }
@@ -158,10 +188,10 @@ const Heading = styled.div`
   aspect-ratio: 1272 / 352;
   @supports not (aspect-ratio: 1272 / 352) {
     height: calc((100vw - 160px) / 1272 * 352);
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       height: calc((100vw - 32px) / 1272 * 352);
     }
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       height: calc(100vw / 1272 * 352);
     }
   }
@@ -186,7 +216,7 @@ const ImageContainer = styled.div`
     border-radius: 4px;
     box-sizing: border-box;
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     border-radius: 0;
     &::after {
       border-radius: 0;
@@ -236,11 +266,11 @@ const GotchaButton = styled.button`
   left: 40px;
   font-weight: bold;
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     bottom: -27px;
   }
 
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     right: 16px;
     left: auto;
   }
@@ -334,10 +364,10 @@ const GotchaLinks = styled.div`
   left: 40px;
   width: 20%;
   max-width: 232px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     top: calc(100% + 46px);
   }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     width: auto;
     max-width: 100%;
     position: relative;
@@ -378,7 +408,7 @@ const Label = styled.p`
   color: ${CSS_COLOR.TEXT_GREY};
   font-weight: bold;
   font-size: ${CSS_FONT_SIZE.PX_12};
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     left: 32px;
     right: auto;
   }

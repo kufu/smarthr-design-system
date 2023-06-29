@@ -6,6 +6,8 @@ order: 1
 
 import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
+import { TableWrapper } from '@Components/contents/shared/TableWrapper'
+
 ## 試験概要
 
 [ウェブアクセシビリティ試験結果 - 2021年5月](../202105/)にて満たせていなかった達成基準の改善と、新規に開発されたコンポーネントについての試験です。
@@ -54,7 +56,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
 ### 非推奨のコンポーネント
 
-- [FieldSet](https://smarthr-ui.netlify.app/?path=/story/fieldset--all)
+- [FieldSet](https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-fieldset（非推奨）--all)
 - Header（削除済）
 
 ## 達成基準チェックリスト
@@ -65,16 +67,17 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
 達成基準のリンクは<abbr title="Web Contents Accessibility Guidelines">WCAG</abbr> 2.0解説書へのリンクです。
 
-<Table>
-  <thead>
-    <tr>
-      <Th>達成基準</Th>
-      <Th>等級</Th>
-      <Th>適用</Th>
-      <Th>結果</Th>
-    </tr>
-  </thead>
-  <tbody>
+<TableWrapper type="narrow">
+  <Table>
+    <thead>
+      <tr>
+        <Th>達成基準</Th>
+        <Th>等級</Th>
+        <Th>適用</Th>
+        <Th>結果</Th>
+      </tr>
+    </thead>
+    <tbody>
 
 <tr>
     <Td><a href="https://waic.jp/docs/UNDERSTANDING-WCAG20/text-equiv-all.html">1.1.1 非テキストコンテンツ</a></Td>
@@ -140,7 +143,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/resize-text.html">1.4.4 テキストのサイズ変更</a></Td>
     <Td>AA</Td>
     <Td>○</Td>
-    <Td>×</Td>
+    <Td>○</Td>
 </tr>
 <tr>
     <Td><a href="https://waic.jp/docs/WCAG21/Understanding/images-of-text.html">1.4.5 文字画像</a></Td>
@@ -250,8 +253,9 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
     <Td>○</Td>
     <Td>×</Td>
 </tr>
-  </tbody>
-</Table>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 - 「2.4.2 ページタイトル」および「3.1.1 ページの言語」は、ページが検証対象ではないため該当箇所なしとした。
 - 「3.2.1 フォーカス時」および「3.2.2 入力時」は、実際の操作が与えられない状態での検証のため該当箇所なしとした。
@@ -269,7 +273,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <a href="https://smarthr-ui.netlify.app/iframe.html?id=datepicker">DatePicker</a>
+    description: <a href="https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-datepicker">DatePicker</a>
   },
   {
     term: '対応方法',
@@ -293,7 +297,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <a href="https://smarthr-ui.netlify.app/?path=/story/rightfixednote--all">RightFixedNote</a>
+    description: <a href="https://story.smarthr-ui.dev/?path=/story/data-display（データ表示）-rightfixednote--all">RightFixedNote</a>
   },
   {
     term: '対応方法',
@@ -322,7 +326,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <a href="https://smarthr-ui.netlify.app/iframe.html?id=statuslabel">StatusLabel</a>
+    description: <a href="https://story.smarthr-ui.dev/iframe.html?id=states（状態）-statuslabel">StatusLabel</a>
   },
   {
     term: '対応方法',
@@ -341,7 +345,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <a href="https://smarthr-ui.netlify.app/iframe.html?id=flashmessage--demo">FlashMessage</a>
+    description: <a href="https://story.smarthr-ui.dev/iframe.html?id=states（状態）-flashmessage（非推奨）--demo">FlashMessage</a>
   },
   {
     term: '対応方法',
@@ -358,7 +362,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://smarthr-ui.netlify.app/iframe.html?id=combobox">Combobox</a></>
+    description: <><a href="https://story.smarthr-ui.dev/iframe.html?id=forms（フォーム）-combobox">Combobox</a></>
   },
   {
     term: '内容',
@@ -381,7 +385,7 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 <DefinitionList items={[
   {
     term: '対象のページ',
-    description: <><a href="https://smarthr-ui.netlify.app/?path=/story/formgroup--all">FormGroup</a></>
+    description: <><a href="https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-formgroup--all">FormGroup</a></>
   },
   {
     term: '内容',
@@ -395,10 +399,10 @@ import { Table, Td, Th, DefinitionList } from 'smarthr-ui'
 
 試験をしたコンポーネントの代表的なURLのみを掲載します。
 
-- [FloatArea](https://smarthr-ui.netlify.app/?path=/story/floatarea--all)
-- [FormGroup](https://smarthr-ui.netlify.app/?path=/story/formgroup--all)
-- [InputFile](https://smarthr-ui.netlify.app/?path=/story/inputfile--all)
-- [LineClamp](https://smarthr-ui.netlify.app/?path=/story/lineclamp--all)
-- [SegmentedControl](https://smarthr-ui.netlify.app/?path=/story/segmentedcontrol--all)
-- [TextLink](https://smarthr-ui.netlify.app/?path=/story/textarea--all)
-- [FilterDropdown](https://smarthr-ui.netlify.app/?path=/story/filterdropdown--default)
+- [FloatArea](https://story.smarthr-ui.dev/?path=/story/navigation（ナビゲーション）-floatarea--all)
+- [FormGroup](https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-formgroup--all)
+- [InputFile](https://story.smarthr-ui.dev/?path=/story/forms（フォーム）-inputfile--all)
+- [LineClamp](https://story.smarthr-ui.dev/?path=/story/data-display（データ表示）-lineclamp--all)
+- [SegmentedControl](https://story.smarthr-ui.dev/?path=/story/buttons（ボタン）-segmentedcontrol--all)
+- [TextLink](https://story.smarthr-ui.dev/?path=/story/text（テキスト）-textlink--all)
+- [FilterDropdown](https://story.smarthr-ui.dev/?path=/story/buttons（ボタン）-dropdown--filter-dropdown)
