@@ -9,12 +9,6 @@ export type airtableContents = {
 
 export const AIRTABLE_CONTENTS: airtableContents[] = [
   {
-    pageTitle: 'ライティングスタイル',
-    pagePath: '/products/contents/writing-style/',
-    tableName: 'ライティングスタイル',
-    sort: 'AIRTABLE',
-  },
-  {
     pageTitle: '用字用語：一覧',
     pagePath: '/products/contents/idiomatic-usage/data/',
     tableName: '用字用語：一覧',
