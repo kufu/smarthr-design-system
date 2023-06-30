@@ -34,19 +34,7 @@ const query = graphql`
             discussion
             source
             record_id
-            data
             order
-          }
-        }
-      }
-    }
-    writingStyle: allSdsAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
-      edges {
-        node {
-          data {
-            name
-            data
-            record_id
           }
         }
       }
@@ -110,21 +98,12 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
       discussion: node.data?.discussion,
       source: node.data?.source,
       recordId: node.data?.record_id,
-      data: node.data?.data,
       order: node.data?.order || Number.MAX_SAFE_INTEGER,
     }))
     .filter((item) => {
       return item.name
     })
     .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
-
-  const writingStyle = data.writingStyle.edges
-    .map(({ node }) => ({
-      name: node.data?.name,
-      data: node.data?.data, // 用字用語：一覧からのデータ参照
-      recordId: node.data?.record_id,
-    }))
-    .sort((x, y) => (x.name && y.name ? x.name.localeCompare(y.name, 'ja') : -1))
 
   return (
     <>
@@ -162,13 +141,6 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
                         const matchReason = idiomaticUsageReason.find(
                           (reason) => prop.reason && prop.reason.includes(reason.recordId ?? ''),
                         )
-                        const matchWritingStyle = writingStyle.find(
-                          (style) => style.data && style.data.includes(prop.recordId ?? ''),
-                        )
-
-                        // recordId: "recWCPX1UhchVaFjO"
-                        // "平仮名にしたほうが読みやすい漢字は平仮名にする"
-                        // console.log(writingStyle)
 
                         return (
                           <tr key={index}>
@@ -187,13 +159,6 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
                             </NGTd>
                             <ReasonTd>
                               <ul>
-                                {matchWritingStyle && (
-                                  <li>
-                                    <Link to={`/products/contents/writing-style/#${matchWritingStyle.recordId}-0`}>
-                                      {matchWritingStyle.name}
-                                    </Link>
-                                  </li>
-                                )}
                                 {matchReason && (
                                   <li>
                                     <Link to={`/products/contents/idiomatic-usage/usage/#${matchReason.recordId}-0`}>
