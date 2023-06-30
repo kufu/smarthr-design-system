@@ -14,6 +14,7 @@ exports.sourceNodes = async ({ actions, createContentDigest, createNodeId }: Sou
       version: item.version,
       commitHash: item.commitHash,
       uiProps: item.uiProps,
+      uiStories: item.uiStories,
       id: createNodeId(`${NODE_TYPE}-${item.version}`),
       parent: null,
       children: [],

@@ -3,10 +3,21 @@ export type UiProps = {
   props: PropsData[]
 }
 
+type UiStories = {
+  storyName: string
+  filePath: string
+  storyItems: Array<{
+    name: string
+    label: string
+    iframeName: string
+  }>
+}
+
 type UiVersion = {
   commitHash: string
   version: string
   uiProps: UiProps[]
+  uiStories: UiStories[]
 }
 
 type UiResponse = {
@@ -28,6 +39,22 @@ type PropsData = {
   type: {
     name: string
     value: Array<{ value: string }>
+  }
+}
+
+type StoriesJson = {
+  stories: {
+    [key: string]: {
+      id: string
+      title: string
+      name: string
+      kind: string
+      story: string
+      parameters: {
+        docsOnly: boolean
+        fileName: string
+      }
+    }
   }
 }
 
@@ -76,10 +103,30 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
       }
     })
 
+    const storiesRes = await fetch(`https://${commitHash}--${chromaticDomain}/stories.json`)
+    const storiesJson: StoriesJson = await storiesRes.json()
+
+    const uiStories: { [key: string]: UiStories } = {}
+    for (const story of Object.values(storiesJson.stories)) {
+      if (story.parameters.docsOnly === true) continue // Docは除外
+      const directoryNames = story.parameters.fileName.replace(/^\.\/src\/components\//, '').split('/')
+      const storyName = directoryNames[directoryNames.length - 1].replace(/\.stories\.tsx$/, '')
+
+      if (!uiStories[storyName]) {
+        uiStories[storyName] = { storyName, filePath: story.parameters.fileName, storyItems: [] }
+      }
+      uiStories[storyName].storyItems.push({
+        name: story.title,
+        label: story.name,
+        iframeName: story.id,
+      })
+    }
+
     versions.push({
       version,
       commitHash,
       uiProps,
+      uiStories: Object.values(uiStories),
     })
   }
 
