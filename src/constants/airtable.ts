@@ -15,12 +15,6 @@ export const AIRTABLE_CONTENTS: airtableContents[] = [
     sort: 'AIRTABLE',
   },
   {
-    pageTitle: 'UIテキスト',
-    pagePath: '/products/contents/app-writing/',
-    tableName: 'UIテキスト',
-    sort: 'AIRTABLE',
-  },
-  {
     pageTitle: '用字用語：一覧',
     pagePath: '/products/contents/idiomatic-usage/data/',
     tableName: '用字用語：一覧',
