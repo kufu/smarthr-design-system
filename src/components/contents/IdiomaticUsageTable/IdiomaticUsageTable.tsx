@@ -137,7 +137,7 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {indexedUsageData[char].map((prop, index) => {
+                      {indexedUsageData[char]?.map((prop, index) => {
                         const matchReason = idiomaticUsageReason.find(
                           (reason) => prop.reason && prop.reason.includes(reason.recordId ?? ''),
                         )
