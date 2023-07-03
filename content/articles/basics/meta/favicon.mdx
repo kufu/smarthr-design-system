@@ -1,95 +1,95 @@
 ---
-title: 'ファビコン'
+title: 'ファビコン・アイコン'
 description: 'ウェブサイトのシンボルとして設定する画像です。SmartHRが運営するウェブを利用した各種タッチポイントに使用してください。'
-order: 2
+order: 1
 ---
 
 ![ファビコンが配置されている](/images/favicon-sample.png)
 
-ファビコンは、ウェブサイトのシンボルとして設定する画像です。
-
-サイトにアクセスするすべての人が参照できますが、利用に関しては[利用者・利用範囲](#h2-2)を確認してください。
+ファビコンは主にブラウザのタブやブックマークのシンボルとして、アイコン（タッチアイコン）はスマートフォンやタブレットのホーム画面に追加された際のシンボルとして表示されます。
 
 
-## 利用ガイドライン
+## ファビコン
 
-- SmartHRが運営する、ウェブを利用した各種タッチポイントのファビコンとして設定してください。
-- ファビコン以外のタッチポイント（各種ツールのアイコン等）では使用しないでください。
-- 本ページのファビコンを基本のデザインとし、各種ウェブサイトでの積極的な利用を推奨しますが、必須ではありません。施策に合わせたデザイン調整などは適宜検討してください。
+ファビコンはブラウザのタブやブックマークのシンボルとして表示されます。
 
+```html codeBlock
+<link rel="icon" href="/favicon.ico">
+```
 
-### 実装例
-次の例を参考に、ファビコンの実装方法を決定してください。
+ファビコンはこの一行のみで設定できます。`href`にはファビコンの画像ファイルのパスを指定します。`ico`形式の画像ファイルになっていますが、[ダウンロード](/basics/meta/#h2-0)で用意しているのはPNG画像の`ico`ファイルです。
 
-- サーバーのルートディレクトリに`favicon.ico`を置く
-- `<link rel="icon" href="/assets/favicon.png">`でマークアップする
+以前はPNG形式の画像をfaviconとして使用できないブラウザがありましたが、現在では主要なモダンブラウザのすべてでPNG形式がサポートされていますので扱いやすいPNG形式を採用しています。
 
+Retinaディスプレイをはじめとする、高解像度・高ピクセル密度のディスプレイが増えていますので、これを受けてfaviconの解像度を高くするために48x48ピクセルの画像にしています。
 
-## ダウンロード
-ファビコンのデータ（PNG形式・ICO形式、全辺512px）をダウンロードできます。  
-タッチアイコン用のデータ（PNG形式、全辺512px）も収録されています。
-
-<a href="/downloads/SmartHR_favicon.zip"> PNG（ファビコン、タッチアイコン（iOS, Android））、ICO（ファビコン）</a>
-
-## 利用者・利用範囲
-
-サイトにアクセスするすべての人が参照できますが、利用には一部制限があります。
-ファビコンの利用者と利用範囲は以下のとおりです。
-
-<TableWrapper>
-  <table>
-    <thead>
-      <tr>
-        <th>利用者</th>
-        <th>名義</th>
-        <th>利用可否</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>SmartHR従業員</td>
-        <td>サービスSmartHR<br/>株式会社SmartHR</td>
-        <td><strong>◯ 利用できます</strong></td>
-      </tr>
-      <tr>
-        <td>SmartHR従業員</td>
-        <td>SmartHR Plus β版</td>
-        <td><strong>◯ 利用できます</strong></td>
-      </tr>
-      <tr>
-        <td>SmartHR従業員</td>
-        <td>SmartHRグループ会社と<br/>その提供サービス</td>
-        <td>× 利用できません</td>
-      </tr>
-      <tr>
-        <td>SmartHR外部パートナー</td>
-        <td>サービスSmartHR<br/>株式会社SmartHR</td>
-        <td><strong>◯ 利用できます</strong></td>
-      </tr>
-      <tr>
-        <td>SmartHR Plusパートナー</td>
-        <td>SmartHR Plusパートナーが<br/>提供するアプリ</td>
-        <td>× 利用できません</td>
-      </tr>
-      <tr>
-        <td>SmartHRグループ会社<br/>従業員</td>
-        <td>SmartHRグループ会社と<br/>その提供サービス</td>
-        <td>× 利用できません</td>
-      </tr>
-      <tr>
-        <td>すべてのかた<br/>広報担当者のかた</td>
-        <td>SmartHRの広報活動</td>
-        <td>× 利用できません</td>
-      </tr>
-    </tbody>
-  </table>
-</TableWrapper>
-
-ほかのコンテンツの利用範囲は[利用者のかたへ](/introduction/user/)を参照してください。
+16x16ピクセルで表示される場合でも、ブラウザは縮小してくれるので複数の画像を作る必要はありません。Googleの[検索結果用のサイトのファビコンの設定](https://developers.google.com/search/docs/appearance/favicon-in-search?hl=ja#guidelines)に基づいてサイズは48x48ピクセルにしています。
 
 
-## フィードバック先
-フォントの利用方法に関する相談・フィードバック
+## アイコン（タッチアイコン）
 
-- 株式会社SmartHR smarthr-design-system@smarthr.co.jp
-- 社内Slack `#design_system_相談`
+ここで解説するアイコン（タッチアイコン）は、スマートフォンやタブレットのホーム画面に追加された際のシンボルとして表示されるアイコンを指します。
+
+また、そのアイコンのすぐ下に表示されるタイトルも合わせて指定します。スペースが限られるため、短い名称が望ましいです。
+
+```html codeBlock
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/webmanifest.manifest">
+<meta name="apple-mobile-web-app-title" content="SmartHR">
+<meta name="application-name" content="SmartHR">
+```
+
+`<link>`にはアイコンの画像ファイル、またはアイコンの画像ファイルの情報がまとめられたファイルのパスを指定します。
+
+`<meta>`タグにはホーム画面に表示されるタイトルなどを指定します。表示領域が狭いため、なるべく短い名前にすることが推奨されています。
+
+`apple-touch-icon`、`apple-mobile-web-app-title`はApple製のOS向けで、`manifest`、`application-name`はそれ以外のOS向けの設定になりますが、将来的には後者に統一されると思われます。現在は両方の設定することを推奨しています。
+
+`webmanifest.manifest`ファイルはJSONのテキストファイルで、`icons`や`name`、`short_name`などの設定項目があり、ホーム画面に追加された際に表示するアイコンやタイトルなどを指定できます。
+
+### webmanifest.manifestのmaskableアイコンについて
+
+[ダウンロード](/basics/meta/#h2-0)に含まれる`webmanifest.manifest`ファイルには、`icons`の項目に次のような`purpose`に`maskable`の指定と、そのためのアイコンを用意しています。
+
+```json codeBlock
+{ "src": "/icons/maskable-icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }
+```
+
+これはOSによってはホーム画面に追加するアイコンの形状が四角いものではなく、例えば円形に表示されるようなケースがあり、そういったケースでもアイコンが見栄えよく表示されるようにするための設定です。
+
+// TODO: maskableが無い場合の円形のアイコンの表示と、maskableがある場合の表示の比較画像を用意する
+
+
+### 参考
+- [apple-touch-icon](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)
+- [apple-mobile-web-app-title](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)
+- [application-name](https://developer.mozilla.org/ja/docs/Web/HTML/Element/meta/name)
+- [Add a web app manifest](https://web.dev/add-manifest/)
+
+
+## Windows向けの設定
+
+// TODO: 現在ではあまり意味のない設定だと考えられるが要検討
+
+```html codeBlock
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png">
+<meta name="msapplication-config" content="/browserconfig.xml">
+```
+
+## 非推奨の設定
+
+以下のような設定は、現在ではサポートされていないバージョンのブラウザ向けの設定であるため、記述する必要はありません。
+
+```html codeBlock
+<!-- ❌Safariのピン留め用アイコンですが、現在はfaviconが使われるようになっています -->
+<link rel="mask-icon" color="#5bbad5" href="/safari-pinned-tab.svg">
+```
+
+```html codeBlock
+<!-- ❌現在ではshortcutは無視されます -->
+<link rel="shortcut icon" href="/favicon.ico">
+```
+
+### 参考
+- [HTML 属性: rel](https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel#icon)の`icon`を参照

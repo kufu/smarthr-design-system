@@ -4,5 +4,126 @@ description: 'ウェブサイトのメタ情報についてまとめています
 order: 6
 ---
 
-ウェブサイトの基本情報であるメタ情報についてまとめています。  
+ウェブサイトの基本情報であるメタ情報についてまとめています。そのなかで下記のメタ情報をまとめた実装例を紹介します。それぞれの詳細についてリンク先のページを参照してください。
 
+- [ファビコン・アイコン](/basics/meta/favicon)
+- [OGP](/basics/meta/ogp)
+- [テーマカラー](/basics/meta/theme-color)
+
+1. 下記のコードを`<head>`タグ内に記述する
+
+属性の値は実際の状況に合わせて適宜変更してください。
+
+```html codeBlock
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="SmartHR">
+<meta name="application-name" content="SmartHR">
+<meta name="theme-color" content="#00c4cc">
+<meta property="og:title" content="SmartHR（スマートHR） | 働くすべての人を、支える。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="/ogp.png">
+<meta property="og:site_name" content="SmartHR（スマートHR）">
+<meta property="og:description" content="SmartHRは、すべての人の働きやすさを支える、シェア・満足度No1の「クラウド人事労務ソフト」です。">
+<meta property="og:locale" content="ja_JP">
+<meta property="fb:app_id" content="{app_id}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@smarthr_jp">
+<meta name="twitter:domain" content="smarthr.jp">
+<meta name="twitter:description" content="SmartHRは、すべての人の働きやすさを支える、シェア・満足度No1の「クラウド人事労務ソフト」です。">
+```
+
+2. 後述するファビコンやアイコンのファイルをサイトルートに配置する
+
+この実装例では、各ファイルはサイトルートに配置することが前提になっていますが、実際の実装では施策に合わせて適宜ファイル名やパスを変更してください。`_readme.txt`は内容を確認し、実際に配置する際には事前に削除してください。
+
+`manifest.webmanifest`にもアイコンやタイトルの情報が含まれています。これも実際の状況に合わせて適宜変更してください。
+
+```text codeBlock
+{
+  "name": "SmartHR（スマートHR）｜シェアNo.1のクラウド人事労務ソフト",
+  "short_name": "SmartHR",
+  //...
+}
+```
+
+## ファイルセットのダウンロード
+
+ファビコンやアイコン、マニフェストなどのファイルをまとめたZIPファイルを下記からダウンロードできます。
+
+- <a href="/downloads/SmartHR_meta.zip">メタ情報に必要なファイルセット</a>
+
+サイトにアクセスするすべての人が参照できますが、利用に関しては[利用者・利用範囲](#h2-2)を確認してください。
+
+
+## 利用ガイドライン
+
+- 画像ファイルはSmartHRが運営する、ウェブを利用した各種タッチポイントとして設定してください。
+- メタ情報以外のタッチポイント（各種ツールのアイコン等）では使用しないでください。
+- 本ページで用意している画像ファイルを基本のデザインとし、各種ウェブサイトでの積極的な利用を推奨しますが、必須ではありません。施策に合わせたデザイン調整などは適宜検討してください。
+
+
+## 利用者・利用範囲
+
+サイトにアクセスするすべての人が参照できますが、利用には一部制限があります。
+ファビコンの利用者と利用範囲は以下のとおりです。
+
+<TableWrapper>
+  <table>
+    <thead>
+    <tr>
+      <th>利用者</th>
+      <th>名義</th>
+      <th>利用可否</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>SmartHR従業員</td>
+      <td>サービスSmartHR<br/>株式会社SmartHR</td>
+      <td><strong>◯ 利用できます</strong></td>
+    </tr>
+    <tr>
+      <td>SmartHR従業員</td>
+      <td>SmartHR Plus β版</td>
+      <td><strong>◯ 利用できます</strong></td>
+    </tr>
+    <tr>
+      <td>SmartHR従業員</td>
+      <td>SmartHRグループ会社と<br/>その提供サービス</td>
+      <td>× 利用できません</td>
+    </tr>
+    <tr>
+      <td>SmartHR外部パートナー</td>
+      <td>サービスSmartHR<br/>株式会社SmartHR</td>
+      <td><strong>◯ 利用できます</strong></td>
+    </tr>
+    <tr>
+      <td>SmartHR Plusパートナー</td>
+      <td>SmartHR Plusパートナーが<br/>提供するアプリ</td>
+      <td>× 利用できません</td>
+    </tr>
+    <tr>
+      <td>SmartHRグループ会社<br/>従業員</td>
+      <td>SmartHRグループ会社と<br/>その提供サービス</td>
+      <td>× 利用できません</td>
+    </tr>
+    <tr>
+      <td>すべてのかた<br/>広報担当者のかた</td>
+      <td>SmartHRの広報活動</td>
+      <td>× 利用できません</td>
+    </tr>
+    </tbody>
+  </table>
+</TableWrapper>
+
+ほかのコンテンツの利用範囲は[利用者のかたへ](/introduction/user/)を参照してください。
+
+
+## フィードバック先
+フォントの利用方法に関する相談・フィードバック
+
+- 株式会社SmartHR smarthr-design-system@smarthr.co.jp
+- 社内Slack `#design_system_相談`
