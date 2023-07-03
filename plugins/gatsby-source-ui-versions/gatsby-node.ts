@@ -1,4 +1,4 @@
-import { Actions, SourceNodesArgs } from 'gatsby'
+import { SourceNodesArgs } from 'gatsby'
 
 import { fetchUiVersions } from './fetchUiVersions'
 
@@ -9,6 +9,7 @@ exports.sourceNodes = async ({ actions, createContentDigest, createNodeId }: Sou
 
   const data = await fetchUiVersions()
 
+  // smarthr-uiの1バージョンを1ノードとして登録
   data.forEach((item) =>
     createNode({
       version: item.version,
@@ -26,15 +27,4 @@ exports.sourceNodes = async ({ actions, createContentDigest, createNodeId }: Sou
   )
 
   return
-}
-
-exports.createSchemaCustomization = async ({ actions }: { actions: Actions }) => {
-  const { createTypes } = actions
-
-  createTypes(`
-    type ${NODE_TYPE} implements Node {
-      commitHash: String!
-      version: String!
-    }
-  `)
 }

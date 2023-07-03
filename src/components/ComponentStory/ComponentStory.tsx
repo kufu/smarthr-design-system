@@ -57,16 +57,18 @@ export const ComponentStory: FC<Props> = ({ name }) => {
     return story?.storyName === name
   })
 
+  // コードはクライアント側でfetchするため初期値は空文字列
   const [storyData, setStoryData] = useState({
     code: '',
     storyItems: defaultData?.storyItems ?? [],
   })
 
+  // プルダウンの選択肢を作成する
   const versionOptions =
     allUiVersion.nodes?.map((version) => {
       return {
         label: `v${version.version}`,
-        value: version.version,
+        value: version.version ?? '',
       }
     }) ?? []
 
@@ -82,9 +84,11 @@ export const ComponentStory: FC<Props> = ({ name }) => {
       setIsStoryLoaded(false)
       setIsIFrameLoaded(false)
 
+      // GraphQLからで取得したデータから該当のバージョンを選ぶ
       const versionData = allUiVersion.nodes.find((node) => {
         return node.version === version
       })
+      // 該当のバージョンからページで表示したいStoryを選ぶ
       const targetStoryData = versionData?.uiStories?.find((story) => {
         return story?.storyName === name
       })
@@ -93,6 +97,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
         return
       }
 
+      // コードはGitHubからfetchする
       let code = ''
       try {
         const codeRes = await fetch(`${SHRUI_GITHUB_RAW}v${version}/${targetStoryData.filePath}`)

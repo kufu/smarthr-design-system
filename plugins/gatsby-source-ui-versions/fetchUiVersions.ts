@@ -1,6 +1,22 @@
-export type UiProps = {
-  displayName: string
-  props: PropsData[]
+// gatsby-nodeに登録するデータの型定義
+type UiVersion = {
+  commitHash: string
+  version: string
+  uiProps: Array<{
+    displayName: string
+    props: PropsData[]
+  }>
+  uiStories: UiStories[]
+}
+
+type PropsData = {
+  description: string
+  name: string
+  required: boolean
+  type: {
+    name: string
+    value: Array<{ value: string }>
+  }
 }
 
 type UiStories = {
@@ -13,13 +29,7 @@ type UiStories = {
   }>
 }
 
-type UiVersion = {
-  commitHash: string
-  version: string
-  uiProps: UiProps[]
-  uiStories: UiStories[]
-}
-
+// APIから取得するデータの型定義
 type UiResponse = {
   sha: string
   commit: {
@@ -30,16 +40,6 @@ type UiResponse = {
 type PropsResponse = {
   displayName: string
   props: PropsData[]
-}
-
-type PropsData = {
-  description: string
-  name: string
-  required: boolean
-  type: {
-    name: string
-    value: Array<{ value: string }>
-  }
 }
 
 type StoriesJson = {
@@ -63,6 +63,7 @@ const releaseBotEmail = '41898282+github-actions[bot]@users.noreply.github.com'
 const chromaticDomain = '63d0ccabb5d2dd29825524ab.chromatic.com'
 
 export const fetchUiVersions = async (): Promise<UiVersion[]> => {
+  // GitHubからリリースのコミットを取得
   const res = await fetch(`${uiRepoApi}/commits?since=2023-02-02&author=${encodeURIComponent(releaseBotEmail)}`)
   if (!res.ok) return []
   const json: UiResponse[] = await res.json().catch(() => {
@@ -78,6 +79,7 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
 
     const commitHash = item.sha.substring(0, 7)
 
+    // Chromaticからsmarthr-ui-props.jsonを取得
     const propsRes = await fetch(`https://${commitHash}--${chromaticDomain}/exports/smarthr-ui-props.json`)
     let props: [] = []
     if (propsRes.status === 200) {
@@ -103,9 +105,11 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
       }
     })
 
+    // Chromaticからstories.jsonを取得
     const storiesRes = await fetch(`https://${commitHash}--${chromaticDomain}/stories.json`)
     const storiesJson: StoriesJson = await storiesRes.json()
 
+    // *.stories.tsxのファイルごとに、storyの情報をまとめる
     const uiStories: { [key: string]: UiStories } = {}
     for (const story of Object.values(storiesJson.stories)) {
       if (story.parameters.docsOnly === true) continue // Docは除外
@@ -122,6 +126,7 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
       })
     }
 
+    // バージョンごとに、バージョン番号・コミットハッシュ・props・storiesの情報を配列に格納
     versions.push({
       version,
       commitHash,
