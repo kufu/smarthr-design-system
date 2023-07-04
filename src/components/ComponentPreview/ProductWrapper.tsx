@@ -67,16 +67,16 @@ const padding = css(
   ({ theme: { space } }) => css`
     padding-inline: ${space(1.5)};
 
-    @media (width <= 1440px) {
+    @media (max-width: 1440px) {
       padding-inline: ${space(1.25)};
     }
-    @media (width <= 1024px) {
+    @media (max-width: 1024px) {
       padding-inline: ${space(1)};
     }
-    @media (width <= 768px) {
+    @media (max-width: 768px) {
       padding-inline: ${space(0.75)};
     }
-    @media (width <= 480px) {
+    @media (max-width: 480px) {
       padding-inline: ${space(0.5)};
     }
   `,

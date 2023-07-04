@@ -34,14 +34,14 @@ export default Home
 
 const GotchaContainer = styled.div`
   margin: 40px 80px 192px;
-  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
     margin-top: 48px;
   }
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin: 0 1rem 4rem;
     padding-top: 0;
   }
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     margin: 0 0 64px;
   }
 `
@@ -50,10 +50,10 @@ const IndexPageContainer = styled.div`
   max-width: ${CSS_SIZE.CONTENT_WIDTH};
   margin: 0 auto;
   padding: 0 120px;
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding: 0 48px;
   }
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding: 0;
 
     /*
