@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: SDSYuGothic, Yu Gothic, YuGothic, 游ゴシック体, sans-serif;
+    font-family: SDSYuGothic, 'Yu Gothic', YuGothic, sans-serif;
     line-height: ${defaultLeading.RELAXED};
     color: ${defaultColor.TEXT_BLACK};
     overflow-wrap: break-word;
