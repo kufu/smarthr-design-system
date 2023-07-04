@@ -10,9 +10,21 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @font-face {
+    font-family: SDSYuGothic;
+    font-weight: 400;
+    src: local('Yu Gothic Medium');
+  }
+
+  @font-face {
+    font-family: SDSYuGothic;
+    font-weight: 700;
+    src: local('Yu Gothic Bold');
+  }
+
   body {
     margin: 0;
-    font-family: Yu Gothic Medium, 游ゴシック Medium, YuGothic, 游ゴシック体, sans-serif;
+    font-family: SDSYuGothic, Yu Gothic, YuGothic, sans-serif;
     line-height: ${defaultLeading.RELAXED};
     color: ${defaultColor.TEXT_BLACK};
     overflow-wrap: break-word;
