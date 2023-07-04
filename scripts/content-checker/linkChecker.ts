@@ -121,7 +121,10 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
     missingLinkList.forEach((item) => {
       let errorType = `Missing ${item.type === 'image' ? 'image source' : 'link'}`
       const normalizedLink = path.normalize(`${item.pagePath}/${item.link}`).replace(/^.*\/content\/articles/, '')
-      if (existPathList.includes(`${item.link}/`) || existPathList.includes(`${normalizedLink}/`)) {
+      if (
+        existPathList.includes(`${item.link.replace(/https:\/\/smarthr.design/, '')}/`) ||
+        existPathList.includes(`${normalizedLink}/`)
+      ) {
         errorType = `No trailing slash`
       }
       console.error(`${errorType}: ${item.link} in /${path.relative(`${__dirname}/../`, item.filePath)} at L:${item.lineNo}`)
