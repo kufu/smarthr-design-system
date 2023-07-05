@@ -21,6 +21,7 @@ type PropsData = {
 
 type UiStories = {
   storyName: string
+  dirName: string
   filePath: string
   storyItems: Array<{
     name: string
@@ -39,6 +40,8 @@ type UiResponse = {
 
 type PropsResponse = {
   displayName: string
+  dirName: string
+  filePath: string
   props: PropsData[]
 }
 
@@ -89,8 +92,12 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
     }
 
     const uiProps = props.map((propsItem: PropsResponse) => {
+      // Dropdown/DropdownMenuButton のように階層になっている場合は、親階層もデータに含めておく
+      const directoryNames = propsItem.filePath.replace(/^.*lib\/components\//, '').split('/')
+      const dirName = directoryNames.length > 2 ? directoryNames[0] : ''
       return {
         displayName: propsItem.displayName || '',
+        dirName,
         props: propsItem.props?.map((prop) => {
           return {
             description: prop.description || '',
@@ -115,9 +122,11 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
       if (story.parameters.docsOnly === true) continue // Docは除外
       const directoryNames = story.parameters.fileName.replace(/^\.\/src\/components\//, '').split('/')
       const storyName = directoryNames[directoryNames.length - 1].replace(/\.stories\.tsx$/, '')
+      // Dropdown/DropdownMenuButton のように階層になっている場合は、親階層もデータに含めておく
+      const dirName = directoryNames.length > 2 ? directoryNames[0] : ''
 
       if (!uiStories[storyName]) {
-        uiStories[storyName] = { storyName, filePath: story.parameters.fileName, storyItems: [] }
+        uiStories[storyName] = { storyName, dirName, filePath: story.parameters.fileName, storyItems: [] }
       }
       uiStories[storyName].storyItems.push({
         name: story.title,

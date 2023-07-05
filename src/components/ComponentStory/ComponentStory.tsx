@@ -23,6 +23,7 @@ import { ResizableContainer } from './ResizableContainer'
 
 type Props = {
   name: string
+  dirName?: string
 }
 
 const query = graphql`
@@ -33,6 +34,7 @@ const query = graphql`
         version
         uiStories {
           storyName
+          dirName
           filePath
           storyItems {
             iframeName
@@ -45,7 +47,7 @@ const query = graphql`
   }
 `
 
-export const ComponentStory: FC<Props> = ({ name }) => {
+export const ComponentStory: FC<Props> = ({ name, dirName }) => {
   const { allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
 
   // package.jsonにあるsmarthr-uiのバージョンをデフォルトにする
@@ -54,6 +56,7 @@ export const ComponentStory: FC<Props> = ({ name }) => {
   })
   // 全Storyのデータからpropsで指定された名前のStoryを取得する
   const defaultData = defaultVersion?.uiStories?.find((story) => {
+    if (dirName) return story?.dirName === dirName && story?.storyName === name
     return story?.storyName === name
   })
 
