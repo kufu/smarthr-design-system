@@ -28,12 +28,15 @@ const checkStoryPages = async () => {
 
   for (const file of await glob(CONTENT_PATH)) {
     const content = await fs.readFile(file, 'utf8')
-    const matchStoryName = content.match(/<ComponentStory\sname="(.+?)"/)
+    const matchStoryName = content.match(/<ComponentStory.*name="(.+?)"/)
     if (matchStoryName === null) continue
-
     const storyName = matchStoryName[1]
 
+    const matchDirName = content.match(/<ComponentStory.*dirName="(.+?)"/)
+    const dirName = matchDirName === null ? '' : matchDirName[1]
+
     const targetData = targetVersion?.uiStories.find((item) => {
+      if (dirName !== '') return item.storyName === storyName && item.dirName === dirName
       return item.storyName === storyName
     })
     if (targetData === undefined) {
