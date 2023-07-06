@@ -3,6 +3,8 @@ title: 'テーマカラー'
 description: 'SNSに投稿された際に表示されるタイトルや画像、説明文の参考にしてください'
 order: 3
 ---
+import { Grid } from '@Components/shared/Grid/Grid'
+import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 
 テーマカラーが指定されていると、特定のOS・ブラウザのユーザーインターフェイスの一部の色を変更できます。
 
@@ -12,13 +14,25 @@ order: 3
 <meta name="theme-color" content="#00c4cc">
 ```
 
-// TODO: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color に使われているような比較画像
+<Grid autoRepeat="auto-fill" size="300px">
+
+  <ImgWithDesc description="テーマカラーなし">
+
+  ![ブラウザのパーツに色がついていない](./images/no-theme-color.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="テーマカラーあり">
+
+  ![ブラウザのパーツに色がついている](./images/with-theme-color.png)
+
+  </ImgWithDesc>
+
+</Grid>
 
 ## 注意点
 
-テーマカラーに指定する色は多くのサイトで「推奨される色」と説明されています。
-
-これは、指定した色がアクセシビリティの観点から不適切とOSやブラウザから判断された場合などに、自動的に調整される可能性があるためだと考えられます。その点も考慮して色を指定してください。
+テーマカラーに指定する色は「推奨される色」とされています。これは、指定した色がアクセシビリティの観点から不適切とOSやブラウザから判断された場合などに、自動的に調整される可能性があるためだと考えられます。その点も考慮して色を指定してください。
 
 ## 参考
 
