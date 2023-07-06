@@ -1,4 +1,4 @@
-import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@Constants/application'
+import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH, SHRUI_GITHUB_RAW } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import { useLocation } from '@reach/router'
 import { graphql, navigate, useStaticQuery } from 'gatsby'
@@ -17,7 +17,6 @@ import {
 import packageInfo from 'smarthr-ui/package.json'
 import styled from 'styled-components'
 
-import { fetchStoryData } from '../../lib/fetchStoryData'
 import { CodeBlock } from '../article/CodeBlock'
 
 import { ResizableContainer } from './ResizableContainer'
@@ -29,57 +28,57 @@ type Props = {
 
 const query = graphql`
   query StoryData {
-    allMdx(filter: { frontmatter: { storyName: { ne: null } } }) {
-      nodes {
-        frontmatter {
-          storyName
-        }
-        fields {
-          storyData {
-            code
-            storyItems {
-              label
-              name
-              iframeName
-            }
-            groupPath
-          }
-        }
-      }
-    }
     allUiVersion {
       nodes {
-        version
         commitHash
+        version
+        uiStories {
+          storyName
+          dirName
+          filePath
+          storyItems {
+            iframeName
+            label
+            name
+          }
+        }
       }
     }
   }
 `
 
 export const ComponentStory: FC<Props> = ({ name, dirName }) => {
-  const { allMdx, allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
-  const defaultStoryData = allMdx.nodes.find((node) => {
-    return node.frontmatter?.storyName === name
-  })?.fields?.storyData
+  const { allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
 
-  const [storyData, setStoryData] = useState({
-    code: defaultStoryData?.code ?? '',
-    groupPath: defaultStoryData?.groupPath ?? '',
-    storyItems: defaultStoryData?.storyItems ?? [],
+  // package.jsonにあるsmarthr-uiのバージョンをデフォルトにする
+  const defaultVersion = allUiVersion.nodes.find((node) => {
+    return node.version === packageInfo.version
+  })
+  // 全Storyのデータからpropsで指定された名前のStoryを取得する
+  const defaultData = defaultVersion?.uiStories?.find((story) => {
+    if (dirName) return story?.dirName === dirName && story?.storyName === name
+    return story?.storyName === name
   })
 
+  // コードはクライアント側でfetchするため初期値は空文字列
+  const [storyData, setStoryData] = useState({
+    code: '',
+    storyItems: defaultData?.storyItems ?? [],
+  })
+
+  // プルダウンの選択肢を作成する
   const versionOptions =
     allUiVersion.nodes?.map((version) => {
       return {
         label: `v${version.version}`,
-        value: version.version,
+        value: version.version ?? '',
       }
     }) ?? []
 
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [isStoryLoaded, setIsStoryLoaded] = useState<boolean>(false)
-  const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.name ?? '')
-  const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
+  const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.iframeName ?? '')
+  const [displayVersion, setDisplayVersion] = useState<string>('')
   const [showError, setShowError] = useState<boolean>(false)
 
   const fetchData = useCallback(
@@ -87,41 +86,60 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
       setDisplayVersion(version)
       setIsStoryLoaded(false)
       setIsIFrameLoaded(false)
-      const newData = await fetchStoryData(name, version, dirName).catch(() => {
-        return null
+
+      // GraphQLからで取得したデータから該当のバージョンを選ぶ
+      const versionData = allUiVersion.nodes.find((node) => {
+        return node.version === version
       })
-      if (newData === null || newData.code === '') {
+      // 該当のバージョンからページで表示したいStoryを選ぶ
+      const targetStoryData = versionData?.uiStories?.find((story) => {
+        return story?.storyName === name
+      })
+      if (!versionData || !targetStoryData) {
         setShowError(true)
         return
       }
-      setStoryData(newData)
-      setCurrentIFrame(newData.storyItems[0]?.name ?? '')
+
+      // コードはGitHubからfetchする
+      let code = ''
+      try {
+        const codeRes = await fetch(`${SHRUI_GITHUB_RAW}v${version}/${targetStoryData.filePath}`)
+        code = await codeRes.text()
+      } catch (error) {
+        setShowError(true)
+        return
+      }
+
+      const storyItems = targetStoryData.storyItems || []
+
+      setStoryData({ code, storyItems })
+      setCurrentIFrame(storyItems[0]?.iframeName ?? '')
       setShowError(false)
     },
-    [name, dirName],
+    [name, allUiVersion.nodes],
   )
+
+  const getCommitHash = useCallback(() => {
+    return (
+      allUiVersion.nodes?.find((version) => {
+        return version.version === displayVersion
+      })?.commitHash ?? ''
+    )
+  }, [allUiVersion.nodes, displayVersion])
 
   // クエリ付きURLでアクセスされた場合
   const location = useLocation()
   useEffect(() => {
     const { search } = location
     const params = new URLSearchParams(search)
-    const version = params.get('v')
-    if (version === null || version === displayVersion) return
+    const version = params.get('v') || packageInfo.version
+    if (version === displayVersion) return
 
     fetchData(version)
   }, [location, displayVersion, fetchData])
 
   const onChangeVersion = (version: string) => {
     navigate(`?v=${encodeURI(version)}`)
-  }
-
-  const getCommitHash = () => {
-    return (
-      allUiVersion.nodes?.find((version) => {
-        return version.version === displayVersion
-      })?.commitHash ?? ''
-    )
   }
 
   const onClickTab = (itemId: string): void => {
@@ -134,7 +152,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
 
   const getStoryName = (currentName: string) => {
     return storyData.storyItems?.find((item) => {
-      return item?.name === currentName
+      return item?.iframeName === currentName
     })?.iframeName
   }
 
@@ -173,9 +191,9 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
         </Cluster>
         <Cluster>
           <AnchorButton
-            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?path=/story/${
-              storyData.groupPath
-            }-${getStoryName(storyData?.storyItems[0]?.name ?? '')}`}
+            href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/?path=/story/${getStoryName(
+              storyData?.storyItems[0]?.iframeName ?? '',
+            )}`}
             target="_blank"
             size="s"
             suffix={<FaExternalLinkAltIcon />}
@@ -183,7 +201,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
             Storybook
           </AnchorButton>
           <AnchorButton
-            href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${dirName ?? name}`}
+            href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`}
             target="_blank"
             size="s"
             suffix={<FaExternalLinkAltIcon />}
@@ -206,7 +224,12 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
           <Tab>
             {storyData.storyItems.map((item, index: number) => {
               return (
-                <TabItem id={item?.name ?? ''} key={index} onClick={onClickTab} selected={item?.name === currentIFrame}>
+                <TabItem
+                  id={item?.iframeName ?? ''}
+                  key={index}
+                  onClick={onClickTab}
+                  selected={item?.iframeName === currentIFrame}
+                >
                   {item?.label}
                 </TabItem>
               )
@@ -216,9 +239,9 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
             <>
               <LinkWrapper>
                 <TextLink
-                  href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
-                    storyData.groupPath
-                  }-${getStoryName(currentIFrame)}&viewMode=story`}
+                  href={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${getStoryName(
+                    currentIFrame,
+                  )}&viewMode=story`}
                   target="_blank"
                 >
                   別画面で開く
@@ -233,9 +256,9 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
                       return item?.name === currentIFrame
                     })?.label || ''
                   }
-                  src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${
-                    storyData.groupPath
-                  }-${getStoryName(currentIFrame)}`}
+                  src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${getStoryName(
+                    currentIFrame,
+                  )}`}
                   onLoad={() => onIFrameLoaded()}
                 />
               </ResizableContainer>
