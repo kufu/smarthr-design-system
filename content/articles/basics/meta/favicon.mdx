@@ -77,21 +77,16 @@ Retinaディスプレイをはじめとする、高解像度・高ピクセル�
 
 </Grid>
 
+## 非推奨の設定
 
-
-## Windows向けの設定
-
-// TODO: 現在ではあまり意味のない設定だと考えられるが要検討
+以下のような設定は、現在ではサポートされていないバージョンのブラウザ向けの設定であるため、記述する必要はありません。
 
 ```html codeBlock
+<!-- ❌Windows 8、10とIEで、スタートメニューのタイルを飾るために使われることが主目的のメタタグです -->
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-TileImage" content="/mstile-150x150.png">
 <meta name="msapplication-config" content="/browserconfig.xml">
 ```
-
-## 非推奨の設定
-
-以下のような設定は、現在ではサポートされていないバージョンのブラウザ向けの設定であるため、記述する必要はありません。
 
 ```html codeBlock
 <!-- ❌Safariのピン留め用アイコンですが、現在はファビコンが使われるようになっています -->
@@ -99,6 +94,6 @@ Retinaディスプレイをはじめとする、高解像度・高ピクセル�
 ```
 
 ```html codeBlock
-<!-- ❌現在ではshortcutは無視されます -->
+<!-- ❌shortcutを書かずただの"icon"でもfaviconの指定と解釈されるので、shortcutと書く必要はありません -->
 <link rel="shortcut icon" href="/favicon.ico">
 ```
