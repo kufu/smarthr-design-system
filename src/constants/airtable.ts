@@ -9,18 +9,6 @@ export type airtableContents = {
 
 export const AIRTABLE_CONTENTS: airtableContents[] = [
   {
-    pageTitle: 'ライティングスタイル',
-    pagePath: '/products/contents/writing-style/',
-    tableName: 'ライティングスタイル',
-    sort: 'AIRTABLE',
-  },
-  {
-    pageTitle: 'UIテキスト',
-    pagePath: '/products/contents/app-writing/',
-    tableName: 'UIテキスト',
-    sort: 'AIRTABLE',
-  },
-  {
     pageTitle: '用字用語：一覧',
     pagePath: '/products/contents/idiomatic-usage/data/',
     tableName: '用字用語：一覧',
@@ -47,8 +35,9 @@ export const AIRTABLE_MOCK_DATA = AIRTABLE_CONTENTS.map((content) => {
       ng_example: '表記のNG事例',
       ok_example: '表記のOK事例',
       expected: '-',
-      reason: 'recMOCKDATA',
-      data: '-',
+      reason: () => {
+        return ['理由1', '理由2']
+      },
       order: 0,
     },
   }

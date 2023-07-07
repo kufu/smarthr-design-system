@@ -2,7 +2,7 @@ import { CSS_COLOR } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import { marked } from 'marked'
 import React, { FC } from 'react'
-import { Table, Td, Text, Th } from 'smarthr-ui'
+import { Cluster, Table, Td, Text, Th } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { FragmentTitle } from '../../article/FragmentTitle/FragmentTitle'
@@ -11,7 +11,7 @@ import { TextUrlToLink } from '../shared/TextUrlToLink'
 
 const query = graphql`
   query IdiomaticUsageTable {
-    idiomaticUsageData: allAirtable(filter: { table: { eq: "用字用語：一覧" } }) {
+    idiomaticUsageData: allSdsAirtable(filter: { table: { eq: "用字用語：一覧" } }) {
       edges {
         node {
           data {
@@ -25,7 +25,7 @@ const query = graphql`
         }
       }
     }
-    idiomaticUsageReason: allAirtable(filter: { table: { eq: "用字用語：理由" } }) {
+    idiomaticUsageReason: allSdsAirtable(filter: { table: { eq: "用字用語：理由" } }) {
       edges {
         node {
           data {
@@ -34,19 +34,7 @@ const query = graphql`
             discussion
             source
             record_id
-            data
             order
-          }
-        }
-      }
-    }
-    writingStyle: allAirtable(filter: { table: { eq: "ライティングスタイル" } }) {
-      edges {
-        node {
-          data {
-            name
-            data
-            record_id
           }
         }
       }
@@ -63,15 +51,45 @@ marked.setOptions({ headerIds: false, mangle: false })
 export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
   const data = useStaticQuery<Queries.IdiomaticUsageTableQuery>(query)
 
+  type IdiomaticUsageData = {
+    label?: string | null
+    ngExample?: string | null
+    okExample?: string | null
+    reason?: string[] | null
+    recordId?: string | null
+  }
+
   const idiomaticUsageData = data.idiomaticUsageData.edges
     .map(({ node }) => ({
       label: node.data?.label,
       ngExample: node.data?.ng_example,
       okExample: node.data?.ok_example,
-      reason: node.data?.reason,
+      reason: node.data?.reason?.map((reason) => {
+        return reason ?? ''
+      }),
       recordId: node.data?.record_id,
     }))
     .sort((x, y) => (x.label && y.label ? x.label.localeCompare(y.label, 'ja') : -1))
+
+  const charIndexList = ['あ行', 'か行', 'さ行', 'た行', 'な行', 'は行', 'ま行', 'や行', 'ら行', 'わ行', '記号・その他']
+
+  // 文字がひらがなのどの行にあるかを判定する関数
+  const findIndexChar = (labelChar: string) => {
+    // ひらがなで始まっていない場合は記号・その他に分類
+    if (!labelChar.match(/[あ-ん]/)) return '記号・その他'
+    const index =
+      charIndexList.findIndex((indexChar) => {
+        return labelChar.localeCompare(indexChar.charAt(0), 'ja') < 0
+      }) - 1
+    return charIndexList[index]
+  }
+  const indexedUsageData: { [key in (typeof charIndexList)[number]]: IdiomaticUsageData[] } = {}
+  idiomaticUsageData.forEach((item) => {
+    const indexChar = findIndexChar(item.label?.charAt(0) || '')
+    if (!indexedUsageData[indexChar]) indexedUsageData[indexChar] = []
+
+    indexedUsageData[indexChar].push(item)
+  })
 
   const idiomaticUsageReason = data.idiomaticUsageReason.edges
     .map(({ node }) => ({
@@ -80,7 +98,6 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
       discussion: node.data?.discussion,
       source: node.data?.source,
       recordId: node.data?.record_id,
-      data: node.data?.data,
       order: node.data?.order || Number.MAX_SAFE_INTEGER,
     }))
     .filter((item) => {
@@ -88,70 +105,79 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
     })
     .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
-  const writingStyle = data.writingStyle.edges
-    .map(({ node }) => ({
-      name: node.data?.name,
-      data: node.data?.data, // 用字用語：一覧からのデータ参照
-      recordId: node.data?.record_id,
-    }))
-    .sort((x, y) => (x.name && y.name ? x.name.localeCompare(y.name, 'ja') : -1))
-
   return (
     <>
       {idiomaticUsageData[0].recordId?.includes('MOCKDATA') && (
         <WarningMessage>このページを正しく表示するにはAirtableのAPIキーの設定が必要です</WarningMessage>
       )}
       {type === 'data' && (
-        <Wrapper>
-          <Table>
-            <thead>
-              <tr>
-                <RecommendTh>推奨する表記</RecommendTh>
-                <NGTh>NG例</NGTh>
-                <ReasonTh>理由</ReasonTh>
-              </tr>
-            </thead>
-            <tbody>
-              {idiomaticUsageData.map((prop, index) => {
-                const matchReason = idiomaticUsageReason.find(
-                  (reason) => prop.reason && prop.reason.includes(reason.recordId ?? ''),
-                )
-                const matchWritingStyle = writingStyle.find((style) => style.data && style.data.includes(prop.recordId ?? ''))
+        <>
+          <Cluster gap={'S'}>
+            {charIndexList.map((char) => {
+              return (
+                <a key={char} href={`#${char}`}>
+                  {char}
+                </a>
+              )
+            })}
+          </Cluster>
+          {charIndexList.map((char) => {
+            return (
+              <React.Fragment key={char}>
+                <FragmentTitle id={`${char}`} tag="h3">
+                  {char}
+                </FragmentTitle>
+                <Wrapper>
+                  <Table>
+                    <thead>
+                      <tr>
+                        <RecommendTh>推奨する表記</RecommendTh>
+                        <NGTh>NG例</NGTh>
+                        <ReasonTh>理由</ReasonTh>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {indexedUsageData[char]?.map((prop, index) => {
+                        const matchReason = idiomaticUsageReason.find(
+                          (reason) => prop.reason && prop.reason.includes(reason.recordId ?? ''),
+                        )
 
-                // recordId: "recWCPX1UhchVaFjO"
-                // "平仮名にしたほうが読みやすい漢字は平仮名にする"
-                // console.log(writingStyle)
-
-                return (
-                  <tr key={index}>
-                    <RecommendTd>
-                      <strong>{prop.okExample}</strong>
-                    </RecommendTd>
-                    <NGTd>{prop.ngExample}</NGTd>
-                    <ReasonTd>
-                      <ul>
-                        {matchWritingStyle && (
-                          <li>
-                            <Link to={`/products/contents/writing-style/#${matchWritingStyle.recordId}-0`}>
-                              {matchWritingStyle.name}
-                            </Link>
-                          </li>
-                        )}
-                        {matchReason && (
-                          <li>
-                            <Link to={`/products/contents/idiomatic-usage/usage/#${matchReason.recordId}-0`}>
-                              {matchReason.name}
-                            </Link>
-                          </li>
-                        )}
-                      </ul>
-                    </ReasonTd>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </Table>
-        </Wrapper>
+                        return (
+                          <tr key={index}>
+                            <RecommendTd>
+                              <strong>
+                                {prop.okExample?.split(/(\u3000)/).map((word) => {
+                                  // 全角スペース（u3000）があれば改行に変換
+                                  return word === '　' ? <br /> : word
+                                })}
+                              </strong>
+                            </RecommendTd>
+                            <NGTd>
+                              {prop.ngExample?.split(/(\u3000)/).map((word) => {
+                                return word === '　' ? <br /> : word
+                              })}
+                            </NGTd>
+                            <ReasonTd>
+                              <ul>
+                                {matchReason && (
+                                  <li>
+                                    <Link to={`/products/contents/idiomatic-usage/usage/#${matchReason.recordId}-0`}>
+                                      {matchReason.name}
+                                    </Link>
+                                  </li>
+                                )}
+                              </ul>
+                            </ReasonTd>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </Table>
+                </Wrapper>
+              </React.Fragment>
+            )
+          })}
+        </>
       )}
       {type === 'reason' && (
         <>

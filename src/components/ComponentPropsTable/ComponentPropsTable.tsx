@@ -11,6 +11,7 @@ import { FragmentTitle } from '../article/FragmentTitle/FragmentTitle'
 
 type Props = {
   name: string
+  dirName?: string
   showTitle?: boolean
 }
 
@@ -22,6 +23,7 @@ const query = graphql`
         commitHash
         uiProps {
           displayName
+          dirName
           props {
             description
             name
@@ -63,7 +65,7 @@ const pickTypeColor = (value: string): string => {
 
 marked.setOptions({ headerIds: false, mangle: false })
 
-export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
+export const ComponentPropsTable: FC<Props> = ({ name, dirName, showTitle }) => {
   const { allUiVersion } = useStaticQuery<Queries.PropsDataQuery>(query)
 
   const [displayVersion, setDisplayVersion] = useState<string>(packageInfo.version)
@@ -88,6 +90,7 @@ export const ComponentPropsTable: FC<Props> = ({ name, showTitle }) => {
     null
 
   const data = versionData.uiProps?.filter((uiProp) => {
+    if (dirName) return uiProp?.dirName === dirName && uiProp?.displayName === name
     return uiProp?.displayName === name
   })[0]
   const propsData = data ? data.props : []

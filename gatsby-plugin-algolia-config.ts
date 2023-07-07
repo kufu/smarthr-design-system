@@ -66,7 +66,7 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
             }
           }
         }
-        allAirtable(filter: { table: { eq: "${item.tableName}" } }) {
+        allSdsAirtable(filter: { table: { eq: "${item.tableName}" } }) {
           edges {
             node {
               id
@@ -91,7 +91,7 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
         }
       }
     `,
-    transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx']; allAirtable: Queries.Query['allAirtable'] } }) =>
+    transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx']; allSdsAirtable: Queries.Query['allSdsAirtable'] } }) =>
       data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
         id,
         internal,
@@ -100,7 +100,7 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
         description: frontmatter?.description || '',
         body:
           rawBody +
-          data.allAirtable.edges
+          data.allSdsAirtable.edges
             .map((edge) => {
               return Object.values(edge.node?.data || {})
                 .filter((value) => {

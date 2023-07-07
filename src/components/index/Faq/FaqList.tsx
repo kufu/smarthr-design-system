@@ -58,7 +58,7 @@ const IndexFaqContainer = styled.div`
       padding: 0;
     }
   }
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 120px;
     > ul {
       gap: 56px 40px;
@@ -69,7 +69,7 @@ const IndexFaqContainer = styled.div`
       }
     }
   }
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     margin: 120px 16px 0;
     > ul > li {
       width: 100%;

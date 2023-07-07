@@ -2,6 +2,10 @@ import fs from 'fs/promises'
 import { stat } from 'node:fs'
 import path from 'path'
 
+/*
+puppeteerは、このディレクトリである/scripts/component-thumbnailsに移動してインストールしてください
+詳細はこのディレクトリ内のREADME.mdを参照してください
+*/
 import puppeteer from 'puppeteer'
 
 import { StoryGroup, fetchComponentCaptures } from '../../plugins/gatsby-source-component-captures/fetchComponentCaptures'

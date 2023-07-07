@@ -5,7 +5,7 @@ import { Highlight, themes } from 'prism-react-renderer'
 import React, { CSSProperties, FC, useState } from 'react'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import * as ui from 'smarthr-ui'
-import { Gap, SeparateGap } from 'smarthr-ui/lib/components/Layout/type'
+import { Gap, SeparateGap } from 'smarthr-ui/lib/types'
 import styled, { ThemeProvider, css } from 'styled-components'
 // TODO SmartHR な Dark テーマほしいな!!!
 
@@ -177,6 +177,7 @@ const PreContainer = styled.div<{ isStorybook?: boolean }>`
   pre {
     width: max-content;
     min-width: 100%;
+    min-height: 100%;
     margin: 0;
     padding: 2.75rem 1.5rem 1.5rem;
     box-sizing: border-box;

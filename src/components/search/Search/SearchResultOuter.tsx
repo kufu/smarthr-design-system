@@ -47,7 +47,7 @@ const SearchPanel = styled(Base)`
   padding: 8px;
   box-sizing: border-box;
 
-  @media (width <= ${defaultBreakpoint.SP}px) {
+  @media (max-width: ${defaultBreakpoint.SP}px) {
     left: 0;
     width: 100%;
   }
