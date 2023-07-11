@@ -1,92 +1,80 @@
 import { CSS_COLOR } from '@Constants/style'
 import { Link } from 'gatsby'
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-type Props = {
-  headings: Array<{ value: string; recordId: string; depth: number; fragmentId: string }> | null
+type Props = { target: React.RefObject<HTMLElement> }
+type HeadingItem = {
+  value: string
+  children: Array<{ value: string; fragmentId?: string }>
+  depth: number
+  fragmentId: string
 }
-export const IndexNav: FC<Props> = ({ headings }) => {
-  if (headings === null) return null
 
-  const nestedHeadings: Array<{
-    value: string
-    recordId: string
-    children: Array<{ value: string; fragmentId?: string }>
-    depth: number
-    fragmentId: string
-  }> = []
-  headings.forEach((heading) => {
-    if (heading.depth > 3) return
-    if (heading.depth === 1)
-      nestedHeadings.push({
-        value: heading.value,
-        recordId: heading.recordId || '',
-        children: [],
-        depth: 1,
-        fragmentId: heading.fragmentId || '',
-      })
-    if (heading.depth === 2)
-      nestedHeadings.push({
-        value: heading.value,
-        recordId: heading.recordId || '',
-        children: [],
-        depth: 2,
-        fragmentId: heading.fragmentId || '',
-      })
-    if (heading.depth === 3) {
-      // 親となる第2階層がない場合、仮の親となるアイテムをpushする。
-      if (!nestedHeadings[nestedHeadings.length - 1])
-        nestedHeadings.push({ value: '', recordId: '', children: [], depth: 0, fragmentId: '' })
-      nestedHeadings[nestedHeadings.length - 1].children.push({ value: heading.value, fragmentId: heading.fragmentId || '' })
-    }
-  })
+export const IndexNav: FC<Props> = ({ target }) => {
+  const [nestedHeadings, setNestedHeadings] = useState<HeadingItem[]>([])
 
-  let depth3Index: number = 0
+  //クライアントでのレンダリング時にページ内インデックスのマークアップを作成する
+  useEffect(() => {
+    const headings = target.current?.querySelectorAll('h2, h3')
+    const _nestedHeadings: HeadingItem[] = []
+    headings?.forEach((element, index) => {
+      const idAttr = element.getAttribute('id')
+
+      if (element.tagName === 'H2') {
+        // id属性がない場合は付与する
+        if (idAttr === null) element.setAttribute('id', `h2-c${index}`)
+        _nestedHeadings.push({
+          value: element.textContent || '',
+          children: [],
+          depth: 2,
+          fragmentId: idAttr || `h2-c${index}`,
+        })
+      }
+
+      if (element.tagName === 'H3') {
+        // id属性がない場合は付与する
+        if (idAttr === null) element.setAttribute('id', `h3-c${index}`)
+
+        // 親となる第2階層がない場合、仮の親となるアイテムをpushする。
+        if (!_nestedHeadings[_nestedHeadings.length - 1])
+          _nestedHeadings.push({ value: '', children: [], depth: 0, fragmentId: '' })
+
+        if (!idAttr?.startsWith('rec'))
+          //Airtableコンテンツの場合はh3は除外
+          _nestedHeadings[_nestedHeadings.length - 1].children.push({
+            value: element.textContent || '',
+            fragmentId: element.getAttribute('id') || `h3-c${index}`,
+          })
+      }
+    })
+    setNestedHeadings(_nestedHeadings)
+  }, [target])
 
   return (
     <Nav>
       <ul>
-        {nestedHeadings.map((depth2Item, depth2Index) => {
-          /* Airtable由来のコンテンツではrecord_idをアンカーとして使用する */
-          const recordId = depth2Item.recordId === '' ? `h2-${depth2Index}` : `${depth2Item.recordId}-0`
-          const depth2Id = depth2Item.fragmentId !== '' ? depth2Item.fragmentId : recordId
+        {nestedHeadings.map((depth2Item) => {
           return (
-            <li key={depth2Id}>
-              {(() => {
-                switch (depth2Item.depth) {
-                  case 0:
-                    return null
-                  case 1:
+            <li key={depth2Item.fragmentId}>
+              {depth2Item.value !== '' && (
+                <Depth2Item>
+                  <Link to={`#${depth2Item.fragmentId}`}>{depth2Item.value}</Link>
+                </Depth2Item>
+              )}
+              {depth2Item.children.length > 0 && (
+                <ul>
+                  {depth2Item.children.map((depth3Item) => {
                     return (
-                      <Depth1Item>
-                        {/* h1がマークダウンにあるのはおかしいので警告表示をします */}
-                        <Link to={`#${depth2Id}`}>{depth2Item.value}</Link>
-                      </Depth1Item>
+                      <li key={depth3Item.fragmentId}>
+                        <Depth3Item>
+                          <Link to={`#${depth3Item.fragmentId}`}>{depth3Item.value}</Link>
+                        </Depth3Item>
+                      </li>
                     )
-                  case 2:
-                    return (
-                      <Depth2Item>
-                        <Link to={`#${depth2Id}`}>{depth2Item.value}</Link>
-                      </Depth2Item>
-                    )
-                  default:
-                    return null
-                }
-              })()}
-              <ul>
-                {depth2Item.children.map((depth3Item) => {
-                  const depth3Id = depth3Item.fragmentId !== '' ? depth3Item.fragmentId : `h3-${depth3Index}`
-                  depth3Index += 1
-                  return (
-                    <li key={depth3Id}>
-                      <Depth3Item>
-                        <Link to={`#${depth3Id}`}>{depth3Item.value}</Link>
-                      </Depth3Item>
-                    </li>
-                  )
-                })}
-              </ul>
+                  })}
+                </ul>
+              )}
             </li>
           )
         })}
@@ -136,10 +124,6 @@ const Nav = styled.nav`
       color: inherit;
     }
   }
-`
-
-const Depth1Item = styled.div`
-  background-color: ${CSS_COLOR.WARNING};
 `
 
 const Depth2Item = styled.div`
