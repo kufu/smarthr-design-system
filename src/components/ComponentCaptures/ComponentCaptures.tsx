@@ -29,7 +29,7 @@ export const ComponentCaptures: FC = () => {
     <Wrapper>
       {allComponentCapture.nodes.map((node) => (
         <ComponentGroup key={node.groupName}>
-          <h2>{node.groupName}</h2>
+          <h2 id={`component-${node.groupName}`}>{node.groupName}</h2>
           <ComponentList>
             {node.storyKinds.map((storyKind) => {
               return storyKind.iframeUrl ? (
