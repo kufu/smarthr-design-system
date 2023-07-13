@@ -53,32 +53,34 @@ export const IndexNav: FC<Props> = ({ target }) => {
 
   return (
     <Nav>
-      <ul>
-        {nestedHeadings.map((depth2Item) => {
-          return (
-            <li key={depth2Item.fragmentId}>
-              {depth2Item.value !== '' && (
-                <Depth2Item>
-                  <Link to={`#${depth2Item.fragmentId}`}>{depth2Item.value}</Link>
-                </Depth2Item>
-              )}
-              {depth2Item.children.length > 0 && (
-                <ul>
-                  {depth2Item.children.map((depth3Item) => {
-                    return (
-                      <li key={depth3Item.fragmentId}>
-                        <Depth3Item>
-                          <Link to={`#${depth3Item.fragmentId}`}>{depth3Item.value}</Link>
-                        </Depth3Item>
-                      </li>
-                    )
-                  })}
-                </ul>
-              )}
-            </li>
-          )
-        })}
-      </ul>
+      {nestedHeadings.length > 0 && (
+        <ul>
+          {nestedHeadings.map((depth2Item) => {
+            return (
+              <li key={depth2Item.fragmentId}>
+                {depth2Item.value !== '' && (
+                  <Depth2Item>
+                    <Link to={`#${depth2Item.fragmentId}`}>{depth2Item.value}</Link>
+                  </Depth2Item>
+                )}
+                {depth2Item.children.length > 0 && (
+                  <ul>
+                    {depth2Item.children.map((depth3Item) => {
+                      return (
+                        <li key={depth3Item.fragmentId}>
+                          <Depth3Item>
+                            <Link to={`#${depth3Item.fragmentId}`}>{depth3Item.value}</Link>
+                          </Depth3Item>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      )}
     </Nav>
   )
 }
