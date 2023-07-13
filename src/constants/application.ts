@@ -1,5 +1,3 @@
-export const INDEXED_DEPTH = 3 // h3まではインデックスされる。
-
 // ログイン状態の確認用にアクセスするドキュメント
 export const PRIVATE_DOC_PATH = '/private/basics/romu-hanako-details.md'
 
