@@ -146,15 +146,15 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
                           <tr key={index}>
                             <RecommendTd>
                               <strong>
-                                {prop.okExample?.split(/(\u3000)/).map((word) => {
+                                {prop.okExample?.split(/(\u3000)/).map((word, wordIndex) => {
                                   // 全角スペース（u3000）があれば改行に変換
-                                  return word === '　' ? <br /> : word
+                                  return word === '　' ? <br key={wordIndex} /> : word
                                 })}
                               </strong>
                             </RecommendTd>
                             <NGTd>
-                              {prop.ngExample?.split(/(\u3000)/).map((word) => {
-                                return word === '　' ? <br /> : word
+                              {prop.ngExample?.split(/(\u3000)/).map((word, wordIndex) => {
+                                return word === '　' ? <br key={wordIndex} /> : word
                               })}
                             </NGTd>
                             <ReasonTd>
