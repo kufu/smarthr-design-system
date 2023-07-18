@@ -3,7 +3,7 @@ import { SidebarScrollContext } from '@Context/SidebarScrollContext'
 import { useLocation } from '@reach/router'
 import { Link } from 'gatsby'
 import React, { FC, Fragment, useContext, useLayoutEffect, useRef } from 'react'
-import { FaChevronDownIcon, defaultColor } from 'smarthr-ui'
+import { FaChevronDownIcon, Nav as NavComponent, defaultColor } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import type { SidebarItem } from '../../../templates/article'
@@ -58,11 +58,11 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
       {nestedSidebarItems.map((depth1Item) => (
         <Fragment key={depth1Item.link}>
           {/* 第1階層 */}
-          <Depth1Item>
+          <Depth1Heading>
             <Link to={depth1Item.link} aria-current={path === depth1Item.link}>
               {depth1Item.title}
             </Link>
-          </Depth1Item>
+          </Depth1Heading>
 
           {/* 第2階層 */}
           {depth1Item.children.length > 0 && (
@@ -132,7 +132,7 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
   )
 }
 
-const Nav = styled.nav`
+const Nav = styled(NavComponent)`
   padding-block: 120px 48px;
   overflow-y: auto;
 
@@ -203,7 +203,7 @@ const Nav = styled.nav`
   }
 `
 
-const Depth1Item = styled.h2`
+const Depth1Heading = styled.h2`
   margin-block: 0 24px;
   font-size: 14px;
   font-weight: bold;

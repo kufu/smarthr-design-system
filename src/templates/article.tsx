@@ -14,6 +14,7 @@ import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
 import { PageProps, graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import React, { FC, useRef } from 'react'
+import { Article as ArticleComponent } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { Theme } from './Theme'
@@ -410,7 +411,7 @@ const MainIndexNav = styled.div`
   }
 `
 
-const MainArticle = styled.article`
+const MainArticle = styled(ArticleComponent)`
   grid-area: article;
   min-width: 0;
   padding-top: 112px;

@@ -58,14 +58,14 @@ export const Private: FC<Props> = ({ path }) => {
   return isShow ? (
     // ログイン済みの時の表示
     <AuthView>
-      <AuthViewTitle>
-        <StyledLockIcon size={16} />
+      <AuthViewHeading>
+        <StyledLockIcon />
         <span>SmartHR社従業員限定コンテンツ</span>
         <Tooltip>
           <StyledExclamationIcon />
           <p className="message">制作パートナー・グループ会社への共有は可能ですが、SNS等へのシェアはしないでください。</p>
         </Tooltip>
-      </AuthViewTitle>
+      </AuthViewHeading>
       <div dangerouslySetInnerHTML={{ __html: privateData }}></div>
     </AuthView>
   ) : (
@@ -144,7 +144,7 @@ const AuthView = styled.div`
   }
 `
 
-const AuthViewTitle = styled.h2`
+const AuthViewHeading = styled.h2`
   font-weight: bold;
   margin: 0 !important; /* md用のスタイルを上書きする */
   padding: 0;
