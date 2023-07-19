@@ -14,6 +14,7 @@ import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
 import { PageProps, graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import React, { FC, useRef } from 'react'
+import { Article as ArticleComponent } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { Theme } from './Theme'
@@ -118,7 +119,7 @@ export type SidebarItem = {
 const Article: FC<Props> = ({ data }) => {
   const { mdx: article, parentCategoryAllMdx: parentCategory } = data
 
-  const articleRef: React.RefObject<HTMLElement> = useRef(null)
+  const articleRef: React.RefObject<HTMLDivElement> = useRef(null)
 
   if (!article) {
     return null
@@ -254,41 +255,43 @@ const Article: FC<Props> = ({ data }) => {
             <IndexNav target={articleRef} />
           </MainIndexNav>
 
-          <MainArticle ref={articleRef}>
-            <MainArticleTitle>
-              <h1>{title}</h1>
-            </MainArticleTitle>
-            <MDXStyledWrapper>
-              <MDXProvider components={{ ...components, ...shortcodes }}>
-                <MDXRenderer>{data.mdx?.body}</MDXRenderer>
-              </MDXProvider>
-            </MDXStyledWrapper>
+          <MainArticle>
+            <div ref={articleRef}>
+              <MainArticleTitle>
+                <h1>{title}</h1>
+              </MainArticleTitle>
+              <MDXStyledWrapper>
+                <MDXProvider components={{ ...components, ...shortcodes }}>
+                  <MDXRenderer>{data.mdx?.body}</MDXRenderer>
+                </MDXProvider>
+              </MDXStyledWrapper>
 
-            {/* 前へ・次へ表示 */}
-            <MainArticleNav>
-              {prevPageIndex !== null && (
-                <PrevArticleLinkWrapper>
-                  <RoundedBoxLink
-                    path={sidebarItems[prevPageIndex].link}
-                    label="前へ"
-                    title={sidebarItems[prevPageIndex].title}
-                    align="left"
-                    caretPosition="left"
-                  />
-                </PrevArticleLinkWrapper>
-              )}
-              {nextPageIndex !== null && (
-                <NextArticleLinkWrapper>
-                  <RoundedBoxLink
-                    path={sidebarItems[nextPageIndex].link}
-                    label="次へ"
-                    title={sidebarItems[nextPageIndex].title}
-                    align="right"
-                    caretPosition="right"
-                  />
-                </NextArticleLinkWrapper>
-              )}
-            </MainArticleNav>
+              {/* 前へ・次へ表示 */}
+              <MainArticleNav>
+                {prevPageIndex !== null && (
+                  <PrevArticleLinkWrapper>
+                    <RoundedBoxLink
+                      path={sidebarItems[prevPageIndex].link}
+                      label="前へ"
+                      title={sidebarItems[prevPageIndex].title}
+                      align="left"
+                      caretPosition="left"
+                    />
+                  </PrevArticleLinkWrapper>
+                )}
+                {nextPageIndex !== null && (
+                  <NextArticleLinkWrapper>
+                    <RoundedBoxLink
+                      path={sidebarItems[nextPageIndex].link}
+                      label="次へ"
+                      title={sidebarItems[nextPageIndex].title}
+                      align="right"
+                      caretPosition="right"
+                    />
+                  </NextArticleLinkWrapper>
+                )}
+              </MainArticleNav>
+            </div>
           </MainArticle>
         </Main>
 
@@ -410,7 +413,7 @@ const MainIndexNav = styled.div`
   }
 `
 
-const MainArticle = styled.article`
+const MainArticle = styled(ArticleComponent)`
   grid-area: article;
   min-width: 0;
   padding-top: 112px;
