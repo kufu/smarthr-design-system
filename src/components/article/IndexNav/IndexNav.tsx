@@ -1,6 +1,7 @@
 import { CSS_COLOR } from '@Constants/style'
 import { Link } from 'gatsby'
 import React, { FC, useEffect, useState } from 'react'
+import { Nav as NavComponent } from 'smarthr-ui'
 import styled from 'styled-components'
 
 type Props = { target: React.RefObject<HTMLElement> }
@@ -85,7 +86,7 @@ export const IndexNav: FC<Props> = ({ target }) => {
   )
 }
 
-const Nav = styled.nav`
+const Nav = styled(NavComponent)`
   display: block;
   padding-top: 160px;
   overflow-y: auto;

@@ -25,7 +25,7 @@ const SearchPage: FC = () => {
         <Header />
 
         <Main>
-          <PageTitle id="label-for-search-input">SmartHR Design Systemを検索</PageTitle>
+          <PageHeading id="label-for-search-input">SmartHR Design Systemを検索</PageHeading>
           <Search className="ais-SearchBox__root">
             <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME || ''} searchClient={searchClient}>
               <CustomSearchBox
@@ -60,7 +60,7 @@ const Main = styled.main`
   }
 `
 
-const PageTitle = styled.h1`
+const PageHeading = styled.h1`
   margin-block: 140px 40px;
   text-align: center;
   line-height: 1.25;

@@ -1,6 +1,7 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import React, { FC, Fragment } from 'react'
+import React, { FC } from 'react'
+import { Section } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import navigationItem from '../../../data/navigationItem.json'
@@ -101,7 +102,7 @@ export const IndexList: FC = () => {
         if (!level2Item) return null
         const level3Items = allLevel3Items.filter((level3item) => level3item.parent === level2Item.link)
         return (
-          <Fragment key={level2Item.link}>
+          <Section key={level2Item.link}>
             <h2>
               <Link to={`/${level2Item.link}/`}>{level2Item.title}</Link>
             </h2>
@@ -110,7 +111,7 @@ export const IndexList: FC = () => {
             {level3Items.map((level3Item) => {
               const level4Items = allLevel4Items.filter((level4Item) => level4Item.parent === level3Item.link)
               return (
-                <Fragment key={level3Item.link}>
+                <Section key={level3Item.link}>
                   <h3>
                     <Link to={`/${level3Item.link}/`}>{level3Item.title}</Link>
                   </h3>
@@ -127,10 +128,10 @@ export const IndexList: FC = () => {
                       })}
                     </ul>
                   )}
-                </Fragment>
+                </Section>
               )
             })}
-          </Fragment>
+          </Section>
         )
       })}
 
