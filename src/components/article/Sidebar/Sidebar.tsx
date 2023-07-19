@@ -3,7 +3,7 @@ import { SidebarScrollContext } from '@Context/SidebarScrollContext'
 import { useLocation } from '@reach/router'
 import { Link } from 'gatsby'
 import React, { FC, Fragment, useContext, useLayoutEffect, useRef } from 'react'
-import { FaChevronDownIcon, Nav as NavComponent, defaultColor } from 'smarthr-ui'
+import { FaChevronDownIcon, Nav, defaultColor } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import type { SidebarItem } from '../../../templates/article'
@@ -54,85 +54,90 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
   }
 
   return (
-    <Nav ref={sidebarRef} onScroll={handleScroll}>
-      {nestedSidebarItems.map((depth1Item) => (
-        <Fragment key={depth1Item.link}>
-          {/* 第1階層 */}
-          <Depth1Heading>
-            <Link to={depth1Item.link} aria-current={path === depth1Item.link}>
-              {depth1Item.title}
-            </Link>
-          </Depth1Heading>
+    <NavWrapper ref={sidebarRef} onScroll={handleScroll}>
+      <Nav>
+        {nestedSidebarItems.map((depth1Item) => (
+          <Fragment key={depth1Item.link}>
+            {/* 第1階層 */}
+            <Depth1Heading>
+              <Link to={depth1Item.link} aria-current={path === depth1Item.link}>
+                {depth1Item.title}
+              </Link>
+            </Depth1Heading>
 
-          {/* 第2階層 */}
-          {depth1Item.children.length > 0 && (
-            <ul>
-              {depth1Item.children.map((depth2Item, depth2Index) => (
-                <li key={depth2Item.link}>
-                  <Depth2Item>
-                    <Link to={depth2Item.link} aria-current={path === depth2Item.link}>
-                      {depth2Item.title}
-                    </Link>
+            {/* 第2階層 */}
+            {depth1Item.children.length > 0 && (
+              <ul>
+                {depth1Item.children.map((depth2Item, depth2Index) => (
+                  <li key={depth2Item.link}>
+                    <Depth2Item>
+                      <Link to={depth2Item.link} aria-current={path === depth2Item.link}>
+                        {depth2Item.title}
+                      </Link>
+                      {depth2Item.children.length > 0 && (
+                        <CaretButton
+                          aria-controls={`Depth3Items__${depth2Index}`}
+                          aria-expanded={path.includes(depth2Item.link)}
+                          onClick={onClickCaret}
+                        >
+                          <FaChevronDownIcon alt={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
+                        </CaretButton>
+                      )}
+                    </Depth2Item>
+
+                    {/* 第3階層 */}
                     {depth2Item.children.length > 0 && (
-                      <CaretButton
-                        aria-controls={`Depth3Items__${depth2Index}`}
-                        aria-expanded={path.includes(depth2Item.link)}
-                        onClick={onClickCaret}
-                      >
-                        <FaChevronDownIcon alt={path.includes(depth2Item.link) ? '閉じる' : '開く'} />
-                      </CaretButton>
-                    )}
-                  </Depth2Item>
+                      <ul id={`Depth3Items__${depth2Index}`} aria-hidden={!path.includes(depth2Item.link)}>
+                        {depth2Item.children.map((depth3Item, depth3Index) => (
+                          <li key={depth3Item.link}>
+                            <Depth3Item>
+                              <Link to={depth3Item.link} aria-current={path === depth3Item.link}>
+                                {depth3Item.title}
+                              </Link>
+                              {depth3Item.children.length > 0 && (
+                                <CaretButton
+                                  aria-controls={`Depth4Items__${depth2Index}__${depth3Index}`}
+                                  aria-expanded={path.includes(depth3Item.link)}
+                                  onClick={onClickCaret}
+                                >
+                                  <FaChevronDownIcon alt={path.includes(depth3Item.link) ? '閉じる' : '開く'} />
+                                </CaretButton>
+                              )}
+                            </Depth3Item>
 
-                  {/* 第3階層 */}
-                  {depth2Item.children.length > 0 && (
-                    <ul id={`Depth3Items__${depth2Index}`} aria-hidden={!path.includes(depth2Item.link)}>
-                      {depth2Item.children.map((depth3Item, depth3Index) => (
-                        <li key={depth3Item.link}>
-                          <Depth3Item>
-                            <Link to={depth3Item.link} aria-current={path === depth3Item.link}>
-                              {depth3Item.title}
-                            </Link>
+                            {/* 第4階層 */}
                             {depth3Item.children.length > 0 && (
-                              <CaretButton
-                                aria-controls={`Depth4Items__${depth2Index}__${depth3Index}`}
-                                aria-expanded={path.includes(depth3Item.link)}
-                                onClick={onClickCaret}
+                              <ul
+                                id={`Depth4Items__${depth2Index}__${depth3Index}`}
+                                aria-hidden={!path.includes(depth3Item.link)}
                               >
-                                <FaChevronDownIcon alt={path.includes(depth3Item.link) ? '閉じる' : '開く'} />
-                              </CaretButton>
+                                {depth3Item.children.map((depth4Item) => (
+                                  <li key={depth4Item.link}>
+                                    <Depth4Item>
+                                      <Link to={depth4Item.link} aria-current={path === depth4Item.link}>
+                                        {depth4Item.title}
+                                      </Link>
+                                    </Depth4Item>
+                                  </li>
+                                ))}
+                              </ul>
                             )}
-                          </Depth3Item>
-
-                          {/* 第4階層 */}
-                          {depth3Item.children.length > 0 && (
-                            <ul id={`Depth4Items__${depth2Index}__${depth3Index}`} aria-hidden={!path.includes(depth3Item.link)}>
-                              {depth3Item.children.map((depth4Item) => (
-                                <li key={depth4Item.link}>
-                                  <Depth4Item>
-                                    <Link to={depth4Item.link} aria-current={path === depth4Item.link}>
-                                      {depth4Item.title}
-                                    </Link>
-                                  </Depth4Item>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </Fragment>
-      ))}
-    </Nav>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Fragment>
+        ))}
+      </Nav>
+    </NavWrapper>
   )
 }
 
-const Nav = styled(NavComponent)`
+const NavWrapper = styled.div`
   padding-block: 120px 48px;
   overflow-y: auto;
 
