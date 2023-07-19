@@ -9,18 +9,14 @@ import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
 import { Private } from '@Components/shared/Private'
 import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
-import { AIRTABLE_CONTENTS } from '@Constants/airtable'
-import { INDEXED_DEPTH } from '@Constants/application'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
 import { PageProps, graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
-import React, { FC } from 'react'
+import React, { FC, useRef } from 'react'
 import styled from 'styled-components'
 
 import { Theme } from './Theme'
-
-import type { airtableContents } from '@Constants/airtable'
 
 const components: MDXProviderComponents = {
   pre: (props) => <div {...props} />,
@@ -64,7 +60,6 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       id
       body
-      rawBody
       headings {
         depth
         value
@@ -123,83 +118,16 @@ export type SidebarItem = {
 const Article: FC<Props> = ({ data }) => {
   const { mdx: article, parentCategoryAllMdx: parentCategory } = data
 
+  const articleRef: React.RefObject<HTMLElement> = useRef(null)
+
   if (!article) {
     return null
   }
 
-  const { frontmatter, headings, fields, rawBody } = article
+  const { frontmatter, fields } = article
   const slug = fields?.slug || ''
 
   const title = frontmatter?.title || ''
-
-  // Airtableコンテンツのheading。各項目をh2として扱う
-  const airTableHeadings = data.airTable.edges
-    .filter((edge) => {
-      return edge.node.data?.name && edge.node.data?.name !== ''
-    })
-    .map((edge) => {
-      return {
-        depth: 2,
-        value: edge.node.data?.name ?? '',
-        recordId: edge.node.data?.record_id ?? '',
-        name: edge.node.data?.name ?? '',
-        order: edge.node.data?.order ?? Number.MAX_SAFE_INTEGER,
-        fragmentId: '',
-      }
-    })
-
-  // Airtableコンテンツは、ページによりソート方法が異なるので、headingの順序もそれに合わせる
-  const airtableSortType =
-    AIRTABLE_CONTENTS.filter((item: airtableContents) => {
-      return item.pagePath === slug
-    })[0]?.sort || 'NONE'
-
-  if (airtableSortType === 'REVERSE') {
-    airTableHeadings.reverse()
-  }
-  if (airtableSortType === 'CHARACTER') {
-    airTableHeadings.sort((x, y) => (x.name && y.name ? x.name.localeCompare(y.name, 'ja') : -1))
-  }
-  if (airtableSortType === 'AIRTABLE') {
-    airTableHeadings.sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
-  }
-
-  // Mdxコンテンツのheading
-  const mdxHeadings =
-    headings
-      ?.map((heading) => {
-        return {
-          value: heading?.value ?? '',
-          depth: heading?.depth ?? -1,
-          recordId: '',
-          fragmentId: '',
-        }
-      })
-      ?.filter(({ depth }) => depth <= INDEXED_DEPTH) ?? []
-
-  const headingList = [...airTableHeadings, ...mdxHeadings]
-
-  // コンポーネントのページのPropsをheadingListに追加する
-  if (fields?.hierarchy && /^products\/components/.test(fields?.hierarchy)) {
-    // ページ内の全ての<ComponentPropsTable name="{対象}" showTitle />から、name属性の値を取り出す
-    const regex = /<ComponentPropsTable(?:\s+[^>]*?)?(?:\s+name="([^"]+)")(?:\s+[^>]*?)?(?:\s+showTitle(?:={true})?)\s*\/?>/gms
-    const propsHeadingList = []
-    let match
-    while ((match = regex.exec(rawBody)) !== null) {
-      propsHeadingList.push(match[1])
-    }
-    const propsIndex = headingList.findIndex((item) => item.value === 'Props')
-    if (propsIndex > -1 && propsHeadingList.length > 0) {
-      propsHeadingList.forEach((heading, index) => {
-        headingList.splice(propsIndex + index + 1, 0, {
-          value: `${heading} props`,
-          depth: 3,
-          recordId: '',
-          fragmentId: `props-${heading}`,
-        })
-      })
-    }
-  }
 
   //
   // サイドバー、「前へ」「次へ」コンポーネントのための配列作成
@@ -322,13 +250,11 @@ const Article: FC<Props> = ({ data }) => {
             <Sidebar path={slug ?? ''} nestedSidebarItems={nestedSidebarItems} />
           </MainSidebar>
 
-          {headingList.length > 0 && (
-            <MainIndexNav>
-              <IndexNav headings={headingList} />
-            </MainIndexNav>
-          )}
+          <MainIndexNav>
+            <IndexNav target={articleRef} />
+          </MainIndexNav>
 
-          <MainArticle>
+          <MainArticle ref={articleRef}>
             <MainArticleTitle>
               <h1>{title}</h1>
             </MainArticleTitle>

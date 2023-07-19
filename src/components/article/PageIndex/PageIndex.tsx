@@ -74,7 +74,7 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
           const itemName = item.pathList[item.pathList.length - 2]
           return (
             <React.Fragment key={idx}>
-              <PageTitle as={heading}>
+              <PageTitle as={heading} id={`page-${idx}`}>
                 <Link to={item.slug}>{item.title}</Link>
               </PageTitle>
               {injectedDescriptions[itemName] ? (
