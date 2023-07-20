@@ -19,7 +19,7 @@ type Props = {
 export const FaqItem: FC<Props> = ({ data }) => {
   return (
     <Wrapper>
-      <QuestionText>{data.question}</QuestionText>
+      <QuestionHeading>{data.question}</QuestionHeading>
       <AnswerText>{data.answer}</AnswerText>
       <RoundedBoxLink path={data.path} label="もっと詳しく" title={data.linkLabel} />
     </Wrapper>
@@ -31,12 +31,12 @@ const Wrapper = styled.div`
   text-align: left;
 `
 
-const QuestionText = styled.h3`
+const QuestionHeading = styled.h3`
   margin: 0;
   font-size: ${CSS_FONT_SIZE.PX_28};
   line-height: 1.5;
   font-weight: normal;
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     font-size: ${CSS_FONT_SIZE.PX_24};
   }
 `

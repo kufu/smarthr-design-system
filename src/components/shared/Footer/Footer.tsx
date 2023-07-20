@@ -1,6 +1,7 @@
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import React, { FC } from 'react'
+import { Section } from 'smarthr-ui'
 import styled, { css } from 'styled-components'
 
 import navigationItem from '../../../data/navigationItem.json'
@@ -104,7 +105,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
     <Wrapper isArticlePage={isArticlePage}>
       <LayoutContainer isArticlePage={isArticlePage}>
         <Col1Container>
-          <StyledLogo>SmartHR Design System</StyledLogo>
+          <StyledLogoHeading>SmartHR Design System</StyledLogoHeading>
           <FootStaticLinks />
         </Col1Container>
 
@@ -112,10 +113,10 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
           {navigationItem.map(({ title, key, path }) => {
             const items = footerCategories[key as keyof Queries.FooterQuery]?.nodes ?? []
             return (
-              <div key={key} style={{ gridArea: key }}>
-                <StyledH3>
+              <Section key={key} style={{ gridArea: key }}>
+                <StyledH3Heading>
                   <StyledLink to={path}>{title}</StyledLink>
-                </StyledH3>
+                </StyledH3Heading>
                 {items.length > 0 && (
                   <StyledUl>
                     {items.map(({ fields, frontmatter }) => {
@@ -129,7 +130,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
                     })}
                   </StyledUl>
                 )}
-              </div>
+              </Section>
             )
           })}
         </Col2Container>
@@ -159,11 +160,11 @@ const Wrapper = styled.footer<{ isArticlePage: boolean }>`
           border: none;
         `}
 
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-inline: 48px;
   }
 
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     padding-inline: 16px;
   }
 
@@ -202,7 +203,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
           padding-top: 72px;
         `}
 
-  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
       'col1 . col2' auto
       'col1 . col2' auto
@@ -212,7 +213,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
     padding-top: 32px;
   }
 
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     grid-template:
       'col2' auto
       '.   ' 80px
@@ -223,7 +224,7 @@ const LayoutContainer = styled.div<{ isArticlePage: boolean }>`
   }
 `
 
-const StyledLogo = styled.h2`
+const StyledLogoHeading = styled.h2`
   margin-block: 9px 0;
   font-size: ${CSS_FONT_SIZE.PX_14};
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -249,7 +250,7 @@ const Col2Container = styled.div`
   align-items: start;
   gap: 40px;
 
-  @media (width <= ${CSS_SIZE.BREAKPOINT_PC_1}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template:
       'introduction' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
       / 1fr;
@@ -261,7 +262,7 @@ const CopyrightContainer = styled.div`
   grid-area: copy;
 `
 
-const StyledH3 = styled.h3`
+const StyledH3Heading = styled.h3`
   margin: 0;
   font-size: ${CSS_FONT_SIZE.PX_16};
   line-height: 2.26;
@@ -272,7 +273,7 @@ const StyledH3 = styled.h3`
     margin-top: -8px;
   }
 
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-bottom: 0;
 
     & + & {
@@ -287,7 +288,7 @@ const StyledUl = styled.ul`
   list-style: none;
   color: ${CSS_COLOR.TEXT_BLACK};
 
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: none;
   }
 
@@ -307,7 +308,7 @@ const StyledLink = styled(Link)`
 const StyledCopyright = styled.p`
   margin-top: 64px;
 
-  @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 40px;
   }
 

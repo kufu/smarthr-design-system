@@ -2,11 +2,9 @@ import path from 'path'
 
 import { Actions, GatsbyNode } from 'gatsby'
 import { createFilePath } from 'gatsby-source-filesystem'
-import packageInfo from 'smarthr-ui/package.json'
 
 import { AIRTABLE_CONTENTS } from '../constants/airtable'
 import { fetchPatternCode } from '../lib/fetchPatternCode'
-import { fetchStoryData } from '../lib/fetchStoryData'
 
 import type { airtableContents } from '../constants/airtable'
 
@@ -36,17 +34,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ actions, node, 
     })
 
     const frontmatter = node.frontmatter as typeof node & {
-      storyName: string
-      storyDirName?: string
       patternName: string
-    }
-    if (frontmatter && frontmatter.storyName) {
-      const storyData = await fetchStoryData(frontmatter.storyName, packageInfo.version, frontmatter.storyDirName)
-      createNodeField({
-        name: 'storyData',
-        node,
-        value: storyData,
-      })
     }
     if (frontmatter && frontmatter.patternName) {
       const patternCode = await fetchPatternCode(frontmatter.patternName)
@@ -75,9 +63,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
               hierarchy
             }
             frontmatter {
-              storyName
               patternName
-              storyDirName
             }
           }
         }

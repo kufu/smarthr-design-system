@@ -5,14 +5,26 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   :root {
     --header-height: 112px;
-    @media (width <= ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       --header-height: 80px;
     }
   }
 
+  @font-face {
+    font-family: SDSYuGothic;
+    font-weight: 400;
+    src: local('Yu Gothic Medium');
+  }
+
+  @font-face {
+    font-family: SDSYuGothic;
+    font-weight: 700;
+    src: local('Yu Gothic Bold');
+  }
+
   body {
     margin: 0;
-    font-family: Yu Gothic Medium, 游ゴシック Medium, YuGothic, 游ゴシック体, sans-serif;
+    font-family: SDSYuGothic, Yu Gothic, YuGothic, sans-serif;
     line-height: ${defaultLeading.RELAXED};
     color: ${defaultColor.TEXT_BLACK};
     overflow-wrap: break-word;

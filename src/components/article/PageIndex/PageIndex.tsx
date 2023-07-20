@@ -74,9 +74,9 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
           const itemName = item.pathList[item.pathList.length - 2]
           return (
             <React.Fragment key={idx}>
-              <PageTitle as={heading}>
+              <PageTitleHeading as={heading} id={`page-${idx}`}>
                 <Link to={item.slug}>{item.title}</Link>
-              </PageTitle>
+              </PageTitleHeading>
               {injectedDescriptions[itemName] ? (
                 <PageDescription dangerouslySetInnerHTML={{ __html: injectedDescriptions[itemName] }} />
               ) : (
@@ -104,7 +104,7 @@ const PageList = styled.div`
   }
 `
 
-const PageTitle = styled.h2`
+const PageTitleHeading = styled.h2`
   font-size: ${CSS_FONT_SIZE.PX_20};
   font-weight: bold;
   a {
