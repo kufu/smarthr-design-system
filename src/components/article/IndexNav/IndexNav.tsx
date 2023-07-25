@@ -14,7 +14,7 @@ type HeadingItem = {
 }
 
 export const IndexNav: FC<Props> = ({ target }) => {
-  const indexNavRef = useRef<HTMLUListElement>()
+  const indexNavRef = useRef<HTMLUListElement>(null)
   const [nestedHeadings, setNestedHeadings] = useState<HeadingItem[]>([])
   const [currentHeading, setCurrentHeading] = useState<string>('')
 
