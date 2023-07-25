@@ -44,12 +44,10 @@ export const IndexNav: FC<Props> = ({ target }) => {
         if (!_nestedHeadings[_nestedHeadings.length - 1])
           _nestedHeadings.push({ value: '', children: [], depth: 0, fragmentId: '' })
 
-        if (!idAttr?.startsWith('rec'))
-          //Airtableコンテンツの場合はh3は除外
-          _nestedHeadings[_nestedHeadings.length - 1].children.push({
-            value: element.textContent || '',
-            fragmentId: element.getAttribute('id') || `h3-c${index}`,
-          })
+        _nestedHeadings[_nestedHeadings.length - 1].children.push({
+          value: element.textContent || '',
+          fragmentId: element.getAttribute('id') || `h3-c${index}`,
+        })
       }
     })
     setNestedHeadings(_nestedHeadings)
