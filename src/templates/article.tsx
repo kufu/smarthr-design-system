@@ -68,6 +68,7 @@ export const query = graphql`
       frontmatter {
         title
         description
+        ignoreH3Nav
       }
       fields {
         category
@@ -129,6 +130,7 @@ const Article: FC<Props> = ({ data }) => {
   const slug = fields?.slug || ''
 
   const title = frontmatter?.title || ''
+  const ignoreH3Nav = frontmatter?.ignoreH3Nav || false
 
   //
   // サイドバー、「前へ」「次へ」コンポーネントのための配列作成
@@ -252,7 +254,7 @@ const Article: FC<Props> = ({ data }) => {
           </MainSidebar>
 
           <MainIndexNav>
-            <IndexNav target={articleRef} />
+            <IndexNav target={articleRef} ignoreH3Nav={ignoreH3Nav} />
           </MainIndexNav>
 
           <MainArticle>

@@ -5,7 +5,7 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import { Nav as NavComponent } from 'smarthr-ui'
 import styled from 'styled-components'
 
-type Props = { target: React.RefObject<HTMLElement> }
+type Props = { target: React.RefObject<HTMLElement>; ignoreH3Nav?: boolean }
 type HeadingItem = {
   value: string
   children: Array<{ value: string; fragmentId?: string }>
@@ -13,7 +13,7 @@ type HeadingItem = {
   fragmentId: string
 }
 
-export const IndexNav: FC<Props> = ({ target }) => {
+export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
   const indexNavRef = useRef<HTMLUListElement>(null)
   const [nestedHeadings, setNestedHeadings] = useState<HeadingItem[]>([])
   const [currentHeading, setCurrentHeading] = useState<string>('')
@@ -36,7 +36,7 @@ export const IndexNav: FC<Props> = ({ target }) => {
         })
       }
 
-      if (element.tagName === 'H3') {
+      if (element.tagName === 'H3' && !ignoreH3Nav) {
         // id属性がない場合は付与する
         if (idAttr === null) element.setAttribute('id', `h3-c${index}`)
 
@@ -51,14 +51,16 @@ export const IndexNav: FC<Props> = ({ target }) => {
       }
     })
     setNestedHeadings(_nestedHeadings)
-  }, [target])
+  }, [target, ignoreH3Nav])
 
   useEffect(() => {
     // スクロール時に現在地を示すための処理
     const handleScroll = throttle(() => {
       const currentRef = target.current
       if (!currentRef) return
-      const headingList = Array.from(currentRef.querySelectorAll('h2, h3'))
+      const headingList = Array.from(currentRef.querySelectorAll('h2, h3')).filter((element) => {
+        return !(element.tagName === 'H3' && ignoreH3Nav)
+      })
       const _currentHeading = headingList.find((element, index) => {
         const elementTop = element.getBoundingClientRect().top
         const nextItemTop = headingList[index + 1]?.getBoundingClientRect().top
@@ -75,7 +77,7 @@ export const IndexNav: FC<Props> = ({ target }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [target])
+  }, [target, ignoreH3Nav])
 
   useEffect(() => {
     // 現在地が移動した際、その見出しが表示範囲内に入るようにスクロールする処理
