@@ -17,7 +17,7 @@ const config: GatsbyConfig = {
     title: 'SmartHR Design System',
     description: 'SmartHR Design Systemは、だれでも・効率よく・迷わずにSmartHRらしい表現をするためのデザインシステムです。',
     siteUrl: 'https://smarthr.design',
-    author: '@smarthr',
+    author: '@SHRDesignSystem',
     ogimage: '/images/ogp.png',
   },
   graphqlTypegen: true,
@@ -35,65 +35,6 @@ const config: GatsbyConfig = {
     ...(process.env.IS_TYPE_GEN ? ['gatsby-plugin-typegen'] : []),
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'SmartHR Design System',
-        short_name: 'SmartHR DS',
-        start_url: '/',
-        background_color: '#FFFFFF',
-        theme_color: '#00C4CC',
-        icons: [
-          {
-            src: '/icons/icon-48x48.png',
-            sizes: '48x48',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-72x72.png',
-            sizes: '72x72',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-96x96.png',
-            sizes: '96x96',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-144x144.png',
-            sizes: '144x144',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-384x384.png',
-            sizes: '384x384',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/maskable-icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
-        ],
-        include_favicon: false,
-      },
-    },
     {
       resolve: 'gatsby-plugin-algolia',
       options: algoliaConfig,
