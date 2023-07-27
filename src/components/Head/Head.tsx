@@ -57,7 +57,7 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
         return <meta key={index} name={item.name} content={item.content} />
       })}
       <link rel="icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
       <link rel="manifest" href="/webmanifest.manifest" />
       <meta name="apple-mobile-web-app-title" content={siteMetadata?.title || ''} />
       <meta name="application-name" content={siteMetadata?.title || ''} />
