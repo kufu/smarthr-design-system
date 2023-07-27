@@ -1,10 +1,11 @@
 import { CSS_COLOR } from '@Constants/style'
+import { throttle } from '@Lib/throttle'
 import { Link } from 'gatsby'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { Nav as NavComponent } from 'smarthr-ui'
 import styled from 'styled-components'
 
-type Props = { target: React.RefObject<HTMLElement> }
+type Props = { target: React.RefObject<HTMLElement>; ignoreH3Nav?: boolean }
 type HeadingItem = {
   value: string
   children: Array<{ value: string; fragmentId?: string }>
@@ -12,8 +13,10 @@ type HeadingItem = {
   fragmentId: string
 }
 
-export const IndexNav: FC<Props> = ({ target }) => {
+export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
+  const indexNavRef = useRef<HTMLUListElement>(null)
   const [nestedHeadings, setNestedHeadings] = useState<HeadingItem[]>([])
+  const [currentHeading, setCurrentHeading] = useState<string>('')
 
   //クライアントでのレンダリング時にページ内インデックスのマークアップを作成する
   useEffect(() => {
@@ -33,7 +36,7 @@ export const IndexNav: FC<Props> = ({ target }) => {
         })
       }
 
-      if (element.tagName === 'H3') {
+      if (element.tagName === 'H3' && !ignoreH3Nav) {
         // id属性がない場合は付与する
         if (idAttr === null) element.setAttribute('id', `h3-c${index}`)
 
@@ -41,27 +44,69 @@ export const IndexNav: FC<Props> = ({ target }) => {
         if (!_nestedHeadings[_nestedHeadings.length - 1])
           _nestedHeadings.push({ value: '', children: [], depth: 0, fragmentId: '' })
 
-        if (!idAttr?.startsWith('rec'))
-          //Airtableコンテンツの場合はh3は除外
-          _nestedHeadings[_nestedHeadings.length - 1].children.push({
-            value: element.textContent || '',
-            fragmentId: element.getAttribute('id') || `h3-c${index}`,
-          })
+        _nestedHeadings[_nestedHeadings.length - 1].children.push({
+          value: element.textContent || '',
+          fragmentId: element.getAttribute('id') || `h3-c${index}`,
+        })
       }
     })
     setNestedHeadings(_nestedHeadings)
-  }, [target])
+  }, [target, ignoreH3Nav])
+
+  useEffect(() => {
+    // スクロール時に現在地を示すための処理
+    const handleScroll = throttle(() => {
+      const currentRef = target.current
+      if (!currentRef) return
+      const headingList = Array.from(currentRef.querySelectorAll('h2, h3')).filter((element) => {
+        return !(element.tagName === 'H3' && ignoreH3Nav)
+      })
+      const _currentHeading = headingList.find((element, index) => {
+        const elementTop = element.getBoundingClientRect().top
+        const nextItemTop = headingList[index + 1]?.getBoundingClientRect().top
+        // 200pxより上にあり、かつ次の見出しがが200pxより下にあるものを現在地とする
+        //（最後の見出しの場合は、200pxより上にあれば現在地とする）
+        return elementTop < 200 && (nextItemTop === undefined || nextItemTop > 200)
+      })
+      setCurrentHeading(_currentHeading?.getAttribute('id') || '')
+    }, 200)
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [target, ignoreH3Nav])
+
+  useEffect(() => {
+    // 現在地が移動した際、その見出しが表示範囲内に入るようにスクロールする処理
+    const currentItem = indexNavRef.current?.querySelector(`a[aria-current="true"]`)
+    const navElement = indexNavRef.current?.parentElement // Navにrefを渡せないため、ulの親要素として取得する
+    if (!(currentItem instanceof HTMLElement) || !navElement) return
+
+    // 表示されている範囲の上端・下端の取得
+    const navAreaTop = navElement.scrollTop
+    const navAreaBottom = navAreaTop + navElement.clientHeight
+    // 表示範囲に入っていれば何もしない
+    if (currentItem.offsetTop > navAreaTop && currentItem.offsetTop < navAreaBottom) return
+
+    // 現在地が表示範囲の中央に来るようにスクロールする
+    navElement.scrollTop = currentItem.offsetTop - navElement.clientHeight / 2
+  }, [currentHeading, indexNavRef])
 
   return (
     <Nav>
       {nestedHeadings.length > 0 && (
-        <ul>
+        <ul ref={indexNavRef}>
           {nestedHeadings.map((depth2Item) => {
             return (
               <li key={depth2Item.fragmentId}>
                 {depth2Item.value !== '' && (
                   <Depth2Item>
-                    <Link to={`#${depth2Item.fragmentId}`}>{depth2Item.value}</Link>
+                    <Link to={`#${depth2Item.fragmentId}`} aria-current={currentHeading === depth2Item.fragmentId}>
+                      {depth2Item.value}
+                    </Link>
                   </Depth2Item>
                 )}
                 {depth2Item.children.length > 0 && (
@@ -70,7 +115,9 @@ export const IndexNav: FC<Props> = ({ target }) => {
                       return (
                         <li key={depth3Item.fragmentId}>
                           <Depth3Item>
-                            <Link to={`#${depth3Item.fragmentId}`}>{depth3Item.value}</Link>
+                            <Link to={`#${depth3Item.fragmentId}`} aria-current={currentHeading === depth3Item.fragmentId}>
+                              {depth3Item.value}
+                            </Link>
                           </Depth3Item>
                         </li>
                       )
@@ -108,7 +155,6 @@ const Nav = styled(NavComponent)`
   }
 
   li {
-    padding: 8px;
     > ul {
       margin: 0 0 0 16px;
       padding: 0;
@@ -118,6 +164,7 @@ const Nav = styled(NavComponent)`
 
   a {
     display: block;
+    padding: 8px;
     text-decoration: none;
     color: ${CSS_COLOR.TEXT_GREY};
     &:hover {
@@ -131,8 +178,16 @@ const Nav = styled(NavComponent)`
 
 const Depth2Item = styled.div`
   display: block;
+  > a[aria-current='true'],
+  a[aria-current='true']:hover {
+    background-color: ${CSS_COLOR.DIVIDER};
+  }
 `
 
 const Depth3Item = styled.div`
   display: block;
+  > a[aria-current='true'],
+  a[aria-current='true']:hover {
+    background-color: ${CSS_COLOR.DIVIDER};
+  }
 `
