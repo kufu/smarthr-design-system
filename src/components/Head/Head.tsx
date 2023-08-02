@@ -1,4 +1,5 @@
 import { CLOUDINARY_CLOUD_NAME } from '@Constants/application'
+import { useLocation } from '@reach/router'
 import { graphql, useStaticQuery } from 'gatsby'
 import React, { FC } from 'react'
 
@@ -30,6 +31,8 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
   const data = useStaticQuery<Queries.HeadQuery>(query)
   const siteMetadata = data.site?.siteMetadata
 
+  const location = useLocation()
+
   const pageTitle = title ? `${title} | ${siteMetadata?.title}` : siteMetadata?.title
   const metaDescription = description || siteMetadata?.description
   const ogImagePath = `${siteMetadata?.siteUrl}${siteMetadata?.ogimage}`
@@ -49,15 +52,20 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
       <meta property="og:description" content={metaDescription ?? ''} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={ogCloudinaryUrl ?? ogImagePath} />
+      <meta property="og:locale" content="ja_JP" />
+      <meta property="og:url" content={`${siteMetadata?.siteUrl}${location.pathname}`} />
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:creator" content={siteMetadata?.author ?? ''} />
+      <meta name="twitter:site" content={siteMetadata?.author ?? ''} />
       <meta name="twitter:title" content={pageTitle ?? ''} />
       <meta name="twitter:description" content={metaDescription ?? ''} />
       {meta.map((item, index) => {
         return <meta key={index} name={item.name} content={item.content} />
       })}
-      <link rel="icon" href="/favicon_48x48.png" type="image/png" />
-      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      <link rel="icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+      <link rel="manifest" href="/manifest.webmanifest" />
+      <meta name="apple-mobile-web-app-title" content={siteMetadata?.title || ''} />
+      <meta name="application-name" content={siteMetadata?.title || ''} />
     </>
   )
 }
