@@ -54,6 +54,7 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
       <meta property="og:image" content={ogCloudinaryUrl ?? ogImagePath} />
       <meta property="og:locale" content="ja_JP" />
       <meta property="og:url" content={`${siteMetadata?.siteUrl}${location.pathname}`} />
+      <meta property="og:site_name" content={siteMetadata?.title || ''} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content={siteMetadata?.author ?? ''} />
       <meta name="twitter:title" content={pageTitle ?? ''} />
