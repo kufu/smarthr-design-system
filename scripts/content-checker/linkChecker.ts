@@ -3,6 +3,17 @@ import path from 'path'
 
 import { glob } from 'glob'
 
+const args = process.argv.slice(2)
+const targetFiles = args
+  .filter((arg) => {
+    return arg !== '--fix'
+  })
+  .map((filePath) => {
+    return filePath.startsWith('/') ? filePath : path.join(process.cwd(), filePath)
+  })
+
+const isAutoFixEnabled = args.includes('--fix')
+
 const CONTENT_PATH = path.join(__dirname, '../../content/articles/**/*.mdx')
 const IMAGE_PATH = path.join(__dirname, '../../content/articles/**/*.+(png|jpg|jpeg|gif)')
 const DOWNLOAD_PATH = path.join(__dirname, '../../static/**/*')
@@ -23,8 +34,21 @@ const collectExistLinks = async () => {
     // ファイル自体のビルド後のパスを配列に入れておく
     existPathList.push(pagePath)
 
-    // ファイル内のリンク表記を探す
     const content = await fs.readFile(file, 'utf8')
+
+    // 見出しを探して、アンカーリンク付きのパスも配列に入れておく
+    const headingList = content.matchAll(/^(#{2,5})\s.*$/gm)
+    const headingCount: { [key in number]: number } = { 2: 0, 3: 0, 4: 0, 5: 0 }
+    for (const heading of headingList) {
+      const level = heading[1].length
+      existPathList.push(`${pagePath}#h${level}-${headingCount[level]}`)
+      headingCount[level] += 1
+    }
+
+    // 対象のファイルでなければスキップ
+    if (targetFiles.length > 0 && !targetFiles.includes(file)) continue
+
+    // ファイル内のリンク表記を探す
     content.split('\n').forEach((line, index) => {
       const sdsLinks = line.matchAll(/!?\[.*?\]\(([^[|*<>]+)\)/g)
       for (const link of sdsLinks) {
@@ -37,15 +61,6 @@ const collectExistLinks = async () => {
         })
       }
     })
-
-    // 見出しを探して、アンカーリンク付きのパスも配列に入れておく
-    const headingList = content.matchAll(/^(#{2,5})\s.*$/gm)
-    const headingCount: { [key in number]: number } = { 2: 0, 3: 0, 4: 0, 5: 0 }
-    for (const heading of headingList) {
-      const level = heading[1].length
-      existPathList.push(`${pagePath}#h${level}-${headingCount[level]}`)
-      headingCount[level] += 1
-    }
   }
 
   // 画像ファイル
@@ -108,6 +123,22 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
   return list
 }
 
+const autoFixTrailingSlash = async (item: LinkItem) => {
+  const content = await fs.readFile(item.filePath, 'utf8')
+  const output: string[] = []
+  content.split('\n').forEach((line, index) => {
+    if (index + 1 === item.lineNo) {
+      // リンクが存在する行に達したら、末尾にスラッシュを追加したURLに置き換える
+      const pagePath = item.link.replace(/#.*?$/, '')
+      output.push(line.replace(pagePath, pagePath.replace(/\/?$/, '/')))
+    } else {
+      // 対象の行以外はそのまま出力
+      output.push(line)
+    }
+  })
+  await fs.writeFile(item.filePath, output.join('\n'))
+}
+
 ;(async () => {
   const { existPathList, linkList } = await collectExistLinks().catch((err) => {
     console.error(err)
@@ -117,20 +148,36 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
     console.error(err)
     process.exit(1)
   })
-  if (missingLinkList.length > 0) {
-    missingLinkList.forEach((item) => {
-      let errorType = `Missing ${item.type === 'image' ? 'image source' : 'link'}`
-      const normalizedLink = path.normalize(`${item.pagePath}/${item.link}`).replace(/^.*\/content\/articles/, '')
-      if (
-        existPathList.includes(`${item.link.replace(/https:\/\/smarthr.design/, '')}/`) ||
-        existPathList.includes(`${normalizedLink}/`)
-      ) {
+  let fixedCount = 0
+  for (const item of missingLinkList) {
+    let errorType = `Missing ${item.type === 'image' ? 'image source' : 'link'}`
+    const normalizedLink = path.normalize(`${item.pagePath}/${item.link}`).replace(/^.*\/content\/articles/, '')
+    const siteRootLink = item.link.replace(/https:\/\/smarthr.design/, '')
+    if (
+      existPathList.includes(`${siteRootLink}/`) ||
+      existPathList.includes(siteRootLink.replace('#', '/#')) ||
+      existPathList.includes(`${normalizedLink}/`)
+    ) {
+      if (isAutoFixEnabled) {
+        try {
+          await autoFixTrailingSlash(item)
+          errorType = `No trailing slash - fixed automatically`
+          fixedCount += 1
+        } catch (err) {
+          errorType = `No trailing slash - could not be automatically fixed`
+        }
+      } else {
         errorType = `No trailing slash`
       }
-      console.error(`${errorType}: ${item.link} in /${path.relative(`${__dirname}/../`, item.filePath)} at L:${item.lineNo}`)
-    })
-    console.log(`Found ${missingLinkList.length} missing links. Link check finished.`)
-    process.exit(1)
+    }
+    console.error(`${errorType}: ${item.link} in /${path.relative(`${__dirname}/../`, item.filePath)} at L:${item.lineNo}`)
   }
-  console.log('✨ No missing link was found. Link check finished.')
+
+  const remainingCount = missingLinkList.length - fixedCount
+  if (remainingCount === 0) {
+    console.log('✨ No missing link was found. Link check finished.')
+    process.exit(0)
+  }
+  console.log(`Found ${remainingCount} missing links. Link check finished.`)
+  process.exit(0)
 })()
