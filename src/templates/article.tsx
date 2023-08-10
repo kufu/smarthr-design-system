@@ -1,5 +1,6 @@
 import { Head as HeadComponent } from '@Components/Head'
 import { CodeBlock } from '@Components/article/CodeBlock'
+import { CustomLink } from '@Components/article/CustomLink'
 import { FragmentTitle } from '@Components/article/FragmentTitle/FragmentTitle'
 import { IndexNav } from '@Components/article/IndexNav/IndexNav'
 import { Sidebar } from '@Components/article/Sidebar/Sidebar'
@@ -50,6 +51,7 @@ const components: MDXProviderComponents = {
     </FragmentTitle>
   ),
   table: ({ children }) => <TableWrapper mdTable={true}>{children}</TableWrapper>,
+  a: ({ children, href }) => <CustomLink href={href}>{children}</CustomLink>,
 }
 
 const shortcodes = {
