@@ -11,7 +11,7 @@ type Props = {
 export const CustomLink: FC<Props> = ({ children, href }) => {
   const isExternal = href.match(/^https?:\/\/(?!smarthr\.design).*?$/) !== null
   return isExternal ? (
-    <StyledLink to={href} target="_blank">
+    <StyledLink to={href} target="_blank" rel="noreferrer">
       {children}
       <FaExternalLinkAltIcon />
     </StyledLink>
