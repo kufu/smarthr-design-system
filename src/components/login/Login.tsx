@@ -69,8 +69,7 @@ const login: Login = async (password, clearInput, setErrMessage, updateLoginStat
       'Cache-Control': 'no-cache',
       Pragma: 'no-cache',
       'Upgrade-Insecure-Requests': '1',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-Dest': 'document',
+      'Accept-Encoding': 'gzip, deflate, br, zstd',
     },
     credentials: 'omit',
   })
