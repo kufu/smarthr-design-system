@@ -4,6 +4,9 @@ description: ''
 order: 4
 ---
 
+import { Grid } from '@Components/shared/Grid/Grid'
+import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
+
 **SmartHR Plus パートナー(アプリ事業者)**のみなさまに向けて、利用方法を掲載したページです。  
 
 提供アプリに関するガイドラインを掲載しますので、かならずご確認ください。
@@ -18,6 +21,27 @@ order: 4
 https://smarthr.design/products
 
 
+### プロダクトのUI例
+
+  <ImgWithDesc description="SmartHR UIを利用できます。配色もそのままよいです。">
+
+  ![](../images/app_ui_ok1.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="SmartHR UIを利用できます。配色を変更してもよいです。">
+
+  ![](../images/app_ui_ok2.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="SmartHR UIの利用を推奨しますが、利用しなくてもよいです。">
+
+  ![](../images/app_ui_ok2-1.png)
+
+  </ImgWithDesc>
+
+
 ## 2. アプリ(プロダクト)以外
 
 アプリ(プロダクト)においてはシームレスな体験を提供するため制限がありませんが、それ以外の要素については、以下のガイドラインを設定しています。  
@@ -25,10 +49,8 @@ https://smarthr.design/products
 
 ### 対象範囲
 
-提供アプリ名義での、アプリ本体(プロダクト)以外のすべての要素
-
-#### 対象となる要素の例
-
+提供アプリ名義での、アプリ本体(プロダクト)以外のすべての要素  
+(例)
 - アプリのロゴ
 - アプリのサービスサイトやLP
 - 資料
@@ -39,28 +61,81 @@ https://smarthr.design/products
 
 アプリ(プロダクト)以外では、以下のコンテンツ・アセットが利用できます。
 
-#### SmartHRロゴ
+#### 1. SmartHRロゴ
+
 「株式会社SmartHR」または「サービスSmartHR」の説明として、SmartHRロゴを利用できます。
 [ロゴの利用ガイドライン](https://smarthr.design/basics/logos/)を守ってご利用ください。  
 
 
-#### 機能・仕様をあらわすアイコン
+#### 2. 機能・仕様をあらわすアイコン
+
 SmartHRでは、機能・仕様に関するアイコンをオリジナルで作成し、サービス全体で利用しています。アプリ・アプリ以外ともに、同じ特定の意味を示すアイコンとして利用できます。  
 [アイコンの利用ガイドライン](https://smarthr.design/basics/icons/#h3-0)を守ってご利用ください。  
 
-#### 端末モック
+#### 3. 端末モック
+
 スマートフォン・パソコンのモック画像を利用できます。  
 利用ガイドラインを守ってご利用ください。  
 https://smarthr.design/communication/mock/
 
 ### 利用できないコンテンツ
+
 アプリ(プロダクト)以外で、以下のコンテンツ・アセットは利用できません。
 - [イラストレーション](/basics/illustration/)
 - [写真・動画](/communication/photography/)
 - [スライド・資料](/communication/slides/)
 - [画面キャプチャ](/communication/capture/)
 
-### 禁止事項
-アプリ(プロダクト)以外では、**Primary Brand Colorをコンテンツのメインカラーとして利用しないでください。**  
-[基本要素 色](https://smarthr.design/basics/colors/)は、SmartHRのオリジナルの組み合わせです。
-そのため、SmartHRのPrimary Brand Colorである「[SmartHR Blue](https://smarthr.design/basics/colors/#h3-1)」とその近似色をメインカラーとして利用することは避けてください。
+### 注意事項(色について)
+
+アプリ(プロダクト)以外では、**SmartHRのPrimary Brand Color「[SmartHR Blue](https://smarthr.design/basics/colors/#h3-1)」とその近似色をメインカラーとして利用しないでください。**  
+これは、提供するアプリ・サービスがSmartHRブランドと不要に混同されることなく、適切に認知され、お互いのブランドと権利を守るためです。
+
+
+#### ロゴのOK・NG例
+
+<Grid>
+  <ImgWithDesc description="OK例：メインカラーにはSmartHR Blueを利用しない">
+
+  ![](../images/app_logo_ok.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="NG例：メインカラーにSmartHR Blueを利用する">
+
+  ![](../images/app_logo_ng.png)
+
+  </ImgWithDesc>
+</Grid>
+
+#### LPやチラシなどのOK・NG例
+
+<Grid>
+  <ImgWithDesc description="OK例：提供アプリのブランドカラーをメインとした配色">
+
+  ![](../images/app_lp_ok2.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="OK例：提供アプリのブランドカラーをメインとし、部分的にSmartHR Blueを利用する">
+
+  ![](../images/app_lp_ok1.png)
+
+  </ImgWithDesc>
+
+</Grid>
+
+
+<Grid>
+  <ImgWithDesc description="NG例：SmartHR Blueをメインとした配色">
+
+  ![](../images/app_lp_ng1.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="SmartHR Blueの近似値をメインとした配色">
+
+  ![](../images/app_lp_ng2.png)
+
+  </ImgWithDesc>
+</Grid>
