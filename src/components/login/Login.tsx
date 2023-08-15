@@ -53,7 +53,7 @@ type Login = (
   updateLoginStatus: (newStatus: LoginStatusKey) => void,
 ) => Promise<void>
 const login: Login = async (password, clearInput, setErrMessage, updateLoginStatus) => {
-  const formDataString = `password=${password}`
+  const formDataString = `form-name=form+1&password=${password}`
 
   clearInput()
   setErrMessage('')
