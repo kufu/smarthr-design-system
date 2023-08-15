@@ -65,6 +65,7 @@ const login: Login = async (password, clearInput, setErrMessage, updateLoginStat
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
     },
+    credentials: 'omit',
   })
 
   // ログインが成功し、Cookieが発行され、リダイレクトされる場合、statusは0になる。
