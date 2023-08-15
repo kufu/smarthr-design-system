@@ -66,7 +66,11 @@ const login: Login = async (password, clearInput, setErrMessage, updateLoginStat
       accept:
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
       'content-type': 'application/x-www-form-urlencoded',
+      'Cache-Control': 'no-cache',
+      Pragma: 'no-cache',
       'Upgrade-Insecure-Requests': '1',
+      'Sec-Fetch-Mode': 'navigate',
+      'Sec-Fetch-Dest': 'document',
     },
     credentials: 'omit',
   })
