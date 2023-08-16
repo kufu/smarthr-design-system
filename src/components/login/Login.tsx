@@ -13,15 +13,32 @@ export const LoginPage: FC = () => {
   return (
     <Wrapper>
       <h1>従業員ログイン</h1>
-      <p>ログインすると限定コンテンツにアクセスできます。パスワードの確認方法は2つあります。</p>
-      <ul>
-        <li>
-          <p>SmartHR社の1Passwordを利用する</p>
-        </li>
-        <li>
-          <p>SmartHR社のSlackに「SDSパスワード」と入力する（自動レスポンスがあります）</p>
-        </li>
-      </ul>
+      <MaintenanceMessage>
+        <p>
+          現在ログインできません。システム復旧中です。
+          <br />
+          限定コンテンツを利用したい場合、次の2つの方法で利用できます。（社内限定）
+        </p>
+        <ul>
+          <li>
+            <p>社内Slack`#design_system_相談`で利用したい限定コンテンツを伝える</p>
+          </li>
+          <li>
+            <p>
+              GitHubリポジトリを確認する（
+              <a href="https://github.com/kufu/smarthr-design-system-private" target="_blank" rel="noreferrer">
+                https://github.com/kufu/smarthr-design-system-private
+              </a>
+              ）
+            </p>
+          </li>
+        </ul>
+        <p>
+          そのほか相談、問い合わせ先
+          <br />
+          社内Slack`#design_system_相談`
+        </p>
+      </MaintenanceMessage>
       <div className="inputs">
         <Input
           type="password"
@@ -30,12 +47,14 @@ export const LoginPage: FC = () => {
           onChange={(e) => setPassword(e.currentTarget.value)}
           value={password}
           name="password"
+          disabled={true}
         />
 
         <Button
           variant="primary"
           wide={true}
           onClick={() => login(password, () => setPassword(''), setErrMessage, updateLoginStatus)}
+          disabled={true}
         >
           ログイン
         </Button>
@@ -133,5 +152,12 @@ const Wrapper = styled.div`
     margin: 0;
     color: ${CSS_COLOR.TEXT_BLACK};
     line-height: 1.6;
+  }
+`
+
+const MaintenanceMessage = styled.div`
+  color: ${CSS_COLOR.DANGER};
+  & p {
+    color: ${CSS_COLOR.DANGER};
   }
 `
