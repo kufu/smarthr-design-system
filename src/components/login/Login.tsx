@@ -1,4 +1,4 @@
-import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 import React, { FC, useContext, useState } from 'react'
 import { Button, FaLockIcon, Input } from 'smarthr-ui'
@@ -21,7 +21,9 @@ export const LoginPage: FC = () => {
         </p>
         <ul>
           <li>
-            <p>社内Slack`#design_system_相談`で利用したい限定コンテンツを伝える</p>
+            <p>
+              社内Slack<code>#design_system_相談</code>で利用したい限定コンテンツを伝える
+            </p>
           </li>
           <li>
             <p>
@@ -36,7 +38,7 @@ export const LoginPage: FC = () => {
         <p>
           そのほか相談、問い合わせ先
           <br />
-          社内Slack`#design_system_相談`
+          社内Slack<code>#design_system_相談</code>
         </p>
       </MaintenanceMessage>
       <div className="inputs">
@@ -159,5 +161,13 @@ const MaintenanceMessage = styled.div`
   color: ${CSS_COLOR.DANGER};
   & p {
     color: ${CSS_COLOR.DANGER};
+    & code {
+      padding: 0.125rem 0.25rem;
+      border-radius: 4px;
+      background-color: ${CSS_COLOR.LIGHT_GREY_2};
+      font-size: ${CSS_FONT_SIZE.PX_14};
+      vertical-align: 0.05rem;
+      margin: 0.125rem;
+    }
   }
 `
