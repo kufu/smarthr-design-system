@@ -13,34 +13,29 @@ export const LoginPage: FC = () => {
   return (
     <Wrapper>
       <h1>従業員ログイン</h1>
-      <MaintenanceMessage>
-        <p>
-          現在ログインできません。システム復旧中です。
-          <br />
-          限定コンテンツを利用したい場合、次の2つの方法で利用できます。（社内限定）
-        </p>
-        <ul>
-          <li>
-            <p>
-              社内Slack<code>#design_system_相談</code>で利用したい限定コンテンツを伝える
-            </p>
-          </li>
-          <li>
-            <p>
-              GitHubリポジトリを確認する（
-              <a href="https://github.com/kufu/smarthr-design-system-private" target="_blank" rel="noreferrer">
-                https://github.com/kufu/smarthr-design-system-private
-              </a>
-              ）
-            </p>
-          </li>
-        </ul>
-        <p>
-          そのほか相談、問い合わせ先
-          <br />
-          社内Slack<code>#design_system_相談</code>
-        </p>
-      </MaintenanceMessage>
+      <MaintenanceText>現在ログインできません。システム復旧中です。</MaintenanceText>
+      <p>限定コンテンツを利用したい場合、次の2つの方法で利用できます。（社内限定）</p>
+      <ul>
+        <li>
+          <p>
+            社内Slack<code>#design_system_相談</code>で利用したい限定コンテンツを伝える
+          </p>
+        </li>
+        <li>
+          <p>
+            GitHubリポジトリを確認する（
+            <a href="https://github.com/kufu/smarthr-design-system-private" target="_blank" rel="noreferrer">
+              https://github.com/kufu/smarthr-design-system-private
+            </a>
+            ）
+          </p>
+        </li>
+      </ul>
+      <p>
+        そのほか相談、問い合わせ先
+        <br />
+        社内Slack<code>#design_system_相談</code>
+      </p>
       <div className="inputs">
         <Input
           type="password"
@@ -116,6 +111,8 @@ const login: Login = async (password, clearInput, setErrMessage, updateLoginStat
   }
 }
 
+const MaintenanceText = styled.p``
+
 const Wrapper = styled.div`
   box-sizing: border-box;
   max-width: 480px;
@@ -149,18 +146,15 @@ const Wrapper = styled.div`
     text-align: center;
   }
 
+  & ${MaintenanceText} {
+    color: ${CSS_COLOR.DANGER};
+  }
+
   & p {
     padding: 0;
     margin: 0;
     color: ${CSS_COLOR.TEXT_BLACK};
     line-height: 1.6;
-  }
-`
-
-const MaintenanceMessage = styled.div`
-  color: ${CSS_COLOR.DANGER};
-  & p {
-    color: ${CSS_COLOR.DANGER};
     & code {
       padding: 0.125rem 0.25rem;
       border-radius: 4px;
