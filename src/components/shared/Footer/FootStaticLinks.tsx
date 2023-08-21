@@ -2,7 +2,7 @@ import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { LoginContext } from '@Context/LoginContext'
 import { Link } from 'gatsby'
 import React, { FC, useContext } from 'react'
-import { AnchorButton } from 'smarthr-ui'
+import { AnchorButton, FaExternalLinkAltIcon } from 'smarthr-ui'
 import styled from 'styled-components'
 
 type Props = unknown
@@ -76,6 +76,7 @@ export const FootStaticLinks: FC<Props> = () => {
             {isExternal ? (
               <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
                 {title}
+                <FaExternalLinkAltIcon />
               </StyledAnchor>
             ) : (
               <StyledLink to={path}>{title}</StyledLink>
@@ -131,6 +132,9 @@ const StyledAnchorButton = styled(AnchorButton)`
 const StyledAnchor = styled.a`
   display: inline-block;
   width: 100%;
+  svg {
+    margin-inline: 0.25em;
+  }
 `
 
 const StyledLink = styled(Link)`
