@@ -1,5 +1,7 @@
+import { PRIVATE_DOC_PATH } from '@Constants/application'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
+import { navigate } from 'gatsby'
 import React, { FC, useContext, useState } from 'react'
 import { Button, FaLockIcon, Input } from 'smarthr-ui'
 import styled from 'styled-components'
@@ -66,41 +68,38 @@ type Login = (
   password: string,
   clearInput: () => void,
   setErrMessage: (message: string) => void,
-  updateLoginStatus: (newStatus: LoginStatusKey) => void,
+  updateLoginStatus: (newStatus: LoginStatusKey, newPassword: string) => void,
 ) => Promise<void>
 const login: Login = async (password, clearInput, setErrMessage, updateLoginStatus) => {
-  const formDataString = `password=${password}`
-
   clearInput()
   setErrMessage('')
 
-  const res = await fetch('/private', {
-    method: 'POST',
-    body: formDataString,
+  const res = await fetch(PRIVATE_DOC_PATH, {
+    method: 'HEAD',
     redirect: 'manual',
     headers: {
-      'content-type': 'application/x-www-form-urlencoded',
+      'Sds-Private-Auth': password,
     },
   })
 
-  // ログインが成功し、Cookieが発行され、リダイレクトされる場合、statusは0になる。
-  // https://fetch.spec.whatwg.org/#concept-filtered-response-opaque-redirect
-
-  if (res.status === 0) {
-    // ログインに成功したら前のページに戻る
-    updateLoginStatus('loggedIn')
-    history.back()
+  if (res.status === 200) {
+    // ログインに成功したらパスワードを保存し前のページに戻る
+    updateLoginStatus('loggedIn', password)
+    let prevPath = '/'
+    try {
+      const previousUrl = new URL(document.referrer)
+      if (previousUrl.hostname === window.location.hostname) {
+        prevPath = previousUrl.pathname
+      }
+    } catch (error) {
+      // 前のページがない場合はトップに戻る
+    }
+    navigate(prevPath) // history.back()だとcontextが失われるのでnavigateを使う
     return
 
-    // ログイン済みだとPOSTではコンテンツがとれないので404になる。
-  } else if (res.status === 404) {
-    updateLoginStatus('loggedIn')
-    setErrMessage('ログイン済みです。')
-    return
-
-    // パスワードが違うとパスワード画面が401で返される
+    // パスワードが違うと401が返る
   } else if (res.status === 401) {
-    updateLoginStatus('loggedOut')
+    updateLoginStatus('loggedOut', '')
     setErrMessage('ログインに失敗しました')
     return
 

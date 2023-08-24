@@ -19,7 +19,7 @@ type Props = {
 export const Private: FC<Props> = ({ path }) => {
   const [privateData, setPrivateData] = useState('')
   const [isShow, setIsShow] = useState(false)
-  const { loginStatus } = useContext(LoginContext)
+  const { loginStatus, password } = useContext(LoginContext)
   useEffect(() => {
     ;(async () => {
       if (path === undefined) {
@@ -33,7 +33,9 @@ export const Private: FC<Props> = ({ path }) => {
       // /private配下は/static/_redirectsの設定でリダイレクトが設定されている
       // 中身はsmarthr-design-system-privateにある
       const res = await fetch(`/private/${path}`, {
-        method: 'GET',
+        headers: {
+          'Sds-Private-Auth': password,
+        },
       }).catch((err) => {
         throw new Error(err)
       })
@@ -53,7 +55,7 @@ export const Private: FC<Props> = ({ path }) => {
       setPrivateData(html)
       setIsShow(true)
     })()
-  }, [path, loginStatus])
+  }, [path, loginStatus, password])
 
   return isShow ? (
     // ログイン済みの時の表示
