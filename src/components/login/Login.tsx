@@ -1,3 +1,4 @@
+import { PRIVATE_DOC_PATH } from '@Constants/application'
 import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 import { navigate } from 'gatsby'
@@ -57,7 +58,7 @@ const login: Login = async (password, clearInput, setErrMessage, updateLoginStat
   clearInput()
   setErrMessage('')
 
-  const res = await fetch('/private', {
+  const res = await fetch(PRIVATE_DOC_PATH, {
     method: 'HEAD',
     redirect: 'manual',
     headers: {
@@ -65,8 +66,7 @@ const login: Login = async (password, clearInput, setErrMessage, updateLoginStat
     },
   })
 
-  // サイトルートには何も置いてないので、パスワードが合っていると404が返る
-  if (res.status === 404) {
+  if (res.status === 200) {
     // ログインに成功したらパスワードを保存し前のページに戻る
     updateLoginStatus('loggedIn', password)
     let prevPath = '/'
