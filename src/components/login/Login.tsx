@@ -24,26 +24,29 @@ export const LoginPage: FC = () => {
           <p>SmartHR社のSlackに「SDSパスワード」と入力する（自動レスポンスがあります）</p>
         </li>
       </ul>
-      <div className="inputs">
-        <Input
-          type="password"
-          prefix={<FaLockIcon />}
-          width="100%"
-          onChange={(e) => setPassword(e.currentTarget.value)}
-          value={password}
-          name="password"
-        />
+      <form
+        onSubmit={(event) => {
+          event.preventDefault()
+          login(password, () => setPassword(''), setErrMessage, updateLoginStatus)
+        }}
+      >
+        <div className="inputs">
+          <Input
+            type="password"
+            prefix={<FaLockIcon />}
+            width="100%"
+            onChange={(e) => setPassword(e.currentTarget.value)}
+            value={password}
+            name="password"
+          />
 
-        <Button
-          variant="primary"
-          wide={true}
-          onClick={() => login(password, () => setPassword(''), setErrMessage, updateLoginStatus)}
-        >
-          ログイン
-        </Button>
+          <Button variant="primary" wide={true}>
+            ログイン
+          </Button>
 
-        {errMessage !== '' && <span className="warn">{errMessage}</span>}
-      </div>
+          {errMessage !== '' && <span className="warn">{errMessage}</span>}
+        </div>
+      </form>
     </Wrapper>
   )
 }
