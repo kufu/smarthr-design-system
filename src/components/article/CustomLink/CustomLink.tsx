@@ -10,7 +10,7 @@ type Props = {
 
 export const CustomLink: FC<Props> = ({ children, href, ...props }) => {
   const isExternal = href.match(/^https?:\/\/(?!smarthr\.design).*?$/) !== null
-  const attrs = isExternal
+  const attrs: { [key: string]: string } = isExternal
     ? Object.assign(
         { ...props },
         {
@@ -19,10 +19,10 @@ export const CustomLink: FC<Props> = ({ children, href, ...props }) => {
         },
       )
     : props
-  return isExternal ? (
-    <StyledLink {...attrs} to={href}>
+  return attrs.target === '_blank' ? (
+    <StyledLink {...attrs} href={href}>
       {children}
-      <FaExternalLinkAltIcon />
+      {isExternal && <FaExternalLinkAltIcon />}
     </StyledLink>
   ) : (
     <Link {...attrs} to={href}>
@@ -31,7 +31,7 @@ export const CustomLink: FC<Props> = ({ children, href, ...props }) => {
   )
 }
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.a`
   svg {
     margin-inline: 0.25em;
   }
