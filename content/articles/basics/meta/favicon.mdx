@@ -37,7 +37,7 @@ import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 
 ```html codeBlock
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="manifest" href="/webmanifest.manifest">
+<link rel="manifest" href="/manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="SmartHR">
 <meta name="application-name" content="SmartHR">
 ```
@@ -45,7 +45,7 @@ import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 - `<link>`にはアイコンの画像ファイル、またはアイコンの画像ファイルの情報がまとめられたファイルのパスを指定します。
 - `<meta>`タグにはホーム画面に表示されるタイトルなどを指定します。前述したとおり、表示領域が狭いため、なるべく短い名前にすることが推奨されています。
 - `apple-touch-icon`、`apple-mobile-web-app-title`は主にApple製のOS向けですが、`manifest`に統一されつつあると思われます。ただし、これに関するAppleからの公式のアナウンスが無いため現在は両方の設定することを推奨しています。
-- `webmanifest.manifest`ファイルはJSONのテキストファイルで、`icons`や`name`、`short_name`などの設定項目があり、ホーム画面に追加された際に表示するアイコンやタイトルなどを指定できます。
+- `manifest.webmanifest`ファイルはJSONのテキストファイルで、`icons`や`name`、`short_name`などの設定項目があり、ホーム画面に追加された際に表示するアイコンやタイトルなどを指定できます。
 
 ### 補足
 
@@ -53,7 +53,7 @@ apple-touch-iconのサイズを180x180サイズにしているのは、[Configur
 
 ### maskableアイコン
 
-[ダウンロード](/basics/meta/#h2-0)に含まれる`webmanifest.manifest`ファイルには、`icons`の項目に次のような`purpose`に`maskable`の指定と、そのためのアイコンを用意しています。
+[ダウンロード](/basics/meta/#h2-0)に含まれる`manifest.webmanifest`ファイルには、`icons`の項目に次のような`purpose`に`maskable`の指定と、そのためのアイコンを用意しています。
 
 ```json codeBlock
 { "src": "/icons/maskable-icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }

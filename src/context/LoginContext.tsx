@@ -8,12 +8,14 @@ type Props = {
 type LoginStatus = {
   loginStatus: LoginStatusKey
   loginLabel: string
-  updateLoginStatus: (newStatus: LoginStatusKey) => void
+  password: string
+  updateLoginStatus: (newStatus: LoginStatusKey, newPassword: string) => void
 }
 
 export const LoginContext = createContext<LoginStatus>({
   loginStatus: 'pending',
   loginLabel: '',
+  password: '',
   updateLoginStatus: () => {
     return
   },
@@ -22,6 +24,7 @@ export const LoginContext = createContext<LoginStatus>({
 export const LoginContextProvider: FC<Props> = ({ children }) => {
   const state = useContext(LoginContext)
   const [loginStatus, setLoginStatus] = useState<LoginStatusKey>(state.loginStatus)
+  const [password, setPassword] = useState<string>('')
   const labels: { [key in LoginStatusKey]: string } = {
     pending: '',
     loggedIn: 'ログイン中',
@@ -32,7 +35,12 @@ export const LoginContextProvider: FC<Props> = ({ children }) => {
     // Chromeで、history.back()後のfetchが失敗する現象が起こるため、setTimeout()からタスクに追加してバグを回避する。
     // https://bugs.chromium.org/p/chromium/issues/detail?id=1244230
     setTimeout(() => {
-      fetch(PRIVATE_DOC_PATH, { method: 'HEAD' }).then(
+      fetch(PRIVATE_DOC_PATH, {
+        method: 'HEAD',
+        headers: {
+          'Sds-Private-Auth': password,
+        },
+      }).then(
         (res) => {
           if (res.status === 200) {
             setLoginStatus('loggedIn')
@@ -47,7 +55,8 @@ export const LoginContextProvider: FC<Props> = ({ children }) => {
     }, 100)
   }
 
-  const updateLoginStatus = (newStatus: LoginStatusKey) => {
+  const updateLoginStatus = (newStatus: LoginStatusKey, newPassword: string) => {
+    if (newPassword) setPassword(newPassword)
     setLoginStatus(newStatus)
   }
 
@@ -64,7 +73,7 @@ export const LoginContextProvider: FC<Props> = ({ children }) => {
     })
   }
 
-  const value = { loginStatus, loginLabel: labels[loginStatus], updateLoginStatus }
+  const value = { loginStatus, loginLabel: labels[loginStatus], password, updateLoginStatus }
 
   return <LoginContext.Provider value={value}>{children}</LoginContext.Provider>
 }

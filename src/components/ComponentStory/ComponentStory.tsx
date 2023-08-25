@@ -197,6 +197,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
             target="_blank"
             size="s"
             suffix={<FaExternalLinkAltIcon />}
+            rel="noreferrer"
           >
             Storybook
           </AnchorButton>
@@ -205,6 +206,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
             target="_blank"
             size="s"
             suffix={<FaExternalLinkAltIcon />}
+            rel="noreferrer"
           >
             GitHub
           </AnchorButton>
