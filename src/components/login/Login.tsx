@@ -40,7 +40,7 @@ export const LoginPage: FC = () => {
             name="password"
           />
 
-          <Button variant="primary" wide={true}>
+          <Button type="submit" variant="primary" wide={true}>
             ログイン
           </Button>
 
