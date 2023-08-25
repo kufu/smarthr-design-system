@@ -51,7 +51,11 @@ const components: MDXProviderComponents = {
     </FragmentTitle>
   ),
   table: ({ children }) => <TableWrapper mdTable={true}>{children}</TableWrapper>,
-  a: ({ children, href }) => <CustomLink href={href}>{children}</CustomLink>,
+  a: ({ children, href, ...props }) => (
+    <CustomLink {...props} href={href}>
+      {children}
+    </CustomLink>
+  ),
 }
 
 const shortcodes = {

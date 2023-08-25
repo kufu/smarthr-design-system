@@ -8,15 +8,26 @@ type Props = {
   href: string
 }
 
-export const CustomLink: FC<Props> = ({ children, href }) => {
+export const CustomLink: FC<Props> = ({ children, href, ...props }) => {
   const isExternal = href.match(/^https?:\/\/(?!smarthr\.design).*?$/) !== null
+  const attrs = isExternal
+    ? Object.assign(
+        { ...props },
+        {
+          target: '_blank',
+          rel: 'noreferrer',
+        },
+      )
+    : props
   return isExternal ? (
-    <StyledLink to={href} target="_blank" rel="noreferrer">
+    <StyledLink {...attrs} to={href}>
       {children}
       <FaExternalLinkAltIcon />
     </StyledLink>
   ) : (
-    <Link to={href}>{children}</Link>
+    <Link {...attrs} to={href}>
+      {children}
+    </Link>
   )
 }
 
