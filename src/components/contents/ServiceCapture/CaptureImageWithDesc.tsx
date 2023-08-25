@@ -25,6 +25,7 @@ const Figure = styled.figure`
     background-color: ${CSS_COLOR.DIVIDER};
   }
   a {
+    display: block;
     height: 208px;
   }
   span {
