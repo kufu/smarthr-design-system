@@ -1,0 +1,16 @@
+name: "Clear cache and deploy site on Netlify"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Post to Netlify API
+        run: |
+          curl -X POST https://api.netlify.com/api/v1/sites/${{ secrets.NETLIFY_SITE_ID }}/builds \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.NETLIFY_AUTH_TOKEN }}" \
+            -d '{"clear_cache": true}'
