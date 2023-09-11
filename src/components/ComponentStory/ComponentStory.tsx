@@ -28,9 +28,10 @@ type Props = {
 
 const query = graphql`
   query StoryData {
-    allUiVersion {
+    allUiVersion(sort: { fields: commitDate, order: DESC }) {
       nodes {
         commitHash
+        commitDate
         version
         uiStories {
           storyName
