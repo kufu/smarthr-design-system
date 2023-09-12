@@ -1,6 +1,7 @@
 // gatsby-nodeに登録するデータの型定義
 type UiVersion = {
   commitHash: string
+  commitDate: string
   version: string
   uiProps: Array<{
     displayName: string
@@ -35,6 +36,9 @@ type UiResponse = {
   sha: string
   commit: {
     message: string
+    author: {
+      date: string
+    }
   }
 }
 
@@ -67,7 +71,9 @@ const chromaticDomain = '63d0ccabb5d2dd29825524ab.chromatic.com'
 
 export const fetchUiVersions = async (): Promise<UiVersion[]> => {
   // GitHubからリリースのコミットを取得
-  const res = await fetch(`${uiRepoApi}/commits?since=2023-02-02&author=${encodeURIComponent(releaseBotEmail)}`)
+  const res = await fetch(`${uiRepoApi}/commits?since=2023-02-02&author=${encodeURIComponent(releaseBotEmail)}&per_page=100`)
+  // since=2023-02-02なのは、これ以前はChromaticにデプロイが行われていないため。また、orderのオプションはないが、新→旧の順で取得できる。
+  // per_pageのdefaultは30、最大は100。100以上になるケースは考慮していない。
   if (!res.ok) return []
   const json: UiResponse[] = await res.json().catch(() => {
     return []
@@ -81,6 +87,7 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
     if (version === null) continue
 
     const commitHash = item.sha.substring(0, 7)
+    const commitDate = item.commit.author.date
 
     // Chromaticからsmarthr-ui-props.jsonを取得
     const propsRes = await fetch(`https://${commitHash}--${chromaticDomain}/exports/smarthr-ui-props.json`)
@@ -139,6 +146,7 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
     versions.push({
       version,
       commitHash,
+      commitDate,
       uiProps,
       uiStories: Object.values(uiStories),
     })
