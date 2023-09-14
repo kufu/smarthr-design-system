@@ -75,6 +75,7 @@ export const query = graphql`
         title
         description
         ignoreH3Nav
+        robotsNoIndex
       }
       fields {
         category
@@ -338,7 +339,8 @@ export const Head: FC<Props> = ({ data }) => {
   // memo: カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
   const headTitle = title === parentCategoryName ? title : `${title} | ${parentCategoryName}`
 
-  return <HeadComponent title={headTitle} description={description} ogTitle={title} />
+  const headerMeta = frontmatter?.robotsNoIndex ? [{ name: 'robots', content: 'noindex' }] : []
+  return <HeadComponent title={headTitle} description={description} ogTitle={title} meta={headerMeta} />
 }
 
 const Wrapper = styled.div`
