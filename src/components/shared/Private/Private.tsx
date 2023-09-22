@@ -1,5 +1,6 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { LoginContext } from '@Context/LoginContext'
+import { marked } from 'marked'
 import { micromark } from 'micromark'
 import { mdxjs } from 'micromark-extension-mdxjs'
 import React, { useContext, useEffect, useState } from 'react'
@@ -50,7 +51,8 @@ export const Private: FC<Props> = ({ path }) => {
       }
 
       const mdString = await res.text()
-      const html = micromark(mdString, { extensions: [mdxjs()] })
+      // mdxファイルの場合はmicromarkでパースする
+      const html = path.endsWith('md') ? marked.parse(mdString) : micromark(mdString, { extensions: [mdxjs()] })
 
       setPrivateData(html)
       setIsShow(true)
