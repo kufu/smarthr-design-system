@@ -1,12 +1,14 @@
-import { CSS_COLOR } from '@Constants/style'
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { throttle } from '@Lib/throttle'
 import { Link } from 'gatsby'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { Nav as NavComponent } from 'smarthr-ui'
 import styled from 'styled-components'
 
+import { SpIndexNav } from './SpIndexNav'
+
 type Props = { target: React.RefObject<HTMLElement>; ignoreH3Nav?: boolean }
-type HeadingItem = {
+export type HeadingItem = {
   value: string
   children: Array<{ value: string; fragmentId?: string }>
   depth: number
@@ -96,40 +98,47 @@ export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
   }, [currentHeading, indexNavRef])
 
   return (
-    <Nav>
-      {nestedHeadings.length > 0 && (
-        <ul ref={indexNavRef}>
-          {nestedHeadings.map((depth2Item) => {
-            return (
-              <li key={depth2Item.fragmentId}>
-                {depth2Item.value !== '' && (
-                  <Depth2Item>
-                    <Link to={`#${depth2Item.fragmentId}`} aria-current={currentHeading === depth2Item.fragmentId}>
-                      {depth2Item.value}
-                    </Link>
-                  </Depth2Item>
-                )}
-                {depth2Item.children.length > 0 && (
-                  <ul>
-                    {depth2Item.children.map((depth3Item) => {
-                      return (
-                        <li key={depth3Item.fragmentId}>
-                          <Depth3Item>
-                            <Link to={`#${depth3Item.fragmentId}`} aria-current={currentHeading === depth3Item.fragmentId}>
-                              {depth3Item.value}
-                            </Link>
-                          </Depth3Item>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-      )}
-    </Nav>
+    <>
+      {/* PC表示 */}
+      <Nav>
+        {nestedHeadings.length > 0 && (
+          <ul ref={indexNavRef}>
+            {nestedHeadings.map((depth2Item) => {
+              return (
+                <li key={depth2Item.fragmentId}>
+                  {depth2Item.value !== '' && (
+                    <Depth2Item>
+                      <Link to={`#${depth2Item.fragmentId}`} aria-current={currentHeading === depth2Item.fragmentId}>
+                        {depth2Item.value}
+                      </Link>
+                    </Depth2Item>
+                  )}
+                  {depth2Item.children.length > 0 && (
+                    <ul>
+                      {depth2Item.children.map((depth3Item) => {
+                        return (
+                          <li key={depth3Item.fragmentId}>
+                            <Depth3Item>
+                              <Link to={`#${depth3Item.fragmentId}`} aria-current={currentHeading === depth3Item.fragmentId}>
+                                {depth3Item.value}
+                              </Link>
+                            </Depth3Item>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        )}
+      </Nav>
+      {/* SP表示 */}
+      <SpWrapper>
+        <SpIndexNav nestedHeadings={nestedHeadings} />
+      </SpWrapper>
+    </>
   )
 }
 
@@ -174,6 +183,10 @@ const Nav = styled(NavComponent)`
       color: inherit;
     }
   }
+
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    display: none;
+  }
 `
 
 const Depth2Item = styled.div`
@@ -189,5 +202,12 @@ const Depth3Item = styled.div`
   > a[aria-current='true'],
   a[aria-current='true']:hover {
     background-color: ${CSS_COLOR.DIVIDER};
+  }
+`
+
+const SpWrapper = styled.div`
+  display: none;
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    display: block;
   }
 `

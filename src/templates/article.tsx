@@ -367,7 +367,11 @@ const Main = styled.main`
   }
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    grid-template: '. article .' auto / minmax(40px, 1fr) minmax(auto, 712px) minmax(40px, 1fr);
+    grid-template:
+      'sidebar sidebar sidebar'
+      'index index index'
+      '. article .'
+      / minmax(40px, 1fr) minmax(auto, 712px) minmax(40px, 1fr);
     margin-top: 0;
   }
 `
@@ -391,14 +395,12 @@ const MainSidebar = styled.div`
   }
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    grid-column: article;
     display: block;
     position: static;
     height: auto;
+    margin: 0;
     border-right: 0;
-    margin-right: 0;
-    padding-bottom: 32px; /* https://github.com/kufu/smarthr-design-system/issues/501#issuecomment-1000072931 */
-    background-color: transparent;
+    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   }
 `
 
@@ -420,6 +422,14 @@ const MainIndexNav = styled.div`
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
     display: none;
+  }
+
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    display: block;
+    position: static;
+    margin: 0;
+    height: auto;
+    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   }
 `
 
