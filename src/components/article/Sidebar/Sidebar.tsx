@@ -78,4 +78,8 @@ const SpSidebar = styled.div`
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: block;
   }
+
+  button {
+    color: inherit;
+  }
 `
