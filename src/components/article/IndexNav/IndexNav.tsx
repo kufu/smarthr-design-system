@@ -135,9 +135,11 @@ export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
         )}
       </Nav>
       {/* SP表示 */}
-      <SpWrapper>
-        <SpIndexNav nestedHeadings={nestedHeadings} />
-      </SpWrapper>
+      {nestedHeadings.length > 0 && (
+        <SpWrapper>
+          <SpIndexNav nestedHeadings={nestedHeadings} />
+        </SpWrapper>
+      )}
     </>
   )
 }
@@ -209,6 +211,7 @@ const SpWrapper = styled.div`
   display: none;
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: block;
+    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   }
   button {
     color: inherit;

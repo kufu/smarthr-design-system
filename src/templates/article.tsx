@@ -400,7 +400,6 @@ const MainSidebar = styled.div`
     height: auto;
     margin: 0;
     border-right: 0;
-    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   }
 `
 
@@ -429,7 +428,6 @@ const MainIndexNav = styled.div`
     position: static;
     margin: 0;
     height: auto;
-    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   }
 `
 

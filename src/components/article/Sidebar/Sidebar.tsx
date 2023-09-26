@@ -1,4 +1,4 @@
-import { CSS_SIZE } from '@Constants/style'
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { SidebarScrollContext } from '@Context/SidebarScrollContext'
 import { useLocation } from '@reach/router'
 import React, { FC, useContext, useLayoutEffect, useRef } from 'react'
@@ -50,16 +50,18 @@ export const Sidebar: FC<Props> = ({ path, nestedSidebarItems }) => {
         <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} />
       </NavWrapper>
       {/* SP表示 */}
-      <SpSidebar>
-        <AccordionPanel iconPosition="right">
-          <AccordionPanelItem name="spSidebar">
-            <AccordionPanelTrigger>{nestedSidebarItems[0].title}</AccordionPanelTrigger>
-            <AccordionPanelContent>
-              <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} showDepth1Item={false} />
-            </AccordionPanelContent>
-          </AccordionPanelItem>
-        </AccordionPanel>
-      </SpSidebar>
+      {nestedSidebarItems[0]?.children.length > 0 && (
+        <SpSidebar>
+          <AccordionPanel iconPosition="right">
+            <AccordionPanelItem name="spSidebar">
+              <AccordionPanelTrigger>{nestedSidebarItems[0].title}</AccordionPanelTrigger>
+              <AccordionPanelContent>
+                <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} showDepth1Item={false} />
+              </AccordionPanelContent>
+            </AccordionPanelItem>
+          </AccordionPanel>
+        </SpSidebar>
+      )}
     </>
   )
 }
@@ -77,6 +79,7 @@ const SpSidebar = styled.div`
   display: none;
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: block;
+    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   }
 
   button {

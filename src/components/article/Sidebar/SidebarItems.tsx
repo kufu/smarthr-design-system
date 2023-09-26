@@ -17,7 +17,6 @@ export const SidebarItems: FC<Props> = ({ path, nestedSidebarItems, showDepth1It
     const clicked = event.currentTarget
     const isOpen = clicked.getAttribute('aria-expanded') === 'true'
     const targetId = clicked.getAttribute('aria-controls')
-    console.log(targetId)
     const targetItems = document.querySelectorAll(`[data-items-id="${targetId}"]`)
     Array.from(targetItems).forEach((targetUl) => {
       targetUl.setAttribute('aria-hidden', isOpen ? 'true' : 'false')
