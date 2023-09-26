@@ -1,11 +1,10 @@
 import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { throttle } from '@Lib/throttle'
-import { Link } from 'gatsby'
 import React, { FC, useEffect, useRef, useState } from 'react'
-import { Nav as NavComponent } from 'smarthr-ui'
+import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui'
 import styled from 'styled-components'
 
-import { SpIndexNav } from './SpIndexNav'
+import { IndexNavItems } from './IndexNavItems'
 
 type Props = { target: React.RefObject<HTMLElement>; ignoreH3Nav?: boolean }
 export type HeadingItem = {
@@ -100,110 +99,29 @@ export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
   return (
     <>
       {/* PC表示 */}
-      <Nav>
-        {nestedHeadings.length > 0 && (
-          <ul ref={indexNavRef}>
-            {nestedHeadings.map((depth2Item) => {
-              return (
-                <li key={depth2Item.fragmentId}>
-                  {depth2Item.value !== '' && (
-                    <Depth2Item>
-                      <Link to={`#${depth2Item.fragmentId}`} aria-current={currentHeading === depth2Item.fragmentId}>
-                        {depth2Item.value}
-                      </Link>
-                    </Depth2Item>
-                  )}
-                  {depth2Item.children.length > 0 && (
-                    <ul>
-                      {depth2Item.children.map((depth3Item) => {
-                        return (
-                          <li key={depth3Item.fragmentId}>
-                            <Depth3Item>
-                              <Link to={`#${depth3Item.fragmentId}`} aria-current={currentHeading === depth3Item.fragmentId}>
-                                {depth3Item.value}
-                              </Link>
-                            </Depth3Item>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        )}
-      </Nav>
+      <NavWrapper>
+        <IndexNavItems nestedHeadings={nestedHeadings} indexNavRef={indexNavRef} currentHeading={currentHeading} />
+      </NavWrapper>
       {/* SP表示 */}
       {nestedHeadings.length > 0 && (
         <SpWrapper>
-          <SpIndexNav nestedHeadings={nestedHeadings} />
+          <AccordionPanel iconPosition="right">
+            <AccordionPanelItem name="spIndexNav">
+              <AccordionPanelTrigger>ページ内目次</AccordionPanelTrigger>
+              <AccordionPanelContent>
+                <IndexNavItems nestedHeadings={nestedHeadings} />
+              </AccordionPanelContent>
+            </AccordionPanelItem>
+          </AccordionPanel>
         </SpWrapper>
       )}
     </>
   )
 }
 
-const Nav = styled(NavComponent)`
-  display: block;
-  padding-top: 160px;
-  overflow-y: auto;
-
-  > ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    &::before {
-      content: '';
-      display: block;
-      width: 120px;
-      height: 1px;
-      margin-left: 8px;
-      margin-bottom: 8px;
-      background-color: ${CSS_COLOR.LIGHT_GREY_1};
-    }
-  }
-
-  li {
-    > ul {
-      margin: 0 0 0 16px;
-      padding: 0;
-      list-style: none;
-    }
-  }
-
-  a {
-    display: block;
-    padding: 8px;
-    text-decoration: none;
-    color: ${CSS_COLOR.TEXT_GREY};
-    &:hover {
-      text-decoration: underline;
-    }
-    &[aria-current] {
-      color: inherit;
-    }
-  }
-
+const NavWrapper = styled.div`
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: none;
-  }
-`
-
-const Depth2Item = styled.div`
-  display: block;
-  > a[aria-current='true'],
-  a[aria-current='true']:hover {
-    background-color: ${CSS_COLOR.DIVIDER};
-  }
-`
-
-const Depth3Item = styled.div`
-  display: block;
-  > a[aria-current='true'],
-  a[aria-current='true']:hover {
-    background-color: ${CSS_COLOR.DIVIDER};
   }
 `
 
