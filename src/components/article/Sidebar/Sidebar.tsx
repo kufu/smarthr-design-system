@@ -83,6 +83,8 @@ const SpSidebar = styled.div`
   }
 
   button {
+    font-family: inherit;
     color: inherit;
+    padding-inline: 24px;
   }
 `

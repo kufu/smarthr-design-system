@@ -100,6 +100,9 @@ const Nav = styled(NavComponent)`
     &[aria-current] {
       color: inherit;
     }
+    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+      padding-inline: 40px;
+    }
   }
 `
 

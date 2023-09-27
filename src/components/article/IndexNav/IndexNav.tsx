@@ -132,6 +132,8 @@ const SpWrapper = styled.div`
     border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   }
   button {
+    font-family: inherit;
     color: inherit;
+    padding-inline: 24px;
   }
 `

@@ -1,4 +1,4 @@
-import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Link } from 'gatsby'
 import React, { FC, Fragment } from 'react'
 import { FaChevronDownIcon, Nav, defaultColor } from 'smarthr-ui'
@@ -135,6 +135,9 @@ const SidebarNav = styled(Nav)`
     color: inherit;
     text-decoration: none;
     padding: 8px 32px 8px 8px;
+    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+      padding-inline: 40px;
+    }
 
     &[aria-current='true'],
     &[aria-current='true']:hover {
