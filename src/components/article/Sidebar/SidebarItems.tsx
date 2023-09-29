@@ -118,6 +118,12 @@ const SidebarNav = styled(Nav)`
     }
   }
 
+  > ul {
+    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+      margin-inline: 24px;
+    }
+  }
+
   /* 第3階層目 */
   & li li {
     margin-block: 8px;
@@ -136,7 +142,11 @@ const SidebarNav = styled(Nav)`
     text-decoration: none;
     padding: 8px 32px 8px 8px;
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-      padding-inline: 40px;
+      padding-inline: 16px;
+      + button {
+        width: 2rem;
+        padding-inline: 0;
+      }
     }
 
     &[aria-current='true'],
