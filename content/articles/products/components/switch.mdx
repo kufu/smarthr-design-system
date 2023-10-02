@@ -6,7 +6,7 @@ description: ''
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
 
-Switchコンポーネントは、オン・オフといった2つの状態を表します。切り替え操作時には即時実行を期待します。
+Switchコンポーネントは、オン・オフを切り替えます。状態の切り替えは即時で反映されます。
 
 <ComponentStory name="Switch" />
 
@@ -14,13 +14,13 @@ Switchコンポーネントは、オン・オフといった2つの状態を表�
 
 ### CheckBox との違い
 
-Switchは操作時に直接状態を変更する引き金となりますが、CheckBoxは別途送信ボタンなどが必要です。
+Switchは操作時に即時実行されます。Checkboxと異なり、送信ボタンは不要です。
 
-CheckBoxとは異なり未確定（`:indeterminate`）の状態を持ちません。内部的に `role=switch` を使っています。
+また、未確定（`:indeterminate`）の状態を持ちません。内部的に `role=switch` を使っています。
 
 ### SegmentedControl との違い
 
-Switchはオン・オフのどちらか1つの状態を表します。正反対だが異なる状態を表す場合はSegmentedControlを使ってください。
+Switchはオン・オフのどちらか1つの状態を表します。対する概念ではあるが、異なる状態を表す場合はSegmentedControlを使ってください。
 
 ```tsx editable codeBlock
 <SegmentedControl size="s" options={[
@@ -31,7 +31,7 @@ Switchはオン・オフのどちらか1つの状態を表します。正反対�
 
 ### ラベルについて
 
-Switchは基本的にラベルを必要とします。周囲のコンテキストに依り明らかな場合に限り、省略できます。
+Switchは基本的にラベルを必要とします。周囲のコンテキストに依って省略できます。
 
 また、利用者が状態を認識しにくくなるため、Switchの状態が切り替わってもラベルは変更しないでください。
 
