@@ -15,6 +15,7 @@ export type HeadingItem = {
 }
 
 export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const indexNavRef = useRef<HTMLUListElement>(null)
   const [nestedHeadings, setNestedHeadings] = useState<HeadingItem[]>([])
   const [currentHeading, setCurrentHeading] = useState<string>('')
@@ -83,23 +84,23 @@ export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
   useEffect(() => {
     // 現在地が移動した際、その見出しが表示範囲内に入るようにスクロールする処理
     const currentItem = indexNavRef.current?.querySelector(`a[aria-current="true"]`)
-    const navElement = indexNavRef.current?.parentElement // Navにrefを渡せないため、ulの親要素として取得する
-    if (!(currentItem instanceof HTMLElement) || !navElement) return
+    const wrapperElement = wrapperRef.current
+    if (!(currentItem instanceof HTMLElement) || !wrapperElement) return
 
     // 表示されている範囲の上端・下端の取得
-    const navAreaTop = navElement.scrollTop
-    const navAreaBottom = navAreaTop + navElement.clientHeight
+    const navAreaTop = wrapperElement.scrollTop
+    const navAreaBottom = navAreaTop + wrapperElement.clientHeight
     // 表示範囲に入っていれば何もしない
     if (currentItem.offsetTop > navAreaTop && currentItem.offsetTop < navAreaBottom) return
 
     // 現在地が表示範囲の中央に来るようにスクロールする
-    navElement.scrollTop = currentItem.offsetTop - navElement.clientHeight / 2
+    wrapperElement.scrollTop = currentItem.offsetTop - wrapperElement.clientHeight / 2
   }, [currentHeading, indexNavRef])
 
   return (
     <>
       {/* PC表示 */}
-      <NavWrapper>
+      <NavWrapper ref={wrapperRef}>
         <IndexNavItems nestedHeadings={nestedHeadings} indexNavRef={indexNavRef} currentHeading={currentHeading} />
       </NavWrapper>
       {/* SP表示 */}
