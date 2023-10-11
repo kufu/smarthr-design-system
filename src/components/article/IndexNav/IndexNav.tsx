@@ -120,6 +120,7 @@ export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
 }
 
 const NavWrapper = styled.div`
+  overflow-y: auto;
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: none;
   }
