@@ -140,9 +140,11 @@ export const IndexList: FC = () => {
         const level2Item = level2Items[item]
         if (!level2Item) return null
         return (
-          <h3 key={level2Item.link}>
-            <Link to={`/${level2Item.link}/`}>{level2Item.title}</Link>
-          </h3>
+          <Section key={level2Item.link}>
+            <h3>
+              <Link to={`/${level2Item.link}/`}>{level2Item.title}</Link>
+            </h3>
+          </Section>
         )
       })}
     </Wrapper>

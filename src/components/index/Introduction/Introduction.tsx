@@ -1,5 +1,6 @@
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
+import { PageHeading } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { FloatingTextLink } from '../../shared/FloatingTextLink'
@@ -8,11 +9,11 @@ export const Introduction: FC = () => {
   return (
     <>
       <IntroductionContainer>
-        <StyledHeading>
+        <StyledPageHeading>
           <span>だれでも・</span>
           <span>効率よく・</span>
           <span>迷わずに。</span>
-        </StyledHeading>
+        </StyledPageHeading>
         <StyledText>
           <span>SmartHR Design Systemは、</span>
           <span>すべての人によりよい体験を届けるためのデザインシステムです。</span>
@@ -49,7 +50,7 @@ const IntroductionContainer = styled.div`
   }
 `
 
-const StyledHeading = styled.h1`
+const StyledPageHeading = styled(PageHeading)`
   font-size: ${CSS_FONT_SIZE.PX_54};
   font-weight: normal;
   margin: 0 0 24px;

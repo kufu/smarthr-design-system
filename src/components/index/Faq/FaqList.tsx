@@ -1,5 +1,6 @@
 import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
+import { Section } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import indexFaqJson from '../../../data/indexFaq.json'
@@ -19,7 +20,7 @@ const data = indexFaqJson as ItemJsonType[]
 
 export const FaqList: FC = () => {
   return (
-    <IndexFaqContainer>
+    <IndexFaqSection>
       <h2>よくあるご質問</h2>
       <ul>
         {data.map((item, i) => {
@@ -30,11 +31,11 @@ export const FaqList: FC = () => {
           )
         })}
       </ul>
-    </IndexFaqContainer>
+    </IndexFaqSection>
   )
 }
 
-const IndexFaqContainer = styled.div`
+const IndexFaqSection = styled(Section)`
   margin: 240px 0 0;
   text-align: center;
   > h2 {
