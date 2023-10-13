@@ -4,8 +4,168 @@ description: ''
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
+import {
+  FaExclamationCircleIcon,
+  StatusLabel,
+} from 'smarthr-ui'
+
+Fieldsetコンポーネントは、フォームにおける複数の入力要素をグループ化するためのコンポーネントです。
 
 <ComponentStory name="Fieldset" />
+
+## 使用上の注意
+
+特に注意したいアンチパターンなど使用上の注意があれば書きます。種類ごとの使いどころは[種類](#h2-1)に書きます。
+
+## レイアウト
+
+Fieldsetは、関連する複数の入力要素をグループ化する目的で使用します。それぞれのFieldsetは、そのグループの目的を明確にするタイトルをつけます。
+
+```tsx editable codeBlock
+<Fieldset title="就業形態" innerMargin={0.5}>
+    <Cluster gap={1.25}>
+        <RadioButton name="employment" defaultChecked={true}>
+        正社員
+        </RadioButton>
+        <RadioButton name="employment">契約社員</RadioButton>
+        <RadioButton name="employment">派遣社員</RadioButton>
+        <RadioButton name="employment">アルバイト</RadioButton>
+        <RadioButton name="employment">その他</RadioButton>
+    </Cluster>
+</Fieldset>
+```
+
+```tsx editable codeBlock
+<Fieldset
+title="アカウントの設定"
+statusLabelProps={{ type: 'grey', children: '任意' }}
+errorMessages="入力されていない項目があります。"
+>
+    <Stack>
+        <Fieldset title="設定の有無" titleType="subBlockTitle" innerMargin={0.5}>
+        <Cluster gap={1.25}>
+            <RadioButton name="existsConfig" defaultChecked={true}>
+            あり
+            </RadioButton>
+            <RadioButton name="existsConfig">なし</RadioButton>
+        </Cluster>
+        </Fieldset>
+        <Cluster gap={1}>
+        <FormControl
+            title="姓"
+            titleType="subBlockTitle"
+            errorMessages="姓が入力されていません。"
+        >
+            <Input name="lastName" />
+        </FormControl>
+        <FormControl
+            title="名"
+            titleType="subBlockTitle"
+            errorMessages="名が入力されていません。"
+        >
+            <Input name="firstName" />
+        </FormControl>
+        </Cluster>
+    </Stack>
+</Fieldset>
+```
+
+## 状態
+
+### 無効（disabled）
+
+フォームの操作ができない状態を表現したスタイルです。
+
+Fieldsetに`disabled`を適用すると、内包するフォーム要素にも自動で`disabled`が適用されるため、個別に設定する必要はありません。
+
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+```tsx editable codeBlock
+<Fieldset
+    title="アカウントの設定"
+    helpMessage="登録するアカウント情報を入力してください。"
+    disabled
+>
+    <Stack>
+        <Cluster gap={1}>
+            <FormControl
+                title="姓"
+                titleType="subBlockTitle"
+            >
+                <Input name="lastName" />
+            </FormControl>
+            <FormControl
+                title="名"
+                titleType="subBlockTitle"
+            >
+                <Input name="firstName" />
+            </FormControl>
+        </Cluster>
+        <FormControl
+            title="アカウント名"
+            titleType="subBlockTitle"
+        >
+            <Input name="accountName" />
+        </FormControl>
+        <Fieldset title="電話番号" innerMargin={0.5}>
+            <Cluster gap={0.5}>
+                <Input width="100px" name="phoneNumber1" />
+                <Input width="100px" name="phoneNumber2" />
+                <Input width="100px" name="phoneNumber3" />
+            </Cluster>
+        </Fieldset>
+        <Fieldset title="就業形態" innerMargin={0.5}>
+            <Cluster gap={1.25}>
+                <RadioButton name="employment2">正社員</RadioButton>
+                <RadioButton name="employment2">契約社員</RadioButton>
+                <RadioButton name="employment2">派遣社員</RadioButton>
+                <RadioButton name="employment2">アルバイト</RadioButton>
+                <RadioButton name="employment2">その他</RadioButton>
+            </Cluster>
+        </Fieldset>
+        <Fieldset title="職業" innerMargin={0.5}>
+            <Select
+                name="job"
+                value="orange"
+                options={[
+                    { label: 'Select fruit', value: '' },
+                    { label: 'Apple', value: 'apple' },
+                    {
+                    label: 'citrus',
+                    options: [
+                        { label: 'Orange', value: 'orange' },
+                        { label: 'Lemon', value: 'lemon' },
+                        { label: 'Grapefruit', value: 'grapefruit' },
+                    ],
+                    },
+                    { label: 'Banana', value: 'banana' },
+                    {
+                    label: 'Fruit vegetables',
+                    disabled: true,
+                    options: [
+                        { label: 'Strawberry', value: 'strawberry' },
+                        { label: 'Melon', value: 'melon' },
+                        { label: 'Water melon', value: 'water melon' },
+                    ],
+                    },
+                ]}
+            />
+        </Fieldset>
+    </Stack>
+</Fieldset>
+```
+
+## ライティング
+
+主題に種類がなく、ライティングルールを書きたい場合はここに書きます。〇〇の使い方..などはこのグループに所属させます。AirTableも必要であれば埋め込めます。
+
+## アクセシビリティ
+
+主題全体に対するアクセシビリティの考え方として、特段言及したい場合は書きます。
+
+## デザインパターン
+
+コンポーネント独自のデザインパターンがあればこのグループ内に書きます、基準サイズなどもこの項目で書きます。
 
 ## Props
 
