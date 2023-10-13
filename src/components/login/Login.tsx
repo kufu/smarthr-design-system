@@ -127,6 +127,8 @@ const Wrapper = styled.div`
   & h1 {
     padding: 0;
     margin: 0;
+    font-weight: bold;
+    font-size: 2rem;
     text-align: center;
   }
 

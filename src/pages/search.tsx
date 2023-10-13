@@ -63,6 +63,8 @@ const Main = styled.main`
 
 const StyledPageHeading = styled(PageHeading)`
   margin-block: 140px 40px;
+  font-weight: bold;
+  font-size: 2rem;
   text-align: center;
   line-height: 1.25;
 `
