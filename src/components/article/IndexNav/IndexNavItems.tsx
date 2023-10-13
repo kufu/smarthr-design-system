@@ -50,7 +50,6 @@ export const IndexNavItems: FC<Props> = ({ nestedHeadings, indexNavRef, currentH
 const Nav = styled(NavComponent)`
   display: block;
   padding-top: 160px;
-  overflow-y: auto;
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-top: 0;
   }

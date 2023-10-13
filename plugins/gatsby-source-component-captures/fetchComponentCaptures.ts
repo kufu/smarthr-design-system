@@ -63,7 +63,7 @@ export const fetchComponentCaptures = async () => {
 
   for (const id in storiesMap) {
     const { kind, tags, importPath } = storiesMap[id]
-    if (tags.includes('docs')) continue // ドキュメントはコンポーネント一覧として表示しない
+    if (Array.isArray(tags) && tags.includes('docs')) continue // ドキュメントはコンポーネント一覧として表示しない
 
     const groupName = kind.split('/')[0]
     const displayName = kind.split('/')[1]
