@@ -3,7 +3,7 @@ import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { LoginContext, LoginStatusKey } from '@Context/LoginContext'
 import { navigate } from 'gatsby'
 import React, { FC, useContext, useState } from 'react'
-import { Button, FaLockIcon, Input } from 'smarthr-ui'
+import { Button, FaLockIcon, Input, PageHeading } from 'smarthr-ui'
 import styled from 'styled-components'
 
 export const LoginPage: FC = () => {
@@ -14,7 +14,7 @@ export const LoginPage: FC = () => {
 
   return (
     <Wrapper>
-      <h1>従業員ログイン</h1>
+      <PageHeading>従業員ログイン</PageHeading>
       <p>ログインすると限定コンテンツにアクセスできます。パスワードの確認方法は2つあります。</p>
       <ul>
         <li>
@@ -127,6 +127,8 @@ const Wrapper = styled.div`
   & h1 {
     padding: 0;
     margin: 0;
+    font-weight: bold;
+    font-size: 2rem;
     text-align: center;
   }
 

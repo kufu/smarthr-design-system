@@ -2,6 +2,7 @@ import { CSS_FONT_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import { marked } from 'marked'
 import React, { FC } from 'react'
+import { Section } from 'smarthr-ui'
 import styled from 'styled-components'
 
 type Props = {
@@ -73,7 +74,7 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
         {pageData.map((item, idx: number) => {
           const itemName = item.pathList[item.pathList.length - 2]
           return (
-            <React.Fragment key={idx}>
+            <Section key={idx}>
               <PageTitleHeading as={heading} id={`page-${idx}`}>
                 <Link to={item.slug}>{item.title}</Link>
               </PageTitleHeading>
@@ -84,7 +85,7 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
                   <p>{item.description}</p>
                 </PageDescription>
               )}
-            </React.Fragment>
+            </Section>
           )
         })}
       </PageList>

@@ -8,6 +8,7 @@ import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import algoliasearch from 'algoliasearch/lite'
 import React, { FC } from 'react'
 import { InstantSearch } from 'react-instantsearch-dom'
+import { PageHeading } from 'smarthr-ui'
 import styled from 'styled-components'
 
 export const Head = () => {
@@ -25,7 +26,7 @@ const SearchPage: FC = () => {
         <Header />
 
         <Main>
-          <PageHeading id="label-for-search-input">SmartHR Design Systemを検索</PageHeading>
+          <StyledPageHeading id="label-for-search-input">SmartHR Design Systemを検索</StyledPageHeading>
           <Search className="ais-SearchBox__root">
             <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME || ''} searchClient={searchClient}>
               <CustomSearchBox
@@ -60,8 +61,10 @@ const Main = styled.main`
   }
 `
 
-const PageHeading = styled.h1`
+const StyledPageHeading = styled(PageHeading)`
   margin-block: 140px 40px;
+  font-weight: bold;
+  font-size: 2rem;
   text-align: center;
   line-height: 1.25;
 `

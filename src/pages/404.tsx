@@ -3,6 +3,7 @@ import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
 import React, { FC } from 'react'
+import { PageHeading } from 'smarthr-ui'
 import styled from 'styled-components'
 
 export const Head = () => {
@@ -25,7 +26,7 @@ const NotFoundPage: FC = () => (
     <Header />
 
     <NotFoundContent>
-      <h1>404</h1>
+      <PageHeading>404</PageHeading>
       <p>お探しのページは見つかりませんでした</p>
     </NotFoundContent>
 
