@@ -89,7 +89,7 @@ export const Gotcha: FC<unknown> = () => {
 
   return (
     <Wrapper>
-      <Heading>
+      <GotchaMain>
         <ImageContainer className={isAnimated ? 'runAnimation' : ''} aria-busy={isAnimated}>
           {/* 次の画像 */}
           {nextItemIndex > -1 && (
@@ -141,7 +141,7 @@ export const Gotcha: FC<unknown> = () => {
 
         {/* 活用事例ラベル */}
         <Label>活用事例</Label>
-      </Heading>
+      </GotchaMain>
 
       {/* 関連リンク */}
       {currentItemIndex > -1 && (
@@ -182,7 +182,7 @@ const Wrapper = styled.div`
     width: 100%;
   }
 `
-const Heading = styled.div`
+const GotchaMain = styled.div`
   position: relative;
   width: 100%;
   aspect-ratio: 1272 / 352;

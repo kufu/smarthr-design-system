@@ -51,7 +51,11 @@ const components: MDXProviderComponents = {
     </FragmentTitle>
   ),
   table: ({ children }) => <TableWrapper mdTable={true}>{children}</TableWrapper>,
-  a: ({ children, href }) => <CustomLink href={href}>{children}</CustomLink>,
+  a: ({ children, href, ...props }) => (
+    <CustomLink {...props} href={href}>
+      {children}
+    </CustomLink>
+  ),
 }
 
 const shortcodes = {
@@ -71,6 +75,7 @@ export const query = graphql`
         title
         description
         ignoreH3Nav
+        robotsNoIndex
       }
       fields {
         category
@@ -334,7 +339,8 @@ export const Head: FC<Props> = ({ data }) => {
   // memo: カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
   const headTitle = title === parentCategoryName ? title : `${title} | ${parentCategoryName}`
 
-  return <HeadComponent title={headTitle} description={description} ogTitle={title} />
+  const headerMeta = frontmatter?.robotsNoIndex ? [{ name: 'robots', content: 'noindex' }] : []
+  return <HeadComponent title={headTitle} description={description} ogTitle={title} meta={headerMeta} />
 }
 
 const Wrapper = styled.div`
@@ -361,7 +367,11 @@ const Main = styled.main`
   }
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    grid-template: '. article .' auto / minmax(40px, 1fr) minmax(auto, 712px) minmax(40px, 1fr);
+    grid-template:
+      'sidebar sidebar sidebar'
+      'index index index'
+      '. article .'
+      / minmax(40px, 1fr) minmax(auto, 712px) minmax(40px, 1fr);
     margin-top: 0;
   }
 `
@@ -385,14 +395,11 @@ const MainSidebar = styled.div`
   }
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    grid-column: article;
     display: block;
     position: static;
     height: auto;
+    margin: 0;
     border-right: 0;
-    margin-right: 0;
-    padding-bottom: 32px; /* https://github.com/kufu/smarthr-design-system/issues/501#issuecomment-1000072931 */
-    background-color: transparent;
   }
 `
 
@@ -414,6 +421,13 @@ const MainIndexNav = styled.div`
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
     display: none;
+  }
+
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    display: block;
+    position: static;
+    margin: 0;
+    height: auto;
   }
 `
 

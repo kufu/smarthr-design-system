@@ -1,12 +1,13 @@
-import { CSS_COLOR } from '@Constants/style'
+import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { throttle } from '@Lib/throttle'
-import { Link } from 'gatsby'
 import React, { FC, useEffect, useRef, useState } from 'react'
-import { Nav as NavComponent } from 'smarthr-ui'
+import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui'
 import styled from 'styled-components'
 
+import { IndexNavItems } from './IndexNavItems'
+
 type Props = { target: React.RefObject<HTMLElement>; ignoreH3Nav?: boolean }
-type HeadingItem = {
+export type HeadingItem = {
   value: string
   children: Array<{ value: string; fragmentId?: string }>
   depth: number
@@ -14,6 +15,7 @@ type HeadingItem = {
 }
 
 export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const indexNavRef = useRef<HTMLUListElement>(null)
   const [nestedHeadings, setNestedHeadings] = useState<HeadingItem[]>([])
   const [currentHeading, setCurrentHeading] = useState<string>('')
@@ -82,112 +84,58 @@ export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
   useEffect(() => {
     // 現在地が移動した際、その見出しが表示範囲内に入るようにスクロールする処理
     const currentItem = indexNavRef.current?.querySelector(`a[aria-current="true"]`)
-    const navElement = indexNavRef.current?.parentElement // Navにrefを渡せないため、ulの親要素として取得する
-    if (!(currentItem instanceof HTMLElement) || !navElement) return
+    const wrapperElement = wrapperRef.current
+    if (!(currentItem instanceof HTMLElement) || !wrapperElement) return
 
     // 表示されている範囲の上端・下端の取得
-    const navAreaTop = navElement.scrollTop
-    const navAreaBottom = navAreaTop + navElement.clientHeight
+    const navAreaTop = wrapperElement.scrollTop
+    const navAreaBottom = navAreaTop + wrapperElement.clientHeight
     // 表示範囲に入っていれば何もしない
     if (currentItem.offsetTop > navAreaTop && currentItem.offsetTop < navAreaBottom) return
 
     // 現在地が表示範囲の中央に来るようにスクロールする
-    navElement.scrollTop = currentItem.offsetTop - navElement.clientHeight / 2
+    wrapperElement.scrollTop = currentItem.offsetTop - wrapperElement.clientHeight / 2
   }, [currentHeading, indexNavRef])
 
   return (
-    <Nav>
+    <>
+      {/* PC表示 */}
+      <NavWrapper ref={wrapperRef}>
+        <IndexNavItems nestedHeadings={nestedHeadings} indexNavRef={indexNavRef} currentHeading={currentHeading} />
+      </NavWrapper>
+      {/* SP表示 */}
       {nestedHeadings.length > 0 && (
-        <ul ref={indexNavRef}>
-          {nestedHeadings.map((depth2Item) => {
-            return (
-              <li key={depth2Item.fragmentId}>
-                {depth2Item.value !== '' && (
-                  <Depth2Item>
-                    <Link to={`#${depth2Item.fragmentId}`} aria-current={currentHeading === depth2Item.fragmentId}>
-                      {depth2Item.value}
-                    </Link>
-                  </Depth2Item>
-                )}
-                {depth2Item.children.length > 0 && (
-                  <ul>
-                    {depth2Item.children.map((depth3Item) => {
-                      return (
-                        <li key={depth3Item.fragmentId}>
-                          <Depth3Item>
-                            <Link to={`#${depth3Item.fragmentId}`} aria-current={currentHeading === depth3Item.fragmentId}>
-                              {depth3Item.value}
-                            </Link>
-                          </Depth3Item>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                )}
-              </li>
-            )
-          })}
-        </ul>
+        <SpWrapper>
+          <AccordionPanel iconPosition="right">
+            <AccordionPanelItem name="spIndexNav">
+              <AccordionPanelTrigger>ページ内目次</AccordionPanelTrigger>
+              <AccordionPanelContent>
+                <IndexNavItems nestedHeadings={nestedHeadings} />
+              </AccordionPanelContent>
+            </AccordionPanelItem>
+          </AccordionPanel>
+        </SpWrapper>
       )}
-    </Nav>
+    </>
   )
 }
 
-const Nav = styled(NavComponent)`
-  display: block;
-  padding-top: 160px;
+const NavWrapper = styled.div`
   overflow-y: auto;
-
-  > ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    &::before {
-      content: '';
-      display: block;
-      width: 120px;
-      height: 1px;
-      margin-left: 8px;
-      margin-bottom: 8px;
-      background-color: ${CSS_COLOR.LIGHT_GREY_1};
-    }
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+    display: none;
   }
+`
 
-  li {
-    > ul {
-      margin: 0 0 0 16px;
-      padding: 0;
-      list-style: none;
-    }
-  }
-
-  a {
+const SpWrapper = styled.div`
+  display: none;
+  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: block;
-    padding: 8px;
-    text-decoration: none;
-    color: ${CSS_COLOR.TEXT_GREY};
-    &:hover {
-      text-decoration: underline;
-    }
-    &[aria-current] {
-      color: inherit;
-    }
+    border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};
   }
-`
-
-const Depth2Item = styled.div`
-  display: block;
-  > a[aria-current='true'],
-  a[aria-current='true']:hover {
-    background-color: ${CSS_COLOR.DIVIDER};
-  }
-`
-
-const Depth3Item = styled.div`
-  display: block;
-  > a[aria-current='true'],
-  a[aria-current='true']:hover {
-    background-color: ${CSS_COLOR.DIVIDER};
+  button {
+    font-family: inherit;
+    color: inherit;
+    padding-inline: 24px;
   }
 `

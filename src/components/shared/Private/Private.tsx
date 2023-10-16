@@ -1,9 +1,10 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { LoginContext } from '@Context/LoginContext'
+import { marked } from 'marked'
 import { micromark } from 'micromark'
 import { mdxjs } from 'micromark-extension-mdxjs'
 import React, { useContext, useEffect, useState } from 'react'
-import { AnchorButton, FaExclamationCircleIcon, FaLockIcon } from 'smarthr-ui'
+import { AnchorButton, FaExclamationCircleIcon, FaLockIcon, Section } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import type { FC } from 'react'
@@ -50,7 +51,8 @@ export const Private: FC<Props> = ({ path }) => {
       }
 
       const mdString = await res.text()
-      const html = micromark(mdString, { extensions: [mdxjs()] })
+      // mdxファイルの場合はmicromarkでパースする
+      const html = path.endsWith('md') ? marked.parse(mdString) : micromark(mdString, { extensions: [mdxjs()] })
 
       setPrivateData(html)
       setIsShow(true)
@@ -59,17 +61,17 @@ export const Private: FC<Props> = ({ path }) => {
 
   return isShow ? (
     // ログイン済みの時の表示
-    <AuthView>
+    <AuthViewSection>
       <AuthViewHeading>
         <StyledLockIcon />
         <span>SmartHR社従業員限定コンテンツ</span>
         <Tooltip>
           <StyledExclamationIcon />
-          <p className="message">制作パートナー・グループ会社への共有は可能ですが、SNS等へのシェアはしないでください。</p>
+          <span className="message">制作パートナー・グループ会社への共有は可能ですが、SNS等へのシェアはしないでください。</span>
         </Tooltip>
       </AuthViewHeading>
       <div dangerouslySetInnerHTML={{ __html: privateData }}></div>
-    </AuthView>
+    </AuthViewSection>
   ) : (
     // ログイン前の表示
     <UnAuthView>
@@ -109,7 +111,7 @@ const UnAuthView = styled.div`
   }
 `
 
-const AuthView = styled.div`
+const AuthViewSection = styled(Section)`
   margin-block: 48px;
   background-color: ${CSS_COLOR.CAUTION_LIGHT};
   padding: 30px 36px;
@@ -174,7 +176,7 @@ const Tooltip = styled.div`
   &:hover .message {
     display: block;
   }
-  & p {
+  & span {
     display: none;
     top: -60px; /* 絶対的な値なのでremじゃなくpxで指定 */
     left: -30px; /* 絶対的な値なのでremじゃなくpxで指定 */
@@ -187,7 +189,7 @@ const Tooltip = styled.div`
     padding: 8px;
     border-radius: 4px;
   }
-  & p::before {
+  & span::before {
     content: '';
     position: absolute;
     top: 100%;

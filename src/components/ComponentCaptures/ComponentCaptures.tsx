@@ -1,6 +1,7 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { graphql, useStaticQuery } from 'gatsby'
 import React, { FC } from 'react'
+import { Section } from 'smarthr-ui'
 import styled from 'styled-components'
 
 const query = graphql`
@@ -28,7 +29,7 @@ export const ComponentCaptures: FC = () => {
   return (
     <Wrapper>
       {allComponentCapture.nodes.map((node) => (
-        <ComponentGroup key={node.groupName}>
+        <ComponentGroupSection key={node.groupName}>
           <h2 id={`component-${node.groupName}`}>{node.groupName}</h2>
           <ComponentList>
             {node.storyKinds.map((storyKind) => {
@@ -46,14 +47,14 @@ export const ComponentCaptures: FC = () => {
               ) : null
             })}
           </ComponentList>
-        </ComponentGroup>
+        </ComponentGroupSection>
       ))}
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div``
-const ComponentGroup = styled.div`
+const ComponentGroupSection = styled(Section)`
   && {
     > h2 {
       margin-top: 64px;

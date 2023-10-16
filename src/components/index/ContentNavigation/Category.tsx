@@ -1,6 +1,7 @@
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { Link } from 'gatsby'
 import React, { FC } from 'react'
+import { Section } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { FloatingTextLink } from '../../shared/FloatingTextLink'
@@ -27,7 +28,7 @@ type Props = {
 
 export const Category: FC<Props> = ({ data }) => {
   return (
-    <NavigationContainer>
+    <NavigationSection>
       <NavigationText>
         <h2>{data.title}</h2>
         <p>{data.description}</p>
@@ -59,11 +60,11 @@ export const Category: FC<Props> = ({ data }) => {
           </NavigationLinks>
         )}
       </NavigationLinksContainer>
-    </NavigationContainer>
+    </NavigationSection>
   )
 }
 
-const NavigationContainer = styled.div`
+const NavigationSection = styled(Section)`
   display: flex;
   gap: 40px;
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {

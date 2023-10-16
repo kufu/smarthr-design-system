@@ -112,6 +112,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       title: String!
       description: String!
       order: Int
+      robotsNoIndex: Boolean
     }
   `
 

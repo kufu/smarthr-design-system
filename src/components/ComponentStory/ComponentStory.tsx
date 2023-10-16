@@ -28,9 +28,10 @@ type Props = {
 
 const query = graphql`
   query StoryData {
-    allUiVersion {
+    allUiVersion(sort: { fields: commitDate, order: DESC }) {
       nodes {
         commitHash
+        commitDate
         version
         uiStories {
           storyName
@@ -64,6 +65,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
   const [storyData, setStoryData] = useState({
     code: '',
     storyItems: defaultData?.storyItems ?? [],
+    sourcePath: defaultData?.filePath?.replace(/^\.\//, '').replace(/[^/]*?\.tsx$/, '') || '',
   })
 
   // プルダウンの選択肢を作成する
@@ -111,8 +113,9 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
       }
 
       const storyItems = targetStoryData.storyItems || []
+      const sourcePath = targetStoryData.filePath?.replace(/^\.\//, '').replace(/[^/]*?\.tsx$/, '') || ''
 
-      setStoryData({ code, storyItems })
+      setStoryData({ code, storyItems, sourcePath })
       setCurrentIFrame(storyItems[0]?.iframeName ?? '')
       setShowError(false)
     },
@@ -202,7 +205,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
             Storybook
           </AnchorButton>
           <AnchorButton
-            href={`${SHRUI_GITHUB_PATH}v${displayVersion}/src/components/${name}`}
+            href={`${SHRUI_GITHUB_PATH}v${displayVersion}/${storyData?.sourcePath}`}
             target="_blank"
             size="s"
             suffix={<FaExternalLinkAltIcon />}

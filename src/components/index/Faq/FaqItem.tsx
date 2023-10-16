@@ -1,6 +1,7 @@
 import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
 import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
+import { Section } from 'smarthr-ui'
 import styled from 'styled-components'
 
 type FaqJsonObject = {
@@ -18,15 +19,15 @@ type Props = {
 
 export const FaqItem: FC<Props> = ({ data }) => {
   return (
-    <Wrapper>
+    <FaqItemSection>
       <QuestionHeading>{data.question}</QuestionHeading>
       <AnswerText>{data.answer}</AnswerText>
       <RoundedBoxLink path={data.path} label="もっと詳しく" title={data.linkLabel} />
-    </Wrapper>
+    </FaqItemSection>
   )
 }
 
-const Wrapper = styled.div`
+const FaqItemSection = styled(Section)`
   display: block;
   text-align: left;
 `
