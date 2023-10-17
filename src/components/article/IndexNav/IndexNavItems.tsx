@@ -1,20 +1,18 @@
 import { CSS_COLOR, CSS_SIZE } from '@Constants/style'
 import { Link } from 'gatsby'
 import React, { FC } from 'react'
-import { Nav as NavComponent } from 'smarthr-ui'
+import { Nav as UINav } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import type { HeadingItem } from './IndexNav'
 
 type Props = { nestedHeadings: HeadingItem[]; indexNavRef?: React.RefObject<HTMLUListElement>; currentHeading?: string }
 
-export const IndexNavItems: FC<Props> = ({ nestedHeadings, indexNavRef, currentHeading }) => {
-  return (
+export const IndexNavItems: FC<Props> = ({ nestedHeadings, indexNavRef, currentHeading }) => (
     <Nav>
       {nestedHeadings.length > 0 && (
         <ul ref={indexNavRef}>
-          {nestedHeadings.map((depth2Item) => {
-            return (
+          {nestedHeadings.map((depth2Item) => (
               <li key={depth2Item.fragmentId}>
                 {depth2Item.value !== '' && (
                   <Depth2Item>
@@ -25,8 +23,7 @@ export const IndexNavItems: FC<Props> = ({ nestedHeadings, indexNavRef, currentH
                 )}
                 {depth2Item.children.length > 0 && (
                   <ul>
-                    {depth2Item.children.map((depth3Item) => {
-                      return (
+                    {depth2Item.children.map((depth3Item) => (
                         <li key={depth3Item.fragmentId}>
                           <Depth3Item>
                             <Link to={`#${depth3Item.fragmentId}`} aria-current={currentHeading === depth3Item.fragmentId}>
@@ -34,20 +31,17 @@ export const IndexNavItems: FC<Props> = ({ nestedHeadings, indexNavRef, currentH
                             </Link>
                           </Depth3Item>
                         </li>
-                      )
-                    })}
+                      ))}
                   </ul>
                 )}
               </li>
-            )
-          })}
+            ))}
         </ul>
       )}
     </Nav>
   )
-}
 
-const Nav = styled(NavComponent)`
+const Nav = styled(UINav)`
   display: block;
   padding-top: 160px;
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {

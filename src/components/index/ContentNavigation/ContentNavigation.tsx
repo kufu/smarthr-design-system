@@ -22,19 +22,15 @@ type IndexJsonObject = {
 
 const data = indexContentJson as IndexJsonObject[]
 
-export const ContentNavigation: FC = () => {
-  return (
+export const ContentNavigation: FC = () => (
     <IndexNavigationContainer>
-      {data.map((child, i) => {
-        return (
+      {data.map((child, i) => (
           <li key={i}>
             <Category data={child} />
           </li>
-        )
-      })}
+        ))}
     </IndexNavigationContainer>
   )
-}
 
 const IndexNavigationContainer = styled.ul`
   list-style: none;

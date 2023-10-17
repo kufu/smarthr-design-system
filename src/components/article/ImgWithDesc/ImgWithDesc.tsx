@@ -6,14 +6,12 @@ type Props = {
   children: React.ReactNode
 }
 
-export const ImgWithDesc: FC<Props> = ({ description, children }) => {
-  return (
+export const ImgWithDesc: FC<Props> = ({ description, children }) => (
     <Figure>
       {children}
       <figcaption>{description}</figcaption>
     </Figure>
   )
-}
 
 const Figure = styled.figure`
   display: block;

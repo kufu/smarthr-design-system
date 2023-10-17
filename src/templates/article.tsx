@@ -15,16 +15,14 @@ import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
 import { PageProps, graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import React, { FC, useRef } from 'react'
-import { Article as ArticleComponent } from 'smarthr-ui'
+import { Article as UIArticle } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { Theme } from './Theme'
 
 const components: MDXProviderComponents = {
   pre: (props) => <div {...props} />,
-  code: ({ children, codeBlock, ...props }) => {
-    return codeBlock ? <CodeBlock {...props}>{children}</CodeBlock> : <code {...props}>{children}</code>
-  },
+  code: ({ children, codeBlock, ...props }) => codeBlock ? <CodeBlock {...props}>{children}</CodeBlock> : <code {...props}>{children}</code>,
   h2: ({ children, id }) => (
     <FragmentTitle tag="h2" id={id}>
       {children}
@@ -185,26 +183,14 @@ const Article: FC<Props> = ({ data }) => {
   })
 
   // 2. orderで並び替えして
-  depth1Items.sort(({ order: a }, { order: b }) => {
-    return a - b
-  })
-  depth2Items.sort(({ order: a }, { order: b }) => {
-    return a - b
-  })
+  depth1Items.sort(({ order: a }, { order: b }) => a - b)
+  depth2Items.sort(({ order: a }, { order: b }) => a - b)
   // /products/components/以下のコンポーネントページは名前の順でソートするので、別途並べ替える
-  depth3ComponentItems.sort(({ title: a }, { title: b }) => {
-    return a < b ? -1 : a > b ? 1 : 0
-  })
-  depth3Items.sort(({ order: a }, { order: b }) => {
-    return a - b
-  })
+  depth3ComponentItems.sort(({ title: a }, { title: b }) => a < b ? -1 : a > b ? 1 : 0)
+  depth3Items.sort(({ order: a }, { order: b }) => a - b)
   // /products/components/*/以下のコンポーネントページは名前の順でソートするので、別途並べ替える
-  depth4ComponentItems.sort(({ title: a }, { title: b }) => {
-    return a < b ? -1 : a > b ? 1 : 0
-  })
-  depth4Items.sort(({ order: a }, { order: b }) => {
-    return a - b
-  })
+  depth4ComponentItems.sort(({ title: a }, { title: b }) => a < b ? -1 : a > b ? 1 : 0)
+  depth4Items.sort(({ order: a }, { order: b }) => a - b)
 
   // 3. 一つの配列にする
   const sidebarItems = []
@@ -238,11 +224,11 @@ const Article: FC<Props> = ({ data }) => {
   //
   // 前・次のページのindexを準備
   //
-  const currentPageIndex = sidebarItems.findIndex(({ link }) => {
+  const currentPageIndex = sidebarItems.findIndex(({ link }) => 
     // hierarchyはfrontmatterで定義されている値ではなく、
     // gatsby-node.jsで付与されるようになっている値なので、undefinedになることはないはず
-    return link === `/${fields!.hierarchy!}/`
-  })
+     link === `/${fields!.hierarchy!}/`
+  )
 
   // 同カテゴリ最初or最後のページの場合はnullになる
   const prevPageIndex: number | null = currentPageIndex <= 0 ? null : currentPageIndex - 1
@@ -260,9 +246,9 @@ const Article: FC<Props> = ({ data }) => {
             <Sidebar path={slug ?? ''} nestedSidebarItems={nestedSidebarItems} />
           </MainSidebar>
 
-          <MainIndexNav>
+          <MainIndexWrapper>
             <IndexNav target={articleRef} ignoreH3Nav={ignoreH3Nav} />
-          </MainIndexNav>
+          </MainIndexWrapper>
 
           <MainArticle>
             <div ref={articleRef}>
@@ -276,7 +262,7 @@ const Article: FC<Props> = ({ data }) => {
               </MDXStyledWrapper>
 
               {/* 前へ・次へ表示 */}
-              <MainArticleNav>
+              <MainArticleLinks>
                 {prevPageIndex !== null && (
                   <PrevArticleLinkWrapper>
                     <RoundedBoxLink
@@ -299,7 +285,7 @@ const Article: FC<Props> = ({ data }) => {
                     />
                   </NextArticleLinkWrapper>
                 )}
-              </MainArticleNav>
+              </MainArticleLinks>
             </div>
           </MainArticle>
         </Main>
@@ -403,7 +389,7 @@ const MainSidebar = styled.div`
   }
 `
 
-const MainIndexNav = styled.div`
+const MainIndexWrapper = styled.div`
   grid-area: index;
   display: grid;
   grid-template-columns: [nav] 232px [space] minmax(40px, 1fr);
@@ -431,7 +417,7 @@ const MainIndexNav = styled.div`
   }
 `
 
-const MainArticle = styled(ArticleComponent)`
+const MainArticle = styled(UIArticle)`
   grid-area: article;
   min-width: 0;
   padding-top: 112px;
@@ -450,7 +436,7 @@ const MainArticleTitle = styled.div`
   }
 `
 
-const MainArticleNav = styled.ul`
+const MainArticleLinks = styled.ul`
   list-style: none;
   margin-block: 5rem;
   padding: 0;

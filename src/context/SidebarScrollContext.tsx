@@ -10,9 +10,7 @@ type SidebarScrollStatus = {
 
 export const SidebarScrollContext = createContext<SidebarScrollStatus>({
   position: 0,
-  savePosition: () => {
-    return
-  },
+  savePosition: () => undefined,
 })
 
 export const SidebarScrollContextProvider: FC<Props> = ({ children }) => {

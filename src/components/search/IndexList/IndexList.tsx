@@ -81,16 +81,10 @@ export const IndexList: FC = () => {
   }
 
   // 下層ページを並び替え
-  allLevel3Items.sort(({ order: a }, { order: b }) => {
-    return a - b
-  })
-  level4NumberedItems.sort(({ order: a }, { order: b }) => {
-    return a - b
-  })
+  allLevel3Items.sort(({ order: a }, { order: b }) => a - b)
+  level4NumberedItems.sort(({ order: a }, { order: b }) => a - b)
   // /products/components/以下のコンポーネントページは名前の順でソートするので、別途並べ替える
-  level4ComponentItems.sort(({ title: a }, { title: b }) => {
-    return a < b ? -1 : a > b ? 1 : 0
-  })
+  level4ComponentItems.sort(({ title: a }, { title: b }) => a < b ? -1 : a > b ? 1 : 0)
 
   const allLevel4Items: ListItem[] = [...level4NumberedItems, ...level4ComponentItems]
 
@@ -119,13 +113,11 @@ export const IndexList: FC = () => {
                   {/* 第4階層 */}
                   {level4Items.length !== 0 && (
                     <ul>
-                      {level4Items.map((level4Item) => {
-                        return (
+                      {level4Items.map((level4Item) => (
                           <li key={level4Item.link}>
                             <Link to={`/${level4Item.link}/`}>{level4Item.title}</Link>
                           </li>
-                        )
-                      })}
+                        ))}
                     </ul>
                   )}
                 </Section>

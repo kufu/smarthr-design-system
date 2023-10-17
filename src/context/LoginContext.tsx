@@ -16,9 +16,7 @@ export const LoginContext = createContext<LoginStatus>({
   loginStatus: 'pending',
   loginLabel: '',
   password: '',
-  updateLoginStatus: () => {
-    return
-  },
+  updateLoginStatus: () => undefined,
 })
 
 export const LoginContextProvider: FC<Props> = ({ children }) => {

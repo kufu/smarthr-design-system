@@ -26,8 +26,7 @@ type Props = {
   data: ItemJsonType
 }
 
-export const Category: FC<Props> = ({ data }) => {
-  return (
+export const Category: FC<Props> = ({ data }) => (
     <NavigationSection>
       <NavigationText>
         <h2>{data.title}</h2>
@@ -43,8 +42,7 @@ export const Category: FC<Props> = ({ data }) => {
           </CategoryImageWrapper>
         ) : (
           <NavigationLinks>
-            {data.items.map((item, i) => {
-              return (
+            {data.items.map((item, i) => (
                 <li key={i}>
                   <Link to={item.path}>
                     <ThumbnailImageWrapper>
@@ -55,14 +53,12 @@ export const Category: FC<Props> = ({ data }) => {
                     <p>{item.title}</p>
                   </Link>
                 </li>
-              )
-            })}
+              ))}
           </NavigationLinks>
         )}
       </NavigationLinksContainer>
     </NavigationSection>
   )
-}
 
 const NavigationSection = styled(Section)`
   display: flex;

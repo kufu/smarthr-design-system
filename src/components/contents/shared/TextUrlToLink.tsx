@@ -6,16 +6,12 @@ type Props = {
   text: string
 }
 
-export const TextUrlToLink: FC<Props> = ({ text }) => {
-  return (
+export const TextUrlToLink: FC<Props> = ({ text }) => (
     <>
-      {reactStringReplace(text, /(https?:\/\/\S+)/g, (match: string, strIndex: number) => {
-        return (
+      {reactStringReplace(text, /(https?:\/\/\S+)/g, (match: string, strIndex: number) => (
           <CustomLink key={strIndex} href={match}>
             {match}
           </CustomLink>
-        )
-      })}
+        ))}
     </>
   )
-}

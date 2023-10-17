@@ -64,9 +64,7 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
       label: node.data?.label,
       ngExample: node.data?.ng_example,
       okExample: node.data?.ok_example,
-      reason: node.data?.reason?.map((reason) => {
-        return reason ?? ''
-      }),
+      reason: node.data?.reason?.map((reason) => reason ?? ''),
       recordId: node.data?.record_id,
     }))
     .sort((x, y) => (x.label && y.label ? x.label.localeCompare(y.label, 'ja') : -1))
@@ -78,9 +76,7 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
     // ひらがなで始まっていない場合は記号・その他に分類
     if (!labelChar.match(/[あ-ん]/)) return '記号・その他'
     const index =
-      charIndexList.findIndex((indexChar) => {
-        return labelChar.localeCompare(indexChar.charAt(0), 'ja') < 0
-      }) - 1
+      charIndexList.findIndex((indexChar) => labelChar.localeCompare(indexChar.charAt(0), 'ja') < 0) - 1
     return charIndexList[index]
   }
   const indexedUsageData: { [key in (typeof charIndexList)[number]]: IdiomaticUsageData[] } = {}
@@ -100,9 +96,7 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
       recordId: node.data?.record_id,
       order: node.data?.order || Number.MAX_SAFE_INTEGER,
     }))
-    .filter((item) => {
-      return item.name
-    })
+    .filter((item) => item.name)
     .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
   return (
@@ -113,16 +107,13 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
       {type === 'data' && (
         <>
           <Cluster gap={'S'}>
-            {charIndexList.map((char) => {
-              return (
+            {charIndexList.map((char) => (
                 <a key={char} href={`#${char}`}>
                   {char}
                 </a>
-              )
-            })}
+              ))}
           </Cluster>
-          {charIndexList.map((char) => {
-            return (
+          {charIndexList.map((char) => (
               <React.Fragment key={char}>
                 <FragmentTitle id={`${char}`} tag="h3">
                   {char}
@@ -146,16 +137,14 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
                           <tr key={index}>
                             <RecommendTd>
                               <strong>
-                                {prop.okExample?.split(/(\u3000)/).map((word, wordIndex) => {
+                                {prop.okExample?.split(/(\u3000)/).map((word, wordIndex) => 
                                   // 全角スペース（u3000）があれば改行に変換
-                                  return word === '　' ? <br key={wordIndex} /> : word
-                                })}
+                                   word === '　' ? <br key={wordIndex} /> : word
+                                )}
                               </strong>
                             </RecommendTd>
                             <NGTd>
-                              {prop.ngExample?.split(/(\u3000)/).map((word, wordIndex) => {
-                                return word === '　' ? <br key={wordIndex} /> : word
-                              })}
+                              {prop.ngExample?.split(/(\u3000)/).map((word, wordIndex) => word === '　' ? <br key={wordIndex} /> : word)}
                             </NGTd>
                             <ReasonTd>
                               <ul>
@@ -175,16 +164,13 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
                   </Table>
                 </Wrapper>
               </React.Fragment>
-            )
-          })}
+            ))}
         </>
       )}
       {type === 'reason' && (
         <>
           {idiomaticUsageReason.map(({ name, description, discussion, source, recordId }, index) => {
-            const generateFragmentId = (suffixId: string) => {
-              return recordId ? `${recordId}-${suffixId}` : `${index}-${suffixId}`
-            }
+            const generateFragmentId = (suffixId: string) => recordId ? `${recordId}-${suffixId}` : `${index}-${suffixId}`
 
             return (
               <Wrapper key={index}>

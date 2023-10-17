@@ -11,14 +11,11 @@ import { InstantSearch } from 'react-instantsearch-dom'
 import { PageHeading } from 'smarthr-ui'
 import styled from 'styled-components'
 
-export const Head = () => {
-  return <HeadComponent title="検索" description="検索ページです。" />
-}
+export const Head = () => <HeadComponent title="検索" description="検索ページです。" />
 
 const searchClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID || '', process.env.GATSBY_ALGOLIA_SEARCH_API_KEY || '')
 
-const SearchPage: FC = () => {
-  return (
+const SearchPage: FC = () => (
     <>
       <GlobalStyle />
 
@@ -40,7 +37,6 @@ const SearchPage: FC = () => {
       </Wrapper>
     </>
   )
-}
 
 export default SearchPage
 
