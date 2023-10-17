@@ -9,63 +9,130 @@ import {
   StatusLabel,
 } from 'smarthr-ui'
 
-Fieldsetコンポーネントは、フォームにおける複数の入力要素をグループ化するためのコンポーネントです。
+Fieldsetコンポーネントは、フォームにおける複数の入力要素をグルーピングするためのコンポーネントです。
 
 <ComponentStory name="Fieldset" />
 
 ## 使用上の注意
 
-特に注意したいアンチパターンなど使用上の注意があれば書きます。種類ごとの使いどころは[種類](#h2-1)に書きます。
+### 入力要素が2つ以上の場合にのみ使用する
+
+Fieldsetは、2つ以上の入力要素をまとめてグループ化したい場合に使用します。
+
+姓名や電話番号のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
+
+入力要素が1つだけの場合は、[FormControl](/products/components/form-control/)を使用してください。
 
 ## レイアウト
 
-Fieldsetは、関連する複数の入力要素をグループ化する目的で使用します。それぞれのFieldsetは、そのグループの目的を明確にするタイトルをつけます。
+Fieldsetは、関連する複数の入力要素をグルーピングする目的で使用します。それぞれのFieldsetは、そのグループの目的を明確にするタイトルをつけます。
 
-```tsx editable codeBlock
-<Fieldset title="就業形態" innerMargin={0.5}>
-    <Cluster gap={1.25}>
-        <RadioButton name="employment" defaultChecked={true}>
-        正社員
-        </RadioButton>
-        <RadioButton name="employment">契約社員</RadioButton>
-        <RadioButton name="employment">派遣社員</RadioButton>
-        <RadioButton name="employment">アルバイト</RadioButton>
-        <RadioButton name="employment">その他</RadioButton>
-    </Cluster>
-</Fieldset>
-```
+Fieldsetに内包されるフォーム要素のタイトルは、グルーピングしているFieldsetのタイトルよりも低い見出しレベルになるようにします。見出しに関する詳細は[Heading](/products/components/heading/)を参照してください。
+
+また、FormControlと同様に、ステータスラベルやメッセージテキストの有無で、コンポーネント内のレイアウトにバリエーションがあります。詳細は[FormControlのレイアウト](/products/components/form-control/#h2-1)を参照してください。
 
 ```tsx editable codeBlock
 <Fieldset
-title="アカウントの設定"
-statusLabelProps={{ type: 'grey', children: '任意' }}
-errorMessages="入力されていない項目があります。"
+    title="ユーザー情報"
+    helpMessage="登録するユーザー情報を入力してください。"
 >
-    <Stack>
-        <Fieldset title="設定の有無" titleType="subBlockTitle" innerMargin={0.5}>
-        <Cluster gap={1.25}>
-            <RadioButton name="existsConfig" defaultChecked={true}>
-            あり
-            </RadioButton>
-            <RadioButton name="existsConfig">なし</RadioButton>
+    <Stack gap={1.25}>
+        <Cluster gap={0.5}>
+            <FormControl
+                title="姓"
+                titleType="subBlockTitle"
+            >
+                <Input name="lastName" />
+            </FormControl>
+            <FormControl
+                title="名"
+                titleType="subBlockTitle"
+            >
+                <Input name="firstName" />
+            </FormControl>
         </Cluster>
+        <Fieldset
+            title="住所"
+            titleType="subBlockTitle"
+        >
+            <Stack>
+                <FormControl
+                    title="郵便番号"
+                    titleType="subSubBlockTitle"
+                >
+                    <Input name="address_postalCode" />
+                </FormControl>
+                <FormControl
+                    title="都道府県"
+                    titleType="subSubBlockTitle"
+                >
+                    <Select
+                        name="address_prefecture"
+                        options={[
+                            { label: '都道府県を選択してください', value: '' },
+                            { label: '選択肢1', value: 'value1' },
+                            { label: '選択肢2', value: 'value2' },
+                            { label: '選択肢3', value: 'value3' },
+                        ]}
+                    />
+                </FormControl>
+                <FormControl
+                    title="市区町村"
+                    titleType="subSubBlockTitle"
+                >
+                    <Input name="address_city" />
+                </FormControl>
+                <FormControl
+                    title="番地"
+                    titleType="subSubBlockTitle"
+                >
+                    <Input name="address_streetNumber" />
+                </FormControl>
+                <FormControl
+                    title="建物名・部屋番号"
+                    titleType="subSubBlockTitle"
+                >
+                    <Input name="address_buildingName" />
+                </FormControl>
+            </Stack>
         </Fieldset>
-        <Cluster gap={1}>
-        <FormControl
-            title="姓"
+        <Fieldset
+            title="電話番号"
             titleType="subBlockTitle"
-            errorMessages="姓が入力されていません。"
+            innerMargin={0.5}
         >
-            <Input name="lastName" />
-        </FormControl>
-        <FormControl
-            title="名"
+            <Cluster gap={0.5}>
+                <Input width="100px" name="phone_number1" />
+                <Input width="100px" name="phone_number2" />
+                <Input width="100px" name="phone_number3" />
+            </Cluster>
+        </Fieldset>
+        <Fieldset
+            title="性別"
             titleType="subBlockTitle"
-            errorMessages="名が入力されていません。"
+            innerMargin={0.5}
         >
-            <Input name="firstName" />
+            <Cluster gap={1.25}>
+                <RadioButton name="gender">男性</RadioButton>
+                <RadioButton name="gender">女性</RadioButton>
+                <RadioButton name="gender">回答しない</RadioButton>
+            </Cluster>
+        </Fieldset>
+        <FormControl
+            title="職業"
+            titleType="subBlockTitle"
+            innerMargin={0.5}
+        >
+            <Select
+                name="occupation"
+                options={[
+                    { label: '職業を選択してください', value: '' },
+                    { label: '選択肢1', value: 'value1' },
+                    { label: '選択肢2', value: 'value2' },
+                    { label: '選択肢3', value: 'value3' },
+                ]}
+            />
         </FormControl>
-        </Cluster>
     </Stack>
 </Fieldset>
 ```
@@ -82,12 +149,12 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
 
 ```tsx editable codeBlock
 <Fieldset
-    title="アカウントの設定"
-    helpMessage="登録するアカウント情報を入力してください。"
+    title="ユーザー情報"
+    helpMessage="登録するユーザー情報を入力してください。"
     disabled
 >
-    <Stack>
-        <Cluster gap={1}>
+    <Stack gap={1.25}>
+        <Cluster gap={0.5}>
             <FormControl
                 title="姓"
                 titleType="subBlockTitle"
@@ -101,71 +168,128 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
                 <Input name="firstName" />
             </FormControl>
         </Cluster>
-        <FormControl
-            title="アカウント名"
+        <Fieldset
+            title="住所"
             titleType="subBlockTitle"
         >
-            <Input name="accountName" />
-        </FormControl>
-        <Fieldset title="電話番号" innerMargin={0.5}>
+            <Stack>
+                <FormControl
+                    title="郵便番号"
+                    titleType="subSubBlockTitle"
+                >
+                    <Input name="address_postalCode" />
+                </FormControl>
+                <FormControl
+                    title="都道府県"
+                    titleType="subSubBlockTitle"
+                >
+                    <Select
+                        name="address_prefecture"
+                        options={[
+                            { label: '都道府県を選択してください', value: '' },
+                            { label: '選択肢1', value: 'value1' },
+                            { label: '選択肢2', value: 'value2' },
+                            { label: '選択肢3', value: 'value3' },
+                        ]}
+                    />
+                </FormControl>
+                <FormControl
+                    title="市区町村"
+                    titleType="subSubBlockTitle"
+                >
+                    <Input name="address_city" />
+                </FormControl>
+                <FormControl
+                    title="番地"
+                    titleType="subSubBlockTitle"
+                >
+                    <Input name="address_streetNumber" />
+                </FormControl>
+                <FormControl
+                    title="建物名・部屋番号"
+                    titleType="subSubBlockTitle"
+                >
+                    <Input name="address_buildingName" />
+                </FormControl>
+            </Stack>
+        </Fieldset>
+        <Fieldset
+            title="電話番号"
+            titleType="subBlockTitle"
+            innerMargin={0.5}
+        >
             <Cluster gap={0.5}>
-                <Input width="100px" name="phoneNumber1" />
-                <Input width="100px" name="phoneNumber2" />
-                <Input width="100px" name="phoneNumber3" />
+                <Input width="100px" name="phone_number1" />
+                <Input width="100px" name="phone_number2" />
+                <Input width="100px" name="phone_number3" />
             </Cluster>
         </Fieldset>
-        <Fieldset title="就業形態" innerMargin={0.5}>
+        <Fieldset
+            title="性別"
+            titleType="subBlockTitle"
+            innerMargin={0.5}
+        >
             <Cluster gap={1.25}>
-                <RadioButton name="employment2">正社員</RadioButton>
-                <RadioButton name="employment2">契約社員</RadioButton>
-                <RadioButton name="employment2">派遣社員</RadioButton>
-                <RadioButton name="employment2">アルバイト</RadioButton>
-                <RadioButton name="employment2">その他</RadioButton>
+                <RadioButton name="gender">男性</RadioButton>
+                <RadioButton name="gender">女性</RadioButton>
+                <RadioButton name="gender">回答しない</RadioButton>
             </Cluster>
         </Fieldset>
-        <Fieldset title="職業" innerMargin={0.5}>
+        <FormControl
+            title="職業"
+            titleType="subBlockTitle"
+            innerMargin={0.5}
+        >
             <Select
-                name="job"
-                value="orange"
+                name="occupation"
                 options={[
-                    { label: 'Select fruit', value: '' },
-                    { label: 'Apple', value: 'apple' },
-                    {
-                    label: 'citrus',
-                    options: [
-                        { label: 'Orange', value: 'orange' },
-                        { label: 'Lemon', value: 'lemon' },
-                        { label: 'Grapefruit', value: 'grapefruit' },
-                    ],
-                    },
-                    { label: 'Banana', value: 'banana' },
-                    {
-                    label: 'Fruit vegetables',
-                    disabled: true,
-                    options: [
-                        { label: 'Strawberry', value: 'strawberry' },
-                        { label: 'Melon', value: 'melon' },
-                        { label: 'Water melon', value: 'water melon' },
-                    ],
-                    },
+                    { label: '職業を選択してください', value: '' },
+                    { label: '選択肢1', value: 'value1' },
+                    { label: '選択肢2', value: 'value2' },
+                    { label: '選択肢3', value: 'value3' },
                 ]}
             />
-        </Fieldset>
+        </FormControl>
     </Stack>
 </Fieldset>
 ```
 
-## ライティング
+### 読み取り専用
 
-主題に種類がなく、ライティングルールを書きたい場合はここに書きます。〇〇の使い方..などはこのグループに所属させます。AirTableも必要であれば埋め込めます。
+Fieldset自体には、読み取り専用の状態は存在しません。
 
-## アクセシビリティ
+入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、[Input](/products/components/input/)の`readOnly`を使用してください。
 
-主題全体に対するアクセシビリティの考え方として、特段言及したい場合は書きます。
+ただし、値をテキストとしてコピーして利用したいユーザーにとっては、分割されているフォームの値をそれぞれコピーする必要があり、手間になってしまうことに注意してください。
 
-## デザインパターン
-
-コンポーネント独自のデザインパターンがあればこのグループ内に書きます、基準サイズなどもこの項目で書きます。
+```tsx editable codeBlock
+<Fieldset
+    title="電話番号"
+    titleType="subBlockTitle"
+    innerMargin={0.5}
+>
+    <Cluster gap={0.5}>
+        <Input
+            width="100px"
+            name="phoneNumber1"
+            value="00"
+            readOnly
+        />
+        <Input
+            width="100px"
+            name="phoneNumber2"
+            value="0000"
+            readOnly
+        />
+        <Input
+            width="100px"
+            name="phoneNumber3"
+            value="0000"
+            readOnly
+        />
+    </Cluster>
+</Fieldset>
+```
 
 ## Props
 
