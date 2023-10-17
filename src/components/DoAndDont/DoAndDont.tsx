@@ -8,8 +8,7 @@ type Props = {
   label: React.ReactNode
 }
 
-export const DoAndDont: FC<Props> = ({ type, img, label }) => {
-  return (
+export const DoAndDont: FC<Props> = ({ type, img, label }) => (
     <Wrapper>
       <ImageArea>{img}</ImageArea>
       <LabelArea $type={type}>
@@ -30,7 +29,6 @@ export const DoAndDont: FC<Props> = ({ type, img, label }) => {
       </LabelArea>
     </Wrapper>
   )
-}
 
 const Wrapper = styled.div`
   margin-block: 16px 0;
@@ -43,8 +41,7 @@ const ImageArea = styled.div`
 `
 
 const Status = styled.div<{ $type: 'do' | 'dont' }>`
-  ${({ $type }) => {
-    return css`
+  ${({ $type }) => css`
       display: flex;
       align-items: center;
       font-weight: bold;
@@ -53,16 +50,13 @@ const Status = styled.div<{ $type: 'do' | 'dont' }>`
         color: ${$type === 'do' ? defaultColor.MAIN : defaultColor.DANGER};
         margin-right: ${defaultSpacing.XXS};
       }
-    `
-  }}
+    `}
 `
 
 const LabelArea = styled.div<{ $type: 'do' | 'dont' }>`
-  ${({ $type }) => {
-    return css`
+  ${({ $type }) => css`
       background-color: ${defaultColor.BACKGROUND};
       padding: ${defaultSpacing.XS};
       border-top: ${defaultSpacing.XXS} solid ${$type === 'do' ? defaultColor.MAIN : defaultColor.DANGER};
-    `
-  }}
+    `}
 `

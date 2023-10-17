@@ -84,9 +84,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
     const slug = node.fields?.slug
     const component = path.resolve(`./src/templates/article.tsx`)
 
-    const targetAirtable = AIRTABLE_CONTENTS.filter((item: airtableContents) => {
-      return item.pagePath === slug
-    })
+    const targetAirtable = AIRTABLE_CONTENTS.filter((item: airtableContents) => item.pagePath === slug)
 
     if (slug) {
       createPage({

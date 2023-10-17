@@ -38,9 +38,7 @@ export const Gotcha: FC<unknown> = () => {
   let currentImgIsReady = false
   let nextImgIsReady = false
 
-  const shouldDisabled: boolean = useMemo(() => {
-    return currentImgIsReady && nextImgIsReady
-  }, [currentImgIsReady, nextImgIsReady])
+  const shouldDisabled: boolean = useMemo(() => currentImgIsReady && nextImgIsReady, [currentImgIsReady, nextImgIsReady])
 
   if (gotchaItem.length === 0) return null
 

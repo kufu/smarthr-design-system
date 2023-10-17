@@ -22,8 +22,7 @@ export const AIRTABLE_CONTENTS: airtableContents[] = [
   },
 ]
 
-export const AIRTABLE_MOCK_DATA = AIRTABLE_CONTENTS.map((content) => {
-  return {
+export const AIRTABLE_MOCK_DATA = AIRTABLE_CONTENTS.map((content) => ({
     table: content.tableName,
     data: {
       record_id: 'recMOCKDATA',
@@ -35,10 +34,7 @@ export const AIRTABLE_MOCK_DATA = AIRTABLE_CONTENTS.map((content) => {
       ng_example: '表記のNG事例',
       ok_example: '表記のOK事例',
       expected: '-',
-      reason: () => {
-        return ['理由1', '理由2']
-      },
+      reason: () => ['理由1', '理由2'],
       order: 0,
     },
-  }
-})
+  }))

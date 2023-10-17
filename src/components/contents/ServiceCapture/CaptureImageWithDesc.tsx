@@ -7,14 +7,12 @@ type Props = {
   children: React.ReactNode
 }
 
-export const CaptureImageWithDesc: FC<Props> = ({ description, children }) => {
-  return (
+export const CaptureImageWithDesc: FC<Props> = ({ description, children }) => (
     <Figure>
       {children}
       {description && <figcaption>{description}</figcaption>}
     </Figure>
   )
-}
 
 const Figure = styled.figure`
   display: block;

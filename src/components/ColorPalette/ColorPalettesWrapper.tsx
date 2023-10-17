@@ -5,9 +5,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const ColorPalettesWrapper: FC<Props> = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>
-}
+export const ColorPalettesWrapper: FC<Props> = ({ children }) => <Wrapper>{children}</Wrapper>
 
 const Wrapper = styled.div`
   display: flex;

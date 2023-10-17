@@ -70,9 +70,7 @@ export const CodeBlock: FC<Props> = ({
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
 
   const renderingPropsText = Object.keys(componentProps)
-    .map((key) => {
-      return `${key}="${componentProps[key as keyof typeof componentProps]}"`
-    })
+    .map((key) => `${key}="${componentProps[key as keyof typeof componentProps]}"`)
     .join(' ')
 
   const code = renderingComponent

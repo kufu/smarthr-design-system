@@ -17,15 +17,13 @@ type Props = {
   data: ItemJsonType
 }
 
-export const FaqItem: FC<Props> = ({ data }) => {
-  return (
+export const FaqItem: FC<Props> = ({ data }) => (
     <FaqItemSection>
       <QuestionHeading>{data.question}</QuestionHeading>
       <AnswerText>{data.answer}</AnswerText>
       <RoundedBoxLink path={data.path} label="もっと詳しく" title={data.linkLabel} />
     </FaqItemSection>
   )
-}
 
 const FaqItemSection = styled(Section)`
   display: block;

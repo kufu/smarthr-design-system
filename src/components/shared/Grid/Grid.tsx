@@ -8,13 +8,11 @@ type Props = {
   children: React.ReactNode
 }
 
-export const Grid: FC<Props> = ({ gap = '24px', size = '344px', autoRepeat = 'auto-fit', children }) => {
-  return (
+export const Grid: FC<Props> = ({ gap = '24px', size = '344px', autoRepeat = 'auto-fit', children }) => (
     <Wrapper gap={gap} size={size} autoRepeat={autoRepeat}>
       {children}
     </Wrapper>
   )
-}
 
 const Wrapper = styled.div<{ gap?: string; size?: string; autoRepeat?: string }>`
   display: grid;
