@@ -59,9 +59,7 @@ export const Head: FC<Props> = ({ title, ogTitle, description, meta = [] }) => {
       <meta name="twitter:site" content={siteMetadata?.author ?? ''} />
       <meta name="twitter:title" content={pageTitle ?? ''} />
       <meta name="twitter:description" content={metaDescription ?? ''} />
-      {meta.map((item, index) => {
-        return <meta key={index} name={item.name} content={item.content} />
-      })}
+      {meta.map((item, index) => <meta key={index} name={item.name} content={item.content} />)}
       <link rel="icon" href="/favicon.ico" />
       <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
       <link rel="manifest" href="/manifest.webmanifest" />

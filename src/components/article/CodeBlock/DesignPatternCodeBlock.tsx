@@ -25,9 +25,7 @@ const query = graphql`
 export const DesignPatternCodeBlock: FC<Props> = ({ componentName, componentTitle, ...componentProps }) => {
   const { allMdx } = useStaticQuery<Queries.PatternCodeQuery>(query)
   const patternCode =
-    allMdx.nodes.find((node) => {
-      return node.frontmatter?.patternName === componentName
-    })?.fields?.patternCode || ''
+    allMdx.nodes.find((node) => node.frontmatter?.patternName === componentName)?.fields?.patternCode || ''
 
   return (
     <CodeBlock

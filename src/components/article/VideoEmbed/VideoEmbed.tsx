@@ -9,8 +9,7 @@ type Props = {
   tracks?: Array<TrackHTMLAttributes<HTMLTrackElement>>
 }
 
-export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl, tracks = [] }) => {
-  return (
+export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl, tracks = [] }) => (
     <>
       <Video controls poster={poster}>
         <source src={source} type="video/mp4" title={title}></source>
@@ -19,9 +18,7 @@ export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl, track
         ) : (
           <p>動画再生に対応した環境でご覧ください。</p>
         )}
-        {tracks.map((track, index) => {
-          return <track {...track} key={index} />
-        })}
+        {tracks.map((track, index) => <track {...track} key={index} />)}
       </Video>
 
       {youtubeUrl && (
@@ -31,7 +28,6 @@ export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl, track
       )}
     </>
   )
-}
 
 const Video = styled.video`
   max-width: 100%;

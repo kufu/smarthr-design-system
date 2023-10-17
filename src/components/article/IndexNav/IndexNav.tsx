@@ -60,9 +60,7 @@ export const IndexNav: FC<Props> = ({ target, ignoreH3Nav = false }) => {
     const handleScroll = throttle(() => {
       const currentRef = target.current
       if (!currentRef) return
-      const headingList = Array.from(currentRef.querySelectorAll('h2, h3')).filter((element) => {
-        return !(element.tagName === 'H3' && ignoreH3Nav)
-      })
+      const headingList = Array.from(currentRef.querySelectorAll('h2, h3')).filter((element) => !(element.tagName === 'H3' && ignoreH3Nav))
       const _currentHeading = headingList.find((element, index) => {
         const elementTop = element.getBoundingClientRect().top
         const nextItemTop = headingList[index + 1]?.getBoundingClientRect().top

@@ -7,8 +7,7 @@ type Props = {
   tableName: string
 }
 
-export const AirtableEmbed: FC<Props> = ({ children, tableName }) => {
-  return (
+export const AirtableEmbed: FC<Props> = ({ children, tableName }) => (
     <>
       {children}
       <ButtonWrapper>
@@ -18,7 +17,6 @@ export const AirtableEmbed: FC<Props> = ({ children, tableName }) => {
       </ButtonWrapper>
     </>
   )
-}
 
 const ButtonWrapper = styled.div`
   text-align: right;

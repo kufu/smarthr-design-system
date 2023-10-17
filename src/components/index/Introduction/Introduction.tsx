@@ -5,8 +5,7 @@ import styled from 'styled-components'
 
 import { FloatingTextLink } from '../../shared/FloatingTextLink'
 
-export const Introduction: FC = () => {
-  return (
+export const Introduction: FC = () => (
     <>
       <IntroductionContainer>
         <StyledPageHeading>
@@ -33,7 +32,6 @@ export const Introduction: FC = () => {
       </IndexImageContainer>
     </>
   )
-}
 
 const IntroductionContainer = styled.div`
   width: 70%;
