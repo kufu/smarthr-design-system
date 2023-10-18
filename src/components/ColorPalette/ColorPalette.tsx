@@ -23,8 +23,7 @@ type Props = {
   description: string
 }
 
-export const ColorPalette: FC<Props> = ({ colorName, colorValue, description }) => {
-  return (
+export const ColorPalette: FC<Props> = ({ colorName, colorValue, description }) => (
     <Wrapper>
       <Thumbnail $color={colorValue}></Thumbnail>
       <Informations>
@@ -42,7 +41,6 @@ export const ColorPalette: FC<Props> = ({ colorName, colorValue, description }) 
       </Informations>
     </Wrapper>
   )
-}
 
 const Wrapper = styled.div`
   width: calc(25% - 24px);
@@ -55,15 +53,13 @@ const Wrapper = styled.div`
 
 const Thumbnail = styled.div<{
   $color: string
-}>(({ $color }) => {
-  return css`
+}>(({ $color }) => css`
     width: 100%;
     height: 128px;
     margin-bottom: 12px;
     background-color: ${$color};
     box-shadow: rgb(235, 236, 240) 0 0 0 1.2px;
-  `
-})
+  `)
 
 const Informations = styled.div``
 const ColorName = styled.div`

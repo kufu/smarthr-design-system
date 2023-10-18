@@ -18,22 +18,18 @@ type ItemJsonType = FaqJsonObject
 
 const data = indexFaqJson as ItemJsonType[]
 
-export const FaqList: FC = () => {
-  return (
+export const FaqList: FC = () => (
     <IndexFaqSection>
       <h2>よくあるご質問</h2>
       <ul>
-        {data.map((item, i) => {
-          return (
+        {data.map((item, i) => (
             <li key={i}>
               <FaqItem data={item}></FaqItem>
             </li>
-          )
-        })}
+          ))}
       </ul>
     </IndexFaqSection>
   )
-}
 
 const IndexFaqSection = styled(Section)`
   margin: 240px 0 0;

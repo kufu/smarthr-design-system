@@ -103,10 +103,12 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
   const footerCategories = useStaticQuery<Queries.FooterQuery>(query)
   return (
     <Wrapper isArticlePage={isArticlePage}>
-      <FooterSection isArticlePage={isArticlePage}>
+      <FooterContainer isArticlePage={isArticlePage}>
         <Col1Container>
-          <StyledLogoHeading>SmartHR Design System</StyledLogoHeading>
-          <FootStaticLinks />
+          <Section>
+            <StyledLogoHeading>SmartHR Design System</StyledLogoHeading>
+            <FootStaticLinks />
+          </Section>
         </Col1Container>
 
         <Col2Container>
@@ -141,7 +143,7 @@ export const Footer: FC<Props> = ({ isArticlePage = false }) => {
             <small>© SmartHR, Inc.</small>
           </StyledCopyright>
         </CopyrightContainer>
-      </FooterSection>
+      </FooterContainer>
     </Wrapper>
   )
 }
@@ -181,7 +183,7 @@ const Wrapper = styled.footer<{ isArticlePage: boolean }>`
   }
 `
 
-const FooterSection = styled.div<{ isArticlePage: boolean }>`
+const FooterContainer = styled.div<{ isArticlePage: boolean }>`
   display: grid;
   grid-template:
     'col1 . col2' auto

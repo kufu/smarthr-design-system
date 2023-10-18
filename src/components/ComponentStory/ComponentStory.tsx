@@ -52,9 +52,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
   const { allUiVersion } = useStaticQuery<Queries.StoryDataQuery>(query)
 
   // package.jsonにあるsmarthr-uiのバージョンをデフォルトにする
-  const defaultVersion = allUiVersion.nodes.find((node) => {
-    return node.version === packageInfo.version
-  })
+  const defaultVersion = allUiVersion.nodes.find((node) => node.version === packageInfo.version)
   // 全Storyのデータからpropsで指定された名前のStoryを取得する
   const defaultData = defaultVersion?.uiStories?.find((story) => {
     if (dirName) return story?.dirName === dirName && story?.storyName === name
@@ -70,12 +68,10 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
 
   // プルダウンの選択肢を作成する
   const versionOptions =
-    allUiVersion.nodes?.map((version) => {
-      return {
+    allUiVersion.nodes?.map((version) => ({
         label: `v${version.version}`,
         value: version.version ?? '',
-      }
-    }) ?? []
+      })) ?? []
 
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [isStoryLoaded, setIsStoryLoaded] = useState<boolean>(false)
@@ -90,13 +86,9 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
       setIsIFrameLoaded(false)
 
       // GraphQLからで取得したデータから該当のバージョンを選ぶ
-      const versionData = allUiVersion.nodes.find((node) => {
-        return node.version === version
-      })
+      const versionData = allUiVersion.nodes.find((node) => node.version === version)
       // 該当のバージョンからページで表示したいStoryを選ぶ
-      const targetStoryData = versionData?.uiStories?.find((story) => {
-        return story?.storyName === name
-      })
+      const targetStoryData = versionData?.uiStories?.find((story) => story?.storyName === name)
       if (!versionData || !targetStoryData) {
         setShowError(true)
         return
@@ -122,13 +114,9 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
     [name, allUiVersion.nodes],
   )
 
-  const getCommitHash = useCallback(() => {
-    return (
-      allUiVersion.nodes?.find((version) => {
-        return version.version === displayVersion
-      })?.commitHash ?? ''
-    )
-  }, [allUiVersion.nodes, displayVersion])
+  const getCommitHash = useCallback(() => (
+      allUiVersion.nodes?.find((version) => version.version === displayVersion)?.commitHash ?? ''
+    ), [allUiVersion.nodes, displayVersion])
 
   // クエリ付きURLでアクセスされた場合
   const location = useLocation()
@@ -153,11 +141,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
     return
   }
 
-  const getStoryName = (currentName: string) => {
-    return storyData.storyItems?.find((item) => {
-      return item?.iframeName === currentName
-    })?.iframeName
-  }
+  const getStoryName = (currentName: string) => storyData.storyItems?.find((item) => item?.iframeName === currentName)?.iframeName
 
   const onIFrameLoaded = () => {
     setIsStoryLoaded(true)
@@ -183,9 +167,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
               blankLabel: () =>
                 showError ||
                 !isStoryLoaded ||
-                versionOptions.find((option) => {
-                  return option.value === displayVersion
-                })
+                versionOptions.find((option) => option.value === displayVersion)
                   ? '-'
                   : `v${displayVersion}`,
             }}
@@ -227,8 +209,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
       {!showError && (
         <>
           <Tab>
-            {storyData.storyItems.map((item, index: number) => {
-              return (
+            {storyData.storyItems.map((item, index: number) => (
                 <TabItem
                   id={item?.iframeName ?? ''}
                   key={index}
@@ -237,8 +218,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
                 >
                   {item?.label}
                 </TabItem>
-              )
-            })}
+              ))}
           </Tab>
           {currentIFrame !== '' && (
             <>
@@ -257,9 +237,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
                 {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
                 <StoryIframe
                   title={
-                    storyData.storyItems.find((item) => {
-                      return item?.name === currentIFrame
-                    })?.label || ''
+                    storyData.storyItems.find((item) => item?.name === currentIFrame)?.label || ''
                   }
                   src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${getStoryName(
                     currentIFrame,

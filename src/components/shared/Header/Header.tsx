@@ -1,7 +1,7 @@
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { LoginContext } from '@Context/LoginContext'
 import { useLocation } from '@reach/router'
-import { Link as LinkComponent } from 'gatsby'
+import { Link } from 'gatsby'
 import React, { FC, useContext, useState } from 'react'
 import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
 import styled, { createGlobalStyle, css } from 'styled-components'
@@ -28,9 +28,9 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
     <>
       <Wrapper isIndex={isIndex}>
         <Container>
-          <SiteName to="/">
+          <SiteNameLink to="/">
             <img src="/images/logo_smarthr_design_system.svg" alt="SmartHR Design System" width="264" height="24" />
-          </SiteName>
+          </SiteNameLink>
           <StyledNav>
             <ul className="-optional">
               <li>
@@ -166,7 +166,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
 
 const Container = styled(Cluster).attrs({ gap: { row: 0.75, column: 1 }, align: 'center', justify: 'space-between' })``
 
-const SiteName = styled(LinkComponent)`
+const SiteNameLink = styled(Link)`
   padding: 6px 10px;
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
@@ -221,7 +221,7 @@ const StyledAnchorButton = styled(AnchorButton)`
   }
 `
 
-const StyledSearchLink = styled(LinkComponent)`
+const StyledSearchLink = styled(Link)`
   display: inline-flex;
   gap: 8px;
   align-items: center;
@@ -237,7 +237,7 @@ const StyledSearchLink = styled(LinkComponent)`
   }
 `
 
-const StyledLink = styled(LinkComponent)`
+const StyledLink = styled(Link)`
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -373,7 +373,7 @@ const MenuStyledCategoryUl = styled.ul`
   }
 `
 
-const StyledMenuLink = styled(LinkComponent)`
+const StyledMenuLink = styled(Link)`
   display: inline-block;
   width: 100%;
 `

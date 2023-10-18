@@ -59,9 +59,7 @@ const pickType = (typeValue: string): keyof typeof TYPE_COLOR => {
   return 'other'
 }
 
-const pickTypeColor = (value: string): string => {
-  return TYPE_COLOR[pickType(value)]
-}
+const pickTypeColor = (value: string): string => TYPE_COLOR[pickType(value)]
 
 marked.setOptions({ headerIds: false, mangle: false })
 
@@ -80,10 +78,10 @@ export const ComponentPropsTable: FC<Props> = ({ name, dirName, showTitle }) => 
   }, [location, displayVersion])
 
   const versionData =
-    allUiVersion.nodes.find((node) => {
+    allUiVersion.nodes.find((node) => 
       // 指定されたバージョンかつsmarthr-ui-props.jsonが取得できているデータを探す
-      return node.version === displayVersion && node.uiProps && node.uiProps.length > 0
-    }) ||
+       node.version === displayVersion && node.uiProps && node.uiProps.length > 0
+    ) ||
     // 該当のデータがなければ最新バージョンのデータを表示する
     allUiVersion.nodes[0] ||
     // それもなければnullを返す（通常はありえない）
@@ -95,9 +93,7 @@ export const ComponentPropsTable: FC<Props> = ({ name, dirName, showTitle }) => 
   })[0]
   const propsData = data ? data.props : []
 
-  const fragmentId = (propsName: string) => {
-    return `props-${propsName.replace(' ', '-')}`
-  }
+  const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
   if (propsData === null || propsData.length === 0) {
     return <Text as={'p'}>Propsは設定されていません。</Text>
   }
@@ -122,13 +118,11 @@ export const ComponentPropsTable: FC<Props> = ({ name, dirName, showTitle }) => 
               <PropTypes>
                 {prop?.type?.name === 'enum' ? (
                   prop?.type.value &&
-                  prop.type.value.map((item, y) => {
-                    return (
+                  prop.type.value.map((item, y) => (
                       <TypeTag key={y} color={pickTypeColor(item?.value ?? '')}>
                         {item?.value}
                       </TypeTag>
-                    )
-                  })
+                    ))
                 ) : (
                   <TypeTag color={pickTypeColor(prop?.type?.name ?? '')}>{prop?.type?.name}</TypeTag>
                 )}

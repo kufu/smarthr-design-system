@@ -11,8 +11,7 @@ type Props = {
   caretPosition?: 'left' | 'right'
 }
 
-export const RoundedBoxLink: FC<Props> = ({ path, label, title, align = 'left', caretPosition = 'right' }) => {
-  return (
+export const RoundedBoxLink: FC<Props> = ({ path, label, title, align = 'left', caretPosition = 'right' }) => (
     <BoxLink to={path} data-align={align} data-caret={caretPosition}>
       <p className="labelText">{label}</p>
       <div className="linkText">
@@ -20,7 +19,6 @@ export const RoundedBoxLink: FC<Props> = ({ path, label, title, align = 'left', 
       </div>
     </BoxLink>
   )
-}
 
 const BoxLink = styled(Link)<{ 'data-align': 'left' | 'center' | 'right'; 'data-caret': 'left' | 'right' }>`
   display: block;

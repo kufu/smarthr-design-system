@@ -6,8 +6,7 @@ import React, { FC } from 'react'
 import { PageHeading } from 'smarthr-ui'
 import styled from 'styled-components'
 
-export const Head = () => {
-  return (
+export const Head = () => (
     <HeadComponent
       title="404 Page not found"
       meta={[
@@ -18,7 +17,6 @@ export const Head = () => {
       ]}
     />
   )
-}
 
 const NotFoundPage: FC = () => (
   <>

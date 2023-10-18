@@ -11,8 +11,7 @@ type Props = {
 
 type HeadingTagTypes = 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span'
 
-export const FragmentTitle: FC<Props> = ({ tag = 'h2', id, children }) => {
-  return (
+export const FragmentTitle: FC<Props> = ({ tag = 'h2', id, children }) => (
     <Wrapper as={tag} id={id}>
       <a href={`#${id}`}>
         <FaLinkIcon className="icon" />
@@ -20,7 +19,6 @@ export const FragmentTitle: FC<Props> = ({ tag = 'h2', id, children }) => {
       </a>
     </Wrapper>
   )
-}
 
 const Wrapper = styled.div`
   position: relative;

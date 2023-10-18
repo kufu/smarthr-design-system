@@ -10,8 +10,7 @@ import { CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-const Home: FC = () => {
-  return (
+const Home: FC = () => (
     <>
       <GlobalStyle />
       <Header isIndex />
@@ -28,7 +27,6 @@ const Home: FC = () => {
       <Footer />
     </>
   )
-}
 
 export default Home
 
