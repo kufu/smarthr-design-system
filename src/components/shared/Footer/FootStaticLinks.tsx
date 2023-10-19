@@ -32,7 +32,7 @@ const Link2 = [
     isExternal: false,
   },
   {
-    title: '更新情報',
+    title: '更新情報（X）',
     path: 'https://twitter.com/SHRDesignSystem',
     isExternal: true,
   },
