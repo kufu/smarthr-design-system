@@ -13,7 +13,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix"
+      "eslint --fix",
+      "prettier --write"
     ],
     "src/**/*.ts{,x}": [
       "stylelint"
@@ -33,8 +34,10 @@
     "lint:style": "stylelint 'src/**/*.ts{,x}'",
     "lint:text": "textlint 'content/**/*.md{,x}'",
     "lint": "run-p lint:*",
-    "format": "eslint --fix 'src/**/*.ts{,x}'",
+    "format:eslint": "eslint --fix 'src/**/*.ts{,x}'",
+    "format:prettier": "prettier --write 'src/**/*.ts{,x}'",
     "format:text": "textlint --fix 'content/**/*.md{,x}'",
+    "format": "run-s format:*",
     "export:zip-images": "ts-node scripts/zipImages.ts",
     "generate:thumbnails": "ts-node scripts/component-thumbnails/componentThumbnails.ts",
     "postinstall": "husky install"
