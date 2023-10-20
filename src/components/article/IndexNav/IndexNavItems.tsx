@@ -9,37 +9,37 @@ import type { HeadingItem } from './IndexNav'
 type Props = { nestedHeadings: HeadingItem[]; indexNavRef?: React.RefObject<HTMLUListElement>; currentHeading?: string }
 
 export const IndexNavItems: FC<Props> = ({ nestedHeadings, indexNavRef, currentHeading }) => (
-    <Nav>
-      {nestedHeadings.length > 0 && (
-        <ul ref={indexNavRef}>
-          {nestedHeadings.map((depth2Item) => (
-              <li key={depth2Item.fragmentId}>
-                {depth2Item.value !== '' && (
-                  <Depth2Item>
-                    <Link to={`#${depth2Item.fragmentId}`} aria-current={currentHeading === depth2Item.fragmentId}>
-                      {depth2Item.value}
-                    </Link>
-                  </Depth2Item>
-                )}
-                {depth2Item.children.length > 0 && (
-                  <ul>
-                    {depth2Item.children.map((depth3Item) => (
-                        <li key={depth3Item.fragmentId}>
-                          <Depth3Item>
-                            <Link to={`#${depth3Item.fragmentId}`} aria-current={currentHeading === depth3Item.fragmentId}>
-                              {depth3Item.value}
-                            </Link>
-                          </Depth3Item>
-                        </li>
-                      ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-        </ul>
-      )}
-    </Nav>
-  )
+  <Nav>
+    {nestedHeadings.length > 0 && (
+      <ul ref={indexNavRef}>
+        {nestedHeadings.map((depth2Item) => (
+          <li key={depth2Item.fragmentId}>
+            {depth2Item.value !== '' && (
+              <Depth2Item>
+                <Link to={`#${depth2Item.fragmentId}`} aria-current={currentHeading === depth2Item.fragmentId}>
+                  {depth2Item.value}
+                </Link>
+              </Depth2Item>
+            )}
+            {depth2Item.children.length > 0 && (
+              <ul>
+                {depth2Item.children.map((depth3Item) => (
+                  <li key={depth3Item.fragmentId}>
+                    <Depth3Item>
+                      <Link to={`#${depth3Item.fragmentId}`} aria-current={currentHeading === depth3Item.fragmentId}>
+                        {depth3Item.value}
+                      </Link>
+                    </Depth3Item>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
+  </Nav>
+)
 
 const Nav = styled(UINav)`
   display: block;
