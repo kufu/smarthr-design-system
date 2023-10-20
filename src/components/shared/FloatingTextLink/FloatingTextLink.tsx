@@ -9,12 +9,12 @@ type Props = {
 }
 
 export const FloatingTextLink: FC<Props> = ({ path, children }) => (
-    <Wrapper>
-      <Link to={path} aria-disabled={path === ''}>
-        <span>{children}</span>
-      </Link>
-    </Wrapper>
-  )
+  <Wrapper>
+    <Link to={path} aria-disabled={path === ''}>
+      <span>{children}</span>
+    </Link>
+  </Wrapper>
+)
 
 const Wrapper = styled.span`
   display: inline-block;

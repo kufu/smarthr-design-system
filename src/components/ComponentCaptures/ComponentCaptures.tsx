@@ -32,7 +32,8 @@ export const ComponentCaptures: FC = () => {
         <ComponentGroupSection key={node.groupName}>
           <h2 id={`component-${node.groupName}`}>{node.groupName}</h2>
           <ComponentList>
-            {node.storyKinds.map((storyKind) => storyKind.iframeUrl ? (
+            {node.storyKinds.map((storyKind) =>
+              storyKind.iframeUrl ? (
                 <li key={storyKind.iframeUrl}>
                   <a href={`/products/components/${storyKind.componentPath}/`}>
                     <div>
@@ -43,7 +44,8 @@ export const ComponentCaptures: FC = () => {
                     <p>{storyKind.displayName}</p>
                   </a>
                 </li>
-              ) : null)}
+              ) : null,
+            )}
           </ComponentList>
         </ComponentGroupSection>
       ))}

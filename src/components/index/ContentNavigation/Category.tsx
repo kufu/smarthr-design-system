@@ -27,38 +27,38 @@ type Props = {
 }
 
 export const Category: FC<Props> = ({ data }) => (
-    <NavigationSection>
-      <NavigationText>
-        <h2>{data.title}</h2>
-        <p>{data.description}</p>
-        <FloatingTextLink path={data.path}>もっと詳しく</FloatingTextLink>
-      </NavigationText>
-      <NavigationLinksContainer>
-        {data.imagePath ? (
-          <CategoryImageWrapper>
-            <Link to={data.path}>
-              <img src={data.imagePath} width="832" height="144" alt="基本原則" />
-            </Link>
-          </CategoryImageWrapper>
-        ) : (
-          <NavigationLinks>
-            {data.items.map((item, i) => (
-                <li key={i}>
-                  <Link to={item.path}>
-                    <ThumbnailImageWrapper>
-                      {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
-                      {/* eslint-disable-next-line smarthr/a11y-image-has-alt-attribute */}
-                      <img src={item.imagePath} width="262" height="144" alt="" />
-                    </ThumbnailImageWrapper>
-                    <p>{item.title}</p>
-                  </Link>
-                </li>
-              ))}
-          </NavigationLinks>
-        )}
-      </NavigationLinksContainer>
-    </NavigationSection>
-  )
+  <NavigationSection>
+    <NavigationText>
+      <h2>{data.title}</h2>
+      <p>{data.description}</p>
+      <FloatingTextLink path={data.path}>もっと詳しく</FloatingTextLink>
+    </NavigationText>
+    <NavigationLinksContainer>
+      {data.imagePath ? (
+        <CategoryImageWrapper>
+          <Link to={data.path}>
+            <img src={data.imagePath} width="832" height="144" alt="基本原則" />
+          </Link>
+        </CategoryImageWrapper>
+      ) : (
+        <NavigationLinks>
+          {data.items.map((item, i) => (
+            <li key={i}>
+              <Link to={item.path}>
+                <ThumbnailImageWrapper>
+                  {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
+                  {/* eslint-disable-next-line smarthr/a11y-image-has-alt-attribute */}
+                  <img src={item.imagePath} width="262" height="144" alt="" />
+                </ThumbnailImageWrapper>
+                <p>{item.title}</p>
+              </Link>
+            </li>
+          ))}
+        </NavigationLinks>
+      )}
+    </NavigationLinksContainer>
+  </NavigationSection>
+)
 
 const NavigationSection = styled(Section)`
   display: flex;

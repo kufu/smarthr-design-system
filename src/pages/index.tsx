@@ -11,22 +11,22 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 const Home: FC = () => (
-    <>
-      <GlobalStyle />
-      <Header isIndex />
-      <GotchaContainer>
-        <Gotcha />
-      </GotchaContainer>
+  <>
+    <GlobalStyle />
+    <Header isIndex />
+    <GotchaContainer>
+      <Gotcha />
+    </GotchaContainer>
 
-      <IndexPageContainer>
-        <Introduction />
-        <ContentNavigation />
-        <FaqList />
-      </IndexPageContainer>
+    <IndexPageContainer>
+      <Introduction />
+      <ContentNavigation />
+      <FaqList />
+    </IndexPageContainer>
 
-      <Footer />
-    </>
-  )
+    <Footer />
+  </>
+)
 
 export default Home
 

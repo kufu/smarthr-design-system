@@ -16,27 +16,27 @@ export const Head = () => <HeadComponent title="検索" description="検索ペ�
 const searchClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID || '', process.env.GATSBY_ALGOLIA_SEARCH_API_KEY || '')
 
 const SearchPage: FC = () => (
-    <>
-      <GlobalStyle />
+  <>
+    <GlobalStyle />
 
-      <Wrapper>
-        <Header />
+    <Wrapper>
+      <Header />
 
-        <Main>
-          <StyledPageHeading id="label-for-search-input">SmartHR Design Systemを検索</StyledPageHeading>
-          <Search className="ais-SearchBox__root">
-            <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME || ''} searchClient={searchClient}>
-              <CustomSearchBox
-                isAvailable={process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_API_KEY ? true : false}
-              />
-            </InstantSearch>
-          </Search>
-        </Main>
-        <IndexList />
-        <Footer />
-      </Wrapper>
-    </>
-  )
+      <Main>
+        <StyledPageHeading id="label-for-search-input">SmartHR Design Systemを検索</StyledPageHeading>
+        <Search className="ais-SearchBox__root">
+          <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME || ''} searchClient={searchClient}>
+            <CustomSearchBox
+              isAvailable={process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_API_KEY ? true : false}
+            />
+          </InstantSearch>
+        </Search>
+      </Main>
+      <IndexList />
+      <Footer />
+    </Wrapper>
+  </>
+)
 
 export default SearchPage
 

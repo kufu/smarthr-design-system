@@ -75,8 +75,7 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
   const findIndexChar = (labelChar: string) => {
     // ひらがなで始まっていない場合は記号・その他に分類
     if (!labelChar.match(/[あ-ん]/)) return '記号・その他'
-    const index =
-      charIndexList.findIndex((indexChar) => labelChar.localeCompare(indexChar.charAt(0), 'ja') < 0) - 1
+    const index = charIndexList.findIndex((indexChar) => labelChar.localeCompare(indexChar.charAt(0), 'ja') < 0) - 1
     return charIndexList[index]
   }
   const indexedUsageData: { [key in (typeof charIndexList)[number]]: IdiomaticUsageData[] } = {}
@@ -108,69 +107,71 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
         <>
           <Cluster gap={'S'}>
             {charIndexList.map((char) => (
-                <a key={char} href={`#${char}`}>
-                  {char}
-                </a>
-              ))}
+              <a key={char} href={`#${char}`}>
+                {char}
+              </a>
+            ))}
           </Cluster>
           {charIndexList.map((char) => (
-              <React.Fragment key={char}>
-                <FragmentTitle id={`${char}`} tag="h3">
-                  {char}
-                </FragmentTitle>
-                <Wrapper>
-                  <Table>
-                    <thead>
-                      <tr>
-                        <RecommendTh>推奨する表記</RecommendTh>
-                        <NGTh>NG例</NGTh>
-                        <ReasonTh>理由</ReasonTh>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {indexedUsageData[char]?.map((prop, index) => {
-                        const matchReason = idiomaticUsageReason.find(
-                          (reason) => prop.reason && prop.reason.includes(reason.recordId ?? ''),
-                        )
+            <React.Fragment key={char}>
+              <FragmentTitle id={`${char}`} tag="h3">
+                {char}
+              </FragmentTitle>
+              <Wrapper>
+                <Table>
+                  <thead>
+                    <tr>
+                      <RecommendTh>推奨する表記</RecommendTh>
+                      <NGTh>NG例</NGTh>
+                      <ReasonTh>理由</ReasonTh>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {indexedUsageData[char]?.map((prop, index) => {
+                      const matchReason = idiomaticUsageReason.find(
+                        (reason) => prop.reason && prop.reason.includes(reason.recordId ?? ''),
+                      )
 
-                        return (
-                          <tr key={index}>
-                            <RecommendTd>
-                              <strong>
-                                {prop.okExample?.split(/(\u3000)/).map((word, wordIndex) => 
-                                  // 全角スペース（u3000）があれば改行に変換
-                                   word === '　' ? <br key={wordIndex} /> : word
-                                )}
-                              </strong>
-                            </RecommendTd>
-                            <NGTd>
-                              {prop.ngExample?.split(/(\u3000)/).map((word, wordIndex) => word === '　' ? <br key={wordIndex} /> : word)}
-                            </NGTd>
-                            <ReasonTd>
-                              <ul>
-                                {matchReason && (
-                                  <li>
-                                    <Link to={`/products/contents/idiomatic-usage/usage/#${matchReason.recordId}-0`}>
-                                      {matchReason.name}
-                                    </Link>
-                                  </li>
-                                )}
-                              </ul>
-                            </ReasonTd>
-                          </tr>
-                        )
-                      })}
-                    </tbody>
-                  </Table>
-                </Wrapper>
-              </React.Fragment>
-            ))}
+                      return (
+                        <tr key={index}>
+                          <RecommendTd>
+                            <strong>
+                              {prop.okExample?.split(/(\u3000)/).map((word, wordIndex) =>
+                                // 全角スペース（u3000）があれば改行に変換
+                                word === '　' ? <br key={wordIndex} /> : word,
+                              )}
+                            </strong>
+                          </RecommendTd>
+                          <NGTd>
+                            {prop.ngExample
+                              ?.split(/(\u3000)/)
+                              .map((word, wordIndex) => (word === '　' ? <br key={wordIndex} /> : word))}
+                          </NGTd>
+                          <ReasonTd>
+                            <ul>
+                              {matchReason && (
+                                <li>
+                                  <Link to={`/products/contents/idiomatic-usage/usage/#${matchReason.recordId}-0`}>
+                                    {matchReason.name}
+                                  </Link>
+                                </li>
+                              )}
+                            </ul>
+                          </ReasonTd>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </Table>
+              </Wrapper>
+            </React.Fragment>
+          ))}
         </>
       )}
       {type === 'reason' && (
         <>
           {idiomaticUsageReason.map(({ name, description, discussion, source, recordId }, index) => {
-            const generateFragmentId = (suffixId: string) => recordId ? `${recordId}-${suffixId}` : `${index}-${suffixId}`
+            const generateFragmentId = (suffixId: string) => (recordId ? `${recordId}-${suffixId}` : `${index}-${suffixId}`)
 
             return (
               <Wrapper key={index}>

@@ -7,11 +7,11 @@ type Props = {
 }
 
 export const ImgWithDesc: FC<Props> = ({ description, children }) => (
-    <Figure>
-      {children}
-      <figcaption>{description}</figcaption>
-    </Figure>
-  )
+  <Figure>
+    {children}
+    <figcaption>{description}</figcaption>
+  </Figure>
+)
 
 const Figure = styled.figure`
   display: block;

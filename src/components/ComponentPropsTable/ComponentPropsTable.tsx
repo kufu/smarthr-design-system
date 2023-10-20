@@ -78,9 +78,10 @@ export const ComponentPropsTable: FC<Props> = ({ name, dirName, showTitle }) => 
   }, [location, displayVersion])
 
   const versionData =
-    allUiVersion.nodes.find((node) => 
-      // 指定されたバージョンかつsmarthr-ui-props.jsonが取得できているデータを探す
-       node.version === displayVersion && node.uiProps && node.uiProps.length > 0
+    allUiVersion.nodes.find(
+      (node) =>
+        // 指定されたバージョンかつsmarthr-ui-props.jsonが取得できているデータを探す
+        node.version === displayVersion && node.uiProps && node.uiProps.length > 0,
     ) ||
     // 該当のデータがなければ最新バージョンのデータを表示する
     allUiVersion.nodes[0] ||
@@ -119,10 +120,10 @@ export const ComponentPropsTable: FC<Props> = ({ name, dirName, showTitle }) => 
                 {prop?.type?.name === 'enum' ? (
                   prop?.type.value &&
                   prop.type.value.map((item, y) => (
-                      <TypeTag key={y} color={pickTypeColor(item?.value ?? '')}>
-                        {item?.value}
-                      </TypeTag>
-                    ))
+                    <TypeTag key={y} color={pickTypeColor(item?.value ?? '')}>
+                      {item?.value}
+                    </TypeTag>
+                  ))
                 ) : (
                   <TypeTag color={pickTypeColor(prop?.type?.name ?? '')}>{prop?.type?.name}</TypeTag>
                 )}
