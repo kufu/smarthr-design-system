@@ -2,11 +2,13 @@ import { PATTERNS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
 import { Script } from 'gatsby'
 import { Highlight, themes } from 'prism-react-renderer'
-import React, { CSSProperties, FC, useState } from 'react'
+import React, { CSSProperties, FC, useEffect, useRef, useState } from 'react'
+import Frame, { FrameContextConsumer } from 'react-frame-component'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
+import { CssBaseLine } from 'smarthr-normalize-css'
 import * as ui from 'smarthr-ui'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/types'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components'
 // TODO SmartHR な Dark テーマほしいな!!!
 
 import { ComponentPreview } from '../../ComponentPreview'
@@ -66,6 +68,25 @@ export const CodeBlock: FC<Props> = ({
   ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }) => {
   const [tsLoaded, setTsLoaded] = useState(false)
+
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const [iframeHeight, setIframeHeight] = useState(600) // デフォルトの高さを設定
+
+  // iframeの高さをコンテンツに合わせて変更する
+  useEffect(() => {
+    if (!tsLoaded) return // CDNからのTSスクリプトのロード後に描画されるので、それまでは高さを計算しない
+    const innerWindow = iframeRef.current?.contentWindow
+    if (!innerWindow) return // ここに該当することはないはず
+
+    // TSスクリプトロード後、レンダリングが終わるのを待ってから高さを計算・セットする
+    setTimeout(() => {
+      const height = innerWindow.document.body.scrollHeight
+      if (height > 0) {
+        setIframeHeight(height + 8) // ComponentPreviewコンポーネントに`margin-block-start: 8px`が指定されているため
+      }
+    }, 500)
+  }, [tsLoaded])
+
   const language = className ? className.replace(/language-/, '') : ''
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
 
@@ -87,38 +108,47 @@ export const CodeBlock: FC<Props> = ({
             </TextLink>
           </LinkWrapper>
         )}
-        <ThemeProvider theme={smarthrTheme}>
-          {/* ライブエディタ内のコードのトランスパイルに使用するTS（容量が大きいためCDNを利用） */}
-          <Script src="https://unpkg.com/typescript@latest/lib/typescript.js" onLoad={() => setTsLoaded(true)} />
-          {tsLoaded && (
-            <LiveProvider
-              code={code}
-              language={language}
-              scope={{ ...React, ...ui, styled, css, ...scope }}
-              theme={{
-                ...themes.vsDark,
-                plain: {
-                  color: CSS_COLOR.LIGHT_GREY_3,
-                  backgroundColor: CSS_COLOR.TEXT_BLACK,
-                },
-              }}
-              noInline={withStyled}
-              transformCode={transformCode}
-            >
-              <ComponentPreview gap={gap} align={align} layout={layout}>
-                <LivePreview Component={React.Fragment} />
-              </ComponentPreview>
-              <CodeWrapper>
-                <StyledLiveEditorContainer>
-                  <CopyButton text={code} />
-                  {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-                  <LiveEditor padding={0} />
-                </StyledLiveEditorContainer>
-              </CodeWrapper>
-              <LiveError />
-            </LiveProvider>
-          )}
-        </ThemeProvider>
+        <Frame ref={iframeRef} width="100%" height={`${iframeHeight}px`} style={{ border: 'none', overflow: 'hidden' }}>
+          <FrameContextConsumer>
+            {({ document }) => (
+              <StyleSheetManager target={document?.head}>
+                <ThemeProvider theme={smarthrTheme}>
+                  {/* ライブエディタ内のコードのトランスパイルに使用するTS（容量が大きいためCDNを利用） */}
+                  <Script src="https://unpkg.com/typescript@latest/lib/typescript.js" onLoad={() => setTsLoaded(true)} />
+                  {tsLoaded && (
+                    <LiveProvider
+                      code={code}
+                      language={language}
+                      scope={{ ...React, ...ui, styled, css, ...scope }}
+                      theme={{
+                        ...themes.vsDark,
+                        plain: {
+                          color: CSS_COLOR.LIGHT_GREY_3,
+                          backgroundColor: CSS_COLOR.TEXT_BLACK,
+                        },
+                      }}
+                      noInline={withStyled}
+                      transformCode={transformCode}
+                    >
+                      <ComponentPreview gap={gap} align={align} layout={layout}>
+                        <CssBaseLine />
+                        <LivePreview Component={React.Fragment} />
+                      </ComponentPreview>
+                      <CodeWrapper>
+                        <StyledLiveEditorContainer>
+                          <CopyButton text={code} />
+                          {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
+                          <LiveEditor padding={0} />
+                        </StyledLiveEditorContainer>
+                      </CodeWrapper>
+                      <LiveError />
+                    </LiveProvider>
+                  )}
+                </ThemeProvider>
+              </StyleSheetManager>
+            )}
+          </FrameContextConsumer>
+        </Frame>
       </Wrapper>
     )
   }
@@ -156,6 +186,10 @@ const LinkWrapper = styled.div`
 
 const CodeWrapper = styled.div`
   position: relative;
+
+  /* bodyに指定があるが、Frame内には効かないので再指定 */
+  line-height: 1.75;
+  overflow-wrap: break-word;
 `
 
 const PreContainer = styled.div<{ isStorybook?: boolean }>`
