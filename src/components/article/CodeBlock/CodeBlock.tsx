@@ -1,35 +1,39 @@
 import { PATTERNS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
-import { Script } from 'gatsby'
 import { Highlight, themes } from 'prism-react-renderer'
 import React, { CSSProperties, FC, useEffect, useRef, useState } from 'react'
 import Frame, { FrameContextConsumer } from 'react-frame-component'
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
-import { CssBaseLine } from 'smarthr-normalize-css'
 import * as ui from 'smarthr-ui'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/types'
-import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components'
+import styled, { StyleSheetManager } from 'styled-components'
 // TODO SmartHR な Dark テーマほしいな!!!
 
-import { ComponentPreview } from '../../ComponentPreview'
-
 import { CopyButton } from './CopyButton'
+import { LiveContainer } from './LiveContainer'
+
+import type { LiveProvider } from 'react-live'
 
 type LiveProviderProps = React.ComponentProps<typeof LiveProvider>
+
+export type LiveContainerProps = {
+  code: string
+  language: string
+  withStyled?: boolean
+  withIframe?: boolean
+} & Pick<LiveProviderProps, 'scope'> & {
+    gap?: Gap | SeparateGap
+    align?: CSSProperties['alignItems']
+    layout?: 'none' | 'product'
+  }
 
 type Props = {
   children: string
   className?: string
   editable?: boolean
   isStorybook?: boolean
-  withStyled?: boolean
   renderingComponent?: string
   componentTitle?: string
-} & Pick<LiveProviderProps, 'scope'> & {
-    gap?: Gap | SeparateGap
-    align?: CSSProperties['alignItems']
-    layout?: 'none' | 'product'
-  }
+} & LiveContainerProps
 
 const theme = {
   ...themes.github,
@@ -40,23 +44,11 @@ const theme = {
   },
 }
 
-const smarthrTheme = ui.createTheme()
-
-const transformCode = (snippet: string) => {
-  if (window.ts === undefined) return '' // TSスクリプトロード後にライブエディタをレンダリングするので、ここには入らないはず。
-
-  // Storybookでも利用するため、コード内に`import`・`export`が記述されているが、ここではエラーになるので削除する。
-  const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '')
-  return window.ts.transpile(code, {
-    jsx: window.ts.JsxEmit.React,
-    target: window.ts.ScriptTarget.ES2020,
-  })
-}
-
 export const CodeBlock: FC<Props> = ({
   children,
   className,
   editable = false,
+  withIframe = false,
   isStorybook = false,
   scope,
   withStyled = false,
@@ -105,6 +97,21 @@ export const CodeBlock: FC<Props> = ({
     ? `${children.trim()}\nrender(<${renderingComponent} ${renderingPropsText} />)`
     : children.trim()
   const TextLink = ui.TextLink
+
+  const LiveContainerComponent = () => (
+    <LiveContainer
+      code={code}
+      language={language}
+      withStyled={withStyled}
+      withIframe={withIframe}
+      tsLoaded={tsLoaded}
+      setTsLoaded={setTsLoaded}
+      gap={gap}
+      align={align}
+      layout={layout}
+    />
+  )
+
   if (editable) {
     return (
       <Wrapper>
@@ -115,7 +122,7 @@ export const CodeBlock: FC<Props> = ({
             </TextLink>
           </LinkWrapper>
         )}
-        {showFrame && (
+        {withIframe && showFrame && (
           <Frame
             ref={iframeRef}
             width="100%"
@@ -124,46 +131,11 @@ export const CodeBlock: FC<Props> = ({
             referrerPolicy="same-origin"
           >
             <FrameContextConsumer>
-              {({ document }) => (
-                <StyleSheetManager target={document?.head}>
-                  <ThemeProvider theme={smarthrTheme}>
-                    {/* ライブエディタ内のコードのトランスパイルに使用するTS（容量が大きいためCDNを利用） */}
-                    <Script src="https://unpkg.com/typescript@latest/lib/typescript.js" onLoad={() => setTsLoaded(true)} />
-                    {tsLoaded && (
-                      <LiveProvider
-                        code={code}
-                        language={language}
-                        scope={{ ...React, ...ui, styled, css, ...scope }}
-                        theme={{
-                          ...themes.vsDark,
-                          plain: {
-                            color: CSS_COLOR.LIGHT_GREY_3,
-                            backgroundColor: CSS_COLOR.TEXT_BLACK,
-                          },
-                        }}
-                        noInline={withStyled}
-                        transformCode={transformCode}
-                      >
-                        <ComponentPreview gap={gap} align={align} layout={layout}>
-                          <CssBaseLine />
-                          <LivePreview Component={React.Fragment} />
-                        </ComponentPreview>
-                        <CodeWrapper>
-                          <StyledLiveEditorContainer>
-                            <CopyButton text={code} />
-                            {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-                            <LiveEditor padding={0} />
-                          </StyledLiveEditorContainer>
-                        </CodeWrapper>
-                        <LiveError />
-                      </LiveProvider>
-                    )}
-                  </ThemeProvider>
-                </StyleSheetManager>
-              )}
+              {({ document }) => <StyleSheetManager target={document?.head}>{LiveContainerComponent()}</StyleSheetManager>}
             </FrameContextConsumer>
           </Frame>
         )}
+        {!withIframe && LiveContainerComponent()}
       </Wrapper>
     )
   }
