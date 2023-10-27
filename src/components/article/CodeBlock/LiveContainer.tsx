@@ -10,6 +10,7 @@ import styled, { ThemeProvider, css } from 'styled-components'
 
 import { ComponentPreview } from '../../ComponentPreview'
 
+import { PreContainer } from './CodeBlock'
 import { CopyButton } from './CopyButton'
 
 import type { LiveContainerProps } from './CodeBlock'
@@ -68,9 +69,11 @@ export const LiveContainer: FC<Props> = ({
         </ComponentPreview>
         <CodeWrapper>
           <StyledLiveEditorContainer>
-            <CopyButton text={code} />
-            {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-            <LiveEditor padding={0} />
+            <PreContainer>
+              <CopyButton text={code} />
+              {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
+              <LiveEditor padding={0} />
+            </PreContainer>
           </StyledLiveEditorContainer>
         </CodeWrapper>
         <LiveError />
@@ -87,55 +90,18 @@ const CodeWrapper = styled.div`
   overflow-wrap: break-word;
 `
 
-const PreContainer = styled.div<{ isStorybook?: boolean }>`
-  font-family: monospace;
-  margin-block: 16px 0;
-  border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
-  background-color: ${CSS_COLOR.LIGHT_GREY_3};
-  overflow-x: scroll;
-
-  & > button {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-  }
-
-  /* preのデフォルトは display: block; で幅100%になるが、100%を超えられるように上書き(祖先要素には横スクロールを適用) */
-  pre {
-    width: max-content;
-    min-width: 100%;
-    min-height: 100%;
+const StyledLiveEditorContainer = styled.div`
+  & > * {
+    overflow: auto;
     margin: 0;
+
+    /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
     padding: 2.75rem 1.5rem 1.5rem;
-    box-sizing: border-box;
-  }
-
-  /* LiveEditor内で preに white-space: pre-wrap; が適用されているため、文字を強制的に折り返すようにする */
-  * {
-    word-break: break-all;
-  }
-
-  ${({ isStorybook }) =>
-    isStorybook &&
-    `
-      margin: 0;
-      height: 300px;
-      border: 0;
-      overflow: scroll;
-      resize: vertical;
-    `};
-`
-
-const StyledLiveEditorContainer = styled(PreContainer)`
-  overflow: auto;
-  margin: 0;
-
-  /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
-  padding: 2.75rem 1.5rem 1.5rem;
-  border-width: 0 1px 1px;
-  background-color: ${CSS_COLOR.TEXT_BLACK};
-  max-height: 40em;
-  pre {
-    width: fit-content;
+    border-width: 0 1px 1px;
+    background-color: ${CSS_COLOR.TEXT_BLACK};
+    max-height: 40em;
+    pre {
+      width: fit-content;
+    }
   }
 `

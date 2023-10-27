@@ -173,10 +173,6 @@ const LinkWrapper = styled.div`
 
 const CodeWrapper = styled.div`
   position: relative;
-
-  /* bodyに指定があるが、Frame内には効かないので再指定 */
-  line-height: 1.75;
-  overflow-wrap: break-word;
 `
 
 const PreContainer = styled.div<{ isStorybook?: boolean }>`
@@ -218,16 +214,4 @@ const PreContainer = styled.div<{ isStorybook?: boolean }>`
     `};
 `
 
-const StyledLiveEditorContainer = styled(PreContainer)`
-  overflow: auto;
-  margin: 0;
-
-  /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
-  padding: 2.75rem 1.5rem 1.5rem;
-  border-width: 0 1px 1px;
-  background-color: ${CSS_COLOR.TEXT_BLACK};
-  max-height: 40em;
-  pre {
-    width: fit-content;
-  }
-`
+export { PreContainer }
