@@ -81,7 +81,7 @@ export const AnimateNotificationBar = () => {
 
 非推奨ですが[LineClamp](/products/components/line-clamp/)コンポーネントも使えます。
 
-```tsx editable codeBlock
+```tsx editable codeBlock noIframe
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
   <NotificationBar type="warning" message={<LineClamp maxLines={1} withTooltip>非推奨ですが、LineClampを使用して省略もできます。そのでっかい領域によるヘッダー（のナビゲーション）へのアクセス性の低下をフォローするために多くのウェブサイトはヘッダーを固定していますが、それでは同時にコンテンツの閲覧性に影響を与えてしまいます。</LineClamp>} onClose={()=>{}} />
 </Stack>

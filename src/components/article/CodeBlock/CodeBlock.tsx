@@ -16,10 +16,13 @@ import type { LiveProvider } from 'react-live'
 type LiveProviderProps = React.ComponentProps<typeof LiveProvider>
 
 export type LiveContainerProps = {
-  code: string
-  language: string
+  code?: string
+  language?: string
   withStyled?: boolean
-  withIframe?: boolean
+  /**
+   * @deprecated noIframe は非推奨です。iframeが原因で表示が崩れるなどやむを得ない場合のみ使用してください。
+   */
+  noIframe?: boolean
 } & Pick<LiveProviderProps, 'scope'> & {
     gap?: Gap | SeparateGap
     align?: CSSProperties['alignItems']
@@ -48,7 +51,7 @@ export const CodeBlock: FC<Props> = ({
   children,
   className,
   editable = false,
-  withIframe = false,
+  noIframe = false,
   isStorybook = false,
   scope,
   withStyled = false,
@@ -103,7 +106,7 @@ export const CodeBlock: FC<Props> = ({
       code={code}
       language={language}
       withStyled={withStyled}
-      withIframe={withIframe}
+      noIframe={noIframe}
       tsLoaded={tsLoaded}
       setTsLoaded={setTsLoaded}
       gap={gap}
@@ -122,7 +125,7 @@ export const CodeBlock: FC<Props> = ({
             </TextLink>
           </LinkWrapper>
         )}
-        {withIframe && showFrame && (
+        {!noIframe && showFrame && (
           <Frame
             ref={iframeRef}
             width="100%"
@@ -135,7 +138,8 @@ export const CodeBlock: FC<Props> = ({
             </FrameContextConsumer>
           </Frame>
         )}
-        {!withIframe && LiveContainerComponent()}
+        {/* smarthr-ui側が対応したら以下は削除し、iframeのdocument.bodyをLiveEditorに渡してportalにする予定です。 */}
+        {noIframe && LiveContainerComponent()}
       </Wrapper>
     )
   }

@@ -37,7 +37,7 @@ export const LiveContainer: FC<Props> = ({
   code,
   language,
   scope,
-  withIframe,
+  noIframe,
   withStyled,
   gap,
   align,
@@ -64,13 +64,13 @@ export const LiveContainer: FC<Props> = ({
         transformCode={transformCode}
       >
         <ComponentPreview gap={gap} align={align} layout={layout}>
-          {withIframe && <CssBaseLine />}
+          {!noIframe && <CssBaseLine />}
           <LivePreview Component={React.Fragment} />
         </ComponentPreview>
         <CodeWrapper>
           <StyledLiveEditorContainer>
             <PreContainer>
-              <CopyButton text={code} />
+              <CopyButton text={code || ''} />
               {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
               <LiveEditor padding={0} />
             </PreContainer>
@@ -93,7 +93,7 @@ const CodeWrapper = styled.div`
 const StyledLiveEditorContainer = styled.div`
   & > * {
     overflow: auto;
-    margin: 0;
+    margin-block: 0;
 
     /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
     padding: 2.75rem 1.5rem 1.5rem;
