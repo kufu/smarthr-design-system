@@ -91,7 +91,7 @@ const CodeWrapper = styled.div`
 `
 
 const StyledLiveEditorContainer = styled.div`
-  & > * {
+  & > div {
     overflow: auto;
     margin-block: 0;
 

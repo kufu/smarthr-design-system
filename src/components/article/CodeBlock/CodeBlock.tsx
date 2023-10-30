@@ -83,8 +83,9 @@ export const CodeBlock: FC<Props> = ({
     // TSスクリプトロード後、レンダリングが終わるのを待ってから高さを計算・セットする
     setTimeout(() => {
       const height = innerWindow.document.body.scrollHeight
+      console.log(height)
       if (height > 0) {
-        setIframeHeight(height + 8) // ComponentPreviewコンポーネントに`margin-block-start: 8px`が指定されているため
+        setIframeHeight(height + 9) // ComponentPreviewコンポーネントに`margin-block-start: 8px`が指定されているため・高さが小数点以下の精度の場合があるため
       }
     }, 500)
   }, [tsLoaded])
