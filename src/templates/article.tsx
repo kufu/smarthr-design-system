@@ -22,7 +22,8 @@ import { Theme } from './Theme'
 
 const components: MDXProviderComponents = {
   pre: (props) => <div {...props} />,
-  code: ({ children, codeBlock, ...props }) => codeBlock ? <CodeBlock {...props}>{children}</CodeBlock> : <code {...props}>{children}</code>,
+  code: ({ children, codeBlock, ...props }) =>
+    codeBlock ? <CodeBlock {...props}>{children}</CodeBlock> : <code {...props}>{children}</code>,
   h2: ({ children, id }) => (
     <FragmentTitle tag="h2" id={id}>
       {children}
@@ -186,10 +187,10 @@ const Article: FC<Props> = ({ data }) => {
   depth1Items.sort(({ order: a }, { order: b }) => a - b)
   depth2Items.sort(({ order: a }, { order: b }) => a - b)
   // /products/components/以下のコンポーネントページは名前の順でソートするので、別途並べ替える
-  depth3ComponentItems.sort(({ title: a }, { title: b }) => a < b ? -1 : a > b ? 1 : 0)
+  depth3ComponentItems.sort(({ title: a }, { title: b }) => (a < b ? -1 : a > b ? 1 : 0))
   depth3Items.sort(({ order: a }, { order: b }) => a - b)
   // /products/components/*/以下のコンポーネントページは名前の順でソートするので、別途並べ替える
-  depth4ComponentItems.sort(({ title: a }, { title: b }) => a < b ? -1 : a > b ? 1 : 0)
+  depth4ComponentItems.sort(({ title: a }, { title: b }) => (a < b ? -1 : a > b ? 1 : 0))
   depth4Items.sort(({ order: a }, { order: b }) => a - b)
 
   // 3. 一つの配列にする
@@ -224,10 +225,11 @@ const Article: FC<Props> = ({ data }) => {
   //
   // 前・次のページのindexを準備
   //
-  const currentPageIndex = sidebarItems.findIndex(({ link }) => 
-    // hierarchyはfrontmatterで定義されている値ではなく、
-    // gatsby-node.jsで付与されるようになっている値なので、undefinedになることはないはず
-     link === `/${fields!.hierarchy!}/`
+  const currentPageIndex = sidebarItems.findIndex(
+    ({ link }) =>
+      // hierarchyはfrontmatterで定義されている値ではなく、
+      // gatsby-node.jsで付与されるようになっている値なので、undefinedになることはないはず
+      link === `/${fields!.hierarchy!}/`,
   )
 
   // 同カテゴリ最初or最後のページの場合はnullになる

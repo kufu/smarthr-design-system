@@ -1,33 +1,42 @@
 import { PATTERNS_STORYBOOK_URL } from '@Constants/application'
 import { CSS_COLOR } from '@Constants/style'
-import { Script } from 'gatsby'
 import { Highlight, themes } from 'prism-react-renderer'
-import React, { CSSProperties, FC, useState } from 'react'
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
+import React, { CSSProperties, FC, useEffect, useRef, useState } from 'react'
+import Frame, { FrameContextConsumer } from 'react-frame-component'
 import * as ui from 'smarthr-ui'
 import { Gap, SeparateGap } from 'smarthr-ui/lib/types'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { StyleSheetManager } from 'styled-components'
 // TODO SmartHR な Dark テーマほしいな!!!
 
-import { ComponentPreview } from '../../ComponentPreview'
-
 import { CopyButton } from './CopyButton'
+import { LiveContainer } from './LiveContainer'
+
+import type { LiveProvider } from 'react-live'
 
 type LiveProviderProps = React.ComponentProps<typeof LiveProvider>
+
+export type LiveContainerProps = {
+  code?: string
+  language?: string
+  withStyled?: boolean
+  /**
+   * @deprecated noIframe は非推奨です。iframeが原因で表示が崩れるなどやむを得ない場合のみ使用してください。
+   */
+  noIframe?: boolean
+} & Pick<LiveProviderProps, 'scope'> & {
+    gap?: Gap | SeparateGap
+    align?: CSSProperties['alignItems']
+    layout?: 'none' | 'product'
+  }
 
 type Props = {
   children: string
   className?: string
   editable?: boolean
   isStorybook?: boolean
-  withStyled?: boolean
   renderingComponent?: string
   componentTitle?: string
-} & Pick<LiveProviderProps, 'scope'> & {
-    gap?: Gap | SeparateGap
-    align?: CSSProperties['alignItems']
-    layout?: 'none' | 'product'
-  }
+} & LiveContainerProps
 
 const theme = {
   ...themes.github,
@@ -38,23 +47,11 @@ const theme = {
   },
 }
 
-const smarthrTheme = ui.createTheme()
-
-const transformCode = (snippet: string) => {
-  if (window.ts === undefined) return '' // TSスクリプトロード後にライブエディタをレンダリングするので、ここには入らないはず。
-
-  // Storybookでも利用するため、コード内に`import`・`export`が記述されているが、ここではエラーになるので削除する。
-  const code = snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '')
-  return window.ts.transpile(code, {
-    jsx: window.ts.JsxEmit.React,
-    target: window.ts.ScriptTarget.ES2020,
-  })
-}
-
 export const CodeBlock: FC<Props> = ({
   children,
   className,
   editable = false,
+  noIframe = false,
   isStorybook = false,
   scope,
   withStyled = false,
@@ -66,6 +63,32 @@ export const CodeBlock: FC<Props> = ({
   ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }) => {
   const [tsLoaded, setTsLoaded] = useState(false)
+
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const [iframeHeight, setIframeHeight] = useState(600) // デフォルトの高さを設定
+
+  // Gatsbyではページロード時に<Frame>がレンダリングされないため、クライアントで表示をトリガーする
+  // https://github.com/ryanseddon/react-frame-component/issues/192#issuecomment-1153078390
+  const [showFrame, setShowFrame] = useState(false)
+  useEffect(() => {
+    setShowFrame(true)
+  }, [])
+
+  // iframeの高さをコンテンツに合わせて変更する
+  useEffect(() => {
+    if (!tsLoaded) return // CDNからのTSスクリプトのロード後に描画されるので、それまでは高さを計算しない
+    const innerWindow = iframeRef.current?.contentWindow
+    if (!innerWindow) return // ここに該当することはないはず
+
+    // TSスクリプトロード後、レンダリングが終わるのを待ってから高さを計算・セットする
+    setTimeout(() => {
+      const height = innerWindow.document.body.scrollHeight
+      if (height > 0) {
+        setIframeHeight(height + 9) // ComponentPreviewコンポーネントに`margin-block-start: 8px`が指定されているため・高さが小数点以下の精度の場合があるため
+      }
+    }, 500)
+  }, [tsLoaded])
+
   const language = className ? className.replace(/language-/, '') : ''
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
 
@@ -77,6 +100,21 @@ export const CodeBlock: FC<Props> = ({
     ? `${children.trim()}\nrender(<${renderingComponent} ${renderingPropsText} />)`
     : children.trim()
   const TextLink = ui.TextLink
+
+  const LiveContainerComponent = () => (
+    <LiveContainer
+      code={code}
+      language={language}
+      withStyled={withStyled}
+      noIframe={noIframe}
+      tsLoaded={tsLoaded}
+      setTsLoaded={setTsLoaded}
+      gap={gap}
+      align={align}
+      layout={layout}
+    />
+  )
+
   if (editable) {
     return (
       <Wrapper>
@@ -87,38 +125,21 @@ export const CodeBlock: FC<Props> = ({
             </TextLink>
           </LinkWrapper>
         )}
-        <ThemeProvider theme={smarthrTheme}>
-          {/* ライブエディタ内のコードのトランスパイルに使用するTS（容量が大きいためCDNを利用） */}
-          <Script src="https://unpkg.com/typescript@latest/lib/typescript.js" onLoad={() => setTsLoaded(true)} />
-          {tsLoaded && (
-            <LiveProvider
-              code={code}
-              language={language}
-              scope={{ ...React, ...ui, styled, css, ...scope }}
-              theme={{
-                ...themes.vsDark,
-                plain: {
-                  color: CSS_COLOR.LIGHT_GREY_3,
-                  backgroundColor: CSS_COLOR.TEXT_BLACK,
-                },
-              }}
-              noInline={withStyled}
-              transformCode={transformCode}
-            >
-              <ComponentPreview gap={gap} align={align} layout={layout}>
-                <LivePreview Component={React.Fragment} />
-              </ComponentPreview>
-              <CodeWrapper>
-                <StyledLiveEditorContainer>
-                  <CopyButton text={code} />
-                  {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-                  <LiveEditor padding={0} />
-                </StyledLiveEditorContainer>
-              </CodeWrapper>
-              <LiveError />
-            </LiveProvider>
-          )}
-        </ThemeProvider>
+        {!noIframe && showFrame && (
+          <Frame
+            ref={iframeRef}
+            width="100%"
+            height={`${iframeHeight}px`}
+            style={{ border: 'none', overflow: 'hidden' }}
+            referrerPolicy="same-origin"
+          >
+            <FrameContextConsumer>
+              {({ document }) => <StyleSheetManager target={document?.head}>{LiveContainerComponent()}</StyleSheetManager>}
+            </FrameContextConsumer>
+          </Frame>
+        )}
+        {/* smarthr-ui側が対応したら以下は削除し、iframeのdocument.bodyをLiveEditorに渡してportalにする予定です。 */}
+        {noIframe && LiveContainerComponent()}
       </Wrapper>
     )
   }
@@ -197,16 +218,4 @@ const PreContainer = styled.div<{ isStorybook?: boolean }>`
     `};
 `
 
-const StyledLiveEditorContainer = styled(PreContainer)`
-  overflow: auto;
-  margin: 0;
-
-  /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
-  padding: 2.75rem 1.5rem 1.5rem;
-  border-width: 0 1px 1px;
-  background-color: ${CSS_COLOR.TEXT_BLACK};
-  max-height: 40em;
-  pre {
-    width: fit-content;
-  }
-`
+export { PreContainer }

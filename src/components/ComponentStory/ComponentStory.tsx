@@ -69,9 +69,9 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
   // プルダウンの選択肢を作成する
   const versionOptions =
     allUiVersion.nodes?.map((version) => ({
-        label: `v${version.version}`,
-        value: version.version ?? '',
-      })) ?? []
+      label: `v${version.version}`,
+      value: version.version ?? '',
+    })) ?? []
 
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [isStoryLoaded, setIsStoryLoaded] = useState<boolean>(false)
@@ -114,9 +114,10 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
     [name, allUiVersion.nodes],
   )
 
-  const getCommitHash = useCallback(() => (
-      allUiVersion.nodes?.find((version) => version.version === displayVersion)?.commitHash ?? ''
-    ), [allUiVersion.nodes, displayVersion])
+  const getCommitHash = useCallback(
+    () => allUiVersion.nodes?.find((version) => version.version === displayVersion)?.commitHash ?? '',
+    [allUiVersion.nodes, displayVersion],
+  )
 
   // クエリ付きURLでアクセスされた場合
   const location = useLocation()
@@ -165,9 +166,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
             //プルダウンに存在しないが、コード表示はできるバージョン（例：v25.0.0）の場合は、そのバージョンを表示する
             decorators={{
               blankLabel: () =>
-                showError ||
-                !isStoryLoaded ||
-                versionOptions.find((option) => option.value === displayVersion)
+                showError || !isStoryLoaded || versionOptions.find((option) => option.value === displayVersion)
                   ? '-'
                   : `v${displayVersion}`,
             }}
@@ -210,15 +209,10 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
         <>
           <Tab>
             {storyData.storyItems.map((item, index: number) => (
-                <TabItem
-                  id={item?.iframeName ?? ''}
-                  key={index}
-                  onClick={onClickTab}
-                  selected={item?.iframeName === currentIFrame}
-                >
-                  {item?.label}
-                </TabItem>
-              ))}
+              <TabItem id={item?.iframeName ?? ''} key={index} onClick={onClickTab} selected={item?.iframeName === currentIFrame}>
+                {item?.label}
+              </TabItem>
+            ))}
           </Tab>
           {currentIFrame !== '' && (
             <>
@@ -236,9 +230,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
                 <StoryLoader className={isIFrameLoaded ? '' : '-show'} />
                 {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
                 <StoryIframe
-                  title={
-                    storyData.storyItems.find((item) => item?.name === currentIFrame)?.label || ''
-                  }
+                  title={storyData.storyItems.find((item) => item?.name === currentIFrame)?.label || ''}
                   src={`https://${getCommitHash()}--${SHRUI_CHROMATIC_ID}.chromatic.com/iframe.html?id=${getStoryName(
                     currentIFrame,
                   )}`}

@@ -10,24 +10,26 @@ type Props = {
 }
 
 export const VideoEmbed: FC<Props> = ({ source, poster, title, youtubeUrl, tracks = [] }) => (
-    <>
-      <Video controls poster={poster}>
-        <source src={source} type="video/mp4" title={title}></source>
-        {youtubeUrl ? (
-          <p>動画を再生できない場合は以下のYouTubeリンク先を参照してください。</p>
-        ) : (
-          <p>動画再生に対応した環境でご覧ください。</p>
-        )}
-        {tracks.map((track, index) => <track {...track} key={index} />)}
-      </Video>
-
-      {youtubeUrl && (
-        <a href={youtubeUrl} target="_blank" rel="noreferrer">
-          {title} | YouTube
-        </a>
+  <>
+    <Video controls poster={poster}>
+      <source src={source} type="video/mp4" title={title}></source>
+      {youtubeUrl ? (
+        <p>動画を再生できない場合は以下のYouTubeリンク先を参照してください。</p>
+      ) : (
+        <p>動画再生に対応した環境でご覧ください。</p>
       )}
-    </>
-  )
+      {tracks.map((track, index) => (
+        <track {...track} key={index} />
+      ))}
+    </Video>
+
+    {youtubeUrl && (
+      <a href={youtubeUrl} target="_blank" rel="noreferrer">
+        {title} | YouTube
+      </a>
+    )}
+  </>
+)
 
 const Video = styled.video`
   max-width: 100%;

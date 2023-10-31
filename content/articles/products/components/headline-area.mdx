@@ -4,11 +4,15 @@ description: ''
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
-import { CompactInformationPanel } from 'smarthr-ui'
+import { BaseColumn, WarningIcon } from 'smarthr-ui'
 
-<CompactInformationPanel type="warning">
-  HeadlineAreaコンポーネントは非推奨です。<a href="/products/components/stack/">Stack</a>コンポーネントで書き換えてください。
-</CompactInformationPanel>
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+      HeadlineAreaコンポーネントは非推奨です。<a href="/products/components/stack/">Stack</a>コンポーネントで書き換えてください。
+    </span>}
+    />
+</BaseColumn>
 
 <ComponentStory name="HeadlineArea" />
 

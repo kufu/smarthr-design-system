@@ -8,15 +8,15 @@ type Props = {
 }
 
 export const AirtableEmbed: FC<Props> = ({ children, tableName }) => (
-    <>
-      {children}
-      <ButtonWrapper>
-        <AnchorButton href={`/csv/${tableName}.csv`} prefix={<FaFileDownloadIcon alt="" />} variant="primary" size="s">
-          Download CSV
-        </AnchorButton>
-      </ButtonWrapper>
-    </>
-  )
+  <>
+    {children}
+    <ButtonWrapper>
+      <AnchorButton href={`/csv/${tableName}.csv`} prefix={<FaFileDownloadIcon alt="" />} variant="primary" size="s">
+        Download CSV
+      </AnchorButton>
+    </ButtonWrapper>
+  </>
+)
 
 const ButtonWrapper = styled.div`
   text-align: right;

@@ -6,32 +6,32 @@ import styled from 'styled-components'
 import { FloatingTextLink } from '../../shared/FloatingTextLink'
 
 export const Introduction: FC = () => (
-    <>
-      <IntroductionContainer>
-        <StyledPageHeading>
-          <span>だれでも・</span>
-          <span>効率よく・</span>
-          <span>迷わずに。</span>
-        </StyledPageHeading>
-        <StyledText>
-          <span>SmartHR Design Systemは、</span>
-          <span>すべての人によりよい体験を届けるためのデザインシステムです。</span>
-          <span>SmartHRに関わる人はどなたでも利用・参加できます。</span>
-        </StyledText>
-        <StyledText>
-          <FloatingTextLink path="/introduction/">デザインシステムとは？</FloatingTextLink>
-        </StyledText>
-      </IntroductionContainer>
-      <IndexImageContainer>
-        <img
-          src="/images/index_introduction_illust.png"
-          width="320"
-          height="180"
-          alt="こちらに手をふる人々。SmartHR社の人物や、そうでない人たち、そしてかわいいねこ。"
-        />
-      </IndexImageContainer>
-    </>
-  )
+  <>
+    <IntroductionContainer>
+      <StyledPageHeading>
+        <span>だれでも・</span>
+        <span>効率よく・</span>
+        <span>迷わずに。</span>
+      </StyledPageHeading>
+      <StyledText>
+        <span>SmartHR Design Systemは、</span>
+        <span>すべての人によりよい体験を届けるためのデザインシステムです。</span>
+        <span>SmartHRに関わる人はどなたでも利用・参加できます。</span>
+      </StyledText>
+      <StyledText>
+        <FloatingTextLink path="/introduction/">デザインシステムとは？</FloatingTextLink>
+      </StyledText>
+    </IntroductionContainer>
+    <IndexImageContainer>
+      <img
+        src="/images/index_introduction_illust.png"
+        width="320"
+        height="180"
+        alt="こちらに手をふる人々。SmartHR社の人物や、そうでない人たち、そしてかわいいねこ。"
+      />
+    </IndexImageContainer>
+  </>
+)
 
 const IntroductionContainer = styled.div`
   width: 70%;
