@@ -34,35 +34,31 @@ import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
 
 export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
-  if (typeof window !== 'undefined') {
-    return (
-      <>
-        <Button variant="danger" onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
-        <ActionDialog
-          isOpen={isOpen}
-          title="{オブジェクト名}を削除しますか？"
-          closeText="キャンセル"
-          actionText="削除"
-          actionTheme="danger"
-          onClickClose={()=> {setIsOpen(false)}}
-          onClickAction={()=> {setIsOpen(false)}}
-        >
-          <div style={{'boxSizing': 'border-box', 'width': '640px', 'padding': '24px'}}>
-            <p style={{'margin': 0}}>
-            {'【{オブジェクトのインスタンス名}】を削除します。'}<br />
-            {'{関連するオブジェクト名など}に登録されているデータも削除されます。'}<br />
-            {'削除した{オブジェクト名}は元に戻せません。'}
-            </p>
-            <p style={{'marginBottom': 0}}>
-            {'{オブジェクト名}を削除しますか？'}
-            </p>
-          </div>
-        </ActionDialog>
-      </>
-    )
-  } else {
-    return null
-  }
+  return (
+    <>
+      <Button variant="danger" onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
+      <ActionDialog
+        isOpen={isOpen}
+        title="{オブジェクト名}を削除しますか？"
+        closeText="キャンセル"
+        actionText="削除"
+        actionTheme="danger"
+        onClickClose={()=> {setIsOpen(false)}}
+        onClickAction={()=> {setIsOpen(false)}}
+      >
+        <div style={{'boxSizing': 'border-box', 'width': '640px', 'padding': '24px'}}>
+          <p style={{'margin': 0}}>
+          {'【{オブジェクトのインスタンス名}】を削除します。'}<br />
+          {'{関連するオブジェクト名など}に登録されているデータも削除されます。'}<br />
+          {'削除した{オブジェクト名}は元に戻せません。'}
+          </p>
+          <p style={{'marginBottom': 0}}>
+          {'{オブジェクト名}を削除しますか？'}
+          </p>
+        </div>
+      </ActionDialog>
+    </>
+  )
 }
 
 <ComponentPreview>

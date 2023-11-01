@@ -51,29 +51,25 @@ ActionDialogは、ユーザーに選択の確認や操作を求める場合に�
 
 export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
-  if (typeof window !== 'undefined') {
-    return (
-      <>
-        <Button variant="primary" onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
-        <ActionDialog
-          isOpen={isOpen}
-          title="アクションダイアログタイトル"
-          closeText="キャンセル"
-          actionText="実行"
-          actionTheme="primary"
-          onClickClose={()=> {setIsOpen(false)}}
-          onPressEscape={() => setIsOpen(false)}
-          onClickAction={()=> {setIsOpen(false)}}
-        >
-          <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
-            本文が入ります。
-          </div>
-        </ActionDialog>
-      </>
-    )
-  } else {
-    return null
-  }
+  return (
+    <>
+      <Button variant="primary" onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
+      <ActionDialog
+        isOpen={isOpen}
+        title="アクションダイアログタイトル"
+        closeText="キャンセル"
+        actionText="実行"
+        actionTheme="primary"
+        onClickClose={()=> {setIsOpen(false)}}
+        onPressEscape={() => setIsOpen(false)}
+        onClickAction={()=> {setIsOpen(false)}}
+      >
+        <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
+          本文が入ります。
+        </div>
+      </ActionDialog>
+    </>
+  )
 }
 
 <ComponentPreview>
