@@ -51,29 +51,25 @@ ActionDialogは、ユーザーに選択の確認や操作を求める場合に�
 
 export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
-  if (typeof window !== 'undefined') {
-    return (
-      <>
-        <Button variant="primary" onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
-        <ActionDialog
-          isOpen={isOpen}
-          title="アクションダイアログタイトル"
-          closeText="キャンセル"
-          actionText="実行"
-          actionTheme="primary"
-          onClickClose={()=> {setIsOpen(false)}}
-          onPressEscape={() => setIsOpen(false)}
-          onClickAction={()=> {setIsOpen(false)}}
-        >
-          <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
-            本文が入ります。
-          </div>
-        </ActionDialog>
-      </>
-    )
-  } else {
-    return null
-  }
+  return (
+    <>
+      <Button variant="primary" onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
+      <ActionDialog
+        isOpen={isOpen}
+        title="アクションダイアログタイトル"
+        closeText="キャンセル"
+        actionText="実行"
+        actionTheme="primary"
+        onClickClose={()=> {setIsOpen(false)}}
+        onPressEscape={() => setIsOpen(false)}
+        onClickAction={()=> {setIsOpen(false)}}
+      >
+        <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
+          本文が入ります。
+        </div>
+      </ActionDialog>
+    </>
+  )
 }
 
 <ComponentPreview>
@@ -89,24 +85,20 @@ MessageDialogは、ユーザーの操作を中断させて、ユーザーへの�
 
 export const DynamicMessageDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
-  if (typeof window !== 'undefined') {
-    return (
-      <>
-        <Button variant="primary" onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
-        <MessageDialog
-          isOpen={isOpen}
-          title="メッセージダイアログタイトル"
-          description={<p style={{'boxSizing': 'border-box', 'width': '432px', 'margin': '0', 'padding': '24px 0'}}>本文が入ります。</p>}
-          closeText="閉じる"
-          onClickClose={() => setIsOpen(false)}
-          onPressEscape={() => setIsOpen(false)}
-          id="dialog-message"
-        />
-      </>
-    )
-  } else {
-    return null
-  }
+  return (
+    <>
+      <Button variant="primary" onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
+      <MessageDialog
+        isOpen={isOpen}
+        title="メッセージダイアログタイトル"
+        description={<p style={{'boxSizing': 'border-box', 'width': '432px', 'margin': '0', 'padding': '24px 0'}}>本文が入ります。</p>}
+        closeText="閉じる"
+        onClickClose={() => setIsOpen(false)}
+        onPressEscape={() => setIsOpen(false)}
+        id="dialog-message"
+      />
+    </>
+  )
 }
 
 <ComponentPreview>
@@ -120,63 +112,59 @@ ModelessDialogは、ユーザーに任意のタイミングや順序で、情報
 
 export const DynamicModelessDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
-  if (typeof window !== 'undefined') {
-    return (
-      <>
-        <Button
-          variant="primary"
-          onClick={() => setIsOpen(!isOpen)}
-          data-test="dialog-trigger"
-          aria-haspopup="dialog"
-          aria-controls="modeless-dialog"
-        >
-          ModelessDialogを開く
-        </Button>
-        <ModelessDialog
-          isOpen={isOpen}
-          header={<ModelessHeading>モードレスダイアログ</ModelessHeading>}
-          footer={<ModelessFooter>フッター</ModelessFooter>}
-          onClickClose={() => setIsOpen(false)}
-          onPressEscape={() => setIsOpen(false)}
-          width="50%"
-          height="50%"
-          id="modeless-dialog-1"
-          data-test="dialog"
-        >
-          <ModelessContent>
-            <Stack gap="S">
-              <Table>
-                <thead>
-                  <tr>
-                    <Th>
+  return (
+    <>
+      <Button
+        variant="primary"
+        onClick={() => setIsOpen(!isOpen)}
+        data-test="dialog-trigger"
+        aria-haspopup="dialog"
+        aria-controls="modeless-dialog"
+      >
+        ModelessDialogを開く
+      </Button>
+      <ModelessDialog
+        isOpen={isOpen}
+        header={<ModelessHeading>モードレスダイアログ</ModelessHeading>}
+        footer={<ModelessFooter>フッター</ModelessFooter>}
+        onClickClose={() => setIsOpen(false)}
+        onPressEscape={() => setIsOpen(false)}
+        width="50%"
+        height="50%"
+        id="modeless-dialog-1"
+        data-test="dialog"
+      >
+        <ModelessContent>
+          <Stack gap="S">
+            <Table>
+              <thead>
+                <tr>
+                  <Th>
+                    <CheckBox />
+                  </Th>
+                  <Th>テーブル見出し1</Th>
+                  <Th>テーブル見出し2</Th>
+                  <Th>テーブル見出し3</Th>
+                </tr>
+              </thead>
+              <tbody>
+                {Array.from(Array(10).keys()).map((i) => (
+                  <tr key={i}>
+                    <Td>
                       <CheckBox />
-                    </Th>
-                    <Th>テーブル見出し1</Th>
-                    <Th>テーブル見出し2</Th>
-                    <Th>テーブル見出し3</Th>
+                    </Td>
+                    <Td>データ1-{i}</Td>
+                    <Td>データ2-{i}</Td>
+                    <Td>データ3-{i}</Td>
                   </tr>
-                </thead>
-                <tbody>
-                  {Array.from(Array(10).keys()).map((i) => (
-                    <tr key={i}>
-                      <Td>
-                        <CheckBox />
-                      </Td>
-                      <Td>データ1-{i}</Td>
-                      <Td>データ2-{i}</Td>
-                      <Td>データ3-{i}</Td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Stack>
-          </ModelessContent>
-        </ModelessDialog>
-      </>
-    )
-  } else {
-    return null
-  }
+                ))}
+              </tbody>
+            </Table>
+          </Stack>
+        </ModelessContent>
+      </ModelessDialog>
+    </>
+  )
 }
 
 <ComponentPreview>

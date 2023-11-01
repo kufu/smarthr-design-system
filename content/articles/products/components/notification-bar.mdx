@@ -51,24 +51,20 @@ NotificationBarは、フィードバックやメッセージを伝えるため�
 <!-- textlint-disable -->
 export const AnimateNotificationBar = () => {
   const [visible, setVisible] = useState(false)
-  if (typeof window !== 'undefined') {
-    return (
-      <Stack style={{ width: '100%', background: '#f8f7f6', padding: '8px', }}>
-        {visible && (
-          <NotificationBar
-            type="success"
-            bold={true}
-            message="タスクの登録に成功しました。"
-            animate={true}
-            onClose={() => setVisible(!visible)}
-          />
-        )}
-        <Button onClick={() => setVisible(!visible)}>NotificationBarを{visible ? '隠す' : '表示'}</Button>
-      </Stack>
-    )
-  } else {
-    return null
-  }
+  return (
+    <Stack style={{ width: '100%', background: '#f8f7f6', padding: '8px', }}>
+      {visible && (
+        <NotificationBar
+          type="success"
+          bold={true}
+          message="タスクの登録に成功しました。"
+          animate={true}
+          onClose={() => setVisible(!visible)}
+        />
+      )}
+      <Button onClick={() => setVisible(!visible)}>NotificationBarを{visible ? '隠す' : '表示'}</Button>
+    </Stack>
+  )
 }
 
 <!-- textlint-enable -->
