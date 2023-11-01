@@ -47,6 +47,18 @@ import { ComponentStory } from '@Components/ComponentStory'
 </>
 ```
 
+#### iframeを使用したくない場合（非推奨）
+
+```tsx editable codeBlock noIframe
+// ```tsx editable codeBlock noIframe
+// 編集可能なコードブロックは、iframe内にレンダリングされます。ツールチップがiframeの外にレンダリングされるなど不都合がある場合は`noIframe`を指定します。
+// `noIframe`では、CSSノーマライズが適用されないなどの問題があるため、非推奨です。
+// ```
+<Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
+  <NotificationBar type="warning" message={<LineClamp maxLines={1} withTooltip>非推奨ですが、LineClampを使用して省略もできます。そのでっかい領域によるヘッダー（のナビゲーション）へのアクセス性の低下をフォローするために多くのウェブサイトはヘッダーを固定していますが、それでは同時にコンテンツの閲覧性に影響を与えてしまいます。</LineClamp>} onClose={()=>{}} />
+</Stack>
+```
+
 #### プロダクト
 
 ```tsx editable withStyled layout=product codeBlock
