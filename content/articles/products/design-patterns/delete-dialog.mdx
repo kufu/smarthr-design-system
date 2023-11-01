@@ -117,29 +117,25 @@ export const DynamicActionDialog = () => {
 
 export const DynamicCancelActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
-  if (typeof window !== 'undefined') {
-    return (
-      <>
-        <Button variant="danger" onClick={() => setIsOpen(true)}>取り消し操作時のダイアログを開く</Button>
-        <ActionDialog
-          isOpen={isOpen}
-          title="{操作名}を取り消しますか？"
-          closeText="キャンセル"
-          actionText="取り消し"
-          actionTheme="danger"
-          onClickClose={()=> {setIsOpen(false)}}
-          onClickAction={()=> {setIsOpen(false)}}
-        >
-          <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
-            {'{操作名}を取り消します。'}<br />
-            {'「取り消し」を押すと変更内容が破棄されます。'}
-          </div>
-        </ActionDialog>
-      </>
-    )
-  } else {
-    return null
-  }
+  return (
+    <>
+      <Button variant="danger" onClick={() => setIsOpen(true)}>取り消し操作時のダイアログを開く</Button>
+      <ActionDialog
+        isOpen={isOpen}
+        title="{操作名}を取り消しますか？"
+        closeText="キャンセル"
+        actionText="取り消し"
+        actionTheme="danger"
+        onClickClose={()=> {setIsOpen(false)}}
+        onClickAction={()=> {setIsOpen(false)}}
+      >
+        <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
+          {'{操作名}を取り消します。'}<br />
+          {'「取り消し」を押すと変更内容が破棄されます。'}
+        </div>
+      </ActionDialog>
+    </>
+  )
 }
 
 <ComponentPreview>
