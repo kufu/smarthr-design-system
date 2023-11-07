@@ -56,7 +56,7 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
     .sort((x, y) => (x.order && y.order ? x.order - y.order : -1))
 
   const injectedDescriptions: { [key: string]: string } = {}
-  marked.setOptions({ breaks: true, headerIds: false, mangle: false }) //改行の手前にスペース*2がなくても<br>に変換したいので
+  marked.setOptions({ breaks: true }) //改行の手前にスペース*2がなくても<br>に変換したいので
   React.Children.toArray(children)
     .filter((child: any) => {
       // <Description>タグ以外は除外
