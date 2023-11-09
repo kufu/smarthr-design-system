@@ -48,6 +48,16 @@
         "automerge": true
       },
       {
+        "matchPackageNames": [
+          "@types/react"
+        ],
+        "matchUpdateTypes": [
+          "minor",
+          "major"
+        ],
+        "automerge": false
+      },
+      {
         "groupName": "MDX",
         "matchPackagePrefixes": [
           "@mdx-js",
