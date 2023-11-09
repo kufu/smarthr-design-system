@@ -81,13 +81,10 @@ exports.sourceNodes = async (
     }
 
     const csvFields: string[] = table.fields.map((field) => field.name)
-    const csvData = records.map((record) => {
-      return record.fields
-    })
+    const csvData = records.map((record) => record.fields)
 
-    json2csv(csvData, { keys: csvFields, emptyFieldValue: '', excelBOM: true }).then((csv) => {
-      fs.writeFile(`${csvDir}/${table.name}.csv`, csv)
-    })
+    const csv = json2csv(csvData, { keys: csvFields, emptyFieldValue: '', excelBOM: true })
+    fs.writeFile(`${csvDir}/${table.name}.csv`, csv)
   }
 
   return
