@@ -61,8 +61,6 @@ const pickType = (typeValue: string): keyof typeof TYPE_COLOR => {
 
 const pickTypeColor = (value: string): string => TYPE_COLOR[pickType(value)]
 
-marked.setOptions({ headerIds: false, mangle: false })
-
 export const ComponentPropsTable: FC<Props> = ({ name, dirName, showTitle }) => {
   const { allUiVersion } = useStaticQuery<Queries.PropsDataQuery>(query)
 

@@ -1,5 +1,7 @@
+// @ts-ignore
 import { encode } from 'https://deno.land/std@0.199.0/encoding/base64.ts'
 
+// @ts-ignore
 import type { Config } from 'https://edge.netlify.com'
 
 export default async (req: Request) => {

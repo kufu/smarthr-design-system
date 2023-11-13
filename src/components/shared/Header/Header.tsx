@@ -31,7 +31,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
           <SiteNameLink to="/">
             <img src="/images/logo_smarthr_design_system.svg" alt="SmartHR Design System" width="264" height="24" />
           </SiteNameLink>
-          <StyledNav>
+          <StyledLinkMenu>
             <ul className="-optional">
               <li>
                 <StyledAnchorButton
@@ -125,7 +125,7 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
                 </Dialog>
               ) : null}
             </MenuContainer>
-          </StyledNav>
+          </StyledLinkMenu>
         </Container>
       </Wrapper>
       <GlobalStyleForMenu />
@@ -182,7 +182,7 @@ const SiteNameLink = styled(Link)`
   }
 `
 
-const StyledNav = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justify: 'flex-start', as: 'nav' })`
+const StyledLinkMenu = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justify: 'flex-start', as: 'nav' })`
   flex-direction: row-reverse;
   margin-inline-start: auto;
 
