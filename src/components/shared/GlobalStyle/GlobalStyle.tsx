@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   :root {
     --header-height: 112px;
+
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       --header-height: 80px;
     }

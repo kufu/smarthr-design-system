@@ -55,6 +55,7 @@ const IndexFaqSection = styled(Section)`
       padding: 0;
     }
   }
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin-top: 120px;
     > ul {
@@ -66,6 +67,7 @@ const IndexFaqSection = styled(Section)`
       }
     }
   }
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     margin: 120px 16px 0;
     > ul > li {

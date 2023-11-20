@@ -44,6 +44,7 @@ export const IndexNavItems: FC<Props> = ({ nestedHeadings, indexNavRef, currentH
 const Nav = styled(UINav)`
   display: block;
   padding-top: 160px;
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     padding-top: 0;
   }
@@ -93,6 +94,7 @@ const Nav = styled(UINav)`
     &[aria-current] {
       color: inherit;
     }
+
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       padding-inline: 40px;
     }
