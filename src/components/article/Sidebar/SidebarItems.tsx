@@ -141,6 +141,7 @@ const SidebarNav = styled(Nav)`
     color: inherit;
     text-decoration: none;
     padding: 8px 32px 8px 8px;
+
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       padding-inline: 16px;
       + button {
