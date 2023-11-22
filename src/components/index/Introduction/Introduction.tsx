@@ -49,18 +49,20 @@ const IntroductionContainer = styled.div`
 `
 
 const StyledPageHeading = styled(PageHeading)`
-  font-size: ${CSS_FONT_SIZE.PX_54};
-  font-weight: normal;
-  margin: 0 0 24px;
-  line-height: 1.25;
-  letter-spacing: 0.1rem;
-  word-break: normal;
-  > span {
-    display: inline-block;
-  }
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    font-size: ${CSS_FONT_SIZE.PX_48};
-    line-height: 1.5;
+  &&& {
+    font-size: ${CSS_FONT_SIZE.PX_54};
+    font-weight: normal;
+    margin: 0 0 24px;
+    line-height: 1.25;
+    letter-spacing: 0.1rem;
+    word-break: normal;
+    > span {
+      display: inline-block;
+    }
+    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+      font-size: ${CSS_FONT_SIZE.PX_48};
+      line-height: 1.5;
+    }
   }
 `
 

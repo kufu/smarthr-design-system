@@ -182,7 +182,7 @@ const SiteNameLink = styled(Link)`
   }
 `
 
-const StyledLinkMenu = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justify: 'flex-start', as: 'nav' })`
+const StyledLinkMenu = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, justify: 'flex-start', forwardedAs: 'nav' })`
   flex-direction: row-reverse;
   margin-inline-start: auto;
 
