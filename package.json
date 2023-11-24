@@ -40,6 +40,7 @@
     "format": "run-s format:*",
     "export:zip-images": "ts-node scripts/zipImages.ts",
     "generate:thumbnails": "ts-node scripts/component-thumbnails/componentThumbnails.ts",
+    "update:smarthr-ui.css": "ts-node scripts/update-smarthr-ui-css.ts",
     "postinstall": "husky install"
   },
   "dependencies": {
@@ -59,7 +60,7 @@
     "react-instantsearch-dom": "^6.40.4",
     "react-live": "^4.1.5",
     "react-string-replace": "^1.1.1",
-    "smarthr-ui": "^35.4.0",
+    "smarthr-ui": "^38.2.0",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
@@ -73,6 +74,8 @@
     "@types/react-dom": "^18.2.15",
     "@types/react-instantsearch-dom": "^6.12.6",
     "@types/styled-components": "^5.1.30",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
     "adm-zip": "^0.5.10",
     "eslint": "^8.54.0",
     "eslint-config-smarthr": "6.13.2",
@@ -114,7 +117,8 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "unist-util-visit": "2.0.3"
-  },"resolutions": {
+  },
+  "resolutions": {
     "postcss": "^8.4.31"
   }
 }

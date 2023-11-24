@@ -6,7 +6,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import { CssBaseLine } from 'smarthr-normalize-css'
 import * as ui from 'smarthr-ui'
 import styled, { ThemeProvider, css } from 'styled-components'
-// TODO SmartHR な Dark テーマほしいな!!!
+import 'smarthr-ui/smarthr-ui.css'
 
 import { ComponentPreview } from '../../ComponentPreview'
 

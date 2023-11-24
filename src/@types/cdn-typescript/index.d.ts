@@ -36,6 +36,7 @@ declare namespace CdnTs {
     ES2022 = 9,
     ESNext = 99,
     JSON = 100,
+    // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
     Latest = 99,
   }
 }

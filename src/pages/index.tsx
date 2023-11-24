@@ -9,6 +9,7 @@ import { Header } from '@Components/shared/Header/Header'
 import { CSS_SIZE } from '@Constants/style'
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import 'smarthr-ui/smarthr-ui.css'
 
 const Home: FC = () => (
   <>
