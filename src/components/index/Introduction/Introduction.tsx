@@ -36,6 +36,7 @@ export const Introduction: FC = () => (
 const IntroductionContainer = styled.div`
   width: 70%;
   margin: 0 0 0 auto;
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     box-sizing: border-box;
     width: 100%;
@@ -43,6 +44,7 @@ const IntroductionContainer = styled.div`
     padding: 0 16px;
     margin-left: 0;
   }
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_1}) {
     margin: 0;
   }
@@ -59,6 +61,7 @@ const StyledPageHeading = styled(PageHeading)`
     > span {
       display: inline-block;
     }
+
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       font-size: ${CSS_FONT_SIZE.PX_48};
       line-height: 1.5;
@@ -76,6 +79,7 @@ const StyledText = styled.p`
   > span {
     display: inline-block;
   }
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     font-size: ${CSS_FONT_SIZE.PX_16};
     line-height: 2;
@@ -94,6 +98,7 @@ const IndexImageContainer = styled.div`
     max-width: 50%;
     height: auto;
   }
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     margin: 72px 0 120px;
     border-bottom: solid 1px ${CSS_COLOR.LIGHT_GREY_1};
@@ -101,6 +106,7 @@ const IndexImageContainer = styled.div`
       max-width: 192px;
     }
   }
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
     margin: 80px 0 0;
     padding: 0;

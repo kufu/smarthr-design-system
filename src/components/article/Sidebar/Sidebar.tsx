@@ -77,6 +77,7 @@ const NavWrapper = styled.div`
 
 const SpSidebar = styled.div`
   display: none;
+
   @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
     display: block;
     border-bottom: 1px solid ${CSS_COLOR.LIGHT_GREY_1};

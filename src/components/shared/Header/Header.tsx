@@ -150,6 +150,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
           @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
             padding-inline: 48px;
           }
+
           @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
             padding-inline: 24px;
           }
@@ -158,6 +159,7 @@ const Wrapper = styled.header<{ isIndex: boolean }>`
           @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_2}) {
             padding-inline: 48px;
           }
+
           @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
             padding-inline: 24px;
           }
@@ -175,6 +177,7 @@ const SiteNameLink = styled(Link)`
 
   img {
     display: block;
+
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       width: 204px;
       height: auto;
@@ -192,6 +195,7 @@ const StyledLinkMenu = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, 
     margin: 0;
     padding: 0;
     gap: 6px;
+
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       display: none;
     }
@@ -284,10 +288,12 @@ const GlobalStyleForMenu = createGlobalStyle`
     box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.24);
     bottom: 16px;
     max-height: 678px;
+
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
       top: 1rem;
       right: calc(3rem - 12px);
     }
+
     @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
       width: auto;
       right: calc(1.5rem - 12px);

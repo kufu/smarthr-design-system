@@ -70,12 +70,15 @@ const padding = css(
     @media (max-width: 1440px) {
       padding-inline: ${space(1.25)};
     }
+
     @media (max-width: 1024px) {
       padding-inline: ${space(1)};
     }
+
     @media (max-width: 768px) {
       padding-inline: ${space(0.75)};
     }
+
     @media (max-width: 480px) {
       padding-inline: ${space(0.5)};
     }
