@@ -22,6 +22,7 @@ export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, chi
 
   const handleVerticalPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     setPointerPosition({ x: event.clientX, y: null })
+    // eslint-disable-next-line valid-typeof
     if (typeof window !== undefined) {
       document.addEventListener('pointermove', handlePointerMove, false)
       document.addEventListener('pointerup', handlePointerUp, false)
@@ -30,6 +31,7 @@ export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, chi
 
   const handleHorizontalPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     setPointerPosition({ x: null, y: event.clientY })
+    // eslint-disable-next-line valid-typeof
     if (typeof window !== undefined) {
       document.addEventListener('pointermove', handlePointerMove, false)
       document.addEventListener('pointerup', handlePointerUp, false)
@@ -38,6 +40,7 @@ export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, chi
 
   const handlePointerUp = () => {
     setPointerPosition({ x: null, y: null })
+    // eslint-disable-next-line valid-typeof
     if (typeof window !== undefined) {
       document.removeEventListener('pointermove', handlePointerMove, false)
       document.removeEventListener('pointerup', handlePointerUp, false)
@@ -80,6 +83,7 @@ export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, chi
   }
 
   useEffect(() => {
+    // eslint-disable-next-line valid-typeof
     if (typeof window !== undefined) {
       window.addEventListener('resize', handleWindowResize)
     }
