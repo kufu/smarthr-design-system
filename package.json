@@ -40,6 +40,7 @@
     "format": "run-s format:*",
     "export:zip-images": "ts-node scripts/zipImages.ts",
     "generate:thumbnails": "ts-node scripts/component-thumbnails/componentThumbnails.ts",
+    "update:smarthr-ui.css": "ts-node scripts/update-smarthr-ui-css.ts",
     "postinstall": "husky install"
   },
   "dependencies": {
