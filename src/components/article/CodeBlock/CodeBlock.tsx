@@ -132,6 +132,7 @@ export const CodeBlock: FC<Props> = ({
             height={`${iframeHeight}px`}
             style={{ border: 'none', overflow: 'hidden' }}
             referrerPolicy="same-origin"
+            head={<link href="/example.css" rel="stylesheet" />}
           >
             <FrameContextConsumer>
               {({ document }) => <StyleSheetManager target={document?.head}>{LiveContainerComponent()}</StyleSheetManager>}
