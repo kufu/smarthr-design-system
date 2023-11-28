@@ -76,7 +76,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
   const [isIFrameLoaded, setIsIFrameLoaded] = useState<boolean>(false)
   const [isStoryLoaded, setIsStoryLoaded] = useState<boolean>(false)
   const [currentIFrame, setCurrentIFrame] = useState<string>(storyData.storyItems[0]?.iframeName ?? '')
-  const [displayVersion, setDisplayVersion] = useState<string>('')
+  const [displayVersion, setDisplayVersion] = useState<string>(defaultVersion?.version || '')
   const [showError, setShowError] = useState<boolean>(false)
 
   const fetchData = useCallback(
