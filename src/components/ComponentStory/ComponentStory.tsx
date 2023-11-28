@@ -124,9 +124,8 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
   useEffect(() => {
     const { search } = location
     const params = new URLSearchParams(search)
-    const version = params.get('v') || packageInfo.version
-    if (version === displayVersion) return
-
+    if (params.get('v') === displayVersion) return
+    const version = params.get('v') || displayVersion
     fetchData(version)
   }, [location, displayVersion, fetchData])
 
