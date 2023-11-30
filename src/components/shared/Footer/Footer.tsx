@@ -229,17 +229,23 @@ const FooterContainer = styled.div<{ isArticlePage: boolean }>`
 const StyledLogoHeading = styled.h2`
   margin-block: 9px 0;
   font-size: ${CSS_FONT_SIZE.PX_14};
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family:
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
   line-height: 1.37;
   color: ${CSS_COLOR.BLACK};
 `
 
 const Col1Container = styled.div`
   grid-area: col1;
-  display: grid;
-  grid-template-columns: 100%;
-  gap: 24px;
-  justify-items: start;
+  > section {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 24px;
+    justify-items: start;
+  }
 `
 
 const Col2Container = styled.div`
