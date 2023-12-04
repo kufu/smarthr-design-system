@@ -38,7 +38,7 @@ import styled from 'styled-components'
 import { TableReel, Table as OriginalTable, Th, Td } from 'smarthr-ui'
 
 export const Table = styled(OriginalTable)`
-  width: 160% !important;
+  width: 150% !important;
   & th,
   & td {
     min-width: initial;
@@ -51,12 +51,12 @@ export const Table = styled(OriginalTable)`
 <Table>
 <thead>
 <tr>
-<Th>No.</Th>
+<Th style="width: 1em;">#</Th>
 <Th style="width: 6em;">分類</Th>
 <Th>チェック内容</Th>
 <Th style="width: 16em;">関連する品質測定量</Th>
 <Th style="width: 8em;">関連する使用性の副特性</Th>
-<Th style="width: 7em;">基準の状況<br />（2023年11月現在）</Th>
+<Th style="width: 7em;" fixed>基準の状況<br />（2023年11月現在）</Th>
 </tr>
 </thead>
 <tbody>
@@ -66,7 +66,7 @@ export const Table = styled(OriginalTable)`
     <Td>ユーザーの業務を説明できるか</Td>
     <Td><code>UOp-7-S 情報の理解可能な分類</code></Td>
     <Td>運用操作性</Td>
-    <Td>アウトプットではかる</Td>
+    <Td fixed>アウトプットではかる</Td>
 </tr>
 <tr>
     <Td>2</Td>
@@ -74,7 +74,7 @@ export const Table = styled(OriginalTable)`
     <Td>オブジェクトの関係性を説明できるか</Td>
     <Td><code>UOp-7-S 情報の理解可能な分類</code></Td>
     <Td>運用操作性</Td>
-    <Td>アウトプットではかる</Td>
+    <Td fixed>アウトプットではかる</Td>
 </tr>
 <tr>
     <Td>3</Td>
@@ -82,7 +82,7 @@ export const Table = styled(OriginalTable)`
     <Td>オブジェクトに付随するプロパティとアクションはユーザーの業務を遂行に十分なものであることを説明できるか</Td>
     <Td><code>UOp-7-S 情報の理解可能な分類</code></Td>
     <Td>運用操作性</Td>
-    <Td>アウトプットではかる</Td>
+    <Td fixed>アウトプットではかる</Td>
 </tr>
 <tr>
     <Td>4</Td>
@@ -90,7 +90,7 @@ export const Table = styled(OriginalTable)`
     <Td>メインナビゲーションはユーザーの関心に沿って分類されていることをを説明できるか</Td>
     <Td><code>UOp-7-S 情報の理解可能な分類</code></Td>
     <Td>運用操作性</Td>
-    <Td>アウトプットではかる</Td>
+    <Td fixed>アウトプットではかる</Td>
 </tr>
 <tr>
     <Td>5</Td>
@@ -98,7 +98,7 @@ export const Table = styled(OriginalTable)`
     <Td>ビューの呼び出し関係を説明できるか</Td>
     <Td><code>UOp-7-S 情報の理解可能な分類</code></Td>
     <Td>運用操作性</Td>
-    <Td>アウトプットではかる</Td>
+    <Td fixed>アウトプットではかる</Td>
 </tr>
 <tr>
     <Td>6</Td>
@@ -106,7 +106,7 @@ export const Table = styled(OriginalTable)`
     <Td>モバイルデバイスでの利用において、対応基準と設計基準に沿って検討しているか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>7</Td>
@@ -114,7 +114,7 @@ export const Table = styled(OriginalTable)`
     <Td>「視線誘導（仮）」の基準に沿っているか（見出しや色を適切に使用した画面全体の情報の流れ・強弱を表現できているか）</Td>
     <Td><code>UIn-1-S ユーザインタフェースの外観の快美性</code></Td>
     <Td>ユーザインタフェース快美性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>8</Td>
@@ -122,7 +122,7 @@ export const Table = styled(OriginalTable)`
     <Td>「レイアウトパターン（仮）」の基準に沿っているか（機能のトップとなるページに適切なリード文が書かれているか、を含む）</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code><br /><code>UAp-3-S ウェブサイト目的説明率</code><br /><code>UIn-1-S ユーザインタフェースの外観の快美性</code></Td>
     <Td>運用操作性、適切度認識性、ユーザインタフェース快美性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>9</Td>
@@ -130,7 +130,7 @@ export const Table = styled(OriginalTable)`
     <Td>画面内の余白が基準に沿っているか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code><br /><code>UIn-1-S ユーザインタフェースの外観の快美性</code></Td>
     <Td>運用操作性、ユーザインタフェース快美性</Td>
-    <Td>基準はあるが十分でない</Td>
+    <Td fixed><a href="/products/design-patterns/spacing-layout-pattern/">基準はある</a>が十分でない</Td>
 </tr>
 <tr>
     <Td>10</Td>
@@ -138,7 +138,7 @@ export const Table = styled(OriginalTable)`
     <Td>「グルーピングの装飾（仮）」の基準に沿っているか（色を適切に使用した視覚的グルーピングを含む）</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code><br /><code>UIn-1-S ユーザインタフェースの外観の快美性</code></Td>
     <Td>運用操作性、ユーザインタフェース快美性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>11</Td>
@@ -146,7 +146,7 @@ export const Table = styled(OriginalTable)`
     <Td>テーブルを使う場合は、「よくあるテーブル」の基準に沿っているか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
-    <Td>基準はあるが十分でない</Td>
+    <Td fixed><a href="/products/design-patterns/smarthr-table/">基準はある</a>が十分でない</Td>
 </tr>
 <tr>
     <Td>12</Td>
@@ -154,7 +154,7 @@ export const Table = styled(OriginalTable)`
     <Td>「エラー状態（仮）」の基準にそっているか（Error stateが考慮されており、エラーを回復・解消できるように考慮されているか）</Td>
     <Td><code>UEp-3-S ユーザエラー回復性</code></Td>
     <Td>ユーザエラー防止性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>13</Td>
@@ -162,7 +162,7 @@ export const Table = styled(OriginalTable)`
     <Td>デフォルト値がある入力欄では、デフォルト値が埋められているか</Td>
     <Td><code>ULe-2-S 入力欄のデフォルト</code></Td>
     <Td>習得性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>14</Td>
@@ -170,7 +170,7 @@ export const Table = styled(OriginalTable)`
     <Td>削除含む危険な操作、やり直しができない操作の前に、ユーザーに確認したり、実行後に取り消しできるようにしているか</Td>
     <Td><code>UOp-6-S 操作実行取消し能力</code><br /><code>UEp-1-G 利用者操作エラー回避性</code></Td>
     <Td>運用操作性、ユーザエラー防止性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>15</Td>
@@ -178,7 +178,7 @@ export const Table = styled(OriginalTable)`
     <Td>モードがあるUIの場合は、基準に沿っているか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>16</Td>
@@ -186,7 +186,7 @@ export const Table = styled(OriginalTable)`
     <Td>ユーザーへの通知・フィードバックの出し方が基準に沿っているか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code><br /><code>UOp-2-G メッセージ明確性</code></Td>
     <Td>運用操作性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>17</Td>
@@ -194,7 +194,7 @@ export const Table = styled(OriginalTable)`
     <Td>SmartHR-UIと類似した独自のコンポーネントになっていないか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
-    <Td>これが基準</Td>
+    <Td fixed>これが基準</Td>
 </tr>
 <tr>
     <Td>18</Td>
@@ -202,7 +202,7 @@ export const Table = styled(OriginalTable)`
     <Td>コンポーネントの基準に沿った利用方法をしているか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
-    <Td>基準はあるが十分でない</Td>
+    <Td fixed><a href="/products/components/">基準はある</a>が十分でない</Td>
 </tr>
 <tr>
     <Td>19</Td>
@@ -210,7 +210,7 @@ export const Table = styled(OriginalTable)`
     <Td>SmartHRの基本的な概念（用語）に合わせた命名をしているか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
-    <Td>基準ない</Td>
+    <Td fixed>基準ない</Td>
 </tr>
 <tr>
     <Td>20</Td>
@@ -218,15 +218,15 @@ export const Table = styled(OriginalTable)`
     <Td>操作の導線やアクション名が基準に沿っているか</Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
-    <Td>基準はあるが十分でない</Td>
+    <Td fixed><a href="/products/contents/app-writing/">基準はある</a>が十分でない</Td>
 </tr>
 <tr>
     <Td>21</Td>
     <Td>コンテンツ</Td>
-    <Td>エラーメッセージが基準に沿っているか</Td>
+    <Td>「エラーメッセージ」の基準に沿っているか</Td>
     <Td><code>ULe-3-S エラーメッセージ理解性</code><br /><code>UEp-2-S 利用者入力エラーの訂正</code></Td>
     <Td>習得性、ユーザエラー防止性</Td>
-    <Td>基準ある</Td>
+    <Td fixed><a href="/products/contents/error-messages/">基準ある</a></Td>
 </tr>
 </tbody>
 </Table>
@@ -238,7 +238,7 @@ export const Table = styled(OriginalTable)`
 各項目の説明は以下のとおりです。
 
 - `分類`
-    - [SmartHR Design Systemのプロダクトの項目](https://smarthr.design/products/)のカテゴリ（現時点で存在しないものも含む）
+    - [プロダクトの項目](/products/)のカテゴリ（現時点で存在しないものも含む）
 - `チェック内容`
     - 使用性を確保するためにチェックする項目。多くの項目が「hogehogeの基準に沿っているか」を確認する。
 - `関連する品質測定量`
