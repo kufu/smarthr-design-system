@@ -33,7 +33,7 @@ JIS X 25000シリーズで規定されている「使用性」の特性や測定
 今後の活用によって、チェックリストは随時更新される可能性があります。
 
 import styled from 'styled-components'
-import { CSS_SIZE } from '@Constants/style'
+import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { TableReel as OriginalTableReel, Table, Th, Td } from 'smarthr-ui'
 
 export const TableReel = styled(OriginalTableReel)`
@@ -60,9 +60,9 @@ export const TableReel = styled(OriginalTableReel)`
     <Th style="width: 1em;">#</Th>
     <Th style="width: 6em;">分類</Th>
     <Th>チェック内容</Th>
-    <Th style="width: 16em;">関連する品質測定量</Th>
-    <Th style="width: 8em;">関連する使用性の副特性</Th>
-    <Th style="width: 7em;" fixed>基準の状況<br />（2023年11月現在）</Th>
+    <Th style="width: 16em;">関連する品質測定量<br />（JIS X 25023）</Th>
+    <Th style="width: 8em;">関連する副特性<br />（JIS X 25010）</Th>
+    <Th style="width: 8em;" fixed>基準の状況<br />（2023.11現在）</Th>
 </tr>
 </thead>
 <tbody>
@@ -283,7 +283,7 @@ WIP
 開発現場においては、チェック内容の基準に合わせられない状況は頻繁に発生します。  
 例えば、以下のようなケースです。
 
-- まだ基準に合っていない既存機能に新たに機能追加する必要があり、基準に合わせると既存とズレてしまう場合
+- 基準に合っていない既存プロダクトに機能追加する必要があり、基準に合わせると既存とズレてしまう場合
 - 開発チームで理想とするUIを検討したが、基準ではカバーできていない場合
 - ビジネス戦略上、ルック・アンド・フィールを追求する必要がある場合
 
