@@ -27,6 +27,9 @@ https://smarthr-inc.docbase.io/posts/2083788
 ## ローカル環境やプレビューで困ったときの解決メモ
 https://smarthr-inc.docbase.io/posts/2289638
 
+## Gatsbyやコンポーネントに関する開発者向けドキュメント
+https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md
+
 ## コンテンツを編集するときに注意すること
 
 ### 1. ディレクトリにはindex.mdxが必要です。
