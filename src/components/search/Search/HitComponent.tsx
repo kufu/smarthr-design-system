@@ -1,4 +1,4 @@
-import { Link as LinkComponent } from 'gatsby'
+import { Link } from 'gatsby'
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
@@ -27,9 +27,9 @@ export const HitComponent: FC = (props: any) => {
 
   return (
     <Wrapper>
-      <LinkComponent to={`/${props.hit.path}`}>
+      <Link to={`/${props.hit.path}`}>
         {props.hit.title}&nbsp;{categories[categoryKey] ? `|${'\u00A0'}${categories[categoryKey]}` : ''}
-      </LinkComponent>
+      </Link>
       {props.hit.description && <StyledParagraph>{props.hit.description}</StyledParagraph>}
     </Wrapper>
   )
