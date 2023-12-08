@@ -140,4 +140,10 @@ const SpWrapper = styled.div`
     color: inherit;
     padding-inline: 24px;
   }
+
+  /* stylelint-disable-next-line */
+  #spIndexNav-content.entered {
+    /* アコーディオンが開いた時にsmarthr-uiが100vhを指定するが、100vh以上になりはみ出る場合があるので上書き */
+    max-height: none;
+  }
 `
