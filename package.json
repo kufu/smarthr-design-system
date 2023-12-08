@@ -41,7 +41,7 @@
     "export:zip-images": "ts-node scripts/zipImages.ts",
     "generate:thumbnails": "ts-node scripts/component-thumbnails/componentThumbnails.ts",
     "update:smarthr-ui.css": "ts-node scripts/update-smarthr-ui-css.ts",
-    "postinstall": "husky install"
+    "postinstall": "husky install && cp node_modules/smarthr-ui/smarthr-ui.css static/"
   },
   "dependencies": {
     "@types/marked": "^5.0.2",
