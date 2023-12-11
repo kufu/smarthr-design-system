@@ -280,6 +280,16 @@ export const TableReel = styled(OriginalTableReel)`
 ### チェック手順
 チェックは「[UIデザイン使用性チェックリスト回答テンプレート(Googleスプレッドシート)](https://docs.google.com/spreadsheets/d/14dBtQRFoo1OCTs-0sz0FFePFtE0olC59ANHTIbDYYbA/edit?usp=sharing)」を複製して使用してください。
 
+import { BaseColumn, WarningIcon } from 'smarthr-ui'
+
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+    コンテンツの「No.19 SmartHRの基本的な概念（用語）に合わせた命名をしているか」および「No.20 操作の導線やアクション名が基準に沿っているか」のチェックは任意とします。（現時点では確認作業が大きくなりすぎる可能性があるため）
+    </span>}
+    />
+</BaseColumn>
+
 1. **情報設計の項目を確認し、`チェック内容への回答`列を選択する。**
     - 「はい」の場合
         - `説明・証明する中間成果物`列に説明を記入するか、中間成果物のリンクなどを貼る。
