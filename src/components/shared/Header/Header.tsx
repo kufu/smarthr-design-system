@@ -73,8 +73,12 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
               {typeof window !== 'undefined' ? (
                 <Dialog
                   isOpen={isOpen}
-                  top={0}
-                  right={0}
+                  // 上下左右の余白は、smarthr-ui側がnumber型のみ対応しているので15pxの固定値にする
+                  // smarthr-uiへの対応などの経緯は：https://github.com/kufu/smarthr-design-system-issues/issues/1311
+                  top={15}
+                  right={15}
+                  left={15}
+                  bottom={15}
                   onPressEscape={() => {
                     setIsOpen(false)
                   }}
@@ -280,25 +284,12 @@ const GlobalStyleForMenu = createGlobalStyle`
     background: transparent;
   }
   #panel-menu .smarthr-ui-Dialog {
-    top: 30px;
-    right: calc(5rem - 12px);
-    width: 100%;
+    width: auto;
     max-width: 396px;
     border-radius: 8px;
     box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.24);
     bottom: 16px;
     max-height: 678px;
-
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-      top: 1rem;
-      right: calc(3rem - 12px);
-    }
-
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_2}) {
-      width: auto;
-      right: calc(1.5rem - 12px);
-      left: calc(1.5rem - 12px);
-    }
   }
 `
 
