@@ -86,3 +86,11 @@ PrivateサイトにはBasic認証が設定されています。SDS本体サイ�
 - `/scripts` : 独自に用意しているスクリプト
 - `.husky` : コミット時に自動実行されるもの
 - `.github/workflows` : GitHub Actionsで自動実行されるもの
+
+## 外部サービスの利用
+
+### Algolia
+検索機能にAlgoliaを利用しています。Algoliaのインデックスは、mainブランチのビルド時に更新されます。インデックスの登録には[gatsby-plugin-algolia](https://www.gatsbyjs.com/plugins/gatsby-plugin-algolia/)を、検索UIには[algloliasearch](https://www.npmjs.com/package/algoliasearch)と[react-instantsearch-dom](https://www.npmjs.com/package/react-instantsearch-dom)を使っています。
+
+### Cloudinary
+OGP画像の動的生成とGoatcha画像のホスティングに[Cloudinary](https://cloudinary.com/)を利用しています。
