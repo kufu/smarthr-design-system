@@ -17,3 +17,9 @@
 
 - `/src/components/ComponentPropsTable` から、`useStaticQuery`で取得
 - `/src/components/ComponentStory` から、`useStaticQuery`で取得
+
+### キャッシュ
+
+GraphQL Data Layerに追加したのと同じデータをキャッシュするようにしています。リリースのバージョン番号とコミットハッシュの一覧は毎回取得しますが、各バージョンについてキャッシュが存在した場合は、そのバージョンの`stories.json`と`smarthr-ui-props.json`の再取得は行いません。
+
+キャッシュを削除するには、`gatsby clean`（`yarn clean`）を実行してください。
