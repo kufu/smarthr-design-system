@@ -27,6 +27,9 @@ https://smarthr-inc.docbase.io/posts/2083788
 ## ローカル環境やプレビューで困ったときの解決メモ
 https://smarthr-inc.docbase.io/posts/2289638
 
+## Gatsbyやコンポーネントに関する開発者向けドキュメント
+https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md
+
 ## コンテンツを編集するときに注意すること
 
 ### 1. ディレクトリにはindex.mdxが必要です。
@@ -118,3 +121,28 @@ netlify dev
 ```
 
 コマンドを実行すると、立ち上がったNetlifyサーバー( http://localhost:8888 )から確認できます。
+
+## より詳細なドキュメント
+
+- [開発者向けの情報](https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md)
+
+### スクリプトや自動実行
+
+- [GitHub Actions](https://github.com/kufu/smarthr-design-system/blob/main/.github/workflows/README.md)
+- [Git hooksとhusky](https://github.com/kufu/smarthr-design-system/blob/main/.husky/README.md)
+- [リンクチェック](https://github.com/kufu/smarthr-design-system/blob/main/scripts/content-checker/README.md)
+
+### データソース取得のためのGatsbyプラグイン
+- [gatsby-source-component-captures](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-component-captures/README.md)
+- [gatsby-source-ui-versions](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-ui-versions/README.md)
+- [gatsby-source-sds-airtable](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-sds-airtable/README.md)
+
+### Reactコンポーネント
+- [ComponentPreview](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentPreview/README.md)
+- [ComponentPropsTable](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentPropsTable/README.md)
+- [ComponentStory](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentStory/README.md)
+- [CodeBlock](https://github.com/kufu/smarthr-design-system/blob/main/src/components/article/CodeBlock/README.md)
+- [PageIndex](https://github.com/kufu/smarthr-design-system/blob/main/src/components/article/PageIndex/README.md)
+
+### その他
+- [React contextに関すること](https://github.com/kufu/smarthr-design-system/blob/main/src/context/README.md)
