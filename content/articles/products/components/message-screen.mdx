@@ -1,14 +1,13 @@
 ---
-title: 'MessageScreen'
+title: 'MessageScreen（非推奨）'
 description: ''
 ---
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { BaseColumn, WarningIcon } from 'smarthr-ui'
 
-<ComponentStory name="MessageScreen" />
-
-## props
-
-<ComponentPropsTable name="MessageScreen" />
-
-
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+    MessageScreenコンポーネントは非推奨です。<a href="/products/components/error-screen/">ErrorScreen</a>コンポーネントを使用してください。
+    </span>}
+    />
+</BaseColumn>
