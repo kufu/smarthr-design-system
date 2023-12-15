@@ -183,9 +183,28 @@
   margin: unset
 }
 
+.-shr-mx-1 {
+  margin-left: -16px;
+  margin-right: -16px
+}
+
+.-shr-my-0 {
+  margin-top: 0;
+  margin-bottom: 0
+}
+
+.-shr-my-0\.75 {
+  margin-top: -12px;
+  margin-bottom: -12px
+}
+
 .shr-mx-auto {
   margin-left: auto;
   margin-right: auto
+}
+
+.-shr-mt-em {
+  margin-top: -1em
 }
 
 .shr-me-0 {
@@ -722,10 +741,18 @@
   cursor: pointer
 }
 
+.shr-cursor-text {
+  cursor: text
+}
+
 .shr-select-auto {
   -webkit-user-select: auto;
      -moz-user-select: auto;
           user-select: auto
+}
+
+.shr-list-none {
+  list-style-type: none
 }
 
 .shr-appearance-none {
@@ -1249,8 +1276,20 @@
   border-bottom-width: 1px
 }
 
+.shr-border-b-0 {
+  border-bottom-width: 0px
+}
+
 .shr-border-l {
   border-left-width: 1px
+}
+
+.shr-border-l-0 {
+  border-left-width: 0px
+}
+
+.shr-border-r-0 {
+  border-right-width: 0px
 }
 
 .shr-border-t {
@@ -1263,6 +1302,10 @@
 
 .shr-border-none {
   border-style: none
+}
+
+.shr-border-\[unset\] {
+  border-color: unset
 }
 
 .shr-border-brand {
@@ -1282,6 +1325,10 @@
 .shr-border-default {
   --tw-border-opacity: 1;
   border-color: rgb(214 211 208 / var(--tw-border-opacity))
+}
+
+.shr-border-default\/50 {
+  border-color: rgb(214 211 208 / 0.5)
 }
 
 .shr-border-inherit {
@@ -1323,6 +1370,10 @@
   background-color: #706d65
 }
 
+.shr-bg-\[unset\] {
+  background-color: unset
+}
+
 .shr-bg-background {
   --tw-bg-opacity: 1;
   background-color: rgb(248 247 246 / var(--tw-bg-opacity))
@@ -1359,6 +1410,15 @@
 .shr-bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.shr-bg-white-darken {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+}
+
+.shr-bg-white\/50 {
+  background-color: rgb(255 255 255 / 0.5)
 }
 
 .shr-bg-none {
@@ -1792,6 +1852,14 @@
   outline-offset: 2px
 }
 
+.shr-outline-0 {
+  outline-width: 0px
+}
+
+.shr-outline-\[unset\] {
+  outline-color: unset
+}
+
 .shr-drop-shadow-\[0_2px_2\.5px_theme\(colors\.transparency\.30\)\] {
   --tw-drop-shadow: drop-shadow(0 2px 2.5px rgba(3,3,2,0.3));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
@@ -1826,12 +1894,22 @@
   clip: rect(0 0 0 0)
 }
 
+.\[font-weight\:inherit\] {
+  font-weight: inherit
+}
+
 .\[inset-block-start\:0\] {
   inset-block-start: 0
 }
 
 .\[inset-inline-end\:0\] {
   inset-inline-end: 0
+}
+
+.focus-within\:shr-focus-indicator:focus-within {
+  outline: none;
+  isolation: isolate;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
 }
 
 .focus-visible\:shr-focus-indicator:focus-visible {
@@ -1844,6 +1922,24 @@
   outline: none;
   isolation: isolate;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
+.\[\&\:has\(\:focus-visible\)\]\:aria-\[sort\]\:shr-focus-indicator[aria-sort]:has(:focus-visible) {
+  outline: none;
+  isolation: isolate;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
+.file\:shr-h-full::file-selector-button {
+  height: 100%
+}
+
+.file\:shr-w-full::file-selector-button {
+  width: 100%
+}
+
+.file\:shr-cursor-pointer::file-selector-button {
+  cursor: pointer
 }
 
 .placeholder\:shr-text-grey::-moz-placeholder {
@@ -2262,6 +2358,11 @@
   background-color: rgb(242 242 242 / var(--tw-bg-opacity))
 }
 
+.hover\:shr-text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity))
+}
+
 .hover\:shr-text-white-darken:hover {
   --tw-text-opacity: 1;
   color: rgb(242 242 242 / var(--tw-text-opacity))
@@ -2382,6 +2483,10 @@
 
 .disabled\:shr-opacity-100:disabled {
   opacity: 1
+}
+
+.file\:disabled\:shr-cursor-not-allowed:disabled::file-selector-button {
+  cursor: not-allowed
 }
 
 .disabled\:placeholder\:shr-text-disabled:disabled::-moz-placeholder {
@@ -2530,6 +2635,15 @@
   display: none
 }
 
+.aria-\[sort\]\:shr-cursor-pointer[aria-sort] {
+  cursor: pointer
+}
+
+.hover\:aria-\[sort\]\:shr-bg-head-darken[aria-sort]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 223 218 / var(--tw-bg-opacity))
+}
+
 .shr-group[aria-expanded="true"] .group-aria-expanded\:-shr-rotate-180 {
   --tw-rotate: -180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
@@ -2634,6 +2748,19 @@
 
 .\[\&\&\&\]\:shr-rounded-\[unset\].\[\&\&\&\]\:shr-rounded-\[unset\].\[\&\&\&\]\:shr-rounded-\[unset\] {
   border-radius: unset
+}
+
+.\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\] {
+  border-color: #f8f7f6
+}
+
+.\[\&\&\&\]\:shr-border-danger.\[\&\&\&\]\:shr-border-danger.\[\&\&\&\]\:shr-border-danger {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity))
+}
+
+.\[\&\&\&\]\:shr-border-default\/50.\[\&\&\&\]\:shr-border-default\/50.\[\&\&\&\]\:shr-border-default\/50 {
+  border-color: rgb(214 211 208 / 0.5)
 }
 
 .\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.100\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.100\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.100\)\] {
@@ -2865,6 +2992,31 @@
   .\[\&\:not\(\[href\]\)_\.smarthr-ui-Icon\]\:forced-colors\:shr-fill-\[CanvasText\]:not([href]) .smarthr-ui-Icon {
     fill: CanvasText
   }
+
+  .\[\&\[aria-sort\=ascending\]_\.smarthr-ui-Icon\:first-of-type\]\:forced-colors\:shr-fill-\[CanvasText\][aria-sort=ascending] .smarthr-ui-Icon:first-of-type {
+    fill: CanvasText
+  }
+
+  .\[\&\[aria-sort\=ascending\]_\.smarthr-ui-Icon\:last-of-type\]\:forced-colors\:shr-fill-\[GrayText\][aria-sort=ascending] .smarthr-ui-Icon:last-of-type {
+    fill: GrayText
+  }
+
+  .\[\&\[aria-sort\=descending\]_\.smarthr-ui-Icon\:first-of-type\]\:forced-colors\:shr-fill-\[GrayText\][aria-sort=descending] .smarthr-ui-Icon:first-of-type {
+    fill: GrayText
+  }
+
+  .\[\&\[aria-sort\=descending\]_\.smarthr-ui-Icon\:last-of-type\]\:forced-colors\:shr-fill-\[CanvasText\][aria-sort=descending] .smarthr-ui-Icon:last-of-type {
+    fill: CanvasText
+  }
+
+  .\[\&\[aria-sort\=none\]_\.smarthr-ui-Icon\]\:forced-colors\:shr-fill-\[GrayText\][aria-sort=none] .smarthr-ui-Icon {
+    fill: GrayText
+  }
+}
+
+.\[\&\]\:shr-border-danger {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity))
 }
 
 .\[\&_\.smarthr-ui-Icon\]\:-shr-m-0\.25 .smarthr-ui-Icon {
