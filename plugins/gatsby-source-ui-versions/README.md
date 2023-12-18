@@ -8,6 +8,12 @@
 2. 取得した各バージョンの`smarthr-ui-props.json`を取得
 3. 取得した各バージョンの`stories.json`を取得
 
+各バージョンのデータ取得・処理には、バージョンごとに1〜2秒程度かかります。キャッシュがない状態で多くのバージョンを取得すると、数分かかる場合があります。
+
+### オプション指定
+
+`gatsby-config.js`で、GitHubリポジトリの情報や、取得するバージョンの最大数などのオプションを指定してください。
+
 ### Gatsby GraphQL Data Layerへの追加
 
 バージョンごとに、propsやストーリー名などをJSONから抜き出し、GatsbyのGraphQL Data Layerに追加しています。
