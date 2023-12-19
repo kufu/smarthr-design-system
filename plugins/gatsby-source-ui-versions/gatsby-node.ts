@@ -10,7 +10,6 @@ let options: UiVersionOption = {
   uiRepoApi: '',
   releaseBotEmail: '',
   chromaticDomain: '',
-  fetchLimit: 100,
 }
 
 exports.onPreInit = (_: any, pluginOptions: UiVersionOption) => {

@@ -103,7 +103,6 @@ const config: GatsbyConfig = {
         uiRepoApi: 'https://api.github.com/repos/kufu/smarthr-ui',
         releaseBotEmail: '41898282+github-actions[bot]@users.noreply.github.com',
         chromaticDomain: '63d0ccabb5d2dd29825524ab.chromatic.com',
-        fetchLimit: 100,
       },
     },
     { resolve: `gatsby-source-component-captures` },

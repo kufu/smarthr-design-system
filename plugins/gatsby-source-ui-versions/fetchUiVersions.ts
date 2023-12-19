@@ -14,7 +14,6 @@ export type UiVersionOption = {
   uiRepoApi: string
   releaseBotEmail: string
   chromaticDomain: string
-  fetchLimit: number
 }
 
 type PropsData = {
@@ -72,8 +71,10 @@ type StoriesJson = {
   }
 }
 
+const maxVersions = process.env.SHR_UI_MAX_VERSIONS ? parseInt(process.env.SHR_UI_MAX_VERSIONS, 10) : null
+
 export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersionOption): Promise<UiVersion[]> => {
-  const { uiRepoApi, releaseBotEmail, chromaticDomain, fetchLimit } = options
+  const { uiRepoApi, releaseBotEmail, chromaticDomain } = options
   // GitHubからリリースのコミットを取得
   const releases = []
   let page = 1
@@ -90,9 +91,7 @@ export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersio
     }
     const json: UiResponse[] = await res.json().catch(() => [])
     releases.push(...json)
-    if (json.length === 0 || releases.length >= fetchLimit) {
-      hasNext = false
-    }
+    if (json.length === 0) hasNext = false
 
     page += 1
   }
@@ -172,7 +171,7 @@ export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersio
       uiStories: Object.values(uiStories),
     })
 
-    if (versions.length >= fetchLimit) break
+    if (maxVersions && versions.length >= maxVersions) break
   }
 
   return versions
