@@ -1,5 +1,5 @@
 // gatsby-nodeに登録するデータの型定義
-type UiVersion = {
+export type UiVersion = {
   commitHash: string
   commitDate: string
   version: string
@@ -8,6 +8,12 @@ type UiVersion = {
     props: PropsData[]
   }>
   uiStories: UiStories[]
+}
+
+export type UiVersionOption = {
+  uiRepoApi: string
+  releaseBotEmail: string
+  chromaticDomain: string
 }
 
 type PropsData = {
@@ -65,26 +71,44 @@ type StoriesJson = {
   }
 }
 
-const uiRepoApi = 'https://api.github.com/repos/kufu/smarthr-ui'
-const releaseBotEmail = '41898282+github-actions[bot]@users.noreply.github.com'
-const chromaticDomain = '63d0ccabb5d2dd29825524ab.chromatic.com'
+const maxVersions = process.env.SHR_UI_MAX_VERSIONS ? parseInt(process.env.SHR_UI_MAX_VERSIONS, 10) : null
 
-export const fetchUiVersions = async (): Promise<UiVersion[]> => {
+export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersionOption): Promise<UiVersion[]> => {
+  const { uiRepoApi, releaseBotEmail, chromaticDomain } = options
   // GitHubからリリースのコミットを取得
-  const res = await fetch(`${uiRepoApi}/commits?since=2023-02-02&author=${encodeURIComponent(releaseBotEmail)}&per_page=100`)
-  // since=2023-02-02なのは、これ以前はChromaticにデプロイが行われていないため。また、orderのオプションはないが、新→旧の順で取得できる。
-  // per_pageのdefaultは30、最大は100。100以上になるケースは考慮していない。
-  if (!res.ok) return []
-  const json: UiResponse[] = await res.json().catch(() => {
-    return []
-  })
+  const releases = []
+  let page = 1
+  let hasNext = true
+  while (hasNext) {
+    const res = await fetch(
+      `${uiRepoApi}/commits?since=2023-02-02&author=${encodeURIComponent(releaseBotEmail)}&per_page=100&page=${page}`,
+    )
+    // since=2023-02-02なのは、これ以前はChromaticにデプロイが行われていないため。また、orderのオプションはないが、新→旧の順で取得できる。
+    // per_pageのdefaultは30、最大は100。APIドキュメント：https://docs.github.com/ja/rest/commits/commits
+    if (!res.ok) {
+      hasNext = false
+      break
+    }
+    const json: UiResponse[] = await res.json().catch(() => [])
+    releases.push(...json)
+    if (json.length === 0) hasNext = false
+
+    page += 1
+  }
 
   const versions: UiVersion[] = []
 
-  for (const item of json) {
+  for (const item of releases) {
     const versionText = item.commit.message.match(/chore\(release\):\s(\d+\.\d+\.\d+)\s/)
     const version = versionText && versionText.length > 1 ? versionText[1] : null
     if (version === null) continue
+
+    // そのバージョンのキャッシュがあればそれを使う
+    const cachedVersionData = cachedData?.find((cachedItem) => cachedItem.version === version)
+    if (cachedVersionData) {
+      versions.push(cachedVersionData)
+      continue
+    }
 
     const commitHash = item.sha.substring(0, 7)
     const commitDate = item.commit.author.date
@@ -93,9 +117,7 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
     const propsRes = await fetch(`https://${commitHash}--${chromaticDomain}/exports/smarthr-ui-props.json`)
     let props: [] = []
     if (propsRes.status === 200) {
-      props = await propsRes.json().catch(() => {
-        return []
-      })
+      props = await propsRes.json().catch(() => [])
     }
 
     const uiProps = props.map((propsItem: PropsResponse) => {
@@ -105,17 +127,15 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
       return {
         displayName: propsItem.displayName || '',
         dirName,
-        props: propsItem.props?.map((prop) => {
-          return {
-            description: prop.description || '',
-            name: prop.name || '',
-            required: prop.required || false,
-            type: {
-              name: prop.type?.name || '',
-              value: prop.type?.value || [],
-            },
-          }
-        }),
+        props: propsItem.props?.map((prop) => ({
+          description: prop.description || '',
+          name: prop.name || '',
+          required: prop.required || false,
+          type: {
+            name: prop.type?.name || '',
+            value: prop.type?.value || [],
+          },
+        })),
       }
     })
 
@@ -150,6 +170,8 @@ export const fetchUiVersions = async (): Promise<UiVersion[]> => {
       uiProps,
       uiStories: Object.values(uiStories),
     })
+
+    if (maxVersions && versions.length >= maxVersions) break
   }
 
   return versions

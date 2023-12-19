@@ -2,12 +2,26 @@ import { SourceNodesArgs } from 'gatsby'
 
 import { fetchUiVersions } from './fetchUiVersions'
 
+import type { UiVersion, UiVersionOption } from './fetchUiVersions'
+
 const NODE_TYPE = `UiVersion`
 
-exports.sourceNodes = async ({ actions, createContentDigest, createNodeId }: SourceNodesArgs) => {
+let options: UiVersionOption = {
+  uiRepoApi: '',
+  releaseBotEmail: '',
+  chromaticDomain: '',
+}
+
+exports.onPreInit = (_: any, pluginOptions: UiVersionOption) => {
+  options = pluginOptions
+}
+
+exports.sourceNodes = async ({ actions, createContentDigest, createNodeId, cache }: SourceNodesArgs) => {
   const { createNode } = actions
 
-  const data = await fetchUiVersions()
+  const cachedData: UiVersion[] = await cache.get('uiVersionsCache')
+  const data = await fetchUiVersions(cachedData, options)
+  await cache.set('uiVersionsCache', data)
 
   // smarthr-uiの1バージョンを1ノードとして登録
   data.forEach((item) =>
