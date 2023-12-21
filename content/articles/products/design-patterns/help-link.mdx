@@ -10,17 +10,17 @@ import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
 アプリケーションからヘルプセンターの各ヘルプページへのテキストリンクを定義しています。
 
 ## 基本的な考え方
-<!--{方針や原則があれば書きます。概要的な説明はなるべくここには書きません。}-->
+{/*方針や原則があれば書きます。概要的な説明はなるべくここには書きません。*/}
 アプリケーションからヘルプページへ移動する操作であることを、ユーザーが認識できるように表記します。
 現状、ヘルプページへの動線の表現に敬語表現が多く見られますが、他の操作文言と同様に敬語表現は用いません。
 
 ## 構成
-<!--{対象を構成する要素があれば説明を書くところです。テンプレは以下。}-->
+{/*対象を構成する要素があれば説明を書くところです。テンプレは以下。*/}
 ヘルプページへの動線は、以下の要素で構成されています。
 - テキスト
 - テキストリンク
 - アイコン
-<!--{画像やComponentPreviewがあれば}-->
+{/*画像やComponentPreviewがあれば*/}
 
 ### テキスト
 - リンクへの導入部は、 **「詳細は、」ではなく「詳しくは、」** とします。
@@ -50,7 +50,7 @@ import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
 
 ## ライティングパターン
 <AirtableEmbed tableName="ヘルプページへの動線">
-  <iframe class="airtable-embed" src="https://airtable.com/embed/shr0uo6clqu2YkINO?backgroundColor=teal&viewControls=on" frameborder="0" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+  <iframe class="airtable-embed" src="https://airtable.com/embed/shr0uo6clqu2YkINO?backgroundColor=teal&viewControls=on" frameborder="0" width="100%" height="533" style={{background: 'transparent', border: '1px solid #ccc'}}></iframe>
 </AirtableEmbed>
 
 

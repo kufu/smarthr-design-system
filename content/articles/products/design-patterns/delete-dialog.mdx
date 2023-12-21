@@ -102,7 +102,7 @@ export const DynamicActionDialog = () => {
 
 ## ライティングパターン
 <AirtableEmbed tableName="削除ダイアログ">
-  <iframe className="airtable-embed" src="https://airtable.com/embed/shr4uUQHE55YM8F1W?backgroundColor=teal&viewControls=on" frameBorder="0" width="100%" height="400px" style="background: transparent; border: 1px solid #ccc;"></iframe>
+  <iframe className="airtable-embed" src="https://airtable.com/embed/shr4uUQHE55YM8F1W?backgroundColor=teal&viewControls=on" frameBorder="0" width="100%" height="400px" style={{background: 'transparent', border: '1px solid #ccc'}}></iframe>
 </AirtableEmbed>
 
 
@@ -113,7 +113,7 @@ export const DynamicActionDialog = () => {
 
 取り消しダイアログも、削除ダイアログをアレンジして類似のライティングパターンを適用します。
 
-<!-- textlint-disable -->
+{/* <!-- textlint-disable --> */}
 
 export const DynamicCancelActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -142,4 +142,4 @@ export const DynamicCancelActionDialog = () => {
   <DynamicCancelActionDialog />
 </ComponentPreview>
 
-<!-- textlint-enable -->
+{/* <!-- textlint-enable --> */}

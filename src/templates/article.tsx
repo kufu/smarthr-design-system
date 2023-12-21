@@ -4,54 +4,54 @@ import { CustomLink } from '@Components/article/CustomLink'
 import { FragmentTitle } from '@Components/article/FragmentTitle/FragmentTitle'
 import { IndexNav } from '@Components/article/IndexNav/IndexNav'
 import { Sidebar } from '@Components/article/Sidebar/Sidebar'
-import { TableWrapper } from '@Components/contents/shared/TableWrapper'
 import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
 import { Private } from '@Components/shared/Private'
 import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
+import { MDXProvider } from '@mdx-js/react'
 import { PageProps, graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import React, { FC, useRef } from 'react'
 import { Article as UIArticle } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { Theme } from './Theme'
 
-const components: MDXProviderComponents = {
-  pre: (props) => <div {...props} />,
+import type { MDXComponents } from '@mdx-js/react/lib'
+
+const components: MDXComponents = {
+  pre: (props: any) => <div {...props} />,
+  // MDX v2ではinfo string (metastring)が渡ってこないため、現状codeBlockは受け取れてない
   code: ({ children, codeBlock, ...props }) =>
     codeBlock ? <CodeBlock {...props}>{children}</CodeBlock> : <code {...props}>{children}</code>,
   h2: ({ children, id }) => (
-    <FragmentTitle tag="h2" id={id}>
+    <FragmentTitle tag="h2" id={id || ''}>
       {children}
     </FragmentTitle>
   ),
   h3: ({ children, id }) => (
-    <FragmentTitle tag="h3" id={id}>
+    <FragmentTitle tag="h3" id={id || ''}>
       {children}
     </FragmentTitle>
   ),
   h4: ({ children, id }) => (
-    <FragmentTitle tag="h4" id={id}>
+    <FragmentTitle tag="h4" id={id || ''}>
       {children}
     </FragmentTitle>
   ),
   h5: ({ children, id }) => (
-    <FragmentTitle tag="h5" id={id}>
+    <FragmentTitle tag="h5" id={id || ''}>
       {children}
     </FragmentTitle>
   ),
   h6: ({ children, id }) => (
-    <FragmentTitle tag="h6" id={id}>
+    <FragmentTitle tag="h6" id={id || ''}>
       {children}
     </FragmentTitle>
   ),
-  table: ({ children }) => <TableWrapper mdTable={true}>{children}</TableWrapper>,
   a: ({ children, href, ...props }) => (
-    <CustomLink {...props} href={href}>
+    <CustomLink {...props} href={href || ''}>
       {children}
     </CustomLink>
   ),
@@ -65,7 +65,6 @@ export const query = graphql`
   query Article($id: String, $category: String, $airTableName: String) {
     mdx(id: { eq: $id }) {
       id
-      body
       headings {
         depth
         value
@@ -123,7 +122,7 @@ export type SidebarItem = {
   children: SidebarItem[]
 }
 
-const Article: FC<Props> = ({ data }) => {
+const Article: FC<Props> = ({ children, data }) => {
   const { mdx: article, parentCategoryAllMdx: parentCategory } = data
 
   const articleRef: React.RefObject<HTMLDivElement> = useRef(null)
@@ -258,9 +257,7 @@ const Article: FC<Props> = ({ data }) => {
                 <h1>{title}</h1>
               </MainArticleTitle>
               <MDXStyledWrapper>
-                <MDXProvider components={{ ...components, ...shortcodes }}>
-                  <MDXRenderer>{data.mdx?.body}</MDXRenderer>
-                </MDXProvider>
+                <MDXProvider components={{ ...components, ...shortcodes }}>{children}</MDXProvider>
               </MDXStyledWrapper>
 
               {/* 前へ・次へ表示 */}

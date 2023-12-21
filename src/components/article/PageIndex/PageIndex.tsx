@@ -93,6 +93,8 @@ export const PageIndex: FC<Props> = ({ path, excludes, heading = 'h2', children 
   )
 }
 
+export const Description: FC<Props> = ({ children }) => children
+
 const Wrapper = styled.div`
   margin-block: 4rem;
 `

@@ -1,10 +1,13 @@
 import path from 'path'
 
-import { Actions, GatsbyNode } from 'gatsby'
+import { GatsbyNode, NodePluginArgs } from 'gatsby'
+import { compileMDXWithCustomOptions } from 'gatsby-plugin-mdx'
 import { createFilePath } from 'gatsby-source-filesystem'
 
 import { AIRTABLE_CONTENTS } from '../constants/airtable'
 import { fetchPatternCode } from '../lib/fetchPatternCode'
+//@ts-ignore
+import remarkHeadingsPlugin from '../plugins/gatsby-remark-headings'
 
 import type { airtableContents } from '../constants/airtable'
 
@@ -62,8 +65,8 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
               category
               hierarchy
             }
-            frontmatter {
-              patternName
+            internal {
+              contentFilePath
             }
           }
         }
@@ -89,7 +92,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
     if (slug) {
       createPage({
         path: slug || '',
-        component,
+        component: `${component}?__contentFilePath=${node.internal.contentFilePath}`,
         context: {
           id: node.id,
           category: node.fields?.category,
@@ -100,19 +103,83 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
   })
 }
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = async ({ actions }: { actions: Actions }) => {
+export const createSchemaCustomization = async ({
+  getNode,
+  getNodesByType,
+  pathPrefix,
+  reporter,
+  cache,
+  actions,
+  schema,
+  store,
+}: NodePluginArgs) => {
   const { createTypes } = actions
+  const headingsResolver = schema.buildObjectType({
+    name: `Mdx`,
+    fields: {
+      headings: {
+        type: `[MdxHeading]`,
+        async resolve(mdxNode) {
+          const fileNode = getNode(mdxNode.parent)
+          if (!fileNode || typeof fileNode.absolutePath !== 'string') {
+            return null
+          }
+
+          const result = await compileMDXWithCustomOptions(
+            {
+              source: mdxNode.body,
+              absolutePath: fileNode.absolutePath,
+            },
+            {
+              pluginOptions: { plugins: [] },
+              customOptions: {
+                mdxOptions: {
+                  remarkPlugins: [remarkHeadingsPlugin],
+                },
+              },
+              getNode,
+              getNodesByType,
+              pathPrefix,
+              reporter,
+              cache,
+              store,
+            },
+          )
+
+          if (!result) {
+            return null
+          }
+
+          return result.metadata.headings
+        },
+      },
+    },
+  })
+
   const typeDefs = `
-    type Mdx implements Node {
+  type Mdx implements Node {
+      fields: MdxFields
       frontmatter: MdxFrontmatter
+    }
+    type MdxFields {
+      slug: String
+      category: String
+      hierarchy: String
+      patternCode: String
     }
     type MdxFrontmatter {
       title: String!
       description: String!
       order: Int
+      patternName: String
+      ignoreH3Nav: Boolean
       robotsNoIndex: Boolean
+    }
+    type MdxHeading {
+      value: String
+      depth: Int
     }
   `
 
-  createTypes(typeDefs)
+  createTypes([typeDefs, headingsResolver])
 }

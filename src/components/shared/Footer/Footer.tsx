@@ -15,7 +15,7 @@ const query = graphql`
   query Footer {
     introduction: allMdx(
       filter: { fields: { category: { eq: "introduction" }, hierarchy: { glob: "*/*" } } }
-      sort: { fields: frontmatter___order }
+      sort: { frontmatter: { order: ASC } }
     ) {
       nodes {
         id
@@ -29,7 +29,7 @@ const query = graphql`
     }
     foundation: allMdx(
       filter: { fields: { category: { eq: "foundation" }, hierarchy: { glob: "*/*" } } }
-      sort: { fields: frontmatter___order }
+      sort: { frontmatter: { order: ASC } }
     ) {
       nodes {
         id
@@ -43,7 +43,7 @@ const query = graphql`
     }
     basics: allMdx(
       filter: { fields: { category: { eq: "basics" }, hierarchy: { glob: "*/*" } } }
-      sort: { fields: frontmatter___order }
+      sort: { frontmatter: { order: ASC } }
     ) {
       nodes {
         id
@@ -57,7 +57,7 @@ const query = graphql`
     }
     accessibility: allMdx(
       filter: { fields: { category: { eq: "accessibility" }, hierarchy: { glob: "*/*" } } }
-      sort: { fields: frontmatter___order }
+      sort: { frontmatter: { order: ASC } }
     ) {
       nodes {
         id
@@ -71,7 +71,7 @@ const query = graphql`
     }
     products: allMdx(
       filter: { fields: { category: { eq: "products" }, hierarchy: { glob: "*/*" } } }
-      sort: { fields: frontmatter___order }
+      sort: { frontmatter: { order: ASC } }
     ) {
       nodes {
         id
@@ -85,7 +85,7 @@ const query = graphql`
     }
     communication: allMdx(
       filter: { fields: { category: { eq: "communication" }, hierarchy: { glob: "*/*" } } }
-      sort: { fields: frontmatter___order }
+      sort: { frontmatter: { order: ASC } }
     ) {
       nodes {
         id

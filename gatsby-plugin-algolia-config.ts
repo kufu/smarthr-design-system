@@ -14,14 +14,14 @@ const mdxQueries = [
             node {
               fields {
                 category
+                slug
               }
               frontmatter {
                 title
                 description
               }
               id
-              slug
-              rawBody
+              body
               internal {
                 contentDigest
               }
@@ -31,35 +31,34 @@ const mdxQueries = [
       }
     `,
     transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx'] } }) =>
-      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
+      data.allMdx.edges.map(({ node: { body, fields, frontmatter, id, internal } }) => ({
         id,
         internal,
         title: frontmatter?.title || '',
         category: fields?.category || '',
         description: frontmatter?.description || '',
-        body: rawBody,
-        path: slug,
+        body,
+        path: fields?.slug || '',
       })),
   },
 ]
 
-const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
-  return {
-    query: `
+const airtableQueries = AIRTABLE_CONTENTS.map((item) => ({
+  query: `
       {
         allMdx(filter: { frontmatter: { title: {eq: "${item.pageTitle}" } } }) {
           edges {
             node {
               fields {
                 category
+                slug
               }
               frontmatter {
                 title
                 description
               }
               id
-              slug
-              rawBody
+              body
               internal {
                 contentDigest
               }
@@ -91,28 +90,25 @@ const airtableQueries = AIRTABLE_CONTENTS.map((item) => {
         }
       }
     `,
-    transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx']; allSdsAirtable: Queries.Query['allSdsAirtable'] } }) =>
-      data.allMdx.edges.map(({ node: { rawBody, fields, frontmatter, id, slug, internal } }) => ({
-        id,
-        internal,
-        title: frontmatter?.title || '',
-        category: fields?.category || '',
-        description: frontmatter?.description || '',
-        body:
-          rawBody +
-          data.allSdsAirtable.edges
-            .map((edge) => {
-              return Object.values(edge.node?.data || {})
-                .filter((value) => {
-                  return value !== null
-                })
-                .join(' ')
-            })
-            .join(' '),
-        path: slug,
-      })),
-  }
-})
+  transformer: ({ data }: { data: { allMdx: Queries.Query['allMdx']; allSdsAirtable: Queries.Query['allSdsAirtable'] } }) =>
+    data.allMdx.edges.map(({ node: { body, fields, frontmatter, id, internal } }) => ({
+      id,
+      internal,
+      title: frontmatter?.title || '',
+      category: fields?.category || '',
+      description: frontmatter?.description || '',
+      body:
+        body +
+        data.allSdsAirtable.edges
+          .map((edge) =>
+            Object.values(edge.node?.data || {})
+              .filter((value) => value !== null)
+              .join(' '),
+          )
+          .join(' '),
+      path: fields?.slug || '',
+    })),
+}))
 
 export const algoliaConfig = {
   appId: process.env.GATSBY_ALGOLIA_APP_ID,

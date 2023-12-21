@@ -1,1 +1,1 @@
-export { PageIndex } from './PageIndex'
+export { PageIndex, Description } from './PageIndex'

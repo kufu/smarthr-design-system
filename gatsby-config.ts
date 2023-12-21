@@ -2,6 +2,7 @@ import path from 'path'
 
 import dotenv from 'dotenv'
 import emoji from 'remark-emoji'
+import gfm from 'remark-gfm'
 
 import { algoliaConfig } from './gatsby-plugin-algolia-config'
 import { AIRTABLE_MOCK_DATA } from './src/constants/airtable'
@@ -32,7 +33,6 @@ const config: GatsbyConfig = {
         },
       },
     },
-    ...(process.env.IS_TYPE_GEN ? ['gatsby-plugin-typegen'] : []),
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     {
@@ -50,9 +50,6 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.mdx'],
-        defaultLayouts: {
-          defaults: path.resolve('src/templates/article.tsx'),
-        },
         gatsbyRemarkPlugins: [
           { resolve: path.resolve(`src/plugins/gatsby-remark-index-id-header/index.js`) },
           {
@@ -70,9 +67,11 @@ const config: GatsbyConfig = {
               dataAttributes: true,
             },
           },
-          'gatsby-remark-gifs',
         ],
-        remarkPlugins: [emoji],
+        mdxOptions: {
+          remarkPlugins: [gfm, emoji],
+          rehypePlugins: [],
+        },
       },
     },
     // AIRTABLEキーが設定されているか、本番環境の場合はgatsby-source-airtable、それ以外ではモックデータを利用する
