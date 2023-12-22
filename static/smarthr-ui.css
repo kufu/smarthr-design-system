@@ -331,6 +331,10 @@
   min-height: calc(0.8571428571428571rem + 8px * 2 + 1px * 2)
 }
 
+.shr-min-h-em {
+  min-height: 1em
+}
+
 .shr-w-1 {
   width: 16px
 }
@@ -380,11 +384,15 @@
 }
 
 .shr-min-w-0 {
-  min-width: 0px
+  min-width: 0
 }
 
 .shr-min-w-\[1\.75em\] {
   min-width: 1.75em
+}
+
+.shr-min-w-\[3\.5em\] {
+  min-width: 3.5em
 }
 
 .shr-max-w-full {
@@ -1304,6 +1312,11 @@
   border-style: none
 }
 
+.shr-border-\[\#0f7f85\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(15 127 133 / var(--tw-border-opacity))
+}
+
 .shr-border-\[unset\] {
   border-color: unset
 }
@@ -1331,6 +1344,16 @@
   border-color: rgb(214 211 208 / 0.5)
 }
 
+.shr-border-grey-20 {
+  --tw-border-opacity: 1;
+  border-color: rgb(214 211 208 / var(--tw-border-opacity))
+}
+
+.shr-border-grey-65 {
+  --tw-border-opacity: 1;
+  border-color: rgb(112 109 101 / var(--tw-border-opacity))
+}
+
 .shr-border-inherit {
   border-color: inherit
 }
@@ -1342,6 +1365,11 @@
 
 .shr-border-transparent {
   border-color: transparent
+}
+
+.shr-border-warning-yellow {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 204 23 / var(--tw-border-opacity))
 }
 
 .shr-border-white {
@@ -1364,6 +1392,11 @@
 
 .shr-border-r-transparent {
   border-right-color: transparent
+}
+
+.shr-bg-\[\#0f7f85\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 127 133 / var(--tw-bg-opacity))
 }
 
 .shr-bg-\[theme\(colors\.grey\.65\)\] {
@@ -1749,6 +1782,11 @@
   line-height: 1.25
 }
 
+.shr-text-\[\#0f7f85\] {
+  --tw-text-opacity: 1;
+  color: rgb(15 127 133 / var(--tw-text-opacity))
+}
+
 .shr-text-black {
   --tw-text-opacity: 1;
   color: rgb(35 34 30 / var(--tw-text-opacity))
@@ -1776,6 +1814,11 @@
 .shr-text-link {
   --tw-text-opacity: 1;
   color: rgb(0 113 193 / var(--tw-text-opacity))
+}
+
+.shr-text-main {
+  --tw-text-opacity: 1;
+  color: rgb(0 119 199 / var(--tw-text-opacity))
 }
 
 .shr-text-transparent {
@@ -2654,24 +2697,6 @@
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
-@media (forced-colors: active) {
-  .forced-colors\:shr-static {
-    position: static
-  }
-
-  .forced-colors\:shr-hidden {
-    display: none
-  }
-
-  .forced-colors\:shr-fill-\[CanvasText\] {
-    fill: CanvasText
-  }
-
-  .forced-colors\:shr-opacity-100 {
-    opacity: 1
-  }
-}
-
 @media (prefers-contrast: more) {
   .contrast-more\:shr-border {
     border-width: 1px
@@ -2720,6 +2745,24 @@
   .shr-peer:indeterminate ~ .contrast-more\:peer-indeterminate\:shr-border-high-contrast {
     --tw-border-opacity: 1;
     border-color: rgb(35 34 30 / var(--tw-border-opacity))
+  }
+}
+
+@media (forced-colors: active) {
+  .forced-colors\:shr-static {
+    position: static
+  }
+
+  .forced-colors\:shr-hidden {
+    display: none
+  }
+
+  .forced-colors\:shr-fill-\[CanvasText\] {
+    fill: CanvasText
+  }
+
+  .forced-colors\:shr-opacity-100 {
+    opacity: 1
   }
 }
 
