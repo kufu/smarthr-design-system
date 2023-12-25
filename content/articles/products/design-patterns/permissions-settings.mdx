@@ -15,6 +15,7 @@ SmartHRにおける「権限設定」のパターンをまとめています。
 - [アカウントの詳細](#h2-3)
 
 ## 権限の分類
+
 SmartHRにおける権限は、大きく2つに分けられます。分類によって、権限オブジェクトの考え方や画面設計が異なります。  
 新しくプロダクトを作る場合は、どちらの分類になるかを理解したうえで設計を進めてください。
 
@@ -27,10 +28,10 @@ RBACは、ユーザーに役割（例：業務担当者、機能管理者）を�
 
 例えば、SmartHRにおいて対象となるプロダクトは以下のとおりです。
 
-* [配置シミュレーション](https://smarthr.jp/function/simulation/)
-* [スキル管理](https://smarthr.jp/function/skill/)
-* [組織図](https://smarthr.jp/function/organization/)
-* [人事評価](https://smarthr.jp/function/evaluation/)
+- [配置シミュレーション](https://smarthr.jp/function/simulation/)
+- [スキル管理](https://smarthr.jp/function/skill/)
+- [組織図](https://smarthr.jp/function/organization/)
+- [人事評価](https://smarthr.jp/function/evaluation/)
 
 ### ABAC(Attribute-Based Access Control)パターン
 
@@ -38,9 +39,8 @@ ABACは、対象の属性（操作範囲）に基づいて、特定の行動（�
 
 例えば、SmartHRにおいて対象となるプロダクトは以下のとおりです。
 
-* [文書配布](https://smarthr.jp/function/distribution/)
-* [年末調整](https://smarthr.jp/function/nc/)
-
+- [文書配布](https://smarthr.jp/function/distribution/)
+- [年末調整](https://smarthr.jp/function/nc/)
 
 ## 一覧
 
@@ -48,53 +48,46 @@ ABACは、対象の属性（操作範囲）に基づいて、特定の行動（�
 
 ### 構成（RBAC）
 
-構成要素は次のとおりです。
-
-- [A-1. 画面タイトル](#h4-0)
-- [A-2. 画面説明テキスト](#h4-1)
-- [A-3. よくあるテーブル](#h4-2)
+構成は[よくあるテーブル](/products/design-patterns/smarthr-table/)のパターンに従います。
+[よくあるテーブル](/products/design-patterns/smarthr-table/)の詳細はレイアウトパターンを参照してください。
 
 ** スクリーンショット：一覧（アカウントのみ）**
-![](./images/admin-screen/admin-screen-admin1.png)
+![1〜3とグルーピングされた赤枠がスクリーンショット上に表示されている。タイトルが1、画面説明テキストが2、テーブルが3でグルーピングされている。](./images/permissions-settings/permissions-settings1.png)
 
 ** スクリーンショット：一覧（アカウントと独自の権限設定を扱う場合）**
-![](./images/admin-screen/admin-screen-admin2.png)
+![1〜3とグルーピングされた赤枠がスクリーンショット上に表示されている。タイトルが1、画面説明テキストが2、テーブルが3でグルーピングされている。3のタイトルは一覧（アカウントのみ）とは異なり、TabBarで表示されている。](./images/permissions-settings/permissions-settings2.png)
 
-#### A-1. 画面タイトル
+#### 1. 画面タイトル
 
 画面タイトルは「権限設定」とします。
 
-#### A-2. 画面説明テキスト
+#### 2. 画面説明テキスト
 
 機能の説明や操作に関する補足テキスト、ヘルプセンターへのリンクなどを書きます。特別な補足がない場合は、以下のメッセージを使ってください。
 
 `{機能名}を利用する権限を設定します。詳しくは、{ヘルプへのリンク}を参照してください。`
 
-#### A-3. よくあるテーブル
-
-[よくあるテーブル](/products/design-patterns/smarthr-table/)の詳細はレイアウトパターンを参照してください。
+#### 3. テーブル
 
 表には以下の情報を必ず表示します。必要に応じて、列を追加しても問題ありません。
 
-* **アカウント名**
-  * `{姓} {名}<{メールアドレス}>`と表示します。メールアドレスの登録がない場合は`{姓} {名}`、姓名の登録がない場合は`{メールアドレス}`とします。
-* **操作の権限**
-  * 権限名を表示します。
-* **3. 操作**
-  * アカウントを操作するボタンを置きます。必要に応じて、[編集]と[削除]以外のボタンを置いても問題ありません。
-  * コンポーネントは[SecondaryButton](/products/components/button/)のサイズ小を使います。
-
-これらの情報は左から列で並べてください。
+- **アカウント名**
+  - `{姓} {名}<{メールアドレス}>`と表示します。メールアドレスの登録がない場合は`{姓} {名}`、姓名の登録がない場合は`{メールアドレス}`とします。
+- **操作の権限**
+  - 権限名を表示します。
+- **3. 操作**
+  - アカウントを操作するボタンを置きます。必要に応じて、[編集]と[削除]以外のボタンを置いても問題ありません。
+  - コンポーネントは[Secondaryボタン](/products/components/button/)のサイズ小を使います。
 
 ##### アカウントのみの場合
 
-![スクリーンショット: よくあるテーブルのヘッダー部分、画面タイトルとその操作が強調されている](./images/admin-screen/admin-screen-admin1-heading.png)
+![スクリーンショット: よくあるテーブルのヘッダー部分、画面タイトルとその操作が強調されている](./images/permissions-settings/permissions-settings1-heading.png)
 
 アカウントのみを扱う場合のセクションタイトルは`アカウント一覧`、オブジェクトの追加ボタンラベルは`追加`としてください。
 
 ##### 独自の権限設定がある場合
 
-![スクリーンショット: よくあるテーブルのヘッダー（TabBarを表示するパターン）](./images/admin-screen/admin-screen-admin2-heading.png)
+![スクリーンショット: よくあるテーブルのヘッダー（TabBarを表示するパターン）](./images/permissions-settings/permissions-settings2-heading.png)
 
 アカウントに紐づけが必要な独自の権限設定がある場合は、[TabBar](/products/components/tab-bar/)を使って並列に表示します。
 
@@ -108,9 +101,8 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 
 ## B.アカウントの詳細
 
-一覧の[アカウントを追加]、または[(アカウントを)編集]ボタンを押した時に[ActionDialog](/products/components/dialog/#h3-1)で表示します。  
+一覧の[アカウントを追加]、または[(アカウントを)編集]ボタンを押したときに[ActionDialog](/products/components/dialog/#h3-1)で表示します。  
 例はすべて追加時のスクリーンショットです。必要に応じて編集に読み替えてください。
-
 
 ### 構成（RBAC）
 
@@ -122,10 +114,10 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 - [4. 独自のオブジェクト設定](#h4-6)
 
 **スクリーンショット: 詳細ダイアログ（アカウントのみ）**
-![](./images/admin-screen/admin-screen-admin1-dialog.png)
+![1〜3とグルーピングされた赤枠がスクリーンショット上に表示されている。タイトルが1、アカウントの選択が2、操作の権限が3でグルーピングされている。](./images/permissions-settings/permissions-settings1-dialog.png)
 
 **スクリーンショット: 詳細ダイアログ（独自の権限設定がある場合）**
-![](./images/admin-screen/admin-screen-admin2-dialog.png)
+![1〜4とグルーピングされた赤枠がスクリーンショット上に表示されている。タイトルが1、アカウントの選択が2、操作の権限が3、独自の権限設定が4でグルーピングされている。](./images/permissions-settings/permissions-settings2-dialog.png)
 
 #### 1. ダイアログタイトル
 
@@ -133,11 +125,11 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 
 #### 2. アカウントの選択
 
-SmartHRのアカウントを選択します。[SingleComboBox](/products/components/combo-box/)を使ってください。
+SmartHRのアカウントを選択します。単一選択の場合は[SingleComboBox](/products/components/combo-box/)を使ってください。複数まとめて追加する場合は[MultiComboBox](/products/components/combo-box/)を使ってください。
 
-![スクリーンショット: アカウントのSingleComboBoxを開いたとき](./images/admin-screen/admin-screen-dialog-account.png)
+![スクリーンショット: アカウントのSingleComboBoxを開いたとき](./images/permissions-settings/permissions-settings-dialog-account.png)
 
-[SingleComboBox](/products/components/combo-box/)の`dropdownHelpMessage`は検索できる項目次第ですが、通常は`{検索対象名1}、{検索対象名2}で検索できます。`とします。
+ComboBoxのパネル内の説明には`{検索対象名1}、{検索対象名2}で検索できます。`と、検索できる項目を明記します。
 
 #### 3. 操作の権限
 
@@ -146,19 +138,17 @@ SmartHRのアカウントを選択します。[SingleComboBox](/products/compone
 - 機能管理者：すべての操作の権限を持つ
 - 業務担当者：業務に必要な操作の権限のみを持つ
 
-操作の権限が上記の2つのみの場合は、[RadioButtonPanel](/products/components/radio-button-panel/)を使ってください。
+操作の権限が上記の2つ以内の場合は、[RadioButtonPanel](/products/components/radio-button-panel/)を使ってください。
 
 **「カスタム権限」**として、操作の権限をユーザーが増やせるプロダクトもあります。この場合は[SingleComboBox](/products/components/combo-box/)や[Select](/products/components/select/)を使ってください。
 
-#### 4.  独自のオブジェクト設定
+#### 4. 独自の権限設定
 
 独自の権限設定がある場合に表示します。用途に依って設定が異なるため、ルールやパターンは定めません。
-
 
 ### 構成（ABAC）
 
 ［WIP］
-
 
 ## 関連リンク
 
