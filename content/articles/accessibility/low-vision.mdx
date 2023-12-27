@@ -3,7 +3,27 @@ title: '限られた視覚のユーザーのウェブ利用に関連する問題
 description: ' '
 order: 6
 ---
-import { Table, Td, Th } from 'smarthr-ui'
+import styled from 'styled-components'
+import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
+import { TableReel as OriginalTableReel, Table, Th, Td } from 'smarthr-ui'
+
+export const TableReel = styled(OriginalTableReel)`
+  margin-block-start: 20px;
+  & table {
+    width: 200%;
+    margin-block-start: 0;
+    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
+      width: 250svw;
+    }
+  }
+  & th,
+  & td {
+    min-width: initial;
+    border: none;
+    box-sizing: content-box;
+    font-size: ${CSS_FONT_SIZE.PX_14};
+  }
+`
 
 # 限られた視覚のユーザーのウェブ利用に関連する問題点と解決策
 
@@ -27,17 +47,18 @@ import { Table, Td, Th } from 'smarthr-ui'
 
 ## 限られた視覚のユーザーのウェブ利用に関連する問題点と解決策の表
 
-<Table class="part" data-startline="5" data-endline="9">
+<TableReel class="part">
+<Table>
   <thead>
     <tr>
-      <Th>特性</Th>
-      <Th>問題点</Th>
-      <Th>解決策の例</Th>
+      <Th style="width: 3em;" fixed>特性</Th>
+      <Th style="width: 12em;">問題点</Th>
+      <Th style="width: 12em;">解決策の例</Th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <Td>画面全体を俯瞰して捉えられない</Td>
+      <Td fixed>画面全体を俯瞰して捉えられない</Td>
       <Td>
         拡大鏡の拡大表示範囲外の変化を認識できない
         <ul>
@@ -87,7 +108,7 @@ import { Table, Td, Th } from 'smarthr-ui'
       </Td>
     </tr>
     <tr>
-      <Td>視力が低い</Td>
+      <Td fixed>視力が低い</Td>
       <Td>
         狙ったポインタ操作が困難:
         <ul>
@@ -115,7 +136,7 @@ import { Table, Td, Th } from 'smarthr-ui'
       </Td>
     </tr>
     <tr>
-      <Td>色の識別がしづらい</Td>
+      <Td fixed>色の識別がしづらい</Td>
       <Td>
         <ul>
           <li>
@@ -143,4 +164,5 @@ import { Table, Td, Th } from 'smarthr-ui'
       </Td>
     </tr>
   </tbody>
-</Table>
+  </Table>
+</TableReel>
