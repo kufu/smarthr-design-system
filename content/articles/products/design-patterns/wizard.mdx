@@ -20,17 +20,18 @@ order: 12
 ## 構成
 複数ステップのモードのダイアログ・ページに共通する構成要素は次の通りです。
 <!-- textlint-disable -->
-1. タイトルエリア（[ダイアログ](#h3-1)・ページ）
-2. 操作エリア（[ダイアログ](#h3-2)・ページ）
-3. 画面遷移エリア（[ダイアログ](#h3-3)・ページ）
+1. タイトルエリア（[ダイアログ](#h3-1)・[ページ]/products/design-patterns/wizard/#h3-6)）
+2. 操作エリア（[ダイアログ](#h3-2)・[ページ]/products/design-patterns/wizard/#h3-7)）
+3. 画面遷移エリア（[ダイアログ](#h3-3)・[ページ]/products/design-patterns/wizard/#h3-8)）
 
 ## アクションダイアログ
+
+### レイアウト
+[ActionDialog](/products/components/dialog/#h3-1)を使用し、操作に必要なコンポーネントは[余白の取り方](/products/design-patterns/spacing-layout-pattern/)に従って配置します。  
+
 ![スクリーンショット: アクションダイアログの最初の画面](./images/wizard/wizard-dialog-1st.png)
 
 ![スクリーンショット: アクションダイアログの最後の画面](./images/wizard/wizard-dialog-action.png)
-
-### レイアウト
-基本的に[余白の取り方](/products/design-patterns/spacing-layout-pattern/)に従って配置します。  
 
 ### 1. タイトルエリア
 `複数ステップの操作画面`の見出しを表示するエリアです。
@@ -52,13 +53,11 @@ order: 12
 ### 2. 操作エリア
 [FormControl](/products/components/form-control/)などを使用して、ステップごとの操作に必要な要素を配置するエリアです。
 
-#### 説明テキスト
-表示中のページでする操作について、文章で説明します。  
-FormControlの`helpMessage`や`title`に表示するテキストで説明が十分な場合には、省略しても構いません。
+FormControlの`helpMessage`や`title`に表示するテキストでユーザーへの説明が十分な場合には、操作説明用の[Text](/products/components/text/)を省略しても構いません。
 
 ### 3. 画面遷移エリア
 
-操作ステップ画面間の移動、一連の操作モードの取り消す、最終アクションをするためのボタンをまとめたエリアです。
+操作ステップ画面間の移動、一連の操作モードの取り消す、複数ステップの最後の操作のためのボタンをまとめたエリアです。
 <!-- textlint-enable -->
 
 #### ライティングパターン
@@ -66,59 +65,70 @@ FormControlの`helpMessage`や`title`に表示するテキストで説明が十�
 - 次の画面に移動する：`次へ`
 - 前の画面に移動する：`戻る`
 - 操作を取りやめる：`キャンセル`
-- 最後のステップの画面のアクションボタン：一連の操作の最終目的の操作名（`登録`、`削除`など）
+- 最後の画面のアクションボタン：一連の操作の最終目的の操作名（`登録`、`書き出し`など）
 
 ## Bottom fixed Areaを伴うページ
 
-![スクリーンショット: アクションダイアログの最初の画面](./images/wizard/wizard-dialog-1st.png)
-
-![スクリーンショット: アクションダイアログの最後の画面](./images/wizard/wizard-dialog-action.png)
-
 ### レイアウト
-基本的に[余白の取り方](/products/design-patterns/spacing-layout-pattern/)に従って配置します。
+[BottomFixedArea](/products/components/bottom-fixed-area/)を使用し、操作に必要なコンポーネントは[余白の取り方](/products/design-patterns/spacing-layout-pattern/)に従って配置します。
 
-必ず、[BottomFixedArea](/products/components/bottom-fixed-area/)を使用します。
+![スクリーンショット: アクションダイアログの最後の画面](./images/wizard/wizard-page-action.png)
 
 ### 1. タイトルエリア
 `複数ステップの操作画面`の見出しと説明テキストを含むエリアです。
 
+**見出しと操作テキストを表示しているパターン**
+![スクリーンショット: アクションダイアログの最後の画面](./images/wizard/HeadingAndDescription.png)
+
+**見出しのみを表示しているパターン**
+![スクリーンショット: アクションダイアログの最後の画面](./images/wizard/PageHeading.png)
+
 #### A. 見出し
 
-[Heading](/products/components/heading/)を使用し、適切な見出しレベルを設定してください。
+[Heading](/products/components/heading/)を使用し、`screenTitle`を使用します。
 
-### ライティングパターン
-基本的には、[ダイアログの場合]()と同様です。
+##### ライティングパターン
+基本的には、[ダイアログの場合](/products/design-patterns/wizard/#h4-0)と同様です。
 
-それぞれのステップごとの操作を見出しで伝えたい場合、ScreenTitleのライティングは複数ステップの操作の画面タイトルのパターンに合わせる必要はありません。ただし、一貫したモードであることがわかるように、subBlockTextを使って複数ステップの操作画面タイトルのパターンを表示します。
+それぞれのステップごとの操作を見出しで伝えたい場合、`ScreenTitle`は複数ステップの操作の画面タイトルのパターンに合わせる必要はありません。ただし、一貫したモードであることがわかるように、`subBlockText`を使って複数ステップの操作画面タイトルのパターンを表示します。
 
 ##### 例
-- subBlockText：一連の操作の共通タイトル
-    - `従業員のhoge情報の一括登録（1/4）`
-- ScreenTitle：このページでやることを表したタイトル
-    - `登録する従業員の選択`
+- subBlockText：一連の操作の共通タイトル  
+`従業員のhoge情報の一括登録（1/4）`
+- ScreenTitle：このページでやることを表したタイトル  
+`登録する従業員の選択`
 
 #### B. 説明テキスト
 表示中のページでする操作に関する説明を表示します。
+操作エリアのUIでユーザーへの説明が十分な場合には、[Text](/products/components/text/)を省略しても構いません。
 
 ### 2. 操作エリア
 [「よくあるテーブル」](/products/design-patterns/smarthr-table/)や[FormControl](/products/components/form-control/)などを使用して、ステップごとの操作するためのエリアです。
+
 <!-- textlint-disable -->
 ### 3. 画面遷移エリア
 
-操作ステップ画面間の移動、一連の操作モードの取り消す、最終アクションをするためのボタンをまとめたエリアです。
+操作ステップ画面間の移動、一連の操作モードの取り消す、複数ステップの最後の操作のためのボタンをまとめたエリアです。
 [Bottom fixed Area](/products/components/bottom-fixed-area/)を使用します。
 
 <!-- textlint-enable -->
 
 #### Bottom fixed Areaのディスクリプション
-このページでのアクションを示す。
+この画面のPrimaryButtonを押すことを促す説明を書きます。
 
- 例：hogeを選択したら、fugaを押してください。
+##### 例
+`〇〇を選択したら、［{ボタンのアクションテキスト}］を押してください。`
 
 #### Bottom fixed Areaのボタンテキスト
-- 次の画面に移動する：次へ
-- 前の画面に移動する：戻る
-- 操作を取りやめる：{モードのアクション}をキャンセル
-    - 複数ステップにまたがっている場合、何がキャンセルの対象なのか明確にする
-- 工程でやりたいことをやるためのアクションボタン
-  - このモードの最終目的（登録、削除など）をボタンのテキストにする
+PrimaryButtonでは、次のステップに移動するか、複数ステップの操作のアクションを伝えます。
+- 次の画面に移動する：`次へ`
+- 最終画面のアクションテキスト：`登録`、`書き出し`など
+
+SecondaryButtonでは、前のステップに移動できることを伝えます。
+- 前の画面に移動する：`戻る`
+
+#### 複数ステップの操作を取り消すテキスト
+2ステップ以降の画面では、この操作モードから離脱するための[TextLink](/products/components/text-link/)を設置してください。
+途中まで操作した状態が失われる場合には、操作自体を取り消すことが明らかになるようにモードの操作名を明示してください。
+
+- 途中までの操作を破棄する場合：`{モードの操作名}をキャンセル`
