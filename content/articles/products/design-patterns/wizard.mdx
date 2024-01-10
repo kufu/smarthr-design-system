@@ -14,21 +14,14 @@ order: 12
 複数ステップの操作モードに入るためのボタンのアクションテキストと、操作画面のタイトルは関連付けます。
 
 各ステップには共通のタイトルを表示し、複数ステップであることを`（1/n）`として明示します。ユーザーが作業ボリュームを把握し、操作過程の現在地と残りの操作ステップ数を認知できる状態を作ることが目的です。
-
-## 構成
-複数ステップのモードのダイアログ・ページに共通する構成要素は次の通りです。
 <!-- textlint-disable -->
-1. タイトルエリア（[ダイアログ](#h3-1)・[ページ](#h3-6)）
-2. 操作エリア（[ダイアログ](#h3-2)・[ページ](#h3-7)）
-3. 画面遷移エリア（[ダイアログ](#h3-3)・[ページ](#h3-8)）
-
 ## ダイアログの構成
 [ActionDialog](/products/components/dialog/#h3-1)を使用し、操作に必要なコンポーネントは[余白の取り方](/products/design-patterns/spacing-layout-pattern/)に従って配置します。  
 
 1. タイトルエリア
 2. 操作エリア
 3. 画面遷移エリア
-
+<!-- textlint-enable -->
 ![スクリーンショット: アクションダイアログの最初の画面](./images/wizard/wizard-dialog-1st.png)
 
 ![スクリーンショット: アクションダイアログの最後の画面](./images/wizard/wizard-dialog-action.png)
@@ -40,13 +33,13 @@ order: 12
 基本的に、`{オブジェクト名}の{操作名}（1/n）`という表記します。
 - [アクションに関する画面やダイアログのタイトルでは、助詞は「の」を使用する](../../../products/contents/app-writing/#h2-3)
 
-併せて、[Dialog](https://smarthr.design/products/components/dialog/#h2-3)のライティングパターンも参照してください。
+あわせて、[Dialog](https://smarthr.design/products/components/dialog/#h2-3)のライティングパターンも参照してください。
 
 ### 2. 操作エリア
 [FormControl](/products/components/form-control/)などを使用して、ステップごとの操作に必要な要素を配置するエリアです。
 
 FormControlの`helpMessage`や`title`に表示するテキストでユーザーへの説明が十分な場合には、操作説明用の[Text](/products/components/text/)を省略しても構いません。
-
+<!-- textlint-disable -->
 ### 3. 画面遷移エリア
 
 操作ステップ画面間の移動、一連の操作モードの取り消す、複数ステップの最後の操作のためのボタンをまとめたエリアです。
