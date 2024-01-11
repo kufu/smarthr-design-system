@@ -1,5 +1,5 @@
 // ログイン状態の確認用にアクセスするドキュメント
-export const PRIVATE_DOC_PATH = 'https://smarthr-design-system-private.netlify.app/basics/romu-hanako-details.md'
+export const PRIVATE_DOC_PATH = '/private/basics/romu-hanako-details.md'
 
 // プロダクト > コンポーネントのStorybook関連の定義
 export const SHRUI_GITHUB_RAW = `https://raw.githubusercontent.com/kufu/smarthr-ui/`
