@@ -1280,6 +1280,11 @@
   border-width: 4px
 }
 
+.shr-border-y-0 {
+  border-top-width: 0px;
+  border-bottom-width: 0px
+}
+
 .shr-border-b {
   border-bottom-width: 1px
 }
@@ -2761,6 +2766,10 @@
     fill: CanvasText
   }
 
+  .forced-colors\:shr-underline {
+    text-decoration-line: underline
+  }
+
   .forced-colors\:shr-opacity-100 {
     opacity: 1
   }
@@ -3032,6 +3041,10 @@
 }
 
 @media (forced-colors: active) {
+  .\[\&\:not\(\[href\]\)\]\:forced-colors\:shr-no-underline:not([href]) {
+    text-decoration-line: none
+  }
+
   .\[\&\:not\(\[href\]\)_\.smarthr-ui-Icon\]\:forced-colors\:shr-fill-\[CanvasText\]:not([href]) .smarthr-ui-Icon {
     fill: CanvasText
   }
