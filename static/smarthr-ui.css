@@ -307,6 +307,10 @@
   height: 1rem
 }
 
+.shr-h-em {
+  height: 1em
+}
+
 .shr-h-full {
   height: 100%
 }
@@ -373,6 +377,10 @@
 
 .shr-w-\[theme\(fontSize\.base\)\] {
   width: 1rem
+}
+
+.shr-w-em {
+  width: 1em
 }
 
 .shr-w-full {
@@ -779,6 +787,10 @@
 
 .shr-flex-wrap {
   flex-wrap: wrap
+}
+
+.shr-flex-nowrap {
+  flex-wrap: nowrap
 }
 
 .shr-items-start {
@@ -2591,6 +2603,64 @@
   color: rgb(255 255 255 / var(--tw-text-opacity))
 }
 
+.shr-peer:checked ~ .peer-checked\:before\:shr-pointer-events-none::before {
+  content: var(--tw-content);
+  pointer-events: none
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:shr-absolute::before {
+  content: var(--tw-content);
+  position: absolute
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:shr-left-1\/2::before {
+  content: var(--tw-content);
+  left: 50%
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:shr-top-1\/2::before {
+  content: var(--tw-content);
+  top: 50%
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:shr-h-\[0\.375em\]::before {
+  content: var(--tw-content);
+  height: 0.375em
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:shr-w-\[0\.375em\]::before {
+  content: var(--tw-content);
+  width: 0.375em
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:-shr-translate-x-1\/2::before {
+  content: var(--tw-content);
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:-shr-translate-y-1\/2::before {
+  content: var(--tw-content);
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:shr-rounded-full::before {
+  content: var(--tw-content);
+  border-radius: 9999px
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:shr-bg-white::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.shr-peer:checked ~ .peer-checked\:before\:shr-content-\[\"\"\]::before {
+  --tw-content: "";
+  content: var(--tw-content)
+}
+
 .shr-peer:indeterminate ~ .peer-indeterminate\:shr-border-main {
   --tw-border-opacity: 1;
   border-color: rgb(0 119 199 / var(--tw-border-opacity))
@@ -2615,6 +2685,14 @@
 .shr-peer:focus-visible ~ .peer-focus-visible\:shr-text-black {
   --tw-text-opacity: 1;
   color: rgb(35 34 30 / var(--tw-text-opacity))
+}
+
+.shr-peer:disabled ~ .peer-disabled\:shr-cursor-not-allowed {
+  cursor: not-allowed
+}
+
+.shr-peer:disabled ~ .peer-disabled\:shr-border-default\/50 {
+  border-color: rgb(214 211 208 / 0.5)
 }
 
 .shr-peer:disabled ~ .peer-disabled\:shr-border-disabled {
@@ -2644,6 +2722,12 @@
 .shr-peer:disabled:checked ~ .peer-disabled\:peer-checked\:shr-text-white-darken {
   --tw-text-opacity: 1;
   color: rgb(242 242 242 / var(--tw-text-opacity))
+}
+
+.shr-peer:disabled:checked ~ .peer-disabled\:peer-checked\:before\:shr-bg-white-darken::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
 }
 
 .shr-peer:disabled:indeterminate ~ .peer-disabled\:peer-indeterminate\:shr-border-default {
