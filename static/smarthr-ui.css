@@ -816,6 +816,10 @@
   animation: shr-spin 1.6s linear infinite
 }
 
+.shr-cursor-\[revert\] {
+  cursor: revert
+}
+
 .shr-cursor-auto {
   cursor: auto
 }
@@ -2020,6 +2024,12 @@
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
+.shr-shadow-none {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}
+
 .shr-shadow-underline {
   --tw-shadow: 0 1px 0 0;
   --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
@@ -2108,6 +2118,18 @@
 }
 
 .shr-peer:focus-visible ~ .peer-focus-visible\:shr-focus-indicator {
+  outline: none;
+  isolation: isolate;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
+.has-\[\:focus-visible\]\:shr-focus-indicator:has(:focus-visible) {
+  outline: none;
+  isolation: isolate;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
+.\[\&\:has\(\:focus-visible\)\]\:shr-focus-indicator:has(:focus-visible) {
   outline: none;
   isolation: isolate;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
@@ -2888,10 +2910,6 @@
   color: rgb(35 34 30 / var(--tw-text-opacity))
 }
 
-.shr-peer:disabled ~ .peer-disabled\:shr-cursor-not-allowed {
-  cursor: not-allowed
-}
-
 .shr-peer:disabled ~ .peer-disabled\:shr-border-default\/50 {
   border-color: rgb(214 211 208 / 0.5)
 }
@@ -2939,6 +2957,10 @@
 .shr-peer:disabled:indeterminate ~ .peer-disabled\:peer-indeterminate\:shr-bg-border {
   --tw-bg-opacity: 1;
   background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+}
+
+.has-\[\:disabled\]\:shr-cursor-default:has(:disabled) {
+  cursor: default
 }
 
 .aria-checked\:shr-border-main[aria-checked="true"] {
@@ -3416,6 +3438,24 @@
   .\[\&_\.smarthr-ui-Icon\]\:forced-colors\:disabled\:shr-fill-\[GrayText\]:disabled .smarthr-ui-Icon {
     fill: GrayText
   }
+}
+
+.\[\&_\.smarthr-ui-RadioButton-label\]\:shr-ms-0\.75 .smarthr-ui-RadioButton-label {
+  margin-inline-start: 12px
+}
+
+.\[\&_\.smarthr-ui-RadioButton-label\]\:shr-cursor-pointer .smarthr-ui-RadioButton-label {
+  cursor: pointer
+}
+
+.has-\[\:disabled\]\:\[\&_\.smarthr-ui-RadioButton-label\]\:shr-cursor-default .smarthr-ui-RadioButton-label:has(:disabled) {
+  cursor: default
+}
+
+.\[\&_\.smarthr-ui-RadioButton-radioButton\:focus-visible_\+_span\]\:shr-shadow-none .smarthr-ui-RadioButton-radioButton:focus-visible + span {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
 .\[\&_\>_\*\:nth-child\(2\)\]\:shr-mb-auto > *:nth-child(2) {
