@@ -98,6 +98,30 @@
   --tw-backdrop-sepia:  
 }
 
+.shr-border-shorthand {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d6d3d0
+}
+
+.shr-border-t-shorthand {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #d6d3d0
+}
+
+.shr-border-b-shorthand {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #d6d3d0
+}
+
+.shr-border-l-shorthand {
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #d6d3d0
+}
+
 .shr-pointer-events-none {
   pointer-events: none
 }
@@ -229,9 +253,43 @@
   margin-right: auto
 }
 
+.shr-my-0 {
+  margin-top: 0;
+  margin-bottom: 0
+}
+
 .shr-my-1 {
   margin-top: 16px;
   margin-bottom: 16px
+}
+
+.shr-my-\[unset\] {
+  margin-top: unset;
+  margin-bottom: unset
+}
+
+.-shr-mb-0 {
+  margin-bottom: 0
+}
+
+.-shr-mb-0\.5 {
+  margin-bottom: -8px
+}
+
+.-shr-mr-0 {
+  margin-right: 0
+}
+
+.-shr-mr-0\.5 {
+  margin-right: -8px
+}
+
+.-shr-mt-0 {
+  margin-top: 0
+}
+
+.-shr-mt-0\.5 {
+  margin-top: -8px
 }
 
 .-shr-mt-em {
@@ -482,8 +540,16 @@
   flex: 1 1 auto
 }
 
+.shr-flex-shrink-0 {
+  flex-shrink: 0
+}
+
 .shr-shrink-0 {
   flex-shrink: 0
+}
+
+.shr-flex-grow {
+  flex-grow: 1
 }
 
 .shr-grow {
@@ -804,6 +870,22 @@
 
 .shr-animate-\[loader-right-spin_1\.2s_ease-in-out_infinite_both\] {
   animation: shr-loader-right-spin 1.2s ease-in-out infinite both
+}
+
+@keyframes shr-notifiction-bar-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * calc(1rem * 1.25 + 24px)))
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+.shr-animate-\[notifiction-bar-slide-in_0\.2s_ease-out\] {
+  animation: shr-notifiction-bar-slide-in 0.2s ease-out
 }
 
 @keyframes shr-spin {
@@ -1457,10 +1539,6 @@
   border-top-right-radius: 0.25rem
 }
 
-.shr-border {
-  border-width: 1px
-}
-
 .shr-border-0 {
   border-width: 0px
 }
@@ -1473,25 +1551,8 @@
   border-width: 4px
 }
 
-.shr-border-y-0 {
-  border-top-width: 0px;
-  border-bottom-width: 0px
-}
-
-.shr-border-b {
-  border-bottom-width: 1px
-}
-
-.shr-border-b-0 {
-  border-bottom-width: 0px
-}
-
 .shr-border-b-\[3px\] {
   border-bottom-width: 3px
-}
-
-.shr-border-l {
-  border-left-width: 1px
 }
 
 .shr-border-l-0 {
@@ -1500,10 +1561,6 @@
 
 .shr-border-r-0 {
   border-right-width: 0px
-}
-
-.shr-border-t {
-  border-top-width: 1px
 }
 
 .shr-border-t-0 {
@@ -1580,11 +1637,6 @@
 
 .shr-border-b-transparent {
   border-bottom-color: transparent
-}
-
-.shr-border-l-default {
-  --tw-border-opacity: 1;
-  border-left-color: rgb(214 211 208 / var(--tw-border-opacity))
 }
 
 .shr-border-l-transparent {
@@ -2178,6 +2230,13 @@
   inset-inline-end: 0
 }
 
+.before\:shr-border-b-shorthand::before {
+  content: var(--tw-content);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #d6d3d0
+}
+
 .focus-within\:shr-focus-indicator:focus-within {
   outline: none;
   isolation: isolate;
@@ -2202,6 +2261,14 @@
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
 }
 
+@media (prefers-contrast: more) {
+  .contrast-more\:shr-border-shorthand {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d6d3d0
+  }
+}
+
 .\[\&\:has\(\:focus-visible\)\]\:shr-focus-indicator:has(:focus-visible) {
   outline: none;
   isolation: isolate;
@@ -2212,6 +2279,20 @@
   outline: none;
   isolation: isolate;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
+@media (prefers-contrast: more) {
+  .\[\&_td\]\:contrast-more\:shr-border-shorthand td {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d6d3d0
+  }
+
+  .\[\&_th\]\:contrast-more\:shr-border-shorthand th {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d6d3d0
+  }
 }
 
 .file\:shr-h-full::file-selector-button {
@@ -2332,37 +2413,6 @@
   content: var(--tw-content);
   --tw-translate-y: -5px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
-}
-
-.before\:shr-border-b::before {
-  content: var(--tw-content);
-  border-bottom-width: 1px
-}
-
-.before\:shr-border-l-0::before {
-  content: var(--tw-content);
-  border-left-width: 0px
-}
-
-.before\:shr-border-r-0::before {
-  content: var(--tw-content);
-  border-right-width: 0px
-}
-
-.before\:shr-border-t-0::before {
-  content: var(--tw-content);
-  border-top-width: 0px
-}
-
-.before\:shr-border-solid::before {
-  content: var(--tw-content);
-  border-style: solid
-}
-
-.before\:shr-border-default::before {
-  content: var(--tw-content);
-  --tw-border-opacity: 1;
-  border-color: rgb(214 211 208 / var(--tw-border-opacity))
 }
 
 .before\:shr-content-\[\"\"\]::before {
@@ -3106,14 +3156,6 @@
 }
 
 @media (prefers-contrast: more) {
-  .contrast-more\:shr-border {
-    border-width: 1px
-  }
-
-  .contrast-more\:shr-border-solid {
-    border-style: solid
-  }
-
   .contrast-more\:shr-border-high-contrast {
     --tw-border-opacity: 1;
     border-color: rgb(35 34 30 / var(--tw-border-opacity))
@@ -3190,6 +3232,10 @@
 
 .\[\&\&\&\]\:shr-cursor-pointer.\[\&\&\&\]\:shr-cursor-pointer.\[\&\&\&\]\:shr-cursor-pointer {
   cursor: pointer
+}
+
+.\[\&\&\&\]\:shr-overflow-y-visible.\[\&\&\&\]\:shr-overflow-y-visible.\[\&\&\&\]\:shr-overflow-y-visible {
+  overflow-y: visible
 }
 
 .\[\&\&\&\]\:shr-whitespace-normal.\[\&\&\&\]\:shr-whitespace-normal.\[\&\&\&\]\:shr-whitespace-normal {
@@ -3278,10 +3324,6 @@
 .\[\&\&\&\]\:shr-bg-white.\[\&\&\&\]\:shr-bg-white.\[\&\&\&\]\:shr-bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
-}
-
-.\[\&\&\&\]\:shr-overflow-y-unset.\[\&\&\&\]\:shr-overflow-y-unset.\[\&\&\&\]\:shr-overflow-y-unset {
-  overflow-y: unset
 }
 
 .\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled .smarthr-ui-Loader-line {
@@ -3378,6 +3420,10 @@
   gap: 0
 }
 
+.\[\&\:not\(\:has\(\[disabled\]\)\)\]\:shr-cursor-pointer:not(:has([disabled])) {
+  cursor: pointer
+}
+
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
   cursor: not-allowed
 }
@@ -3446,7 +3492,14 @@
   .\[\&\:not\(\[href\]\)_\.smarthr-ui-Icon\]\:forced-colors\:shr-fill-\[CanvasText\]:not([href]) .smarthr-ui-Icon {
     fill: CanvasText
   }
+}
 
+.\[\&\[aria-expanded\=\"true\"\]_\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon:last-child {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+@media (forced-colors: active) {
   .\[\&\[aria-sort\=ascending\]_\.smarthr-ui-Icon\:first-of-type\]\:forced-colors\:shr-fill-\[CanvasText\][aria-sort=ascending] .smarthr-ui-Icon:first-of-type {
     fill: CanvasText
   }
@@ -3475,6 +3528,108 @@
 .\[\&\]\:shr-border-danger {
   --tw-border-opacity: 1;
   border-color: rgb(224 30 90 / var(--tw-border-opacity))
+}
+
+.\[\&\]\:shr-p-0\.75 {
+  padding: 12px
+}
+
+.\[\&\]\:shr-px-0\.75 {
+  padding-left: 12px;
+  padding-right: 12px
+}
+
+.\[\&\]\:hover\:shr-bg-danger-darken:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(202 27 81 / var(--tw-bg-opacity))
+}
+
+.\[\&\]\:hover\:shr-bg-main-darken:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+}
+
+.\[\&\]\:hover\:shr-bg-warning-yellow-darken:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 197 0 / var(--tw-bg-opacity))
+}
+
+.\[\&\]\:focus-visible\:shr-bg-danger-darken:focus-visible {
+  --tw-bg-opacity: 1;
+  background-color: rgb(202 27 81 / var(--tw-bg-opacity))
+}
+
+.\[\&\]\:focus-visible\:shr-bg-main-darken:focus-visible {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+}
+
+.\[\&\]\:focus-visible\:shr-bg-warning-yellow-darken:focus-visible {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 197 0 / var(--tw-bg-opacity))
+}
+
+.\[\&_\.smarthr-ui-AnchorButton\]\:shr-w-full .smarthr-ui-AnchorButton {
+  width: 100%
+}
+
+.\[\&_\.smarthr-ui-AnchorButton\]\:shr-justify-start .smarthr-ui-AnchorButton {
+  justify-content: flex-start
+}
+
+.\[\&_\.smarthr-ui-AnchorButton\]\:shr-border-none .smarthr-ui-AnchorButton {
+  border-style: none
+}
+
+.\[\&_\.smarthr-ui-AnchorButton\]\:shr-py-0\.5 .smarthr-ui-AnchorButton {
+  padding-top: 8px;
+  padding-bottom: 8px
+}
+
+.\[\&_\.smarthr-ui-AnchorButton\]\:shr-font-normal .smarthr-ui-AnchorButton {
+  font-weight: 400
+}
+
+.\[\&_\.smarthr-ui-Button-disabledWrapper\]\:shr-gap-x-0\.5 .smarthr-ui-Button-disabledWrapper {
+  -moz-column-gap: 8px;
+       column-gap: 8px
+}
+
+.\[\&_\.smarthr-ui-Button-disabledWrapper\]\:shr-pe-1 .smarthr-ui-Button-disabledWrapper {
+  padding-inline-end: 16px
+}
+
+.\[\&_\.smarthr-ui-Button-disabledWrapper_\>_\.smarthr-ui-Button\]\:shr-w-\[unset\] .smarthr-ui-Button-disabledWrapper > .smarthr-ui-Button {
+  width: unset
+}
+
+.\[\&_\.smarthr-ui-Button-disabledWrapper_\>_\.smarthr-ui-Button\]\:shr-pe-\[unset\] .smarthr-ui-Button-disabledWrapper > .smarthr-ui-Button {
+  padding-inline-end: unset
+}
+
+.\[\&_\.smarthr-ui-Button\]\:shr-w-full .smarthr-ui-Button {
+  width: 100%
+}
+
+.\[\&_\.smarthr-ui-Button\]\:shr-justify-start .smarthr-ui-Button {
+  justify-content: flex-start
+}
+
+.\[\&_\.smarthr-ui-Button\]\:shr-border-none .smarthr-ui-Button {
+  border-style: none
+}
+
+.\[\&_\.smarthr-ui-Button\]\:shr-py-0\.5 .smarthr-ui-Button {
+  padding-top: 8px;
+  padding-bottom: 8px
+}
+
+.\[\&_\.smarthr-ui-Button\]\:shr-font-normal .smarthr-ui-Button {
+  font-weight: 400
+}
+
+.\[\&_\.smarthr-ui-Icon-withText\]\:shr-leading-tight .smarthr-ui-Icon-withText {
+  line-height: 1.25
 }
 
 .\[\&_\.smarthr-ui-Icon\]\:-shr-m-0\.25 .smarthr-ui-Icon {
@@ -3543,6 +3698,21 @@
   margin-bottom: auto
 }
 
+.\[\&_li\:hover\]\:-shr-mx-0\.25 li:hover {
+  margin-left: -4px;
+  margin-right: -4px
+}
+
+.\[\&_li\:hover\]\:shr-bg-white-darken li:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+}
+
+.\[\&_li\:hover\]\:shr-px-0\.25 li:hover {
+  padding-left: 4px;
+  padding-right: 4px
+}
+
 .\[\&_svg\]\:shr-block svg {
   display: block
 }
@@ -3553,14 +3723,6 @@
 }
 
 @media (prefers-contrast: more) {
-  .\[\&_td\]\:contrast-more\:shr-border td {
-    border-width: 1px
-  }
-
-  .\[\&_td\]\:contrast-more\:shr-border-solid td {
-    border-style: solid
-  }
-
   .\[\&_td\]\:contrast-more\:shr-border-high-contrast td {
     --tw-border-opacity: 1;
     border-color: rgb(35 34 30 / var(--tw-border-opacity))
@@ -3573,14 +3735,6 @@
 }
 
 @media (prefers-contrast: more) {
-  .\[\&_th\]\:contrast-more\:shr-border th {
-    border-width: 1px
-  }
-
-  .\[\&_th\]\:contrast-more\:shr-border-solid th {
-    border-style: solid
-  }
-
   .\[\&_th\]\:contrast-more\:shr-border-high-contrast th {
     --tw-border-opacity: 1;
     border-color: rgb(35 34 30 / var(--tw-border-opacity))
