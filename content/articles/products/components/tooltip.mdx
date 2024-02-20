@@ -3,6 +3,7 @@ title: 'Tooltip'
 description: ''
 ---
 import {
+  BaseColumn,
   FaArrowAltCircleDownIcon,
   FaArrowAltCircleLeftIcon,
   FaArrowAltCircleRightIcon,
@@ -19,6 +20,13 @@ import { ComponentPreview } from '@Components/ComponentPreview'
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+  Tooltipは気づきにくいなどの課題があるため、安易な使用はお勧めしません。基本的にはTooltip以外のUIを使用することを検討してください。
+    </span>}
+    />
+</BaseColumn>
 
 Tooltipコンポーネントは、UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使います。
 
@@ -37,6 +45,25 @@ Tooltip内の情報は隠れるため、操作に必要な情報の表示への�
 重要な情報とは、フォームの入力に必要な情報などが該当します。具体例は次の通りです。
 - パスワードに使用できる文字や、エラーになる入力値などの入力要件
 - 入力エラーとなった際のエラーメッセージ
+- 操作補助になる情報（ショートカットなど）
+
+
+### 推奨ではないが使用しても構わないケース
+- 付加的な情報を表示する目的での使用
+    - 付加的な情報とは
+        - ユーザーの操作過程で確認するテキストではない情報
+            - 例えば、閲覧時に確認するテキストは付加情報として捉えても良い
+        - 操作時に確認するものであっても、確認しなくても操作に影響しない情報
+- 「SmartHR UI」 の <a href="/products/components/line-clamp/">LineClamp</a>、SearchInput、<a href="/products/components/button/">Button</a>（`disabledDetail` props 使用時）での使用
+    - 各コンポーネントに関して
+        - LineClamp
+            - 折り返して表示することがどうしても難しい場合のみ使う
+        - SearchInput
+            - リトライするためのメッセージが見える場所に必ず表示されるようにしたうえで、Tooltipのメッセージは補助として使う
+        - Buttonの`disabledDetail`
+            - <a href="/products/components/dropdown/dropdown-menu-button/">DropdownMenuButton</a> で Buttonを使用するときに仕方なく使う
+            - 他のケースはTooltipを使わずにdisabledである理由を見える場所に表示する
+    - いずれにしても付加的な情報であれば使用しても構わない
 
 ## 種類
 Tooltipはトリガー要素に`focus`や`hover`で表示します。詳しくは[トリガーパターン](#h3-3)を参照してください。
@@ -48,7 +75,7 @@ Tooltipはトリガー要素に`focus`や`hover`で表示します。詳しく�
 1. [Tooltip](#h4-0)  
 2. [トリガー](#h4-1)
 
-![Tooltipによる補足情報の構成要素](./images/tooltip-overview.png)
+![Tooltipによる補足情報の構成要素](./images/Tooltip-overview.png)
 
 #### 1. Tooltip
 Tooltipそのものです。吹き出し形式で補足的なテキストを表示します。
@@ -242,6 +269,10 @@ export const DynamicTooltip = ({children, ...props}) => {
 何を対象とした補足説明なのかを明確にするために、可能な限り「[テキスト＋アイコン](#h4-6)」を採用することを推奨します。
 
 アイコンは、マウスオーバーが可能であることを示唆するためにリンク色（[`TEXT_LINK`](/products/design-tokens/color/#h2-2)）を使います。
+
+※アイコン単体で意味が伝わるようであれば、Tooltipは不要です。
+
+※アイコンに必ず代替テキストを設定します。
 
 ##### テキストとあわせて使用
 <ComponentPreview>
