@@ -98,6 +98,12 @@
   --tw-backdrop-sepia:  
 }
 
+.shr-focus-indicator {
+  outline: none;
+  isolation: isolate;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
 .shr-border-shorthand {
   border-width: 1px;
   border-style: solid;
@@ -248,6 +254,16 @@
   margin-bottom: -12px
 }
 
+.shr-mx-0 {
+  margin-left: 0;
+  margin-right: 0
+}
+
+.shr-mx-0\.5 {
+  margin-left: 8px;
+  margin-right: 8px
+}
+
 .shr-mx-auto {
   margin-left: auto;
   margin-right: auto
@@ -276,12 +292,28 @@
   margin-bottom: -8px
 }
 
+.-shr-me-0 {
+  margin-inline-end: 0
+}
+
+.-shr-me-0\.5 {
+  margin-inline-end: -8px
+}
+
 .-shr-mr-0 {
   margin-right: 0
 }
 
 .-shr-mr-0\.5 {
   margin-right: -8px
+}
+
+.-shr-ms-0 {
+  margin-inline-start: 0
+}
+
+.-shr-ms-0\.5 {
+  margin-inline-start: -8px
 }
 
 .-shr-mt-0 {
@@ -294,6 +326,14 @@
 
 .-shr-mt-em {
   margin-top: -1em
+}
+
+.shr-mb-0 {
+  margin-bottom: 0
+}
+
+.shr-mb-0\.5 {
+  margin-bottom: 8px
 }
 
 .shr-me-0 {
@@ -348,6 +388,10 @@
   margin-inline-start: auto
 }
 
+.shr-mt-0 {
+  margin-top: 0
+}
+
 .shr-mt-1 {
   margin-top: 16px
 }
@@ -380,6 +424,10 @@
   display: inline-flex
 }
 
+.shr-contents {
+  display: contents
+}
+
 .shr-hidden {
   display: none
 }
@@ -394,6 +442,10 @@
 
 .shr-h-3 {
   height: 48px
+}
+
+.shr-h-\[0\.5em\] {
+  height: 0.5em
 }
 
 .shr-h-\[0\.625em\] {
@@ -444,6 +496,10 @@
   max-height: 0
 }
 
+.shr-max-h-\[calc\(\(theme\(fontSize\.base\)_\+_theme\(spacing\[0\.5\]\)_\*_2\)_\*_7\.5_\+_theme\(spacing\[0\.5\]\)\)\] {
+  max-height: calc((1rem + 8px * 2) * 7.5 + 8px)
+}
+
 .shr-max-h-full {
   max-height: 100%
 }
@@ -482,6 +538,10 @@
 
 .shr-w-3 {
   width: 48px
+}
+
+.shr-w-\[0\.5em\] {
+  width: 0.5em
 }
 
 .shr-w-\[0\.625em\] {
@@ -524,8 +584,20 @@
   min-width: 1.75em
 }
 
+.shr-min-w-\[15em\] {
+  min-width: 15em
+}
+
 .shr-min-w-\[3\.5em\] {
   min-width: 3.5em
+}
+
+.shr-min-w-\[5em\] {
+  min-width: 5em
+}
+
+.shr-min-w-full {
+  min-width: 100%
 }
 
 .shr-max-w-full {
@@ -542,6 +614,10 @@
 
 .shr-flex-shrink-0 {
   flex-shrink: 0
+}
+
+.shr-shrink {
+  flex-shrink: 1
 }
 
 .shr-shrink-0 {
@@ -568,6 +644,16 @@
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y)
+}
+
+.-shr-translate-x-0 {
+  --tw-translate-x: 0;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.-shr-translate-x-0\.25 {
+  --tw-translate-x: -4px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
 .-shr-translate-x-1\/2 {
@@ -1415,6 +1501,10 @@
   margin-bottom: calc(128px * var(--tw-space-y-reverse))
 }
 
+.shr-self-center {
+  align-self: center
+}
+
 .shr-self-stretch {
   align-self: stretch
 }
@@ -1473,6 +1563,10 @@
 
 .shr-overscroll-contain {
   overscroll-behavior: contain
+}
+
+.shr-overflow-ellipsis {
+  text-overflow: ellipsis
 }
 
 .shr-whitespace-normal {
@@ -1539,6 +1633,10 @@
   border-top-right-radius: 0.25rem
 }
 
+.shr-border {
+  border-width: 1px
+}
+
 .shr-border-0 {
   border-width: 0px
 }
@@ -1549,6 +1647,10 @@
 
 .shr-border-4 {
   border-width: 4px
+}
+
+.shr-border-b {
+  border-bottom-width: 1px
 }
 
 .shr-border-b-\[3px\] {
@@ -1922,6 +2024,14 @@
   padding-bottom: 128px
 }
 
+.shr-pb-0 {
+  padding-bottom: 0
+}
+
+.shr-pb-0\.5 {
+  padding-bottom: 8px
+}
+
 .shr-pb-1 {
   padding-bottom: 16px
 }
@@ -1964,6 +2074,10 @@
 
 .shr-text-center {
   text-align: center
+}
+
+.shr-text-right {
+  text-align: right
 }
 
 .shr-align-middle {
@@ -2249,6 +2363,18 @@
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
 }
 
+.shr-group\/clearButton:focus-visible .group-focus-visible\/clearButton\:shr-focus-indicator {
+  outline: none;
+  isolation: isolate;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
+.shr-group\/deleteButton:focus-visible .group-focus-visible\/deleteButton\:shr-focus-indicator {
+  outline: none;
+  isolation: isolate;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
 .shr-peer:focus-visible ~ .peer-focus-visible\:shr-focus-indicator {
   outline: none;
   isolation: isolate;
@@ -2263,6 +2389,14 @@
 
 @media (prefers-contrast: more) {
   .contrast-more\:shr-border-shorthand {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d6d3d0
+  }
+}
+
+@media (forced-colors: active) {
+  .forced-colors\:shr-border-shorthand {
     border-width: 1px;
     border-style: solid;
     border-color: #d6d3d0
@@ -2326,6 +2460,18 @@
   content: var(--tw-content);
   left: 0;
   right: 0
+}
+
+.before\:shr-inset-y-0::before {
+  content: var(--tw-content);
+  top: 0;
+  bottom: 0
+}
+
+.before\:shr-inset-y-0\.25::before {
+  content: var(--tw-content);
+  top: 4px;
+  bottom: 4px
 }
 
 .before\:-shr-bottom-\[5px\]::before {
@@ -2393,6 +2539,11 @@
   height: 5px
 }
 
+.before\:shr-w-0::before {
+  content: var(--tw-content);
+  width: 0
+}
+
 .before\:shr-w-\[10px\]::before {
   content: var(--tw-content);
   width: 10px
@@ -2413,6 +2564,27 @@
   content: var(--tw-content);
   --tw-translate-y: -5px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.before\:shr-border-0::before {
+  content: var(--tw-content);
+  border-width: 0px
+}
+
+.before\:shr-border-l::before {
+  content: var(--tw-content);
+  border-left-width: 1px
+}
+
+.before\:shr-border-solid::before {
+  content: var(--tw-content);
+  border-style: solid
+}
+
+.before\:shr-border-default::before {
+  content: var(--tw-content);
+  --tw-border-opacity: 1;
+  border-color: rgb(214 211 208 / var(--tw-border-opacity))
 }
 
 .before\:shr-content-\[\"\"\]::before {
@@ -2754,6 +2926,11 @@
   color: rgb(35 34 30 / var(--tw-text-opacity))
 }
 
+.hover\:shr-text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+
 .hover\:shr-text-white-darken:hover {
   --tw-text-opacity: 1;
   color: rgb(242 242 242 / var(--tw-text-opacity))
@@ -2809,6 +2986,12 @@
   color: rgb(242 242 242 / var(--tw-text-opacity))
 }
 
+.focus-visible\:shr-shadow-none:focus-visible {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}
+
 .focus-visible\:shr-shadow-outline:focus-visible {
   --tw-shadow: 0 0 0 2px white, 0 0 0 4px #0077c7;
   --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color), 0 0 0 4px var(--tw-shadow-color);
@@ -2822,6 +3005,10 @@
 
 .disabled\:shr-pointer-events-none:disabled {
   pointer-events: none
+}
+
+.disabled\:shr-hidden:disabled {
+  display: none
 }
 
 .disabled\:shr-cursor-not-allowed:disabled {
@@ -2913,6 +3100,14 @@
 .shr-group:hover .group-hover\:shr-text-black {
   --tw-text-opacity: 1;
   color: rgb(35 34 30 / var(--tw-text-opacity))
+}
+
+.shr-group\/clearButton:focus-visible .group-focus-visible\/clearButton\:shr-rounded-full {
+  border-radius: 9999px
+}
+
+.shr-group\/deleteButton:focus-visible .group-focus-visible\/deleteButton\:shr-rounded-full {
+  border-radius: 9999px
 }
 
 .shr-group\/iconWrapper .group-\[\]\/iconWrapper\:shr-shrink-0 {
@@ -3111,6 +3306,21 @@
 
 .aria-hidden\:shr-hidden[aria-hidden="true"] {
   display: none
+}
+
+.aria-selected\:shr-bg-main[aria-selected="true"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+}
+
+.aria-selected\:shr-bg-main-darken[aria-selected="true"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+}
+
+.aria-selected\:shr-text-white[aria-selected="true"] {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity))
 }
 
 .aria-current-page\:shr-cursor-default[aria-current="page"] {
@@ -3539,6 +3749,12 @@
   padding-right: 12px
 }
 
+.\[\&\]\:shr-shadow-none {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}
+
 .\[\&\]\:hover\:shr-bg-danger-darken:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(202 27 81 / var(--tw-bg-opacity))
@@ -3698,6 +3914,18 @@
   margin-bottom: auto
 }
 
+.\[\&_\>_\[role\=\"img\"\]_\+_\[role\=\"img\"\]\]\:shr-absolute > [role="img"] + [role="img"] {
+  position: absolute
+}
+
+.\[\&_\>_\[role\=\"img\"\]_\+_\[role\=\"img\"\]\]\:shr-bottom-\[2px\] > [role="img"] + [role="img"] {
+  bottom: 2px
+}
+
+.\[\&_\>_\[role\=\"img\"\]_\+_\[role\=\"img\"\]\]\:shr-right-\[-4px\] > [role="img"] + [role="img"] {
+  right: -4px
+}
+
 .\[\&_li\:hover\]\:-shr-mx-0\.25 li:hover {
   margin-left: -4px;
   margin-right: -4px
@@ -3711,6 +3939,10 @@
 .\[\&_li\:hover\]\:shr-px-0\.25 li:hover {
   padding-left: 4px;
   padding-right: 4px
+}
+
+.\[\&_li\]\:shr-min-w-0 li {
+  min-width: 0
 }
 
 .\[\&_svg\]\:shr-block svg {
