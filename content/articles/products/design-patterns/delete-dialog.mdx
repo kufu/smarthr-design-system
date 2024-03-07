@@ -30,11 +30,16 @@ import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
 削除に伴い、削除されるオブジェクト以外にも影響が生じる場合には、ユーザーがその影響を理解したうえで処理を実行するか判断できるような情報も必ず伝えます。
 
 ## 構成
-ダイアログ内の文言は、以下の要素で構成されています。
+
+確認メッセージは、[ActionDialog](../../components/dialog#h3-1)を使って表示します。
+ダイアログ内の要素は、以下で構成されています。
 
 1. タイトル
 2. 本文
-3. アクションボタン
+3. 削除対象
+4. 注意事項
+5. 確認のチェックボックス
+6. アクションボタン
 
 export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
