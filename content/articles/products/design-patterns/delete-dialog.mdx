@@ -7,9 +7,16 @@ order: 9
 import { useEffect, useState } from 'react'
 import {
   ActionDialog,
+  BaseColumn,
   Button,
+  Checkbox,
+  Cluster,
+  DefinitionList,
   Dialog,
   MessageDialog,
+  ResponseMessage,
+  Stack,
+  Text,
 } from 'smarthr-ui'
 import { ComponentPreview } from '@Components/ComponentPreview'
 
@@ -45,10 +52,10 @@ export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button variant="danger" onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
+      <Button variant="danger" onClick={() => setIsOpen(true)}>削除の確認ダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
-        title="{オブジェクト名}を削除しますか？"
+        title="{オブジェクト名}の削除"
         closeText="キャンセル"
         actionText="削除"
         actionTheme="danger"
@@ -56,14 +63,28 @@ export const DynamicActionDialog = () => {
         onClickAction={()=> {setIsOpen(false)}}
       >
         <div style={{'boxSizing': 'border-box', 'width': '640px', 'padding': '24px'}}>
-          <p style={{'margin': 0}}>
-          {'【{オブジェクトのインスタンス名}】を削除します。'}<br />
-          {'{関連するオブジェクト名など}に登録されているデータも削除されます。'}<br />
-          {'削除した{オブジェクト名}は元に戻せません。'}
-          </p>
-          <p style={{'marginBottom': 0}}>
-          {'{オブジェクト名}を削除しますか？'}
-          </p>
+          <Stack gap={1}>
+            <p style={{'margin' : 0}}>
+            {'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}
+            </p>
+            <DefinitionList 
+              items = {[
+                {
+                  term: (<Text styleType="blockTitle" color="TEXT_BLACK">{'削除する{オブジェクト名}'}</Text>),
+                  description: '{インスタンス名}',
+                }
+              ]}
+            />
+            <Stack gap={0.5}>
+              <BaseColumn>
+                <ResponseMessage type="warning"><Text weight="bold">注意事項</Text></ResponseMessage>
+                <p>{`{付随して発生する影響についての説明が入ります。}`}</p>
+              </BaseColumn>
+              <BaseColumn>
+                <p style={{'margin' : '0'}}>チェックボックスの入れ方おしえて！</p>
+              </BaseColumn>
+            </Stack>
+          </Stack>
         </div>
       </ActionDialog>
     </>
