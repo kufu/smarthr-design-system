@@ -46,6 +46,8 @@ import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
 5. 確認のチェックボックス
 6. アクションボタン
 
+![ダイアログ内の要素](./images/delete-dialog/delete-confirmation-components.png)
+
 export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -131,6 +133,7 @@ export const DynamicActionDialog = () => {
 
 チェックボックスを設ける場合は、チェックを入れずにアクションボタンを押すと、エラーを返すようにします。。
 
+![チェックを入れずにアクションボタンを押すと、エラーを返す](./images/delete-dialog/delete-confirmation-unchecked-submit-error.png)
 
 ### 6. アクションボタン
 
