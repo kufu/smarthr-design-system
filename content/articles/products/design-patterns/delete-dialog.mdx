@@ -165,7 +165,7 @@ export const DynamicCancelActionDialog = () => {
       <Button variant="danger" onClick={() => setIsOpen(true)}>取り消し操作時のダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
-        title="{操作名}を取り消しますか？"
+        title="{操作名}の取り消し"
         closeText="キャンセル"
         actionText="取り消し"
         actionTheme="danger"
@@ -173,7 +173,7 @@ export const DynamicCancelActionDialog = () => {
         onClickAction={()=> {setIsOpen(false)}}
       >
         <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
-          {'{操作名}を取り消します。'}<br />
+          {'{操作名}を取り消しますか？'}<br />
           {'「取り消し」を押すと変更内容が破棄されます。'}
         </div>
       </ActionDialog>
