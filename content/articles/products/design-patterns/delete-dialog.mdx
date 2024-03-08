@@ -63,7 +63,7 @@ export const DynamicActionDialog = () => {
         onClickAction={()=> {setIsOpen(false)}}
       >
         <div style={{'boxSizing': 'border-box', 'width': '640px', 'padding': '24px'}}>
-          <Stack gap={1}>
+          <Stack gap={1.5}>
             <p style={{'margin' : 0}}>
             {'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}
             </p>
@@ -78,7 +78,7 @@ export const DynamicActionDialog = () => {
             <Stack gap={0.5}>
               <BaseColumn>
                 <ResponseMessage type="warning"><Text weight="bold">注意事項</Text></ResponseMessage>
-                <p>{`{付随して発生する影響についての説明が入ります。}`}</p>
+                <p style={{'marginBottom' : 0}}>{`{付随して発生する影響についての説明が入ります。}`}</p>
               </BaseColumn>
               <BaseColumn>
                 <p style={{'margin' : '0'}}>チェックボックスの入れ方おしえて！</p>
