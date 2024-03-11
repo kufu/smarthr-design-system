@@ -112,6 +112,7 @@ export const DynamicActionDialog = () => {
 
 `以下の{オブジェクト名}を削除しますか？ この操作は元に戻せません。`
 
+
 ### 3. 削除対象
 
 [DefinitionList](../../components/definition-list/)を使い、削除対象のオブジェクト名およびインスタンス名を提示します。
@@ -119,6 +120,15 @@ export const DynamicActionDialog = () => {
 ![DefinitionListで提示した削除対象](./images/delete-dialog/delete-confirmation-object-to-be-deleted.png)
 
 なお、DefinitionListのtermは、ダイアログ内の最上位の見出しなので、[ブロックタイトル](../../components/heading/#h3-2)になります。
+
+#### 削除対象の省略
+
+オブジェクト詳細画面で削除ボタンを押すなど、他のオブジェクトと取り違える可能性が明らかに低い場合、削除対象を省略しても構いません。その場合、[2. 本文](#h3-2)は、
+
+- `選択した{オブジェクト名}を削除しますか？（後略）`
+- `この{オブジェクト名}を削除しますか？（後略）`
+
+のようになります。
 
 ### 4. 注意事項
 
