@@ -9,7 +9,7 @@ import {
   ActionDialog,
   BaseColumn,
   Button,
-  Checkbox,
+  CheckBox,
   DefinitionList,
   Dialog,
   ResponseMessage,
@@ -59,8 +59,8 @@ export const DynamicActionDialog = () => {
         closeText="キャンセル"
         actionText="削除"
         actionTheme="danger"
-        onClickClose={()=> {setIsOpen(false)}}
-        onClickAction={()=> {setIsOpen(false)}}
+        onClickClose={() => {setIsOpen(false)}}
+        onClickAction={() => {setIsOpen(false)}}
       >
         <div style={{'boxSizing': 'border-box', 'width': '640px', 'padding': '24px'}}>
           <Stack gap={1.5}>
@@ -84,7 +84,9 @@ export const DynamicActionDialog = () => {
                 </ul>
               </BaseColumn>
               <BaseColumn>
-                <p style={{'margin' : '0'}}>チェックボックスの入れ方おしえて！</p>
+                <CheckBox name="1">
+                  注意事項を確認しました。
+                </CheckBox>
               </BaseColumn>
             </Stack>
           </Stack>
