@@ -23,7 +23,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 <BaseColumn>
   <WarningIcon text={
     <span>
-  Tooltipは気づきにくいなどの課題があるため、安易な使用はお勧めしません。基本的にはTooltip以外のUIを使用することを検討してください。
+  Tooltipはユーザーが能動的に表示しなければならない、拡大表示時に領域外に表示されてしまうなどの課題があるため、安易な使用はお勧めしません。基本的にはTooltip以外のUIを使用することを検討してください。
     </span>}
     />
 </BaseColumn>
@@ -48,18 +48,17 @@ Tooltip内の情報は隠れるため、操作に必要な情報の表示への�
 - 操作補助になる情報（ショートカットなど）
 
 
-### 推奨ではないが使用しても構わないケース
-- ユーザーの操作過程で「確認が必ずしも必要ではない程度」の付加的な情報を表示する目的での使用
-- Tooltipによる表示が提供されているコンポーネントにおいて、利用基準に沿った使用（<a href="/products/components/line-clamp/">LineClamp</a>、SearchInput、<a href="/products/components/button/">Button</a>（`disabledDetail` props 使用時））
-    - 各コンポーネントに関して
-        - LineClamp
-            - 折り返して表示することがどうしても難しい場合のみ使う
-        - SearchInput
-            - リトライするためのメッセージが見える場所に必ず表示されるようにしたうえで、Tooltipのメッセージは補助として使う
-        - Buttonの`disabledDetail`
-            - <a href="/products/components/dropdown/dropdown-menu-button/">DropdownMenuButton</a> で Buttonを使用するときに仕方なく使う
-            - Button単独の場合でも、ユーザーの操作過程で「確認が必ずしも必要ではない程度」の付加的な情報を表示する目的での使用は構わない
-            - 上記以外のケースはTooltipを使わずにdisabledである理由を見える場所に表示する
+### 例外
+- ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的での使用
+- Tooltipによる表示が提供されているコンポーネントにおいて、利用基準に沿った使用
+  - [LineClamp](/products/components/line-clamp/)
+    - 折り返して表示することがどうしても難しい場合
+  - [SearchInput](/products/components/input/search-input/)
+    - 検索したキーワードに該当する情報がなかった場合、ユーザーへのフィードバックとして検索条件が見える場所に必ず表示されるようにしたうえで、補助としてTooltipのメッセージを使う場合
+  - [Button](/products/components/button/) の `disabledDetail` props 使用時
+    - [DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/) 内のButtonで使う場合（配置できるスペースがドロップダウン内に限られるため仕方なく使う）
+    - Button単独の場合でも、ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的で使う場合
+    - 上記以外のケースは、Tooltipを使わずにdisabledである理由を見える場所に表示する
 
 ## 種類
 Tooltipはトリガー要素に`focus`や`hover`で表示します。詳しくは[トリガーパターン](#h3-3)を参照してください。
