@@ -67,7 +67,7 @@ SmartHR UI では特に種類の指定をしない場合はSecondaryになりま
 破壊的なアクション（データの永久消去など）の実行前に、ユーザーに一歩立ち止まって考えてもらいたいときに使います。
 
 - Dangerボタンが頻出すると効果がありません。
-- ユーザーにこのアクションを実行させる場合は、必ず確認を求めるステップを追加してください。（例：[削除の確認メッセージ](/products/design-patterns/delete-dialog/)）
+- 主に[削除ダイアログ](/products/design-patterns/delete-dialog/)）で使います。削除ダイアログを呼び出すボタンにはDangerボタンを使いません。
 - すべてのユーザーが色を見たり、理解できるわけではないため、警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h3-8)）に頼らないでください。ボタン配置のコンテキストやラベルテキストは重要です。
 
 ```tsx editable codeBlock
