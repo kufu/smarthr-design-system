@@ -46,7 +46,7 @@ import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
 5. 確認のチェックボックス（任意）
 6. アクションボタン
 
-![ダイアログ内の要素](./images/delete-dialog/delete-confirmation-components.png)
+![ダイアログ内の要素](./images/delete-dialog/delete-dialog_components.png)
 
 export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -117,7 +117,7 @@ export const DynamicActionDialog = () => {
 
 [DefinitionList](../../components/definition-list/)を使い、削除対象のオブジェクト名およびインスタンス名を提示します。
 
-![DefinitionListで提示した削除対象](./images/delete-dialog/delete-confirmation-object-to-be-deleted.png)
+![DefinitionListで提示した削除対象](./images/delete-dialog/delete-dialog_object-to-be-deleted.png)
 
 なお、DefinitionListのtermは、ダイアログ内の最上位の見出しなので、[ブロックタイトル](../../components/heading/#h3-2)になります。
 
@@ -151,7 +151,7 @@ export const DynamicActionDialog = () => {
 
 チェックボックスを設ける場合は、チェックを入れずにアクションボタンを押すと、エラーを返すようにします。
 
-![チェックを入れずにアクションボタンを押すと、エラーを返す](./images/delete-dialog/delete-confirmation-unchecked-submit-error.png)
+![チェックを入れずにアクションボタンを押すと、エラーを返す](./images/delete-dialog/delete-dialog_unchecked-submit-error.png)
 
 ### 6. アクションボタン
 
