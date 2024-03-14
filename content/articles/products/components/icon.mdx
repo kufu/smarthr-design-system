@@ -9,12 +9,12 @@ import { ComponentStory } from '@Components/ComponentStory'
 import {
   FaAddressBookIcon,
   FaAddressCardIcon,
-  FaAngleDoubleDownIcon,
-  FaAngleDoubleLeftIcon,
-  FaAngleDoubleRightIcon,
-  FaExternalLinkAltIcon,
-  FaPlusCircleIcon,
-  FaQuestionCircleIcon
+  FaAnglesDownIcon,
+  FaAnglesLeftIcon,
+  FaAnglesRightIcon,
+  FaUpRightFromSquareIcon,
+  FaCirclePlusIcon,
+  FaCircleQuestionIcon
 } from 'smarthr-ui'
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
@@ -40,9 +40,9 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 <>
   <FaAddressBookIcon />
   <FaAddressCardIcon />
-  <FaAngleDoubleDownIcon />
-  <FaAngleDoubleLeftIcon />
-  <FaAngleDoubleRightIcon />
+  <FaAnglesDownIcon />
+  <FaAnglesLeftIcon />
+  <FaAnglesRightIcon />
 </>
 ```
 
@@ -56,7 +56,7 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 
 ```tsx editable codeBlock
 <Button variant="primary" square>
-  <FaPlusCircleIcon alt="追加" />
+  <FaCirclePlusIcon alt="追加" />
 </Button>
 ```
 
@@ -70,8 +70,8 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 
 | 使用箇所 | 設置するアイコン | 備考 |
 | :--- | :--- | :--- |
-| 新規ウィンドウで開くテキストリンク | **テキストの右側**に <FaExternalLinkAltIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaExternalLinkAltIcon`）を配置（必須） | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウ（新規タブ）で開く場合は表示します。 |
-| [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンク | **テキストの左側**に <FaQuestionCircleIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaQuestionCircleIcon`）を配置（推奨） | 詳細は[ヘルプページへの動線](/products/design-patterns/help-link/#h3-2)を参照してください。 |
+| 新規ウィンドウで開くテキストリンク | **テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を配置（必須） | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウ（新規タブ）で開く場合は表示します。 |
+| [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンク | **テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置（推奨） | 詳細は[ヘルプページへの動線](/products/design-patterns/help-link/#h3-2)を参照してください。 |
 
 
 ## 参考文献
