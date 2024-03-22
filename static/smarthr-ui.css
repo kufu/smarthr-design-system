@@ -26,6 +26,10 @@ input {
   padding-inline: unset
 }
 
+a {
+  color: inherit
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -241,6 +245,10 @@ input {
   top: 2px
 }
 
+.shr-z-fixed-menu {
+  z-index: 100
+}
+
 .shr-z-overlap {
   z-index: 10500
 }
@@ -263,6 +271,16 @@ input {
 
 .shr-m-auto {
   margin: auto
+}
+
+.-shr-mx-0 {
+  margin-left: 0;
+  margin-right: 0
+}
+
+.-shr-mx-0\.75 {
+  margin-left: -12px;
+  margin-right: -12px
 }
 
 .-shr-mx-1 {
@@ -444,6 +462,41 @@ input {
   box-sizing: content-box
 }
 
+.shr-line-clamp-\[2\] {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2
+}
+
+.shr-line-clamp-\[3\] {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3
+}
+
+.shr-line-clamp-\[4\] {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4
+}
+
+.shr-line-clamp-\[5\] {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5
+}
+
+.shr-line-clamp-\[6\] {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6
+}
+
 .shr-block {
   display: block
 }
@@ -498,10 +551,6 @@ input {
 
 .shr-h-\[1\.75rem\] {
   height: 1.75rem
-}
-
-.shr-h-\[40px\] {
-  height: 40px
 }
 
 .shr-h-\[43px\] {
@@ -1701,22 +1750,6 @@ input {
   border-width: 4px
 }
 
-.shr-border-b-\[3px\] {
-  border-bottom-width: 3px
-}
-
-.shr-border-l-0 {
-  border-left-width: 0px
-}
-
-.shr-border-r-0 {
-  border-right-width: 0px
-}
-
-.shr-border-t-0 {
-  border-top-width: 0px
-}
-
 .shr-border-solid {
   border-style: solid
 }
@@ -2129,6 +2162,10 @@ input {
   padding-top: 4px
 }
 
+.shr-pt-1 {
+  padding-top: 16px
+}
+
 .shr-text-left {
   text-align: left
 }
@@ -2380,6 +2417,10 @@ input {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
 }
 
+.\[box-shadow\:_0_-4px_8px_2px_rgba\(0\2c _0\2c _0\2c _0\.24\)\] {
+  box-shadow: 0 -4px 8px 2px rgba(0, 0, 0, 0.24)
+}
+
 .\[clip-path\:inset\(100\%\)\] {
   -webkit-clip-path: inset(100%);
           clip-path: inset(100%)
@@ -2439,6 +2480,13 @@ input {
   outline: none;
   isolation: isolate;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
+.aria-selected\:shr-border-b-shorthand[aria-selected="true"] {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #d6d3d0
 }
 
 @media (prefers-contrast: more) {
@@ -2948,11 +2996,6 @@ input {
   content: var(--tw-content)
 }
 
-.after\:shr-content-\[\'\'\]::after {
-  --tw-content: '';
-  content: var(--tw-content)
-}
-
 .after\:\[clip-path\:polygon\(0_0\2c 100\%_0\2c 50\%_100\%\)\]::after {
   content: var(--tw-content);
   -webkit-clip-path: polygon(0 0,100% 0,50% 100%);
@@ -3015,6 +3058,10 @@ input {
 .hover\:shr-border-main-darken:hover {
   --tw-border-opacity: 1;
   border-color: rgb(0 104 174 / var(--tw-border-opacity))
+}
+
+.hover\:shr-border-transparent:hover {
+  border-color: transparent
 }
 
 .hover\:shr-border-white-darken:hover {
@@ -3082,6 +3129,10 @@ input {
   border-color: rgb(0 104 174 / var(--tw-border-opacity))
 }
 
+.focus-visible\:shr-border-transparent:focus-visible {
+  border-color: transparent
+}
+
 .focus-visible\:shr-border-white-darken:focus-visible {
   --tw-border-opacity: 1;
   border-color: rgb(242 242 242 / var(--tw-border-opacity))
@@ -3099,6 +3150,10 @@ input {
 
 .focus-visible\:shr-bg-overlay:focus-visible {
   background-color: rgba(3,3,2,0.15)
+}
+
+.focus-visible\:shr-bg-transparent:focus-visible {
+  background-color: transparent
 }
 
 .focus-visible\:shr-bg-white-darken:focus-visible {
@@ -3433,6 +3488,23 @@ input {
   display: none
 }
 
+.aria-selected\:shr-relative[aria-selected="true"] {
+  position: relative
+}
+
+.aria-selected\:shr-h-\[40px\][aria-selected="true"] {
+  height: 40px
+}
+
+.aria-selected\:shr-border-b-\[3px\][aria-selected="true"] {
+  border-bottom-width: 3px
+}
+
+.aria-selected\:shr-border-main[aria-selected="true"] {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 119 199 / var(--tw-border-opacity))
+}
+
 .aria-selected\:shr-bg-main[aria-selected="true"] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity))
@@ -3441,6 +3513,11 @@ input {
 .aria-selected\:shr-bg-main-darken[aria-selected="true"] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+}
+
+.aria-selected\:shr-text-black[aria-selected="true"] {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity))
 }
 
 .aria-selected\:shr-text-white[aria-selected="true"] {
@@ -3568,6 +3645,10 @@ input {
 .\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto {
   margin-top: auto;
   margin-bottom: auto
+}
+
+.\[\&\&\&\]\:-shr-mb-0\.25.\[\&\&\&\]\:-shr-mb-0\.25.\[\&\&\&\]\:-shr-mb-0\.25 {
+  margin-bottom: -4px
 }
 
 .\[\&\&\&\]\:shr-cursor-pointer.\[\&\&\&\]\:shr-cursor-pointer.\[\&\&\&\]\:shr-cursor-pointer {
@@ -3861,6 +3942,10 @@ input {
   }
 }
 
+.\[\&\]\:shr-box-border {
+  box-sizing: border-box
+}
+
 .\[\&\]\:shr-items-center {
   align-items: center
 }
@@ -3874,13 +3959,27 @@ input {
   border-color: rgb(224 30 90 / var(--tw-border-opacity))
 }
 
+.\[\&\]\:shr-bg-transparent {
+  background-color: transparent
+}
+
 .\[\&\]\:shr-p-0\.75 {
   padding: 12px
+}
+
+.\[\&\]\:shr-px-0\.25 {
+  padding-left: 4px;
+  padding-right: 4px
 }
 
 .\[\&\]\:shr-px-0\.75 {
   padding-left: 12px;
   padding-right: 12px
+}
+
+.\[\&\]\:shr-text-grey {
+  --tw-text-opacity: 1;
+  color: rgb(112 109 101 / var(--tw-text-opacity))
 }
 
 .\[\&\]\:shr-shadow-none {
@@ -3897,6 +3996,10 @@ input {
 .\[\&\]\:hover\:shr-bg-main-darken:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+}
+
+.\[\&\]\:hover\:shr-bg-transparent:hover {
+  background-color: transparent
 }
 
 .\[\&\]\:hover\:shr-bg-warning-yellow-darken:hover {
@@ -4163,4 +4266,8 @@ input {
 
 .\[\&_tr_\+_tr_th\]\:shr-border-\[theme\(backgroundColor\[head-darken\]\)\] tr + tr th {
   border-color: #e2dfda
+}
+
+.\[\&_ul\]\:shr-list-none ul {
+  list-style-type: none
 }
