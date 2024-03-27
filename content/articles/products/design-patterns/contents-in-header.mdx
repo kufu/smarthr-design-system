@@ -12,45 +12,121 @@ import { FaQuestionCircleIcon } from 'smarthr-ui'
 
 ヘッダーの構造は、大きく2つの領域によって構成されています。
 
-1. グローバルヘッダー（上）
-2. ［WIP］アプリナビゲーション（下）
+- A. [グローバルヘッダー（上）](#h2-0)
+- B. [アプリナビゲーション（下）](#h2-1)
 
 ![ヘッダーの構成](./images/navigation/header-anatomy.png)
 
-### 1. グローバルヘッダー
+## A. グローバルヘッダー
 
 グローバルヘッダーは、システム設定・通知・機能間の移動などのシステム全体の機能への横断的なアクセスを提供します。
-この領域を構成する主な要素は次の通りです。
 
-- [SmartHRロゴ](#h4-0)
-- [ヘルプボタン](#h4-1)
-- ［WIP］企業アカウント切替ボタン
-- ［WIP］ユーザーアカウントボタン
+### 構成
 
-#### SmartHRロゴ
+構成要素は次のとおりです。  
+構成要素の必須項目以外は任意の要素です。機能によって使用有無を判断してください。
 
-SmartHRの基本機能のトップページへ移動するためのボタンです。
-すべてのグローバルヘッダーに必ず配置します。
+1. [SmartHRロゴ](#h4-0)（必須）
+2. [企業アカウント切替ボタン](#h4-1)
+3. [ヘルプボタン](#h4-2)（必須）
+4. [アプリランチャー](#h4-3)
+5. [ユーザーアカウントボタン](#h4-4)
+
+![グローバルヘッダーの構成](./images/navigation/global-header-anatomy.png)
+
+#### A-1. SmartHRロゴ
+
+SmartHRの基本機能のトップページへ移動するためのボタンです。  
+すべてのグローバルヘッダーに必ず配置します。  
 移動先は、SmartHR基本機能のトップページです。
 
 - ロゴの表示には、[SmartHRLogo](/products/components/smarthr-logo/)を使います。
 - ロゴを使用する際は、[基本要素](/basics/logos/)のガイドラインに準拠します。
 
-![グローバルヘッダーにSmartHRロゴを配置した例](./images/navigation/smarthrlogo-in-global-header.png)
+![グローバルヘッダーにSmartHRロゴを配置した例](./images/navigation/smarthrlogo.png)
 
-#### ヘルプボタン
+#### A-2. 企業アカウント切替ボタン
 
-SmartHRの基本機能と各オプション機能に対応した[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ移動するためのボタンです。
+［WIP］
+
+#### A-3. ヘルプボタン
+
+SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ移動するためのボタンです。  
 すべてのグローバルヘッダーに必ず配置します。
 
 - テキストリンクの左に <FaQuestionCircleIcon alt="ヘルプ" /> アイコン（`FaQuestionCircleIcon`）を配置します。
 - アイコンの色は、テキストの色に準拠して[`WHITE`](/products/design-tokens/color/#h2-0)とします。
 
-![ヘルプボタンの構成](./images/navigation/help-button.png)
+![ヘルプボタン](./images/navigation/help-button.png)
 
-移動先は機能によって異なります。
+移動先は、基本的に https://support.smarthr.jp/ja/ で統一します。  
+ただし、ユーザーがプロダクト上で日本語以外を表示設定している場合は、対応する言語のヘルプセンターへ移動するようにします。
 
-| 機能 | 移動先 | 備考 |
-| :--- | :--- | :--- |
-| 基本機能 | ヘルプセンターのトップページ |  |
-| オプション機能 | ヘルプセンターのアプリごとに対応したセクションページ | 例：年末調整のグローバルヘッダーのヘルプボタンをクリックすると、年末調整のヘルプページへ移動します。 |
+| 言語の例 | 移動先 |
+| :--- | :--- |
+| 日本語 | https://support.smarthr.jp/ja/ |
+| 英語 | https://support.smarthr.jp/en-us/ |
+| 韓国語 | https://support.smarthr.jp/ko/ |
+| ベトナム語 | https://support.smarthr.jp/vi/ |
+| 中国語（簡体） | https://support.smarthr.jp/zh-cn/ |
+| 中国語（繁体） | https://support.smarthr.jp/zh-tw/ |
+| ポルトガル語 | https://support.smarthr.jp/pt/ |
+
+#### A-4. アプリランチャー
+
+![閉じた状態のアプリランチャー](./images/navigation/app-launcher.png)
+
+![開いた状態のアプリランチャー](./images/navigation/opened-app-launcher-in-global-header.png)
+
+#### A-5. ユーザーアカウントボタン
+
+［WIP］
+
+### レイアウト
+
+［WIP］
+
+## B. アプリナビゲーション
+
+アプリナビゲーションは、アクセスしている機能に応じたアプリケーション内のページや設定などへの横断的なアクセスを提供します。
+
+### 構成
+
+構成要素は次のとおりです。  
+構成要素の必須項目以外は任意の要素です。機能によって使用有無を判断してください。
+
+1. [機能名](#h4-5)（必須）
+2. [アプリナビゲーションボタン](#h4-6)（必須）
+3. [データ同期ボタン](#h4-7)
+4. [リリースノートボタン](#h4-8)
+
+![アプリナビゲーションの構成](./images/navigation/app-navigation-anatomy.png)
+
+#### B-1. 機能名
+
+現在アクセスしている機能名を表示します。  
+すべてのアプリナビゲーションに必ず配置します。
+
+![機能名の構成](./images/navigation/app-name.png)
+
+#### B-2. アプリナビゲーションボタン
+
+現在アクセスしている機能内のページへ移動するためのボタンです。  
+ページの構成が階層構造になっている場合は、ドロップダウンメニューで階層内のページを一覧表示します。
+すべてのアプリナビゲーションに必ず配置します。
+
+![アプリナビゲーションボタンの構成](./images/navigation/app-navigation-button.png)
+
+#### B-3. データ同期ボタン
+
+![データ同期ボタンの構成](./images/navigation/data-sync-button.png)
+
+#### B-4. リリースノートボタン
+
+![リリースノートボタンの構成](./images/navigation/release-note-button.png)
+
+### レイアウト
+
+要素間の余白は以下のとおりです。詳細は[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
+
+![アプリナビゲーションのレイアウト](./images/navigation/app-navigation-layout.png)
