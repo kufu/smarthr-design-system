@@ -22,6 +22,10 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 例えば、画面の初期表示で複数の箇所にローディングアイコンを表示するのは避け、画面全体のローディングに置き換えてください。
 
+## 読み込みが1秒未満で終わる場合は使用しない
+
+読み込み時間1秒未満の場合は、画面のチラつきが生まれて体験を損なうので使用しないようにしてください。
+
 ## Props
 
 <ComponentPropsTable name="Loader" />
