@@ -61,6 +61,7 @@ const login: Login = async (password, clearInput, setErrMessage, updateLoginStat
   clearInput()
   setErrMessage('')
 
+  // プライベートコンテンツの存在をチェックしてログインを判定
   const res = await fetch(PRIVATE_DOC_PATH, {
     method: 'HEAD',
     redirect: 'manual',
