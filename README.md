@@ -11,7 +11,8 @@ main branch: https://smarthr-design-system.netlify.app
 1. Clone this repo
 2. In the terminal, navigate (`cd`) to the repo directory
 3. `yarn` to install dependencies
-4. `yarn dev` to start the dev server
+4. rename `.env.example` to `.env`
+5. `yarn dev` to start the dev server
 
 ## 開発の進め方
 
