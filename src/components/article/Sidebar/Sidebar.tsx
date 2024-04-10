@@ -75,6 +75,7 @@ const NavWrapper = styled.div`
   }
 `
 
+// eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
 const SpSidebar = styled.div`
   display: none;
 

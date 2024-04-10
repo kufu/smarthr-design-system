@@ -364,6 +364,7 @@ const Main = styled.main`
   }
 `
 
+// eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
 const MainSidebar = styled.div`
   grid-area: sidebar;
   box-sizing: border-box;
