@@ -1,7 +1,7 @@
-const convertToIndexV3 = (index ) => {
-  const { entries } = index;
+const convertToIndexV3 = (index) => {
+  const { entries } = index
   const stories = Object.entries(entries).reduce((acc, [id, entry]) => {
-    const { type, ...rest } = entry;
+    const { type, ...rest } = entry
     acc[id] = {
       ...rest,
       kind: rest.title,
@@ -11,14 +11,14 @@ const convertToIndexV3 = (index ) => {
         docsOnly: type === 'docs',
         fileName: rest.importPath,
       },
-    };
-    return acc;
-  }, {} );
+    }
+    return acc
+  }, {})
   return {
     v: 3,
     stories,
-  };
-};
+  }
+}
 
 // gatsby-nodeに登録するデータの型定義
 export type UiVersion = {
@@ -161,6 +161,7 @@ export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersio
       }
     })
 
+    console.log(commitHash, 'hash===', chromaticDomain, '=====domain')
     // Chromaticからstories.jsonを取得
     const storiesRes = await fetch(`https://${commitHash}--${chromaticDomain}/index.json`)
     const _storiesJson: StoriesJson = await storiesRes.json()
