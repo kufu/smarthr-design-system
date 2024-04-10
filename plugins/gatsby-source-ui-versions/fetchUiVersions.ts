@@ -1,3 +1,5 @@
+import type { StoryIndex, StoryIndexV3, V3CompatIndexEntry } from '@storybook/types'
+
 // gatsby-nodeに登録するデータの型定義
 export type UiVersion = {
   commitHash: string
@@ -140,11 +142,12 @@ export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersio
     })
 
     // Chromaticからstories.jsonを取得
-    const storiesRes = await fetch(`https://${commitHash}--${chromaticDomain}/stories.json`)
-    const storiesJson: StoriesJson = await storiesRes.json()
+    const indexRes = await fetch(`https://${commitHash}--${chromaticDomain}/index.json`)
+    const indexJson: StoryIndex = await indexRes.json()
+    const storiesJson = convertToIndexV3(indexJson)
 
     // *.stories.tsxのファイルごとに、storyの情報をまとめる
-    const uiStories: { [key: string]: UiStories } = {}
+    const uiStories: { [key: string]: V3CompatIndexEntry } = {}
     for (const story of Object.values(storiesJson.stories)) {
       if (story.parameters.docsOnly === true) continue // Docは除外
       const directoryNames = story.parameters.fileName.replace(/^\.\/src\/components\//, '').split('/')
@@ -175,4 +178,31 @@ export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersio
   }
 
   return versions
+}
+
+// stories.json が消えたための変換
+// via https://github.com/storybookjs/storybook/blob/c67bf6785fdc67510721444aea6cacf3e3a5c228/MIGRATION.md#removed-storiesjson
+const convertToIndexV3 = (index: StoryIndex): StoryIndexV3 => {
+  const { entries } = index
+  const stories = Object.entries(entries).reduce(
+    (acc, [id, entry]) => {
+      const { type, ...rest } = entry
+      acc[id] = {
+        ...rest,
+        kind: rest.title,
+        story: rest.name,
+        parameters: {
+          __id: rest.id,
+          docsOnly: type === 'docs',
+          fileName: rest.importPath,
+        },
+      }
+      return acc
+    },
+    {} as StoryIndexV3['stories'],
+  )
+  return {
+    v: 3,
+    stories,
+  }
 }
