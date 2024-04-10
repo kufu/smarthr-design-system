@@ -54,9 +54,32 @@ const isExistsFile = async (filePath: string) => {
   }
 }
 
+const convertToIndexV3 = (index ) => {
+  const { entries } = index;
+  const stories = Object.entries(entries).reduce((acc, [id, entry]) => {
+    const { type, ...rest } = entry;
+    acc[id] = {
+      ...rest,
+      kind: rest.title,
+      story: rest.name,
+      parameters: {
+        __id: rest.id,
+        docsOnly: type === 'docs',
+        fileName: rest.importPath,
+      },
+    };
+    return acc;
+  }, {} );
+  return {
+    v: 3,
+    stories,
+  };
+};
+
 export const fetchComponentCaptures = async () => {
-  const response = await fetch(`${STORYBOOK_URL}/stories.json`)
-  const jsonData = await response.json()
+  const response = await fetch(`${STORYBOOK_URL}/index.json`)
+  const _jsonData = await response.json()
+  const jsonData = convertToIndexV3(_jsonData)
   const storiesMap: { [id: string]: Story } = jsonData.stories
 
   const storyGroups: StoryGroup[] = []
