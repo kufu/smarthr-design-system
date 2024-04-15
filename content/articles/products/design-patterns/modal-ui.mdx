@@ -34,7 +34,7 @@ order: 10
 
 モーダルなUIのうち、最も典型的なものが、モーダルダイアログです。SmartHR UIでは[ActionDialog](../../components/dialog/#h3-1)と[MessageDialog](../../components/dialog/#h3-2)の2種類がありますが、基本的にはActionDialogを使います。
 
-ActionDialogの画像
+![ActionDialog](./images/modal-ui/modal-ui_actiondialog.png)
 
 モーダルダイアログの表示中、下の画面はスクリム（幕）で隠され、ダイアログを閉じるか、このモードの目的であるタスクを完了するまで、ダイアログ外の操作はできません。
 
@@ -46,10 +46,9 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 表示する情報が多く、ダイアログではスクロールが多く発生する場合、ページ全体を使ったモードを検討します。
 
+![ページ全体を使ったモード](./images/modal-ui/modal-ui_fullpage.png)
+
 これは、ユーザーの環境によってはファーストビュー以外にも情報が存在することに気づきづらかったり、スクロール（特に横スクロール）がしづらかったりして、ユーザビリティやアクセシビリティが低下するためです。
-
-モーダルページの画像
-
 
 ### ページの一部を使ったモード
 
@@ -67,7 +66,7 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 ## 構成
 
-ActionDialogとページ全体を使ったモードを例に、モーダルなUIの構成を示します。
+[モーダルダイアログ（ActionDialog）](#h3-2)と[ページ全体を使ったモード](#h3-3)を例に、モーダルなUIの構成を示します。
 
 モーダルなUIの多くは、次の要素で構成されます。
 
@@ -76,9 +75,9 @@ ActionDialogとページ全体を使ったモードを例に、モーダルなUI
 3. 入力要素
 4. モードの操作ボタン
 
-ActionDialogの画像（番号つき）
+![ActionDialogの構成](./images/modal-ui/modal-ui_actiondialog_structure.png)
 
-モーダルページの画像（番号つき）
+![ページ全体を使ったモードの構成](./images/modal-ui/modal-ui_fullpage_structure.png)
 
 ### 1. タイトル
 
