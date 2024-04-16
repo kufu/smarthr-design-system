@@ -21,18 +21,14 @@ import { FaUpRightFromSquareIcon, FaCircleQuestionIcon} from 'smarthr-ui'
 新規ウィンドウ（新規タブ）で開くテキストリンクには、**テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を必ず配置します。リンク先がSmartHRの内部ページ、外部サイトに関わらず表示します。
 
 ```tsx editable codeBlock
-<>
   <TextLink href="/" target="_blank">新規ウィンドウで開くテキストリンク</TextLink>
-</>
 ```
 #### ヘルプセンターを開くテキストリンク
 
 [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンクには、**テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置することを推奨します。詳細は[ヘルプページへの動線](/products/design-patterns/help-link/#h3-2)を参照してください。
 
 ```tsx editable codeBlock
-<>
   <TextLink href="/" prefix={<FaCircleQuestionIcon />}>ヘルプセンターを開くテキストリンク</TextLink>
-</>
 ```
 
 ## Props
