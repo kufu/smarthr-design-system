@@ -1,6 +1,6 @@
 ---
 title: 'Icon'
-description: ' '
+description: 'アイデアやアクションを表すための視覚的な要素を表示するためのコンポーネントです。'
 ---
 
 import { ComponentPreview } from '@Components/ComponentPreview'
@@ -12,13 +12,12 @@ import {
   FaAnglesDownIcon,
   FaAnglesLeftIcon,
   FaAnglesRightIcon,
-  FaUpRightFromSquareIcon,
   FaCirclePlusIcon,
-  FaCircleQuestionIcon
+  FaUpRightFromSquareIcon
 } from 'smarthr-ui'
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
-一目でメッセージを伝え、重要な情報への注意を促します。適切なアイコンは、認知を手助けします。
+一目でメッセージを伝え、重要な情報への注意を促します。適切なアイコンは認知を手助けします。
 
 <ComponentStory name="Icon" />
 
@@ -32,19 +31,9 @@ Font Awesomeアイコンはプロダクトに必要なアイコンのみイン�
 
 ## 種類
 
-Font Awesomeのアイコンをすべて網羅したものではありません。
+Font Awesomeから必要なものを取り込んでいます。
 
-実際に登録されてるアイコンを確認する際は、[Storybook](https://story.smarthr-ui.dev/?path=/story/media（メディア）-icon--all)を確認してください。
-
-```tsx editable codeBlock
-<>
-  <FaAddressBookIcon />
-  <FaAddressCardIcon />
-  <FaAnglesDownIcon />
-  <FaAnglesLeftIcon />
-  <FaAnglesRightIcon />
-</>
-```
+実際に登録されてるアイコンは、[Storybook](https://story.smarthr-ui.dev/?path=/story/media（メディア）-icon--all)を確認してください。
 
 ## 状態
 
@@ -64,14 +53,10 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 
 ## デザインパターン
 
-### 特別なテキストリンク
+以下のコンポーネントでアイコンを利用する際は、それぞれのコンポーネントでの利用方法を参照してください。
 
-特定のテキストリンクを表す場合は、以下のアイコンを装飾として使います。これはリンクされるテキストが異なっていても、クリック時に同じ挙動になることを示すためです。
-
-| 使用箇所 | 設置するアイコン | 備考 |
-| :--- | :--- | :--- |
-| 新規ウィンドウで開くテキストリンク | **テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を配置（必須） | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウ（新規タブ）で開く場合は表示します。 |
-| [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンク | **テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置（推奨） | 詳細は[ヘルプページへの動線](/products/design-patterns/help-link/#h3-2)を参照してください。 |
+- [Button](/products/components/button/#h3-7)
+- [TextLink](/products/components/text-link/#h3-0)
 
 
 ## 参考文献
@@ -82,4 +67,4 @@ Font Awesomeのアイコンをすべて網羅したものではありません�
 
 ## Props
 
-<ComponentPropsTable name="FaAddressBookIcon" />
+<ComponentPropsTable name="FaUpRightFromSquareIcon" />
