@@ -364,6 +364,7 @@ const Main = styled.main`
   }
 `
 
+// eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
 const MainSidebar = styled.div`
   grid-area: sidebar;
   box-sizing: border-box;
@@ -526,6 +527,7 @@ const MDXStyledWrapper = styled.div`
     font-size: ${CSS_FONT_SIZE.PX_16};
     line-height: 2.12;
     margin-block: 20px 0;
+    padding-inline-start: 2.5em;
 
     ul,
     ol {

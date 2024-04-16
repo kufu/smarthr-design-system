@@ -1,6 +1,6 @@
 ---
 title: 'Dialog'
-description: ' '
+description: 'ユーザーに集中してほしい確認や操作を表示するためのコンポーネントです。'
 ---
 
 import { ComponentPreview } from '@Components/ComponentPreview'
@@ -212,8 +212,6 @@ export const DynamicModelessDialog = () => {
 * アクションに関わる動詞（動名詞）は、基本的に「の」で接続して表記します。
   * 例えば、オブジェクトの追加のための操作を行なう場合、タイトルは、`[オブジェクト名]の追加`となります。
   * [アクションに関する画面やダイアログのタイトルでは、助詞は「の」を使用する](../../../products/contents/app-writing/#recjyivasdV2xw6rX-0)
-* データを永久に消去するなど、破壊的なアクションを示す際は、ユーザーに確認を促すために疑問形とします。
-  * 例えば、オブジェクトの操作を行なう場合、`[オブジェクト名]の[操作名]をしますか？`とします。（[削除ダイアログ | デザインパターン](../../../products/design-patterns/delete-dialog/)）
 
 #### MessageDialog
 メッセージ確認を促す簡潔な文書を入れます。ユーザーに注意喚起を促す、お知らせをしたいなど、目的に合わせたタイトルを設定してください。

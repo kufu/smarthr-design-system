@@ -1,12 +1,13 @@
 ---
 title: 'Tooltip'
-description: ''
+description: 'UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使うコンポーネントです。'
 ---
 import {
-  FaArrowAltCircleDownIcon,
-  FaArrowAltCircleLeftIcon,
-  FaArrowAltCircleRightIcon,
-  FaArrowAltCircleUpIcon,
+  BaseColumn,
+  FaArrowDownIcon,
+  FaArrowLeftIcon,
+  FaArrowRightIcon,
+  FaArrowUpIcon,
   FaExternalLinkAltIcon,
   FaQuestionCircleIcon,
   FaInfoCircleIcon,
@@ -19,6 +20,13 @@ import { ComponentPreview } from '@Components/ComponentPreview'
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+    Tooltipはユーザーが能動的に表示しなければならない、拡大表示時に領域外に表示されてしまうなどの課題があるため、安易な使用はお勧めしません。基本的にはTooltip以外のUIを使用することを検討してください。
+    </span>}
+    />
+</BaseColumn>
 
 Tooltipコンポーネントは、UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使います。
 
@@ -37,6 +45,20 @@ Tooltip内の情報は隠れるため、操作に必要な情報の表示への�
 重要な情報とは、フォームの入力に必要な情報などが該当します。具体例は次の通りです。
 - パスワードに使用できる文字や、エラーになる入力値などの入力要件
 - 入力エラーとなった際のエラーメッセージ
+- 操作補助になる情報（ショートカットなど）
+
+
+### 例外
+- ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的での使用
+- Tooltipによる表示が提供されているコンポーネントにおいて、利用基準に沿った使用
+  - [LineClamp](/products/components/line-clamp/)
+    - 折り返して表示することがどうしても難しい場合
+  - [SearchInput](/products/components/input/search-input/)
+    - 検索キーワードに該当する検索結果が得られなかったとき、再検索を行なうめのヒントを見える場所に必ず表示したうえで、補助としてTooltipのメッセージを使う場合
+  - [Button](/products/components/button/) の `disabledDetail` props 使用時
+    - [DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/) 内のButtonで使う場合（配置できるスペースがドロップダウン内に限られるため仕方なく使う）
+    - Button単独の場合でも、ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的で使う場合
+    - 上記以外のケースは、Tooltipを使わずにdisabledである理由を見える場所に表示する
 
 ## 種類
 Tooltipはトリガー要素に`focus`や`hover`で表示します。詳しくは[トリガーパターン](#h3-3)を参照してください。
@@ -82,7 +104,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="left"
     vertical="bottom">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleUpIcon color="TEXT_LINK" />
+      <FaArrowUpIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">left & bottom</Text>
     </Cluster>
   </DynamicTooltip>
@@ -93,7 +115,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="center"
     vertical="bottom">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleUpIcon color="TEXT_LINK" />
+      <FaArrowUpIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">center & bottom</Text>
     </Cluster>
   </DynamicTooltip>
@@ -104,7 +126,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="right"
     vertical="bottom">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleUpIcon color="TEXT_LINK" />
+      <FaArrowUpIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">right & bottom</Text>
     </Cluster>
   </DynamicTooltip>
@@ -118,7 +140,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="left"
     vertical="top">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleDownIcon color="TEXT_LINK" />
+      <FaArrowDownIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">left & top</Text>
     </Cluster>
   </DynamicTooltip>
@@ -129,7 +151,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="center"
     vertical="top">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleDownIcon color="TEXT_LINK" />
+      <FaArrowDownIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">center & top</Text>
     </Cluster>
   </DynamicTooltip>
@@ -140,7 +162,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="right"
     vertical="top">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleDownIcon color="TEXT_LINK" />
+      <FaArrowDownIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">right & top</Text>
     </Cluster>
   </DynamicTooltip>
@@ -154,7 +176,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="left"
     vertical="middle">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleRightIcon color="TEXT_LINK" />
+      <FaArrowRightIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">left & middle</Text>
     </Cluster>
   </DynamicTooltip>
@@ -164,7 +186,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="right"
     vertical="middle">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleLeftIcon color="TEXT_LINK" />
+      <FaArrowLeftIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">right & middle</Text>
     </Cluster>
   </DynamicTooltip>
@@ -180,7 +202,7 @@ export const DynamicTooltip = ({children, ...props}) => {
     horizontal="auto"
     vertical="auto">
     <Cluster align="center" gap={0.25}>
-      <FaArrowAltCircleDownIcon color="TEXT_LINK" />
+      <FaArrowDownIcon color="TEXT_LINK" />
       <Text color="TEXT_LINK">auto & auto</Text>
     </Cluster>
   </DynamicTooltip>
@@ -242,6 +264,9 @@ export const DynamicTooltip = ({children, ...props}) => {
 何を対象とした補足説明なのかを明確にするために、可能な限り「[テキスト＋アイコン](#h4-6)」を採用することを推奨します。
 
 アイコンは、マウスオーバーが可能であることを示唆するためにリンク色（[`TEXT_LINK`](/products/design-tokens/color/#h2-2)）を使います。
+
+- アイコン単体で意味が伝わるようであれば、Tooltipは不要です。
+- アイコンに必ず代替テキストを設定します。
 
 ##### テキストとあわせて使用
 <ComponentPreview>
@@ -317,7 +342,6 @@ export const DynamicTooltip = ({children, ...props}) => {
 <ComponentPreview>
   <DynamicTooltip
     message="省略されたすべてのテキストがはいります。"
-    triggerType="icon"
     horizontal="left"
     vertical="bottom">
       <Cluster align="center" gap={0.25}>

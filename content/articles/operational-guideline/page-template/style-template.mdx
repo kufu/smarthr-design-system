@@ -4,7 +4,7 @@ description: 'ページの概要はヘッダーに書けます。ページの概
 order: 1
 ---
 
-import { Button, Cluster, FaPlusCircleIcon, LineUp, Stack, Table, Td, Th, Text } from 'smarthr-ui'
+import { Button, Cluster, FaPlusCircleIcon, Stack, Table, Td, Th, Text } from 'smarthr-ui'
 import { ComponentPreview } from '@Components/ComponentPreview'
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
@@ -121,17 +121,6 @@ SmartHR UI Layoutコンポーネントを使用できます。
   ))}
 </Cluster>
 
-### LineUp
-
-* `align-items`や`justify-content`など`Flexbox`に準じたプロパティを渡せます。
-* `gap`に使える値は`XXS`,`XS`,`S`,`M`,`L`,`XL`、他`1`,`0.5`などの数値です。詳しくはsmarthr-uiのドキュメントを参照してください。
-
-<LineUp gap="XS">
-  {[...Array(10)].map((_, i) => (
-    <div key={i} style={{background: 'black', width: `${100}px`, height: '100px'}} />
-  ))}
-</LineUp>
-
 ### Stack
 
 * 等間隔に隙間を保ち、積み重ねるレイアウトが作れます。
@@ -224,7 +213,7 @@ import imageUrl from './images/sample.jpg';
 
 ## Do And Don&apos;t
 
-<LineUp gap="XS">
+<Cluster gap="XS">
   <DoAndDont
     type="do"
     img={<StaticImage src={imageUrl} alt="Do" width="200" />}
@@ -235,5 +224,5 @@ import imageUrl from './images/sample.jpg';
     img={<StaticImage src={imageUrl} alt="Dont" width="200" />}
     label={<Text>ほげほげ</Text>}
   />
-</LineUp>
+</Cluster>
 
