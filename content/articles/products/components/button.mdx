@@ -1,9 +1,9 @@
 ---
 title: 'Button'
-description: ' '
+description: 'ユーザーが情報の保存や検索などの操作をできるようにするコンポーネントです。'
 ---
 
-import { Button, Cluster, FaCaretDownIcon, FaCloudDownloadAltIcon, FaFilterIcon, FaPlusCircleIcon } from 'smarthr-ui'
+import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
 
@@ -38,10 +38,10 @@ SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="butt
 ```tsx editable codeBlock
 <>
   <Button variant="primary">ボタン</Button>
-  <Button variant="primary" prefix={<FaPlusCircleIcon />}>ボタン</Button>
+  <Button variant="primary" prefix={<FaCirclePlusIcon />}>ボタン</Button>
   <Button variant="primary" suffix={<FaCaretDownIcon />}>ボタン</Button>
   <Button variant="primary" square>
-    <FaPlusCircleIcon alt="追加" />
+    <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
 ```
@@ -55,10 +55,10 @@ SmartHR UI では特に種類の指定をしない場合はSecondaryになりま
 ```tsx editable codeBlock
 <>
   <Button>ボタン</Button>
-  <Button prefix={<FaPlusCircleIcon />}>ボタン</Button>
+  <Button prefix={<FaCirclePlusIcon />}>ボタン</Button>
   <Button suffix={<FaCaretDownIcon />}>ボタン</Button>
   <Button square>
-    <FaPlusCircleIcon alt="追加" />
+    <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
 ```
@@ -73,10 +73,10 @@ SmartHR UI では特に種類の指定をしない場合はSecondaryになりま
 ```tsx editable codeBlock
 <>
   <Button variant="danger">ボタン</Button>
-  <Button variant="danger" prefix={<FaPlusCircleIcon />}>ボタン</Button>
+  <Button variant="danger" prefix={<FaCirclePlusIcon />}>ボタン</Button>
   <Button variant="danger" suffix={<FaCaretDownIcon />}>ボタン</Button>
   <Button variant="danger" square>
-    <FaPlusCircleIcon alt="追加" />
+    <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
 ```
@@ -89,10 +89,10 @@ Secondaryボタンよりもさらに優先度が低いアクションのボタ�
 ```tsx editable codeBlock
 <>
   <Button variant="text">ボタン</Button>
-  <Button variant="text" prefix={<FaPlusCircleIcon />}>ボタン</Button>
+  <Button variant="text" prefix={<FaCirclePlusIcon />}>ボタン</Button>
   <Button variant="text" suffix={<FaCaretDownIcon />}>ボタン</Button>
   <Button variant="text" square>
-    <FaPlusCircleIcon alt="追加" />
+    <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
 ```
@@ -121,8 +121,8 @@ SmartHR UIでは、サイズ（`size`props）で指定できます。
 
 | 種類 | 表示例 | 説明 |
 | :--- | :--- | :--- |
-| `通常` | <Button prefix={<FaPlusCircleIcon />} size="default">ボタン</Button> | 通常のサイズです。 |
-| `小` | <Button prefix={<FaPlusCircleIcon />} size="s">ボタン</Button> | レイアウトの都合上、どうしようもない場合に使うサイズです。 |
+| `通常` | <Button prefix={<FaCirclePlusIcon />} size="default">ボタン</Button> | 通常のサイズです。 |
+| `小` | <Button prefix={<FaCirclePlusIcon />} size="s">ボタン</Button> | レイアウトの都合上、どうしようもない場合に使うサイズです。 |
 
 ### アイコンの有無
 
@@ -134,7 +134,7 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 
 | 種類 | 表示例 | アイコンの役割 |
 | :--- | :--- | :--- |
-| `アイコン付き（左）` | <Cluster><Button prefix={<FaPlusCircleIcon />}>項目を追加</Button><Button prefix={<FaCloudDownloadAltIcon />}>ダウンロード</Button></Cluster> | ボタンのアクション（機能）を表すために使います。<br />同じアクションのボタンには、同じアイコンを採用してください。 |
+| `アイコン付き（左）` | <Cluster><Button prefix={<FaCirclePlusIcon />}>項目を追加</Button><Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button></Cluster> | ボタンのアクション（機能）を表すために使います。<br />同じアクションのボタンには、同じアイコンを採用してください。 |
 | `アイコン付き（右）` | <Cluster><Button suffix={<FaCaretDownIcon />}>一括操作</Button><Button suffix={<FaFilterIcon />}>絞り込み</Button></Cluster> | ドロップダウンのように、ボタン押下後に表示するUIを想起させるために使います。<br />（例：[ドロップダウンメニューボタン](/products/components/dropdown/dropdown-menu-button/)、[Dropdown](/products/components/dropdown/)、[FilterDropdown](/products/components/dropdown/filter-dropdown/)） |
 
 #### アイコンボタン
@@ -144,10 +144,10 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 ```tsx editable codeBlock
 <>
   <Button square>
-    <FaPlusCircleIcon alt="追加" />
+    <FaCirclePlusIcon alt="追加" />
   </Button>
   <Button square size="s">
-    <FaPlusCircleIcon alt="追加" />
+    <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
 ```
@@ -169,9 +169,9 @@ SmartHR UIでは、プレフィックス（`prefix`props）およびサフィッ
 
 ```tsx editable codeBlock noIframe
 <>
-  <Button variant="primary" prefix={<FaPlusCircleIcon />} disabled>ボタン</Button>
-  <Button prefix={<FaPlusCircleIcon />} disabled>ボタン</Button>
-  <Button prefix={<FaPlusCircleIcon />} disabled disabledDetail={{ message: '無効状態の理由（理由を配置するスペースがない場合）' }}>ボタン</Button>
+  <Button variant="primary" prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
+  <Button prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
+  <Button prefix={<FaCirclePlusIcon />} disabled disabledDetail={{ message: '無効状態の理由（理由を配置するスペースがない場合）' }}>ボタン</Button>
 </>
 ```
 
