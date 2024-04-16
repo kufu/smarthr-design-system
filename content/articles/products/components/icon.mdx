@@ -7,9 +7,13 @@ import { ComponentPreview } from '@Components/ComponentPreview'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
 import {
-  FaUpRightFromSquareIcon,
+  FaAddressBookIcon,
+  FaAddressCardIcon,
+  FaAnglesDownIcon,
+  FaAnglesLeftIcon,
+  FaAnglesRightIcon,
   FaCirclePlusIcon,
-  FaCircleQuestionIcon
+  FaUpRightFromSquareIcon
 } from 'smarthr-ui'
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
@@ -49,14 +53,10 @@ Font Awesomeから必要なものを取り込んでいます。
 
 ## デザインパターン
 
-### 特別なテキストリンク
+以下のコンポーネントでアイコンを利用する際は、それぞれのコンポーネントでの利用方法を参照してください。
 
-特定のテキストリンクを表す場合は、以下のアイコンを装飾として使います。これはリンクされるテキストが異なっていても、クリック時に同じ挙動になることを示すためです。
-
-| 使用箇所 | 設置するアイコン | 備考 |
-| :--- | :--- | :--- |
-| 新規ウィンドウで開くテキストリンク | **テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を配置（必須） | リンク先がSmartHRの内部ページ、外部サイトに関わらず新規ウィンドウ（新規タブ）で開く場合は表示します。 |
-| [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンク | **テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置（推奨） | 詳細は[ヘルプページへの動線](/products/design-patterns/help-link/#h3-2)を参照してください。 |
+- [Button](/products/components/button/#h3-7)
+- [TextLink](/products/components/text-link/#h3-0)
 
 
 ## 参考文献
