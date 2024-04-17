@@ -20,6 +20,7 @@ import { FaQuestionCircleIcon } from 'smarthr-ui'
 ## A. グローバルヘッダー
 
 グローバルヘッダーは、システム設定・通知・機能間の移動などのシステム全体の機能への横断的なアクセスを提供します。
+対応するコンポーネントは[`Header`](/products/components/header/)です。
 
 ### 構成
 
@@ -60,21 +61,27 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 ![ヘルプボタン](./images/navigation/help-button.png)
 
 移動先は、基本的に https://support.smarthr.jp/ja/ で統一します。  
-ただし、ユーザーがプロダクト上で日本語以外を表示設定している場合は、対応する言語のヘルプセンターへ移動するようにします。
+ただし、ユーザーがプロダクト上で日本語以外を表示設定している場合は、対応する言語のヘルプセンターへ移動します。
 
 | 言語の例 | 移動先 |
 | :--- | :--- |
 | 日本語 | https://support.smarthr.jp/ja/ |
 | 英語 | https://support.smarthr.jp/en-us/ |
-| 韓国語 | https://support.smarthr.jp/ko/ |
+| ポルトガル語 | https://support.smarthr.jp/pt/ |
 | ベトナム語 | https://support.smarthr.jp/vi/ |
+| 韓国語 | https://support.smarthr.jp/ko/ |
 | 中国語（簡体） | https://support.smarthr.jp/zh-cn/ |
 | 中国語（繁体） | https://support.smarthr.jp/zh-tw/ |
-| ポルトガル語 | https://support.smarthr.jp/pt/ |
 
 #### A-4. アプリランチャー
 
+ユーザーが利用できるSmartHR内の他の機能へ移動するためのボタンです。  
+
+原則として、他の機能とあわせて横断的に利用するユースケースが想定される場合に配置します。
+
 ![閉じた状態のアプリランチャー](./images/navigation/app-launcher.png)
+
+アプリランチャーを押すと、アプリケーションのリンクがカテゴリ別にグルーピングされたドロップダウンが表示されます。
 
 ![開いた状態のアプリランチャー](./images/navigation/opened-app-launcher-in-global-header.png)
 
@@ -89,6 +96,7 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 ## B. アプリナビゲーション
 
 アプリナビゲーションは、アクセスしている機能に応じたアプリケーション内のページや設定などへの横断的なアクセスを提供します。
+対応するコンポーネントは[`AppNavi`](/products/components/app-navi/)です。
 
 ### 構成
 
@@ -107,11 +115,12 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 現在アクセスしている機能名を表示します。  
 すべてのアプリナビゲーションに必ず配置します。
 
-![機能名の構成](./images/navigation/app-name.png)
+![機能名](./images/navigation/app-name.png)
 
 #### B-2. アプリナビゲーションボタン
 
 現在アクセスしている機能内のページへ移動するためのボタンです。  
+
 ページの構成が階層構造になっている場合は、ドロップダウンメニューで階層内のページを一覧表示します。
 すべてのアプリナビゲーションに必ず配置します。
 
@@ -119,11 +128,24 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 
 #### B-3. データ同期ボタン
 
-![データ同期ボタンの構成](./images/navigation/data-sync-button.png)
+SmartHR基本機能の従業員情報や共通設定に登録されているデータを、現在アクセスしている機能のデータベースへ能動的に同期するためのボタンです。  
+
+原則として、ユーザーが現在の同期が最新状態かを判断できるようにするため、前回同期した日時を`最終同期：yyyy/MM/dd H:mm`の形式で併記しますが、スペースに余裕がない場合は省略できます。
+
+![データ同期ボタン](./images/navigation/data-sync-button.png)
 
 #### B-4. リリースノートボタン
 
-![リリースノートボタンの構成](./images/navigation/release-note-button.png)
+現在アクセスしている機能のリリースノートを確認するためのボタンです。  
+
+原則として、リリースノートはホーム画面などユーザーの利用開始の起点となる画面のコンテンツとして配置します。
+ただし、ホーム画面がない機能や、どの画面からもリリースノートにアクセスする可能性がある場合に限り、例外的に配置を検討します。
+
+![閉じた状態のリリースノートボタン](./images/navigation/release-note-button.png)
+
+リリースノートボタンを押すと、最新5件分の日付を含むリリースノートへのリンクと、対応する機能のリリースノートの一覧画面へ移動するリンクが表示されます。  
+
+![開いた状態のリリースノートボタン](./images/navigation/opened-release-note-button-in-app-navigation.png)
 
 ### レイアウト
 
