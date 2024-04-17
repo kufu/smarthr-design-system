@@ -102,6 +102,15 @@ import { ComponentStory } from '@Components/ComponentStory'
 - `差し戻し`、`要○○`：ユーザーがアクションを取ったが、管理者などの第三者が確認した結果、不備があったため、やり直しを依頼している状態
 - `失敗`、`○○失敗`：ユーザーがアクションを取ったが、不備によりシステムエラーが発生し、処理が完了しなかった状態
 
+## 使用上の注意
+### オブジェクト名自体をStatusLabelで表現しない
+
+StatusLabelはオブジェクトの状態を伝えるために利用し、オブジェクト名そのものをStatusLabelで表現しないでください。
+
+### StatusLabelをリンクやアクションボタンの代替にしない
+
+StatusLabel単体でリンクやアクションボタンの機能を持たないようにしてください。オブジェクト名とStatusLabelをまとめてリンクとする場合は許容します。
+
 ## Props
 
 <ComponentPropsTable name="StatusLabel" />
