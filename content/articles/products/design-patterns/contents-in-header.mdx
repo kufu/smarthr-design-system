@@ -15,7 +15,7 @@ import { FaQuestionCircleIcon } from 'smarthr-ui'
 - A. [グローバルヘッダー（上）](#h2-0)
 - B. [アプリナビゲーション（下）](#h2-1)
 
-![ヘッダーの構成](./images/navigation/header-anatomy.png)
+![ヘッダーの構成](./images/contents-in-header/header-anatomy.png)
 
 ## A. グローバルヘッダー
 
@@ -30,7 +30,7 @@ import { FaQuestionCircleIcon } from 'smarthr-ui'
 4. [アプリランチャー](#h4-3)（任意）
 5. [ユーザーアカウントボタン](#h4-4)（任意）
 
-![グローバルヘッダーの構成](./images/navigation/global-header-anatomy.png)
+![グローバルヘッダーの構成](./images/contents-in-header/global-header-anatomy.png)
 
 #### A-1. SmartHRロゴ
 
@@ -40,7 +40,7 @@ SmartHRのホーム（`/`）へ移動するためのボタンです。
 - ロゴの表示には、[SmartHRLogo](/products/components/smarthr-logo/)を使います。
 - ロゴを使用する際は、[基本要素](/basics/logos/)のガイドラインに準拠します。
 
-![グローバルヘッダーにSmartHRロゴを配置した例](./images/navigation/smarthrlogo.png)
+![グローバルヘッダーにSmartHRロゴを配置した例](./images/contents-in-header/smarthrlogo.png)
 
 #### A-2. 企業アカウント切替ボタン（任意）
 
@@ -54,7 +54,7 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 - テキストリンクの左に <FaQuestionCircleIcon alt="ヘルプ" /> アイコン（`FaQuestionCircleIcon`）を配置します。
 - アイコンの色は、テキストの色に準拠して[`WHITE`](/products/design-tokens/color/#h2-0)とします。
 
-![ヘルプボタン](./images/navigation/help-button.png)
+![ヘルプボタン](./images/contents-in-header/help-button.png)
 
 #### A-4. アプリランチャー（任意）
 
@@ -62,11 +62,11 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 
 原則として、他のアプリケーションとあわせて横断的に利用するユースケースが想定される場合に配置します。
 
-![閉じた状態のアプリランチャー](./images/navigation/app-launcher.png)
+![閉じた状態のアプリランチャー](./images/contents-in-header/app-launcher.png)
 
 アプリランチャーを押すと、アプリケーションのリンクがカテゴリ別にグルーピングされたドロップダウンが表示されます。
 
-![開いた状態のアプリランチャー](./images/navigation/opened-app-launcher-in-global-header.png)
+![開いた状態のアプリランチャー](./images/contents-in-header/opened-app-launcher-in-global-header.png)
 
 #### A-5. ユーザーアカウントボタン（任意）
 
@@ -84,14 +84,14 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 3. [データ同期ボタン](#h4-7)（任意）
 4. [リリースノートボタン](#h4-8)（任意）
 
-![アプリナビゲーションの構成](./images/navigation/app-navigation-anatomy.png)
+![アプリナビゲーションの構成](./images/contents-in-header/app-navigation-anatomy.png)
 
 #### B-1. 機能名
 
 現在アクセスしている機能名を表示します。  
 すべてのアプリナビゲーションに必ず配置します。
 
-![機能名](./images/navigation/app-name.png)
+![機能名](./images/contents-in-header/app-name.png)
 
 #### B-2. アプリナビゲーションボタン
 
@@ -100,7 +100,7 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 ページの構成が階層構造になっている場合は、ドロップダウンメニューで階層内のページを一覧表示します。
 すべてのアプリナビゲーションに必ず配置します。
 
-![アプリナビゲーションボタンの構成](./images/navigation/app-navigation-button.png)
+![アプリナビゲーションボタンの構成](./images/contents-in-header/app-navigation-button.png)
 
 #### B-3. データ同期ボタン（任意）
 
@@ -108,7 +108,7 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 
 原則として、ユーザーが現在の同期が最新状態かを判断できるようにするため、前回同期した日時を`最終同期：yyyy/MM/dd H:mm`の形式で併記しますが、スペースに余裕がない場合は省略できます。
 
-![データ同期ボタン](./images/navigation/data-sync-button.png)
+![データ同期ボタン](./images/contents-in-header/data-sync-button.png)
 
 #### B-4. リリースノートボタン（任意）
 
@@ -117,8 +117,8 @@ SmartHRの[ヘルプセンター](https://support.smarthr.jp/ja/)のページへ
 原則として、リリースノートはホーム画面などユーザーの利用開始の起点となる画面のコンテンツとして配置します。
 ただし、ホーム画面がない機能や、どの画面からもリリースノートにアクセスする可能性がある場合に限り、例外的に配置を検討します。
 
-![閉じた状態のリリースノートボタン](./images/navigation/release-note-button.png)
+![閉じた状態のリリースノートボタン](./images/contents-in-header/release-note-button.png)
 
 リリースノートボタンを押すと、最新5件分の日付を含むリリースノートへのリンクと、対応するアプリケーションのリリースノートの一覧画面へ移動するリンクが表示されます。  
 
-![開いた状態のリリースノートボタン](./images/navigation/opened-release-note-button-in-app-navigation.png)
+![開いた状態のリリースノートボタン](./images/contents-in-header/opened-release-note-button-in-app-navigation.png)
