@@ -9,7 +9,7 @@ import { StaticImage } from '@Components/StaticImage'
 import imageUrlDo from './images/modal-ui/modal-ui_actiondialog_accessibility_error.png';
 import imageUrlDont from './images/modal-ui/modal-ui_actiondialog_accessibility_disabled.png';
 
-モーダルなUIのガイドラインとパターンをまとめています。
+モード、モーダル、モードレスの概念と、SmartHRにおけるモーダルなUIのパターンをまとめています。
 
 ## 基本的な考え方
 ### モードとは
@@ -33,29 +33,35 @@ import imageUrlDont from './images/modal-ui/modal-ui_actiondialog_accessibility_
 
 ## 種類
 
-モーダルなUIの主なパターンを挙げます。
+モーダルなUIの主なパターンとして、以下を挙げます。
+
+- [モーダルダイアログ](#h3-2)
+- [ページ全体を使ったモード](#h3-3)
+- [ページの一部を使ったモード](#h3-4)
+- [複数ステップの操作](#h3-5)
 
 ### モーダルダイアログ
 
 モーダルなUIのうち、最も典型的なものが、ダイアログを使ったモードです。モーダルダイアログと呼びます。
 
-SmartHR UIでは[ActionDialog](../../components/dialog/#h3-1)と[MessageDialog](../../components/dialog/#h3-2)の2種類がありますが、基本的にはActionDialogを使います。
+SmartHR UIでは[ActionDialog](/products/components/dialog/#h3-1)と[MessageDialog](/products/components/dialog/#h3-2)の2種類がありますが、基本的にはActionDialogを使います。
 
 ![ActionDialog](./images/modal-ui/modal-ui_actiondialog.png)
 
 モーダルダイアログの表示中、ダイアログの外側の領域はスクリム（幕）で隠されています。ダイアログを閉じるか、このモードの目的であるタスクを完了するまで、ダイアログ外の操作はできません。
 
-MessageDialogはユーザーの操作に対するフィードバックとして使用できます。ただし、モーダルな操作フィードバックはユーザーの操作を強制的に中断させるため、使用は慎重に検討します。詳しくは操作フィードバック（作成中）を参照してください。
+MessageDialogはユーザーの操作に対するフィードバックとして使用できます。ただし、モーダルな操作フィードバックはユーザーの操作を強制的に中断させるため、原則として推奨されません。詳しくは操作フィードバック（WIP）を参照してください。
 
-モードレスなUIとしてダイアログを提供する場合は、[ModelessDialog](../../components/dialog/#h3-3)を使用します。
+モードレスなUIとしてダイアログを提供する場合は、[ModelessDialog](/products/components/dialog/#h3-3)を使用します。
 
 ### ページ全体を使ったモード
 
 表示する情報が多く、ダイアログではスクロールが多く発生する場合、ページ全体を使ったモードを検討します。
 
+これは、ユーザーの環境によってはダイアログのファーストビュー以外にも情報が存在することに気づきづらかったり、スクロール（特に横スクロール）がしづらかったりして、ユーザビリティやアクセシビリティが低下するためです。
+
 ![ページ全体を使ったモード](./images/modal-ui/modal-ui_fullpage.png)
 
-これは、ユーザーの環境によってはダイアログのファーストビュー以外にも情報が存在することに気づきづらかったり、スクロール（特に横スクロール）がしづらかったりして、ユーザビリティやアクセシビリティが低下するためです。
 
 ### ページの一部を使ったモード
 
@@ -64,10 +70,9 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 例えば、[部署マスターの並べ替え機能](https://support.smarthr.jp/ja/help/articles/7e59f1f2-6df7-4c6c-9d84-fc7449a2a6d6/#%E9%83%A8%E7%BD%B2%E3%82%92%E4%B8%A6%E3%81%B9%E6%9B%BF%E3%81%88%E3%82%8B)では、[部署マスターの一覧画面](https://support.smarthr.jp/ja/help/articles/360036111074/)のレイアウトを維持したまま一部をモードにすることで、元々表示されていた部署マスターの一覧と同じ対象を操作しているという認知を促しています。
 
 ### 複数ステップの操作
+タスクの完了のために複数の操作が必要な場合には、複数のステップに分けたモードを検討します。
 
-タスクの完了のために複数の操作が必要な場合には、1つのモードに対してステップを複数に分けます。
-
-詳しくは複数ステップの操作（作成中）を参照してください。
+詳しくは複数ステップの操作（WIP）を参照してください。
 
 ## 構成
 
@@ -96,7 +101,7 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 ### 3.  入力要素
 
-タスクを実行するためにユーザーが操作する必要のある要素です。[FormControl](../../components/form-control/)や[Fieldset](../../components/fieldset/)を使用します。
+タスクを実行するためにユーザーが操作する必要のある要素です。[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)を使用します。
 
 [削除ダイアログ](../delete-dialog/)のように「処理実行の前の確認」を目的としたモードの場合、入力要素が無いこともあります。
 
@@ -107,13 +112,13 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 1. タスクを完了してモードを終えるアクション
 2. タスクを中断してモードから抜け出すアクション
 
-タスクを完了するアクションは[Primaryボタン](../../products/components/button/#h3-1)を使います。ボタンのラベルは、モードの目的であるタスクを完了するアクションであることがわかる動詞を使用します。
+タスクを完了するアクションは[Primaryボタン](/products/products/components/button/#h3-1)を使います。ボタンのラベルは、モードの目的であるタスクを完了するアクションであることがわかる動詞を使用します。
 
 タスクを中断するアクションのボタンラベルは［キャンセル］とします。
 
 どちらのボタンであっても、ボタンを押すとモードが解除され、元の画面に戻ります。
 
-ページ全体を使ったモードの場合、[BottomFixedArea](../../components/bottom-fixed-area/)を使用してボタンを配置します。また、タスクを中断して元のページに戻る操作は［キャンセル］ボタンが担うため、[上に戻るリンク](../upward-navigation/)は配置しません。
+ページ全体を使ったモードの場合、[BottomFixedArea](/products/components/bottom-fixed-area/)を使用してボタンを配置します。また、タスクを中断して元のページに戻る操作は［キャンセル］ボタンが担うため、[上に戻るリンク](../upward-navigation/)は配置しません。
 
 ## アクセシビリティ
 
