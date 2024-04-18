@@ -5,12 +5,108 @@ description: "input[type='checkbox']要素の代わりに使用するコンポ�
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
-`input[type="checkbox"]`の代わりに使用するコンポーネントです。見た目をやや大きく変えているだけでほぼ機能に変わりありません。
+`input[type="checkbox"]`の代わりに使用するコンポーネントです。  
+見た目をやや大きく変えているだけでほぼ機能に変わりありません。
 
 <ComponentStory name="CheckBox" />
 
+## 使用上の注意
+
+フリップフロップ問題について
+
+## 種類
+
+コンポーネントのバリエーションを子見出しにわけて書きます。もし網羅的な比較が必要な場合、テーブル or previewでコンポーネントを一覧を表示します。
+
+### コンポーネント名（種類） 例: Primary
+
+コンポーネント（種類）の説明が入ります。
+
+#### 単品
+
+```tsx editable codeBlock
+// ```tsx editable
+// <>この中に JSX が書けます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため明示的に import しないでも使えます。</>
+// ```
+<Button>ボタン</Button>
+```
+
+#### 複数
+
+```tsx editable codeBlock
+// この編集可能な領域は Cluster で包まれ、gap と align を渡せます。
+<>
+  <Button variant="primary">ボタン</Button>
+  <Button>ボタン</Button>
+  <Button variant="danger">ボタン</Button>
+  <Button variant="text">ボタン</Button>
+</>
+```
+
+#### プロダクト
+
+```tsx editable withStyled layout=product codeBlock
+const AwesomeComponent:React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <Wrapper>
+      <Heading>編集可能なコードブロック</Heading>
+      <InformationPanel title="使い方">{children}</InformationPanel>
+    </Wrapper>
+  )
+}
+
+// withStyled を渡すと styled-components を扱えるようになります。
+// ただし必ず render() を呼ぶ必要があります。
+render (
+  <AwesomeComponent>
+    <p>
+      <code>withStyled</code> を渡すと styled-components を扱えるようになります。
+      <br />
+      また、<code>layout=product</code> を使うと擬似的にプロダクトのような見た目になります。
+    </p>
+  </AwesomeComponent>
+)
+
+const Wrapper = styled(Stack)`
+  ${({ theme: { space } }) => css`
+    margin-block: ${space(2)} ${space(1)};
+  `}
+`
+```
+
+## レイアウト
+
+メインの種類でなく、コンポーネントが持つその他の種類（サイズやアイコン付きなど）がある場合に書きます。
+
+## 状態
+
+コンポーネントが持つ（hoverやdisabledなど）状態がある場合に書きます。
+
+## ライティング
+
+主題に種類がなく、ライティングルールを書きたい場合はここに書きます。〇〇の使い方..などはこのグループに所属させます。AirTableも必要であれば埋め込めます。
+
+## アクセシビリティ
+
+主題全体に対するアクセシビリティの考え方として、特段言及したい場合は書きます。
+
+## デザインパターン
+
+コンポーネント独自のデザインパターンがあればこのグループ内に書きます、基準サイズなどもこの項目で書きます。
+
 ## Props
 
+コンポーネントが持つPropsを網羅して書きます。
+
 <ComponentPropsTable name="CheckBox" />
+
+## 関連リンク
+
+- link
+
+## 参考文献
+
+- link
+
 
 
