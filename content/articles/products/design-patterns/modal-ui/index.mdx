@@ -6,8 +6,8 @@ order: 10
 
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
-import imageUrlDo from './images/modal-ui/modal-ui_actiondialog_accessibility_error.png';
-import imageUrlDont from './images/modal-ui/modal-ui_actiondialog_accessibility_disabled.png';
+import imageUrlDo from './images/modal-ui_actiondialog_accessibility_error.png';
+import imageUrlDont from './images/modal-ui_actiondialog_accessibility_disabled.png';
 
 モード、モーダル、モードレスの概念と、SmartHRにおけるモーダルなUIのパターンをまとめています。
 
@@ -46,7 +46,7 @@ import imageUrlDont from './images/modal-ui/modal-ui_actiondialog_accessibility_
 
 SmartHR UIでは[ActionDialog](/products/components/dialog/#h3-1)と[MessageDialog](/products/components/dialog/#h3-2)の2種類がありますが、基本的にはActionDialogを使います。
 
-![ActionDialog](./images/modal-ui/modal-ui_actiondialog.png)
+![ActionDialog](./images/modal-ui_actiondialog.png)
 
 モーダルダイアログの表示中、ダイアログの外側の領域はスクリム（幕）で隠されています。ダイアログを閉じるか、このモードの目的であるタスクを完了するまで、ダイアログ外の操作はできません。
 
@@ -60,7 +60,7 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 これは、ユーザーの環境によってはダイアログのファーストビュー以外にも情報が存在することに気づきづらかったり、スクロール（特に横スクロール）がしづらかったりして、ユーザビリティやアクセシビリティが低下するためです。
 
-![ページ全体を使ったモード](./images/modal-ui/modal-ui_fullpage.png)
+![ページ全体を使ったモード](./images/modal-ui_fullpage.png)
 
 
 ### ページの一部を使ったモード
@@ -85,9 +85,9 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 3. 入力要素
 4. モードの操作ボタン
 
-![ActionDialogの構成](./images/modal-ui/modal-ui_actiondialog_structure.png)
+![ActionDialogの構成](./images/modal-ui_actiondialog_structure.png)
 
-![ページ全体を使ったモードの構成](./images/modal-ui/modal-ui_fullpage_structure.png)
+![ページ全体を使ったモードの構成](./images/modal-ui_fullpage_structure.png)
 
 ### 1. タイトル
 
