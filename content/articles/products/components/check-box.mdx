@@ -4,6 +4,8 @@ description: "input[type='checkbox']要素の代わりに使用するコンポ�
 ---
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { DoAndDont } from '@Components/DoAndDont'
+import { Cluster} from 'smarthr-ui'
 
 `input[type="checkbox"]`の代わりに使用するコンポーネントです。  
 見た目をやや大きく変えているだけでほぼ機能に変わりありません。
@@ -12,7 +14,10 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 ## 使用上の注意
 
-フリップフロップ問題について
+### 入力要素の判定がブール型の2値の場合にのみ使用する
+チェックボックスは、ラベルに対してON/OFF、True/Falseといったブール型の２値の切り替えに使用します。  
+
+複数の選択肢から１つの項目を選択する場合は、少数の選択肢であれば[RadioButton](/products/components/radio-button/)、さらに多い場合は[Select](/products/components/select/)や[ComboBox](/products/components/combo-box/)の使用を検討してください。
 
 ## 種類
 
@@ -77,6 +82,19 @@ const Wrapper = styled(Stack)`
 ## レイアウト
 
 メインの種類でなく、コンポーネントが持つその他の種類（サイズやアイコン付きなど）がある場合に書きます。
+
+<Cluster gap="XS">
+    <DoAndDont
+        type="do"
+        img={<img src={imageUrl13Do} alt="スクリーンショット: 対応しない設定項目を空白として残すレイアウトのDo"/>}
+        label="対応していない設定項目が表示されていた箇所は、そのまま空白として残します。"
+    />
+    <DoAndDont
+        type="dont"
+        img={<img src={imageUrl13Dont} alt="スクリーンショット: 対応しない設定項目を空白として残すレイアウトのDon't"/>}
+        label="詰めずに配置すると、どの設定項目が対応していないのか把握しづらくなるため、空白が必要です。"
+    />
+</Cluster>
 
 ## 状態
 
