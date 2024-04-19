@@ -9,7 +9,7 @@ import { StaticImage } from '@Components/StaticImage'
 import imageUrlDo from './images/modal-ui_actiondialog_accessibility_error.png';
 import imageUrlDont from './images/modal-ui_actiondialog_accessibility_disabled.png';
 
-モード、モーダル、モードレスの概念と、SmartHRにおけるモーダルなUIのパターンをまとめています。
+モード、モーダル、モードレスの概念と、SmartHRにおけるモーダルなUIのパターンを定義しています。
 
 ## 基本的な考え方
 ### モードとは
@@ -48,7 +48,7 @@ SmartHR UIでは[ActionDialog](/products/components/dialog/#h3-1)と[MessageDial
 
 ![ActionDialog](./images/modal-ui_actiondialog.png)
 
-モーダルダイアログの表示中、ダイアログの外側の領域はスクリム（幕）で隠されています。ダイアログを閉じるか、このモードの目的であるタスクを完了するまで、ダイアログ外の操作はできません。
+モーダルダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠されています。ダイアログを閉じるか、このモードの目的であるタスクを完了するまで、ダイアログ外の操作はできません。
 
 MessageDialogはユーザーの操作に対するフィードバックとして使用できます。ただし、モーダルな操作フィードバックはユーザーの操作を強制的に中断させるため、原則として推奨されません。詳しくは操作フィードバック（WIP）を参照してください。
 
@@ -80,7 +80,7 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 モーダルなUIの多くは、次の要素で構成されます。
 
-1. タイトル
+1. 現在のモードのタイトル
 2. 説明
 3. 入力要素
 4. モードの操作ボタン
@@ -89,7 +89,7 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 ![ページ全体を使ったモードの構成](./images/modal-ui_fullpage_structure.png)
 
-### 1. タイトル
+### 1. 現在のモードのタイトル
 
 [見出しの書き方](/products/components/heading/#h3-5)にならって、このモードの目的であるタスクを簡潔に書きます。
 
