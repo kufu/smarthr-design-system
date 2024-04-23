@@ -77,6 +77,10 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 詳しくは複数ステップの操作（WIP）を参照してください。
 
+### 単独のタスクベースな機能
+
+[WIP]
+
 ## 構成
 
 [モーダルダイアログ（ActionDialog）](#h3-2)と[ページ全体を使ったモード](#h3-3)を例に、モーダルなUIの構成を示します。
@@ -121,9 +125,11 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 どちらのボタンであっても、ボタンを押すとモードが解除され、元の画面に戻ります。
 
-ページ全体を使ったモードの場合、[BottomFixedArea](/products/components/bottom-fixed-area/)を使用してボタンを配置します。また、タスクを中断して元のページに戻る操作は［キャンセル］ボタンが担うため、[上に戻るリンク](../upward-navigation/)は配置しません。
+ページ全体を使ったモードの場合、原則的に[BottomFixedArea](/products/components/bottom-fixed-area/)を使用してボタンを配置します。ただし、モードに入らないサイドバーがあるなど、BottomFixedAreaが不適切なときは、[FloatArea](/products/components/float-area/)を使用します。
 
-## エラー
+また、タスクを中断して元のページに戻る操作は［キャンセル］ボタンが担うため、[上に戻るリンク](../upward-navigation/)は配置しません。
+
+## エラー状態
 
 ［WIP］
 
