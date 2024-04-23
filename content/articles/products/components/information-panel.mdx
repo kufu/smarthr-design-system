@@ -9,6 +9,20 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 <ComponentStory name="InformationPanel" />
 
+## 使用上の注意
+
+### レイヤー順序に注意して配置する
+
+InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は3です。レイヤー順序が2以下の要素の中、特に[Base](/products/components/base/)にInformationPanelを配置しないでください。
+
+要素がフローティングしている場合は許容します。
+
+### 常に表示しておかなくても良いものに使用しない
+
+インスタントな通知や操作フィードバックの表示に使用しないでください。
+
+ユーザーが自分で要素を削除して良い場合は[NotificationBar](/products/components/notification-bar/)を使用してください。
+
 ## Props
 
 <ComponentPropsTable name="InformationPanel" />
