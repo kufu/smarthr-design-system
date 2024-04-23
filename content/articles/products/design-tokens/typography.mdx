@@ -25,6 +25,8 @@ font-family: system-ui, sans-serif;
 ## フォントサイズ
 基準値は`16px`です。
 
+[Textコンポーネント](/products/components/text/)を使うと、セマンティックトークンを使ってテキストのフォントサイズを指定できます。
+
 ### セマンティックトークン
 
 | トークン名 | 値（rem）| 基準値をもとにした実値（px）|
@@ -32,7 +34,7 @@ font-family: system-ui, sans-serif;
 | `XXS` | 0.667rem | 10.67px |
 | `XS` | 0.75rem | 12px |
 | `S` | 0.857rem | 13.71px |
-| `M` | 1rem | 16px |
+| `M`（標準） | 1rem | 16px |
 | `L` | 1.2rem | 19.2px |
 | `XL` | 1.5rem | 24px |
 | `XXL` | 2rem | 32px |
@@ -70,7 +72,8 @@ font-family: system-ui, sans-serif;
 ## テキストスタイル
 
 ### 見出し
-[Headingコンポーネント](/products/components/heading/)を参照してください。
+[Headingコンポーネント](/products/components/heading/)を参照してください。  
+行送りは、フォントサイズの1.25倍（[`TIGHT`](/products/design-tokens/leading/)）です。
 
 ### 段落テキスト
 段落テキストに使用し、強調やリンクのスタイルを併せてとることがあります。  
@@ -143,8 +146,10 @@ font-family: system-ui, sans-serif;
 - 表の見出し（`th`）の文字揃えは、データ（`td`）の文字揃えに合わせます。
 - 表のデータに数字を表示する場合は、列を縦に読んだときに桁数を比較できるように右揃えにします。
 
-### 強調
-WIP
+### ウェイト、強調
+テキストにウェイトや強調を指定する場合は、[Textコンポーネント](/products/components/text/)を使用します。
+
+[Headingコンポーネント](/products/components/heading/)の見出しのスタイルの一部や、[Buttonコンポーネント](/products/components/button/)のラベルテキストが太字を指定しているように、コンポーネントがウェイトも含めて提供している場合もあります。
 
 ### リンク
 テキストリンクは、以下の場合に[TextLinkコンポーネント](/products/components/text-link/)を使用して表します。  
