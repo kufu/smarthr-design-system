@@ -1,15 +1,15 @@
 ---
 title: 'モーダルなUI'
-description: 'モード、モーダル、モードレスの概念と、SmartHRにおけるモーダルなUIのパターンを定義しています。'
+description: 'モード、モーダル、モードレスの概念と、SmartHRプロダクトにおけるモーダルなUIのパターンを定義しています。'
 order: 10
 ---
 
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
-import imageUrlDo from './images/modal-ui_actiondialog_accessibility_error.png';
-import imageUrlDont from './images/modal-ui_actiondialog_accessibility_disabled.png';
+import imageUrlDo from './images/modal-ui_actiondialog_accessibility_error.png'
+import imageUrlDont from './images/modal-ui_actiondialog_accessibility_disabled.png'
 
-モード、モーダル、モードレスの概念と、SmartHRにおけるモーダルなUIのパターンを定義しています。
+モード、モーダル、モードレスの概念と、SmartHRプロダクトにおけるモーダルなUIのパターンを定義しています。
 
 ## 基本的な考え方
 ### モードとは
@@ -42,6 +42,7 @@ import imageUrlDont from './images/modal-ui_actiondialog_accessibility_disabled.
 - [ページ全体を使ったモード](#h3-3)
 - [ページの一部を使ったモード](#h3-4)
 - [複数ステップの操作](#h3-5)
+- [恒常的なモード](#h3-6)
 
 ### モーダルダイアログ
 
@@ -49,33 +50,38 @@ import imageUrlDont from './images/modal-ui_actiondialog_accessibility_disabled.
 
 SmartHR UIでは[ActionDialog](/products/components/dialog/#h3-1)と[MessageDialog](/products/components/dialog/#h3-2)の2種類がありますが、基本的にはActionDialogを使います。
 
-![ActionDialog](./images/modal-ui_actiondialog.png)
+![ActionDialogの例](./images/modal-ui_actiondialog.png)
 
 モーダルダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠されています。ダイアログを閉じるか、このモードの目的であるタスクを完了するまで、ダイアログ外の操作はできません。
 
-MessageDialogはユーザーの操作に対するフィードバックとして使用できます。ただし、モーダルな操作フィードバックはユーザーの操作を強制的に中断させるため、原則として推奨されません。詳しくは操作フィードバック（WIP）を参照してください。
+MessageDialogはユーザーの操作に対するフィードバックとして使用できます。ただし、モーダルな操作フィードバックはユーザーの操作を強制的に中断させるため、原則として推奨されません。
+
+![MessageDialogによるエラーフィードバックの例](./images/modal-ui_messagedialog_error.png)
 
 モードレスなUIとしてダイアログを提供する場合は、[ModelessDialog](/products/components/dialog/#h3-3)を使用します。
 
 ### ページ全体を使ったモード
 
-表示する情報が多く、ダイアログではスクロールが多く発生する場合、ページ全体を使ったモードを検討します。
+表示したい情報が多い以下のような場合には、ページ全体を使ったモードを検討します。
 
-これは、ユーザーの環境によってはダイアログのファーストビュー以外にも情報が存在することに気づきづらかったり、スクロール（特に横スクロール）がしづらかったりして、ユーザビリティやアクセシビリティが低下するためです。
+- ダイアログのファーストビュー以外にも重要な情報が存在し、気づきづらい場合
+- ダイアログにするとスクロール（特に横スクロール）が多く発生する場合
 
 ![ページ全体を使ったモード](./images/modal-ui_fullpage.png)
 
-
 ### ページの一部を使ったモード
 
-モードのなかで提供したいUIのレイアウトが、モードレスなUIと近い場合、ページの一部を使ったモードを検討します。
+モードに入る前のレイアウトと似たUIをモードのなかで提供したい場合、ページの一部を使ったモードを検討します。
+
+![ページの一部を使ったモード](./images/modal-ui_partialpage_sort.png)
 
 例えば、[部署マスターの並べ替え機能](https://support.smarthr.jp/ja/help/articles/7e59f1f2-6df7-4c6c-9d84-fc7449a2a6d6/#%E9%83%A8%E7%BD%B2%E3%82%92%E4%B8%A6%E3%81%B9%E6%9B%BF%E3%81%88%E3%82%8B)では、[部署マスターの一覧画面](https://support.smarthr.jp/ja/help/articles/360036111074/)のレイアウトを維持したまま一部をモードにすることで、元々表示されていた部署マスターの一覧と同じ対象を操作しているという認知を促しています。
 
-### 複数ステップの操作
-タスクの完了のために複数の操作が必要な場合には、複数のステップに分けたモードを検討します。
 
-詳しくは複数ステップの操作（WIP）を参照してください。
+### ステップを複数に分けたモード
+タスクの完了のために複数の操作が必要な場合には、モードのなかでステップを複数に分けることを検討します。
+
+![ステップを複数に分けたモード](./images/modal-ui_wizard.png)
 
 ### 単独のタスクベースな機能
 
@@ -102,7 +108,7 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 ### 2. 説明
 
-機能概要や使い方、注意事項などを記載します。タイトルのすぐ後ろに限らず、必要に応じて[入力要素](#h3-8)の近くに記載することもあります。
+機能概要や使い方、注意事項などを記載します。タイトルのすぐ後ろに限らず、必要に応じて[入力要素](#h3-9)の近くに記載することもあります。
 
 タイトルだけで説明として十分である場合は、別途の説明を省略できます。
 
@@ -125,15 +131,11 @@ MessageDialogはユーザーの操作に対するフィードバックとして�
 
 どちらのボタンであっても、ボタンを押すとモードが解除され、元の画面に戻ります。
 
-ページ全体を使ったモードの場合、原則的に[BottomFixedArea](/products/components/bottom-fixed-area/)を使用してボタンを配置します。ただし、モードに入らないサイドバーがあるなど、BottomFixedAreaが不適切なときは、[FloatArea](/products/components/float-area/)を使用します。
+ページ全体を使ったモードの場合、原則的に[BottomFixedArea](/products/components/bottom-fixed-area/)を使用してボタンを配置します。ただし、モードに入らないサイドバーがあるなど、BottomFixedAreaが不適切なときは、[FloatArea](/products/components/float-area/)を使用します（例：[共通設定のアクションビュー](/products/design-patterns-core-features/main-admin/)）。
 
-また、タスクを中断して元のページに戻る操作は［キャンセル］ボタンが担うため、[上に戻るリンク](../upward-navigation/)は配置しません。
+また、タスクを中断して元のページに戻る操作は［キャンセル］ボタンが担うため、[上に戻るリンク](/products/design-patterns/upward-navigation/)は配置しません。
 
-## エラー状態
-
-［WIP］
-
-### アクセシビリティ
+## エラー状態のアクセシビリティ
 
 モーダルなUIにおいては、「必須の入力要素が空欄になっている」などの理由でタスクを完了する条件が満たされていない場合であっても、原則として**完了ボタンは無効化せず、ユーザーに完了ボタンを押させた上で、エラーを返す**ようにします。
 
