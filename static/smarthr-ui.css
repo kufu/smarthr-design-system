@@ -2729,6 +2729,13 @@ a {
     border-style: solid;
     border-color: #d6d3d0
   }
+
+  .forced-colors\:shr-border-t-shorthand {
+    border-width: 0;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #d6d3d0
+  }
 }
 
 .\[\&\:has\(\:focus-visible\)\]\:shr-focus-indicator:has(:focus-visible) {
@@ -4275,17 +4282,17 @@ a {
   opacity: 1
 }
 
-.\[\&\:disabled_\.smarthr-ui-FormGroup-errorMessage\]\:shr-text-inherit:disabled .smarthr-ui-FormGroup-errorMessage {
+.\[\&\:disabled_\.smarthr-ui-FormControl-errorMessage\]\:shr-text-inherit:disabled .smarthr-ui-FormControl-errorMessage {
   font-size: inherit;
   color: inherit
 }
 
-.\[\&\:disabled_\.smarthr-ui-FormGroup-label_\>_span\]\:shr-text-disabled:disabled .smarthr-ui-FormGroup-label > span {
+.\[\&\:disabled_\.smarthr-ui-FormControl-label_\>_span\]\:shr-text-disabled:disabled .smarthr-ui-FormControl-label > span {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity))
 }
 
-.\[\&\:disabled_\.smarthr-ui-FormGroup-supplementaryMessage\]\:shr-text-inherit:disabled .smarthr-ui-FormGroup-supplementaryMessage {
+.\[\&\:disabled_\.smarthr-ui-FormControl-supplementaryMessage\]\:shr-text-inherit:disabled .smarthr-ui-FormControl-supplementaryMessage {
   font-size: inherit;
   color: inherit
 }
@@ -4780,4 +4787,12 @@ a {
 
 .\[\&_ul\]\:shr-list-none ul {
   list-style-type: none
+}
+
+:not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5 {
+  margin-top: 8px
+}
+
+:not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1 {
+  margin-top: 16px
 }
