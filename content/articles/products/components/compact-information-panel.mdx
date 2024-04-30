@@ -1,9 +1,18 @@
 ---
-title: 'CompactInformationPanel'
-description: ''
+title: 'CompactInformationPanel（非推奨）'
+description: "CompactInformationPanelは、NotificationBar[base='base']で代替が可能になったため非推奨です。"
 ---
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { BaseColumn, WarningIcon } from 'smarthr-ui'
+
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+    CompactInformationPanelは<a href="/products/components/notification-bar/">NotificationBar[base="base"]</a>で代替が可能になったため非推奨です。
+    </span>}
+    />
+</BaseColumn>
 
 <ComponentStory name="CompactInformationPanel" />
 
