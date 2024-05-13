@@ -1,6 +1,6 @@
 # gatsby-source-sds-airtable
 
-[airtable](https://www.airtable.com/)にあるデータをAPI経由で取得し、GasbyのGraphQL Data Layerに追加するプラグインです。また、取得したデータをテーブルごとにCSVファイルとして出力もします。
+[airtable](https://www.airtable.com/)にあるデータをAPI経由で取得し、GasbyのGraphQL Data Layerに追加するプラグインです。
 
 ## 準備
 
@@ -25,12 +25,6 @@ AirtableのAPIから、登録された`AIRTABLE_BASE_ID`で取得できるテー
   - `/src/constants/airtable.ts`で、どのテーブルをどのページで利用するかなどを定義してあり、`/src/gatsby-node/index.ts`で、その定義を元に、ページのデータとテーブル名を結びつけています
 - `/gatsby-plugin-algolia-config.ts`で、検索用のデータとして利用するために取得
   - 対象のテーブルは`/src/constants/airtable.ts`から取得しています
-
-### CSVファイルの出力
-
-取得したテーブルデータは、`/static/csv`以下にCSVファイルとしても出力します。これは、Airtableデータをiframe埋め込みする際に、CSVダウンロードボタンを表示するためです。Airtableが提供するembed用のHTMLにも、CSVダウンロードボタンがありますが、表示が目立たないため、独自にファイルを用意・ボタンを表示しています（参考：https://github.com/kufu/smarthr-design-system-issues/issues/1250）。
-
-CSV生成処理は、ビルド時に毎回行われるため、Airtable上のデータに変更があった場合は、CSVファイルに差分が出ます。
 
 ---
 
