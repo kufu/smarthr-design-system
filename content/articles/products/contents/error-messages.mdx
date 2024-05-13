@@ -4,8 +4,6 @@ description: 'SmartHRアプリケーション内で表示されるエラーメ�
 order: 5
 ---
 
-import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
-
 アプリケーション内に表示するエラーメッセージの作成に関するガイドラインです。
 
 エラーメッセージのライティングは、基本的に[ライティングスタイル](../writing-style/)、[用字用語](../idiomatic-usage/data/)に準拠します。
@@ -86,14 +84,10 @@ import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
     例：PDFを一括でアップロードする
 
 ##### 1. CSVを取り込むことで、目的の操作をする場合
-<AirtableEmbed tableName="エラーメッセージ（CSV取り込みのバックグラウンド処理）">
-  <iframe class="airtable-embed" src="https://airtable.com/embed/shrnuHRy5KGrszh4a?backgroundColor=teal&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
-</AirtableEmbed>
+<iframe className="airtable-embed" src="https://airtable.com/embed/shrnuHRy5KGrszh4a?backgroundColor=teal&viewControls=on" frameBorder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
 
 ##### 2. 目的となる操作とユーザーが実行する操作が一致している場合
-<AirtableEmbed tableName="エラーメッセージ（バックグラウンド処理）">
-  <iframe class="airtable-embed" src="https://airtable.com/embed/shrh2JnB7gShnieyO?backgroundColor=teal&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
-</AirtableEmbed>
+<iframe className="airtable-embed" src="https://airtable.com/embed/shrh2JnB7gShnieyO?backgroundColor=teal&viewControls=on" frameBorder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
 
 ### FlashMessage
 * [FlashMessage](https://smarthr.design/products/components/flash-message/)で伝える要素は、**原因**または**原因・対処**です。
@@ -113,6 +107,4 @@ import { AirtableEmbed } from '@Components/article/AirtableEmbed/AirtableEmbed'
 
 
 #### ライティングパターン
-<AirtableEmbed tableName="エラーメッセージ（Flash Message）">
-  <iframe class="airtable-embed" src="https://airtable.com/embed/shrJesWWfaW3G0B02?backgroundColor=teal&viewControls=on" frameborder="0" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
-</AirtableEmbed>
+<iframe className="airtable-embed" src="https://airtable.com/embed/shrJesWWfaW3G0B02?backgroundColor=teal&viewControls=on" frameBorder="0" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
