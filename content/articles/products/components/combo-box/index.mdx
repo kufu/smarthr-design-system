@@ -1,15 +1,77 @@
 ---
 title: 'ComboBox'
-description: '選択肢をリスト形式で持ち、ユーザーが入力によって選択肢を絞り込んだり追加したりできるコンポーネントです。'
+description: '選択肢をリスト形式で持ち、ユーザーがテキスト入力で値を追加したり、値を絞り込んで選択できるコンポーネントです。'
 ---
 import { ComponentStory } from '@Components/ComponentStory'
 import { PageIndex } from '@Components/article/PageIndex'
+import { DoAndDont } from '@Components/DoAndDont'
+import { StaticImage } from '@Components/StaticImage'
+import comboboxDo from './images/combo-box-do.png';
+import comboboxDont from './images/combo-box-dont.png';
+import { Cluster } from 'smarthr-ui'
 
-選択肢をリスト形式で持ち、ユーザーが入力によって選択肢を絞り込んだり追加したりできるコンポーネントです。
-
+選択肢をリスト形式で持ち、ユーザーがテキスト入力で値を追加したり、値を絞り込んで選択できるコンポーネントです。
 1つしか選択できない SingleComboBox と複数選択できる MultiComboBox に分かれています。
 
 <ComponentStory name="ComboBox" />
 
-<PageIndex path="/products/components/combo-box/" excludes={[]} heading="h2" />
+## 使用上の注意（共通）
 
+### ユースケースに応じてコンポーネントを使い分ける
+
+#### 選択肢が5個以内の場合
+
+一般的に人は4±1個の情報のまとまりまでしか短期的に記憶できないと言われています。選択肢が5個以下であれば、初期状態で選択肢が一覧できる[RadioButton](/products/components/radio-button/)を使用してください。
+
+ただし、RadioButtonで配置するスペースがない場合は、[Select](/products/components/select/)やComboboxの使用を検討します。
+
+#### 選択肢が6個以上になる場合
+
+選択肢の数が6個以上で、ユーザーにテキスト入力で値を追加させたり、値を絞り込んで単一選択させたい場合は[SingleCombobox](/products/components/combo-box/single-combo-box/)を使用します。
+
+同様のユースケースでを複数選択させたい場合は、[MultiCombobox](/products/components/combo-box/multi-combo-box/)を使用してください。
+
+### 入力補助のヒントメッセージとしてプレースホルダを使用しない
+
+Comboboxで入力補助のヒントメッセージを表示したい場合、原則としてプレースホルダ（`placeholder`）は使用しないでください。プレースホルダを使用した場合、テキスト入力するとプレースホルダの内容が確認できなくなるため、入力補助として成立しないからです。
+
+デフォルト状態ではプレースホルダは空欄にするか、「検索できます」など入力できることを示唆するメッセージの表示にとどめてください。
+
+ヒントメッセージを表示したい場合は、[FormControl](/products/components/form-control/)の`helpMessage`や、SingleComboboxの`dropdownHelpMessage`などを使用してください。
+
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={comboboxDo} alt="Do" width="346" />}
+    label={<Text>ユーザーがテキストを入力しても入力補助<br/>としてヒントメッセージを確認できる</Text>}
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={comboboxDont} alt="Dont" width="346" />}
+    label={<Text>ユーザーがテキストを入力するとプレース<br/>ホルダが確認できなくなり、入力補助とし<br/>て機能しない</Text>}
+  />
+</Cluster>
+
+ただし、レイアウト上の問題でヒントメッセージが配置できないなどの理由がある場合は、例外的にプレースホルダを使用する場合があります。
+
+## 状態（共通）
+
+### 無効（disabled）
+
+入力および選択操作ができない状態を表現したスタイルです。
+
+Conboboxに`disabled`を適用すると、テキスト入力不可になりドロップダウンパネルも表示されないため、ユーザーが選択肢が確認できなくなる点に注意してください。
+
+![無効なCombobox](/images/disabled-combo-box.png)
+
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+### 選択肢にない値の追加
+
+入力された値がリストにない場合、追加して選択できる状態を表現したスタイルです。
+
+ユーザーがその場で選択肢を追加できるようにしたい場合は、コールバック関数`onAdd`を使用することでCombobox上で入力した値を追加できるようにします。
+
+![Combobox上で選択肢にない値を追加する](/images/add-new-item.png)
+
+<PageIndex path="/products/components/combo-box/" excludes={[]} heading="h2" />
