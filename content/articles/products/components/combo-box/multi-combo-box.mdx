@@ -3,17 +3,74 @@ title: 'MultiComboBox'
 description: '選択肢をリスト形式で持ち、ユーザーがテキスト入力で値を追加したり、値を絞り込んで複数同時選択できるコンポーネントです。'
 order: 2
 ---
+import { ComponentStory } from '@Components/ComponentStory'
+import { DoAndDont } from '@Components/DoAndDont'
+import { StaticImage } from '@Components/StaticImage'
+import comboboxDo from './images/combo-box-do.png';
+import comboboxDont from './images/combo-box-dont.png';
+import { Cluster } from 'smarthr-ui'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 選択肢をリスト形式で持ち、ユーザーがテキスト入力で値を追加したり、値を絞り込んで複数同時選択できるコンポーネントです。
 
+{TODO: ComponentStoryでMultiComboBoxだけ表示するようにしたい}
+
+<ComponentStory name="ComboBox" />
+
 ## 使用上の注意
 
-Comboboxの[使用上の注意](/products/components/combo-box/#h2-0)を参照してください。
+### ユースケースに応じてコンポーネントを使い分ける
+
+#### 選択肢が5個以内の場合
+
+選択肢が5個以下であれば、初期状態で選択肢が一覧できる[RadioButton](/products/components/radio-button/)を使用してください。
+
+ただし、RadioButtonで配置するスペースがない場合は、[Select](/products/components/select/)やComboboxの使用を検討します。
+
+#### 選択肢が6個以上になる場合
+
+選択肢の数が6個以上で、ユーザーにテキスト入力で値を追加させたり、値を絞り込んで単一選択させたい場合は[SingleCombobox](/products/components/combo-box/single-combo-box/)を使用します。
+
+同様のユースケースでを複数選択させたい場合は、[MultiCombobox](/products/components/combo-box/multi-combo-box/)を使用してください。
+
+### 入力補助のヒントメッセージとしてプレースホルダを使用しない
+
+Comboboxで入力補助のヒントメッセージを表示したい場合は`dropdownHelpMessage`を使用し、プレースホルダ（`placeholder`）は使用しないでください。プレースホルダを使用した場合、テキスト入力するとプレースホルダの内容が確認できなくなるため、入力補助として成立しないためです。
+
+`dropdownHelpMessage`はドロップダウンパネルを表示したときのみ表示されるため、ヒントメッセージを常に表示したい場合は、[FormControl](/products/components/form-control/)の`helpMessage`などを使用してください。
+
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={comboboxDo} alt="Do" width="346" />}
+    label={<Text>ユーザーがテキストを入力しても入力補助<br/>としてヒントメッセージを確認できる</Text>}
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={comboboxDont} alt="Dont" width="346" />}
+    label={<Text>ユーザーがテキストを入力するとプレース<br/>ホルダが確認できなくなり、入力補助とし<br/>て機能しない</Text>}
+  />
+</Cluster>
 
 ## 状態
 
-Comboboxの[状態](/products/components/combo-box/#h2-1)を参照してください。
+### 無効（disabled）
+
+入力および選択操作ができない状態を表現したスタイルです。
+
+Comboboxに`disabled`を適用すると、テキスト入力不可になりドロップダウンパネルも表示されないため、ユーザーが選択肢が確認できなくなる点に注意してください。
+
+![無効なCombobox](/images/disabled-combo-box.png)
+
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+### 選択肢にない値の追加
+
+入力された値がリストにない場合、追加して選択できる状態を表現したスタイルです。
+
+ユーザーがその場で選択肢を追加できるようにしたい場合は、コールバック関数`onAdd`を使用することでCombobox上で入力した値を追加できるようにします。
+
+![Combobox上で選択肢にない値を追加する](/images/add-new-item.png)
 
 ## Props
 
