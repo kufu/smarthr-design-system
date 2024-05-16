@@ -35,19 +35,19 @@ NotificationBarコンポーネントは、フィードバックやメッセー�
 
 ### 強調
 
-ユーザーへのアテンションを高めたい場合は、`bold={true}`にすることを検討します。
+ユーザーへのアテンションを高めたい場合は、`bold`にすることを検討します。
 
 ```tsx editable codeBlock
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar type="success" bold={true} message="タスクの削除に成功しました。" onClose={()=>{}} />
-  <NotificationBar type="warning" bold={true} message="情報の整合性が取れなくなる可能性があります。" onClose={()=>{}} />
-  <NotificationBar type="error" bold={true} message="タスクの削除に失敗しました。" onClose={()=>{}} />
+  <NotificationBar type="success" bold message="タスクの削除に成功しました。" onClose={()=>{}} />
+  <NotificationBar type="warning" bold message="情報の整合性が取れなくなる可能性があります。" onClose={()=>{}} />
+  <NotificationBar type="error" bold message="タスクの削除に失敗しました。" onClose={()=>{}} />
 </Stack>
 ```
 
 ### アニメーション
 
-メッセージが表示されたことを強調したい場合は、`animate={true}`にすることでスライドインのアニメーション効果を追加できます。
+メッセージが表示されたことを強調したい場合は、`animate`にすることでスライドインのアニメーション効果を追加できます。
 
 <!-- textlint-disable -->
 export const AnimateNotificationBar = () => {
@@ -57,9 +57,9 @@ export const AnimateNotificationBar = () => {
       {visible && (
         <NotificationBar
           type="success"
-          bold={true}
+          bold
           message="タスクの登録に成功しました。"
-          animate={true}
+          animate
           onClose={() => setVisible(!visible)}
         />
       )}
@@ -144,7 +144,7 @@ export const AnimateNotificationBar = () => {
 #### アプリケーション全体にメッセージを表示する
 
 アプリケーション全体にメッセージを表示している例です。  
-アプリケーション内で画面を切り替えてもメッセージが表示され続けることを表すため、[Header](/products/components/header/)よりも上に配置します。また、必ず見てもらいたいメッセージなので`bold={true}`にしています。
+アプリケーション内で画面を切り替えてもメッセージが表示され続けることを表すため、[Header](/products/components/header/)よりも上に配置します。また、必ず見てもらいたいメッセージなので`bold`にしています。
 
 ![NotificationBarを使ってアプリケーション全体へメッセージを表示している例](./images/notification-bar-static1.png)
 
