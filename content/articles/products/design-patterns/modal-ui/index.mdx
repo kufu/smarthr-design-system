@@ -6,8 +6,9 @@ order: 10
 
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
-import imageUrlDo from './images/modal-ui_actiondialog_accessibility_error.png'
-import imageUrlDont from './images/modal-ui_actiondialog_accessibility_disabled.png'
+import imageUrlUpwardDont from './images/modal-ui_upward-navigation.png'
+import imageUrlAccessibilityDo from './images/modal-ui_actiondialog_accessibility_error.png'
+import imageUrlAccessibilityDont from './images/modal-ui_actiondialog_accessibility_disabled.png'
 
 モード、モーダル、モードレスの概念と、SmartHRプロダクトにおけるモーダルなUIのパターンを定義しています。
 
@@ -129,6 +130,12 @@ SmartHR UIでは[ActionDialog](/products/components/dialog/#h3-1)と[MessageDial
 
 また、タスクを中断して元のページに戻る操作は［キャンセル］ボタンが担います。そのため、基本的に[上に戻るリンク](/products/design-patterns/upward-navigation/)は配置しません。
 
+<DoAndDont
+  type="「上に戻るリンク」と［キャンセル］ボタンが両方配置されている。"
+  img={<StaticImage src={imageUrlUpwardDont} alt="Dont" />}
+  label="「上に戻るリンク」と［キャンセル］ボタンが両方配置されている。"
+/>
+
 ## エラー状態のアクセシビリティ
 
 モーダルなUIにおいては、「必須の入力要素が空欄になっている」などの理由でタスクを完了する条件が満たされていない場合であっても、原則として**完了ボタンは無効化せず、ユーザーに完了ボタンを押させた上で、エラーを返す**ようにします。
@@ -140,12 +147,12 @@ SmartHR UIでは[ActionDialog](/products/components/dialog/#h3-1)と[MessageDial
 
 <DoAndDont
   type="do"
-  img={<StaticImage src={imageUrlDo} alt="Do" />}
+  img={<StaticImage src={imageUrlAccessibilityDo} alt="必須項目が空欄のまま完了ボタンを押すとエラーが返り、どの項目にどんな問題があるかが示される。" />}
   label="必須項目が空欄のまま完了ボタンを押すとエラーが返り、どの項目にどんな問題があるかが示される。"
 />
 <DoAndDont
   type="dont"
-  img={<StaticImage src={imageUrlDont} alt="Dont" />}
+  img={<StaticImage src={imageUrlAccessibilityDont} alt="必須条件を満たさない限り完了ボタンが無効化され押せない。" />}
   label="必須条件を満たさない限り完了ボタンが無効化され押せない。"
 />
 
