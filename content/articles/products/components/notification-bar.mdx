@@ -19,7 +19,7 @@ NotificationBarコンポーネントは、フィードバックやメッセー�
 
 ## 種類
 
-メッセージで伝えたいことや、メッセージの重要度に合わせて4種類を定義しています。
+メッセージで伝えたいことや、メッセージの重要度に合わせて5種類を定義しています。
 
 ```tsx editable codeBlock
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
@@ -27,6 +27,7 @@ NotificationBarコンポーネントは、フィードバックやメッセー�
   <NotificationBar type="success" message="タスクの削除に成功しました。" />
   <NotificationBar type="warning" message="情報の整合性が取れなくなる可能性があります。" />
   <NotificationBar type="error" message="タスクの削除に失敗しました。" />
+  <NotificationBar type="sync" message="データ連携を実行中です。" />
 </Stack>
 ```
 
