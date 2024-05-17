@@ -8,7 +8,7 @@ order: 13
 
 ## 基本的な考え方
 
-フィードバックは、ユーザーが操作の結果を理解し、次の行動を判断するために重要です。ユーザーがシステムに何らかの操作をした際は受動的にその結果を認識できるよう、素早く画面上にフィードバックを表示してください。
+フィードバックは、ユーザーが操作の結果を理解し、次の行動を判断するために重要です。ユーザーがシステムに何らかの操作をした際は受動的にその結果を認識できるよう、素早く画面上にフィードバックのためのUIを表示してください。
 
 ### アクセシビリティ
 
@@ -34,7 +34,7 @@ order: 13
 
 ### フォームの入力時
 
-ここでは、フォーム関連コンテンツへの入力時のフィードバックについて説明します。フォーム関連コンテンツへ入力であっても、それが処理の実行を即時的に引き起こす場合は処理の実行を参照してください。  
+ここでは、フォーム関連コンテンツへの入力時のフィードバックについて説明します。フォーム関連コンテンツへ入力であっても、それが処理の実行を即時的に引き起こす場合は[処理の実行時](#h3-2)を参照してください。  
 フォームの入力時には、主に入力内容が不正である場合のエラーメッセージを表示します。  
 エラーメッセージは、ユーザーが入力を完了し、当該要素からフォーカスが外れたタイミングで表示してください。再入力が完了し、エラーの原因が解消された場合はエラーメッセージの表示を止めます。  
 基本的に[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)のerrorMessagesオプションを利用して表示します。FormControlの場合はさらに入力要素にerror状態を付与します。
@@ -48,23 +48,25 @@ order: 13
 #### 処理中のフィードバック
 処理中であることをフィードバックするUIの考え方は以下の通りです。
 
-1. Buttonの押下によって処理が実行された場合
+1. [Button](/products/components/button/)の押下によって処理が実行された場合
     - ButtonのLoadingオプションを利用します。
 1. Button以外の操作によって処理が実行された場合
-    1. まず、ユーザーが直前に操作していた要素の近くにsync状態のResponseMessageを表示することを検討します。
-    1. ユーザーが直前に操作していた要素の近くに表示することが難しい場合、sync状態のNotificationBarを表示します。
-        - 例：操作後に画面全体の切り替えが発生する場合
+    - ユーザーが直前に操作していた要素の近くにsync状態の[ResponseMessage](/products/components/response-message/)を表示することを検討します。
+1. ユーザーが直前に操作していた要素の近くに表示することが難しい場合
+    - sync状態の[NotificationBar](/products/components/notification-bar/)を表示します。
+    - 例：操作後に画面全体の切り替えが発生する場合
 
 #### 結果のフィードバック
 
 結果をフィードバックするUIの考え方は以下の通りです。
-1. まず、ユーザーが直前に操作していたButtonなどの近くにResponseMessageを表示することを検討します。
-1. ユーザーが直前に操作していたButtonなどの近くに表示するのが難しい場合はNotificationBarの利用を検討します。 
+1. まず、ユーザーが直前に操作していたButtonなどの近くに[ResponseMessage](/products/components/response-message/)を表示することを検討します。
+1. ユーザーが直前に操作していたButtonなどの近くに表示するのが難しい場合
+    - [NotificationBar](/products/components/notification-bar/)の利用を検討します。
     - 例：操作後にダイアログ・画面全体の切り替えが発生する場合や、ダイアログが消えて元の画面に戻る場合
-1. また、記載する情報が多くResponseMessageやNotificationBarでは表示しきれない場合はInformationPanelの利用を検討します。
+1. 記載する情報が多くResponseMessageやNotificationBarでは表示しきれない場合
+    - [InformationPanel](/products/components/information-panel/)の利用を検討します。
 
-成功時にはsuccess状態のResponseMessage, NotificationBar, InformationPanelを表示します。
-失敗時にはerror状態のResponseMessage, NotificationBar, InformationPanelを表示します。
+成功時にはsuccess状態で、失敗時にはerror状態でResponseMessage, NotificationBar, InformationPanelを表示します。
 
 また、成功時のフィードバックは成功したことが自明である場合は省略できますがユーザーが状態を正しく理解できるよう十分に注意してください。  
 - 例：オブジェクトの新規インスタンスを作成すると、作成された新規インスタンスの詳細画面へ自動的に移動する場合, Switchなど、コンポーネント自体がその状態を示す場合
@@ -75,17 +77,17 @@ order: 13
 
 <!-- textlint-enable -->
 
-ここでは、ユーザーがページを開いた際、再読み込みした際、ページ内の一部要素が再読み込みされる際のフィードバックについて説明します。  
+ここでは、ユーザーがページを開いた際、再読み込みした際、ページ内の一部要素が読み込まれる際のフィードバックについて説明します。  
 ページとその要素の読み込み時のフィードバックには、処理中のフィードバックと結果のフィードバック（失敗時）があります。まず、処理中であることを示し、読み込みに失敗したらその結果を表示します。成功時は、要素が表示されることでその結果が自明であるため、フィードバックのためのUIは表示しません。
 
 #### 処理中のフィードバック
 
-処理中のフィードバックには、Loaderを利用してください。読み込みの対象となっている領域にLoaderを表示します。
+処理中のフィードバックには、[Loader](/products/components/loader/)を利用してください。読み込みの対象となっている領域にLoaderを表示します。
 
 #### 結果のフィードバック
 
 結果をフィードバックするUIの考え方は以下の通りです。
 1. ページ全体の表示に失敗した場合
-    - ErrorScreenを利用します。
+    - [ErrorScreen](/products/components/error-screen/)を利用します。
 1. 特定の要素の表示に失敗した場合
-    - NotificationBarを表示します。
+    - [NotificationBar](/products/components/notification-bar/)を表示します。
