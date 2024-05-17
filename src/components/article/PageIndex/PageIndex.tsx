@@ -109,29 +109,7 @@ const PageTitleHeading = styled.h2`
   font-size: ${CSS_FONT_SIZE.PX_20};
   font-weight: bold;
   a {
-    text-decoration: none;
-    display: inline-block;
-    color: ${CSS_COLOR.MAIN_DARKEN};
-    position: relative;
-    padding-left: 0;
-    padding-right: 1em;
-    border-bottom: solid 1px currentColor;
-    &::after {
-      font-size: 0.5em;
-      content: '';
-      display: block;
-      position: absolute;
-      width: 0.8em;
-      height: 0.8em;
-      top: 50%;
-      right: 0;
-      left: auto;
-      transform: translateY(-50%);
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1Ljg3MiA3LjMzNzAzTDAgMC42MDMwMjdWMi4wODUwM0wxNC4yNiA4LjAxMzAzTDAgMTMuOTE1VjE1LjM5N0wxNS44NzIgOC42NjMwM1Y3LjMzNzAzWiIgZmlsbD0iIzAwNjVBOSIvPgo8L3N2Zz4K');
-      background-size: contain;
-      background-repeat: no-repeat;
-      transition: transform 1.5s cubic-bezier(0, 0.7, 0, 1);
-    }
+    text-decoration: undeline;
   }
 `
 
