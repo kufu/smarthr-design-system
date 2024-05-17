@@ -17,11 +17,26 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 ラジオボタンは選択肢を単一選択させたい場合に使用します。
 
-- 選択肢の中から複数選択できる場合は[ChekBox](/products/components/check-box/)を使用してください。
+- 選択肢の中から複数選択できる場合は[CheckBox](/products/components/check-box/)を使用してください。
+- 選択肢が多い場合や表示領域が狭い場合は、[Select](/products/components/select/)や[SingleComboBox](/products/components/combo-box/singe-combo-box)を検討してください。
 
-## 状態
-
-### 無効（disabled）
+```tsx editable codeBlock
+<>
+  <Fieldset
+    title="タイトル"
+    titleType="subBlockTitle"
+    innerMargin={0.5}
+  >
+    <Cluster gap={1.25}>
+        <RadioButton name="sample">選択肢 1</RadioButton>
+        <RadioButton name="sample">選択肢 2</RadioButton>
+        <RadioButton name="sample">選択肢 3</RadioButton>
+        <RadioButton name="sample">選択肢 4</RadioButton>
+        <RadioButton name="sample">選択肢 5</RadioButton>
+    </Cluster>
+  </Fieldset>
+</>
+```
 
 ## Props
 

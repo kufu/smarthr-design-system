@@ -23,9 +23,25 @@ import checkBoxDont from './images/check-box-dont.png';
 チェックボックスは選択肢を複数選択できる場合に使用します。
 
 - 複数の選択肢から単一選択しかできず、表示領域に余裕がある場合は原則として[RadioButton](/products/components/radio-button/)を検討してください。
-- 選択肢が多い場合や表示領域が狭い場合は、[Select](/products/components/select/)や[ComboBox](/products/components/combo-box/)を検討してください。
+- 選択肢が多い場合や表示領域が狭い場合は、[MultiComboBox](/products/components/combo-box/multi-combo-box)を検討してください。
 
-![複数項目をチェックボックスで選択している状態](/images/check-box1.png)
+```tsx editable codeBlock
+<>
+  <Fieldset
+    title="タイトル"
+    titleType="subBlockTitle"
+    innerMargin={0.5}
+  >
+    <Cluster gap={1.5}>
+        <CheckBox name="sample">選択肢 1</CheckBox>
+        <CheckBox name="sample">選択肢 2</CheckBox>
+        <CheckBox name="sample">選択肢 3</CheckBox>
+        <CheckBox name="sample">選択肢 4</CheckBox>
+        <CheckBox name="sample">選択肢 5</CheckBox>
+    </Cluster>
+  </Fieldset>
+</>
+```
 
 
 ### 「ON/OFF」といった2択の切り替え入力に使用しない
