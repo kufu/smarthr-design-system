@@ -5,18 +5,36 @@ description: ''
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
-2つ以上の異なる状態を切り替えるためのコンポーネントです。[Switch](/products/components/switch/)はオンとオフの単純な2つの状態を切り替えるためのコンポーネントですが、SegmentedControlは任意の異なる状態を3つ以上持つことができます。
+2つ以上の異なる状態を切り替えるためのコンポーネントです。状態を切り替えることによって影響下のビューに対して作用し、主にオブジェクトのフィルタリングやモードの変化を促します。
+ビューに存在するオブジェクト自体は変わらないが、フィルタリングや見え方を変えたいときに適しているコンポーネントです。
 
-振る舞いとしては[RadioButton](/products/components/radio-button/)と同義とも言えますが、選択（状態の切り替え）によってビューに対して影響が発生することが特徴です。
-
-状態を切り替えることによりビューに対して作用し、主にオブジェクトのフィルタリングやモードの変化を促します。
 
 <ComponentStory name="SegmentedControl" />
 
 ## 使用上の注意
 
-### ビューの関心が切り替わるときには用いない
-異なる状態の切り替えによって、扱うオブジェクトごとビューの関心が変わる場合はSegmentedControlではなく[TabBar](/products/components/tab-bar/)を用いるようにしてください。
+### TabBar との違い
+ビューに対してフィルタリングしたり見え方を変えたいときに[TabBar](/products/components/tab-bar/)も用いることができますが、TabBarの場合はそれぞれのタブに内包されるオブジェクト自体が異なる場合に使うことが適しています。
+
+```tsx editable codeBlock
+<TabBar id="hover">
+    <TabItem id="border-1" selected>
+    書類
+    </TabItem>
+    <TabItem id="border-2">
+    承認経路
+    </TabItem>
+    <TabItem id="border-3">
+    承認履歴
+    </TabItem>
+</TabBar>
+```
+
+### Switch との違い
+Switchはオン・オフのどちらか1つの状態を表します。対する概念ではあるが、異なる状態を表す場合はSegmentedControlを使ってください。
+
+### RadioButton との違い
+振る舞いとしては[RadioButton](/products/components/radio-button/)と同義とも言えますが、選択（状態の切り替え）によって即座にビューに対して影響が発生することが特徴です。絞り込み時にsubmitが発生する場合はRadioButtonの使用も検討してみてください。
 
 ## Props
 
