@@ -4,204 +4,175 @@ description: '複数の操作をまとめて提供するためのコンポーネ
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
-import { FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
+import { DropdownMenuButton, FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
 
 DropdownMenuButtonは複数の操作をまとめて提供するためのコンポーネントで、パネル内には操作がリスト形式で表示されます。
 
 <ComponentStory name="DropdownMenuButton" />
 
-## 構成
+## 使用上の注意
 
-ドロップダウンの引き金となるボタン（アクションボタン）とドロップダウンをあわせて、「*ドロップダウンメニューボタン*」と呼びます。
-
-ドロップダウンメニューボタンは、以下の要素で構成されています。
-
-1. アクションボタン
-2. ドロップダウン
-
-![ドロップダウンメニューボタンの構成図](./images/multiple-operation-button-overview.png)
-
-### 1. アクションボタン
-複数の操作がまとまっていることを示唆するために、[Secondaryボタン](/products/components/button/#h3-1)の`アイコン付き（右）`を使い、アイコンには「<FaCaretDownIcon alt="展開" />（`FaCaretDownIcon`）」を使います。
-
-### 2. ドロップダウン
-
-[Dropdown](/products/components/dropdown/)を用いて、操作をリスト形式でまとめて表示します。  
-まとめ方は、[種類](#h2-1)から用途にあったものを選択してください。
-
-#### 操作の個数
+### 操作の個数
 レイアウトの一貫性やユーザーの利便性に応じて適切な個数を設定してください。ひと目で把握できるように**できるだけ少ない個数が望ましい**です。
 
-ただし以下の場合には操作が1つの場合でも、あえてドロップダウンの中に配置することがあります。
+ただし以下の場合には操作が1つの場合でも、あえてドロップダウンパネルの中に配置することがあります。
 
 - 操作の優先度に依る視覚的優先度を付けたいとき  
-  例： 操作はオブジェクトの削除しかないが、積極的にオブジェクトの削除をさせたくない場合
+  - 例： 操作はオブジェクトの削除しかないが、積極的にオブジェクトの削除をさせたくない場合
 - 類似する画面とのレイアウトの一貫性を保ちたいとき
 
-#### 操作の順序
+### 操作の順序
 **使用頻度が高い順**を推奨しますが、破壊的なアクション（例：オブジェクトの削除）に関しては、順序を下げて配置してください。  
-操作の順序の典型的な例は以下のとおりです。  
+操作の順序の典型的な例は以下のとおりです。
+
+- 編集
+- 複製
+- 削除
 
 ![開かれた操作ドロップダウン。編集・複製・削除の順に操作が並んでいる。](./images/multiple-operation-button-smaple.png)
 
 
-## 種類
+
+## レイアウト
+
+ドロップダウンの引き金となるボタン（トリガー）とドロップダウンパネルをあわせて、「ドロップダウンメニューボタン」と呼びます。
+
+ドロップダウンメニューボタンは、以下の要素で構成されています。
+
+1. トリガー
+2. ドロップダウンパネル
+
+![ドロップダウンメニューボタンの構成図](./images/multiple-operation-button-overview.png)
+
+### 1. トリガー
+複数の操作がまとまっていることを示唆するために、[Secondaryボタンのアイコン付き（右）](/products/components/button/#h3-1)に <FaCaretDownIcon alt="展開" /> アイコン（`FaCaretDownIcon`）を使っています。
+
+### 2. ドロップダウンパネル
+操作をリスト形式でまとめて表示します。  
+まとめ方は、[デザインパターン](#h2-2)から用途にあったものを選択してください。
+
+
+
+## デザインパターン
 用途によって5つのパターンを定義します。
 
 | # | パターン名 | 用途 |
 | :--- | :--- | :--- |
 | A | 単一のオブジェクトに対する操作 | オブジェクトに関する複数の操作をまとめるときに使います。   |
-| B | 単一のオブジェクトに対する操作（オブジェクト名省略） | 特定のオブジェクトの操作であることがレイアウト上自明なとき（例えば[よくあるテーブル](/products/design-patterns/smarthr-table/)の行の中など）に使います。 |
+| B | 単一のオブジェクトに対する操作（オブジェクト名省略） | 特定のオブジェクトの操作であることがレイアウト上自明なとき（例えば「[よくあるテーブル](/products/design-patterns/smarthr-table/)」の行の中など）に使います。 |
 | C | 同一の操作 | 同じ種類の操作をまとめるときに使います。  |
-| D | 異なる複数の操作 | 異なる複数の操作を適切に分割できなかったり、まとめ方が無いときに、異なる複数の操作をまとめるために使います。  |
-| E | 異なる複数の操作（ラベル省略） | Dのパターンに該当し、ボタンを配置するスペースを十分確保できないときに使います。   |
+| D | 異なる複数の操作 | A、B、Cのパターンに該当しないときに、異なる複数の操作をまとめるために使います。  |
+| E | ラベル省略（非推奨） | ボタンを配置するスペースを十分確保できないときの最終手段として検討できますが、基本的に利用を推奨しません。  |
 
 ### A. 単一のオブジェクトに対する操作
-![{オブジェクト名}の操作ボタン](./images/multiple-operation-button-object.png)
-
 オブジェクトに関する操作をまとめるときに使います。
 
 | 要素 | 説明 |
 | :--- | :--- |
-| アクションボタン | ラベルは`{オブジェクト名}の操作`とします。 |
-| ドロップダウン | オブジェクトに対して行なう操作を入れます。 |
+| トリガー | ラベルは`{オブジェクト名}の操作`とします。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。 |
+
+```tsx editable codeBlock noIframe
+<DropdownMenuButton label="｛オブジェクト名｝の操作">
+  <Button>｛オブジェクト名｝を編集</Button>
+  <Button>｛オブジェクト名｝を削除</Button>
+</DropdownMenuButton>
+```
 
 ### B. 単一のオブジェクトに対する操作（オブジェクト名省略）
-![操作ボタン](./images/multiple-operation-button-operation.png)
-
 操作の対象になるオブジェクトがレイアウト上、明らかなときに使います。  
-例： [よくあるテーブル](/products/design-patterns/smarthr-table/)の行の中など
+（例：「[よくあるテーブル](/products/design-patterns/smarthr-table/)」の行の中など）
 
 | 要素 | 説明 |
 | :--- | :--- |
-| <span style={{ whiteSpace: 'nowrap' }}>アクションボタン</span> | 基本的に「A. 単一のオブジェクトに対する操作」のようにオブジェクト名を表示しますが、狭い場所にレイアウトするときにオブジェクト名を省けます。ラベルは`操作`にします。  |
-| ドロップダウン | オブジェクトに対して行なう操作を入れます。アクションボタンのラベルと同様にオブジェクト名を省けます。 |
+| トリガー | 基本的に「A. 単一のオブジェクトに対する操作」のようにオブジェクト名を表示しますが、狭い場所にレイアウトするときにオブジェクト名を省けます。ラベルは`操作`にします。  |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。トリガーのラベルと同様にオブジェクト名を省けます。 |
+
+```tsx editable codeBlock noIframe
+<DropdownMenuButton label="操作" triggerSize="s">
+  <Button>編集</Button>
+  <Button>削除</Button>
+</DropdownMenuButton>
+```
 
 ### C. 同一の操作
-
-![同じ種類の操作ボタン](./images/multiple-operation-button-same-type.png)
-
 同じ種類の操作をまとめるときに使います。
 
 | 要素 | 説明 |
 | :--- | :--- |
-| アクションボタン | 操作をまとめるラベルにします。 |
-| ドロップダウン | 同じ種類の操作を入れます。 |
+| トリガー | 操作をまとめるラベルにします。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 同じ種類の操作を入れます。 |
+
+```tsx editable codeBlock noIframe
+<DropdownMenuButton label="一括操作">
+  <Button>｛オブジェクト名｝を一括追加</Button>
+  <Button>｛オブジェクト名｝を一括更新</Button>
+</DropdownMenuButton>
+```
 
 ### D. 異なる複数の操作
-![その他のボタン](./images/multiple-operation-button-otheres.png)
-
-他のA~Cのパターンに該当しないときに、異なる複数の操作をまとめるために使います。
+A、B、Cのパターンに該当しないときに、異なる複数の操作をまとめるために使います。
 
 | 要素 | 説明 |
 | :--- | :--- |
-| アクションボタン | ラベルは`その他の操作`とします。 |
-| ドロップダウン | 異なる複数の操作を入れます。 |
+| トリガー | ラベルは`その他の操作`とします。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 異なる複数の操作を入れます。 |
 
-### E. 異なる複数の操作（ラベル省略）
-![ラベル省略ボタン](./images/multiple-operation-button-omit.png)
+```tsx editable codeBlock noIframe
+<DropdownMenuButton label="その他の操作">
+  <Button>｛その他の操作1｝</Button>
+  <Button>｛その他の操作2｝</Button>
+  <Button>｛その他の操作3｝</Button>
+</DropdownMenuButton>
+```
 
-「D. 異なる複数の操作」に該当し、ボタンを配置するスペースを十分確保できないときに使います。
+### E. ラベル省略（非推奨）
+ボタンを配置するスペースを十分確保できないときの最終手段として検討できますが、基本的に利用を推奨しません。
 
 | 要素 | 説明 |
 | :--- | :--- |
-| <span style={{ whiteSpace: 'nowrap' }}>アクションボタン</span> | [Secondaryボタン](/products/components/button/#h3-1)の`アイコンのみ`で、アイコンには「<FaEllipsisHIcon alt="その他の操作" />（`FaEllipsisHIcon`）」を使います。ラベルは視覚的に省けますが、**必ず代替テキストを含めて**何のボタンなのかを伝えましょう。 |
-| ドロップダウン | 「D. 異なる複数の操作」と同じです。 |
+| トリガー | [Secondaryボタンのアイコンのみ](/products/components/button/#h3-1)で、主に <FaEllipsisHIcon alt="その他の操作" /> アイコン（`FaEllipsisHIcon`）を使います。ラベルは視覚的に省いていますが、**必ず`label`属性は設定して**何のボタンなのかを伝えます。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 操作を複数入れます。 |
 
-## レイアウト
+```tsx editable codeBlock noIframe
+<Cluster gap={1} align="center">
+  <DropdownMenuButton label="その他の操作" onlyIconTrigger>
+    <Button>｛操作1｝</Button>
+    <Button>｛操作2｝</Button>
+    <Button>｛操作3｝</Button>
+  </DropdownMenuButton>
 
-ドロップダウンメニューボタンのレイアウトは次のとおりです。
+  <DropdownMenuButton label="その他の操作" triggerSize="s" onlyIconTrigger>
+    <Button>｛操作1｝</Button>
+    <Button>｛操作2｝</Button>
+    <Button>｛操作3｝</Button>
+  </DropdownMenuButton>
+</Cluster>
+```
 
-```tsx editable withStyled codeBlock noIframe
-type Actions = ActionItem | ActionItem[]
-// これでコンポーネントを絞れるわけではないが Button[variant=text] を使ってほしいんだよ! という気持ち
-type ActionItem =
-  | ReactElement<ComponentProps<typeof Button>>
-  | ReactElement<ComponentProps<typeof AnchorButton>>
-type Props = {
-  /** 引き金となるボタンラベル。デフォルトは “その他の操作” */
-  label?: string
-  /** 操作群 */
-  children: Actions
-  /** 引き金となるボタンの大きさ */
-  triggerSize?: 's'
-  /** 引き金となるボタンをアイコンのみとするかどうか */
-  onlyIconTrigger?: boolean
-}
 
-const DropdownButtons: React.FC<Props> = ({ label = 'その他の操作', children, triggerSize, onlyIconTrigger = false }) => {
-  const triggerLabel = useMemo(() => onlyIconTrigger ? <FaEllipsisHIcon alt={label} /> : label, [onlyIconTrigger, label])
-  const triggerSuffix = useMemo(() => onlyIconTrigger ? <></> : <FaCaretDownIcon alt="候補を開く" />, [onlyIconTrigger])
+## 状態
 
-  return (
-    <Dropdown>
-      <DropdownTrigger>
-        <Trigger suffix={triggerSuffix} size={triggerSize}>
-          {triggerLabel}
-        </Trigger>
-      </DropdownTrigger>
-      <DropdownContent>
-        <ActionList>
-          {React.Children.map(children, (item, i) => (
-            <li key={i}>{actionItem(item)}</li>
-          ))}
-        </ActionList>
-      </DropdownContent>
-    </Dropdown>
-  )
-}
+### 無効（disabled）
 
-const Trigger = styled(Button)`
-  &[aria-expanded='true'] .smarthr-ui-Icon {
-    transform: rotate(0.5turn);
-  }
-`
-const ActionList = styled(Stack).attrs({ as: 'ul', gap: 0})`
-  ${({ theme: { space } }) => css`
-    list-style: none;
-    margin-block: 0;
-    padding-block: ${space(0.5)};
-    padding-inline-start: 0;
+#### トリガーの無効
+DropdownMenuButton自体を無効にすると、ドロップダウンパネルも操作できません。
 
-    .smarthr-ui-Button,
-    .smarthr-ui-AnchorButton {
-      justify-content: flex-start;
+```tsx editable codeBlock noIframe
+<DropdownMenuButton label="｛オブジェクト名｝の操作" disabled>
+  <Button>｛オブジェクト名｝を編集</Button>
+  <Button>｛オブジェクト名｝を削除</Button>
+</DropdownMenuButton>
+```
 
-      padding-block: ${space(0.5)};
-      font-weight: normal;
-    }
-  `}
-`
-const actionItem = (item: ReactElement) => cloneElement(item, { variant: 'text', wide: true})
+#### ドロップダウンパネルの操作の無効
+ドロップダウンパネル内の操作を無効にする場合、[ButtonのdisabledDetail](/products/components/button/#h3-9)を使って**無効状態の理由を表示します。**
 
-render (
-  <>
-    <DropdownButtons>
-      <Button>評価を開始</Button>
-      <Button disabled>評価を確定</Button>
-      <Button>ヒントメッセージの設定</Button>
-      <AnchorButton href="#h2-2">ログアウト</AnchorButton>
-    </DropdownButtons>
-    <DropdownButtons onlyIconTrigger>
-      <Button>評価を開始</Button>
-      <Button disabled>評価を確定</Button>
-      <Button>ヒントメッセージの設定</Button>
-      <AnchorButton href="#h2-2">ログアウト</AnchorButton>
-    </DropdownButtons>
-    <DropdownButtons triggerSize="s" label="操作">
-      <Button>評価を開始</Button>
-      <Button disabled>評価を確定</Button>
-      <Button>ヒントメッセージの設定</Button>
-      <AnchorButton href="#h2-2">ログアウト</AnchorButton>
-    </DropdownButtons>
-    <DropdownButtons triggerSize="s" onlyIconTrigger>
-      <Button>評価を開始</Button>
-      <Button disabled>評価を確定</Button>
-      <Button>ヒントメッセージの設定</Button>
-      <AnchorButton href="#h2-2">ログアウト</AnchorButton>
-    </DropdownButtons>
-  </>
-)
+```tsx editable codeBlock noIframe
+<DropdownMenuButton label="｛オブジェクト名｝の操作">
+  <Button>｛オブジェクト名｝を編集</Button>
+  <Button disabled disabledDetail={{ message: '無効状態の理由' }}>｛オブジェクト名｝を削除</Button>
+</DropdownMenuButton>
 ```
 
 

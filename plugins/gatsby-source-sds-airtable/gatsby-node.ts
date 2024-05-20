@@ -1,8 +1,4 @@
-import fs from 'fs/promises'
-import path from 'path'
-
 import { SourceNodesArgs } from 'gatsby'
-import { json2csv } from 'json-2-csv'
 
 const NODE_TYPE = `SdsAirtable`
 
@@ -40,10 +36,6 @@ exports.sourceNodes = async (
 
   if (!tablesRes.ok) return
 
-  // CSV出力用のディレクトリを作成。__dirnameは.cacheディレクトリ以下を指すためprocess.cwd()を使う
-  const csvDir = path.resolve(process.cwd(), './static/csv')
-  await fs.mkdir(csvDir, { recursive: true })
-
   const tableData = await tablesRes.json()
 
   const tables: TableResponse[] = tableData.tables
@@ -79,12 +71,6 @@ exports.sourceNodes = async (
         data: record.fields,
       })
     }
-
-    const csvFields: string[] = table.fields.map((field) => field.name)
-    const csvData = records.map((record) => record.fields)
-
-    const csv = json2csv(csvData, { keys: csvFields, emptyFieldValue: '', excelBOM: true })
-    fs.writeFile(`${csvDir}/${table.name}.csv`, csv)
   }
 
   return
