@@ -1,12 +1,12 @@
 ---
 title: 'エラーメッセージ'
 description: 'SmartHRアプリケーション内で表示されるエラーメッセージの作成に関するガイドラインです。'
-order: 5
+order: 1
 ---
 
 アプリケーション内に表示するエラーメッセージの作成に関するガイドラインです。
 
-エラーメッセージのライティングは、基本的に[ライティングスタイル](../writing-style/)、[用字用語](../idiomatic-usage/data/)に準拠します。
+エラーメッセージのライティングは、基本的に[基本方針](.../contents/writing-style.mdx)、[用字用語](.../contents/idiomatic-usage/data/)に準拠します。
 そのほか、エラーメッセージ特有の気をつけるべきポイントを記載しています。
 
 ## 適用範囲
@@ -85,6 +85,13 @@ order: 5
 
 ##### 1. CSVを取り込むことで、目的の操作をする場合
 <iframe className="airtable-embed" src="https://airtable.com/embed/shrnuHRy5KGrszh4a?backgroundColor=teal&viewControls=on" frameBorder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+
+
+バックグラウンド処理のエラー詳細で表示する行数は、ヘッダーの行も含めてエラーの発生した行数を表示します。
+
+`{n}行目：{エラー文言}`
+
+そのため、nには2以上の数字が入ります（なお、1行目はヘッダーになるため、nに1が入ることはない）。
 
 ##### 2. 目的となる操作とユーザーが実行する操作が一致している場合
 <iframe className="airtable-embed" src="https://airtable.com/embed/shrh2JnB7gShnieyO?backgroundColor=teal&viewControls=on" frameBorder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
