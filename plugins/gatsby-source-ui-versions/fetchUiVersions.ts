@@ -156,7 +156,14 @@ export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersio
       const dirName = directoryNames.length > 2 ? directoryNames[0] : ''
 
       if (!uiStories[storyName]) {
-        uiStories[storyName] = { storyName, dirName, filePath: story.parameters.fileName, storyItems: [] }
+        // v49.0.1以降は、モノレポ化に伴いパスが変わった
+        const pathPrefix = version > '49.0.0' ? 'packages/smarthr-ui/' : ''
+        uiStories[storyName] = {
+          storyName,
+          dirName,
+          filePath: `${pathPrefix}${story.parameters.fileName}`,
+          storyItems: [],
+        }
       }
       uiStories[storyName].storyItems.push({
         name: story.title,
