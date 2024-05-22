@@ -715,6 +715,11 @@ a {
   height: 1em
 }
 
+.shr-h-fit {
+  height: -moz-fit-content;
+  height: fit-content
+}
+
 .shr-h-full {
   height: 100%
 }
@@ -2068,6 +2073,11 @@ a {
 .shr-bg-main {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+}
+
+.shr-bg-main-darken {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
 }
 
 .shr-bg-scrim {
@@ -4358,6 +4368,11 @@ a {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
 
+.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity))
+}
+
 .\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled .smarthr-ui-Loader-line {
   border-color: rgb(214 211 208 / 50%)
 }
@@ -4480,6 +4495,10 @@ a {
   cursor: pointer
 }
 
+.\[\&\:not\(\:has\(svg\)\)\]\:shr-ps-\[32px\]:not(:has(svg)) {
+  padding-inline-start: 32px
+}
+
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
   cursor: not-allowed
 }
@@ -4576,6 +4595,11 @@ a {
   margin-inline-end: -4px
 }
 
+.\[\&\>svg\]\:aria-\[expanded\=true\]\:shr-rotate-180[aria-expanded=true]>svg {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
 .\[\&\[aria-expanded\=\"true\"\]_\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon:last-child {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
@@ -4615,6 +4639,10 @@ a {
   align-items: center
 }
 
+.\[\&\]\:shr-justify-start {
+  justify-content: flex-start
+}
+
 .\[\&\]\:shr-overflow-y-visible {
   overflow-y: visible
 }
@@ -4639,6 +4667,11 @@ a {
 .\[\&\]\:shr-px-0\.25 {
   padding-left: 4px;
   padding-right: 4px
+}
+
+.\[\&\]\:shr-px-0\.5 {
+  padding-left: 8px;
+  padding-right: 8px
 }
 
 .\[\&\]\:shr-px-0\.75 {
