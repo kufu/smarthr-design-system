@@ -5,14 +5,6 @@ description: '内包するテキストが指定した幅や高さを越えて存
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
 
-<BaseColumn>
-  <WarningIcon text={
-    <span>
-    LineClampはテキストの全文表示にTooltipが使われることに注意してください。Tooltipはユーザーが能動的に表示しなければならない、拡大表示時に領域外に表示されてしまうなどの課題があるため、LineClampの安易な使用はお勧めしません。基本的にはLineClamp以外のUIの使用を検討してください。
-    </span>}
-    />
-</BaseColumn>
-
 内包するテキストが指定した幅や高さを越えて存在するときに、[Tooltip](/products/components/tooltip/)を用いて全文を表示するためのコンポーネントです。
 
 <ComponentStory name="LineClamp" />
