@@ -1,6 +1,6 @@
 ---
 title: 'CheckBox'
-description: "input[type='checkbox']要素の代わりに使用するコンポーネントです。"
+description: "ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。"
 ---
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
@@ -11,8 +11,8 @@ import { Cluster} from 'smarthr-ui'
 import checkBoxDo from './images/check-box-do.png';
 import checkBoxDont from './images/check-box-dont.png';
 
-`input[type="checkbox"]`の代わりに使用するコンポーネントです。  
-見た目をやや大きく変えているだけでほぼ機能に変わりはありません。
+ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。
+`input[type='checkbox']`の代わりとして使用します。
 
 <ComponentStory name="CheckBox" />
 
@@ -25,7 +25,7 @@ import checkBoxDont from './images/check-box-dont.png';
 - 複数の選択肢から単一選択しかできず、表示領域に余裕がある場合は原則として[RadioButton](/products/components/radio-button/)を検討してください。
 - 選択肢が多い場合や表示領域が狭い場合は、[Select](/products/components/select/)や[ComboBox](/products/components/combo-box/)を検討してください。
 
-![スクリーンショット](/images/check-box1.png)
+![複数項目をチェックボックスで選択している状態](/images/check-box1.png)
 
 
 ### 「ON/OFF」といった2択の切り替え入力に使用しない
@@ -53,7 +53,7 @@ import checkBoxDont from './images/check-box-dont.png';
 - 利用規約などユーザーに許諾を得る必要がある内容の確認を促す場合
 - [削除ダイアログ](/products/design-patterns/delete-dialog/#h3-5)など、重要な操作を行なう場合でユーザーに注意事項の確認を促す場合
 
-![スクリーンショット](/images/check-box-confirm.png)
+![削除ダイアログで操作の確認を促す際のチェックボックスの使用例](/images/check-box-confirm.png)
 
 ### submitなしに即時反映するUIとして使用しない
 
@@ -67,7 +67,7 @@ import checkBoxDont from './images/check-box-dont.png';
 
 [テーブル内の一括操作](/products/design-patterns/table-bulk-action/)の「一括選択するチェックボックス」など、複数のチェックボックスの状態をまとめて示す必要があるチェックボックスにおいて、選択状態と未選択状態が混ざっている状態を示す場合には、混在選択状態（`mixed=true`）を採用します。
 
-![スクリーンショット](/images/check-box-mixed.png)
+![よくあるテーブルでの混在状態のチェックボックスの使用例](/images/check-box-mixed.png)
 
 ## デザインパターン
 

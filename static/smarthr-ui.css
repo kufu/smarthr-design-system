@@ -662,6 +662,11 @@ a {
   display: none
 }
 
+.shr-size-\[theme\(fontSize\.base\)\] {
+  width: 1rem;
+  height: 1rem
+}
+
 .shr-h-1 {
   height: 16px
 }
@@ -710,6 +715,11 @@ a {
   height: 1em
 }
 
+.shr-h-fit {
+  height: -moz-fit-content;
+  height: fit-content
+}
+
 .shr-h-full {
   height: 100%
 }
@@ -728,6 +738,10 @@ a {
 
 .shr-max-h-full {
   max-height: 100%
+}
+
+.shr-min-h-\[calc\(1em\*theme\(lineHeight\.normal\)\)\] {
+  min-height: calc(1em * 1.5)
 }
 
 .shr-min-h-\[calc\(theme\(fontSize\.base\)_\+_theme\(spacing\[0\.75\]\)_\*_2_\+_theme\(spacing\.px\)_\*_2\)\] {
@@ -780,6 +794,10 @@ a {
 
 .shr-w-\[200\%\] {
   width: 200%
+}
+
+.shr-w-\[calc\(theme\(fontSize\.base\)\*2\)\] {
+  width: calc(1rem * 2)
 }
 
 .shr-w-\[theme\(fontSize\.2xs\)\] {
@@ -2057,6 +2075,11 @@ a {
   background-color: rgb(0 119 199 / var(--tw-bg-opacity))
 }
 
+.shr-bg-main-darken {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+}
+
 .shr-bg-scrim {
   background-color: rgba(3,3,2,0.5)
 }
@@ -2190,6 +2213,10 @@ a {
 
 .shr-p-\[unset\] {
   padding: unset
+}
+
+.shr-p-px {
+  padding: 1px
 }
 
 .shr-px-0 {
@@ -2648,8 +2675,7 @@ a {
 }
 
 .\[clip-path\:inset\(100\%\)\] {
-  -webkit-clip-path: inset(100%);
-          clip-path: inset(100%)
+  clip-path: inset(100%)
 }
 
 .\[clip\:rect\(0_0_0_0\)\] {
@@ -2706,6 +2732,13 @@ a {
   outline: none;
   isolation: isolate;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+}
+
+.has-\[\:checked\]\:before\:shr-border-shorthand:has(:checked)::before {
+  content: var(--tw-content);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d6d3d0
 }
 
 .aria-selected\:shr-border-b-shorthand[aria-selected="true"] {
@@ -2910,9 +2943,25 @@ a {
   top: 50%
 }
 
+.before\:shr-box-border::before {
+  content: var(--tw-content);
+  box-sizing: border-box
+}
+
 .before\:shr-block::before {
   content: var(--tw-content);
   display: block
+}
+
+.before\:shr-inline-block::before {
+  content: var(--tw-content);
+  display: inline-block
+}
+
+.before\:shr-size-\[theme\(fontSize\.base\)\]::before {
+  content: var(--tw-content);
+  width: 1rem;
+  height: 1rem
 }
 
 .before\:shr-h-\[10px\]::before {
@@ -2967,6 +3016,23 @@ a {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
+.before\:shr-scale-\[calc\(2\/3\)\]::before {
+  content: var(--tw-content);
+  --tw-scale-x: calc(2 / 3);
+  --tw-scale-y: calc(2 / 3);
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.before\:shr-rounded-full::before {
+  content: var(--tw-content);
+  border-radius: 9999px
+}
+
+.before\:shr-border::before {
+  content: var(--tw-content);
+  border-width: 1px
+}
+
 .before\:shr-border-0::before {
   content: var(--tw-content);
   border-width: 0px
@@ -2982,10 +3048,20 @@ a {
   border-style: solid
 }
 
+.before\:shr-border-\[theme\(colors\.grey\.30\)\]::before {
+  content: var(--tw-content);
+  border-color: #c1bdb7
+}
+
 .before\:shr-border-default::before {
   content: var(--tw-content);
   --tw-border-opacity: 1;
   border-color: rgb(214 211 208 / var(--tw-border-opacity))
+}
+
+.before\:shr-bg-\[theme\(colors\.grey\.30\)\]::before {
+  content: var(--tw-content);
+  background-color: #c1bdb7
 }
 
 .before\:shr-bg-action-background::before {
@@ -3005,6 +3081,23 @@ a {
   padding: calc(4px / 2)
 }
 
+.before\:shr-transition-\[transform\2c margin\]::before {
+  content: var(--tw-content);
+  transition-property: transform,margin;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms
+}
+
+.before\:shr-duration-150::before {
+  content: var(--tw-content);
+  transition-duration: 150ms
+}
+
+.before\:shr-ease-out::before {
+  content: var(--tw-content);
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1)
+}
+
 .before\:shr-content-\[\"\"\]::before {
   --tw-content: "";
   content: var(--tw-content)
@@ -3017,32 +3110,27 @@ a {
 
 .before\:\[clip-path\:polygon\(0_0\2c 100\%_0\2c 50\%_100\%\)\]::before {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(0 0,100% 0,50% 100%);
-          clip-path: polygon(0 0,100% 0,50% 100%)
+  clip-path: polygon(0 0,100% 0,50% 100%)
 }
 
 .before\:\[clip-path\:polygon\(0_0\2c 100\%_50\%\2c 0_100\%\)\]::before {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(0 0,100% 50%,0 100%);
-          clip-path: polygon(0 0,100% 50%,0 100%)
+  clip-path: polygon(0 0,100% 50%,0 100%)
 }
 
 .before\:\[clip-path\:polygon\(0_100\%\2c _100\%_0\2c _100\%_100\%\)\]::before {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%);
-          clip-path: polygon(0 100%, 100% 0, 100% 100%)
+  clip-path: polygon(0 100%, 100% 0, 100% 100%)
 }
 
 .before\:\[clip-path\:polygon\(100\%_0\2c 100\%_100\%\2c 0_50\%\)\]::before {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(100% 0,100% 100%,0 50%);
-          clip-path: polygon(100% 0,100% 100%,0 50%)
+  clip-path: polygon(100% 0,100% 100%,0 50%)
 }
 
 .before\:\[clip-path\:polygon\(50\%_0\2c 100\%_100\%\2c 0_100\%\)\]::before {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(50% 0,100% 100%,0 100%);
-          clip-path: polygon(50% 0,100% 100%,0 100%)
+  clip-path: polygon(50% 0,100% 100%,0 100%)
 }
 
 .after\:shr-pointer-events-none::after {
@@ -3338,26 +3426,22 @@ a {
 
 .after\:\[clip-path\:polygon\(0_0\2c 100\%_0\2c 50\%_100\%\)\]::after {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(0 0,100% 0,50% 100%);
-          clip-path: polygon(0 0,100% 0,50% 100%)
+  clip-path: polygon(0 0,100% 0,50% 100%)
 }
 
 .after\:\[clip-path\:polygon\(0_0\2c 100\%_50\%\2c 0_100\%\)\]::after {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(0 0,100% 50%,0 100%);
-          clip-path: polygon(0 0,100% 50%,0 100%)
+  clip-path: polygon(0 0,100% 50%,0 100%)
 }
 
 .after\:\[clip-path\:polygon\(100\%_0\2c 100\%_100\%\2c 0_50\%\)\]::after {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(100% 0,100% 100%,0 50%);
-          clip-path: polygon(100% 0,100% 100%,0 50%)
+  clip-path: polygon(100% 0,100% 100%,0 50%)
 }
 
 .after\:\[clip-path\:polygon\(50\%_0\2c 100\%_100\%\2c 0_100\%\)\]::after {
   content: var(--tw-content);
-  -webkit-clip-path: polygon(50% 0,100% 100%,0 100%);
-          clip-path: polygon(50% 0,100% 100%,0 100%)
+  clip-path: polygon(50% 0,100% 100%,0 100%)
 }
 
 .first\:shr-rounded-bl-m:first-child {
@@ -3549,6 +3633,10 @@ a {
 
 .disabled\:shr-hidden:disabled {
   display: none
+}
+
+.disabled\:shr-cursor-\[revert\]:disabled {
+  cursor: revert
 }
 
 .disabled\:shr-cursor-not-allowed:disabled {
@@ -3821,6 +3909,42 @@ a {
   cursor: default
 }
 
+.has-\[\:checked\]\:shr-border-\[theme\(colors\.main\)\]:has(:checked) {
+  border-color: #0077c7
+}
+
+.has-\[\:disabled\]\:shr-border-\[theme\(borderColor\.default\)\]:has(:disabled) {
+  border-color: #d6d3d0
+}
+
+.has-\[\:checked\]\:shr-bg-main:has(:checked) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+}
+
+.has-\[\:disabled\]\:shr-bg-border:has(:disabled) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+}
+
+.has-\[\:checked\]\:before\:shr-ms-\[theme\(fontSize\.base\)\]:has(:checked)::before {
+  content: var(--tw-content);
+  margin-inline-start: 1rem
+}
+
+.has-\[\:checked\]\:before\:shr-scale-100:has(:checked)::before {
+  content: var(--tw-content);
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.has-\[\:checked\]\:before\:shr-bg-white:has(:checked)::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
 .aria-checked\:shr-border-main[aria-checked="true"] {
   --tw-border-opacity: 1;
   border-color: rgb(0 119 199 / var(--tw-border-opacity))
@@ -3936,6 +4060,34 @@ a {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
+@supports (not selector(:has(+ *))) {
+  .supports-\[not_selector\(\:has\(\+_\*\)\)\]\:shr-static {
+    position: static
+  }
+
+  .supports-\[not_selector\(\:has\(\+_\*\)\)\]\:shr-appearance-auto {
+    -webkit-appearance: auto;
+       -moz-appearance: auto;
+            appearance: auto
+  }
+
+  .supports-\[not_selector\(\:has\(\+_\*\)\)\]\:shr-border-\[revert\] {
+    border-color: revert
+  }
+
+  .supports-\[not_selector\(\:has\(\+_\*\)\)\]\:shr-bg-\[revert\] {
+    background-color: revert
+  }
+
+  .supports-\[not_selector\(\:has\(\+_\*\)\)\]\:shr-opacity-100 {
+    opacity: 1
+  }
+
+  .supports-\[not_selector\(\:has\(\+_\*\)\)\]\:shr-outline-\[revert\] {
+    outline-color: revert
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .motion-reduce\:shr-animate-none {
     animation: none
@@ -4022,6 +4174,30 @@ a {
     --tw-shadow: 0 0 #0000;
     --tw-shadow-colored: 0 0 #0000;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+  }
+
+  .forced-colors\:has-\[\:disabled\]\:shr-border-\[GrayText\]:has(:disabled) {
+    border-color: GrayText
+  }
+
+  .forced-colors\:has-\[\:disabled\:not\(\:checked\)\]\:before\:shr-border-solid:has(:disabled:not(:checked))::before {
+    content: var(--tw-content);
+    border-style: solid
+  }
+
+  .forced-colors\:has-\[\:disabled\:checked\]\:before\:shr-border-\[GrayText\]:has(:disabled:checked)::before {
+    content: var(--tw-content);
+    border-color: GrayText
+  }
+
+  .forced-colors\:has-\[\:disabled\:not\(\:checked\)\]\:before\:shr-border-\[GrayText\]:has(:disabled:not(:checked))::before {
+    content: var(--tw-content);
+    border-color: GrayText
+  }
+
+  .forced-colors\:has-\[input\:not\(\:disabled\)\]\:before\:shr-bg-\[ButtonBorder\]:has(input:not(:disabled))::before {
+    content: var(--tw-content);
+    background-color: ButtonBorder
   }
 }
 
@@ -4192,6 +4368,11 @@ a {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
 
+.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity))
+}
+
 .\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled .smarthr-ui-Loader-line {
   border-color: rgb(214 211 208 / 50%)
 }
@@ -4314,6 +4495,10 @@ a {
   cursor: pointer
 }
 
+.\[\&\:not\(\:has\(svg\)\)\]\:shr-ps-\[32px\]:not(:has(svg)) {
+  padding-inline-start: 32px
+}
+
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
   cursor: not-allowed
 }
@@ -4410,6 +4595,11 @@ a {
   margin-inline-end: -4px
 }
 
+.\[\&\>svg\]\:aria-\[expanded\=true\]\:shr-rotate-180[aria-expanded=true]>svg {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
 .\[\&\[aria-expanded\=\"true\"\]_\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon:last-child {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
@@ -4441,8 +4631,20 @@ a {
   box-sizing: border-box
 }
 
+.\[\&\]\:shr-block {
+  display: block
+}
+
 .\[\&\]\:shr-items-center {
   align-items: center
+}
+
+.\[\&\]\:shr-justify-start {
+  justify-content: flex-start
+}
+
+.\[\&\]\:shr-overflow-y-visible {
+  overflow-y: visible
 }
 
 .\[\&\]\:shr-rounded-em {
@@ -4465,6 +4667,11 @@ a {
 .\[\&\]\:shr-px-0\.25 {
   padding-left: 4px;
   padding-right: 4px
+}
+
+.\[\&\]\:shr-px-0\.5 {
+  padding-left: 8px;
+  padding-right: 8px
 }
 
 .\[\&\]\:shr-px-0\.75 {
@@ -4787,6 +4994,24 @@ a {
 
 .\[\&_ul\]\:shr-list-none ul {
   list-style-type: none
+}
+
+:checked~.\[\:checked\~\&\]\:shr-flex {
+  display: flex
+}
+
+:checked~*>.\[\:checked\~\*\>\&\]\:shr-fill-white {
+  fill: #fff
+}
+
+@media (forced-colors: active) {
+  :checked~*>.forced-colors\:\[\:checked\~\*\>\&\]\:shr-fill-\[ButtonText\] {
+    fill: ButtonText
+  }
+
+  :disabled~*>.forced-colors\:\[\:disabled\~\*\>\&\]\:shr-fill-\[GrayText\] {
+    fill: GrayText
+  }
 }
 
 :not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5 {

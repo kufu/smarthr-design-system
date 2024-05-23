@@ -1,4 +1,4 @@
-import { CSS_FONT_SIZE } from '@Constants/style'
+import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import { marked } from 'marked'
 import React, { FC } from 'react'
@@ -14,7 +14,7 @@ type Props = {
 
 const query = graphql`
   query PageList {
-    childPageAllMdx: allMdx {
+    childPageAllMdx: allMdx(sort: { fields: [frontmatter___title], order: ASC }) {
       edges {
         node {
           frontmatter {
@@ -109,13 +109,7 @@ const PageTitleHeading = styled.h2`
   font-size: ${CSS_FONT_SIZE.PX_20};
   font-weight: bold;
   a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
+    text-decoration: undeline;
   }
 `
 
