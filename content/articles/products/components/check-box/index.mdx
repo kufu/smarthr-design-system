@@ -23,7 +23,7 @@ import checkBoxDont from './images/check-box-dont.png';
 チェックボックスは選択肢を複数選択できる場合に使用します。
 
 - 複数の選択肢から単一選択しかできず、表示領域に余裕がある場合は原則として[RadioButton](/products/components/radio-button/)を検討してください。
-- 選択肢が多い場合や表示領域が狭い場合は、[MultiComboBox](/products/components/combo-box/multi-combo-box)を検討してください。
+- 選択肢が多い場合や表示領域が狭い場合は、[MultiComboBox](/products/components/combo-box/multi-combo-box/)を検討してください。
 
 ```tsx editable codeBlock
 <>
@@ -73,7 +73,7 @@ import checkBoxDont from './images/check-box-dont.png';
 
 ### submitなしに即時反映するUIとして使用しない
 
-チェックボックスは1クリックで状態が正反対の結果になるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+チェックボックスは1クリックで状態が正反対の結果となるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
 
 よくあるテーブルで「表示/非表示」を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[Switch](/products/components/switch/)を使用してください。
 
@@ -93,3 +93,6 @@ import checkBoxDont from './images/check-box-dont.png';
 
 <ComponentPropsTable name="CheckBox" />
 
+## 関連リンク
+
+- [デザインパターン（基本機能）/共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)
