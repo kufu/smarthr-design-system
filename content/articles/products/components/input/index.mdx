@@ -1,16 +1,69 @@
 ---
 title: 'Input'
-description: 'input要素の代わりに使用するコンポーネントです。入力欄の前後にアイコンを入れられます。'
+description: 'テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。入力欄の前後にアイコンを入れられます。'
 ---
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
-`input`の代わりに使用するコンポーネントです。入力欄の前後にアイコンを入れられます。
+テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。入力欄の前後にアイコンを入れられます。
 
 <ComponentStory name="Input" />
+
+## 使用上の注意
+
+### ユースケースに応じてコンポーネントを使い分ける
+
+#### 日付の入力には使用しない
+
+日付を選択させる場合は`input[type="date"]`の代わりとして[DatePicker](/products/components/date-picker/])を使用してください。
+
+#### 1行で入力する場合に使用する
+
+改行を含めたテキストの入力を受け付ける場合は[Textarea](/products/components/textarea/)を使用してください。
+
+### 入力項目の説明や例をプレースホルダで表示しない
+
+入力項目の説明や例を載せる場合は[FormControl](/products/components/form-control/)のヘルプメッセージ（`helpMessage`）や入力例（`exampleMessage`）などを用い別途表示してください。どうしても表示表示領域が確保できない場合は[Tooltip](/products/components/tooltip/)を使うこともできます。
+
+プレースホルダ（`placeholder`）を使い入力項目の説明や例を載せてしまうと、入力中にプレースホルダの内容が確認できず入力補助として成立しないため非推奨です。
+
+## 状態
+
+### 無効（disabled）
+
+入力を受け付けない状態を表現したスタイルです。
+
+`submit`しても送信されない値をInputの意匠を残しつつ表示しなければならないときに使用します。
+
+```tsx editable codeBlock noIframe
+<>
+  <Input
+    name="disabled"
+    value="入力済みの値"
+    disabled
+  />
+</>
+```
+
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+### 読み取り専用（readOnly）
+
+Inputの意匠を残しつつデータを表示し、入力は受け付けない状態を表現したスタイルです。
+
+`submit`すると送信される値をInputの意匠を残しつつ表示しなければならないときに使用します。
+
+```tsx editable codeBlock noIframe
+<>
+  <Input
+    name="disabled"
+    value="入力済みの値"
+    readOnly
+  />
+</>
+```
 
 ## Props
 
 <ComponentPropsTable name="Input" />
-
 
