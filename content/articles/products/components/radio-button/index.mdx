@@ -1,6 +1,6 @@
 ---
 title: 'RadioButton'
-description: "input[type='radio']要素の代わりに使用するコンポーネントです。"
+description: "ユーザーに選択肢の中から単一の値を選択して入力させるコンポーネントです。"
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
@@ -38,8 +38,26 @@ import { ComponentStory } from '@Components/ComponentStory'
 </>
 ```
 
+### テキストはすべての選択肢で同程度で収まるようにする
+
+ラジオボタンは性質上、テキストの分量によってユーザーが視覚的に認識できる領域の大きさが変化します。
+極端に文量の異なる選択肢が混ざると、視覚的に認識できる領域に差異が発生し誤入力を誘発する可能性があるため、基本的には同程度の文量や行数になるように調整してください。
+
+用語の都合上どうしても差異が出てしまう場合や、選択肢ごとに説明が必要でテキストが長大になる場合など調整が難しい場合は、[RadioButtonPanel](/products/components/radio-button-panel/)を検討してください。
+
+ただし、選択肢に似たような単語や漢字が続く場合など、ユーザーが選択肢を区別しづらい状況が想定される場合は、あえて視覚的な差異を許容する場合があります。
+
+### submitなしに即時反映するUIとして使用しない
+
+ラジオボタンは1クリックで選択肢ごとに異なる結果となるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+
+コレクションなどでオブジェクトの表示方法を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[SegmentedControl](/products/components/segmented-control/)を使用してください。
+
+
 ## Props
 
 <ComponentPropsTable name="RadioButton" />
 
+## 関連リンク
 
+- [デザインパターン（基本機能）/共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)
