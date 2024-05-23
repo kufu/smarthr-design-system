@@ -1,0 +1,134 @@
+---
+title: 'RadioButtonPanel'
+description: 'ユーザーにパネル型の選択肢の中から単一の値を選択して入力させるコンポーネントです。'
+---
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+import { DoAndDont } from '@Components/DoAndDont'
+import { StaticImage } from '@Components/StaticImage'
+import { Cluster} from 'smarthr-ui'
+
+import RadioButtonPanelDo from './images/radio-button-panel-do.png';
+import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
+
+ユーザーにパネル型の選択肢の中から単一の値を選択して入力させるコンポーネントです。
+`input[type='radio']`の代わりとして使用します。
+
+<ComponentStory name="RadioButtonPanel" />
+
+## 使用上の注意
+
+### 選択肢を単一選択させる場合に使用する
+
+ラジオボタンパネルは選択肢を単一選択させたい場合に使用します。
+
+- 選択肢の中から複数選択できる場合は[CheckBox](/products/components/check-box/)を使用してください。
+- 選択肢が多い場合や表示領域が狭い場合は、[Select](/products/components/select/)や[SingleComboBox](/products/components/combo-box/singe-combo-box)を検討してください。
+
+```tsx editable codeBlock
+<>
+    <Stack gap={2.0}>
+        <Fieldset
+            title="標準的な使い方"
+            innerMargin={1.0}
+        >
+            <Stack gap={0.75}>
+                <RadioButtonPanel name="sample">
+                    選択肢 1
+                </RadioButtonPanel>
+                <RadioButtonPanel name="sample">
+                    選択肢 2
+                </RadioButtonPanel>
+                <RadioButtonPanel name="sample">
+                    選択肢 3
+                </RadioButtonPanel>
+            </Stack>
+        </Fieldset>
+        <Fieldset
+            title="複数のテキストを含む場合"
+            innerMargin={1.0}
+        >
+            <Stack gap={0.75}>
+                <RadioButtonPanel name="sample">
+                    <Stack gap={0.25}>
+                        <Cluster align="center">
+                            <Text weight="bold">
+                                選択肢 1
+                            </Text>
+                            <StatusLabel>
+                                ラベル 1
+                            </StatusLabel>
+                        </Cluster>
+                        <Text>
+                            選択肢 1について説明するテキストをここに配置します。
+                        </Text>
+                    </Stack>
+                </RadioButtonPanel>
+                <RadioButtonPanel name="sample">
+                    <Stack gap={0.25}>
+                        <Cluster align="center">
+                            <Text weight="bold">
+                                選択肢 2
+                            </Text>
+                            <StatusLabel>
+                                ラベル 2
+                            </StatusLabel>
+                        </Cluster>
+                        <Text>
+                            選択肢 2について説明するテキストをここに配置します。
+                        </Text>
+                    </Stack>
+                </RadioButtonPanel>
+                <RadioButtonPanel name="sample">
+                    <Stack gap={0.25}>
+                        <Cluster align="center">
+                            <Text weight="bold">
+                                選択肢 3
+                            </Text>
+                            <StatusLabel>
+                                ラベル 3
+                            </StatusLabel>
+                        </Cluster>
+                        <Text>
+                            選択肢 3について説明するテキストをここに配置します。
+                        </Text>
+                    </Stack>
+                </RadioButtonPanel>
+            </Stack>
+        </Fieldset>
+    </Stack>
+</>
+```
+
+ただし、選択肢に同じ文字数の漢字が続く場合など、ユーザーの目が滑って選択しづらい状況が想定される場合は、あえて視覚的な差異を許容する場合があります。
+
+### パネル内に操作可能な要素を配置しない
+
+ラジオボタンパネル内には、ヘルプページへのリンクやInputなど、ユーザーが値を選択する以外の操作可能な要素は配置しないでください。
+ラジオボタンパネル内にこれらを配置した場合、ユーザーが値を選択する操作の妨げや誤操作につながるためです。
+
+リンクを置きたい場合は[Fieldset](/products/components/fieldset/)の`helpMessage`などを使用し、ComboBoxなどで選択肢に応じて段階的に別の操作をさせたい場合は[RadioButton](/products/components/radio-button/)と`disabled`状態を組み合わせるか、[ステップを複数に分けたモード](/products/design-patterns/modal-ui/#h3-5)を検討します。
+
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={RadioButtonPanelDo} alt="Do" width="346" />}
+    label={<Text>ユーザーは選択する操作に集中でき、それ<br/>以外の操作と区別しやすい</Text>}
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={RadioButtonPanelDont} alt="Dont" width="346" />}
+    label={<Text>パネルの中に操作可能な要素を配置する<br/>と、ユーザーが選択操作に集中できず、<br/>操作難易度が上がる</Text>}
+  />
+</Cluster>
+
+### submitなしに即時反映するUIとして使用しない
+
+ラジオボタンパネルは1クリックで選択肢ごとに異なる結果となるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+
+コレクションなどでオブジェクトの表示方法を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[SegmentedControl](/products/components/segmented-control/)を使用してください。
+
+
+## Props
+
+<ComponentPropsTable name="RadioButtonPanel" />
