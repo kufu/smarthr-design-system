@@ -15,11 +15,15 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 #### 日付の入力には使用しない
 
-日付を選択させる場合は`input[type="date"]`の代わりとして[DatePicker](/products/components/date-picker/])を使用してください。
+日付を選択させる場合は`input[type="date"]`の代わりとして[DatePicker](/products/components/date-picker/)を使用してください。
 
 #### 1行で入力する場合に使用する
 
 改行を含めたテキストの入力を受け付ける場合は[Textarea](/products/components/textarea/)を使用してください。
+
+#### データの編集や送信を伴わない画面では使用しない
+
+データの編集や送信を伴わない画面でデータを表示する場合は[DefinitionList](/products/components/definition-list/)を使用してください。
 
 ### 入力項目の説明や例をプレースホルダで表示しない
 
@@ -36,13 +40,11 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 `submit`しても送信されない値をInputの意匠を残しつつ表示しなければならないときに使用します。
 
 ```tsx editable codeBlock noIframe
-<>
-  <Input
-    name="disabled"
-    value="入力済みの値"
-    disabled
-  />
-</>
+<Input
+  name="disabled"
+  value="入力済みの値"
+  disabled
+/>
 ```
 
 ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
@@ -54,13 +56,11 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 `submit`すると送信される値をInputの意匠を残しつつ表示しなければならないときに使用します。
 
 ```tsx editable codeBlock noIframe
-<>
-  <Input
-    name="disabled"
-    value="入力済みの値"
-    readOnly
-  />
-</>
+<Input
+  name="disabled"
+  value="入力済みの値"
+  readOnly
+/>
 ```
 
 ## Props
