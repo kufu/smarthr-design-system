@@ -3,8 +3,17 @@ title: 'よくあるテーブル'
 description: 'SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。'
 order: 7
 ---
-
+import { ComponentStory } from '@Components/ComponentStory'
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { DoAndDont } from '@Components/DoAndDont'
+import { StaticImage } from '@Components/StaticImage'
 import { FaCloudDownloadAltIcon } from 'smarthr-ui'
+import { Cluster } from 'smarthr-ui'
+
+import noTitleDo from './images/smarthr-table/pattern-no-title-do.png'
+import noTitleDont from './images/smarthr-table/pattern-no-title-dont.png'
+import onlyPaginationDo from './images/smarthr-table/smarthr-table-only-pagination-do.png'
+import onlyPaginationDont from './images/smarthr-table/smarthr-table-only-pagination-dont.png'
 
 SmartHRに頻出する、表形式で一覧表示するUIのパターンまとめています。
 
@@ -97,7 +106,19 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 [画面タイトル](/products/components/heading/#h3-0)が`よくあるテーブル`の見出しを兼ねる場合は、タイトルエリアを省略できます。  
 ただし、後述のテーブル操作エリアが生じる場合はテーブルの左上に不要な余白が生まれるため、見出しを省略できません。
 
-{TODO: 不要な見出しのOK,NG例}
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={noTitleDo} alt="Do" />}
+    label={<Text>画面タイトルとテーブルの間に余白ができない場合は省略できる</Text>}
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={noTitleDont} alt="Dont" />}
+    label={<Text>画面タイトルとテーブルの間にテーブル操作エリアがあり、テーブルの左上に不要な余白ができる</Text>}
+    width="auto"
+  />
+</Cluster>
 
 ### 3. テーブル操作エリア
 テーブルにオブジェクト（行）を追加したり、オブジェクト全体を一括で変更するなどの、**データの追加・一括変更などに関わる操作をまとめたエリア**です。
@@ -143,7 +164,19 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 #### ページネーションのみをBase内の上部に配置しない
 一時操作エリアに置く機能が`テーブルのページ送り`のみの場合、Base外の下部にのみ配置します。このとき、Base内の上部のエリアは表示しないでください。
 
-{TODO: OK, NG（右に不要な余白を入れない）例}
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={onlyPaginationDo} alt="Do" />}
+    label={<Text>Base内の上部のエリアごと表示しない</Text>}
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={onlyPaginationDont} alt="Dont" />}
+    label={<Text>Base内の上部のエリアにテーブルのページ送りのみ表示する</Text>}
+    width="auto"
+  />
+</Cluster>
 
 #### Base外の下部に配置する操作の例
 
