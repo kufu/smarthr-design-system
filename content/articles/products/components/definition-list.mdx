@@ -11,15 +11,46 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 ## 使用上の注意
 
-### Inputの意匠を残してデータを表示したいとき
+### 原則としてデータを表示する場合はDefinitionListを使用する
 
-フォームに入力した内容の確認画面など、Inputの意匠を残してデータを表示したい場合は、readOnlyの[Input](/products/components/input/)を利用できます。
+原則としてデータの編集や送信を伴わない画面においてデータを表示する場合は、DefinitionListを使用してください。
 
-ただし、原則としてデータの編集や送信を伴わない画面においてデータを表示する場合は、DefinitionListを使用してください。
+フォームに入力した内容の確認画面など、Inputの意匠を残してデータを表示したい場合は、readOnlyの[Input](/products/components/input/)の利用も検討してください。
 
 ### 値がない項目の表示
 
 descriptionが値を持っていない場合の表示については、[値がない項目の表示](/products/design-patterns/empty-data/)を参照してください。
+
+## レイアウト
+
+### カラム数の指定
+
+`maxColumns` プロパティを指定することで、最大列数を指定できます。表示したいデータの内容に合わせて、適切な列数を指定してください。
+
+列数を指定しない場合、各アイテムは最低幅12emを保ちながら余った領域を埋めていきます。
+
+#### 関連性のある項目がある場合
+
+氏名とヨミガナなど、関連性のある項目は横に並べて表示することで、その関連性をユーザーに伝えることができます。  
+この場合、`maxColumns` プロパティには `2` など、横並びにしたい項目の数を指定してください。
+
+![maxColumnsが2のときの表示例](./images/empty-data/definition-list-2columns.png)
+
+#### 意図的に項目を一列で表示したい場合
+
+項目の見出しや説明が短い場合、列数を指定しないと画面幅に応じて項目が横並びになることがあります。  
+意図的に項目を一列で表示したい場合は、`maxColumns` プロパティに `1` を指定することで、項目の見出しや説明が短い場合でも、画面幅に限らず一列で表示できます。
+
+![maxColumnsが1のときの表示例](./images/empty-data/definition-list-1column.png)
+
+### 見出しの種類
+
+`termStyleType` プロパティを指定することで、見出しの種類を変更できます。  
+DefinitionListを含むコンテンツの見出しが[sectionTitle](/products/components/heading/#h3-1)の場合、`termStyleType` プロパティに `blockTitle` を指定することを検討してください。
+
+![termStyleTypeにblockTitleを指定しているときの表示例](./images/empty-data/definition-list-term-style-block-title.png)
+
+何も指定しない場合、見出しは `subBlockTitle` となります。
 
 ## Props
 
