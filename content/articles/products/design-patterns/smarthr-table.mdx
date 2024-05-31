@@ -33,7 +33,6 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 4. 一時操作エリア
 
 ![スクリーンショット: よくあるテーブルの構成](./images/smarthr-table/smarthr-table-overview.png)
-{TODO: 説明文をトル}
 
 ### 1. テーブル
 `よくあるテーブル`は、多くの場合「1項目1行の1次元リスト」のテーブルを含みます。
@@ -161,54 +160,150 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 | テーブルのページ数、ページ番号 | `9,999 件中 1-5 件` | 多くの場合、「`{総件数}` 件中 `{表示している順番の範囲}` 件」のように、現在表示しているテーブル内容の現在位置を示します。<br />1ページあたり20件〜50件とすることが多いですが、ユースケースや表示速度を考慮して適切な件数を設定します。<br />コンテンツの横幅に応じて、表示する内容の量を検討してください。 |
 | テーブルのページ送り | - | テーブルのオブジェクトの量（行数）が多くなる場合に、複数のページに分けて[Pagination](/products/components/pagination/)（`withoutNumbers = true`）を配置します。<br />コンテンツの横幅が狭い場合は省略することがあります。（[省略した例](#h3-6)） |
 
-#### ページネーションのみをBase内の上部に配置しない
-一時操作エリアに置く機能が`テーブルのページ送り`のみの場合、Base外の下部にのみ配置します。このとき、Base内の上部のエリアは表示しないでください。
-
-<Cluster gap={1}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={onlyPaginationDo} alt="Do" />}
-    label={<Text>Base内の上部のエリアごと表示しない</Text>}
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={onlyPaginationDont} alt="Dont" />}
-    label={<Text>Base内の上部のエリアにテーブルのページ送りのみ表示する</Text>}
-    width="auto"
-  />
-</Cluster>
-
 #### Base外の下部に配置する操作の例
 
 | 操作名 | ボタンのラベル例 | 役割・動作 |
 | :--- | :--- | :--- |
 | テーブルのページ送り | - | テーブルのオブジェクトの量（行数）が多くなる場合に、複数のページに分けて[Pagination](/products/components/pagination/)を配置します。<br />コンテンツの横幅に応じて、表示する内容の量を検討してください。 |
 
+#### Base内の上部にテーブルのページ送りを単体で配置しない
+一時操作エリアに置く機能が`テーブルのページ送り`のみの場合、Base外の下部にのみ配置します。このとき、Base内の上部のエリアは表示しないでください。
+
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={onlyPaginationDo} alt="Do" />}
+    label={<Text>Base内の上部のエリアごと非表示にする。</Text>}
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={onlyPaginationDont} alt="Dont" />}
+    label={<Text>テーブルのページ送りのみ配置すると、左に不要な余白ができるため、視線誘導として不適切。</Text>}
+  />
+</Cluster>
 
 ## レイアウト
 
-`よくあるテーブル`のレイアウトは2パターンあります。
+`よくあるテーブル`のレイアウトは2パターンあります。  
 
 | パターン | 説明 | 用途 |
 | :--- | :--- | :--- |
-| 部分表示レイアウト | Base内にテーブルを配置します。| 通常はこのパターンです。他の画面とコンテンツの幅を揃えられるので、統一感が出ます。また、画面内に他の要素があり幅を揃えたい場合もこちらを使用します。 |
-| フルスクリーンレイアウト | ブラウザの幅いっぱいにテーブルを配置します。 | 必要なカラムが多く、部分表示のレイアウトでは横スクロールが生じてしまう場合に使用します。|
+| デフォルトのレイアウト | `Base` 内にテーブルを配置します。| 基本のレイアウトです。特に理由がない場合はこちらを使用します。<br />1つの画面内で、他の要素や複数のテーブルを同時に使用したい場合にも使用します。 |
+| フルスクリーンレイアウト | ブラウザの幅いっぱいにテーブルを配置します。 | カラムが多く、デフォルトのレイアウトでは横スクロールが生じてしまう場合に使用します。|
 
-### 部分表示レイアウト
+### デフォルトのレイアウト
 基本的に[余白の取り方](/products/design-patterns/spacing-layout-pattern/)に従って配置します。  
 要素間の余白は以下のとおりです。（コンポーネント内の余白は省略）
 
-![スクリーンショット: 「よくあるテーブル」の要素間の余白](./images/smarthr-table/smarthr-table-layout.png)
+![スクリーンショット: 「デフォルトのレイアウト」の要素間の余白](./images/smarthr-table/smarthr-table-layout.png)
 
 ### フルスクリーンレイアウト
-画面幅いっぱいにテーブル、一時操作エリアを配置します。
-テーブルを閲覧・操作することが主たる業務となりうるとき
+画面幅いっぱいにテーブル、一時操作エリアを配置するレイアウトです。  
+表示項目が多く、テーブルを閲覧・操作することが主たる業務となりうるときに使用します。
+
+フルスクリーンレイアウトを使用する場合、1つの画面内で複数のテーブルは使用できません。
+
+![スクリーンショット: 「フルスクリーンレイアウト」の要素間の余白](./images/smarthr-table/full-screen-table-layout.png)
 
 #### スクロールの挙動
 テーブルを包む要素内で部分的にスクロールさせるのではなく、ブラウザのスクロールによってテーブルもスクロールできるようにします。  
 また、縦にスクロールしたとき、ヘッダーを画面上部に固定します。
 
-{TODO: 挙動がわかる資料}
+![スクリーンショット: 縦にスクロールしたときはヘッダーを上部に固定](./images/smarthr-table/full-screen-table-scroll.png)
+
+### TableReelによる列の固定
+横スクロールが生じるとき、重要な情報が隠れてしまうことを防ぐため、`TableReel`を用いて列を固定できます。
+また、画面の表示幅の変更等により意図せぬ横スクロールが発生した場合にも操作性が担保できます。
+
+```tsx editable codeBlock
+
+<div style={{ width: '100%' }}>
+<TableReel>
+    <Table>
+        <thead>
+        <tr>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>
+            multi
+            <br />
+            line
+            </Th>
+            <Th fixed data-test="fixed-cell">
+            操作
+            </Th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <Td data-test="dynamic-change-text">株式会社SmartHR</Td>
+            <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>
+            multi
+            <br />
+            line
+            </Td>
+            <Td fixed>
+            <Button size="s">操作</Button>
+            </Td>
+        </tr>
+        <tr>
+            <Td>株式会社SmartHR</Td>
+            <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>
+            multi
+            <br />
+            line
+            </Td>
+            <Td fixed>
+            <Button size="s">操作</Button>
+            </Td>
+        </tr>
+        <tr>
+            <Td>株式会社SmartHR</Td>
+            <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>
+            multi
+            <br />
+            line
+            </Td>
+            <Td fixed>
+            <Button size="s">操作</Button>
+            </Td>
+        </tr>
+        </tbody>
+    </Table>
+    </TableReel>
+</div>
+```
 
 ## 種類
 テーブルに表示するオブジェクトの数（行数）に応じて、`よくあるテーブル`のバリエーションを定義します。  
