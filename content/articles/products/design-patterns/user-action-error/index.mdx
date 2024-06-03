@@ -31,22 +31,22 @@ order: 8
 ![ダイアログのエラーの構成](./images/user-aciton-error_dialog_structure.png)
 
 ### 1. 入力要素
-エラーが起きている具体的な要因を[FormControl](/products/components/form-control/)の`errorMessages`を使い表示します。
-エラーテキストはユーザーがエラーを解消するのに、何が原因でどうしたらエラーが解消されるのかを具体的かつ簡潔に伝える内容にしましょう。
+エラーが起きている具体的な原因を、[FormControl](/products/components/form-control/)の`errorMessages`で表示します。  
+エラーテキストは、エラーを解消するために「何が原因でどうしたらエラーが解消されるのか」を具体的かつ簡潔に伝える内容にしましょう。
 
-例1:
+また、入力要素はエラーをリアルタイムに処理できる場合があります。[FormControlのエラーメッセージ](/products/components/form-control/#h4-4)を参照してください。
+
+#### 例1
 - OK
     - 100文字以内で入力してください。
 - NG
     - 入力できる文字数を超えています。
 
-例2:
+#### 例2
 - OK
     - 数字で入力してください。
 - NG
     - 入力されている文字タイプが違います。
-
-また、入力要素はエラーをリアルタイムに処理できる場合があります。[FormControlのエラーメッセージ](https://smarthr.design/products/components/form-control/#h4-4)を参照してください。
 
 
 ### 2. 操作ボタン
