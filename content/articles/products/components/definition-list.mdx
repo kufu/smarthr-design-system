@@ -25,18 +25,18 @@ descriptionが値を持っていない場合の表示については、[値が�
 
 ### カラム数の指定
 
-`maxColumns` プロパティを指定することで、最大列数を指定できます。表示したいデータの内容に合わせて、適切な列数を指定してください。
+`maxColumns` propsを指定することで、最大列数を指定できます。表示したいデータの内容に合わせて、適切な列数を指定してください。
 
 列数を指定しない場合、各アイテムは最低幅12emを保ちながら余った領域を埋めていきます。
 
 #### 関連性のある項目がある場合
 
 氏名とヨミガナなど、関連性のある項目は横に並べて表示することで、その関連性をユーザーに伝えることができます。  
-この場合、`maxColumns` プロパティには `2` など、横並びにしたい項目の数を指定してください。
+この場合、`maxColumns` propsには `2` など、横並びにしたい項目の数を指定してください。
 
 ![maxColumnsが2のときの表示例](./images/definition-list-2columns.png)
 
-なお、`maxColumns` プロパティに `2` 以上の数字を指定している場合でも、あらかじめ長い文字列が入る想定があるDefinitionListItemに `fullWidth` プロパティを指定することで、その項目のみ一列で表示できます。
+なお、`maxColumns` propsに `2` 以上の数字を指定している場合でも、あらかじめ長い文字列が入る想定があるDefinitionListItemに `fullWidth` propsを指定することで、その項目のみ一列で表示できます。
 
 ![maxColumnsが2で一部の項目にfullWidthが指定されているときの表示例](./images/definition-list-2columns-full-width.png)
 
@@ -44,16 +44,16 @@ descriptionが値を持っていない場合の表示については、[値が�
 
 2以上の列数が指定されている場合や、列数が指定されていない場合、画面幅や項目の文字数によって列数が変動する可能性があります。
 
-画面幅や項目の文字数にかかわらず見た目を統一したい場合など、意図的に項目を一列で表示したい場合は、`maxColumns` プロパティに `1` を指定することで、画面幅や項目の文字数にかかわらず一列で表示できます。
+画面幅や項目の文字数にかかわらず見た目を統一したい場合など、意図的に項目を一列で表示したい場合は、`maxColumns` propsに `1` を指定することで、画面幅や項目の文字数にかかわらず一列で表示できます。
 
 ![maxColumnsが1のときの表示例](./images/definition-list-1column.png)
 
 ### 見出しの種類
 
-`termStyleType` プロパティを指定することで、見出しの種類を変更できます。
+`termStyleType` propsを指定することで、見出しの種類を変更できます。
 
 見出しはコンテンツのアウトラインに沿って[順に使用することを想定している](/products/components/heading/#h2-0)ため、DefinitionListにおいても適切な見出しレベルを指定してください。  
-例えば、DefinitionListを含むコンテンツの見出しが[sectionTitle](/products/components/heading/#h3-1)の場合、`termStyleType` プロパティに `blockTitle` を指定してください。
+例えば、DefinitionListを含むコンテンツの見出しが[sectionTitle](/products/components/heading/#h3-1)の場合、`termStyleType` propsに `blockTitle` を指定してください。
 
 ![termStyleTypeにblockTitleを指定しているときの表示例](./images/definition-list-term-style-block-title.png)
 
