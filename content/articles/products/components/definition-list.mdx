@@ -11,15 +11,12 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 ## 使用上の注意
 
+原則としてデータの編集や送信を伴わない画面においてデータを表示する場合は、DefinitionListを使用することを推奨します。  
+ただし、利用シーンに応じて他のコンポーネントの使用も検討してください。
+
 ### Inputの意匠を残してデータを表示したいときはreadOnlyのInputを検討する
 
-フォームに入力した内容の確認画面など、Inputの意匠を残してデータを表示したい場合は、readOnlyの[Input](/products/components/input/)の利用も検討してください。
-
-ただし、原則としてデータの編集や送信を伴わない画面においてデータを表示する場合は、DefinitionListを使用することを推奨します。
-
-### 値がない項目の表示
-
-descriptionが値を持っていない場合の表示については、[値がない項目の表示](/products/design-patterns/empty-data/)を参照してください。
+フォームに入力した内容の確認画面など、Inputの意匠を残してデータを表示したい場合は、readOnlyの[Input](/products/components/input/)の利用を検討してください。
 
 ## レイアウト
 
@@ -58,6 +55,10 @@ descriptionが値を持っていない場合の表示については、[値が�
 ![termStyleTypeにblockTitleを指定しているときの表示例](./images/definition-list-term-style-block-title.png)
 
 何も指定しない場合、見出しは `subBlockTitle` となります。
+
+### 値がない項目の表示
+
+descriptionが値を持っていない場合の表示については、[値がない項目の表示](/products/design-patterns/empty-data/)を参照してください。
 
 ## Props
 
