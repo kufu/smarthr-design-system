@@ -4,7 +4,7 @@ description: 'エラーを全画面で表示をするためのコンポーネン
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
-import { ErrorScreen } from '@Components/ErrorScreen'
+import { Button, Center, dErrorScreen } from '@Components/ErrorScreen'
 
 ErrorScreenコンポーネントはエラーを全画面で表示するためのコンポーネントです。
 
@@ -95,21 +95,15 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 
 ### 一定時間操作がなかった（Unauthorizedエラー）
 
-ユーザーが一定時間操作しなかった場合、自動でログアウトしたメッセージを表示し、再ログインを促してください。
+ユーザーが一定時間操作しなかった場合、自動でログアウトしたメッセージとログインボタンを表示し、再ログインを促してください。
 
 「セッションがタイムアウトしました。」は一般的なユーザーには伝わりにくい表現なので「自動でログアウトしました」を推奨します。
 
-また、必要であれば「5秒後に再ログインします。」などのメッセージ表示と実装も検討してください。
+また、必要であれば「5秒後に再ログインします。」などのメッセージの表示と実装も検討してください。
 
 ```tsx editable codeBlock
 <ErrorScreen
   title="一定時間操作がなかったためログアウトしました"
-  links={[
-    {
-      label: '再ログイン',
-      url: '/login', // プロダクトに応じて適切なリンクに差し替えてください
-    },
-  ]}
 >
     <p>
       一定時間操作がなかったため、自動でログアウトしました。
@@ -118,6 +112,9 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
       <br />
       5秒後に再ログインします。
     </p>
+    <Center>
+      <Button>再ログイン</Button>
+    </Center>
 </ErrorScreen>
 ```
 
