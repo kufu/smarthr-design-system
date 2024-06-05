@@ -124,6 +124,77 @@ HTMLのアウトライン構造に対して順に見出しを設定すること�
 視線誘導の法則に考慮したレイアウトの具体例を紹介します。
 [注意点](#h2-2)のとおり、1つの画面内で複数の法則が関連することを認識しましょう。
 
+import { Cluster } from 'smarthr-ui'
+import { DoAndDont } from '@Components/DoAndDont'
+import { StaticImage } from '@Components/StaticImage'
+import Sample1Do from './images/Sample1_DO.png'
+import Sample1Dont from './images/Sample1_DONT.png'
+import Sample2Do from './images/Sample2_DO.png'
+import Sample2Dont from './images/Sample2_DONT.png'
+import Sample3Do from './images/Sample3_DO.png'
+import Sample3Dont from './images/Sample3_DONT.png'
+import Sample4Do from './images/Sample4_DO.png'
+import Sample4Dont from './images/Sample4_DONT.png'
+
+### 例1
+
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={Sample1Do} alt="Do" width="346" />}
+    label=""
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={Sample1Dont} alt="Dont" width="346" />}
+    label=""
+  />
+</Cluster>
+
+### 例2
+
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={Sample2Do} alt="Do" width="346" />}
+    label=""
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={Sample2Dont} alt="Dont" width="346" />}
+    label=""
+  />
+</Cluster>
+
+### 例3
+
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={Sample3Do} alt="Do" width="346" />}
+    label=""
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={Sample3Dont} alt="Dont" width="346" />}
+    label=""
+  />
+</Cluster>
+
+### 例4
+
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={Sample4Do} alt="Do" width="346" />}
+    label=""
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={Sample4Dont} alt="Dont" width="346" />}
+    label=""
+  />
+</Cluster>
 
 
 ## 参考文献
