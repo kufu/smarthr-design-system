@@ -48,6 +48,26 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 </ErrorScreen>
 ```
 
+### ページにアクセスする権限がない（Forbiddenエラー）
+
+ページにアクセスする権限がユーザーにない場合、トップページへ戻るリンクを提供し、必要に応じて管理者へ問い合わせるメッセージを表示してください。
+
+```tsx editable codeBlock
+<ErrorScreen
+  title="このページを表示する権限がありません"
+  links={[
+    {
+      label: 'トップページへ戻る',
+      url: '/',
+    },
+  ]}
+>
+  <p>
+    詳しくは管理者にお問い合わせください。
+  </p>
+</ErrorScreen>
+```
+
 ## props
 
 <ComponentPropsTable name="ErrorScreen" />
