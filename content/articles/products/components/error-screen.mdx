@@ -5,9 +5,22 @@ description: 'エラーを全画面で表示をするためのコンポーネン
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
 
-ErrorScreenコンポーネントはエラーを全画面で表示するためのコンポーネントです。サービスのメンテナンス時や、その画面の主要な操作を安全に実行できないエラーが発生した場合に使用してください。
+ErrorScreenコンポーネントはエラーを全画面で表示するためのコンポーネントです。
 
 <ComponentStory name="ErrorScreen" />
+
+## 使用上の注意
+
+一時的なサーバーエラーでただちにErrorScreenを使ってユーザーの操作を阻害するのはやめましょう。[NotificationBar](/products/components/notification-bar/)や[ResponsiveMessage](/products/components/response-message/)を使用してください。
+
+### ErrorScreenの使用が推奨されるケース
+
+下記のような、ユーザーに画面を操作させたくない状況の場合にErrorScreenを使用してください。
+
+- 存在しない画面にアクセスした場合
+- ユーザーが画面を閲覧する権限がない場合
+- サービスがメンテナンス中の場合
+- インシデント発生時など、データの閲覧・更新が安全に実行できない状況の場合
 
 ## props
 
