@@ -715,6 +715,11 @@ a {
   height: 1em
 }
 
+.shr-h-fit {
+  height: -moz-fit-content;
+  height: fit-content
+}
+
 .shr-h-full {
   height: 100%
 }
@@ -2031,8 +2036,36 @@ a {
   background-color: rgb(15 127 133 / var(--tw-bg-opacity))
 }
 
+.shr-bg-\[theme\(colors\.grey\.100\)\] {
+  background-color: #23221e
+}
+
+.shr-bg-\[theme\(colors\.grey\.20\)\] {
+  background-color: #d6d3d0
+}
+
+.shr-bg-\[theme\(colors\.grey\.30\)\] {
+  background-color: #c1bdb7
+}
+
+.shr-bg-\[theme\(colors\.grey\.5\)\] {
+  background-color: #f8f7f6
+}
+
+.shr-bg-\[theme\(colors\.grey\.6\)\] {
+  background-color: #f5f4f3
+}
+
 .shr-bg-\[theme\(colors\.grey\.65\)\] {
   background-color: #706d65
+}
+
+.shr-bg-\[theme\(colors\.grey\.7\)\] {
+  background-color: #f2f1f0
+}
+
+.shr-bg-\[theme\(colors\.grey\.9\)\] {
+  background-color: #edebe8
 }
 
 .shr-bg-action-background {
@@ -2043,6 +2076,11 @@ a {
 .shr-bg-background {
   --tw-bg-opacity: 1;
   background-color: rgb(248 247 246 / var(--tw-bg-opacity))
+}
+
+.shr-bg-base-grey {
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 244 243 / var(--tw-bg-opacity))
 }
 
 .shr-bg-brand {
@@ -2068,6 +2106,16 @@ a {
 .shr-bg-main {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+}
+
+.shr-bg-main-darken {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+}
+
+.shr-bg-over-background {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 241 240 / var(--tw-bg-opacity))
 }
 
 .shr-bg-scrim {
@@ -2658,6 +2706,10 @@ a {
 
 .shr-ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.shr-forced-color-adjust-none {
+  forced-color-adjust: none
 }
 
 .\[box-shadow\:_0_-4px_8px_2px_rgba\(0\2c _0\2c _0\2c _0\.24\)\] {
@@ -4148,6 +4200,10 @@ a {
     display: none
   }
 
+  .forced-colors\:shr-border-\[ButtonBorder\] {
+    border-color: ButtonBorder
+  }
+
   .forced-colors\:shr-fill-\[CanvasText\] {
     fill: CanvasText
   }
@@ -4358,12 +4414,23 @@ a {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
 
+.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity))
+}
+
 .\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled .smarthr-ui-Loader-line {
   border-color: rgb(214 211 208 / 50%)
 }
 
 .\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50 .smarthr-ui-Loader-line {
   border-color: rgb(255 255 255 / 0.5)
+}
+
+@media (forced-colors: active) {
+  .\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\].\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\].\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\] .smarthr-ui-Loader-line {
+    border-color: ButtonBorder
+  }
 }
 
 .\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em .smarthr-ui-Loader-spinner {
@@ -4480,6 +4547,10 @@ a {
   cursor: pointer
 }
 
+.\[\&\:not\(\:has\(svg\)\)\]\:shr-ps-\[32px\]:not(:has(svg)) {
+  padding-inline-start: 32px
+}
+
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
   cursor: not-allowed
 }
@@ -4576,6 +4647,11 @@ a {
   margin-inline-end: -4px
 }
 
+.\[\&\>svg\]\:aria-\[expanded\=true\]\:shr-rotate-180[aria-expanded=true]>svg {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
 .\[\&\[aria-expanded\=\"true\"\]_\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon:last-child {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
@@ -4615,6 +4691,10 @@ a {
   align-items: center
 }
 
+.\[\&\]\:shr-justify-start {
+  justify-content: flex-start
+}
+
 .\[\&\]\:shr-overflow-y-visible {
   overflow-y: visible
 }
@@ -4639,6 +4719,11 @@ a {
 .\[\&\]\:shr-px-0\.25 {
   padding-left: 4px;
   padding-right: 4px
+}
+
+.\[\&\]\:shr-px-0\.5 {
+  padding-left: 8px;
+  padding-right: 8px
 }
 
 .\[\&\]\:shr-px-0\.75 {
