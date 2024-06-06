@@ -39,8 +39,8 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 
 ### ラジオボタンパネル内に操作可能な要素を含めない
 
-ラジオボタンパネル内には、ヘルプページへのリンクやInputなど、ユーザーが値を選択する以外の操作可能な要素は配置しないでください。
-ラジオボタンパネル内にこれらを配置した場合、ユーザーが値を選択する操作の妨げや誤操作につながるためです。
+ラジオボタンパネル内には、アンカーリンクやボタンなど、ユーザーが操作可能な要素は配置しないでください。
+これらを配置してしまうと、ユーザーがフォーム入力するための操作難易度が上がり、誤操作などにつながるためです。（[※1](#h2-2)）
 
 - リンクを置きたい場合は、[Fieldset](/products/components/fieldset/)の`helpMessage`などを使用します。
 - ComboBoxなどで選択肢に応じて段階的に別の操作をさせたい場合は、[RadioButton](/products/components/radio-button/)と`disabled`状態を組み合わせるか、[ステップを複数に分けたモード](/products/design-patterns/modal-ui/#h3-5)を検討します。
@@ -61,3 +61,7 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 ## Props
 
 <ComponentPropsTable name="RadioButtonPanel" />
+
+## 参考文献
+
+※1. [<label\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)

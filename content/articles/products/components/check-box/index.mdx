@@ -82,7 +82,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 ### チェックボックス内に操作可能な要素を含めない
 
 チェックボックス内には、ヘルプページへのリンクやInputなど、ユーザーが値を選択する以外の操作可能な要素は配置しないでください。
-チェックボックス内にこれらを配置した場合、ユーザーが値を選択する操作の妨げや誤操作につながるためです。
+これらを配置してしまうと、ユーザーがフォーム入力するための操作難易度が上がり、誤操作などにつながるためです。（[※1](#h2-5)）
 
 チェックボックスの操作に関連するリンクを置きたい場合は、[Fieldset](/products/components/fieldset/)の`helpMessage`などを使用してください。
 
@@ -118,3 +118,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 ## 関連リンク
 
 - [デザインパターン（基本機能）/共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)
+
+## 参考文献
+
+※1. [<label\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)
