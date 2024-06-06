@@ -10,6 +10,8 @@ import { Cluster} from 'smarthr-ui'
 
 import checkBoxDo from './images/check-box-do.png';
 import checkBoxDont from './images/check-box-dont.png';
+import checkBoxDo2 from './images/check-box-do2.png';
+import checkBoxDont2 from './images/check-box-dont2.png';
 
 ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。
 `input[type='checkbox']`の代わりとして使用します。
@@ -18,7 +20,9 @@ import checkBoxDont from './images/check-box-dont.png';
 
 ## 使用上の注意
 
-### 選択肢が複数選択できる場合に使用する
+### ユースケースに応じてコンポーネントを使い分ける
+
+#### 選択肢が複数選択できる場合に使用する
 
 チェックボックスは選択肢を複数選択できる場合に使用します。
 
@@ -29,7 +33,6 @@ import checkBoxDont from './images/check-box-dont.png';
 <>
   <Fieldset
     title="タイトル"
-    titleType="subBlockTitle"
     innerMargin={0.5}
   >
     <Cluster gap={{ row: 1, column: 1.5 }}>
@@ -43,6 +46,11 @@ import checkBoxDont from './images/check-box-dont.png';
 </>
 ```
 
+#### ビューの切り替えを操作するUIとして使用しない
+
+チェックボックスは1クリックで状態が正反対の結果となるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+
+よくあるテーブルで「表示/非表示」を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[TabBar](/products/components/tab-bar/)や[SegmentedControl](/products/components/segmented-control/)、または[Switch](/products/components/switch/)を使用してください。
 
 ### 「ON/OFF」といった2択の切り替え入力に使用しない
 
@@ -71,11 +79,24 @@ import checkBoxDont from './images/check-box-dont.png';
 
 ![削除ダイアログで操作の確認を促す際のチェックボックスの使用例](/images/check-box-confirm.png)
 
-### submitなしに即時反映するUIとして使用しない
+### チェックボックス内に操作可能な要素を含めない
 
-チェックボックスは1クリックで状態が正反対の結果となるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+チェックボックス内には、ヘルプページへのリンクやInputなど、ユーザーが値を選択する以外の操作可能な要素は配置しないでください。
+チェックボックス内にこれらを配置した場合、ユーザーが値を選択する操作の妨げや誤操作につながるためです。
+チェックボックスの操作に関連するリンクを置きたい場合は、[Fieldset](/products/components/fieldset/)の`helpMessage`などを使用してください。
 
-よくあるテーブルで「表示/非表示」を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[Switch](/products/components/switch/)を使用してください。
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={checkBoxDo2} alt="Do" width="346" />}
+    label={<Text>ユーザーは選択する操作に集中でき、それ<br/>以外の操作と区別しやすい</Text>}
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={checkBoxDont2} alt="Dont" width="346" />}
+    label={<Text>パネルの中に操作可能な要素を配置する<br/>と、ユーザーが選択操作に集中できず、<br/>操作難易度が上がる</Text>}
+  />
+</Cluster>
 
 ## 状態
 

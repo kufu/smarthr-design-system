@@ -17,89 +17,27 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 
 ## 使用上の注意
 
-### 選択肢を単一選択させる場合に使用する
+### ユースケースに応じてコンポーネントを使い分ける
 
-ラジオボタンパネルは選択肢を単一選択させたい場合で、特に選択肢を視覚的なパネルで表示したい場合や複数のテキストを表示したい場合に使用します。
+#### 選択肢が5個以下の場合に使用する
 
-- 選択肢の中から複数選択できる場合は[CheckBox](/products/components/check-box/)を使用してください。
-- 選択肢が多い場合や表示領域が狭い場合は、[Select](/products/components/select/)や[SingleComboBox](/products/components/combo-box/singe-combo-box)を検討してください。
+ラジオボタンと同様に、選択肢が5個以下の場合に使用します。
 
-```tsx editable codeBlock
-<>
-    <Stack gap={2.0}>
-        <Fieldset
-            title="標準的な使い方"
-            innerMargin={1.0}
-        >
-            <Stack gap={0.75}>
-                <RadioButtonPanel name="sample">
-                    選択肢 1
-                </RadioButtonPanel>
-                <RadioButtonPanel name="sample">
-                    選択肢 2
-                </RadioButtonPanel>
-                <RadioButtonPanel name="sample">
-                    選択肢 3
-                </RadioButtonPanel>
-            </Stack>
-        </Fieldset>
-        <Fieldset
-            title="複数のテキストを含む場合"
-            innerMargin={1.0}
-        >
-            <Stack gap={0.75}>
-                <RadioButtonPanel name="sample">
-                    <Stack gap={0.25}>
-                        <Cluster align="center">
-                            <Text weight="bold">
-                                選択肢 1
-                            </Text>
-                            <StatusLabel>
-                                ラベル 1
-                            </StatusLabel>
-                        </Cluster>
-                        <Text>
-                            選択肢 1について説明するテキストをここに配置します。
-                        </Text>
-                    </Stack>
-                </RadioButtonPanel>
-                <RadioButtonPanel name="sample">
-                    <Stack gap={0.25}>
-                        <Cluster align="center">
-                            <Text weight="bold">
-                                選択肢 2
-                            </Text>
-                            <StatusLabel>
-                                ラベル 2
-                            </StatusLabel>
-                        </Cluster>
-                        <Text>
-                            選択肢 2について説明するテキストをここに配置します。
-                        </Text>
-                    </Stack>
-                </RadioButtonPanel>
-                <RadioButtonPanel name="sample">
-                    <Stack gap={0.25}>
-                        <Cluster align="center">
-                            <Text weight="bold">
-                                選択肢 3
-                            </Text>
-                            <StatusLabel>
-                                ラベル 3
-                            </StatusLabel>
-                        </Cluster>
-                        <Text>
-                            選択肢 3について説明するテキストをここに配置します。
-                        </Text>
-                    </Stack>
-                </RadioButtonPanel>
-            </Stack>
-        </Fieldset>
-    </Stack>
-</>
-```
+選択肢が6個以上の場合や表示領域が狭い場合は、[Select](/products/components/select/)や[SingleComboBox](/products/components/combo-box/singe-combo-box)を検討してください。
 
-### パネル内に操作可能な要素を配置しない
+#### 選択肢にラベルテキストを含む複数の要素を表示させる場合に使用する
+
+選択肢が同程度の長さで簡潔なラベルテキストのみの場合は、基本的に[RadioButton](/products/components/radio-button/)を使用してください。
+
+特に選択肢を視覚的に強調したい場合や、ラベルテキストやステータスラベルを含む複数の要素を表示したい場合にラジオボタンパネルを検討してください。
+
+#### ビューの切り替えを操作するUIとして使用しない
+
+ラジオボタンパネルは1クリックで選択肢ごとに異なる結果となるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+
+コレクションなどでオブジェクトの表示方法を切り替える場合など、即時反映を前提とする箇所では[TabBar](/products/components/tab-bar/)や[SegmentedControl](/products/components/segmented-control/)、または[Switch](/products/components/switch/)を使用してください。
+
+### ラジオボタンパネル内に操作可能な要素を含めない
 
 ラジオボタンパネル内には、ヘルプページへのリンクやInputなど、ユーザーが値を選択する以外の操作可能な要素は配置しないでください。
 ラジオボタンパネル内にこれらを配置した場合、ユーザーが値を選択する操作の妨げや誤操作につながるためです。
@@ -119,13 +57,6 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
     label={<Text>パネルの中に操作可能な要素を配置する<br/>と、ユーザーが選択操作に集中できず、<br/>操作難易度が上がる</Text>}
   />
 </Cluster>
-
-### submitなしに即時反映するUIとして使用しない
-
-ラジオボタンパネルは1クリックで選択肢ごとに異なる結果となるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
-
-コレクションなどでオブジェクトの表示方法を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[SegmentedControl](/products/components/segmented-control/)を使用してください。
-
 
 ## Props
 
