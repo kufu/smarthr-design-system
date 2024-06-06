@@ -8,8 +8,8 @@ import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
 import { Cluster} from 'smarthr-ui'
 
-import RadioButtonPanelDo from './images/radio-button-panel-do.png';
-import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
+import RadioButtonDo from './images/radio-button-do.png';
+import RadioButtonDont from './images/radio-button-dont.png';
 
 ユーザーに選択肢の中から単一の値を選択して入力させるコンポーネントです。
 `input[type='radio']`の代わりとして使用します。
@@ -50,13 +50,13 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 <Cluster gap={1}>
   <DoAndDont
     type="do"
-    img={<StaticImage src={RadioButtonPanelDo} alt="Do" width="346" />}
+    img={<StaticImage src={RadioButtonDo} alt="Do" width="346" />}
     label={<Text>ユーザーは選択する操作に集中でき、それ<br/>以外の操作と区別しやすい</Text>}
   />
   <DoAndDont
     type="dont"
-    img={<StaticImage src={RadioButtonPanelDont} alt="Dont" width="346" />}
-    label={<Text>パネルの中に操作可能な要素を配置する<br/>と、ユーザーが選択操作に集中できず、<br/>操作難易度が上がる</Text>}
+    img={<StaticImage src={RadioButtonDont} alt="Dont" width="346" />}
+    label={<Text>ユーザーが選択操作に集中できず、操作難<br/>易度が上がる</Text>}
   />
 </Cluster>
 

@@ -83,6 +83,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 
 チェックボックス内には、ヘルプページへのリンクやInputなど、ユーザーが値を選択する以外の操作可能な要素は配置しないでください。
 チェックボックス内にこれらを配置した場合、ユーザーが値を選択する操作の妨げや誤操作につながるためです。
+
 チェックボックスの操作に関連するリンクを置きたい場合は、[Fieldset](/products/components/fieldset/)の`helpMessage`などを使用してください。
 
 <Cluster gap={1}>
@@ -94,7 +95,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
   <DoAndDont
     type="dont"
     img={<StaticImage src={checkBoxDont2} alt="Dont" width="346" />}
-    label={<Text>パネルの中に操作可能な要素を配置する<br/>と、ユーザーが選択操作に集中できず、<br/>操作難易度が上がる</Text>}
+    label={<Text>ユーザーが選択操作に集中できず、操作難<br/>易度が上がる</Text>}
   />
 </Cluster>
 
