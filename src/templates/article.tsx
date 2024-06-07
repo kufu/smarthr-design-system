@@ -8,7 +8,6 @@ import { TableWrapper } from '@Components/contents/shared/TableWrapper'
 import { Footer } from '@Components/shared/Footer/Footer'
 import { GlobalStyle } from '@Components/shared/GlobalStyle/GlobalStyle'
 import { Header } from '@Components/shared/Header/Header'
-import { Private } from '@Components/shared/Private'
 import { RoundedBoxLink } from '@Components/shared/RoundedBoxLink'
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
 import { MDXProvider, MDXProviderComponents } from '@mdx-js/react'
@@ -55,10 +54,6 @@ const components: MDXProviderComponents = {
       {children}
     </CustomLink>
   ),
-}
-
-const shortcodes = {
-  Private,
 }
 
 export const query = graphql`
@@ -258,7 +253,7 @@ const Article: FC<Props> = ({ data }) => {
                 <h1>{title}</h1>
               </MainArticleTitle>
               <MDXStyledWrapper>
-                <MDXProvider components={{ ...components, ...shortcodes }}>
+                <MDXProvider components={{ ...components }}>
                   <MDXRenderer>{data.mdx?.body}</MDXRenderer>
                 </MDXProvider>
               </MDXStyledWrapper>

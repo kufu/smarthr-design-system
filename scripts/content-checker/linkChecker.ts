@@ -5,12 +5,8 @@ import { glob } from 'glob'
 
 const args = process.argv.slice(2)
 const targetFiles = args
-  .filter((arg) => {
-    return arg !== '--fix'
-  })
-  .map((filePath) => {
-    return filePath.startsWith('/') ? filePath : path.join(process.cwd(), filePath)
-  })
+  .filter((arg) => arg !== '--fix')
+  .map((filePath) => (filePath.startsWith('/') ? filePath : path.join(process.cwd(), filePath)))
 
 const isAutoFixEnabled = args.includes('--fix')
 
@@ -23,7 +19,7 @@ const IGNORE_LIST = ['URL', '#ページ内リンク']
 type LinkItem = { link: string; filePath: string; pagePath: string; lineNo: number; type: 'link' | 'image' }
 
 const collectExistLinks = async () => {
-  const existPathList: string[] = ['/login/', '/search/'] // /src/pages/以下に存在するページ
+  const existPathList: string[] = ['/search/'] // /src/pages/以下に存在するページ
   const linkList: LinkItem[] = []
   for (const file of await glob(CONTENT_PATH)) {
     // ビルド後のパス
