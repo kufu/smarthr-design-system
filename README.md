@@ -96,32 +96,6 @@ Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](http
 
 アイテムを削除したい場合は、`/src/data/gotchaItem.json`から該当の項目を削除すれば表示されなくなります。Cloudinary上の画像もあわせて削除しても構いません。
 
-## ローカルで従業員ログインを動作させる
-
-`yarn dev`で実行される`gatsby develop`コマンドで立ち上げたローカル環境では従業員ログインが動作しません。
-
-画像のようにログインしていないはずなのに「ログイン済みです」と返ってくるはずです。
-
-<img width="30%" src="https://user-images.githubusercontent.com/43196286/146522761-38adf580-43d6-411b-a85c-d541c6a43dff.png" />
-
-これはローカルでは`/static/_redirects`に置かれたNetlifyのプロキシ設定が動作しないからです。
-
-### 具体的な確認方法
-
-ローカルで動作させるためには[Netlify CLI](https://docs.netlify.com/cli/get-started/)が必要です。
-
-```
-npm install netlify-cli -g
-```
-
-で、`netlify-cli`をインストールし
-
-```
-netlify dev
-```
-
-コマンドを実行すると、立ち上がったNetlifyサーバー( http://localhost:8888 )から確認できます。
-
 ## より詳細なドキュメント
 
 - [開発者向けの情報](https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md)

@@ -1,9 +1,8 @@
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-import { LoginContext } from '@Context/LoginContext'
 import { useLocation } from '@reach/router'
 import { Link } from 'gatsby'
-import React, { FC, useContext, useState } from 'react'
-import { AnchorButton, Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
+import React, { FC, useState } from 'react'
+import { Cluster, FaBarsIcon, FaSearchIcon, defaultColor, Dialog as shrDialog } from 'smarthr-ui'
 import styled, { createGlobalStyle, css } from 'styled-components'
 
 import navigationItem from '../../../data/navigationItem.json'
@@ -15,8 +14,6 @@ type Props = {
 export const Header: FC<Props> = ({ isIndex = false }) => {
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
-
-  const { loginStatus, loginLabel } = useContext(LoginContext)
 
   const isCurrent = (url: string) => {
     const regexp = new RegExp(`${url}`)
@@ -33,15 +30,6 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
           </SiteNameLink>
           <StyledLinkMenu>
             <ul className="-optional">
-              <li>
-                <StyledAnchorButton
-                  {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
-                  className={loginStatus === 'pending' ? 'loginStatusPending' : ''}
-                  size="s"
-                >
-                  {loginLabel}
-                </StyledAnchorButton>
-              </li>
               <li>
                 <StyledSearchLink to="/search/">
                   <FaSearchIcon />
@@ -212,20 +200,6 @@ const StyledLinkMenu = styled(Cluster).attrs({ gap: { row: 0.75, column: 0.5 }, 
   li {
     display: flex;
     align-items: center;
-  }
-`
-
-/* SmartHR UIのAnchorButtonコンポーネントをカスタマイズする */
-const StyledAnchorButton = styled(AnchorButton)`
-  margin-inline: 10px;
-  min-width: 150px;
-  &:not([href]) {
-    border: 0;
-    background-color: ${CSS_COLOR.LIGHT_GREY_2};
-    color: ${CSS_COLOR.TEXT_GREY};
-  }
-  &.loginStatusPending {
-    visibility: hidden;
   }
 `
 
