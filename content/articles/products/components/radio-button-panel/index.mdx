@@ -33,7 +33,8 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 
 #### ビューの切り替えを操作するUIとして使用しない
 
-ラジオボタンパネルは1クリックで選択肢ごとに異なる結果となるため、誤入力による意図しない結果の反映を避けるために、原則として入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+ラジオボタンパネルは1クリックで選択肢ごとに異なる結果となるため、誤入力によって意図しない結果が反映されてしまう可能性あります。
 
 コレクションなどでオブジェクトの表示方法を切り替える場合など、即時反映を前提とする箇所では[TabBar](/products/components/tab-bar/)や[SegmentedControl](/products/components/segmented-control/)、または[Switch](/products/components/switch/)を使用してください。
 
