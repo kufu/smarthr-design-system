@@ -41,6 +41,7 @@ const Wrapper = styled.div<{ $width: string | undefined }>`
     width: ${$width !== undefined ? $width : 'auto'};
 
     @media (max-width: ${defaultBreakpoint.SP}px) {
+      /* MEMO: スマホだと幅いっぱいにする */
       min-width: 100%;
     }
   `}
