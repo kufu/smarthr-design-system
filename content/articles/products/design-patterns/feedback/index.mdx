@@ -10,14 +10,13 @@ order: 13
 
 ユーザーが行なった操作へのシステムからの応答をフィードバックと呼びます。メッセージを画面上に表示したり、コンポーネントの意匠を変更するなどの方法が取られます。
 
-フィードバックはユーザーが操作の結果を理解し、次の行動を判断するために重要です。ユーザーがシステムに何らかの操作をした際は受動的にその結果を認識できるよう、素早く画面上にフィードバックのためのUIを表示してください。
+### ユーザーが受動的に結果を認識できるようにする
 
-## アクセシビリティ
+フィードバックはユーザーが操作の結果を理解し、次の行動を判断するために重要です。ユーザーがシステムに何らかの操作をした際は受動的にその結果を認識できるよう、素早く画面上にフィードバックのためのUIを表示してください。
 
 ### 操作部の近くでフィードバックする
 
-ユーザーは画面の全領域の変化に常に気づくとは限りません。特に拡大鏡を利用する弱視・ロービジョンのユーザーは、拡大表示範囲外の変化を認識できません。
-可能な限り、直前までユーザーが操作していた要素の近くか、コンポーネント自体の変化で操作の結果をフィードバックします。
+ユーザーは画面の全領域の変化に常に気づくとは限りません。特に拡大鏡を利用する弱視・ロービジョンのユーザーは、拡大表示範囲外の変化を認識できません。可能な限り、直前までユーザーが操作していた要素の近くか、コンポーネント自体の変化で操作の結果をフィードバックします。
 
 関連リンク：[弱視・ロービジョンのユーザーのウェブ利用時の課題と解決案](/accessibility/low-vision/)
 
@@ -26,17 +25,19 @@ order: 13
 [WIP]
 
 ## 状況に応じたパターン
-操作の結果をフィードバックする代表的な状況には以下の3つが挙げられます。
+操作の結果をフィードバックする代表的な状況には以下の5つが挙げられます。
 
-1. フォームの入力・送信時
-1. 処理の実行時
-<!-- textlint-disable -->
-1. ページとその要素の読み込み時
-<!-- textlint-enable -->
+1. フォームを入力・送信するとき
+1. 同期処理を開始したとき
+1. 同期処理が完了したとき
+1. ページ・要素の読み込みを開始したとき
+1. ページ・要素の読み込みが完了したとき
 
-### フォームの入力・送信時
+なお、非同期処理のフィードバックについては、[バックグラウンド処理](/products/design-patterns/background-jobs-results/)を参照してください。
 
-フォームの入力・送信時には主に入力内容が不正である場合のエラーメッセージを表示します。
+### フォームを入力・送信するとき
+
+ユーザーがフォームを入力・送信するときには主に入力内容が不正である場合のエラーメッセージを表示します。
 
 入力された値が不正である場合の例：
 
@@ -44,88 +45,104 @@ order: 13
 - データ型が異なる
 - 値が許容範囲外
 
-フォームの入力・送信時に入力内容が不正であることをフィードバックするUIの考え方は以下の通りです。
+ユーザーがフォームを入力・送信するときに入力内容が不正であることをフィードバックするUIの考え方は以下の通りです。
 
-1. **値が不正であることが入力時に判定できる場合**
-    - 入力要素からフォーカスが外れたタイミングで、入力要素に対してエラーメッセージを表示します。
-    - 値が修正され、エラーの原因が解消された場合はエラーメッセージの表示を止めます。
-    - ![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「タイトルが入力されていません。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-blur.png)
+#### 値が不正であることが入力時に判定できる場合
 
-1. **値が不正であることが入力時に判定できず、フォームの送信時に判定する場合**
-    - 送信ボタンの押下後に、入力要素と送信ボタンに対してエラーメッセージを表示します。
-    - 再度送信ボタンが押下された際に、エラーの原因が解消されていた場合はエラーメッセージの表示を止めます。
-    - ![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「利用できない文字「$」が含まれています。」というエラーメッセージが表示されたResponseMessageがある。ActionDialogのPrimaryボタンの下部に「入力内容に不備があります。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-submit.png)
+入力要素からフォーカスが外れたタイミングで、入力要素に対してエラーメッセージを表示します。値が修正され、エラーの原因が解消された場合はエラーメッセージの表示を止めます。
+
+入力要素に対するエラーメッセージは、[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)の`errorMessages`を利用して、入力要素の付近に表示します。どの入力要素がエラーとなっているかを視覚的に見つけやすくするために、入力要素にも`error`状態を付加して意匠を変化させます。
+
+![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「タイトルが入力されていません。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-blur.png)
+
+#### 値が不正であることが入力時に判定できず、フォームの送信時に判定する場合
+
+送信ボタンの押下後に、入力要素と送信ボタンに対してエラーメッセージを表示します。再度送信ボタンが押下された際に、エラーの原因が解消されていた場合はエラーメッセージの表示を止めます。
 
 入力要素に対するエラーメッセージは、[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)の`errorMessages`を利用して、入力要素の付近に表示します。どの入力要素がエラーとなっているかを視覚的に見つけやすくするために、入力要素にも`error`状態を付加して意匠を変化させます。
 
 送信ボタンに対するエラーメッセージは、`error`状態の[ResponseMessage](/products/components/response-message/)（[ActionDialog](/products/components/dialog/)の場合は`responseMessage`）を利用して表示します。
 
-### 処理の実行時
+![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「利用できない文字「$」が含まれています。」というエラーメッセージが表示されたResponseMessageがある。ActionDialogのPrimaryボタンの下部に「入力内容に不備があります。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-submit.png)
 
-同期的に実行される処理に対するフィードバックについて説明します。非同期処理のフィードバックについては、[バックグラウンド処理](/products/design-patterns/background-jobs-results/)を参照してください。
+### 同期処理を開始したとき
 
-処理の実行時のフィードバックには、処理開始時〜処理中のフィードバックと結果のフィードバック（成功時・失敗時）があります。まず、処理中であることを示し、処理が完了したらその結果を表示します。
+同期処理を開始したときに、処理を開始したことおよび処理中であることをフィードバックするUIの考え方は以下の通りです。
 
-#### 処理開始時〜処理中のフィードバック
+#### 基本的な考え方
 
-処理が開始したことおよび処理中であることをフィードバックするUIの考え方は以下の通りです。
+実行した[Button](/products/components/button/)を`loading`状態に変化させます。
 
-1. **まず、処理を実行した[Button](/products/components/button/)を`loading`状態に変化させることを検討します。**
-    - ![スクリーンショット: Inputを持つFormControlを内包するActionDialog。ActionDialogのPrimaryボタンがloading状態で表示されている。](./images/button-loading.png)
+処理が完了したら表示を切り替え、[同期処理が完了したとき](#h3-5)のフィードバックを表示します。
 
-1. **処理を実行したButtonの状態変化で伝えることが難しい場合**
-    - 例：操作後に画面全体の切り替えが発生する場合
-    - `sync`状態の[NotificationBar](/products/components/notification-bar/)を表示します。
-    - ![スクリーンショット: HeaderとAppNaviとNotificationBarが表示されている。NotificationBarはsync状態で、「処理を実行中です。」というメッセージが表示されている。](./images/notification-bar-loading.png)
+![スクリーンショット: Inputを持つFormControlを内包するActionDialog。ActionDialogのPrimaryボタンがloading状態で表示されている。](./images/button-loading.png)
 
-#### 結果のフィードバック
+#### 処理を実行したButtonの状態変化で伝えることが難しい場合
 
-結果をフィードバックするUIの考え方は以下の通りです。
+例：操作後に画面全体の切り替えが発生する場合
 
-1. **まず、ユーザーが直前に操作していたButtonなどの近くに[ResponseMessage](/products/components/response-message/)を表示することを検討します。**
-    - ![スクリーンショット: 「実行」と書かれたsecondaryボタンの右側に「処理に成功しました。」というメッセージが表示されたsuccess状態のResponseMessageがある。](./images/response-message-success.png)
-    - ![スクリーンショット: 「実行」と書かれたsecondaryボタンの右側に「処理に失敗しました。」というメッセージが表示されたerror状態のResponseMessageがある。](./images/response-message-error.png)
+`sync`状態の[NotificationBar](/products/components/notification-bar/)を表示します。
 
-1. **ユーザーが直前に操作していたButtonの近くに表示するのが難しい場合**
-    - 例：操作後にダイアログ・画面全体の切り替えが発生する場合や、ダイアログが消えて元の画面に戻る場合
-    - [NotificationBar](/products/components/notification-bar/)の利用を検討します。
-    - ![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはsuccess状態で、「処理に成功しました。」というメッセージが表示されている。](./images/notification-bar-success.png)
-    - ![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはerror状態で、「処理に失敗しました。」というメッセージが表示されている。](./images/notification-bar-error.png)
+処理が完了したら表示を切り替え、[同期処理が完了したとき](#h3-5)のフィードバックを表示します。
 
-1. **記載する情報が多くResponseMessageやNotificationBarでは表示しきれない場合**
-    - [InformationPanel](/products/components/information-panel/)の利用を検討します。
-    - ![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとInformationPanelが垂直方向に積み重なっている。InformationPanelはerror状態で、「入力内容の不備が3件あります。Aさんの情報に許容範囲外の値が入力されています。Bさんの情報に許容範囲外の値が入力されています。Cさんの情報に許容範囲外の値が入力されています。」というメッセージが表示されている。](./images/information-panel-error.png)
+![スクリーンショット: HeaderとAppNaviとNotificationBarが表示されている。NotificationBarはsync状態で、「処理を実行中です。」というメッセージが表示されている。](./images/notification-bar-loading.png)
 
-成功時には`success`状態で、失敗時には`error`状態でResponseMessage, NotificationBar, InformationPanelを表示します。
+### 同期処理が完了したとき
 
-また、成功時のフィードバックは成功したことが自明である場合は省略できますがユーザーが状態を正しく理解できるよう十分に注意してください。
+同期処理が完了したときに、処理の結果をフィードバックするUIの考え方は以下の通りです。
 
-- 例：オブジェクトの新規インスタンスを作成すると、作成された新規インスタンスの詳細画面へ自動的に移動する場合, [Switch](/products/components/switch/)など、コンポーネント自体がその状態を示す場合
+#### 基本的な考え方
 
-<!-- textlint-disable -->
+ユーザーが直前に操作していたButtonなどの近くに、成功時には`success`状態、失敗時には`error`状態で[ResponseMessage](/products/components/response-message/)を表示します。
 
-### ページとその要素の読み込み時
+![スクリーンショット: 「実行」と書かれたsecondaryボタンの右側に「処理に成功しました。」というメッセージが表示されたsuccess状態のResponseMessageがある。](./images/response-message-success.png)
 
-<!-- textlint-enable -->
+![スクリーンショット: 「実行」と書かれたsecondaryボタンの右側に「処理に失敗しました。」というメッセージが表示されたerror状態のResponseMessageがある。](./images/response-message-error.png)
 
-ユーザーがページを開いた際、再読み込みした際、ページ内の一部要素が読み込まれる際のフィードバックについて説明します。
+#### ユーザーが直前に操作していたButtonの近くに表示するのが難しい場合
 
-ページとその要素の読み込み時のフィードバックには、処理中のフィードバックと結果のフィードバック（失敗時）があります。まず、処理中であることを示し、読み込みに失敗したらその結果を表示します。
+例：操作後にダイアログ・画面全体の切り替えが発生する場合や、ダイアログが消えて元の画面に戻る場合
 
-#### 処理中のフィードバック
+成功時には`success`状態、失敗時には`error`状態で[NotificationBar](/products/components/notification-bar/)を表示します。
 
-処理中のフィードバックには、[Loader](/products/components/loader/)を利用してください。読み込みの対象となっている領域にLoaderを表示します。
+![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはsuccess状態で、「処理に成功しました。」というメッセージが表示されている。](./images/notification-bar-success.png)
+
+![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはerror状態で、「処理に失敗しました。」というメッセージが表示されている。](./images/notification-bar-error.png)
+
+#### 記載する情報が多くResponseMessageやNotificationBarでは表示しきれない場合
+
+成功時には`success`状態、失敗時には`error`状態で[InformationPanel](/products/components/information-panel/)を表示します。
+
+![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとInformationPanelが垂直方向に積み重なっている。InformationPanelはerror状態で、「入力内容の不備が3件あります。Aさんの情報に許容範囲外の値が入力されています。Bさんの情報に許容範囲外の値が入力されています。Cさんの情報に許容範囲外の値が入力されています。」というメッセージが表示されている。](./images/information-panel-error.png)
+
+#### 例外：成功時のフィードバックの省略
+
+成功時のフィードバックは成功したことが自明である場合は省略できますがユーザーが状態を正しく理解できるよう十分に注意してください。
+
+例：オブジェクトの新規インスタンスを作成すると、作成された新規インスタンスの詳細画面へ自動的に移動する場合, [Switch](/products/components/switch/)など、コンポーネント自体がその状態を示す場合
+
+### ページ・要素の読み込みを開始したとき
+
+読み込みの対象となっている領域に[Loader](/products/components/loader/)を表示します。
+
+処理が完了したら表示を切り替え、[ページ・要素の読み込みが完了したとき](#h3-7)のフィードバックを表示します。
 
 ![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとよくあるテーブルの見出しと新規追加ボタンが垂直方向に積み重なっている。Tableが表示されるべき場所に、Loaderが表示されている。](./images/table-loading.png)
 
-#### 結果のフィードバック
+### ページ・要素の読み込みが完了したとき
 
-結果をフィードバックするUIの考え方は以下の通りです。
+ページ・要素の読み込みが完了したときに、その結果をフィードバックするUIの考え方は以下の通りです。
 
-1. ページ全体の表示に失敗した場合
-    - [ErrorScreen](/products/components/error-screen/)を利用します。
-1. 特定の要素の表示に失敗した場合
-    - [NotificationBar](/products/components/notification-bar/)を表示します。
-    - ![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとよくあるテーブルの見出しと新規追加ボタンが垂直方向に積み重なっている。Tableが表示されるべき場所に、「情報の取得に失敗しました。時間をおいて画面を再読み込みしてください。」というメッセージが表示されたerror状態のNotificationBarがある。](./images/table-error.png)
+#### ページ・要素の表示に成功した場合
 
-成功時は、要素が表示されることでその結果が自明であるため、フィードバックのためのUIは表示しません。
+要素が表示されることでその結果が自明であるため、フィードバックのためのUIは表示しません。
+
+#### ページ全体の表示に失敗した場合
+
+[ErrorScreen](/products/components/error-screen/)を利用します。
+
+#### 特定の要素の表示に失敗した場合
+
+`error`状態の[NotificationBar](/products/components/notification-bar/)を表示します。
+
+![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとよくあるテーブルの見出しと新規追加ボタンが垂直方向に積み重なっている。Tableが表示されるべき場所に、「情報の取得に失敗しました。時間をおいて画面を再読み込みしてください。」というメッセージが表示されたerror状態のNotificationBarがある。](./images/table-error.png)
