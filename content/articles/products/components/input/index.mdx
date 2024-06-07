@@ -31,13 +31,36 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 プレースホルダ（`placeholder`）を使い入力項目の説明や例を載せてしまうと、入力中にプレースホルダの内容が確認できず入力補助として成立しないため非推奨です。
 
+## 種類
+
+### CurrencyInput
+
+金額を入力するためのコンポーネントです。入力値が整数であった場合、入力欄からフォーカスを外したときに3桁ごとにカンマが入った値で表示されます。
+
+```tsx editable codeBlock
+<CurrencyInput
+  defaultValue="1000"
+/>
+```
+
+### SearchInput
+
+検索する語句を入力するためのコンポーネントです。
+
+<ComponentStory name="SearchInput" />
+
+
 ## 状態
 
 ### 無効（disabled）
 
 入力を受け付けない状態を表現したスタイルです。
 
-`submit`しても送信されない値をInputの意匠を残しつつ表示しなければならないときに使用します。
+通常は編集ができるが一時的または権限の制約により編集ができない場合に使用します。
+
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+<!-- `submit`しても送信されない値をInputの意匠を残しつつ表示しなければならないときに使用します。 -->
 
 ```tsx editable codeBlock noIframe
 <Input
@@ -47,21 +70,27 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 />
 ```
 
-ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
-
 ### 読み取り専用（readOnly）
 
 Inputの意匠を残しつつデータを表示し、入力は受け付けない状態を表現したスタイルです。
 
-`submit`すると送信される値をInputの意匠を残しつつ表示しなければならないときに使用します。
+<!-- `submit`すると送信される値をInputの意匠を残しつつ表示しなければならないときに使用します。 -->
+
+編集できないが、その値がフォームの内容に含まれていることを示すことが重要な場合に使用します。
+
+例えば、すでに登録済みで変更できないメールアドレスを、入力済みとして送信したい場合に使用します。
 
 ```tsx editable codeBlock noIframe
-<Input
-  name="disabled"
-  value="入力済みの値"
-  readOnly
-/>
+<FormControl
+  title="メールアドレス"
+>
+  <Input
+    value="example@example.com"
+    readOnly
+  />
+</FormControl>
 ```
+
 
 ## Props
 
