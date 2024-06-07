@@ -14,6 +14,8 @@ order: 13
 
 フィードバックはユーザーが操作の結果を理解し、次の行動を判断するために重要です。ユーザーがシステムに何らかの操作をした際は受動的にその結果を認識できるよう、素早く画面上にフィードバックのためのUIを表示してください。
 
+ただし、ページの読み込みに成功したタイミングや、新規追加したオブジェクトの詳細ページが自動で開かれる場合など、操作の結果が自明である場合はフィードバックのためのUIを省略できます。
+
 ### 操作部の近くでフィードバックする
 
 ユーザーは画面の全領域の変化に常に気づくとは限りません。特に拡大鏡を利用する弱視・ロービジョンのユーザーは、拡大表示範囲外の変化を認識できません。可能な限り、直前までユーザーが操作していた要素の近くか、コンポーネント自体の変化で操作の結果をフィードバックします。
@@ -37,21 +39,11 @@ order: 13
 
 ### フォームを入力・送信するとき
 
-ユーザーがフォームを入力・送信するときには主に入力内容が不正である場合のエラーメッセージを表示します。
-
-入力された値が不正である場合の例：
-
-- 入力必須の要素の値が空である
-- データ型が異なる
-- 許容範囲外の値が入力されている
-
-ユーザーがフォームを入力・送信するときに入力内容が不正であることをフィードバックするUIの考え方は以下の通りです。
-
 #### 値が不正であることが入力時に判定できる場合
 
 入力要素からフォーカスが外れたタイミングで、入力要素に対してエラーメッセージを表示します。値が修正され、エラーの原因が解消された場合はエラーメッセージの表示を止めます。
 
-入力要素に対するエラーメッセージは、[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)の`errorMessages`を利用して、入力要素の付近に表示します。どの入力要素がエラーとなっているかを視覚的に見つけやすくするために、入力要素にも`error`状態を付加して意匠を変化させます。
+入力要素に対するエラーメッセージは、[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)の`errorMessages`で表示します。入力要素にも`error`状態を付加して意匠を変化させます。
 
 ![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「タイトルは50文字以下で入力してください。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-blur.png)
 
@@ -59,15 +51,13 @@ order: 13
 
 送信ボタンの押下後に、入力要素と送信ボタンに対してエラーメッセージを表示します。再度送信ボタンが押下された際に、エラーの原因が解消されていた場合はエラーメッセージの表示を止めます。
 
-入力要素に対するエラーメッセージは、[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)の`errorMessages`を利用して、入力要素の付近に表示します。どの入力要素がエラーとなっているかを視覚的に見つけやすくするために、入力要素にも`error`状態を付加して意匠を変化させます。
+入力要素に対するエラーメッセージは、[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)の`errorMessages`で表示します。入力要素にも`error`状態を付加して意匠を変化させます。
 
 送信ボタンに対するエラーメッセージは、`error`状態の[ResponseMessage](/products/components/response-message/)（[ActionDialog](/products/components/dialog/)の場合は`responseMessage`）を利用して表示します。
 
 ![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「利用できない文字「$」が含まれています。」というエラーメッセージが表示されたResponseMessageがある。ActionDialogのPrimaryボタンの下部に「入力内容に不備があります。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-submit.png)
 
 ### 同期処理を開始したとき
-
-同期処理を開始したときに、処理を開始したことおよび処理中であることをフィードバックするUIの考え方は以下の通りです。
 
 #### 基本的な考え方
 
@@ -79,17 +69,13 @@ order: 13
 
 #### 処理を実行したButtonの状態変化で伝えることが難しい場合
 
-例：操作後に画面全体の切り替えが発生する場合
-
-`sync`状態の[NotificationBar](/products/components/notification-bar/)を表示します。
+操作後に画面全体の切り替えが発生する場合など処理を実行したButtonの状態変化で伝えることが難しい場合は、`sync`状態の[NotificationBar](/products/components/notification-bar/)を表示します。
 
 処理が完了したら表示を切り替え、[同期処理が完了したとき](#h3-5)のフィードバックを表示します。
 
 ![スクリーンショット: HeaderとAppNaviとNotificationBarが表示されている。NotificationBarはsync状態で、「処理を実行中です。」というメッセージが表示されている。](./images/notification-bar-loading.png)
 
 ### 同期処理が完了したとき
-
-同期処理が完了したときに、処理の結果をフィードバックするUIの考え方は以下の通りです。
 
 #### 基本的な考え方
 
@@ -101,9 +87,7 @@ order: 13
 
 #### ユーザーが直前に操作していたButtonの近くに表示するのが難しい場合
 
-例：操作後にダイアログ・画面全体の切り替えが発生する場合や、ダイアログが消えて元の画面に戻る場合
-
-成功時には`success`状態、失敗時には`error`状態で[NotificationBar](/products/components/notification-bar/)を表示します。
+操作後に画面全体の切り替えが発生する場合などユーザーが直前に操作していたButtonの近くに表示するのが難しい場合は、成功時には`success`状態、失敗時には`error`状態で[NotificationBar](/products/components/notification-bar/)を表示します。
 
 ![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはsuccess状態で、「処理に成功しました。」というメッセージが表示されている。](./images/notification-bar-success.png)
 
@@ -115,12 +99,6 @@ order: 13
 
 ![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとInformationPanelが垂直方向に積み重なっている。InformationPanelはerror状態で、「入力内容の不備が3件あります。Aさんの情報に許容範囲外の値が入力されています。Bさんの情報に許容範囲外の値が入力されています。Cさんの情報に許容範囲外の値が入力されています。」というメッセージが表示されている。](./images/information-panel-error.png)
 
-#### 例外：成功時のフィードバックの省略
-
-成功時のフィードバックは成功したことが自明である場合は省略できますがユーザーが状態を正しく理解できるよう十分に注意してください。
-
-例：オブジェクトの新規インスタンスを作成すると、作成された新規インスタンスの詳細画面へ自動的に移動する場合, [Switch](/products/components/switch/)など、コンポーネント自体がその状態を示す場合
-
 ### ページ・要素の読み込みを開始したとき
 
 読み込みの対象となっている領域に[Loader](/products/components/loader/)を表示します。
@@ -130,12 +108,6 @@ order: 13
 ![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとよくあるテーブルの見出しと新規追加ボタンが垂直方向に積み重なっている。Tableが表示されるべき場所に、Loaderが表示されている。](./images/table-loading.png)
 
 ### ページ・要素の読み込みが完了したとき
-
-ページ・要素の読み込みが完了したときに、その結果をフィードバックするUIの考え方は以下の通りです。
-
-#### ページ・要素の表示に成功した場合
-
-要素が表示されることでその結果が自明であるため、フィードバックのためのUIは表示しません。
 
 #### ページ全体の表示に失敗した場合
 
