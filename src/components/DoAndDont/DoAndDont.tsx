@@ -1,37 +1,49 @@
 import React, { FC } from 'react'
-import { FaCheckCircleIcon, FaTimesCircleIcon, defaultColor, defaultSpacing } from 'smarthr-ui'
+import { FaCircleCheckIcon, FaCircleXmarkIcon, defaultBreakpoint, defaultColor, defaultSpacing } from 'smarthr-ui'
 import styled, { css } from 'styled-components'
 
 type Props = {
   type: 'do' | 'dont'
   img: React.ReactNode
   label: React.ReactNode
+  width?: string | number
 }
 
-export const DoAndDont: FC<Props> = ({ type, img, label }) => (
-  <Wrapper>
-    <ImageArea>{img}</ImageArea>
-    <LabelArea $type={type}>
-      <Status $type={type}>
-        {type === 'do' ? (
-          <>
-            <FaCheckCircleIcon className="icon" />
-            Do
-          </>
-        ) : (
-          <>
-            <FaTimesCircleIcon className="icon" />
-            Don&apos;t
-          </>
-        )}
-      </Status>
-      {label}
-    </LabelArea>
-  </Wrapper>
-)
+export const DoAndDont: FC<Props> = ({ type, img, label, width }) => {
+  const actualWidth = typeof width === 'number' ? `${width}px` : width
 
-const Wrapper = styled.div`
-  margin-block: 16px 0;
+  return (
+    <Wrapper $width={actualWidth ? actualWidth : undefined}>
+      <ImageArea>{img}</ImageArea>
+      <LabelArea $type={type}>
+        <Status $type={type}>
+          {type === 'do' ? (
+            <>
+              <FaCircleCheckIcon className="icon" />
+              Do
+            </>
+          ) : (
+            <>
+              <FaCircleXmarkIcon className="icon" />
+              Don&apos;t
+            </>
+          )}
+        </Status>
+        {label}
+      </LabelArea>
+    </Wrapper>
+  )
+}
+
+const Wrapper = styled.div<{ $width: string | undefined }>`
+  ${({ $width }) => css`
+    margin-block: 24px 0;
+    width: ${$width !== undefined ? $width : 'auto'};
+
+    @media (max-width: ${defaultBreakpoint.SP}px) {
+      min-width: 100%;
+    }
+  `}
 `
 
 const ImageArea = styled.div`
