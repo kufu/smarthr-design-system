@@ -113,9 +113,9 @@ SmartHR UI Layoutコンポーネントを使用できます。
 
 * 入れ子にして`align`や`justify`を組み合わせるとメディアクエリを使用せずに柔軟なレイアウトを作れます。
 * 幅を狭めて収まり切らなくなると折返します。
-* `gap`に使える値は`XXS`,`XS`,`S`,`M`,`L`,`XL`、他`1`,`0.5`などの数値です。詳しくはsmarthr-uiのドキュメントを参照してください。
+* `gap`に使える値は16pxを基準に`1`,`0.5`などの数値です。詳しくはsmarthr-uiのドキュメントを参照してください。
 
-<Cluster gap="XS">
+<Cluster gap={1}>
   {[...Array(10)].map((_, i) => (
     <div key={i} style={{background: 'black', width: `${100}px`, height: '100px'}} />
   ))}
@@ -125,9 +125,9 @@ SmartHR UI Layoutコンポーネントを使用できます。
 
 * 等間隔に隙間を保ち、積み重ねるレイアウトが作れます。
 * 各要素の間隔は`1rem`が標準です。
-* `gap`に使える値は`XXS`,`XS`,`S`,`M`,`L`,`XL`、他`1`,`0.5`などの数値です。詳しくはsmarthr-uiのドキュメントを参照してください。
+* `gap`に使える値は16pxを基準に`1`,`0.5`などの数値です。詳しくはsmarthr-uiのドキュメントを参照してください。
 
-<Stack gap="XS">
+<Stack gap={1}>
   {[...Array(4)].map((_, i) => (
     <div key={i} style={{background: 'black', width: '100px', height: '100px'}} />
   ))}
@@ -169,7 +169,7 @@ import { StaticImage } from '@Components/StaticImage'
 import { Cluster } from 'smarthr-ui'
 import imageUrl from './images/sample.jpg';
 
-<Cluster gap="XS">
+<Cluster gap={1}>
   <StaticImage src={imageUrl} width="200" alt="Image Sample" />
   <StaticImage src={imageUrl} width="200" alt="Image Sample" />
 </Cluster>
@@ -179,7 +179,7 @@ import imageUrl from './images/sample.jpg';
 
 import imageUrl from './images/sample.jpg';
 
-<Cluster gap="XS">
+<Cluster gap={1}>
   <StaticImage src={imageUrl} width="200" alt="Image Sample" />
   <StaticImage src={imageUrl} width="200" alt="Image Sample" />
 </Cluster>
@@ -213,16 +213,18 @@ import imageUrl from './images/sample.jpg';
 
 ## Do And Don&apos;t
 
-<Cluster gap="XS">
+<Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont
     type="do"
-    img={<StaticImage src={imageUrl} alt="Do" width="200" />}
+    img={<StaticImage src={imageUrl} alt="Do" />}
     label={<Text>ほげほげ</Text>}
+    width="calc(50% - 8px)"
   />
   <DoAndDont
     type="dont"
-    img={<StaticImage src={imageUrl} alt="Dont" width="200" />}
+    img={<StaticImage src={imageUrl} alt="Dont" />}
     label={<Text>ほげほげ</Text>}
+    width="calc(50% - 8px)"
   />
 </Cluster>
 
