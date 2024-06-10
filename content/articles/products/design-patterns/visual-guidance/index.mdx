@@ -33,7 +33,7 @@ order: 14
 
 画面の構成内容に合わせ、以下の2つのパターンを踏まえた画面レイアウトを検討します。具体的な適用例は、[具体例](#h2-3)のセクションを参照してください。
 
-#### F型
+#### 「F型」の視線移動を考慮する
 ユーザーの視線が画面上で「F」の形を描くように移動するパターンです。  
 テキストコンテンツが多い画面や、設定項目が並ぶ画面など、情報の固まりが上から下に並ぶ画面において、ユーザーが俯瞰的に把握しようとする際にみられます。（[必ずFの形になる、というわけではありません](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content-discovered/)）
 
@@ -52,7 +52,7 @@ order: 14
 - 優先度が高い情報は、上部に配置する
 - アクションは、左側あるいは「F」の視線上に配置する
 
-#### Z型
+#### 「Z型」の視線移動を考慮する
 ユーザーの視線が画面上で「Z」の形を描くように移動するパターンです。  
 初見の画面や、スクロールが少ない画面において、ユーザーが画面を全体的に把握する際にみられます。最終的に右下へ視線が移動する点が特徴的です。
 
@@ -92,6 +92,11 @@ HTMLのアウトライン構造に対して順に見出しを設定すること�
 ## 注意点
 視線誘導の法則はあらゆる場合に当てはまるわけではありません。以下を念頭に活用してください。
 
+- ユーザーに目的がある場合など、視線誘導が有効ではない場合を理解する
+- 1つの画面内で複数の法則が関係し合うことを意識して活用する
+- 「視線移動の起点や境界となる要素」を適切に配置する
+- 視線誘導のみに頼ったレイアウトをしない（アクセシビリティとの関係）
+
 
 ### ユーザーに目的がある場合など、視線誘導が有効ではない場合を理解する
 視線誘導は、あくまで「一般的な人間の特性」を利用したテクニックです。  
@@ -124,7 +129,8 @@ HTMLのアウトライン構造に対して順に見出しを設定すること�
 視線誘導の法則に考慮したレイアウトの具体例を紹介します。
 [注意点](#h2-2)のとおり、1つの画面内で複数の法則が関連することを認識しましょう。
 
-import { Cluster } from 'smarthr-ui'
+import styled from 'styled-components'
+import { Cluster, Text } from 'smarthr-ui'
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
 import Sample1Do from './images/Sample1_DO.png'
@@ -135,6 +141,10 @@ import Sample3Do from './images/Sample3_DO.png'
 import Sample3Dont from './images/Sample3_DONT.png'
 import Sample4Do from './images/Sample4_DO.png'
 import Sample4Dont from './images/Sample4_DONT.png'
+export const List = styled.ul`
+  margin-block-start: 0.5rem;
+  padding-inline-start: 1rem;
+`
 
 ### 例1
 
@@ -142,13 +152,13 @@ import Sample4Dont from './images/Sample4_DONT.png'
   <DoAndDont
     type="do"
     img={<StaticImage src={Sample1Do} alt="Do" />}
-    label=""
+    label={<Text><a href="#h4-0">F型の視線移動</a>を考慮した配置になっている</Text>}
     width="calc(50% - 8px)"
   />
   <DoAndDont
     type="dont"
     img={<StaticImage src={Sample1Dont} alt="Dont" />}
-    label=""
+    label={<Text><a href="#h4-0">F型の視線移動</a>を考慮した配置になっていない<List><li>見出しがフォーム領域（<a href="/products/components/base/">Base</a>）に対して左側に配置されていない</li><li>フォームが入力してほしい順序に上から下に並んでいない</li><li>見出しの直後に［目的となるボタン］が配置されており、「フォームの入力後にボタンを押す」という視線の流れにならない</li></List></Text>}
     width="calc(50% - 8px)"
   />
 </Cluster>
@@ -159,13 +169,13 @@ import Sample4Dont from './images/Sample4_DONT.png'
   <DoAndDont
     type="do"
     img={<StaticImage src={Sample2Do} alt="Do" />}
-    label=""
+    label={<Text><a href="#h4-1">Z型の視線移動</a>を考慮した配置になっており、主要な情報とアクションが見逃されにくい</Text>}
     width="calc(50% - 8px)"
   />
   <DoAndDont
     type="dont"
     img={<StaticImage src={Sample2Dont} alt="Dont" />}
-    label=""
+    label={<Text><a href="/products/components/float-area/">FloatArea</a>の採用から<a href="#h4-1">Z型の視線移動</a>を期待するレイアウトだが、［操作ボタン1］［目的となるボタン］が「Z」の視線上に配置されていない</Text>}
     width="calc(50% - 8px)"
   />
 </Cluster>
@@ -176,13 +186,13 @@ import Sample4Dont from './images/Sample4_DONT.png'
   <DoAndDont
     type="do"
     img={<StaticImage src={Sample3Do} alt="Do" />}
-    label=""
+    label={<Text><a href="#h4-0">F型の視線移動</a>を考慮した配置になっている</Text>}
     width="calc(50% - 8px)"
   />
   <DoAndDont
     type="dont"
     img={<StaticImage src={Sample3Dont} alt="Dont" />}
-    label=""
+    label={<Text>オブジェクトの一覧画面から、<a href="#h4-0">F型の視線移動</a>を期待するレイアウトだが、視線の流れが途切れやすい配置になっている<List><li>検索フォームがなく空白であるため、視線を横に移動する起点がなく<a href="/products/components/pagination/">Pagination</a>が見逃される可能性がある</li><li>［オブジェクトを追加］ボタンは一覧画面における主要な操作にはなりえないため、目立たせる目的で（CTAとして）使われている結果、視線の流れが途切れやすくなってしまう</li></List></Text>}
     width="calc(50% - 8px)"
   />
 </Cluster>
