@@ -92,9 +92,13 @@ order: 13
 
 ![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはerror状態で、「処理に失敗しました。」というメッセージが表示されている。](./images/notification-bar-error.png)
 
-#### 記載する情報が多い場合（ResponseMessageやNotificationBarで表示しきれない場合）
+#### 記載する情報が多い場合
 
-成功時には`success`状態、失敗時には`error`状態で[InformationPanel](/products/components/information-panel/)を表示します。
+補足情報としてTextLinkやButtonを表示する場合は、成功時には`success`状態、失敗時には`error`状態で[NotificationBar](/products/components/notification-bar/)を表示します。
+
+![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはerror状態で、「処理に失敗しました。」というメッセージと「情報を修正」というボタン、ヘルプページへのリンクが表示されている。](./images/notification-bar-error-alt.png)
+
+複数行のテキストなど多くの情報を表示する場合は、成功時には`success`状態、失敗時には`error`状態で[InformationPanel](/products/components/information-panel/)を表示します。
 
 ![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとInformationPanelが垂直方向に積み重なっている。InformationPanelはerror状態で、「入力内容の不備が3件あります。Aさんの情報に許容範囲外の値が入力されています。Bさんの情報に許容範囲外の値が入力されています。Cさんの情報に許容範囲外の値が入力されています。」というメッセージが表示されている。](./images/information-panel-error.png)
 
