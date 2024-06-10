@@ -13,7 +13,9 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 ## 使用上の注意
 
 ### TabBar との違い
-ビューに対してオブジェクトを絞り込んだり、見え方を変えたいときに[TabBar](/products/components/tab-bar/)も用いることができますが、SegmentedControlではTabBarと異なり、ビューに存在するオブジェクト自体を変更する場合には適していません。
+SegmentedControlは、ビューに存在するオブジェクト自体を切り替える場合には適していません。
+
+オブジェクト自体を切り替えて表示する場合は、[TabBar](/products/components/tab-bar/)を使用してください。
 
 ```tsx editable codeBlock
 <TabBar id="hover">
