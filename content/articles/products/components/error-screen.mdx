@@ -47,28 +47,6 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
       target: '_blank',
     },
   ]}
-  footer={
-    <Cluster
-      as="footer"
-      align="center"
-      justify="space-between"
-      className="smarthr-ui-ErrorScreen-footer shr-bg-brand shr-p-1.25 shr-text-base shr-text-white"
-    >
-      <Cluster as="ul" align="center" className="shr-list-none">
-        <li>
-          <TextLink
-            target="_blank"
-            href="https://support.smarthr.jp/"
-            className="shr-text-white hover:shr-shadow-underline [&]:shr-shadow-none"
-            suffix={null}
-          >
-            ヘルプ
-          </TextLink>
-        </li>
-      </Cluster>
-      <small className="shr-ms-auto shr-text-base">&copy; SmartHR, Inc.</small>
-    </Cluster>
-  }
 >
   <Text as="p" className="shr-text-center">
     エラーメッセージ
@@ -120,10 +98,6 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 エラーになったときにユーザーの助けになるようなページへ誘導できる場合はリンクを表示してください。
 
 必要に応じて別タブで開くオプションも利用できます。
-
-### フッター
-
-プロダクトのグランドルールとして、常にフッターを表示する必要があれば利用できます。
 
 ## エラー別の表示内容
 
