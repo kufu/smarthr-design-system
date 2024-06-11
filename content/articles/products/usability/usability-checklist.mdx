@@ -61,12 +61,11 @@ export const TableReel = styled(OriginalTableReel)`
 <thead>
 <tr>
     <Th style="width: 1em;">#</Th>
-    <Th style="width: 6em;">分類</Th>
+    <Th style="width: 5em;">分類</Th>
     <Th>チェック内容</Th>
-    <Th style="width: 8em;">基準の充足状況<br />（2024/4現在）</Th>
-    <Th style="width: 16em;">関連する品質測定量<br />（JIS X 25023）</Th>
-    <Th style="width: 8em;">関連する副特性<br />（JIS X 25010）</Th>
-
+    <Th style="width: 8em;">基準の充足状況<br />（2024/6現在）</Th>
+    <Th style="width: 16em;">関連する品質測定量<br />（JIS X 25023:2018）</Th>
+    <Th style="width: 10em;">関連する副特性<br />（JIS X 25010:2013）</Th>
 </tr>
 </thead>
 <tbody>
@@ -154,7 +153,7 @@ export const TableReel = styled(OriginalTableReel)`
     <Td>11</Td>
     <Td>デザインパターン</Td>
     <Td>テーブルを使う場合は、「よくあるテーブル」の基準に沿っているか</Td>
-    <Td><a href="/products/design-patterns/smarthr-table/">基準はある</a>が十分でない</Td>
+    <Td><a href="/products/design-patterns/smarthr-table/">基準あり</a></Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
 </tr>
@@ -178,15 +177,15 @@ export const TableReel = styled(OriginalTableReel)`
     <Td>14</Td>
     <Td>デザインパターン</Td>
     <Td>削除含む危険な操作、やり直しができない操作の前に、ユーザーに確認したり、実行後に取り消しできるようにしているか</Td>
-    <Td>基準がない<br />（作業中）</Td>
+    <Td><a href="/products/design-patterns/irreversible-operation/">基準はある</a>が十分でない（作業中）</Td>
     <Td><code>UOp-6-S 操作実行取消し能力</code><br /><code>UEp-1-G 利用者操作エラー回避性</code></Td>
     <Td>運用操作性、ユーザエラー防止性</Td>
 </tr>
 <tr>
     <Td>15</Td>
     <Td>デザインパターン</Td>
-    <Td>モードがあるUIの場合は、基準に沿っているか</Td>
-    <Td>基準がない<br />（作業中）</Td>
+    <Td>モードがあるUIの場合は、「モーダルなUI」の基準に沿っているか</Td>
+    <Td><a href="/products/design-patterns/modal-ui/">基準あり</a></Td>
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code></Td>
     <Td>運用操作性</Td>
 </tr>
@@ -248,7 +247,7 @@ export const TableReel = styled(OriginalTableReel)`
 
 - `分類`
     - [プロダクトの項目](/products/)のカテゴリ
-    - 2023年11月時点では存在しないものも含む
+    - 2024年6月時点では存在しないものも含む
 - `チェック内容`
     - 使用性を確保するためにチェックする項目。多くの項目が「〜〜の基準に沿っているか」を確認する。
 - `関連する品質測定量`
@@ -257,7 +256,7 @@ export const TableReel = styled(OriginalTableReel)`
     - 品質測定量が属する使用性の副特性（JIS X 25010:2013 システム及びソフトウェア品質モデル より）
 - `基準の状況`
     - チェック内容に記載された基準が、現在のSmartHR Design Systemなどに基準として言語化されているかどうかの情報
-    - 2023年11月時点では存在しない基準を多く含む
+    - 2024年6月時点では存在しない基準を多く含む
 
 
 ## SmartHRにおける運用
