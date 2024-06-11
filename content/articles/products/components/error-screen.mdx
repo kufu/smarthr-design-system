@@ -26,12 +26,12 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 
 ## レイアウト
 
-ロゴ、タイトル、本文、リンク、フッターを表示できます。
+ロゴ、タイトル、メッセージ、リンクを表示できます。
 
 ```tsx editable codeBlock
 <ErrorScreen
   className="shr-w-full"
-  title="エラータイトル"
+  title="タイトル"
   links={[
     {
       label: 'リンク1',
@@ -49,7 +49,7 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
   ]}
 >
   <Text as="p" className="shr-text-center">
-    エラーメッセージ
+    メッセージ
   </Text>
 </ErrorScreen>
 ```
