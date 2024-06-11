@@ -11,17 +11,25 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 ## 使用上の注意
 
+### タイトルと内容のセットで使用する
+
+どちらか一方だけの表示に使用しないでください。Baseと似たデザインでただ目立たせるためのような使い方は推奨しません。
+
+### 表示する内容が多い場合は開閉ボタンの表示を検討する
+
+テキストが複数行にわたるなど、表示領域が広くなる場合は`togglable`propsで開閉ボタンを表示することを検討してください。
+
+ただし、たとえば操作手順や確認が必須の情報など、長くても全文表示しておくべき内容であれば開閉ボタンは必須ではありません。
+
 ### レイヤー順序に注意して配置する
 
 InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は3です。レイヤー順序が2以下の要素の中、特に[Base](/products/components/base/)にInformationPanelを配置しないでください。
 
-要素がフローティングしている場合は許容します。
+### 短い文言で済むフィードバックに使用しない
 
-### 常に表示しておかなくても良いものに使用しない
+「処理に成功しました」「処理に失敗しました」程度の短い文言をフィードバックとして表示する場合は、[ResponsiveMessage](/products/components/responsive-message/)や[NotificationBar[bold]](/products/components/notification-bar/)の使用を検討してください。
 
-インスタントな通知や操作フィードバックの表示に使用しないでください。
-
-ユーザーが自分で要素を削除して良い場合は[NotificationBar](/products/components/notification-bar/)を使用してください。
+フィードバックの内容が多いときや、常に表示しておく必要があるときはInformationPanelの使用を推奨します。
 
 ## Props
 
