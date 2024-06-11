@@ -25,11 +25,12 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は3です。レイヤー順序が2以下の要素の中、特に[Base](/products/components/base/)にInformationPanelを配置しないでください。
 
-### 短い文言で済むフィードバックに使用しない
 
-「処理に成功しました」「処理に失敗しました」程度の短い文言をフィードバックとして表示する場合は、[ResponsiveMessage](/products/components/responsive-message/)や[NotificationBar[bold]](/products/components/notification-bar/)の使用を検討してください。
+### 内容の多いフィードバック表示に使用する
 
-フィードバックの内容が多いときや、常に表示しておく必要があるときはInformationPanelの使用を推奨します。
+テキストが複数行にわたるなど、フィードバックの内容が多いときはInformationPanelを使用してください。
+
+タイトルがないものや、「処理に成功しました」「処理に失敗しました」程度の短い文言をフィードバック表示する場合は、[ResponsiveMessage](/products/components/responsive-message/)や[NotificationBar[bold]](/products/components/notification-bar/)の使用を検討してください。
 
 ## Props
 
