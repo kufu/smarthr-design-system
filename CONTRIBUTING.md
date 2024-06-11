@@ -22,7 +22,6 @@ Gatsbyの機能やプラグインの概要です。各データソースにつ�
 - / (index.html = トップページ)
 - /404/
 - /search/
-- /login/
 
 それ以外のページは、`/content/articles`以下にある.mdxファイルから、gatsby-source-filesystemプラグインを使って生成しています。
 
@@ -72,12 +71,6 @@ Gatsbyのデータソースとして、MDX以外にも以下があり、GraphQL 
 ## SDS独自の機能
 
 Gatsbyと直接関連しない、独自の機能もいくつかあります。
-
-### ログイン
-
-従業員限定コンテンツにアクセスするためのログイン機能です。従業員限定コンテンツは[smarthr-design-system-private](https://github.com/kufu/smarthr-design-system-private)にあり、別のサイトとしてNetlifyにデプロイされています。
-
-PrivateサイトにはBasic認証が設定されています。SDS本体サイトからは、Netlify Edge functionsを利用して認証を行なうしくみです。Edge functionsのコードは`/netlify/edge-functions`にあります。
 
 ### スクリプトと自動実行
 

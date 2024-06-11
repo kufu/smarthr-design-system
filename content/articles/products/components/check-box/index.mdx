@@ -35,16 +35,18 @@ import checkBoxDont from './images/check-box-dont.png';
 「ON/OFF」などのブール値で制御できる項目にチェックボックスを使用した場合、一方の選択肢が暗黙的になりチェック状態から現在の選択状態が認識しづらくなる場合があります。
 こうした場合には、選択肢を明示的に表示できる[RadioButton](/products/components/radio-button/)を使用してください。
 
-<Cluster gap={1}>
+<Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont
     type="do"
-    img={<StaticImage src={checkBoxDo} alt="Do" width="320" />}
-    label={<Text>すべての選択肢が明示的に表示されてい<br/>るため、現在の状態が把握しやすい</Text>}
+    img={<StaticImage src={checkBoxDo} alt="Do" />}
+    label={<Text>すべての選択肢が明示的に表示されているため、現在の状態が把握しやすい</Text>}
+    width="calc(50% - 8px)"
   />
   <DoAndDont
     type="dont"
-    img={<StaticImage src={checkBoxDont} alt="Dont" width="320" />}
-    label={<Text>「無効」という選択肢が暗黙的であり、<br/>現在の状態をラベルとチェック状態から<br/>推測しなければならない</Text>}
+    img={<StaticImage src={checkBoxDont} alt="Dont" />}
+    label={<Text>「無効」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>}
+    width="calc(50% - 8px)"
   />
 </Cluster>
 
