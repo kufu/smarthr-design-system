@@ -1,6 +1,6 @@
 ---
 title: '余白の取り方'
-description: 'パディング（Padding）やマージン（Margin）などの余白のパターンをシーン別にまとめています。'
+description: 'マージン（Margin）やパディング（Padding）などの余白のパターンをシーン別にまとめています。'
 order: 3
 ---
 マージン（Margin）やパディング（Padding）などの余白のパターンをシーン別にまとめています。
@@ -14,40 +14,8 @@ order: 3
 ## 種類
 以下の余白を定義します。
 
-- パディング（Padding）
 - マージン（Margin）
-
-
-## パディング（Padding）
-原則として`24px`とします。縦長・横長になった場合や、中の要素がつまって狭くなってしまうときは、`16px`とします。
-
-### コンテンツエリア（Base）の余白
-
-| 対象エリア | 天地余白 | 左右余白 |
-| :------- | :------- | :------- |
-| コンテンツ全体 | 24px | 24px |
-
-![スクリーンショット:Baseのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern1.png)
-
-### コンテンツエリア内のグループ（BaseColumn）の余白
-基本的に、セクション（主に[セクションタイトル](/products/components/heading/#h3-1)で括られるエリア）内で[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)などを複数配置するようなパターンで適用し、中の要素がつまったり狭くなることが想定されるため、`16px`とします。
-
-| 対象エリア | 天地余白 | 左右余白 |
-| :------- | :------- | :------- |
-| コンテンツ全体 | 16px | 16px |
-
-![スクリーンショット:BaseColumnのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern2.png)
-
-### ダイアログの余白
-見出しとボタンエリアは横長になるため、天地左右`16px`のほうがすわりがよいですが、本文エリアの読み開始位置と一致させるため、左右を`24px`とし、天地に`16px`とします。
-
-| 対象エリア | 天地余白 | 左右余白 |
-| :------- | :------- | :------- |
-| 見出しエリア | 16px | 24px |
-| 本文エリア | 24px | 24px |
-| ボタンエリア | 16px | 24px |
-
-![スクリーンショット:Dialogのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern3.png)
+- パディング（Padding）
 
 
 ## マージン（Margin）
@@ -91,3 +59,34 @@ order: 3
 見出しレベルやコンテンツの階層を下げるにつれて、`32px`、`24px`、`16px`の順で段階的に適用します。
 
 ![スクリーンショット:タイトルと本文間のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern9.png)
+
+## パディング（Padding）
+原則として`24px`とします。縦長・横長になった場合や、中の要素がつまって狭くなってしまうときは、`16px`とします。
+
+### コンテンツエリア（Base）の余白
+
+| 対象エリア | 天地余白 | 左右余白 |
+| :------- | :------- | :------- |
+| コンテンツ全体 | 24px | 24px |
+
+![スクリーンショット:Baseのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern1.png)
+
+### コンテンツエリア内のグループ（BaseColumn）の余白
+基本的に、セクション（主に[セクションタイトル](/products/components/heading/#h3-1)で括られるエリア）内で[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)などを複数配置するようなパターンで適用し、中の要素がつまったり狭くなることが想定されるため、`16px`とします。
+
+| 対象エリア | 天地余白 | 左右余白 |
+| :------- | :------- | :------- |
+| コンテンツ全体 | 16px | 16px |
+
+![スクリーンショット:BaseColumnのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern2.png)
+
+### ダイアログの余白
+見出しとボタンエリアは横長になるため、天地左右`16px`のほうがすわりがよいですが、本文エリアの読み開始位置と一致させるため、左右を`24px`とし、天地に`16px`とします。
+
+| 対象エリア | 天地余白 | 左右余白 |
+| :------- | :------- | :------- |
+| 見出しエリア | 16px | 24px |
+| 本文エリア | 24px | 24px |
+| ボタンエリア | 16px | 24px |
+
+![スクリーンショット:Dialogのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern3.png)
