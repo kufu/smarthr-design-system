@@ -5,6 +5,7 @@ order: 2
 ---
 
 import { DoAndDont } from '@Components/DoAndDont'
+import { StaticImage } from '@Components/StaticImage'
 import { FaExclamationTriangleIcon, Cluster} from 'smarthr-ui'
 
 import imageUrl6Do from './images/access-control-setting-pattern6-do.png'
@@ -103,16 +104,18 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 
 横幅に十分なスペースがある場合は、基本的に横並びにすることで縦幅が長くなりすぎることを防ぎます。
 
-<Cluster gap="XS">
+<Cluster gap={{ row: 0, column: 1 }}>
     <DoAndDont
         type="do"
-        img={<img src={imageUrl6Do} alt="スクリーンショット: 設定項目の縦横に配置するレイアウトのDo"/>}
+        img={<StaticImage src={imageUrl6Do} alt="スクリーンショット: 設定項目の縦横に配置するレイアウトのDo" />}
         label="横幅に十分なスペースがある場合は、基本的に横並びにします。"
+        width="calc(50% - 8px)"
     />
     <DoAndDont
         type="dont"
-        img={<img src={imageUrl6Dont} alt="スクリーンショット: 設定項目の縦横に配置するレイアウトのDon't"/>}
+        img={<StaticImage src={imageUrl6Dont} alt="スクリーンショット: 設定項目の縦横に配置するレイアウトのDon't"/>}
         label="縦並びにすると、親項目の幅に対して要素の配置が偏ってしまい、視認性が低下する恐れがあります。"
+        width="calc(50% - 8px)"
     />
 </Cluster>
 
@@ -125,16 +128,18 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 CRUDなど、設定項目の組み合わせが決まっている操作権限項目が連続して複数並ぶケースで、一部の設定項目が対応していない場合は該当の設定項目を非表示にします。その際、設定項目が表示されていた箇所はそのまま空白として残します。  
 この場合のコンテンツ領域の横幅は、選択肢が存在しているときと同じ横幅になるように固定します。
 
-<Cluster gap="XS">
+<Cluster gap={{ row: 0, column: 1 }}>
     <DoAndDont
         type="do"
-        img={<img src={imageUrl13Do} alt="スクリーンショット: 対応しない設定項目を空白として残すレイアウトのDo"/>}
+        img={<StaticImage src={imageUrl13Do} alt="スクリーンショット: 対応しない設定項目を空白として残すレイアウトのDo"/>}
         label="対応していない設定項目が表示されていた箇所は、そのまま空白として残します。"
+        width="calc(50% - 8px)"
     />
     <DoAndDont
         type="dont"
-        img={<img src={imageUrl13Dont} alt="スクリーンショット: 対応しない設定項目を空白として残すレイアウトのDon't"/>}
+        img={<StaticImage src={imageUrl13Dont} alt="スクリーンショット: 対応しない設定項目を空白として残すレイアウトのDon't"/>}
         label="詰めずに配置すると、どの設定項目が対応していないのか把握しづらくなるため、空白が必要です。"
+        width="calc(50% - 8px)"
     />
 </Cluster>
 
