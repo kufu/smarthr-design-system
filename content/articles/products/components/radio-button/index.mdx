@@ -35,7 +35,7 @@ import RadioButtonDont from './images/radio-button-dont.png';
 
 #### ビューの切り替えを操作するUIとして使用しない
 
-入力後に「送信」や「保存」といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
+入力後に`送信`や`保存`といったtype属性が`submit`のボタンによって入力確定するフォーム画面などで使用してください。  
 ラジオボタンは1クリックで選択肢ごとに異なる結果となるため、誤入力によって意図しない結果が反映されてしまう可能性あります。
 
 コレクションなどでオブジェクトの表示方法を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[TabBar](/products/components/tab-bar/)や[SegmentedControl](/products/components/segmented-control/)、または[Switch](/products/components/switch/)を使用してください。
@@ -52,19 +52,59 @@ import RadioButtonDont from './images/radio-button-dont.png';
   <DoAndDont
     type="do"
     img={<StaticImage src={RadioButtonDo} alt="Do" width="346" />}
-    label={<Text>ユーザーは選択する操作に集中でき、それ<br/>以外の操作と区別しやすい</Text>}
+    label={<Text>ユーザーは選択する操作に集中でき、それ以外の操作と区別しやすい</Text>}
+    width="calc(50% - 8px)"
   />
   <DoAndDont
     type="dont"
     img={<StaticImage src={RadioButtonDont} alt="Dont" width="346" />}
-    label={<Text>ユーザーが選択操作に集中できず、操作難<br/>易度が上がる</Text>}
+    label={<Text>ユーザーが選択操作に集中できず、操作難易度が上がる</Text>}
+    width="calc(50% - 8px)"
   />
 </Cluster>
 
 
 ## デザインパターン
-設定画面によくある複数の設定項目でラジオボタンを整列して表示する場合などは、[共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)のデザインパターンを参考にしてください。
 
+### 選択肢のグルーピング
+
+設定画面などでチェックボックスやラジオボタンなどの複数項目を持つ設定項目を複数並列で表示する場合は、設定項目同士の選択肢を区別しやすくするために[BaseColumn](/products/components/base/base-column/)でグルーピングする場合があります。
+
+[共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)のデザインパターンもあわせて参考にしてください。
+
+```tsx editable codeBlock
+<>
+  <Stack gap={1.5}>
+    <Fieldset
+        title="設定項目1"
+        innerMargin={0.5}
+    >
+        <BaseColumn>
+            <Cluster gap={{ row: 1, column: 1.5 }}>
+                <CheckBox name="sample">選択肢 1</CheckBox>
+                <CheckBox name="sample">選択肢 2</CheckBox>
+                <CheckBox name="sample">選択肢 3</CheckBox>
+                <CheckBox name="sample">選択肢 4</CheckBox>
+            </Cluster>
+        </BaseColumn>
+    </Fieldset>
+    <Fieldset
+        title="設定項目2"
+        innerMargin={0.5}
+    >
+        <BaseColumn>
+            <Cluster gap={{ row: 1, column: 1.5 }}>
+                <RadioButton name="sample">選択肢 1</RadioButton>
+                <RadioButton name="sample">選択肢 2</RadioButton>
+                <RadioButton name="sample">選択肢 3</RadioButton>
+                <RadioButton name="sample">選択肢 4</RadioButton>
+                <RadioButton name="sample">選択肢 5</RadioButton>
+            </Cluster>
+        </BaseColumn>
+    </Fieldset>
+  </Stack>
+</>
+```
 
 ## Props
 
