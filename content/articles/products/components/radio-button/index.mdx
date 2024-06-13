@@ -20,11 +20,12 @@ import RadioButtonDont from './images/radio-button-dont.png';
 
 ### ユースケースに応じてコンポーネントを使い分ける
 
-#### 選択肢が5個以下の場合に使用する
+#### 選択肢が多すぎる場合に別のコンポーネントを検討する
 
-一般的に人は4±1個の情報のまとまりまでしか短期的に記憶できないと言われています。選択肢が5個以下で、短いラベルテキストのみ表示したい場合は、初期状態で選択肢が一覧しやすいラジオボタンを使用します。
+選択肢の中から単一の値を選択して入力させる場合は、基本的に初期状態で選択肢が一覧しやすいラジオボタンを使用します。
 
-選択肢が6個以上の場合や表示領域が狭い場合は、[Select](/products/components/select/)や[SingleComboBox](/products/components/combo-box/singe-combo-box)を検討してください。
+選択肢のラベルテキストが長大になる場合や、選択肢が表示領域内にすべて表示しきれないほど存在する場合では、[Select](/products/components/select/)や[SingleComboBox](/products/components/combo-box/singe-combo-box)も検討します。
+ただし、選択肢を一覧しづらくなったり操作の手間が増える可能性があるため、表示領域上配置が難しい場合や選択肢の数が予測できないなどの理由がない限りはラジオボタンの使用を推奨します。
 
 #### 選択肢が同程度の長さで簡潔なラベルテキストのみの場合に使用する
 
@@ -62,7 +63,6 @@ import RadioButtonDont from './images/radio-button-dont.png';
     width="calc(50% - 8px)"
   />
 </Cluster>
-
 
 ## デザインパターン
 
