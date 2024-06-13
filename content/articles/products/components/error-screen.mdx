@@ -81,7 +81,7 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 ```tsx editable codeBlock
 <ErrorScreen
   className="shr-w-full"
-  title="お探しのページは見つかりませんでした"
+  title="指定のページは見つかりませんでした"
   links={[
     {
       label: 'ホームへ戻る',
@@ -90,9 +90,9 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
   ]}
 >
   <Text as="p" className="shr-text-center">
-    お探しのページは一時的にアクセスができない状況にあるか、
+    指定のページは、一時的にアクセスできない状況にあるか、削除された可能性があります。
     <br />
-    移動もしくは削除された可能性があります。
+    またはURLが間違っていないか確認してください。
   </Text>
 </ErrorScreen>
 ```
