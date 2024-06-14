@@ -1,13 +1,20 @@
 ---
 title: 'TabBar'
-description: '特定のオブジェクトに紐づく同じ性質のものを並べて切り替えるためのコンポーネントです。'
+description: 'ユーザーの関心が近いものを並列化し、ビューを切り替えるためのコンポーネントです。'
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
 
-特定のオブジェクトに紐づく同じ性質のものを並べて切り替えるためのコンポーネントです。切り替えるための機能だけ有していて、内部のコンテンツについては管理しません。
+ユーザーの関心が近いものを並列化し、ビューを切り替えるためのコンポーネントです。
 
 <ComponentStory name="TabBar" />
+
+## 使用上の注意
+
+### SegmentedControl との違い
+TabBarは扱うオブジェクトを問わず、ビューを切り替えるために使えるコンポーネントですが、特定のオブジェクトの異なる状態を切り替えて表示する場合[SegmentedControl](/products/components/segmented-control/)を使ってください。
+
+
 
 ## Props
 
