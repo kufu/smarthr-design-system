@@ -1,4 +1,76 @@
 ---
 title: 'ModelessDialog'
-description: ''
+description: 'モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。基本的に、ダイアログと裏側の画面を同時並行で閲覧・操作する場合に使います。'
 ---
+import { ComponentPreview } from '@Components/ComponentPreview'
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+import { useEffect, useState } from 'react'
+
+モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。
+
+基本的に、ダイアログと裏側の画面を同時並行で閲覧・操作する場合に使います。
+
+
+<ComponentStory name="ModelessDialog" />
+
+## 構成
+
+1. ヘッダーエリア
+2. 本文
+3. フッターエリア（任意）
+
+![ModelessDialogの構成](./images/modeless-dialog.png)
+
+### 1. ヘッダーエリア
+
+ヘッダーエリアの左端にはダイアログのタイトルが、右側にはダイアログを閉じるボタンが配置されます。
+
+ダイアログのタイトルは、表示する情報を簡潔に表現するものをつけます。
+
+また、ヘッダーエリアをドラッグしてダイアログの位置を移動できます。
+
+![ModelessDialogのヘッダーエリアをドラッグして移動している様子](./images/modeless-dialog-header-move.png)
+
+### 2. 本文
+
+ユーザーに提示したい情報を表示します。
+
+### 3. フッターエリア（任意）
+
+必要に応じてアクションボタンやリンクなどを配置します。
+
+## レイアウト
+
+### 基準サイズ
+
+ダイアログの横幅サイズの基準値は以下のとおりです。  
+サイズに意図がない場合は、下記の値から想定に近い値を選択してください。
+
+#### デスクトップ、タブレット（`TABLET`）
+
+| サイズ | 値 | 補足説明 |
+| :--- | :--- | :--- |
+| S | 480px | Dialogの最小値として使います。 |
+| M | 640px |  |
+| L | 768px |  |
+| MAX | calc(100% - 32px) | Dialogの最大値として使います。 |
+
+#### スマートフォン（`SP`）
+
+スマートフォンは表示領域が狭いため、サイズの最大値/最小値は同じとします。
+
+| サイズ | 値 | 補足説明 |
+| :--- | :--- | :--- |
+| 標準 | calc(100% - 32px) | Dialogの最大値/最小値として使います。 |
+
+
+### 表示位置
+
+ダイアログを開く操作をした箇所の付近に表示します。
+
+モーダルなダイアログと違って、ダイアログの裏側の画面がスクリム（幕）で隠されないため、開く操作をした箇所から遠い位置に表示すると、ユーザーがダイアログを見つけにくくなります。
+
+## Props
+
+<ComponentPropsTable name="ModelessDialog" />
