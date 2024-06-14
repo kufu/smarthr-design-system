@@ -1,4 +1,81 @@
 ---
 title: 'MessageDialog'
-description: ''
+description: 'ユーザーに情報を提示するためのダイアログです。ユーザーは情報を確認し、ダイアログを閉じることができます。'
 ---
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+
+ユーザーに情報を提示するためのダイアログです。ユーザーは情報を確認し、ダイアログを閉じることができます。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
+
+
+<ComponentStory name="MessageDialog" />
+
+## 使用上の注意
+
+### フィードバックとして使わない
+
+MessageDialogは、ダイアログを表示したままダイアログ外の操作ができず、以下のように処理結果のフィードバックには不適切なため、原則としてフィードバックとしては使いません。
+
+- 処理が成功した場合、ユーザーは次の操作をする前にダイアログを閉じる一手間が発生する
+- 処理が失敗した場合、表示されたエラーメッセージを参照しながら操作できない
+
+フィードバックには[NotificationBar](/products/components/notificationbar/)や[ResponseMessage](/products/components/responsemessage/)などを使います。詳しくは、[フィードバック](/products/design-patterns/feedback/)を参照してください。
+
+## 構成
+MessageDialogは以下の要素で構成されます。
+
+1. タイトル
+2. 本文
+3. アクションボタン
+
+![MessageDialogの構成](./images/message-dialog.png)
+
+### 1. タイトル
+
+このダイアログで表示する情報を簡潔に表現するタイトルをつけます。
+
+### 2. 本文
+
+ユーザーに提示したい情報を表示します。
+
+通常、FormControlなどの入力要素が含まれることはありません。
+
+### 3. アクションボタン
+
+ダイアログを閉じるボタンを配置し、ラベルは`閉じる`とします。
+
+## レイアウト
+
+### 基準サイズ
+
+ダイアログの横幅サイズの基準値は以下のとおりです。  
+サイズに意図がない場合は、下記の値から想定に近い値を選択してください。
+
+#### デスクトップ、タブレット（`TABLET`）
+
+| サイズ | 値 | 補足説明 |
+| :--- | :--- | :--- |
+| S | 480px | Dialogの最小値として使います。 |
+| M | 640px |  |
+| L | 768px |  |
+| MAX | calc(100% - 32px) | Dialogの最大値として使います。 |
+
+#### スマートフォン（`SP`）
+
+スマートフォンは表示領域が狭いため、サイズの最大値/最小値は同じとします。
+
+| サイズ | 値 | 補足説明 |
+| :--- | :--- | :--- |
+| 標準 | calc(100% - 32px) | Dialogの最大値/最小値として使います。 |
+
+
+### 表示位置
+
+意図的な場合をのぞき、画面の天地中央（上下左右中央）に表示します。
+
+
+## Props
+
+<ComponentPropsTable name="MessageDialog" />
