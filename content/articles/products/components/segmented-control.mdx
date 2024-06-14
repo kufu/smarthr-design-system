@@ -5,8 +5,12 @@ description: '2つ以上の異なる状態を切り替えるためのコンポ�
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
-2つ以上の異なる状態を切り替えるためのコンポーネントです。主に主にコレクションビュー/シングルビューにおけるレイアウトを変えたり、オブジェクトの一部が表示されたビューに切り替えるために使います。
+特定のオブジェクトの異なる状態を切り替えて表示するためのコンポーネントです。オブジェクトの持つ情報を別の見方へ変更するときに使います。
 
+特定のオブジェクトに対して異なる状態を切り替える具体例としては、以下が挙げられます。
+
+* 組織図オブジェクトを「組織図表示」「従業員名簿表示」でビューを切り替える
+* 書類グループオブジェクトを「書類一覧」「従業員一覧」でビューを切り替える
 
 <ComponentStory name="SegmentedControl" />
 
@@ -18,7 +22,7 @@ SegmentedControlは、ビューに存在するオブジェクト自体を切り�
 オブジェクト自体を切り替えて表示する場合は、[TabBar](/products/components/tab-bar/)を使ってください。
 
 ### Switch との違い
-SegmentedControlは2つ以上の異なる状態を切り替えるためのコンポーネントですが、オン・オフのどちらか1つの状態を表して切り替えるときは[Switch](/products/components/switch/)を使ってください。
+SegmentedControlは異なる状態を切り替えるためのコンポーネントですが、オン・オフのどちらか1つの状態を表して切り替えるときは[Switch](/products/components/switch/)を使ってください。
 
 ### RadioButton との違い
 「複数の選択肢から1つを選ぶ」という振る舞いは[RadioButton](/products/components/radio-button/)と似ていますが、SegmentedControlは操作すると即座にビューに対して影響が発生することが特徴です。
