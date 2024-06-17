@@ -1,15 +1,24 @@
 ---
 title: 'Input'
-description: 'テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。入力欄の前後にアイコンを入れられます。'
+description: 'テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。'
 ---
+import { Input, CurrencyInput, FaMagnifyingGlassIcon, FaCaretDownIcon } from 'smarthr-ui'
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
-テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。入力欄の前後にアイコンを入れられます。
+テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。
 
 <ComponentStory name="Input" />
 
 ## 使用上の注意
+
+### 適切な幅に調整して使用する
+
+入力する内容をあらかじめ精査し適切な幅になるよう調整して使用してください。
+
+適切な幅は以下の判断基準を参考にしてください。
+
+- 入力する内容の文字数の予測が付く場合、過剰に幅を取らないでください。過剰に幅を取ると[視線誘導]()
 
 ### ユースケースに応じてコンポーネントを使い分ける
 
@@ -49,6 +58,58 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
 <ComponentStory name="SearchInput" />
 
+## レイアウト
+
+### 入力欄の前後の要素
+
+入力欄の前後にアイコンまたは単位のテキストなどの要素を置くことができます。
+
+```tsx editable codeBlock
+<>
+  <FormControl title="検索">
+    <Input
+      prefix={<FaMagnifyingGlassIcon />}
+    />
+  </FormControl>
+  <FormControl title="選択">
+    <Input
+      suffix={<FaCaretDownIcon />}
+    />
+  </FormControl>
+  <FormControl title="金額（米ドル）">
+    <CurrencyInput
+      prefix="$"
+    />
+  </FormControl>
+  <FormControl title="金額（日本円）">
+    <CurrencyInput
+      suffix="円"
+    />
+  </FormControl>
+</>
+```
+
+#### アイコンの設置判断基準
+
+アイコンの位置と、位置に基づくアイコンの役割は以下の表を参考にしてください。
+
+| アイコンの位置 | 表示例 | アイコンの役割 |
+| :-- | :-- | :-- |
+| 前方（`prefix`） | <Input prefix={<FaMagnifyingGlassIcon />} /> | 入力内容を想起させるために使用します。 |
+| 後方（`suffix`） | <Input suffix={<FaCaretDownIcon />} /> | [Combobox](/products/components/combo-box/)のようにフォーカスしたときに特定のUIが表示されるなど、操作を想起させるために使用します。 |
+
+入力内容を想起させるアイコンは、以下の判断基準を参考につけてください。
+
+- 基本的には明確に必要なときにのみアイコンをつけてください。アイコンが多すぎると、ユーザーがアイコンの意味を理解することが難しくなり、開発者としてもアイコンを作成・選定するコストがかかります。
+- SmartHR上で頻出する操作に関しては、アイコンをつけることを推奨します（例: 検索用のInput）。
+- レイアウトの都合で入力内容の表示位置を揃えたい場合はアイコンをつけることが可能です。
+- アイコンを設置するとテキストを読むことが困難なユーザーの助けになることがあります。その場合は必要に応じて設置可能です。（参考: [達成基準 1.3.5: 入力目的の特定を理解する](https://waic.jp/translations/WCAG21/Understanding/identify-input-purpose.html)）
+
+#### 単位のテキストの設置判断基準
+
+基本的には単位のテキストはInputの`prefix`または`suffix`で設置してください。
+
+`prefix`か`suffix`のどちらかに設置するかは、一般的にその単位が入力値に対して前方に置かれるか後方に置かれるかで判断してください。
 
 ## 状態
 
