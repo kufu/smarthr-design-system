@@ -2,8 +2,7 @@ name: 'Clear cache and deploy site on Netlify'
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 9,17 * * *' # 毎日9時と17時に実行する
+
 jobs:
   build:
     runs-on: ubuntu-latest
