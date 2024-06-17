@@ -2036,8 +2036,28 @@ a {
   background-color: rgb(15 127 133 / var(--tw-bg-opacity))
 }
 
+.shr-bg-\[theme\(colors\.grey\.20\)\] {
+  background-color: #d6d3d0
+}
+
+.shr-bg-\[theme\(colors\.grey\.5\)\] {
+  background-color: #f8f7f6
+}
+
+.shr-bg-\[theme\(colors\.grey\.6\)\] {
+  background-color: #f5f4f3
+}
+
 .shr-bg-\[theme\(colors\.grey\.65\)\] {
   background-color: #706d65
+}
+
+.shr-bg-\[theme\(colors\.grey\.7\)\] {
+  background-color: #f2f1f0
+}
+
+.shr-bg-\[theme\(colors\.grey\.9\)\] {
+  background-color: #edebe8
 }
 
 .shr-bg-action-background {
@@ -2048,6 +2068,11 @@ a {
 .shr-bg-background {
   --tw-bg-opacity: 1;
   background-color: rgb(248 247 246 / var(--tw-bg-opacity))
+}
+
+.shr-bg-base-grey {
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 244 243 / var(--tw-bg-opacity))
 }
 
 .shr-bg-brand {
@@ -2078,6 +2103,11 @@ a {
 .shr-bg-main-darken {
   --tw-bg-opacity: 1;
   background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+}
+
+.shr-bg-over-background {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 241 240 / var(--tw-bg-opacity))
 }
 
 .shr-bg-scrim {
@@ -2668,6 +2698,14 @@ a {
 
 .shr-ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.shr-will-change-\[filter\] {
+  will-change: filter
+}
+
+.shr-forced-color-adjust-none {
+  forced-color-adjust: none
 }
 
 .\[box-shadow\:_0_-4px_8px_2px_rgba\(0\2c _0\2c _0\2c _0\.24\)\] {
@@ -4158,6 +4196,10 @@ a {
     display: none
   }
 
+  .forced-colors\:shr-border-\[ButtonBorder\] {
+    border-color: ButtonBorder
+  }
+
   .forced-colors\:shr-fill-\[CanvasText\] {
     fill: CanvasText
   }
@@ -4301,16 +4343,8 @@ a {
   border-color: rgb(214 211 208 / 0.5)
 }
 
-.\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.100\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.100\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.100\)\] {
-  background-color: #23221e
-}
-
 .\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.20\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.20\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.20\)\] {
   background-color: #d6d3d0
-}
-
-.\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.30\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.30\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.30\)\] {
-  background-color: #c1bdb7
 }
 
 .\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.5\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.5\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.5\)\] {
@@ -4319,10 +4353,6 @@ a {
 
 .\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.6\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.6\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.6\)\] {
   background-color: #f5f4f3
-}
-
-.\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.65\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.65\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.65\)\] {
-  background-color: #706d65
 }
 
 .\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.7\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.7\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.7\)\] {
@@ -4379,6 +4409,12 @@ a {
 
 .\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50 .smarthr-ui-Loader-line {
   border-color: rgb(255 255 255 / 0.5)
+}
+
+@media (forced-colors: active) {
+  .\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\].\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\].\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\] .smarthr-ui-Loader-line {
+    border-color: ButtonBorder
+  }
 }
 
 .\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em .smarthr-ui-Loader-spinner {

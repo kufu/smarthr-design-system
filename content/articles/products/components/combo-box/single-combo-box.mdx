@@ -38,16 +38,18 @@ SingleComboBoxで入力補助のヒントメッセージを表示したい場合
 
 `dropdownHelpMessage`はドロップダウンパネルを表示したときのみ表示されるため、ヒントメッセージを常に表示したい場合は、[FormControl](/products/components/form-control/)の`helpMessage`を使用してください。
 
-<Cluster gap={1}>
+<Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont
     type="do"
-    img={<StaticImage src={singleComboBoxDo} alt="Do" width="346" />}
-    label={<Text>ユーザーがテキストを入力しても入力補助<br/>としてヒントメッセージを確認できる</Text>}
+    img={<StaticImage src={singleComboBoxDo} alt="Do" />}
+    label={<Text>ユーザーがテキストを入力しても入力補助としてヒントメッセージを確認できる</Text>}
+    width="calc(50% - 8px)"
   />
   <DoAndDont
     type="dont"
-    img={<StaticImage src={singleComboBoxDont} alt="Dont" width="346" />}
-    label={<Text>ユーザーがテキストを入力するとプレース<br/>ホルダが確認できなくなり、入力補助とし<br/>て機能しない</Text>}
+    img={<StaticImage src={singleComboBoxDont} alt="Dont" />}
+    label={<Text>ユーザーがテキストを入力するとプレースホルダが確認できなくなり、入力補助として機能しない</Text>}
+    width="calc(50% - 8px)"
   />
 </Cluster>
 

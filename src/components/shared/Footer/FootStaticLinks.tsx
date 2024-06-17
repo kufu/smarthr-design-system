@@ -1,8 +1,7 @@
 import { CSS_COLOR, CSS_FONT_SIZE } from '@Constants/style'
-import { LoginContext } from '@Context/LoginContext'
 import { Link } from 'gatsby'
-import React, { FC, useContext } from 'react'
-import { AnchorButton, FaExternalLinkAltIcon } from 'smarthr-ui'
+import React, { FC } from 'react'
+import { FaExternalLinkAltIcon } from 'smarthr-ui'
 import styled from 'styled-components'
 
 type Props = unknown
@@ -43,50 +42,38 @@ const Link2 = [
   },
 ]
 
-export const FootStaticLinks: FC<Props> = () => {
-  const { loginStatus, loginLabel } = useContext(LoginContext)
+export const FootStaticLinks: FC<Props> = () => (
+  <>
+    <StyledUl large>
+      {Link1.map(({ title, path, isExternal }, index) => (
+        <li key={index}>
+          {isExternal ? (
+            <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
+              {title}
+            </StyledAnchor>
+          ) : (
+            <StyledLink to={path}>{title}</StyledLink>
+          )}
+        </li>
+      ))}
+    </StyledUl>
 
-  return (
-    <>
-      <StyledAnchorButton
-        {...(loginStatus !== 'loggedIn' && { href: '/login/' })}
-        size="s"
-        className={loginStatus === 'pending' ? 'loginStatusPending loginButton' : 'loginButton'}
-      >
-        {loginLabel}
-      </StyledAnchorButton>
-
-      <StyledUl large>
-        {Link1.map(({ title, path, isExternal }, index) => (
-          <li key={index}>
-            {isExternal ? (
-              <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
-                {title}
-              </StyledAnchor>
-            ) : (
-              <StyledLink to={path}>{title}</StyledLink>
-            )}
-          </li>
-        ))}
-      </StyledUl>
-
-      <StyledUl>
-        {Link2.map(({ title, path, isExternal }, index) => (
-          <li key={index}>
-            {isExternal ? (
-              <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
-                {title}
-                <FaExternalLinkAltIcon />
-              </StyledAnchor>
-            ) : (
-              <StyledLink to={path}>{title}</StyledLink>
-            )}
-          </li>
-        ))}
-      </StyledUl>
-    </>
-  )
-}
+    <StyledUl>
+      {Link2.map(({ title, path, isExternal }, index) => (
+        <li key={index}>
+          {isExternal ? (
+            <StyledAnchor href={path} target="_blank" rel="noopener noreferrer">
+              {title}
+              <FaExternalLinkAltIcon />
+            </StyledAnchor>
+          ) : (
+            <StyledLink to={path}>{title}</StyledLink>
+          )}
+        </li>
+      ))}
+    </StyledUl>
+  </>
+)
 
 const StyledUl = styled.ul<{ large?: boolean }>`
   margin: 0;
@@ -110,22 +97,6 @@ const StyledUl = styled.ul<{ large?: boolean }>`
     &.loginButton:hover {
       text-decoration: none;
     }
-  }
-`
-
-const StyledAnchorButton = styled(AnchorButton)`
-  min-width: 120px;
-  text-align: center;
-  &:not([href]) {
-    border: 0;
-    background-color: ${CSS_COLOR.LIGHT_GREY_2};
-    color: ${CSS_COLOR.TEXT_GREY};
-  }
-  &.loginButton:hover {
-    text-decoration: none;
-  }
-  &.loginStatusPending {
-    visibility: hidden;
   }
 `
 
