@@ -42,7 +42,7 @@ export const DynamicFlashMessage = () => {
   const [visible, setVisible] = useState(false)
   return (
     <>
-        <Button variant="primary" onClick={() => setVisible(true)}>FlashMessageを表示</Button>
+        <Button onClick={() => setVisible(true)}>FlashMessageを表示</Button>
         <FlashMessage type="success" text="Hello, FlashMessage." visible={visible} onClose={() => { setVisible(false) }} />
     </>
   )
