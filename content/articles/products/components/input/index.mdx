@@ -6,7 +6,7 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
-import { Base, BaseColumn, Cluster, CurrencyInput, FaCaretDownIcon, FaMagnifyingGlassIcon, FormControl, Heading, Input, Text } from 'smarthr-ui'
+import { Base, BaseColumn, Cluster, CurrencyInput, FaCaretDownIcon, FaCircleXmarkIcon, FaLockIcon, FaMagnifyingGlassIcon, FormControl, Heading, Input, Text, UnstyledButton, VisuallyHiddenText } from 'smarthr-ui'
 
 import inputWidthDo from './images/input-width-do.png'
 import inputWidthDont from './images/input-width-dont.png'
@@ -39,7 +39,7 @@ import inputWidthDont from './images/input-width-dont.png'
 適切な幅は以下の判断基準を参考にしてください。
 
 - Inputは常に1行で表示され、幅を超える入力内容を確認するにはスクロールが必要になってしまいます。十分な幅を確保してください。
-- 入力する内容の文字数の予測が付く場合、過剰に幅を確保しないでください。過剰に幅を取ると[視線誘導](/products/design-patterns/visual-guidance/)の妨げになってしまうことがあります。
+- 入力する内容の文字数の予測が付く場合、過剰に幅を確保しないでください。過剰に幅を取ると入力すべきものが直感的にわかりづらくなったり、[視線誘導](/products/design-patterns/visual-guidance/)の妨げになってしまうことがあります。
 - フォーム全体で見たときにレイアウトに統一性がなく感じられるときは、他の要素とのバランスを考慮して幅を調整してください。
 
 ### ユースケースに応じてコンポーネントを使い分ける
@@ -82,7 +82,7 @@ import inputWidthDont from './images/input-width-dont.png'
 
 検索欄のためのコンポーネントです。[よくあるテーブルのオブジェクトの検索](/products/design-patterns/smarthr-table/#h4-4)などに使用します。
 
-表示領域が確保できない場合、`tooltipMessage`を使用して入力内容に対する説明を補足できます。
+`tooltipMessage`を使用して入力内容に対する説明を補足してください。
 
 `prefix`は検索アイコン「<FaMagnifyingGlassIcon alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン" />」に固定されています。
 
@@ -94,56 +94,25 @@ import inputWidthDont from './images/input-width-dont.png'
 
 ## レイアウト
 
-### prefix/suffix
+### プレフィックス・サフィックス
 
-入力欄の前後にアイコンまたは単位のテキストなどの要素を置くことができます。
+入力欄の前後にアイコンや単位を示すテキストなどの要素を置くことができます。
 
-```tsx editable codeBlock
-<>
-  <FormControl title="検索">
-    <Input
-      prefix={<FaMagnifyingGlassIcon />}
-    />
-  </FormControl>
-  <FormControl title="選択">
-    <Input
-      suffix={<FaCaretDownIcon />}
-    />
-  </FormControl>
-  <FormControl title="金額（米ドル）">
-    <CurrencyInput
-      prefix="$"
-    />
-  </FormControl>
-  <FormControl title="金額（日本円）">
-    <CurrencyInput
-      suffix="円"
-    />
-  </FormControl>
-</>
-```
+#### 要素の設置判断基準
 
-#### アイコンの設置判断基準
+要素の位置と種類、位置に基づく役割は以下の表を参考にしてください。
 
-アイコンの位置と、位置に基づくアイコンの役割は以下の表を参考にしてください。
-
-| アイコンの位置 | 表示例 | アイコンの役割 |
-| :-- | :-- | :-- |
-| プレフィックス（`prefix`） | <Input prefix={<FaMagnifyingGlassIcon />} /> | 入力内容を想起させるために使用します。 |
-| サフィックス（`suffix`） | <Input suffix={<FaCaretDownIcon />} /> | [Combobox](/products/components/combo-box/)のようにフォーカスしたときに特定のUIが表示されるなど、操作を想起させるために使用します。 |
+| 位置 | 要素の種類 | 表示例 | 要素の役割 |
+| :-- | :-- | :-- | :-- |
+| プレフィックス（`prefix`）| アイコン | <Input prefix={<FaLockIcon />} /> | 入力内容を想起させるために使用します。 |
+| プレフィックス（`prefix`）| テキスト| <CurrencyInput prefix="$" /> | 入力内容を想起させるために使用します。 <br /> 一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いてください。 |
+| サフィックス（`suffix`）| アイコン | <Input suffix={<UnstyledButton><VisuallyHiddenText>入力内容を削除</VisuallyHiddenText><FaCircleXmarkIcon style={{ display: 'block' }} /></UnstyledButton>} /> | 操作を想起させるため、または操作を提供するために使用します。 |
+| サフィックス（`suffix`）| テキスト | <CurrencyInput suffix="円" /> | 入力内容を想起させるために使用します。<br />一般的に内容に対して後方に置かれる単位（例: 日本円）に用いてください。 |
 
 入力内容を想起させるアイコンは、以下の判断基準を参考につけてください。
 
 - 基本的には明確に必要なときにのみアイコンをつけてください。アイコンが多すぎると、ユーザーがアイコンの意味を理解することが難しくなり、開発者としてもアイコンを作成・選定するコストがかかります。
 - SmartHR上で頻出する操作に関しては、アイコンをつけることを推奨します（例: 検索用のInput）。
-- レイアウトの都合で入力内容の表示位置を揃えたい場合はアイコンをつけることが可能です。
-- アイコンを設置するとテキストを読むことが困難なユーザーの助けになることがあります。その場合は必要に応じて設置可能です。（参考: [達成基準 1.3.5: 入力目的の特定を理解する](https://waic.jp/translations/WCAG21/Understanding/identify-input-purpose.html)）
-
-#### 単位のテキストの設置判断基準
-
-基本的には単位のテキストはInputの`prefix`または`suffix`で設置してください。
-
-`prefix`か`suffix`のどちらかに設置するかは、一般的にその単位が入力値に対して前方に置かれるか後方に置かれるかで判断してください。
 
 ## 状態
 
@@ -174,13 +143,21 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 
 ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
 
-```tsx editable codeBlock noIframe
+```tsx editable codeBlock
 <Input
   name="disabled"
-  value="入力済みの値"
+  value="一時的に編集できない値"
   disabled
 />
 ```
+
+## アクセシビリティ
+
+### autocomplete属性を使用する
+
+[HTML 属性: autocomplete](https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/autocomplete)などを参考に適切な`autocomplete`属性を設定してください。
+
+適切な`autocomplete`属性を使用すると、ブラウザが記憶したユーザーの個人情報を自動補完できます。これは言語や記憶に関連した障害を持つユーザーに多大な恩恵のある機能です。またテキストを読むことが困難なユーザーは、`autocomplete`属性に従って支援技術により表示されるアイコンで入力すべき内容を判断できることがあります（参考: [達成基準 1.3.5: 入力目的の特定を理解する](https://waic.jp/translations/WCAG21/Understanding/identify-input-purpose.html)）。
 
 ## Props
 
