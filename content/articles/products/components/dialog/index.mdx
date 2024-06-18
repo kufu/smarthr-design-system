@@ -6,7 +6,18 @@ description: 'ユーザーに集中してほしい確認や操作を表示する
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
 import { PageIndex } from '@Components/article/PageIndex'
-
+import { ComponentPreview } from '@Components/ComponentPreview'
+import { useState } from 'react'
+import {
+  ActionDialog,
+  Button,
+  Dialog,
+  MessageDialog,
+  ModelessDialog,
+  Stack,
+  Text,
+  TextLink,
+} from 'smarthr-ui'
 
 Dialogコンポーネントは、ダイアログボックス（もしくは単に「ダイアログ」）と呼ばれる、ページの前面に表示される領域のためのコンポーネントです。
 
@@ -18,6 +29,88 @@ Dialogコンポーネントは、ダイアログボックス（もしくは単�
 
 頻繁に利用するダイアログのパターンを、スタイリングやpropsを整えたコンポーネントとして用意しています。詳しい使い方は、それぞれのコンポーネントのページを参照してください。
 
+export const DynamicActionDialog = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
+      <ActionDialog
+        isOpen={isOpen}
+        title="アクションダイアログタイトル"
+        closeText="キャンセル"
+        actionText="実行"
+        actionTheme="primary"
+        width={480}
+        onClickClose={()=> {setIsOpen(false)}}
+        onPressEscape={() => setIsOpen(false)}
+        onClickAction={()=> {setIsOpen(false)}}
+      >
+        <Text>本文が入ります。</Text>
+      </ActionDialog>
+    </>
+  )
+}
+
+export const DynamicMessageDialog = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
+      <MessageDialog
+        isOpen={isOpen}
+        title="メッセージダイアログタイトル"
+        description="本文が入ります。"
+        closeText="閉じる"
+        width={480}
+        onClickClose={() => setIsOpen(false)}
+        onPressEscape={() => setIsOpen(false)}
+        id="dialog-message"
+      />
+    </>
+  )
+}
+
+export const DynamicModelessDialog = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button
+        onClick={() => setIsOpen(!isOpen)}
+        data-test="dialog-trigger"
+        aria-haspopup="dialog"
+        aria-controls="modeless-dialog"
+      >
+        ModelessDialogを開く
+      </Button>
+      <ModelessDialog
+        isOpen={isOpen}
+        header="モードレスダイアログタイトル"
+        footer={
+          <div align="right" style="padding:16px 24px">
+            <TextLink href="#" target="_blank">別画面で開く</TextLink>
+          </div>
+          }
+        onClickClose={() => setIsOpen(false)}
+        onPressEscape={() => setIsOpen(false)}
+        width={480}
+        id="modeless-dialog-1"
+        data-test="dialog"
+      >
+        <ModelessContent>
+          <Text>本文が入ります。</Text>
+        </ModelessContent>
+      </ModelessDialog>
+    </>
+  )
+}
+
+<ComponentPreview>
+  <Stack gap="XS" align="flex-start">
+    <DynamicActionDialog />
+    <DynamicMessageDialog />
+    <DynamicModelessDialog />
+  </Stack>
+</ComponentPreview>
 
 <PageIndex path="/products/components/dialog/" excludes={[]} heading="h3" />
 
