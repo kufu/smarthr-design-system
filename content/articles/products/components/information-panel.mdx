@@ -13,11 +13,11 @@ import styled from 'styled-components'
 
 ## 使用上の注意
 
-### 見出しだけ、内容だけで使用しない
+### 短い一文で説明できるものに使用しない
 
 見出しと内容を必ずセットにして使用してください。また、見出しには必ずアイコンを表示します。
 
-見出しと内容のセットではない短い一文での使用には、[ResponseMessage](/products/components/response-message/)や[NotificationBar[base="base"]](/products/components/notification-bar/)が適しています。
+短い一文で説明できる場合は、[ResponseMessage](/products/components/response-message/)や[NotificationBar[base="base"]](/products/components/notification-bar/)が適しています。
 
 詳しい使い分けは[フィードバック - 同期的な処理が完了したとき](/products/design-patterns/feedback/#h3-6)を参照してください。
 
@@ -30,8 +30,6 @@ import styled from 'styled-components'
 ### Baseのなかに直接配置しない
 
 InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は`3`です。レイヤー順序が`1`の[Base](/products/components/base/)の中に直接配置しないでください。
-
-
 
 [削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)など、Baseのなかで見出しと内容を目立たせたい場合は、[BaseColumn](/products/components/base/base-column/)を使用してください。見出し部分は[Heading[type="blockTitle"]](/products/components/heading/)とResponseMessageで代替します。
 
