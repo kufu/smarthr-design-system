@@ -59,7 +59,7 @@ export const DynamicActionDialog = () => {
         onClickAction={() => {setIsOpen(false)}}
         width={640}
       >
-          <Stack gap={1.5}>
+          <Stack gap="S">
             <p>
             {'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}
             </p>
@@ -71,7 +71,7 @@ export const DynamicActionDialog = () => {
                 }
               ]}
             />
-            <Stack gap={0.5}>
+            <Stack gap="X3S">
               <BaseColumn>
                 <ResponseMessage type="warning"><Text weight="bold">注意事項</Text></ResponseMessage>
                 <ul style={{'marginBottom' : 0, 'paddingLeft' : '16px'}}>
@@ -174,9 +174,8 @@ export const DynamicCancelActionDialog = () => {
         onClickAction={()=> {setIsOpen(false)}}
         width={480}
       >
-        <Text>
-          {'{操作名}を取り消しますか？「取り消し」を押すと変更内容が破棄されます。'}
-        </Text>
+        <p>{'{操作名}を取り消しますか？'}</p>
+        <p>{'「取り消し」を押すと変更内容が破棄されます。'}</p>
       </ActionDialog>
     </>
   )
