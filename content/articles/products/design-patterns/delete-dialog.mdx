@@ -174,8 +174,10 @@ export const DynamicCancelActionDialog = () => {
         onClickAction={()=> {setIsOpen(false)}}
         width={480}
       >
-        <p>{'{操作名}を取り消しますか？'}</p>
-        <p>{'「取り消し」を押すと変更内容が破棄されます。'}</p>
+        <Text as="p">
+          {'{操作名}を取り消しますか？'}<br />
+          {'「取り消し」を押すと変更内容が破棄されます。'}
+        </Text>
       </ActionDialog>
     </>
   )
