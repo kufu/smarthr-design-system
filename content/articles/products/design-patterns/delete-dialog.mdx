@@ -48,7 +48,7 @@ export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button variant="danger" onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
+      <Button onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
         title="{オブジェクト名}の削除"
@@ -167,7 +167,7 @@ export const DynamicCancelActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button variant="danger" onClick={() => setIsOpen(true)}>取り消し操作時のダイアログを開く</Button>
+      <Button onClick={() => setIsOpen(true)}>取り消し操作時のダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
         title="{操作名}の取り消し"
