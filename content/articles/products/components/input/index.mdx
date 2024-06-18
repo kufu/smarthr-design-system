@@ -39,7 +39,7 @@ import inputWidthDont from './images/input-width-dont.png'
 適切な幅は以下の判断基準を参考にしてください。
 
 - Inputは常に1行で表示され、幅を超える入力内容を確認するにはスクロールが必要になってしまいます。十分な幅を確保してください。
-- 入力する内容の文字数の予測が付く場合、過剰に幅を確保しないでください。過剰に幅を取ると入力すべきものが直感的にわかりづらくなったり、[視線誘導](/products/design-patterns/visual-guidance/)の妨げになってしまうことがあります。
+- 入力する内容の文字数の予測が付く場合、過剰に幅を確保しないでください。過剰に幅を取ると入力するべきものがわかりづらくなったり、[視線誘導](/products/design-patterns/visual-guidance/)の妨げになってしまうことがあります。
 - フォーム全体で見たときにレイアウトに統一性がなく感じられるときは、他の要素とのバランスを考慮して幅を調整してください。
 
 ### ユースケースに応じてコンポーネントを使い分ける
@@ -104,10 +104,10 @@ import inputWidthDont from './images/input-width-dont.png'
 
 | 位置 | 要素の種類 | 表示例 | 要素の役割 |
 | :-- | :-- | :-- | :-- |
-| プレフィックス（`prefix`）| アイコン | <Input prefix={<FaLockIcon />} /> | 入力内容を想起させるために使用します。 |
-| プレフィックス（`prefix`）| テキスト| <CurrencyInput prefix="$" /> | 入力内容を想起させるために使用します。 <br /> 一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いてください。 |
-| サフィックス（`suffix`）| アイコン | <Input suffix={<UnstyledButton><VisuallyHiddenText>入力内容を削除</VisuallyHiddenText><FaCircleXmarkIcon style={{ display: 'block' }} /></UnstyledButton>} /> | 操作を想起させるため、または操作を提供するために使用します。 |
-| サフィックス（`suffix`）| テキスト | <CurrencyInput suffix="円" /> | 入力内容を想起させるために使用します。<br />一般的に内容に対して後方に置かれる単位（例: 日本円）に用いてください。 |
+| プレフィックス（`prefix`）| アイコン | <Input name="exampleprefixicon" type="password" defaultValue="password" prefix={<FaLockIcon />} /> | 入力内容を想起させるために使用します。 |
+| プレフィックス（`prefix`）| テキスト| <CurrencyInput name="exampleprefixtext" defaultValue="1000" prefix="$" /> | 入力内容を想起させるために使用します。 <br /> 一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いてください。 |
+| サフィックス（`suffix`）| アイコン | <Input name="examplesuffixicon" defaultValue="テキスト" suffix={<UnstyledButton><VisuallyHiddenText>入力内容を削除</VisuallyHiddenText><FaCircleXmarkIcon style={{ display: 'block' }} /></UnstyledButton>} /> | 操作を想起させるため、または操作を提供するために使用します。 |
+| サフィックス（`suffix`）| テキスト | <CurrencyInput name="examplesuffixtext" defaultValue="1000" suffix="円" /> | 入力内容を想起させるために使用します。<br />一般的に内容に対して後方に置かれる単位（例: 日本円）に用いてください。 |
 
 入力内容を想起させるアイコンは、以下の判断基準を参考につけてください。
 
