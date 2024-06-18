@@ -1,11 +1,94 @@
 ---
 title: 'Chip'
-description: ''
+description: 'オブジェクトのメタ情報の表示に使用する汎用的なコンポーネントです。'
 ---
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { Chip, Cluster, Stack } from 'smarthr-ui'
+
+オブジェクトのメタ情報の表示に使用する汎用的なコンポーネントです。ClusterやStackと組み合わせて小さく羅列できるのが特徴です。
+
+メタ情報とは、例えば従業員に設定されたタグ名や、アイテムのカテゴリー名、紐づいている別のオブジェクト名などが該当します。
 
 <ComponentStory name="Chip" />
+
+## 使用上の注意
+
+### オブジェクトのステータス表示に使用しない
+
+オブジェクトのステータスには[StatusLabel](/products/components/status-label/)を使用してください。
+
+### 操作フィードバックの表示に使用しない
+
+同期的な操作フィードバックの表示には他のコンポーネントが適しています。
+
+[フィードバック](/products/design-patterns/feedback/)を参照し、[ResponseMessage](/products/components/response-message/)や[NotificationBar](/products/components/notification-bar/)の使用を検討してください。
+
+### 重要な情報の表示に使用しない
+
+Chipはとても小さいため、重要な情報の表示には適していません。
+
+基本的には、オブジェクトを補足するメタ情報で、通常のテキストのスタイルやサイズで表示するほどでもないものを表示するのに適しています。
+
+### アクションボタンの代わりに使用しない
+
+Chipはとても小さいため、アクションボタンに適していません。アクションボタンを小さく表現したい場合は[Button[size="s"]](https://smarthr.design/products/components/button/#h3-6)を使用してください。
+
+### テキストリンクにする場合、他の方法を十分に検討する
+
+Chipはとても小さいため、アクションボタンと同様にテキストリンクにも適していません。
+
+オブジェクトのメタ情報の個別ページにリンクする必要があるかも十分に検討してください。必要な場合は、Chipを使用する前に通常のテキストリンクで表示できないかを検討してください。
+
+### disabledは使用しない
+
+`disabled`は[MultiComboBox](/products/components/combo-box/multi-combo-box/)のためのpropsです。
+
+通常利用においては`disabled`は使用しないでください。
+
+## レイアウト
+
+### Clusterで羅列する
+
+`gap`は`0.25`が適しています。
+
+```tsx editable codeBlock
+<Cluster gap={0.25}>
+  <Chip>昇格候補</Chip>
+  <Chip>昇進候補</Chip>
+  <Chip>異動候補</Chip>
+</Cluster>
+```
+
+### Stackで羅列する
+
+`gap`は`0.25`が適しています。表示される高さに注意して使用してください。
+
+```tsx editable codeBlock
+<Stack gap={0.25}>
+  <Chip>昇格候補</Chip>
+  <Chip>昇進候補</Chip>
+  <Chip>異動候補</Chip>
+</Stack>
+```
+
+### テキストの前に表示する
+
+`gap`は`0.25`が適しています。垂直方向に中央揃えしてください。
+
+```tsx editable codeBlock
+<Stack gap={1.5}>
+  <Cluster as="p" align="center" gap={0.25}>
+    <Chip>異動候補</Chip>
+    須磨 栄子
+  </Cluster>
+
+  <Cluster as="p" align="center" gap={0.25}>
+    須磨 栄子
+    <Chip>異動候補</Chip>
+  </Cluster>
+</Stack>
+```
 
 ## Props
 
