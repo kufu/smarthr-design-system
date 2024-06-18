@@ -4,6 +4,8 @@ description: 'ユーザーに情報を伝えるために、他の要素より視
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
+import { Base, BaseColumn, CheckBox, Heading, ResponseMessage, Stack, Text } from 'smarthr-ui'
+import styled from 'styled-components'
 
 ユーザーに情報を伝えるために、他の要素より視覚的に目立たせるためのコンポーネントです。伝えたい情報の種類によってアイコンを切り替えて使います。
 
@@ -11,27 +13,58 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 ## 使用上の注意
 
-### タイトルと内容のセットで使用する
+アイコン付きの見出しと、詳細を説明する内容を必ずセットにして使用してください。
 
-どちらか一方だけの表示に使用しないでください。内容だけの場合は[NotificationBar[base="base"]](/products/components/notification-bar/)の検討してください。
+見出しと内容のセットではない短い一文での使用には、[ResponseMessage](/products/components/response-message/)や[NotificationBar[base="base"]](/products/components/notification-bar/)が適しています。
 
-### 表示する内容が多い場合は開閉ボタンの表示を検討する
+詳しい使い分けは[フィードバック - 同期的な処理が完了したとき](/products/design-patterns/feedback/#h3-6)を参照してください。
 
-テキストが複数行にわたるなど、表示領域が広くなる場合は`togglable`propsで開閉ボタンを表示することを検討してください。
+### 重要な情報には開閉ボタンを表示しない
 
-ただし、たとえば操作手順や確認が必須の情報など、長くても全文表示しておくべき内容であれば開閉ボタンは必須ではありません。
+操作手順の説明や、確認が必須の情報など、重要な内容の場合は開閉ボタンを表示しないでください。
 
-### レイヤー順序に注意して配置する
+基本的に開閉ボタンを表示できるのは、閉じて隠されても操作に問題のない補足的な内容や、全文表示すると操作の妨げになるほど長大な内容のときのみです。
 
-InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は3です。レイヤー順序が2以下の要素の中、特に[Base](/products/components/base/)にInformationPanelを配置しないでください。
+### Baseのなかに直接配置しない
 
-Baseのなかで目立たせたい場合は、[BaseColumn](/products/components/base/base-column/)を使用すると良いでしょう。
+InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は`3`です。レイヤー順序が`1`の[Base](/products/components/base/)の中に直接配置しないでください。
 
-### 内容の多いフィードバック表示に使用する
+Baseのなかで見出しと内容を目立たせたい場合は、[BaseColumn](/products/components/base/base-column/)を使用してください。見出し部分は[Heading[type="blockTitle"]](/products/components/heading/)とResponseMessageで代替します。
 
-テキストが複数行にわたるなど、フィードバックの内容が多いときはInformationPanelを使用してください。
 
-タイトルがないものや、「処理に成功しました」「処理に失敗しました」程度の短い文言をフィードバック表示する場合は、[ResponsiveMessage](/products/components/responsive-message/)や[NotificationBar[bold]](/products/components/notification-bar/)の使用を検討してください。
+```tsx editable withStyled codeBlock
+const StyledBase = styled(Base)`
+  width: 100%;
+`
+
+render(
+  <StyledBase forwardedAs="section" layer={1} padding={1.5}>
+    <Stack gap={1.5}>
+      <Heading type="blockTitle">
+        Baseの見出し
+      </Heading>
+      <Text as="p">
+        Baseの本文。
+      </Text>
+      <BaseColumn>
+        <Stack gap={1}>
+          <Heading type="blockTitle">
+            <ResponseMessage type="warning" iconGap={0.5}>
+              Baseの中で目立たせたい情報
+            </ResponseMessage>
+          </Heading>
+          <Text as="p">
+            Baseの中で目立たせたい内容。
+          </Text>
+          <CheckBox name="warning_confirm">
+            Baseの中で目立たせたいことを確認しました
+          </CheckBox>
+        </Stack>
+      </BaseColumn>
+    </Stack>
+  </StyledBase>
+)
+```
 
 ## Props
 
