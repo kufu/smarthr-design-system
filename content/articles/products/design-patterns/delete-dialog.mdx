@@ -156,9 +156,7 @@ export const DynamicActionDialog = () => {
 ## 類似する種類
 
 ### 「取り消し」操作時の確認ダイアログ
-[Dangerボタン](/products/components/button/#h3-2)を使用する操作ダイアログには、削除ダイアログ以外に「取り消しダイアログ」があります。
-
-取り消しダイアログも、削除ダイアログをアレンジして類似のライティングパターンを適用します。
+操作を取り消す際も、同様の確認ダイアログを表示します。
 
 <!-- textlint-disable -->
 
@@ -166,7 +164,7 @@ export const DynamicCancelActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>取り消し操作時のダイアログを開く</Button>
+      <Button onClick={() => setIsOpen(true)}>取り消しダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
         title="{操作名}の取り消し"
