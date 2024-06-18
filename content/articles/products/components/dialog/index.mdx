@@ -93,6 +93,7 @@ export const DynamicModelessDialog = () => {
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
         width={480}
+        right={"10%"}
         id="modeless-dialog-1"
         data-test="dialog"
       >
@@ -156,12 +157,12 @@ export const DynamicModelessDialog = () => {
 
 ### 表示位置
 
-各コンポーネントの記載を参照してください。
+`top` `bottom` `left` `right` propsで表示位置を指定できます。指定しない場合、画面の天地左右中央に表示されます。
 
-- [ActionDialogの表示位置](./action-dialog/#h3-1)
-- [MessageDialogの表示位置](./message-dialog/#h3-5)
-- [ModelessDialogの表示位置](./modeless-dialog/#h3-4)
+モーダルなダイアログ（`ActionDialog`と`MessageDialog`）の場合、意図的な場合を除き位置を指定せず、天地左右中央とします。
 
+`ModelessDialog`の場合は、ダイアログを開く操作をした箇所の付近に表示します。
+これは、モーダルなダイアログと違って、ダイアログの裏側の画面がスクリム（幕）で隠されないため、開く操作をした箇所から遠い位置に表示すると、ユーザーがダイアログを見つけにくいためです。
 
 ## Props
 
