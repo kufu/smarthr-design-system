@@ -158,7 +158,6 @@ export const DynamicActionDialog = () => {
 ### 「取り消し」操作時の確認ダイアログ
 操作を取り消す際も、同様の確認ダイアログを表示します。
 
-<!-- textlint-disable -->
 
 export const DynamicCancelActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -175,10 +174,9 @@ export const DynamicCancelActionDialog = () => {
         onClickAction={()=> {setIsOpen(false)}}
         width={480}
       >
-        <>
-          {'{操作名}を取り消しますか？'}<br />
-          {'「取り消し」を押すと変更内容が破棄されます。'}
-        </>
+        <Text>
+          {'{操作名}を取り消しますか？「取り消し」を押すと変更内容が破棄されます。'}
+        </Text>
       </ActionDialog>
     </>
   )
@@ -188,4 +186,3 @@ export const DynamicCancelActionDialog = () => {
   <DynamicCancelActionDialog />
 </ComponentPreview>
 
-<!-- textlint-enable -->
