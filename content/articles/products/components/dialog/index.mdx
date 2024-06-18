@@ -105,15 +105,35 @@ export const DynamicModelessDialog = () => {
   )
 }
 
+### [ActionDialog](./action-dialog/)
+
+ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
+
 <ComponentPreview>
-  <Stack gap="XS" align="flex-start">
-    <DynamicActionDialog />
-    <DynamicMessageDialog />
-    <DynamicModelessDialog />
-  </Stack>
+  <DynamicActionDialog />
 </ComponentPreview>
 
-<PageIndex path="/products/components/dialog/" excludes={[]} heading="h3" />
+### [MessageDialog](./message-dialog/)
+
+ユーザーに情報を提示するためのダイアログです。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
+
+<ComponentPreview>
+  <DynamicMessageDialog />
+</ComponentPreview>
+
+### [ModelessDialog](./modeless-dialog/)
+
+モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。
+
+基本的に、ダイアログと裏側の画面を同時並行で閲覧・操作する場合に使います。
+
+<ComponentPreview>
+  <DynamicModelessDialog />
+</ComponentPreview>
 
 ## 使用上の注意
 
