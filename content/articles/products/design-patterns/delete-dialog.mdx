@@ -57,8 +57,8 @@ export const DynamicActionDialog = () => {
         actionTheme="danger"
         onClickClose={() => {setIsOpen(false)}}
         onClickAction={() => {setIsOpen(false)}}
+        width={640}
       >
-        <div style={{'boxSizing': 'border-box', 'width': '640px', 'padding': '24px'}}>
           <Stack gap={1.5}>
             <p>
             {'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}
@@ -86,7 +86,6 @@ export const DynamicActionDialog = () => {
               </BaseColumn>
             </Stack>
           </Stack>
-        </div>
       </ActionDialog>
     </>
   )
@@ -176,11 +175,12 @@ export const DynamicCancelActionDialog = () => {
         actionTheme="danger"
         onClickClose={()=> {setIsOpen(false)}}
         onClickAction={()=> {setIsOpen(false)}}
+        width={480}
       >
-        <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
+        <>
           {'{操作名}を取り消しますか？'}<br />
           {'「取り消し」を押すと変更内容が破棄されます。'}
-        </div>
+        </>
       </ActionDialog>
     </>
   )
