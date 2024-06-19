@@ -50,6 +50,3 @@ order: 2
 
 ## 関連するWCAG2.1達成基準
 - [達成基準 1.1.1: 非テキストコンテンツを理解する](https://waic.jp/translations/WCAG21/Understanding/non-text-content.html)
-
-
-
