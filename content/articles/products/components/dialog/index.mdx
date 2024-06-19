@@ -26,7 +26,7 @@ Dialogコンポーネントは、ダイアログボックス（もしくは単�
 
 ## Dialogを使用したコンポーネント
 
-頻繁に利用するダイアログのパターンを、スタイリングやpropsを整えたコンポーネントとして用意しています。詳しい使い方は、それぞれのコンポーネントのページを参照してください。
+頻繁に利用するダイアログのパターンを、スタイリングやpropsを整えたコンポーネントとして用意しています。
 
 export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -104,31 +104,37 @@ export const DynamicModelessDialog = () => {
   )
 }
 
-### [ActionDialog](./action-dialog/)
+### ActionDialog
 
 ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
+詳しい使い方は、[ActionDialog](./action-dialog/)を参照してください。
+
 <ComponentPreview>
   <DynamicActionDialog />
 </ComponentPreview>
 
-### [MessageDialog](./message-dialog/)
+### MessageDialog
 
 ユーザーに情報を提示するためのダイアログです。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
+詳しい使い方は、[MessageDialog](./message-dialog/)を参照してください。
+
 <ComponentPreview>
   <DynamicMessageDialog />
 </ComponentPreview>
 
-### [ModelessDialog](./modeless-dialog/)
+### ModelessDialog
 
 モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。
 
 基本的に、ダイアログと裏側の画面を同時並行で閲覧・操作する場合に使います。
+
+詳しい使い方は、[ModelessDialog](./modeless-dialog/)を参照してください。
 
 <ComponentPreview>
   <DynamicModelessDialog />
