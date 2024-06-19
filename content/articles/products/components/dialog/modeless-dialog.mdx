@@ -4,6 +4,8 @@ description: 'モードレスなダイアログです。ダイアログを表示
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
+import CautionAbuse from './common/caution_abuse.mdx'
+import Layout from './common/layout.mdx'
 
 モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。
 
@@ -11,6 +13,10 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 
 <ComponentStory name="ModelessDialog" />
+
+## 使用上の注意
+
+<CautionAbuse />
 
 ## 構成
 
@@ -42,7 +48,10 @@ ModelessDialogは以下の要素で構成されます。
 
 ## レイアウト
 
-基準サイズと表示位置については、[Dialogのレイアウト](../h2-2)を参照してください。
+<Layout />
+
+- `ModelessDialog`の場合は、ダイアログを開く操作をした箇所の付近に表示します。
+  - モーダルなダイアログと違って、ダイアログの裏側の画面がスクリム（幕）で隠されないため、開く操作をした箇所から遠い位置に表示すると、ユーザーがダイアログを見つけにくいためです。
 
 ## Props
 

@@ -4,6 +4,10 @@ description: 'ユーザーに入力や選択などの操作を求めるための
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
+import CautionAbuse from './common/caution_abuse.mdx'
+import CautionMultipleDialog from './common/caution_multiple-dialog.mdx'
+import Layout from './common/layout.mdx'
+
 
 ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。
 
@@ -12,9 +16,17 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 <ComponentStory name="ActionDialog" />
 
+## 使用上の注意
+
+<CautionAbuse />
+
+<CautionMultipleDialog />
+
 ## レイアウト
 
-基準サイズと表示位置については、[Dialogのレイアウト](../h2-2)を参照してください。
+<Layout />
+
+- モーダルなダイアログ（`ActionDialog`と`MessageDialog`）の場合、意図的な場合を除き位置を指定せず、天地左右中央とします。
 
 ## デザインパターン
 
