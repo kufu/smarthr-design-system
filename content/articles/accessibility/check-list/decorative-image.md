@@ -48,7 +48,8 @@ order: 2
     ```
 ラベルテキスト「編集」と、鉛筆マークのアイコン✎をもつボタンでは、アイコンのsvg要素にaria-hidden="true"が設定されています。aria-hidden=”true”の要素は支援技術によって無視されます。
 
-
+## 関連するWCAG2.1達成基準
+- [達成基準 1.1.1: 非テキストコンテンツを理解する](https://waic.jp/translations/WCAG21/Understanding/non-text-content.html)
 
 
 

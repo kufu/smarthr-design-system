@@ -40,3 +40,6 @@ aria-label 属性を使用して、代替テキストを提供します。
     - スクリーンリーダーを使ってページを閲覧し、画像の代替テキストが適切に読み上げられるかを確認します。
 3. **DevToolsでの確認**:
 DevToolsのAccessibility > Comuted PropertiesでNameを確認します。 (参考: ユーザー補助機能のリファレンス  |  DevTools  |  Chrome for Developers   )
+
+## 関連するWCAG2.1達成基準
+- [達成基準 1.1.1: 非テキストコンテンツを理解する](https://waic.jp/translations/WCAG21/Understanding/non-text-content.html)
