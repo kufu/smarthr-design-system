@@ -1,6 +1,6 @@
 ---
 title: 'NotificationBar'
-description: 'ユーザーへ伝えたいフィードバックやメッセージを伝えるために使うコンポーネントです。'
+description: 'ユーザーに操作の結果などをシステムからの通知として表示するためのコンポーネントです。'
 ---
 import { useEffect, useState } from 'react'
 import { ComponentPreview } from '@Components/ComponentPreview'
@@ -9,13 +9,28 @@ import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { NotificationBar, Button, Stack} from 'smarthr-ui'
 import { VideoEmbed } from '@Components/article/VideoEmbed/VideoEmbed'
 
-NotificationBarコンポーネントは、フィードバックやメッセージを伝えるために使います。
-
-* 操作後に、ダイアログ内や画面全体が切り替わるとき
-* ダイアログで操作し、元の画面に戻るとき
-* 特別で重要な情報やお知らせを表示するとき
+ユーザーに操作の結果などをシステムからの通知として表示するためのコンポーネントです。
 
 <ComponentStory name="NotificationBar" />
+
+## 使用上の注意
+
+### 操作の結果をシステムから通知するために使用する
+
+NotificationBarは、ユーザーが行なった操作への応答や、操作が反映されている状態を示すといった、システムからの通知の表示に使用します。
+
+サービス運営上の利用促進や訴求といったメッセージングに使用してしまうと、それがシステムからの応答なのか、運営者からの情報なのかをユーザーの判断に委ねることになります。
+その結果、ユーザーが行なった操作に対するシステムからのフィードバックとしての一貫性を担保できなくなり、ユーザーに適切な操作を促すことが難しくなるためです。
+
+システムからの応答としてのフィードバックではない、その他の重要なお知らせや情報などの表示が必要な場合は、[InformationPanel](/products/components/information-panel/)を使用してください。
+
+### フィードバックするテキストは省略表示しない
+
+原則として、NotificationBarに表示するテキストメッセージは[LineClamp](/products/components/line-clamp/)などで省略表示しないでください。
+表示を省略してしまうと、ユーザーがその後に続くタスクや操作を判断しづらくなり、適切な操作を促すことが難しくなるためです。
+
+NotificationBarは、簡潔な一行程度の文章になるように調整してください。
+どうしても情報量や他の要素を併記する必要がある場合は、[InformationPanel](/products/components/information-panel/)を使用してください。
 
 ## 種類
 
@@ -74,16 +89,6 @@ export const AnimateNotificationBar = () => {
   <AnimateNotificationBar />
 </ComponentPreview>
 
-### レイアウト
-
-非推奨ですが[LineClamp](/products/components/line-clamp/)コンポーネントも使えます。
-
-```tsx editable codeBlock noIframe
-<Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar type="warning" message={<LineClamp maxLines={1} withTooltip>非推奨ですが、LineClampを使用して省略もできます。そのでっかい領域によるヘッダー（のナビゲーション）へのアクセス性の低下をフォローするために多くのウェブサイトはヘッダーを固定していますが、それでは同時にコンテンツの閲覧性に影響を与えてしまいます。</LineClamp>} onClose={()=>{}} />
-</Stack>
-```
-
 ### その他
 
 ボタンやテキストリンクを表示したり、常時表示したいときは「閉じる」ボタンを非表示にできます。
@@ -102,17 +107,17 @@ export const AnimateNotificationBar = () => {
 
 ## デザインパターン
 
-### 操作のフィードバック
+### ページ全体の操作へのフィードバック
 
 主に「操作後に、ダイアログ内や画面全体が切り替わるとき」や「ダイアログで操作し、元の画面に戻るとき」などに使います。
 
 - ユーザーにメッセージが表示されたことを強調するために、[アニメーションを有効](#h3-1)にします。
 - ユーザーの明示的な操作で非表示にします。時間の経過で閉じることは非推奨です（[※1](#h2-4)）。
 
-#### コレクションにオブジェクトを追加した後のメッセージ
+#### オブジェクトに関する操作を行なった直後にページ全体にフィードバックを表示
 
-コレクションにオブジェクトを追加した際に、フィードバックを表示する典型的な例です。  
-以下の例では操作が成功したため`type="success"`にしていますが、エラーの場合は`error`を指定してメッセージを返します。
+コレクションへのオブジェクトの追加・削除など、オブジェクトに関する操作を行なった直後に、結果を表示する典型的な例です。  
+以下の例では操作が成功したため`type="success"`を表示しています。エラーの場合は`type="error"`を指定します。
 
 <VideoEmbed
   poster="/images/notification-bar_thumb.png"
@@ -121,9 +126,9 @@ export const AnimateNotificationBar = () => {
   tracks={[{src: "/video/notification-bar.vtt", kind: "captions", srcLang: "ja", label: "日本語", default: true}]}
 />
 
-#### スクロール追従するNotificationBar
+#### 操作箇所から離れている場合はスクロール追従するようにフィードバックを表示
 
-操作するボタンなどと、NotificationBarによるメッセージの距離が離れている場合は、`positon: sticky`でスクロールに追従させ、メッセージに気づきやすくすることを推奨します。  
+操作するボタンなどと、NotificationBarによるフィードバックが視覚的に離れている場合は、`positon: sticky`でスクロールに追従させ、フィードバックに気づきやすくすることを推奨します。  
 以下の例では、スクロールに関わらずNotificationBarを画面上部に固定表示しています。
 
 <VideoEmbed
@@ -132,28 +137,6 @@ export const AnimateNotificationBar = () => {
   title="動画:NotificationBarを`positon: sticky`で追従表示している"
   tracks={[{src: "/video/notification-bar-sticky.vtt", kind: "captions", srcLang: "ja", label: "日本語", default: true}]}
 />
-
-### 特別な情報やお知らせ
-
-主に「特別で重要な情報やお知らせを出したいとき」に使うパターンです。
-
-- 基本的に、`bold={false}`で使うことを推奨します。破壊的な変更や必ず見てほしい重要情報など必要に応じて強調してください。
-- 特別な情報やお知らせで設置するコンポーネントと表示位置は、情報構造に合わせて設計します。NotificationBarでの代表的な使い方は以下を参照してください。
-  - 同様の役割は、[InformationPanel](/products/components/information-panel/)や[CompactInformationPanel](/products/components/compact-information-panel/)が担うこともあります。
-
-#### アプリケーション全体にメッセージを表示する
-
-アプリケーション全体にメッセージを表示している例です。  
-アプリケーション内で画面を切り替えてもメッセージが表示され続けることを表すため、[Header](/products/components/header/)よりも上に配置します。また、必ず見てもらいたいメッセージなので`bold`にしています。
-
-![NotificationBarを使ってアプリケーション全体へメッセージを表示している例](./images/notification-bar-static1.png)
-
-#### ページにメッセージを表示する
-
-ページ内にメッセージを表示している例です。  
-「ダッシュボード」の配下のみに関わる情報であることを表すために、[AppNavi](/products/components/app-navi/)の下にNotificationBarを配置します。
-
-![NotificationBarを使ってページ内にメッセージを表示している例](./images/notification-bar-static2.png)
 
 ## Props
 
