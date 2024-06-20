@@ -6,106 +6,116 @@ order: 3
 マージン（Margin）やパディング（Padding）などの余白のパターンをシーン別にまとめています。
 
 ## 基本的な考え方
-余白は、要素間の距離に差をつけてかたまり（チャンク）を形成することで、要素同士の並列・内包などの関係性を視覚的に表現するために使います。
+UI設計における余白とは、情報を整理するために設ける要素間のギャップのことを指します。
 
-余白の値は、原則として8の倍数を使用し、画面の外側から内側にいくにつれて小さい値を段階的に使います。  
-SmartHR UIの使用においては、開発者はコンポーネントがすでに担保している余白と、[Layoutコンポーネント](/products/components/layout/)で指定する必要のある余白について理解する必要があります。
+余白は、要素間の距離に差をつけてかたまり（チャンク）を形成することで、要素同士の並列・内包などの関係性を視覚的に表現するために使います。  
+適切な余白を設定することで、ユーザーの素早く、正しい情報の理解を助けることができます。
+
+UI設計において開発者は適切な余白について意識することが重要ですが、[SmartHR UIのコンポーネント](/products/components/)の中には、あらかじめ適切な余白が設定されており、余白の選定を意識することなく利用できるものがあります。  
+開発者は[Layoutコンポーネント](/products/components/layout/)を使う場合や、コンポーネントを組み合わせて画面に配置する場合に、下記を参考に適切な余白を設定してください。
+
+## 考慮する余白に関する法則
+SmartHRの製品開発では以下の法則を考慮して余白を設計します。
+
+- ゲシュタルト原則における近接の法則
+- 視線誘導の法則
+
+### ゲシュタルト原則における近接の法則
+距離が近いもの同士を関連性があるものとして認識する傾向がある、という法則です。  
+関連性の高い要素には小さな余白、関連性の低い要素には大きな余白を設定することで、情報のまとまりをユーザーに認識させることができます。
+
+![スクリーンショット:ゲシュタルト原則における近接の法則をもとに配置されたフォームとラベル](./images/spacing-layout-pattern/spacing-layout-pattern8.png)
+
+### 視線誘導の法則
+[視線誘導](/products/design-patterns/visual-guidance/#h3-1)のとおり、視線は大きいものから小さいものへ移動するため、余白は外側から内側に向かうにつれて狭くすることで、外側の要素から内側の要素に視線を誘導する効果を期待できます。
+
+![スクリーンショット:視線誘導の法則をもとに配置された画面内の要素](./images/spacing-layout-pattern/spacing-layout-pattern7.png)
+
+## 注意点
+ここで示す余白の基準は、必ず従わなければならないものではありません。例外的に基準から外れた余白を設定しても問題ありません。
 
 ## 種類
-以下の余白を定義します。  
-なお、余白の指定には[プリミティブトークン](/products/design-tokens/spacing/#h2-1)を使用します。
+以下の余白を定義します。
 
 - マージン（Margin）
 - パディング（Padding）
 
+余白の値は8の倍数を使用することが一般的ですが、SmartHRの製品設計においては[プリミティブトークン](/products/design-tokens/spacing/#h2-1)を使用します。
 
 ### マージン（Margin）
 マージンとは、要素と要素の間に設定する余白のことです。
 
-セクションやブロックの見出しレベルや階層を下げるにつれて、`2（32px）`、`1.5（24px）`、`1（16px）`の順で段階的に使います。
-ただし、段階的に使用した結果、間隔がつまったり開きすぎてしまうなど視覚的なグルーピングが不適切と判断される場合は、段階を超えて適切な大きさを使います。
-
 具体的な配置の基準は次の通りです。
 
 - 原則、要素に対して上方向に適用する。
+- セクションやブロックの見出しレベルや階層を下げるにつれて、段階的に適用する。
 - 同じ意味階層となる要素同士は、ぞれぞれ同じ大きさのマージンを適用する。
 
-#### セクション同士の間
-`2（32px）` とします。  
-[Stack](/products/components/layout/stack/)コンポーネントを使用し、`gap` propsに余白の値を指定してください。
+なお、マージンを設定する場合は基本的に以下のLayoutコンポーネントを使用してください。
 
-![スクリーンショット:セクション同士のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern4.png)
+- 垂直方向に要素を配置する場合は[Stack](/products/components/layout/stack/)を使用し、`gap` propsにマージンを設定してください。  
+- 水平方向に要素を配置する場合は[Cluster](/products/components/layout/cluster/)を使用し、`gap` propsにマージンを設定してください。
 
-#### 画面タイトルエリア内の要素同士の間
-`1.5（24px）` とします。  
-[Stack](/products/components/layout/stack/)コンポーネントを使用し、`gap` propsに余白の値を指定してください。
+#### 代表的なページ内レイアウトのマージン
 
-![スクリーンショット:画面タイトルエリアとセクション間のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern5.png)
+- セクション同士の間は`2（32px）`とします。
+- セクション内の要素同士の間は`1.5（24px）`とします。
+- セクション内の見出しとコンテンツの間は`1（16px）`とします。
 
-#### 見出しと本文（またはBase）の間
-`1（16px）` とします。  
-[Stack](/products/components/layout/stack/)コンポーネントを使用し、`gap` propsに余白の値を指定してください。
+![スクリーンショット:代表的なページ内レイアウトのマージン](./images/spacing-layout-pattern/spacing-layout-pattern1.png)
 
-![スクリーンショット:タイトルと本文間のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern6.png)
+#### 代表的なダイアログ内レイアウトのマージン
 
-#### セクション内の要素同士の間
-見出しレベルやコンテンツの階層を下げるにつれて、`2（32px）`、`1.5（24px）`、`1（16px）`の順で段階的に適用します。  
-[Stack](/products/components/layout/stack/)コンポーネントを使用し、`gap` propsに余白の値を指定してください。
+- 説明テキストとフォーム要素のセクションの間は`2（32px）`とします。
+- フォーム要素同士の間は`1.5（24px）`とします。
+- フォーム要素内の説明テキストとフォームの間は`1（16px）`とします。
 
-![スクリーンショット:セクション内の要素のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern7.png)
+![スクリーンショット:代表的なダイアログ内レイアウトのマージン](./images/spacing-layout-pattern/spacing-layout-pattern2.png)
 
-#### アイコンやラベルなどの小さい要素間
-アイコンやラベルといった小さい要素を組み合わせる場合は、基本的に`0.5（8px）`とします。
+#### 見出しとコンテンツのマージン
+
+- 各セクションの見出しとコンテンツの間は`1（16px）`とします。
+
+![スクリーンショット:見出しとコンテンツのマージン](./images/spacing-layout-pattern/spacing-layout-pattern3.png)
+
+#### アイコンやラベルなどの小さい要素間のマージン
 
 - ブロックの見出しや[Input](/products/components/input/)にアイコンやラベルを複合的に組み合わせる場合は、`1（16px）`と`0.5（8px）`を段階的に組み合わせて適用します。
   - [InfomationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)などのコンポーネントを利用することで、これらの余白が自動的に適用されます。
+- フォームを水平方向に配置する場合は、`1（16px）`とします。
 - [StatusLabel](/products/components/status-label/)とテキストを組み合わせる場合は、`0.5（8px）`とします。
-  - [Cluster](/products/components/layout/cluster/)コンポーネントを使用し、`gap` propsに余白の値を指定してください。
 - インラインテキスト内でテキストリンクにアイコンを付加する場合は、`0.25（4px）`とします。
   - [TextLink](/products/components/text-link/)に `prefix` や `suffix` propsを指定することで、この余白が自動的に適用されます。
 
-![スクリーンショット:アイコンやラベルなどの小さい要素間](./images/spacing-layout-pattern/spacing-layout-pattern8.png)
-
-#### ダイアログの本文エリア内の要素間
-見出しレベルやコンテンツの階層を下げるにつれて、`2（32px）`、`1.5（24px）`、`1（16px）`の順で段階的に適用します。  
-[Stack](/products/components/layout/stack/)コンポーネントを使用し、`gap` propsに余白の値を指定してください。
-
-![スクリーンショット:タイトルと本文間のマージンのパターン](./images/spacing-layout-pattern/spacing-layout-pattern9.png)
+![スクリーンショット:アイコンやラベルなどの小さい要素間のマージン](./images/spacing-layout-pattern/spacing-layout-pattern4.png)
 
 ### パディング（Padding）
 パディングとは、要素の内側に設定する余白のことです。
 
-原則として`1.5（24px）`とします。縦長・横長になった場合や、中の要素がつまって狭くなってしまうときは、`1（16px）`とします。
+具体的な配置の基準は次の通りです。
 
-#### コンテンツエリア（Base）の余白
+- セクションやブロックの見出しレベルや階層を下げるにつれて、段階的に適用する。
+- 同じ意味階層となる要素同士は、ぞれぞれ同じ大きさのパディングを適用する。
 
-[Base](/products/components/base/)コンポーネントの `padding` propsに余白の値を指定してください。
+#### 代表的なページ内レイアウトのパディング
 
-| 対象エリア | 天地余白 | 左右余白 |
-| :------- | :------- | :------- |
-| コンテンツ全体 | 1.5（24px） | 1.5（24px） |
+- 画面内のメインコンテンツのパディングは`2（32px）`とします。
+- コンテンツエリアのパディングは`1.5（24px）`とします。
+  - [Base](/products/components/base/)の `padding` propsに値を指定してください。
+- コンテンツエリア内のグループのパディングは`1（16px）`とします。
+  - [BaseColumn](/products/components/base-column/)には初期状態で `padding={1}` が適用されています。
 
-![スクリーンショット:Baseのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern1.png)
+![スクリーンショット:代表的なページ内レイアウトのパディング](./images/spacing-layout-pattern/spacing-layout-pattern5.png)
 
-#### コンテンツエリア内のグループ（BaseColumn）の余白
-基本的に、セクション（主に[セクションタイトル](/products/components/heading/#h3-1)で括られるエリア）内で[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)などを複数配置するようなパターンで適用し、中の要素がつまったり狭くなることが想定されるため、`1（16px）`とします。
+#### 代表的なダイアログ内レイアウトのパディング
 
-[BaseColumn](/products/components/base-column/)コンポーネントには初期状態で `padding={1}` が適用されています。
+- コンテンツエリアのパディングは`1.5（24px）`とします。
+  - [Dialog](/products/components/dialog/)を使用することで、この余白が自動的に適用されます。
+- コンテンツエリア内のグループのパディングは`1（16px）`とします。
+  - [BaseColumn](/products/components/base-column/)には初期状態で `padding={1}` が適用されています。
 
-| 対象エリア | 天地余白 | 左右余白 |
-| :------- | :------- | :------- |
-| コンテンツ全体 | 1（16px） | 1（16px） |
+![スクリーンショット:代表的なダイアログ内レイアウトのパディング](./images/spacing-layout-pattern/spacing-layout-pattern6.png)
 
-![スクリーンショット:BaseColumnのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern2.png)
+## 参考文献
 
-#### ダイアログの余白
-見出しとボタンエリアは横長になるため、天地左右`1（16px）`のほうがすわりがよいですが、本文エリアの読み開始位置と一致させるため、左右を`1.5（24px）`とし、天地に`1（16px）`とします。  
-[Dialog](/products/components/dialog/)コンポーネントを使用することで、これらの余白が自動的に適用されます。
-
-| 対象エリア | 天地余白 | 左右余白 |
-| :------- | :------- | :------- |
-| 見出しエリア | 1（16px） | 1.5（24px） |
-| 本文エリア | 1.5（24px） | 1.5（24px） |
-| ボタンエリア | 1（16px） | 1.5（24px） |
-
-![スクリーンショット:Dialogのパディングのパターン](./images/spacing-layout-pattern/spacing-layout-pattern3.png)
+- [近接（ゲシュタルト原則） | UX TIMES](https://uxdaystokyo.com/articles/glossary/proximity/)
