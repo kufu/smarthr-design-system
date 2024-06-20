@@ -1,6 +1,6 @@
 ---
 title: 'FlashMessage（非推奨）'
-description: 'FlashMessageは気づきにくいため、安易な使用はお勧めしません。NotificationBarやDialogの使用を検討してください。'
+description: 'FlashMessageは非推奨です。ユーザーに操作の結果を伝えるUIについては、フィードバックのデザインパターンを参照してください。'
 ---
 
 import { ComponentPreview } from '@Components/ComponentPreview'
@@ -18,7 +18,7 @@ import {
 <BaseColumn>
   <WarningIcon text={
     <span>
-    FlashMessageは気づきにくいため、安易な使用はお勧めしません。<a href="/products/components/notification-bar/">NotificationBar</a>や<a href="/products/components/dialog/">Dialog</a>の使用を検討してください。
+    FlashMessageは非推奨です。ユーザーに操作の結果を伝えるUIについては、<a href="/products/design-patterns/feedback">フィードバック</a>を参照してください。
     </span>}
     />
 </BaseColumn>
@@ -29,12 +29,6 @@ FlashMessageコンポーネントは、インターフェイス上に表示さ�
 
 
 <ComponentStory name="FlashMessage" />
-
-
-## 使用上の注意
-
-他の操作に影響を及ぼさない便利な反面、注意を強く引くことはできません。ユーザーに大きな影響を及ぼす更新の通知をしたい場合は、[Dialog](/products/components/dialog/)を使うことを検討してください。
-
 
 ## メッセージの書き方
 
@@ -48,7 +42,7 @@ export const DynamicFlashMessage = () => {
   const [visible, setVisible] = useState(false)
   return (
     <>
-        <Button variant="primary" onClick={() => setVisible(true)}>FlashMessageを表示</Button>
+        <Button onClick={() => setVisible(true)}>FlashMessageを表示</Button>
         <FlashMessage type="success" text="Hello, FlashMessage." visible={visible} onClose={() => { setVisible(false) }} />
     </>
   )
