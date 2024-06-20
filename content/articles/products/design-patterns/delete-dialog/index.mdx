@@ -32,7 +32,7 @@ import { ComponentPreview } from '@Components/ComponentPreview'
 
 ## 構成
 
-確認メッセージは、[ActionDialog](../../components/dialog#h3-1)を使って表示します。  
+確認メッセージは、[ActionDialog](/products/components/dialog/#h3-1)を使って表示します。  
 ダイアログは以下の要素で構成されています。4、5は任意の要素です。
 
 1. タイトル
@@ -42,13 +42,13 @@ import { ComponentPreview } from '@Components/ComponentPreview'
 5. 確認のチェックボックス（任意）
 6. アクションボタン
 
-![ダイアログ内の要素](./images/delete-dialog/delete-dialog_components.png)
+![ダイアログ内の要素](./images/delete-dialog_components.png)
 
 export const DynamicActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button variant="danger" onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
+      <Button onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
         title="{オブジェクト名}の削除"
@@ -57,8 +57,8 @@ export const DynamicActionDialog = () => {
         actionTheme="danger"
         onClickClose={() => {setIsOpen(false)}}
         onClickAction={() => {setIsOpen(false)}}
+        width={640}
       >
-        <div style={{'boxSizing': 'border-box', 'width': '640px', 'padding': '24px'}}>
           <Stack gap={1.5}>
             <p>
             {'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}
@@ -86,7 +86,6 @@ export const DynamicActionDialog = () => {
               </BaseColumn>
             </Stack>
           </Stack>
-        </div>
       </ActionDialog>
     </>
   )
@@ -98,7 +97,7 @@ export const DynamicActionDialog = () => {
 
 ### 1. タイトル
 
-[ActionDialogのタイトルのつけ方](../../components/dialog#h4-2)に従います。
+[ActionDialogのタイトルのつけ方](/products/components/dialog/#h4-2)に従います。
 
 `{オブジェクト名}の削除`
 
@@ -111,11 +110,11 @@ export const DynamicActionDialog = () => {
 
 ### 3. 削除対象
 
-[DefinitionList](../../components/definition-list/)を使い、削除対象のオブジェクト名およびインスタンス名を提示します。
+[DefinitionList](/products/components/definition-list/)を使い、削除対象のオブジェクト名およびインスタンス名を提示します。
 
-![DefinitionListで提示した削除対象](./images/delete-dialog/delete-dialog_object-to-be-deleted.png)
+![DefinitionListで提示した削除対象](./images/delete-dialog_object-to-be-deleted.png)
 
-なお、DefinitionListのtermは、ダイアログ内の最上位の見出しなので、[ブロックタイトル](../../components/heading/#h3-2)になります。
+なお、DefinitionListのtermは、ダイアログ内の最上位の見出しなので、[ブロックタイトル](/products/components/heading/#h3-2)になります。
 
 #### 削除対象の省略
 
@@ -126,7 +125,7 @@ export const DynamicActionDialog = () => {
 
 のようになります。
 
-![削除対象のインスタンス名を省略する場合の本文の例](./images/delete-dialog/delete-dialog_object-name-not-displayed.png)
+![削除対象のインスタンス名を省略する場合の本文の例](./images/delete-dialog_object-name-not-displayed.png)
 
 ### 4. 注意事項（任意）
 
@@ -139,7 +138,7 @@ export const DynamicActionDialog = () => {
 | マスターデータやカスタム項目などの削除に伴い、SmartHR内のデータも失われる場合 | `{関連するオブジェクト名など}に登録されているデータも削除されます。` |
 | 上位オブジェクトの削除に伴い、下位オブジェクトも失われる場合 | `{選択したオブジェクトのインスタンス名}に含まれる{オブジェクト名}も削除されます。` |
 
-![注意事項の例](./images/delete-dialog/delete-dialog_warnings.png)
+![注意事項の例](./images/delete-dialog_warnings.png)
 
 ### 5. 確認のチェックボックス（任意）
 
@@ -147,27 +146,24 @@ export const DynamicActionDialog = () => {
 
 チェックボックスを設ける場合は、チェックを入れずにアクションボタンを押すと、エラーを返すようにします。
 
-![チェックを入れずにアクションボタンを押すと、エラーを返す](./images/delete-dialog/delete-dialog_unchecked-submit-error.png)
+![チェックを入れずにアクションボタンを押すと、エラーを返す](./images/delete-dialog_unchecked-submit-error.png)
 
 ### 6. アクションボタン
 
-操作を確定するボタンは右に配置し、ラベルは`削除`とします。[Dangerボタン](../..//components/button/#h3-3)を使い、破壊的な操作であることを示します。  
+操作を確定するボタンは右に配置し、ラベルは`削除`とします。[Dangerボタン](/products/components/button/#h3-3)を使い、破壊的な操作であることを示します。  
 ダイアログを閉じて操作を中断するボタンは左に配置し、ラベルは`キャンセル`とします。
 
 ## 類似する種類
 
 ### 「取り消し」操作時の確認ダイアログ
-[Dangerボタン](/products/components/button/#h3-2)を使用する操作ダイアログには、削除ダイアログ以外に「取り消しダイアログ」があります。
+操作を取り消す際も、同様の確認ダイアログを表示します。
 
-取り消しダイアログも、削除ダイアログをアレンジして類似のライティングパターンを適用します。
-
-<!-- textlint-disable -->
 
 export const DynamicCancelActionDialog = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button variant="danger" onClick={() => setIsOpen(true)}>取り消し操作時のダイアログを開く</Button>
+      <Button onClick={() => setIsOpen(true)}>取り消しダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
         title="{操作名}の取り消し"
@@ -176,11 +172,12 @@ export const DynamicCancelActionDialog = () => {
         actionTheme="danger"
         onClickClose={()=> {setIsOpen(false)}}
         onClickAction={()=> {setIsOpen(false)}}
+        width={480}
       >
-        <div style={{'boxSizing': 'border-box', 'width': '480px', 'padding': '24px'}}>
+        <Text as="p">
           {'{操作名}を取り消しますか？'}<br />
           {'「取り消し」を押すと変更内容が破棄されます。'}
-        </div>
+        </Text>
       </ActionDialog>
     </>
   )
@@ -190,4 +187,3 @@ export const DynamicCancelActionDialog = () => {
   <DynamicCancelActionDialog />
 </ComponentPreview>
 
-<!-- textlint-enable -->
