@@ -80,48 +80,6 @@ render(
 )
 ```
 
-## レイアウト
-
-Chip同士や他コンポーネントとの余白は、全体のバランスに合わせて適した値を指定してください。
-
-ここでは例として`gap={0.25}`を指定しています。
-
-### Clusterで羅列する
-
-```tsx editable codeBlock
-<Cluster gap={0.25}>
-  <Chip>昇格候補</Chip>
-  <Chip>昇進候補</Chip>
-  <Chip>異動候補</Chip>
-</Cluster>
-```
-
-### Stackで羅列する
-
-```tsx editable codeBlock
-<Stack gap={0.25}>
-  <Chip>昇格候補</Chip>
-  <Chip>昇進候補</Chip>
-  <Chip>異動候補</Chip>
-</Stack>
-```
-
-### テキストの前後に表示する
-
-```tsx editable codeBlock
-<Stack gap={1.5}>
-  <Cluster align="center" gap={0.25}>
-    <Chip>異動候補</Chip>
-    <Text as="p">須磨 栄子</Text>
-  </Cluster>
-
-  <Cluster align="center" gap={0.25}>
-    <Text as="p">須磨 栄子</Text>
-    <Chip>異動候補</Chip>
-  </Cluster>
-</Stack>
-```
-
 ## Props
 
 <ComponentPropsTable name="Chip" />
