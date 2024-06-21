@@ -1,0 +1,65 @@
+---
+title: 'RadioButtonPanel'
+description: 'パネル型の選択肢の中から単一の値を選択して入力できるコンポーネントです。'
+---
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+import { DoAndDont } from '@Components/DoAndDont'
+import { StaticImage } from '@Components/StaticImage'
+import { Cluster} from 'smarthr-ui'
+
+import RadioButtonPanelDo from './images/radio-button-panel-do.png';
+import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
+
+パネル型の選択肢の中から単一の値を選択して入力できるコンポーネントです。
+
+<ComponentStory name="RadioButtonPanel" />
+
+## 使用上の注意
+
+### ユースケースに応じてコンポーネントを使い分ける
+
+#### 選択肢にラベルテキストを含む複数の要素を追加表示させる場合に使用する
+
+以下のような場合にラジオボタンパネルを使用します。選択肢が同程度の長さで簡潔なラベルテキストのみの場合は、基本的に[RadioButton](/products/components/radio-button/)を使用してください。
+
+- 選択肢を適切に選択させるために、補足説明のテキストやステータスラベルを含む複数の要素を追加したい場合
+- ラベルテキストが短く画面内の他の要素と比べて認識しづらいなどの理由で、選択肢を視覚的に強調して表示したい場合
+
+#### ビューの切り替えを操作するUIとして使用しない
+
+ラジオボタンパネルは入力後に、`送信`や`保存`といったtype属性が`submit`のボタンなどを押すことで入力内容が反映される場合に使用してください。 
+ラジオボタンパネルは1クリックで選択肢ごとに異なる結果となるため、誤入力によって意図しない結果が反映されてしまう可能性あります。
+
+コレクションなどでオブジェクトの表示方法を切り替える場合など、即時反映を前提とする箇所では[TabBar](/products/components/tab-bar/)や[SegmentedControl](/products/components/segmented-control/)、または[Switch](/products/components/switch/)を使用してください。
+
+### ラジオボタンパネル内に操作可能な要素を含めない
+
+ラジオボタンパネル内には、アンカーリンクやボタンなど、ユーザーが操作可能な要素は配置しないでください。
+これらを配置してしまうと、ユーザーがフォーム入力するための操作難易度が上がり、誤操作などにつながるためです。（[※1](#h2-2)）
+
+- リンクを置きたい場合は、[Fieldset](/products/components/fieldset/)の`helpMessage` propsなどを使用します。
+- ComboBoxなどで選択肢に応じて段階的に別の操作をさせたい場合は、[RadioButton](/products/components/radio-button/)と`disabled`状態を組み合わせるか、[ステップを複数に分けたモード](/products/design-patterns/modal-ui/#h3-5)を検討します。
+
+<Cluster gap={1}>
+    <DoAndDont
+        type="do"
+        img={<StaticImage src={RadioButtonPanelDo} alt="Do" width="346" />}
+        label={<Text>ユーザーは選択する操作に集中でき、それ<br/>以外の操作と区別しやすい</Text>}
+        width="calc(50% - 8px)"
+    />
+    <DoAndDont
+        type="dont"
+        img={<StaticImage src={RadioButtonPanelDont} alt="Dont" width="346" />}
+        label={<Text>ユーザーが選択操作に集中できず、操作難<br/>易度が上がる</Text>}
+        width="calc(50% - 8px)"
+    />
+</Cluster>
+
+## Props
+
+<ComponentPropsTable name="RadioButtonPanel" />
+
+## 参考文献
+
+※1. [<label\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)
