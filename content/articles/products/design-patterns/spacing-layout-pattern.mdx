@@ -56,23 +56,23 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 
 ##### 代表的なページ内レイアウトのマージン
 
-- セクション同士の間は`2（32px）`とします。
-- セクション内の要素同士の間は`1.5（24px）`とします。
-- セクション内の見出しとコンテンツの間は`1（16px）`とします。
+- セクション同士の間：`2（32px）`
+- セクション内の要素同士の間：`1.5（24px）`
+- セクション内の見出しとコンテンツの間：`1（16px）`
 
 ![スクリーンショット:代表的なページ内レイアウトのマージン](./images/spacing-layout-pattern/spacing-layout-pattern1.png)
 
 ##### 代表的なダイアログ内レイアウトのマージン
 
-- 説明テキストとフォーム要素のセクションの間は`2（32px）`とします。
-- フォーム要素同士の間は`1.5（24px）`とします。
-- フォーム要素内の説明テキストとフォームの間は`1（16px）`とします。
+- 説明テキストとフォーム要素のセクションの間：`2（32px）`
+- フォーム要素同士の間：`1.5（24px）`
+- フォーム要素内の説明テキストとフォームの間：`1（16px）`
 
 ![スクリーンショット:代表的なダイアログ内レイアウトのマージン](./images/spacing-layout-pattern/spacing-layout-pattern2.png)
 
 ##### 見出しとコンテンツのマージン
 
-- 各セクションの見出しとコンテンツの間は`1（16px）`とします。
+- 各セクションの見出しとコンテンツの間：`1（16px）`
 
 ![スクリーンショット:見出しとコンテンツのマージン](./images/spacing-layout-pattern/spacing-layout-pattern3.png)
 
@@ -80,7 +80,7 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 
 コンポーネント内で確保されているものが多いため、基本的に開発者が設定する必要はありません。
 
-- ブロックの見出しや[Input](/products/components/input/)にラベルや説明テキストを複合的に組み合わせる場合は、`1（16px）`と`0.5（8px）`を段階的に組み合わせて適用します。
+- ブロックの見出しや[Input](/products/components/input/)にラベルや説明テキストを複合的に組み合わせる場合：`1（16px）`または`0.5（8px）`
   - [FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)を利用することで、自動的に適用されます。
 
 ![スクリーンショット:小さい要素間のマージン](./images/spacing-layout-pattern/spacing-layout-pattern4.png)
@@ -93,11 +93,11 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 
 コンポーネント内で確保されているものと、個別で指定する必要のあるものがあります。
 
-- [StatusLabel](/products/components/status-label/)やアイコン、ボタンなどの要素をテキストと組み合わせる場合は、`0.5（8px）`または`0.25（4px）`とします。
+- [StatusLabel](/products/components/status-label/)やアイコン、ボタンなどの要素をテキストと組み合わせる場合：`0.5（8px）`または`0.25（4px）`
   - [InformationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)を利用することで、自動的に適用されます。
   - [TextLink](/products/components/text-link/)に `prefix` や `suffix` propsを指定することで、自動的に適用されます。
-- フォームを水平方向に配置する場合は、`1（16px）`とします。
-- [CheckBox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)を水平方向に配置する場合は、`1.5（24px）`とします。
+- フォームを水平方向に配置する場合：`1（16px）`
+- [CheckBox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)を水平方向に配置する場合：`1.5（24px）`
 
 ![スクリーンショット:アイコンやラベルなどの小さい要素間のマージン](./images/spacing-layout-pattern/spacing-layout-pattern9.png)
 
@@ -111,19 +111,19 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 
 #### 代表的なページ内レイアウトのパディング
 
-- 画面内のメインコンテンツのパディングは`2（32px）`とします。
-- コンテンツエリアのパディングは`1.5（24px）`とします。
+- 画面内のメインコンテンツのパディング：`2（32px）`
+- コンテンツエリアのパディング：`1.5（24px）`
   - [Base](/products/components/base/)の `padding` propsに値を指定してください。
-- コンテンツエリア内のグループのパディングは`1（16px）`とします。
+- コンテンツエリア内のグループのパディング：`1（16px）`
   - [BaseColumn](/products/components/base-column/)を使用することで、自動的に適用されます。
 
 ![スクリーンショット:代表的なページ内レイアウトのパディング](./images/spacing-layout-pattern/spacing-layout-pattern5.png)
 
 #### 代表的なダイアログ内レイアウトのパディング
 
-- コンテンツエリアのパディングは`1.5（24px）`とします。
+- コンテンツエリアのパディング：`1.5（24px）`
   - [Dialog](/products/components/dialog/)を使用することで、自動的に適用されます。
-- コンテンツエリア内のグループのパディングは`1（16px）`とします。
+- コンテンツエリア内のグループのパディング：`1（16px）`
   - [BaseColumn](/products/components/base-column/)を使用することで、自動的に適用されます。
 
 ![スクリーンショット:代表的なダイアログ内レイアウトのパディング](./images/spacing-layout-pattern/spacing-layout-pattern6.png)
