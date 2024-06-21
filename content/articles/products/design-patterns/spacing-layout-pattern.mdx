@@ -81,7 +81,7 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 コンポーネント内で確保されているものが多いため、基本的に開発者が設定する必要はありません。
 
 - ブロックの見出しや[Input](/products/components/input/)にラベルや説明テキストを複合的に組み合わせる場合は、`1（16px）`と`0.5（8px）`を段階的に組み合わせて適用します。
-  - [FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)を利用することで、これらの余白が自動的に適用されます。
+  - [FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)を利用することで、自動的に適用されます。
 
 ![スクリーンショット:小さい要素間のマージン](./images/spacing-layout-pattern/spacing-layout-pattern4.png)
 
@@ -94,8 +94,8 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 コンポーネント内で確保されているものと、個別で指定する必要のあるものがあります。
 
 - [StatusLabel](/products/components/status-label/)やアイコン、ボタンなどの要素をテキストと組み合わせる場合は、`0.5（8px）`または`0.25（4px）`とします。
-  - [InformationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)を利用することで、これらの余白が自動的に適用されます。
-  - [TextLink](/products/components/text-link/)に `prefix` や `suffix` propsを指定することで、この余白が自動的に適用されます。
+  - [InformationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)を利用することで、自動的に適用されます。
+  - [TextLink](/products/components/text-link/)に `prefix` や `suffix` propsを指定することで、自動的に適用されます。
 - フォームを水平方向に配置する場合は、`1（16px）`とします。
 - [CheckBox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)を水平方向に配置する場合は、`1.5（24px）`とします。
 
@@ -115,16 +115,16 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 - コンテンツエリアのパディングは`1.5（24px）`とします。
   - [Base](/products/components/base/)の `padding` propsに値を指定してください。
 - コンテンツエリア内のグループのパディングは`1（16px）`とします。
-  - [BaseColumn](/products/components/base-column/)には初期状態で `padding={1}` が適用されています。
+  - [BaseColumn](/products/components/base-column/)を使用することで、自動的に適用されます。
 
 ![スクリーンショット:代表的なページ内レイアウトのパディング](./images/spacing-layout-pattern/spacing-layout-pattern5.png)
 
 #### 代表的なダイアログ内レイアウトのパディング
 
 - コンテンツエリアのパディングは`1.5（24px）`とします。
-  - [Dialog](/products/components/dialog/)を使用することで、この余白が自動的に適用されます。
+  - [Dialog](/products/components/dialog/)を使用することで、自動的に適用されます。
 - コンテンツエリア内のグループのパディングは`1（16px）`とします。
-  - [BaseColumn](/products/components/base-column/)には初期状態で `padding={1}` が適用されています。
+  - [BaseColumn](/products/components/base-column/)を使用することで、自動的に適用されます。
 
 ![スクリーンショット:代表的なダイアログ内レイアウトのパディング](./images/spacing-layout-pattern/spacing-layout-pattern6.png)
 
