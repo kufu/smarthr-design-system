@@ -50,12 +50,11 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 - セクションやブロックの見出しレベルや階層を下げるにつれて、段階的に適用する。
 - 同じ意味階層となる要素同士は、ぞれぞれ同じ大きさのマージンを適用する。
 
-なお、マージンを設定する場合は基本的に以下のLayoutコンポーネントを使用してください。
+#### 垂直方向のマージン
 
-- 垂直方向に要素を配置する場合は[Stack](/products/components/layout/stack/)を使用し、`gap` propsにマージンを設定してください。  
-- 水平方向に要素を配置する場合は[Cluster](/products/components/layout/cluster/)や[Reel](/products/components/layout/reel/)を使用し、`gap` propsにマージンを設定してください。
+垂直方向に要素を配置する場合は[Stack](/products/components/layout/stack/)を使用し、`gap` propsにマージンを設定してください。
 
-#### 代表的なページ内レイアウトのマージン
+##### 代表的なページ内レイアウトのマージン
 
 - セクション同士の間は`2（32px）`とします。
 - セクション内の要素同士の間は`1.5（24px）`とします。
@@ -63,7 +62,7 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 
 ![スクリーンショット:代表的なページ内レイアウトのマージン](./images/spacing-layout-pattern/spacing-layout-pattern1.png)
 
-#### 代表的なダイアログ内レイアウトのマージン
+##### 代表的なダイアログ内レイアウトのマージン
 
 - 説明テキストとフォーム要素のセクションの間は`2（32px）`とします。
 - フォーム要素同士の間は`1.5（24px）`とします。
@@ -71,22 +70,36 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 
 ![スクリーンショット:代表的なダイアログ内レイアウトのマージン](./images/spacing-layout-pattern/spacing-layout-pattern2.png)
 
-#### 見出しとコンテンツのマージン
+##### 見出しとコンテンツのマージン
 
 - 各セクションの見出しとコンテンツの間は`1（16px）`とします。
 
 ![スクリーンショット:見出しとコンテンツのマージン](./images/spacing-layout-pattern/spacing-layout-pattern3.png)
 
-#### アイコンやラベルなどの小さい要素間のマージン
+##### 小さい要素間のマージン
 
-- ブロックの見出しや[Input](/products/components/input/)にアイコンやラベルを複合的に組み合わせる場合は、`1（16px）`と`0.5（8px）`を段階的に組み合わせて適用します。
-  - [InfomationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)などのコンポーネントを利用することで、これらの余白が自動的に適用されます。
-- フォームを水平方向に配置する場合は、`1（16px）`とします。
-- [StatusLabel](/products/components/status-label/)とテキストを組み合わせる場合は、`0.5（8px）`とします。
-- インラインテキスト内でテキストリンクにアイコンを付加する場合は、`0.25（4px）`とします。
+コンポーネント内で確保されているものが多いため、基本的に開発者が設定する必要はありません。
+
+- ブロックの見出しや[Input](/products/components/input/)にラベルや説明テキストを複合的に組み合わせる場合は、`1（16px）`と`0.5（8px）`を段階的に組み合わせて適用します。
+  - [FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)を利用することで、これらの余白が自動的に適用されます。
+
+![スクリーンショット:小さい要素間のマージン](./images/spacing-layout-pattern/spacing-layout-pattern4.png)
+
+#### 水平方向のマージン
+
+水平方向に要素を配置する場合は[Cluster](/products/components/layout/cluster/)や[Reel](/products/components/layout/reel/)を使用し、`gap` propsにマージンを設定してください。
+
+##### アイコンやラベルなどの小さい要素間のマージン
+
+コンポーネント内で確保されているものと、個別で指定する必要のあるものがあります。
+
+- [StatusLabel](/products/components/status-label/)やアイコン、ボタンなどの要素をテキストと組み合わせる場合は、`0.5（8px）`または`0.25（4px）`とします。
+  - [InformationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)を利用することで、これらの余白が自動的に適用されます。
   - [TextLink](/products/components/text-link/)に `prefix` や `suffix` propsを指定することで、この余白が自動的に適用されます。
+- フォームを水平方向に配置する場合は、`1（16px）`とします。
+- [CheckBox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)を水平方向に配置する場合は、`1.5（24px）`とします。
 
-![スクリーンショット:アイコンやラベルなどの小さい要素間のマージン](./images/spacing-layout-pattern/spacing-layout-pattern4.png)
+![スクリーンショット:アイコンやラベルなどの小さい要素間のマージン](./images/spacing-layout-pattern/spacing-layout-pattern9.png)
 
 ### パディング（Padding）
 パディングとは、要素の内側に設定する余白のことです。
