@@ -7,6 +7,14 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 ユーザーの関心が近いものを並列化し、ビューを切り替えるためのコンポーネントです。
 
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+    下線なし（bordered=false）のTabBarは、タブとしての認知がしにくくビューへの影響範囲が不明瞭なため、非推奨です。
+    </span>}
+    />
+</BaseColumn>
+
 <ComponentStory name="TabBar" />
 
 ## 使用上の注意
@@ -16,11 +24,12 @@ TabBarは異なるオブジェクトやビューを切り替えるために使�
 
 ## レイアウト
 
-### 標準と下線なしの使い分け
-標準のTabBarは、影響するビューの範囲を明示したいときに使用してください。ダイアログ内での使用にて適していることが多いです。
+### 下線部の使い分け
+TabBarは、下線によって影響するビューの範囲を明示して使用してください。
 ![スクリーンショット: 標準のTabBar](./images/smarthr-tab-bar-bordered-true.png)
-下線なしのTabBarは、Baseとともに用いられてTabBarが影響するビューの範囲が明確なときや、ボタンと一緒にレイアウトしたいときに使用してください。
-![スクリーンショット: 下線なしのTabBar](./images/smarthr-tab-bar-bordered-false.png)
+
+下線が他のコンポーネントと競合する場合、最低限TabBarItemがある範囲までは下線が必要です。
+![スクリーンショット: 下線なしのTabBar](./images/smarthr-tab-bar-bordered-minimum.png)
 
 ### IconやBadgeの有無
 TabBarItem内にIconやBadgeを追加することでタブそのものやタブ内のビューに関する情報を補足できます。具体例は以下の通りです。
@@ -28,7 +37,7 @@ TabBarItem内にIconやBadgeを追加することでタブそのものやタブ�
 * タブ内のビューで選択しているオブジェクトの数をBadgeで示す
 * タブ内のビューでエラーが発生していることをIconで示す
 
-```tsx editable codeBlock noIframe
+```tsx editable codeBlock
 <TabBar>
     <TabItem id="tabitem1" onClick={() => null} selected>
         <Cluster align="center">
@@ -39,7 +48,7 @@ TabBarItem内にIconやBadgeを追加することでタブそのものやタブ�
     <TabItem id="tabitem2" onClick={() => null}>
         <Cluster align="center">
             家族情報
-            <FaCircleExclamationIcon color="Danger" alt="エラーあり"/>
+            <FaCircleExclamationIcon color="DANGER" alt="エラーあり"/>
         </Cluster>
     </TabItem>
 </TabBar>
