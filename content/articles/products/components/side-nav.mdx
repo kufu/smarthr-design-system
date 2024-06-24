@@ -1,11 +1,18 @@
 ---
 title: 'SideNav'
-description: ''
+description: 'ビューを適切な単位で分割し、切り替えるためのコンポーネントです。'
 ---
 import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 
+ビューを適切な単位で分割し、切り替えるためのコンポーネントです。主に項目設定のビューを切り替えるときに使います。
+
 <ComponentStory name="SideNav" />
+
+## 使用上の注意
+
+### 扱うオブジェクト自体を切り替えるときはTabBarを使用する
+SideNavは、項目設定をはじめとした1つのビューにすべて表示すると認知負荷が高いものを分割し、切り替えるためのコンポーネントです。扱うオブジェクト自体を切り替えるときはTabBarを使用してください。
 
 ## Props
 
