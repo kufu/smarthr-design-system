@@ -9,6 +9,12 @@ FilterDropdownは一覧の絞り込みを行なうためのコンポーネント
 
 <ComponentStory name="FilterDropdown" />
 
+## 使用上の注意
+
+### FilterDropdownの使い分け
+[よくあるテーブル](/products/design-patterns/smarthr-table/)やその他一覧画面で絞り込みを行なうとき、パネル内にCheckBoxやRadioButtonなどを配置することでユースケースを達成できる場合はFilterDropdownを使用してください。
+絞り込みのロジックが複雑で、DropdownContentのパネルでは十分にエリアが確保できない場合、Dialogの使用を検討してください。
+
 ## Props
 
 <ComponentPropsTable name="FilterDropdown" />
