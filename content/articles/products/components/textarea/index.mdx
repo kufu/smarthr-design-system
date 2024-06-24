@@ -1,0 +1,84 @@
+---
+title: 'Textarea'
+description: 'textarea要素の代わりに使用するコンポーネントです。入力文字数を数える機能や入力に依って自動で領域が広がる機能を備えています。'
+---
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+import { DoAndDont } from '@Components/DoAndDont'
+import { StaticImage } from '@Components/StaticImage'
+import { Base, BaseColumn, Button, Cluster, FormControl, Heading, Input, SearchInput, Table, Td, Text, Th, UnstyledButton, VisuallyHiddenText } from 'smarthr-ui'
+import styled from 'styled-components'
+
+import textareaSizeDo from './textarea/images/textarea-size-do.png'
+import textareaSizeDont from './textarea/images/textarea-size-dont.png'
+
+`textarea`の代わりに使用するコンポーネントです。入力文字数を数える機能や入力に依って自動で領域が広がる機能を備えています。
+
+<ComponentStory name="Textarea" />
+
+## 使用上の注意
+
+### 適切なサイズに調整して使用する
+
+入力する内容をあらかじめ精査し適切なサイズになるよう調整して使用してください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont
+    type="do"
+    img={<StaticImage src={textareaSizeDo} alt="do" />}
+    label={<Text>入力する内容の量が精査され、幅と高さが調整されている</Text>}
+    width="calc(50% - 8px)"
+  />
+  <DoAndDont
+    type="dont"
+    img={<StaticImage src={textareaSizeDont} alt="dont" />}
+    label={<Text>入力する内容の量が精査されず、幅と高さが調整されていない</Text>}
+    width="calc(50% - 8px)"
+  />
+</Cluster>
+
+適切なサイズは以下の判断基準を参考にしてください。
+
+- Textareaはデフォルトで2行分の高さが確保され、幅を超えると改行されますが、幅と高さが小さいと入力内容が確認しづらくなります。十分なサイズを確保してください。幅は`witdh` props、高さは`rows` propsで指定します。
+- 入力に依って自動で高さが広がって良い場合は、`autoResize` propsを指定します。
+- 高さを自動て広げつつ上限を設定する場合は、`maxRows` propsを指定します。
+- 入力する内容の文字数の予測が付く場合、過剰に高さを確保しないでください。わかりづらくなったり、視線誘導の妨げになってしまうことがあります。
+- フォーム全体で見たときにレイアウトに統一性がなく感じられるときは、他の要素とのバランスを考慮してサイズを調整してください。
+
+## ユースケースに応じてコンポーネントを使い分ける
+
+### 一行のテキスト入力が想定される場合は使用しない
+
+氏名やメールアドレスなどの一行のテキスト入力には[Input](/products/components/input/)を使用してください。
+
+### データの編集や送信を伴わない画面では使用しない
+
+データの編集や送信を伴わない画面でデータを表示する場合は[DefinitionList](/products/components/definition-list/)を使用してください。
+
+## 入力項目の説明や例をプレースホルダで表示しない
+
+入力項目の説明や例を載せる場合は[FormControl](/products/components/form-control/)のヘルプメッセージ（`helpMessage`）や入力例（`exampleMessage`）などを用い別途表示してください。どうしても表示表示領域が確保できない場合は[Tooltip](/products/components/tooltip/)を使うこともできます。
+
+## 状態
+
+### 読み取り専用（readOnly）
+
+Textareaの意匠を残しつつデータを表示し、入力は受け付けない状態を表現したスタイルです。
+
+当該画面では編集できないが別の場所でユーザーが入力したことがあり、その値がフォームの送信内容に含まれていることを示すことが重要な場合に使用します。
+
+例えば、すでに登録済みで変更できない回答を、入力済みとして送信したい場合に使用します。
+
+### 無効（disabled）
+
+入力を受け付けない状態を表現したスタイルです。
+
+通常は編集ができるが一時的または権限の制約により編集ができない場合に使用します。ユーザーに編集させたくないが送信内容に含めたい値は、フォームには表示しないか読み取り専用（readOnly）を使用することも検討してください。
+
+ユーザーはなぜ無効になっているのかわからないことがあります。権限による表示制御のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+## Props
+
+<ComponentPropsTable name="Textarea" />
+
+
