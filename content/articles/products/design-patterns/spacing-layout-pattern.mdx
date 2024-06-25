@@ -66,11 +66,19 @@ SmartHRの製品設計においては、**基準サイズの16pxを`1`**とし�
 
 ##### 代表的なページ内レイアウトのマージン
 
-- セクション同士の間：`2（32px）`
+- セクション同士の間：`2（32px）`（※）
 - セクション内の要素同士の間：`1.5（24px）`
 - セクション内の見出しとコンテンツの間：`1（16px）`
 
 ![スクリーンショット:代表的なページ内レイアウトのマージン](./images/spacing-layout-pattern/spacing-layout-pattern1.png)
+
+※ 配置するコンポーネントによっては、実際に指定した余白の値よりも**視覚的に余白が大きく見える**場合があります。以下のように例外的に小さな余白を設定することで、視覚的な余白を調整してください。
+
+- タイトルエリアに[InformationPanel](/products/components/information-panel/)を**配置しない**場合のタイトルエリアと最初のセクションの間：`1.5（24px）`
+  - [Heading](/products/components/heading/)や[Text](/products/components/text/)にはline-heightが設定されており、InformationPanelが配置されている場合と比べて余白が大きく見えるため
+  - セクションの見出しとボタンが横に並んでいる場合、見出しの高さをボタンの高さに合わせることでさらに余白が大きく見えるため
+
+  ![スクリーンショット:タイトルエリアにInformationPanelを配置しない場合のタイトルエリアと最初のセクションのマージン。実際に指定している24pxよりも余白が大きく見える。](./images/spacing-layout-pattern/spacing-layout-pattern10.png)
 
 ##### 代表的なダイアログ内レイアウトのマージン
 
