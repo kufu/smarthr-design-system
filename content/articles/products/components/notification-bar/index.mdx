@@ -17,11 +17,10 @@ import { VideoEmbed } from '@Components/article/VideoEmbed/VideoEmbed'
 
 ### フィードバックではないサービス運営上のお知らせなどを画面全体（ヘッダーの下）で使用しない
 
-NotificationBarを画面全体（ヘッダーの下）で使用する場合は、ユーザーが行なった操作への応答や、操作が反映されている状態を示すなどの、システムからの[フィードバック](/products/design-patterns/feedback/)の表示に限定します。
-これには、画面全体での表示は、ユーザーに強めの注意を促す効果があることから、一連の業務やタスクを遂行する上で必要なフィードバックを表示する一貫性を担保する狙いがあります。
+NotificationBarを画面全体（ヘッダーの下）で使用する場合は、ユーザーが行なった操作への応答や、操作が反映されている状態を示すなどの、システムからの[フィードバック](/products/design-patterns/feedback/)の表示に限定します。限定する理由は次のとおりです。
 
-サービス運営上の利用促進や訴求といった、システムからの通知ではないメッセージを画面全体で使用した場合、ユーザーに都度システムからの応答なのか運営者からの情報なのかの判断を委ねることになります。
-その結果、システムからのフィードバックとしての一貫性を担保できなくなり、ユーザーに適切な操作を促すことが難しくなります。
+- 画面全体での表示はユーザーに強めの注意を促す効果があることから、一連の業務やタスクを遂行する上で必要なフィードバックを表示する一貫性を担保し、ユーザーに適切な操作を促すため
+- サービス運営上の利用促進や訴求といった、システムからの通知ではないメッセージを画面全体で使用した場合、ユーザーに都度システムからの応答なのか運営者からの情報なのかの判断が必要になることを回避するため
 
 システムからの応答としてのフィードバックではない、その他の重要なお知らせや情報などの表示が必要な場合は、[ベースあり](#h4-0)や、[InformationPanel](/products/components/information-panel/)などを使用してください。
 
@@ -96,6 +95,7 @@ export const AnimateNotificationBar = () => {
 #### ベースあり
 
 画面内の操作UIの近くに、操作に必要な情報を補足的に表示する場合などでは、`base="base"`を使用します。
+[特定の操作範囲へのフィードバック](/products/components/notification-bar/#h4-4)など[Base](/products/components/base/)内に配置する場合を除き、画面内に単体で配置する場合は基本的に`base="base"`を使用してください。
 
 [フィードバック](/products/design-patterns/feedback/)としてのシステム通知だけでなく、画面内の操作を進めるにあたってユーザーに伝えるべきメッセージなどを表示する場合にも使用できます。
 
@@ -123,7 +123,7 @@ export const AnimateNotificationBar = () => {
 </Stack>
 ```
 
-### 閉じるボタン
+### その他
 
 ボタンやテキストリンクを表示したり、常時表示したいときは「閉じる」ボタンを非表示にできます。
 
@@ -184,28 +184,31 @@ export const AnimateNotificationBar = () => {
 以下の例では、「保存」操作が成功した結果として、操作範囲の[Base](/products/components/base/)内に`type="success"`を表示しています。エラーの場合は`type="error"`を指定します。
 
 ```tsx editable codeBlock
-<Base overflow="auto">
-  <NotificationBar type="success" bold message="値の保存に成功しました。" />
-  <Stack align="start" style={{padding: '16px'}}>
-    <Fieldset
-      title="設定項目"
-      innerMargin={0.5}
-    >
-      <BaseColumn>
-        <Cluster gap={{ row: 1, column: 1.5 }}>
-          <CheckBox name="sample" checked >選択肢 1</CheckBox>
-          <CheckBox name="sample">選択肢 2</CheckBox>
-          <CheckBox name="sample">選択肢 3</CheckBox>
-          <CheckBox name="sample">選択肢 4</CheckBox>
-          <CheckBox name="sample">選択肢 5</CheckBox>
-        </Cluster>
-      </BaseColumn>
-    </Fieldset>
-    <Button type="submit" variant="primary" >
-      保存
-    </Button>
-  </Stack>
-</Base>
+<Stack>
+  <Heading type="sectionTitle">セクションタイトル</Heading>
+  <Base overflow="auto">
+    <NotificationBar type="success" bold message="値の保存に成功しました。" />
+    <Stack align="start" style={{padding: '16px'}}>
+      <Fieldset
+        title="設定項目"
+        innerMargin={0.5}
+      >
+        <BaseColumn>
+          <Cluster gap={{ row: 1, column: 1.5 }}>
+            <CheckBox name="sample" checked >選択肢 1</CheckBox>
+            <CheckBox name="sample">選択肢 2</CheckBox>
+            <CheckBox name="sample">選択肢 3</CheckBox>
+            <CheckBox name="sample">選択肢 4</CheckBox>
+            <CheckBox name="sample">選択肢 5</CheckBox>
+          </Cluster>
+        </BaseColumn>
+      </Fieldset>
+      <Button type="submit" variant="primary" >
+        保存
+      </Button>
+    </Stack>
+  </Base>
+</Stack>
 ```
 
 ## Props
