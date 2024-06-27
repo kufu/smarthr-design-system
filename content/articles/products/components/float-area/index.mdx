@@ -1,0 +1,66 @@
+---
+title: 'FloatArea'
+description: 'ページの前面に固定表示する領域のためのコンポーネントです。特定のアクションボタンを、スクロール位置にかかわらず常に画面内に表示するために使います。'
+---
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+
+ページの前面に固定表示する領域のためのコンポーネントです。特定のアクションボタンを、スクロール位置にかかわらず常に画面内に表示するために使います。
+
+<ComponentStory name="FloatArea" />
+
+## 基本的な考え方
+
+ページ内の特定の領域全体を対象とした主要なアクションがある場合、FloatAreaを使ってボタンを固定表示できます。代表的な例として以下があります。
+
+- [ページの一部を使ったモード](/products/design-patterns/modal-ui/#h3-3)であるとき
+- タスクとしての性質を持つオブジェクトの詳細画面
+
+置かれるアクションボタンの例として、次のようなものがあります。
+
+- 操作した内容をシステムに送信する
+- 操作した内容を破棄し、前の状態に戻す
+- プレビューする
+- タスクを次のステータスに進める、前のステータスに戻す
+- オブジェクトを削除する、アーカイブする
+
+## 使用上の注意
+
+### 対象領域全体に対するアクションボタン以外は置かない
+
+FloatAreaに置くアクションボタンは、対象となる領域全体に対するものに限定します。
+
+以下のようなアクションのボタンは、FloatArea以外の場所に置いてください。
+
+- オブジェクトの名前変更など、「対象領域の一部」に対するアクション
+- 機能全体の設定変更など、「対象領域よりも広い範囲」に対するアクション
+
+### ページ全体を対象とする場合はBottomFixedAreaを使う
+
+ページ内の一部の領域ではなく全体を対象とする場合は、BottomFixedAreaを使ってください。
+
+## レイアウト
+
+対象となる領域に重なるように、画面の下辺から24pxの位置にFloatAreaはを置きます。FloatAreaの幅は、対象領域の幅から左右8pxずつ広くなるようにします。
+
+![FloatAreaのレイアウト]()
+
+## 構成
+
+1. Primaryボタン
+2. Secondaryボタン（任意）
+3. Tertiaryボタン（任意）
+
+![FloatAreaの構成]()
+
+Primaryボタンは必須です。必要に応じてSecondaryボタン、Tertiaryボタンも置けます。
+
+## デザインパターン
+
+パターンの1つとして[共通設定のアクションビュー](/products/design-patterns-core-features/main-admin/)があります。
+
+## Props
+
+<ComponentPropsTable name="FloatArea" />
+
+
