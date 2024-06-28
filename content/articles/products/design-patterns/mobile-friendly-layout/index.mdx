@@ -2,6 +2,17 @@
 title: 'モバイルレイアウト'
 description: 'モバイル対応をする基準と、その対応方法を定義します。'
 ---
+<!-- eslint-disable smarthr/a11y-heading-in-sectioning-content -->
+
+import { DoAndDont } from '@Components/DoAndDont'
+import { Base, BaseColumn, Cluster, Heading, Stack, Text } from 'smarthr-ui'
+
+export const StyledP = styled.p`
+  &&& {
+    margin-block-start: unset;
+    line-height: 1.5;
+  }
+`
 
 モバイル対応をする基準と、その対応方法を定義します。
 
@@ -35,16 +46,58 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 
 モバイルにおける従業員向け機能では、基本的に1画面で複数の操作をさせるべきではありません。デスクトップ向けに最適化されたUIをレスポンシブデザインで対応するには限界があるため、アダプティブに設計する必要があります。
 
-
 ## 設計基準
 
 ### 複数カラムレイアウトを避ける
 
-画面の幅によってコンテンツの可読性を保てなくなるため、モバイルでは複数カラムレイアウトを避けましょう。代わりに縦に積み上げるか、複数の画面に分けるなど、1度に表示する情報量を減らすことを検討します。
+画面の幅によってコンテンツの可読性を保てなくなるため、モバイルでは複数カラムレイアウトを避けましょう。代わりに垂直方向に積み上げるか、複数の画面に分けるなど、1度に表示する情報量を減らしてください。
 
-（TODO ここに「OK / NG」例が来る）
+垂直方向に積み上げて解決ができない場合は、アダプティブなレイアウトを検討してください。
 
-縦に積み上げて解決ができない場合は、アダプティブなレイアウトを検討してください。
+<Cluster gap={1}>
+  <DoAndDont
+    type="dont"
+    img={
+      <BaseColumn as="figure" aria-labelledby="caption1" style={{ display: 'flex', margin: 'unset', gap: '0.75em' }}>
+        <Base padding={0.75} style={{ flexShrink: 0, flexBasis: '25%' }}>
+          <Stack gap={0.5}>
+            <Heading type="blockTitle" tag="h3" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
+            <StyledP>折り返しの多すぎるコンテンツの理解は難しいです。</StyledP>
+          </Stack>
+        </Base>
+        <Base padding={0.75} style={{ flexGrow: 1 }}>
+          <Stack>
+            <StyledP>構造関係の理解も難しくなります。</StyledP>
+            <StyledP>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</StyledP>
+          </Stack>
+        </Base>
+      </BaseColumn>
+    }
+    label={<figcaption id="caption1"><StyledP>コンテンツが読みにくく、構造を把握しにくい。</StyledP></figcaption>}
+    width={320}
+  />
+  <DoAndDont
+    type="do"
+    img={
+      <BaseColumn as="figure" aria-labelledby="caption2" style={{ display: 'flex', flexWrap: 'wrap', margin: 'unset', gap: '0.75em' }}>
+        <Base padding={0.75}>
+          <Stack gap={0.5}>
+            <Heading type="blockTitle" tag="h3" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
+            <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
+          </Stack>
+        </Base>
+        <Base padding={0.75}>
+          <Stack>
+            <StyledP>構造関係の理解も難しくなります。</StyledP>
+            <StyledP>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</StyledP>
+          </Stack>
+        </Base>
+      </BaseColumn>
+    }
+    label={<figcaption id="caption2"><StyledP>垂直方向に積み上げると最低限の可読性を保てます。</StyledP></figcaption>}
+    width={320}
+  />
+</Cluster>
 
 ### 水平方向のスクロールや2次元（垂直・水平方向）スクロールを避ける
 
@@ -101,7 +154,7 @@ SmartHR UI でも最低限のレイアウトを実装するため `isNarrowScree
 
 #### Table
 
-モバイルでは、画面幅を越えたテーブルは[2次元スクロール]()を招くため、縦積みのリスト形式を推奨します。
+モバイルでは、画面幅を越えたテーブルは[2次元スクロール]()を招くため、垂直方向に積みあげることを推奨します。
 
 （WIP）SmartHR UIで `isNarrowScreen` を用いたレイアウトの切り替えを検討中です。
 
