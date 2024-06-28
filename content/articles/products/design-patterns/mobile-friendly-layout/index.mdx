@@ -5,7 +5,7 @@ description: 'モバイル対応をする基準と、その対応方法を定義
 <!-- eslint-disable smarthr/a11y-heading-in-sectioning-content -->
 
 import { DoAndDont } from '@Components/DoAndDont'
-import { Base, BaseColumn, Cluster, Heading, Stack, Text } from 'smarthr-ui'
+import { Base, BaseColumn, Button, Cluster, FormControl, Heading, Input, Stack, Text } from 'smarthr-ui'
 
 export const StyledP = styled.p`
   &&& {
@@ -125,12 +125,100 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 
 画面内で主要な操作を置く場合は、コンテンツ幅いっぱいのボタンを使ってください。
 
+<Cluster gap={1}>
+  <DoAndDont
+    type="dont"
+    img={
+      <BaseColumn as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
+        <Stack>
+          <Base padding={0.75}>
+            <Stack>
+              <FormControl title="何らかの入力">
+                <Input />
+              </FormControl>
+              <Stack gap={0.5}>
+              </Stack>
+            </Stack>
+          </Base>
+          <div>
+            <Button variant="primary">保存</Button>
+          </div>
+        </Stack>
+      </BaseColumn>
+    }
+    label={<figcaption id="caption3"><StyledP>ボタンが小さいと利用者の環境に依っては操作しにくい。</StyledP></figcaption>}
+    width={320}
+  />
+  <DoAndDont
+    type="do"
+    img={
+      <BaseColumn as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
+        <Stack>
+          <Base padding={0.75}>
+            <Stack>
+              <FormControl title="何らかの入力">
+                <Input />
+              </FormControl>
+              <Stack gap={0.5}>
+              </Stack>
+            </Stack>
+          </Base>
+          <Button variant="primary">保存</Button>
+        </Stack>
+      </BaseColumn>
+    }
+    label={<figcaption id="caption4"><StyledP>幅いっぱいに広げ、十分に操作領域を取る。</StyledP></figcaption>}
+    width={320}
+  />
+</Cluster>
+
 #### 複数の操作ボタン
 
 PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並べる場合は、識字方向の後方にPrimaryボタンが来るようにレイアウトしてください。LTR（Left To Right）では、右側にPrimaryボタンを置きます。  
 垂直方向に並べる場合は、慣習にならい（TODO 要出典）Primaryボタンの下にSecondaryボタンを置きます。
 
-（TODO ここに参考例を入れる）
+<Cluster gap={1}>
+  <DoAndDont
+    type="do"
+    img={
+      <BaseColumn as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
+        <Base padding={0.75}>
+          <Stack>
+            <FormControl title="何らかの入力">
+              <Input />
+            </FormControl>
+            <Cluster>
+              <Button>キャンセル</Button>
+              <Button variant="primary">保存</Button>
+            </Cluster>
+          </Stack>
+        </Base>
+      </BaseColumn>
+    }
+    label={<figcaption id="caption5"><StyledP>水平方向に並べる場合は後方にPrimaryボタンを置く。</StyledP></figcaption>}
+    width={320}
+  />
+  <DoAndDont
+    type="do"
+    img={
+      <BaseColumn as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
+        <Base padding={0.75}>
+          <Stack>
+            <FormControl title="何らかの入力">
+              <Input />
+            </FormControl>
+            <Stack gap={0.5}>
+              <Button variant="primary">保存</Button>
+              <Button>キャンセル</Button>
+            </Stack>
+          </Stack>
+        </Base>
+      </BaseColumn>
+    }
+    label={<figcaption id="caption6"><StyledP>垂直方向に並べる場合はPrimaryボタンを上に置く。</StyledP></figcaption>}
+    width={320}
+  />
+</Cluster>
 
 ### コンポーネントごとの使い方
 
