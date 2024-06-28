@@ -59,13 +59,13 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
     type="dont"
     img={
       <BaseColumn as="figure" aria-labelledby="caption1" style={{ display: 'flex', margin: 'unset', gap: '1em' }}>
-        <Base padding={1.5} style={{ flexShrink: 0, flexBasis: '25%' }}>
+        <Base padding={1} style={{ flexShrink: 0, flexBasis: '25%' }}>
           <Stack gap={0.5}>
             <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
             <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
           </Stack>
         </Base>
-        <Base padding={1.5} style={{ flexGrow: 1 }}>
+        <Base padding={1} style={{ flexGrow: 1 }}>
           <Stack>
             <StyledP>構造関係の理解も難しくなります。</StyledP>
             <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
@@ -80,13 +80,13 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
     type="do"
     img={
       <BaseColumn as="figure" aria-labelledby="caption2" style={{ display: 'flex', flexWrap: 'wrap', margin: 'unset', gap: '1em' }}>
-        <Base padding={1.5}>
+        <Base padding={1}>
           <Stack gap={0.5}>
             <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
             <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
           </Stack>
         </Base>
-        <Base padding={1.5}>
+        <Base padding={1}>
           <Stack>
             <StyledP>構造関係の理解も難しくなります。</StyledP>
             <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
@@ -131,14 +131,10 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
     img={
       <BaseColumn as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
         <Stack>
-          <Base padding={1.5}>
-            <Stack>
-              <FormControl title="何らかの入力">
-                <Input />
-              </FormControl>
-              <Stack gap={0.5}>
-              </Stack>
-            </Stack>
+          <Base padding={1}>
+            <FormControl title="何らかの入力">
+              <Input />
+            </FormControl>
           </Base>
           <div>
             <Button variant="primary">保存</Button>
@@ -154,14 +150,10 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
     img={
       <BaseColumn as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
         <Stack>
-          <Base padding={1.5}>
-            <Stack>
-              <FormControl title="何らかの入力">
-                <Input />
-              </FormControl>
-              <Stack gap={0.5}>
-              </Stack>
-            </Stack>
+          <Base padding={1}>
+            <FormControl title="何らかの入力">
+              <Input />
+            </FormControl>
           </Base>
           <Button variant="primary">保存</Button>
         </Stack>
@@ -182,8 +174,8 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
     type="do"
     img={
       <BaseColumn as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
-        <Base padding={1.5}>
-          <Stack>
+        <Base padding={1}>
+          <Stack gap={1.5}>
             <FormControl title="何らかの入力">
               <Input />
             </FormControl>
@@ -202,8 +194,8 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
     type="do"
     img={
       <BaseColumn as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
-        <Base padding={1.5}>
-          <Stack>
+        <Base padding={1}>
+          <Stack gap={1.5}>
             <FormControl title="何らかの入力">
               <Input />
             </FormControl>
