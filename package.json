@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "predev": "yarn clean",
     "dev": "NODE_OPTIONS=--max-old-space-size=8192 gatsby develop",
     "start": "yarn dev",
     "serve": "gatsby serve",
