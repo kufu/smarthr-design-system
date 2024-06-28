@@ -61,14 +61,14 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
       <BaseColumn as="figure" aria-labelledby="caption1" style={{ display: 'flex', margin: 'unset', gap: '0.75em' }}>
         <Base padding={0.75} style={{ flexShrink: 0, flexBasis: '25%' }}>
           <Stack gap={0.5}>
-            <Heading type="blockTitle" tag="h3" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
-            <StyledP>折り返しの多すぎるコンテンツの理解は難しいです。</StyledP>
+            <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
+            <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
           </Stack>
         </Base>
         <Base padding={0.75} style={{ flexGrow: 1 }}>
           <Stack>
             <StyledP>構造関係の理解も難しくなります。</StyledP>
-            <StyledP>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</StyledP>
+            <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
           </Stack>
         </Base>
       </BaseColumn>
@@ -82,14 +82,14 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
       <BaseColumn as="figure" aria-labelledby="caption2" style={{ display: 'flex', flexWrap: 'wrap', margin: 'unset', gap: '0.75em' }}>
         <Base padding={0.75}>
           <Stack gap={0.5}>
-            <Heading type="blockTitle" tag="h3" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
+            <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
             <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
           </Stack>
         </Base>
         <Base padding={0.75}>
           <Stack>
             <StyledP>構造関係の理解も難しくなります。</StyledP>
-            <StyledP>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</StyledP>
+            <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
           </Stack>
         </Base>
       </BaseColumn>
@@ -234,7 +234,7 @@ SmartHR UIは基本的にレスポンシブに実装されているため、配�
 
 #### BottomFixedAreaとFloatArea
 
-そのままレスポンシブに折り返して使うと表示領域を圧迫するため、モバイル向けに再設計が必要です。[1画面で複雑な操作をさせない]()ように調整してください。
+そのままレスポンシブに折り返して使うと表示領域を圧迫するため、モバイル向けに再設計が必要です。[1画面で複雑な操作をさせない](#h3-1)ように調整してください。
 
 SmartHR UI でも最低限のレイアウトを実装するため `isNarrowScreen` を渡してください。
 
@@ -250,7 +250,7 @@ SmartHR UI でも最低限のレイアウトを実装するため `isNarrowScree
 
 #### Table
 
-モバイルでは、画面幅を越えたテーブルは[2次元スクロール]()を招くため、垂直方向に積みあげることを推奨します。
+モバイルでは、画面幅を越えたテーブルは[2次元スクロール](#h3-3)を招くため、垂直方向に積みあげることを推奨します。
 
 （WIP）SmartHR UIで `isNarrowScreen` を用いたレイアウトの切り替えを検討中です。
 
