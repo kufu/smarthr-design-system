@@ -3675,37 +3675,13 @@ a {
   cursor: not-allowed
 }
 
-.disabled\:shr-border-danger\/50:disabled {
-  border-color: rgb(224 30 90 / 0.5)
-}
-
 .disabled\:shr-border-disabled:disabled {
   border-color: rgb(214 211 208 / 50%)
-}
-
-.disabled\:shr-border-main\/50:disabled {
-  border-color: rgb(0 119 199 / 0.5)
-}
-
-.disabled\:shr-border-transparent:disabled {
-  border-color: transparent
-}
-
-.disabled\:shr-border-white\/50:disabled {
-  border-color: rgb(255 255 255 / 0.5)
 }
 
 .disabled\:shr-bg-column:disabled {
   --tw-bg-opacity: 1;
   background-color: rgb(248 247 246 / var(--tw-bg-opacity))
-}
-
-.disabled\:shr-bg-danger\/50:disabled {
-  background-color: rgb(224 30 90 / 0.5)
-}
-
-.disabled\:shr-bg-main\/50:disabled {
-  background-color: rgb(0 119 199 / 0.5)
 }
 
 .disabled\:shr-bg-transparent:disabled {
@@ -3717,10 +3693,6 @@ a {
   background-color: rgb(242 242 242 / var(--tw-bg-opacity))
 }
 
-.disabled\:shr-bg-clip-padding:disabled {
-  background-clip: padding-box
-}
-
 .disabled\:shr-text-disabled:disabled {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity))
@@ -3728,10 +3700,6 @@ a {
 
 .disabled\:shr-text-grey\/50:disabled {
   color: rgb(112 109 101 / 0.5)
-}
-
-.disabled\:shr-text-white\/50:disabled {
-  color: rgb(255 255 255 / 0.5)
 }
 
 .disabled\:shr-opacity-100:disabled {
@@ -4000,6 +3968,60 @@ a {
   background-color: rgb(0 119 199 / 0.5)
 }
 
+.aria-disabled\:shr-cursor-not-allowed[aria-disabled="true"] {
+  cursor: not-allowed
+}
+
+.aria-disabled\:shr-border-danger\/50[aria-disabled="true"] {
+  border-color: rgb(224 30 90 / 0.5)
+}
+
+.aria-disabled\:shr-border-disabled[aria-disabled="true"] {
+  border-color: rgb(214 211 208 / 50%)
+}
+
+.aria-disabled\:shr-border-main\/50[aria-disabled="true"] {
+  border-color: rgb(0 119 199 / 0.5)
+}
+
+.aria-disabled\:shr-border-transparent[aria-disabled="true"] {
+  border-color: transparent
+}
+
+.aria-disabled\:shr-border-white\/50[aria-disabled="true"] {
+  border-color: rgb(255 255 255 / 0.5)
+}
+
+.aria-disabled\:shr-bg-danger\/50[aria-disabled="true"] {
+  background-color: rgb(224 30 90 / 0.5)
+}
+
+.aria-disabled\:shr-bg-main\/50[aria-disabled="true"] {
+  background-color: rgb(0 119 199 / 0.5)
+}
+
+.aria-disabled\:shr-bg-transparent[aria-disabled="true"] {
+  background-color: transparent
+}
+
+.aria-disabled\:shr-bg-white-darken[aria-disabled="true"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+}
+
+.aria-disabled\:shr-bg-clip-padding[aria-disabled="true"] {
+  background-clip: padding-box
+}
+
+.aria-disabled\:shr-text-disabled[aria-disabled="true"] {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity))
+}
+
+.aria-disabled\:shr-text-white\/50[aria-disabled="true"] {
+  color: rgb(255 255 255 / 0.5)
+}
+
 .aria-hidden\:shr-hidden[aria-hidden="true"] {
   display: none
 }
@@ -4234,6 +4256,14 @@ a {
   .forced-colors\:has-\[input\:not\(\:disabled\)\]\:before\:shr-bg-\[ButtonBorder\]:has(input:not(:disabled))::before {
     content: var(--tw-content);
     background-color: ButtonBorder
+  }
+
+  .aria-disabled\:forced-colors\:shr-border-\[GrayText\][aria-disabled="true"] {
+    border-color: GrayText
+  }
+
+  .aria-disabled\:forced-colors\:shr-text-\[GrayText\][aria-disabled="true"] {
+    color: GrayText
   }
 }
 
@@ -4865,7 +4895,7 @@ a {
     fill: LinkText
   }
 
-  .\[\&_\.smarthr-ui-Icon\]\:forced-colors\:disabled\:shr-fill-\[GrayText\]:disabled .smarthr-ui-Icon {
+  .\[\&_\.smarthr-ui-Icon\]\:forced-colors\:aria-disabled\:shr-fill-\[GrayText\][aria-disabled="true"] .smarthr-ui-Icon {
     fill: GrayText
   }
 }
