@@ -7,9 +7,6 @@ order: 1
 ## 概要
 この項目では、画像を含むすべての非テキストコンテンツに代替テキストを提供することを求めます。代替テキストを設定すると、視覚障害のあるユーザーやスクリーンリーダーを使用するユーザーに、画像の内容を伝えられます。
 
-## 対象となるUI
-* 意味を持つ・情報を提示する画像(アイコンを含む)
-
 ## メリット
 1. **視覚障害のあるユーザー**: スクリーンリーダーが代替テキストが読み上げられることで、画像の内容や機能をユーザーに伝えることができます。。
 2. **帯域幅が限られているユーザー**: 画像が表示されない環境では、画像の代わりに代替テキストがコンテンツの情報として提示されます。
@@ -19,17 +16,17 @@ order: 1
 詳しくは [装飾目的の画像が無視できるようになっている](../decorative-image/)を確認してください。 
 
 ## 達成方法
-1.alt 属性の使用:
-`<img>`要素のalt属性に、画像の内容や機能を簡潔に説明するテキストを設定します。
+1. **alt属性の使用**:
+    `<img>`要素のalt属性に、画像の内容や機能を簡潔に説明するテキストを設定します。
 
-2.aria-label の使用:
-aria-label 属性を使用して、代替テキストを提供します。
+1. **aria-labelの使用**:
+    aria-label 属性を使用して、代替テキストを提供します。
 
-3.aria-labelledby の使用:
-要素に aria-labelledby 属性を使用して、その要素を説明する他の要素のIDを参照します。これにより、複数の要素が1つの要素を説明する場合や、ラベルが視覚的には隣接していない場合に有効です。
+1. **aria-labelledbyの使用**:
+    要素に aria-labelledby 属性を使用して、その要素を説明する他の要素のIDを参照します。これにより、複数の要素が1つの要素を説明する場合や、ラベルが視覚的には隣接していない場合に有効です。
 
-4.Visually Hiddenテキストの使用:
-視覚的には非表示だが、スクリーンリーダーには読まれるテキストを提供します。CSSを用いて視覚的に隠されたテキストは、画像の代替テキストやボタンの説明として機能します。
+1. **Visually Hiddenテキストの使用**:
+    視覚的には非表示だが、スクリーンリーダーには読まれるテキストを提供します。CSSを用いて視覚的に隠されたテキストは、画像の代替テキストやボタンの説明として機能します。
 
 ## テスト方法
 次のどれかの方法で、対象となるUIに代替テキストが付与されていることを確認します。
@@ -39,7 +36,7 @@ aria-label 属性を使用して、代替テキストを提供します。
 2. **スクリーンリーダーでのテスト**:
     - スクリーンリーダーを使ってページを閲覧し、画像の代替テキストが適切に読み上げられるかを確認します。
 3. **DevToolsでの確認**:
-DevToolsのAccessibility > Comuted PropertiesでNameを確認します。 (参考: [ユーザー補助機能のリファレンス  |  DevTools  |  Chrome for Developers](https://developer.chrome.com/docs/devtools/accessibility/reference?hl=ja#computed))
+    - DevToolsのAccessibility > Comuted PropertiesでNameを確認します。 (参考: [ユーザー補助機能のリファレンス  |  DevTools  |  Chrome for Developers](https://developer.chrome.com/docs/devtools/accessibility/reference?hl=ja#computed))
 
 ## 関連するWCAG2.1達成基準
 - [達成基準 1.1.1: 非テキストコンテンツを理解する](https://waic.jp/translations/WCAG21/Understanding/non-text-content.html)
