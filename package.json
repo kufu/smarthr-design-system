@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "predev": "yarn clean",
     "dev": "NODE_OPTIONS=--max-old-space-size=8192 gatsby develop",
     "start": "yarn dev",
     "serve": "gatsby serve",
@@ -60,7 +61,7 @@
     "react-instantsearch-dom": "^6.40.4",
     "react-live": "^4.1.5",
     "react-string-replace": "^1.1.1",
-    "smarthr-ui": "^52.0.1",
+    "smarthr-ui": "^53.0.0",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
