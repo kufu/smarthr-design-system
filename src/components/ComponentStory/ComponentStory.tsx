@@ -196,7 +196,7 @@ export const ComponentStory: FC<Props> = ({ name, dirName }) => {
         </Cluster>
       </Cluster>
       {showError && (
-        <ErrorPanel title="指定されたバージョンのコンポーネント情報を取得できませんでした" type="error" togglable={false}>
+        <ErrorPanel title="指定されたバージョンのコンポーネント情報を取得できませんでした" type="error">
           通信状況に問題が発生しているか、次のような理由が考えられます。
           <ul>
             <li>コンポーネント名が変更された</li>
