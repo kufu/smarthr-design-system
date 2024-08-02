@@ -16,23 +16,23 @@ order: 1
 詳しくは [装飾目的の画像が無視できるようになっている](../decorative-image/)を確認してください。 
 
 ## 達成方法
-1. **alt属性の使用**:
-    `<img>`要素のalt属性に、画像の内容や機能を簡潔に説明するテキストを設定します。
+1. **`alt`の使用**:
+    `<img>`要素の`alt`属性に、画像の内容や機能を簡潔に説明するテキストを設定します。
 
 2. **aria-labelの使用**:
-    aria-label 属性を使用して、代替テキストを提供します。
+    `aria-label`属性を使用して、代替テキストを提供します。
 
-3. **aria-labelledbyの使用**:
-    要素に aria-labelledby 属性を使用して、その要素を説明する他の要素のIDを参照します。複数の要素が1つの画像を説明する場合や、視覚的には隣接していないラベルを紐づけるときに有効です。
+3. **`aria-labelledby`の使用**:
+    `aria-labelledby`属性を使用して、その要素を説明する他の要素のIDを参照します。複数の要素が1つの画像を説明する場合や、視覚的には隣接していないラベルを紐づけるときに有効です。
 
 4. **Visually Hiddenテキストの使用**:
-    視覚的には非表示だが、スクリーンリーダーには読み上げられるテキストを提供します。SmartHR UIの[Icon](https://smarthr.design/products/components/icon/)の代替テキストや[VisuallyHidden](https://smarthr.design/products/components/visually-hidden-text/)で提供するテキストは、これに該当します。
+    視覚的には非表示だが、スクリーンリーダーには読み上げられるテキストを提供します。SmartHR UIの[Icon](https://smarthr.design/products/components/icon/)の代替テキストや[VisuallyHiddenText](https://smarthr.design/products/components/visually-hidden-text/)で提供するテキストは、これに該当します。
 
 ## テスト方法
 次のどれかの方法で、対象となるUIに代替テキストが付与されていることを確認します。
 
 1. **代替テキストの確認**:
-    - `<img>`要素のalt属性を確認し、画像の内容や目的を適切に表しているかを評価します。
+    - `<img>`要素の`alt`属性を確認し、画像の内容や目的を適切に表しているかを評価します。
 1. **DevToolsでの確認**:
     - DevToolsのAccessibility > Comuted PropertiesでNameを確認します。 (参考: [ユーザー補助機能のリファレンス  |  DevTools  |  Chrome for Developers](https://developer.chrome.com/docs/devtools/accessibility/reference?hl=ja#computed))
 
