@@ -27,9 +27,9 @@ order: 2
 
 ## 達成方法
 1. **`alt`属性を空にする**:
-   <pre><code>
+   ```
       <img src="decorative-image.jpg" alt="">
-    </code></pre>
+   ```
 
     `img`要素の`alt`属性値が空の画像は視覚的には表示されますが、支援技術ではないものとして扱われます。
 
@@ -37,12 +37,13 @@ order: 2
 装飾目的の画像は、CSSの`background-image`で表示します。背景画像なので本文コンテンツとして扱われることがありません。
 
 3. **`aria-hidden`属性を付与する**:
-   <pre><code>
+   ```
       <button>
 	       <svg aria-hidden="true">略</svg>
           編集
       </button>
-    </code></pre>
+   ```
+   
     ラベルテキスト「編集」と、鉛筆アイコンを持つボタンでは、アイコンのsvg要素に`aria-hidden="true"`が設定されています。
     `aria-hidden=”true”`の要素は支援技術によって無視されます。
 
