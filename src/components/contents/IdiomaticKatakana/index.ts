@@ -1,0 +1,1 @@
+export { IdiomaticKatakana } from './IdiomaticKatakana'
