@@ -407,6 +407,11 @@ a {
   margin-right: -16px
 }
 
+.-shr-my-0\.25 {
+  margin-top: -4px;
+  margin-bottom: -4px
+}
+
 .-shr-my-0\.5 {
   margin-top: -8px;
   margin-bottom: -8px
@@ -638,10 +643,6 @@ a {
 
 .shr-h-\[1\.75rem\] {
   height: 1.75rem
-}
-
-.shr-h-\[43px\] {
-  height: 43px
 }
 
 .shr-h-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\] {
@@ -2490,6 +2491,10 @@ a {
   color: rgb(35 34 30 / var(--tw-text-opacity))
 }
 
+.shr-text-color-inherit {
+  color: inherit
+}
+
 .shr-text-danger {
   --tw-text-opacity: 1;
   color: rgb(224 30 90 / var(--tw-text-opacity))
@@ -2503,10 +2508,6 @@ a {
 .shr-text-grey {
   --tw-text-opacity: 1;
   color: rgb(112 109 101 / var(--tw-text-opacity))
-}
-
-.shr-text-inherit {
-  color: inherit
 }
 
 .shr-text-link {
@@ -2721,13 +2722,6 @@ a {
   border-color: #d6d3d0
 }
 
-.aria-selected\:shr-border-b-shorthand[aria-selected="true"] {
-  border-width: 0;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: #d6d3d0
-}
-
 @media (prefers-contrast: more) {
   .contrast-more\:shr-border-shorthand {
     border-width: 1px;
@@ -2911,6 +2905,11 @@ a {
 .before\:shr-top-1\/2::before {
   content: var(--tw-content);
   top: 50%
+}
+
+.before\:shr-z-1::before {
+  content: var(--tw-content);
+  z-index: 1
 }
 
 .before\:shr-box-border::before {
@@ -3423,11 +3422,6 @@ a {
   border-color: rgb(242 242 242 / var(--tw-border-opacity))
 }
 
-.hover\:shr-bg-column:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity))
-}
-
 .hover\:shr-bg-column-darken:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(237 234 232 / var(--tw-bg-opacity))
@@ -3912,23 +3906,6 @@ a {
   display: none
 }
 
-.aria-selected\:shr-relative[aria-selected="true"] {
-  position: relative
-}
-
-.aria-selected\:shr-h-\[40px\][aria-selected="true"] {
-  height: 40px
-}
-
-.aria-selected\:shr-border-b-\[3px\][aria-selected="true"] {
-  border-bottom-width: 3px
-}
-
-.aria-selected\:shr-border-main[aria-selected="true"] {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 119 199 / var(--tw-border-opacity))
-}
-
 .aria-selected\:shr-bg-main[aria-selected="true"] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity))
@@ -3947,6 +3924,48 @@ a {
 .aria-selected\:shr-text-white[aria-selected="true"] {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+
+.aria-selected\:before\:shr-absolute[aria-selected="true"]::before {
+  content: var(--tw-content);
+  position: absolute
+}
+
+.aria-selected\:before\:shr-inset-x-0[aria-selected="true"]::before {
+  content: var(--tw-content);
+  left: 0;
+  right: 0
+}
+
+.aria-selected\:before\:shr-bottom-0[aria-selected="true"]::before {
+  content: var(--tw-content);
+  bottom: 0
+}
+
+.aria-selected\:before\:shr-z-1[aria-selected="true"]::before {
+  content: var(--tw-content);
+  z-index: 1
+}
+
+.aria-selected\:before\:shr-block[aria-selected="true"]::before {
+  content: var(--tw-content);
+  display: block
+}
+
+.aria-selected\:before\:shr-h-0\.25[aria-selected="true"]::before {
+  content: var(--tw-content);
+  height: 4px
+}
+
+.aria-selected\:before\:shr-bg-main[aria-selected="true"]::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+}
+
+.aria-selected\:before\:shr-content-\[\"\"\][aria-selected="true"]::before {
+  --tw-content: "";
+  content: var(--tw-content)
 }
 
 .aria-current-page\:shr-cursor-default[aria-current="page"] {
@@ -4145,6 +4164,11 @@ a {
 
   .aria-disabled\:forced-colors\:shr-text-\[GrayText\][aria-disabled="true"] {
     color: GrayText
+  }
+
+  .forced-colors\:aria-selected\:before\:shr-bg-\[Highlight\][aria-selected="true"]::before {
+    content: var(--tw-content);
+    background-color: Highlight
   }
 }
 
@@ -4404,8 +4428,7 @@ a {
   opacity: 1
 }
 
-.\[\&\:disabled_\.smarthr-ui-FormControl-errorMessage\]\:shr-text-inherit:disabled .smarthr-ui-FormControl-errorMessage {
-  font-size: inherit;
+.\[\&\:disabled_\.smarthr-ui-FormControl-errorMessage\]\:shr-text-color-inherit:disabled .smarthr-ui-FormControl-errorMessage {
   color: inherit
 }
 
@@ -4414,8 +4437,7 @@ a {
   color: rgb(193 189 183 / var(--tw-text-opacity))
 }
 
-.\[\&\:disabled_\.smarthr-ui-FormControl-supplementaryMessage\]\:shr-text-inherit:disabled .smarthr-ui-FormControl-supplementaryMessage {
-  font-size: inherit;
+.\[\&\:disabled_\.smarthr-ui-FormControl-supplementaryMessage\]\:shr-text-color-inherit:disabled .smarthr-ui-FormControl-supplementaryMessage {
   color: inherit
 }
 
@@ -4536,7 +4558,7 @@ a {
   margin-inline-end: -4px
 }
 
-.\[\&\>svg\]\:aria-\[expanded\=true\]\:shr-rotate-180[aria-expanded=true]>svg {
+.\[\&\>svg\]\:aria-\[expanded\=true\]\:shr-rotate-180[aria-expanded="true"]>svg {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
@@ -4618,16 +4640,6 @@ a {
 .\[\&\]\:shr-px-0\.75 {
   padding-left: 12px;
   padding-right: 12px
-}
-
-.\[\&\]\:shr-text-black {
-  --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
-}
-
-.\[\&\]\:shr-text-grey {
-  --tw-text-opacity: 1;
-  color: rgb(112 109 101 / var(--tw-text-opacity))
 }
 
 .\[\&\]\:shr-shadow-none {
