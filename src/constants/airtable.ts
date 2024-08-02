@@ -9,7 +9,7 @@ export type airtableContents = {
 
 export const AIRTABLE_CONTENTS: airtableContents[] = [
   {
-    pageTitle: '用字用語：一覧',
+    pageTitle: '用字用語：索引',
     pagePath: '/products/contents/idiomatic-usage/data/',
     tableName: '用字用語：一覧',
     sort: 'CHARACTER',
@@ -18,6 +18,12 @@ export const AIRTABLE_CONTENTS: airtableContents[] = [
     pageTitle: '用字用語：理由',
     pagePath: '/products/contents/idiomatic-usage/usage/',
     tableName: '用字用語：理由',
+    sort: 'AIRTABLE',
+  },
+  {
+    pageTitle: '漢字とひらがなの使いわけ',
+    pagePath: '/products/contents/idiomatic-usage/spelling_01/',
+    tableName: '用字一覧：漢字とひらがな',
     sort: 'AIRTABLE',
   },
 ]
