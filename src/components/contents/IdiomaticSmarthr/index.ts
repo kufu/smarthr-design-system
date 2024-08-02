@@ -1,0 +1,1 @@
+export { IdiomaticSmarthr } from './IdiomaticSmarthr'
