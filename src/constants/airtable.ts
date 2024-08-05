@@ -11,14 +11,8 @@ export const AIRTABLE_CONTENTS: airtableContents[] = [
   {
     pageTitle: '用字用語：索引',
     pagePath: '/products/contents/idiomatic-usage/data/',
-    tableName: '用字用語：一覧',
+    tableName: '用字用語：索引',
     sort: 'CHARACTER',
-  },
-  {
-    pageTitle: '用字用語：理由',
-    pagePath: '/products/contents/idiomatic-usage/usage/',
-    tableName: '用字用語：理由',
-    sort: 'AIRTABLE',
   },
   {
     pageTitle: '漢字とひらがなの使いわけ',
@@ -82,7 +76,6 @@ export const AIRTABLE_MOCK_DATA = AIRTABLE_CONTENTS.map((content) => ({
     ng_example: '表記のNG事例',
     ok_example: '表記のOK事例',
     expected: '-',
-    reason: () => ['理由1', '理由2'],
     order: 0,
   },
 }))
