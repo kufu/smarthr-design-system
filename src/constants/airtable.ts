@@ -9,7 +9,7 @@ export type airtableContents = {
 
 export const AIRTABLE_CONTENTS: airtableContents[] = [
   {
-    pageTitle: '用字用語：索引',
+    pageTitle: '用字用語一覧',
     pagePath: '/products/contents/idiomatic-usage/data/',
     tableName: '用字用語：索引',
     sort: 'CHARACTER',
