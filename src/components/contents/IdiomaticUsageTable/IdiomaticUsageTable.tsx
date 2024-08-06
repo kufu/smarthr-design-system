@@ -26,20 +26,8 @@ const query = graphql`
   }
 `
 
-type Props = {
-  type: 'data' | 'reason'
-}
-
-export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
+export const IdiomaticUsageTable: FC = () => {
   const data = useStaticQuery<Queries.IdiomaticUsageTableQuery>(query)
-
-  type IdiomaticUsageData = {
-    label?: string | null
-    ngExample?: string | null
-    okExample?: string | null
-    reason?: string[] | null
-    recordId?: string | null
-  }
 
   const idiomaticUsageData = data.idiomaticUsageData.edges
     .map(({ node }) => ({
@@ -72,53 +60,49 @@ export const IdiomaticUsageTable: FC<Props> = ({ type }) => {
       {idiomaticUsageData[0].recordId?.includes('MOCKDATA') && (
         <WarningMessage>このページを正しく表示するにはAirtableのAPIキーの設定が必要です</WarningMessage>
       )}
-      {type === 'data' && (
-        <>
-          <Cluster gap={'S'}>
-            {charIndexList.map((char) => (
-              <a key={char} href={`#${char}`}>
-                {char}
-              </a>
-            ))}
-          </Cluster>
-          {charIndexList.map((char) => (
-            <React.Fragment key={char}>
-              <FragmentTitle id={`${char}`} tag="h3">
-                {char}
-              </FragmentTitle>
-              <Wrapper>
-                <Table>
-                  <thead>
-                    <tr>
-                      <RecommendTh>推奨する表記</RecommendTh>
-                      <NGTh>NG例</NGTh>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {indexedUsageData[char]?.map((prop, index) => (
-                      <tr key={index}>
-                        <RecommendTd>
-                          <strong>
-                            {prop.okExample?.split(/(\u3000)/).map((word, wordIndex) =>
-                              // 全角スペース（u3000）があれば改行に変換
-                              word === '　' ? <br key={wordIndex} /> : word,
-                            )}
-                          </strong>
-                        </RecommendTd>
-                        <NGTd>
-                          {prop.ngExample
-                            ?.split(/(\u3000)/)
-                            .map((word, wordIndex) => (word === '　' ? <br key={wordIndex} /> : word))}
-                        </NGTd>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </Wrapper>
-            </React.Fragment>
-          ))}
-        </>
-      )}
+      <Cluster gap={'S'}>
+        {charIndexList.map((char) => (
+          <a key={char} href={`#${char}`}>
+            {char}
+          </a>
+        ))}
+      </Cluster>
+      {charIndexList.map((char) => (
+        <React.Fragment key={char}>
+          <FragmentTitle id={`${char}`} tag="h3">
+            {char}
+          </FragmentTitle>
+          <Wrapper>
+            <Table>
+              <thead>
+                <tr>
+                  <RecommendTh>推奨する表記</RecommendTh>
+                  <NGTh>NG例</NGTh>
+                </tr>
+              </thead>
+              <tbody>
+                {indexedUsageData[char]?.map((prop, index) => (
+                  <tr key={index}>
+                    <RecommendTd>
+                      <strong>
+                        {prop.okExample?.split(/(\u3000)/).map((word, wordIndex) =>
+                          // 全角スペース（u3000）があれば改行に変換
+                          word === '　' ? <br key={wordIndex} /> : word,
+                        )}
+                      </strong>
+                    </RecommendTd>
+                    <NGTd>
+                      {prop.ngExample
+                        ?.split(/(\u3000)/)
+                        .map((word, wordIndex) => (word === '　' ? <br key={wordIndex} /> : word))}
+                    </NGTd>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Wrapper>
+        </React.Fragment>
+      ))}
     </>
   )
 }
