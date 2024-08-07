@@ -35,20 +35,17 @@ TabBarItem内にIconやBadgeを追加することでタブそのものやタブ�
 * タブ内のビューでエラーが発生していることをIconで示す
     * Iconはデフォルトではテキスト情報を持たないため、視覚情報と同等の情報を代替テキストなどを使って提供してください
 
-```tsx editable codeBlock
+```tsx editable codeBlock noIframe
 <TabBar>
-    <TabItem id="tabitem1" onClick={() => null} selected>
-        <Cluster align="center">
-            基本情報
-            <Badge count={4} />
-        </Cluster>
-    </TabItem>
-    <TabItem id="tabitem2" onClick={() => null}>
-        <Cluster align="center">
-            家族情報
-            <FaCircleExclamationIcon color="DANGER" alt="エラーあり"/>
-        </Cluster>
-    </TabItem>
+  <TabItem suffix={<Badge count={4} />} id="tabitem1" onClick={() => null} selected>
+    基本情報
+  </TabItem>
+  <TabItem suffix={<FaCircleExclamationIcon color="DANGER" alt="エラーあり"/>} id="tabitem2" onClick={() => null}>
+    家族情報
+  </TabItem>
+  <TabItem disabled disabledDetail={{ message: 'この情報は使えません。' }} id="tabitem3">
+    その他
+  </TabItem>
 </TabBar>
 ```
 
