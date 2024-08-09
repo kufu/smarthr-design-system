@@ -225,6 +225,10 @@ a {
   left: -100%
 }
 
+.-shr-top-0\.25 {
+  top: -4px
+}
+
 .-shr-top-px {
   top: -1px
 }
@@ -295,6 +299,10 @@ a {
 
 .shr-left-0\.5 {
   left: 8px
+}
+
+.shr-left-1\.5 {
+  left: 24px
 }
 
 .shr-left-1\/2 {
@@ -529,6 +537,10 @@ a {
   margin-inline-start: 8px
 }
 
+.shr-ms-1 {
+  margin-inline-start: 16px
+}
+
 .shr-ms-\[initial\] {
   margin-inline-start: initial
 }
@@ -645,8 +657,16 @@ a {
   height: 1.75rem
 }
 
+.shr-h-\[2em\] {
+  height: 2em
+}
+
 .shr-h-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\] {
   height: calc(1em * 1.5)
+}
+
+.shr-h-\[theme\(borderWidth\.2\)\] {
+  height: 2px
 }
 
 .shr-h-\[theme\(fontSize\.2xs\)\] {
@@ -736,6 +756,10 @@ a {
 
 .shr-w-\[200\%\] {
   width: 200%
+}
+
+.shr-w-\[2em\] {
+  width: 2em
 }
 
 .shr-w-\[calc\(theme\(fontSize\.base\)\*2\)\] {
@@ -1235,10 +1259,6 @@ a {
 
 .shr-cursor-\[revert\] {
   cursor: revert
-}
-
-.shr-cursor-auto {
-  cursor: auto
 }
 
 .shr-cursor-move {
@@ -1941,6 +1961,11 @@ a {
   border-color: rgb(214 211 208 / 0.5)
 }
 
+.shr-border-grey {
+  --tw-border-opacity: 1;
+  border-color: rgb(112 109 101 / var(--tw-border-opacity))
+}
+
 .shr-border-grey-20 {
   --tw-border-opacity: 1;
   border-color: rgb(214 211 208 / var(--tw-border-opacity))
@@ -2028,6 +2053,11 @@ a {
 .shr-bg-base-grey {
   --tw-bg-opacity: 1;
   background-color: rgb(245 244 243 / var(--tw-bg-opacity))
+}
+
+.shr-bg-border {
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
 }
 
 .shr-bg-brand {
@@ -2352,12 +2382,20 @@ a {
   padding-bottom: 16px
 }
 
+.shr-pb-1\.5 {
+  padding-bottom: 24px
+}
+
 .shr-pe-1 {
   padding-inline-end: 16px
 }
 
 .shr-pe-2 {
   padding-inline-end: 32px
+}
+
+.shr-ps-0 {
+  padding-inline-start: 0
 }
 
 .shr-ps-0\.5 {
@@ -2382,6 +2420,10 @@ a {
 
 .shr-pt-0\.25 {
   padding-top: 4px
+}
+
+.shr-pt-0\.5 {
+  padding-top: 8px
 }
 
 .shr-pt-1 {
@@ -2550,6 +2592,12 @@ a {
 .shr-shadow-\[0_0_0_1px_theme\(colors\.white\)\] {
   --tw-shadow: 0 0 0 1px #fff;
   --tw-shadow-colored: 0 0 0 1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}
+
+.shr-shadow-\[0_0_0_theme\(borderWidth\.2\)_theme\(colors\.white\)\] {
+  --tw-shadow: 0 0 0 2px #fff;
+  --tw-shadow-colored: 0 0 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
@@ -2829,6 +2877,11 @@ a {
   position: absolute
 }
 
+.before\:shr-relative::before {
+  content: var(--tw-content);
+  position: relative
+}
+
 .before\:shr-inset-x-0::before {
   content: var(--tw-content);
   left: 0;
@@ -2912,6 +2965,12 @@ a {
   z-index: 1
 }
 
+.before\:shr-mx-1::before {
+  content: var(--tw-content);
+  margin-left: 16px;
+  margin-right: 16px
+}
+
 .before\:shr-box-border::before {
   content: var(--tw-content);
   box-sizing: border-box
@@ -2971,6 +3030,11 @@ a {
 .before\:shr-w-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\]::before {
   content: var(--tw-content);
   width: calc(1em * 1.5)
+}
+
+.before\:shr-w-\[theme\(borderWidth\.2\)\]::before {
+  content: var(--tw-content);
+  width: 2px
 }
 
 .before\:-shr-translate-x-\[5px\]::before {
@@ -3034,6 +3098,12 @@ a {
 }
 
 .before\:shr-bg-action-background::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+}
+
+.before\:shr-bg-border::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(214 211 208 / var(--tw-bg-opacity))
@@ -3600,6 +3670,19 @@ a {
   color: rgb(193 189 183 / var(--tw-text-opacity))
 }
 
+.shr-group\/stepItem:first-child .group-first\/stepItem\:shr-bg-transparent {
+  background-color: transparent
+}
+
+.shr-group\/stepItem:last-child .group-last\/stepItem\:shr-bg-transparent {
+  background-color: transparent
+}
+
+.shr-group\/stepItem:last-child .group-last\/stepItem\:before\:shr-bg-transparent::before {
+  content: var(--tw-content);
+  background-color: transparent
+}
+
 .shr-group:hover .group-hover\:shr-bg-base-grey {
   --tw-bg-opacity: 1;
   background-color: rgb(245 244 243 / var(--tw-bg-opacity))
@@ -4116,8 +4199,44 @@ a {
     border-color: ButtonBorder
   }
 
+  .forced-colors\:shr-border-\[Mark\] {
+    border-color: Mark
+  }
+
+  .forced-colors\:shr-bg-\[ButtonBorder\] {
+    background-color: ButtonBorder
+  }
+
+  .forced-colors\:shr-bg-\[CanvasText\] {
+    background-color: CanvasText
+  }
+
+  .forced-colors\:shr-bg-\[Canvas\] {
+    background-color: Canvas
+  }
+
+  .forced-colors\:shr-bg-\[Highlight\] {
+    background-color: Highlight
+  }
+
+  .forced-colors\:shr-bg-\[Mark\] {
+    background-color: Mark
+  }
+
   .forced-colors\:shr-fill-\[CanvasText\] {
     fill: CanvasText
+  }
+
+  .forced-colors\:shr-fill-\[Canvas\] {
+    fill: Canvas
+  }
+
+  .forced-colors\:shr-fill-\[GrayText\] {
+    fill: GrayText
+  }
+
+  .forced-colors\:shr-fill-\[Highlight\] {
+    fill: Highlight
   }
 
   .forced-colors\:shr-underline {
@@ -4128,10 +4247,26 @@ a {
     opacity: 1
   }
 
+  .forced-colors\:shr-shadow-\[0_0_0_theme\(borderWidth\.2\)_Canvas\] {
+    --tw-shadow: 0 0 0 2px Canvas;
+    --tw-shadow-colored: 0 0 0 var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+  }
+
   .forced-colors\:shr-shadow-none {
     --tw-shadow: 0 0 #0000;
     --tw-shadow-colored: 0 0 #0000;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+  }
+
+  .forced-colors\:before\:shr-bg-\[ButtonBorder\]::before {
+    content: var(--tw-content);
+    background-color: ButtonBorder
+  }
+
+  .forced-colors\:before\:shr-bg-\[Highlight\]::before {
+    content: var(--tw-content);
+    background-color: Highlight
   }
 
   .forced-colors\:has-\[\:disabled\]\:shr-border-\[GrayText\]:has(:disabled) {
@@ -4241,10 +4376,6 @@ a {
 
 .\[\&\&\&\]\:shr-mt-8.\[\&\&\&\]\:shr-mt-8.\[\&\&\&\]\:shr-mt-8 {
   margin-top: 128px
-}
-
-.\[\&\&\&\]\:shr-cursor-pointer.\[\&\&\&\]\:shr-cursor-pointer.\[\&\&\&\]\:shr-cursor-pointer {
-  cursor: pointer
 }
 
 .\[\&\&\&\]\:shr-overflow-y-visible.\[\&\&\&\]\:shr-overflow-y-visible.\[\&\&\&\]\:shr-overflow-y-visible {
@@ -4596,10 +4727,6 @@ a {
 
 .\[\&\]\:shr-block {
   display: block
-}
-
-.\[\&\]\:shr-items-center {
-  align-items: center
 }
 
 .\[\&\]\:shr-justify-start {
