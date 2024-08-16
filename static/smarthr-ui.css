@@ -2,7 +2,8 @@ body {
   overflow-wrap: break-word;
   font-family: system-ui, sans-serif;
   line-height: 1.5;
-  color: #23221e
+  color: #23221e;
+  text-spacing-trim: space-all
 }
 
 p, dl {
@@ -887,6 +888,11 @@ a {
 
 .-shr-translate-x-0\.25 {
   --tw-translate-x: -4px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.-shr-translate-x-1\.25 {
+  --tw-translate-x: -20px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
