@@ -101,7 +101,7 @@ export const fetchUiVersions = async (cachedData: UiVersion[], options: UiVersio
   const versions: UiVersion[] = []
 
   for (const item of releases) {
-    const versionText = item.commit.message.match(/chore\(release\):\s(\d+\.\d+\.\d+)\s/)
+    const versionText = item.commit.message.match(/chore\(release\):\sv?(\d+\.\d+\.\d+)\s/)
     const version = versionText && versionText.length > 1 ? versionText[1] : null
     if (version === null) continue
 
