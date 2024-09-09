@@ -3,12 +3,11 @@ title: 'よくあるテーブル'
 description: 'SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。'
 order: 7
 ---
-import { ComponentStory } from '@Components/ComponentStory'
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
 import { DoAndDont } from '@Components/DoAndDont'
 import { StaticImage } from '@Components/StaticImage'
-import { FaCloudDownloadAltIcon } from 'smarthr-ui'
-import { Cluster } from 'smarthr-ui'
+import { Cluster , FaCloudDownloadAltIcon } from 'smarthr-ui'
 
 import noTitleDo from './images/smarthr-table/pattern-no-title-do.png'
 import noTitleDont from './images/smarthr-table/pattern-no-title-dont.png'
@@ -346,7 +345,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 ![スクリーンショット: 検索結果がない「よくあるテーブル」の例](./images/smarthr-table/smarthr-table-variation2.png)
 
 
-### 1ページ未満
+### 1ページ以内
 オブジェクトの数が1ページに収まる（[Pagination](/products/components/pagination/)がない）場合の表示パターンは以下のとおりです。
 
 1. テーブル
@@ -358,7 +357,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 4. 一時操作エリア
     - テーブルのページ送りは**非表示**とします。
 
-![スクリーンショット: 1ページ未満の「よくあるテーブル」の例](./images/smarthr-table/smarthr-table-variation3.png)
+![スクリーンショット: 1ページ以内の「よくあるテーブル」の例](./images/smarthr-table/smarthr-table-variation3.png)
 
 ## 関連リンク
 
