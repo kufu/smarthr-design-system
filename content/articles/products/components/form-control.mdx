@@ -135,29 +135,25 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ### 無効（disabled）
 
-フォームの操作ができない状態を表現したスタイルです。
-
-FormControlに`disabled`を適用すると、内包する入力要素にも自動で`disabled`が適用されるため、個別に設定する必要はありません。
+フォームの操作ができない状態を表現する際は、[Input](/products/components/input/)など内包する要素の`disabled`を使用してください。
 
 ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
 
 ```tsx editable codeBlock
 <FormControl
   title="氏名"
-  disabled
   helpMessage="氏名を入力してください。"
   exampleMessage="入力例：須磨栄子"
   supplementaryMessage="その他ご不明な点がありましたら、サポートまでお問い合わせください。"
 >
-  <Input name="fullname" width="100%" />
+  <Input name="fullname" width="100%" disabled />
 </FormControl>
 ```
 
 ### 読み取り専用
 
-FormControl自体には、読み取り専用の状態は存在しません。
 
-入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、[Input](/products/components/input/)の`readOnly`を使用してください。
+入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、[Input](/products/components/input/)など内包する要素の`readOnly`を使用してください。
 
 ```tsx editable codeBlock
 <FormControl title="氏名">
