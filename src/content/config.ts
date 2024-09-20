@@ -4,7 +4,7 @@ export const articleSchema = z.object({
   title: z.string(),
   description: z.string(),
   order: z.number(),
-  robotsNoIndex: z.boolean(),
+  robotsNoIndex: z.boolean().default(false),
 });
 
 const articleCollection = defineCollection({
