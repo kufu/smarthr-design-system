@@ -1,0 +1,83 @@
+---
+title: 'Chip'
+description: 'オブジェクトのプロパティの表示に使用するコンポーネントです。'
+---
+import { ComponentStory } from '@Components/ComponentStory'
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { Chip, Cluster, FaCircleXmarkIcon, Stack, UnstyledButton } from 'smarthr-ui'
+import styled from 'styled-components'
+
+オブジェクトのプロパティの表示に使用するコンポーネントです。
+
+Chipを用いて装飾するのに向いているプロパティは、タグやカテゴリーなどが該当します。
+
+<ComponentStory name="Chip" />
+
+## 使用上の注意
+
+### オブジェクトのステータス表示に使用しない
+
+オブジェクトのステータスには[StatusLabel](/products/components/status-label/)を使用してください。
+
+### 操作フィードバックの表示に使用しない
+
+操作フィードバックの表示には他のコンポーネントが適しています。
+
+[フィードバック](/products/design-patterns/feedback/)を参照し、[ResponseMessage](/products/components/response-message/)や[NotificationBar](/products/components/notification-bar/)の使用を検討してください。
+
+### 重要な情報の表示に使用しない
+
+Chipは小さいため、重要な情報の表示には適していません。
+
+基本的には、オブジェクトのプロパティや補足情報のような、通常のテキストのスタイルやサイズで表示するほどでもないものを表示するのに適しています。
+
+入力の必須条件や必ず確認させたいメッセージの表示には、ResponseMessageや[InformationPanel](/products/components/information-panel/)を使用してください。
+
+### テキストだけでアクションを持たせない
+
+Chipにアクションを持たせる場合は、サフィックスにアイコンボタンを表示してください。
+
+現状では専用のpropsがないので、childrenに[Icon](/products/components/icon/)を挿入して対応します。
+
+`disabled`にする場合はボタンにもdisabled属性を忘れずに追加してください。
+
+```tsx editable withStyled codeBlock
+const StyledChip = styled(Chip)(
+  ({ theme: { space } }) => css`
+    display: flex;
+    align-items: center;
+    gap: ${space(0.25)}
+  `,
+)
+
+const DeleteButton = styled(UnstyledButton)(
+  ({ theme: { radius} }) => css`
+    border-radius: ${radius.full};
+    line-height: 0;
+  `,
+)
+
+render(
+  <Cluster gap={0.5}>
+    <StyledChip>
+      操作できるChip
+      <DeleteButton type="button" onClick={() => {}}>
+        <FaCircleXmarkIcon alt='削除' />
+      </DeleteButton>
+    </StyledChip>
+
+    <StyledChip disabled>
+      操作できないChip
+      <DeleteButton disabled type="button" onClick={() => {}}>
+        <FaCircleXmarkIcon alt='削除' />
+      </DeleteButton>
+    </StyledChip>
+  </Cluster>
+)
+```
+
+## Props
+
+<ComponentPropsTable name="Chip" />
+
+

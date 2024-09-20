@@ -1,0 +1,55 @@
+---
+title: 'AccordionPanel'
+description: '表示したい要素を展開して表示したり、折りたたんで隠したりするためのコンポーネントです。'
+---
+import { ComponentStory } from '@Components/ComponentStory'
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+
+表示したい要素を展開して表示したり、折りたたんで隠したりするためのコンポーネントです。  
+補足的な情報を折りたたんで画面をシンプルに保つことで、情報量が増えてもユーザーが重要な情報にたどりつきやすくなります。また、ページの要素が多くスクロールが生じる画面において、まず見出しだけを表示してユーザーに全体像を把握させたい場合にも使用できます。
+
+<ComponentStory name="AccordionPanel" />
+
+## 使用上の注意
+### AccordionPanelを乱用しない
+AccordionPanelを使用することで、スペースを省略しつつ画面内に多くの要素を配置できるようになりますが、多用しすぎると1画面の情報量が増えユーザーの使いづらさに繋がります。画面内の情報量や粒度、構造が適切かどうかを精査してAccordionPanelを使用してください。
+
+### ModelessDialogとの使い分け
+モードレスに情報を表示したい場合、AccordionPanelの代替として[ModelessDialog](/products/components/dialog/#h3-3)を使用できます。  
+例えば、「ヘルプページを参照しながら別の操作を行なう」といったケースでは、画面のスクロールに依存しない[ModelessDialog](/products/components/dialog/#h3-3)を使用してヘルプページを表示するほうが適切です。
+
+## レイアウト
+
+### アイコンの位置
+開閉する機能をアイコンによって認識しやすくするため、デフォルトは見出しの左にアイコンを配置しています。  
+`iconPosition` props によってアイコンの位置を左または右に指定できますが、アイコンと見出しの位置が離れAccordionPanelとして認識しづらくなるため、右に配置するのは非推奨です。
+
+### デフォルトの開閉状態
+
+デフォルトの開閉状態は、画面が利用される場面や、中に含まれる情報の重要度によって異なります。ユーザーの操作や閲覧が必ず必要な、重要性の高い情報を隠さないように注意してください。  
+
+デフォルトで閉じる場合は、以下のような使い方が一般的です。
+- 一部のユーザーしか利用しない機能（例：高度な設定など）を隠し、画面の表示要素をシンプルに保ちたい場合
+- 見出しを並べ、ユーザーに情報全体の構造を把握させたい場合
+
+## 状態
+
+### マウスオーバー
+AccordionPanelItemに触れている状態（hover状態）のスタイルです。アイコンや見出しを含む行全体が操作対象です。マウスオーバーを認知できるように、標準時の背景色に[`OVERLAY`](/products/design-tokens/color/#h3-3)を重ねて表現しています。  
+
+### 展開時
+- アイコンが左にある場合（`iconPosition="left"`）、`FaCaretRightIcon` アイコンを90度回転して展開を表現しています。
+- アイコンが右にある場合（`iconPosition="right"`）、`FaCaretUpIcon` アイコンを180度回転して展開を表現しています。
+
+## アクセシビリティ
+### ユーザーが操作していないリストを勝手に閉じない
+複数のパネルを同時に開くことを許容する `expandableMultiply` propsは、`expandableMultiply={true}` に指定してください。  
+`expandableMultiply={false}` の場合、1つのリストを展開するとすでに展開している別のリストが同時に閉じますが、ユーザーが予測・意図していない動きが発生することにつながるため非推奨です。 
+
+## Props
+
+<ComponentPropsTable name="AccordionPanel" showTitle />
+
+<ComponentPropsTable name="AccordionPanelItem" showTitle />
+
+<ComponentPropsTable name="AccordionPanelTrigger" showTitle />

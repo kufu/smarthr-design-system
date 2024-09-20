@@ -1,0 +1,25 @@
+---
+title: 'Loader'
+description: '読み込み中や操作中など何らかの操作が仕掛り中であることを伝えるためのコンポーネントです。'
+---
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+
+読み込み中や操作中など何らかの操作が仕掛り中であることを伝えるためのコンポーネントです。
+
+<ComponentStory name="Loader" />
+
+## 使用上の注意
+### ローディングアイコンと背景のコントラスト比を確保する
+
+青いPrimary、白いLightのいずれも場合でも、背景色とのコントラスト比を保つよう注意してください。
+
+[ウェブアクセシビリティ簡易チェックリスト](https://smarthr.design/accessibility/check-list/#h2-3)に基づき、3:1以上のコントラスト比になるように調整してください。
+
+### 読み込みが1秒未満で終わる場合は使用しない
+
+読み込み時間1秒未満の場合は、画面のチラつきが生まれて体験を損なうので使用しないようにしてください。
+
+## Props
+
+<ComponentPropsTable name="Loader" />
