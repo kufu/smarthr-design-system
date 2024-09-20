@@ -1,34 +1,9 @@
 {
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "./src/@types"],
-    "target": "es2015",
-    "jsx": "react",
-    "lib": ["dom", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strict": true,
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@Components/*": ["src/components/*"],
-      "@Constants/*": ["src/constants/*"],
-      "@Context/*": ["src/context/*"],
-      "@Lib/*": ["src/lib/*"],
+      "@/*": ["src/*"]
     }
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  "extends": "astro/tsconfigs/strict"
 }

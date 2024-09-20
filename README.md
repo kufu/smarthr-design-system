@@ -18,6 +18,7 @@ main branch: https://smarthr-design-system.netlify.app
 https://smarthr-inc.docbase.io/posts/1726096
 
 ## SmartHR Design System 環境構築の手引き 〜GitHubはじめての人向け〜
+
 https://smarthr-inc.docbase.io/posts/2162922
 
 ## コンテンツを追加するまでの道のり 〜GitHubそんなにわからない人向けバージョン〜
@@ -25,9 +26,11 @@ https://smarthr-inc.docbase.io/posts/2162922
 https://smarthr-inc.docbase.io/posts/2083788
 
 ## ローカル環境やプレビューで困ったときの解決メモ
+
 https://smarthr-inc.docbase.io/posts/2289638
 
 ## Gatsbyやコンポーネントに関する開発者向けドキュメント
+
 https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md
 
 ## コンテンツを編集するときに注意すること
@@ -67,13 +70,17 @@ index.mdxがないディレクトリがあった場合、左側のサイドバ�
 `/src/components`までのエイリアスが`@Components`として設定されているので、 mdxファイル内で
 
 ```mdx
-import { hoge } from '../../../../src/components/hoge'
+import { hoge } from '../../../../src/components/hoge
+
+'
 ```
 
 ではなく、
 
 ```mdx
-import { hoge } from '@Components/hoge'
+import { hoge } from '@Components/hoge
+
+'
 ```
 
 と書けるようになっています。積極的に利用してください。
@@ -107,11 +114,13 @@ Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](http
 - [リンクチェック](https://github.com/kufu/smarthr-design-system/blob/main/scripts/content-checker/README.md)
 
 ### データソース取得のためのGatsbyプラグイン
+
 - [gatsby-source-component-captures](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-component-captures/README.md)
 - [gatsby-source-ui-versions](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-ui-versions/README.md)
 - [gatsby-source-sds-airtable](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-sds-airtable/README.md)
 
 ### Reactコンポーネント
+
 - [ComponentPreview](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentPreview/README.md)
 - [ComponentPropsTable](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentPropsTable/README.md)
 - [ComponentStory](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentStory/README.md)
@@ -119,4 +128,5 @@ Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](http
 - [PageIndex](https://github.com/kufu/smarthr-design-system/blob/main/src/components/article/PageIndex/README.md)
 
 ### その他
+
 - [React contextに関すること](https://github.com/kufu/smarthr-design-system/blob/main/src/context/README.md)

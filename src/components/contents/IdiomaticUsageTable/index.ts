@@ -1,1 +1,0 @@
-export { IdiomaticUsageTable } from './IdiomaticUsageTable'
