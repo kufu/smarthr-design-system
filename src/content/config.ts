@@ -12,6 +12,6 @@ const articleCollection = defineCollection({
   schema: articleSchema,
 });
 
-export const collenctions = {
+export const collections = {
   articles: articleCollection,
 };
