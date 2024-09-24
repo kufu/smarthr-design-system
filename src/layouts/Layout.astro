@@ -1,6 +1,8 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR } from '@/constants/site';
+import { CSS_SIZE } from '@/constants/style';
 import { createOgImageUrl } from '@/lib/createOgImageUrl';
+import { defaultColor, defaultLeading } from 'smarthr-ui';
 
 export type Meta = {
   name: string;
@@ -53,26 +55,75 @@ const ogImageUrl = createOgImageUrl(ogTitle);
     <slot />
   </body>
 </html>
-<style is:global>
+
+<style
+  is:global
+  define:vars={{
+    breakPointMobile3: CSS_SIZE.BREAKPOINT_MOBILE_3,
+    leadingRelaxed: defaultLeading.RELAXED,
+    colorTextBlack: defaultColor.TEXT_BLACK,
+    colorTextLink: defaultColor.TEXT_LINK,
+    colorBorder: defaultColor.BORDER,
+  }}
+>
   :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
+    --header-height: 112px;
+
+    @media (max-width: var(--breakPointMobile3)) {
+      --header-height: 80px;
+    }
   }
-  html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
+
+  @font-face {
+    font-family: SDSYuGothic;
+    font-weight: 400;
+    src: local('Yu Gothic Medium');
   }
-  code {
+
+  @font-face {
+    font-family: SDSYuGothic;
+    font-weight: 700;
+    src: local('Yu Gothic Bold');
+  }
+
+  body {
+    margin: 0;
     font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
+      SDSYuGothic,
+      Yu Gothic,
+      YuGothic,
+      sans-serif;
+    line-height: var(--leadingRelaxed);
+    color: var(--colorTextBlack);
+    overflow-wrap: break-word;
+  }
+
+  /* stylelint-disable */
+  html,
+  body,
+  #___gatsby,
+  #gatsby-focus-wrapper {
+    height: 100%;
+  }
+  /* stylelint-enable */
+
+  a {
+    color: var(--colorTextLink);
+    text-decoration: underline;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table tr {
+    border-bottom: 1px solid var(--colorBorder);
+  }
+
+  table th,
+  table td {
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    min-width: 7em; /* 5em+padding */
   }
 </style>
