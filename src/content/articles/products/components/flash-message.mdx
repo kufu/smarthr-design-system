@@ -1,0 +1,84 @@
+---
+title: 'FlashMessage（非推奨）'
+description: 'FlashMessageは非推奨です。ユーザーに操作の結果を伝えるUIについては、フィードバックのデザインパターンを参照してください。'
+---
+
+import { ComponentPreview } from '@Components/ComponentPreview'
+import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import { ComponentStory } from '@Components/ComponentStory'
+import { useState } from 'react'
+import {
+  BaseColumn,
+  Button,
+  FlashMessage,
+  WarningIcon,
+} from 'smarthr-ui'
+
+
+<BaseColumn>
+  <WarningIcon text={
+    <span>
+    FlashMessageは非推奨です。ユーザーに操作の結果を伝えるUIについては、<a href="/products/design-patterns/feedback">フィードバック</a>を参照してください。
+    </span>}
+    />
+</BaseColumn>
+
+
+FlashMessageコンポーネントは、インターフェイス上に表示されるメッセージパネルです。  
+ユーザー操作やシステムの処理結果を、ユーザーに素早くフィードバックするために使います。
+
+
+<ComponentStory name="FlashMessage" />
+
+## メッセージの書き方
+
+* 表示するメッセージが複数行になると可読性を下げるため、テキストは1行に収めます。
+* 1文のみの場合でも、文章には句点をつけます。
+* 単語のみ/体言止め（「など」で終わる場合も含む）は句点を省略します。
+
+## 種類
+
+export const DynamicFlashMessage = () => {
+  const [visible, setVisible] = useState(false)
+  return (
+    <>
+        <Button onClick={() => setVisible(true)}>FlashMessageを表示</Button>
+        <FlashMessage type="success" text="Hello, FlashMessage." visible={visible} onClose={() => { setVisible(false) }} />
+    </>
+  )
+}
+
+<ComponentPreview>
+  <DynamicFlashMessage />
+</ComponentPreview>
+
+## 補足
+
+* https://design.gitlab.com/components/toast
+* https://blueprintjs.com/docs/#core/components/toast
+
+## 各挙動
+
+### 表示・非表示
+
+FlashMessageは8秒表示されると自動的に非表示となります。
+
+FlashMessageの上にカーソルが置かれている間は、FlashMessageが消えることはありません。
+カーソルがFlashMessageから離れると、FlashMessageのタイムアウトが再開されます。
+
+
+### 表示位置
+
+配置位置は、ウィンドウを基準とした「右上」「右下」「左上」「左下」の4パターンです。
+
+外部サービス（ChatPlus、KARTEなど）の影響、機能ごとの画面レイアウト都合で表示位置を変えなければならない場合は、調整してください。
+
+
+### 【閉じる】ボタン
+
+「×（閉じる）」ボタンを押して手動でFlashMessageの表示を消すこともできます。
+
+
+## Props
+
+<ComponentPropsTable name="FlashMessage" />

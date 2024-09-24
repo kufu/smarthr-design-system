@@ -1,0 +1,238 @@
+---
+title: '色'
+description: 'ブランドカラーを反映した意味のある色によって、プロダクトの印象に統一感を与えます。'
+order: 1
+---
+
+import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
+
+プロダクトを構成するために必要な最低限の色を定義しています。
+
+コンポーネントの設計において、色を選択する手間を効率化するために、それぞれの色には**役割に応じた名前**を割り当てています。
+
+色は情報を伝え、動作を示し、反応を促しますが、唯一の視覚的手段にしてはいけません。すべての利用者が同じ情報を知覚できる必要があります。
+
+## セマンティックトークン
+
+### メイン
+
+プライマリーカラーである`MAIN`と、コンポーネントのベースカラーとなる`WHITE`を定めています。
+
+プライマリーカラーは、プロダクトの印象を司る箇所に使います。具体的な使用箇所は、各コンポーネントを参照してください。
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#0077c7" colorName="MAIN" description="プライマリーカラー（プロダクトの印象を司る箇所に使う）" />
+  <ColorPalette colorValue="#fff" colorName="WHITE" description="コンポーネントの背景色（Baseコンポーネントなど）" />
+</ColorPalettesWrapper>
+
+
+### アクセント
+コンテキストに応じた色を定めています。
+
+`MAIN`と合わせて、ユーザーのメインアクションや、アクションに対する結果、ヘルプの表示、オブジェクトの状態を表します。
+
+具体的な使用箇所は、各コンポーネントを参照してください。
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#e01e5a" colorName="DANGER" description="エラー色（操作前に、個人情報の流出や金銭的／法的リスクなど、強い警告をする場合も含む）" />
+  <ColorPalette colorValue="#ffcc17" colorName="WARNING_YELLOW" description="警告色（削除やUndoなどの破壊的アクションをする前の注意に使う）。必ずTEXT_BLACKと組み合わせて使う" />
+</ColorPalettesWrapper>
+
+
+### 文字
+
+テキストの状態に応じた文字の色を定めています。
+
+強調などの文字スタイルは、[タイポグラフィ](/products/design-tokens/typography/)を参照してください。
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#23221e" colorName="TEXT_BLACK" description="基本的な文字の色" />
+  <ColorPalette colorValue="#706d65" colorName="TEXT_GREY" description="TEXT_BLACKからジャンプ率を確保するときに使う文字の色" />
+  <ColorPalette colorValue="#0071c1" colorName="TEXT_LINK" description="リンクを表す文字の色" />
+  <ColorPalette colorValue="#c1bdb7" colorName="TEXT_DISABLED" description="disabled状態を表す文字の色" />
+  <ColorPalette colorValue="#fff" colorName="TEXT_WHITE" description="暗い地色やMAINに対して使う文字の色" />
+</ColorPalettesWrapper>
+
+
+### コンポーネント
+
+コンポーネントを構成する要素に必要な色を定めています。
+
+具体的な使用箇所は、各コンポーネントを参照してください。
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#d6d3d0" colorName="BORDER" description="枠線・罫線の色" />
+  <ColorPalette colorValue="#d6d3d0" colorName="ACTION_BACKGROUND" description="TableBulkActionAreaの背景色" />
+  <ColorPalette colorValue="#edebe8" colorName="HEAD" description="テーブルヘッダーの背景色" />
+  <ColorPalette colorValue="#f2f1f0" colorName="OVER_BACKGROUND" description="BACKGROUNDの上で使う囲み色（要素をグルーピングするときに使う色）" />
+  <ColorPalette colorValue="#f8f7f6" colorName="COLUMN" description="WHITEの上で使う囲み色（要素をグルーピングするときに使う色）" />
+  <ColorPalette colorValue="#f8f7f6" colorName="BACKGROUND" description="画面の背景色" />
+  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="OVERLAY" description="ボタンなどhover時に重ねる色" />
+  <ColorPalette colorValue="rgba(3,3,2,0.5)" colorName="SCRIM" description="モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色" />
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="TRANSPARENT" description="デザインツールだけで使う専用スタイル。コンポーネントの枠線などを消すときのAppearanceに使用" />
+</ColorPalettesWrapper>
+
+## プリミティブトークン
+**セマンティックトークンだけで視覚設計を十分に行なえない場合のみ**、プリミティブトークンから色を使用できます。
+
+### 基本色
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#030302" colorName="BLACK" />
+  <ColorPalette colorValue="#fff" colorName="WHITE"/>
+  <ColorPalette colorValue="#0077c7" colorName="BLUE_100" />
+  <ColorPalette colorValue="#0071c1" colorName="BLUE_101" />
+  <ColorPalette colorValue="#e01e5a" colorName="RED_100" />
+  <ColorPalette colorValue="#ff8800" colorName="ORANGE_100" />
+  <ColorPalette colorValue="#ffcc17" colorName="YELLOW_100" />
+  <ColorPalette colorValue="#00c4cc" colorName="SMARTHR_BLUE"/>
+</ColorPalettesWrapper>
+
+### グレースケール
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#f8f7f6" colorName="GREY_5" />
+  <ColorPalette colorValue="#f5f4f3" colorName="GREY_6"/>
+  <ColorPalette colorValue="#f2f1f0" colorName="GREY_7" />
+  <ColorPalette colorValue="#edebe8" colorName="GREY_9" />
+  <ColorPalette colorValue="#d6d3d0" colorName="GREY_20" />
+  <ColorPalette colorValue="#c1bdb7" colorName="GREY_30" />
+  <ColorPalette colorValue="#706d65" colorName="GREY_65" />
+  <ColorPalette colorValue="#23221e" colorName="GREY_100"/>
+</ColorPalettesWrapper>
+
+### 透明色
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="TRANSPARENCY_15"/>
+  <ColorPalette colorValue="rgba(3,3,2,0.30)" colorName="TRANSPARENCY_30" />
+  <ColorPalette colorValue="rgba(3,3,2,0.50)" colorName="TRANSPARENCY_50" />
+</ColorPalettesWrapper>
+
+## 色の新旧比較
+2021年2月にプロダクトの色をアップデートしました。
+
+概要は、お知らせ「[SmartHR の画面のカラーが新しくなります](https://smarthr.jp/update/21763)」を参考にしてください。
+
+### メイン
+#### MAIN
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#0077c7" colorName="新" />
+  <ColorPalette colorValue="#00a5ab" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### WHITE
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#fff" colorName="新 ※変更なし" />
+  <ColorPalette colorValue="#fff" colorName="旧" />
+</ColorPalettesWrapper>
+
+### アクセント
+#### DANGER
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#e01e5a" colorName="新" />
+  <ColorPalette colorValue="#ef475b" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### WARNING（WARNING_YELLOW）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#ffcc17" colorName="新" />
+  <ColorPalette colorValue="#ff8800" colorName="旧" />
+</ColorPalettesWrapper>
+
+### 文字
+#### TEXT_BLACK
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#23221e" colorName="新" />
+  <ColorPalette colorValue="#333333" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TEXT_GREY
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#706d65" colorName="新" />
+  <ColorPalette colorValue="#767676" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TEXT_LINK
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#0071c1" colorName="新" />
+  <ColorPalette colorValue="#007bc2" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TEXT_DISABLED
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#c1bdb7" colorName="新" />
+  <ColorPalette colorValue="#c1c1c1" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TEXT_WHITE（新のみ）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#fff" colorName="新" />
+</ColorPalettesWrapper>
+
+### コンポーネント
+#### BORDER
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#d6d3d0" colorName="新" />
+  <ColorPalette colorValue="#d6d6d6" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### ACTION_BACKGROUND（新のみ）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#d6d3d0" colorName="新" />
+</ColorPalettesWrapper>
+
+#### HEAD（新のみ）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#edebe8" colorName="新" />
+</ColorPalettesWrapper>
+
+#### OVER_BACKGROUND（新のみ）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#f2f1f0" colorName="新" />
+</ColorPalettesWrapper>
+
+#### COLUMN
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#f8f7f6" colorName="新" />
+  <ColorPalette colorValue="#f9f9f9" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### BACKGROUND
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#f8f7f6" colorName="新" />
+  <ColorPalette colorValue="#f5f6fa" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### OVERLAY
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="新" />
+  <ColorPalette colorValue="rgba(0,0,0,0.15)" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### SCRIM
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(3,3,3,0.4)" colorName="新" />
+  <ColorPalette colorValue="rgba(0,0,0,0.5)" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TRANSPARENT
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="新 ※変更なし" />
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="旧" />
+</ColorPalettesWrapper>

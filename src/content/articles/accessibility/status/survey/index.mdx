@@ -1,0 +1,117 @@
+---
+title: '従業員サーベイ'
+description: 'SmartHRの従業員サーベイ機能のアクセシビリティ対応状況と検証結果を掲載しています。'
+order: 9
+---
+import { Table, Text, Td, Th } from 'smarthr-ui'
+
+## プロセス: サーベイに回答する
+### 概要
+管理者からサーベイ回答の依頼を受けた従業員が、回答フォームに情報を入力し、回答を完了する
+
+### 対象ページ
+* サーベイ回答画面
+* サーベイ回答完了画面
+
+### WCAG2.1 達成基準の検証
+[サーベイに回答する アクセシビリティ検証の結果 - 2023年6月](./202306/)
+
+### スクリーンリーダーでの利用
+スクリーンリーダーの読み上げとキーボード操作でプロセスを完了できるか、検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>スクリーンリーダー</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        NVDA
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PC-Talker
+      </td>
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VoiceOver
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 色反転・拡大鏡での利用
+色反転・拡大鏡機能を利用して、プロセスを完了できるか検証しています。視力での確認が難しい箇所については、スクリーンリーダーを併用しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        拡大鏡(NetReader ネオモード)、コントラストテーマ(Windows 11)
+      </td>
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 限られた器用さ、または力
+手の器用さや力が限られているユーザーが、プロセスを完了できるか検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        iPhone 
+      </td>
+      <td>
+        Safari
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+  </tbody>
+</Table>

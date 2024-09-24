@@ -1,0 +1,117 @@
+---
+title: 'Web給与明細'
+description: 'SmartHRのWeb給与明細機能のアクセシビリティ対応状況と検証結果を掲載しています。'
+order: 6
+---
+import { Table, Text, Td, Th } from 'smarthr-ui'
+
+## プロセス: 給与明細の確認
+### 概要
+従業員が、配付された給与明細を確認するプロセス
+
+### 対象ページ
+* 給与明細一覧
+* 給与明細
+
+### WCAG2.1 達成基準の検証
+[給与明細の確認 アクセシビリティ検証の結果 - 2023年6月](./202306/)
+
+### スクリーンリーダーでの利用
+スクリーンリーダーの読み上げとキーボード操作でプロセスを完了できるか、検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>スクリーンリーダー</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        NVDA
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PC-Talker
+      </td>
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VoiceOver
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 色反転・拡大鏡での利用
+色反転・拡大鏡機能を利用して、プロセスを完了できるか検証しています。視力での確認が難しい箇所については、スクリーンリーダーを併用しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        拡大鏡(NetReader ネオモード)、コントラストテーマ(Windows 11)
+      </td>
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 限られた器用さ、または力
+手の器用さや力が限られているユーザーが、プロセスを完了できるか検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        iPhone 
+      </td>
+      <td>
+        Safari
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
