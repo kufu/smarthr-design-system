@@ -1,0 +1,13 @@
+---
+import { type Props as HeadProps } from '@/components/Head.astro';
+import Layout from '@/layouts/Layout.astro';
+import Article from '@/components/Article';
+
+type Props = HeadProps;
+---
+
+<Layout {...Astro.props}>
+  <Article title={Astro.props.title} client:only="react">
+    <slot />
+  </Article>
+</Layout>
