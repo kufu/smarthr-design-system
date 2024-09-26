@@ -62,10 +62,7 @@ export const CodeBlock: FC<Props> = ({
   language,
   ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }) => {
-  // const language = className ? className.replace(/language-/, '') : '';
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
-  //
-  console.log(editable, noIframe, withStyled, componentProps);
 
   const renderingPropsText = Object.keys(componentProps)
     .map((key) => `${key}="${componentProps[key as keyof typeof componentProps]}"`)
