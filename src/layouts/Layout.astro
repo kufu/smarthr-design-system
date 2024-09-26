@@ -2,7 +2,6 @@
 import Head, { type Props as HeadProps } from '@/components/Head.astro';
 import { CSS_SIZE } from '@/constants/style';
 import { defaultColor, defaultLeading } from 'smarthr-ui';
-import Theme from './Theme';
 
 type Props = HeadProps;
 ---
@@ -11,9 +10,7 @@ type Props = HeadProps;
 <html lang="ja">
   <Head {...Astro.props} />
   <body>
-    <Theme>
-      <slot />
-    </Theme>
+    <slot />
   </body>
 </html>
 
