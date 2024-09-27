@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import ArticleLayout from '@/layouts/ArticleLayout.astro';
 import CustomLink from '@/components/MDXComponents/CustomLink.astro';
+import CodeBlock from '@/components/MDXComponents/CodeBlock.astro';
 import FragmentTitle from '@/components/MDXComponents/FragmentTitle.astro';
 
 export async function getStaticPaths() {
@@ -24,6 +25,7 @@ const { title, description } = article.data;
 
 const components = {
   pre: 'div',
+  'code-block': CodeBlock,
   h2: FragmentTitle,
   h3: FragmentTitle,
   h4: FragmentTitle,
