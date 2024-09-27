@@ -97,7 +97,7 @@ export const CodeBlock: FC<Props> = ({
   }
 
   return (
-    <Highlight code={codeString} language={language} theme={isStorybook ? themes.vsDark : theme}>
+    <Highlight code={codeString} language={language ?? ''} theme={isStorybook ? themes.vsDark : theme}>
       {({ style, tokens, getLineProps, getTokenProps }) => (
         <CodeWrapper>
           <PreContainer $isStorybook={isStorybook}>
