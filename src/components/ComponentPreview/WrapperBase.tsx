@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 export const WrapperBase = styled.div(
   ({ theme: { border, color, space } }) => css`
@@ -7,4 +7,4 @@ export const WrapperBase = styled.div(
     background-color: ${color.WHITE};
     font-family: system-ui, sans-serif;
   `,
-)
+);
