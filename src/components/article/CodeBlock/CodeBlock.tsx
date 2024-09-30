@@ -1,11 +1,15 @@
-import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
-import { CSS_COLOR } from '@/constants/style';
+import clsx from 'clsx';
 import { Highlight, themes } from 'prism-react-renderer';
 import React, { type CSSProperties, type FC } from 'react';
 import type { LiveProvider } from 'react-live';
 import * as ui from 'smarthr-ui';
 import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
-import styled from 'styled-components';
+
+import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
+import { CSS_COLOR } from '@/constants/style';
+
+import styles from './CodeBlock.module.css';
+import sharedStyles from './shared.module.css';
 
 // TODO SmartHR な Dark テーマほしいな!!!
 import { CopyButton } from './CopyButton';
@@ -75,13 +79,13 @@ export const CodeBlock: FC<Props> = ({
 
   if (editable) {
     return (
-      <Wrapper>
+      <div className={styles.wrapper}>
         {renderingComponent && (
-          <LinkWrapper>
+          <div className={styles.linkWrapper}>
             <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
               別画面で開く
             </TextLink>
-          </LinkWrapper>
+          </div>
         )}
         <LiveContainer
           code={code}
@@ -92,15 +96,15 @@ export const CodeBlock: FC<Props> = ({
           align={align}
           layout={layout}
         />
-      </Wrapper>
+      </div>
     );
   }
 
   return (
     <Highlight code={codeString} language={language ?? ''} theme={isStorybook ? themes.vsDark : theme}>
       {({ style, tokens, getLineProps, getTokenProps }) => (
-        <CodeWrapper>
-          <PreContainer $isStorybook={isStorybook}>
+        <div className={styles.codeWrapper}>
+          <div className={clsx(sharedStyles.preContainer, isStorybook && sharedStyles.preContainerStorybook)}>
             <CopyButton text={codeString} />
             <pre className={className} style={style}>
               {tokens.map((line, i) => (
@@ -111,63 +115,9 @@ export const CodeBlock: FC<Props> = ({
                 </div>
               ))}
             </pre>
-          </PreContainer>
-        </CodeWrapper>
+          </div>
+        </div>
       )}
     </Highlight>
   );
 };
-
-const Wrapper = styled.div`
-  margin-block: 16px 0;
-`;
-
-const LinkWrapper = styled.div`
-  font-size: 0.8rem;
-  text-align: right;
-`;
-
-const CodeWrapper = styled.div`
-  position: relative;
-`;
-
-const PreContainer = styled.div<{ $isStorybook?: boolean }>`
-  font-family: monospace;
-  margin-block: 16px 0;
-  border: 1px solid ${CSS_COLOR.SEMANTICS_BORDER};
-  background-color: ${CSS_COLOR.LIGHT_GREY_3};
-  overflow-x: scroll;
-
-  & > button {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-  }
-
-  /* preのデフォルトは display: block; で幅100%になるが、100%を超えられるように上書き(祖先要素には横スクロールを適用) */
-  pre {
-    width: max-content;
-    min-width: 100%;
-    min-height: 100%;
-    margin: 0;
-    padding: 2.75rem 1.5rem 1.5rem;
-    box-sizing: border-box;
-  }
-
-  /* LiveEditor内で preに white-space: pre-wrap; が適用されているため、文字を強制的に折り返すようにする */
-  * {
-    word-break: break-all;
-  }
-
-  ${({ $isStorybook }) =>
-    $isStorybook &&
-    `
-      margin: 0;
-      height: 300px;
-      border: 0;
-      overflow: scroll;
-      resize: vertical;
-    `};
-`;
-
-export { PreContainer };

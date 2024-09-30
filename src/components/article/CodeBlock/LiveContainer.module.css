@@ -1,0 +1,24 @@
+.codeWrapper {
+  position: relative;
+
+  /* bodyに指定があるが、Frame内には効かないので再指定 */
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+.liveEditorContainer {
+  &>div {
+    overflow: auto;
+    margin-block: 0;
+
+    /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
+    padding: 2.75rem 1.5rem 1.5rem;
+    border-width: 0 1px 1px;
+    background-color: var(--color-text-black);
+    max-height: 40em;
+
+    pre {
+      width: fit-content;
+    }
+  }
+}
