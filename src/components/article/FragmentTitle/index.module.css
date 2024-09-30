@@ -1,0 +1,28 @@
+.wrapper {
+  position: relative;
+  scroll-margin-top: 80px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+
+      .icon {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: -24px;
+  visibility: hidden;
+  font-size: var(--font-size-16);
+}

@@ -1,4 +1,3 @@
-import { CSS_COLOR } from '@/constants/style';
 import { themes } from 'prism-react-renderer';
 import React, { type FC, type RefCallback, useState } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
@@ -8,8 +7,12 @@ import * as ui from 'smarthr-ui';
 import 'smarthr-ui/smarthr-ui.css';
 import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components';
 
+import { CSS_COLOR } from '@/constants/style';
+
+import styles from './LiveContainer.module.css';
+import sharedStyles from './shared.module.css';
+
 import { ComponentPreview } from '../../ComponentPreview';
-import { PreContainer } from './CodeBlock';
 import type { LiveContainerProps } from './CodeBlock';
 import { CopyButton } from './CopyButton';
 
@@ -85,41 +88,17 @@ export const LiveContainer: FC<Props> = ({ code, language, scope, noIframe, with
             <LivePreview Component={React.Fragment} />
           </ComponentPreview>
         )}
-        <CodeWrapper>
-          <StyledLiveEditorContainer>
-            <PreContainer>
+        <div className={styles.codeWrapper}>
+          <div className={styles.liveEditorContainer}>
+            <div className={sharedStyles.preContainer}>
               <CopyButton text={code || ''} />
               {/* @ts-ignore -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
               <LiveEditor padding={0} />
-            </PreContainer>
-          </StyledLiveEditorContainer>
-        </CodeWrapper>
+            </div>
+          </div>
+        </div>
         <LiveError />
       </LiveProvider>
     </ThemeProvider>
   );
 };
-
-const CodeWrapper = styled.div`
-  position: relative;
-
-  /* bodyに指定があるが、Frame内には効かないので再指定 */
-  line-height: 1.75;
-  overflow-wrap: break-word;
-`;
-
-const StyledLiveEditorContainer = styled.div`
-  & > div {
-    overflow: auto;
-    margin-block: 0;
-
-    /* LiveEditor内のpreにはpaddingの一括指定しかできないので親要素で設定 */
-    padding: 2.75rem 1.5rem 1.5rem;
-    border-width: 0 1px 1px;
-    background-color: ${CSS_COLOR.TEXT_BLACK};
-    max-height: 40em;
-    pre {
-      width: fit-content;
-    }
-  }
-`;

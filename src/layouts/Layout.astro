@@ -1,6 +1,6 @@
 ---
+import '../styles/global.css';
 import Head, { type Props as HeadProps } from '@/components/Head.astro';
-import { CSS_SIZE } from '@/constants/style';
 import { defaultColor, defaultLeading } from 'smarthr-ui';
 
 type Props = HeadProps;
@@ -17,7 +17,6 @@ type Props = HeadProps;
 <style
   is:global
   define:vars={{
-    breakPointMobile3: CSS_SIZE.BREAKPOINT_MOBILE_3,
     leadingRelaxed: defaultLeading.RELAXED,
     colorTextBlack: defaultColor.TEXT_BLACK,
     colorTextLink: defaultColor.TEXT_LINK,
@@ -27,7 +26,7 @@ type Props = HeadProps;
   :root {
     --header-height: 112px;
 
-    @media (max-width: var(--breakPointMobile3)) {
+    @media (max-width: var(--size-breakpoint-mobile-3)) {
       --header-height: 80px;
     }
   }
@@ -56,14 +55,10 @@ type Props = HeadProps;
     overflow-wrap: break-word;
   }
 
-  /* stylelint-disable */
   html,
-  body,
-  #___gatsby,
-  #gatsby-focus-wrapper {
+  body {
     height: 100%;
   }
-  /* stylelint-enable */
 
   a {
     color: var(--colorTextLink);

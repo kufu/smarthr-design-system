@@ -1,7 +1,7 @@
-import { CSS_COLOR, CSS_FONT_SIZE } from '@/constants/style';
 import { type FC, useState } from 'react';
 import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui';
-import styled from 'styled-components';
+
+import styles from './CopyButton.module.css';
 
 type CopyButtonProps = {
   text: string;
@@ -10,7 +10,8 @@ type CopyButtonProps = {
 export const CopyButton: FC<CopyButtonProps> = ({ text }) => {
   const [copied, setCopied] = useState(false);
   return (
-    <StyledButton
+    <button
+      className={styles.button}
       type="button"
       onClick={() => {
         navigator.clipboard.writeText(text).then(() => {
@@ -22,17 +23,6 @@ export const CopyButton: FC<CopyButtonProps> = ({ text }) => {
       disabled={copied}
     >
       {copied ? <FaCheckIcon /> : <FaCopyIcon />}
-    </StyledButton>
+    </button>
   );
 };
-
-const StyledButton = styled.button`
-  appearance: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  color: ${CSS_COLOR.TEXT_GREY};
-  background: transparent;
-  cursor: pointer;
-  font-size: ${CSS_FONT_SIZE.PX_20};
-`;
