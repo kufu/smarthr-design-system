@@ -1,7 +1,7 @@
-// CustomLink
 import React, { type FC } from 'react';
 import { FaExternalLinkAltIcon } from 'smarthr-ui';
-import styled from 'styled-components';
+
+import styles from './index.module.css';
 
 type Props = {
   children: React.ReactNode;
@@ -23,19 +23,13 @@ export const CustomLink: FC<Props> = ({ children, href, ...props }) => {
     : props;
 
   return attrs.target === '_blank' ? (
-    <StyledLink {...attrs} href={href}>
+    <a {...attrs} className={styles.link} href={href}>
       {children}
       {isExternal && <FaExternalLinkAltIcon />}
-    </StyledLink>
+    </a>
   ) : (
-    <a {...attrs} href={href}>
+    <a {...attrs} className={styles.link} href={href}>
       {children}
     </a>
   );
 };
-
-const StyledLink = styled.a`
-  svg {
-    margin-inline: 0.25em;
-  }
-`;
