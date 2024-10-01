@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AnchorButton, Cluster, FaExternalLinkAltIcon, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
-import type { UIStories } from '@/types/ui';
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
+import type { UIStories } from '@/types/ui';
 import { UI_COMMIT_HASH, UI_VERSION } from '@/lib/getUIData';
 import styles from './ComponentStory.module.css';
 import { ResizableContainer } from '../ResizableContainer';

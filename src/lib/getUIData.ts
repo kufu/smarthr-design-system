@@ -1,5 +1,4 @@
 import uiData from '@/cache/smarthr-ui.json';
-
 import type { UIProps, UIStories } from '@/types/ui';
 
 /** Smarthr UIのバージョン */

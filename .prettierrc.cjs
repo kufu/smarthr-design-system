@@ -9,7 +9,12 @@ const config = {
   semi: true,
   plugins: ['prettier-plugin-astro', '@trivago/prettier-plugin-sort-imports'],
   importOrder: [
+    '^react$',
+    '^astro:$',
+    '^node:(.*)$',
+    '<THIRD_PARTY_MODULES>',
     '^@/constants/(.*)$',
+    '^@/types/(.*)$',
     '^@/layouts/(.*)$',
     '^@/component/(.*)$',
     '^@/lib/(.*)$',
@@ -17,7 +22,7 @@ const config = {
     'module.css$',
     '^[./]',
   ],
-  importOrderSeparation: true,
+  importOrderSeparation: false,
   importOrderSortSpecifiers: true,
 };
 

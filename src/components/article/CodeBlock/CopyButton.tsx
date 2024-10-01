@@ -1,6 +1,5 @@
 import { type FC, useState } from 'react';
 import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui';
-
 import styles from './CopyButton.module.css';
 
 type CopyButtonProps = {
