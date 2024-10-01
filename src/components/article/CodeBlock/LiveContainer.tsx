@@ -1,17 +1,13 @@
-import { themes } from 'prism-react-renderer';
 import React, { type FC, type RefCallback, useState } from 'react';
+import { themes } from 'prism-react-renderer';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import { CssBaseLine } from 'smarthr-normalize-css';
 import * as ui from 'smarthr-ui';
-import 'smarthr-ui/smarthr-ui.css';
 import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components';
-
 import { CSS_COLOR } from '@/constants/style';
-
 import styles from './LiveContainer.module.css';
 import sharedStyles from './shared.module.css';
-
 import { ComponentPreview } from '../../ComponentPreview';
 import type { LiveContainerProps } from './CodeBlock';
 import { CopyButton } from './CopyButton';
