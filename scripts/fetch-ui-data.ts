@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import type { StoryIndex } from '@storybook/types';
 import packageInfo from 'smarthr-ui/package.json';
 
-import type { PropsData, UIProps, UIStories, UIVersion } from '@/types/ui';
+import type { PropsData, UIData, UIProps, UIStories } from '@/types/ui';
 
 type GitHubAPIResponse = {
   sha: string;
@@ -160,17 +160,15 @@ async function fetchStories(commitHash: string): Promise<Record<string, UIStorie
  * .cache 以下に保存
  * @param data 保存するデータ
  */
-function save(data: UIVersion) {
-  const cacheDir = fileURLToPath(import.meta.resolve('../.cache'));
-  const cacheFile = path.join(cacheDir, 'smarthr-ui-release.json');
+function save(data: UIData) {
+  const cacheDir = fileURLToPath(import.meta.resolve('../src/cache'));
 
-  // .cacheディレクトリが無ければ作成
+  // cacheディレクトリが無ければ作成
   if (!fs.existsSync(cacheDir)) {
-    fs.mkdirSync(cacheDir, {
-      recursive: true,
-    });
+    fs.mkdirSync(cacheDir);
   }
 
+  const cacheFile = path.join(cacheDir, 'smarthr-ui.json');
   fs.writeFileSync(cacheFile, JSON.stringify(data, null, 2));
 }
 
@@ -187,7 +185,7 @@ const uiStories = await fetchStories(commitHash);
 
 console.log('✅️ 取得完了');
 
-const uiVersion: UIVersion = {
+const uiVersion: UIData = {
   version: packageInfo.version,
   commitHash,
   commitDate: usedVersionRelease.commit.author.date,
