@@ -1,19 +1,19 @@
-// TODO: 後で移植
-// import { ResizableContainer } from '@/Components/ComponentStory';
 import React from 'react';
+
 import { Header } from 'smarthr-ui';
 import styled, { css } from 'styled-components';
 
+import { ResizableContainer } from '../ResizableContainer';
 import { WrapperBase } from './WrapperBase';
 
 export const ProductWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Wrapper>
-    {/* <ResizableContainer defaultWidth="100%" defaultHeight="300px"> */}
-    <BodyWrapper>
-      <Header logoHref="#" />
-      <Body>{children}</Body>
-    </BodyWrapper>
-    {/* </ResizableContainer> */}
+    <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+      <BodyWrapper>
+        <Header logoHref="#" />
+        <Body>{children}</Body>
+      </BodyWrapper>
+    </ResizableContainer>
   </Wrapper>
 );
 
@@ -64,6 +64,7 @@ const Wrapper = styled(WrapperBase)(
      */
   `,
 );
+
 const padding = css(
   ({ theme: { space } }) => css`
     padding-inline: ${space(1.5)};
@@ -85,6 +86,7 @@ const padding = css(
     }
   `,
 );
+
 const Body = styled.div`
   ${padding}
 `;
