@@ -1,6 +1,5 @@
 import React, { type FC } from 'react';
 import { FaExternalLinkAltIcon } from 'smarthr-ui';
-
 import styles from './index.module.css';
 
 type Props = {

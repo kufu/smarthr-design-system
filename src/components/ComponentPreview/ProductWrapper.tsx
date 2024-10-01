@@ -1,8 +1,6 @@
 import React from 'react';
-
 import { Header } from 'smarthr-ui';
 import styled, { css } from 'styled-components';
-
 import { ResizableContainer } from '../ResizableContainer';
 import { WrapperBase } from './WrapperBase';
 

@@ -1,16 +1,13 @@
+import React, { type CSSProperties, type FC } from 'react';
 import clsx from 'clsx';
 import { Highlight, themes } from 'prism-react-renderer';
-import React, { type CSSProperties, type FC } from 'react';
 import type { LiveProvider } from 'react-live';
 import * as ui from 'smarthr-ui';
 import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
-
 import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
 import { CSS_COLOR } from '@/constants/style';
-
 import styles from './CodeBlock.module.css';
 import sharedStyles from './shared.module.css';
-
 // TODO SmartHR な Dark テーマほしいな!!!
 import { CopyButton } from './CopyButton';
 import { LiveContainer } from './LiveContainer';

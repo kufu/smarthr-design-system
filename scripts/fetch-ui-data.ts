@@ -1,10 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
 import type { StoryIndex } from '@storybook/types';
 import packageInfo from 'smarthr-ui/package.json';
-
 import type { PropsData, UIData, UIProps, UIStories } from '@/types/ui';
 
 type GitHubAPIResponse = {
