@@ -1,5 +1,5 @@
-import { type FC } from 'react';
-import { CodeBlock } from '@/components/article/CodeBlock';
+import type { FC } from 'react';
+import { CodeBlock } from '@/components/CodeBlock';
 
 type Props = {
   componentName: string;

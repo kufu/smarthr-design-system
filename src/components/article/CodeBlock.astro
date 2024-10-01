@@ -1,5 +1,7 @@
 ---
-import { CodeBlock } from '@/components/article/CodeBlock';
+// NOTE: as はこの Issue の回避のため
+// https://github.com/withastro/language-tools/issues/580
+import { CodeBlock as ReactCodeBlock } from '@/components/CodeBlock';
 
 type Props = {
   code: string;
@@ -14,4 +16,4 @@ const { code, language, meta } = Astro.props;
 const props = meta ? Object.fromEntries(meta.split(' ').map((key) => [key, true])) : {};
 ---
 
-<CodeBlock code={code} language={language} {...props} client:only="react" />
+<ReactCodeBlock code={code} language={language} {...props} client:only="react" />
