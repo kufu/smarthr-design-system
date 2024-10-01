@@ -1,4 +1,4 @@
-export type UIVersion = {
+export type UIData = {
   commitHash: string;
   commitDate: string;
   version: string;
