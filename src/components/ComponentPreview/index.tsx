@@ -39,13 +39,6 @@ export const ComponentPreview = ({
   }, [layout, align, children, gap]);
 };
 
-// NOTE:
-// このコンポーネントは components/article/CodeBlock/LiveContainer で iframe 内に配置されるため、
-// CSS Modules を使わずに styled-components を利用しています
-//
-// 理由は次の通りです
-// - CSS Modules を使った場合、iframe 内に CSS を引き継ぐ必要がある
-// - LiveContainer 内で styled-components を使っているため、CSS Modules へ移行する必要性があまりない
 const Wrapper = styled(WrapperBase)(
   ({ theme: { space } }) => css`
     padding: ${space(1.5)};

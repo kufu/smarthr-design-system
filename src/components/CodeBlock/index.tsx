@@ -1,14 +1,14 @@
 import React, { type CSSProperties, type FC } from 'react';
 import clsx from 'clsx';
+// TODO SmartHR な Dark テーマほしいな!!!
 import { Highlight, themes } from 'prism-react-renderer';
 import type { LiveProvider } from 'react-live';
 import * as ui from 'smarthr-ui';
 import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
 import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
 import { CSS_COLOR } from '@/constants/style';
-import styles from './CodeBlock.module.css';
+import styles from './index.module.css';
 import sharedStyles from './shared.module.css';
-// TODO SmartHR な Dark テーマほしいな!!!
 import { CopyButton } from './CopyButton';
 import { LiveContainer } from './LiveContainer';
 
@@ -29,7 +29,7 @@ export type LiveContainerProps = {
   };
 
 type Props = {
-  children: string;
+  children?: string;
   className?: string;
   editable?: boolean;
   isStorybook?: boolean;
@@ -69,7 +69,7 @@ export const CodeBlock: FC<Props> = ({
     .map((key) => `${key}="${componentProps[key as keyof typeof componentProps]}"`)
     .join(' ');
 
-  const rawCode = code || children;
+  const rawCode = code || children || '';
   const codeString = renderingComponent ? `${rawCode}\nrender(<${renderingComponent} ${renderingPropsText} />)` : rawCode.trim();
 
   const TextLink = ui.TextLink;

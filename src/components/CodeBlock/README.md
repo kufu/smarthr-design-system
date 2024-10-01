@@ -38,7 +38,3 @@ iframeの表示には[react-frame-component](https://www.npmjs.com/package/react
 `/content/articles/products/design-patterns`以下のMDXファイルから直接`import`して使用されるコンポーネントです。
 
 ビルド時に、[smarthr-patterns](https://github.com/kufu/smarthr-patterns)のGitHubリポジトリから読み込んだコードが、GraphQL Data Layerに登録されているため、デザインパターンの名前を指定するだけでコードを表示するようになっています。
-
-### 関連するファイル
-- `/src/gatsby-node/index.ts`
-- `/src/lib/fetchPatternCode.ts`

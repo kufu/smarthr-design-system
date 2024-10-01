@@ -1,7 +1,9 @@
 ---
 import { getUIStories, UI_VERSION } from '@/lib/getUIData';
 import { fetchStoryCode } from '@/lib/fetchStoryCode';
-import ComponentStory from './ComponentStory';
+// NOTE: as はこの Issue の回避のため
+// https://github.com/withastro/language-tools/issues/580
+import { ComponentStory as ReactComponentStory } from '@/components/ComponentStory';
 
 export type Props = {
   name: string;
@@ -20,4 +22,4 @@ if (!stories) {
 const code = await fetchStoryCode(UI_VERSION, stories.filePath);
 ---
 
-<ComponentStory stories={stories} code={code} client:only="react" />
+<ReactComponentStory stories={stories} code={code} client:only="react" />
