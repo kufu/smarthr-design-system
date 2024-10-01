@@ -3,11 +3,11 @@
   flex-direction: column;
   height: 100%;
 
-  & > header {
+  &>header {
     flex: 0 0 auto;
   }
 
-  & > footer {
+  &>footer {
     flex: 0 0 auto;
   }
 }
@@ -51,7 +51,7 @@
 .mdxStyleWrapper {
   padding-block-start: 40px;
 
-  > *:first-child {
+  >*:first-child {
     margin-block-start: 0;
   }
 
@@ -92,12 +92,12 @@
   }
 
   /* 連続する見出し */
-  h2 + h3 {
+  h2+h3 {
     margin-block: 20px 0;
   }
 
-  h3 + h4,
-  h4 + h5 {
+  h3+h4,
+  h4+h5 {
     margin-block: 16px 0;
   }
 
@@ -135,6 +135,7 @@
     }
 
     td {
+
       p:first-child,
       ul:first-child,
       ol:first-child {
