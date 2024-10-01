@@ -2,7 +2,6 @@ import React, { type CSSProperties, useMemo } from 'react';
 import { Cluster } from 'smarthr-ui';
 import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
 import styled, { css } from 'styled-components';
-
 import { ProductWrapper } from './ProductWrapper';
 import { WrapperBase } from './WrapperBase';
 
