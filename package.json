@@ -10,7 +10,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "cache:shr-ui-data": "tsx ./scripts/fetch-shr-ui-data.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
@@ -31,6 +32,7 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
+    "@storybook/types": "^8.3.4",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/mdast": "^4.0.4",
     "@types/unist": "^3.0.3",
@@ -39,6 +41,7 @@
     "prettier-config-smarthr": "^1.0.0",
     "prettier-plugin-astro": "^0.14.1",
     "remark": "^15.0.1",
+    "tsx": "^4.19.1",
     "unist-util-visit": "^5.0.0"
   }
 }
