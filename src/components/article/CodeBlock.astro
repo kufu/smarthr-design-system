@@ -1,0 +1,17 @@
+---
+import ReactCodeBlock from '@/components/CodeBlock';
+
+type Props = {
+  code: string;
+  language?: string;
+  meta?: string;
+};
+
+const { code, language, meta } = Astro.props;
+
+// スペース区切りの meta 文字列を、その文字列をキーとしたオブジェクトに変換
+// 例: ```tsx editable -> { editable: true }
+const props = meta ? Object.fromEntries(meta.split(' ').map((key) => [key, true])) : {};
+---
+
+<ReactCodeBlock code={code} language={language} {...props} client:only="react" />

@@ -1,0 +1,36 @@
+.wrapper {
+  border: var(--border-shorthand);
+  margin-top: 20px;
+}
+
+.propContent {
+  display: grid;
+  gap: 16px;
+  padding: 16px 24px;
+
+  &:not(:last-child) {
+    border-bottom: var(--border-shorthand);
+  }
+}
+
+.propName {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+
+  >span {
+    margin-right: 8px;
+  }
+}
+
+.propTypes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.propDescription {
+  && p {
+    margin-block-start: 0;
+  }
+}

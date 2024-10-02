@@ -10,20 +10,40 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "cache:ui-data": "tsx ./scripts/fetch-ui-data.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "@astrojs/mdx": "^3.1.7",
+    "@astrojs/react": "^3.6.2",
+    "@types/react": "^18.3.8",
+    "@types/react-dom": "^18.3.0",
     "astro": "^4.15.8",
+    "clsx": "^2.1.1",
+    "marked": "^14.1.2",
+    "prism-react-renderer": "^2.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-frame-component": "^5.2.7",
+    "react-live": "^4.1.7",
+    "smarthr-normalize-css": "^1.1.0",
+    "smarthr-ui": "^58.0.2",
+    "styled-components": "^6.1.13",
     "typescript": "^5.6.2"
   },
   "devDependencies": {
-    "@storybook/types": "^8.3.2",
+    "@storybook/types": "^8.3.4",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/mdast": "^4.0.4",
+    "@types/unist": "^3.0.3",
+    "hast-util-select": "^6.0.2",
     "prettier": "^3.3.3",
     "prettier-config-smarthr": "^1.0.0",
     "prettier-plugin-astro": "^0.14.1",
-    "tsx": "^4.19.1"
+    "remark": "^15.0.1",
+    "remark-emoji": "^5.0.1",
+    "tsx": "^4.19.1",
+    "unist-util-visit": "^5.0.0"
   }
 }

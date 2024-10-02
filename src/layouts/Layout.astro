@@ -1,78 +1,63 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR } from '@/constants/site';
-import { createOgImageUrl } from '@/lib/createOgImageUrl';
+import 'smarthr-ui/smarthr-ui.css';
+import '../styles/global.css';
+import Head, { type Props as HeadProps } from '@/components/Head.astro';
+import { defaultColor, defaultLeading } from 'smarthr-ui';
 
-export type Meta = {
-  name: string;
-  content: string;
-};
-
-type Props = {
-  title: string;
-  ogTitle?: string;
-  description?: string;
-  meta?: Meta[];
-};
-
-const { ogTitle, meta } = Astro.props;
-const currentUrl = Astro.url.toString();
-const pageTitle = Astro.props.title || SITE_TITLE;
-const pageDescription = Astro.props.description || SITE_DESCRIPTION;
-const ogImageUrl = createOgImageUrl(ogTitle);
+type Props = HeadProps;
 ---
 
 <!doctype html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={pageDescription} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:locale" content="ja_JP" />
-    <meta property="og:url" content={currentUrl} />
-    <meta property="og:site_name" content={SITE_TITLE} />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content={SITE_AUTHOR} />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={pageDescription} />
-    {meta && meta.map((item) => <meta name={item.name} content={item.content} />)}
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="apple-mobile-web-app-title" content={SITE_TITLE} />
-    <meta name="application-name" content={SITE_TITLE} />
-  </head>
+  <Head {...Astro.props} />
   <body>
     <slot />
   </body>
 </html>
-<style is:global>
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
-  }
-  html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-  }
-  code {
+
+<style
+  is:global
+  define:vars={{
+    leadingRelaxed: defaultLeading.RELAXED,
+    colorTextBlack: defaultColor.TEXT_BLACK,
+    colorTextLink: defaultColor.TEXT_LINK,
+    colorBorder: defaultColor.BORDER,
+  }}
+>
+  body {
+    margin: 0;
     font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
+      SDSYuGothic,
+      Yu Gothic,
+      YuGothic,
+      sans-serif;
+    line-height: var(--leadingRelaxed);
+    color: var(--colorTextBlack);
+    overflow-wrap: break-word;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  a {
+    color: var(--colorTextLink);
+    text-decoration: underline;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table tr {
+    border-bottom: 1px solid var(--colorBorder);
+  }
+
+  table th,
+  table td {
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    min-width: 7em; /* 5em+padding */
   }
 </style>

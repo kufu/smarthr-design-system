@@ -8,8 +8,21 @@ const config = {
   trailingComma: 'all',
   semi: true,
   plugins: ['prettier-plugin-astro', '@trivago/prettier-plugin-sort-imports'],
-  importOrder: ['^astro:', '^@/component/(.*)$', '^[./]'],
-  importOrderSeparation: true,
+  importOrder: [
+    '^react$',
+    '^astro:$',
+    '^node:(.*)$',
+    '<THIRD_PARTY_MODULES>',
+    '^@/constants/(.*)$',
+    '^@/types/(.*)$',
+    '^@/layouts/(.*)$',
+    '^@/component/(.*)$',
+    '^@/lib/(.*)$',
+    '^@/styles/(.*)$',
+    'module.css$',
+    '^[./]',
+  ],
+  importOrderSeparation: false,
   importOrderSortSpecifiers: true,
 };
 

@@ -1,0 +1,25 @@
+---
+import { getUIStories, UI_VERSION } from '@/lib/getUIData';
+import { fetchStoryCode } from '@/lib/fetchStoryCode';
+// NOTE: as はこの Issue の回避のため
+// https://github.com/withastro/language-tools/issues/580
+import ReactComponentStory from '@/components/ComponentStory';
+
+export type Props = {
+  name: string;
+  dirName?: string;
+};
+
+const { name, dirName } = Astro.props;
+
+// Propsから該当するStoryを探す
+const stories = getUIStories(name, dirName);
+if (!stories) {
+  throw new Error(`Storiesが見つかりませんでした: name=${name} dirName=${dirName}`);
+}
+
+// Storyのコードを取得
+const code = await fetchStoryCode(UI_VERSION, stories.filePath);
+---
+
+<ReactComponentStory stories={stories} code={code} client:only="react" />

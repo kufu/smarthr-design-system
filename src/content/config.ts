@@ -3,7 +3,7 @@ import { defineCollection, z } from 'astro:content';
 export const articleSchema = z.object({
   title: z.string(),
   description: z.string(),
-  order: z.number(),
+  order: z.number().optional(),
   robotsNoIndex: z.boolean().default(false),
 });
 

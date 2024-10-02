@@ -1,6 +1,10 @@
 ---
-import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import CustomLink from '@/components/article/CustomLink';
+import CodeBlock from '@/components/article/CodeBlock.astro';
+import FragmentTitle from '@/components/article/FragmentTitle';
+import ResponsiveImage from '@/components/article/ResponsiveImage.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -19,8 +23,20 @@ const { article } = Astro.props;
 const { Content } = await article.render();
 
 const { title, description } = article.data;
+
+const components = {
+  pre: 'div',
+  'code-block': CodeBlock,
+  h2: FragmentTitle,
+  h3: FragmentTitle,
+  h4: FragmentTitle,
+  h5: FragmentTitle,
+  h6: FragmentTitle,
+  a: CustomLink,
+  img: ResponsiveImage,
+};
 ---
 
-<Layout title={title} description={description} ogTitle={title}>
-  <Content />
-</Layout>
+<ArticleLayout title={title} description={description} ogTitle={title}>
+  <Content components={components} />
+</ArticleLayout>
