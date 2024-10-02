@@ -1,6 +1,6 @@
+import { cwd } from 'node:process';
 import type { StoryIndex } from '@storybook/types';
 import fs from 'fs/promises';
-import { cwd } from 'node:process';
 import path from 'path';
 
 const STORYBOOK_URL = 'https://story.smarthr-ui.dev';
@@ -29,14 +29,19 @@ const convertKebab = (target: string) =>
 
 const convertComponentPath = (importPath: string, displayName: string) => {
   const matches = importPath.match(/\.\/src\/components\/(.*)\.stories\.tsx/);
-  if (!matches) return '';
+  if (!matches) {
+    return '';
+  }
+
   const componentDirPath = matches[1]
     .split('/')
     .slice(0, -2)
     .map((item) => convertKebab(item))
     .join('/');
+
   const componentPathName = convertKebab(displayName);
-  return componentDirPath === '' ? componentPathName : `${componentDirPath}/${componentPathName}`;
+
+  return componentDirPath === '' ? componentPathName : path.join(componentDirPath, componentPathName);
 };
 
 const isExistsFile = async (filePath: string) => {
@@ -53,26 +58,37 @@ const isExistsFile = async (filePath: string) => {
  * @returns StoryGroup[]
  */
 export const fetchComponentCaptures = async () => {
-  const response = await fetch(`${STORYBOOK_URL}/index.json`);
+  const indexJsonUrl = new URL('index.json', STORYBOOK_URL);
+  const response = await fetch(indexJsonUrl.toString());
+
   const storiesJson: StoryIndex = await response.json();
 
   const storiesMap = storiesJson.entries;
-
   const storyGroups: StoryGroup[] = [];
 
   for (const id in storiesMap) {
-    const { title, tags, importPath } = storiesMap[id];
-    if (Array.isArray(tags) && tags.includes('docs')) continue; // ドキュメントはコンポーネント一覧として表示しない
+    const { title, type, importPath } = storiesMap[id];
+
+    // ドキュメントはコンポーネント一覧として表示しない
+    if (type === 'docs') {
+      continue;
+    }
 
     const groupName = title.split('/')[0];
     const displayName = title.split('/')[1];
     const thumbnailFileName = `${groupName}-${displayName}.png`;
-    const iframeUrl = `${STORYBOOK_URL}/iframe.html?id=${encodeURIComponent(id)}&viewMode=story&shortcuts=false&singleStory=true`;
-    const componentPath = convertComponentPath(importPath, displayName);
 
-    const componentsDirPath = path.resolve(cwd(), 'content', 'articles', 'products', 'components');
-    const mdxFilePath = `${componentsDirPath}/${componentPath}.mdx`;
-    const indexMdxFilePath = `${componentsDirPath}/${componentPath}/index.mdx`;
+    const iframeUrl = new URL('iframe.html', STORYBOOK_URL);
+    iframeUrl.searchParams.set('id', id);
+    iframeUrl.searchParams.set('viewMode', 'story');
+    iframeUrl.searchParams.set('shortcuts', 'false');
+    iframeUrl.searchParams.set('singleStory', 'true');
+
+    const componentPath = convertComponentPath(importPath, displayName);
+    const componentsDirPath = path.resolve(cwd(), 'src', 'content', 'articles', 'products', 'components');
+
+    const mdxFilePath = path.join(componentsDirPath, `/${componentPath}.mdx`);
+    const indexMdxFilePath = path.join(componentsDirPath, `${componentPath}/index.mdx`);
 
     const isExistsMdx = (await isExistsFile(mdxFilePath)) || (await isExistsFile(indexMdxFilePath));
     if (!isExistsMdx) {
@@ -87,7 +103,7 @@ export const fetchComponentCaptures = async () => {
         storyKinds: [
           {
             kindName: title,
-            iframeUrl,
+            iframeUrl: iframeUrl.toString(),
             thumbnailFileName,
             displayName,
             componentPath,
@@ -103,7 +119,7 @@ export const fetchComponentCaptures = async () => {
     if (!storyKind) {
       storyGroup.storyKinds.push({
         kindName: title,
-        iframeUrl,
+        iframeUrl: iframeUrl.toString(),
         thumbnailFileName,
         displayName,
         componentPath,
@@ -115,5 +131,6 @@ export const fetchComponentCaptures = async () => {
     // GroupもKindも既に存在すればカウントアップ
     storyKind.numberOfStories += 1;
   }
+
   return storyGroups;
 };
