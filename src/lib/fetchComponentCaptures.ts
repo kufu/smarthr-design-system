@@ -30,7 +30,7 @@ const convertKebab = (target: string) =>
 const convertComponentPath = (importPath: string, displayName: string) => {
   const matches = importPath.match(/\.\/src\/components\/(.*)\.stories\.tsx/);
   if (!matches) {
-    return '';
+    return;
   }
 
   const componentDirPath = matches[1]
@@ -57,7 +57,7 @@ const isExistsFile = async (filePath: string) => {
  * [SmartHR UIのStorybook](https://story.smarthr-ui.dev/)上の各コンポーネントグループの名前やサムネイル画像のパスなどを取得
  * @returns StoryGroup[]
  */
-export const fetchComponentCaptures = async () => {
+export async function fetchComponentCaptures() {
   const indexJsonUrl = new URL('index.json', STORYBOOK_URL);
   const response = await fetch(indexJsonUrl.toString());
 
@@ -85,6 +85,10 @@ export const fetchComponentCaptures = async () => {
     iframeUrl.searchParams.set('singleStory', 'true');
 
     const componentPath = convertComponentPath(importPath, displayName);
+    if (!componentPath) {
+      continue;
+    }
+
     const componentsDirPath = path.resolve(cwd(), 'src', 'content', 'articles', 'products', 'components');
 
     const mdxFilePath = path.join(componentsDirPath, `/${componentPath}.mdx`);
@@ -133,4 +137,4 @@ export const fetchComponentCaptures = async () => {
   }
 
   return storyGroups;
-};
+}
