@@ -29,7 +29,6 @@ export type LiveContainerProps = {
   };
 
 type Props = {
-  children?: string;
   className?: string;
   editable?: boolean;
   isStorybook?: boolean;
@@ -47,7 +46,6 @@ const theme = {
 };
 
 export default function CodeBlock({
-  children,
   className,
   editable = false,
   noIframe = false,
@@ -69,7 +67,7 @@ export default function CodeBlock({
     .map((key) => `${key}="${componentProps[key as keyof typeof componentProps]}"`)
     .join(' ');
 
-  const rawCode = code || children || '';
+  const rawCode = code || '';
   const codeString = renderingComponent ? `${rawCode}\nrender(<${renderingComponent} ${renderingPropsText} />)` : rawCode.trim();
 
   const TextLink = ui.TextLink;
