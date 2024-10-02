@@ -1,4 +1,4 @@
-import React, { type FC } from 'react';
+import React from 'react';
 import { FaLinkIcon } from 'smarthr-ui';
 import styles from './index.module.css';
 
@@ -10,7 +10,7 @@ type Props = {
   tag?: HeadingTagTypes;
 };
 
-export const FragmentTitle: FC<Props> = ({ tag = 'h2', id, children }) => {
+export default function FragmentTitle({ tag = 'h2', id, children }: Props) {
   const Wrapper = tag as keyof JSX.IntrinsicElements;
 
   return (
@@ -21,4 +21,4 @@ export const FragmentTitle: FC<Props> = ({ tag = 'h2', id, children }) => {
       </a>
     </Wrapper>
   );
-};
+}

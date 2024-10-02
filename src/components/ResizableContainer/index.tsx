@@ -1,4 +1,4 @@
-import React, { type FC, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui';
 import styled from 'styled-components';
 import { CSS_COLOR } from '@/constants/style';
@@ -9,7 +9,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, children }) => {
+export default function ResizableContainer({ defaultWidth, defaultHeight, children }: Props) {
   const [pointerPosition, setPointerPosition] = useState<{ x: number | null; y: number | null }>({ x: null, y: null });
   const pointerPositionRef = useRef<{ x: number | null; y: number | null }>({ x: null, y: null });
   pointerPositionRef.current = pointerPosition;
@@ -114,7 +114,7 @@ export const ResizableContainer: FC<Props> = ({ defaultWidth, defaultHeight, chi
       </ResizeArea>
     </Container>
   );
-};
+}
 
 const Container = styled.div`
   user-select: none;

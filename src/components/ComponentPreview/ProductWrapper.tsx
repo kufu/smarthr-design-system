@@ -1,19 +1,25 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { Header } from 'smarthr-ui';
 import styled, { css } from 'styled-components';
-import { ResizableContainer } from '../ResizableContainer';
+import ResizableContainer from '../ResizableContainer';
 import { WrapperBase } from './WrapperBase';
 
-export const ProductWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <Wrapper>
-    <ResizableContainer defaultWidth="100%" defaultHeight="300px">
-      <BodyWrapper>
-        <Header logoHref="#" />
-        <Body>{children}</Body>
-      </BodyWrapper>
-    </ResizableContainer>
-  </Wrapper>
-);
+type Props = {
+  children: ReactNode;
+};
+
+export default function ProductWrapper({ children }: Props) {
+  return (
+    <Wrapper>
+      <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+        <BodyWrapper>
+          <Header logoHref="#" />
+          <Body>{children}</Body>
+        </BodyWrapper>
+      </ResizableContainer>
+    </Wrapper>
+  );
+}
 
 const Wrapper = styled(WrapperBase)(
   ({ theme: { leading } }) => css`

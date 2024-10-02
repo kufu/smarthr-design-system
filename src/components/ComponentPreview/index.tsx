@@ -2,7 +2,7 @@ import React, { type CSSProperties, useMemo } from 'react';
 import { Cluster } from 'smarthr-ui';
 import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
 import styled, { css } from 'styled-components';
-import { ProductWrapper } from './ProductWrapper';
+import ProductWrapper from './ProductWrapper';
 import { WrapperBase } from './WrapperBase';
 
 type Props = {
@@ -12,12 +12,12 @@ type Props = {
   layout?: 'none' | 'product';
 };
 
-export const ComponentPreview = ({
+export default function ComponentPreview({
   children,
   gap = 1,
   align = 'center', // 無指定で stretch されると困るため
   layout,
-}: Props) => {
+}: Props) {
   return useMemo(() => {
     switch (layout) {
       default: {
@@ -37,7 +37,7 @@ export const ComponentPreview = ({
       }
     }
   }, [layout, align, children, gap]);
-};
+}
 
 const Wrapper = styled(WrapperBase)(
   ({ theme: { space } }) => css`

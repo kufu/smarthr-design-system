@@ -1,4 +1,4 @@
-import React, { type FC, type RefCallback, useState } from 'react';
+import React, { type RefCallback, useState } from 'react';
 import { themes } from 'prism-react-renderer';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
@@ -8,9 +8,9 @@ import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components
 import { CSS_COLOR } from '@/constants/style';
 import styles from './LiveContainer.module.css';
 import sharedStyles from './shared.module.css';
-import { ComponentPreview } from '../ComponentPreview';
+import ComponentPreview from '../ComponentPreview';
 import type { LiveContainerProps } from './';
-import { CopyButton } from './CopyButton';
+import CopyButton from './CopyButton';
 
 type Props = LiveContainerProps;
 
@@ -21,7 +21,7 @@ const transformCode = (snippet: string) => {
   return snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '');
 };
 
-export const LiveContainer: FC<Props> = ({ code, language, scope, noIframe, withStyled, gap, align, layout }) => {
+export default function LiveContainer({ code, language, scope, noIframe, withStyled, gap, align, layout }: Props) {
   const [iframeHeight, setIframeHeight] = useState(600); // デフォルトの高さを設定
 
   // iframeの高さをコンテンツに合わせて変更する
@@ -97,4 +97,4 @@ export const LiveContainer: FC<Props> = ({ code, language, scope, noIframe, with
       </LiveProvider>
     </ThemeProvider>
   );
-};
+}

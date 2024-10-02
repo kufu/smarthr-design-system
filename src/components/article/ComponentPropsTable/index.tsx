@@ -1,10 +1,9 @@
-import { type FC } from 'react';
 import { marked } from 'marked';
 import { StatusLabel, Text, WarningIcon } from 'smarthr-ui';
 import { getUIProps } from '@/lib/getUIData';
 import styles from './index.module.css';
 import { FragmentTitle } from '../FragmentTitle';
-import { TypeTag } from './TypeTag';
+import TypeTag from './TypeTag';
 
 export type ComponentPropsTableProps = {
   name: string;
@@ -12,7 +11,7 @@ export type ComponentPropsTableProps = {
   showTitle?: string;
 };
 
-export const ComponentPropsTable: FC<ComponentPropsTableProps> = ({ name, dirName, showTitle }) => {
+export default function ComponentPropsTable({ name, dirName, showTitle }: ComponentPropsTableProps) {
   // StoryのPropsを取得
   const data = getUIProps(name, dirName);
   if (!data) {
@@ -54,4 +53,4 @@ export const ComponentPropsTable: FC<ComponentPropsTableProps> = ({ name, dirNam
       </div>
     </>
   );
-};
+}
