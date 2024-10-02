@@ -85,7 +85,7 @@ export default function CodeBlock({
           </div>
         )}
         <LiveContainer
-          code={code}
+          code={codeString}
           language={language}
           withStyled={withStyled}
           noIframe={noIframe}
