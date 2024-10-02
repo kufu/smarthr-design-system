@@ -1,0 +1,33 @@
+---
+import { Section } from 'smarthr-ui';
+import { fetchComponentCaptures } from '@/lib/fetchComponentCaptures';
+import styles from './ComponentCaptures.module.css';
+
+const storyGroups = await fetchComponentCaptures();
+---
+
+<div>
+  {
+    storyGroups.map((group) => (
+      <Section className={styles.componentGroupSection} key={group.groupName}>
+        <h2 id={`component-${group.groupName}`}>{group.groupName}</h2>
+        <div class={styles.componentList}>
+          {group.storyKinds.map((storyKind) =>
+            storyKind.iframeUrl ? (
+              <li>
+                <a href={`/products/components/${storyKind.componentPath}/`}>
+                  <div>
+                    {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
+                    {/* eslint-disable-next-line smarthr/a11y-image-has-alt-attribute */}
+                    <img width={300} height={200} src={`/thumbnails/component-stories/${storyKind.thumbnailFileName}`} alt="" />
+                  </div>
+                  <p>{storyKind.displayName}</p>
+                </a>
+              </li>
+            ) : null,
+          )}
+        </div>
+      </Section>
+    ))
+  }
+</div>
