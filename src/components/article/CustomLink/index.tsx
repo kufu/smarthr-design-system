@@ -1,4 +1,4 @@
-import React, { type FC } from 'react';
+import React from 'react';
 import { FaExternalLinkAltIcon } from 'smarthr-ui';
 import styles from './index.module.css';
 
@@ -9,7 +9,7 @@ type Props = {
 
 // 外部リンクの場合に、自動的に`target="_blank"`を付与するためのコンポーネントです。
 
-export const CustomLink: FC<Props> = ({ children, href, ...props }) => {
+export default function CustomLink({ children, href, ...props }: Props) {
   const isExternal = href.match(/^https?:\/\/(?!smarthr\.design).*?$/) !== null;
   const attrs: { [key: string]: string } = isExternal
     ? Object.assign(
@@ -31,4 +31,4 @@ export const CustomLink: FC<Props> = ({ children, href, ...props }) => {
       {children}
     </a>
   );
-};
+}

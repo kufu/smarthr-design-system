@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import { CodeBlock } from '@/components/CodeBlock';
 
 type Props = {
@@ -21,7 +20,7 @@ type Props = {
 //   }
 // `
 
-export const DesignPatternCodeBlock: FC<Props> = ({ componentName, componentTitle, ...componentProps }) => {
+export default function DesignPatternCodeBlock({ componentName, componentTitle, ...componentProps }: Props) {
   // const { allMdx } = useStaticQuery<Queries.PatternCodeQuery>(query)
   // const patternCode = allMdx.nodes.find((node) => node.frontmatter?.patternName === componentName)?.fields?.patternCode || ''
   const patternCode = 'WIP';
@@ -39,4 +38,4 @@ export const DesignPatternCodeBlock: FC<Props> = ({ componentName, componentTitl
       {patternCode}
     </CodeBlock>
   );
-};
+}

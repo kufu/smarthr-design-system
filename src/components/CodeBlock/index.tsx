@@ -1,4 +1,4 @@
-import React, { type CSSProperties, type FC } from 'react';
+import React, { type CSSProperties } from 'react';
 import clsx from 'clsx';
 // TODO SmartHR な Dark テーマほしいな!!!
 import { Highlight, themes } from 'prism-react-renderer';
@@ -9,8 +9,8 @@ import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
 import { CSS_COLOR } from '@/constants/style';
 import styles from './index.module.css';
 import sharedStyles from './shared.module.css';
-import { CopyButton } from './CopyButton';
-import { LiveContainer } from './LiveContainer';
+import CopyButton from './CopyButton';
+import LiveContainer from './LiveContainer';
 
 type LiveProviderProps = React.ComponentProps<typeof LiveProvider>;
 
@@ -46,7 +46,7 @@ const theme = {
   },
 };
 
-export const CodeBlock: FC<Props> = ({
+export default function CodeBlock({
   children,
   className,
   editable = false,
@@ -62,7 +62,7 @@ export const CodeBlock: FC<Props> = ({
   code,
   language,
   ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
-}) => {
+}: Props) {
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
 
   const renderingPropsText = Object.keys(componentProps)
@@ -117,4 +117,4 @@ export const CodeBlock: FC<Props> = ({
       )}
     </Highlight>
   );
-};
+}

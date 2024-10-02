@@ -1,13 +1,14 @@
-import { type FC, useState } from 'react';
+import { useState } from 'react';
 import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui';
 import styles from './CopyButton.module.css';
 
-type CopyButtonProps = {
+type Props = {
   text: string;
 };
 
-export const CopyButton: FC<CopyButtonProps> = ({ text }) => {
+export default function CopyButton({ text }: Props) {
   const [copied, setCopied] = useState(false);
+
   return (
     <button
       className={styles.button}
@@ -24,4 +25,4 @@ export const CopyButton: FC<CopyButtonProps> = ({ text }) => {
       {copied ? <FaCheckIcon /> : <FaCopyIcon />}
     </button>
   );
-};
+}

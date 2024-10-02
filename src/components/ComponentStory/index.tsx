@@ -1,11 +1,11 @@
-import { type FC, useState } from 'react';
+import { useState } from 'react';
 import { AnchorButton, Cluster, FaExternalLinkAltIcon, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
 import type { UIStories } from '@/types/ui';
 import { UI_COMMIT_HASH, UI_VERSION } from '@/lib/getUIData';
 import styles from './index.module.css';
-import { CodeBlock } from '../CodeBlock';
-import { ResizableContainer } from '../ResizableContainer';
+import CodeBlock from '../CodeBlock';
+import ResizableContainer from '../ResizableContainer';
 
 type Props = {
   code: string;
@@ -14,7 +14,7 @@ type Props = {
 
 const STORYBOOK_BASE_URL = `https://${UI_COMMIT_HASH}--${SHRUI_CHROMATIC_ID}.chromatic.com/`;
 
-export const ComponentStory: FC<Props> = ({ code, stories }) => {
+export default function ComponentStory({ code, stories }: Props) {
   const [currentIframe, setCurrentIframe] = useState(stories.storyItems.at(0)?.iframeName ?? '');
   const [isLoadedIframe, setIsLoadedIframe] = useState(false);
 
@@ -99,4 +99,4 @@ export const ComponentStory: FC<Props> = ({ code, stories }) => {
       </div>
     </div>
   );
-};
+}

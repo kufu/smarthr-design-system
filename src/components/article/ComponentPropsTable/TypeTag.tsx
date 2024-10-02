@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import styles from './TypeTag.module.css';
 
 const TYPE_COLOR = {
@@ -25,13 +24,15 @@ type Props = {
   content: string;
 };
 
-export const TypeTag: FC<Props> = ({ content }) => (
-  <span
-    className={styles.typeTag}
-    style={{
-      backgroundColor: pickTypeColor(content),
-    }}
-  >
-    {content}
-  </span>
-);
+export default function TypeTag({ content }: Props) {
+  return (
+    <span
+      className={styles.typeTag}
+      style={{
+        backgroundColor: pickTypeColor(content),
+      }}
+    >
+      {content}
+    </span>
+  );
+}
