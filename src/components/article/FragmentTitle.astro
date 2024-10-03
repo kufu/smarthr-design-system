@@ -1,0 +1,52 @@
+---
+import { FaLinkIcon } from 'smarthr-ui';
+
+type HeadingTagTypes = 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+
+type Props = {
+  id: string;
+  tag?: HeadingTagTypes;
+};
+
+const { id, tag = 'h2' } = Astro.props;
+
+const Wrapper = tag as keyof JSX.IntrinsicElements;
+---
+
+<Wrapper className="wrapper" id={id}>
+  <a href={`#${id}`}>
+    <FaLinkIcon className="icon" />
+    <slot />
+  </a>
+</Wrapper>
+
+<style>
+  .wrapper {
+    position: relative;
+    scroll-margin-top: 80px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+
+        .icon {
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: -24px;
+    visibility: hidden;
+    font-size: var(--font-size-16);
+  }
+</style>

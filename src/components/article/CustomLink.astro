@@ -1,0 +1,26 @@
+---
+// 外部リンクの場合に、自動的に`target="_blank"`を付与するためのコンポーネントです。
+
+import { FaExternalLinkAltIcon } from 'smarthr-ui';
+
+type Props = {
+  href: string;
+} & JSX.IntrinsicElements['a'];
+
+const { href, ...props } = Astro.props;
+
+const isExternal = href.match(/^https?:\/\/(?!smarthr\.design).*?$/) !== null;
+---
+
+<a {...props} href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noreferrer' : undefined}>
+  <slot />
+  {isExternal && <FaExternalLinkAltIcon />}
+</a>
+
+<style>
+  a {
+    svg {
+      margin-inline: 0.25em;
+    }
+  }
+</style>
