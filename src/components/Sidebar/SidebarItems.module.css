@@ -1,0 +1,148 @@
+.sidebarNav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &[aria-hidden='true'] {
+      display: none;
+    }
+  }
+
+  >ul {
+    @media (max-width: var(--size-breakpoint-mobile-3)) {
+      margin-inline: 24px;
+    }
+  }
+
+  /* 第3階層目 */
+  & li li {
+    margin-block: 8px;
+    margin-left: 16px;
+  }
+
+  /* 第4階層目 */
+  & li li li {
+    margin-block: 8px;
+    margin-left: 16px;
+  }
+
+  & li a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    padding: 8px 32px 8px 8px;
+
+    @media (max-width: var(--size-breakpoint-mobile-3)) {
+      padding-inline: 16px;
+
+      +button {
+        width: 2rem;
+        padding-inline: 0;
+      }
+    }
+
+    &[aria-current='true'],
+    &[aria-current='true']:hover {
+      background-color: var(--color-dark-grey-1);
+      color: var(--color-white);
+
+      +button {
+        color: var(--color-white);
+      }
+    }
+
+    &:hover {
+      background-color: var(--color-divider);
+    }
+
+    &:focus-visible {
+      outline-offset: -1px;
+    }
+  }
+
+  & div:hover {
+    >a {
+      background-color: var(--color-divider);
+    }
+
+    >a[aria-current='true'] {
+      background-color: var(--color-dark-grey-1);
+      color: var(--color-white);
+
+      +button {
+        background-color: var(--color-dark-grey-1);
+        color: var(--color-white);
+
+        &:hover {
+          background-color: var(--colortext-grey);
+        }
+      }
+    }
+  }
+}
+
+.depth1Heading {
+  margin-block: 0 24px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+  color: var(--color-text-grey);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline-offset: -1px;
+    }
+  }
+}
+
+.depth2Item {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.33;
+  position: relative;
+}
+
+.depth3Item {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2;
+  position: relative;
+}
+
+.depth4Item {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.caretButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 2rem;
+  height: 100%;
+  top: 0;
+  right: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-grey);
+  cursor: pointer;
+  font-size: var(--font-size-14);
+
+  &:hover {
+    background-color: var(--color-light-grey-1);
+  }
+
+  >span {
+    top: 0;
+    /* -1pxだとフォーカスリングがずれて見えるため */
+  }
+
+  &[aria-expanded='true']>.smarthr-ui-Icon {
+    transform: rotate(180deg);
+  }
+}
