@@ -61,12 +61,6 @@ export const Header: FC<Props> = ({ isIndex = false }) => {
               {typeof window !== 'undefined' ? (
                 <Dialog
                   isOpen={isOpen}
-                  // 上下左右の余白は、smarthr-ui側がnumber型のみ対応しているので15pxの固定値にする
-                  // smarthr-uiへの対応などの経緯は：https://github.com/kufu/smarthr-design-system-issues/issues/1311
-                  top={15}
-                  right={15}
-                  left={15}
-                  bottom={15}
                   onPressEscape={() => {
                     setIsOpen(false)
                   }}
@@ -288,6 +282,9 @@ const StyledOpenButton = styled.button`
 `
 
 const Dialog = styled(shrDialog)`
+  position: absolute;
+  inset: 15px;
+
   > div {
     height: 100%;
   }
