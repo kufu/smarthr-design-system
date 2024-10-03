@@ -93,9 +93,7 @@ export default function ComponentStory({ code, stories }: Props) {
       </ResizableContainer>
 
       <div className={styles.codeWrapper}>
-        <CodeBlock language="tsx" isStorybook>
-          {code}
-        </CodeBlock>
+        <CodeBlock code={code} language="tsx" isStorybook />
       </div>
     </div>
   );
