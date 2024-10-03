@@ -4,16 +4,16 @@ description: ''
 order: 3
 ---
 
-import { PageIndex } from '@Components/article/PageIndex'
+import PageIndex from '@/components/article/PageIndex/PageIndex.astro'
 
-<PageIndex path="/operational-guideline/page-template/" excludes={[]} heading="h2">
-  <Description name="style-template">
+<PageIndex basePath="/operational-guideline/page-template/">
+  <div slot="style-template">
     ページ（mdxファイル）のスタイル見本です。
-  </Description>
-  <Description name="component-template">
+  </div>
+  <div slot="component-template">
     [プロダクトのコンポーネント](/products/components/)カテゴリのページを書く際のテンプレートです。
-  </Description>
-  <Description name="design-patterns-template">
+  </div>
+  <div slot="design-patterns-template">
     [プロダクトのデザインパターン](/products/design-patterns/)カテゴリのページを書く際のテンプレートです。
-  </Description>
+  </div>
 </PageIndex>
