@@ -1,0 +1,38 @@
+---
+import { getSubPageCollection } from '@/lib/getSubPageCollection';
+import styles from './PageIndex.module.css';
+import { basename, join } from 'node:path';
+
+type Props = {
+  basePath: string;
+  excludePaths?: string[];
+};
+
+const { basePath, excludePaths } = Astro.props;
+
+const subPages = await getSubPageCollection(basePath, excludePaths);
+
+// order昇順でソート
+subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.order : -1));
+---
+
+<div class={styles.wrapper}>
+  <div class={styles.pageList}>
+    {
+      subPages.map(async (page) => {
+        const pageFileName = basename(page.slug);
+        const hasSlot = Astro.slots.has(pageFileName);
+        const description = hasSlot ? await Astro.slots.render(pageFileName) : page.data.description;
+
+        return (
+          <>
+            <h2 class={styles.pageTitleHeadings}>
+              <a href={join('/', page.slug)}>{page.data.title}</a>
+            </h2>
+            {hasSlot ? <Fragment set:html={description} /> : <p>{description}</p>}
+          </>
+        );
+      })
+    }
+  </div>
+</div>

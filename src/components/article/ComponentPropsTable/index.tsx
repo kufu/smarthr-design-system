@@ -2,7 +2,7 @@ import { marked } from 'marked';
 import { StatusLabel, Text, WarningIcon } from 'smarthr-ui';
 import { getUIProps } from '@/lib/getUIData';
 import styles from './index.module.css';
-import { FragmentTitle } from '../FragmentTitle';
+import FragmentTitle from '../FragmentTitle';
 import TypeTag from './TypeTag';
 
 export type ComponentPropsTableProps = {
