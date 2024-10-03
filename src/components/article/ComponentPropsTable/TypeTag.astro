@@ -1,5 +1,4 @@
-import styles from './TypeTag.module.css';
-
+---
 const TYPE_COLOR = {
   string: '#1376a0',
   number: '#378445',
@@ -24,15 +23,22 @@ type Props = {
   content: string;
 };
 
-export default function TypeTag({ content }: Props) {
-  return (
-    <span
-      className={styles.typeTag}
-      style={{
-        backgroundColor: pickTypeColor(content),
-      }}
-    >
-      {content}
-    </span>
-  );
-}
+const { content } = Astro.props;
+---
+
+<span
+  style={{
+    backgroundColor: pickTypeColor(content),
+  }}
+>
+  {content}
+</span>
+
+<style>
+  span {
+    font-size: var(--font-size-14);
+    color: var(--color-white);
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
+</style>

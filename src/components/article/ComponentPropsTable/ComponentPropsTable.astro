@@ -1,0 +1,97 @@
+---
+import { marked } from 'marked';
+import { StatusLabel, Text, WarningIcon } from 'smarthr-ui';
+import { getUIProps } from '@/lib/getUIData';
+import FragmentTitle from '../FragmentTitle.astro';
+import TypeTag from './TypeTag.astro';
+
+type Props = {
+  name: string;
+  dirName?: string;
+  showTitle?: string;
+};
+
+const { name, dirName, showTitle } = Astro.props;
+
+// StoryのPropsを取得
+const data = getUIProps(name, dirName);
+if (!data) {
+  throw new Error(`StoryのPropsが見つかりませんでした: name=${name} dirName=${dirName}`);
+}
+
+const { displayName, props: propsData } = data;
+
+const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`;
+---
+
+{
+  propsData === null || propsData.length === 0 ? (
+    <Text as={'p'}>Propsは設定されていません。</Text>
+  ) : (
+    <>
+      {showTitle && (
+        <FragmentTitle tag="h3" id={fragmentId(displayName)}>
+          {displayName} props
+        </FragmentTitle>
+      )}
+      <div class="wrapper">
+        {propsData.map((prop) => (
+          <div class="propContent">
+            <div class="propName">
+              <span>{prop?.name}</span>
+              {prop.required && <StatusLabel type="red">必須</StatusLabel>}
+              {prop.description.includes('@deprecated') && <WarningIcon alt="非推奨" />}
+            </div>
+            <div class="propTypes">
+              {prop.type.name === 'enum' ? (
+                prop.type.value && prop.type.value.map(({ value }) => <TypeTag content={value ?? ''} />)
+              ) : (
+                <TypeTag content={prop.type.name} />
+              )}
+            </div>
+            <div class="propDescription" set:html={marked.parse(prop.description ?? '')} />
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+<style>
+  .wrapper {
+    border: var(--border-shorthand);
+    margin-top: 20px;
+  }
+
+  .propContent {
+    display: grid;
+    gap: 16px;
+    padding: 16px 24px;
+
+    &:not(:last-child) {
+      border-bottom: var(--border-shorthand);
+    }
+  }
+
+  .propName {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+
+    > span {
+      margin-right: 8px;
+    }
+  }
+
+  .propTypes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .propDescription {
+    && p {
+      margin-block-start: 0;
+    }
+  }
+</style>
