@@ -1,7 +1,6 @@
 ---
 import { Section } from 'smarthr-ui';
 import { fetchComponentCaptures } from '@/lib/fetchComponentCaptures';
-import styles from './ComponentCaptures.module.css';
 
 const storyGroups = await fetchComponentCaptures();
 ---
@@ -9,9 +8,9 @@ const storyGroups = await fetchComponentCaptures();
 <div>
   {
     storyGroups.map((group) => (
-      <Section className={styles.componentGroupSection} key={group.groupName}>
+      <Section className="componentGroupSection" key={group.groupName}>
         <h2 id={`component-${group.groupName}`}>{group.groupName}</h2>
-        <div class={styles.componentList}>
+        <div class="componentList">
           {group.storyKinds.map((storyKind) =>
             storyKind.iframeUrl ? (
               <li>
@@ -31,3 +30,39 @@ const storyGroups = await fetchComponentCaptures();
     ))
   }
 </div>
+
+<style>
+  .componentGroupSection {
+    && {
+      > h2 {
+        margin-top: 64px;
+        font-size: var(--font-size-20);
+      }
+    }
+  }
+
+  .componentList {
+    && {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 8px;
+      list-style: none;
+      margin-block-start: 16px;
+      padding: 0;
+
+      img {
+        display: block;
+      }
+
+      div {
+        margin: 0;
+        padding: 0;
+        border: var(--border-shorthand);
+      }
+
+      p {
+        margin-block-start: 0;
+      }
+    }
+  }
+</style>
