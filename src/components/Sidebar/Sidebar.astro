@@ -1,6 +1,7 @@
 ---
 import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui';
-import SidebarItems, { type SidebarItem } from './SidebarItems';
+import SidebarItems from './SidebarItems.astro';
+import type { SidebarItem } from './type';
 
 type Props = {
   path: `/${string}`;
@@ -12,7 +13,7 @@ const { path, nestedSidebarItems } = Astro.props;
 
 {/* PC表示 */}
 <div class="navWrapper">
-  <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} showDepth1Item client:load />
+  <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} showDepth1Item />
 </div>
 
 {/* SP表示 */}
@@ -23,7 +24,7 @@ const { path, nestedSidebarItems } = Astro.props;
         <AccordionPanelItem name="spSidebar">
           <AccordionPanelTrigger>{nestedSidebarItems[0].title}</AccordionPanelTrigger>
           <AccordionPanelContent>
-            <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} client:load />
+            <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} />
           </AccordionPanelContent>
         </AccordionPanelItem>
       </AccordionPanel>

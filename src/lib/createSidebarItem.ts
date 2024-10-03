@@ -1,4 +1,4 @@
-import type { SidebarItem } from '@/components/Sidebar/SidebarItems';
+import type { SidebarItem } from '@/components/Sidebar/type';
 import type { CollectionEntry } from 'astro:content';
 import { getSubPageCollection } from './getSubPageCollection';
 
