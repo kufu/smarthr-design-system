@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import type { StoryIndex } from '@storybook/types';
 import packageInfo from 'smarthr-ui/package.json';
 import type { PropsData, UIData, UIProps, UIStories } from '@/types/ui';
@@ -159,7 +158,7 @@ async function fetchStories(commitHash: string): Promise<Record<string, UIStorie
  * @param data 保存するデータ
  */
 function save(data: UIData) {
-  const cacheDir = fileURLToPath(import.meta.resolve('../src/cache'));
+  const cacheDir = path.resolve(import.meta.dirname, '../src/cache');
 
   // cacheディレクトリが無ければ作成
   if (!fs.existsSync(cacheDir)) {

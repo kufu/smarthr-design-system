@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "cache:ui-data": "tsx ./scripts/fetch-ui-data.ts"
+    "cache:ui-data": "tsx ./scripts/fetch-ui-data.ts",
+    "generate:thumbnails": "tsx ./scripts/component-thumbnails/componentThumbnails.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",

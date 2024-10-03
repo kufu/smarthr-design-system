@@ -7,7 +7,7 @@
 
 ```bash
 $ cd scripts/component-thumbnails
-$ yarn install
+$ pnpm install
 ```
 
 ## サムネイルの画像生成について
@@ -17,7 +17,7 @@ $ yarn install
 
 ```bash
 # ルートディレクトリ上で
-$ yarn generate:thumbnails
+$ pnpm generate:thumbnails
 ```
 
 また、独自のGatsbyプラグインである`/plugins/gatsby-source-component-captures/fetchComponentCaptures`の一部のfetch処理を共有で使用しており、
