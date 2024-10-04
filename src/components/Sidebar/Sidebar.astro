@@ -1,5 +1,5 @@
 ---
-import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui';
+import Accordion from './Accordion';
 import SidebarItems from './SidebarItems.astro';
 import type { SidebarItem } from './type';
 
@@ -16,18 +16,13 @@ const { path, nestedSidebarItems } = Astro.props;
   <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} showDepth1Item />
 </div>
 
-{/* SP表示 */}
 {
-  nestedSidebarItems[0]?.children.length > 0 && (
+  // SP表示
+  nestedSidebarItems[0]?.children?.length > 0 && (
     <div class="spSidebar">
-      <AccordionPanel iconPosition="right">
-        <AccordionPanelItem name="spSidebar">
-          <AccordionPanelTrigger>{nestedSidebarItems[0].title}</AccordionPanelTrigger>
-          <AccordionPanelContent>
-            <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} />
-          </AccordionPanelContent>
-        </AccordionPanelItem>
-      </AccordionPanel>
+      <Accordion title={nestedSidebarItems[0].title} client:load>
+        <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} />
+      </Accordion>
     </div>
   )
 }
@@ -50,14 +45,13 @@ const { path, nestedSidebarItems } = Astro.props;
       border-bottom: 1px solid var(--color-light-grey-1);
     }
 
-    button {
+    :global(button) {
       font-family: inherit;
       color: inherit;
       padding-inline: 24px;
     }
 
-    /* stylelint-disable-next-line */
-    #spSidebar-content.entered {
+    :global(#spSidebar-content.entered) {
       /* アコーディオンが開いた時にsmarthr-uiが100vhを指定するが、100vh以上になりはみ出る場合があるので上書き */
       max-height: none;
     }
