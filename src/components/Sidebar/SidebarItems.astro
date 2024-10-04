@@ -35,7 +35,7 @@ const { path, nestedSidebarItems, showDepth1Item = false } = Astro.props;
 
 <style lang="scss">
   .sidebarNav {
-    ul {
+    :global(ul) {
       margin: 0;
       padding: 0;
       list-style: none;
@@ -45,25 +45,25 @@ const { path, nestedSidebarItems, showDepth1Item = false } = Astro.props;
       }
     }
 
-    > ul {
+    > :global(ul) {
       @include mobile {
         margin-inline: 24px;
       }
     }
 
     /* 第3階層目 */
-    & li li {
+    & :global(li) :global(li) {
       margin-block: 8px;
       margin-left: 16px;
     }
 
     /* 第4階層目 */
-    & li li li {
+    & :global(li) :global(li) :global(li) {
       margin-block: 8px;
       margin-left: 16px;
     }
 
-    & li a {
+    & :global(li) :global(a) {
       display: block;
       color: inherit;
       text-decoration: none;
@@ -85,7 +85,7 @@ const { path, nestedSidebarItems, showDepth1Item = false } = Astro.props;
         color: var(--color-white);
 
         /* CaretButtonがアイランドのため astro-island でラップされる */
-        + astro-island > button {
+        + :global(astro-island) > :global(button) {
           color: var(--color-white);
         }
       }
@@ -99,17 +99,17 @@ const { path, nestedSidebarItems, showDepth1Item = false } = Astro.props;
       }
     }
 
-    & div:hover {
-      > a {
+    & :global(div):hover {
+      > :global(a) {
         background-color: var(--color-divider);
       }
 
-      > a[aria-current='true'] {
+      > :global(a)[aria-current='true'] {
         background-color: var(--color-dark-grey-1);
         color: var(--color-white);
 
         /* CaretButtonがアイランドのため astro-island でラップされる */
-        + astro-island > button {
+        + :global(astro-island) > :global(button) {
           background-color: var(--color-dark-grey-1);
           color: var(--color-white);
 
@@ -128,7 +128,7 @@ const { path, nestedSidebarItems, showDepth1Item = false } = Astro.props;
     line-height: 1.71;
     color: var(--color-text-grey);
 
-    a {
+    :global(a) {
       color: inherit;
       text-decoration: none;
 
