@@ -73,7 +73,7 @@ const { path, nestedSidebarItems, showDepth1Item = false } = Astro.props;
         padding-inline: 16px;
 
         /* CaretButtonがアイランドのため astro-island でラップされる */
-        + astro-island > button {
+        + :global(astro-island) > :global(button) {
           width: 2rem;
           padding-inline: 0;
         }
