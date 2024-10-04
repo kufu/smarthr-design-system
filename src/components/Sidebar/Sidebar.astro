@@ -32,12 +32,12 @@ const { path, nestedSidebarItems } = Astro.props;
   )
 }
 
-<style>
+<style lang="scss">
   .navWrapper {
     padding-block: 120px 48px;
     overflow-y: auto;
 
-    @media (max-width: var(--size-breakpoint-mobile-3)) {
+    @include mobile {
       display: none;
     }
   }
@@ -45,7 +45,7 @@ const { path, nestedSidebarItems } = Astro.props;
   .spSidebar {
     display: none;
 
-    @media (max-width: var(--size-breakpoint-mobile-3)) {
+    @include mobile {
       display: block;
       border-bottom: 1px solid var(--color-light-grey-1);
     }

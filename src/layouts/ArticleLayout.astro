@@ -29,7 +29,7 @@ const { nestedSidebarItems } = await createSidebarItem(slug);
   </div>
 </Layout>
 
-<style>
+<style lang="scss">
   .wrapper {
     display: flex;
     flex-direction: column;
@@ -49,11 +49,11 @@ const { nestedSidebarItems } = await createSidebarItem(slug);
     display: grid;
     grid-template: 'sidebar article index' auto / 1fr minmax(auto, 712px) 1fr;
 
-    @media (max-width: var(--size-breakpoint-pc-1)) {
+    @include pc {
       grid-template: 'sidebar article .' auto / 1fr minmax(auto, 712px) minmax(40px, 1fr);
     }
 
-    @media (max-width: var(--size-breakpoint-mobile-3)) {
+    @include mobile {
       grid-template:
         'sidebar sidebar sidebar'
         'index index index'
@@ -81,7 +81,7 @@ const { nestedSidebarItems } = await createSidebarItem(slug);
       grid-column: nav;
     }
 
-    @media (max-width: var(--size-breakpoint-mobile-3)) {
+    @include mobile {
       display: block;
       position: static;
       height: auto;
@@ -96,7 +96,7 @@ const { nestedSidebarItems } = await createSidebarItem(slug);
     padding-top: 112px;
     padding-bottom: 240px;
 
-    @media (max-width: var(--size-breakpoint-mobile-3)) {
+    @include mobile {
       padding-bottom: 112px;
     }
   }
