@@ -19,7 +19,7 @@ const config = {
     '^@/component/(.*)$',
     '^@/lib/(.*)$',
     '^@/styles/(.*)$',
-    'module.css$',
+    'module.scss$',
     '^[./]',
   ],
   importOrderSeparation: false,

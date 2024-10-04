@@ -3,7 +3,7 @@ import { AnchorButton, Cluster, FaExternalLinkAltIcon, Loader, TabBar, TabItem, 
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
 import type { UIStories } from '@/types/ui';
 import { UI_COMMIT_HASH, UI_VERSION } from '@/lib/getUIData';
-import styles from './index.module.css';
+import styles from './index.module.scss';
 import CodeBlock from '../CodeBlock';
 import ResizableContainer from '../ResizableContainer';
 

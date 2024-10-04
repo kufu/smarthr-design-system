@@ -1,0 +1,17 @@
+/*
+* モバイルのみに適応 (CSS_SIZE.BREAKPOINT_MOBILE_3)
+*/
+@mixin mobile {
+  @media (max-width: 47.9375em) {
+    @content;
+  }
+}
+
+/*
+* PCのみに適応 (CSS_SIZE.BREAKPOINT_PC_1)
+*/
+@mixin pc {
+  @media (min-width: 69.625em) {
+    @content;
+  }
+}

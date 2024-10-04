@@ -1,6 +1,6 @@
 ---
 import 'smarthr-ui/smarthr-ui.css';
-import '../styles/global.css';
+import '../styles/global.scss';
 import Head, { type Props as HeadProps } from '@/components/Head.astro';
 import { defaultColor, defaultLeading } from 'smarthr-ui';
 
@@ -17,11 +17,10 @@ type Props = HeadProps;
 
 <style
   is:global
+  lang="scss"
   define:vars={{
     leadingRelaxed: defaultLeading.RELAXED,
-    colorTextBlack: defaultColor.TEXT_BLACK,
     colorTextLink: defaultColor.TEXT_LINK,
-    colorBorder: defaultColor.BORDER,
   }}
 >
   body {
@@ -32,7 +31,7 @@ type Props = HeadProps;
       YuGothic,
       sans-serif;
     line-height: var(--leadingRelaxed);
-    color: var(--colorTextBlack);
+    color: var(--color-text-black);
     overflow-wrap: break-word;
   }
 
@@ -51,7 +50,7 @@ type Props = HeadProps;
   }
 
   table tr {
-    border-bottom: 1px solid var(--colorBorder);
+    border-bottom: var(--border-shorthand);
   }
 
   table th,

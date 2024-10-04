@@ -1,0 +1,140 @@
+---
+import type { SidebarItem } from './type';
+import { Nav } from 'smarthr-ui';
+import RecursiveSidebarItem from './RecursiveSidebarItem.astro';
+
+export type Props = {
+  path: `/${string}`;
+  nestedSidebarItems: SidebarItem[];
+  showDepth1Item?: boolean;
+};
+
+const { path, nestedSidebarItems, showDepth1Item = false } = Astro.props;
+---
+
+<Nav className="sidebarNav">
+  {
+    nestedSidebarItems.map((depth1Item) => (
+      <Fragment key={depth1Item.link}>
+        {/* 第1階層 */}
+        {showDepth1Item && (
+          <h2 class="depth1Heading">
+            <a href={depth1Item.link} aria-current={depth1Item.link === path}>
+              {depth1Item.title}
+            </a>
+          </h2>
+        )}
+        {/* 第2～4階層 */}
+        <ul>
+          <RecursiveSidebarItem currentPath={path} items={depth1Item.children} depth={2} parentIndex={null} />
+        </ul>
+      </Fragment>
+    ))
+  }
+</Nav>
+
+<style lang="scss">
+  .sidebarNav {
+    :global(ul) {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      &[aria-hidden='true'] {
+        display: none;
+      }
+    }
+
+    > :global(ul) {
+      @include mobile {
+        margin-inline: 24px;
+      }
+    }
+
+    /* 第3階層目 */
+    & :global(li) :global(li) {
+      margin-block: 8px;
+      margin-left: 16px;
+    }
+
+    /* 第4階層目 */
+    & :global(li) :global(li) :global(li) {
+      margin-block: 8px;
+      margin-left: 16px;
+    }
+
+    & :global(li) :global(a) {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      padding: 8px 32px 8px 8px;
+
+      @include mobile {
+        padding-inline: 16px;
+
+        /* CaretButtonがアイランドのため astro-island でラップされる */
+        + :global(astro-island) > :global(button) {
+          width: 2rem;
+          padding-inline: 0;
+        }
+      }
+
+      &[aria-current='true'],
+      &[aria-current='true']:hover {
+        background-color: var(--color-dark-grey-1);
+        color: var(--color-white);
+
+        /* CaretButtonがアイランドのため astro-island でラップされる */
+        + :global(astro-island) > :global(button) {
+          color: var(--color-white);
+        }
+      }
+
+      &:hover {
+        background-color: var(--color-divider);
+      }
+
+      &:focus-visible {
+        outline-offset: -1px;
+      }
+    }
+
+    & :global(div):hover {
+      > :global(a) {
+        background-color: var(--color-divider);
+      }
+
+      > :global(a)[aria-current='true'] {
+        background-color: var(--color-dark-grey-1);
+        color: var(--color-white);
+
+        /* CaretButtonがアイランドのため astro-island でラップされる */
+        + :global(astro-island) > :global(button) {
+          background-color: var(--color-dark-grey-1);
+          color: var(--color-white);
+
+          &:hover {
+            background-color: var(--color-text-grey);
+          }
+        }
+      }
+    }
+  }
+
+  .depth1Heading {
+    margin-block: 0 24px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.71;
+    color: var(--color-text-grey);
+
+    :global(a) {
+      color: inherit;
+      text-decoration: none;
+
+      &:focus-visible {
+        outline-offset: -1px;
+      }
+    }
+  }
+</style>

@@ -13,4 +13,18 @@ export default defineConfig({
     syntaxHighlight: false,
     remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // Deprecation [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+          // を出ないようにするために sass-embedded を指定
+          // 参考: https://retrorocket.biz/archives/fix-scss-deprecate-with-astro-v4
+          api: 'modern-compiler',
+          // media query での出し分けのための mixin をグローバルで使えるように
+          additionalData: `@use "./src/styles/mixin.scss" as *;`,
+        },
+      },
+    },
+  },
 });

@@ -7,8 +7,8 @@ import * as ui from 'smarthr-ui';
 import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
 import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
 import { CSS_COLOR } from '@/constants/style';
-import styles from './index.module.css';
-import sharedStyles from './shared.module.css';
+import styles from './index.module.scss';
+import sharedStyles from './shared.module.scss';
 import CopyButton from './CopyButton';
 import LiveContainer from './LiveContainer';
 
