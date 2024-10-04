@@ -1,5 +1,5 @@
 import { FaChevronDownIcon } from 'smarthr-ui';
-import styles from './CaretButton.module.css';
+import styles from './CaretButton.module.scss';
 import type { SidebarItem } from './type';
 
 type Props = {

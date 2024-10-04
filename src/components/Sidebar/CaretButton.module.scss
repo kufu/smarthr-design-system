@@ -17,12 +17,12 @@
     background-color: var(--color-light-grey-1);
   }
 
-  >span {
+  > span {
     top: 0;
     /* -1pxだとフォーカスリングがずれて見えるため */
   }
 
-  &[aria-expanded='true']> :global(.smarthr-ui-Icon) {
+  &[aria-expanded='true'] > :global(.smarthr-ui-Icon) {
     transform: rotate(180deg);
   }
 }
