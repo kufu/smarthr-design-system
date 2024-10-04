@@ -13,4 +13,14 @@ export default defineConfig({
     syntaxHighlight: false,
     remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        // media query での出し分けのための mixin をグローバルで使えるように
+        scss: {
+          additionalData: `@use "./src/styles/mixin.scss" as *;`,
+        },
+      },
+    },
+  },
 });
