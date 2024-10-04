@@ -3902,6 +3902,11 @@ a {
   background-color: rgb(214 211 208 / var(--tw-bg-opacity))
 }
 
+.shr-peer[aria-invalid] ~ .peer-\[\[aria-invalid\]\]\:shr-border-danger {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity))
+}
+
 .has-\[\:disabled\]\:shr-cursor-default:has(:disabled) {
   cursor: default
 }
@@ -3912,6 +3917,11 @@ a {
 
 .has-\[\:disabled\]\:shr-border-\[theme\(borderColor\.default\)\]:has(:disabled) {
   border-color: #d6d3d0
+}
+
+.has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]) {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity))
 }
 
 .has-\[\:checked\]\:shr-bg-main:has(:checked) {
@@ -4114,6 +4124,11 @@ a {
 
 .aria-\[sort\]\:shr-cursor-pointer[aria-sort] {
   cursor: pointer
+}
+
+.aria-\[invalid\]\:shr-border-danger[aria-invalid] {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity))
 }
 
 .hover\:aria-\[sort\]\:shr-bg-head-darken[aria-sort]:hover {
@@ -4426,11 +4441,6 @@ a {
 
 .\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\] {
   border-color: #f8f7f6
-}
-
-.\[\&\&\&\]\:shr-border-danger.\[\&\&\&\]\:shr-border-danger.\[\&\&\&\]\:shr-border-danger {
-  --tw-border-opacity: 1;
-  border-color: rgb(224 30 90 / var(--tw-border-opacity))
 }
 
 .\[\&\&\&\]\:shr-border-default\/50.\[\&\&\&\]\:shr-border-default\/50.\[\&\&\&\]\:shr-border-default\/50 {
@@ -4790,11 +4800,6 @@ a {
 
 .\[\&\]\:shr-rounded-em {
   border-radius: 1em
-}
-
-.\[\&\]\:shr-border-danger {
-  --tw-border-opacity: 1;
-  border-color: rgb(224 30 90 / var(--tw-border-opacity))
 }
 
 .\[\&\]\:shr-bg-transparent {
