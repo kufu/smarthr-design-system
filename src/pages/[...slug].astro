@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 
-const { Content, headings: h } = await article.render();
+const { Content } = await article.render();
 
 const headings = await getHeadings(Content);
 
