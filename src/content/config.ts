@@ -4,6 +4,7 @@ export const articleSchema = z.object({
   title: z.string(),
   description: z.string(),
   robotsNoIndex: z.boolean().default(false),
+  ignoreH3Nav: z.boolean().default(false),
   order: z.number().optional(),
 });
 
