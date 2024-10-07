@@ -11,7 +11,7 @@
 * PCのみに適応 (CSS_SIZE.BREAKPOINT_PC_1)
 */
 @mixin pc {
-  @media (min-width: 69.625em) {
+  @media (max-width: 69.625em) {
     @content;
   }
 }

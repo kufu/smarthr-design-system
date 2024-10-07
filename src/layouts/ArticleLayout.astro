@@ -1,27 +1,36 @@
 ---
+import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
-import { type Props as HeadProps } from '@/components/Head.astro';
 import { Article } from 'smarthr-ui';
 import Layout from '@/layouts/Layout.astro';
 import Sidebar from '@/components/Sidebar/Sidebar.astro';
+import IndexNav from '@/components/IndexNav';
 import { createSidebarItem } from '@/lib/createSidebarItem';
 
-type Props = Pick<CollectionEntry<'articles'>, 'slug'> & HeadProps;
+type Props = {
+  headings: MarkdownHeading[];
+} & Pick<CollectionEntry<'articles'>, 'slug' | 'data'>;
 
-const { slug } = Astro.props;
+// 記事ページ内の要素にアクセスするためのID
+const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
+
+const { slug, data, headings } = Astro.props;
 
 const { nestedSidebarItems } = await createSidebarItem(slug);
 ---
 
-<Layout {...Astro.props}>
+<Layout title={data.title} ogTitle={data.title} description={data.description}>
   <div class="wrapper">
     <main class="main">
       <div class="mainSidebar">
         <Sidebar path={`/${slug}`} nestedSidebarItems={nestedSidebarItems} />
       </div>
+      <div class="mainIndexWrapper">
+        <IndexNav targetId={MDX_STYLE_WRAPPER_ID} headings={headings} ignoreH3Nav={data.ignoreH3Nav} client:load />
+      </div>
       <Article className="article">
-        <h1 class="articleTitle">{Astro.props.title}</h1>
-        <div class="mdxStyleWrapper">
+        <h1 class="articleTitle">{data.title}</h1>
+        <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
           <slot />
         </div>
       </Article>
@@ -87,6 +96,34 @@ const { nestedSidebarItems } = await createSidebarItem(slug);
       height: auto;
       margin: 0;
       border-right: 0;
+    }
+  }
+
+  .mainIndexWrapper {
+    grid-area: index;
+    display: grid;
+    grid-template-columns: [nav] 232px [space] minmax(40px, 1fr);
+    margin-left: 40px;
+
+    /* 位置固定用のスタイル */
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+
+    & > :global(astro-island > *) {
+      grid-column: nav;
+    }
+
+    @include pc {
+      display: none;
+    }
+
+    @include mobile {
+      display: block;
+      position: static;
+      margin: 0;
+      height: auto;
     }
   }
 
