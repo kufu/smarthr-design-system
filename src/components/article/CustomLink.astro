@@ -5,7 +5,7 @@ import { FaExternalLinkAltIcon } from 'smarthr-ui';
 
 type Props = {
   href: string;
-} & JSX.IntrinsicElements['a'];
+} & astroHTML.JSX.IntrinsicElements['a'];
 
 const { href, ...props } = Astro.props;
 
