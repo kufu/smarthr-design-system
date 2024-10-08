@@ -3,9 +3,10 @@ import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import { Article } from 'smarthr-ui';
 import Layout from '@/layouts/Layout.astro';
-import Sidebar from '@/components/Sidebar/Sidebar.astro';
 import IndexNav from '@/components/IndexNav';
 import Footer from '@/components/Footer.astro';
+import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
+import Sidebar from '@/components/Sidebar/Sidebar.astro';
 import { createSidebarItem } from '@/lib/createSidebarItem';
 
 type Props = {
@@ -17,7 +18,14 @@ const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
 
 const { slug, data, headings } = Astro.props;
 
-const { nestedSidebarItems } = await createSidebarItem(slug);
+const { flatSidebarItems, nestedSidebarItems } = await createSidebarItem(slug);
+
+const currentPageIndex = flatSidebarItems.findIndex(({ link }) => link === `/${slug}`);
+const sidebarItemLength = flatSidebarItems.length - 1;
+
+// 前・次のページの情報
+const prevSidebarItem = currentPageIndex > 0 ? (flatSidebarItems.at(currentPageIndex - 1) ?? null) : null;
+const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems.at(currentPageIndex + 1) ?? null) : null;
 ---
 
 <Layout title={data.title} ogTitle={data.title} description={data.description}>
@@ -34,6 +42,34 @@ const { nestedSidebarItems } = await createSidebarItem(slug);
         <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
           <slot />
         </div>
+        <ul class="articleLinks">
+          {
+            prevSidebarItem !== null && (
+              <li class="prevArticleLinkWrapper">
+                <RoundedBoxLink
+                  path={prevSidebarItem.link}
+                  label="前へ"
+                  title={prevSidebarItem.title}
+                  align="left"
+                  caretPosition="left"
+                />
+              </li>
+            )
+          }
+          {
+            nextSidebarItem !== null && (
+              <li class="nextArticleLinkWrapper">
+                <RoundedBoxLink
+                  path={nextSidebarItem.link}
+                  label="次へ"
+                  title={nextSidebarItem.title}
+                  align="right"
+                  caretPosition="right"
+                />
+              </li>
+            )
+          }
+        </ul>
       </Article>
     </main>
 
@@ -145,6 +181,30 @@ const { nestedSidebarItems } = await createSidebarItem(slug);
     margin: 0;
     font-size: var(--font-size-52);
     line-height: 1.32;
+  }
+
+  .articleLinks {
+    list-style: none;
+    margin-block: 5rem;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template: 'left right' 1fr/1fr 1fr;
+
+    @include mobile {
+      grid-template:
+        'left' 1fr
+        'right' 1fr
+        /100%;
+    }
+  }
+
+  .prevArticleLinkWrapper {
+    grid-area: left;
+  }
+
+  .nextArticleLinkWrapper {
+    grid-area: right;
   }
 
   .mdxStyleWrapper {
