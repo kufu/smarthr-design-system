@@ -1,5 +1,5 @@
 import { CLOUDINARY_CLOUD_NAME } from '@/constants/application';
-import { SITE_OG_IMAGE, SITE_URL } from '@/constants/site';
+import { SITE_OGIMAGE, SITE_URL } from '@/constants/site';
 
 /**
  * OGP画像のURLを生成する
@@ -9,7 +9,7 @@ import { SITE_OG_IMAGE, SITE_URL } from '@/constants/site';
 export function createOgImageUrl(ogTitle?: string): string {
   // 指定がない場合はデフォルトのOGP画像を返す
   if (!ogTitle) {
-    return new URL(SITE_OG_IMAGE, SITE_URL).toString();
+    return new URL(SITE_OGIMAGE, SITE_URL).toString();
   }
 
   const cloudinaryParams = `w_1200,c_fit,fl_relative,l_text:sds:notosansbold.otf_72_bold_normal_center:${ogTitle},w_1100/fl_layer_apply,g_center,y_-0.05/sds/sds_ogp_base.jpg`;
