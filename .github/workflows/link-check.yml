@@ -1,0 +1,62 @@
+# 週1回リンクチェッカーを実行します。
+
+name: Link check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 1' # Monday, 2am(UTC+0)
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Setup pnpm
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      # Setup Node.js
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Change directory
+        run: cd ./scripts/content-checker
+
+      # Install packages
+      - name: Install dependencies
+        run: pnpm --frozen-lockfile
+
+      # リンクチェックの実行
+      - id: linkCheck
+        name: Execute link checker
+        # リンクエラーが見つかるとスクリプトはexit(1)で終了するが、このactionは中止しない。
+        # linkChecker.tsを実行し、`console.log()`と`console.error()`の内容をファイルに出力する
+        run: |
+          pnpm tsx linkChecker.ts 1>../../output.txt 2>../../errors.txt || true
+          echo errors=`cat ../../errors.txt` >> $GITHUB_OUTPUT
+
+      - name: Output log to summary
+        # 実行結果をActionsのサマリーに出力
+        run: |
+          today=$(date "+%Y-%m-%d")
+          echo "### Link check ${today}" >> $GITHUB_STEP_SUMMARY
+          while read output; do
+            echo "$output" >> $GITHUB_STEP_SUMMARY
+          done <output.txt
+
+      - name: Output errors to summary
+        # 前のstepでエラーがあった場合はエラーも出力
+        if: steps.linkCheck.outputs.errors != ''
+        run: |
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          while read error; do
+            echo "$error" >> $GITHUB_STEP_SUMMARY
+          done <errors.txt
+          echo '```' >> $GITHUB_STEP_SUMMARY
