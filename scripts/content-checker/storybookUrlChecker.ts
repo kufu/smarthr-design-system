@@ -1,10 +1,10 @@
 import fs from 'fs/promises';
 import { glob } from 'glob';
 import path from 'path';
-import { UI_VERSION, getUIStories } from '@/lib/getUIData';
 import { SHRUI_GITHUB_PATH } from '../../src/constants/application';
+import { UI_VERSION, getUIStories } from '../../src/lib/getUIData';
 
-const CONTENT_PATH = path.join(__dirname, '../../src/content/articles/products/components/**/*.mdx');
+const CONTENT_PATH = path.join(import.meta.dirname, '../../src/content/articles/products/components/**/*.mdx');
 
 const checkStoryPages = async () => {
   const errorList: string[] = [];
@@ -41,16 +41,14 @@ const checkStoryPages = async () => {
   return errorList;
 };
 
-(async () => {
-  const errorList = await checkStoryPages();
+const errorList = await checkStoryPages();
 
-  if (errorList.length > 0) {
-    errorList.forEach((message) => {
-      console.error(message);
-    });
-    console.log(`Found ${errorList.length} error(s). Storybook URL check finished.`);
-    process.exit(1);
-  }
+if (errorList.length > 0) {
+  errorList.forEach((message) => {
+    console.error(message);
+  });
+  console.log(`Found ${errorList.length} error(s). Storybook URL check finished.`);
+  process.exit(1);
+}
 
-  console.log('✨ No errors found. Storybook URL check finished.');
-})();
+console.log('✨ No errors found. Storybook URL check finished.');
