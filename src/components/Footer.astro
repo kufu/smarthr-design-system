@@ -1,0 +1,250 @@
+---
+import { Section } from 'smarthr-ui';
+import { getSubPageCollection } from '@/lib/getSubPageCollection';
+import navigationItem from '@/data/navigationItem.json';
+import FootStaticLinks from './FootStaticLinks.astro';
+
+type Props = {
+  isArticlePage?: boolean;
+};
+
+const { isArticlePage } = Astro.props;
+
+const wrapperStyle: astroHTML.JSX.CSSProperties = {
+  border: isArticlePage ? '1px solid var(--color-light-grey-1)' : 'none',
+};
+
+const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
+  ? {
+      paddingTop: '81px',
+      margin: '0 auto 54px',
+    }
+  : {
+      margin: '240px auto 54px',
+      borderTop: '1px solid var(--color-light-grey-1)',
+      paddingTop: '72px',
+    };
+---
+
+<div class="wrapper" style={wrapperStyle}>
+  <div class="footerContainer" style={footerContainerStyle}>
+    <div class="col1Container">
+      <Section>
+        <h2 class="logoHeading">SmartHR Design System</h2>
+        <FootStaticLinks />
+      </Section>
+    </div>
+
+    <div class="col2Container">
+      {
+        navigationItem.map(async ({ title, key, path }) => {
+          const subPages = await getSubPageCollection(path);
+
+          const depth2Pages = subPages.filter((page) => {
+            const depth = page.slug.split('/').length;
+            return depth === 2;
+          });
+
+          // order昇順でソート
+          depth2Pages.sort(({ data: a }, { data: b }) => (a.order && b.order ? a.order - b.order : -1));
+
+          return (
+            <Section style={{ gridArea: key }}>
+              <h3>
+                <a class="link" href={path}>
+                  {title}
+                </a>
+              </h3>
+              {depth2Pages.length > 0 && (
+                <ul>
+                  {depth2Pages.map(({ slug, data }) => (
+                    <li>
+                      <a class="link" href={`/${slug}`}>
+                        {data.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </Section>
+          );
+        })
+      }
+    </div>
+
+    <div class="copyrightContainer">
+      <p class="copyright">
+        <img src="/images/logo_smarthr.svg" alt="SmartHR" width="84" height="15" />
+        <small>© SmartHR, Inc.</small>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    padding-inline: 120px;
+
+    @include mobile {
+      padding-inline: 48px;
+    }
+
+    @include breakpointMobile2 {
+      padding-inline: 16px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .loginButton {
+      font-size: var(--font-size-11);
+    }
+  }
+
+  .footerContainer {
+    display: grid;
+    grid-template:
+      'col1 . col2' auto
+      'col1 . col2' auto
+      'col1 . col2' auto 'copy   copy copy' auto
+      / auto minmax(80px, 1fr) auto;
+    align-items: start;
+    max-width: 1192px;
+
+    @include pc {
+      grid-template:
+        'col1 . col2' auto
+        'col1 . col2' auto
+        'col1 . col2' auto
+        'copy   copy copy' auto
+        / auto 80px 1fr;
+      padding-top: 32px;
+    }
+
+    @include breakpointMobile2 {
+      grid-template:
+        'col2' auto
+        '.   ' 80px
+        'col1' auto
+        'copy' auto
+        / 1fr;
+      padding-top: 42px;
+    }
+  }
+
+  .logoHeading {
+    margin-block: 9px 0;
+    font-size: var(--font-size-14);
+    font-family:
+      Helvetica Neue,
+      Helvetica,
+      Arial,
+      sans-serif;
+    line-height: 1.37;
+    color: var(--color-black);
+  }
+
+  .col1Container {
+    grid-area: col1;
+
+    > section {
+      display: grid;
+      grid-template-columns: 100%;
+      gap: 24px;
+      justify-items: start;
+    }
+  }
+
+  .col2Container {
+    grid-area: col2;
+    display: grid;
+    grid-template:
+      'introduction basics products communication' auto
+      'foundation accessibility products communication' auto
+      / 1fr 1fr 1fr 1fr;
+    align-items: start;
+    gap: 40px;
+
+    @include pc {
+      grid-template:
+        'introduction' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
+        / 1fr;
+      gap: 8px;
+    }
+  }
+
+  .copyrightContainer {
+    grid-area: copy;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: var(--font-size-16);
+    line-height: 2.26;
+    color: var(--color-black);
+    margin-bottom: 16px;
+
+    & + & {
+      margin-top: -8px;
+    }
+
+    @include mobile {
+      margin-bottom: 0;
+
+      & + & {
+        margin-top: 8px;
+      }
+    }
+  }
+
+  ul {
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+    color: var(--color-text-black);
+
+    @include mobile {
+      display: none;
+    }
+
+    li {
+      font-size: var(--font-size-12);
+
+      &:not(:last-child) {
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  .link {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .copyright {
+    margin-top: 64px;
+
+    @include mobile {
+      margin-top: 40px;
+    }
+
+    img {
+      display: block;
+      width: 84px;
+      height: 15px;
+    }
+
+    small {
+      font-size: var(--font-size-10);
+      line-height: 1;
+      color: var(--color-black);
+    }
+  }
+</style>

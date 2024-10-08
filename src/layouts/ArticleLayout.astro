@@ -5,6 +5,7 @@ import { Article } from 'smarthr-ui';
 import Layout from '@/layouts/Layout.astro';
 import Sidebar from '@/components/Sidebar/Sidebar.astro';
 import IndexNav from '@/components/IndexNav';
+import Footer from '@/components/Footer.astro';
 import { createSidebarItem } from '@/lib/createSidebarItem';
 
 type Props = {
@@ -35,6 +36,8 @@ const { nestedSidebarItems } = await createSidebarItem(slug);
         </div>
       </Article>
     </main>
+
+    <Footer isArticlePage />
   </div>
 </Layout>
 
