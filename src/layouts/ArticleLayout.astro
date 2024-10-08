@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import { Article } from 'smarthr-ui';
 import Layout from '@/layouts/Layout.astro';
 import IndexNav from '@/components/IndexNav';
+import Footer from '@/components/Footer.astro';
 import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
 import Sidebar from '@/components/Sidebar/Sidebar.astro';
 import { createSidebarItem } from '@/lib/createSidebarItem';
@@ -71,6 +72,8 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
         </ul>
       </Article>
     </main>
+
+    <Footer isArticlePage />
   </div>
 </Layout>
 

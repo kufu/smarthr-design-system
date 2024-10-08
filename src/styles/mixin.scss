@@ -8,6 +8,15 @@
 }
 
 /*
+* CSS_SIZE.BREAKPOINT_MOBILE_2
+*/
+@mixin breakpointMobile2 {
+  @media (max-width: 26.75em) {
+    @content;
+  }
+}
+
+/*
 * PCのみに適応 (CSS_SIZE.BREAKPOINT_PC_1)
 */
 @mixin pc {
