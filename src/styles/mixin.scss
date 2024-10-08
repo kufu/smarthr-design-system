@@ -1,13 +1,13 @@
-/*
-* モバイルのみに適応 (CSS_SIZE.BREAKPOINT_MOBILE_3)
+/**
+* CSS_SIZE.BREAKPOINT_MOBILE_1
 */
-@mixin mobile {
-  @media (max-width: 47.9375em) {
+@mixin breakpointMobile1 {
+  @media (max-width: 20em) {
     @content;
   }
 }
 
-/*
+/**
 * CSS_SIZE.BREAKPOINT_MOBILE_2
 */
 @mixin breakpointMobile2 {
@@ -16,11 +16,29 @@
   }
 }
 
-/*
-* PCのみに適応 (CSS_SIZE.BREAKPOINT_PC_1)
+/**
+* CSS_SIZE.BREAKPOINT_MOBILE_3
 */
-@mixin pc {
+@mixin breakpointMobile3 {
+  @media (max-width: 47.9375em) {
+    @content;
+  }
+}
+
+/**
+* CSS_SIZE.BREAKPOINT_PC_1
+*/
+@mixin breakpointPC1 {
   @media (max-width: 69.625em) {
+    @content;
+  }
+}
+
+/**
+ * CSS_SIZE.BREAKPOINT_PC_2
+ */
+@mixin breakpointPC2 {
+  @media (max-width: 90em) {
     @content;
   }
 }

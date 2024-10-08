@@ -32,7 +32,7 @@ const { path, nestedSidebarItems } = Astro.props;
     padding-block: 120px 48px;
     overflow-y: auto;
 
-    @include mobile {
+    @include breakpointMobile3 {
       display: none;
     }
   }
@@ -40,7 +40,7 @@ const { path, nestedSidebarItems } = Astro.props;
   .spSidebar {
     display: none;
 
-    @include mobile {
+    @include breakpointMobile3 {
       display: block;
       border-bottom: 1px solid var(--color-light-grey-1);
     }

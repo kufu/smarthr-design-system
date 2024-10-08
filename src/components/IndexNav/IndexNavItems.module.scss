@@ -2,7 +2,7 @@
   display: block;
   padding-top: 160px;
 
-  @include mobile {
+  @include breakpointMobile3 {
     padding-top: 0;
   }
 
@@ -20,12 +20,12 @@
       margin-bottom: 8px;
       background-color: var(--color-light-grey-1);
 
-      @include mobile {
+      @include breakpointMobile3 {
         display: none;
       }
     }
 
-    @include mobile {
+    @include breakpointMobile3 {
       margin: 0;
       padding: 0;
       list-style: none;
@@ -54,7 +54,7 @@
       color: inherit;
     }
 
-    @include mobile {
+    @include breakpointMobile3 {
       padding-inline: 40px;
     }
   }
