@@ -1,6 +1,6 @@
+import path from 'node:path';
 import fs from 'fs/promises';
 import { glob } from 'glob';
-import path from 'path';
 
 const args = process.argv.slice(2);
 const targetFiles = args
@@ -9,9 +9,9 @@ const targetFiles = args
 
 const isAutoFixEnabled = args.includes('--fix');
 
-const CONTENT_PATH = path.join(__dirname, '../../content/articles/**/*.mdx');
-const IMAGE_PATH = path.join(__dirname, '../../content/articles/**/*.+(png|jpg|jpeg|gif)');
-const DOWNLOAD_PATH = path.join(__dirname, '../../static/**/*');
+const CONTENT_PATH = path.join(import.meta.dirname, '../../src/content/articles/**/*.mdx');
+const IMAGE_PATH = path.join(import.meta.dirname, '../../src/content/articles/**/*.+(png|jpg|jpeg|gif)');
+const DOWNLOAD_PATH = path.join(import.meta.dirname, '../../public/**/*');
 
 const IGNORE_LIST = ['URL', '#ページ内リンク'];
 
@@ -23,7 +23,7 @@ const collectExistLinks = async () => {
   for (const file of await glob(CONTENT_PATH)) {
     // ビルド後のパス
     const pagePath = file
-      .replace(/^.*\/content\/articles/, '')
+      .replace(/^.*\/src\/content\/articles/, '')
       .replace(/\/index\.mdx$/, '/')
       .replace(/\.mdx$/, '/');
     // ファイル自体のビルド後のパスを配列に入れておく
@@ -61,14 +61,14 @@ const collectExistLinks = async () => {
   // 画像ファイル
   for (const file of await glob(IMAGE_PATH)) {
     //ビルド後のパスを配列に入れておく
-    const filePath = file.replace(/^.*\/content\/articles/, '');
+    const filePath = file.replace(/^.*\/src\/content\/articles/, '');
     existPathList.push(filePath);
   }
 
   // ダウンロード用のファイル
   for (const file of await glob(DOWNLOAD_PATH)) {
     //ビルド後のパスを配列に入れておく
-    const filePath = file.replace(/^.*\/static/, '');
+    const filePath = file.replace(/^.*\/public/, '');
     existPathList.push(filePath);
   }
 
@@ -104,13 +104,15 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
 
     // 上記以外（間接パス表記）の場合 - リンク
     if (linkItem.type === 'link') {
-      const pagePath = path.normalize(`${linkItem.pagePath}/${srcPath}`).replace(/^.*\/content\/articles/, '');
+      const pagePath = path.normalize(`${linkItem.pagePath}/${srcPath}`).replace(/^.*\/src\/content\/articles/, '');
       if (!existPathList.includes(pagePath)) list.push(linkItem);
     }
 
     // 画像全般
     if (linkItem.type === 'image') {
-      const imagePath = path.normalize(`${path.dirname(linkItem.filePath)}/${srcPath}`).replace(/^.*\/content\/articles/, '');
+      const imagePath = path
+        .normalize(`${path.dirname(linkItem.filePath)}/${srcPath}`)
+        .replace(/^.*\/src\/content\/articles/, '');
       if (!existPathList.includes(imagePath)) list.push(linkItem);
     }
   }
@@ -134,45 +136,45 @@ const autoFixTrailingSlash = async (item: LinkItem) => {
   await fs.writeFile(item.filePath, output.join('\n'));
 };
 
-(async () => {
-  const { existPathList, linkList } = await collectExistLinks().catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
-  const missingLinkList: LinkItem[] = await check(existPathList, linkList).catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
-  let fixedCount = 0;
-  for (const item of missingLinkList) {
-    let errorType = `Missing ${item.type === 'image' ? 'image source' : 'link'}`;
-    const normalizedLink = path.normalize(`${item.pagePath}/${item.link}`).replace(/^.*\/content\/articles/, '');
-    const siteRootLink = item.link.replace(/https:\/\/smarthr.design/, '');
-    if (
-      existPathList.includes(`${siteRootLink}/`) ||
-      existPathList.includes(siteRootLink.replace('#', '/#')) ||
-      existPathList.includes(`${normalizedLink}/`)
-    ) {
-      if (isAutoFixEnabled) {
-        try {
-          await autoFixTrailingSlash(item);
-          errorType = `No trailing slash - fixed automatically`;
-          fixedCount += 1;
-        } catch (err) {
-          errorType = `No trailing slash - could not be automatically fixed`;
-        }
-      } else {
-        errorType = `No trailing slash`;
+const { existPathList, linkList } = await collectExistLinks().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
+const missingLinkList: LinkItem[] = await check(existPathList, linkList).catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
+let fixedCount = 0;
+for (const item of missingLinkList) {
+  let errorType = `Missing ${item.type === 'image' ? 'image source' : 'link'}`;
+  const normalizedLink = path.normalize(`${item.pagePath}/${item.link}`).replace(/^.*\/src\/content\/articles/, '');
+  const siteRootLink = item.link.replace(/https:\/\/smarthr.design/, '');
+  if (
+    existPathList.includes(`${siteRootLink}/`) ||
+    existPathList.includes(siteRootLink.replace('#', '/#')) ||
+    existPathList.includes(`${normalizedLink}/`)
+  ) {
+    if (isAutoFixEnabled) {
+      try {
+        await autoFixTrailingSlash(item);
+        errorType = `No trailing slash - fixed automatically`;
+        fixedCount += 1;
+      } catch (err) {
+        errorType = `No trailing slash - could not be automatically fixed`;
       }
+    } else {
+      errorType = `No trailing slash`;
     }
-    console.error(`${errorType}: ${item.link} in /${path.relative(`${__dirname}/../`, item.filePath)} at L:${item.lineNo}`);
   }
+  console.error(
+    `${errorType}: ${item.link} in /${path.relative(`${import.meta.dirname}/../`, item.filePath)} at L:${item.lineNo}`,
+  );
+}
 
-  const remainingCount = missingLinkList.length - fixedCount;
-  if (remainingCount === 0) {
-    console.log('✨ No missing link was found. Link check finished.');
-    process.exit(0);
-  }
-  console.log(`Found ${remainingCount} missing links. Link check finished.`);
+const remainingCount = missingLinkList.length - fixedCount;
+if (remainingCount === 0) {
+  console.log('✨ No missing link was found. Link check finished.');
   process.exit(0);
-})();
+}
+
+console.log(`Found ${remainingCount} missing links. Link check finished.`);
