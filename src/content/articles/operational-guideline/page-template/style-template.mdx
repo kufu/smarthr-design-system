@@ -4,11 +4,15 @@ description: 'ページの概要はヘッダーに書けます。ページの概
 order: 1
 ---
 
-import { Button, Cluster, FaPlusCircleIcon, Stack, Table, Td, Th, Text } from 'smarthr-ui'
-import ComponentPreview from '@/components/article/ComponentPreview'
-import DoAndDont from '@/components/article/DoAndDont'
-import StaticImage from '@/components/article/StaticImage'
-import TableWrapper from '@/components/article/contents/shared/TableWrapper'
+import { Image } from 'astro:assets'
+import { Button, Cluster, FaPlusCircleIcon, Table, Td, Th, Text } from 'smarthr-ui'
+import ComponentPreview from '@/components/article/ComponentPreview.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+
+{/* TODO: import TableWrapper from '@/components/article/contents/shared/TableWrapper' */}
+
+import SampleCluster from './components/SampleCluster.astro'
+import SampleStack from './components/SampleStack.astro'
 
 ## h2 相当のタイトル
 
@@ -50,13 +54,13 @@ import TableWrapper from '@/components/article/contents/shared/TableWrapper'
 
 基本的に、1コード1コンポーネントで利用してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Button variant="primary">Button</Button>
 ```
 
 ## コード
 
-```tsx codeBlock
+```tsx
 <Button variant="primary">Primary</Button>
 <Button>Secondary</Button>
 <Button variant="danger">Danger</Button>
@@ -78,6 +82,7 @@ import TableWrapper from '@/components/article/contents/shared/TableWrapper'
 
 ### SmartHR UI テーブル
 
+{/*
 <TableWrapper>
   <Table>
     <thead>
@@ -105,6 +110,7 @@ import TableWrapper from '@/components/article/contents/shared/TableWrapper'
     </tbody>
   </Table>
 </TableWrapper>
+*/}
 
 ## レイアウト
 SmartHR UI Layoutコンポーネントを使用できます。
@@ -115,11 +121,7 @@ SmartHR UI Layoutコンポーネントを使用できます。
 * 幅を狭めて収まり切らなくなると折返します。
 * `gap`に使える値は16pxを基準に`1`,`0.5`などの数値です。詳しくはsmarthr-uiのドキュメントを参照してください。
 
-<Cluster gap={1}>
-  {[...Array(10)].map((_, i) => (
-    <div key={i} style={{background: 'black', width: `${100}px`, height: '100px'}} />
-  ))}
-</Cluster>
+<SampleCluster />
 
 ### Stack
 
@@ -127,15 +129,12 @@ SmartHR UI Layoutコンポーネントを使用できます。
 * 各要素の間隔は`1rem`が標準です。
 * `gap`に使える値は16pxを基準に`1`,`0.5`などの数値です。詳しくはsmarthr-uiのドキュメントを参照してください。
 
-<Stack gap={1}>
-  {[...Array(4)].map((_, i) => (
-    <div key={i} style={{background: 'black', width: '100px', height: '100px'}} />
-  ))}
-</Stack>
+<SampleStack />
 
 ## Color パレット
 
-import ColorPalette, ColorPalettesWrapper from '@/components/article/ColorPalette'
+import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro'
+import ColorPalette from '@/components/article/ColorPalette.astro'
 
 <ColorPalettesWrapper>
   <ColorPalette colorValue="#0077c7" colorName="MAIN" description="プライマリーカラー（プロダクトの印象を司る箇所に使用）" />
@@ -153,25 +152,25 @@ import ColorPalette, ColorPalettesWrapper from '@/components/article/ColorPalett
 Markdown形式の画像Pathは`相対パス`で読み込めます。また属性値を以下のような指定で設定できます。
 
 ```md
-![sample image](./images/sample.jpg '#width=300px')
+![sample image](./images/sample.jpg)
 ```
 
 #### 表示例
 
-![sample image](./images/sample.jpg '#width=300px')
+![sample image](./images/sample.jpg)
 
 ### Component内の画像設置
 
 `.mdx`ファイル内で、SmartHR UIなどのコンポーネントとともに画像（imgタグ）を使いたい場合は、利用したい画像を`import`し、`StaticImage`コンポーネントの`src`にその`path`を設定してください。
 
 ```tsx
-import StaticImage from '@/components/article/StaticImage'
+import { Image } from 'astro:assets'
 import { Cluster } from 'smarthr-ui'
 import imageUrl from './images/sample.jpg';
 
 <Cluster gap={1}>
-  <StaticImage src={imageUrl} width="200" alt="Image Sample" />
-  <StaticImage src={imageUrl} width="200" alt="Image Sample" />
+  <Image src={imageUrl} width="200" alt="Image Sample" />
+  <Image src={imageUrl} width="200" alt="Image Sample" />
 </Cluster>
 ```
 
@@ -180,8 +179,8 @@ import imageUrl from './images/sample.jpg';
 import imageUrl from './images/sample.jpg';
 
 <Cluster gap={1}>
-  <StaticImage src={imageUrl} width="200" alt="Image Sample" />
-  <StaticImage src={imageUrl} width="200" alt="Image Sample" />
+  <Image src={imageUrl} width="200" alt="Image Sample" />
+  <Image src={imageUrl} width="200" alt="Image Sample" />
 </Cluster>
 
 ## ファイルのリンク
@@ -214,17 +213,12 @@ import imageUrl from './images/sample.jpg';
 ## Do And Don&apos;t
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={imageUrl} alt="Do" />}
-    label={<Text>ほげほげ</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={imageUrl} alt="Dont" />}
-    label={<Text>ほげほげ</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrl} alt="Do" />
+    <Text slot="text">ほげほげ</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrl} alt="Dont" />
+    <Text slot="text">ほげほげ</Text>
+  </DoAndDont>
 </Cluster>
-
