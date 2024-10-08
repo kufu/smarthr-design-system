@@ -1,5 +1,5 @@
+import path from 'node:path';
 import AdmZip from 'adm-zip';
-import path from 'path';
 import { ZIP_IMAGE_OUTPUT_ROOT_PATH, ZIP_IMAGE_README_PATH, ZIP_IMAGE_TARGETS } from '../src/constants/zip';
 
 const zipDirectory = (zipName: string, targetRootPath: string) => {

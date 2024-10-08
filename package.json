@@ -5,14 +5,16 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "pnpm update:ui-data && astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "pnpm update:ui-data && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "cache:ui-data": "tsx ./scripts/fetch-ui-data.ts",
-    "generate:thumbnails": "tsx ./scripts/component-thumbnails/componentThumbnails.ts"
+    "update:ui-data": "tsx ./scripts/fetch-ui-data.ts",
+    "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
+    "generate:thumbnails": "tsx ./scripts/component-thumbnails/componentThumbnails.ts",
+    "export:zip-images": "tsx ./scripts/zipImages.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
@@ -36,10 +38,13 @@
   "devDependencies": {
     "@storybook/types": "^8.3.4",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/adm-zip": "^0.5.5",
     "@types/mdast": "^4.0.4",
     "@types/unist": "^3.0.3",
+    "adm-zip": "^0.5.16",
     "hast-util-select": "^6.0.2",
     "node-html-parser": "^6.1.13",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
     "prettier-config-smarthr": "^1.0.0",
     "prettier-plugin-astro": "^0.14.1",
