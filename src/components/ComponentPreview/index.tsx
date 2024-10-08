@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import ProductWrapper from './ProductWrapper';
 import { WrapperBase } from './WrapperBase';
 
-type Props = {
+export type ComponentPreviewProps = {
   children: React.ReactNode;
   gap?: Gap | SeparateGap;
   align?: CSSProperties['alignItems'];
@@ -17,7 +17,7 @@ export default function ComponentPreview({
   gap = 1,
   align = 'center', // 無指定で stretch されると困るため
   layout,
-}: Props) {
+}: ComponentPreviewProps) {
   return useMemo(() => {
     switch (layout) {
       default: {

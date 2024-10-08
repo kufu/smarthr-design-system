@@ -1,0 +1,10 @@
+---
+import ComponentPreviewWithThemeProvider from '../ComponentPreview/WithThemeProvider';
+import { type ComponentPreviewProps } from '../ComponentPreview';
+
+type Props = ComponentPreviewProps;
+---
+
+<ComponentPreviewWithThemeProvider {...Astro.props} client:only="react">
+  <slot />
+</ComponentPreviewWithThemeProvider>
