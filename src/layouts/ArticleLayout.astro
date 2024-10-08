@@ -97,11 +97,11 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
     display: grid;
     grid-template: 'sidebar article index' auto / 1fr minmax(auto, 712px) 1fr;
 
-    @include pc {
+    @include breakpointPC1 {
       grid-template: 'sidebar article .' auto / 1fr minmax(auto, 712px) minmax(40px, 1fr);
     }
 
-    @include mobile {
+    @include breakpointMobile3 {
       grid-template:
         'sidebar sidebar sidebar'
         'index index index'
@@ -129,7 +129,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
       grid-column: nav;
     }
 
-    @include mobile {
+    @include breakpointMobile3 {
       display: block;
       position: static;
       height: auto;
@@ -154,11 +154,11 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
       grid-column: nav;
     }
 
-    @include pc {
+    @include breakpointPC1 {
       display: none;
     }
 
-    @include mobile {
+    @include breakpointMobile3 {
       display: block;
       position: static;
       margin: 0;
@@ -172,7 +172,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
     padding-top: 112px;
     padding-bottom: 240px;
 
-    @include mobile {
+    @include breakpointMobile3 {
       padding-bottom: 112px;
     }
   }
@@ -191,7 +191,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
     gap: 1rem;
     grid-template: 'left right' 1fr/1fr 1fr;
 
-    @include mobile {
+    @include breakpointMobile3 {
       grid-template:
         'left' 1fr
         'right' 1fr

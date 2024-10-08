@@ -87,7 +87,7 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
     width: 100%;
     padding-inline: 120px;
 
-    @include mobile {
+    @include breakpointMobile3 {
       padding-inline: 48px;
     }
 
@@ -118,7 +118,7 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
     align-items: start;
     max-width: 1192px;
 
-    @include pc {
+    @include breakpointPC1 {
       grid-template:
         'col1 . col2' auto
         'col1 . col2' auto
@@ -172,7 +172,7 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
     align-items: start;
     gap: 40px;
 
-    @include pc {
+    @include breakpointPC1 {
       grid-template:
         'introduction' 'foundation' 'basics' 'accessibility' 'products' 'communication' auto
         / 1fr;
@@ -195,7 +195,7 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
       margin-top: -8px;
     }
 
-    @include mobile {
+    @include breakpointMobile3 {
       margin-bottom: 0;
 
       & + & {
@@ -210,7 +210,7 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
     list-style: none;
     color: var(--color-text-black);
 
-    @include mobile {
+    @include breakpointMobile3 {
       display: none;
     }
 
@@ -231,7 +231,7 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
   .copyright {
     margin-top: 64px;
 
-    @include mobile {
+    @include breakpointMobile3 {
       margin-top: 40px;
     }
 
