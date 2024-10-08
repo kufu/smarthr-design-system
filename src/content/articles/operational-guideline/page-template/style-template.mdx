@@ -5,10 +5,10 @@ order: 1
 ---
 
 import { Button, Cluster, FaPlusCircleIcon, Stack, Table, Td, Th, Text } from 'smarthr-ui'
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
-import { TableWrapper } from '@Components/contents/shared/TableWrapper'
+import ComponentPreview from '@/components/article/ComponentPreview'
+import DoAndDont from '@/components/article/DoAndDont'
+import StaticImage from '@/components/article/StaticImage'
+import TableWrapper from '@/components/article/contents/shared/TableWrapper'
 
 ## h2 相当のタイトル
 
@@ -135,7 +135,7 @@ SmartHR UI Layoutコンポーネントを使用できます。
 
 ## Color パレット
 
-import { ColorPalette, ColorPalettesWrapper } from '@Components/ColorPalette'
+import ColorPalette, ColorPalettesWrapper from '@/components/article/ColorPalette'
 
 <ColorPalettesWrapper>
   <ColorPalette colorValue="#0077c7" colorName="MAIN" description="プライマリーカラー（プロダクトの印象を司る箇所に使用）" />
@@ -165,7 +165,7 @@ Markdown形式の画像Pathは`相対パス`で読み込めます。また属性
 `.mdx`ファイル内で、SmartHR UIなどのコンポーネントとともに画像（imgタグ）を使いたい場合は、利用したい画像を`import`し、`StaticImage`コンポーネントの`src`にその`path`を設定してください。
 
 ```tsx
-import { StaticImage } from '@Components/StaticImage'
+import StaticImage from '@/components/article/StaticImage'
 import { Cluster } from 'smarthr-ui'
 import imageUrl from './images/sample.jpg';
 

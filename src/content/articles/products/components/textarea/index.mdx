@@ -2,10 +2,10 @@
 title: 'Textarea'
 description: 'テキストなどの情報を複数行入力するためのコンポーネントです。`textarea`の代わりとして使用します。入力文字数を数える機能や入力によって自動で領域が広がる機能を備えています。'
 ---
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { ComponentStory } from '@Components/ComponentStory'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont'
+import StaticImage from '@/components/article/StaticImage'
 import { Cluster, FormControl, Textarea } from 'smarthr-ui'
 import styled from 'styled-components'
 
@@ -91,5 +91,3 @@ render(
 ## Props
 
 <ComponentPropsTable name="Textarea" />
-
-

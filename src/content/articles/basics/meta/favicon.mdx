@@ -3,7 +3,7 @@ title: 'ファビコン・アイコン'
 description: 'ウェブサイトのシンボルとして設定する画像です。SmartHRが運営するウェブを利用した各種タッチポイントに使用してください。'
 order: 1
 ---
-import { Grid } from '@Components/shared/Grid/Grid'
+import Grid from '@/components/article/shared/Grid/Grid'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
 ![ファビコンが配置されている](/images/favicon-sample.png)
@@ -92,18 +92,18 @@ maskableアイコンは必ずしも設定する必要はありません。Androi
 以下のような設定は、現在ではサポートされていないバージョンのブラウザ向けの設定であるため、記述する必要はありません。
 
 ```html codeBlock
-<!-- ❌Windows 8、10とIEで、スタートメニューのタイルを飾るために使われることが主目的のメタタグです -->
+{/*  ❌Windows 8、10とIEで、スタートメニューのタイルを飾るために使われることが主目的のメタタグです  */}
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-TileImage" content="/mstile-150x150.png">
 <meta name="msapplication-config" content="/browserconfig.xml">
 ```
 
 ```html codeBlock
-<!-- ❌Safariのピン留め用アイコンですが、現在はファビコンが使われるようになっています -->
+{/*  ❌Safariのピン留め用アイコンですが、現在はファビコンが使われるようになっています  */}
 <link rel="mask-icon" color="#5bbad5" href="/safari-pinned-tab.svg">
 ```
 
 ```html codeBlock
-<!-- ❌shortcutを書かずただの"icon"でもfaviconの指定と解釈されるので、shortcutと書く必要はありません -->
+{/*  ❌shortcutを書かずただの"icon"でもfaviconの指定と解釈されるので、shortcutと書く必要はありません  */}
 <link rel="shortcut icon" href="/favicon.ico">
 ```

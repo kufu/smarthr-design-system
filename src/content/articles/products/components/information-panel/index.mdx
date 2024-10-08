@@ -2,10 +2,10 @@
 title: 'InformationPanel'
 description: 'ユーザーに伝えたい情報を他の要素より視覚的に目立たせるためのコンポーネントです。'
 ---
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { ComponentStory } from '@Components/ComponentStory'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont'
+import StaticImage from '@/components/article/StaticImage'
 import { Base, BaseColumn, Cluster, Heading, ResponseMessage, Stack, Text } from 'smarthr-ui'
 import styled from 'styled-components'
 
@@ -81,5 +81,3 @@ render(
 ## Props
 
 <ComponentPropsTable name="InformationPanel" />
-
-

@@ -3,9 +3,9 @@ title: 'NotificationBar'
 description: '操作の結果などをシステムからの通知として表示するためのコンポーネントです。'
 ---
 import { useEffect, useState } from 'react'
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import ComponentPreview from '@/components/article/ComponentPreview'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable/ComponentPropsTable.astro'
 import { NotificationBar, Button, Stack} from 'smarthr-ui'
 import VideoEmbed from '@/components/article/VideoEmbed.astro'
 
@@ -65,7 +65,7 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 メッセージが表示されたことを強調したい場合は、`animate`にすることでスライドインのアニメーション効果を追加できます。
 
-<!-- textlint-disable -->
+{/*  textlint-disable  */}
 export const AnimateNotificationBar = () => {
   const [visible, setVisible] = useState(false)
   return (
@@ -84,7 +84,7 @@ export const AnimateNotificationBar = () => {
   )
 }
 
-<!-- textlint-enable -->
+{/*  textlint-enable  */}
 
 <ComponentPreview>
   <AnimateNotificationBar />

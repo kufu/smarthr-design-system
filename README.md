@@ -78,7 +78,7 @@ import { hoge } from '../../../../src/components/hoge
 ではなく、
 
 ```mdx
-import { hoge } from '@Components/hoge
+import hoge from '@/components/hoge
 
 '
 ```

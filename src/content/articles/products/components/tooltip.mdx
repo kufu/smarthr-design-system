@@ -16,9 +16,9 @@ import {
   FaPlusCircleIcon,
 } from 'smarthr-ui'
 import { Button, Cluster, Tooltip, Text, WarningIcon } from 'smarthr-ui'
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import ComponentPreview from '@/components/article/ComponentPreview'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable/ComponentPropsTable.astro'
 
 <BaseColumn>
   <WarningIcon text={
@@ -87,13 +87,13 @@ Tooltipの配置は8種類の選択肢があります。
 - `horizontal`（横）と`vertical`（縦）の両方に`auto`を指定すると、レイアウトを加味して自動的に方向を決めてくれます。
 
 export const DynamicTooltip = ({children, ...props}) => {
-  // <!-- textlint-disable -->
+  {/*  textlint-disable  */}
   return (
     <Tooltip {...props}>
       {children}
     </Tooltip>
   )
-  // <!-- textlint-enable -->
+  {/*  textlint-enable  */}
 }
 
 #### 上配置
@@ -359,5 +359,3 @@ export const DynamicTooltip = ({children, ...props}) => {
 ## Props
 
 <ComponentPropsTable name="Tooltip" />
-
-
