@@ -2,11 +2,9 @@
 title: 'NotificationBar'
 description: '操作の結果などをシステムからの通知として表示するためのコンポーネントです。'
 ---
-import { useEffect, useState } from 'react'
-import ComponentPreview from '@/components/article/ComponentPreview'
+import ComponentPreview from '@/components/ComponentPreview'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
-import { NotificationBar, Button, Stack} from 'smarthr-ui'
 import VideoEmbed from '@/components/article/VideoEmbed.astro'
 
 操作の結果などをシステムからの通知として表示するためのコンポーネントです。
@@ -65,29 +63,10 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 メッセージが表示されたことを強調したい場合は、`animate`にすることでスライドインのアニメーション効果を追加できます。
 
-{/*  textlint-disable  */}
-export const AnimateNotificationBar = () => {
-  const [visible, setVisible] = useState(false)
-  return (
-    <Stack style={{ width: '100%', background: '#f8f7f6', padding: '8px', }}>
-      {visible && (
-        <NotificationBar
-          type="success"
-          bold
-          message="タスクの登録に成功しました。"
-          animate
-          onClose={() => setVisible(!visible)}
-        />
-      )}
-      <Button onClick={() => setVisible(!visible)}>NotificationBarを{visible ? '隠す' : '表示'}</Button>
-    </Stack>
-  )
-}
-
-{/*  textlint-enable  */}
+import AnimateNotificationBar from './_components/AnimateNotificationBar'
 
 <ComponentPreview>
-  <AnimateNotificationBar />
+  <AnimateNotificationBar client:load />
 </ComponentPreview>
 
 ### レイアウト
