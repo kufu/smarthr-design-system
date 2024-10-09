@@ -2,12 +2,11 @@
 title: 'InformationPanel'
 description: 'ユーザーに伝えたい情報を他の要素より視覚的に目立たせるためのコンポーネントです。'
 ---
+import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import StaticImage from '@/components/article/StaticImage'
 import { Base, BaseColumn, Cluster, Heading, ResponseMessage, Stack, Text } from 'smarthr-ui'
-import styled from 'styled-components'
 
 import imageDo from './images/information-panel-on-base-do.png'
 import imageDont from './images/information-panel-on-base-dont.png'
@@ -31,23 +30,19 @@ InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)�
 [削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)など、Baseのなかで見出しと内容を目立たせたい場合は、[BaseColumn](/products/components/base/base-column/)を使用してください。見出し部分は[Heading[type="blockTitle"]](/products/components/heading/)とResponseMessageで代替します。
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={imageDo} alt="do" />}
-    label={<Text>BaseのなかでBaseColumnとResponseMessageを用いて代替されている</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={imageDont} alt="dont" />}
-    label={<Text>Baseのなかに直接InformationPanelが置かれている</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageDo} alt="Do" />
+    <Text slot="text">BaseのなかでBaseColumnとResponseMessageを用いて代替されている</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={imageDont} alt="Dont" />
+    <Text slot="text">Baseのなかに直接InformationPanelが置かれている</Text>
+  </DoAndDont>
 </Cluster>
 
 具体的な代替コードは以下を参照してください。
 
-```tsx editable withStyled codeBlock
+```tsx editable withStyled
 const StyledBase = styled(Base)`
   width: 100%;
 `

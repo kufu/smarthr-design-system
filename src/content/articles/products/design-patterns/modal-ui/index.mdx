@@ -4,8 +4,10 @@ description: 'モード、モーダル、モードレスの概念と、SmartHR�
 order: 10
 ---
 
+import { Image } from 'astro:assets'
+import { Text } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import StaticImage from '@/components/article/StaticImage'
+
 import imageUrlUpwardDont from './images/modal-ui_upward-navigation.png'
 import imageUrlAccessibilityDo from './images/modal-ui_actiondialog_accessibility_error.png'
 import imageUrlAccessibilityDont from './images/modal-ui_actiondialog_accessibility_disabled.png'
@@ -134,11 +136,10 @@ SmartHR UIでは[ActionDialog](/products/components/dialog/action-dialog/)と[Me
 
 また、タスクを中断して元のページに戻る操作は［キャンセル］ボタンが担います。そのため、基本的に[UpwardLink](/products/components/text-link/upward-link/)は配置しません。
 
-<DoAndDont
-  type="dont"
-  img={<StaticImage src={imageUrlUpwardDont} alt="Dont" />}
-  label="「上に戻るリンク」と［キャンセル］ボタンが両方配置されている。"
-/>
+<DoAndDont type="dont">
+  <Image slot="img" src={imageUrlUpwardDont} alt="Dont" />
+  <Text slot="text">「上に戻るリンク」と［キャンセル］ボタンが両方配置されている。</Text>
+</DoAndDont>
 
 ## エラー状態のアクセシビリティ
 
@@ -150,16 +151,15 @@ SmartHR UIでは[ActionDialog](/products/components/dialog/action-dialog/)と[Me
 - どの入力要素が、どんな理由で完了条件を満たしていないのかが伝わりにくい
 
 
-<DoAndDont
-  type="do"
-  img={<StaticImage src={imageUrlAccessibilityDo} alt="必須項目が空欄のまま完了ボタンを押すとエラーが返り、どの項目にどんな問題があるかが示される。" />}
-  label="必須項目が空欄のまま完了ボタンを押すとエラーが返り、どの項目にどんな問題があるかが示される。"
-/>
-<DoAndDont
-  type="dont"
-  img={<StaticImage src={imageUrlAccessibilityDont} alt="必須条件を満たさない限り完了ボタンが無効化され押せない。" />}
-  label="必須条件を満たさない限り完了ボタンが無効化され押せない。"
-/>
+<DoAndDont type="do">
+  <Image slot="img" src={imageUrlAccessibilityDo} alt="必須項目が空欄のまま完了ボタンを押すとエラーが返り、どの項目にどんな問題があるかが示される。" />
+  <Text slot="text">必須項目が空欄のまま完了ボタンを押すとエラーが返り、どの項目にどんな問題があるかが示される。</Text>
+</DoAndDont>
+
+<DoAndDont type="dont">
+  <Image slot="img" src={imageUrlAccessibilityDont} alt="必須条件を満たさない限り完了ボタンが無効化され押せない。" />
+  <Text slot="text">必須条件を満たさない限り完了ボタンが無効化され押せない。</Text>
+</DoAndDont>
 
 ## 参考文献
 
