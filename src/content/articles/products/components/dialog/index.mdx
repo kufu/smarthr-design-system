@@ -5,8 +5,7 @@ description: 'ダイアログボックス（もしくは単に「ダイアログ
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import ComponentPreview from '@/components/article/ComponentPreview'
-import { useState } from 'react'
+import ComponentPreview from '@/components/ComponentPreview'
 import {
   ActionDialog,
   Button,
@@ -28,81 +27,9 @@ Dialogコンポーネントは、ダイアログボックス（もしくは単�
 
 頻繁に利用するダイアログのパターンを、スタイリングやpropsを整えたコンポーネントとして用意しています。
 
-export const DynamicActionDialog = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
-      <ActionDialog
-        isOpen={isOpen}
-        title="アクションダイアログタイトル"
-        closeText="キャンセル"
-        actionText="実行"
-        actionTheme="primary"
-        width={480}
-        onClickClose={()=> {setIsOpen(false)}}
-        onPressEscape={() => setIsOpen(false)}
-        onClickAction={()=> {setIsOpen(false)}}
-      >
-        <Text>本文が入ります。</Text>
-      </ActionDialog>
-    </>
-  )
-}
-
-export const DynamicMessageDialog = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
-      <MessageDialog
-        isOpen={isOpen}
-        title="メッセージダイアログタイトル"
-        description="本文が入ります。"
-        closeText="閉じる"
-        width={480}
-        onClickClose={() => setIsOpen(false)}
-        onPressEscape={() => setIsOpen(false)}
-        id="dialog-message"
-      />
-    </>
-  )
-}
-
-export const DynamicModelessDialog = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  return (
-    <>
-      <Button
-        onClick={() => setIsOpen(!isOpen)}
-        data-test="dialog-trigger"
-        aria-haspopup="dialog"
-        aria-controls="modeless-dialog"
-      >
-        ModelessDialogを開く
-      </Button>
-      <ModelessDialog
-        isOpen={isOpen}
-        header="モードレスダイアログタイトル"
-        footer={
-          <div style="padding:16px 24px">
-            フッター
-          </div>
-          }
-        onClickClose={() => setIsOpen(false)}
-        onPressEscape={() => setIsOpen(false)}
-        width={480}
-        right={"10%"}
-        id="modeless-dialog-1"
-        data-test="dialog"
-      >
-        <ModelessContent>
-          <Text>本文が入ります。</Text>
-        </ModelessContent>
-      </ModelessDialog>
-    </>
-  )
-}
+import DynamicActionDialog from './_components/DynamicActionDialog'
+import DynamicMessageDialog from './_components/DynamicMessageDialog'
+import DynamicModelessDialog from './_components/DynamicModelessDialog'
 
 ### ActionDialog
 
@@ -113,7 +40,7 @@ export const DynamicModelessDialog = () => {
 詳しい使い方は、[ActionDialog](./action-dialog/)を参照してください。 
 
 <ComponentPreview>
-  <DynamicActionDialog />
+  <DynamicActionDialog client:load />
 </ComponentPreview>
 
 ### MessageDialog
@@ -125,7 +52,7 @@ export const DynamicModelessDialog = () => {
 詳しい使い方は、[MessageDialog](./message-dialog/)を参照してください。
 
 <ComponentPreview>
-  <DynamicMessageDialog />
+  <DynamicMessageDialog client:load />
 </ComponentPreview>
 
 ### ModelessDialog
@@ -137,7 +64,7 @@ export const DynamicModelessDialog = () => {
 詳しい使い方は、[ModelessDialog](./modeless-dialog/)を参照してください。
 
 <ComponentPreview>
-  <DynamicModelessDialog />
+  <DynamicModelessDialog client:load />
 </ComponentPreview>
 
 ## Props
