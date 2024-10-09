@@ -3,7 +3,7 @@ import { marked } from 'marked';
 import { StatusLabel, Text, WarningIcon } from 'smarthr-ui';
 import { getUIProps } from '@/lib/getUIData';
 import FragmentTitle from '../FragmentTitle.astro';
-import TypeTag from './TypeTag.astro';
+import ComponentPropsTableTag from './ComponentPropsTableTag.astro';
 
 type Props = {
   name: string;
@@ -44,9 +44,9 @@ const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
             </div>
             <div class="propTypes">
               {prop.type.name === 'enum' ? (
-                prop.type.value && prop.type.value.map(({ value }) => <TypeTag content={value ?? ''} />)
+                prop.type.value && prop.type.value.map(({ value }) => <ComponentPropsTableTag content={value ?? ''} />)
               ) : (
-                <TypeTag content={prop.type.name} />
+                <ComponentPropsTableTag content={prop.type.name} />
               )}
             </div>
             <div class="propDescription" set:html={marked.parse(prop.description ?? '')} />
