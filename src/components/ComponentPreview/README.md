@@ -4,7 +4,9 @@
 
 ## 使い方
 
-MDXファイルで`import`して使うのは`<ComponentPreview>`コンポーネントです（`WrapperBase.tsx`と`ProductWrapper.tsx`は、`ComponentPreview.tsx`から`import`されている）。
+MDXファイルで`import`して使うのは`<ComponentPreview>`コンポーネントです。
+
+`<ProductComponentPreview>` は CodeBlock 内の `<LiveContainer>` 内で使用されています。
 
 ## レンダリング
 
@@ -16,6 +18,4 @@ MDXファイルで`import`して使うのは`<ComponentPreview>`コンポーネ�
 
 ## スタイリングについて
 
-`components/article/CodeBlock/LiveContainer` で iframe 内に配置されるため、CSS Modules への移行は使わずに引き続き styled-components を利用しています。
-
-もし、CSS Modules や Tailwind CSS への移行を実施する場合は、iframe 内へのスタイルの適用方法を検討する必要があります。
+MDXファイル内または、`components/article/CodeBlock/LiveContainer` で iframe 内に配置されるため、インラインスタイルを利用しています。
