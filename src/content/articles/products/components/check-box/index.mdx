@@ -2,11 +2,11 @@
 title: 'CheckBox'
 description: "ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。"
 ---
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
-import { Cluster} from 'smarthr-ui'
+import { Image } from 'astro:assets'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Cluster, Text } from 'smarthr-ui'
 
 import checkBoxDo from './images/check-box-do.png';
 import checkBoxDont from './images/check-box-dont.png';
@@ -61,18 +61,14 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 こうした場合には、選択肢を明示的に表示できる[RadioButton](/products/components/radio-button/)を使用してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={checkBoxDo} alt="Do" />}
-    label={<Text>すべての選択肢が明示的に表示されているため、現在の状態が把握しやすい</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={checkBoxDont} alt="Dont" />}
-    label={<Text>「無効」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={checkBoxDo} alt="Do" />
+    <Text slot="text">すべての選択肢が明示的に表示されているため、現在の状態が把握しやすい</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={checkBoxDont} alt="Dont" />
+    <Text slot="text">「無効」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
+  </DoAndDont>
 </Cluster>
 
 例外として、以下のようにユーザーに操作内容の確認を促す手段としてチェックボックスを単独で使用することがあります。
@@ -80,7 +76,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 - 利用規約などユーザーに許諾を得る必要がある内容の確認を促す場合
 - [削除ダイアログ](/products/design-patterns/delete-dialog/#h3-5)など、重要な操作を行なう場合でユーザーに注意事項の確認を促す場合
 
-![削除ダイアログで操作の確認を促す際のチェックボックスの使用例](/images/check-box-confirm.png)
+![削除ダイアログで操作の確認を促す際のチェックボックスの使用例](./images/check-box-confirm.png)
 
 ### チェックボックス内に操作可能な要素を含めない
 
@@ -90,18 +86,15 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 チェックボックスの操作に関連するリンクを置きたい場合は、[Fieldset](/products/components/fieldset/)の`helpMessage` propsなどを使用してください。
 
 <Cluster gap={1}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={checkBoxDo2} alt="Do" width="346" />}
-    label={<Text>ユーザーは選択する操作に集中でき、それ以外の操作と区別しやすい</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={checkBoxDont2} alt="Dont" width="346" />}
-    label={<Text>ユーザーが選択操作に集中できず、操作難易度が上がる</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={checkBoxDo2} alt="Do" width="346" />
+    <Text slot="text">ユーザーは選択する操作に集中でき、それ以外の操作と区別しやすい</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={checkBoxDont2} alt="Dont" width="346" />
+    <Text slot="text">ユーザーが選択操作に集中できず、操作難易度が上がる</Text>
+  </DoAndDont>
 </Cluster>
 
 ## 状態
@@ -115,7 +108,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 
 [テーブル内の一括操作](/products/design-patterns/table-bulk-action/)の「一括選択するチェックボックス」など、複数のチェックボックスの状態をまとめて示す必要があるチェックボックスにおいて、選択状態と未選択状態が混ざっている状態を示す場合には、混在選択状態（`mixed=true`）を採用します。
 
-![よくあるテーブルでの混在状態のチェックボックスの使用例](/images/check-box-mixed.png)
+![よくあるテーブルでの混在状態のチェックボックスの使用例](./images/check-box-mixed.png)
 
 ## デザインパターン
 
@@ -125,7 +118,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 
 [共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)のデザインパターンもあわせて参考にしてください。
 
-```tsx editable codeBlock
+```tsx editable
 <>
   <Fieldset
       title="設定項目"
@@ -155,4 +148,4 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 
 ## 参考文献
 
-※1. [<label\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)
+※1. [\<label\\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)

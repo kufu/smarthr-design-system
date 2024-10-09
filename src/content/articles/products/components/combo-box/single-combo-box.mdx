@@ -2,16 +2,13 @@
 title: 'SingleComboBox'
 description: '選択肢の中から単一の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。'
 ---
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
+import { Image } from 'astro:assets'
+import { SingleComboBox, Cluster, Text } from 'smarthr-ui'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
 import singleComboBoxDo from './images/single-combo-box-do.png'
 import singleComboBoxDont from './images/single-combo-box-dont.png'
-import {
-  SingleComboBox,
-  Cluster
-} from 'smarthr-ui'
 
 選択肢の中から単一の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。
 
@@ -39,18 +36,15 @@ SingleComboBoxで入力補助のヒントメッセージを表示したい場合
 `dropdownHelpMessage`はドロップダウンパネルを表示したときのみ表示されるため、ヒントメッセージを常に表示したい場合は、[FormControl](/products/components/form-control/)の`helpMessage`を使用してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={singleComboBoxDo} alt="Do" />}
-    label={<Text>ユーザーがテキストを入力しても入力補助としてヒントメッセージを確認できる</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={singleComboBoxDont} alt="Dont" />}
-    label={<Text>ユーザーがテキストを入力するとプレースホルダが確認できなくなり、入力補助として機能しない</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={singleComboBoxDo} alt="Do" width="346" />
+    <Text slot="text">ユーザーがテキストを入力しても入力補助としてヒントメッセージを確認できる</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={singleComboBoxDont} alt="Dont" width="346" />
+    <Text slot="text">ユーザーがテキストを入力するとプレースホルダが確認できなくなり、入力補助として機能しない</Text>
+  </DoAndDont>
 </Cluster>
 
 ## 状態

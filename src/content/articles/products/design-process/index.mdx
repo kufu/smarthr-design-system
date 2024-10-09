@@ -4,16 +4,16 @@ description: ''
 order: 8
 ---
 
-import { PageIndex } from '@Components/article/PageIndex'
+import PageIndex from '@/components/article/PageIndex.astro'
 
-<PageIndex path="/products/design-process/" excludes={[]} heading="h2">
-  <Description name="design-data">
+<PageIndex basePath="/products/design-process/">
+  <slot slot="design-data">
     Figmaによるデザインデータ作成時のルールや、FigmaのSmartHR UI（ライブラリ）の更新方法をまとめています。
-  </Description>
-  <Description name="review">
+  </slot>
+  <slot slot="review">
     UIデザイン、デザインモックに対してのレビュー方法についてまとめた手引きです。
-  </Description>
-  <Description name="usability-test">
+  </slot>
+  <slot slot="usability-test">
     ユーザビリティテストを実施するうえで利用する資料をまとめています。
-  </Description>
+  </slot>
 </PageIndex>

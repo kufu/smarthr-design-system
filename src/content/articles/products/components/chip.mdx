@@ -2,10 +2,9 @@
 title: 'Chip'
 description: 'オブジェクトのプロパティの表示に使用するコンポーネントです。'
 ---
-import { ComponentStory } from '@Components/ComponentStory'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import { Chip, Cluster, FaCircleXmarkIcon, Stack, UnstyledButton } from 'smarthr-ui'
-import styled from 'styled-components'
 
 オブジェクトのプロパティの表示に使用するコンポーネントです。
 
@@ -15,7 +14,7 @@ Chipを用いて装飾するのに向いているプロパティは、タグや�
 
 ## 使用上の注意
 
-### オブジェクトのステータス表示に使用しない
+## オブジェクトのステータス表示に使用しない
 
 オブジェクトのステータスには[StatusLabel](/products/components/status-label/)を使用してください。
 
@@ -79,5 +78,3 @@ render(
 ## Props
 
 <ComponentPropsTable name="Chip" />
-
-

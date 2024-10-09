@@ -127,70 +127,77 @@ HTMLのアウトライン構造に対して順に見出しを設定すること�
 視線誘導の法則を考慮したレイアウトの具体例を紹介します。  
 単純化した例を挙げていますが、[注意点](#h2-2)のとおり、実際のケースでは1つの画面内で複数の法則が関連することを認識しましょう。
 
-import styled from 'styled-components'
+import { Image } from 'astro:assets'
 import { Cluster, Text } from 'smarthr-ui'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import List from './_components/List.astro'
+
 import Sample1Do from './images/Sample1_DO.png'
 import Sample1Dont from './images/Sample1_DONT.png'
 import Sample2Do from './images/Sample2_DO.png'
 import Sample2Dont from './images/Sample2_DONT.png'
 import Sample3Do from './images/Sample3_DO.png'
 import Sample3Dont from './images/Sample3_DONT.png'
-export const List = styled.ul`
-  margin-block-start: 0.5rem !important;
-  padding-inline-start: 1rem !important;
-`
 
 ### 例1
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={Sample1Do} alt="Do" />}
-    label={<Text><a href="#h4-0">F型の視線移動</a>を考慮した配置になっている</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={Sample1Dont} alt="Dont" />}
-    label={<Text><a href="#h4-0">F型の視線移動</a>を考慮した配置になっていない<List><li>見出しがフォーム領域（<a href="/products/components/base/">Base</a>）に対して左側に配置されていない</li><li>フォームが入力してほしい順序に上から下に並んでいない</li><li>見出しの直後に［目的となるボタン］が配置されており、「フォームの入力後にボタンを押す」という視線の流れにならない</li></List></Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={Sample1Do} alt="Do" />
+    <Text slot="text"><a href="#h4-0">F型の視線移動</a>を考慮した配置になっている</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={Sample1Dont} alt="Dont" />
+    <Text slot="text">
+      <a href="#h4-0">F型の視線移動</a>を考慮した配置になっていない
+      <List>
+        <li>見出しがフォーム領域（<a href="/products/components/base/">Base</a>）に対して左側に配置されていない</li>
+        <li>フォームが入力してほしい順序に上から下に並んでいない</li>
+        <li>見出しの直後に［目的となるボタン］が配置されており、「フォームの入力後にボタンを押す」という視線の流れにならない</li>
+      </List>
+    </Text>
+  </DoAndDont>
 </Cluster>
 
 ### 例2
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={Sample2Do} alt="Do" />}
-    label={<Text><a href="#h4-1">Z型の視線移動</a>を考慮した配置になっており、主要な情報とアクションが見逃されにくい</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={Sample2Dont} alt="Dont" />}
-    label={<Text><a href="/products/components/float-area/">FloatArea</a>の採用から<a href="#h4-1">Z型の視線移動</a>を期待するレイアウトだが、［操作ボタン1］［目的となるボタン］が「Z」の視線上に配置されていない</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={Sample2Do} alt="Do" />
+    <Text slot="text">
+      <a href="#h4-1">Z型の視線移動</a>を考慮した配置になっており、主要な情報とアクションが見逃されにくい
+    </Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={Sample2Dont} alt="Dont" />
+    <Text slot="text">
+      <a href="/products/components/float-area/">FloatArea</a>の採用から<a href="#h4-1">Z型の視線移動</a>を期待するレイアウトだが、［操作ボタン1］［目的となるボタン］が「Z」の視線上に配置されていない
+    </Text>
+  </DoAndDont>
 </Cluster>
 
 ### 例3
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={Sample3Do} alt="Do" />}
-    label={<Text><a href="#h4-0">F型の視線移動</a>を考慮した配置になっている</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={Sample3Dont} alt="Dont" />}
-    label={<Text>オブジェクトの一覧画面から<a href="#h4-0">F型の視線移動</a>を期待するレイアウトだが、視線の流れが途切れやすい配置になっている<List><li>検索フォームがなく空白であるため、視線を横に移動する起点がなく<a href="/products/components/pagination/">Pagination</a>が見逃される可能性がある</li><li>［オブジェクトを追加］は一覧画面における主要なアクションにはなりえないため、目立たせる目的で使われている結果、このボタンで視線の流れが途切れる可能性がある</li><li>オブジェクトの操作が行の途中に設置されており、項目2に視線が流れない可能性がある</li></List></Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={Sample3Do} alt="Do" />
+    <Text slot="text">
+      <a href="#h4-0">F型の視線移動</a>を考慮した配置になっている
+    </Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={Sample3Dont} alt="Dont" />
+    <Text slot="text">
+      オブジェクトの一覧画面から<a href="#h4-0">F型の視線移動</a>を期待するレイアウトだが、視線の流れが途切れやすい配置になっている
+      <List>
+        <li>検索フォームがなく空白であるため、視線を横に移動する起点がなく<a href="/products/components/pagination/">Pagination</a>が見逃される可能性がある</li>
+        <li>［オブジェクトを追加］は一覧画面における主要なアクションにはなりえないため、目立たせる目的で使われている結果、このボタンで視線の流れが途切れる可能性がある</li>
+        <li>オブジェクトの操作が行の途中に設置されており、項目2に視線が流れない可能性がある</li>
+      </List>
+    </Text>
+  </DoAndDont>
 </Cluster>
 
 

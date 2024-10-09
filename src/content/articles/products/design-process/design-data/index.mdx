@@ -4,13 +4,13 @@ description: 'Figmaでのデザインデータ作成時のルールや、Figma�
 order: 1
 ---
 
-import { PageIndex } from '@Components/article/PageIndex'
+import PageIndex from '@/components/article/PageIndex.astro'
 
-<PageIndex path="/products/design-process/design-data/" excludes={[]} heading="h2">
-  <Description name="design-guide">
+<PageIndex basePath="/products/design-process/design-data/">
+  <div slot="design-guide">
     Figmaでデザインデータを作成する際に必要な情報と、守って欲しいルールをまとめています。
-  </Description>
-  <Description name="figma-library-update">
+  </div>
+  <div slot="figma-library-update">
     Figmaのデザインデータの変更をライブラリに適用する際の手順と守って欲しいルールをまとめています。
-  </Description>
+  </div>
 </PageIndex>

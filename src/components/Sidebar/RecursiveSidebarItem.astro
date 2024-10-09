@@ -11,8 +11,8 @@ type Props = {
 
 const { currentPath, items, depth, parentIndex } = Astro.props;
 
-if (items.length === 0) {
-  return null;
+if (items.length <= 0) {
+  return undefined;
 }
 ---
 

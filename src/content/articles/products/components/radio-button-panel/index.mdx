@@ -2,11 +2,11 @@
 title: 'RadioButtonPanel'
 description: 'パネル型の選択肢の中から単一の値を選択して入力できるコンポーネントです。'
 ---
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { ComponentStory } from '@Components/ComponentStory'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
-import { Cluster} from 'smarthr-ui'
+import { Image } from 'astro:assets'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Cluster, Text } from 'smarthr-ui'
 
 import RadioButtonPanelDo from './images/radio-button-panel-do.png';
 import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
@@ -42,18 +42,14 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 - ComboBoxなどで選択肢に応じて段階的に別の操作をさせたい場合は、[RadioButton](/products/components/radio-button/)と`disabled`状態を組み合わせるか、[ステップを複数に分けたモード](/products/design-patterns/modal-ui/#h3-5)を検討します。
 
 <Cluster gap={1}>
-    <DoAndDont
-        type="do"
-        img={<StaticImage src={RadioButtonPanelDo} alt="Do" width="346" />}
-        label={<Text>ユーザーは選択する操作に集中でき、それ<br/>以外の操作と区別しやすい</Text>}
-        width="calc(50% - 8px)"
-    />
-    <DoAndDont
-        type="dont"
-        img={<StaticImage src={RadioButtonPanelDont} alt="Dont" width="346" />}
-        label={<Text>ユーザーが選択操作に集中できず、操作難<br/>易度が上がる</Text>}
-        width="calc(50% - 8px)"
-    />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={RadioButtonPanelDo} alt="Do" width="346" />
+    <Text slot="text">ユーザーは選択する操作に集中でき、それ<br/>以外の操作と区別しやすい</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={RadioButtonPanelDont} alt="Dont" width="346" />
+    <Text slot="text">ユーザーが選択操作に集中できず、操作難<br/>易度が上がる</Text>
+  </DoAndDont>
 </Cluster>
 
 ## Props
@@ -62,4 +58,4 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 
 ## 参考文献
 
-※1. [<label\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)
+※1. [\<label\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)

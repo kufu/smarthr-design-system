@@ -2,12 +2,12 @@
 title: 'Input'
 description: 'テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。'
 ---
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { ComponentStory } from '@Components/ComponentStory'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
-import { Base, BaseColumn, Button, Cluster, CurrencyInput, EmptyTableBody, FaCaretDownIcon, FaCircleXmarkIcon, FaLockIcon, FaMagnifyingGlassIcon, FormControl, Heading, Input, SearchInput, Table, Td, Text, Th, UnstyledButton, VisuallyHiddenText } from 'smarthr-ui'
+import { Image } from 'astro:assets'
+import ComponentPreview from '@/components/ComponentPreview'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { BaseColumn, Cluster, CurrencyInput, FaMagnifyingGlassIcon, Text, } from 'smarthr-ui'
 
 import inputWidthDo from './images/input-width-do.png'
 import inputWidthDont from './images/input-width-dont.png'
@@ -23,18 +23,14 @@ import inputWidthDont from './images/input-width-dont.png'
 入力する内容をあらかじめ精査し適切な幅になるよう調整して使用してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={inputWidthDo} alt="do" />}
-    label={<Text>入力する内容の量が精査され、幅が調整されている</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={inputWidthDont} alt="dont" />}
-    label={<Text>入力する内容の量が精査されず、幅が調整されていない</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={inputWidthDo} alt="Do" />
+    <Text slot="text">入力する内容の量が精査され、幅が調整されている</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={inputWidthDont} alt="Dont" />
+    <Text slot="text">入力する内容の量が精査されず、幅が調整されていない</Text>
+  </DoAndDont>
 </Cluster>
 
 適切な幅は以下の判断基準を参考にしてください。
@@ -73,7 +69,7 @@ import inputWidthDont from './images/input-width-dont.png'
 
 入力値が整数であった場合、入力欄からフォーカスを外したときに3桁ごとにカンマが入った値で表示されます。
 
-```tsx editable codeBlock
+```tsx editable
 <CurrencyInput
   defaultValue="1000"
 />
@@ -87,7 +83,7 @@ import inputWidthDont from './images/input-width-dont.png'
 
 `prefix`は検索アイコン「<FaMagnifyingGlassIcon alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン" />」に固定されています。
 
-```tsx editable codeBlock noIframe withStyled
+```tsx editable noIframe withStyled
 render(() => {
   const [query, setQuery] = React.useState('須磨 英子')
   return (
@@ -103,58 +99,14 @@ render(() => {
 
 `onClickClear`を使用すると、入力内容のクリアボタンが表示されます。検索ボタンのあるフォーム（インクリメンタル検索をしないフォーム）内のSearchInputでは入力内容のクリアボタンで検索まで実行せず、入力内容の削除にとどめてください。
 
-export const SearchInputDont = () => {
-  const objects = ['オブジェクト 1', 'オブジェクト 2', 'オブジェクト 3']
-  const [query, setQuery] = React.useState('hello')
-  const [result, setResult] = React.useState([])
-  const search = (q) => {
-    setResult(objects.filter(object => object.includes(q)))
-  }
-  return ( // ) smarthr/@textlint-rule/no-unmatched-pairを無効化するために閉じ括弧をコメントで追加
-    <Base overflow="auto">
-      <Cluster justify="space-between" align="center" className="shr-p-1">
-        <form role="search" onSubmit={(e) => e.preventDefault()}>
-          <Cluster align="center" gap={1}>
-            <Cluster gap={0.5}>
-              <SearchInput tooltipMessage="オブジェクト名で検索できます。" value={query} name="search" onChange={(e) => { setQuery(e.target.value) }} onClickClear={() => { setQuery(''); search('')}} />
-              <Button onClick={() => {search(query)}}>検索</Button>
-            </Cluster>
-          </Cluster>
-        </form>
-      </Cluster>
-      <Table style={{ margin: 0 }}>
-        <thead>
-          <tr>
-            <Th>オブジェクト</Th>
-          </tr>
-        </thead>
-        {
-          result.length === 0 ? (
-            <EmptyTableBody>
-              <Text>該当するオブジェクトはありません。<br />別の条件を試してください。</Text>
-            </EmptyTableBody>
-          ) : (
-            <tbody>
-              {
-                result.map((object, index) => (
-                  <tr key={index}>
-                    <Td>{object}</Td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          )
-        }
-      </Table>
-    </Base>
-  )
-}
+import SearchInputDont from './_components/SearchInputDont'
 
-<DoAndDont
-  type="dont"
-  label="検索ボタンのあるフォーム内のSearchInputで、入力内容のクリアボタンを押すと検索まで実行される"
-  img={<BaseColumn><SearchInputDont /></BaseColumn>}
-/>
+<DoAndDont type="dont">
+  <BaseColumn slot="img">
+    <SearchInputDont />
+  </BaseColumn>
+  <Text slot="text">検索ボタンのあるフォーム内のSearchInputで、入力内容のクリアボタンを押すと検索まで実行される</Text>
+</DoAndDont>
 
 ## レイアウト
 
@@ -166,12 +118,15 @@ export const SearchInputDont = () => {
 
 要素の位置と種類、位置に基づく役割は以下の表を参考にしてください。
 
+import SampleInputWithPrefixIcon from './_components/SampleInputWithPrefixIcon'
+import SampleInputWithSuffixIcon from './_components/SampleInputWithSuffixIcon'
+
 | 位置 | 要素の種類 | 表示例 | 要素の役割 |
 | :-- | :-- | :-- | :-- |
-| プレフィックス（`prefix`）| アイコン | <Input name="exampleprefixicon" type="password" defaultValue="password" prefix={<FaLockIcon />} /> | 入力内容を想起させるために使用します。 |
-| プレフィックス（`prefix`）| テキスト| <CurrencyInput name="exampleprefixtext" defaultValue="1000" prefix="$" /> | 入力内容を想起させるために使用します。 <br /> 一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いてください。 |
-| サフィックス（`suffix`）| アイコン | <Input name="examplesuffixicon" defaultValue="テキスト" suffix={<UnstyledButton><VisuallyHiddenText>入力内容を削除</VisuallyHiddenText><FaCircleXmarkIcon style={{ display: 'block' }} /></UnstyledButton>} /> | 操作を想起させるため、または操作を提供するために使用します。 |
-| サフィックス（`suffix`）| テキスト | <CurrencyInput name="examplesuffixtext" defaultValue="1000" suffix="円" /> | 入力内容を想起させるために使用します。<br />一般的に内容に対して後方に置かれる単位（例: 日本円）に用いてください。 |
+| プレフィックス（`prefix`）| アイコン | <SampleInputWithPrefixIcon /> | 入力内容を想起させるために使用します。 |
+| プレフィックス（`prefix`）| テキスト| <CurrencyInput name="exampleprefixtext" defaultValue="1000" prefix="$" client:load /> | 入力内容を想起させるために使用します。 <br /> 一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いてください。 |
+| サフィックス（`suffix`）| アイコン | <SampleInputWithSuffixIcon />| 操作を想起させるため、または操作を提供するために使用します。 |
+| サフィックス（`suffix`）| テキスト | <CurrencyInput name="examplesuffixtext" defaultValue="1000" suffix="円" client:load /> | 入力内容を想起させるために使用します。<br />一般的に内容に対して後方に置かれる単位（例: 日本円）に用いてください。 |
 
 入力内容を想起させるアイコンは、以下の判断基準を参考につけてください。
 
@@ -196,7 +151,7 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 
 例えば、すでに登録済みで変更できないメールアドレスを、入力済みとして送信したい場合に使用します。
 
-```tsx editable codeBlock
+```tsx editable
 <FormControl
   title="メールアドレス"
 >
@@ -215,7 +170,7 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 
 ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Input
   name="disabled"
   value="一時的に編集できない値"

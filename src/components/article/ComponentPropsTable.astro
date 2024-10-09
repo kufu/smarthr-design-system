@@ -2,8 +2,8 @@
 import { marked } from 'marked';
 import { StatusLabel, Text, WarningIcon } from 'smarthr-ui';
 import { getUIProps } from '@/lib/getUIData';
-import FragmentTitle from '../FragmentTitle.astro';
-import TypeTag from './TypeTag.astro';
+import ComponentPropsTableTag from './ComponentPropsTableTag.astro';
+import FragmentTitle from './FragmentTitle.astro';
 
 type Props = {
   name: string;
@@ -15,27 +15,22 @@ const { name, dirName, showTitle } = Astro.props;
 
 // StoryのPropsを取得
 const data = getUIProps(name, dirName);
-if (!data) {
-  throw new Error(`StoryのPropsが見つかりませんでした: name=${name} dirName=${dirName}`);
-}
-
-const { displayName, props: propsData } = data;
 
 const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`;
 ---
 
 {
-  propsData === null || propsData.length === 0 ? (
+  !data || data?.props === null || data.props.length === 0 ? (
     <Text as={'p'}>Propsは設定されていません。</Text>
   ) : (
     <>
       {showTitle && (
-        <FragmentTitle tag="h3" id={fragmentId(displayName)}>
-          {displayName} props
+        <FragmentTitle tag="h3" id={fragmentId(data.displayName)}>
+          {data.displayName} props
         </FragmentTitle>
       )}
       <div class="wrapper">
-        {propsData.map((prop) => (
+        {data.props.map((prop) => (
           <div class="propContent">
             <div class="propName">
               <span>{prop?.name}</span>
@@ -44,9 +39,9 @@ const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
             </div>
             <div class="propTypes">
               {prop.type.name === 'enum' ? (
-                prop.type.value && prop.type.value.map(({ value }) => <TypeTag content={value ?? ''} />)
+                prop.type.value && prop.type.value.map(({ value }) => <ComponentPropsTableTag content={value ?? ''} />)
               ) : (
-                <TypeTag content={prop.type.name} />
+                <ComponentPropsTableTag content={prop.type.name} />
               )}
             </div>
             <div class="propDescription" set:html={marked.parse(prop.description ?? '')} />
@@ -90,7 +85,7 @@ const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
   }
 
   .propDescription {
-    && p {
+    & p {
       margin-block-start: 0;
     }
   }

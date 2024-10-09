@@ -4,29 +4,29 @@ description: 'UIテキストに限らず、「ユーザーがSmartHRというプ
 order: 5
 ---
 
-import { PageIndex } from '@Components/article/PageIndex'
+import PageIndex from '@/components/article/PageIndex.astro'
 
 UIテキストに限らず、**「ユーザーがSmartHRというプロダクトを利用する際に助けとなる言葉をデザインする」**ためのツールを提供します。
 
-<PageIndex path="/products/contents/" excludes={[]} heading="h2">
-  <Description name="writing-principles">
+<PageIndex basePath="/products/contents/">
+  <div slot="writing-principles">
     ライティングガイドラインの位置づけについてまとめています。
-  </Description>
-  <Description name="writing-style">
+  </div>
+  <div slot="writing-style">
     言葉をデザインするときの判断基準や表記ルールをトピックごとに記載しています。
-  </Description>
-  <Description name="idiomatic-usage">
+  </div>
+  <div slot="idiomatic-usage">
     文章を書くときに用いる字（平仮名、カタカナ、漢字、英数字）と用いる語（単語、熟語）について、推奨する表記とNG例、その理由を定義しています。
-  </Description>
-  <Description name="app-writing">
+  </div>
+  <div slot="app-writing">
     アプリケーション上の表現で迷ったときの判断基準や、推奨する表記を記載しています。
-  </Description>
-  <Description name="error-messages">
+  </div>
+  <div slot="error-messages">
     エラーメッセージについての考え方とライティングパターンを記載しています。
-  </Description>
-  <Description name="help-center">
+  </div>
+  <div slot="help-center">
     ヘルプセンターの目的と各種ヘルプページ、リリースノートの表記ルールを記載しています。
-  </Description>
+  </div>
 </PageIndex>
 
 ## フィードバック先

@@ -4,19 +4,7 @@ description: '削除操作をするときのアクションダイアログを定
 order: 9
 ---
 
-import { useEffect, useState } from 'react'
-import {
-  ActionDialog,
-  BaseColumn,
-  Button,
-  CheckBox,
-  DefinitionList,
-  Dialog,
-  ResponseMessage,
-  Stack,
-  Text,
-} from 'smarthr-ui'
-import { ComponentPreview } from '@Components/ComponentPreview'
+import ComponentPreview from '@/components/ComponentPreview'
 
 削除操作をするときのアクションダイアログを定義します。
 
@@ -44,55 +32,10 @@ import { ComponentPreview } from '@Components/ComponentPreview'
 
 ![ダイアログ内の要素](./images/delete-dialog_components.png)
 
-export const DynamicActionDialog = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
-      <ActionDialog
-        isOpen={isOpen}
-        title="{オブジェクト名}の削除"
-        closeText="キャンセル"
-        actionText="削除"
-        actionTheme="danger"
-        onClickClose={() => {setIsOpen(false)}}
-        onClickAction={() => {setIsOpen(false)}}
-        width={640}
-      >
-          <Stack gap={1.5}>
-            <p>
-            {'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}
-            </p>
-            <DefinitionList 
-              items = {[
-                {
-                  term: (<Text styleType="blockTitle" color="TEXT_BLACK">{'削除する{オブジェクト名}'}</Text>),
-                  description: '{インスタンス名}',
-                }
-              ]}
-            />
-            <Stack gap={0.5}>
-              <BaseColumn>
-                <ResponseMessage type="warning"><Text weight="bold">注意事項</Text></ResponseMessage>
-                <ul style={{'marginBottom' : 0, 'paddingLeft' : '16px'}}>
-                  <li>{'{関連するオブジェクト名など}に登録されているデータも削除されます。'}</li>
-                  <li>{'{選択したオブジェクトのインスタンス名}に含まれる{オブジェクト名}も削除されます。'}</li>
-                </ul>
-              </BaseColumn>
-              <BaseColumn>
-                <CheckBox name="delete_confirm">
-                  注意事項を確認しました。
-                </CheckBox>
-              </BaseColumn>
-            </Stack>
-          </Stack>
-      </ActionDialog>
-    </>
-  )
-}
+import DynamicActionDialog from './_components/DynamicActionDialog'
 
 <ComponentPreview>
-  <DynamicActionDialog />
+  <DynamicActionDialog client:load />
 </ComponentPreview>
 
 ### 1. タイトル
@@ -160,31 +103,8 @@ export const DynamicActionDialog = () => {
 操作を取り消す際も、同様の確認ダイアログを表示します。
 
 
-export const DynamicCancelActionDialog = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>取り消しダイアログを開く</Button>
-      <ActionDialog
-        isOpen={isOpen}
-        title="{操作名}の取り消し"
-        closeText="キャンセル"
-        actionText="取り消し"
-        actionTheme="danger"
-        onClickClose={()=> {setIsOpen(false)}}
-        onClickAction={()=> {setIsOpen(false)}}
-        width={480}
-      >
-        <Text as="p">
-          {'{操作名}を取り消しますか？'}<br />
-          {'「取り消し」を押すと変更内容が破棄されます。'}
-        </Text>
-      </ActionDialog>
-    </>
-  )
-}
+import DynamicCancelActionDialog from './_components/DynamicCancelActionDialog'
 
 <ComponentPreview>
-  <DynamicCancelActionDialog />
+  <DynamicCancelActionDialog client:load />
 </ComponentPreview>
-

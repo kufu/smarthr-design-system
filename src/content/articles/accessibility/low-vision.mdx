@@ -3,27 +3,8 @@ title: '弱視・ロービジョンのユーザーのウェブ利用時の課題
 description: ' '
 order: 6
 ---
-import styled from 'styled-components'
-import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-import { TableReel as OriginalTableReel, Table, Th, Td } from 'smarthr-ui'
-
-export const TableReel = styled(OriginalTableReel)`
-  margin-block-start: 20px;
-  & table {
-    width: 200%;
-    margin-block-start: 0;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-      width: 250svw;
-    }
-  }
-  & th,
-  & td {
-    min-width: initial;
-    border: none;
-    box-sizing: content-box;
-    font-size: ${CSS_FONT_SIZE.PX_14};
-  }
-`
+import { Table, Th, Td } from 'smarthr-ui'
+import TableReel from "./_components/TableReel.astro"
 
 ## 弱視・ロービジョンのユーザーの特性と利用環境
 
@@ -45,7 +26,7 @@ export const TableReel = styled(OriginalTableReel)`
 
 ## 弱視・ロービジョンのユーザーのウェブ利用に関連する課題と解決案の表
 
-<TableReel class="part">
+<TableReel>
 <Table>
   <thead>
     <tr>

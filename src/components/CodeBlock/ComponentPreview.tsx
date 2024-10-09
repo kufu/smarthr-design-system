@@ -1,26 +1,42 @@
-import { type ReactNode } from 'react';
+import { useMemo } from 'react';
 import { Header } from 'smarthr-ui';
 import styled, { css } from 'styled-components';
+import DefaultComponentPreview from '../ComponentPreview';
+import type { ComponentPreviewProps } from '../ComponentPreview';
+import WrapperBase from '../ComponentPreview/WrapperBase';
 import ResizableContainer from '../ResizableContainer';
-import { WrapperBase } from './WrapperBase';
 
 type Props = {
-  children: ReactNode;
-};
+  layout: 'none' | 'product';
+} & ComponentPreviewProps;
 
-export default function ProductWrapper({ children }: Props) {
-  return (
-    <Wrapper>
-      <ResizableContainer defaultWidth="100%" defaultHeight="300px">
-        <BodyWrapper>
-          <Header logoHref="#" />
-          <Body>{children}</Body>
-        </BodyWrapper>
-      </ResizableContainer>
-    </Wrapper>
-  );
+export default function ComponentPreview({ layout, children, ...props }: Props) {
+  return useMemo(() => {
+    switch (layout) {
+      default: {
+        return <DefaultComponentPreview {...props}>{children}</DefaultComponentPreview>;
+      }
+      case 'product': {
+        return (
+          <Wrapper>
+            <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+              <BodyWrapper>
+                <Header logoHref="#" />
+                <Body>{children}</Body>
+              </BodyWrapper>
+            </ResizableContainer>
+          </Wrapper>
+        );
+      }
+      case 'none': {
+        return <WrapperBase>{children}</WrapperBase>;
+      }
+    }
+  }, [layout, props, children]);
 }
 
+// NOTE:
+// iframe内に配置されるため引き続き styled-components を利用しています
 const Wrapper = styled(WrapperBase)(
   ({ theme: { leading } }) => css`
     border-width: 0 0 1px; /* CodeBlockには上ボーダーがないので、下のみボーダーをつける */

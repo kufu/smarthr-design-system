@@ -4,33 +4,10 @@ description: '影のトークンは、要素の周りに落とす影（シャド
 order: 7
 ---
 
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { defaultColor } from 'smarthr-ui'
+import ComponentPreview from '@/components/ComponentPreview'
+import ShadowSample from './_components/ShadowSample'
 
 影のトークンは、要素の周りに落とす影（シャドウ）の大きさを定義します。
-
-<!-- textlint-disable -->
-
-export const ShadowSample = ({depth = 1}) => {
-  return (
-    <div
-      style={{
-        width: '96px',
-        height: '96px',
-        borderRadius: '4px',
-        backgroundColor: 'white',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: `${depth === 0
-          ? 'none'
-          : `0 ${2 ** (depth - 1)}px ${2 ** depth}px ${((depth - 1) >= 0) ? (2 ** (depth - 2)) : 0}px ${defaultColor.TRANSPARENCY_30}`}`,
-      }}
-    >LAYER{depth}</div>
-  )
-}
-
-<!-- textlint-enable -->
 
 CSSでは`box-shadow`や`drop-shadow`を指しています。
 

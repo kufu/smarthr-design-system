@@ -25,8 +25,14 @@ export async function getHeadings(content: AstroComponentFactory) {
   // NOTE:
   // loadRenderers が import できないため、手動で renderer を追加しています
   // https://github.com/withastro/astro/issues/11697
-  container.addServerRenderer({ renderer: reactRenderer, name: 'react' });
-  container.addServerRenderer({ renderer: mdxRenderer, name: 'mdx' });
+  container.addServerRenderer({ renderer: reactRenderer, name: '@astrojs/react' });
+  container.addServerRenderer({ renderer: mdxRenderer, name: '@astrojs/mdx' });
+
+  // client:onlyを処理するために必要
+  container.addClientRenderer({
+    name: '@astrojs/react',
+    entrypoint: '@astrojs/react/client.js',
+  });
 
   const contentHtml = await container.renderToString(content);
 

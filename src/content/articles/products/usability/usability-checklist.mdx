@@ -4,7 +4,7 @@ description: '日本産業規格（JIS X 25000シリーズ）を参考に開発�
 order: 1
 ---
 
-<!-- textlint-disable -->
+{/*  textlint-disable  */}
 
 UIデザイン使用性チェックリストは、SmartHRのプロダクトデザイナーが日本産業規格（JIS X 25000シリーズ）を参考に開発した、[プロダクトの使用性](/products/usability/#h2-0)という「ユーザーがプロダクトをどのくらい使えるかの品質」を担保するための、UIデザイン時点で考慮すべき観点の一覧です。
 
@@ -29,32 +29,8 @@ JIS X 25000シリーズで定義されている「使用性」の特性や測定
 使用性チェックリストには、2023年11月現在、21項目のチェック内容があります。  
 今後の活用によって、チェックリストは随時更新される可能性があります。
 
-import styled from 'styled-components'
-import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-import { TableReel as OriginalTableReel, Table, Th, Td } from 'smarthr-ui'
-
-export const TableReel = styled(OriginalTableReel)`
-  margin-block-start: 20px;
-  @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-    margin-right: -40px;
-    margin-left: -40px;
-  }
-  & table {
-    width: 150%;
-    margin-block-start: 0;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-      width: 250svw;
-    }
-  }
-  & th,
-  & td {
-    min-width: initial;
-    border: none;
-    box-sizing: content-box;
-    font-size: ${CSS_FONT_SIZE.PX_14};
-  }
-`
-
+import { Table, Th, Td } from 'smarthr-ui'
+import TableReel from './_components/TableReel.astro'
 
 <TableReel>
 <Table>
@@ -285,15 +261,9 @@ export const TableReel = styled(OriginalTableReel)`
 ### チェック手順
 チェックは「[UIデザイン使用性チェックリスト回答テンプレート(Googleスプレッドシート)](https://docs.google.com/spreadsheets/d/14dBtQRFoo1OCTs-0sz0FFePFtE0olC59ANHTIbDYYbA/edit?usp=sharing)」を複製して使用してください。
 
-import { BaseColumn, WarningIcon } from 'smarthr-ui'
+import UsabilityCheckListWarning from './_components/UsabilityCheckListWarning'
 
-<BaseColumn>
-  <WarningIcon text={
-    <span>
-    コンテンツの「No.19 SmartHRの基本的な概念（用語）に合わせた命名をしているか」および「No.20 操作の導線やアクション名が基準に沿っているか」のチェックは任意とします。（現時点では確認作業が大きくなりすぎる可能性があるため）
-    </span>}
-    />
-</BaseColumn>
+<UsabilityCheckListWarning />
 
 1. **情報設計の項目を確認し、`チェック内容への回答`列を選択する。**
     - 「はい」の場合
@@ -325,4 +295,3 @@ import { BaseColumn, WarningIcon } from 'smarthr-ui'
 また、フローチャートをどのように辿ったかを説明することで、他者に自身の判断プロセスを伝えることにも役立てられます。
 
 ![基準判定フローチャート](./images/guideline-check-flowchart.png)
-

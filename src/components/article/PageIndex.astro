@@ -4,16 +4,17 @@ import { basename, join } from 'node:path';
 
 type Props = {
   basePath: string;
+  heading: 'h2' | 'h3';
   excludePaths?: string[];
 };
 
-const { basePath, excludePaths = [] } = Astro.props;
+const { basePath, heading: Heading = 'h2', excludePaths = [] } = Astro.props;
 
 // 自身のページを除いたサブページを取得
 const subPages = await getSubPageCollection(basePath, [...excludePaths, 'index.mdx']);
 
 // order昇順でソート
-subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.order : -1));
+subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.order : 1));
 ---
 
 <div class="wrapper">
@@ -26,9 +27,9 @@ subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.or
 
         return (
           <>
-            <h2 class="pageTitleHeadings">
+            <Heading class="pageTitleHeadings">
               <a href={join('/', page.slug)}>{page.data.title}</a>
-            </h2>
+            </Heading>
             {hasSlot ? <Fragment set:html={description} /> : <p>{description}</p>}
           </>
         );

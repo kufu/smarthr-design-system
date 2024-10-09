@@ -2,13 +2,13 @@
 title: 'DropZone'
 description: 'ファイルを選択するためのコンポーネントです。ドラッグアンドドロップによるファイル選択をするためにドロップ領域を広く持っています。'
 ---
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { ComponentStory } from '@Components/ComponentStory'
-import { DoAndDont } from '@Components/DoAndDont'
-import { StaticImage } from '@Components/StaticImage'
+import { Image } from 'astro:assets'
+import { Cluster, Text } from 'smarthr-ui'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
 import InputFileDo from './images/input-file-do.png'
 import InputFileDont from './images/input-file-dont.png'
-import { Cluster } from 'smarthr-ui'
 
 ファイルを選択するためのコンポーネントです。ドラッグアンドドロップによるファイル選択をするためにドロップ領域を広く持っています。
 
@@ -21,18 +21,14 @@ DropZoneは操作しやすさを担保するため一定以上の大きさでレ
 複数使用する場合は、全体の閲覧性を維持できるようにレイアウトを検討するか、[InputFile](/products/components/input-file/)を使用してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={InputFileDo} alt="Do" />}
-    label={<Text>入力項目の大きさが揃っており、閲覧性が高い</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={InputFileDont} alt="Dont" />}
-    label={<Text>入力項目の大きさに差があり、項目を見落とす恐れがある</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={InputFileDo} alt="Do" width="346" />
+    <Text slot="text">入力項目の大きさが揃っており、閲覧性が高い</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={InputFileDont} alt="Dont" width="346" />
+    <Text slot="text">入力項目の大きさに差があり、項目を見落とす恐れがある</Text>
+  </DoAndDont>
 </Cluster>
 
 
@@ -40,5 +36,3 @@ DropZoneは操作しやすさを担保するため一定以上の大きさでレ
 ## Props
 
 <ComponentPropsTable name="DropZone" />
-
-

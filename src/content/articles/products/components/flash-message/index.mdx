@@ -3,26 +3,12 @@ title: 'FlashMessage（非推奨）'
 description: 'FlashMessageは非推奨です。ユーザーに操作の結果を伝えるUIについては、フィードバックのデザインパターンを参照してください。'
 ---
 
-import { ComponentPreview } from '@Components/ComponentPreview'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { ComponentStory } from '@Components/ComponentStory'
-import { useState } from 'react'
-import {
-  BaseColumn,
-  Button,
-  FlashMessage,
-  WarningIcon,
-} from 'smarthr-ui'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPreview from '@/components/ComponentPreview'
+import Warning from './_components/Warning'
 
-
-<BaseColumn>
-  <WarningIcon text={
-    <span>
-    FlashMessageは非推奨です。ユーザーに操作の結果を伝えるUIについては、<a href="/products/design-patterns/feedback">フィードバック</a>を参照してください。
-    </span>}
-    />
-</BaseColumn>
-
+<Warning />
 
 FlashMessageコンポーネントは、インターフェイス上に表示されるメッセージパネルです。  
 ユーザー操作やシステムの処理結果を、ユーザーに素早くフィードバックするために使います。
@@ -38,18 +24,10 @@ FlashMessageコンポーネントは、インターフェイス上に表示さ�
 
 ## 種類
 
-export const DynamicFlashMessage = () => {
-  const [visible, setVisible] = useState(false)
-  return (
-    <>
-        <Button onClick={() => setVisible(true)}>FlashMessageを表示</Button>
-        <FlashMessage type="success" text="Hello, FlashMessage." visible={visible} onClose={() => { setVisible(false) }} />
-    </>
-  )
-}
+import DynamicFlashMessage from './_components/DynamicFlashMessage'
 
 <ComponentPreview>
-  <DynamicFlashMessage />
+  <DynamicFlashMessage client:load />
 </ComponentPreview>
 
 ## 補足

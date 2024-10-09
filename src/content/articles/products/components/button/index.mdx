@@ -4,8 +4,9 @@ description: 'Buttonコンポーネントは、押すことで特定の操作や
 ---
 
 import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
-import { ComponentPropsTable } from '@Components/ComponentPropsTable'
-import { ComponentStory } from '@Components/ComponentStory'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import SampleButton from './_components/SampleButton'
 
 Buttonコンポーネントは、押すことで特定の操作や処理を実行するコンポーネントです。
 
@@ -22,7 +23,7 @@ SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="butt
 ボタンの優先度や役割に合わせた4種類のコンポーネントを総称して、Buttonコンポーネントとして定義しています。
 
 
-```tsx editable codeBlock
+```tsx editable
 <>
   <Button variant="primary">Primary</Button>
   <Button>Secondary</Button>
@@ -38,7 +39,7 @@ Primaryボタンは、画面内で主要な操作をユーザーに示す役割�
 - ユーザーからの注目（視線）を集めることだけを目的に、Primaryボタンを使用しないでください。（参考：[視線誘導](/products/design-patterns/visual-guidance/)）
 
 
-```tsx editable codeBlock
+```tsx editable
 <>
   <Button variant="primary">ボタン</Button>
   <Button variant="primary" prefix={<FaCirclePlusIcon />}>ボタン</Button>
@@ -58,7 +59,7 @@ SmartHR UIでは、`variant` propsのデフォルトは`secondary`です。
 - ただしボタンが多すぎるとユーザーが迷う要因となります。情報設計と画面構成の見直しや、[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)の利用などを検討してください。
 
 
-```tsx editable codeBlock
+```tsx editable
 <>
   <Button>ボタン</Button>
   <Button prefix={<FaCirclePlusIcon />}>ボタン</Button>
@@ -77,7 +78,7 @@ Dangerボタンは、[取り返しのつかない操作](/products/design-patter
 - すべてのユーザーが色を見たり、理解できるわけではありません。警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h3-8)）に頼らず、ボタン配置のコンテキストやラベルテキストだけでもユーザーに伝わるように検討してください。
 
 
-```tsx editable codeBlock
+```tsx editable
 <>
   <Button variant="danger">ボタン</Button>
   <Button variant="danger" prefix={<FaCirclePlusIcon />}>ボタン</Button>
@@ -98,7 +99,7 @@ Secondaryボタンと役割は同じですが、ほかのコンポーネント�
 - ほかの画面に移動させることが主目的の場合は、[TextLink](/products/components/text-link/)を使用してください。
 
 
-```tsx editable codeBlock
+```tsx editable
 <>
   <Button variant="text">ボタン</Button>
   <Button variant="text" prefix={<FaCirclePlusIcon />}>ボタン</Button>
@@ -115,7 +116,7 @@ AnchorButtonは、リンク（`a`要素）をボタンのように装飾にす�
 アクションボタンとして表現したい場合は、Buttonを使用してください。
 
 
-```tsx editable codeBlock
+```tsx editable
 <>
   <AnchorButton variant="primary" href="#h3-4">ボタン</AnchorButton>
   <AnchorButton href="#h3-4">ボタン</AnchorButton>
@@ -134,8 +135,8 @@ SmartHR UIでは、サイズ（`size`props）で指定できます。
 
 | 種類 | 表示例 | 説明 |
 | :--- | :--- | :--- |
-| `通常` | <Button prefix={<FaCirclePlusIcon />} size="default">ボタン</Button> | 通常のサイズです。 |
-| `小` | <Button prefix={<FaCirclePlusIcon />} size="s">ボタン</Button> | レイアウトの都合上、スペースを節約したいときに使うサイズです。 |
+| `通常` | <SampleButton prefix={FaCirclePlusIcon} size="default">ボタン</SampleButton> | 通常のサイズです。 |
+| `小` | <SampleButton prefix={FaCirclePlusIcon} size="s">ボタン</SampleButton> | レイアウトの都合上、スペースを節約したいときに使うサイズです。 |
 
 
 ### アイコンの有無
@@ -150,8 +151,8 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 | 種類 | 表示例 | アイコンの役割 |
 | :--- | :--- | :--- |
-| `アイコン付き（左）` | <Cluster><Button prefix={<FaCirclePlusIcon />}>項目を追加</Button><Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button></Cluster> | ボタンを押したときに実行される操作を想起させるために使用します。同じ操作のボタンには、同じアイコンを指定してください。 |
-| `アイコン付き（右）` | <Cluster><Button suffix={<FaCaretDownIcon />}>一括操作</Button><Button suffix={<FaFilterIcon />}>絞り込み</Button></Cluster> | ドロップダウンのように、ボタンを押したときに特定のUIが表示される場合に使用します。<br />（例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)、[FilterDropdown](/products/components/dropdown/filter-dropdown/)、[SortDropdown](/products/components/dropdown/sort-dropdown/)） |
+| `アイコン付き（左）` | <Cluster><SampleButton prefix={FaCirclePlusIcon}>項目を追加</SampleButton><SampleButton prefix={FaCloudArrowDownIcon}>ダウンロード</SampleButton></Cluster> | ボタンを押したときに実行される操作を想起させるために使用します。同じ操作のボタンには、同じアイコンを指定してください。 |
+| `アイコン付き（右）` | <Cluster><SampleButton suffix={FaCaretDownIcon}>一括操作</SampleButton><SampleButton suffix={FaFilterIcon}>絞り込み</SampleButton></Cluster> | ドロップダウンのように、ボタンを押したときに特定のUIが表示される場合に使用します。<br />（例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)、[FilterDropdown](/products/components/dropdown/filter-dropdown/)、[SortDropdown](/products/components/dropdown/sort-dropdown/)） |
 
 
 ##### `アイコン付き`にする判断基準
@@ -173,7 +174,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 アイコンのみのボタンです。モバイルでの表示など、ラベルテキストを表示するレイアウト上の余裕がない場合に使います。
 ラベルテキストがないため、[アイコンには必ず代替テキストを含めてください。](/products/components/icon/#h3-0)
 
-```tsx editable codeBlock
+```tsx editable
 <>
   <Button square>
     <FaCirclePlusIcon alt="追加" />
@@ -202,7 +203,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 無効状態の理由を配置するスペースがどうしてもない場合、`disabledDetail`propsで理由を表示することを検討します。
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <>
   <Button variant="primary" prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
   <Button prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
@@ -225,7 +226,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 ラベルの判断基準は以下のとおりです。
 
-![ボタンやテキストリンクなど、ユーザーのアクションを促すテキストですか？そうでない場合は{オブジェクト}の{操作名}と書きます。クリックしたら{操作名}の処理が実行されますか？（最終アクションですか？）そうでない場合は{オブジェクト}の{操作名}と書きます。テキストに対象オブジェクト名を明記しないと伝わりにくい場合は{オブジェクト名}を{操作名}と書きます。そうでない場合は{操作名}と書きます。](./images/button-label-decision-tree.png)
+![ボタンやテキストリンクなど、ユーザーのアクションを促すテキストですか？そうでない場合は{オブジェクト}の{操作名}と書きます。クリックしたら{操作名}の処理が実行されますか？（最終アクションですか？）そうでない場合は{オブジェクト}の{操作名}と書きます。テキストに対象オブジェクト名を明記しないと伝わりにくい場合は{オブジェクト名}を{操作名}と書きます。そうでない場合は{操作名}と書きます。](../images/button-label-decision-tree.png)
 
 
 ## Props
