@@ -20,7 +20,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 種類ごとの使いどころは[種類](#h2-2)に書きます。
 
 
-## {コンポーネント名}を使用したコンポーネント
+## \{コンポーネント名\}を使用したコンポーネント
 
 開発で頻繁に利用する実装を別のコンポーネント化している場合は、子ページへのリンクや説明を書きます。
 
@@ -34,7 +34,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 #### 単品
 
-```tsx editable codeBlock
+```tsx editable
 // ```tsx editable
 // <>この中に JSX が書けます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため明示的に import しないでも使えます。</>
 // ```
@@ -55,7 +55,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 #### iframeを使用したくない場合（非推奨）
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 // ```tsx editable codeBlock noIframe
 // 編集可能なコードブロックは、iframe内にレンダリングされます。ツールチップがiframeの外にレンダリングされるなど不都合がある場合は`noIframe`を指定します。
 // `noIframe`では、CSSノーマライズが適用されないなどの問題があるため、非推奨です。
@@ -67,7 +67,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 #### プロダクト
 
-```tsx editable withStyled layout=product codeBlock
+```tsx editable withStyled layout=product
 const AwesomeComponent:React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Wrapper>
