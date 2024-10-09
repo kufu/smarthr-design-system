@@ -3,7 +3,7 @@ title: 'Tooltip'
 description: 'UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使うコンポーネントです。'
 ---
 import {
-  BaseColumn,
+  WarningIcon,
   FaArrowDownIcon,
   FaArrowLeftIcon,
   FaArrowRightIcon,
@@ -15,18 +15,14 @@ import {
   FaFileIcon,
   FaPlusCircleIcon,
 } from 'smarthr-ui'
-import { Button, Cluster, Tooltip, Text, WarningIcon } from 'smarthr-ui'
-import ComponentPreview from '@/components/article/ComponentPreview'
+import { Button, Cluster, Tooltip, Text } from 'smarthr-ui'
+import ComponentPreview from '@/components/ComponentPreview'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
-<BaseColumn>
-  <WarningIcon text={
-    <span>
-    Tooltipはユーザーが能動的に表示しなければならない、拡大表示時に領域外に表示されてしまうなどの課題があるため、安易な使用はお勧めしません。基本的にはTooltip以外のUIを使用することを検討してください。
-    </span>}
-    />
-</BaseColumn>
+import Warning from './_components/Warning'
+
+<Warning />
 
 Tooltipコンポーネントは、UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使います。
 
@@ -70,7 +66,7 @@ Tooltipはトリガー要素に`focus`や`hover`で表示します。詳しく�
 1. [Tooltip](#h4-0)  
 2. [トリガー](#h4-1)
 
-![Tooltipによる補足情報の構成要素](./images/tooltip-overview.png)
+![Tooltipによる補足情報の構成要素](../images/tooltip-overview.png)
 
 #### 1. Tooltip
 Tooltipそのものです。吹き出し形式で補足的なテキストを表示します。

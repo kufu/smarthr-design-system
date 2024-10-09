@@ -6,19 +6,17 @@ order: 2
 
 import { createTheme } from 'smarthr-ui'
 import { Table, Td, Th } from 'smarthr-ui'
+import SampleText from './_components/SampleText'
 
+{/* TODO: 移植後に確認する
 import TableWrapper from '@/components/article/contents/shared/TableWrapper'
-
-export const Sampletext = ({size = 'M', children}) => {
-  const theme = createTheme()
-  return (<p style={{fontSize: `${theme.fontSize[size]}`}}>{children}</p>)
-}
+*/}
 
 
 ## 書体
 ユーザーが慣れ親しんでいる環境を尊重し、またOSの設定に委ねることでさまざまな言語で正しくレンダリングされることを期待し、以下の書体を指定します。
 
-```css codeBlock
+```css
 font-family: system-ui, sans-serif;
 ```
 
@@ -81,6 +79,7 @@ font-family: system-ui, sans-serif;
 
 サイズ小とサイズ極小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
 
+{/*
 <TableWrapper>
   <Table>
     <thead>
@@ -109,6 +108,7 @@ font-family: system-ui, sans-serif;
     </tbody>
   </Table>
 </TableWrapper>
+*/}
 
 ### ラベルテキスト
 段落ではないボタンなどのラベルテキストに使います。  
@@ -116,6 +116,7 @@ font-family: system-ui, sans-serif;
 
 サイズ小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
 
+{/*
 <TableWrapper>
   <Table>
     <thead>
@@ -139,6 +140,7 @@ font-family: system-ui, sans-serif;
     </tbody>
   </Table>
 </TableWrapper>
+*/}
 
 ### 表
 表中のテキストは、基本的に段落テキストと同じスタイルで揃えます。表で固有のスタイルは以下のとおりです。
