@@ -3,11 +3,11 @@ title: 'よくあるテーブル'
 description: 'SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。'
 order: 7
 ---
+import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable/ComponentPropsTable.astro'
-import ComponentStoryfrom '@/components/article/ComponentStory'
-import DoAndDont from '@/components/article/DoAndDont'
-import StaticImage from '@/components/article/StaticImage'
-import { Cluster , FaCloudDownloadAltIcon } from 'smarthr-ui'
+import ComponentStoryfrom from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Cluster, Text, FaCloudDownloadAltIcon } from 'smarthr-ui'
 
 import noTitleDo from './images/smarthr-table/pattern-no-title-do.png'
 import noTitleDont from './images/smarthr-table/pattern-no-title-dont.png'
@@ -105,17 +105,15 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 ただし、後述の[テーブル操作エリア](#h3-2)が生じる場合はテーブルの左上に不要な余白が生まれるため、見出しを省略できません。
 
 <Cluster gap={1}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={noTitleDo} alt="Do" />}
-    label={<Text>画面タイトルとテーブルの間に余白ができない場合は省略できる</Text>}
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={noTitleDont} alt="Dont" />}
-    label={<Text>画面タイトルとテーブルの間にテーブル操作エリアがあり、テーブルの左上に不要な余白ができる</Text>}
-    width="auto"
-  />
+  <DoAndDont type="do">
+    <Image slot="img" src={noTitleDo} alt="Do" />
+    <Text slot="text">画面タイトルとテーブルの間に余白ができない場合は省略できる</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="auto">
+    <Image slot="img" src={noTitleDont} alt="Dont" />
+    <Text slot="text">画面タイトルとテーブルの間にテーブル操作エリアがあり、テーブルの左上に不要な余白ができる</Text>
+  </DoAndDont>
 </Cluster>
 
 ### 3. テーブル操作エリア
@@ -169,16 +167,15 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 一時操作エリアに置く機能が`テーブルのページ送り`のみの場合、Base外の下部にのみ配置します。このとき、テーブルの左上に不要な余白が生まれるため、Base内の上部のエリアは表示しないでください。
 
 <Cluster gap={1}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={onlyPaginationDo} alt="Do" />}
-    label={<Text>Base内の上部のエリアごと非表示にする。</Text>}
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={onlyPaginationDont} alt="Dont" />}
-    label={<Text>テーブルのページ送りのみ配置すると、左に不要な余白ができるため、視線誘導として不適切。</Text>}
-  />
+  <DoAndDont type="do">
+    <Image slot="img" src={onlyPaginationDo} alt="Do" />
+    <Text slot="text">Base内の上部のエリアごと非表示にする。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont">
+    <Image slot="img" src={onlyPaginationDont} alt="Dont" />
+    <Text slot="text">テーブルのページ送りのみ配置すると、左に不要な余白ができるため、視線誘導として不適切。</Text>
+  </DoAndDont>
 </Cluster>
 
 ## レイアウト
@@ -214,7 +211,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 横スクロールが生じるとき、重要な情報が隠れてしまうことを防ぐため、[TableReel](/products/components/table/)を用いて列を固定できます。
 列を固定することにより、画面の表示幅の変更等により意図せぬ横スクロールが発生した場合にも操作性が担保できます。
 
-```tsx editable codeBlock
+```tsx editable
 
 <div style={{ width: '100%' }}>
 <TableReel>

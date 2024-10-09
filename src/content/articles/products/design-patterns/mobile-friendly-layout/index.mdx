@@ -2,17 +2,9 @@
 title: 'モバイルレイアウト'
 description: 'モバイル対応をする基準と、その対応方法を定義します。'
 ---
-{/*  eslint-disable smarthr/a11y-heading-in-sectioning-content  */}
-
-import DoAndDontfrom '@/components/article/DoAndDont'
+import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Base, BaseColumn, Button, Cluster, FormControl, Heading, Input, NotificationBar, Stack, Text } from 'smarthr-ui'
-
-export const StyledP = styled.p`
-  &&& {
-    margin-block-start: unset;
-    line-height: 1.5;
-  }
-`
+import Caption from './_components/Caption.astro'
 
 モバイル対応をする基準と、その対応方法を定義します。
 
@@ -55,48 +47,44 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 垂直方向に積み上げて解決ができない場合は、アダプティブなレイアウトを検討してください。
 
 <Cluster gap={1}>
-  <DoAndDont
-    type="dont"
-    img={
-      <BaseColumn as="figure" aria-labelledby="caption1" style={{ display: 'flex', margin: 'unset', gap: '1em' }}>
-        <Base padding={1} style={{ flexShrink: 0, flexBasis: '25%' }}>
-          <Stack gap={0.5}>
-            <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
-            <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
-          </Stack>
-        </Base>
-        <Base padding={1} style={{ flexGrow: 1 }}>
-          <Stack>
-            <StyledP>構造関係の理解も難しくなります。</StyledP>
-            <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
-          </Stack>
-        </Base>
-      </BaseColumn>
-    }
-    label={<figcaption id="caption1"><StyledP>コンテンツが読みにくく、構造を把握しにくい。</StyledP></figcaption>}
-    width={320}
-  />
-  <DoAndDont
-    type="do"
-    img={
-      <BaseColumn as="figure" aria-labelledby="caption2" style={{ display: 'flex', flexWrap: 'wrap', margin: 'unset', gap: '1em' }}>
-        <Base padding={1}>
-          <Stack gap={0.5}>
-            <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
-            <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
-          </Stack>
-        </Base>
-        <Base padding={1}>
-          <Stack>
-            <StyledP>構造関係の理解も難しくなります。</StyledP>
-            <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
-          </Stack>
-        </Base>
-      </BaseColumn>
-    }
-    label={<figcaption id="caption2"><StyledP>垂直方向に積み上げると最低限の可読性を保てます。</StyledP></figcaption>}
-    width={320}
-  />
+  <DoAndDont type="dont" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption1" style={{ display: 'flex', margin: 'unset', gap: '1em' }}>
+      <Base padding={1} style={{ flexShrink: 0, flexBasis: '25%' }}>
+        <Stack gap={0.5}>
+          <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
+          <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
+        </Stack>
+      </Base>
+      <Base padding={1} style={{ flexGrow: 1 }}>
+        <Stack>
+          <Caption>構造関係の理解も難しくなります。</Caption>
+          <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="text" id="caption1">
+      <Caption>コンテンツが読みにくく、構造を把握しにくい。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ display: 'flex', flexWrap: 'wrap', margin: 'unset', gap: '1em' }}>
+      <Base padding={1}>
+        <Stack gap={0.5}>
+          <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
+          <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
+        </Stack>
+      </Base>
+      <Base padding={1}>
+        <Stack>
+          <Caption>構造関係の理解も難しくなります。</Caption>
+          <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="text" id="caption2">
+      <Caption>垂直方向に積み上げると最低限の可読性を保てます。</Caption>
+    </figcaption>
+  </DoAndDont>
 </Cluster>
 
 ### 水平方向のスクロールや2次元（垂直・水平方向）スクロールを避ける
@@ -126,42 +114,38 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 画面内で主要な操作を置く場合は、コンテンツ幅いっぱいのボタンを使ってください。
 
 <Cluster gap={1}>
-  <DoAndDont
-    type="dont"
-    img={
-      <BaseColumn as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
-        <Stack>
-          <Base padding={1}>
-            <FormControl title="何らかの入力">
-              <Input />
-            </FormControl>
-          </Base>
-          <div>
-            <Button variant="primary">保存</Button>
-          </div>
-        </Stack>
-      </BaseColumn>
-    }
-    label={<figcaption id="caption3"><StyledP>ボタンが小さいと利用者の環境に依っては操作しにくい。</StyledP></figcaption>}
-    width={320}
-  />
-  <DoAndDont
-    type="do"
-    img={
-      <BaseColumn as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
-        <Stack>
-          <Base padding={1}>
-            <FormControl title="何らかの入力">
-              <Input />
-            </FormControl>
-          </Base>
+  <DoAndDont type="dont" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
+      <Stack>
+        <Base padding={1}>
+          <FormControl title="何らかの入力">
+            <Input />
+          </FormControl>
+        </Base>
+        <div>
           <Button variant="primary">保存</Button>
-        </Stack>
-      </BaseColumn>
-    }
-    label={<figcaption id="caption4"><StyledP>幅いっぱいに広げ、十分に操作領域を取る。</StyledP></figcaption>}
-    width={320}
-  />
+        </div>
+      </Stack>
+    </BaseColumn>
+    <figcaption slot="text" id="caption3">
+      <Caption>ボタンが小さいと利用者の環境に依っては操作しにくい。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
+      <Stack>
+        <Base padding={1}>
+          <FormControl title="何らかの入力">
+            <Input />
+          </FormControl>
+        </Base>
+        <Button variant="primary">保存</Button>
+      </Stack>
+    </BaseColumn>
+    <figcaption slot="text" id="caption4">
+      <Caption>幅いっぱいに広げ、十分に操作領域を取る。</Caption>
+    </figcaption>
+  </DoAndDont>
 </Cluster>
 
 #### 複数の操作ボタン
@@ -170,46 +154,42 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
 垂直方向に並べる場合は、慣習にならい（TODO 要出典）Primaryボタンの下にSecondaryボタンを置きます。
 
 <Cluster gap={1}>
-  <DoAndDont
-    type="do"
-    img={
-      <BaseColumn as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
-        <Base padding={1}>
-          <Stack gap={1.5}>
-            <FormControl title="何らかの入力">
-              <Input />
-            </FormControl>
-            <Cluster>
-              <Button>キャンセル</Button>
-              <Button variant="primary">保存</Button>
-            </Cluster>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl title="何らかの入力">
+            <Input />
+          </FormControl>
+          <Cluster>
+            <Button>キャンセル</Button>
+            <Button variant="primary">保存</Button>
+          </Cluster>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="text" id="caption5">
+      <Caption>水平方向に並べる場合は後方にPrimaryボタンを置く。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl title="何らかの入力">
+            <Input />
+          </FormControl>
+          <Stack gap={0.5}>
+            <Button variant="primary">保存</Button>
+            <Button>キャンセル</Button>
           </Stack>
-        </Base>
-      </BaseColumn>
-    }
-    label={<figcaption id="caption5"><StyledP>水平方向に並べる場合は後方にPrimaryボタンを置く。</StyledP></figcaption>}
-    width={320}
-  />
-  <DoAndDont
-    type="do"
-    img={
-      <BaseColumn as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
-        <Base padding={1}>
-          <Stack gap={1.5}>
-            <FormControl title="何らかの入力">
-              <Input />
-            </FormControl>
-            <Stack gap={0.5}>
-              <Button variant="primary">保存</Button>
-              <Button>キャンセル</Button>
-            </Stack>
-          </Stack>
-        </Base>
-      </BaseColumn>
-    }
-    label={<figcaption id="caption6"><StyledP>垂直方向に並べる場合はPrimaryボタンを上に置く。</StyledP></figcaption>}
-    width={320}
-  />
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="text" id="caption6">
+      <Caption>垂直方向に並べる場合はPrimaryボタンを上に置く。</Caption>
+    </figcaption>
+  </DoAndDont>
 </Cluster>
 
 ## コンポーネントごとの使い方
