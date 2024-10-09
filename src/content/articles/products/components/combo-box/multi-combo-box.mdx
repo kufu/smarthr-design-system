@@ -2,16 +2,13 @@
 title: 'MultiComboBox'
 description: '選択肢の中から複数の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。'
 ---
+import { Image } from 'astro:assets'
+import { Text, MultiComboBox, Cluster } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
-import DoAndDont from '@/components/article/DoAndDont'
-import StaticImage from '@/components/article/StaticImage'
+import DoAndDont from '@/components/article/DoAndDont.astro'
 import multiComboBoxDo from './images/multi-combo-box-do.png'
 import multiComboBoxDont from './images/multi-combo-box-dont.png'
-import {
-  MultiComboBox,
-  Cluster
-} from 'smarthr-ui'
 
 選択肢の中から複数の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。
 
@@ -39,18 +36,14 @@ MultiComboBoxで入力補助のヒントメッセージを表示したい場合�
 `dropdownHelpMessage`はドロップダウンパネルを表示したときのみ表示されるため、ヒントメッセージを常に表示したい場合は、[FormControl](/products/components/form-control/)の`helpMessage`を使用してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont
-    type="do"
-    img={<StaticImage src={multiComboBoxDo} alt="Do" />}
-    label={<Text>ユーザーがテキストを入力しても入力補助としてヒントメッセージを確認できる</Text>}
-    width="calc(50% - 8px)"
-  />
-  <DoAndDont
-    type="dont"
-    img={<StaticImage src={multiComboBoxDont} alt="Dont" />}
-    label={<Text>ユーザーがテキストを入力するとプレースホルダが確認できなくなり、入力補助として機能しない</Text>}
-    width="calc(50% - 8px)"
-  />
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={multiComboBoxDo} alt="Do" width="346" />
+    <Text slot="text">ユーザーがテキストを入力しても入力補助としてヒントメッセージを確認できる</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={multiComboBoxDont} alt="Dont" width="346" />
+    <Text slot="text">ユーザーがテキストを入力するとプレースホルダが確認できなくなり、入力補助として機能しない</Text>
+  </DoAndDont>
 </Cluster>
 
 ## 状態
@@ -61,7 +54,7 @@ MultiComboBoxで入力補助のヒントメッセージを表示したい場合�
 
 MultiComboBoxに`disabled`を適用すると、テキスト入力不可になりドロップダウンパネルも表示されないため、ユーザーが選択肢を確認できなくなる点に注意してください。
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <>
   <MultiComboBox
     name="disabled"
@@ -87,7 +80,7 @@ MultiComboBoxに`disabled`を適用すると、テキスト入力不可になり
 
 ユーザーがその場で選択肢を追加できるようにしたい場合は、MultiComboBoxに`creatable`を適用してコールバック関数`onAdd`を適切に実装してください。
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <>
   <MultiComboBox
     name="onAdd"
