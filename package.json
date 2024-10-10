@@ -11,6 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
+    "lint": "run-p lint:*",
+    "lint:text": "textlint 'src/content/**/*.md{,x}'",
     "update:ui-data": "tsx ./scripts/fetch-ui-data.ts",
     "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
     "generate:thumbnails": "tsx ./scripts/component-thumbnails/componentThumbnails.ts",
@@ -51,6 +53,11 @@
     "remark": "^15.0.1",
     "remark-emoji": "^5.0.1",
     "sass-embedded": "^1.79.4",
+    "textlint": "^14.2.1",
+    "textlint-filter-rule-allowlist": "^4.0.0",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-preset-smarthr": "^1.32.0",
+    "textlint-rule-prh": "^6.0.0",
     "tsx": "^4.19.1",
     "unist-util-visit": "^5.0.0"
   }

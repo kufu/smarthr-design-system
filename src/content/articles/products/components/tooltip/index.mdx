@@ -83,13 +83,13 @@ Tooltipの配置は8種類の選択肢があります。
 - `horizontal`（横）と`vertical`（縦）の両方に`auto`を指定すると、レイアウトを加味して自動的に方向を決めてくれます。
 
 export const DynamicTooltip = ({children, ...props}) => {
-  {/*  textlint-disable  */}
+  {/* <!-- textlint-disable --> */}
   return (
     <Tooltip {...props}>
       {children}
     </Tooltip>
   )
-  {/*  textlint-enable  */}
+  {/* <!-- textlint-enable --> */}
 }
 
 #### 上配置
