@@ -1,0 +1,54 @@
+---
+type Props = {
+  description?: string;
+};
+
+const { description } = Astro.props;
+---
+
+<figure>
+  <slot />
+  {description && <figcaption>{description}</figcaption>}
+</figure>
+
+<style lang="scss">
+  figure {
+    display: block;
+    margin: 0;
+    padding: 0;
+
+    :global(p) {
+      height: 208px;
+      background-color: var(--color-divider);
+    }
+
+    :global(a) {
+      display: block;
+      height: 208px;
+    }
+
+    :global(span) {
+      /*
+      マークダウンの画像で一緒に挿入されるspanタグのstyle属性に直接padding-bottomが指定され、
+      サイズが調整できないため、やむなく!importantを指定
+    */
+      padding-bottom: 0 !important;
+    }
+
+    :global(img) {
+      /*
+      マークダウンの画像はstyle属性に直接「box-shadow: white 0px 0px 0px 400px inset;」が指定されて、
+      背景色が強制的に白にさせられてしまうため、背景色を入れるためにやむなく!importantを指定
+    */
+      box-shadow: none !important;
+      object-fit: contain;
+    }
+
+    figcaption {
+      margin-top: 16px;
+      font-size: var(--font-size-13);
+      line-height: 1.62;
+      color: #000;
+    }
+  }
+</style>
