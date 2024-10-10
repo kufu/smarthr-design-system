@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import ArticleLayout from '@/layouts/ArticleLayout.astro';
 import CustomLink from '@/components/article/CustomLink.astro';
+import CustomTable from '@/components/article/CustomTable.astro';
 import CodeBlock from '@/components/article/CodeBlock.astro';
 import FragmentTitle from '@/components/article/FragmentTitle.astro';
 import ResponsiveImage from '@/components/article/ResponsiveImage.astro';
@@ -36,6 +37,7 @@ const components = {
   h6: FragmentTitle,
   a: CustomLink,
   img: ResponsiveImage,
+  table: CustomTable,
 };
 ---
 

@@ -6,10 +6,9 @@ order: 1
 
 import { Image } from 'astro:assets'
 import { Button, Cluster, FaPlusCircleIcon, Table, Td, Th, Text } from 'smarthr-ui'
-import DoAndDont from '@/components/article/DoAndDont.astro'
 import ComponentPreview from '@/components/ComponentPreview'
-
-{/* TODO: import TableWrapper from '@/components/article/contents/shared/TableWrapper' */}
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import TableWrapper from '@/components/article/TableWrapper.astro'
 
 import SampleCluster from './components/SampleCluster.astro'
 import SampleStack from './components/SampleStack.astro'
@@ -82,7 +81,6 @@ import SampleStack from './components/SampleStack.astro'
 
 ### SmartHR UI テーブル
 
-{/*
 <TableWrapper>
   <Table>
     <thead>
@@ -110,7 +108,6 @@ import SampleStack from './components/SampleStack.astro'
     </tbody>
   </Table>
 </TableWrapper>
-*/}
 
 ## レイアウト
 SmartHR UI Layoutコンポーネントを使用できます。

@@ -4,14 +4,9 @@ description: '最小限に整理したフォントスタイルは可読性を高
 order: 2
 ---
 
-import { createTheme } from 'smarthr-ui'
 import { Table, Td, Th } from 'smarthr-ui'
+import TableWrapper from '@/components/article/TableWrapper.astro'
 import SampleText from './_components/SampleText'
-
-{/* TODO: 移植後に確認する
-import TableWrapper from '@/components/article/contents/shared/TableWrapper'
-*/}
-
 
 ## 書体
 ユーザーが慣れ親しんでいる環境を尊重し、またOSの設定に委ねることでさまざまな言語で正しくレンダリングされることを期待し、以下の書体を指定します。
@@ -28,7 +23,7 @@ font-family: system-ui, sans-serif;
 ### セマンティックトークン
 
 | トークン名 | 値（rem）| 基準値をもとにした実値（px）|
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | `XXS` | 0.667rem | 10.67px |
 | `XS` | 0.75rem | 12px |
 | `S` | 0.857rem | 13.71px |
@@ -41,7 +36,7 @@ font-family: system-ui, sans-serif;
 `SHORT / TALL / GRANDE / VENTI`による定義は、抽象的な名前から実値を予想しづらいため非推奨となりました。（SmartHR UI v13以降）
 
 | トークン名 | 値（rem）| 基準値をもとにした実値（px）|
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | `SHORT` | 0.6875rem | 11px |
 | `TALL` | 0.875rem | 14px |
 | `GRANDE` | 1.125rem | 18px |
@@ -51,7 +46,7 @@ font-family: system-ui, sans-serif;
 新旧における対応は以下のとおりです。
 
 | 現トークン | 旧トークン |
-| :--- | :--- | :--- |
+| :--- | :--- |
 | `XXS` | - |
 | `XS` | - |
 | `S` | `SHORT` |
@@ -79,7 +74,6 @@ font-family: system-ui, sans-serif;
 
 サイズ小とサイズ極小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
 
-{/*
 <TableWrapper>
   <Table>
     <thead>
@@ -93,22 +87,21 @@ font-family: system-ui, sans-serif;
       <tr>
         <Td>標準</Td>
         <Td><code>M</code></Td>
-        <Td><Sampletext size={'M'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Sampletext></Td>
+        <Td><SampleText size={'M'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
       </tr>
       <tr>
         <Td>サイズ小</Td>
         <Td><code>S</code></Td>
-        <Td><Sampletext size={'S'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Sampletext></Td>
+        <Td><SampleText size={'S'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
       </tr>
       <tr>
         <Td>サイズ極小</Td>
         <Td><code>XS</code></Td>
-        <Td><Sampletext size={'XS'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Sampletext></Td>
+        <Td><SampleText size={'XS'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
       </tr>
     </tbody>
   </Table>
 </TableWrapper>
-*/}
 
 ### ラベルテキスト
 段落ではないボタンなどのラベルテキストに使います。  
@@ -116,7 +109,6 @@ font-family: system-ui, sans-serif;
 
 サイズ小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
 
-{/*
 <TableWrapper>
   <Table>
     <thead>
@@ -130,17 +122,16 @@ font-family: system-ui, sans-serif;
       <tr>
         <Td>標準</Td>
         <Td><code>M</code></Td>
-        <Td><Sampletext size={'M'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Sampletext></Td>
+        <Td><SampleText size={'M'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
       </tr>
       <tr>
         <Td>サイズ小</Td>
         <Td><code>S</code></Td>
-        <Td><Sampletext size={'S'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Sampletext></Td>
+        <Td><SampleText size={'S'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
       </tr>
     </tbody>
   </Table>
 </TableWrapper>
-*/}
 
 ### 表
 表中のテキストは、基本的に段落テキストと同じスタイルで揃えます。表で固有のスタイルは以下のとおりです。

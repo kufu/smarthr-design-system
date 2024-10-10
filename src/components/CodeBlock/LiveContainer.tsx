@@ -8,8 +8,8 @@ import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components
 import { CSS_COLOR } from '@/constants/style';
 import styles from './LiveContainer.module.scss';
 import sharedStyles from './shared.module.scss';
-import ComponentPreview from '../ComponentPreview';
 import type { LiveContainerProps } from './';
+import ComponentPreview from './ComponentPreview';
 import CopyButton from './CopyButton';
 
 type Props = LiveContainerProps;
