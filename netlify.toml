@@ -1,0 +1,9 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+[dev]
+  command = 'pnpm run dev'
+  targetPort = 8000
+  port = 8888
+  publish = 'dist'
+
