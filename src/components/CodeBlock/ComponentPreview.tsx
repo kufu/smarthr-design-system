@@ -7,7 +7,7 @@ import WrapperBase from '../ComponentPreview/WrapperBase';
 import ResizableContainer from '../ResizableContainer';
 
 type Props = {
-  layout: 'none' | 'product';
+  layout?: 'none' | 'product';
 } & ComponentPreviewProps;
 
 export default function ComponentPreview({ layout, children, ...props }: Props) {
