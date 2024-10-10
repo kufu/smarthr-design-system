@@ -1,0 +1,97 @@
+body {
+  #panel-menu .smarthr-ui-Dialog-background {
+    background: transparent;
+  }
+
+  #panel-menu .smarthr-ui-Dialog {
+    width: auto;
+    max-width: 396px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.24);
+    bottom: 16px;
+    max-height: 678px;
+  }
+}
+
+.menuContainer {
+  display: none;
+  align-items: center;
+
+  @include breakpointMobile3 {
+    display: flex;
+  }
+}
+
+.openButton {
+  color: var(--color-black);
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--font-size-24);
+}
+
+.dialog {
+  position: absolute;
+  inset: 15px;
+
+  > div {
+    height: 100%;
+  }
+}
+
+.contentContainer {
+  position: relative;
+  padding-inline: 28px;
+  height: 100%;
+}
+
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  svg {
+    display: block;
+  }
+}
+
+.linkContainer {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 80px;
+  height: 100%;
+  padding: 64px 4px 72px;
+  overflow: auto;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-smarthr-blue);
+  z-index: 10000;
+  mix-blend-mode: multiply;
+  transition-property: opacity, visibility;
+
+  &.isOpen {
+    transition-duration: 0.2s, 0s;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:not(.isOpen) {
+    opacity: 0;
+    visibility: hidden;
+    transition-duration: 1s, 0s;
+    transition-timing-function: cubic-bezier(0, 0.7, 0, 1);
+  }
+}

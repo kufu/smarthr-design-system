@@ -1,0 +1,65 @@
+---
+import navigationItem from '@/data/navigationItem.json';
+
+type Props = {
+  isMobileMenu?: boolean;
+};
+
+const { isMobileMenu = false } = Astro.props;
+
+// navigationItem[].path と合わせるため、末尾に必ずスラッシュを付ける
+const currentPathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+---
+
+{
+  navigationItem.map(({ title, path }) => {
+    const isCurrent = currentPathname.startsWith(path);
+
+    return (
+      <li>
+        <a href={path} class:list={{ default: !isMobileMenu, mobile: isMobileMenu, '-active': isCurrent }}>
+          {title}
+        </a>
+      </li>
+    );
+  })
+}
+
+<style lang="scss">
+  .default {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1;
+    color: var(--color-text-black);
+
+    @include breakpointPC1 {
+      padding-inline: 6px;
+    }
+
+    &:hover {
+      color: var(--color-nav-active);
+    }
+
+    &.-active {
+      color: var(--color-nav-active);
+
+      &::before {
+        content: '';
+        position: absolute;
+        height: 8px;
+        inset-inline: -4px;
+        inset-block-end: -32px;
+        background-color: var(--color-nav-active);
+      }
+    }
+  }
+
+  .mobile {
+    display: inline-block;
+    width: 100%;
+  }
+</style>
