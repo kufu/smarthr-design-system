@@ -6,10 +6,7 @@ description: '直後に続くコンテンツの見出しに使うコンポーネ
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import CodeBlock from '@/components/article/CodeBlock.astro'
-
-{/* TODO: 移植したら確認する
-import TableWrapper from '@/components/article/contents/shared/TableWrapper'
-*/}
+import TableWrapper from '@/components/article/TableWrapper.astro'
 
 import { Heading, Stack, Table, Td, Th } from 'smarthr-ui'
 
@@ -41,8 +38,6 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 ### 画面タイトル
 
 画面のタイトルとして、画面ごとに1度しか使えません。
-
-{/*
 
 <TableWrapper>
   <Table>
@@ -167,7 +162,6 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
   </Table>
 </TableWrapper>
 
-*/}
 
 ## レイアウト
 アウトラインに合わせた使用例は以下のとおりです。  
