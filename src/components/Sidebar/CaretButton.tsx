@@ -1,5 +1,7 @@
 import { FaChevronDownIcon } from 'smarthr-ui';
+
 import styles from './CaretButton.module.scss';
+
 import type { SidebarItem } from './type';
 
 type Props = {
@@ -28,6 +30,7 @@ export default function CaretButton({ currentPath, itemLink, depth, currentIndex
   return (
     <button
       className={styles.caretButton}
+      type="button"
       aria-controls={`Depth${depth + 1}Items__${currentIndex}`}
       aria-expanded={isExpanded}
       onClick={onClickCaret}

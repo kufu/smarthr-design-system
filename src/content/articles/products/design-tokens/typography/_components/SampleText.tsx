@@ -1,4 +1,5 @@
 import { createTheme } from 'smarthr-ui';
+
 import type { FontSizes } from 'smarthr-ui/lib/themes/createFontSize';
 
 type Props = {

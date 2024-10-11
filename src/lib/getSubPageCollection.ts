@@ -6,7 +6,7 @@ import { type CollectionEntry, getCollection } from 'astro:content';
  * @param excludes 除外するページのパス
  * @returns ページのコレクション
  */
-export async function getSubPageCollection(basePath: string, excludes?: string[]): Promise<CollectionEntry<'articles'>[]> {
+export async function getSubPageCollection(basePath: string, excludes?: string[]): Promise<Array<CollectionEntry<'articles'>>> {
   // 先頭のスラッシュを削除
   const normalizedPath = basePath.replace(/^\//, '');
   const normalizedExcludes = excludes?.map((exclude) => exclude.replace(/^\//, ''));

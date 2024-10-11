@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
 import { Button } from 'smarthr-ui';
+
+import type { ReactNode } from 'react';
 
 // NOTE:
 // Astro では ReactNode を直接 Props で受け取れないので、ReactNode を返す関数として受け取っています

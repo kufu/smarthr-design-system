@@ -2,6 +2,7 @@ import { FaCircleXmarkIcon, Input, UnstyledButton, VisuallyHiddenText } from 'sm
 
 export default function SampleInputWithSuffixIcon() {
   return (
+    // eslint-disable-next-line smarthr/a11y-input-in-form-control
     <Input
       name="examplesuffixicon"
       defaultValue="テキスト"

@@ -7,7 +7,7 @@ export default function Warning() {
         text={
           <span>
             CompactInformationPanelは非推奨です。
-            <a href="/products/components/notification-bar/#h4-0">NotificationBar[base="base"]</a>を利用してください。
+            <a href="/products/components/notification-bar/#h4-0">NotificationBar[base=&quot;base&quot;]</a>を利用してください。
           </span>
         }
       />

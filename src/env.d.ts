@@ -1,4 +1,5 @@
-/// <reference path="../.astro/types.d.ts" />
+import '../.astro/types.d.ts';
+
 interface ImportMetaEnv {
   readonly CLOUDINARY_CLOUD_NAME: string;
   readonly AIRTABLE_BASE_ID: string;

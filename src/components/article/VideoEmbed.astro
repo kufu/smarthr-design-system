@@ -11,6 +11,7 @@ const { source, poster, title, youtubeUrl, tracks } = Astro.props;
 ---
 
 <>
+  {/* eslint-disable-next-line astro/jsx-a11y/media-has-caption */}
   <video controls poster={poster}>
     <source src={source} type="video/mp4" title={title} />
     {

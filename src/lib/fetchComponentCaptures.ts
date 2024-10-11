@@ -1,7 +1,8 @@
-import { cwd } from 'node:process';
-import type { StoryIndex } from '@storybook/types';
 import fs from 'fs/promises';
+import { cwd } from 'node:process';
 import path from 'path';
+
+import type { StoryIndex } from '@storybook/types';
 
 const STORYBOOK_URL = 'https://story.smarthr-ui.dev';
 
