@@ -13,17 +13,23 @@ export default [
   ...eslintPluginAstro.configs.recommended,
   ...eslintPluginAstro.configs['jsx-a11y-recommended'],
   {
+    files: ['**/*.mdx'],
     ...mdx.flat,
   },
-  ...compat.config({
-    extends: 'smarthr',
-    overrides: [
-      {
-        files: ['**/*.ts', '**/*.tsx'],
-        rules: {
-          'react/react-in-jsx-scope': 'off',
+  ...compat
+    .config({
+      extends: 'smarthr',
+      overrides: [
+        {
+          files: ['**/*.ts', '**/*.tsx'],
+          rules: {
+            'react/react-in-jsx-scope': 'off',
+          },
         },
-      },
-    ],
-  }),
+      ],
+    })
+    .map((config) => ({
+      ...config,
+      ignores: ['**/*.astro'],
+    })),
 ];
