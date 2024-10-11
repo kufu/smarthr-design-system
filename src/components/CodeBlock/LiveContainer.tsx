@@ -8,7 +8,7 @@ import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components
 
 import { CSS_COLOR } from '@/constants/style';
 
-import ComponentPreview from './ComponentPreview/ComponentPreview';
+import ComponentPreview from './ComponentPreview';
 import CopyButton from './CopyButton';
 import styles from './LiveContainer.module.scss';
 import sharedStyles from './shared.module.scss';
