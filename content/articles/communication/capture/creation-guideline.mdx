@@ -53,11 +53,11 @@ import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 #### テキスト
 [サンプルテキスト](https://smarthr.design/communication/sample/text/)を参照してください。
 
-#### 画像
+#### プロフィール画像
+モデル写真を使用してください。  
+使用する場合は、[モデル写真の注意事項・利用方法（DocBase）](https://smarthr-inc.docbase.io/posts/1933926)を参照してください。
 
-| 要素 | 推奨する表記 | 補足 |
-| --- | --- | --- |
-| プロフィール画像 | モデル写真を使用してください。 | 使用する場合は、[モデル写真の注意事項・利用方法（DocBase）](https://smarthr-inc.docbase.io/posts/1933926)を参照してください。 |
+
 
 
 ## 見た目の調整
@@ -65,9 +65,14 @@ import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 ### ウィンドウサイズ
 基準のサイズです。よりよい見栄えになる最適なウィンドウサイズがあれば、ウィンドウサイズを変更しても構いません。
 
+
 #### 横幅
 - パソコンの場合、横幅1400pxで作成しましょう。
 - スマートフォンの場合、横幅375pxで作成しましょう。
+
+![キャプチャ画像のサンプルが表示されており、画像の左端から右端の長さを矢印が示している](./images/creation-guideline/mock-windowWitdh.png)
+
+
 
 #### 縦幅
 基本的にはページの最上部から最下部まで、全体を収めてください。
@@ -80,12 +85,20 @@ import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 - パソコンの場合、最上部から880px以内に重要な要素は収める。
 - スマートフォンの場合、最上部から760px以内に重要な要素は収める。
 
+![端末モックの中にキャプチャ画像が入っている。モックの画面の高さを矢印が示している](./images/creation-guideline/mock-windowHeight.png)
+
 
 ##### 縦幅の最小サイズ
 端末モックへの合成を担保できる高さです。 重要な要素は端末モックの縦幅内に収めた上で、端末モックへの合成やトリミングやなどの加工がしやすいように、画像のサイズ自体は端末モックの縦幅以上の大きさで作成することを推奨します。
 
 - パソコンの場合、縦幅は880px以上で作成しましょう。
 - スマートフォンの場合、高さ760px以上で作成しましょう。
+
+<ImgWithDesc description="推奨サイズ以下で画像を作成した際のイメージ">
+
+![端末モックの中にキャプチャ画像が入っている。画像の縦幅が足りず、モックの画面に空きが生じている](./images/creation-guideline/mock-windowMinheight.png)
+
+</ImgWithDesc>
 
 上記は、横幅を推奨サイズで作成した場合の値です。
 横幅を異なるサイズで作成する場合、必要な高さも変化するため利用シーンに応じて変更してください。
