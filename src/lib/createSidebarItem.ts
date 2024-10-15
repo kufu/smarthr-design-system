@@ -67,8 +67,15 @@ function mergeAndFilterItems(rawDepthItems: DepthItems, rawDepthComponentItems: 
   const depthComponentItems = rawDepthComponentItems ?? [];
   const mergedItems = [...depthItems, ...depthComponentItems];
 
-  // 親のパスで始まるアイテムのみに絞る
-  return mergedItems.filter((item) => item.link.startsWith(parentPath));
+  // 親のパス以下のアイテムに絞る
+  return mergedItems.filter((item) => {
+    // NOTE:
+    // /products/design-patterns と /products/design-patterns-core-features のように、
+    // 単純な先頭一致だと誤判定するため、末尾が何もない場合やパスが続く場合を対象とする
+    const regexp = new RegExp(`^${parentPath}(/.+)?$`);
+
+    return regexp.test(item.link);
+  });
 }
 
 /**
