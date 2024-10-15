@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { Header } from 'smarthr-ui';
 import styled, { css } from 'styled-components';
-import DefaultComponentPreview from '../ComponentPreview';
-import type { ComponentPreviewProps } from '../ComponentPreview';
+
+import DefaultComponentPreview, { type ComponentPreviewProps } from '../ComponentPreview/ComponentPreview';
 import WrapperBase from '../ComponentPreview/WrapperBase';
 import ResizableContainer from '../ResizableContainer';
 
@@ -18,14 +18,14 @@ export default function ComponentPreview({ layout, children, ...props }: Props) 
       }
       case 'product': {
         return (
-          <Wrapper>
+          <StyledWrapperBase>
             <ResizableContainer defaultWidth="100%" defaultHeight="300px">
               <BodyWrapper>
                 <Header logoHref="#" />
                 <Body>{children}</Body>
               </BodyWrapper>
             </ResizableContainer>
-          </Wrapper>
+          </StyledWrapperBase>
         );
       }
       case 'none': {
@@ -37,7 +37,7 @@ export default function ComponentPreview({ layout, children, ...props }: Props) 
 
 // NOTE:
 // iframe内に配置されるため引き続き styled-components を利用しています
-const Wrapper = styled(WrapperBase)(
+const StyledWrapperBase = styled(WrapperBase)(
   ({ theme: { leading } }) => css`
     border-width: 0 0 1px; /* CodeBlockには上ボーダーがないので、下のみボーダーをつける */
 

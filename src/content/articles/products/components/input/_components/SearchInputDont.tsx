@@ -11,8 +11,10 @@ export default function SearchInputDont() {
 
   return (
     <Base overflow="auto">
+      {/* eslint-disable-next-line smarthr/best-practice-for-layouts */}
       <Cluster justify="space-between" align="center" className="shr-p-1">
         <form role="search" onSubmit={(e) => e.preventDefault()}>
+          {/* eslint-disable-next-line smarthr/best-practice-for-layouts */}
           <Cluster align="center" gap={1}>
             <Cluster gap={0.5}>
               <SearchInput

@@ -1,9 +1,10 @@
 import reactRenderer from '@astrojs/react/server.js';
-import type { MarkdownHeading } from 'astro';
 import { experimental_AstroContainer } from 'astro/container';
 import mdxRenderer from 'astro/jsx/server.js';
-import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import { parse } from 'node-html-parser';
+
+import type { MarkdownHeading } from 'astro';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 
 /**
  * コンポーネント内の h2, h3 タグの情報を取得する

@@ -1,26 +1,27 @@
-import React, { type RefCallback, useState } from 'react';
 import { themes } from 'prism-react-renderer';
+import React, { type RefCallback, useState } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import { CssBaseLine } from 'smarthr-normalize-css';
 import * as ui from 'smarthr-ui';
 import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components';
+
 import { CSS_COLOR } from '@/constants/style';
-import styles from './LiveContainer.module.scss';
-import sharedStyles from './shared.module.scss';
-import type { LiveContainerProps } from './';
+
 import ComponentPreview from './ComponentPreview';
 import CopyButton from './CopyButton';
+import styles from './LiveContainer.module.scss';
+import sharedStyles from './shared.module.scss';
+
+import type { LiveContainerProps } from '.';
 
 type Props = LiveContainerProps;
 
 const smarthrTheme = ui.createTheme();
 
-const transformCode = (snippet: string) => {
+const transformCode = (snippet: string) =>
   // Storybookでも利用するため、コード内に`import`・`export`が記述されているが、ここではエラーになるので削除する。
-  return snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '');
-};
-
+  snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '');
 export default function LiveContainer({ code, language, scope, noIframe, withStyled, gap, align, layout }: Props) {
   const [iframeHeight, setIframeHeight] = useState(600); // デフォルトの高さを設定
 

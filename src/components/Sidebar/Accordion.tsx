@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
 import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui';
+
+import type { ReactNode } from 'react';
 
 // NOTE:
 // AccordionPanelはJSで制御されており、アイランドにする必要があるので React コンポーネントに切り出しています

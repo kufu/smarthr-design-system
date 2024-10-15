@@ -1,9 +1,9 @@
-import type { Heading, ParagraphData } from 'mdast';
-import type { Node } from 'unist';
 import { type Visitor, visit } from 'unist-util-visit';
 
-const rematkIndexIdHeader = () => {
-  return (tree: Node) => {
+import type { Heading, ParagraphData } from 'mdast';
+import type { Node } from 'unist';
+
+const rematkIndexIdHeader = () => (tree: Node) => {
     const indexes = {
       1: 0,
       2: 0,
@@ -43,6 +43,5 @@ const rematkIndexIdHeader = () => {
 
     visit(tree, 'heading', visitor);
   };
-};
 
 export default rematkIndexIdHeader;

@@ -13,5 +13,5 @@ export async function fetchPatternCode(patternName: string) {
     throw new Error(`${patternName}のPatternCodeが取得できませんでした: ${res.statusText}`);
   }
 
-  return await res.text();
+  return res.text();
 }

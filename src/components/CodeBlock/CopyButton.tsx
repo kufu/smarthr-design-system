@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaCheckIcon, FaCopyIcon } from 'smarthr-ui';
+
 import styles from './CopyButton.module.scss';
 
 type Props = {

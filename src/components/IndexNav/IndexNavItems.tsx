@@ -1,7 +1,9 @@
-import type { ReactNode } from 'react';
-import type { MarkdownHeading } from 'astro';
 import { Nav } from 'smarthr-ui';
+
 import styles from './IndexNavItems.module.scss';
+
+import type { MarkdownHeading } from 'astro';
+import type { ReactNode } from 'react';
 
 type Props = {
   headings: MarkdownHeading[];
@@ -11,19 +13,20 @@ type Props = {
 
 export default function IndexNavItems({ headings, indexNavRef, currentHeading }: Props) {
   return (
+    // eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
     <Nav className={styles.nav}>
       <ul ref={indexNavRef}>
-        {headings.map((item, i, headings) => {
+        {headings.map((item, i, headingsRef) => {
           if (item.depth !== 2) {
             return null;
           }
 
           const nextIndex = i + 1;
-          const nextItem = headings.at(nextIndex);
+          const nextItem = headingsRef.at(nextIndex);
           const depth3Items: ReactNode[] = [];
 
           if (nextItem && nextItem.depth === 3) {
-            for (const subItem of headings.slice(nextIndex)) {
+            for (const subItem of headingsRef.slice(nextIndex)) {
               if (subItem.depth !== 3) {
                 break;
               }

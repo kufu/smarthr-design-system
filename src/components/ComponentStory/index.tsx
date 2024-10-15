@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { AnchorButton, Cluster, FaExternalLinkAltIcon, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
+
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
-import type { UIStories } from '@/types/ui';
 import { UI_COMMIT_HASH, UI_VERSION } from '@/lib/getUIData';
-import styles from './index.module.scss';
+import type { UIStories } from '@/types/ui';
+
 import CodeBlock from '../CodeBlock';
 import ResizableContainer from '../ResizableContainer';
+
+import styles from './index.module.scss';
 
 type Props = {
   code: string;
@@ -18,9 +21,7 @@ export default function ComponentStory({ code, stories }: Props) {
   const [currentIframe, setCurrentIframe] = useState(stories.storyItems.at(0)?.iframeName ?? '');
   const [isLoadedIframe, setIsLoadedIframe] = useState(false);
 
-  const getStoryName = (currentName: string) => {
-    return stories.storyItems?.find((item) => item?.iframeName === currentName)?.iframeName;
-  };
+  const getStoryName = (currentName: string) => stories.storyItems?.find((item) => item?.iframeName === currentName)?.iframeName;
 
   const storybookUrl = new URL(`?path=/story/${getStoryName(currentIframe)}`, STORYBOOK_BASE_URL);
 
@@ -84,6 +85,7 @@ export default function ComponentStory({ code, stories }: Props) {
 
       <ResizableContainer defaultWidth="100%" defaultHeight="300px">
         {!isLoadedIframe && <Loader className={styles.storyLoader} />}
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <iframe
           className={styles.storyIframe}
           title={stories.storyItems.find((item) => item?.name === currentIframe)?.label || ''}

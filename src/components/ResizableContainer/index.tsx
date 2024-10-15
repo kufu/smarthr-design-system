@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui';
 import styled from 'styled-components';
+
 import { CSS_COLOR } from '@/constants/style';
 
 type Props = {
@@ -22,8 +23,7 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
 
   const handleVerticalPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     setPointerPosition({ x: event.clientX, y: null });
-    // eslint-disable-next-line valid-typeof
-    if (typeof window !== undefined) {
+    if (typeof window !== 'undefined') {
       document.addEventListener('pointermove', handlePointerMove, false);
       document.addEventListener('pointerup', handlePointerUp, false);
     }
@@ -31,8 +31,7 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
 
   const handleHorizontalPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     setPointerPosition({ x: null, y: event.clientY });
-    // eslint-disable-next-line valid-typeof
-    if (typeof window !== undefined) {
+    if (typeof window !== 'undefined') {
       document.addEventListener('pointermove', handlePointerMove, false);
       document.addEventListener('pointerup', handlePointerUp, false);
     }
@@ -40,8 +39,7 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
 
   const handlePointerUp = () => {
     setPointerPosition({ x: null, y: null });
-    // eslint-disable-next-line valid-typeof
-    if (typeof window !== undefined) {
+    if (typeof window !== 'undefined') {
       document.removeEventListener('pointermove', handlePointerMove, false);
       document.removeEventListener('pointerup', handlePointerUp, false);
     }
@@ -83,15 +81,13 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
   };
 
   useEffect(() => {
-    // eslint-disable-next-line valid-typeof
-    if (typeof window !== undefined) {
+    if (typeof window !== 'undefined') {
       window.addEventListener('resize', handleWindowResize);
     }
 
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,6 +1,7 @@
-import { type ReactNode, useState } from 'react';
 import clsx from 'clsx';
+import { type ReactNode, useState } from 'react';
 import { Dialog, FaBarsIcon } from 'smarthr-ui';
+
 import styles from './MobileMenuContainer.module.scss';
 import './dialog.scss';
 
@@ -14,6 +15,7 @@ export default function MobileMenuContainer({ children }: Props) {
   return (
     <>
       <div className={styles.menuContainer}>
+        {/* eslint-disable-next-line smarthr/a11y-clickable-element-has-text */}
         <button
           className={styles.openButton}
           type="button"
@@ -36,6 +38,7 @@ export default function MobileMenuContainer({ children }: Props) {
           id="panel-menu"
         >
           <div className={styles.contentContainer}>
+            {/* eslint-disable-next-line smarthr/a11y-clickable-element-has-text */}
             <button className={styles.closeButton} type="button" title="メニューを閉じる" onClick={() => setIsOpen(false)}>
               <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_1090_7843)">

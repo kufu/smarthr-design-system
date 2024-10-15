@@ -3,27 +3,12 @@
  * @type {import("prettier").Config}
  */
 const config = {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   ...require('prettier-config-smarthr'),
   singleQuote: true,
   trailingComma: 'all',
   semi: true,
-  plugins: ['prettier-plugin-astro', '@trivago/prettier-plugin-sort-imports'],
-  importOrder: [
-    '^react$',
-    '^astro:$',
-    '^node:(.*)$',
-    '<THIRD_PARTY_MODULES>',
-    '^@/constants/(.*)$',
-    '^@/types/(.*)$',
-    '^@/layouts/(.*)$',
-    '^@/component/(.*)$',
-    '^@/lib/(.*)$',
-    '^@/styles/(.*)$',
-    'module.scss$',
-    '^[./]',
-  ],
-  importOrderSeparation: false,
-  importOrderSortSpecifiers: true,
+  plugins: ['prettier-plugin-astro'],
 };
 
 module.exports = config;

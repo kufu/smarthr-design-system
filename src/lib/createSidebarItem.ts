@@ -1,6 +1,8 @@
 import type { SidebarItem } from '@/components/Sidebar/type';
-import type { CollectionEntry } from 'astro:content';
+
 import { getSubPageCollection } from './getSubPageCollection';
+
+import type { CollectionEntry } from 'astro:content';
 
 type DepthItems = SidebarItem[] | undefined;
 
@@ -74,7 +76,7 @@ function mergeAndFilterItems(rawDepthItems: DepthItems, rawDepthComponentItems: 
  * @param pages ページのコレクション
  * @returns 階層ごとのアイテム
  */
-function createDepthItems(pages: CollectionEntry<'articles'>[]) {
+function createDepthItems(pages: Array<CollectionEntry<'articles'>>) {
   const depthItems: Record<number, DepthItems> = {};
   // NOTE: コンポーネントページは名前の順でソートするため分けてる
   const depthComponentItems: Record<number, DepthItems> = {};

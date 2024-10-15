@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import type { MarkdownHeading } from 'astro';
 import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui';
+
 import { throttle } from '@/lib/throttle';
-import styles from './index.module.scss';
+
 import IndexNavItems from './IndexNavItems';
+import styles from './index.module.scss';
+
+import type { MarkdownHeading } from 'astro';
 
 type Props = {
   targetId: string;
