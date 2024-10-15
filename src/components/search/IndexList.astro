@@ -1,0 +1,149 @@
+---
+import { Section } from 'smarthr-ui';
+import { createSidebarItem } from '@/lib/createSidebarItem';
+import navigationItem from '@/data/navigationItem.json';
+
+// リンク表示を別扱いにするページ
+const SUB_LINKS = ['downloads', 'terms', 'contact', 'operational-guideline'];
+
+const { nestedSidebarItems } = await createSidebarItem('/');
+---
+
+<div class="wrapper">
+  {
+    navigationItem.map(({ key }) => {
+      const level2Item = nestedSidebarItems.find((item) => item.link === `/${key}`);
+      if (!level2Item) {
+        return null;
+      }
+
+      const level3Items = level2Item.children;
+
+      return (
+        <Section key={level2Item.link}>
+          <h2>
+            <a href={`${level2Item.link}/`}>{level2Item.title}</a>
+          </h2>
+
+          {/* 第3階層 */}
+          {level3Items.map((level3Item) => {
+            const level4Items = level3Item.children;
+
+            return (
+              <Section key={level3Item.link}>
+                <h3>
+                  <a href={`${level3Item.link}/`}>{level3Item.title}</a>
+                </h3>
+
+                {/* 第4階層 */}
+                {level4Items.length !== 0 && (
+                  <ul>
+                    {level4Items.map((level4Item) => (
+                      <li>
+                        <a href={`${level4Item.link}/`}>{level4Item.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </Section>
+            );
+          })}
+        </Section>
+      );
+    })
+  }
+
+  <hr />
+
+  {
+    SUB_LINKS.map((linkName) => {
+      const level2Item = nestedSidebarItems.find(({ link }) => link === `/${linkName}`);
+      if (!level2Item) {
+        return null;
+      }
+
+      return (
+        <Section key={level2Item.link}>
+          <h3>
+            <a href={`/${level2Item.link}/`}>{level2Item.title}</a>
+          </h3>
+        </Section>
+      );
+    })
+  }
+</div>
+
+<style lang="scss">
+  .wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 952px;
+    padding-inline: 16px;
+    margin: 80px auto 0;
+
+    h2 {
+      margin: 0;
+      padding-top: 80px;
+      color: var(--color-black);
+      font-size: var(--font-size-26);
+      line-height: 1.38;
+
+      &::after {
+        display: block;
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: var(--color-divider-search-h2);
+        margin-block: 8px;
+      }
+    }
+
+    h3 {
+      margin: 0;
+      padding: 24px 8px 16px;
+      color: var(--color-black);
+      font-size: var(--font-size-15);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      display: grid;
+      column-gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(202px, 1fr));
+      margin: 0;
+      padding: 0 8px;
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      padding-bottom: 14px;
+      line-height: 1.38;
+      color: var(--color-text-black);
+      font-size: var(--font-size-13);
+
+      &::before {
+        content: '・';
+      }
+
+      a {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    hr {
+      margin-block: 120px 40px;
+      border-width: 1px 0 0;
+      border-style: solid;
+      border-color: var(--color-divider-search-h2);
+    }
+  }
+</style>
