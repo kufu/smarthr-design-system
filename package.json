@@ -9,9 +9,6 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "src/**/*.{astro,scss}": [
-      "stylelint"
-    ],
     "src/content/**/*.md{,x}": [
       "textlint",
       "ts-node scripts/content-checker/linkChecker.ts --fix"
