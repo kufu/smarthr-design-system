@@ -1,0 +1,57 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header/Header.astro';
+import SearchBox from '@/components/search/Search/SearchBox';
+import { PageHeading } from 'smarthr-ui';
+---
+
+<Layout title="検索" description="検索ページです。">
+  <div class="wrapper">
+    <Header />
+
+    <main class="main">
+      <PageHeading className="pageHeading" id="label-for-search-input">SmartHR Design Systemを検索</PageHeading>
+      <div class="search ais-SearchBox__root">
+        <SearchBox
+          isAvailable={import.meta.env.PUBLIC_ALGOLIA_APP_ID && import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY ? true : false}
+          client:load
+        />
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<style lang="scss">
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    & > header {
+      flex: 0 0 auto;
+    }
+  }
+
+  .main {
+    padding-inline: 16px;
+
+    @include breakpointMobile3 {
+      margin-top: 0;
+    }
+  }
+
+  .pageHeading {
+    margin-block: 140px 40px;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .search {
+    color: var(--color-text-black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
