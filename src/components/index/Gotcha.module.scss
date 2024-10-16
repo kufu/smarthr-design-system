@@ -86,6 +86,13 @@
 }
 
 .gotchaButton {
+  --background: var(--color-white);
+  --text: var(--color-text-black);
+  --font-size: var(--font-size-14);
+  --duration: 0.15s;
+  --move-hover: 8px;
+  --font-shadow: var(--font-size);
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,13 +193,6 @@
       transform: translateY(1px);
     }
   }
-
-  --background: var(--color-white);
-  --text: var(--color-text-black);
-  --font-size: var(--font-size-14);
-  --duration: 0.15s;
-  --move-hover: 8px;
-  --font-shadow: var(--font-size);
 }
 
 .gotchaLinks {
