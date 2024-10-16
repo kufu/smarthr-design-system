@@ -68,9 +68,10 @@ import RadioButtonDont from './images/radio-button-dont.png';
 ## 状態 
 
 ### デフォルト
-「未選択」が選択されている状態をデフォルトとしてください。
 
-ユーザーの入力作業が向上したり、ミスを減らせる場合には他の値をデフォルトで設定することを検討します。（参考：[デフォルト値](/products/design-patterns/default_value/)）
+RadioButtonは常に1つの選択肢が選択されているコンポーネントのため、選択肢の中から1つデフォルト値に設定するものを決めてください。（参考：[デフォルト値に設定する値](/products/design-patterns/default_value/#h3-0)）
+
+何も入力しない状態を選択肢として用意したい場合にはSelectの使用を推奨します。
 
 ![radiobuttonに「未選択」の選択肢があるイメージ](./images/radio-button-unselected-option.png)
 
