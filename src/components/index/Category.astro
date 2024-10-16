@@ -1,0 +1,243 @@
+---
+import { Section } from 'smarthr-ui';
+import FloatingTextLink from './FloatingTextLink.astro';
+
+import indexContentJson from '@/data/indexContent.json';
+
+type Props = {
+  data: (typeof indexContentJson)[number];
+};
+
+const { data } = Astro.props;
+---
+
+<Section className="navigationSection">
+  <div class="navigationText">
+    <h2>{data.title}</h2>
+    <p>{data.description}</p>
+    <FloatingTextLink path={data.path}>もっと詳しく</FloatingTextLink>
+  </div>
+  <div class="navigationLinksContainer">
+    {
+      data.imagePath ? (
+        <div class="categoryImageWrapper">
+          <a href={data.path}>
+            <img src={data.imagePath} width="832" height="144" alt="基本原則" />
+          </a>
+        </div>
+      ) : (
+        <ul class="navigationLinks">
+          {data.items.map((item) => (
+            <li>
+              <a href={item.path}>
+                <div class="thumbnailImageWrapper">
+                  {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
+                  <img src={item.imagePath} width="262" height="144" alt="" />
+                </div>
+                <p>{item.title}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</Section>
+
+<style lang="scss">
+  .navigationSection {
+    display: flex;
+    gap: 40px;
+
+    @include breakpointMobile3 {
+      display: block;
+      gap: 0;
+    }
+  }
+
+  .navigationText {
+    width: 320px;
+
+    @include breakpointMobile3 {
+      width: 100%;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: var(--font-size-28);
+      font-weight: bold;
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 8px 0 24px;
+      font-size: var(--font-size-16);
+      line-height: 2.125;
+    }
+  }
+
+  .navigationLinksContainer {
+    width: 832px;
+    max-width: 100%;
+
+    @include breakpointMobile3 {
+      margin-top: 40px;
+    }
+
+    @include breakpointMobile2 {
+      width: 100%;
+    }
+  }
+
+  .categoryImageWrapper {
+    width: 100%;
+    height: 144px;
+
+    @include breakpointMobile2 {
+      width: auto;
+
+      /*
+      画面幅いっぱいにするためにvwを使用する。
+      祖先要素の要素のどこかで
+      overflow: hidden;を指定しないと横スクロールバーが発生する
+    */
+      margin-inline: calc(50% - 50vw);
+      border-radius: 0;
+    }
+
+    a {
+      display: block;
+      position: relative;
+      height: 100%;
+      border: 1px solid var(--color-light-grey-1);
+      border-radius: 4px;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        background-color: var(--color-light-grey-4);
+        opacity: 0;
+        transition: opacity 1.5s cubic-bezier(0, 0.7, 0, 1);
+      }
+
+      &:focus {
+        outline-offset: -4px;
+      }
+
+      &:hover {
+        border-color: var(--color-text-grey);
+
+        &::after {
+          width: 100%;
+          height: 100%;
+          background-color: var(--color-light-grey-4);
+          opacity: 0.3;
+          transition: opacity 0.2s;
+        }
+      }
+
+      @include breakpointMobile2 {
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+      }
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .navigationLinks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpointMobile2 {
+      display: block;
+    }
+
+    > li {
+      @include breakpointMobile2 {
+        &:not(:first-child) {
+          margin-top: 24px;
+        }
+      }
+
+      > a {
+        display: block;
+        text-decoration: none;
+
+        > p {
+          margin: 8px 0 0;
+          color: var(--color-text-black);
+          font-size: var(--font-size-14);
+          font-weight: bold;
+          line-height: 1.3;
+        }
+
+        &:hover {
+          .thumbnailImageWrapper {
+            border-color: var(--color-text-grey);
+
+            &::after {
+              width: 100%;
+              height: 100%;
+              background-color: var(--color-light-grey-4);
+              opacity: 0.3;
+              transition: opacity 0.2s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .thumbnailImageWrapper {
+    position: relative;
+    width: 100%;
+    max-height: 144px;
+    aspect-ratio: 261 / 144;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--color-light-grey-1);
+    box-sizing: border-box;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      background-color: var(--color-light-grey-4);
+      opacity: 0;
+      transition: opacity 1.5s cubic-bezier(0, 0.7, 0, 1);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include breakpointMobile2 {
+      max-height: 100%;
+    }
+  }
+</style>
