@@ -50,12 +50,14 @@ const ogImageUrl = createOgImageUrl(ogTitle);
   <!-- Google Tag Manager -->
   <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNCBKCD85V"></script>
   <script is:inline type="text/partytown">
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-unused-expressions
-      window.dataLayer && window.dataLayer.push(arguments);
+    if (!(navigator.doNotTrack === '1' || window.doNotTrack === '1')) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-unused-expressions
+        window.dataLayer && window.dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-HNCBKCD85V', { send_page_view: false });
     }
-    gtag('js', new Date());
-    gtag('config', 'G-HNCBKCD85V', { send_page_view: false });
   </script>
 </head>
