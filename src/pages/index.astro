@@ -1,0 +1,61 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Gotcha from '@/components/index/Gotcha';
+import Introduction from '@/components/index/Introduction.astro';
+import ContentNavigation from '@/components/index/ContentNavigation/ContentNavigation.astro';
+import FaqList from '@/components/index/Faq/FaqList.astro';
+---
+
+<Layout>
+  <Header isIndex />
+
+  <div class="gotchaContainer">
+    <Gotcha client:load />
+  </div>
+
+  <div class="indexPageContainer">
+    <Introduction />
+    <ContentNavigation />
+    <FaqList />
+  </div>
+  <Footer />
+</Layout>
+
+<style lang="scss">
+  .gotchaContainer {
+    margin: 40px 80px 192px;
+
+    @include breakpointPC1 {
+      margin-top: 48px;
+    }
+
+    @include breakpointMobile3 {
+      margin: 0 1rem 4rem;
+      padding-top: 0;
+    }
+
+    @include breakpointMobile2 {
+      margin: 0 0 64px;
+    }
+  }
+
+  .indexPageContainer {
+    max-width: var(--size-content-width);
+    margin: 0 auto;
+    padding: 0 120px;
+
+    @include breakpointMobile3 {
+      padding: 0 48px;
+    }
+
+    @include breakpointMobile2 {
+      padding: 0;
+
+      // 子孫要素にvwを使用して画面幅いっぱいになる要素がいるため
+      // はみ出ないようにしてスクロールバーが発生しないようにする
+      overflow: hidden;
+    }
+  }
+</style>
