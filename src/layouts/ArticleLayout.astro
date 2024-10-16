@@ -1,6 +1,6 @@
 ---
 import type { MarkdownHeading } from 'astro';
-import type { CollectionEntry } from 'astro:content';
+import { getEntry, type CollectionEntry } from 'astro:content';
 import { Article } from 'smarthr-ui';
 import Layout from '@/layouts/Layout.astro';
 import IndexNav from '@/components/IndexNav';
@@ -19,6 +19,14 @@ const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
 
 const { slug, data, headings } = Astro.props;
 
+// 親の記事を取得
+const parentArticleSlug = slug.replace(/\/[^\/]*$/, ''); // 例: 'basics/typography' → 'basics'
+const parentArticle = await getEntry('articles', parentArticleSlug);
+
+// カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
+const categoryName = parentArticle?.data.title ?? '';
+const headTitle = categoryName === data.title ? data.title : `${data.title} | ${categoryName}`;
+
 const { flatSidebarItems, nestedSidebarItems } = await createArticleMetaItems(slug);
 
 const currentPageIndex = flatSidebarItems.findIndex(({ link }) => link === `/${slug}`);
@@ -29,7 +37,7 @@ const prevSidebarItem = currentPageIndex > 0 ? (flatSidebarItems.at(currentPageI
 const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems.at(currentPageIndex + 1) ?? null) : null;
 ---
 
-<Layout title={data.title} ogTitle={data.title} description={data.description}>
+<Layout title={headTitle} ogTitle={data.title} description={data.description}>
   <div class="wrapper">
     <Header />
 
