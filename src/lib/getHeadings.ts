@@ -7,15 +7,14 @@ import type { MarkdownHeading } from 'astro';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 
 /**
- * コンポーネント内の h2, h3 タグの情報を取得する
+ * MDXファイル内の見出し (h2, h3) 情報を取得する
  *
- * 主にMDXファイル内の見出し情報を取得するために使用します
- * article.render() の戻りに含まれる `headings` には Markdown 部分の見出し情報しか含まれていないため、
- * コンポーネント部分も含めて取得するためにこの関数を使用します
+ * article.render() の戻りに含まれる `headings` には Markdown 部分の見出し情報しか含まれていません
+ * MDX内に埋め込めまれたコンポーネントによって作成された見出し情報も含めて取得するためにこの関数を使用します
  *
- * また、コンポーネントのレンダリングに experimental_AstroContainer を使用しているため、
- * 今後の Astro のバージョンアップによる影響を受ける場合があります
- * バージョンアップの際は影響を受けないか確認してください
+ * また、レンダリングに実験的な API である experimental_AstroContainer を使用しています
+ * 今後の Astro のバージョンアップによる影響を受ける場合があるため、Astro のバージョンアップの際は確認してください
+ * https://docs.astro.build/ja/reference/container-reference/
  *
  * @param content Astroコンポーネント
  * @returns 見出し情報
@@ -29,7 +28,7 @@ export async function getHeadings(content: AstroComponentFactory) {
   container.addServerRenderer({ renderer: reactRenderer, name: '@astrojs/react' });
   container.addServerRenderer({ renderer: mdxRenderer, name: '@astrojs/mdx' });
 
-  // client:onlyを処理するために必要
+  // アイランドコンポーネントを処理するために必要
   container.addClientRenderer({
     name: '@astrojs/react',
     entrypoint: '@astrojs/react/client.js',
@@ -37,9 +36,11 @@ export async function getHeadings(content: AstroComponentFactory) {
 
   const contentHtml = await container.renderToString(content);
 
+  // HTML をパースしてh2, h3タグを取得
   const doc = parse(contentHtml);
   const headingTags = doc.querySelectorAll('h2, h3');
 
+  // データを整形
   const headings = headingTags.map((heading, index): MarkdownHeading => {
     const depth = heading.tagName === 'H2' ? 2 : 3;
     const slug = heading.getAttribute('id') ?? `${heading.tagName}-c${index}`;

@@ -7,11 +7,11 @@ import type { CollectionEntry } from 'astro:content';
 type DepthItems = SidebarItem[] | undefined;
 
 /**
- * サイドバーのアイテムを作成する
+ * 記事ページのメタ情報のアイテムを作成する
  * @param slug ページのslug
- * @returns flatなアイテムの配列, ネストしたアイテムの配列
+ * @returns アイテムの配列, 階層毎にネストしたアイテムの配列
  */
-export async function createSidebarItem(slug: string) {
+export async function createArticleMetaItems(slug: string) {
   const rootDir = slug.split('/')[0];
   const subPages = await getSubPageCollection(rootDir);
 
@@ -19,10 +19,10 @@ export async function createSidebarItem(slug: string) {
   const { depthItems, depthComponentItems } = createDepthItems(subPages);
 
   /**
-   * flatなアイテムとネストしたアイテムを作成する
+   * フラットなアイテムとネストしたアイテムを作成する
    * @param currentDepth 現在の階層
    * @param parentLink 親のリンク
-   * @returns サイドバーのアイテム
+   * @returns
    */
   const createNestedItems = (currentDepth: number, parentLink: string): [SidebarItem[], SidebarItem[]] => {
     const mergedItems = mergeAndFilterItems(depthItems[currentDepth], depthComponentItems[currentDepth], parentLink);

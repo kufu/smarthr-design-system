@@ -3,7 +3,7 @@ import { type CollectionEntry, getCollection } from 'astro:content';
 /**
  * 指定したディレクトリ以下のページを取得する
  * @param basePath ページを取得するディレクトリのパス
- * @param excludes 除外するページのパス
+ * @param excludes 除外するページのパス (部分一致)
  * @returns ページのコレクション
  */
 export async function getSubPageCollection(basePath: string, excludes?: string[]): Promise<Array<CollectionEntry<'articles'>>> {
