@@ -1,5 +1,6 @@
-import path from 'node:path';
 import fs from 'fs/promises';
+import path from 'node:path';
+
 import { glob } from 'glob';
 
 const args = process.argv.slice(2);

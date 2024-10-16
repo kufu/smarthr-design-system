@@ -1,8 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import type { StoryIndex } from '@storybook/types';
+
 import packageInfo from 'smarthr-ui/package.json';
+
 import type { PropsData, UIData, UIProps, UIStories } from '@/types/ui';
+
+import type { StoryIndex } from '@storybook/types';
 
 type GitHubAPIResponse = {
   sha: string;
@@ -45,9 +48,9 @@ async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
   }
 
   // package.json に記載されているバージョンと一致するリリース情報を取得
-  const release = json.find((release) => {
+  const release = json.find((data) => {
     // バージョンを抽出
-    const versionText = release.commit.message.match(/chore\(release\):\sv?(\d+\.\d+\.\d+)\s/);
+    const versionText = data.commit.message.match(/chore\(release\):\sv?(\d+\.\d+\.\d+)\s/);
     const version = versionText?.at(1);
 
     return version === packageInfo.version;
@@ -186,7 +189,7 @@ const uiVersion: UIData = {
   version: packageInfo.version,
   commitHash,
   commitDate: usedVersionRelease.commit.author.date,
-  uiProps: uiProps,
+  uiProps,
   uiStories: Object.values(uiStories),
 };
 
