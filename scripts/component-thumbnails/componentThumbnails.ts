@@ -1,5 +1,5 @@
-import { stat } from 'node:fs';
 import fs from 'fs/promises';
+import { stat } from 'node:fs';
 import path from 'path';
 
 /*
@@ -7,6 +7,7 @@ puppeteerは、このディレクトリである/scripts/component-thumbnailsに
 詳細はこのディレクトリ内のREADME.mdを参照してください
 */
 import puppeteer from 'puppeteer';
+
 import { type StoryGroup, fetchComponentCaptures } from '../../src/lib/fetchComponentCaptures';
 
 const thumbnailsDir = path.resolve(import.meta.dirname, '../../public/thumbnails/component-stories/');
@@ -27,7 +28,7 @@ const generateThumbnails = async (storyGroups: StoryGroup[]) => {
         .goto(storyKind.iframeUrl, {
           waitUntil: 'domcontentloaded',
         })
-        .catch((err) => console.log('error loading url', err));
+        .catch((err: unknown) => console.log('error loading url', err));
 
       await page.waitForSelector('#storybook-root > *');
 

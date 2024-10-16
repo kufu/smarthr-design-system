@@ -1,6 +1,8 @@
 import fs from 'fs/promises';
-import { glob } from 'glob';
 import path from 'path';
+
+import { glob } from 'glob';
+
 import { SHRUI_GITHUB_PATH } from '../../src/constants/application';
 import { UI_VERSION, getUIStories } from '../../src/lib/getUIData';
 
