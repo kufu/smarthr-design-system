@@ -8,7 +8,7 @@ import Header from '@/components/Header/Header.astro';
 import Footer from '@/components/Footer.astro';
 import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
 import Sidebar from '@/components/Sidebar/Sidebar.astro';
-import { createSidebarItem } from '@/lib/createSidebarItem';
+import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
 
 type Props = {
   headings: MarkdownHeading[];
@@ -19,7 +19,7 @@ const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
 
 const { slug, data, headings } = Astro.props;
 
-const { flatSidebarItems, nestedSidebarItems } = await createSidebarItem(slug);
+const { flatSidebarItems, nestedSidebarItems } = await createArticleMetaItems(slug);
 
 const currentPageIndex = flatSidebarItems.findIndex(({ link }) => link === `/${slug}`);
 const sidebarItemLength = flatSidebarItems.length - 1;

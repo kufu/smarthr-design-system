@@ -1,12 +1,12 @@
 ---
 import { Section } from 'smarthr-ui';
-import { createSidebarItem } from '@/lib/createSidebarItem';
+import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
 import navigationItem from '@/data/navigationItem.json';
 
 // リンク表示を別扱いにするページ
 const SUB_LINKS = ['downloads', 'terms', 'contact', 'operational-guideline'];
 
-const { nestedSidebarItems } = await createSidebarItem('/');
+const { nestedSidebarItems } = await createArticleMetaItems('/');
 ---
 
 <div class="wrapper">
