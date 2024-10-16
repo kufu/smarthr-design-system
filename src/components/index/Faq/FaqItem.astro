@@ -1,0 +1,41 @@
+---
+import { Section } from 'smarthr-ui';
+import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
+import indexFaqJson from '@/data/indexFaq.json';
+
+type Props = {
+  data: (typeof indexFaqJson)[number];
+};
+
+const { data } = Astro.props;
+---
+
+<Section className="faqItemSection">
+  <h3>{data.question}</h3>
+  <p>{data.answer}</p>
+  <RoundedBoxLink path={data.path} label="もっと詳しく" title={data.linkLabel} />
+</Section>
+
+<style lang="scss">
+  .faqItemSection {
+    display: block;
+    text-align: left;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: var(--font-size-28);
+    line-height: 1.5;
+    font-weight: normal;
+
+    @include breakpointMobile2 {
+      font-size: var(--font-size-24);
+    }
+  }
+
+  p {
+    margin: 8px 0 24px;
+    font-size: var(--font-size-16);
+    line-height: 1.75;
+  }
+</style>
