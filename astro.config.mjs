@@ -1,14 +1,25 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
+import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
 import { defineConfig } from 'astro/config';
 import remarkEmoji from 'remark-emoji';
+
 import remarkCodeBlock from './src/remark/remark-code-block';
 import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), react()],
+  integrations: [
+    mdx(),
+    react(),
+    partytown({
+      config: {
+        // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
+        forward: ['dataLayer.push'],
+      },
+    }),
+  ],
   markdown: {
     syntaxHighlight: false,
     remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],

@@ -46,4 +46,16 @@ const ogImageUrl = createOgImageUrl(ogTitle);
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="apple-mobile-web-app-title" content={SITE_TITLE} />
   <meta name="application-name" content={SITE_TITLE} />
+
+  <!-- Google Tag Manager -->
+  <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNCBKCD85V"></script>
+  <script is:inline type="text/partytown">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-unused-expressions
+      window.dataLayer && window.dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-HNCBKCD85V', { send_page_view: false });
+  </script>
 </head>
