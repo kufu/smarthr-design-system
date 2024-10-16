@@ -3,10 +3,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { FaRedoIcon } from 'smarthr-ui';
 
 import { CLOUDINARY_CLOUD_NAME } from '@/constants/application';
+import gotchaItemJson from '@/data/gotchaItem.json';
 
-import gotchaItemJson from '../../data/gotchaItem.json';
-
-import styles from './Gotcha.module.scss';
+import styles from './index.module.scss';
 
 const BUTTON_TEXT: string = 'GOTCHA!'; // アニメーションするため、css、reactのどちらでも必要なのでここで
 
