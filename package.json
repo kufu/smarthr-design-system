@@ -9,9 +9,6 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "src/**/*.{astro,scss}": [
-      "stylelint"
-    ],
     "src/content/**/*.md{,x}": [
       "textlint",
       "ts-node scripts/content-checker/linkChecker.ts --fix"
@@ -43,6 +40,7 @@
     "@astrojs/react": "^3.6.2",
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
+    "algoliasearch": "^5.8.1",
     "astro": "^4.15.8",
     "clsx": "^2.1.1",
     "marked": "^14.1.2",
@@ -50,6 +48,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-frame-component": "^5.2.7",
+    "react-instantsearch": "^7.13.3",
+    "react-instantsearch-core": "^7.13.3",
     "react-live": "^4.1.7",
     "smarthr-normalize-css": "^1.1.0",
     "smarthr-ui": "^58.0.2",
@@ -69,6 +69,7 @@
     "eslint-plugin-astro": "^1.2.4",
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-mdx": "^3.1.5",
+    "gray-matter": "^4.0.3",
     "hast-util-select": "^6.0.2",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
