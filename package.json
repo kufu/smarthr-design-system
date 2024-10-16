@@ -6,6 +6,7 @@
   "type": "module",
   "lint-staged": {
     "*.{astro,ts,tsx}": [
+      "astro check",
       "eslint --fix",
       "prettier --write"
     ],
