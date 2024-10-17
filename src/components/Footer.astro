@@ -26,7 +26,7 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
     };
 ---
 
-<div class="wrapper" style={wrapperStyle}>
+<footer class="wrapper" style={wrapperStyle}>
   <div class="footerContainer" style={footerContainerStyle}>
     <div class="col1Container">
       <Section>
@@ -46,7 +46,12 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
           });
 
           // order昇順でソート
-          depth2Pages.sort(({ data: a }, { data: b }) => (a.order && b.order ? a.order - b.order : -1));
+          depth2Pages.sort(({ data: a }, { data: b }) => {
+            const orderA = a.order || 0;
+            const orderB = b.order || 0;
+
+            return orderA - orderB;
+          });
 
           return (
             <Section style={{ gridArea: key }}>
@@ -79,7 +84,7 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
       </p>
     </div>
   </div>
-</div>
+</footer>
 
 <style lang="scss">
   .wrapper {
