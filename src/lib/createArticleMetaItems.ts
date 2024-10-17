@@ -1,10 +1,10 @@
-import type { SidebarItem } from '@/components/Sidebar/type';
+import type { SidebarItem as MetaItem } from '@/components/Sidebar/type';
 
 import { getSubPageCollection } from './getSubPageCollection';
 
 import type { CollectionEntry } from 'astro:content';
 
-type DepthItems = SidebarItem[] | undefined;
+type DepthItems = MetaItem[] | undefined;
 
 /**
  * 記事ページのメタ情報のアイテムを作成する
@@ -24,34 +24,34 @@ export async function createArticleMetaItems(slug: string) {
    * @param parentLink 親のリンク
    * @returns
    */
-  const createNestedItems = (currentDepth: number, parentLink: string): [SidebarItem[], SidebarItem[]] => {
+  const createNestedItems = (currentDepth: number, parentLink: string): [MetaItem[], MetaItem[]] => {
     const mergedItems = mergeAndFilterItems(depthItems[currentDepth], depthComponentItems[currentDepth], parentLink);
 
-    const flatSidebarItems: SidebarItem[] = [];
-    const nestedSidebarItems: SidebarItem[] = [];
+    const flatMetaItems: MetaItem[] = [];
+    const nestedMetaItems: MetaItem[] = [];
 
     for (const item of mergedItems) {
-      flatSidebarItems.push(item);
-      nestedSidebarItems.push(item);
+      flatMetaItems.push(item);
+      nestedMetaItems.push(item);
 
       // 子アイテムがある場合は再帰的に処理する
       // NOTE: 最大で4階層までを想定
       if (currentDepth < 4) {
         const [childSidebarItems, childNestedSidebarItems] = createNestedItems(currentDepth + 1, item.link);
 
-        flatSidebarItems.push(...childSidebarItems);
+        flatMetaItems.push(...childSidebarItems);
         item.children = childNestedSidebarItems;
       }
     }
 
-    return [flatSidebarItems, nestedSidebarItems];
+    return [flatMetaItems, nestedMetaItems];
   };
 
-  const [flatSidebarItems, nestedSidebarItems] = createNestedItems(1, '');
+  const [flatMetaItems, nestedMetaItems] = createNestedItems(1, '');
 
   return {
-    flatSidebarItems,
-    nestedSidebarItems,
+    flatMetaItems,
+    nestedMetaItems,
   };
 }
 
@@ -62,7 +62,7 @@ export async function createArticleMetaItems(slug: string) {
  * @param parentPath 親のパス
  * @returns マージ後のアイテム
  */
-function mergeAndFilterItems(rawDepthItems: DepthItems, rawDepthComponentItems: DepthItems, parentPath: string): SidebarItem[] {
+function mergeAndFilterItems(rawDepthItems: DepthItems, rawDepthComponentItems: DepthItems, parentPath: string): MetaItem[] {
   const depthItems = rawDepthItems ?? [];
   const depthComponentItems = rawDepthComponentItems ?? [];
   const mergedItems = [...depthItems, ...depthComponentItems];
@@ -91,7 +91,7 @@ function createDepthItems(pages: Array<CollectionEntry<'articles'>>) {
   for (const { slug, data } of pages) {
     const depth = slug.split('/').length;
 
-    const item: SidebarItem = {
+    const item: MetaItem = {
       link: `/${slug}`,
       order: data?.order ?? Number.MAX_SAFE_INTEGER,
       title: data?.title ?? '',
