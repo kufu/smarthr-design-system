@@ -1,18 +1,22 @@
 ---
 import { PageHeading } from 'smarthr-ui';
+import InlineTexts from '@/components/InlineTexts.astro';
 import FloatingTextLink from './FloatingTextLink.astro';
 ---
 
 <div class="introductionContainer">
   <PageHeading className="pageHeading">
-    <span>だれでも・</span>
-    <span>効率よく・</span>
-    <span>迷わずに。</span>
+    <InlineTexts texts={['だれでも・', '効率よく・', '迷わずに。']} as="span" />
   </PageHeading>
   <p class="text">
-    <span>SmartHR Design Systemは、</span>
-    <span>すべての人によりよい体験を届けるためのデザインシステムです。</span>
-    <span>SmartHRに関わる人はどなたでも利用・参加できます。</span>
+    <InlineTexts
+      texts={[
+        'SmartHR Design Systemは、',
+        'すべての人によりよい体験を届けるためのデザインシステムです。',
+        'SmartHRに関わる人はどなたでも利用・参加できます。',
+      ]}
+      as="span"
+    />
   </p>
   <p class="text">
     <FloatingTextLink path="/introduction/">デザインシステムとは？</FloatingTextLink>
@@ -53,7 +57,7 @@ import FloatingTextLink from './FloatingTextLink.astro';
     letter-spacing: 0.1rem;
     word-break: normal;
 
-    > span {
+    > :global(span) {
       display: inline-block;
     }
 
@@ -71,7 +75,7 @@ import FloatingTextLink from './FloatingTextLink.astro';
     word-break: normal;
     letter-spacing: 1.5px;
 
-    > span {
+    > :global(span) {
       display: inline-block;
     }
 
@@ -79,7 +83,7 @@ import FloatingTextLink from './FloatingTextLink.astro';
       font-size: var(--font-size-16);
       line-height: 2;
 
-      > span {
+      > :global(span) {
         display: inline;
       }
     }
