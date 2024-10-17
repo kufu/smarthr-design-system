@@ -12,7 +12,7 @@
     ],
     "src/content/**/*.md{,x}": [
       "textlint",
-      "ts-node scripts/content-checker/linkChecker.ts --fix"
+      "tsx scripts/content-checker/linkChecker.ts --fix"
     ]
   },
   "scripts": {
