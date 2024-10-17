@@ -9,25 +9,15 @@ type Props = {
 };
 
 const { isArticlePage } = Astro.props;
-
-const wrapperStyle: astroHTML.JSX.CSSProperties = {
-  border: isArticlePage ? '1px solid var(--color-light-grey-1)' : 'none',
-};
-
-const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
-  ? {
-      paddingTop: '81px',
-      margin: '0 auto 54px',
-    }
-  : {
-      margin: '240px auto 54px',
-      borderTop: '1px solid var(--color-light-grey-1)',
-      paddingTop: '72px',
-    };
 ---
 
-<footer class="wrapper" style={wrapperStyle}>
-  <div class="footerContainer" style={footerContainerStyle}>
+<footer class="wrapper">
+  <div
+    class="footerContainer"
+    style={{
+      borderTop: isArticlePage ? undefined : '1px solid var(--color-light-grey-1)',
+    }}
+  >
     <div class="col1Container">
       <Section>
         <h2 class="logoHeading">SmartHR Design System</h2>
@@ -86,11 +76,19 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
   </div>
 </footer>
 
-<style lang="scss">
+<style
+  lang="scss"
+  define:vars={{
+    wrapperBorder: isArticlePage ? '1px solid var(--color-light-grey-1)' : 'none',
+    footerContainerPaddingTop: isArticlePage ? '81px' : '72px',
+    footerContainerMargin: isArticlePage ? '0 auto 54px' : '240px auto 54px',
+  }}
+>
   .wrapper {
     box-sizing: border-box;
     width: 100%;
     padding-inline: 120px;
+    border: var(--wrapperBorder);
 
     @include breakpointMobile3 {
       padding-inline: 48px;
@@ -122,6 +120,8 @@ const footerContainerStyle: astroHTML.JSX.CSSProperties = isArticlePage
       / auto minmax(80px, 1fr) auto;
     align-items: start;
     max-width: 1192px;
+    margin: var(--footerContainerMargin);
+    padding-top: var(--footerContainerPaddingTop);
 
     @include breakpointPC1 {
       grid-template:
