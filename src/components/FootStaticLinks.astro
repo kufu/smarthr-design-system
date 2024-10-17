@@ -60,9 +60,10 @@ const Link2 = [
     Link2.map(({ title, path, isExternal }) => (
       <li>
         {isExternal ? (
+          // NOTE: タイトルとアイコンの間に空白文字が入るのを避けるためにくっつけておく
+          // prettier-ignore
           <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
-            {title}
-            <FaExternalLinkAltIcon />
+            {title}<FaExternalLinkAltIcon />
           </a>
         ) : (
           <a class="link" href={path}>
