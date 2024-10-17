@@ -6,13 +6,13 @@ import navigationItem from '@/data/navigationItem.json';
 // リンク表示を別扱いにするページ
 const SUB_LINKS = ['downloads', 'terms', 'contact', 'operational-guideline'];
 
-const { nestedSidebarItems } = await createArticleMetaItems('/');
+const { nestedMetaItems } = await createArticleMetaItems('/');
 ---
 
 <div class="wrapper">
   {
     navigationItem.map(({ key }) => {
-      const level2Item = nestedSidebarItems.find((item) => item.link === `/${key}`);
+      const level2Item = nestedMetaItems.find((item) => item.link === `/${key}`);
       if (!level2Item) {
         return null;
       }
@@ -57,7 +57,7 @@ const { nestedSidebarItems } = await createArticleMetaItems('/');
 
   {
     SUB_LINKS.map((linkName) => {
-      const level2Item = nestedSidebarItems.find(({ link }) => link === `/${linkName}`);
+      const level2Item = nestedMetaItems.find(({ link }) => link === `/${linkName}`);
       if (!level2Item) {
         return null;
       }
