@@ -51,8 +51,8 @@ const { isIndex } = Astro.props;
       padding-inline: 48px;
     }
 
-    & .isIndex {
-      @media breakpointMobile2 {
+    &.isIndex {
+      @include breakpointMobile2 {
         padding-inline: 24px;
       }
     }

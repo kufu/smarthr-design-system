@@ -1,0 +1,72 @@
+---
+import { Section } from 'smarthr-ui';
+import data from '@/data/indexFaq.json';
+import FaqItem from './FaqItem.astro';
+---
+
+<Section className="indexFaqSection">
+  <h2>よくあるご質問</h2>
+  <ul>
+    {
+      data.map((item) => (
+        <li>
+          <FaqItem data={item} />
+        </li>
+      ))
+    }
+  </ul>
+</Section>
+
+<style lang="scss">
+  .indexFaqSection {
+    margin: 240px 0 0;
+    text-align: center;
+
+    > h2 {
+      margin: 0;
+      font-size: var(--font-size-28);
+      font-weight: bold;
+      line-height: 1.3;
+    }
+
+    > ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 80px 68px;
+      margin: 120px 0 0;
+      padding: 0;
+
+      > li {
+        width: 352px;
+        max-width: calc((100% - 68px) / 2);
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    @include breakpointMobile3 {
+      margin-top: 120px;
+
+      > ul {
+        gap: 56px 40px;
+        margin: 56px 0 0;
+        padding: 0;
+
+        > li {
+          max-width: calc((100% - 40px) / 2);
+        }
+      }
+    }
+
+    @include breakpointMobile2 {
+      margin: 120px 16px 0;
+
+      > ul > li {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+</style>
