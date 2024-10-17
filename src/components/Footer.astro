@@ -79,7 +79,7 @@ const { isArticlePage } = Astro.props;
 <style
   lang="scss"
   define:vars={{
-    wrapperBorder: isArticlePage ? '1px solid var(--color-light-grey-1)' : 'none',
+    wrapperBorderTop: isArticlePage ? '1px solid var(--color-light-grey-1)' : 'none',
     footerContainerPaddingTop: isArticlePage ? '81px' : '72px',
     footerContainerMargin: isArticlePage ? '0 auto 54px' : '240px auto 54px',
   }}
@@ -88,7 +88,7 @@ const { isArticlePage } = Astro.props;
     box-sizing: border-box;
     width: 100%;
     padding-inline: 120px;
-    border: var(--wrapperBorder);
+    border-top: var(--wrapperBorderTop);
 
     @include breakpointMobile3 {
       padding-inline: 48px;
