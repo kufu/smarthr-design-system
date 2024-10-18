@@ -13,10 +13,10 @@
 
 type Props = {
   texts: string[];
-  as: astroHTML.JSX.IntrinsicElements;
+  as: 'span' | 'p';
 };
 
-const { texts, as: As } = Astro.props;
+const { texts, as: As } = Astro.props as Props;
 ---
 
 {texts.map((text) => <As>{text}</As>)}
