@@ -27,20 +27,9 @@ const { description } = Astro.props;
       height: 208px;
     }
 
-    :global(span) {
-      /*
-      マークダウンの画像で一緒に挿入されるspanタグのstyle属性に直接padding-bottomが指定され、
-      サイズが調整できないため、やむなく!importantを指定
-    */
-      padding-bottom: 0 !important;
-    }
-
     :global(img) {
-      /*
-      マークダウンの画像はstyle属性に直接「box-shadow: white 0px 0px 0px 400px inset;」が指定されて、
-      背景色が強制的に白にさせられてしまうため、背景色を入れるためにやむなく!importantを指定
-    */
-      box-shadow: none !important;
+      // 高さを親要素に合わせるため、ArticleLayout で指定された高さ (auto) を上書き
+      height: 100% !important;
       object-fit: contain;
     }
 
