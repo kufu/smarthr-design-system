@@ -278,6 +278,14 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatMetaItems.at
       margin-block: 20px 0;
     }
 
+    /* 引用 */
+    :global(blockquote) {
+      :global(p) {
+        line-height: unset;
+        margin-block: unset;
+      }
+    }
+
     /* リスト */
     :global(ul),
     :global(ol) {
