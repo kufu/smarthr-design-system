@@ -763,6 +763,10 @@ a {
   width: 1.75rem
 }
 
+.shr-w-\[10em\] {
+  width: 10em
+}
+
 .shr-w-\[200\%\] {
   width: 200%
 }
@@ -2096,6 +2100,11 @@ a {
 .shr-bg-base-grey {
   --tw-bg-opacity: 1;
   background-color: rgb(245 244 243 / var(--tw-bg-opacity))
+}
+
+.shr-bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(35 34 30 / var(--tw-bg-opacity))
 }
 
 .shr-bg-border {
@@ -3903,6 +3912,10 @@ a {
   border-color: rgb(224 30 90 / var(--tw-border-opacity))
 }
 
+.has-\[\[aria-current\=\"page\"\]\]\:shr-relative:has([aria-current="page"]) {
+  position: relative
+}
+
 .has-\[\:disabled\]\:shr-cursor-default:has(:disabled) {
   cursor: default
 }
@@ -3930,6 +3943,11 @@ a {
   background-color: rgb(214 211 208 / var(--tw-bg-opacity))
 }
 
+.has-\[\[aria-current\=\"page\"\]\]\:shr-text-black:has([aria-current="page"]) {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity))
+}
+
 .has-\[\:checked\]\:before\:shr-ms-\[theme\(fontSize\.base\)\]:has(:checked)::before {
   content: var(--tw-content);
   margin-inline-start: 1rem
@@ -3946,6 +3964,43 @@ a {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-absolute:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  position: absolute
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-inset-x-0:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  left: 0;
+  right: 0
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-bottom-0:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  bottom: 0
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-block:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  display: block
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-h-0\.25:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  height: 4px
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-bg-main:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-content-\[\"\"\]:has([aria-current="page"])::after {
+  --tw-content: "";
+  content: var(--tw-content)
 }
 
 .aria-checked\:shr-border-main[aria-checked="true"] {
