@@ -11,7 +11,7 @@ type Props = {
 const { isIndex } = Astro.props;
 ---
 
-<div class:list={{ wrapper: true, isIndex }}>
+<header class:list={{ wrapper: true, isIndex }}>
   <Cluster gap={{ row: 0.75, column: 1 }} align="center" justify="space-between">
     <a class="siteNameLink" href="/">
       <img src="/images/logo_smarthr_design_system.svg" alt="SmartHR Design System" width="264" height="24" />
@@ -38,7 +38,7 @@ const { isIndex } = Astro.props;
       </MobileMenuContainer>
     </Cluster>
   </Cluster>
-</div>
+</header>
 
 <style lang="scss">
   .wrapper {
@@ -60,7 +60,7 @@ const { isIndex } = Astro.props;
     &:not(.isIndex) {
       border-bottom: 1px solid var(--color-light-grey-1);
 
-      @media breakpointMobile3 {
+      @include breakpointMobile3 {
         padding-inline: 24px;
       }
     }

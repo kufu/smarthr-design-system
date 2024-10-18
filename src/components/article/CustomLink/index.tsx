@@ -9,8 +9,8 @@ type Props = {
 } & ComponentPropsWithoutRef<'a'>;
 
 // NOTE:
-// Astro コンポーネントだと、<slot /> で埋め込んだ文字列の前後に空白文字が追加されるため、
-// それを回避するために Reactコンポーネント (JSX) で実装しています
+// Astro コンポーネントだと改行による空白文字が削除されず <slot /> (children) の前後に空白文字が入るため、
+// それを回避する目的で Reactコンポーネント (JSX) で実装しています
 // 詳しくは以下のIssueを参照してください
 // Slots render additional character spaces · Issue #6893 · withastro/astro
 // https://github.com/withastro/astro/issues/6893

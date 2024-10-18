@@ -85,7 +85,7 @@ const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
   }
 
   .propDescription {
-    & p {
+    & :global(p) {
       margin-block-start: 0;
     }
   }

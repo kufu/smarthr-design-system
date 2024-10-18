@@ -229,7 +229,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatMetaItems.at
     :global(img) {
       display: block;
       max-width: 100%;
-      height: 100%;
+      height: auto;
     }
 
     /* Level2 */
@@ -278,6 +278,14 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatMetaItems.at
       margin-block: 20px 0;
     }
 
+    /* 引用 */
+    :global(blockquote) {
+      :global(p) {
+        line-height: unset;
+        margin-block: unset;
+      }
+    }
+
     /* リスト */
     :global(ul),
     :global(ol) {
@@ -309,6 +317,10 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatMetaItems.at
         :global(ul:first-child),
         :global(ol:first-child) {
           margin-block-start: 0;
+        }
+
+        :global(p) {
+          line-height: unset;
         }
       }
     }

@@ -6,7 +6,7 @@ order: 1
 import Grid from '@/components/article/Grid.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
-![ファビコンが配置されている](/images/favicon-sample.png)
+![ファビコンが配置されている](./images/favicon-sample.png)
 
 ファビコンは主にブラウザのタブやブックマークのシンボルとして、アイコン（タッチアイコン）はスマートフォンやタブレットのホーム画面に追加された際のシンボルとして表示されます。
 
@@ -44,7 +44,7 @@ import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
 - `<link>`にはアイコンの画像ファイル、またはアイコンの画像ファイルの情報がまとめられたファイルのパスを指定します。
 - `<meta>`タグにはホーム画面に表示されるタイトルなどを指定します。前述したとおり、表示領域が狭いため、なるべく短い名前にすることが推奨されています。
-- `apple-touch-icon`、`apple-mobile-web-app-title`は主にApple製のOS向けですが、`manifest`に統一されつつあると思われます。ただし、これに関するAppleからの公式のアナウンスが無いため現在は両方の設定することを推奨しています。
+- `apple-touch-icon`、`apple-mobile-web-app-title`は主にApple製のOS向けですが、`manifest`に統一されつつあると思われます。ただし、これに関するAppleからの公式のアナウンスがないため現在は両方の設定することを推奨しています。
 - `manifest.webmanifest`ファイルはJSONのテキストファイルで、`icons`や`name`、`short_name`などの設定項目があり、ホーム画面に追加された際に表示するアイコンやタイトルなどを指定できます。
 
 ### 補足
@@ -83,7 +83,7 @@ maskableアイコンにはセーフゾーンという確実に表示される領
 
 #### 補足
 
-maskableアイコンは必ずしも設定する必要はありません。Androidのホーム画面に表示されるアイコンの見栄えにこだわる必要が無いケースでは、わざわざmaskable用のアイコンを用意しなくても構いません。
+maskableアイコンは必ずしも設定する必要はありません。Androidのホーム画面に表示されるアイコンの見栄えにこだわる必要がないケースでは、わざわざmaskable用のアイコンを用意しなくても構いません。
 実際の状況に合わせて適宜検討してください。
 
 
@@ -92,18 +92,18 @@ maskableアイコンは必ずしも設定する必要はありません。Androi
 以下のような設定は、現在ではサポートされていないバージョンのブラウザ向けの設定であるため、記述する必要はありません。
 
 ```html codeBlock
-{/*  ❌Windows 8、10とIEで、スタートメニューのタイルを飾るために使われることが主目的のメタタグです  */}
+<!-- ❌Windows 8、10とIEで、スタートメニューのタイルを飾るために使われることが主目的のメタタグです -->
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-TileImage" content="/mstile-150x150.png">
 <meta name="msapplication-config" content="/browserconfig.xml">
 ```
 
 ```html codeBlock
-{/*  ❌Safariのピン留め用アイコンですが、現在はファビコンが使われるようになっています  */}
+<!-- ❌Safariのピン留め用アイコンですが、現在はファビコンが使われるようになっています -->
 <link rel="mask-icon" color="#5bbad5" href="/safari-pinned-tab.svg">
 ```
 
 ```html codeBlock
-{/*  ❌shortcutを書かずただの"icon"でもfaviconの指定と解釈されるので、shortcutと書く必要はありません  */}
+<!-- ❌shortcutを書かずただの"icon"でもfaviconの指定と解釈されるので、shortcutと書く必要はありません -->
 <link rel="shortcut icon" href="/favicon.ico">
 ```
