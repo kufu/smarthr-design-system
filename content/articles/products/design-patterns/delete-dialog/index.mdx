@@ -40,7 +40,7 @@ import { ComponentPreview } from '@Components/ComponentPreview'
 3. 削除対象
 4. 注意事項（任意）
 5. 確認のチェックボックス（任意）
-6. アクションボタン
+6. 操作ボタン
 
 ![ダイアログ内の要素](./images/delete-dialog_components.png)
 
@@ -145,11 +145,11 @@ export const DynamicActionDialog = () => {
 
 削除に伴う影響が大きく、削除の操作に特に慎重になる必要がある場合は、[4. 注意事項](#h3-4)に加えて確認のチェックボックスを設けることができます。
 
-チェックボックスを設ける場合は、チェックを入れずにアクションボタンを押すと、エラーを返すようにします。
+チェックボックスを設ける場合は、チェックを入れずに操作ボタンを押すと、エラーを返すようにします。
 
-![チェックを入れずにアクションボタンを押すと、エラーを返す](./images/delete-dialog_unchecked-submit-error.png)
+![チェックを入れずに操作ボタンを押すと、エラーを返す](./images/delete-dialog_unchecked-submit-error.png)
 
-### 6. アクションボタン
+### 6. 操作ボタン
 
 操作を確定するボタンは右に配置し、ラベルは`削除`とします。[Dangerボタン](/products/components/button/#h3-3)を使い、破壊的な操作であることを示します。  
 ダイアログを閉じて操作を中断するボタンは左に配置し、ラベルは`キャンセル`とします。
