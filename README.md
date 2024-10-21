@@ -6,12 +6,12 @@ main branch: https://smarthr-design-system.netlify.app
 
 ## Local development
 
-`.node-version`に記載されているバージョンのNode.jsとyarnがインストールされている必要があります。
+`.node-version`に記載されているバージョンのNode.jsと最新のpnpmがインストールされている必要があります。
 
 1. Clone this repo
 2. In the terminal, navigate (`cd`) to the repo directory
-3. `yarn` to install dependencies
-4. `yarn dev` to start the dev server
+3. `pnpm` to install dependencies
+4. `pnpm dev` to start the dev server
 
 ## 開発の進め方
 
@@ -67,7 +67,7 @@ index.mdxがないディレクトリがあった場合、左側のサイドバ�
 
 ### 3. Reactコンポーネントを使う際の注意
 
-`/src/components`までのエイリアスが`@Components`として設定されているので、 mdxファイル内で
+`/src`のエイリアスが`@/`として設定されているので、 mdxファイル内で
 
 ```mdx
 import { hoge } from '../../../../src/components/hoge
@@ -90,7 +90,7 @@ import hoge from '@/components/hoge
 イラスト画像はzipでダウンロードできるようにしているため、変更があった場合はzipも更新する必要があります。下記のコマンドを実行してください。
 
 ```
-yarn export:zip-images
+pnpm export:zip-images
 ```
 
 ### Gotchaアイテムの追加・削除・編集方法
@@ -112,12 +112,6 @@ Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](http
 - [GitHub Actions](https://github.com/kufu/smarthr-design-system/blob/main/.github/workflows/README.md)
 - [Git hooksとhusky](https://github.com/kufu/smarthr-design-system/blob/main/.husky/README.md)
 - [リンクチェック](https://github.com/kufu/smarthr-design-system/blob/main/scripts/content-checker/README.md)
-
-### データソース取得のためのGatsbyプラグイン
-
-- [gatsby-source-component-captures](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-component-captures/README.md)
-- [gatsby-source-ui-versions](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-ui-versions/README.md)
-- [gatsby-source-sds-airtable](https://github.com/kufu/smarthr-design-system/blob/main/plugins/gatsby-source-sds-airtable/README.md)
 
 ### Reactコンポーネント
 
