@@ -3,8 +3,7 @@ import path from 'node:path';
 
 import packageInfo from 'smarthr-ui/package.json';
 
-import type { PropsData, UIData, UIProps, UIStories } from '@/types/ui';
-
+import type { PropsData, UIData, UIProps, UIStories } from '../src/types/ui';
 import type { StoryIndex } from '@storybook/types';
 
 type GitHubAPIResponse = {
