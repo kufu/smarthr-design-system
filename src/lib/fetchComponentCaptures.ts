@@ -28,7 +28,7 @@ const convertKebab = (target: string) =>
     .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
     .toLowerCase();
 
-const convertComponentPath = (importPath: string, displayName: string) => {
+const getComponentPath = (importPath: string, displayName: string) => {
   const matches = importPath.match(/\.\/src\/components\/(.*)\.stories\.tsx/);
   if (!matches) {
     return;
@@ -42,16 +42,30 @@ const convertComponentPath = (importPath: string, displayName: string) => {
 
   const componentPathName = convertKebab(displayName);
 
-  return componentDirPath === '' ? componentPathName : path.join(componentDirPath, componentPathName);
+  // NOTE:
+  // button/button.mdx のようにディレクトリ名とファイル名が一致する記事は存在しないので
+  // componentDirPath と componentPathName が一致する場合は componentPath のみを返す
+  //
+  // こうすることで、importPath が button/stories/button.stories.ts で 記事が button/index.mdx のようになっている
+  // コンポーネントを取り逃すことがなくなる
+  return componentDirPath === '' || componentDirPath === componentPathName
+    ? componentPathName
+    : `${componentDirPath}/${componentPathName}`;
 };
 
-const isExistsFile = async (filePath: string) => {
-  try {
-    await fs.stat(filePath);
-    return true;
-  } catch (err) {
-    return false;
+const doesFileExist = async (...filePaths: string[]) => {
+  const componentBasePath = path.resolve(cwd(), 'src', 'content', 'articles', 'products', 'components');
+
+  for (const filePath of filePaths) {
+    try {
+      await fs.stat(path.join(componentBasePath, filePath));
+      return true;
+    } catch (err) {
+      // 何もしない
+    }
   }
+
+  return false;
 };
 
 /**
@@ -85,18 +99,15 @@ export async function fetchComponentCaptures() {
     iframeUrl.searchParams.set('shortcuts', 'false');
     iframeUrl.searchParams.set('singleStory', 'true');
 
-    const componentPath = convertComponentPath(importPath, displayName);
+    // コンポーネントのパスを取得
+    const componentPath = getComponentPath(importPath, displayName);
     if (!componentPath) {
       continue;
     }
 
-    const componentsDirPath = path.resolve(cwd(), 'src', 'content', 'articles', 'products', 'components');
-
-    const mdxFilePath = path.join(componentsDirPath, `/${componentPath}.mdx`);
-    const indexMdxFilePath = path.join(componentsDirPath, `${componentPath}/index.mdx`);
-
-    const isExistsMdx = (await isExistsFile(mdxFilePath)) || (await isExistsFile(indexMdxFilePath));
-    if (!isExistsMdx) {
+    // コンポーネントのパスからMDXファイルが存在するか確認
+    const exist = await doesFileExist(`${componentPath}.mdx`, `${componentPath}/index.mdx`);
+    if (!exist) {
       continue;
     }
 
@@ -119,6 +130,11 @@ export async function fetchComponentCaptures() {
       continue;
     }
 
+    // 同じcomponentPathを持つstoryKindが存在する場合はスキップ
+    if (storyGroup.storyKinds.find((item) => item.componentPath === componentPath)) {
+      continue;
+    }
+
     // Kindが存在しない場合は新規作成
     const storyKind = storyGroup.storyKinds.find((item) => item.kindName === title);
     if (!storyKind) {
@@ -136,6 +152,9 @@ export async function fetchComponentCaptures() {
     // GroupもKindも既に存在すればカウントアップ
     storyKind.numberOfStories += 1;
   }
+
+  // 名前昇順でソート
+  storyGroups.map((group) => group.storyKinds.sort((a, b) => a.displayName.localeCompare(b.displayName)));
 
   return storyGroups;
 }
