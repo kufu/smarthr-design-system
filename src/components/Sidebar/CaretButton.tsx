@@ -25,7 +25,7 @@ export default function CaretButton({ currentPath, itemLink, depth, currentIndex
     clicked.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   };
 
-  const isExpanded = currentPath.includes(itemLink);
+  const isExpanded = currentPath === itemLink || currentPath.startsWith(`${itemLink}/`);
 
   return (
     <button

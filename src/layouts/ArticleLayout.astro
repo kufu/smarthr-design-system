@@ -1,6 +1,6 @@
 ---
 import type { MarkdownHeading } from 'astro';
-import type { CollectionEntry } from 'astro:content';
+import { getEntry, type CollectionEntry } from 'astro:content';
 import { Article } from 'smarthr-ui';
 import Layout from '@/layouts/Layout.astro';
 import IndexNav from '@/components/IndexNav';
@@ -19,23 +19,31 @@ const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
 
 const { slug, data, headings } = Astro.props;
 
-const { flatSidebarItems, nestedSidebarItems } = await createArticleMetaItems(slug);
+// 親の記事を取得
+const parentArticleSlug = slug.replace(/\/[^\/]*$/, ''); // 例: 'basics/typography' → 'basics'
+const parentArticle = await getEntry('articles', parentArticleSlug);
 
-const currentPageIndex = flatSidebarItems.findIndex(({ link }) => link === `/${slug}`);
-const sidebarItemLength = flatSidebarItems.length - 1;
+// カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
+const categoryName = parentArticle?.data.title ?? '';
+const headTitle = categoryName === data.title ? data.title : `${data.title} | ${categoryName}`;
+
+const { flatMetaItems, nestedMetaItems } = await createArticleMetaItems(slug);
+
+const currentPageIndex = flatMetaItems.findIndex(({ link }) => link === `/${slug}`);
+const sidebarItemLength = flatMetaItems.length - 1;
 
 // 前・次のページの情報
-const prevSidebarItem = currentPageIndex > 0 ? (flatSidebarItems.at(currentPageIndex - 1) ?? null) : null;
-const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems.at(currentPageIndex + 1) ?? null) : null;
+const prevSidebarItem = currentPageIndex > 0 ? (flatMetaItems.at(currentPageIndex - 1) ?? null) : null;
+const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatMetaItems.at(currentPageIndex + 1) ?? null) : null;
 ---
 
-<Layout title={data.title} ogTitle={data.title} description={data.description}>
+<Layout title={headTitle} ogTitle={data.title} description={data.description}>
   <div class="wrapper">
     <Header />
 
     <main class="main">
       <div class="mainSidebar">
-        <Sidebar path={`/${slug}`} nestedSidebarItems={nestedSidebarItems} />
+        <Sidebar path={`/${slug}`} nestedSidebarItems={nestedMetaItems} />
       </div>
       <div class="mainIndexWrapper">
         <IndexNav targetId={MDX_STYLE_WRAPPER_ID} headings={headings} ignoreH3Nav={data.ignoreH3Nav} client:load />
@@ -221,7 +229,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
     :global(img) {
       display: block;
       max-width: 100%;
-      height: 100%;
+      height: auto;
     }
 
     /* Level2 */
@@ -270,6 +278,14 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
       margin-block: 20px 0;
     }
 
+    /* 引用 */
+    :global(blockquote) {
+      :global(p) {
+        line-height: unset;
+        margin-block: unset;
+      }
+    }
+
     /* リスト */
     :global(ul),
     :global(ol) {
@@ -278,7 +294,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
       margin-block: 20px 0;
       padding-inline-start: 2.5em;
 
-      :global(u),
+      :global(ul),
       :global(ol) {
         margin-block-start: 0;
       }
@@ -301,6 +317,10 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatSidebarItems
         :global(ul:first-child),
         :global(ol:first-child) {
           margin-block-start: 0;
+        }
+
+        :global(p) {
+          line-height: unset;
         }
       }
     }

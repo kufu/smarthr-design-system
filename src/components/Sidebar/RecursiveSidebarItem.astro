@@ -31,7 +31,10 @@ if (items.length <= 0) {
           )}
         </div>
         {item.children.length > 0 && (
-          <ul data-items-id={`Depth${depth + 1}Items__${currentIndex}`} aria-hidden={!currentPath.includes(item.link)}>
+          <ul
+            data-items-id={`Depth${depth + 1}Items__${currentIndex}`}
+            aria-hidden={currentPath !== item.link && !currentPath.startsWith(`${item.link}/`)}
+          >
             <Astro.self currentPath={currentPath} items={item.children} depth={depth + 1} parentIndex={currentIndex} />
           </ul>
         )}

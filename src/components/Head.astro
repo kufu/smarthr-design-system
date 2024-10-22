@@ -8,7 +8,7 @@ export type Meta = {
 };
 
 export type Props = {
-  title: string;
+  title?: string;
   ogTitle?: string;
   description?: string;
   meta?: Meta[];
@@ -16,7 +16,7 @@ export type Props = {
 
 const { ogTitle, meta } = Astro.props;
 const currentUrl = Astro.url.toString();
-const pageTitle = Astro.props.title || SITE_TITLE;
+const pageTitle = Astro.props.title ? `${Astro.props.title} | ${SITE_TITLE}` : SITE_TITLE;
 const pageDescription = Astro.props.description || SITE_DESCRIPTION;
 const ogImageUrl = createOgImageUrl(ogTitle);
 ---

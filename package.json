@@ -6,18 +6,17 @@
   "type": "module",
   "lint-staged": {
     "*.{astro,ts,tsx}": [
-      "astro check",
       "eslint --fix",
       "prettier --write"
     ],
     "src/content/**/*.md{,x}": [
       "textlint",
-      "ts-node scripts/content-checker/linkChecker.ts --fix"
+      "tsx scripts/content-checker/linkChecker.ts --fix"
     ]
   },
   "scripts": {
     "dev": "pnpm update:ui-data && astro dev",
-    "start": "astro dev",
+    "start": "pnpm dev",
     "build": "pnpm update:ui-data && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -54,7 +53,7 @@
     "react-instantsearch-core": "^7.13.3",
     "react-live": "^4.1.7",
     "smarthr-normalize-css": "^1.1.0",
-    "smarthr-ui": "^58.0.2",
+    "smarthr-ui": "^58.1.2",
     "styled-components": "^6.1.13",
     "typescript": "^5.6.2"
   },

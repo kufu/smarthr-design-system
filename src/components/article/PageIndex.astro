@@ -11,7 +11,14 @@ type Props = {
 const { basePath, heading: Heading = 'h2', excludePaths = [] } = Astro.props;
 
 // 自身のページを除いたサブページを取得
-const subPages = await getSubPageCollection(basePath, [...excludePaths, 'index.mdx']);
+const rawSubPages = await getSubPageCollection(basePath, [...excludePaths, join(basePath, 'index.mdx')]);
+
+// 先頭と末尾の/を削除
+const normalizedBasePath = basePath.replace(/^\/|\/$/g, '');
+
+// 1階層下のページのみを取得
+const regex = new RegExp(`^${normalizedBasePath}/[^/]+$`);
+const subPages = rawSubPages.filter((page) => regex.test(page.slug));
 
 // order昇順でソート
 subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.order : 1));

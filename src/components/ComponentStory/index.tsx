@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 import { AnchorButton, Cluster, FaExternalLinkAltIcon, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
 
@@ -10,14 +11,17 @@ import ResizableContainer from '../ResizableContainer';
 
 import styles from './index.module.scss';
 
-type Props = {
+export type ComponentStoryProps = {
   code: string;
   stories: UIStories;
+  // MDX内でこのコンポーネントを一番上に置いたとき、アイランドの関係で :first-child でマージンを消す CSS が効かないため
+  // これでマージンを消せるように
+  noMargin?: boolean;
 };
 
 const STORYBOOK_BASE_URL = `https://${UI_COMMIT_HASH}--${SHRUI_CHROMATIC_ID}.chromatic.com/`;
 
-export default function ComponentStory({ code, stories }: Props) {
+export default function ComponentStory({ code, stories, noMargin = false }: ComponentStoryProps) {
   const [currentIframe, setCurrentIframe] = useState(stories.storyItems.at(0)?.iframeName ?? '');
   const [isLoadedIframe, setIsLoadedIframe] = useState(false);
 
@@ -47,7 +51,7 @@ export default function ComponentStory({ code, stories }: Props) {
   };
 
   return (
-    <div className={styles.storyWrapper}>
+    <div className={clsx(!noMargin && styles.storyWrapper)}>
       <Cluster align="center" justify="space-between" gap={1}>
         <Cluster align="center" as="label">
           <span>SmartHR UI</span>

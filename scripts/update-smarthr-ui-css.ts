@@ -6,7 +6,7 @@ const downloadSmarthrUiCss = async () => {
   try {
     const response = await fetch(url);
     const cssContent = await response.text();
-    fs.writeFileSync('public/smarthr-ui2.css', cssContent);
+    fs.writeFileSync('public/smarthr-ui.css', cssContent);
     console.log('最新の smarthr-ui.css をダウンロードしました!!');
   } catch (error) {
     console.error('Error downloading smarthr-ui.css:', error);

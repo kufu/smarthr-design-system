@@ -27,8 +27,8 @@ order: 2
 
 ## 達成方法
 1. **`alt`属性を空にする**:
-   ```
-      <img src="decorative-image.jpg" alt="">
+   ```html
+    <img src="decorative-image.jpg" alt="">
    ```
 
     `img`要素の`alt`属性値が空の画像は視覚的には表示されますが、支援技術ではないものとして扱われます。
@@ -37,11 +37,11 @@ order: 2
 装飾目的の画像は、CSSの`background-image`で表示します。背景画像なので本文コンテンツとして扱われることがありません。
 
 3. **`aria-hidden`属性を付与する**:
-   ```
-      <button>
-	       <svg aria-hidden="true">略</svg>
-          編集
-      </button>
+   ```html
+   <button>
+      <svg aria-hidden="true">略</svg>
+      編集
+   </button>
    ```
 
     ラベルテキスト「編集」と、鉛筆アイコンを持つボタンでは、アイコンのsvg要素に`aria-hidden="true"`が設定されています。
@@ -51,7 +51,6 @@ order: 2
 ## テスト方法
 1. **HTMLの確認**:
     - 画像の`alt`属性が空になっている、`aria-hidden="true"`が付与されているなどで、画像が無視できるようになっているか確認します。
-    - 
 2. **スクリーンリーダーでのテスト**:
     - スクリーンリーダーを使ってページを閲覧し、装飾目的の画像が読み上げられないことを確認します。
 
