@@ -4,8 +4,6 @@ description: '日本産業規格（JIS X 25000シリーズ）を参考に開発�
 order: 1
 ---
 
-{/* <!-- textlint-disable --> */}
-
 UIデザイン使用性チェックリストは、SmartHRのプロダクトデザイナーが日本産業規格（JIS X 25000シリーズ）を参考に開発した、[プロダクトの使用性](/products/usability/#h2-0)という「ユーザーがプロダクトをどのくらい使えるかの品質」を担保するための、UIデザイン時点で考慮すべき観点の一覧です。
 
 以下、UIデザイン使用性チェックリストを「使用性チェックリスト」と省略表記します。
@@ -98,32 +96,40 @@ import TableReel from './_components/TableReel'
     <Td>デザインパターン</Td>
     <Td>「視線誘導」の基準に沿っているか（見出しや色を適切に使用した画面全体の情報の流れ・強弱を表現できているか）</Td>
     <Td><a href="/products/design-patterns/visual-guidance/">基準あり</a></Td>
+    {/* textlint-disable */}
     <Td><code>UIn-1-S ユーザインタフェースの外観の快美性</code></Td>
     <Td>ユーザインタフェース快美性</Td>
+    {/* textlint-enable */}
 </tr>
 <tr>
     <Td>8</Td>
     <Td>デザインパターン</Td>
     <Td>「ページレイアウト」の基準に沿っているか（機能のトップとなるページに適切なリード文が書かれているか、を含む）</Td>
     <Td><a href="/products/design-patterns/page-layout/">基準あり</a></Td>
+    {/* textlint-disable */}
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code><br /><code>UAp-3-S ウェブサイト目的説明率</code><br /><code>UIn-1-S ユーザインタフェースの外観の快美性</code></Td>
     <Td>運用操作性、適切度認識性、ユーザインタフェース快美性</Td>
+    {/* textlint-enable */}
 </tr>
 <tr>
     <Td>9</Td>
     <Td>デザインパターン</Td>
     <Td>「余白の取り方」の基準に沿っているか</Td>
     <Td><a href="/products/design-patterns/spacing-layout-pattern/">基準あり</a></Td>
+    {/* textlint-disable */}
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code><br /><code>UIn-1-S ユーザインタフェースの外観の快美性</code></Td>
     <Td>運用操作性、ユーザインタフェース快美性</Td>
+    {/* textlint-enable */}
 </tr>
 <tr>
     <Td>10</Td>
     <Td>デザインパターン</Td>
     <Td>「グルーピングの装飾（仮）」の基準に沿っているか（色を適切に使用した視覚的グルーピングを含む）</Td>
     <Td>基準がない</Td>
+    {/* textlint-disable */}
     <Td><code>UOp-1-G 操作一貫性</code><br /><code>UOp-8-S 外観の一貫性</code><br /><code>UIn-1-S ユーザインタフェースの外観の快美性</code></Td>
     <Td>運用操作性、ユーザインタフェース快美性</Td>
+    {/* textlint-enable */}
 </tr>
 <tr>
     <Td>11</Td>
@@ -138,8 +144,10 @@ import TableReel from './_components/TableReel'
     <Td>デザインパターン</Td>
     <Td>エラー状態（Error state）が検討されており、エラーを回復・解消できるようなフィードバックの出し方が考慮されているか</Td>
     <Td><a href="/products/design-patterns/feedback/">基準あり</a></Td>
+    {/* textlint-disable */}
     <Td><code>UEp-3-S ユーザエラー回復性</code></Td>
     <Td>ユーザエラー防止性</Td>
+    {/* textlint-enable */}
 </tr>
 <tr>
     <Td>13</Td>
@@ -154,8 +162,10 @@ import TableReel from './_components/TableReel'
     <Td>デザインパターン</Td>
     <Td>削除含む危険な操作、やり直しができない操作の前に、ユーザーに確認したり、実行後に取り消しできるようにしているか</Td>
     <Td><a href="/products/design-patterns/irreversible-operation/">基準はある</a>が十分でない（作業中）</Td>
+    {/* textlint-disable */}
     <Td><code>UOp-6-S 操作実行取消し能力</code><br /><code>UEp-1-G 利用者操作エラー回避性</code></Td>
     <Td>運用操作性、ユーザエラー防止性</Td>
+    {/* textlint-enable */}
 </tr>
 <tr>
     <Td>15</Td>
@@ -212,7 +222,9 @@ import TableReel from './_components/TableReel'
     <Td>「エラーメッセージ」の基準に沿っているか</Td>
     <Td><a href="/products/contents/error-messages/">基準あり</a></Td>
     <Td><code>ULe-3-S エラーメッセージ理解性</code><br /><code>UEp-2-S 利用者入力エラーの訂正</code></Td>
+    {/* textlint-disable */}
     <Td>習得性、ユーザエラー防止性</Td>
+    {/* textlint-enable */}
 </tr>
 </tbody>
 </Table>
@@ -221,6 +233,7 @@ import TableReel from './_components/TableReel'
 ### 表頭の説明
 表の各項目の説明は以下のとおりです。
 
+{/* textlint-disable */}
 - `分類`
     - [プロダクトの項目](/products/)のカテゴリ
     - 2024年6月時点では存在しないものも含む
@@ -233,7 +246,7 @@ import TableReel from './_components/TableReel'
 - `基準の状況`
     - チェック内容に記載された基準が、現在のSmartHR Design Systemなどに基準として言語化されているかどうかの情報
     - 2024年6月時点では存在しない基準を多く含む
-
+{/* textlint-enable */}
 
 ## SmartHRにおける運用
 ### 利用対象者

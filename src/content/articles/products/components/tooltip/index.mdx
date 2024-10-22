@@ -21,6 +21,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
 import Warning from './_components/Warning'
+import DynamicTooltip from './_components/DynamicTooltip.astro'
 
 <Warning />
 
@@ -81,16 +82,6 @@ Tooltipの配置は8種類の選択肢があります。
 - 矢印の出る方向を`horizontal`（横）と`vertical`（縦）の組み合わせで指定します。
 - レイアウトによってTooltipの一部が見切れる場合があるため、Tooltip全体が表示されるように指定してください。
 - `horizontal`（横）と`vertical`（縦）の両方に`auto`を指定すると、レイアウトを加味して自動的に方向を決めてくれます。
-
-export const DynamicTooltip = ({children, ...props}) => {
-  {/* <!-- textlint-disable --> */}
-  return (
-    <Tooltip {...props}>
-      {children}
-    </Tooltip>
-  )
-  {/* <!-- textlint-enable --> */}
-}
 
 #### 上配置
 <ComponentPreview>
@@ -186,7 +177,6 @@ export const DynamicTooltip = ({children, ...props}) => {
       <Text color="TEXT_LINK">right & middle</Text>
     </Cluster>
   </DynamicTooltip>
-
 </ComponentPreview>
 
 
