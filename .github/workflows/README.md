@@ -4,7 +4,7 @@
 
 - `lint.yml`
 
-mainブランチに対するPRの作成時に、`yarn lint`を実行します。ESLint/Stylelint/textlintです。
+mainブランチに対するPRの作成時に、`pnpm lint`を実行します。ESLint/textlintです。
 
 ## 毎週のコンテンツチェック
 
@@ -21,7 +21,7 @@ Netlifyのビルドを手動でトリガーするワークフローです。
 
 ### deploy-to-netlify.yml
 
-ビルド後の`public`ディレクトリをNetlifyにデプロイします。
+ビルド後の`dist`ディレクトリをNetlifyにデプロイします。
 
 ### netlify-clear-cache-deploy.yml
 

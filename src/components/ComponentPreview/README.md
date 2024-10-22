@@ -1,21 +1,28 @@
 # UIコンポーネントをプレビューするコンポーネント
 
-`/content/articles/products/component/`以下のページなどで、UIコンポーネントの実際のレンダリング結果を表示するためのコンポーネントです。
+`src/content/articles/products/component/`以下のページなどで、UIコンポーネントの実際のレンダリング結果を表示するためのコンポーネントです。
 
 ## 使い方
 
 MDXファイルで`import`して使うのは`<ComponentPreview>`コンポーネントです。
 
-`<ProductComponentPreview>` は CodeBlock 内の `<LiveContainer>` 内で使用されています。
+以下のように使ってください。
 
-## レンダリング
+```mdx
+import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 
-基本的には`children`として受け取ったJSX（TSX）をそのままレンダリングします。この際、`WrapperBase.tsx`と`ProductWrapper.tsx`で、スタイルの適用や、`SmartHR`のヘッダーの表示などを行なっています。
-
-### オプション指定
-
-`layout`propsでヘッダー表示の有無を切り替えるなどのオプションを指定できます。
+<ComponentPreview>
+  {/* ここにレンダリングしたいコンポーネントを記述 */}
+</ComponentPreview>
+```
 
 ## スタイリングについて
 
-MDXファイル内または、`components/article/CodeBlock/LiveContainer` で iframe 内に配置されるため、インラインスタイルを利用しています。
+このコンポーネントは次の箇所で使用されています。
+
+- MDXファイル内
+- `components/article/CodeBlock/LiveContainer` の iframe の中
+
+他コンポーネントと同じように CSS Modules を使うと、iframe 内で使用された場合にスタイルが適用されなくなってしまいます。
+
+そのため、暫定的にインラインスタイルでスタイリングしています。
