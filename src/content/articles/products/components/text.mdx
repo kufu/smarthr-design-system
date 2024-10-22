@@ -15,7 +15,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 デフォルトの出力要素は`<span>`になるため、入れ子にしたときにValidなHTMLになるように注意してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Text as="p">
   <Text emphasis>入れ子</Text>にしたときに
   <Text color="TEXT_GREY" weight="bold">
@@ -30,7 +30,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### フォントサイズ
 `size` propsで指定できます。値は[タイポグラフィのフォントサイズ](/products/design-tokens/typography/#h2-1)のデザイントークンを参照してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Text size="XXS">XXSサイズのテキスト</Text>
   <Text size="XS">XSサイズのテキスト</Text>
@@ -45,7 +45,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### ウェイト
 `weight` propsで指定できます。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Text weight="normal">通常のテキスト</Text>
   <Text weight="bold">太字のテキスト</Text>
@@ -55,7 +55,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### 強調、イタリック体
 `emphasis` props、`italic` propsで指定できます。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Text emphasis>強調されたテキスト</Text>
   <Text italic>イタリック体のテキスト</Text>
@@ -65,7 +65,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### 色
 `color` propsで指定できます。値は[色の文字](/products/design-tokens/color/#h3-2)のデザイントークンを参照してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Text color="TEXT_BLACK">色がTEXT_BLACKのテキスト</Text>
   <Text color="TEXT_GREY">色がTEXT_GREYのテキスト</Text>
@@ -78,7 +78,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### 行送り
 `leading` propsで指定できます。値は[行送り](/products/design-tokens/leading/)のデザイントークンを参照してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Text leading="NONE">行送りがないテキスト<br />行送りがないテキスト</Text>
   <Text leading="TIGHT">行送りが狭いテキスト<br />行送りが狭いテキスト</Text>
@@ -96,7 +96,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 [Heading](/products/components/heading/)の種類に合わせた見た目（フォントサイズ、ウェイト、色）を提供しますが、見出しとして使う場合はTextではなくHeadingを使用してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Text styleType="screenTitle">画面タイトルの見た目のテキスト</Text>
   <Text styleType="sectionTitle">セクションタイトルの見た目のテキスト</Text>

@@ -29,7 +29,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
 
 また、FormControlと同様に、ステータスラベルやメッセージテキストの有無で、コンポーネント内のレイアウトにバリエーションがあります。詳細は[FormControlのレイアウト](/products/components/form-control/#h2-1)を参照してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Fieldset
     title="ユーザー情報"
     helpMessage="登録するユーザー情報を入力してください。"
@@ -145,7 +145,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
 
 ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Fieldset
     title="ユーザー情報"
     helpMessage="登録するユーザー情報を入力してください。"
@@ -260,7 +260,7 @@ Fieldset自体には、読み取り専用の状態は存在しません。
 
 ただし、値をテキストとしてコピーして利用したいユーザーにとっては、分割されているフォームの値をそれぞれコピーする必要があり、手間になってしまうことに注意してください。
 
-```tsx editable codeBlock
+```tsx editable
 <Fieldset
     title="電話番号"
     titleType="subBlockTitle"

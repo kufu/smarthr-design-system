@@ -72,7 +72,7 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 | トリガー | ラベルは`{オブジェクト名}の操作`とします。 |
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。 |
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <DropdownMenuButton label="｛オブジェクト名｝の操作">
   <Button>｛オブジェクト名｝を編集</Button>
   <Button>｛オブジェクト名｝を削除</Button>
@@ -88,7 +88,7 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 | トリガー | 基本的に「A. 単一のオブジェクトに対する操作」のようにオブジェクト名を表示しますが、狭い場所にレイアウトするときにオブジェクト名を省けます。ラベルは`操作`にします。  |
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。トリガーのラベルと同様にオブジェクト名を省けます。 |
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <DropdownMenuButton label="操作" triggerSize="s">
   <Button>編集</Button>
   <Button>削除</Button>
@@ -103,7 +103,7 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 | トリガー | 操作をまとめるラベルにします。 |
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 同じ種類の操作を入れます。 |
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <DropdownMenuButton label="一括操作">
   <Button>｛オブジェクト名｝を一括追加</Button>
   <Button>｛オブジェクト名｝を一括更新</Button>
@@ -118,7 +118,7 @@ A、B、Cのパターンに該当しないときに、異なる複数の操作�
 | トリガー | ラベルは`その他の操作`とします。 |
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 異なる複数の操作を入れます。 |
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <DropdownMenuButton label="その他の操作">
   <Button>｛その他の操作1｝</Button>
   <Button>｛その他の操作2｝</Button>
@@ -134,7 +134,7 @@ A、B、Cのパターンに該当しないときに、異なる複数の操作�
 | トリガー | [Secondaryボタンのアイコンのみ](/products/components/button/#h3-1)で、主に <FaEllipsisHIcon alt="その他の操作" /> アイコン（`FaEllipsisHIcon`）を使います。ラベルは視覚的に省いていますが、**必ず`label`属性は設定して**何のボタンなのかを伝えます。 |
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 操作を複数入れます。 |
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <Cluster gap={1} align="center">
   <DropdownMenuButton label="その他の操作" onlyIconTrigger>
     <Button>｛操作1｝</Button>
@@ -158,7 +158,7 @@ A、B、Cのパターンに該当しないときに、異なる複数の操作�
 #### トリガーの無効
 DropdownMenuButton自体を無効にすると、ドロップダウンパネルも操作できません。
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <DropdownMenuButton label="｛オブジェクト名｝の操作" disabled>
   <Button>｛オブジェクト名｝を編集</Button>
   <Button>｛オブジェクト名｝を削除</Button>
@@ -168,7 +168,7 @@ DropdownMenuButton自体を無効にすると、ドロップダウンパネル�
 #### ドロップダウンパネルの操作の無効
 ドロップダウンパネル内の操作を無効にする場合、[ButtonのdisabledDetail](/products/components/button/#h3-9)を使って**無効状態の理由を表示します。**
 
-```tsx editable codeBlock noIframe
+```tsx editable noIframe
 <DropdownMenuButton label="｛オブジェクト名｝の操作">
   <Button>｛オブジェクト名｝を編集</Button>
   <Button disabled disabledDetail={{ message: '無効状態の理由' }}>｛オブジェクト名｝を削除</Button>

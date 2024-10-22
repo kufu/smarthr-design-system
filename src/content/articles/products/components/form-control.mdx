@@ -37,7 +37,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 #### フォーム入力が必須の場合の表示例
 
-```tsx editable codeBlock
+```tsx editable
 <FormControl
   title="タイトル"
   statusLabelProps={{ type: 'red', children: '必須' }}
@@ -48,7 +48,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 #### フォーム入力が任意の場合の表示例
 
-```tsx editable codeBlock
+```tsx editable
 <FormControl
   title="タイトル"
   statusLabelProps={{ type: 'grey', children: '任意' }}
@@ -84,7 +84,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 #### メッセージテキストの表示例
 
-```tsx editable codeBlock
+```tsx editable
 <FormControl
   title="タイトル"
   helpMessage="ヘルプメッセージ"
@@ -106,7 +106,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ##### 初期状態の場合
 
-```tsx editable codeBlock
+```tsx editable
 <FormControl
   title="氏名"
   helpMessage="氏名を入力してください。"
@@ -119,7 +119,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ##### 適切な値が入力されていない場合
 
-```tsx editable codeBlock
+```tsx editable
 <FormControl
   title="氏名"
   helpMessage="氏名を入力してください。"
@@ -139,7 +139,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
 
-```tsx editable codeBlock
+```tsx editable
 <FormControl
   title="氏名"
   helpMessage="氏名を入力してください。"
@@ -155,7 +155,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、[Input](/products/components/input/)など内包する要素の`readOnly`を使用してください。
 
-```tsx editable codeBlock
+```tsx editable
 <FormControl title="氏名">
   <Input name="fullname" value="草野栄一郎" readOnly />
 </FormControl>

@@ -33,7 +33,7 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 フィードバックとして伝えたいことや、フィードバックする内容の重要度に合わせて5種類を定義しています。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
   <NotificationBar type="info" message="バックグラウンド処理中です。" />
   <NotificationBar type="success" message="タスクの削除に成功しました。" />
@@ -51,7 +51,7 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 - ユーザーが行なった操作の成功・失敗などの結果を画面全体（ヘッダーの下）に表示する場合
 
-```tsx editable codeBlock
+```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
   <NotificationBar type="success" bold message="タスクの削除に成功しました。" onClose={()=>{}} />
   <NotificationBar type="warning" bold message="情報の整合性が取れなくなる可能性があります。" onClose={()=>{}} />
@@ -78,7 +78,7 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 
 [フィードバック](/products/design-patterns/feedback/)としてのシステム通知だけでなく、画面内の操作を進めるにあたってユーザーに伝えるべきメッセージなどを表示する場合にも使用できます。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
   <NotificationBar base="base" type="info" message="このデータは読み取り専用です。" />
   <NotificationBar base="base" type="warning" message="フォームに入力された値は保存されていません。" />
@@ -92,7 +92,7 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 
 `n`には、`0`から`4`までの数値を指定でき、それぞれ[影のセマンティックトークン](/products/design-tokens/shadow/#h2-1)の`LAYER0`から`LAYER4`に対応しています。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
   <NotificationBar base="base" type="info" message="このNotificationBarは「layer=0」です。" layer="0" />
   <NotificationBar base="base" type="info" message="このNotificationBarは「layer=1」です。" layer="1" />
@@ -106,7 +106,7 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 
 ボタンやテキストリンクを表示したり、常時表示したいときは「閉じる」ボタンを非表示にできます。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
   <NotificationBar type="info" message="ボタンやテキストリンクを表示できます。" onClose={()=>{}}>
     <Button size="s">編集</Button>
@@ -162,7 +162,7 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 
 以下の例では、「保存」操作が成功した結果として、操作範囲の[Base](/products/components/base/)内に`type="success"`を表示しています。エラーの場合は`type="error"`を指定します。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Heading type="sectionTitle">セクションタイトル</Heading>
   <Base overflow="auto">
