@@ -22,7 +22,7 @@ Switchは操作時に即時実行されます。Checkboxと異なり、送信ボ
 
 Switchはオン・オフのどちらか1つの状態を表します。対する概念ではあるが、異なる状態を表す場合はSegmentedControlを使ってください。
 
-```tsx editable codeBlock
+```tsx editable
 <SegmentedControl size="s" options={[
   { value: 'list view', content: 'リスト表示' },
   { value: 'map view', content: 'マップ表示' },
@@ -35,7 +35,7 @@ Switchは基本的にラベルを必要とします。周囲のコンテキス�
 
 また、利用者が状態を認識しにくくなるため、Switchの状態が切り替わってもラベルは変更しないでください。
 
-```tsx editable codeBlock
+```tsx editable
 <Cluster as="label" align="center">
   <span>アーカイブを表示</span>
   <Switch />

@@ -28,7 +28,7 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 
 ロゴ、タイトル、メッセージ、リンクを表示できます。
 
-```tsx editable codeBlock
+```tsx editable
 <ErrorScreen
   className="shr-w-full"
   title="タイトル"
@@ -78,7 +78,7 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 
 存在しないページはにアクセスした原因として、ページ自体が移動・削除された可能性やユーザーがURLを間違えている可能性を提示しましょう。プロダクトのホームへ戻るリンクも表示してください。
 
-```tsx editable codeBlock
+```tsx editable
 <ErrorScreen
   className="shr-w-full"
   title="指定のページは見つかりませんでした"
@@ -101,7 +101,7 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 
 ユーザーがページにアクセスする権限をもっていない場合、プロダクトのホームへ戻るリンクを表示します。必要に応じて、管理者へ問い合わせるという対応策を提示してください。
 
-```tsx editable codeBlock
+```tsx editable
 <ErrorScreen
   className="shr-w-full"
   title="このページを表示する権限がありません"
@@ -122,7 +122,7 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 
 サービスがメンテナンス中の場合、SmartHRのメンテナンス・障害のお知らせへのリンクを表示してください。お知らせは、別タブで開くように設定してください。
 
-```tsx editable codeBlock
+```tsx editable
 <ErrorScreen
   className="shr-w-full"
   title="SmartHRは現在メンテナンス中です"
@@ -150,7 +150,7 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 
 「セッションがタイムアウトしました。」は一般的なユーザーには伝わりにくい表現なので「自動でログアウトしました」を推奨します。
 
-```tsx editable codeBlock
+```tsx editable
 <ErrorScreen
   className="shr-w-full"
   title="一定の時間、操作がなかったためログアウトしました"
@@ -176,7 +176,7 @@ ErrorScreenコンポーネントはエラーを全画面で表示するための
 
 必要があればプロダクトのホームへ戻るリンクを表示してください。
 
-```tsx editable codeBlock
+```tsx editable
 <ErrorScreen
   className="shr-w-full"
   title="予期しないエラーが発生しました"

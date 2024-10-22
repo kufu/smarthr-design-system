@@ -12,7 +12,7 @@ OGP（Open Graph Protocol）は、Facebookが提唱するWebページのメタ�
 
 FacebookをはじめとするSNSでOGPを表示するためには、以下のようなメタタグを`<head>`内に記述する必要があります。
 
-```html codeBlock
+```html
 <meta property="og:title" content="{ページ名} | SmartHR（スマートHR）">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
@@ -31,7 +31,7 @@ FacebookをはじめとするSNSでOGPを表示するためには、以下のよ
 
 XはOGPとは別に、Twitterカードという機能を提供しています。Twitterカードを使用することで、X上での投稿にOGPとは別に画像や説明文を表示できます。
 
-```html codeBlock
+```html
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@smarthr_jp">
 <meta name="twitter:title" content="{ページ名} | SmartHR（スマートHR）">
@@ -44,13 +44,13 @@ XはOGPとは別に、Twitterカードという機能を提供しています。
 
 ## Facebook向けのメタタグ
 
-```html codeBlock
+```html
 <meta property="fb:app_id" content="{app_id}">
 ```
 
 過去に`fb:admins`が使用されていたようですが、公式の[ウェブ管理者向けシェア機能ガイド](https://developers.facebook.com/docs/sharing/webmasters/)に`fb:admins`の記載はなく、`fb:app_id`のみが記載されています。
 
-```html codeBlock
+```html
 <!-- ❌fb:adminsは使用しない -->
 <meta property="fb:admins" content="{fb:admins}">
 ```

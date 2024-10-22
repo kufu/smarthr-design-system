@@ -27,7 +27,7 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
 色のみでステータスを伝えることは避け、[ライティング](#h2-2)を参考に適切な名前を付けましょう。
 （参考：[カラーユニバーサルデザイン](/accessibility/#h3-2)）
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Stack gap={0.5}>
     <Heading type="blockTitle" tag="h4">特殊なステータス</Heading>
@@ -55,7 +55,7 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
 他のステータスと区別して、視覚的に目立たせたい場合は、背景色と文字色を反転させた「強調あり」のラベルを使います。  
 例えばユーザーがアクションをしないと次に進めない場合などに使います。
 
-```tsx editable codeBlock
+```tsx editable
 <Stack>
   <Cluster>
     <StatusLabel type="green" bold>ラベル名</StatusLabel>

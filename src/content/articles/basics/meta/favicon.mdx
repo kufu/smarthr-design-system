@@ -16,7 +16,7 @@ import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
 ファビコンはブラウザのタブやブックマークのシンボルとして表示されます。
 
-```html codeBlock
+```html
 <link rel="icon" href="/favicon.ico">
 ```
 
@@ -35,7 +35,7 @@ import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
 また、そのアイコンのすぐ下に表示されるタイトルも合わせて指定します。スペースが限られるため、短い名称が望ましいです。
 
-```html codeBlock
+```html
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="SmartHR">
@@ -55,7 +55,7 @@ apple-touch-iconのサイズを180x180サイズにしているのは、[Configur
 
 [ダウンロード](/basics/meta/#h2-0)に含まれる`manifest.webmanifest`ファイルには、`icons`の項目に次のような`purpose`に`maskable`の指定と、そのためのアイコンを用意しています。
 
-```json codeBlock
+```json
 { "src": "/icons/maskable-icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }
 ```
 
@@ -91,19 +91,19 @@ maskableアイコンは必ずしも設定する必要はありません。Androi
 
 以下のような設定は、現在ではサポートされていないバージョンのブラウザ向けの設定であるため、記述する必要はありません。
 
-```html codeBlock
+```html
 <!-- ❌Windows 8、10とIEで、スタートメニューのタイルを飾るために使われることが主目的のメタタグです -->
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-TileImage" content="/mstile-150x150.png">
 <meta name="msapplication-config" content="/browserconfig.xml">
 ```
 
-```html codeBlock
+```html
 <!-- ❌Safariのピン留め用アイコンですが、現在はファビコンが使われるようになっています -->
 <link rel="mask-icon" color="#5bbad5" href="/safari-pinned-tab.svg">
 ```
 
-```html codeBlock
+```html
 <!-- ❌shortcutを書かずただの"icon"でもfaviconの指定と解釈されるので、shortcutと書く必要はありません -->
 <link rel="shortcut icon" href="/favicon.ico">
 ```
