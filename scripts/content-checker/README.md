@@ -9,12 +9,12 @@ MDXファイル内のリンク（アンカーリンク含む）と画像につ�
 ### 使い方
 
 #### 手動での実行
-```
-npx ts-node scripts/content-checker/linkChecker.ts --fix ./content/articles/**/*.mdx
+```sh
+pnpx tsx scripts/content-checker/linkChecker.ts --fix ./src/content/articles/**/*.mdx
 ```
 
 - `--fix`オプションをつけると、末尾スラッシュについては自動的に修正します。
-- 対象ファイルはglob形式で複数指定できます。指定がない場合は`/content/articles/**/*.mdx`が対象になります。
+- 対象ファイルはglob形式で複数指定できます。指定がない場合は`src/content/articles/**/*.mdx`が対象になります。
 
 #### 自動実行
 - コミット時に、ステージングされているファイルを対象に自動的に実行します。
@@ -25,16 +25,16 @@ npx ts-node scripts/content-checker/linkChecker.ts --fix ./content/articles/**/*
 デフォルトバージョン（`package.json`に書かれているバージョン）のsmarthr-uiを対象に、以下をチェックします。
 
 - GitHubのAPIからそのバージョンのコミットハッシュが取得できるか
-- `/content/articles/products/components/**/*.mdx`のファイルを対象に、そこに埋め込まれている`<ComponentStory>`コンポーネントの`name`propsに指定された名前のUIコンポーネントが、Storybookの`stories.json`に存在するか
+- `src/content/articles/products/components/**/*.mdx`のファイルを対象に、そこに埋め込まれている`<ComponentStory>`コンポーネントの`name`propsに指定された名前のUIコンポーネントが、Storybookの`stories.json`に存在するか
 - またそのコンポーネントのソースコードがGitHub上に存在するか
 
-データ取得のコードは`/plugins/gatsby-source-ui-versions`のものを`import`して使っているので、プラグインの動作検証の面もあります。UI側で何か変更があった場合など、うまく取得できなくなるかもしれません。
+データ取得のコードは`src/lib/getUIData`のものを`import`して使っているので、動作検証の面もあります。UI側で何か変更があった場合など、うまく取得できなくなるかもしれません。
 
 ### 使い方
 
 #### 手動での実行
 ```
-npx ts-node ./scripts/content-checker/storybookUrlChecker.ts
+pnpx tsx ./scripts/content-checker/storybookUrlChecker.ts
 ```
 
 指定できるオプションはありません。
