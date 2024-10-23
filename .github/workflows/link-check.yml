@@ -10,6 +10,9 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./scripts/content-checker
 
     steps:
       - uses: actions/checkout@v4
@@ -26,12 +29,9 @@ jobs:
           node-version: '22'
           cache: 'pnpm'
 
-      - name: Change directory
-        run: cd ./scripts/content-checker
-
       # Install packages
       - name: Install dependencies
-        run: pnpm --frozen-lockfile
+        run: pnpm install
 
       # リンクチェックの実行
       - id: linkCheck
@@ -39,8 +39,8 @@ jobs:
         # リンクエラーが見つかるとスクリプトはexit(1)で終了するが、このactionは中止しない。
         # linkChecker.tsを実行し、`console.log()`と`console.error()`の内容をファイルに出力する
         run: |
-          pnpm tsx linkChecker.ts 1>../../output.txt 2>../../errors.txt || true
-          echo errors=`cat ../../errors.txt` >> $GITHUB_OUTPUT
+          pnpm tsx linkChecker.ts 1>./output.txt 2>./errors.txt || true
+          echo errors=`cat ./errors.txt` >> $GITHUB_OUTPUT
 
       - name: Output log to summary
         # 実行結果をActionsのサマリーに出力
