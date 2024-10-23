@@ -31,7 +31,7 @@ jobs:
 
       # Install packages
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       # リンクチェックの実行
       - id: linkCheck

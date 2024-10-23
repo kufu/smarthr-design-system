@@ -29,8 +29,8 @@ jobs:
       # Install packages
       - name: Install dependencies
         run: |
-          pnpm install
-          cd ./scripts/content-checker && pnpm install
+          pnpm install --frozen-lockfile
+          cd ./scripts/content-checker && pnpm install --frozen-lockfile
 
       - name: Fetch Storybook Data
         run: pnpm update:ui-data
