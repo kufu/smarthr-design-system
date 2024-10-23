@@ -17,7 +17,7 @@ export default function SearchResultOuter({ children }: Props) {
   const hasResults = hits.length > 0;
 
   return (
-    <Base className={styles.searchPanel}>
+    <Base className={styles.searchPanel} aria-live="polite">
       <div className={styles.searchPanelHeader}>検索結果</div>
       <div className={styles.searchPanelBody}>
         {hasResults ? (
