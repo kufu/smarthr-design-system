@@ -1,22 +1,3 @@
-export const CSS_FONT_SIZE = {
-  PX_10: '0.625rem',
-  PX_11: '0.688rem',
-  PX_12: '0.75rem',
-  PX_13: '0.813rem',
-  PX_14: '0.875rem',
-  PX_15: '0.938rem',
-  PX_16: '1rem',
-  PX_18: '1.125rem',
-  PX_20: '1.25rem',
-  PX_24: '1.5rem',
-  PX_26: '1.625rem',
-  PX_28: '1.75rem',
-  PX_36: '2.25rem',
-  PX_48: '3rem',
-  PX_52: '3.25rem',
-  PX_54: '3.375rem',
-} as const;
-
 export const CSS_COLOR = {
   BLACK: '#000',
   WHITE: '#fff',
@@ -40,13 +21,4 @@ export const CSS_COLOR = {
   SEMANTICS_COLUMN: '#F8F7F6',
   SEMANTICS_BORDER: '#D6D3D0',
   WARNING: '#ff8800',
-} as const;
-
-export const CSS_SIZE = {
-  CONTENT_WIDTH: '74.5em',
-  BREAKPOINT_PC_2: '90em',
-  BREAKPOINT_PC_1: '69.625em',
-  BREAKPOINT_MOBILE_3: '47.9375em',
-  BREAKPOINT_MOBILE_2: '26.75em',
-  BREAKPOINT_MOBILE_1: '20em',
 } as const;
