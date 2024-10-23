@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-prod:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,11 +31,17 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
-      - run: pnpm build
+      - name: Build
+        run: pnpm build
 
-      - run: npx netlify-cli deploy --prod --dir=./dist
+      - name: Deploy
+        run: |
+          npx netlify-cli deploy --prod --dir=./dist
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Update Algolia
+        run: pnpm tsx ./scripts/update-algoliasearch.ts
