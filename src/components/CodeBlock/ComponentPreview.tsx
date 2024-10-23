@@ -39,11 +39,11 @@ export default function ComponentPreview({ layout, children, ...props }: Props) 
 // iframe内に配置されるため引き続き styled-components を利用しています
 const StyledWrapperBase = styled(WrapperBase)(
   ({ theme: { leading } }) => css`
-    border-width: 0 0 1px; /* CodeBlockには上ボーダーがないので、下のみボーダーをつける */
+    border-width: 0 0 1px !important; /* CodeBlockには上ボーダーがないので、下のみボーダーをつける */
 
     /* FIXME: @scope が来たら書き直したい! */
 
-    /* src/templates/article.tsx の無効化 */
+    /* ArticleLayoutで指定されているスタイルの無効化 */
     h2,
     h3,
     h4,

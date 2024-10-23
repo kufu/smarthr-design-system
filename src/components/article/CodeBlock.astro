@@ -7,11 +7,33 @@ type Props = {
   meta?: string;
 };
 
-const { code, language, meta } = Astro.props;
+type MetaProps = {
+  [key: string]: string | boolean;
+};
 
-// スペース区切りの meta 文字列を、その文字列をキーとしたオブジェクトに変換
-// 例: ```tsx editable -> { editable: true }
-const props = meta ? Object.fromEntries(meta.split(' ').map((key) => [key, true])) : {};
+/**
+ * ```tsx editable layout="product" のようなメタ情報をパースする
+ * @param meta - スペース区切りのメタ情報
+ * @returns メタ情報をキーとしたオブジェクト
+ */
+const parseMeta = (meta: string | undefined): MetaProps => {
+  if (!meta) {
+    return {};
+  }
+
+  const result: MetaProps = {};
+  const items = meta.split(' ');
+
+  for (const item of items) {
+    const [key, value] = item.split('=');
+    result[key] = value ? value : true;
+  }
+
+  return result;
+};
+
+const { code, language, meta } = Astro.props;
+const props = parseMeta(meta);
 ---
 
 <ReactCodeBlock code={code} language={language} {...props} client:only="react" />
