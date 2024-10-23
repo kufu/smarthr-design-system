@@ -26,20 +26,23 @@ jobs:
           node-version: '22'
           cache: 'pnpm'
 
-      - name: Change directory
-        run: cd ./scripts/content-checker
-
       # Install packages
       - name: Install dependencies
-        run: pnpm --frozen-lockfile
+        run: |
+          pnpm install --frozen-lockfile
+          cd ./scripts/content-checker && pnpm install --frozen-lockfile
+
+      - name: Fetch Storybook Data
+        run: pnpm update:ui-data
 
       # リンクチェックの実行
       - id: storybookCheck
         name: Execute Storybook checker
+        working-directory: ./scripts/content-checker
         # エラーが見つかるとスクリプトはexit(1)で終了するが、このactionは中止しない。
         # storybookUrlChecker.tsを実行し、`console.log()`と`console.error()`の内容をファイルに出力する
         run: |
-          pnpm tsx storybookUrlChecker.ts 1>../../output.txt 2>../../errors.txt || true
+          pnpm tsx ./storybookUrlChecker.ts 1>../../output.txt 2>../../errors.txt || true
           echo errors=`cat ../../errors.txt` >> $GITHUB_OUTPUT
 
       - name: Output log to summary
