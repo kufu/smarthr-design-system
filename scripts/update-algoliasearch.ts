@@ -12,6 +12,11 @@ import path from 'node:path';
 import { type BatchRequest, algoliasearch } from 'algoliasearch';
 import matter from 'gray-matter';
 
+if (!process.env.CI) {
+  console.warn('🚨 実行環境がCIではないようです。ローカル環境で実行する場合は、CI=1 を先頭に付けて実行してください');
+  process.exit(1);
+}
+
 // コマンドライン引数を取得
 const args = process.argv.slice(2);
 const isReplaceAllMode = args.find((arg) => arg === '--replace-all');
@@ -45,11 +50,6 @@ const sendData = filePaths.map((fullpath) => {
     throw e;
   }
 });
-
-if (!process.env.CI) {
-  console.warn('🚨 実行環境がCIではないようです。ローカル環境で実行する場合は、CI=1 を先頭に付けて実行してください');
-  process.exit(1);
-}
 
 const client = algoliasearch(process.env.PUBLIC_ALGOLIA_APP_ID ?? '', process.env.ALGOLIA_ADMIN_API_KEY ?? '');
 
