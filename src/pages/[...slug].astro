@@ -25,7 +25,7 @@ const { article } = Astro.props;
 
 const { Content } = await article.render();
 
-const headings = await getHeadings(Content);
+const headings = await getHeadings(Content, article.data.ignoreH3Nav);
 
 const components = {
   pre: 'div',

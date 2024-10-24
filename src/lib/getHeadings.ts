@@ -17,9 +17,10 @@ import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
  * https://docs.astro.build/ja/reference/container-reference/
  *
  * @param content Astroコンポーネント
+ * @param ignoreH3Nav h3タグを含めない)
  * @returns 見出し情報
  */
-export async function getHeadings(content: AstroComponentFactory) {
+export async function getHeadings(content: AstroComponentFactory, ignoreH3Nav = false) {
   const container = await experimental_AstroContainer.create();
 
   // NOTE:
@@ -38,7 +39,7 @@ export async function getHeadings(content: AstroComponentFactory) {
 
   // HTML をパースしてh2, h3タグを取得
   const doc = parse(contentHtml);
-  const headingTags = doc.querySelectorAll('h2, h3');
+  const headingTags = doc.querySelectorAll(ignoreH3Nav ? 'h2' : 'h2, h3');
 
   // データを整形
   const headings = headingTags.map((heading, index): MarkdownHeading => {
