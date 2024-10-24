@@ -1,6 +1,6 @@
 import { Nav } from 'smarthr-ui';
 
-import type { NestedHeading } from '@/lib/getHeadings';
+import type { NestedHeading } from '@/lib/getNestedHeadings';
 
 import styles from './IndexNavItems.module.scss';
 
