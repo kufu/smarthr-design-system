@@ -1,1 +1,0 @@
-export { CaptureImageWithDesc } from './CaptureImageWithDesc'

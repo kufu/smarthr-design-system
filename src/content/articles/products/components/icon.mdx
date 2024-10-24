@@ -1,0 +1,69 @@
+---
+title: 'Icon'
+description: 'アイデアやアクションを表すための視覚的な要素を表示するためのコンポーネントです。'
+---
+
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+import {
+  FaAddressBookIcon,
+  FaAddressCardIcon,
+  FaAnglesLeftIcon,
+  FaAnglesRightIcon,
+  FaCirclePlusIcon,
+  FaUpRightFromSquareIcon
+} from 'smarthr-ui'
+
+Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
+一目でメッセージを伝え、重要な情報への注意を促します。適切なアイコンは認知を手助けします。
+
+<ComponentStory name="Icon" />
+
+## 使用上の注意
+
+SmartHRプロダクトのアイコンは、[Font Awesome](https://fontawesome.com/)を使っています。アイコンのデザインコンセプトはFont Awesomeの[公式サイト](https://fontawesome.com/)を確認してください。
+
+SmartHR UIでは、[React Icons](https://github.com/react-icons/react-icons)を通してFont Awesomeのライブラリを利用しています。
+
+Font Awesomeアイコンはプロダクトに必要なアイコンのみインポートしています。新たに追加したい場合は、新たにインポートしたいアイコンを追加し、[プロジェクト](https://github.com/kufu/smarthr-ui)にPull Requestを出してください。
+
+## 種類
+
+Font Awesomeから必要なものを取り込んでいます。
+
+実際に登録されてるアイコンは、[Storybook](https://story.smarthr-ui.dev/?path=/story/media（メディア）-icon--all)を確認してください。
+
+## 状態
+
+アイコンの色は、使う場所のテキストの色に準拠します。SmartHR UIではcolorを指定せず、使われているコンポーネントの色の指定に従います。
+
+## アクセシビリティ
+
+アイコンのみ表示する場合、ラベルと合わせて使うよりも認知負荷を与えます。適切なラベルを付与してください。特にリンクやボタンにアイコンのみ表示する場合は必須です。
+
+```tsx editable
+<Button variant="primary" square>
+  <FaCirclePlusIcon alt="追加" />
+</Button>
+```
+
+また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
+
+## デザインパターン
+
+以下のコンポーネントでアイコンを利用する際は、それぞれのコンポーネントでの利用方法を参照してください。
+
+- [Button](/products/components/button/#h3-7)
+- [TextLink](/products/components/text-link/#h3-0)
+
+
+## 参考文献
+
+* https://www.lightningdesignsystem.com/icons/
+* https://www.carbondesignsystem.com/guidelines/icons/usage/
+
+
+## Props
+
+<ComponentPropsTable name="FaUpRightFromSquareIcon" />

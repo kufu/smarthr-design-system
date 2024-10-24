@@ -1,0 +1,38 @@
+---
+import indexContentJson from '@/data/indexContent.json';
+import Category from './Category.astro';
+---
+
+<ul>
+  {
+    indexContentJson.map((child) => (
+      <li>
+        <Category data={child} />
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      display: block;
+
+      &:not(:first-child) {
+        margin-top: 104px;
+      }
+    }
+
+    @include breakpointMobile2 {
+      margin: 80px 16px 0;
+
+      > li:not(:first-child) {
+        margin-top: 80px;
+      }
+    }
+  }
+</style>

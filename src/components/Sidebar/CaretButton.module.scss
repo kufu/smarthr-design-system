@@ -1,0 +1,28 @@
+.caretButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 2rem;
+  height: 100%;
+  top: 0;
+  right: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-grey);
+  cursor: pointer;
+  font-size: var(--font-size-14);
+
+  &:hover {
+    background-color: var(--color-light-grey-1);
+  }
+
+  > span {
+    top: 0;
+    /* -1pxだとフォーカスリングがずれて見えるため */
+  }
+
+  &[aria-expanded='true'] > :global(.smarthr-ui-Icon) {
+    transform: rotate(180deg);
+  }
+}

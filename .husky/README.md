@@ -1,3 +1,4 @@
+<!-- textlint-disable -->
 # gitのフックとして実行する処理
 
 ## フックの管理
@@ -11,8 +12,8 @@
 
 以下のディレクトリ内のファイル（画像ファイルを想定）に変化があった場合に、zipファイルを作り直します。
 
-- `/content/articles/basics/illustration/images`
-- `/content/articles/basics/icons/images`
+- `/src/content/articles/basics/illustration/images`
+- `/src/content/articles/basics/icons/images`
 
 また、同行するreadmeファイル（`/scripts/downloads/readme.txt`）に変更があった場合も作り直します。zipを作成するスクリプトは`/scripts/zipImages.ts`です。
 

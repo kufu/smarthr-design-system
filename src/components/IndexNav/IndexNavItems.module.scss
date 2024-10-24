@@ -1,0 +1,70 @@
+.nav {
+  display: block;
+  padding-top: 160px;
+
+  @include breakpointMobile3 {
+    padding-top: 0;
+  }
+
+  > :global(ul) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 1px;
+      margin-left: 8px;
+      margin-bottom: 8px;
+      background-color: var(--color-light-grey-1);
+
+      @include breakpointMobile3 {
+        display: none;
+      }
+    }
+
+    @include breakpointMobile3 {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+
+  li {
+    > :global(ul) {
+      margin: 0 0 0 16px;
+      padding: 0;
+      list-style: none;
+    }
+  }
+
+  a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: var(--color-text-grey);
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &[aria-current] {
+      color: inherit;
+    }
+
+    @include breakpointMobile3 {
+      padding-inline: 40px;
+    }
+  }
+}
+
+.depthItem {
+  display: block;
+
+  > :global(a[aria-current='true']),
+  :global(a[aria-current='true']:hover) {
+    background-color: var(--color-divider);
+  }
+}

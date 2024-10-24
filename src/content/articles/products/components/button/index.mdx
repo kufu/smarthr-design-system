@@ -1,0 +1,225 @@
+---
+title: 'Button'
+description: 'Buttonコンポーネントは、押すことで特定の操作や処理を実行するコンポーネントです。'
+---
+
+import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import SampleButton from './_components/SampleButton'
+
+Buttonコンポーネントは、押すことで特定の操作や処理を実行するコンポーネントです。
+
+<ComponentStory name="Button" />
+
+## 使用上の注意
+
+### type="button" について
+SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="button"`がついています。
+そのため、form submitを使いたい場合は、必ず`type="submit"`を明記してください。
+
+
+## 種類
+ボタンの優先度や役割に合わせた4種類のコンポーネントを総称して、Buttonコンポーネントとして定義しています。
+
+
+```tsx editable
+<>
+  <Button variant="primary">Primary</Button>
+  <Button>Secondary</Button>
+  <Button variant="danger">Danger</Button>
+  <Button variant="text">Text</Button>
+</>
+```
+
+### Primary
+Primaryボタンは、画面内で主要な操作をユーザーに示す役割を持ちます。
+
+- 1つの画面で、Primaryボタンは最大で1つまでにしてください。主要な操作が複数ある場合は、画面内の主要な操作が1つになるように情報設計と画面構成を見直してください。
+- ユーザーからの注目（視線）を集めることだけを目的に、Primaryボタンを使用しないでください。（参考：[視線誘導](/products/design-patterns/visual-guidance/)）
+
+
+```tsx editable
+<>
+  <Button variant="primary">ボタン</Button>
+  <Button variant="primary" prefix={<FaCirclePlusIcon />}>ボタン</Button>
+  <Button variant="primary" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="primary" square>
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+</>
+```
+
+
+### Secondary
+Secondaryボタンは、画面内の通常の操作をユーザーに示す役割を持ちます。
+SmartHR UIでは、`variant` propsのデフォルトは`secondary`です。
+
+- 1つの画面で使用できるSecondaryボタンの数に制限はありません。
+- ただしボタンが多すぎるとユーザーが迷う要因となります。情報設計と画面構成の見直しや、[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)の利用などを検討してください。
+
+
+```tsx editable
+<>
+  <Button>ボタン</Button>
+  <Button prefix={<FaCirclePlusIcon />}>ボタン</Button>
+  <Button suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button square>
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+</>
+```
+
+
+### Danger
+Dangerボタンは、[取り返しのつかない操作](/products/design-patterns/irreversible-operation/)を行なうときに、ユーザーに注意を促す役割を持ちます。
+
+- 主に[削除ダイアログ](/products/design-patterns/delete-dialog/)で使用します。具体的な使用方法は、[取り返しのつかない操作ボタンの提供方法](/products/design-patterns/irreversible-operation/#h2-2)を参照してください。
+- すべてのユーザーが色を見たり、理解できるわけではありません。警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h3-8)）に頼らず、ボタン配置のコンテキストやラベルテキストだけでもユーザーに伝わるように検討してください。
+
+
+```tsx editable
+<>
+  <Button variant="danger">ボタン</Button>
+  <Button variant="danger" prefix={<FaCirclePlusIcon />}>ボタン</Button>
+  <Button variant="danger" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="danger" square>
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+</>
+```
+
+
+### Text
+Textボタンは、画面内の通常の操作をユーザーに示す役割を持ちます。
+Secondaryボタンと役割は同じですが、ほかのコンポーネントにボタンが内包される場合や、レイアウト上の不都合がある場合など、Secondaryボタンが使いづらいときにTextボタンの使用を検討します。
+
+- 例えば[ドロップダウンメニュー](/products/components/dropdown/dropdown-menu-button/#h3-1)内のボタンや[アイコンボタン](#h4-1)など、ボタンとしての装飾（背景色や枠線）を省いてもボタンとして認識できる場合に使用できます。  
+- Textボタンを単独で使用する場合は、ラベルテキストだけではボタンとして認識しづらいので、プレフィックス（`prefix`props）にアイコンを設定して使用します。
+- ほかの画面に移動させることが主目的の場合は、[TextLink](/products/components/text-link/)を使用してください。
+
+
+```tsx editable
+<>
+  <Button variant="text">ボタン</Button>
+  <Button variant="text" prefix={<FaCirclePlusIcon />}>ボタン</Button>
+  <Button variant="text" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="text" square>
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+</>
+```
+
+
+### AnchorButton
+AnchorButtonは、リンク（`a`要素）をボタンのように装飾にするコンポーネントです。
+アクションボタンとして表現したい場合は、Buttonを使用してください。
+
+
+```tsx editable
+<>
+  <AnchorButton variant="primary" href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton variant="danger" href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton variant="text" href="#h3-4">ボタン</AnchorButton>
+</>
+```
+
+
+## レイアウト
+ボタンサイズやアイコンの有無で、コンポーネント内のレイアウトにバリエーションがあります。「`サイズ小`かつ`アイコン付き（左）`」のように組み合わせることもできます。
+
+### ボタンサイズ
+2種類の大きさのボタンを使用できます。  
+SmartHR UIでは、サイズ（`size`props）で指定できます。
+
+| 種類 | 表示例 | 説明 |
+| :--- | :--- | :--- |
+| `通常` | <SampleButton Prefix={FaCirclePlusIcon} size="default">ボタン</SampleButton> | 通常のサイズです。 |
+| `小` | <SampleButton Prefix={FaCirclePlusIcon} size="s">ボタン</SampleButton> | レイアウトの都合上、スペースを節約したいときに使うサイズです。 |
+
+
+### アイコンの有無
+アイコンは、ボタンを押して実行される操作やUIを想起させる役割や、ボタンに視覚的なアクセントを与える役割を持ちます。
+
+
+#### アイコン付きボタン
+ラベルテキストの左右にアイコンを配置できます。  
+SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`prefix`props）に、`アイコン付き（右）`はサフィックス（`suffix`props）に[Icon](/products/components/icon/)を指定することで表現できます。
+
+`アイコン付き（左）`と`アイコン付き（右）`の例と役割は以下の表を参考にしてください。
+
+| 種類 | 表示例 | アイコンの役割 |
+| :--- | :--- | :--- |
+| `アイコン付き（左）` | <Cluster><SampleButton Prefix={FaCirclePlusIcon}>項目を追加</SampleButton><SampleButton Prefix={FaCloudArrowDownIcon}>ダウンロード</SampleButton></Cluster> | ボタンを押したときに実行される操作を想起させるために使用します。同じ操作のボタンには、同じアイコンを指定してください。 |
+| `アイコン付き（右）` | <Cluster><SampleButton Suffix={FaCaretDownIcon}>一括操作</SampleButton><SampleButton Suffix={FaFilterIcon}>絞り込み</SampleButton></Cluster> | ドロップダウンのように、ボタンを押したときに特定のUIが表示される場合に使用します。<br />（例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)、[FilterDropdown](/products/components/dropdown/filter-dropdown/)、[SortDropdown](/products/components/dropdown/sort-dropdown/)） |
+
+
+##### `アイコン付き`にする判断基準
+アイコンを設定する判断は、以下を参考にしてください。
+
+- アイコンは左右どちらかにのみ指定してください。どちらにもアイコンをつけられそうな場合は、`アイコン付き（右）`（サフィックス）を優先し、`アイコン付き（左）`（プレフィックス）には指定しないでください。
+- 例外として、[FilterDropdown](/products/components/dropdown/filter-dropdown/)や[SortDropdown](/products/components/dropdown/sort-dropdown/)のように、「操作を想起させる役割」と「特定のUIを表す役割」の両方をアイコンが担う必要があるときは、`アイコン付き（右）`（サフィックス）に「操作を想起させるアイコン」を指定する場合もあります。
+
+
+##### `アイコン付き（左）`（プレフィックス）の判断基準
+プレフィックスにアイコンを設定する判断は、以下を参考にしてください。
+
+- SmartHR上で頻出する操作に関しては、アイコンをつけることを推奨します。
+- レイアウトの都合でボタンの存在感を強調したい場合や、隣接するアイコン付きボタンと見た目を揃えたい場合など、必要性があればアイコンをつけることが可能です。
+- 一方で明確な必要性や理由がなければ、アイコンをつけることは極力避けてください。アイコンが多すぎると、ユーザーがアイコンの意味を理解することが難しくなり、開発者としてもアイコンを作成・選定するコストがかかります。
+
+
+#### アイコンボタン
+アイコンのみのボタンです。モバイルでの表示など、ラベルテキストを表示するレイアウト上の余裕がない場合に使います。
+ラベルテキストがないため、[アイコンには必ず代替テキストを含めてください。](/products/components/icon/#h3-0)
+
+```tsx editable
+<>
+  <Button square>
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+  <Button square size="s">
+    <FaCirclePlusIcon alt="追加" />
+  </Button> 
+  <Button variant="text" square>
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+</>
+```
+
+
+## 状態
+
+### マウスオーバー
+マウスポインタでボタンに触れている状態（hover状態）のスタイルです。
+マウスオーバーを認知できるように、標準時の背景色に[`OVERLAY`](/products/design-tokens/color/#h3-3)を重ねて表現します。
+
+### 無効（disabled）
+ボタンの操作ができない状態を表現したスタイルです。  
+無効状態のボタンはコントラストが低くユーザーを混乱させるため、できるだけ使わないようにしてください。
+
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくボタン自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+無効状態の理由を配置するスペースがどうしてもない場合、`disabledDetail`propsで理由を表示することを検討します。
+
+```tsx editable noIframe
+<>
+  <Button variant="primary" prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
+  <Button prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
+  <Button prefix={<FaCirclePlusIcon />} disabled disabledDetail={{ message: '無効状態の理由（理由を配置するスペースがない場合）' }}>ボタン</Button>
+</>
+```
+
+
+## ライティング
+[ラベルは、そのボタンが担うアクションを体言止めで書く](/products/contents/ui-text/app-writing/#h2-10)
+
+## Props
+
+<ComponentPropsTable name="Button" />
+
+
+## 参考文献
+
+- [Button – GOV.UK Design System](https://design-system.service.gov.uk/components/button/)

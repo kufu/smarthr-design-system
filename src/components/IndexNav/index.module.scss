@@ -1,0 +1,27 @@
+.navWrapper {
+  overflow-y: auto;
+
+  @include breakpointMobile3 {
+    display: none;
+  }
+}
+
+.spWrapper {
+  display: none;
+
+  @include breakpointMobile3 {
+    display: block;
+    border-bottom: 1px solid var(--color-light-grey-1);
+  }
+
+  button {
+    font-family: inherit;
+    color: inherit;
+    padding-inline: 24px;
+  }
+
+  :global(#spIndexNav-content.entered) {
+    /* アコーディオンが開いた時にsmarthr-uiが100vhを指定するが、100vh以上になりはみ出る場合があるので上書き */
+    max-height: none;
+  }
+}

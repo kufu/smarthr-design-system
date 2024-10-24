@@ -1,0 +1,88 @@
+---
+type Props = {
+  type?: 'narrow' | '';
+};
+
+const { type = '' } = Astro.props;
+---
+
+<div class="tableShadow" id="table-shadow">
+  <div class:list={{ wrapper: true, wrapperNarrow: type === 'narrow' }} id="table-wrapper">
+    <slot />
+  </div>
+</div>
+
+<script>
+  import { throttle } from '@/lib/throttle';
+
+  const tables = document.querySelectorAll<HTMLElement>('#table-shadow');
+
+  for (const tableRef of tables) {
+    const tableWrapperRef = tableRef.querySelector('#table-wrapper');
+
+    const handleScroll = throttle(() => {
+      if (tableWrapperRef) {
+        const scrollLeft = tableWrapperRef.scrollLeft;
+        const scrollRight = tableWrapperRef.scrollWidth - tableWrapperRef.clientWidth - tableWrapperRef.scrollLeft;
+
+        tableRef.style.setProperty('--left-shadow-opacity', (scrollLeft > 0 ? 1 : 0).toString());
+        tableRef.style.setProperty('--right-shadow-opacity', (scrollRight > 0 ? 1 : 0).toString());
+      }
+    }, 200);
+
+    window.addEventListener('resize', handleScroll);
+
+    if (tableWrapperRef) {
+      tableWrapperRef.addEventListener('scroll', handleScroll);
+    }
+  }
+</script>
+
+<style lang="scss">
+  @mixin tableShadowStyle {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset-block: 0;
+    width: 20px;
+    /* 影の領域が広すぎるとクリッカブルエリアを侵食するので無効化 */
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  .tableShadow {
+    position: relative;
+
+    &::before {
+      @include tableShadowStyle;
+      left: 0;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+      opacity: var(--left-shadow-opacity, 0);
+    }
+
+    &::after {
+      @include tableShadowStyle;
+      right: 0;
+      background: linear-gradient(-90deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+      opacity: var(--right-shadow-opacity, 0);
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    overflow: auto;
+    margin-block: 20px 0;
+
+    & :global(table) {
+      /* シャドウがマージンにまで影響するため、Wrapperで上マージンを確保し、table自身の上マージンは解除する */
+      margin-block: 0;
+    }
+  }
+
+  .wrapperNarrow {
+    :global(table th),
+    :global(table td) {
+      min-width: 2em;
+    }
+  }
+</style>

@@ -1,1 +1,0 @@
-export { ComponentPropsTable } from './ComponentPropsTable'

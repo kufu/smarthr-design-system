@@ -1,0 +1,70 @@
+---
+import { getSubPageCollection } from '@/lib/getSubPageCollection';
+import { basename, join } from 'node:path';
+
+type Props = {
+  basePath: string;
+  heading: 'h2' | 'h3';
+  excludePaths?: string[];
+};
+
+const { basePath, heading: Heading = 'h2', excludePaths = [] } = Astro.props;
+
+// 自身のページを除いたサブページを取得
+const rawSubPages = await getSubPageCollection(basePath, [...excludePaths, join(basePath, 'index.mdx')]);
+
+// 先頭と末尾の/を削除
+const normalizedBasePath = basePath.replace(/^\/|\/$/g, '');
+
+// 1階層下のページのみを取得
+const regex = new RegExp(`^${normalizedBasePath}/[^/]+$`);
+const subPages = rawSubPages.filter((page) => regex.test(page.slug));
+
+// order昇順でソート
+subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.order : 1));
+---
+
+<div class="wrapper">
+  <div class="pageList">
+    {
+      subPages.map(async (page) => {
+        const pageFileName = basename(page.slug);
+        const hasSlot = Astro.slots.has(pageFileName);
+        const description = hasSlot ? await Astro.slots.render(pageFileName) : page.data.description;
+
+        return (
+          <>
+            <Heading class="pageTitleHeadings">
+              <a href={join('/', page.slug)}>{page.data.title}</a>
+            </Heading>
+            {hasSlot ? <Fragment set:html={description} /> : <p>{description}</p>}
+          </>
+        );
+      })
+    }
+  </div>
+</div>
+
+<style lang="scss">
+  .wrapper {
+    margin-block: 4rem;
+  }
+
+  .pageList {
+    padding: 0;
+    list-style: none;
+
+    > li {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .pageTitleHeading {
+    font-size: var(--font-size-20);
+    font-weight: bold;
+
+    a {
+      text-decoration: undeline;
+    }
+  }
+</style>

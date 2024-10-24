@@ -1,0 +1,67 @@
+---
+import { Section } from 'smarthr-ui';
+import { fetchComponentCaptures } from '@/lib/fetchComponentCaptures';
+
+const storyGroups = await fetchComponentCaptures();
+---
+
+<div>
+  {
+    storyGroups.map((group) => (
+      <Section className="componentGroupSection" key={group.groupName}>
+        <h2 id={`component-${group.groupName}`}>{group.groupName}</h2>
+        <div class="componentList">
+          {group.storyKinds.map((storyKind) =>
+            storyKind.iframeUrl ? (
+              <li>
+                <a href={`/products/components/${storyKind.componentPath}/`}>
+                  <div>
+                    {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
+                    <img width={300} height={200} src={`/thumbnails/component-stories/${storyKind.thumbnailFileName}`} alt="" />
+                  </div>
+                  <p>{storyKind.displayName}</p>
+                </a>
+              </li>
+            ) : null,
+          )}
+        </div>
+      </Section>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  .componentGroupSection {
+    & {
+      > h2 {
+        margin-top: 64px;
+        font-size: var(--font-size-20);
+      }
+    }
+  }
+
+  .componentList {
+    & {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 8px;
+      list-style: none;
+      margin-block-start: 16px;
+      padding: 0;
+
+      img {
+        display: block;
+      }
+
+      div {
+        margin: 0;
+        padding: 0;
+        border: var(--border-shorthand);
+      }
+
+      p {
+        margin-block-start: 0;
+      }
+    }
+  }
+</style>

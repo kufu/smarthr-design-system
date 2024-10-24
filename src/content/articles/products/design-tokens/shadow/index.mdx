@@ -1,0 +1,44 @@
+---
+title: '影'
+description: '影のトークンは、要素の周りに落とす影（シャドウ）の大きさを定義します。'
+order: 7
+---
+
+import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+import ShadowSample from './_components/ShadowSample'
+
+影のトークンは、要素の周りに落とす影（シャドウ）の大きさを定義します。
+
+CSSでは`box-shadow`や`drop-shadow`を指しています。
+
+## 値の考え方
+
+影の大きさや柔らかさ、拡散量によって要素間の高低差を表現できます。
+
+例えば値の小さい影を持つ要素は、その背後にある要素と近いことを表しています。より大きく柔らかい影は、要素間の距離が離れていることを表します。
+
+それぞれの要素に高低差の視覚効果を与えることで、インターフェース全体に以下のメリットが生まれます。
+
+* ユーザーが要素間の優先度を読み取りやすく、どの要素がインタラクティブなのかを理解しやすくします。
+* 要素のレイヤー順序を明確に定義することで、要素同士の意図しない干渉や重なりを回避します。
+
+<ComponentPreview>
+  <ShadowSample depth={0} />
+  <ShadowSample depth={1} />
+  <ShadowSample depth={2} />
+  <ShadowSample depth={3} />
+  <ShadowSample depth={4} />
+</ComponentPreview>
+
+## セマンティックトークン
+
+`LAYER0`は影なし。
+色は[透明色](/products/design-tokens/color/#h3-6)を使用しています。
+
+| トークン名 | 値（`box-shadow`） | 利用コンポーネント例 |
+| :--- | :--- | :--- |
+| `LAYER0` | none |
+| `LAYER1` | 0 1px 2px 0 [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) | [AppNavi](/products/components/app-navi/)<br />[Base](/products/components/base/#h3-0) |
+| `LAYER2` | 0 2px 4px 1px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) | [Tooltip](/products/components/tooltip/) |
+| `LAYER3` | 0 4px 8px 2px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) | [BottomFixedArea](/products/components/bottom-fixed-area/)（上方向）<br />[Calendar](/products/components/calendar/)<br />[CompactInformationPanel](/products/components/compact-information-panel/)<br />[Dropdown](/products/components/dropdown/)<br />[FloatArea](/products/components/float-area/)<br />[InformationPanel](/products/components/information-panel/) |
+| `LAYER4` | 0 8px 16px 4px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) | [FlashMessage](/products/components/flash-message/) |

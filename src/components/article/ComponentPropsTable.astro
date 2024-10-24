@@ -1,0 +1,93 @@
+---
+import { marked } from 'marked';
+import { StatusLabel, Text, WarningIcon } from 'smarthr-ui';
+import { getUIProps } from '@/lib/getUIData';
+import ComponentPropsTableTag from './ComponentPropsTableTag.astro';
+import FragmentTitle from './FragmentTitle.astro';
+
+type Props = {
+  name: string;
+  dirName?: string;
+  showTitle?: string;
+};
+
+const { name, dirName, showTitle } = Astro.props;
+
+// StoryのPropsを取得
+const data = getUIProps(name, dirName);
+
+const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`;
+---
+
+{
+  !data || data?.props === null || data.props.length === 0 ? (
+    <Text as={'p'}>Propsは設定されていません。</Text>
+  ) : (
+    <>
+      {showTitle && (
+        <FragmentTitle tag="h3" id={fragmentId(data.displayName)}>
+          {data.displayName} props
+        </FragmentTitle>
+      )}
+      <div class="wrapper">
+        {data.props.map((prop) => (
+          <div class="propContent">
+            <div class="propName">
+              <span>{prop?.name}</span>
+              {prop.required && <StatusLabel type="red">必須</StatusLabel>}
+              {prop.description.includes('@deprecated') && <WarningIcon alt="非推奨" />}
+            </div>
+            <div class="propTypes">
+              {prop.type.name === 'enum' ? (
+                prop.type.value && prop.type.value.map(({ value }) => <ComponentPropsTableTag content={value ?? ''} />)
+              ) : (
+                <ComponentPropsTableTag content={prop.type.name} />
+              )}
+            </div>
+            <div class="propDescription" set:html={marked.parse(prop.description ?? '')} />
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+<style lang="scss">
+  .wrapper {
+    border: var(--border-shorthand);
+    margin-top: 20px;
+  }
+
+  .propContent {
+    display: grid;
+    gap: 16px;
+    padding: 16px 24px;
+
+    &:not(:last-child) {
+      border-bottom: var(--border-shorthand);
+    }
+  }
+
+  .propName {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+
+    > span {
+      margin-right: 8px;
+    }
+  }
+
+  .propTypes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .propDescription {
+    & :global(p) {
+      margin-block-start: 0;
+      white-space: pre-line;
+    }
+  }
+</style>
