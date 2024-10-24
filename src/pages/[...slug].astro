@@ -6,7 +6,7 @@ import CustomTable from '@/components/article/CustomTable.astro';
 import CodeBlock from '@/components/article/CodeBlock.astro';
 import FragmentTitle from '@/components/article/FragmentTitle.astro';
 import ResponsiveImage from '@/components/article/ResponsiveImage.astro';
-import { getHeadings } from '@/lib/getHeadings';
+import { getNestedHeadings } from '@/lib/getNestedHeadings';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -25,7 +25,7 @@ const { article } = Astro.props;
 
 const { Content } = await article.render();
 
-const headings = await getHeadings(Content, article.data.ignoreH3Nav);
+const nestedHeadings = await getNestedHeadings(Content, article.data.ignoreH3Nav);
 
 const components = {
   pre: 'div',
@@ -41,6 +41,6 @@ const components = {
 };
 ---
 
-<ArticleLayout slug={article.slug} data={article.data} headings={headings}>
+<ArticleLayout slug={article.slug} data={article.data} nestedHeadings={nestedHeadings}>
   <Content components={components} />
 </ArticleLayout>

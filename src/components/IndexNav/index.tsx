@@ -1,20 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui';
 
+import type { NestedHeading } from '@/lib/getNestedHeadings';
 import { throttle } from '@/lib/throttle';
 
 import IndexNavItems from './IndexNavItems';
 import styles from './index.module.scss';
 
-import type { MarkdownHeading } from 'astro';
-
 type Props = {
   targetId: string;
-  headings: MarkdownHeading[];
+  nestedHeadings: NestedHeading[];
   ignoreH3Nav?: boolean;
 };
 
-export default function IndexNav({ targetId, headings, ignoreH3Nav = false }: Props) {
+export default function IndexNav({ targetId, nestedHeadings, ignoreH3Nav = false }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const indexNavRef = useRef<HTMLUListElement>(null);
   const [currentHeading, setCurrentHeading] = useState<string>('');
@@ -68,17 +67,17 @@ export default function IndexNav({ targetId, headings, ignoreH3Nav = false }: Pr
     <>
       {/* PC表示 */}
       <div className={styles.navWrapper} ref={wrapperRef}>
-        <IndexNavItems headings={headings} indexNavRef={indexNavRef} currentHeading={currentHeading} />
+        <IndexNavItems nestedHeadings={nestedHeadings} indexNavRef={indexNavRef} currentHeading={currentHeading} />
       </div>
 
       {/* SP表示 */}
-      {headings.length > 0 && (
+      {nestedHeadings.length > 0 && (
         <div className={styles.spWrapper}>
           <AccordionPanel iconPosition="right">
             <AccordionPanelItem name="spIndexNav">
               <AccordionPanelTrigger>ページ内目次</AccordionPanelTrigger>
               <AccordionPanelContent>
-                <IndexNavItems headings={headings} currentHeading={currentHeading} />
+                <IndexNavItems nestedHeadings={nestedHeadings} currentHeading={currentHeading} />
               </AccordionPanelContent>
             </AccordionPanelItem>
           </AccordionPanel>
