@@ -63,11 +63,11 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={checkBoxDo} alt="Do" />
-    <Text slot="text">すべての選択肢が明示的に表示されているため、現在の状態が把握しやすい</Text>
+    <Text slot="label">すべての選択肢が明示的に表示されているため、現在の状態が把握しやすい</Text>
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={checkBoxDont} alt="Dont" />
-    <Text slot="text">「無効」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
+    <Text slot="label">「無効」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
   </DoAndDont>
 </Cluster>
 
@@ -88,12 +88,12 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={checkBoxDo2} alt="Do" width="346" />
-    <Text slot="text">ユーザーは選択する操作に集中でき、それ以外の操作と区別しやすい</Text>
+    <Text slot="label">ユーザーは選択する操作に集中でき、それ以外の操作と区別しやすい</Text>
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={checkBoxDont2} alt="Dont" width="346" />
-    <Text slot="text">ユーザーが選択操作に集中できず、操作難易度が上がる</Text>
+    <Text slot="label">ユーザーが選択操作に集中できず、操作難易度が上がる</Text>
   </DoAndDont>
 </Cluster>
 

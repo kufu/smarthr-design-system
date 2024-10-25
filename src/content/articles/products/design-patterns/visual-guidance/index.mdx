@@ -144,11 +144,11 @@ import Sample3Dont from './images/Sample3_DONT.png'
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={Sample1Do} alt="Do" />
-    <Text slot="text"><a href="#h4-0">F型の視線移動</a>を考慮した配置になっている</Text>
+    <Text slot="label"><a href="#h4-0">F型の視線移動</a>を考慮した配置になっている</Text>
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={Sample1Dont} alt="Dont" />
-    <Text slot="text">
+    <Text slot="label">
       <a href="#h4-0">F型の視線移動</a>を考慮した配置になっていない
       <List>
         <li>見出しがフォーム領域（<a href="/products/components/base/">Base</a>）に対して左側に配置されていない</li>
@@ -164,14 +164,14 @@ import Sample3Dont from './images/Sample3_DONT.png'
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={Sample2Do} alt="Do" />
-    <Text slot="text">
+    <Text slot="label">
       <a href="#h4-1">Z型の視線移動</a>を考慮した配置になっており、主要な情報とアクションが見逃されにくい
     </Text>
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={Sample2Dont} alt="Dont" />
-    <Text slot="text">
+    <Text slot="label">
       <a href="/products/components/float-area/">FloatArea</a>の採用から<a href="#h4-1">Z型の視線移動</a>を期待するレイアウトだが、［操作ボタン1］［目的となるボタン］が「Z」の視線上に配置されていない
     </Text>
   </DoAndDont>
@@ -182,14 +182,14 @@ import Sample3Dont from './images/Sample3_DONT.png'
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={Sample3Do} alt="Do" />
-    <Text slot="text">
+    <Text slot="label">
       <a href="#h4-0">F型の視線移動</a>を考慮した配置になっている
     </Text>
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={Sample3Dont} alt="Dont" />
-    <Text slot="text">
+    <Text slot="label">
       オブジェクトの一覧画面から<a href="#h4-0">F型の視線移動</a>を期待するレイアウトだが、視線の流れが途切れやすい配置になっている
       <List>
         <li>検索フォームがなく空白であるため、視線を横に移動する起点がなく<a href="/products/components/pagination/">Pagination</a>が見逃される可能性がある</li>
