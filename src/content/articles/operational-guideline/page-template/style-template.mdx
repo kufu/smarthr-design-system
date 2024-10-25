@@ -158,7 +158,7 @@ Markdown形式の画像Pathは`相対パス`で読み込めます。また属性
 
 ### Component内の画像設置
 
-`.mdx`ファイル内で、SmartHR UIなどのコンポーネントとともに画像（imgタグ）を使いたい場合は、利用したい画像を`import`し、`StaticImage`コンポーネントの`src`にその`path`を設定してください。
+`.mdx`ファイル内で、SmartHR UIなどのコンポーネントとともに画像（imgタグ）を使いたい場合は、利用したい画像を`import`し、astro:assetsの`Image`コンポーネントの`src`にその`path`を設定してください。
 
 ```tsx
 import { Image } from 'astro:assets'
@@ -185,6 +185,16 @@ import imageUrl from './images/sample.jpg';
 静的な巨大ファイルは`/static`フォルダから直接リンクできます。
 
 [ダウンロードリンク](/SmartHR_Logo_png.zip)
+
+## 太字
+
+**太字**
+
+文章中に **()など記号を含む太字** を挿入する場合は、左右にスペースを入れてください。
+
+## エスケープが必要な文字
+
+\{\} を表示するには、`\{\}`のようにバックスラッシュでエスケープしてください。
 
 ## 絵文字
 
