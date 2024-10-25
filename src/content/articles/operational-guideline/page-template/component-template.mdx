@@ -100,6 +100,61 @@ const Wrapper = styled(Stack)`
 
 メインの種類でなく、コンポーネントが持つその他の種類（サイズやアイコン付きなど）がある場合に書きます。
 
+### プレビューを埋め込む際の注意点
+
+次のようなReactのAPIを使っていたり、PropsでReactコンポーネントを受け取るコンポーネントはMDX内で定義できません。
+
+修正前：
+```tsx
+import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+
+// useStateを使っている
+export const DynamicMessageDialog = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
+      <MessageDialog
+        isOpen={isOpen}
+        title="メッセージダイアログタイトル"
+        description="本文が入ります。"
+        closeText="閉じる"
+        width={480}
+        onClickClose={() => setIsOpen(false)}
+        onPressEscape={() => setIsOpen(false)}
+        id="dialog-message"
+      />
+    </>
+  )
+}
+
+<ComponentPreview>
+  <DynamicMessageDialog />
+</ComponentPreview>
+
+// prefixでReactコンポーネントを受け取っている
+<Button prefix={<FaCirclePlusIcon />} size="default">ボタン</Button>
+```
+
+このようなコンポーネントのプレビューを埋め込みたい場合は、別ファイルに切り出して `import` してください。
+
+この際、内部でuseStateなどを使っている場合は`client:load`や`client:only="react"`を付与してクライアントで動作するようにしてください。
+
+修正後：
+```tsx
+import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+
+// 別ファイルに切り出した
+import DynamicMessageDialog from './_components/DynamicMessageDialog'
+
+<ComponentPreview>
+  <DynamicMessageDialog client:load />
+</ComponentPreview>
+
+// Reactコンポーネントを受け取らないよう修正したコンポーネントを使うように
+<SampleButton Prefix={FaCirclePlusIcon} size="default">ボタン</SampleButton>
+```
+
 ## 状態
 
 コンポーネントが持つ（hoverやdisabledなど）状態がある場合に書きます。
