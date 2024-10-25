@@ -25,11 +25,11 @@ import inputWidthDont from './images/input-width-dont.png'
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={inputWidthDo} alt="Do" />
-    <Text slot="text">入力する内容の量が精査され、幅が調整されている</Text>
+    <Text slot="label">入力する内容の量が精査され、幅が調整されている</Text>
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={inputWidthDont} alt="Dont" />
-    <Text slot="text">入力する内容の量が精査されず、幅が調整されていない</Text>
+    <Text slot="label">入力する内容の量が精査されず、幅が調整されていない</Text>
   </DoAndDont>
 </Cluster>
 
@@ -105,7 +105,7 @@ import SearchInputDont from './_components/SearchInputDont'
   <BaseColumn slot="img">
     <SearchInputDont />
   </BaseColumn>
-  <Text slot="text">検索ボタンのあるフォーム内のSearchInputで、入力内容のクリアボタンを押すと検索まで実行される</Text>
+  <Text slot="label">検索ボタンのあるフォーム内のSearchInputで、入力内容のクリアボタンを押すと検索まで実行される</Text>
 </DoAndDont>
 
 ## レイアウト
