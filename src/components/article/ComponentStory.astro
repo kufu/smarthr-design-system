@@ -20,4 +20,14 @@ if (!stories) {
 const code = await fetchStoryCode(UI_VERSION, stories.filePath);
 ---
 
-<ReactComponentStory {...props} stories={stories} code={code} client:only="react" />
+<ReactComponentStory {...props} stories={stories} code={code} client:only="react">
+  <div class="fallback" slot="fallback"></div>
+</ReactComponentStory>
+
+<style lang="scss">
+  // レイアウトシフトを軽減するため
+  .fallback {
+    margin-block: 48px 0;
+    height: 751px;
+  }
+</style>
