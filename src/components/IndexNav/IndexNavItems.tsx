@@ -1,53 +1,35 @@
 import { Nav } from 'smarthr-ui';
 
+import type { NestedHeading } from '@/lib/getNestedHeadings';
+
 import styles from './IndexNavItems.module.scss';
 
-import type { MarkdownHeading } from 'astro';
 import type { ReactNode } from 'react';
 
 type Props = {
-  headings: MarkdownHeading[];
+  nestedHeadings: NestedHeading[];
   indexNavRef?: React.RefObject<HTMLUListElement>;
   currentHeading?: string;
 };
 
-export default function IndexNavItems({ headings, indexNavRef, currentHeading }: Props) {
+export default function IndexNavItems({ nestedHeadings, indexNavRef, currentHeading }: Props) {
+  const nestedNavItems = (items: NestedHeading[]) =>
+    items.map((item) => (
+      <Item key={item.slug} item={item} currentHeading={currentHeading}>
+        {item.children.length > 0 && <ul>{nestedNavItems(item.children)}</ul>}
+      </Item>
+    ));
+
   return (
     // eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
     <Nav className={styles.nav}>
-      <ul ref={indexNavRef}>
-        {headings.map((item, i, headingsRef) => {
-          if (item.depth !== 2) {
-            return null;
-          }
-
-          const nextIndex = i + 1;
-          const nextItem = headingsRef.at(nextIndex);
-          const depth3Items: ReactNode[] = [];
-
-          if (nextItem && nextItem.depth === 3) {
-            for (const subItem of headingsRef.slice(nextIndex)) {
-              if (subItem.depth !== 3) {
-                break;
-              }
-
-              depth3Items.push(<Item key={subItem.slug} item={subItem} currentHeading={currentHeading} />);
-            }
-          }
-
-          return (
-            <Item key={item.slug} item={item} currentHeading={currentHeading}>
-              {depth3Items.length > 0 && <ul>{depth3Items}</ul>}
-            </Item>
-          );
-        })}
-      </ul>
+      <ul ref={indexNavRef}>{nestedNavItems(nestedHeadings)}</ul>
     </Nav>
   );
 }
 
 type ItemProps = {
-  item: MarkdownHeading;
+  item: NestedHeading;
   currentHeading?: string;
   children?: ReactNode;
 };
@@ -55,11 +37,13 @@ type ItemProps = {
 function Item({ item, currentHeading, children }: ItemProps) {
   return (
     <li>
-      <div className={styles.depthItem}>
-        <a href={`#${item.slug}`} aria-current={item.slug === currentHeading}>
-          {item.text}
-        </a>
-      </div>
+      {item.text && (
+        <div className={styles.depthItem}>
+          <a href={`#${item.slug}`} aria-current={item.slug === currentHeading}>
+            {item.text}
+          </a>
+        </div>
+      )}
       {children}
     </li>
   );

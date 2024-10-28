@@ -1,5 +1,4 @@
 ---
-import type { MarkdownHeading } from 'astro';
 import { getEntry, type CollectionEntry } from 'astro:content';
 import { Article } from 'smarthr-ui';
 import Layout from '@/layouts/Layout.astro';
@@ -9,15 +8,16 @@ import Footer from '@/components/Footer.astro';
 import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
 import Sidebar from '@/components/Sidebar/Sidebar.astro';
 import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
+import type { NestedHeading } from '@/lib/getNestedHeadings';
 
 type Props = {
-  headings: MarkdownHeading[];
+  nestedHeadings: NestedHeading[];
 } & Pick<CollectionEntry<'articles'>, 'slug' | 'data'>;
 
 // 記事ページ内の要素にアクセスするためのID
 const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
 
-const { slug, data, headings } = Astro.props;
+const { slug, data, nestedHeadings } = Astro.props;
 
 // 親の記事を取得
 const parentArticleSlug = slug.replace(/\/[^\/]*$/, ''); // 例: 'basics/typography' → 'basics'
@@ -46,7 +46,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatMetaItems.at
         <Sidebar path={`/${slug}`} nestedSidebarItems={nestedMetaItems} />
       </div>
       <div class="mainIndexWrapper">
-        <IndexNav targetId={MDX_STYLE_WRAPPER_ID} headings={headings} ignoreH3Nav={data.ignoreH3Nav} client:load />
+        <IndexNav targetId={MDX_STYLE_WRAPPER_ID} nestedHeadings={nestedHeadings} ignoreH3Nav={data.ignoreH3Nav} client:load />
       </div>
       <Article className="article">
         <h1 class="articleTitle">{data.title}</h1>
@@ -317,10 +317,6 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatMetaItems.at
         :global(ul:first-child),
         :global(ol:first-child) {
           margin-block-start: 0;
-        }
-
-        :global(p) {
-          line-height: unset;
         }
       }
     }
