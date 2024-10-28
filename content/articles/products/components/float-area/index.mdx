@@ -26,14 +26,14 @@ FloatAreaには、ページ全体、もしくはページの一部を対象と�
 - 対象の領域の左右に`0.5（8px）`ずつはみ出し、画面の下辺から`1.5（24px）`の余白をとった位置に置きます。
 - 対象の領域よりも前面に表示されるよう、`zindex`propsを調整します。
 
-![](./images/float-area-layout1.png)
+![FloatAreaの幅と、画面の下辺からFloatAreaまでの距離の説明](./images/float-area-layout1.png)
 
 #### スクロール固定解除後
 
 - 対象の領域の下辺との間に `1.5（24px）` の余白を取ります。
 - FloatAreaの対象ではない領域が続く場合は、関連性が低いことを示せるように、`1.5（24px）` よりも広い余白（最低でも `2（32px）` 、特別な理由がなければ `3（48px）` ）を取ってください。
 
-![](./images/float-area-layout2.png)
+![FloatAreaの前後の余白の説明](./images/float-area-layout2.png)
 
 ## デザインパターン
 
