@@ -35,7 +35,8 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
   const iframeViewModeUrl = new URL(iframeUrl);
   iframeViewModeUrl.searchParams.append('viewMode', 'story');
 
-  const githubUrl = new URL(`v${UI_VERSION}/${stories.filePath}`, SHRUI_GITHUB_PATH);
+  const githubSourcePath = stories.filePath.replace(/^\.\//, '').replace(/[^/]*?\.tsx$/, '');
+  const githubUrl = new URL(`v${UI_VERSION}/${githubSourcePath}`, SHRUI_GITHUB_PATH);
 
   const onClickTabItem = (itemId: string) => {
     if (itemId === currentIframe) {
