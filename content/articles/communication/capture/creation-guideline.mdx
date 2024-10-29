@@ -55,7 +55,7 @@ import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 
 #### プロフィール画像
 モデル写真を使用してください。  
-使用する場合は、[モデル写真の注意事項・利用方法（DocBase）](https://smarthr-inc.docbase.io/posts/1933926)を参照してください。
+使用する際は、[モデル写真の注意事項・利用方法（DocBase）](https://smarthr-inc.docbase.io/posts/1933926)を参照してください。
 
 
 
@@ -77,6 +77,8 @@ import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 #### 縦幅
 基本的にはページの最上部から最下部まで、全体を収めてください。
 
+使用時にトリミングなど場面に応じて調整するため、機能の全体が十分見える縦長でのキャプチャを推奨します。以下の、重要な要素の位置や最小サイズを参照の上作成しましょう。
+
 
 ##### 重要な要素の位置
 機能を象徴する重要な要素は、下記の縦幅の範囲に収めることを推奨します。  
@@ -85,25 +87,37 @@ import { ImgWithDesc } from '@Components/article/ImgWithDesc/ImgWithDesc'
 - パソコンの場合、最上部から880px以内に重要な要素は収める。
 - スマートフォンの場合、最上部から760px以内に重要な要素は収める。
 
+
+<ImgWithDesc description="重要な要素は、端末モックの縦幅（黒い矢印）に収めるように作成します">
+
 ![端末モックの中にキャプチャ画像が入っている。モックの画面の高さを矢印が示している](./images/creation-guideline/mock-windowHeight.png)
+
+</ImgWithDesc>
 
 
 ##### 縦幅の最小サイズ
-端末モックへの合成を担保できる高さです。 重要な要素は端末モックの縦幅内に収めた上で、端末モックへの合成やトリミングやなどの加工がしやすいように、画像のサイズ自体は端末モックの縦幅以上の大きさで作成することを推奨します。
+端末モックへの合成を担保できる高さです。  
+合成やトリミングなどの加工がしやすいように、画像のサイズ自体は端末モックの縦幅以上の大きさで作成することを推奨します。
 
 - パソコンの場合、縦幅は880px以上で作成しましょう。
 - スマートフォンの場合、高さ760px以上で作成しましょう。
 
-<ImgWithDesc description="推奨サイズ以下で画像を作成した際のイメージ">
-
-![端末モックの中にキャプチャ画像が入っている。画像の縦幅が足りず、モックの画面に空きが生じている](./images/creation-guideline/mock-windowMinheight.png)
-
-</ImgWithDesc>
-
 上記は、横幅を推奨サイズで作成した場合の値です。
 横幅を異なるサイズで作成する場合、必要な高さも変化するため利用シーンに応じて変更してください。
 
+<Grid>
+  <ImgWithDesc description="端末モックに収まる十分な縦幅を確保します">
 
+  ![端末モックにキャプチャ画像が問題なく入っている](./images/creation-guideline/mock-windowMinheight01.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="推奨サイズ以下で作成すると端末モックに合成するための高さが不足するため、推奨しません">
+
+  ![端末モックにキャプチャ画像が入っているが、高さが足りずスクリーンの下部に余白ができている](./images/creation-guideline/mock-windowMinheight02.png)
+
+  </ImgWithDesc>
+</Grid>
 
 
 ### フォント
