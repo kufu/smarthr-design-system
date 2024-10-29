@@ -10,6 +10,9 @@ import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: {
+    prefetchAll: true,
+  },
   integrations: [
     mdx(),
     react(),
