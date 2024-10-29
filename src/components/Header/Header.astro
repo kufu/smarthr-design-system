@@ -28,7 +28,7 @@ const { isIndex } = Astro.props;
       <ul>
         <HeaderItems />
       </ul>
-      <MobileMenuContainer client:only="react">
+      <MobileMenuContainer client:load>
         <ul class="categoryUl">
           <HeaderItems isMobileMenu />
         </ul>
