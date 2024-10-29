@@ -16,8 +16,14 @@ import SearchBox from '@/components/search/Search/SearchBox';
       <div class="search ais-SearchBox__root">
         <SearchBox
           isAvailable={import.meta.env.PUBLIC_ALGOLIA_APP_ID && import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY ? true : false}
-          client:load
-        />
+          client:only="react"
+        >
+          {
+            // client:loadでもSearchBoxが遅れて表示されCLSが起こるので、
+            // client:onlyを使い同じ高さのフォールバックを表示することでCLSを軽減しています
+          }
+          <div class="fallback" slot="fallback"></div>
+        </SearchBox>
       </div>
     </main>
     <IndexList />
@@ -57,5 +63,9 @@ import SearchBox from '@/components/search/Search/SearchBox';
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .fallback {
+    height: 110px;
   }
 </style>
