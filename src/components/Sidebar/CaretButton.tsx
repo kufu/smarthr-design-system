@@ -1,13 +1,13 @@
 import { FaChevronDownIcon } from 'smarthr-ui';
 
-import styles from './CaretButton.module.scss';
+import type { ArticleMeta } from '@/types/article';
 
-import type { SidebarItem } from './type';
+import styles from './CaretButton.module.scss';
 
 type Props = {
   currentPath: `/${string}`;
-  itemLink: SidebarItem['link'];
-  depth: SidebarItem['depth'];
+  itemLink: ArticleMeta['link'];
+  depth: ArticleMeta['depth'];
   currentIndex: string;
 };
 

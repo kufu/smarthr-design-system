@@ -1,27 +1,25 @@
 ---
 import Accordion from './Accordion';
-import SidebarItems from './SidebarItems.astro';
-import type { SidebarItem } from './type';
+import SidebarItems, { type Props as SidebarItemsProps } from './SidebarItems.astro';
 
 type Props = {
   path: `/${string}`;
-  nestedSidebarItems: SidebarItem[];
-};
+} & Pick<SidebarItemsProps, 'items'>;
 
-const { path, nestedSidebarItems } = Astro.props;
+const { path, items } = Astro.props;
 ---
 
 {/* PC表示 */}
 <div class="navWrapper">
-  <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} showDepth1Item />
+  <SidebarItems path={path} items={items} showDepth1Item />
 </div>
 
 {
   // SP表示
-  nestedSidebarItems[0]?.children?.length > 0 && (
+  items[0]?.children?.length > 0 && (
     <div class="spSidebar">
-      <Accordion title={nestedSidebarItems[0].title} client:load>
-        <SidebarItems path={path} nestedSidebarItems={nestedSidebarItems} />
+      <Accordion title={items[0].title} client:load>
+        <SidebarItems path={path} items={items} />
       </Accordion>
     </div>
   )

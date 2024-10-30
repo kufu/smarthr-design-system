@@ -1,10 +1,10 @@
-import type { SidebarItem as MetaItem } from '@/components/Sidebar/type';
+import type { ArticleMeta } from '@/types/article';
 
 import { getSubPageCollection } from './getSubPageCollection';
 
 import type { CollectionEntry } from 'astro:content';
 
-type DepthItems = MetaItem[] | undefined;
+type DepthItems = ArticleMeta[] | undefined;
 
 /**
  * 記事ページのメタ情報のアイテムを作成する
@@ -24,34 +24,34 @@ export async function createArticleMetaItems(slug: string) {
    * @param parentLink 親のリンク
    * @returns
    */
-  const createNestedItems = (currentDepth: number, parentLink: string): [MetaItem[], MetaItem[]] => {
+  const createNestedItems = (currentDepth: number, parentLink: string): [ArticleMeta[], ArticleMeta[]] => {
     const mergedItems = mergeAndFilterItems(depthItems[currentDepth], depthComponentItems[currentDepth], parentLink);
 
-    const flatMetaItems: MetaItem[] = [];
-    const nestedMetaItems: MetaItem[] = [];
+    const flatItems: ArticleMeta[] = [];
+    const nestedItems: ArticleMeta[] = [];
 
     for (const item of mergedItems) {
-      flatMetaItems.push(item);
-      nestedMetaItems.push(item);
+      flatItems.push(item);
+      nestedItems.push(item);
 
       // 子アイテムがある場合は再帰的に処理する
       // NOTE: 最大で4階層までを想定
       if (currentDepth < 4) {
-        const [childSidebarItems, childNestedSidebarItems] = createNestedItems(currentDepth + 1, item.link);
+        const [childItems, childNestedItems] = createNestedItems(currentDepth + 1, item.link);
 
-        flatMetaItems.push(...childSidebarItems);
-        item.children = childNestedSidebarItems;
+        flatItems.push(...childItems);
+        item.children = childNestedItems;
       }
     }
 
-    return [flatMetaItems, nestedMetaItems];
+    return [flatItems, nestedItems];
   };
 
-  const [flatMetaItems, nestedMetaItems] = createNestedItems(1, '');
+  const [flatArticleMetaItems, nestedArticleMetaItems] = createNestedItems(1, '');
 
   return {
-    flatMetaItems,
-    nestedMetaItems,
+    flatArticleMetaItems,
+    nestedArticleMetaItems,
   };
 }
 
@@ -62,7 +62,7 @@ export async function createArticleMetaItems(slug: string) {
  * @param parentPath 親のパス
  * @returns マージ後のアイテム
  */
-function mergeAndFilterItems(rawDepthItems: DepthItems, rawDepthComponentItems: DepthItems, parentPath: string): MetaItem[] {
+function mergeAndFilterItems(rawDepthItems: DepthItems, rawDepthComponentItems: DepthItems, parentPath: string): ArticleMeta[] {
   const depthItems = rawDepthItems ?? [];
   const depthComponentItems = rawDepthComponentItems ?? [];
   const mergedItems = [...depthItems, ...depthComponentItems];
@@ -91,7 +91,7 @@ function createDepthItems(pages: Array<CollectionEntry<'articles'>>) {
   for (const { slug, data } of pages) {
     const depth = slug.split('/').length;
 
-    const item: MetaItem = {
+    const item: ArticleMeta = {
       link: `/${slug}`,
       order: data?.order ?? Number.MAX_SAFE_INTEGER,
       title: data?.title ?? '',

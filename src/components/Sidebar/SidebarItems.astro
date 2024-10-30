@@ -1,20 +1,20 @@
 ---
-import type { SidebarItem } from './type';
 import { Nav } from 'smarthr-ui';
 import RecursiveSidebarItem from './RecursiveSidebarItem.astro';
+import type { ArticleMeta } from '@/types/article';
 
 export type Props = {
   path: `/${string}`;
-  nestedSidebarItems: SidebarItem[];
+  items: ArticleMeta[];
   showDepth1Item?: boolean;
 };
 
-const { path, nestedSidebarItems, showDepth1Item = false } = Astro.props;
+const { path, items, showDepth1Item = false } = Astro.props;
 ---
 
 <Nav className="sidebarNav">
   {
-    nestedSidebarItems.map((depth1Item) => (
+    items.map((depth1Item) => (
       <Fragment key={depth1Item.link}>
         {/* 第1階層 */}
         {showDepth1Item && (
