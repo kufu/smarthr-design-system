@@ -1,11 +1,11 @@
 ---
-import type { SidebarItem } from './type';
+import type { ArticleMeta } from '@/types/article';
 import CaretButton from './CaretButton';
 
 type Props = {
   currentPath: `/${string}`;
-  items: SidebarItem['children'];
-  depth: SidebarItem['depth'];
+  items: ArticleMeta['children'];
+  depth: ArticleMeta['depth'];
   parentIndex: string | null;
 };
 

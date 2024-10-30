@@ -1,22 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui';
 
-import type { NestedHeading } from '@/lib/getNestedHeadings';
 import { throttle } from '@/lib/throttle';
 
-import IndexNavItems from './IndexNavItems';
+import IndexNavItems, { type IndexNavItemsProps } from './IndexNavItems';
 import styles from './index.module.scss';
 
 type Props = {
   targetId: string;
-  nestedHeadings: NestedHeading[];
   ignoreH3Nav?: boolean;
-};
+} & Pick<IndexNavItemsProps, 'headings'>;
 
-export default function IndexNav({ targetId, nestedHeadings, ignoreH3Nav = false }: Props) {
+export default function IndexNav({ targetId, headings, ignoreH3Nav = false }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const indexNavRef = useRef<HTMLUListElement>(null);
-  const [currentHeading, setCurrentHeading] = useState<string>('');
+  const [currentHeadingId, setCurrentHeadingId] = useState<string>('');
 
   useEffect(() => {
     // スクロール時に現在地を示すための処理
@@ -36,7 +34,7 @@ export default function IndexNav({ targetId, nestedHeadings, ignoreH3Nav = false
         return elementTop < 200 && (nextItemTop === undefined || nextItemTop > 200);
       });
 
-      setCurrentHeading(_currentHeading?.getAttribute('id') || '');
+      setCurrentHeadingId(_currentHeading?.getAttribute('id') || '');
     }, 200);
     handleScroll();
 
@@ -61,23 +59,23 @@ export default function IndexNav({ targetId, nestedHeadings, ignoreH3Nav = false
 
     // 現在地が表示範囲の中央に来るようにスクロールする
     wrapperElement.scrollTop = currentItem.offsetTop - wrapperElement.clientHeight / 2;
-  }, [currentHeading, indexNavRef]);
+  }, [currentHeadingId, indexNavRef]);
 
   return (
     <>
       {/* PC表示 */}
       <div className={styles.navWrapper} ref={wrapperRef}>
-        <IndexNavItems nestedHeadings={nestedHeadings} indexNavRef={indexNavRef} currentHeading={currentHeading} />
+        <IndexNavItems headings={headings} indexNavRef={indexNavRef} currentHeadingId={currentHeadingId} />
       </div>
 
       {/* SP表示 */}
-      {nestedHeadings.length > 0 && (
+      {headings.length > 0 && (
         <div className={styles.spWrapper}>
           <AccordionPanel iconPosition="right">
             <AccordionPanelItem name="spIndexNav">
               <AccordionPanelTrigger>ページ内目次</AccordionPanelTrigger>
               <AccordionPanelContent>
-                <IndexNavItems nestedHeadings={nestedHeadings} currentHeading={currentHeading} />
+                <IndexNavItems headings={headings} currentHeadingId={currentHeadingId} />
               </AccordionPanelContent>
             </AccordionPanelItem>
           </AccordionPanel>

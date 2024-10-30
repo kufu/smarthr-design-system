@@ -1,7 +1,7 @@
-export type SidebarItem = {
+export type ArticleMeta = {
   link: `/${string}`;
   order: number;
   title: string;
   depth: number;
-  children: SidebarItem[];
+  children: ArticleMeta[];
 };
