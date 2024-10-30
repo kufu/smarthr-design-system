@@ -4,6 +4,9 @@ description: 'スクロール時に固定表示する領域のためのコンポ
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
+import { DoAndDont } from '@Components/DoAndDont'
+import FloatAreaLayoutDo from './images/float-area-layout-do.png';
+import FloatAreaLayoutDont from './images/float-area-layout-dont.png';
 
 スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。
 
@@ -15,7 +18,20 @@ import { ComponentStory } from '@Components/ComponentStory'
 
 ### 基本的な考え方
 
-FloatAreaには、ページ全体、もしくはページの一部を対象としたボタンやテキストを置きます。**ページ内のどの部分が対象の領域なのかを視覚的に示す**ことを目指して、FloatAreaの幅や周囲の要素との[余白の取り方](/products/design-patterns/spacing-layout-pattern/)、[レイヤー順序](/products/design-tokens/z-index/)を調整してください。
+FloatAreaには、ページ全体、もしくはページの一部を対象としたボタンやテキストを置きます。**ページ内のどの部分が対象の領域なのかを視覚的に示す**ことを目指して、FloatAreaの位置や幅、[レイヤー順序](/products/design-tokens/z-index/)を調整してください。
+
+
+<DoAndDont
+  type="do"
+  img={<StaticImage src={FloatAreaLayoutDo} alt="2カラムのレイアウトで、FloatAreaが右側のカラムだけに重なっている" />}
+  label="FloatAreaが右側のカラムだけに重なっているため、右側のカラムが対象の領域であることがわかる"
+/>
+<DoAndDont
+  type="dont"
+  img={<StaticImage src={FloatAreaLayoutDont} alt="2カラムのレイアウトで、FloatAreaが両カラムに重なっている" />}
+  label="FloatAreaが2つのカラムに重なっているため、左側のカラムも対象の領域であるように見える"
+/>
+
 
 ### レイアウト例
 
