@@ -6,16 +6,15 @@ import styles from './IndexNavItems.module.scss';
 
 import type { ReactNode } from 'react';
 
-type Props = {
-  nestedHeadings: NestedHeading[];
+export type IndexNavItemsProps = {
+  headings: NestedHeading[];
   indexNavRef?: React.RefObject<HTMLUListElement>;
-  currentHeading?: string;
-};
+} & Pick<ItemProps, 'currentHeadingId'>;
 
-export default function IndexNavItems({ nestedHeadings, indexNavRef, currentHeading }: Props) {
+export default function IndexNavItems({ headings, indexNavRef, currentHeadingId }: IndexNavItemsProps) {
   const nestedNavItems = (items: NestedHeading[]) =>
     items.map((item) => (
-      <Item key={item.slug} item={item} currentHeading={currentHeading}>
+      <Item key={item.slug} heading={item} currentHeadingId={currentHeadingId}>
         {item.children.length > 0 && <ul>{nestedNavItems(item.children)}</ul>}
       </Item>
     ));
@@ -23,23 +22,23 @@ export default function IndexNavItems({ nestedHeadings, indexNavRef, currentHead
   return (
     // eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
     <Nav className={styles.nav}>
-      <ul ref={indexNavRef}>{nestedNavItems(nestedHeadings)}</ul>
+      <ul ref={indexNavRef}>{nestedNavItems(headings)}</ul>
     </Nav>
   );
 }
 
 type ItemProps = {
-  item: NestedHeading;
-  currentHeading?: string;
+  heading: NestedHeading;
+  currentHeadingId?: string;
   children?: ReactNode;
 };
 
-function Item({ item, currentHeading, children }: ItemProps) {
+function Item({ heading: item, currentHeadingId, children }: ItemProps) {
   return (
     <li>
       {item.text && (
         <div className={styles.depthItem}>
-          <a href={`#${item.slug}`} aria-current={item.slug === currentHeading}>
+          <a href={`#${item.slug}`} aria-current={item.slug === currentHeadingId}>
             {item.text}
           </a>
         </div>
