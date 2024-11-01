@@ -662,6 +662,10 @@ a {
   height: 24px
 }
 
+.shr-h-1\/2 {
+  height: 50%
+}
+
 .shr-h-2 {
   height: 32px
 }
@@ -684,6 +688,10 @@ a {
 
 .shr-h-\[1\.75rem\] {
   height: 1.75rem
+}
+
+.shr-h-\[160px\] {
+  height: 160px
 }
 
 .shr-h-\[2em\] {
@@ -737,6 +745,14 @@ a {
 
 .shr-max-h-\[calc\(100dvh-theme\(spacing\.2\)\)\] {
   max-height: calc(100dvh - 32px)
+}
+
+.shr-min-h-\[40px\] {
+  min-height: 40px
+}
+
+.shr-min-h-\[80px\] {
+  min-height: 80px
 }
 
 .shr-min-h-\[calc\(1em\*theme\(lineHeight\.normal\)\)\] {
@@ -799,6 +815,10 @@ a {
   width: 2em
 }
 
+.shr-w-\[5em\] {
+  width: 5em
+}
+
 .shr-w-\[calc\(theme\(fontSize\.base\)\*2\)\] {
   width: calc(1rem * 2)
 }
@@ -847,8 +867,16 @@ a {
   min-width: 3.5em
 }
 
+.shr-min-w-\[40px\] {
+  min-width: 40px
+}
+
 .shr-min-w-\[5em\] {
   min-width: 5em
+}
+
+.shr-min-w-\[80px\] {
+  min-width: 80px
 }
 
 .shr-min-w-\[calc\(1em\+theme\(spacing\[0\.5\]\)\+8em\+theme\(spacing\[0\.5\]\)\+\(theme\(borderWidth\.DEFAULT\)\*2\)\+\(theme\(spacing\[0\.5\]\)\*2\)\+theme\(fontSize\.sm\)\)\] {
@@ -1565,54 +1593,6 @@ a {
        column-gap: -128px
 }
 
-.-shr-gap-y-0\.25 {
-  row-gap: -4px
-}
-
-.-shr-gap-y-0\.5 {
-  row-gap: -8px
-}
-
-.-shr-gap-y-0\.75 {
-  row-gap: -12px
-}
-
-.-shr-gap-y-1 {
-  row-gap: -16px
-}
-
-.-shr-gap-y-1\.25 {
-  row-gap: -20px
-}
-
-.-shr-gap-y-1\.5 {
-  row-gap: -24px
-}
-
-.-shr-gap-y-2 {
-  row-gap: -32px
-}
-
-.-shr-gap-y-2\.5 {
-  row-gap: -40px
-}
-
-.-shr-gap-y-3 {
-  row-gap: -48px
-}
-
-.-shr-gap-y-3\.5 {
-  row-gap: -56px
-}
-
-.-shr-gap-y-4 {
-  row-gap: -64px
-}
-
-.-shr-gap-y-8 {
-  row-gap: -128px
-}
-
 .shr-gap-x-0 {
   -moz-column-gap: 0;
        column-gap: 0
@@ -1886,6 +1866,10 @@ a {
   text-overflow: ellipsis
 }
 
+.shr-text-ellipsis {
+  text-overflow: ellipsis
+}
+
 .shr-whitespace-normal {
   white-space: normal
 }
@@ -1904,6 +1888,10 @@ a {
 
 .shr-whitespace-pre-wrap {
   white-space: pre-wrap
+}
+
+.shr-text-nowrap {
+  text-wrap: nowrap
 }
 
 .shr-break-words {
@@ -2806,6 +2794,12 @@ a {
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
 }
 
+.focus-visible\:shr-focus-indicator--inner:focus-visible {
+  outline: none;
+  isolation: isolate;
+  box-shadow: inset 0 0 0 2px #0077c7, inset 0 0 0 4px #fff
+}
+
 .shr-group\/clearButton:focus-visible .group-focus-visible\/clearButton\:shr-focus-indicator {
   outline: none;
   isolation: isolate;
@@ -3134,9 +3128,9 @@ a {
   border-style: solid
 }
 
-.before\:shr-border-\[theme\(colors\.grey\.30\)\]::before {
+.before\:shr-border-\[theme\(textColor\.grey\)\]::before {
   content: var(--tw-content);
-  border-color: #c1bdb7
+  border-color: #706d65
 }
 
 .before\:shr-border-default::before {
@@ -3145,9 +3139,9 @@ a {
   border-color: rgb(214 211 208 / var(--tw-border-opacity))
 }
 
-.before\:shr-bg-\[theme\(colors\.grey\.30\)\]::before {
+.before\:shr-bg-\[theme\(textColor\.grey\)\]::before {
   content: var(--tw-content);
-  background-color: #c1bdb7
+  background-color: #706d65
 }
 
 .before\:shr-bg-action-background::before {
@@ -3980,10 +3974,20 @@ a {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
+.has-\[input\:disabled\:not\(\:checked\)\]\:before\:shr-border-\[theme\(textColor\.disabled\)\]:has(input:disabled:not(:checked))::before {
+  content: var(--tw-content);
+  border-color: #c1bdb7
+}
+
 .has-\[\:checked\]\:before\:shr-bg-white:has(:checked)::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.has-\[input\:disabled\:not\(\:checked\)\]\:before\:shr-bg-\[theme\(textColor\.disabled\)\]:has(input:disabled:not(:checked))::before {
+  content: var(--tw-content);
+  background-color: #c1bdb7
 }
 
 .has-\[\[aria-current\=\"page\"\]\]\:after\:shr-absolute:has([aria-current="page"])::after {
@@ -5062,6 +5066,10 @@ a {
   }
 }
 
+.\[\&_\.smarthr-ui-Input\]\:shr-w-full .smarthr-ui-Input {
+  width: 100%
+}
+
 .\[\&_\.smarthr-ui-RadioButton-label\]\:shr-ms-0\.75 .smarthr-ui-RadioButton-label {
   margin-inline-start: 12px
 }
@@ -5091,10 +5099,6 @@ a {
 
 .\[\&_\>_\*\]\:shr-basis-auto > * {
   flex-basis: auto
-}
-
-.\[\&_\>_\:not\(\[hidden\]\)\:nth-child\(2\)\]\:shr-mb-auto > :not([hidden]):nth-child(2) {
-  margin-bottom: auto
 }
 
 .\[\&_\>_\[role\=\"img\"\]_\+_\[role\=\"img\"\]\]\:shr-absolute > [role="img"] + [role="img"] {
