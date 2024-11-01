@@ -34,6 +34,9 @@ const { type = '' } = Astro.props;
 
     if (tableWrapperRef) {
       tableWrapperRef.addEventListener('scroll', handleScroll);
+
+      // 初期表示時に影を付けておきたいので1回実行
+      handleScroll();
     }
   }
 </script>
