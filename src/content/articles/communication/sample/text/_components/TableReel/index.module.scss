@@ -1,0 +1,23 @@
+.tableReel {
+  margin-block-start: 20px;
+
+  :global(table) {
+    width: 120% !important;
+    margin-block-start: 0 !important;
+
+    @include breakpointMobile3 {
+      width: 150svw !important;
+    }
+  }
+
+  :global(th),
+  :global(td) {
+    min-width: initial;
+    border: none;
+    box-sizing: content-box;
+
+    :global(p) {
+      display: inline;
+    }
+  }
+}

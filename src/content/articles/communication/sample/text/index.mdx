@@ -23,39 +23,21 @@ SmartHRのサービス全体で利用できるサンプルテキストです。
 | 項目 | 推奨する表記 | 補足 |
 | --- | --- | --- |
 | 従業員氏名 | **[ユーザー社の従業員](https://smarthr.design/basics/illustration/user-co-other/)に掲載されている氏名を利用** |  |
-| メールアドレス | **{名前.苗字}@example.com** | 例：yamato.makoto@example.com |
+| メールアドレス | **\{名前.苗字\}@example.com** | 例：yamato.makoto@example.com |
 | 従業員番号 | **0064など、半端な数字を使用** | 従業員番号一桁台だと役員であるケースも多いため、二桁以上を推奨します。 |
 
 
 ### 企業名
 
-import styled from 'styled-components'
-import { CSS_FONT_SIZE, CSS_SIZE } from '@Constants/style'
-import { TableReel as OriginalTableReel, Table, Th, Td } from 'smarthr-ui'
-
-export const TableReel = styled(OriginalTableReel)`
-  margin-block-start: 20px;
-  & table {
-    width: 120%;
-    margin-block-start: 0;
-    @media (max-width: ${CSS_SIZE.BREAKPOINT_MOBILE_3}) {
-      width: 150svw;
-    }
-  }
-  & th,
-  & td {
-    min-width: initial;
-    border: none;
-    box-sizing: content-box;
-  }
-`
+import { Table, Th, Td } from 'smarthr-ui'
+import TableReel from './_components/TableReel'
 
 <TableReel>
 <Table>
   <thead>
     <tr>
       <Th>シーン</Th>
-      <Th style="min-width: 12em;">推奨する表記</Th>
+      <Th style={{ minWidth: "12em" }}>推奨する表記</Th>
       <Th>補足</Th>
     </tr>
   </thead>
@@ -65,12 +47,8 @@ export const TableReel = styled(OriginalTableReel)`
         <Td><strong>株式会社＊＊＊＊＊</strong></Td>
         <Td>
             <ul>
-                <li>
-                    「全角のアスタリスク5つ」を基本とする。
-                </li>
-                <li>
-                    スマートフォンなど横幅が短い場面ではアスタリスク3つ「株式会社＊＊＊」に短縮OK。
-                </li>
+                <li>「全角のアスタリスク5つ」を基本とする。</li>
+                <li>スマートフォンなど横幅が短い場面ではアスタリスク3つ「株式会社＊＊＊」に短縮OK。</li>
             </ul>
         </Td>
     </tr>
@@ -79,12 +57,8 @@ export const TableReel = styled(OriginalTableReel)`
         <Td><strong>株式会社＊＊＊＊＊A<br />株式会社＊＊＊＊＊B<br />株式会社＊＊＊＊＊C</strong></Td>
         <Td>
             <ul>
-                <li>
-                    「全角のアスタリスク5つ＋アルファベット」を基本とする。
-                </li>
-                <li>
-                    場面に応じて「＊」の個数および「A,B,」の表現は調整はOK。
-                </li>
+                <li>「全角のアスタリスク5つ＋アルファベット」を基本とする。</li>
+                <li>場面に応じて「＊」の個数および「A,B,」の表現は調整はOK。</li>
             </ul>
         </Td>
     </tr>
