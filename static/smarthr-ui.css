@@ -180,6 +180,18 @@ a {
   border-left-color: #d6d3d0
 }
 
+.shr-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0
+}
+
 .shr-pointer-events-none {
   pointer-events: none
 }
@@ -312,6 +324,10 @@ a {
 
 .shr-left-1\/2 {
   left: 50%
+}
+
+.shr-left-\[calc\(50\%\+\(theme\(fontSize\.base\)\/2\)\+4px\+5px\)\] {
+  left: calc(50% + (1rem / 2) + 4px + 5px)
 }
 
 .shr-top-0 {
@@ -646,6 +662,10 @@ a {
   height: 24px
 }
 
+.shr-h-2 {
+  height: 32px
+}
+
 .shr-h-3 {
   height: 48px
 }
@@ -701,6 +721,10 @@ a {
 
 .shr-h-px {
   height: 1px
+}
+
+.shr-h-screen {
+  height: 100vh
 }
 
 .shr-max-h-0 {
@@ -761,6 +785,10 @@ a {
 
 .shr-w-\[1\.75rem\] {
   width: 1.75rem
+}
+
+.shr-w-\[10em\] {
+  width: 10em
 }
 
 .shr-w-\[200\%\] {
@@ -969,20 +997,6 @@ a {
 
 .shr-animate-\[flash-message-bounce_1s_0s_both\] {
   animation: shr-flash-message-bounce 1s 0s both
-}
-
-@keyframes shr-loader-fade-in {
-  0% {
-    opacity: 0
-  }
-
-  to {
-    opacity: 1
-  }
-}
-
-.shr-animate-\[loader-fade-in_0s_ease_200ms_forwards\] {
-  animation: shr-loader-fade-in 0s ease 200ms forwards
 }
 
 @keyframes shr-loader-left-spin {
@@ -2098,6 +2112,11 @@ a {
   background-color: rgb(245 244 243 / var(--tw-bg-opacity))
 }
 
+.shr-bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(35 34 30 / var(--tw-bg-opacity))
+}
+
 .shr-bg-border {
   --tw-bg-opacity: 1;
   background-color: rgb(214 211 208 / var(--tw-bg-opacity))
@@ -2598,6 +2617,11 @@ a {
 .shr-text-link {
   --tw-text-opacity: 1;
   color: rgb(0 113 193 / var(--tw-text-opacity))
+}
+
+.shr-text-link-darken {
+  --tw-text-opacity: 1;
+  color: rgb(0 94 161 / var(--tw-text-opacity))
 }
 
 .shr-text-main {
@@ -3898,9 +3922,18 @@ a {
   background-color: rgb(214 211 208 / var(--tw-bg-opacity))
 }
 
+.shr-peer:disabled:indeterminate ~ .peer-disabled\:peer-indeterminate\:shr-text-white-darken {
+  --tw-text-opacity: 1;
+  color: rgb(242 242 242 / var(--tw-text-opacity))
+}
+
 .shr-peer[aria-invalid] ~ .peer-\[\[aria-invalid\]\]\:shr-border-danger {
   --tw-border-opacity: 1;
   border-color: rgb(224 30 90 / var(--tw-border-opacity))
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:shr-relative:has([aria-current="page"]) {
+  position: relative
 }
 
 .has-\[\:disabled\]\:shr-cursor-default:has(:disabled) {
@@ -3930,6 +3963,11 @@ a {
   background-color: rgb(214 211 208 / var(--tw-bg-opacity))
 }
 
+.has-\[\[aria-current\=\"page\"\]\]\:shr-text-black:has([aria-current="page"]) {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity))
+}
+
 .has-\[\:checked\]\:before\:shr-ms-\[theme\(fontSize\.base\)\]:has(:checked)::before {
   content: var(--tw-content);
   margin-inline-start: 1rem
@@ -3946,6 +3984,62 @@ a {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-absolute:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  position: absolute
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-inset-x-0:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  left: 0;
+  right: 0
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-bottom-0:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  bottom: 0
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-block:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  display: block
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-h-0\.25:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  height: 4px
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-bg-main:has([aria-current="page"])::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+}
+
+.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-content-\[\"\"\]:has([aria-current="page"])::after {
+  --tw-content: "";
+  content: var(--tw-content)
+}
+
+.shr-group\/label:has(:hover,:focus-visible) .group-has-\[\:hover\2c \:focus-visible\]\/label\:shr-not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal
+}
+
+.shr-group\/label:has(:hover,:focus-visible) .group-has-\[\:hover\2c \:focus-visible\]\/label\:shr-absolute {
+  position: absolute
+}
+
+.shr-group\/label:has(:hover,:focus-visible) .group-has-\[\:hover\2c \:focus-visible\]\/label\:shr-whitespace-nowrap {
+  white-space: nowrap
 }
 
 .aria-checked\:shr-border-main[aria-checked="true"] {
