@@ -4,12 +4,12 @@ description: 'BottomFixedAreaは非推奨です。FloatAreaを使ってくださ
 ---
 import { ComponentPropsTable } from '@Components/ComponentPropsTable'
 import { ComponentStory } from '@Components/ComponentStory'
-import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+import { BaseColumn, WarningIcon} from 'smarthr-ui'
 
 <BaseColumn>
-  <ResponseMessage type="warning">
+  <WarningIcon text={<span>
     BottomFixedAreaは非推奨です。<a href="/products/components/float-area/">FloatArea</a>を使ってください。
-  </ResponseMessage>
+  </span>}/>
 </BaseColumn>
 
 画面下部に固定で表示する操作パネルです。主に[モーダルなUI](/products/design-patterns/modal-ui/)を作るために使います。
