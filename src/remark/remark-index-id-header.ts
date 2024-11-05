@@ -3,7 +3,7 @@ import { type Visitor, visit } from 'unist-util-visit';
 import type { Heading, ParagraphData } from 'mdast';
 import type { Node } from 'unist';
 
-const rematkIndexIdHeader = () => (tree: Node) => {
+const remarkIndexIdHeader = () => (tree: Node) => {
   const indexes = {
     1: 0,
     2: 0,
@@ -44,4 +44,4 @@ const rematkIndexIdHeader = () => (tree: Node) => {
   visit(tree, 'heading', visitor);
 };
 
-export default rematkIndexIdHeader;
+export default remarkIndexIdHeader;
