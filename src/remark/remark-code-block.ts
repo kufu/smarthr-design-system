@@ -4,7 +4,7 @@ import type { Code, Paragraph } from 'mdast';
 import type { Node } from 'unist';
 
 /**
- * ```tsx editable のようなコードブロックから、コードと言語・メタ情報を取り出すプラグイン
+ * コードブロックから言語より後の部分をメタ情報として取り出すためのプラグイン
  * 参考: https://blog.mono0x.net/2023/07/10/astro-syntax-highlight-with-title/
  */
 const remarkCodeBlock = () => (tree: Node) => {
