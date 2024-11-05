@@ -2,7 +2,7 @@
 
 このドキュメントはSmartHR Design Systemの開発者向けです。Astroに関すること、独自に実装している機能、デプロイなどについて記載します。
 
-ローカルでの環境構築や、サイトのコンテンツに関することは[README.md](https://github.com/kufu/smarthr-design-system#readme)を参照してください。
+ローカルでの環境構築や、サイトのコンテンツに関することは[README.md](./README.md)を参照してください。
 
 ## Astroに関すること
 
@@ -14,7 +14,7 @@ Astroの機能や導入しているプラグインの概要です。
 
 ### ページとルーティング
 
-`/src/pages`以下にあります。
+`src/pages/`以下にあります。
 
 |ファイル|対応するパス|
 |-|-|
@@ -23,23 +23,28 @@ Astroの機能や導入しているプラグインの概要です。
 | search.astro | /search |
 | [...slug].astro | /{slug} |
 
-`[...slug].astro`は、`/src/content/articles`以下にある.mdxファイルから生成しています。
+`[...slug].astro`は、`src/content/articles/`以下にある.mdxファイルから生成しています。
 
 ### コンテンツとMDX
 
 [@astrojs/mdx](https://github.com/withastro/astro/tree/main/packages/integrations/mdx/)を使っています。
 内部で使用されているMDXのバージョンは3系です。
 
-ページ生成時には、`src/layouts/ArticleLayout.astro`をテンプレートとして使っています。
+ページ生成時には、`src/layouts/ArticleLayout.astro`をレイアウトに使用し、`[...slug].astro`でMDXをレンダリングしています。
 
-#### テンプレート内でやっていること
+#### ArticleLayout.astro でやっていること
 
 - 左サイドバーに表示するメニューの生成
 - 右サイドバーに表示する目次の生成
 - 各ページ最後にある「前へ」「次へ」リンクの生成
-- タグ変換時のカスタムコンポーネントの適用
 
 詳しくはテンプレート内のコメントもあわせて参照してください。
+
+#### [...slug].astro でやっていること
+
+- 目次のための見出し情報の生成
+- タグ変換時のカスタムコンポーネントの適用
+- MDXのレンダリング
 
 #### remarkプラグイン
 
@@ -49,7 +54,7 @@ Astroの機能や導入しているプラグインの概要です。
 - remark-code-block (独自)
 - remark-index-id-header (独自)
 
-詳しくは独自プラグインの階層にある`src/remark/README.md`を参照してください。
+詳しくは独自プラグインの階層にある[README.md](./src/remark/README.md)を参照してください。
 
 ### コンポーネント
 
@@ -61,6 +66,7 @@ Astroの機能や導入しているプラグインの概要です。
 ### キャッシュ
 
 ビルド時に`scripts/fetch-ui-data.ts`を実行してSmartHR UIのデータを取得し、`src/cache/`以下に保存しています。
+
 このディレクトリは`.gitignore`に登録されているため、リポジトリには含まれません。
 
 ## SDS独自の機能
