@@ -1,13 +1,3 @@
-// Algoliaのオブジェクトを更新するスクリプト
-//
-// 安全のため、CI環境でのみ実行できるようにしています
-// ローカルで実行する場合は、以下のように実行してください
-//
-// CI=1 tsx --env-file './.env' ./scripts/update-algoliasearch.ts
-//
-// オプション:
-// --replace-all 指定すると全てのオブジェクトを入れ替えます (デフォルトは更新)
-
 import fs from 'node:fs';
 import path from 'node:path';
 
