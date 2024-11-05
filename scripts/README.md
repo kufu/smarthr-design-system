@@ -14,6 +14,8 @@ pnpm tsx ./scripts/fetch-ui-data.ts
 
 このスクリプトは`pnpm dev` `pnpm build`で自動的に実行されるので、基本的に手動で実行する必要はありません。
 
+保存したデータは`src/lib/getUIData.ts`から提供される`getUIStories()`、`getUIProps()`を介して利用されます。
+
 ## update-algoliasearch.ts
 
 Algoliaのインデックスを更新するスクリプトです。
