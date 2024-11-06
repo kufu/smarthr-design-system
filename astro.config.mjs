@@ -12,6 +12,7 @@ import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 export default defineConfig({
   prefetch: {
     prefetchAll: true,
+    defaultStrategy: 'viewport',
   },
   integrations: [
     mdx(),
