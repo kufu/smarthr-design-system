@@ -343,7 +343,7 @@ const Wrapper = styled.div`
 const Main = styled.main`
   flex: 1 1 auto;
   display: grid;
-  grid-template: 'sidebar article index' auto / 1fr minmax(auto, 712px) 1fr;
+  grid-template: 'sidebar article index' auto / 1fr minmax(auto, 2fr) 1fr;
 
   @media (max-width: ${CSS_SIZE.BREAKPOINT_PC_1}) {
     grid-template: 'sidebar article .' auto / 1fr minmax(auto, 712px) minmax(40px, 1fr);
