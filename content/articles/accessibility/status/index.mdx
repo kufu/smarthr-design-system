@@ -4,7 +4,7 @@ description: 'SmartHR 各機能のアクセシビリティ検証結果を掲載�
 order: 2 
 ---
 
-import { Table, Text, Td, Th } from 'smarthr-ui'
+import { Table, Td, Text, Th } from 'smarthr-ui'
 
 SmartHRでは、[アクセシビリティ方針](https://accessibility.smarthr.co.jp/development/)で掲げる目標を達成するため、製品のアクセシビリティ向上を進めています。
 各機能のプロセスごとに、WCAG達成基準に基づく検証や、支援技術で利用可能であるかを検証しています。
@@ -217,16 +217,16 @@ SmartHRでは、[アクセシビリティ方針](https://accessibility.smarthr.c
         <a href="./survey/">従業員サーベイ</a>
       </td>
       <td>
-        <a href="./survey/#2-0">サーベイに回答する</a>
+        <a href="./survey/#h2-0">サーベイに回答する</a>
       </td>
       <td>
-        <a href="./survey/#3-2">◯</a>
+        <a href="./survey/#h3-2">◯</a>
       </td>
       <td>
-        <a href="./survey/#3-3">◯</a>
+        <a href="./survey/#h3-3">◯</a>
       </td>
       <td>
-        <a href="./survey/#3-4">◯</a>
+        <a href="./survey/#h3-4">◯</a>
       </td>
       <td>
         −
@@ -294,6 +294,40 @@ SmartHRでは、[アクセシビリティ方針](https://accessibility.smarthr.c
     </tr>
     <tr>
       <td>
+        スキル管理
+      </td>
+      <td>
+      <ul>
+        <li>
+          <a href="./">申請を提出する</a>
+        </li>
+        <li>
+          <a href="./">コースを受講する</a>
+        </li>
+      </ul>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./skill/#h3-3">◯</a>
+          </li>
+          <li>
+            <a href="./skill/#h3-9">◯</a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
         SmartHR UI
       </td>
       <td>
@@ -314,15 +348,18 @@ SmartHRでは、[アクセシビリティ方針](https://accessibility.smarthr.c
     </tr>
   </tbody>
 </Table>
-更新日: <time datatime="2023-06-30">2023/06/30</time>
+更新日: <time datatime="2024-11-05">2023/06/30</time>
 
 ### 表の見方
 #### 機能
 SmartHR 製品の機能名です。リンク先に詳細な検証状況を掲載しています。
+
 ### プロセス名
 検証した該当機能内のプロセス名です。
+
 ### WCAG2.1
- WCAG2.1達成基準の検証の結果、検証した達成基準をすべて満たしている場合は◯、一部を満たしている場合は△、未実施は−を表示しています。
+WCAG2.1達成基準の検証の結果、検証した達成基準をすべて満たしている場合は◯、一部を満たしている場合は△、未実施は−を表示しています。
+
 ### スクリーンリーダー
 スクリーンリーダーのみでプロセスを完了できる場合は◯、できない場合は✕、未検証は−を表示しています。
 
