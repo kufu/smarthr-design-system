@@ -22,8 +22,16 @@ const categories = {
   'operational-guideline': '運用ガイドライン',
 } as Categories;
 
-export default function HitComponent(props: { hit: Hit }) {
-  const categoryKey: keyof Categories = props.hit.category;
+type Props = {
+  hit: Hit & {
+    title: string;
+    description: string;
+    category: keyof Categories;
+  };
+};
+
+export default function HitComponent(props: Props) {
+  const categoryKey = props.hit.category;
 
   return (
     <div className={styles.wrapper}>
