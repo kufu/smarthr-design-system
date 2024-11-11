@@ -109,18 +109,12 @@ Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](http
 
 ### スクリプトや自動実行
 
-- [GitHub Actions](https://github.com/kufu/smarthr-design-system/blob/main/.github/workflows/README.md)
-- [Git hooksとhusky](https://github.com/kufu/smarthr-design-system/blob/main/.husky/README.md)
-- [リンクチェック](https://github.com/kufu/smarthr-design-system/blob/main/scripts/content-checker/README.md)
+- [GitHub Actions](./.github/workflows/README.md)
+- [Git hooksとhusky](./.husky/README.md)
+- [リンクチェック](./scripts/content-checker/README.md)
 
 ### Reactコンポーネント
 
-- [ComponentPreview](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentPreview/README.md)
-- [ComponentPropsTable](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentPropsTable/README.md)
-- [ComponentStory](https://github.com/kufu/smarthr-design-system/blob/main/src/components/ComponentStory/README.md)
-- [CodeBlock](https://github.com/kufu/smarthr-design-system/blob/main/src/components/article/CodeBlock/README.md)
-- [PageIndex](https://github.com/kufu/smarthr-design-system/blob/main/src/components/article/PageIndex/README.md)
-
-### その他
-
-- [React contextに関すること](https://github.com/kufu/smarthr-design-system/blob/main/src/context/README.md)
+- [ComponentPreview](./src/components/ComponentPreview/README.md)
+- [ComponentStory](./src/components/ComponentStory/README.md)
+- [CodeBlock](./src/components/CodeBlock/README.md)
