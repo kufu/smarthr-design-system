@@ -65,12 +65,12 @@ index.mdxがないディレクトリがあった場合、左側のサイドバ�
 
 また、第2階層（「はじめに」「基本原則」など）については別途`/src/data/navigationItem.json`に定義された順序が適用されます。このJSONはヘッダー・フッター・検索ページ下部のサイトマップに反映されます。
 
-### 3. Reactコンポーネントを使う際の注意
+### 3. コンポーネントを使う際の注意
 
 `/src`のエイリアスが`@/`として設定されているので、 mdxファイル内で
 
 ```mdx
-import hoge from '../../../../src/components/hoge
+import Hoge from '../../../../src/components/hoge
 
 '
 ```
@@ -78,7 +78,7 @@ import hoge from '../../../../src/components/hoge
 ではなく、
 
 ```mdx
-import hoge from '@/components/hoge
+import Hoge from '@/components/hoge
 
 '
 ```
