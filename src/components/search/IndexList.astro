@@ -65,7 +65,7 @@ const { nestedArticleMetaItems } = await createArticleMetaItems('/');
       return (
         <Section key={level2Item.link}>
           <h3>
-            <a href={`/${level2Item.link}/`}>{level2Item.title}</a>
+            <a href={`${level2Item.link}/`}>{level2Item.title}</a>
           </h3>
         </Section>
       );
