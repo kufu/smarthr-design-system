@@ -18,7 +18,7 @@ const imageUrl = typeof src === 'string' ? src : src.src;
       typeof src === 'string' ? (
         <img src={src} alt={alt} />
       ) : (
-        <Picture src={src} widths={[256, 512, 1024, 1536, 1600]} formats={['webp']} alt={alt} />
+        <Picture src={src} widths={[256, 512, 1024, 1536, 1600]} formats={['png']} quality="high" alt={alt} />
       )
     }
   </a>
