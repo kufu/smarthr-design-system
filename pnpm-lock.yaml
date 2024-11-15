@@ -63,8 +63,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       smarthr-ui:
-        specifier: ^60.0.1
-        version: 60.0.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        specifier: ^60.1.1
+        version: 60.1.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       styled-components:
         specifier: ^6.1.13
         version: 6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4808,8 +4808,8 @@ packages:
   smarthr-normalize-css@1.1.0:
     resolution: {integrity: sha512-RNi5bkp8dYvZs/yqOihZ+an5Wf3oXiBMRRvSYhCKNhV+Qkg1otqIxmP3ELUWVwMZx9v+zZG1LLAJ0sxPkHXOcg==}
 
-  smarthr-ui@60.0.1:
-    resolution: {integrity: sha512-pYREUD8cVF04wUfVEDh0/qXIcv4HxAnkZNvaiYN9XlzDvr6Zr7bhh2aFcXzmn78bw3PSfB/J8b8dCFb1smEQHw==}
+  smarthr-ui@60.1.1:
+    resolution: {integrity: sha512-Yz3k4MUxVs1QAskgWnAyyhSrDzfYWNAulqQG8Q6NvIY8N6rhctX53BYEs/IzsjACEv/bZYpqAIDGsA/7HOSs5w==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -5004,14 +5004,14 @@ packages:
   tailwind-merge@2.5.4:
     resolution: {integrity: sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==}
 
-  tailwind-variants@0.2.1:
-    resolution: {integrity: sha512-2xmhAf4UIc3PijOUcJPA1LP4AbxhpcHuHM2C26xM0k81r0maAO6uoUSHl3APmvHZcY5cZCY/bYuJdfFa4eGoaw==}
+  tailwind-variants@0.3.0:
+    resolution: {integrity: sha512-ho2k5kn+LB1fT5XdNS3Clb96zieWxbStE9wNLK7D0AV64kdZMaYzAKo0fWl6fXLPY99ffF9oBJnIj5escEl/8A==}
     engines: {node: '>=16.x', pnpm: '>=7.x'}
     peerDependencies:
       tailwindcss: '*'
 
-  tailwindcss@3.4.14:
-    resolution: {integrity: sha512-IcSvOcTRcUtQQ7ILQL5quRDg7Xs93PdJEk1ZLbhhvJc7uj/OAhYOnruEiwnGgBvUtaUAJ8/mhSw1o8L2jCiENA==}
+  tailwindcss@3.4.15:
+    resolution: {integrity: sha512-r4MeXnfBmSOuKUWmXe6h2CcyfzJCEk4F0pptO5jlnYSIViUkVmsawj80N5h2lO3gwcmSb4n3PuN+e+GC1Guylw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -11605,7 +11605,7 @@ snapshots:
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@60.0.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+  smarthr-ui@60.1.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       '@smarthr/wareki': 1.2.0
       dayjs: 1.11.13
@@ -11619,8 +11619,8 @@ snapshots:
       react-innertext: 1.1.5(@types/react@18.3.12)(react@18.3.1)
       react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       styled-components: 6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      tailwind-variants: 0.2.1(tailwindcss@3.4.14)
-      tailwindcss: 3.4.14
+      tailwind-variants: 0.3.0(tailwindcss@3.4.15)
+      tailwindcss: 3.4.15
     transitivePeerDependencies:
       - '@types/react'
       - ts-node
@@ -11847,12 +11847,12 @@ snapshots:
 
   tailwind-merge@2.5.4: {}
 
-  tailwind-variants@0.2.1(tailwindcss@3.4.14):
+  tailwind-variants@0.3.0(tailwindcss@3.4.15):
     dependencies:
       tailwind-merge: 2.5.4
-      tailwindcss: 3.4.14
+      tailwindcss: 3.4.15
 
-  tailwindcss@3.4.14:
+  tailwindcss@3.4.15:
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
