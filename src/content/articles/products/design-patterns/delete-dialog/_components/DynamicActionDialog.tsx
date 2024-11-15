@@ -1,5 +1,15 @@
 import { useState } from 'react';
-import { ActionDialog, BaseColumn, Button, CheckBox, DefinitionList, ResponseMessage, Stack, Text } from 'smarthr-ui';
+import {
+  ActionDialog,
+  BaseColumn,
+  Button,
+  CheckBox,
+  DefinitionList,
+  DefinitionListItem,
+  ResponseMessage,
+  Stack,
+  Text,
+} from 'smarthr-ui';
 
 export default function DynamicActionDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,18 +32,9 @@ export default function DynamicActionDialog() {
       >
         <Stack gap={1.5}>
           <p>{'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}</p>
-          <DefinitionList
-            items={[
-              {
-                term: (
-                  <Text styleType="blockTitle" color="TEXT_BLACK">
-                    {'削除する{オブジェクト名}'}
-                  </Text>
-                ),
-                description: '{インスタンス名}',
-              },
-            ]}
-          />
+          <DefinitionList termStyleType="blockTitle">
+            <DefinitionListItem term="削除する{オブジェクト名}">{`{インスタンス名}`}</DefinitionListItem>
+          </DefinitionList>
           <Stack gap={0.5}>
             <BaseColumn>
               <ResponseMessage type="warning">
