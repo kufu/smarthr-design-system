@@ -1,0 +1,50 @@
+---
+type Props = {
+  source: string;
+  poster: string;
+  title: string;
+  youtubeUrl?: string;
+  tracks?: astroHTML.JSX.IntrinsicElements['track'][];
+};
+
+const { source, poster, title, youtubeUrl, tracks } = Astro.props;
+---
+
+<>
+  {/* eslint-disable-next-line astro/jsx-a11y/media-has-caption */}
+  <video controls poster={poster}>
+    <source src={source} type="video/mp4" title={title} />
+    {
+      youtubeUrl ? (
+        <p>動画を再生できない場合は以下のYouTubeリンク先を参照してください。</p>
+      ) : (
+        <p>動画再生に対応した環境でご覧ください。</p>
+      )
+    }
+    {tracks?.map((track) => <track {...track} />)}
+  </video>
+  {
+    youtubeUrl && (
+      <a href={youtubeUrl} target="_blank" rel="noopener">
+        {title} | YouTube
+      </a>
+    )
+  }
+</>
+
+<style lang="scss">
+  video {
+    max-width: 100%;
+    width: 100%;
+
+    /* Firefoxでは::cue(<selector>)が効かないため::cueに背景色を指定 */
+    ::cue {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Firefox以外のブラウザでは::cueが効かないため、セレクタを指定 */
+    ::cue(.bgBlack50) {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+</style>

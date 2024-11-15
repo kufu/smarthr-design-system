@@ -1,0 +1,125 @@
+---
+title: '文書配付'
+description: 'SmartHRの従業員サーベイ機能のアクセシビリティ対応状況と検証結果を掲載しています。'
+order: 2
+---
+import { Table, Text, Td, Th } from 'smarthr-ui'
+
+## プロセス: 書類に合意する
+### 概要
+従業員が、文書確認依頼を受け取り、確認・合意するまでのプロセス
+
+### 対象ページ
+* 受信ボックス
+* 書類位確認・合意画面
+* 合意完了画面
+* 住所入力画面
+* 書類の受け取り方法選択画面
+
+### WCAG2.1 達成基準の検証
+未実施
+
+### ウェブアクセシビリティ簡易チェックリストのチェック
+[文書配付 - ウェブアクセシビリティ簡易チェックリスト - 2023年6月](https://docs.google.com/spreadsheets/d/14vQ5sjPS0ZEWSl9Gdd66-iSMNaU6RauGxdMPOCtciu8/edit?usp=sharing)
+
+### スクリーンリーダーでの利用
+スクリーンリーダーの読み上げとキーボード操作でプロセスを完了できるか、検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>スクリーンリーダー</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        NVDA
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      {/* textlint-disable */}
+      <td>
+        PC-Talker
+      </td>
+      {/* textlint-enable */}
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VoiceOver
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 色反転・拡大鏡での利用
+色反転・拡大鏡機能を利用して、プロセスを完了できるか検証しています。視力での確認が難しい箇所については、スクリーンリーダーを併用しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        拡大鏡(NetReader ネオモード)、コントラストテーマ(Windows 11)
+      </td>
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 限られた器用さ、または力
+手の器用さや力が限られているユーザーが、プロセスを完了できるか検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        iPhone 
+      </td>
+      <td>
+        Safari
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>

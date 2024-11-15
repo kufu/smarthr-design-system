@@ -1,0 +1,361 @@
+---
+title: 'よくあるテーブル'
+description: 'SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。'
+order: 7
+---
+import { Image } from 'astro:assets'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStoryfrom from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Cluster, Text, FaCloudDownloadAltIcon } from 'smarthr-ui'
+
+import noTitleDo from './images/smarthr-table/pattern-no-title-do.png'
+import noTitleDont from './images/smarthr-table/pattern-no-title-dont.png'
+import onlyPaginationDo from './images/smarthr-table/smarthr-table-only-pagination-do.png'
+import onlyPaginationDont from './images/smarthr-table/smarthr-table-only-pagination-dont.png'
+
+SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。
+
+SmartHRでは、表形式で一覧表示するUIを「*よくあるテーブル*」と呼びます。  
+OOUIにおける`コレクション`と、コレクションに関連するアクションやフォームをまとめた総称を指します。
+
+
+## 構成
+`よくあるテーブル`は、次の要素で構成されています。必須項目以外は任意の表示項目です。
+
+1. テーブル
+    - [オブジェクト名](#h4-0)（必須）
+    - [オブジェクトの情報](#h4-1)
+    - [オブジェクトの操作](#h4-2)
+2. 見出し
+3. テーブル操作エリア
+4. 一時操作エリア
+
+![スクリーンショット: よくあるテーブルの構成](./images/smarthr-table/smarthr-table-overview.png)
+
+### 1. テーブル
+`よくあるテーブル`は、多くの場合「1項目1行の1次元リスト」のテーブルを含みます。
+
+#### オブジェクト名
+オブジェクトの名前を指します。行を識別するために必須要素として設定します。
+
+##### 移動リンクのスタイル
+オブジェクトの[詳細ビュー](/products/design-patterns-core-features/main-admin/#h2-2)へ移動する場合、オブジェクト名にリンクを設定します。
+テキストリンクによる移動は「オブジェクトの操作」にはあたらないため、アクションボタンは使いません。
+
+![スクリーンショット: 遷移リンクのスタイル](./images/smarthr-table/smarthr-table-configure1.png)
+
+#### オブジェクトの情報
+オブジェクトごとに表示する情報を指します。  
+テーブルにはオブジェクトの持つすべての情報を表示する必要はありません。
+ユーザーが、それぞれのオブジェクトを識別・比較できる情報を検討して表示します。
+
+![スクリーンショット: オブジェクトの情報の表現](./images/smarthr-table/smarthr-table-configure2.png)
+
+##### オブジェクトの情報量および表示領域の幅
+各機能のユースケースや仕様によって異なるため、オブジェクトの情報量（列数）および表示領域の幅には制限を設けません。
+
+ただし、情報量が多いと表示領域を圧迫し、ユーザーの認知負荷を高めることになります。表示する情報量（列数）を十分に検討し、情報量に応じて表示領域の幅を適切に設定してください。
+
+##### 横スクロール
+表示する情報が多く、どうしても省略できない場合には、コレクションエリア内を横スクロールすることを許容します。  
+ただし、横スクロールは情報の一覧性を下げるため、可能な限り横スクロールを必要としない設計を心がけてください。
+
+やむを得ず横スクロールが生じる場合、後述の[TableReel](#h3-6)を使用して主要な操作を見つけやすくしたり、[フルスクリーンレイアウト](#h3-5)を使用して表示幅を広げたりできます。
+
+##### 情報の省略
+情報を指定幅以上に表示したい、またはセル内で情報を複数行で表示させたくない場合、[LineClamp](/products/components/line-clamp/)などを使ってセル上の情報に三点リーダーをつけて省略します。
+省略した情報は、マウスオーバーした際に[Tooltip](/products/components/tooltip/)を表示し、すべての情報を示してください。
+
+![スクリーンショット: 情報の省略表現](./images/smarthr-table/smarthr-table-configure3.png)
+
+##### ステータス
+
+ステータスは、テーブル上でオブジェクトの状態を伝えやすくする目的で使用します。    
+たとえば、タスクを完了するために複数のアクション（例：依頼、提出、承認）が必要な場合、ステータスを表示すると、現在どの段階にあるのかが伝えやすくなります。
+
+テーブルのヘッダー部分は`ステータス`と表記します。   
+例外として、同じテーブル上に表示されるオブジェクトが複数のステータスを持ち、明確に呼び分ける必要がある場合は`〇〇状況`と表記します。（例：依頼状況、確認状況、送信状況）  
+`状況`や`状態`と表記すると、何の状況や状態を指すのかが曖昧なため避けましょう。  
+
+ステータスラベルの使い方は、[StatusLabel](/products/components/status-label/)を参照してください。  
+
+#### オブジェクトの操作
+オブジェクトに対して「編集」「削除」などの操作をする場合、アクションボタンを設定します。  
+ユーザーの視線導線に合わせ、基本的に右端のカラムに設置します。カラム数が多く操作部が隠れる場合は、[TableReel](#h3-6)を用いて操作列を固定してください。
+
+##### 単一のオブジェクト操作
+単一のオブジェクトに操作をしたい場合、アクションボタンをオブジェクト（行）それぞれに設置します。
+
+ボタンは1つのオブジェクトに対して、**最大3つを上限とします**。それ以上設置する必要がある場合は、[ドロップダウンメニューボタン](/products/components/dropdown/dropdown-menu-button/)にアクションを格納することを検討しましょう。
+
+![スクリーンショット: 単一のオブジェクト操作](./images/smarthr-table/smarthr-table-configure4.png)
+
+##### 複数のオブジェクト操作
+複数のオブジェクトに対して、一括で同時に操作する場合は、[テーブル内の一括操作](/products/design-patterns/table-bulk-action/)を参照してください。
+
+### 2. 見出し
+`よくあるテーブル`の見出しです。
+
+- [Heading](/products/components/heading/)を使用し、適切な見出しレベルを設定してください。
+- 多くの場合、`{オブジェクト名}`という表記を採用しています。
+    - [よくあるテーブルの見出しに「一覧」はつけない](../../../products/contents/app-writing/#h2-9)
+
+[画面タイトル](/products/components/heading/#h3-0)が`よくあるテーブル`の見出しを兼ねる場合は、タイトルエリアを省略できます。  
+ただし、後述の[テーブル操作エリア](#h3-2)が生じる場合はテーブルの左上に不要な余白が生まれるため、見出しを省略できません。
+
+<Cluster gap={1}>
+  <DoAndDont type="do">
+    <Image slot="img" src={noTitleDo} alt="Do" />
+    <Text slot="label">画面タイトルとテーブルの間に余白ができない場合は省略できる</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="auto">
+    <Image slot="img" src={noTitleDont} alt="Dont" />
+    <Text slot="label">画面タイトルとテーブルの間にテーブル操作エリアがあり、テーブルの左上に不要な余白ができる</Text>
+  </DoAndDont>
+</Cluster>
+
+### 3. テーブル操作エリア
+テーブルにオブジェクト（行）を追加したり、オブジェクト全体を一括で変更するなどの、**データの追加・一括変更などに関わる操作をまとめたエリア**です。
+
+このエリアは、テーブルを含む[Base](/products/components/base/)外の右上（見出しの右側）に配置します。
+
+- アクションボタンとして、[Button](/products/components/button/)や、類似する操作をまとめた[ドロップダウンメニューボタン](/products/components/dropdown/dropdown-menu-button/)を配置できます。
+- ユーザーが操作に迷わないように、ボタンは**最大3つを上限とします**。
+
+![スクリーンショット: テーブル操作エリア](./images/smarthr-table/smarthr-table-actionarea.png)
+
+#### アクションボタンの例
+ここに配置される典型的なアクションボタンの例は以下のとおりです。  
+以下に限らず、扱う機能やユースケースによって、データの追加・一括変更などに関わるアクションボタンを配置できます。
+
+| 操作名 | ボタンのラベル例 | 役割・動作 |
+| :--- | :--- | :--- |
+| オブジェクトの追加 | `項目を追加` | オブジェクトを追加するためのボタンです。「`{オブジェクト名}`を追加」と表記します。<br />クリックすると、多くの場合、オブジェクトの追加ダイアログを表示します。 |
+| オブジェクトの並べ替え | `並べ替え` | オブジェクト（行）の並べ替えをするためのボタンです。<br />クリックすると、`よくあるテーブル`が`並べ替え状態`に切り替わります。 |
+| オブジェクトの一括操作 | `一括追加（CSV）`, `一括更新（CSV）` | CSVファイル等によるオブジェクトの追加・更新を一括で行なう操作をするためのボタンです。<br />クリックすると、CSVファイルを追加する一括操作ダイアログを表示するほか、複数の一括操作を`ドロップダウンメニューボタン`の[「同一の操作」パターン](/products/components/dropdown/dropdown-menu-button/#h3-4)でまとめた`一括操作`ボタンとすることもあります。 |
+
+
+### 4. 一時操作エリア
+
+テーブルの検索やフィルタリングなど、**テーブルのデータには影響しない一時的な操作をするためのボタンやフォームをまとめたエリア**です。
+
+このエリアは、テーブルを含む[Base](/products/components/base/)内の上部、および[Base](/products/components/base/)外の下部に配置します。
+
+![スクリーンショット: 一時操作エリア](./images/smarthr-table/smarthr-table-temporary-actionarea.png)
+
+#### Base内の上部に配置する操作の例
+このエリアに配置される典型的な操作の例は以下のとおりです。  
+以下に限らず、扱う機能やユースケースによって、一時的な操作に関するボタンやフォームを配置できます。
+
+| 操作名 | ボタンのラベル例 | 役割・動作 |
+| :--- | :--- | :--- |
+| オブジェクトの検索 | `検索` | 入力ボックス（[Input](/products/components/input/)）と検索ボタンがセットになった検索フォームです。 |
+| オブジェクトの絞り込み | `絞り込み` | [FilterDropdown](/products/components/dropdown/filter-dropdown/)を配置します。<br />クリックすると、テーブルのオブジェクトを絞り込むオプションをドロップダウンで表示します。 |
+| オブジェクト（一覧）のダウンロード | `ダウンロード`, `全件ダウンロード` | [Secondaryボタンのアイコン付き（左）](/products/components/button/#h3-1)を配置します。（<FaCloudDownloadAltIcon alt="ダウンロード" /> アイコン（`FaCloudDownloadAltIcon`）を使用）<br />オブジェクトの絞り込み状態に依存せず、オブジェクトの全件が常にダウンロードされる場合は、ラベルを`全件ダウンロード`とします。 |
+| テーブルのページ数、ページ番号 | `9,999 件中 1-5 件` | 多くの場合、「`{総件数}` 件中 `{表示している順番の範囲}` 件」のように、現在表示しているテーブル内容の現在位置を示します。<br />1ページあたり20件〜50件とすることが多いですが、ユースケースや表示速度を考慮して適切な件数を設定します。<br />コンテンツの横幅に応じて、表示する内容の量を検討してください。 |
+| テーブルのページ送り | - | テーブルのオブジェクトの量（行数）が多くなる場合に、複数のページに分けて[Pagination](/products/components/pagination/)（`withoutNumbers = true`）を配置します。<br />コンテンツの横幅が狭い場合は省略することがあります。（[省略した例](#h3-9)） |
+
+#### Base外の下部に配置する操作の例
+
+| 操作名 | ボタンのラベル例 | 役割・動作 |
+| :--- | :--- | :--- |
+| テーブルのページ送り | - | テーブルのオブジェクトの量（行数）が多くなる場合に、複数のページに分けて[Pagination](/products/components/pagination/)を配置します。<br />コンテンツの横幅に応じて、表示する内容の量を検討してください。 |
+
+#### Base内の上部にテーブルのページ送りを単体で配置しない
+一時操作エリアに置く機能が`テーブルのページ送り`のみの場合、Base外の下部にのみ配置します。このとき、テーブルの左上に不要な余白が生まれるため、Base内の上部のエリアは表示しないでください。
+
+<Cluster gap={1}>
+  <DoAndDont type="do">
+    <Image slot="img" src={onlyPaginationDo} alt="Do" />
+    <Text slot="label">Base内の上部のエリアごと非表示にする。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont">
+    <Image slot="img" src={onlyPaginationDont} alt="Dont" />
+    <Text slot="label">テーブルのページ送りのみ配置すると、左に不要な余白ができるため、視線誘導として不適切。</Text>
+  </DoAndDont>
+</Cluster>
+
+## レイアウト
+
+`よくあるテーブル`のレイアウトは2パターンあります。  
+
+| パターン | 説明 | 用途 |
+| :--- | :--- | :--- |
+| デフォルトのレイアウト | `Base` 内にテーブルを配置します。| 基本のレイアウトです。特に理由がない場合はこちらを使用します。<br />1つの画面内で、他の要素や複数のテーブルを同時に使用したい場合にも使用します。 |
+| フルスクリーンレイアウト | ブラウザの幅いっぱいにテーブルを配置します。 | カラムが多く、デフォルトのレイアウトでは横スクロールが生じてしまう場合に使用します。|
+
+### デフォルトのレイアウト
+基本的に[余白の取り方](/products/design-patterns/spacing-layout-pattern/)に従って配置します。  
+要素間の余白は以下のとおりです。（コンポーネント内の余白は省略）
+
+![スクリーンショット: 「デフォルトのレイアウト」の要素間の余白](./images/smarthr-table/smarthr-table-layout.png)
+
+### フルスクリーンレイアウト
+画面幅いっぱいにテーブル、一時操作エリアを配置するレイアウトです。  
+表示項目が多く、テーブルを閲覧・操作することが主たる業務となりうるときに使用します。
+
+フルスクリーンレイアウトを使用する場合、1つの画面内で複数のテーブルは使用できません。
+
+![スクリーンショット: 「フルスクリーンレイアウト」の要素間の余白](./images/smarthr-table/full-screen-table-layout.png)
+
+#### スクロールの挙動
+テーブルを包む要素内で部分的にスクロールさせるのではなく、ブラウザのスクロールによってテーブルもスクロールできるようにします。  
+また、縦にスクロールしたときは、[fixedHead](/products/components/table/#props-Table) propsを用いてテーブルヘッダー（`thead`）を画面上部に固定します。
+
+![スクリーンショット: 縦にスクロールしたときはヘッダーを上部に固定](./images/smarthr-table/full-screen-table-scroll.png)
+
+### TableReel
+横スクロールが生じるとき、重要な情報が隠れてしまうことを防ぐため、[TableReel](/products/components/table/)を用いて列を固定できます。
+列を固定することにより、画面の表示幅の変更等により意図せぬ横スクロールが発生した場合にも操作性が担保できます。
+
+```tsx editable
+
+<div style={{ width: '100%' }}>
+<TableReel>
+    <Table>
+        <thead>
+        <tr>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>cell</Th>
+            <Th>
+            multi
+            <br />
+            line
+            </Th>
+            <Th fixed data-test="fixed-cell">
+            操作
+            </Th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <Td data-test="dynamic-change-text">株式会社SmartHR</Td>
+            <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>
+            multi
+            <br />
+            line
+            </Td>
+            <Td fixed>
+            <Button size="s">操作</Button>
+            </Td>
+        </tr>
+        <tr>
+            <Td>株式会社SmartHR</Td>
+            <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>
+            multi
+            <br />
+            line
+            </Td>
+            <Td fixed>
+            <Button size="s">操作</Button>
+            </Td>
+        </tr>
+        <tr>
+            <Td>株式会社SmartHR</Td>
+            <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>cell</Td>
+            <Td>
+            multi
+            <br />
+            line
+            </Td>
+            <Td fixed>
+            <Button size="s">操作</Button>
+            </Td>
+        </tr>
+        </tbody>
+    </Table>
+    </TableReel>
+</div>
+```
+
+## 種類
+テーブルに表示するオブジェクトの数（行数）に応じて、`よくあるテーブル`のバリエーションを定義します。  
+それぞれで各要素（テーブル、タイトル、テーブル操作エリア、一時操作エリア）の表示パターンが異なります。
+
+
+### 初期表示
+オブジェクトの数が0件である初期状態の表示パターンは以下のとおりです。
+
+1. テーブル
+    - テーブルは表示しません。
+    - 代わりに`Base`内部に、`{オブジェクト名}はまだありません。`というメッセージと、オブジェクト追加を促すボタンを上下左右中央に表示します。
+        - オブジェクト追加を促すボタンは、基本的に[Secondaryボタンのサイズ小](/products/components/button/#h3-1)を使います。
+2. 見出し
+    - 表示の制約はありません。
+3. テーブル操作エリア
+    - オブジェクトがないと成立しないアクションボタン（`並べ替え`, `一括更新（CSV）`）は**非表示**とします。
+4. 一時操作エリア
+    - 操作対象のオブジェクトが存在しないため、一時操作エリアは**非表示**とします。
+    - テーブルのページ送りも**非表示**とします。
+
+![スクリーンショット: 「よくあるテーブル」の初期表示の例](./images/smarthr-table/smarthr-table-variation1.png)
+
+
+### 検索結果なし
+オブジェクトの検索結果や絞り込み結果が0件であった場合の表示パターンです。
+検索結果のオブジェクト数は0件ですが、オブジェクト自体はテーブルに存在しています。
+
+1. テーブル
+    - テーブルヘッダー（`thead`）は表示したままとします。
+    - オブジェクトのエリアには、`該当する{オブジェクト名}はありません。<br />別の条件を試してください。`というメッセージを上下左右中央に表示します。
+2. タイトル
+    - 表示の制約はありません。
+3. テーブル操作エリア
+    - 表示の制約はありません。
+4. 一時操作エリア
+    - 一時操作エリアは表示したままとします。
+    - テーブルのページ送りは**非表示**とします。
+
+![スクリーンショット: 検索結果がない「よくあるテーブル」の例](./images/smarthr-table/smarthr-table-variation2.png)
+
+
+### 1ページ以内
+オブジェクトの数が1ページに収まる（[Pagination](/products/components/pagination/)がない）場合の表示パターンは以下のとおりです。
+
+1. テーブル
+    - 表示の制約はありません。
+2. タイトル
+    - 表示の制約はありません。
+3. テーブル操作エリア
+    - 表示の制約はありません。
+4. 一時操作エリア
+    - テーブルのページ送りは**非表示**とします。
+
+![スクリーンショット: 1ページ以内の「よくあるテーブル」の例](./images/smarthr-table/smarthr-table-variation3.png)
+
+## 関連リンク
+
+- [検索結果に何も参照できないときに表示する文言｜UIテキストとプロダクト用語定義｜DocBase](https://smarthr-inc.docbase.io/posts/1695094)

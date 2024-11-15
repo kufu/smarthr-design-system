@@ -1,0 +1,65 @@
+---
+import type { ArticleMeta } from '@/types/article';
+import CaretButton from './CaretButton';
+
+type Props = {
+  currentPath: `/${string}`;
+  items: ArticleMeta['children'];
+  depth: ArticleMeta['depth'];
+  parentIndex: string | null;
+};
+
+const { currentPath, items, depth, parentIndex } = Astro.props;
+
+if (items.length <= 0) {
+  return undefined;
+}
+---
+
+{
+  items.map((item, index) => {
+    const currentIndex = parentIndex ? `${parentIndex}__${index}` : `${index}`;
+
+    return (
+      <li>
+        <div class={`depth${depth}Item`}>
+          <a href={item.link} aria-current={item.link === currentPath}>
+            {item.title}
+          </a>
+          {item.children.length > 0 && (
+            <CaretButton currentPath={currentPath} itemLink={item.link} depth={depth} currentIndex={currentIndex} client:load />
+          )}
+        </div>
+        {item.children.length > 0 && (
+          <ul
+            data-items-id={`Depth${depth + 1}Items__${currentIndex}`}
+            aria-hidden={currentPath !== item.link && !currentPath.startsWith(`${item.link}/`)}
+          >
+            <Astro.self currentPath={currentPath} items={item.children} depth={depth + 1} parentIndex={currentIndex} />
+          </ul>
+        )}
+      </li>
+    );
+  })
+}
+
+<style lang="scss">
+  .depth2Item {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.33;
+    position: relative;
+  }
+
+  .depth3Item {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.2;
+    position: relative;
+  }
+
+  .depth4Item {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+</style>

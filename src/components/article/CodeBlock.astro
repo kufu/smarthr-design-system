@@ -1,0 +1,39 @@
+---
+import ReactCodeBlock from '@/components/CodeBlock';
+
+type Props = {
+  code: string;
+  language?: string;
+  meta?: string;
+};
+
+type MetaProps = {
+  [key: string]: string | boolean;
+};
+
+/**
+ * editable layout="product" のようなメタ情報をパースする
+ * @param meta - スペース区切りのメタ情報
+ * @returns メタ情報をキーとしたオブジェクト
+ */
+const parseMeta = (meta: string | undefined): MetaProps => {
+  if (!meta) {
+    return {};
+  }
+
+  const result: MetaProps = {};
+  const items = meta.split(' ');
+
+  for (const item of items) {
+    const [key, value] = item.split('=');
+    result[key] = value ? value : true;
+  }
+
+  return result;
+};
+
+const { code, language, meta } = Astro.props;
+const props = parseMeta(meta);
+---
+
+<ReactCodeBlock code={code} language={language} {...props} client:only="react" />

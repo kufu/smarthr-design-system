@@ -1,15 +1,15 @@
-import { Link } from 'gatsby'
-import React, { FC } from 'react'
-import styled from 'styled-components'
+import styles from './HitComponent.module.scss';
+
+import type { Hit } from 'algoliasearch';
 
 interface Categories {
-  introduction: string
-  foundation: string
-  basics: string
-  products: string
-  accessibility: string
-  communication: string
-  'operational-guideline': string
+  introduction: string;
+  foundation: string;
+  basics: string;
+  products: string;
+  accessibility: string;
+  communication: string;
+  'operational-guideline': string;
 }
 
 const categories = {
@@ -20,26 +20,25 @@ const categories = {
   accessibility: 'アクセシビリティ',
   communication: 'コミュニケーション',
   'operational-guideline': '運用ガイドライン',
-} as Categories
+} as Categories;
 
-export const HitComponent: FC = (props: any) => {
-  const categoryKey: keyof Categories = props.hit.category
+type Props = {
+  hit: Hit & {
+    title: string;
+    description: string;
+    category: keyof Categories;
+  };
+};
+
+export default function HitComponent(props: Props) {
+  const categoryKey = props.hit.category;
 
   return (
-    <Wrapper>
-      <Link to={`/${props.hit.path}`}>
+    <div className={styles.wrapper}>
+      <a href={`/${props.hit.path}`}>
         {props.hit.title}&nbsp;{categories[categoryKey] ? `|${'\u00A0'}${categories[categoryKey]}` : ''}
-      </Link>
-      {props.hit.description && <StyledParagraph>{props.hit.description}</StyledParagraph>}
-    </Wrapper>
-  )
+      </a>
+      {props.hit.description && <p className={styles.paragraph}>{props.hit.description}</p>}
+    </div>
+  );
 }
-
-const Wrapper = styled.div`
-  margin: 0 0 16px;
-`
-
-const StyledParagraph = styled.p`
-  font-size: 0.9rem;
-  margin: 0;
-`

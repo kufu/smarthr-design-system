@@ -1,0 +1,338 @@
+---
+import { getEntry, type CollectionEntry } from 'astro:content';
+import { Article } from 'smarthr-ui';
+import Layout from '@/layouts/Layout.astro';
+import IndexNav from '@/components/IndexNav';
+import Header from '@/components/Header/Header.astro';
+import Footer from '@/components/Footer.astro';
+import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
+import Sidebar from '@/components/Sidebar/Sidebar.astro';
+import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
+import type { IndexNavItemsProps } from '@/components/IndexNav/IndexNavItems';
+
+type Props = Pick<IndexNavItemsProps, 'headings'> & Pick<CollectionEntry<'articles'>, 'slug' | 'data'>;
+
+// 記事ページ内の要素にアクセスするためのID
+const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
+
+const { slug, data, headings } = Astro.props;
+
+// 親の記事を取得
+const parentArticleSlug = slug.replace(/\/[^\/]*$/, ''); // 例: 'basics/typography' → 'basics'
+const parentArticle = await getEntry('articles', parentArticleSlug);
+
+// カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
+const categoryName = parentArticle?.data.title ?? '';
+const headTitle = categoryName === data.title ? data.title : `${data.title} | ${categoryName}`;
+
+const { flatArticleMetaItems, nestedArticleMetaItems } = await createArticleMetaItems(slug);
+
+const currentPageIndex = flatArticleMetaItems.findIndex(({ link }) => link === `/${slug}`);
+const sidebarItemLength = flatArticleMetaItems.length - 1;
+
+// 前・次のページの情報
+const prevSidebarItem = currentPageIndex > 0 ? (flatArticleMetaItems.at(currentPageIndex - 1) ?? null) : null;
+const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaItems.at(currentPageIndex + 1) ?? null) : null;
+---
+
+<Layout title={headTitle} ogTitle={data.title} description={data.description}>
+  <div class="wrapper">
+    <Header />
+
+    <main class="main">
+      <div class="mainSidebar">
+        <Sidebar path={`/${slug}`} items={nestedArticleMetaItems} />
+      </div>
+      <div class="mainIndexWrapper">
+        <IndexNav targetId={MDX_STYLE_WRAPPER_ID} headings={headings} ignoreH3Nav={data.ignoreH3Nav} client:load />
+      </div>
+      <Article className="article">
+        <h1 class="articleTitle">{data.title}</h1>
+        <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
+          <slot />
+        </div>
+        <ul class="articleLinks">
+          {
+            prevSidebarItem !== null && (
+              <li class="prevArticleLinkWrapper">
+                <RoundedBoxLink
+                  path={prevSidebarItem.link}
+                  label="前へ"
+                  title={prevSidebarItem.title}
+                  align="left"
+                  caretPosition="left"
+                />
+              </li>
+            )
+          }
+          {
+            nextSidebarItem !== null && (
+              <li class="nextArticleLinkWrapper">
+                <RoundedBoxLink
+                  path={nextSidebarItem.link}
+                  label="次へ"
+                  title={nextSidebarItem.title}
+                  align="right"
+                  caretPosition="right"
+                />
+              </li>
+            )
+          }
+        </ul>
+      </Article>
+    </main>
+
+    <Footer isArticlePage />
+  </div>
+</Layout>
+
+<style lang="scss">
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    & > :global(header) {
+      flex: 0 0 auto;
+    }
+
+    & > :global(footer) {
+      flex: 0 0 auto;
+    }
+  }
+
+  .main {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template: 'sidebar article index' auto / 1fr minmax(auto, 712px) 1fr;
+
+    @include breakpointPC1 {
+      grid-template: 'sidebar article .' auto / 1fr minmax(auto, 712px) minmax(40px, 1fr);
+    }
+
+    @include breakpointMobile3 {
+      grid-template:
+        'sidebar sidebar sidebar'
+        'index index index'
+        '. article .'
+        / minmax(40px, 1fr) minmax(auto, 712px) minmax(40px, 1fr);
+      margin-top: 0;
+    }
+  }
+
+  .mainSidebar {
+    grid-area: sidebar;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: [space] minmax(40px, 1fr) [nav] 232px;
+    border-right: 1px solid var(--color-light-grey-1);
+    margin-right: 40px;
+
+    /* 位置固定用のスタイル */
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+
+    & > :global(*) {
+      grid-column: nav;
+    }
+
+    @include breakpointMobile3 {
+      display: block;
+      position: static;
+      height: auto;
+      margin: 0;
+      border-right: 0;
+    }
+  }
+
+  .mainIndexWrapper {
+    grid-area: index;
+    display: grid;
+    grid-template-columns: [nav] 232px [space] minmax(40px, 1fr);
+    margin-left: 40px;
+
+    /* 位置固定用のスタイル */
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+
+    & > :global(astro-island > *) {
+      grid-column: nav;
+    }
+
+    @include breakpointPC1 {
+      display: none;
+    }
+
+    @include breakpointMobile3 {
+      display: block;
+      position: static;
+      margin: 0;
+      height: auto;
+    }
+  }
+
+  .article {
+    grid-area: article;
+    min-width: 0;
+    padding-top: 112px;
+    padding-bottom: 240px;
+
+    @include breakpointMobile3 {
+      padding-bottom: 112px;
+    }
+  }
+
+  .articleTitle {
+    margin: 0;
+    font-size: var(--font-size-52);
+    line-height: 1.32;
+  }
+
+  .articleLinks {
+    list-style: none;
+    margin-block: 5rem;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template: 'left right' 1fr/1fr 1fr;
+
+    @include breakpointMobile3 {
+      grid-template:
+        'left' 1fr
+        'right' 1fr
+        /100%;
+    }
+  }
+
+  .prevArticleLinkWrapper {
+    grid-area: left;
+  }
+
+  .nextArticleLinkWrapper {
+    grid-area: right;
+  }
+
+  .mdxStyleWrapper {
+    padding-block-start: 40px;
+
+    > :global(*:first-child) {
+      margin-block-start: 0;
+    }
+
+    /* 画像 */
+    :global(img) {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Level2 */
+    :global(h2) {
+      font-size: var(--font-size-36);
+      line-height: 1.22;
+      margin-block: 120px 0;
+      font-weight: bold;
+    }
+
+    /* Level3 */
+    :global(h3) {
+      font-size: var(--font-size-26);
+      line-height: 1.38;
+      margin-block: 80px 0;
+    }
+
+    /* Level4 */
+    :global(h4) {
+      font-size: var(--font-size-18);
+      line-height: 1.56;
+      margin-block: 60px 0;
+    }
+
+    /* Level5 */
+    :global(h5) {
+      font-size: var(--font-size-16);
+      line-height: 1.76;
+      margin-block: 40px 0;
+    }
+
+    /* 連続する見出し */
+    :global(h2 + h3) {
+      margin-block: 20px 0;
+    }
+
+    :global(h3 + h4),
+    :global(h4 + h5) {
+      margin-block: 16px 0;
+    }
+
+    /* 本文 */
+    :global(p) {
+      font-size: var(--font-size-16);
+      line-height: 2.12;
+      margin-block: 20px 0;
+    }
+
+    /* 引用 */
+    :global(blockquote) {
+      :global(p) {
+        line-height: unset;
+        margin-block: unset;
+      }
+    }
+
+    /* リスト */
+    :global(ul),
+    :global(ol) {
+      font-size: var(--font-size-16);
+      line-height: 2.12;
+      margin-block: 20px 0;
+      padding-inline-start: 2.5em;
+
+      :global(ul),
+      :global(ol) {
+        margin-block-start: 0;
+      }
+    }
+
+    /* 表組み */
+    :global(table) {
+      margin-block: 20px 0;
+      width: 100%;
+
+      :global(th) {
+        height: 2.5rem;
+        vertical-align: middle;
+        font-size: var(--font-size-14);
+        background-color: var(--color-divider);
+      }
+
+      :global(td) {
+        :global(p:first-child),
+        :global(ul:first-child),
+        :global(ol:first-child) {
+          margin-block-start: 0;
+        }
+      }
+    }
+
+    :global(code) {
+      padding: 0.125rem 0.25rem;
+      border-radius: 4px;
+      background-color: var(--color-light-grey-2);
+      font-size: var(--font-size-14);
+      vertical-align: 0.05rem;
+      margin: 0.125rem;
+    }
+
+    /* 動画 */
+    :global(.youtube) {
+      aspect-ratio: 16/9;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+</style>

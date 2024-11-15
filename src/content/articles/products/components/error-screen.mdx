@@ -1,0 +1,199 @@
+---
+title: 'ErrorScreen'
+description: 'エラーを全画面で表示をするためのコンポーネントです。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import { Button, Center, Cluster, ErrorScreen, Stack, Text, TextLink } from 'smarthr-ui'
+
+ErrorScreenコンポーネントはエラーを全画面で表示するためのコンポーネントです。
+
+<ComponentStory name="ErrorScreen" />
+
+## 使用上の注意
+
+以下のように、エラーによってユーザーが操作できない状況や、ユーザーに操作させたくない状況で使用してください。
+
+- 存在しないページにアクセスした場合
+- ページにアクセスする権限がない場合
+- サービスがメンテナンス中の場合
+- 一定時間操作がなかった場合
+- 予期しないエラーが発生した場合
+
+具体例は<a href="#h2-2">エラー別の表示内容</a>に記述しています。
+
+フォームのバリデーションエラーや連携APIの疎通エラーのような一時的なエラーの場合、[NotificationBar](/products/components/notification-bar/)や[ResponseMessage](/products/components/response-message/)、[InformationPanel](/products/components/information-panel/)などを使用を検討します。詳細は[フィードバック](/products/design-patterns/feedback/)の基準を参照してください。
+
+## レイアウト
+
+ロゴ、タイトル、メッセージ、リンクを表示できます。
+
+```tsx editable
+<ErrorScreen
+  className="shr-w-full"
+  title="タイトル"
+  links={[
+    {
+      label: 'リンク1',
+      url: '/',
+    },
+    {
+      label: 'リンク2',
+      url: '/',
+    },
+    {
+      label: 'リンク3',
+      url: '/',
+      target: '_blank',
+    },
+  ]}
+>
+  <Text as="p">
+    メッセージ
+  </Text>
+</ErrorScreen>
+```
+
+### ロゴ
+
+デフォルトでSmartHRのロゴが表示されます。特別な理由がない限り、必ずロゴを表示してください。
+
+### タイトル
+
+なぜエラーが発生したのかがわかる文言を設定します。
+
+### メッセージ
+
+タイトルに補足が必要な場合、メッセージを設定します。
+
+### リンク
+
+エラーになったときにユーザーの助けになるようなページへ誘導できる場合はリンクを表示してください。
+
+必要に応じて別タブで開くオプションも設定します。
+
+## エラー別の表示内容
+
+### 存在しないページにアクセスした場合（404 Not Foundエラー）
+
+存在しないページはにアクセスした原因として、ページ自体が移動・削除された可能性やユーザーがURLを間違えている可能性を提示しましょう。プロダクトのホームへ戻るリンクも表示してください。
+
+```tsx editable
+<ErrorScreen
+  className="shr-w-full"
+  title="指定のページは見つかりませんでした"
+  links={[
+    {
+      label: 'ホームへ戻る',
+      url: '/',
+    },
+  ]}
+>
+  <Text as="p">
+    指定のページはアクセスできない状況にあるか、削除された可能性があります。
+    <br />
+    URLに間違いがないか、確認してください。
+  </Text>
+</ErrorScreen>
+```
+
+### ページにアクセスする権限がない場合（403 Forbiddenエラー）
+
+ユーザーがページにアクセスする権限をもっていない場合、プロダクトのホームへ戻るリンクを表示します。必要に応じて、所属企業の担当者（管理者）へ問い合わせるという対応策を提示してください。
+
+```tsx editable
+<ErrorScreen
+  className="shr-w-full"
+  title="このページを表示する権限がありません"
+  links={[
+    {
+      label: 'ホームへ戻る',
+      url: '/',
+    },
+  ]}
+>
+  <Text as="p">
+    詳しくは、所属企業の担当者にお問い合わせください。
+  </Text>
+</ErrorScreen>
+```
+
+### サービスがメンテナンス中の場合（503 Service Unavailableエラー）
+
+サービスがメンテナンス中の場合、SmartHRのメンテナンス・障害のお知らせへのリンクを表示してください。お知らせは、別タブで開くように設定してください。
+
+```tsx editable
+<ErrorScreen
+  className="shr-w-full"
+  title="SmartHRは現在メンテナンス中です"
+  links={[
+    {
+      label: 'お知らせ',
+      url: 'https://support.smarthr.jp/ja/info/status/page/1/',
+      target: '_blank',
+    },
+  ]}
+>
+    <Text as="p">
+      いつもSmartHRをご利用いただき、ありがとうございます。
+      <br />
+      ただいまメンテナンスのため、一時的にサービスを停止しています。
+      <br />
+      ご迷惑をおかけしますが、ご理解のほどよろしくお願いいたします。
+    </Text>
+</ErrorScreen>
+```
+
+### 一定時間操作がなかった場合（401 Unauthorizedエラー）
+
+一定の時間、ユーザーが操作しなかった場合、自動でログアウトしたことがわかるメッセージとログインボタンを表示します。ログインボタンを押せば、再ログインできるようにしてください。
+
+「セッションがタイムアウトしました。」は一般的なユーザーには伝わりにくい表現なので「自動でログアウトしました」を推奨します。
+
+```tsx editable
+<ErrorScreen
+  className="shr-w-full"
+  title="一定の時間、操作がなかったためログアウトしました"
+>
+  <Stack gap={1.5}>
+    <Text as="p">
+      一定の時間、操作がなかったため、自動でログアウトしました。
+      <br />
+      指定のページを表示するには、再度ログインしてください。
+    </Text>
+    <Center>
+      <Button>ログイン</Button>
+    </Center>
+  </Stack>
+</ErrorScreen>
+```
+
+### 予期しないエラーが発生した場合（500 Internal Server Errorエラーなど）
+
+データの閲覧・作成・更新が安全に実行できない状況の場合、予期しないエラーが発生したメッセージを表示してください。
+
+また、このページに記載されていないその他のエラーをまとめて扱う場合にも、以下の表示内容を使用できます。
+
+必要があればプロダクトのホームへ戻るリンクを表示してください。
+
+```tsx editable
+<ErrorScreen
+  className="shr-w-full"
+  title="予期しないエラーが発生しました"
+  links={[
+    {
+      label: 'ホームへ戻る',
+      url: '/',
+    },
+  ]}
+>
+    <Text as="p">
+      時間をおいて、やり直してください。
+    </Text>
+</ErrorScreen>
+```
+
+## props
+
+<ComponentPropsTable name="ErrorScreen" />
+
