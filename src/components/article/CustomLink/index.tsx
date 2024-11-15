@@ -1,4 +1,4 @@
-import { FaExternalLinkAltIcon } from 'smarthr-ui';
+import { FaUpRightFromSquareIcon } from 'smarthr-ui';
 
 import styles from './index.module.scss';
 
@@ -27,7 +27,7 @@ export default function CustomLink({ children, href, ...props }: Props) {
       rel={isExternal ? 'noreferrer' : undefined}
     >
       {children}
-      {isExternal && <FaExternalLinkAltIcon />}
+      {isExternal && <FaUpRightFromSquareIcon />}
     </a>
   );
 }

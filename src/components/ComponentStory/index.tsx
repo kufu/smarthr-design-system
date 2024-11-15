@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import { AnchorButton, Cluster, FaExternalLinkAltIcon, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
+import { AnchorButton, Cluster, FaUpRightFromSquareIcon, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
 
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
 import { UI_COMMIT_HASH, UI_VERSION } from '@/lib/getUIData';
@@ -63,12 +63,18 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
             href={storybookUrl.toString()}
             target="_blank"
             size="s"
-            suffix={<FaExternalLinkAltIcon />}
+            suffix={<FaUpRightFromSquareIcon />}
             rel="noreferrer"
           >
             Storybook
           </AnchorButton>
-          <AnchorButton href={githubUrl.toString()} target="_blank" size="s" suffix={<FaExternalLinkAltIcon />} rel="noreferrer">
+          <AnchorButton
+            href={githubUrl.toString()}
+            target="_blank"
+            size="s"
+            suffix={<FaUpRightFromSquareIcon />}
+            rel="noreferrer"
+          >
             GitHub
           </AnchorButton>
         </Cluster>

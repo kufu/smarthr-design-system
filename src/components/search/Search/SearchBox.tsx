@@ -1,7 +1,7 @@
 import { liteClient } from 'algoliasearch/lite';
 import React, { useEffect, useState } from 'react';
 import { Hits, InstantSearch, type UseSearchBoxProps, useSearchBox } from 'react-instantsearch';
-import { FaSearchIcon, Input } from 'smarthr-ui';
+import { FaMagnifyingGlassIcon, Input } from 'smarthr-ui';
 
 import HitComponent from './HitComponent';
 import styles from './SearchBox.module.scss';
@@ -51,7 +51,7 @@ function CustomSearchBox({ isAvailable, ...props }: UseSearchBoxProps & Props) {
         {/* eslint-disable-next-line smarthr/a11y-input-in-form-control */}
         <Input
           width="100%"
-          prefix={<FaSearchIcon className={styles.searchIcon} aria-label="検索" />}
+          prefix={<FaMagnifyingGlassIcon className={styles.searchIcon} aria-label="検索" />}
           value={searchState ?? ''}
           onChange={onSearchStateChange}
           autoFocus // eslint-disable-line jsx-a11y/no-autofocus

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
-import { FaRedoIcon } from 'smarthr-ui';
+import { FaArrowRotateRightIcon } from 'smarthr-ui';
 
 import { CLOUDINARY_CLOUD_NAME } from '@/constants/application';
 import gotchaItemJson from '@/data/gotchaItem.json';
@@ -120,7 +120,7 @@ export default function Gotcha() {
         </div>
         {/* ガチャボタン */}
         <button className={styles.gotchaButton} type="button" onClick={() => runGotcha()} disabled={shouldDisabled}>
-          <FaRedoIcon />
+          <FaArrowRotateRightIcon />
           <span className={styles.animatedText}>
             {Array.from(BUTTON_TEXT).map((letter, index) => (
               <span
