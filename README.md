@@ -70,17 +70,13 @@ index.mdxがないディレクトリがあった場合、左側のサイドバ�
 `/src`のエイリアスが`@/`として設定されているので、 mdxファイル内で
 
 ```mdx
-import Hoge from '../../../../src/components/hoge
-
-'
+import Hoge from '../../../../src/components/hoge'
 ```
 
 ではなく、
 
 ```mdx
-import Hoge from '@/components/hoge
-
-'
+import Hoge from '@/components/hoge'
 ```
 
 と書けるようになっています。積極的に利用してください。
