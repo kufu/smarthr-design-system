@@ -18,6 +18,7 @@
     "dev": "pnpm update:ui-data && astro dev",
     "start": "pnpm dev",
     "build": "pnpm update:ui-data && astro build",
+    "build:prod": "pnpm build && pnpm tsx ./scripts/update-algoliasearch.ts",
     "preview": "astro preview",
     "astro": "astro",
     "lint:ts": "eslint 'src/**/*.{astro,ts,tsx}'",
