@@ -14,10 +14,7 @@ import SearchBox from '@/components/search/Search/SearchBox';
     <main class="main">
       <PageHeading className="pageHeading" id="label-for-search-input">SmartHR Design Systemを検索</PageHeading>
       <div class="search ais-SearchBox__root">
-        <SearchBox
-          isAvailable={import.meta.env.PUBLIC_ALGOLIA_APP_ID && import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY ? true : false}
-          client:only="react"
-        >
+        <SearchBox client:only="react">
           {
             // client:loadでもSearchBoxが遅れて表示されCLSが起こるので、
             // client:onlyを使い同じ高さのフォールバックを表示することでCLSを軽減しています
