@@ -7,11 +7,7 @@ import HitComponent from './HitComponent';
 import styles from './SearchBox.module.scss';
 import SearchResultOuter from './SearchResultOuter';
 
-type Props = {
-  isAvailable: boolean;
-};
-
-function CustomSearchBox({ isAvailable, ...props }: UseSearchBoxProps & Props) {
+function CustomSearchBox(props: UseSearchBoxProps) {
   const { refine } = useSearchBox(props);
   const [searchState, setSearchState] = useState<string | undefined>();
   const { search } = window.location;
@@ -59,9 +55,6 @@ function CustomSearchBox({ isAvailable, ...props }: UseSearchBoxProps & Props) {
           aria-describedby="desc-for-search-input"
           name="query"
         />
-        {!isAvailable && searchState && (
-          <div className={styles.warningMessage}>検索処理を実行するにはAlgoliaのAPIキーの設定が必要です</div>
-        )}
       </div>
       {/* 検索結果 */}
       {searchState && (
@@ -73,9 +66,13 @@ function CustomSearchBox({ isAvailable, ...props }: UseSearchBoxProps & Props) {
   );
 }
 
-const searchClient = liteClient(import.meta.env.PUBLIC_ALGOLIA_APP_ID || '', import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY || '');
+export default function SearchBox(props: UseSearchBoxProps) {
+  if (!import.meta.env.PUBLIC_ALGOLIA_APP_ID || !import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY) {
+    return <div className={styles.warningMessage}>検索処理を実行するにはAlgoliaのAPIキーの設定が必要です</div>;
+  }
 
-export default function SearchBox(props: Props) {
+  const searchClient = liteClient(import.meta.env.PUBLIC_ALGOLIA_APP_ID, import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY);
+
   return (
     <InstantSearch
       indexName={import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || ''}
