@@ -334,56 +334,8 @@ a {
   top: 0
 }
 
-.shr-top-0\.25 {
-  top: 4px
-}
-
-.shr-top-0\.5 {
-  top: 8px
-}
-
-.shr-top-0\.75 {
-  top: 12px
-}
-
-.shr-top-1 {
-  top: 16px
-}
-
-.shr-top-1\.25 {
-  top: 20px
-}
-
-.shr-top-1\.5 {
-  top: 24px
-}
-
 .shr-top-1\/2 {
   top: 50%
-}
-
-.shr-top-2 {
-  top: 32px
-}
-
-.shr-top-2\.5 {
-  top: 40px
-}
-
-.shr-top-3 {
-  top: 48px
-}
-
-.shr-top-3\.5 {
-  top: 56px
-}
-
-.shr-top-4 {
-  top: 64px
-}
-
-.shr-top-8 {
-  top: 128px
 }
 
 .shr-top-\[2px\] {
@@ -392,10 +344,6 @@ a {
 
 .shr-z-1 {
   z-index: 1
-}
-
-.shr-z-\[500\] {
-  z-index: 500
 }
 
 .shr-z-fixed-menu {
@@ -428,6 +376,11 @@ a {
 
 .shr-m-auto {
   margin: auto
+}
+
+.-shr-mx-0\.5 {
+  margin-left: -8px;
+  margin-right: -8px
 }
 
 .-shr-mx-0\.75 {
@@ -690,12 +643,20 @@ a {
   height: 1.75rem
 }
 
+.shr-h-\[100vh\] {
+  height: 100vh
+}
+
 .shr-h-\[160px\] {
   height: 160px
 }
 
 .shr-h-\[2em\] {
   height: 2em
+}
+
+.shr-h-\[500px\] {
+  height: 500px
 }
 
 .shr-h-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\] {
@@ -869,6 +830,10 @@ a {
 
 .shr-min-w-\[40px\] {
   min-width: 40px
+}
+
+.shr-min-w-\[500px\] {
+  min-width: 500px
 }
 
 .shr-min-w-\[5em\] {
@@ -1981,7 +1946,7 @@ a {
 
 .shr-border-\[\#0f7f85\] {
   --tw-border-opacity: 1;
-  border-color: rgb(15 127 133 / var(--tw-border-opacity))
+  border-color: rgb(15 127 133 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-\[theme\(colors\.main\)\] {
@@ -1994,31 +1959,35 @@ a {
 
 .shr-border-danger {
   --tw-border-opacity: 1;
-  border-color: rgb(224 30 90 / var(--tw-border-opacity))
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-default {
   --tw-border-opacity: 1;
-  border-color: rgb(214 211 208 / var(--tw-border-opacity))
+  border-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-default\/50 {
   border-color: rgb(214 211 208 / 0.5)
 }
 
+.shr-border-disabled {
+  border-color: rgb(214 211 208 / 50%)
+}
+
 .shr-border-grey {
   --tw-border-opacity: 1;
-  border-color: rgb(112 109 101 / var(--tw-border-opacity))
+  border-color: rgb(112 109 101 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-grey-20 {
   --tw-border-opacity: 1;
-  border-color: rgb(214 211 208 / var(--tw-border-opacity))
+  border-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-grey-65 {
   --tw-border-opacity: 1;
-  border-color: rgb(112 109 101 / var(--tw-border-opacity))
+  border-color: rgb(112 109 101 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-inherit {
@@ -2027,7 +1996,7 @@ a {
 
 .shr-border-main {
   --tw-border-opacity: 1;
-  border-color: rgb(0 119 199 / var(--tw-border-opacity))
+  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-transparent {
@@ -2036,12 +2005,12 @@ a {
 
 .shr-border-warning-yellow {
   --tw-border-opacity: 1;
-  border-color: rgb(255 204 23 / var(--tw-border-opacity))
+  border-color: rgb(255 204 23 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-white {
   --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity))
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-b-transparent {
@@ -2058,7 +2027,7 @@ a {
 
 .shr-bg-\[\#0f7f85\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(15 127 133 / var(--tw-bg-opacity))
+  background-color: rgb(15 127 133 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-\[theme\(colors\.grey\.20\)\] {
@@ -2087,62 +2056,62 @@ a {
 
 .shr-bg-action-background {
   --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-background {
   --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity))
+  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-base-grey {
   --tw-bg-opacity: 1;
-  background-color: rgb(245 244 243 / var(--tw-bg-opacity))
+  background-color: rgb(245 244 243 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-black {
   --tw-bg-opacity: 1;
-  background-color: rgb(35 34 30 / var(--tw-bg-opacity))
+  background-color: rgb(35 34 30 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-border {
   --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-brand {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 196 204 / var(--tw-bg-opacity))
+  background-color: rgb(0 196 204 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-column {
   --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity))
+  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-danger {
   --tw-bg-opacity: 1;
-  background-color: rgb(224 30 90 / var(--tw-bg-opacity))
+  background-color: rgb(224 30 90 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-head {
   --tw-bg-opacity: 1;
-  background-color: rgb(237 235 232 / var(--tw-bg-opacity))
+  background-color: rgb(237 235 232 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-main {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-main-darken {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-over-background {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 241 240 / var(--tw-bg-opacity))
+  background-color: rgb(242 241 240 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-scrim {
@@ -2155,17 +2124,17 @@ a {
 
 .shr-bg-warning-yellow {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 204 23 / var(--tw-bg-opacity))
+  background-color: rgb(255 204 23 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-white-darken {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-white\/50 {
@@ -2440,6 +2409,10 @@ a {
   padding-inline-end: 16px
 }
 
+.shr-pe-1\.5 {
+  padding-inline-end: 24px
+}
+
 .shr-pe-2 {
   padding-inline-end: 32px
 }
@@ -2575,12 +2548,12 @@ a {
 
 .shr-text-\[\#0f7f85\] {
   --tw-text-opacity: 1;
-  color: rgb(15 127 133 / var(--tw-text-opacity))
+  color: rgb(15 127 133 / var(--tw-text-opacity, 1))
 }
 
 .shr-text-black {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .shr-text-color-inherit {
@@ -2589,32 +2562,32 @@ a {
 
 .shr-text-danger {
   --tw-text-opacity: 1;
-  color: rgb(224 30 90 / var(--tw-text-opacity))
+  color: rgb(224 30 90 / var(--tw-text-opacity, 1))
 }
 
 .shr-text-disabled {
   --tw-text-opacity: 1;
-  color: rgb(193 189 183 / var(--tw-text-opacity))
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .shr-text-grey {
   --tw-text-opacity: 1;
-  color: rgb(112 109 101 / var(--tw-text-opacity))
+  color: rgb(112 109 101 / var(--tw-text-opacity, 1))
 }
 
 .shr-text-link {
   --tw-text-opacity: 1;
-  color: rgb(0 113 193 / var(--tw-text-opacity))
+  color: rgb(0 113 193 / var(--tw-text-opacity, 1))
 }
 
 .shr-text-link-darken {
   --tw-text-opacity: 1;
-  color: rgb(0 94 161 / var(--tw-text-opacity))
+  color: rgb(0 94 161 / var(--tw-text-opacity, 1))
 }
 
 .shr-text-main {
   --tw-text-opacity: 1;
-  color: rgb(0 119 199 / var(--tw-text-opacity))
+  color: rgb(0 119 199 / var(--tw-text-opacity, 1))
 }
 
 .shr-text-transparent {
@@ -2623,7 +2596,7 @@ a {
 
 .shr-text-white {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .shr-no-underline {
@@ -2927,12 +2900,12 @@ a {
 
 .placeholder\:shr-text-grey::-moz-placeholder {
   --tw-text-opacity: 1;
-  color: rgb(112 109 101 / var(--tw-text-opacity))
+  color: rgb(112 109 101 / var(--tw-text-opacity, 1))
 }
 
 .placeholder\:shr-text-grey::placeholder {
   --tw-text-opacity: 1;
-  color: rgb(112 109 101 / var(--tw-text-opacity))
+  color: rgb(112 109 101 / var(--tw-text-opacity, 1))
 }
 
 .before\:shr-absolute::before {
@@ -3136,7 +3109,7 @@ a {
 .before\:shr-border-default::before {
   content: var(--tw-content);
   --tw-border-opacity: 1;
-  border-color: rgb(214 211 208 / var(--tw-border-opacity))
+  border-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .before\:shr-bg-\[theme\(textColor\.grey\)\]::before {
@@ -3147,19 +3120,19 @@ a {
 .before\:shr-bg-action-background::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .before\:shr-bg-border::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .before\:shr-bg-main::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .before\:shr-p-\[calc\(theme\(spacing\[0\.25\]\)_\/_2\)\]::before {
@@ -3396,7 +3369,7 @@ a {
 .after\:shr-border-l-main::after {
   content: var(--tw-content);
   --tw-border-opacity: 1;
-  border-left-color: rgb(0 119 199 / var(--tw-border-opacity))
+  border-left-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
 }
 
 .after\:shr-border-r-transparent::after {
@@ -3412,13 +3385,13 @@ a {
 .after\:shr-bg-main::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .after\:shr-bg-white::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
 .after\:shr-bg-gradient-to-l::after {
@@ -3517,17 +3490,17 @@ a {
 
 .hover\:shr-border-danger-darken:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(202 27 81 / var(--tw-border-opacity))
+  border-color: rgb(202 27 81 / var(--tw-border-opacity, 1))
 }
 
 .hover\:shr-border-darken:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(202 198 194 / var(--tw-border-opacity))
+  border-color: rgb(202 198 194 / var(--tw-border-opacity, 1))
 }
 
 .hover\:shr-border-main-darken:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(0 104 174 / var(--tw-border-opacity))
+  border-color: rgb(0 104 174 / var(--tw-border-opacity, 1))
 }
 
 .hover\:shr-border-transparent:hover {
@@ -3536,27 +3509,27 @@ a {
 
 .hover\:shr-border-white-darken:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(242 242 242 / var(--tw-border-opacity))
+  border-color: rgb(242 242 242 / var(--tw-border-opacity, 1))
 }
 
 .hover\:shr-bg-column-darken:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(237 234 232 / var(--tw-bg-opacity))
+  background-color: rgb(237 234 232 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:shr-bg-danger-darken:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 27 81 / var(--tw-bg-opacity))
+  background-color: rgb(202 27 81 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:shr-bg-head-darken:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(226 223 218 / var(--tw-bg-opacity))
+  background-color: rgb(226 223 218 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:shr-bg-main-darken:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:shr-bg-overlay:hover {
@@ -3565,22 +3538,22 @@ a {
 
 .hover\:shr-bg-white-darken:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:shr-text-black:hover {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .hover\:shr-text-white:hover {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .hover\:shr-text-white-darken:hover {
   --tw-text-opacity: 1;
-  color: rgb(242 242 242 / var(--tw-text-opacity))
+  color: rgb(242 242 242 / var(--tw-text-opacity, 1))
 }
 
 .focus-visible\:shr-z-1:focus-visible {
@@ -3589,17 +3562,17 @@ a {
 
 .focus-visible\:shr-border-danger-darken:focus-visible {
   --tw-border-opacity: 1;
-  border-color: rgb(202 27 81 / var(--tw-border-opacity))
+  border-color: rgb(202 27 81 / var(--tw-border-opacity, 1))
 }
 
 .focus-visible\:shr-border-darken:focus-visible {
   --tw-border-opacity: 1;
-  border-color: rgb(202 198 194 / var(--tw-border-opacity))
+  border-color: rgb(202 198 194 / var(--tw-border-opacity, 1))
 }
 
 .focus-visible\:shr-border-main-darken:focus-visible {
   --tw-border-opacity: 1;
-  border-color: rgb(0 104 174 / var(--tw-border-opacity))
+  border-color: rgb(0 104 174 / var(--tw-border-opacity, 1))
 }
 
 .focus-visible\:shr-border-transparent:focus-visible {
@@ -3608,17 +3581,17 @@ a {
 
 .focus-visible\:shr-border-white-darken:focus-visible {
   --tw-border-opacity: 1;
-  border-color: rgb(242 242 242 / var(--tw-border-opacity))
+  border-color: rgb(242 242 242 / var(--tw-border-opacity, 1))
 }
 
 .focus-visible\:shr-bg-danger-darken:focus-visible {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 27 81 / var(--tw-bg-opacity))
+  background-color: rgb(202 27 81 / var(--tw-bg-opacity, 1))
 }
 
 .focus-visible\:shr-bg-main-darken:focus-visible {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
 }
 
 .focus-visible\:shr-bg-overlay:focus-visible {
@@ -3627,12 +3600,12 @@ a {
 
 .focus-visible\:shr-bg-white-darken:focus-visible {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .focus-visible\:shr-text-white-darken:focus-visible {
   --tw-text-opacity: 1;
-  color: rgb(242 242 242 / var(--tw-text-opacity))
+  color: rgb(242 242 242 / var(--tw-text-opacity, 1))
 }
 
 .focus-visible\:shr-shadow-none:focus-visible {
@@ -3674,7 +3647,7 @@ a {
 
 .disabled\:shr-bg-column:disabled {
   --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity))
+  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
 }
 
 .disabled\:shr-bg-transparent:disabled {
@@ -3683,12 +3656,12 @@ a {
 
 .disabled\:shr-bg-white-darken:disabled {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .disabled\:shr-text-disabled:disabled {
   --tw-text-opacity: 1;
-  color: rgb(193 189 183 / var(--tw-text-opacity))
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .disabled\:shr-opacity-100:disabled {
@@ -3701,12 +3674,12 @@ a {
 
 .disabled\:placeholder\:shr-text-disabled:disabled::-moz-placeholder {
   --tw-text-opacity: 1;
-  color: rgb(193 189 183 / var(--tw-text-opacity))
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .disabled\:placeholder\:shr-text-disabled:disabled::placeholder {
   --tw-text-opacity: 1;
-  color: rgb(193 189 183 / var(--tw-text-opacity))
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .shr-group\/stepItem:first-child .group-first\/stepItem\:shr-bg-transparent {
@@ -3724,17 +3697,17 @@ a {
 
 .shr-group:hover .group-hover\:shr-bg-base-grey {
   --tw-bg-opacity: 1;
-  background-color: rgb(245 244 243 / var(--tw-bg-opacity))
+  background-color: rgb(245 244 243 / var(--tw-bg-opacity, 1))
 }
 
 .shr-group\/tabitem:hover .group-hover\/tabitem\:shr-text-black {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .shr-group:hover .group-hover\:shr-text-black {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .shr-group\/clearButton:focus-visible .group-focus-visible\/clearButton\:shr-rounded-full {
@@ -3760,27 +3733,27 @@ a {
 
 .shr-group:not(:disabled):hover .group-\[\:not\(\:disabled\)\]\:group-hover\:shr-bg-base-grey {
   --tw-bg-opacity: 1;
-  background-color: rgb(245 244 243 / var(--tw-bg-opacity))
+  background-color: rgb(245 244 243 / var(--tw-bg-opacity, 1))
 }
 
 .shr-group:not(:disabled):hover .group-\[\:not\(\:disabled\)\]\:group-hover\:shr-text-black {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .shr-peer:checked ~ .peer-checked\:shr-border-main {
   --tw-border-opacity: 1;
-  border-color: rgb(0 119 199 / var(--tw-border-opacity))
+  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
 }
 
 .shr-peer:checked ~ .peer-checked\:shr-bg-main {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .shr-peer:checked ~ .peer-checked\:shr-text-white {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .shr-peer:checked ~ .peer-checked\:before\:shr-pointer-events-none::before {
@@ -3833,7 +3806,7 @@ a {
 .shr-peer:checked ~ .peer-checked\:before\:shr-bg-white::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
 .shr-peer:checked ~ .peer-checked\:before\:shr-content-\[\"\"\]::before {
@@ -3843,17 +3816,17 @@ a {
 
 .shr-peer:indeterminate ~ .peer-indeterminate\:shr-border-main {
   --tw-border-opacity: 1;
-  border-color: rgb(0 119 199 / var(--tw-border-opacity))
+  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
 }
 
 .shr-peer:indeterminate ~ .peer-indeterminate\:shr-bg-main {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .shr-peer:indeterminate ~ .peer-indeterminate\:shr-text-white {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .shr-peer:hover ~ .peer-hover\:shr-shadow-input-hover {
@@ -3864,7 +3837,7 @@ a {
 
 .shr-peer:focus-visible ~ .peer-focus-visible\:shr-text-black {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .shr-peer:disabled ~ .peer-disabled\:shr-border-default\/50 {
@@ -3877,53 +3850,53 @@ a {
 
 .shr-peer:disabled ~ .peer-disabled\:shr-bg-white-darken {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .shr-peer:disabled ~ .peer-disabled\:shr-text-disabled {
   --tw-text-opacity: 1;
-  color: rgb(193 189 183 / var(--tw-text-opacity))
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .shr-peer:disabled:checked ~ .peer-disabled\:peer-checked\:shr-border-default {
   --tw-border-opacity: 1;
-  border-color: rgb(214 211 208 / var(--tw-border-opacity))
+  border-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .shr-peer:disabled:checked ~ .peer-disabled\:peer-checked\:shr-bg-border {
   --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .shr-peer:disabled:checked ~ .peer-disabled\:peer-checked\:shr-text-white-darken {
   --tw-text-opacity: 1;
-  color: rgb(242 242 242 / var(--tw-text-opacity))
+  color: rgb(242 242 242 / var(--tw-text-opacity, 1))
 }
 
 .shr-peer:disabled:checked ~ .peer-disabled\:peer-checked\:before\:shr-bg-white-darken::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .shr-peer:disabled:indeterminate ~ .peer-disabled\:peer-indeterminate\:shr-border-default {
   --tw-border-opacity: 1;
-  border-color: rgb(214 211 208 / var(--tw-border-opacity))
+  border-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .shr-peer:disabled:indeterminate ~ .peer-disabled\:peer-indeterminate\:shr-bg-border {
   --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .shr-peer:disabled:indeterminate ~ .peer-disabled\:peer-indeterminate\:shr-text-white-darken {
   --tw-text-opacity: 1;
-  color: rgb(242 242 242 / var(--tw-text-opacity))
+  color: rgb(242 242 242 / var(--tw-text-opacity, 1))
 }
 
 .shr-peer[aria-invalid] ~ .peer-\[\[aria-invalid\]\]\:shr-border-danger {
   --tw-border-opacity: 1;
-  border-color: rgb(224 30 90 / var(--tw-border-opacity))
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1))
 }
 
 .has-\[\[aria-current\=\"page\"\]\]\:shr-relative:has([aria-current="page"]) {
@@ -3944,22 +3917,22 @@ a {
 
 .has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]) {
   --tw-border-opacity: 1;
-  border-color: rgb(224 30 90 / var(--tw-border-opacity))
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1))
 }
 
 .has-\[\:checked\]\:shr-bg-main:has(:checked) {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .has-\[\:disabled\]\:shr-bg-border:has(:disabled) {
   --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .has-\[\[aria-current\=\"page\"\]\]\:shr-text-black:has([aria-current="page"]) {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .has-\[\:checked\]\:before\:shr-ms-\[theme\(fontSize\.base\)\]:has(:checked)::before {
@@ -3982,7 +3955,7 @@ a {
 .has-\[\:checked\]\:before\:shr-bg-white:has(:checked)::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
 .has-\[input\:disabled\:not\(\:checked\)\]\:before\:shr-bg-\[theme\(textColor\.disabled\)\]:has(input:disabled:not(:checked))::before {
@@ -4019,7 +3992,7 @@ a {
 .has-\[\[aria-current\=\"page\"\]\]\:after\:shr-bg-main:has([aria-current="page"])::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .has-\[\[aria-current\=\"page\"\]\]\:after\:shr-content-\[\"\"\]:has([aria-current="page"])::after {
@@ -4048,17 +4021,17 @@ a {
 
 .aria-checked\:shr-border-main[aria-checked="true"] {
   --tw-border-opacity: 1;
-  border-color: rgb(0 119 199 / var(--tw-border-opacity))
+  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
 }
 
 .aria-checked\:shr-bg-main[aria-checked="true"] {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .aria-checked\:shr-text-white[aria-checked="true"] {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .aria-checked\:hover\:shr-border-main\/50:hover[aria-checked="true"] {
@@ -4107,7 +4080,7 @@ a {
 
 .aria-disabled\:shr-bg-white-darken[aria-disabled="true"] {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .aria-disabled\:shr-bg-clip-padding[aria-disabled="true"] {
@@ -4116,7 +4089,7 @@ a {
 
 .aria-disabled\:shr-text-disabled[aria-disabled="true"] {
   --tw-text-opacity: 1;
-  color: rgb(193 189 183 / var(--tw-text-opacity))
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .aria-disabled\:shr-text-white\/50[aria-disabled="true"] {
@@ -4129,17 +4102,17 @@ a {
 
 .aria-selected\:shr-bg-main[aria-selected="true"] {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .aria-selected\:shr-bg-main-darken[aria-selected="true"] {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
 }
 
 .aria-selected\:shr-text-white[aria-selected="true"] {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .aria-selected\:before\:shr-absolute[aria-selected="true"]::before {
@@ -4176,7 +4149,7 @@ a {
 .aria-selected\:before\:shr-bg-main[aria-selected="true"]::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .aria-selected\:before\:shr-content-\[\"\"\][aria-selected="true"]::before {
@@ -4194,17 +4167,17 @@ a {
 
 .aria-current-page\:shr-border-main[aria-current="page"] {
   --tw-border-opacity: 1;
-  border-color: rgb(0 119 199 / var(--tw-border-opacity))
+  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
 }
 
 .aria-current-page\:shr-bg-grey-9[aria-current="page"] {
   --tw-bg-opacity: 1;
-  background-color: rgb(237 235 232 / var(--tw-bg-opacity))
+  background-color: rgb(237 235 232 / var(--tw-bg-opacity, 1))
 }
 
 .aria-current-page\:shr-bg-main[aria-current="page"] {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .aria-current-page\:shr-font-bold[aria-current="page"] {
@@ -4213,7 +4186,7 @@ a {
 
 .aria-current-page\:shr-text-white[aria-current="page"] {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .aria-\[sort\]\:shr-cursor-pointer[aria-sort] {
@@ -4222,12 +4195,12 @@ a {
 
 .aria-\[invalid\]\:shr-border-danger[aria-invalid] {
   --tw-border-opacity: 1;
-  border-color: rgb(224 30 90 / var(--tw-border-opacity))
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1))
 }
 
 .hover\:aria-\[sort\]\:shr-bg-head-darken[aria-sort]:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(226 223 218 / var(--tw-bg-opacity))
+  background-color: rgb(226 223 218 / var(--tw-bg-opacity, 1))
 }
 
 .shr-group[aria-expanded="true"] .group-aria-expanded\:-shr-rotate-180 {
@@ -4242,7 +4215,7 @@ a {
 
 .shr-group\/tabitem[aria-selected="true"] .group-aria-selected\/tabitem\:shr-text-black {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 @supports (not selector(:has(+ *))) {
@@ -4282,12 +4255,12 @@ a {
 @media (prefers-contrast: more) {
   .contrast-more\:shr-border-high-contrast {
     --tw-border-opacity: 1;
-    border-color: rgb(35 34 30 / var(--tw-border-opacity))
+    border-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
   }
 
   .contrast-more\:shr-border-b-high-contrast {
     --tw-border-opacity: 1;
-    border-bottom-color: rgb(35 34 30 / var(--tw-border-opacity))
+    border-bottom-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
   }
 
   .contrast-more\:before\:shr-absolute::before {
@@ -4303,7 +4276,7 @@ a {
   .contrast-more\:before\:shr-bg-black::before {
     content: var(--tw-content);
     --tw-bg-opacity: 1;
-    background-color: rgb(35 34 30 / var(--tw-bg-opacity))
+    background-color: rgb(35 34 30 / var(--tw-bg-opacity, 1))
   }
 
   .contrast-more\:before\:shr-content-\[\"\"\]::before {
@@ -4313,12 +4286,12 @@ a {
 
   .shr-peer:checked ~ .contrast-more\:peer-checked\:shr-border-high-contrast {
     --tw-border-opacity: 1;
-    border-color: rgb(35 34 30 / var(--tw-border-opacity))
+    border-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
   }
 
   .shr-peer:indeterminate ~ .contrast-more\:peer-indeterminate\:shr-border-high-contrast {
     --tw-border-opacity: 1;
-    border-color: rgb(35 34 30 / var(--tw-border-opacity))
+    border-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
   }
 }
 
@@ -4452,12 +4425,12 @@ a {
 
 .\[\&\&\&\&\]\:shr-bg-main.\[\&\&\&\&\]\:shr-bg-main.\[\&\&\&\&\]\:shr-bg-main.\[\&\&\&\&\]\:shr-bg-main {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity))
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\&\&\]\:shr-text-white.\[\&\&\&\&\]\:shr-text-white.\[\&\&\&\&\]\:shr-text-white.\[\&\&\&\&\]\:shr-text-white {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto {
@@ -4563,42 +4536,42 @@ a {
 
 .\[\&\&\&\]\:shr-bg-action-background.\[\&\&\&\]\:shr-bg-action-background.\[\&\&\&\]\:shr-bg-action-background {
   --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity))
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\&\]\:shr-bg-background.\[\&\&\&\]\:shr-bg-background.\[\&\&\&\]\:shr-bg-background {
   --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity))
+  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\&\]\:shr-bg-base-grey.\[\&\&\&\]\:shr-bg-base-grey.\[\&\&\&\]\:shr-bg-base-grey {
   --tw-bg-opacity: 1;
-  background-color: rgb(245 244 243 / var(--tw-bg-opacity))
+  background-color: rgb(245 244 243 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\&\]\:shr-bg-column.\[\&\&\&\]\:shr-bg-column.\[\&\&\&\]\:shr-bg-column {
   --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity))
+  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\&\]\:shr-bg-head.\[\&\&\&\]\:shr-bg-head.\[\&\&\&\]\:shr-bg-head {
   --tw-bg-opacity: 1;
-  background-color: rgb(237 235 232 / var(--tw-bg-opacity))
+  background-color: rgb(237 235 232 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\&\]\:shr-bg-over-background.\[\&\&\&\]\:shr-bg-over-background.\[\&\&\&\]\:shr-bg-over-background {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 241 240 / var(--tw-bg-opacity))
+  background-color: rgb(242 241 240 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\&\]\:shr-bg-white.\[\&\&\&\]\:shr-bg-white.\[\&\&\&\]\:shr-bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black {
   --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled .smarthr-ui-Loader-line {
@@ -4653,7 +4626,7 @@ a {
 
 .\[\&\.fixed\]\:shr-bg-white.fixed {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\.fixed\]\:after\:shr-opacity-100.fixed::after {
@@ -4701,9 +4674,13 @@ a {
   color: inherit
 }
 
+.\[\&\:disabled_\.smarthr-ui-FormControl-exampleMessage\]\:shr-text-color-inherit:disabled .smarthr-ui-FormControl-exampleMessage {
+  color: inherit
+}
+
 .\[\&\:disabled_\.smarthr-ui-FormControl-label_\>_span\]\:shr-text-disabled:disabled .smarthr-ui-FormControl-label > span {
   --tw-text-opacity: 1;
-  color: rgb(193 189 183 / var(--tw-text-opacity))
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .\[\&\:disabled_\.smarthr-ui-FormControl-supplementaryMessage\]\:shr-text-color-inherit:disabled .smarthr-ui-FormControl-supplementaryMessage {
@@ -4716,7 +4693,7 @@ a {
 
 .\[\&\:disabled_\.smarthr-ui-Input\]\:shr-bg-white-darken:disabled .smarthr-ui-Input {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\:empty\]\:shr-gap-0:empty {
@@ -4773,7 +4750,7 @@ a {
 
 .\[\&\:not\(\[href\]\)\]\:shr-bg-white-darken:not([href]) {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\:not\(\[href\]\)\]\:shr-bg-clip-padding:not([href]) {
@@ -4782,7 +4759,7 @@ a {
 
 .\[\&\:not\(\[href\]\)\]\:shr-text-disabled:not([href]) {
   --tw-text-opacity: 1;
-  color: rgb(193 189 183 / var(--tw-text-opacity))
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .\[\&\:not\(\[href\]\)\]\:shr-text-white\/50:not([href]) {
@@ -4824,7 +4801,7 @@ a {
 
 .\[\&\>\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-text-white>.smarthr-ui-DropdownMenuButton-trigger {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .\[\&\>\.smarthr-ui-DropdownMenuButton-trigger\]\:last-of-type\:-shr-me-0\.25:last-of-type>.smarthr-ui-DropdownMenuButton-trigger {
@@ -4927,12 +4904,12 @@ a {
 
 .hover\:\[\&\]\:shr-bg-danger-darken:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 27 81 / var(--tw-bg-opacity))
+  background-color: rgb(202 27 81 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:\[\&\]\:shr-bg-main-darken:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:\[\&\]\:shr-bg-transparent:hover {
@@ -4941,17 +4918,17 @@ a {
 
 .hover\:\[\&\]\:shr-bg-warning-yellow-darken:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(252 197 0 / var(--tw-bg-opacity))
+  background-color: rgb(252 197 0 / var(--tw-bg-opacity, 1))
 }
 
 .focus-visible\:\[\&\]\:shr-bg-danger-darken:focus-visible {
   --tw-bg-opacity: 1;
-  background-color: rgb(202 27 81 / var(--tw-bg-opacity))
+  background-color: rgb(202 27 81 / var(--tw-bg-opacity, 1))
 }
 
 .focus-visible\:\[\&\]\:shr-bg-main-darken:focus-visible {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 104 174 / var(--tw-bg-opacity))
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
 }
 
 .focus-visible\:\[\&\]\:shr-bg-transparent:focus-visible {
@@ -4960,7 +4937,7 @@ a {
 
 .focus-visible\:\[\&\]\:shr-bg-warning-yellow-darken:focus-visible {
   --tw-bg-opacity: 1;
-  background-color: rgb(252 197 0 / var(--tw-bg-opacity))
+  background-color: rgb(252 197 0 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&_\.smarthr-ui-AnchorButton\]\:shr-w-full .smarthr-ui-AnchorButton {
@@ -5047,13 +5024,17 @@ a {
   display: block
 }
 
+.\[\&_\.smarthr-ui-Icon\]\:shr-fill-white .smarthr-ui-Icon {
+  fill: #fff
+}
+
 .\[\&_\.smarthr-ui-Icon\]\:shr-p-0\.25 .smarthr-ui-Icon {
   padding: 4px
 }
 
 .\[\&_\.smarthr-ui-Icon\]\:shr-text-grey .smarthr-ui-Icon {
   --tw-text-opacity: 1;
-  color: rgb(112 109 101 / var(--tw-text-opacity))
+  color: rgb(112 109 101 / var(--tw-text-opacity, 1))
 }
 
 @media (forced-colors: active) {
@@ -5088,6 +5069,14 @@ a {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
+.\[\&_\.smarthr-ui-WarningIcon-mark\]\:shr-fill-warning-yellow .smarthr-ui-WarningIcon-mark {
+  fill: #ffcc17
+}
+
+.\[\&_\.smarthr-ui-WarningIcon-wrapper\]\:shr-fill-black .smarthr-ui-WarningIcon-wrapper {
+  fill: #23221e
+}
+
 .\[\&_\>_\*\]\:shr-my-0 > * {
   margin-top: 0;
   margin-bottom: 0
@@ -5120,7 +5109,7 @@ a {
 
 .\[\&_li\:hover\]\:shr-bg-white-darken li:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity))
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&_li\:hover\]\:shr-px-0\.25 li:hover {
@@ -5138,12 +5127,12 @@ a {
 
 .\[\&_tbody\]\:shr-bg-white tbody {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&_td\]\:shr-bg-white td {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&_td\]\:shr-p-0\.25 td {
@@ -5157,13 +5146,13 @@ a {
 @media (prefers-contrast: more) {
   .\[\&_td\]\:contrast-more\:shr-border-high-contrast td {
     --tw-border-opacity: 1;
-    border-color: rgb(35 34 30 / var(--tw-border-opacity))
+    border-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
   }
 }
 
 .\[\&_th\]\:shr-bg-head th {
   --tw-bg-opacity: 1;
-  background-color: rgb(237 235 232 / var(--tw-bg-opacity))
+  background-color: rgb(237 235 232 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&_th\]\:shr-p-0\.25 th {
@@ -5180,13 +5169,13 @@ a {
 
 .\[\&_th\]\:shr-text-grey th {
   --tw-text-opacity: 1;
-  color: rgb(112 109 101 / var(--tw-text-opacity))
+  color: rgb(112 109 101 / var(--tw-text-opacity, 1))
 }
 
 @media (prefers-contrast: more) {
   .\[\&_th\]\:contrast-more\:shr-border-high-contrast th {
     --tw-border-opacity: 1;
-    border-color: rgb(35 34 30 / var(--tw-border-opacity))
+    border-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
   }
 }
 
@@ -5230,6 +5219,10 @@ a {
 .smarthr-ui-Base > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:last-child .\[\.smarthr-ui-Base_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:last-child_\&\]\:shr-rounded-b-l {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px
+}
+
+.smarthr-ui-ModelessDialog-handle:focus-visible + .\[\.smarthr-ui-ModelessDialog-handle\:focus-visible_\+_\&\]\:shr-relative {
+  position: relative
 }
 
 :checked~.\[\:checked\~\&\]\:shr-flex {
