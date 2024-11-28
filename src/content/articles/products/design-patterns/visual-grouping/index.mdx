@@ -20,11 +20,11 @@ import imageUrlBorderDo from './images/border-do.png'
 SmartHRプロダクトの基本的な視覚的グルーピングのパターンをまとめています。
 
 ## 基本的な考え方
-余白・矩形・罫線・影による視覚的グルーピングは、情報の支配関係や意味的なまとまりといった要素同士の関係性を視覚的に表現するために使います。
+余白・矩形・罫線・影による視覚的グルーピングは、情報の支配関係や意味的なまとまりといった情報の関係性を視覚的に表現するために使います。
 
 適切に要素をグルーピングすることで、以下のようにユーザーが素早く情報の関連性を理解し操作できることを期待できます。
 
-- 個々の要素の内容を詳細に確認することなく、視覚的な構成から素早く情報の関係性を理解し、目的の情報を見つけられる
+- 個々の要素の内容を詳細に確認することなく、視覚的な構成から素早く情報の関係性を認識し、目的の情報を見つけられる
 - アクションやナビゲーションの影響範囲を事前に理解して操作できる
 
 ### 視覚的グルーピングの表現に一貫性を持たせる
@@ -63,7 +63,7 @@ SmartHR全体で一貫性のあるグルーピングをすることで、ユー�
 
 <DoAndDont type="dont">
   <Image slot="img" src={imageUrlGapDont} alt="Dont" />
-  <Text slot="label">情報のまとまりや支配関係を理解することが難しい。例えば、各ボタンや下部の「補足テキスト」はどの見出しに属しているのかわからない。</Text>
+  <Text slot="label">要素のまとまりを理解することが難しい。例えば、各ボタンや下部の「補足テキスト」はどの見出しに属しているのかわからない。</Text>
 </DoAndDont>
 
 余白は[Cluster](/products/components/layout/cluster/)や[Stack](/products/components/layout/stack/)を用いて表現できます。[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
@@ -85,7 +85,7 @@ SmartHR全体で一貫性のあるグルーピングをすることで、ユー�
 
 <DoAndDont type="do">
   <Image slot="img" src={imageUrlRectangleDo} alt="Do" />
-  <Text slot="label">必要な箇所のみ矩形によってグルーピングされており、コンテンツの内容と情報のまとまりを素早く理解しやすい。</Text>
+  <Text slot="label">必要な箇所のみ矩形によってグルーピングされており、要素のまとまりを素早く理解しやすい。</Text>
 </DoAndDont>
 
 矩形は[Base](/products/components/layout/base)や[BaseColumn](/products/components/layout/base/base-column)を用いて表現できます。
@@ -107,7 +107,7 @@ SmartHR全体で一貫性のあるグルーピングをすることで、ユー�
 
 <DoAndDont type="do">
   <Image slot="img" src={imageUrlBorderDo} alt="Do" />
-  <Text slot="label">適切に余白を使ってレイアウトされており、素早く情報のまとまりを理解しやすい。</Text>
+  <Text slot="label">適切に余白を使ってレイアウトされており、素早く要素のまとまりを理解しやすい。</Text>
 </DoAndDont>
 
 ## デザインパターン
