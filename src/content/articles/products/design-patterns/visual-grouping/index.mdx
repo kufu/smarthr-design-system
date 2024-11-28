@@ -9,7 +9,6 @@ import { Text } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 
 import imageUrlGapDont from './images/gap-dont.png'
-import imageUrlGapDo from './images/gap-do.png'
 import imageUrlRectangleDont from './images/rectangle-dont.png'
 import imageUrlRectangleDo from './images/rectangle-do.png'
 import imageUrlBorderDont from './images/border-dont.png'
@@ -53,11 +52,6 @@ SmartHR全体で一貫性のあるグルーピングをすることで、ユー�
 <DoAndDont type="dont">
   <Image slot="img" src={imageUrlGapDont} alt="Dont" />
   <Text slot="label">情報のまとまりや支配関係を理解することが難しい。例えば、各ボタンや下部の「補足テキスト」はどの見出しに属しているのかわからない。</Text>
-</DoAndDont>
-
-<DoAndDont type="do">
-  <Image slot="img" src={imageUrlGapDo} alt="Do" />
-  <Text slot="label">余白だけでなく適切に矩形・影・罫線を用いてグルーピングが表現されており、素早く情報の関係性を理解しやすい。</Text>
 </DoAndDont>
 
 余白は[Cluster](/products/components/layout/cluster/)や[Stack](/products/components/layout/stack/)を用いて表現できます。[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
