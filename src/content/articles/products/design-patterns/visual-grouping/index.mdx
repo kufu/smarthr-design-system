@@ -8,6 +8,8 @@ import { Image } from 'astro:assets'
 import { Text } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 
+import imageUrlConsistencyDont from './images/consistency-dont.png'
+import imageUrlConsistencyDo from './images/consistency-do.png'
 import imageUrlGapDont from './images/gap-dont.png'
 import imageUrlRectangleDont from './images/rectangle-dont.png'
 import imageUrlRectangleDo from './images/rectangle-do.png'
@@ -28,7 +30,17 @@ SmartHRプロダクトの基本的な視覚的グルーピングのパターン�
 ### 視覚的グルーピングの表現に一貫性を持たせる
 SmartHR全体で一貫性のあるグルーピングをすることで、ユーザーは経験に基づいて情報の意味や階層を推測しながらアプリケーションを利用できます。[デザインパターン](#h2-2)に基づいたグルーピングを検討してください。
 
-また、同じ階層・同じ粒度のグループが複数ある場合は、特別な理由がない限り同じ表現でグルーピングしてください。むやみに異なる表現を利用することは、ユーザーが情報を理解する障壁となります。
+また、階層や性質が似たグループが同一のコンテキスト（一連の操作や同じ画面）に複数ある場合は、特別な理由がない限り同じ表現でグルーピングしてください。むやみに異なる表現を利用すると、それぞれが別の階層や性質であるかのような印象をユーザーに与えます。
+
+<DoAndDont type="dont">
+  <Image slot="img" src={imageUrlConsistencyDont} alt="Dont" />
+  <Text slot="label">見出し1~3それぞれグルーピングとしては適切だが、同じ画面に並んでいる同じ性質の要素が別の手段でグルーピングされていることでそれぞれ別の性質を持つものに見えてしまう。</Text>
+</DoAndDont>
+
+<DoAndDont type="do">
+  <Image slot="img" src={imageUrlConsistencyDo} alt="Do" />
+  <Text slot="label">同じ画面に並んでいる同じ性質の要素が同一の手段でグルーピングされていることで、同一の階層や性質であることが理解しやすい。</Text>
+</DoAndDont>
 
 ### 階層を深くしない
 視覚的なグループの内部でさらに要素をグルーピングすることで、情報の階層構造・内包関係を表現できます。ただし、過剰に深い階層はユーザーの素早く正確な情報の理解を妨げます。
