@@ -1,0 +1,126 @@
+---
+import { FaUpRightFromSquareIcon } from 'smarthr-ui';
+
+const Link1 = [
+  {
+    title: 'さがす',
+    path: '/search/',
+    isExternal: false,
+  },
+];
+
+const Link2 = [
+  {
+    title: '利用規約',
+    path: '/terms/',
+    isExternal: false,
+  },
+  {
+    title: 'お問い合わせ・フィードバック',
+    path: '/contact/',
+    isExternal: false,
+  },
+  {
+    title: '運用ガイドライン',
+    path: '/operational-guideline/',
+    isExternal: false,
+  },
+  {
+    title: '更新情報（X）',
+    path: 'https://twitter.com/SHRDesignSystem',
+    isExternal: true,
+  },
+  {
+    title: '運営会社',
+    path: 'https://smarthr.co.jp/company/',
+    isExternal: true,
+  },
+];
+---
+
+<ul class="large">
+  {
+    Link1.map(({ title, path, isExternal }) => (
+      <li>
+        {isExternal ? (
+          <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
+            {title}
+          </a>
+        ) : (
+          <a class="link" href={path}>
+            {title}
+          </a>
+        )}
+      </li>
+    ))
+  }
+</ul>
+<ul>
+  {
+    Link2.map(({ title, path, isExternal }) => (
+      <li>
+        {isExternal ? (
+          // NOTE: タイトルとアイコンの間に空白文字が入るのを避けるためにくっつけておく
+          // prettier-ignore
+          <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
+            {title}<FaUpRightFromSquareIcon />
+          </a>
+        ) : (
+          <a class="link" href={path}>
+            {title}
+          </a>
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--color-text-black);
+
+    &.large {
+      li {
+        font-size: var(--font-size-16);
+      }
+    }
+
+    li {
+      font-size: var(--font-size-12);
+
+      &:not(:last-child) {
+        margin-bottom: 4px;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.loginButton:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .anchor {
+    display: inline-block;
+    width: 100%;
+
+    svg {
+      margin-inline: 0.25em;
+    }
+  }
+
+  .link {
+    display: inline-block;
+    width: 100%;
+  }
+</style>

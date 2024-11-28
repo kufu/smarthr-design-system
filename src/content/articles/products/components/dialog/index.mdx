@@ -1,0 +1,72 @@
+---
+title: 'Dialog'
+description: 'ダイアログボックス（もしくは単に「ダイアログ」）と呼ばれる、ページの前面に表示される領域のためのコンポーネントです。'
+---
+
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+import {
+  ActionDialog,
+  Button,
+  Dialog,
+  MessageDialog,
+  ModelessDialog,
+  Stack,
+  Text,
+  TextLink,
+} from 'smarthr-ui'
+
+Dialogコンポーネントは、ダイアログボックス（もしくは単に「ダイアログ」）と呼ばれる、ページの前面に表示される領域のためのコンポーネントです。
+
+ダイアログは、ユーザーに入力や選択などの操作を求めたり、情報を提示するために使われます。ユーザーの操作を起点として表示され、ユーザーの操作によって閉じられます。
+
+<ComponentStory name="Dialog" />
+
+## Dialogを使用したコンポーネント
+
+頻繁に利用するダイアログのパターンを、スタイリングやpropsを整えたコンポーネントとして用意しています。
+
+import DynamicActionDialog from './_components/DynamicActionDialog'
+import DynamicMessageDialog from './_components/DynamicMessageDialog'
+import DynamicModelessDialog from './_components/DynamicModelessDialog'
+
+### ActionDialog
+
+ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
+
+詳しい使い方は、[ActionDialog](./action-dialog/)を参照してください。 
+
+<ComponentPreview>
+  <DynamicActionDialog client:load />
+</ComponentPreview>
+
+### MessageDialog
+
+ユーザーに情報を提示するためのダイアログです。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
+
+詳しい使い方は、[MessageDialog](./message-dialog/)を参照してください。
+
+<ComponentPreview>
+  <DynamicMessageDialog client:load />
+</ComponentPreview>
+
+### ModelessDialog
+
+モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。
+
+基本的に、ダイアログと裏側の画面を同時並行で閲覧・操作する場合に使います。
+
+詳しい使い方は、[ModelessDialog](./modeless-dialog/)を参照してください。
+
+<ComponentPreview>
+  <DynamicModelessDialog client:load />
+</ComponentPreview>
+
+## Props
+
+<ComponentPropsTable name="Dialog" />

@@ -4,15 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-prod:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup NodeJS
         uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
 
       - name: Create .env file
         run: |
@@ -23,12 +29,17 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --ignore-engines
+        run: pnpm install --frozen-lockfile
 
-      - run: yarn clean
-      - run: yarn build
+      - name: Build
+        run: pnpm build
 
-      - run: npx netlify-cli deploy --prod --dir=./public
+      - name: Deploy
+        run: |
+          npx netlify-cli deploy --prod --dir=./dist
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Update Algolia
+        run: pnpm tsx ./scripts/update-algoliasearch.ts

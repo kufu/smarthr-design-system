@@ -1,0 +1,36 @@
+.searchPanel {
+  width: 712px;
+  right: 0;
+  padding: 8px;
+  box-sizing: border-box;
+
+  @include breakpointMobile3 {
+    left: 0;
+    width: 100%;
+  }
+}
+
+.searchPanelHeader {
+  padding: 8px;
+  font-weight: bold;
+}
+
+.searchPanelBody {
+  padding: 8px;
+  max-height: 32em;
+  color: black;
+  overflow-y: scroll;
+
+  > p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+.children {
+  :global(ol) {
+    list-style: none;
+    padding-inline-start: unset;
+    margin-block: unset;
+  }
+}

@@ -1,0 +1,31 @@
+---
+type Props = {
+  gap?: string;
+  size?: string;
+  autoRepeat?: 'auto-fit' | 'auto-fill';
+};
+
+const { gap = '24px', size = '344px', autoRepeat = 'auto-fit' } = Astro.props;
+---
+
+<div
+  class="wrapper"
+  style={{
+    gap,
+    gridTemplateColumns: `repeat(${autoRepeat}, minmax(${size}, 1fr))`,
+  }}
+>
+  <slot />
+</div>
+
+<style lang="scss">
+  .wrapper {
+    display: grid;
+    margin-top: 24px;
+
+    /* グリッドアイテム内の1つの要素の上マージンを消す */
+    & > :global(* > :first-child) {
+      margin-top: 0;
+    }
+  }
+</style>

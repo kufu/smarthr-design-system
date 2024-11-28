@@ -1,0 +1,62 @@
+---
+import 'smarthr-ui/smarthr-ui.css';
+import '../styles/global.scss';
+import Head, { type Props as HeadProps } from '@/components/Head.astro';
+import { defaultColor, defaultLeading } from 'smarthr-ui';
+
+type Props = HeadProps;
+---
+
+<!doctype html>
+<html lang="ja">
+  <Head {...Astro.props} />
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style
+  is:global
+  lang="scss"
+  define:vars={{
+    leadingRelaxed: defaultLeading.RELAXED,
+    colorTextLink: defaultColor.TEXT_LINK,
+  }}
+>
+  body {
+    margin: 0;
+    font-family:
+      SDSYuGothic,
+      Yu Gothic,
+      YuGothic,
+      sans-serif;
+    line-height: var(--leadingRelaxed);
+    color: var(--color-text-black);
+    overflow-wrap: break-word;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  a {
+    color: var(--colorTextLink);
+    text-decoration: underline;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table tr {
+    border-bottom: var(--border-shorthand);
+  }
+
+  table th,
+  table td {
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    min-width: 7em; /* 5em+padding */
+  }
+</style>

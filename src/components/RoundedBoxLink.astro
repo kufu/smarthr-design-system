@@ -1,0 +1,95 @@
+---
+type Props = {
+  path: string;
+  label: string;
+  title: string;
+  align?: 'left' | 'center' | 'right';
+  caretPosition?: 'left' | 'right';
+};
+
+const { path, label, title, align = 'left', caretPosition = 'right' } = Astro.props;
+---
+
+<a
+  class="boxLink"
+  href={path}
+  style={{
+    textAlign: align,
+  }}
+>
+  <p class="labelText">{label}</p>
+  <div class="linkText">
+    <span>{title}</span>
+  </div>
+</a>
+
+<style
+  lang="scss"
+  define:vars={{
+    linkTextPaddingLeft: caretPosition === 'left' ? '1.8em' : 0,
+    linkTextPaddingRight: caretPosition === 'left' ? 0 : '1.8em',
+    linkTextAfterRight: caretPosition === 'left' ? 'auto' : 0,
+    linkTextAfterLeft: caretPosition === 'left' ? 0 : 'auto',
+    linkTextAfterTransition: caretPosition === 'left' ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)',
+    hoverLinkTextAfterTransition:
+      caretPosition === 'left' ? 'translateY(-50%) rotate(180deg) translateX(4px)' : 'translateY(-50%) translateX(4px)',
+  }}
+>
+  .boxLink {
+    display: block;
+    padding: 24px;
+    border: solid 1px var(--color-light-grey-1);
+    border-radius: 12px;
+    font-size: var(--font-size-14);
+    font-weight: bold;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background-color 1.5s cubic-bezier(0, 0.7, 0, 1);
+
+    > .labelText {
+      margin: 0 0 8px;
+      letter-spacing: 0.1rem;
+      color: var(--color-text-black);
+    }
+
+    .linkText {
+      display: inline-block;
+      color: var(--color-main-darken);
+      position: relative;
+      padding-left: var(--linkTextPaddingLeft);
+      padding-right: var(--linkTextPaddingRight);
+      border-bottom: solid 1px currentColor;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0.8em;
+        height: 0.8em;
+        top: 50%;
+        right: var(--linkTextAfterRight);
+        left: var(--linkTextAfterLeft);
+        transform: var(--linkTextAfterTransition);
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1Ljg3MiA3LjMzNzAzTDAgMC42MDMwMjdWMi4wODUwM0wxNC4yNiA4LjAxMzAzTDAgMTMuOTE1VjE1LjM5N0wxNS44NzIgOC42NjMwM1Y3LjMzNzAzWiIgZmlsbD0iIzAwNjVBOSIvPgo8L3N2Zz4K');
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: transform 1.5s cubic-bezier(0, 0.7, 0, 1);
+      }
+    }
+
+    &:hover {
+      transition: background-color 0.2s;
+      background-color: var(--color-light-grey-2);
+      border-color: var(--color-text-grey);
+
+      .linkText {
+        border-bottom-color: transparent;
+
+        &::after {
+          transition: transform 0.2s;
+          transform: var(--hoverLinkTextAfterTransition);
+        }
+      }
+    }
+  }
+</style>

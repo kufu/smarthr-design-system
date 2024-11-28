@@ -1,0 +1,22 @@
+---
+// NOTE:
+// Astro コンポーネントでは
+// <span>Hello</span>
+// <span>World</span>
+// と要素を改行して並べると「Hello World」のように要素間にスペースが入ります
+//
+// このコンポーネントはループで要素を作成することで、この仕様を回避するためのものです
+//
+// 詳しくは以下のIssueを参照してください
+// Slots render additional character spaces · Issue #6893 · withastro/astro
+// https://github.com/withastro/astro/issues/6893
+
+type Props = {
+  texts: string[];
+  as: 'span' | 'p';
+};
+
+const { texts, as: As } = Astro.props as Props;
+---
+
+{texts.map((text) => <As>{text}</As>)}

@@ -1,0 +1,89 @@
+---
+title: 'Textarea'
+description: 'テキストなどの情報を複数行入力するためのコンポーネントです。`textarea`の代わりとして使用します。入力文字数を数える機能や入力によって自動で領域が広がる機能を備えています。'
+---
+import { Image } from 'astro:assets'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Cluster, FormControl, Text, Textarea } from 'smarthr-ui'
+
+import textareaSizeDo from './images/textarea-size-do.png'
+import textareaSizeDont from './images/textarea-size-dont.png'
+
+テキストなどの情報を複数行入力するためのコンポーネントです。`textarea`の代わりとして使用します。入力文字数を数える機能や入力によって自動で領域が広がる機能を備えています。
+
+<ComponentStory name="Textarea" />
+
+## 使用上の注意
+
+### 適切なサイズに調整して使用する
+
+入力する内容をあらかじめ精査し適切なサイズになるよう調整して使用してください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={textareaSizeDo} alt="Do" />
+    <Text slot="label">入力する内容の量が精査され、幅と高さが調整されている</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={textareaSizeDont} alt="Dont" />
+    <Text slot="label">入力する内容の量が精査されず、幅と高さが調整されていない</Text>
+  </DoAndDont>
+</Cluster>
+
+適切なサイズは以下の判断基準を参考にしてください。
+
+- Textareaはデフォルトで2行分の高さが確保され、幅を超えると改行されますが、幅と高さが小さいと入力内容が確認しづらくなります。十分なサイズを確保してください。幅は`witdh` props、高さは`rows` propsで指定します。
+- 入力に依って自動で高さが広がって良い場合は、`autoResize` propsを指定します。
+- 高さを自動て広げつつ上限を設定する場合は、`maxRows` propsを指定します。
+- 入力する内容の文字数の予測が付く場合、過剰に高さを確保しないでください。わかりづらくなったり、視線誘導の妨げになってしまうことがあります。
+- フォーム全体で見たときにレイアウトに統一性がなく感じられるときは、他の要素とのバランスを考慮してサイズを調整してください。
+
+### 入力できる文字数に上限がある場合は入力文字数を表示する
+
+入力できる文字数の上限が決まっている場合は`maxLetters` propsを指定し、上限に応じた幅と高さに調整してください。
+
+```tsx editable withStyled
+const StyledFormControl = styled(FormControl)`
+  width: 100%;
+`
+
+render(
+  <StyledFormControl title="感想をお寄せください">
+    <Textarea
+      width="100%"
+      rows={4}
+      name="max_letters"
+      maxLetters={140}
+    />
+  </StyledFormControl>
+)
+```
+
+### ユースケースに応じてコンポーネントを使い分ける
+
+#### 一行のテキスト入力が想定される場合は使用しない
+
+氏名やメールアドレスなどの一行のテキスト入力には[Input](/products/components/input/)を使用してください。
+
+#### データの編集や送信を伴わない画面では使用しない
+
+データの編集や送信を伴わない画面でデータを表示する場合は[DefinitionList](/products/components/definition-list/)を使用してください。
+
+### 入力項目の説明や例をプレースホルダで表示しない
+
+入力項目の説明や例を載せる場合は[FormControl](/products/components/form-control/)のヘルプメッセージ（`helpMessage`）や入力例（`exampleMessage`）などを用い別途表示してください。
+
+## 状態
+
+### 無効（disabled）
+
+入力を受け付けない状態を表現したスタイルです。通常は編集ができるが一時的または権限の制約により編集ができない場合に使用します。
+
+ユーザーはなぜ無効になっているのかわからないことがあります。権限による表示制御のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+## Props
+
+<ComponentPropsTable name="Textarea" />

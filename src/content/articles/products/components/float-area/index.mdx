@@ -1,0 +1,55 @@
+---
+title: 'FloatArea'
+description: 'スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。'
+---
+import { Image } from 'astro:assets'
+import { Text } from 'smarthr-ui'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import FloatAreaLayoutDo from './images/float-area-layout-do.png';
+import FloatAreaLayoutDont from './images/float-area-layout-dont.png';
+
+スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。
+
+主に[モーダルなUI](/products/design-patterns/modal-ui/)を作るために使います。
+
+<ComponentStory name="FloatArea" />
+
+## レイアウト
+
+### 基本的な考え方
+
+FloatAreaには、ページ全体、もしくはページの一部を対象としたボタンやテキストを置きます。**ページ内のどの部分が対象の領域なのかを視覚的に示す**ことを目指して、FloatAreaの位置や幅、[レイヤー順序](/products/design-tokens/z-index/)を調整してください。
+
+<DoAndDont type="do">
+  <Image slot="img" src={FloatAreaLayoutDo} alt="Do" />
+  <Text slot="label">FloatAreaが右側のカラムだけに重なっているため、右側のカラムだけがFloatAreaの対象の領域であることがわかる</Text>
+</DoAndDont>
+
+<DoAndDont type="dont">
+  <Image slot="img" src={FloatAreaLayoutDont} alt="Don't" />
+  <Text slot="label">FloatAreaが2つのカラムに重なっているため、左側のカラムもFloatAreaの対象の領域に見える</Text>
+</DoAndDont>
+
+### レイアウト例
+
+#### スクロール固定中
+
+対象の領域の左右に`0.5（8px）`ずつはみ出し、画面の下辺から`1.5（24px）`の余白をとった位置に置きます。
+
+![FloatAreaの幅と、画面の下辺からFloatAreaまでの距離](./images/float-area-layout-spacing1.png)
+
+#### スクロール固定解除後
+
+対象の領域の下辺との間に `1.5（24px）` の余白を取ります。
+
+![対象の領域の最下部とFloatAreaの間の余白](./images/float-area-layout-spacing2.png)
+
+## デザインパターン
+
+[モーダルなUI](/products/design-patterns/modal-ui/)および[共通設定のアクションビュー](/products/design-patterns-core-features/main-admin/#h2-3)を参照してください。
+
+## Props
+
+<ComponentPropsTable name="FloatArea" />

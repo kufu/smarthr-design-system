@@ -1,0 +1,22 @@
+.tableReel {
+  @include breakpointMobile3 {
+    margin-right: -40px;
+    margin-left: -40px;
+  }
+
+  :global(table) {
+    width: 150% !important;
+
+    @include breakpointMobile3 {
+      width: 250svw !important;
+    }
+  }
+
+  :global(th),
+  :global(td) {
+    min-width: initial;
+    border: none;
+    box-sizing: content-box;
+    font-size: var(--font-size-14) !important;
+  }
+}

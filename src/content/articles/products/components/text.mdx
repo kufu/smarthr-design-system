@@ -1,0 +1,114 @@
+---
+title: 'Text'
+description: 'テキストを表示するためのコンポーネントです。タイポグラフィのデザイントークンを使用しています。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+テキストを表示するためのコンポーネントです。[タイポグラフィのデザイントークン](/products/design-tokens/typography/)を使用しています。
+
+<ComponentStory name="Text" />
+
+## 使用上の注意
+
+### 入れ子にしたときの出力要素に注意する
+
+デフォルトの出力要素は`<span>`になるため、入れ子にしたときにValidなHTMLになるように注意してください。
+
+```tsx editable
+<Text as="p">
+  <Text emphasis>入れ子</Text>にしたときに
+  <Text color="TEXT_GREY" weight="bold">
+    Valid
+  </Text>
+  なHTMLになるように注意してください。
+</Text>
+```
+
+## 種類
+
+### フォントサイズ
+`size` propsで指定できます。値は[タイポグラフィのフォントサイズ](/products/design-tokens/typography/#h2-1)のデザイントークンを参照してください。
+
+```tsx editable
+<Stack>
+  <Text size="XXS">XXSサイズのテキスト</Text>
+  <Text size="XS">XSサイズのテキスト</Text>
+  <Text size="S">Sサイズのテキスト</Text>
+  <Text size="M">Mサイズのテキスト</Text>
+  <Text size="L">Lサイズのテキスト</Text>
+  <Text size="XL">XLサイズのテキスト</Text>
+  <Text size="XXL">XXLサイズのテキスト</Text>
+</Stack>
+```
+
+### ウェイト
+`weight` propsで指定できます。
+
+```tsx editable
+<Stack>
+  <Text weight="normal">通常のテキスト</Text>
+  <Text weight="bold">太字のテキスト</Text>
+</Stack>
+```
+
+### 強調、イタリック体
+`emphasis` props、`italic` propsで指定できます。
+
+```tsx editable
+<Stack>
+  <Text emphasis>強調されたテキスト</Text>
+  <Text italic>イタリック体のテキスト</Text>
+</Stack>
+```
+
+### 色
+`color` propsで指定できます。値は[色の文字](/products/design-tokens/color/#h3-2)のデザイントークンを参照してください。
+
+```tsx editable
+<Stack>
+  <Text color="TEXT_BLACK">色がTEXT_BLACKのテキスト</Text>
+  <Text color="TEXT_GREY">色がTEXT_GREYのテキスト</Text>
+  <Text color="TEXT_LINK">色がTEXT_LINKのテキスト</Text>
+  <Text color="TEXT_DISABLED">色がTEXT_DISABLEDなテキスト</Text>
+  <Text color="TEXT_WHITE">色がTEXT_WHITEのテキスト</Text>
+</Stack>
+```
+
+### 行送り
+`leading` propsで指定できます。値は[行送り](/products/design-tokens/leading/)のデザイントークンを参照してください。
+
+```tsx editable
+<Stack>
+  <Text leading="NONE">行送りがないテキスト<br />行送りがないテキスト</Text>
+  <Text leading="TIGHT">行送りが狭いテキスト<br />行送りが狭いテキスト</Text>
+  <Text leading="NORMAL">通常の行送りのテキスト<br />通常の行送りのテキスト</Text>
+  <Text leading="RELEXED">行送りが広いテキスト<br />行送りが広いテキスト</Text>
+</Stack>
+```
+
+### 折り返し
+`whiteSpace` propsで指定できます。
+
+
+### 見出しスタイル
+`styleType` propsで指定できます。
+
+[Heading](/products/components/heading/)の種類に合わせた見た目（フォントサイズ、ウェイト、色）を提供しますが、見出しとして使う場合はTextではなくHeadingを使用してください。
+
+```tsx editable
+<Stack>
+  <Text styleType="screenTitle">画面タイトルの見た目のテキスト</Text>
+  <Text styleType="sectionTitle">セクションタイトルの見た目のテキスト</Text>
+  <Text styleType="blockTitle">ブロックタイトルの見た目のテキスト</Text>
+  <Text styleType="subBlockTitle">サブ・ブロックタイトルの見た目のテキスト</Text>
+  <Text styleType="subSubBlockTitle">サブ・サブ・ブロックタイトルの見た目のテキスト</Text>
+</Stack>
+```
+
+
+
+## Props
+
+<ComponentPropsTable name="Text" />
+

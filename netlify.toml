@@ -1,9 +1,9 @@
-[context.production]
-command = 'yarn build'
-[context.deploy-preview]
-command = 'yarn build'
+[build]
+  command = "pnpm run build:prod"
+  publish = "dist"
 [dev]
-command = 'yarn dev'
-targetPort = 8000
-port = 8888
-publish = 'public'
+  command = 'pnpm run dev'
+  targetPort = 8000
+  port = 8888
+  publish = 'dist'
+

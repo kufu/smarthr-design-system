@@ -1,0 +1,82 @@
+---
+import { FaCircleCheckIcon, FaCircleXmarkIcon, defaultColor, defaultSpacing } from 'smarthr-ui';
+
+type Props = {
+  type: 'do' | 'dont';
+  width?: string | number;
+};
+
+const { type, width } = Astro.props;
+
+const actualWidth = typeof width === 'number' ? `${width}px` : width;
+---
+
+<div class="wrapper" style={{ width: actualWidth }}>
+  <div class="imageArea">
+    <slot name="img" />
+  </div>
+  <div class="labelArea">
+    <div class="status">
+      {
+        type === 'do' ? (
+          <>
+            <FaCircleCheckIcon className="icon" />
+            Do
+          </>
+        ) : (
+          <>
+            <FaCircleXmarkIcon className="icon" />
+            Don&apos;t
+          </>
+        )
+      }
+    </div>
+    <slot name="label" />
+  </div>
+</div>
+
+<style
+  lang="scss"
+  define:vars={{
+    defaultColorBackground: defaultColor.BACKGROUND,
+    defaultSpacingXS: defaultSpacing.XS,
+    defaultSpacingXXS: defaultSpacing.XXS,
+    labelColor: type === 'do' ? defaultColor.MAIN : defaultColor.DANGER,
+  }}
+>
+  .wrapper {
+    margin-block: 24px 0;
+
+    @include breakpointMobile3 {
+      /* MEMO: スマホだと幅いっぱいにする */
+      min-width: 100%;
+    }
+  }
+
+  .imageArea {
+    img {
+      vertical-align: top;
+    }
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+
+    > .icon {
+      color: var(--labelColor);
+      margin-right: var(--defaultSpacingXXS);
+    }
+  }
+
+  .labelArea {
+    background-color: var(--defaultColorBackground);
+    padding: var(--defaultSpacingXS);
+    border-top: var(--defaultSpacingXXS) solid var(--labelColor);
+
+    :global(p) {
+      margin-block-start: 0;
+    }
+  }
+</style>

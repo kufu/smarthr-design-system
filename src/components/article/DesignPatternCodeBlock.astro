@@ -1,0 +1,24 @@
+---
+import { fetchPatternCode } from '@/lib/fetchPatternCode';
+import ReactCodeBlock from '@/components/CodeBlock';
+
+type Props = {
+  componentName: string;
+  componentTitle: string;
+};
+
+const { componentName, componentTitle } = Astro.props;
+
+const patternCode = await fetchPatternCode(componentName);
+---
+
+<ReactCodeBlock
+  language="tsx"
+  code={patternCode}
+  editable
+  withStyled
+  renderingComponent={componentName}
+  componentTitle={componentTitle}
+  layout="product"
+  client:only="react"
+/>

@@ -1,0 +1,57 @@
+---
+import Accordion from './Accordion';
+import SidebarItems, { type Props as SidebarItemsProps } from './SidebarItems.astro';
+
+type Props = {
+  path: `/${string}`;
+} & Pick<SidebarItemsProps, 'items'>;
+
+const { path, items } = Astro.props;
+---
+
+{/* PC表示 */}
+<div class="navWrapper">
+  <SidebarItems path={path} items={items} showDepth1Item />
+</div>
+
+{
+  // SP表示
+  items[0]?.children?.length > 0 && (
+    <div class="spSidebar">
+      <Accordion title={items[0].title} client:load>
+        <SidebarItems path={path} items={items} />
+      </Accordion>
+    </div>
+  )
+}
+
+<style lang="scss">
+  .navWrapper {
+    padding-block: 120px 48px;
+    overflow-y: auto;
+
+    @include breakpointMobile3 {
+      display: none;
+    }
+  }
+
+  .spSidebar {
+    display: none;
+
+    @include breakpointMobile3 {
+      display: block;
+      border-bottom: 1px solid var(--color-light-grey-1);
+    }
+
+    :global(button) {
+      font-family: inherit;
+      color: inherit;
+      padding-inline: 24px;
+    }
+
+    :global(#spSidebar-content.entered) {
+      /* アコーディオンが開いた時にsmarthr-uiが100vhを指定するが、100vh以上になりはみ出る場合があるので上書き */
+      max-height: none;
+    }
+  }
+</style>

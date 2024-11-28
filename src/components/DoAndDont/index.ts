@@ -1,1 +1,0 @@
-export { DoAndDont } from './DoAndDont'
