@@ -5,7 +5,7 @@ order: 3
 ---
 
 import { Image } from 'astro:assets'
-import { Text } from 'smarthr-ui'
+import { Text, Cluster } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 
 import imageUrlConsistencyDont from './images/consistency-dont.png'
@@ -13,6 +13,8 @@ import imageUrlConsistencyDo from './images/consistency-do.png'
 import imageUrlGapDont from './images/gap-dont.png'
 import imageUrlRectangleDont from './images/rectangle-dont.png'
 import imageUrlRectangleDo from './images/rectangle-do.png'
+import imageUrlRectangleColorDont from './images/rectangle-color-dont.png'
+import imageUrlRectangleColorDo from './images/rectangle-color-do.png'
 import imageUrlBorderDont from './images/border-dont.png'
 import imageUrlBorderDo from './images/border-do.png'
 
@@ -88,6 +90,19 @@ SmartHR全体で一貫性のあるグルーピングをすることで、ユー�
   <Text slot="label">必要な箇所のみ矩形によってグルーピングされており、要素のまとまりを素早く理解しやすい。</Text>
 </DoAndDont>
 
+また、背景と異なる色で矩形の領域を表現してください。影を併用できますが、影だけで表現することは避けてください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrlRectangleColorDont} alt="Dont" />
+    <Text slot="label">背景色`BACKGROUND`の上に同じ色のSideNavがあり、境界を認識しづらい。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrlRectangleColorDo} alt="Do" />
+    <Text slot="label">背景色`BACKGROUND`の上に`OVER_BACKGROUND`のSideNavがあり、境界を認識しやすい。</Text>
+  </DoAndDont>
+</Cluster>
 矩形は[Base](/products/components/layout/base)や[BaseColumn](/products/components/layout/base/base-column)を用いて表現できます。
 
 ### 罫線
