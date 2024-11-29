@@ -140,7 +140,7 @@ SmartHR全体で一貫性のあるグルーピングをすることで、ユー�
 
 セクションの内容を切り替えるコントロールを提供する場合には、[TabBar](/products/components/tab-bar/)または[SideNav](/products/components/side-nav/)を利用し以下のようにレイアウトします。
 
-TabBarを使う場合、見出し領域にTabBarを配置し、Baseを切り替えます。見出しは省略できます。操作の対象がタブごとに異なる場合は[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)で操作まとめます。
+TabBarを使う場合、見出し領域にTabBarを配置し、Baseを切り替えます。見出しは省略できます。（ただし、Headingの`visuallyHidden`propsを使うなどマシンリーダブルになるよう注意してください。）操作の対象がタブごとに異なる場合は[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)で操作をまとめます。
 ![](./images/section-with-tabbar.png)
 
 SideNavを使う場合、Baseを左右に2分割しSideNavとコンテンツを配置し、左のSideNavで右のコンテンツを切り替えます。
