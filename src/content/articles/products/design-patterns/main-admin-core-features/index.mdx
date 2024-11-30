@@ -164,17 +164,17 @@ OOUIにおける`モーダル`画面の一種で、一覧ビューの[よくあ�
 詳細は、[UpwardLink](/products/components/text-link/upward-link/)を参照してください。
 
 #### C-2. ヘッダー - 画面タイトル
-アクションビューの[画面タイトル](../../../products/components/heading/#h3-0)です。  
+アクションビューの[画面タイトル](/products/components/heading/#h3-0)です。  
 
 - オブジェクトの作成の場合は「`{オブジェクト名}`の追加」、オブジェクトの編集の場合は「`{オブジェクト名}`の編集」などと表記します。  
-- [アクションに関する画面やダイアログのタイトルでは、助詞は「の」を使用する](../../../products/contents/app-writing/#recjyivasdV2xw6rX-0)
+- [アクションに関する画面やダイアログのタイトルでは、助詞は「の」を使用する](/products/contents/app-writing/#recjyivasdV2xw6rX-0)
 
 #### C-2. ヘッダー - 画面アクションエリア
 フォーム送信エリアとは別に、アクションビュー全体に対するアクションをまとめたエリアです。
 このエリアは画面タイトルの右側に配置します。
 
 ##### アクションボタンの表示
-アクションビューではフォーム送信エリア以外に主要なアクションを持たないため、他にアクションが必要になる場合は[ドロップダウンメニューボタン](../../../products/components/dropdown/dropdown-menu-button/)でまとめて配置します。
+アクションビューではフォーム送信エリア以外に主要なアクションを持たないため、他にアクションが必要になる場合は[ドロップダウンメニューボタン](/products/components/dropdown/dropdown-menu-button/)でまとめて配置します。
 これは画面タイトルの横幅の領域を十分に確保するためです。
 
 また、アクションが1つだけになった場合（例：オブジェクトの削除のみ）でも、他のアクションビューとの一貫性を保つために、あえて`ドロップダウンボタン`の中に配置することがあります。
@@ -189,22 +189,22 @@ OOUIにおける`モーダル`画面の一種で、一覧ビューの[よくあ�
 
 #### C-3. フォーム入力エリア - オブジェクトのインスタンス名
 オブジェクトのインスタンス名を設定するフォーム入力要素で、フォーム入力エリアの一番最初の要素として配置します。
-ラベルは「`{オブジェクト名}`名」（例：「権限名」）と表記し、プロパティとしては入力必須の要素なので「必須」表記の[StatusLabel](../../../products/components/status-label/)を併記します。  
+ラベルは「`{オブジェクト名}`名」（例：「権限名」）と表記し、プロパティとしては入力必須の要素なので「必須」表記の[StatusLabel](/products/components/status-label/)を併記します。  
 
 必要に応じて、オブジェクトを補足するプロパティ（例：「メモ」など）をあわせて配置することがあります。
 
 #### C-3. フォーム入力エリア - オブジェクトのプロパティ
 オブジェクトの持つさまざまなプロパティを設定するフォーム入力要素を配置するエリアです。
-代表的なフォーム入力要素としては、[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)、[Input](../../../products/components/input/)を使用したテキスト入力のほか、[共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)といったチェックボックスやラジオボタンを組み合わせた設定項目などがあります。
+代表的なフォーム入力要素としては、[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)、[Input](/products/components/input/)を使用したテキスト入力のほか、[共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)といったチェックボックスやラジオボタンを組み合わせた設定項目などがあります。
 
 #### C-4. タブ
-対象オブジェクトのフォームが長大になることが想定される場合、フォームを分割表示し俯瞰性を高めるために[TabBar](../../../products/components/tab-bar/)の使用を検討します。
+対象オブジェクトのフォームが長大になることが想定される場合、フォームを分割表示し俯瞰性を高めるために[TabBar](/products/components/tab-bar/)の使用を検討します。
 このとき送信ボタンは、どのタブが表示されているかに関わらずすべてのフォームの内容に対して適用されることに留意してください。
 
 ラベルは「`{オブジェクト名}`」のほか、オブジェクトのプロパティを分割する単位でまとめた「`{カテゴリ名}`」や「`{グルーピングのタイトル名}`」などを表記します。
 
 #### C-5. フォーム送信エリア
-フォーム入力エリアの内容を反映するためのアクションをまとめたエリアで、[FloatArea](../../../products/components/float-area/)を使用します。  
+フォーム入力エリアの内容を反映するためのアクションをまとめたエリアで、[FloatArea](/products/components/float-area/)を使用します。  
 
 構成要素は次の通りです。
 
@@ -226,18 +226,18 @@ OOUIにおける`モーダル`画面の一種で、一覧ビューの[よくあ�
 
 ### レイアウト
 
-要素間の余白は以下のとおりです。詳細は[余白の取り方](../../../products/design-patterns/spacing-layout-pattern/)を参照してください。
+要素間の余白は以下のとおりです。詳細は[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
 
 ![スクリーンショット: アクションビューのレイアウト](./images/main-admin8.png)
 
 要素内やコンポーネント内の配置や余白は以下を参照してください。
 
 - [上に戻るリンクのレイアウト](/products/components/text-link/upward-link/#h4-0)
-- [共通設定の操作権限項目（SmartHR共通設定）](../../../products/design-patterns-core-features/access-control-setting-pattern/)
+- [共通設定の操作権限項目（SmartHR共通設定）](/products/design-patterns/access-control-setting-pattern-core-features/)
 
 #### フォーム送信エリアの位置
 
 フォーム送信エリアは、右側のコンテンツエリアに対して縦方向の中心位置に幅を左右に`8px`ずつ広くとり、画面の描画領域の下辺から`24px`上の位置で配置します。
-このとき、画面上の他のコンテンツの前面に表示されるよう[レイヤー順序](../../../products/design-tokens/z-index/)を参考に調節してください。
+このとき、画面上の他のコンテンツの前面に表示されるよう[レイヤー順序](/products/design-tokens/z-index/)を参考に調節してください。
 
 ![スクリーンショット: アクションビューのフォーム送信エリアの位置](./images/main-admin10.png)
