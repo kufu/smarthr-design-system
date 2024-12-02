@@ -9,4 +9,6 @@ if [ -n "$img_files" ] || [ -n "$icon_files" ] || [ -n "$readme_file" ]; then
   git add 'public/downloads/*'
 fi
 
+pnpm --prefix scripts/content-checker install
+
 pnpm lint-staged
