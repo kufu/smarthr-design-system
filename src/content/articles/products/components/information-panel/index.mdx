@@ -27,12 +27,12 @@ import imageDont from './images/information-panel-on-base-dont.png'
 
 InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は`3`です。レイヤー順序が`1`の[Base](/products/components/base/)の中に直接配置しないでください。
 
-[削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)など、Baseのなかで見出しと内容を目立たせたい場合は、[BaseColumnでメッセージを表示するパターン](/products/components/base/base-column/)を使用してください。
+[削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)など、Baseのなかで見出しと内容をグルーピングしたい場合は、[BaseColumnでメッセージを表示するパターン](/products/components/base/base-column/)を使用してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={imageDo} alt="Do" />
-    <Text slot="label">BaseのなかでBaseColumnのメッセージを表示するパターンを用いて代替されている</Text>
+    <Text slot="label">Baseのなかで「BaseColumnのメッセージを表示するパターン」を用いて代替されている</Text>
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={imageDont} alt="Dont" />
