@@ -9,10 +9,10 @@ import ComponentStoryfrom from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Cluster, Text, FaCloudDownloadAltIcon } from 'smarthr-ui'
 
-import noTitleDo from './images/smarthr-table/pattern-no-title-do.png'
-import noTitleDont from './images/smarthr-table/pattern-no-title-dont.png'
-import onlyPaginationDo from './images/smarthr-table/smarthr-table-only-pagination-do.png'
-import onlyPaginationDont from './images/smarthr-table/smarthr-table-only-pagination-dont.png'
+import noTitleDo from './images/pattern-no-title-do.png'
+import noTitleDont from './images/pattern-no-title-dont.png'
+import onlyPaginationDo from './images/smarthr-table-only-pagination-do.png'
+import onlyPaginationDont from './images/smarthr-table-only-pagination-dont.png'
 
 SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。
 
@@ -31,7 +31,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 3. テーブル操作エリア
 4. 一時操作エリア
 
-![スクリーンショット: よくあるテーブルの構成](./images/smarthr-table/smarthr-table-overview.png)
+![スクリーンショット: よくあるテーブルの構成](./images/smarthr-table-overview.png)
 
 ### 1. テーブル
 `よくあるテーブル`は、多くの場合「1項目1行の1次元リスト」のテーブルを含みます。
@@ -43,14 +43,14 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 オブジェクトの[詳細ビュー](/products/design-patterns/main-admin-core-features/#h2-2)へ移動する場合、オブジェクト名にリンクを設定します。
 テキストリンクによる移動は「オブジェクトの操作」にはあたらないため、アクションボタンは使いません。
 
-![スクリーンショット: 遷移リンクのスタイル](./images/smarthr-table/smarthr-table-configure1.png)
+![スクリーンショット: 遷移リンクのスタイル](./images/smarthr-table-configure1.png)
 
 #### オブジェクトの情報
 オブジェクトごとに表示する情報を指します。  
 テーブルにはオブジェクトの持つすべての情報を表示する必要はありません。
 ユーザーが、それぞれのオブジェクトを識別・比較できる情報を検討して表示します。
 
-![スクリーンショット: オブジェクトの情報の表現](./images/smarthr-table/smarthr-table-configure2.png)
+![スクリーンショット: オブジェクトの情報の表現](./images/smarthr-table-configure2.png)
 
 ##### オブジェクトの情報量および表示領域の幅
 各機能のユースケースや仕様によって異なるため、オブジェクトの情報量（列数）および表示領域の幅には制限を設けません。
@@ -67,7 +67,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 情報を指定幅以上に表示したい、またはセル内で情報を複数行で表示させたくない場合、[LineClamp](/products/components/line-clamp/)などを使ってセル上の情報に三点リーダーをつけて省略します。
 省略した情報は、マウスオーバーした際に[Tooltip](/products/components/tooltip/)を表示し、すべての情報を示してください。
 
-![スクリーンショット: 情報の省略表現](./images/smarthr-table/smarthr-table-configure3.png)
+![スクリーンショット: 情報の省略表現](./images/smarthr-table-configure3.png)
 
 ##### ステータス
 
@@ -89,7 +89,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 
 ボタンは1つのオブジェクトに対して、**最大3つを上限とします**。それ以上設置する必要がある場合は、[ドロップダウンメニューボタン](/products/components/dropdown/dropdown-menu-button/)にアクションを格納することを検討しましょう。
 
-![スクリーンショット: 単一のオブジェクト操作](./images/smarthr-table/smarthr-table-configure4.png)
+![スクリーンショット: 単一のオブジェクト操作](./images/smarthr-table-configure4.png)
 
 ##### 複数のオブジェクト操作
 複数のオブジェクトに対して、一括で同時に操作する場合は、[テーブル内の一括操作](/products/design-patterns/table-bulk-action/)を参照してください。
@@ -124,7 +124,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 - アクションボタンとして、[Button](/products/components/button/)や、類似する操作をまとめた[ドロップダウンメニューボタン](/products/components/dropdown/dropdown-menu-button/)を配置できます。
 - ユーザーが操作に迷わないように、ボタンは**最大3つを上限とします**。
 
-![スクリーンショット: テーブル操作エリア](./images/smarthr-table/smarthr-table-actionarea.png)
+![スクリーンショット: テーブル操作エリア](./images/smarthr-table-actionarea.png)
 
 #### アクションボタンの例
 ここに配置される典型的なアクションボタンの例は以下のとおりです。  
@@ -143,7 +143,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 
 このエリアは、テーブルを含む[Base](/products/components/base/)内の上部、および[Base](/products/components/base/)外の下部に配置します。
 
-![スクリーンショット: 一時操作エリア](./images/smarthr-table/smarthr-table-temporary-actionarea.png)
+![スクリーンショット: 一時操作エリア](./images/smarthr-table-temporary-actionarea.png)
 
 #### Base内の上部に配置する操作の例
 このエリアに配置される典型的な操作の例は以下のとおりです。  
@@ -191,7 +191,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 基本的に[余白の取り方](/products/design-patterns/spacing-layout-pattern/)に従って配置します。  
 要素間の余白は以下のとおりです。（コンポーネント内の余白は省略）
 
-![スクリーンショット: 「デフォルトのレイアウト」の要素間の余白](./images/smarthr-table/smarthr-table-layout.png)
+![スクリーンショット: 「デフォルトのレイアウト」の要素間の余白](./images/smarthr-table-layout.png)
 
 ### フルスクリーンレイアウト
 画面幅いっぱいにテーブル、一時操作エリアを配置するレイアウトです。  
@@ -199,13 +199,13 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 
 フルスクリーンレイアウトを使用する場合、1つの画面内で複数のテーブルは使用できません。
 
-![スクリーンショット: 「フルスクリーンレイアウト」の要素間の余白](./images/smarthr-table/full-screen-table-layout.png)
+![スクリーンショット: 「フルスクリーンレイアウト」の要素間の余白](./images/full-screen-table-layout.png)
 
 #### スクロールの挙動
 テーブルを包む要素内で部分的にスクロールさせるのではなく、ブラウザのスクロールによってテーブルもスクロールできるようにします。  
 また、縦にスクロールしたときは、[fixedHead](/products/components/table/#props-Table) propsを用いてテーブルヘッダー（`thead`）を画面上部に固定します。
 
-![スクリーンショット: 縦にスクロールしたときはヘッダーを上部に固定](./images/smarthr-table/full-screen-table-scroll.png)
+![スクリーンショット: 縦にスクロールしたときはヘッダーを上部に固定](./images/full-screen-table-scroll.png)
 
 ### TableReel
 横スクロールが生じるとき、重要な情報が隠れてしまうことを防ぐため、[TableReel](/products/components/table/)を用いて列を固定できます。
@@ -321,7 +321,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
     - 操作対象のオブジェクトが存在しないため、一時操作エリアは**非表示**とします。
     - テーブルのページ送りも**非表示**とします。
 
-![スクリーンショット: 「よくあるテーブル」の初期表示の例](./images/smarthr-table/smarthr-table-variation1.png)
+![スクリーンショット: 「よくあるテーブル」の初期表示の例](./images/smarthr-table-variation1.png)
 
 
 ### 検索結果なし
@@ -339,7 +339,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
     - 一時操作エリアは表示したままとします。
     - テーブルのページ送りは**非表示**とします。
 
-![スクリーンショット: 検索結果がない「よくあるテーブル」の例](./images/smarthr-table/smarthr-table-variation2.png)
+![スクリーンショット: 検索結果がない「よくあるテーブル」の例](./images/smarthr-table-variation2.png)
 
 
 ### 1ページ以内
@@ -354,7 +354,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 4. 一時操作エリア
     - テーブルのページ送りは**非表示**とします。
 
-![スクリーンショット: 1ページ以内の「よくあるテーブル」の例](./images/smarthr-table/smarthr-table-variation3.png)
+![スクリーンショット: 1ページ以内の「よくあるテーブル」の例](./images/smarthr-table-variation3.png)
 
 ## 関連リンク
 
