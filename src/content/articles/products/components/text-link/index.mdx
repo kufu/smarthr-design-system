@@ -40,7 +40,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 テキストリンクで別の画面に移動することで、現在の画面での入力や作業が中断され作業効率が著しく落ちる場合には、新規ウィンドウ（新規タブ）でテキストリンクを開くことを検討します。
 
-新規ウィンドウで開くテキストリンクには、**テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を配置することを**必須**とします。。リンク先がSmartHRの内部ページ、外部サイトに関わらず表示します。`アイコン付き（左）`（プレフィックス）は指定しないでください。
+新規ウィンドウで開くテキストリンクには、**テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を配置することを**必須**とします。リンク先がSmartHRの内部ページ、外部サイトに関わらず表示します。`アイコン付き（左）`（プレフィックス）は指定しないでください。
 
 ```tsx editable
   <TextLink href="/" target="_blank">新規ウィンドウで開くテキストリンク</TextLink>
@@ -50,7 +50,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンクには、**テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置することを**推奨**します。詳細は[ヘルプページへの動線](/products/contents/ui-text/help-link/#h3-2)を参照してください。`アイコン付き（右）`（サフィックス）は指定しないでください。
 
-ヘルプセンターを新規ウィンドウで開く場合には、必須となっている新規ウィンドウで開くテキストリンクを優先して**テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を配置してください。
+ヘルプセンターを新規ウィンドウで開く場合には、新規ウィンドウで開くテキストリンクを優先して**テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を配置してください。
 
 ```tsx editable
   <TextLink href="/" prefix={<FaCircleQuestionIcon />}>ヘルプセンターを開くテキストリンク</TextLink>
