@@ -4,11 +4,16 @@ description: 'ユーザーの操作をシステムが実行する前にワンク
 order: 12
 ---
 import { Image } from 'astro:assets'
-import { Text } from 'smarthr-ui'
+import { Text, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 
 import imageUrlAccessibilityDont from './images/danger-buttons-in-smarthr-table.png'
 
+<BaseColumn>
+  <ResponseMessage type="warning">
+    <span>「ワンクッション必要な操作」は「取り返しのつかない操作」に、対象者の多い一括操作の説明を追加し、まとめ直した基準です。</span>
+  </ResponseMessage>
+</BaseColumn>
 
 ユーザーの操作をシステムが実行する前にワンクッションおく必要がある操作の基準を定義しています。
 
