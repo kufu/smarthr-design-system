@@ -118,7 +118,7 @@ p, dl {
   margin-block: unset
 }
 
-ul {
+menu, ul {
   margin-block: unset;
   padding-inline-start: unset
 }
@@ -318,6 +318,10 @@ a {
   left: 8px
 }
 
+.shr-left-1 {
+  left: 16px
+}
+
 .shr-left-1\.5 {
   left: 24px
 }
@@ -441,6 +445,10 @@ a {
 .shr-my-\[unset\] {
   margin-top: unset;
   margin-bottom: unset
+}
+
+.-shr-mb-0\.25 {
+  margin-bottom: -4px
 }
 
 .-shr-mb-0\.5 {
@@ -655,6 +663,10 @@ a {
   height: 2em
 }
 
+.shr-h-\[4em\] {
+  height: 4em
+}
+
 .shr-h-\[500px\] {
   height: 500px
 }
@@ -774,6 +786,10 @@ a {
 
 .shr-w-\[2em\] {
   width: 2em
+}
+
+.shr-w-\[50vw\] {
+  width: 50vw
 }
 
 .shr-w-\[5em\] {
@@ -1867,6 +1883,10 @@ a {
   border-radius: 50%
 }
 
+.shr-rounded-\[unset\] {
+  border-radius: unset
+}
+
 .shr-rounded-full {
   border-radius: 9999px
 }
@@ -1924,8 +1944,16 @@ a {
   border-width: 4px
 }
 
+.shr-border-b {
+  border-bottom-width: 1px
+}
+
 .shr-border-s-4 {
   border-inline-start-width: 4px
+}
+
+.shr-border-t-6 {
+  border-top-width: 6px
 }
 
 .shr-border-solid {
@@ -2013,6 +2041,11 @@ a {
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1))
 }
 
+.shr-border-b-default {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
+}
+
 .shr-border-b-transparent {
   border-bottom-color: transparent
 }
@@ -2023,6 +2056,11 @@ a {
 
 .shr-border-r-transparent {
   border-right-color: transparent
+}
+
+.shr-border-t-brand {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(0 196 204 / var(--tw-border-opacity, 1))
 }
 
 .shr-bg-\[\#0f7f85\] {
@@ -2102,11 +2140,6 @@ a {
 .shr-bg-main {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
-}
-
-.shr-bg-main-darken {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
 }
 
 .shr-bg-over-background {
@@ -2463,6 +2496,10 @@ a {
 
 .shr-text-right {
   text-align: right
+}
+
+.shr-align-baseline {
+  vertical-align: baseline
 }
 
 .shr-align-middle {
@@ -3536,6 +3573,10 @@ a {
   background-color: rgba(3,3,2,0.15)
 }
 
+.hover\:shr-bg-transparent:hover {
+  background-color: transparent
+}
+
 .hover\:shr-bg-white-darken:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
@@ -3554,6 +3595,12 @@ a {
 .hover\:shr-text-white-darken:hover {
   --tw-text-opacity: 1;
   color: rgb(242 242 242 / var(--tw-text-opacity, 1))
+}
+
+.hover\:shr-shadow-underline:hover {
+  --tw-shadow: 0 1px 0 0;
+  --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
 .focus-visible\:shr-z-1:focus-visible {
@@ -3596,6 +3643,10 @@ a {
 
 .focus-visible\:shr-bg-overlay:focus-visible {
   background-color: rgba(3,3,2,0.15)
+}
+
+.focus-visible\:shr-bg-transparent:focus-visible {
+  background-color: transparent
 }
 
 .focus-visible\:shr-bg-white-darken:focus-visible {
@@ -3899,10 +3950,6 @@ a {
   border-color: rgb(224 30 90 / var(--tw-border-opacity, 1))
 }
 
-.has-\[\[aria-current\=\"page\"\]\]\:shr-relative:has([aria-current="page"]) {
-  position: relative
-}
-
 .has-\[\:disabled\]\:shr-cursor-default:has(:disabled) {
   cursor: default
 }
@@ -3928,11 +3975,6 @@ a {
 .has-\[\:disabled\]\:shr-bg-border:has(:disabled) {
   --tw-bg-opacity: 1;
   background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
-}
-
-.has-\[\[aria-current\=\"page\"\]\]\:shr-text-black:has([aria-current="page"]) {
-  --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .has-\[\:checked\]\:before\:shr-ms-\[theme\(fontSize\.base\)\]:has(:checked)::before {
@@ -3961,43 +4003,6 @@ a {
 .has-\[input\:disabled\:not\(\:checked\)\]\:before\:shr-bg-\[theme\(textColor\.disabled\)\]:has(input:disabled:not(:checked))::before {
   content: var(--tw-content);
   background-color: #c1bdb7
-}
-
-.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-absolute:has([aria-current="page"])::after {
-  content: var(--tw-content);
-  position: absolute
-}
-
-.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-inset-x-0:has([aria-current="page"])::after {
-  content: var(--tw-content);
-  left: 0;
-  right: 0
-}
-
-.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-bottom-0:has([aria-current="page"])::after {
-  content: var(--tw-content);
-  bottom: 0
-}
-
-.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-block:has([aria-current="page"])::after {
-  content: var(--tw-content);
-  display: block
-}
-
-.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-h-0\.25:has([aria-current="page"])::after {
-  content: var(--tw-content);
-  height: 4px
-}
-
-.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-bg-main:has([aria-current="page"])::after {
-  content: var(--tw-content);
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
-}
-
-.has-\[\[aria-current\=\"page\"\]\]\:after\:shr-content-\[\"\"\]:has([aria-current="page"])::after {
-  --tw-content: "";
-  content: var(--tw-content)
 }
 
 .shr-group\/label:has(:hover,:focus-visible) .group-has-\[\:hover\2c \:focus-visible\]\/label\:shr-not-sr-only {
@@ -4438,10 +4443,6 @@ a {
   margin-bottom: auto
 }
 
-.\[\&\&\&\]\:-shr-mb-0\.25.\[\&\&\&\]\:-shr-mb-0\.25.\[\&\&\&\]\:-shr-mb-0\.25 {
-  margin-bottom: -4px
-}
-
 .\[\&\&\&\]\:shr-mt-0.\[\&\&\&\]\:shr-mt-0.\[\&\&\&\]\:shr-mt-0 {
   margin-top: 0
 }
@@ -4494,16 +4495,8 @@ a {
   margin-top: 128px
 }
 
-.\[\&\&\&\]\:shr-overflow-y-visible.\[\&\&\&\]\:shr-overflow-y-visible.\[\&\&\&\]\:shr-overflow-y-visible {
-  overflow-y: visible
-}
-
 .\[\&\&\&\]\:shr-whitespace-normal.\[\&\&\&\]\:shr-whitespace-normal.\[\&\&\&\]\:shr-whitespace-normal {
   white-space: normal
-}
-
-.\[\&\&\&\]\:shr-rounded-\[unset\].\[\&\&\&\]\:shr-rounded-\[unset\].\[\&\&\&\]\:shr-rounded-\[unset\] {
-  border-radius: unset
 }
 
 .\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.background\)\] {
@@ -4514,86 +4507,9 @@ a {
   border-color: rgb(214 211 208 / 0.5)
 }
 
-.\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.20\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.20\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.20\)\] {
-  background-color: #d6d3d0
-}
-
-.\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.5\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.5\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.5\)\] {
-  background-color: #f8f7f6
-}
-
-.\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.6\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.6\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.6\)\] {
-  background-color: #f5f4f3
-}
-
-.\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.7\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.7\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.7\)\] {
-  background-color: #f2f1f0
-}
-
-.\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.9\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.9\)\].\[\&\&\&\]\:shr-bg-\[theme\(colors\.grey\.9\)\] {
-  background-color: #edebe8
-}
-
-.\[\&\&\&\]\:shr-bg-action-background.\[\&\&\&\]\:shr-bg-action-background.\[\&\&\&\]\:shr-bg-action-background {
-  --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
-}
-
 .\[\&\&\&\]\:shr-bg-background.\[\&\&\&\]\:shr-bg-background.\[\&\&\&\]\:shr-bg-background {
   --tw-bg-opacity: 1;
   background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\&\&\]\:shr-bg-base-grey.\[\&\&\&\]\:shr-bg-base-grey.\[\&\&\&\]\:shr-bg-base-grey {
-  --tw-bg-opacity: 1;
-  background-color: rgb(245 244 243 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\&\&\]\:shr-bg-column.\[\&\&\&\]\:shr-bg-column.\[\&\&\&\]\:shr-bg-column {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\&\&\]\:shr-bg-head.\[\&\&\&\]\:shr-bg-head.\[\&\&\&\]\:shr-bg-head {
-  --tw-bg-opacity: 1;
-  background-color: rgb(237 235 232 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\&\&\]\:shr-bg-over-background.\[\&\&\&\]\:shr-bg-over-background.\[\&\&\&\]\:shr-bg-over-background {
-  --tw-bg-opacity: 1;
-  background-color: rgb(242 241 240 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\&\&\]\:shr-bg-white.\[\&\&\&\]\:shr-bg-white.\[\&\&\&\]\:shr-bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black.\[\&\&\&\]\:shr-text-black {
-  --tw-text-opacity: 1;
-  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
-}
-
-.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled .smarthr-ui-Loader-line {
-  border-color: rgb(214 211 208 / 50%)
-}
-
-.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50.\[\&\&\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50 .smarthr-ui-Loader-line {
-  border-color: rgb(255 255 255 / 0.5)
-}
-
-@media (forced-colors: active) {
-  .\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\].\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\].\[\&\&\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\] .smarthr-ui-Loader-line {
-    border-color: ButtonBorder
-  }
-}
-
-.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em .smarthr-ui-Loader-spinner {
-  height: 1em
-}
-
-.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-w-em.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-w-em.\[\&\&\&_\.smarthr-ui-Loader-spinner\]\:shr-w-em .smarthr-ui-Loader-spinner {
-  width: 1em
 }
 
 .\[\&\&\.shr-dialog-transition-enter-active\]\:shr-opacity-100.\[\&\&\.shr-dialog-transition-enter-active\]\:shr-opacity-100.shr-dialog-transition-enter-active {
@@ -4700,6 +4616,54 @@ a {
   gap: 0
 }
 
+.\[\&\:not\(\:first-child\)\]\:shr-relative:not(:first-child) {
+  position: relative
+}
+
+.\[\&\:not\(\:first-child\)\]\:shr-mt-0\.5:not(:first-child) {
+  margin-top: 8px
+}
+
+.\[\&\:not\(\:first-child\)\]\:shr-min-w-\[8em\]:not(:first-child) {
+  min-width: 8em
+}
+
+.\[\&\:not\(\:first-child\)\]\:shr-pt-0\.5:not(:first-child) {
+  padding-top: 8px
+}
+
+.\[\&\:not\(\:first-child\)\]\:before\:shr-absolute:not(:first-child)::before {
+  content: var(--tw-content);
+  position: absolute
+}
+
+.\[\&\:not\(\:first-child\)\]\:before\:shr-inset-x-1:not(:first-child)::before {
+  content: var(--tw-content);
+  left: 16px;
+  right: 16px
+}
+
+.\[\&\:not\(\:first-child\)\]\:before\:shr-top-0:not(:first-child)::before {
+  content: var(--tw-content);
+  top: 0
+}
+
+.\[\&\:not\(\:first-child\)\]\:before\:shr-h-px:not(:first-child)::before {
+  content: var(--tw-content);
+  height: 1px
+}
+
+.\[\&\:not\(\:first-child\)\]\:before\:shr-bg-border:not(:first-child)::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\:not\(\:first-child\)\]\:before\:shr-content-\[\"\"\]:not(:first-child)::before {
+  --tw-content: "";
+  content: var(--tw-content)
+}
+
 .\[\&\:not\(\:first-of-type\)\]\:shr-mt-1:not(:first-of-type) {
   margin-top: 16px
 }
@@ -4708,7 +4672,7 @@ a {
   cursor: pointer
 }
 
-.\[\&\:not\(\:has\(svg\)\)\]\:shr-ps-\[32px\]:not(:has(svg)) {
+.\[\&\:not\(\:has\(svg\)\)\]\:shr-ps-2:not(:has(svg)) {
   padding-inline-start: 32px
 }
 
@@ -4816,7 +4780,12 @@ a {
   text-decoration-line: none
 }
 
-.\[\&\>svg\]\:aria-\[expanded\=true\]\:shr-rotate-180[aria-expanded="true"]>svg {
+.\[\&\>span\]\:shr-translate-y-\[unset\]>span {
+  --tw-translate-y: unset;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.\[\&\>svg\]\:aria-expanded\:shr-rotate-180[aria-expanded="true"]>svg {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
@@ -4857,49 +4826,12 @@ a {
   box-sizing: border-box
 }
 
-.\[\&\]\:shr-block {
-  display: block
-}
-
-.\[\&\]\:shr-justify-start {
-  justify-content: flex-start
-}
-
 .\[\&\]\:shr-overflow-y-visible {
   overflow-y: visible
 }
 
 .\[\&\]\:shr-rounded-em {
   border-radius: 1em
-}
-
-.\[\&\]\:shr-bg-transparent {
-  background-color: transparent
-}
-
-.\[\&\]\:shr-p-0\.75 {
-  padding: 12px
-}
-
-.\[\&\]\:shr-px-0\.25 {
-  padding-left: 4px;
-  padding-right: 4px
-}
-
-.\[\&\]\:shr-px-0\.5 {
-  padding-left: 8px;
-  padding-right: 8px
-}
-
-.\[\&\]\:shr-px-0\.75 {
-  padding-left: 12px;
-  padding-right: 12px
-}
-
-.\[\&\]\:shr-shadow-none {
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
 .hover\:\[\&\]\:shr-bg-danger-darken:hover {
@@ -4910,10 +4842,6 @@ a {
 .hover\:\[\&\]\:shr-bg-main-darken:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
-}
-
-.hover\:\[\&\]\:shr-bg-transparent:hover {
-  background-color: transparent
 }
 
 .hover\:\[\&\]\:shr-bg-warning-yellow-darken:hover {
@@ -4931,34 +4859,9 @@ a {
   background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1))
 }
 
-.focus-visible\:\[\&\]\:shr-bg-transparent:focus-visible {
-  background-color: transparent
-}
-
 .focus-visible\:\[\&\]\:shr-bg-warning-yellow-darken:focus-visible {
   --tw-bg-opacity: 1;
   background-color: rgb(252 197 0 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&_\.smarthr-ui-AnchorButton\]\:shr-w-full .smarthr-ui-AnchorButton {
-  width: 100%
-}
-
-.\[\&_\.smarthr-ui-AnchorButton\]\:shr-justify-start .smarthr-ui-AnchorButton {
-  justify-content: flex-start
-}
-
-.\[\&_\.smarthr-ui-AnchorButton\]\:shr-border-none .smarthr-ui-AnchorButton {
-  border-style: none
-}
-
-.\[\&_\.smarthr-ui-AnchorButton\]\:shr-py-0\.5 .smarthr-ui-AnchorButton {
-  padding-top: 8px;
-  padding-bottom: 8px
-}
-
-.\[\&_\.smarthr-ui-AnchorButton\]\:shr-font-normal .smarthr-ui-AnchorButton {
-  font-weight: 400
 }
 
 .\[\&_\.smarthr-ui-Button-disabledWrapper\]\:shr-gap-x-0\.5 .smarthr-ui-Button-disabledWrapper {
@@ -4978,25 +4881,63 @@ a {
   padding-inline-end: unset
 }
 
-.\[\&_\.smarthr-ui-Button\]\:shr-w-full .smarthr-ui-Button {
-  width: 100%
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:shr-relative .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page]) {
+  position: relative
 }
 
-.\[\&_\.smarthr-ui-Button\]\:shr-justify-start .smarthr-ui-Button {
-  justify-content: flex-start
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:shr-text-black .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page]) {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
-.\[\&_\.smarthr-ui-Button\]\:shr-border-none .smarthr-ui-Button {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-absolute .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+  content: var(--tw-content);
+  position: absolute
+}
+
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-inset-x-0 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+  content: var(--tw-content);
+  left: 0;
+  right: 0
+}
+
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-bottom-0 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+  content: var(--tw-content);
+  bottom: 0
+}
+
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-h-0\.25 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+  content: var(--tw-content);
+  height: 4px
+}
+
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-bg-main .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-content-\[\"\"\] .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+  --tw-content: "";
+  content: var(--tw-content)
+}
+
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-rounded-none .smarthr-ui-DropdownMenuButton-trigger {
+  border-radius: 0
+}
+
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-border-none .smarthr-ui-DropdownMenuButton-trigger {
   border-style: none
 }
 
-.\[\&_\.smarthr-ui-Button\]\:shr-py-0\.5 .smarthr-ui-Button {
-  padding-top: 8px;
-  padding-bottom: 8px
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-px-0\.5 .smarthr-ui-DropdownMenuButton-trigger {
+  padding-left: 8px;
+  padding-right: 8px
 }
 
-.\[\&_\.smarthr-ui-Button\]\:shr-font-normal .smarthr-ui-Button {
-  font-weight: 400
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-text-grey .smarthr-ui-DropdownMenuButton-trigger {
+  --tw-text-opacity: 1;
+  color: rgb(112 109 101 / var(--tw-text-opacity, 1))
 }
 
 .\[\&_\.smarthr-ui-Icon-withText\]\:-shr-my-0\.25 .smarthr-ui-Icon-withText {
@@ -5051,6 +4992,28 @@ a {
   width: 100%
 }
 
+.\[\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled .smarthr-ui-Loader-line {
+  border-color: rgb(214 211 208 / 50%)
+}
+
+.\[\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50 .smarthr-ui-Loader-line {
+  border-color: rgb(255 255 255 / 0.5)
+}
+
+@media (forced-colors: active) {
+  .\[\&_\.smarthr-ui-Loader-line\]\:forced-colors\:shr-border-\[ButtonBorder\] .smarthr-ui-Loader-line {
+    border-color: ButtonBorder
+  }
+}
+
+.\[\&_\.smarthr-ui-Loader-spinner\]\:shr-h-em .smarthr-ui-Loader-spinner {
+  height: 1em
+}
+
+.\[\&_\.smarthr-ui-Loader-spinner\]\:shr-w-em .smarthr-ui-Loader-spinner {
+  width: 1em
+}
+
 .\[\&_\.smarthr-ui-RadioButton-label\]\:shr-ms-0\.75 .smarthr-ui-RadioButton-label {
   margin-inline-start: 12px
 }
@@ -5102,19 +5065,9 @@ a {
   right: -4px
 }
 
-.\[\&_li\:hover\]\:-shr-mx-0\.25 li:hover {
-  margin-left: -4px;
-  margin-right: -4px
-}
-
-.\[\&_li\:hover\]\:shr-bg-white-darken li:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&_li\:hover\]\:shr-px-0\.25 li:hover {
-  padding-left: 4px;
-  padding-right: 4px
+.\[\&_\>_svg\]\:aria-expanded\:shr-rotate-180[aria-expanded="true"] > svg {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
 .\[\&_li\]\:shr-min-w-0 li {
@@ -5195,8 +5148,8 @@ a {
   top: 0
 }
 
-.\[\&_thead\]\:shr-z-fixed-menu thead {
-  z-index: 100
+.\[\&_thead\]\:shr-z-1 thead {
+  z-index: 1
 }
 
 .\[\&_tr\:first-child_th\:first-child\]\:shr-w-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\] tr:first-child th:first-child {
@@ -5209,6 +5162,24 @@ a {
 
 .\[\&_ul\]\:shr-list-none ul {
   list-style-type: none
+}
+
+.shr-table-border-horizontal .\[\.shr-table-border-horizontal_\&\]\:shr-border-t {
+  border-top-width: 1px
+}
+
+.shr-table-border-horizontal .\[\.shr-table-border-horizontal_\&\]\:shr-border-t-default {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
+}
+
+.shr-table-border-vertical .\[\.shr-table-border-vertical_\&\+\&\]\:shr-border-l+.\[\.shr-table-border-vertical_\&\+\&\]\:shr-border-l {
+  border-left-width: 1px
+}
+
+.shr-table-border-vertical .\[\.shr-table-border-vertical_\&\+\&\]\:shr-border-l-default+.\[\.shr-table-border-vertical_\&\+\&\]\:shr-border-l-default {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .smarthr-ui-Base > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:first-child .\[\.smarthr-ui-Base_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:first-child_\&\]\:shr-rounded-t-l {
