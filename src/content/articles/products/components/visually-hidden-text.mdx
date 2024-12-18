@@ -7,6 +7,16 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
 VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠しつつ、マシンリーダブルにしたい場合に使用します。見出しやラベルが自明な場合などに使います。
 
+## 実装例
+視覚情報では`〜`ですが、スクリーンリーダーでは`から`と読み上げるように指定しています。
+
+```tsx editable
+<>
+  <Text>2024/12/20〜2025/01/30</Text>
+  <VisuallyHiddenText>2024/12/20から2025/01/30</VisuallyHiddenText>
+</>
+```
+
 ## Props
 
 <ComponentPropsTable name="VisuallyHiddenText" />
