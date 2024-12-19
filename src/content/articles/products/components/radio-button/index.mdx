@@ -10,6 +10,8 @@ import { Cluster, Text } from 'smarthr-ui'
 
 import RadioButtonDo from './images/radio-button-do.png';
 import RadioButtonDont from './images/radio-button-dont.png';
+import RadioButtonAlignmentDo from './images/radio-button-alignment-do.png';
+import RadioButtonAlignmenDont from './images/radio-button-alignment-dont.png';
 
 選択肢の中から単一の値を選択して入力できるコンポーネントです。
 `input[type='radio']`の代わりとして使用します。
@@ -45,7 +47,22 @@ import RadioButtonDont from './images/radio-button-dont.png';
 
 横幅に十分なスペースがある場合は、基本的に横並びにすることで縦幅が長くなりすぎることを防ぎます。
 ただし、選択肢の文字が長くなる場合は縦並びを検討します。
-（参考: [共通設定の操作権限項目の「設定項目の並び順」](/products/design-patterns/access-control-setting-pattern-core-features/#h3-4)）
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={RadioButtonAlignmentDo} alt="スクリーンショット: ラジオボタンの縦横に配置するレイアウトのDo" />
+    <Text slot="label">横幅に十分なスペースがある場合は、基本的に横並びにします。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={RadioButtonAlignmenDont} alt="スクリーンショット: ラジオボタンの縦横に配置するレイアウトのDon't" />
+    <Text slot="label">縦並びにすると、親項目の幅に対して要素の配置が偏ってしまい、視認性が低下する恐れがあります。</Text>
+  </DoAndDont>
+</Cluster>
+
+ただし、選択肢の文字が長くなる場合は縦並びを検討します。
+
+![スクリーンショット: ラジオボタンの縦並びレイアウトの例](./images/radio-button-vertical-alignment.png)
 
 
 ### ラジオボタン内に操作可能な要素を含めない
