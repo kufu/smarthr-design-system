@@ -5,7 +5,7 @@ description: 'スクリーンリーダーによる音声読み上げを可能に
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
-VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠しつつ、マシンリーダブルにしたい場合に使用します。見出しやラベルが自明な場合などに使います。
+VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠しつつ、スクリーンリーダーで読み上げるテキストを提供する場合に使用します。見出しやラベルが自明で、表示すると視覚的に冗長になる場合などに使います。
 
 ## 実装例
 
@@ -18,6 +18,23 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
   <VisuallyHiddenText>2024/12/20から2025/01/30</VisuallyHiddenText>
 </>
 ```
+
+### Badgeにアクセスブルな名前をつける
+ドット表示の場合には視覚情報しか持たないため、何らかの形で必ずアクセシブルな名前を与えてください。（参考：[Badge](/products/components/badge/)）
+
+```tsx editable
+<>
+  <Badge dot count={9} />
+  <VisuallyHiddenText>通知があります</VisuallyHiddenText>
+</>
+```
+
+## 使用上の注意
+
+`VisuallyHiddenText`を必要以上に使いすぎないでください。情報が過剰になり、アクセシビリティが逆に損なわれる場合があります。
+
+文脈をしっかり考慮し、スクリーンリーダーユーザーにとって価値のある情報を提供することが重要です。
+
 
 ## Props
 
