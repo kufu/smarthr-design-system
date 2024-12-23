@@ -135,6 +135,13 @@ input {
   padding-inline: unset
 }
 
+input[type=search] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  box-sizing: unset
+}
+
 textarea {
   margin-inline: unset
 }
@@ -718,6 +725,10 @@ a {
 
 .shr-max-h-\[calc\(100dvh-theme\(spacing\.2\)\)\] {
   max-height: calc(100dvh - 32px)
+}
+
+.shr-min-h-\[355px\] {
+  min-height: 355px
 }
 
 .shr-min-h-\[40px\] {
@@ -1344,6 +1355,10 @@ a {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none
+}
+
+.shr-flex-row {
+  flex-direction: row
 }
 
 .shr-flex-row-reverse {
@@ -2876,6 +2891,13 @@ a {
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
 }
 
+.\[\&\:not\(\:last-child\)\]\:shr-border-r-shorthand:not(:last-child) {
+  border-width: 0;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #d6d3d0
+}
+
 .\[\&\>\*\:focus-visible\]\:shr-focus-indicator>*:focus-visible {
   outline: none;
   isolation: isolate;
@@ -3508,6 +3530,10 @@ a {
   border-top-left-radius: 6px
 }
 
+.last\:shr-flex-1:last-child {
+  flex: 1 1 0%
+}
+
 .last\:shr-rounded-br-m:last-child {
   border-bottom-right-radius: 6px
 }
@@ -3523,6 +3549,12 @@ a {
 .empty\:after\:shr-content-\[\'-----\'\]:empty::after {
   --tw-content: '-----';
   content: var(--tw-content)
+}
+
+.focus-within\:shr-shadow-outline:focus-within {
+  --tw-shadow: 0 0 0 2px white, 0 0 0 4px #0077c7;
+  --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color), 0 0 0 4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
 .hover\:shr-border-danger-darken:hover {
@@ -4676,6 +4708,10 @@ a {
   padding-inline-start: 32px
 }
 
+.\[\&\:not\(\:last-child\)\]\:shr-w-\[218px\]:not(:last-child) {
+  width: 218px
+}
+
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
   cursor: not-allowed
 }
@@ -4778,6 +4814,18 @@ a {
 
 .\[\&\>a\]\:shr-no-underline>a {
   text-decoration-line: none
+}
+
+.\[\&\>div\:nth-child\(1\)\]\:shr-flex-1>div:nth-child(1) {
+  flex: 1 1 0%
+}
+
+.\[\&\>div\:nth-child\(2\)\]\:shr-flex-\[2\]>div:nth-child(2) {
+  flex: 2
+}
+
+.\[\&\>div\]\:shr-flex-1>div {
+  flex: 1 1 0%
 }
 
 .\[\&\>span\]\:shr-translate-y-\[unset\]>span {
