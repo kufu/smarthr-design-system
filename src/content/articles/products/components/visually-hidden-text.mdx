@@ -9,13 +9,29 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
 
 ## 実装例
 
-### 期間表現
-視覚情報では`〜`ですが、スクリーンリーダーでは`から`と読み上げるように指定しています。
+### 日付入力の開始日と終了日
+「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`VisuallyHiddenText`を使用している。
 
 ```tsx editable
 <>
-  <Text>2024/12/20〜2025/01/30</Text>
-  <VisuallyHiddenText>2024/12/20から2025/01/30</VisuallyHiddenText>
+  <FormControl
+    title="入社年月日"
+    role="group"
+    titleType="subBlockTitle">
+    <Cluster gap={0.5} align="center" >
+      <VisuallyHiddenText>開始日</VisuallyHiddenText>
+      <DatePicker
+        name="startAtDate"
+      />
+
+      <RangeSeparator />
+      
+      <VisuallyHiddenText>終了日</VisuallyHiddenText>
+      <DatePicker
+        name="endAtDate"
+      />
+    </Cluster>
+  </FormControl>
 </>
 ```
 
