@@ -173,6 +173,13 @@ a {
   border-top-color: #d6d3d0
 }
 
+.shr-border-r-shorthand {
+  border-width: 0;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #d6d3d0
+}
+
 .shr-border-b-shorthand {
   border-width: 0;
   border-bottom-width: 1px;
@@ -389,6 +396,11 @@ a {
   margin: auto
 }
 
+.-shr-mx-0\.25 {
+  margin-left: -4px;
+  margin-right: -4px
+}
+
 .-shr-mx-0\.5 {
   margin-left: -8px;
   margin-right: -8px
@@ -417,6 +429,11 @@ a {
 .-shr-my-0\.75 {
   margin-top: -12px;
   margin-bottom: -12px
+}
+
+.-shr-my-1 {
+  margin-top: -16px;
+  margin-bottom: -16px
 }
 
 .shr-mx-0\.5 {
@@ -486,6 +503,10 @@ a {
   margin-top: -1em
 }
 
+.shr--me-0\.25 {
+  margin-inline-end: -4px
+}
+
 .shr-mb-0\.5 {
   margin-bottom: 8px
 }
@@ -522,6 +543,10 @@ a {
   margin-right: 8px
 }
 
+.shr-mr-1\.25 {
+  margin-right: 20px
+}
+
 .shr-ms-0\.25 {
   margin-inline-start: 4px
 }
@@ -546,8 +571,20 @@ a {
   margin-top: 0
 }
 
+.shr-mt-0\.5 {
+  margin-top: 8px
+}
+
 .shr-mt-1 {
   margin-top: 16px
+}
+
+.shr-mt-2 {
+  margin-top: 32px
+}
+
+.shr-mt-auto {
+  margin-top: auto
 }
 
 .shr-box-border {
@@ -613,12 +650,21 @@ a {
   display: inline-flex
 }
 
+.shr-grid {
+  display: grid
+}
+
 .shr-contents {
   display: contents
 }
 
 .shr-hidden {
   display: none
+}
+
+.shr-size-2 {
+  width: 32px;
+  height: 32px
 }
 
 .shr-size-\[theme\(fontSize\.base\)\] {
@@ -670,12 +716,20 @@ a {
   height: 2em
 }
 
+.shr-h-\[40rem\] {
+  height: 40rem
+}
+
 .shr-h-\[4em\] {
   height: 4em
 }
 
 .shr-h-\[500px\] {
   height: 500px
+}
+
+.shr-h-\[509px\] {
+  height: 509px
 }
 
 .shr-h-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\] {
@@ -725,6 +779,18 @@ a {
 
 .shr-max-h-\[calc\(100dvh-theme\(spacing\.2\)\)\] {
   max-height: calc(100dvh - 32px)
+}
+
+.shr-min-h-0 {
+  min-height: 0
+}
+
+.shr-min-h-\[2\.5rem\] {
+  min-height: 2.5rem
+}
+
+.shr-min-h-\[2rem\] {
+  min-height: 2rem
 }
 
 .shr-min-h-\[355px\] {
@@ -799,6 +865,14 @@ a {
   width: 2em
 }
 
+.shr-w-\[38rem\] {
+  width: 38rem
+}
+
+.shr-w-\[400px\] {
+  width: 400px
+}
+
 .shr-w-\[50vw\] {
   width: 50vw
 }
@@ -851,6 +925,10 @@ a {
   min-width: 16em
 }
 
+.shr-min-w-\[246px\] {
+  min-width: 246px
+}
+
 .shr-min-w-\[3\.5em\] {
   min-width: 3.5em
 }
@@ -869,6 +947,10 @@ a {
 
 .shr-min-w-\[80px\] {
   min-width: 80px
+}
+
+.shr-min-w-\[auto\] {
+  min-width: auto
 }
 
 .shr-min-w-\[calc\(1em\+theme\(spacing\[0\.5\]\)\+8em\+theme\(spacing\[0\.5\]\)\+\(theme\(borderWidth\.DEFAULT\)\*2\)\+\(theme\(spacing\[0\.5\]\)\*2\)\+theme\(fontSize\.sm\)\)\] {
@@ -1355,6 +1437,22 @@ a {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none
+}
+
+.shr-grid-cols-\[11rem_1fr\] {
+  grid-template-columns: 11rem 1fr
+}
+
+.shr-grid-cols-\[1fr_1rem\] {
+  grid-template-columns: 1fr 1rem
+}
+
+.shr-grid-cols-\[1rem_1fr_1rem\] {
+  grid-template-columns: 1rem 1fr 1rem
+}
+
+.shr-grid-rows-\[auto_1fr\] {
+  grid-template-rows: auto 1fr
 }
 
 .shr-flex-row {
@@ -2465,12 +2563,24 @@ a {
   padding-inline-end: 32px
 }
 
+.shr-pl-1 {
+  padding-left: 16px
+}
+
+.shr-pl-2\.5 {
+  padding-left: 40px
+}
+
 .shr-ps-0 {
   padding-inline-start: 0
 }
 
 .shr-ps-0\.5 {
   padding-inline-start: 8px
+}
+
+.shr-ps-1 {
+  padding-inline-start: 16px
 }
 
 .shr-ps-1\.25 {
@@ -2511,6 +2621,14 @@ a {
 
 .shr-text-right {
   text-align: right
+}
+
+.shr-text-start {
+  text-align: start
+}
+
+.shr-text-end {
+  text-align: end
 }
 
 .shr-align-baseline {
@@ -2877,6 +2995,13 @@ a {
     border-top-style: solid;
     border-top-color: #d6d3d0
   }
+}
+
+.\[\&\&\]\:shr-border-b-shorthand.\[\&\&\]\:shr-border-b-shorthand {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #d6d3d0
 }
 
 .\[\&\:has\(\:focus-visible\)\]\:shr-focus-indicator:has(:focus-visible) {
@@ -3261,6 +3386,12 @@ a {
   position: absolute
 }
 
+.after\:shr-inset-x-0\.5::after {
+  content: var(--tw-content);
+  left: 8px;
+  right: 8px
+}
+
 .after\:-shr-bottom-0\.25::after {
   content: var(--tw-content);
   bottom: -4px
@@ -3356,6 +3487,11 @@ a {
   height: 100%
 }
 
+.after\:shr-h-px::after {
+  content: var(--tw-content);
+  height: 1px
+}
+
 .after\:shr-w-0\.75::after {
   content: var(--tw-content);
   width: 12px
@@ -3439,6 +3575,12 @@ a {
 .after\:shr-border-t-transparent::after {
   content: var(--tw-content);
   border-top-color: transparent
+}
+
+.after\:shr-bg-border::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .after\:shr-bg-main::after {
@@ -3528,6 +3670,14 @@ a {
 
 .first\:shr-rounded-tl-m:first-child {
   border-top-left-radius: 6px
+}
+
+.first\:shr-border-t-0:first-child {
+  border-top-width: 0px
+}
+
+.first\:shr-pt-0:first-child {
+  padding-top: 0
 }
 
 .last\:shr-flex-1:last-child {
@@ -4339,6 +4489,18 @@ a {
   }
 }
 
+@media (max-width: 751px) {
+  .max-\[751px\]\:\!shr-hidden {
+    display: none !important
+  }
+}
+
+@media (min-width: 752px) {
+  .min-\[752px\]\:\!shr-hidden {
+    display: none !important
+  }
+}
+
 @media (forced-colors: active) {
   .forced-colors\:shr-static {
     position: static
@@ -4539,6 +4701,10 @@ a {
   border-color: rgb(214 211 208 / 0.5)
 }
 
+.\[\&\&\&\]\:shr-border-transparent.\[\&\&\&\]\:shr-border-transparent.\[\&\&\&\]\:shr-border-transparent {
+  border-color: transparent
+}
+
 .\[\&\&\&\]\:shr-bg-background.\[\&\&\&\]\:shr-bg-background.\[\&\&\&\]\:shr-bg-background {
   --tw-bg-opacity: 1;
   background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
@@ -4550,6 +4716,207 @@ a {
 
 .\[\&\&\.shr-dialog-transition-exit-active\]\:shr-opacity-0.\[\&\&\.shr-dialog-transition-exit-active\]\:shr-opacity-0.shr-dialog-transition-exit-active {
   opacity: 0
+}
+
+.\[\&\&\.shr-sp-menu-enter-active\]\:shr-opacity-100.\[\&\&\.shr-sp-menu-enter-active\]\:shr-opacity-100.shr-sp-menu-enter-active {
+  opacity: 1
+}
+
+.\[\&\&\.shr-sp-menu-enter-done\]\:shr-opacity-100.\[\&\&\.shr-sp-menu-enter-done\]\:shr-opacity-100.shr-sp-menu-enter-done {
+  opacity: 1
+}
+
+.\[\&\&\.shr-sp-menu-exit-active\]\:shr-opacity-0.\[\&\&\.shr-sp-menu-exit-active\]\:shr-opacity-0.shr-sp-menu-exit-active {
+  opacity: 0
+}
+
+.\[\&\&\.shr-sp-menu-exit-done\]\:shr-opacity-0.\[\&\&\.shr-sp-menu-exit-done\]\:shr-opacity-0.shr-sp-menu-exit-done {
+  opacity: 0
+}
+
+.\[\&\&\.smarthr-ui-AnchorButton\]\:shr-p-0\.75.\[\&\&\.smarthr-ui-AnchorButton\]\:shr-p-0\.75.smarthr-ui-AnchorButton {
+  padding: 12px
+}
+
+.\[\&\&\.smarthr-ui-AnchorButton\]\:shr-py-0\.75.\[\&\&\.smarthr-ui-AnchorButton\]\:shr-py-0\.75.smarthr-ui-AnchorButton {
+  padding-top: 12px;
+  padding-bottom: 12px
+}
+
+.\[\&\&\.smarthr-ui-Button\]\:shr-p-0\.75.\[\&\&\.smarthr-ui-Button\]\:shr-p-0\.75.smarthr-ui-Button {
+  padding: 12px
+}
+
+.\[\&\&\.smarthr-ui-Button\]\:shr-py-0\.75.\[\&\&\.smarthr-ui-Button\]\:shr-py-0\.75.smarthr-ui-Button {
+  padding-top: 12px;
+  padding-bottom: 12px
+}
+
+.\[\&\&\:not\(\:has\(svg\)\)\]\:shr-ps-2\.5.\[\&\&\:not\(\:has\(svg\)\)\]\:shr-ps-2\.5:not(:has(svg)) {
+  padding-inline-start: 40px
+}
+
+.\[\&\&\]\:shr-mx-0.\[\&\&\]\:shr-mx-0 {
+  margin-left: 0;
+  margin-right: 0
+}
+
+.\[\&\&\]\:shr-my-0\.5.\[\&\&\]\:shr-my-0\.5 {
+  margin-top: 8px;
+  margin-bottom: 8px
+}
+
+.\[\&\&\]\:shr-box-border.\[\&\&\]\:shr-box-border {
+  box-sizing: border-box
+}
+
+.\[\&\&\]\:shr-flex.\[\&\&\]\:shr-flex {
+  display: flex
+}
+
+.\[\&\&\]\:shr-min-h-0.\[\&\&\]\:shr-min-h-0 {
+  min-height: 0
+}
+
+.\[\&\&\]\:shr-w-full.\[\&\&\]\:shr-w-full {
+  width: 100%
+}
+
+.\[\&\&\]\:shr-cursor-pointer.\[\&\&\]\:shr-cursor-pointer {
+  cursor: pointer
+}
+
+.\[\&\&\]\:shr-items-center.\[\&\&\]\:shr-items-center {
+  align-items: center
+}
+
+.\[\&\&\]\:shr-justify-between.\[\&\&\]\:shr-justify-between {
+  justify-content: space-between
+}
+
+.\[\&\&\]\:shr-gap-0\.5.\[\&\&\]\:shr-gap-0\.5 {
+  gap: 8px
+}
+
+.\[\&\&\]\:shr-whitespace-pre.\[\&\&\]\:shr-whitespace-pre {
+  white-space: pre
+}
+
+.\[\&\&\]\:shr-rounded-m.\[\&\&\]\:shr-rounded-m {
+  border-radius: 6px
+}
+
+.\[\&\&\]\:shr-border-none.\[\&\&\]\:shr-border-none {
+  border-style: none
+}
+
+.\[\&\&\]\:shr-border-transparent.\[\&\&\]\:shr-border-transparent {
+  border-color: transparent
+}
+
+.\[\&\&\]\:shr-bg-transparent.\[\&\&\]\:shr-bg-transparent {
+  background-color: transparent
+}
+
+.\[\&\&\]\:shr-bg-white-darken.\[\&\&\]\:shr-bg-white-darken {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\&\]\:shr-p-0\.25.\[\&\&\]\:shr-p-0\.25 {
+  padding: 4px
+}
+
+.\[\&\&\]\:shr-p-0\.5.\[\&\&\]\:shr-p-0\.5 {
+  padding: 8px
+}
+
+.\[\&\&\]\:shr-px-0\.25.\[\&\&\]\:shr-px-0\.25 {
+  padding-left: 4px;
+  padding-right: 4px
+}
+
+.\[\&\&\]\:shr-px-0\.5.\[\&\&\]\:shr-px-0\.5 {
+  padding-left: 8px;
+  padding-right: 8px
+}
+
+.\[\&\&\]\:shr-px-1.\[\&\&\]\:shr-px-1 {
+  padding-left: 16px;
+  padding-right: 16px
+}
+
+.\[\&\&\]\:shr-py-0\.5.\[\&\&\]\:shr-py-0\.5 {
+  padding-top: 8px;
+  padding-bottom: 8px
+}
+
+.\[\&\&\]\:shr-pe-0.\[\&\&\]\:shr-pe-0 {
+  padding-inline-end: 0
+}
+
+.\[\&\&\]\:shr-text-base.\[\&\&\]\:shr-text-base {
+  font-size: 1rem
+}
+
+.\[\&\&\]\:shr-font-bold.\[\&\&\]\:shr-font-bold {
+  font-weight: 700
+}
+
+.\[\&\&\]\:shr-font-normal.\[\&\&\]\:shr-font-normal {
+  font-weight: 400
+}
+
+.\[\&\&\]\:shr-leading-normal.\[\&\&\]\:shr-leading-normal {
+  line-height: 1.5
+}
+
+.\[\&\&\]\:shr-text-black.\[\&\&\]\:shr-text-black {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
+}
+
+.\[\&\&\]\:shr-text-white.\[\&\&\]\:shr-text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+}
+
+.\[\&\&\]\:shr-underline.\[\&\&\]\:shr-underline {
+  text-decoration-line: underline
+}
+
+.\[\&\&\]\:shr-no-underline.\[\&\&\]\:shr-no-underline {
+  text-decoration-line: none
+}
+
+.\[\&\&\]\:last-of-type\:-shr-me-0\.25:last-of-type.\[\&\&\]\:last-of-type\:-shr-me-0\.25:last-of-type {
+  margin-inline-end: -4px
+}
+
+.\[\&\&\]\:hover\:shr-bg-transparent:hover.\[\&\&\]\:hover\:shr-bg-transparent:hover {
+  background-color: transparent
+}
+
+.\[\&\&\]\:hover\:shr-bg-white-darken:hover.\[\&\&\]\:hover\:shr-bg-white-darken:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\&\]\:hover\:shr-underline:hover.\[\&\&\]\:hover\:shr-underline:hover {
+  text-decoration-line: underline
+}
+
+.\[\&\&\]\:hover\:shr-no-underline:hover.\[\&\&\]\:hover\:shr-no-underline:hover {
+  text-decoration-line: none
+}
+
+.\[\&\&\]\:focus-visible\:shr-bg-transparent:focus-visible.\[\&\&\]\:focus-visible\:shr-bg-transparent:focus-visible {
+  background-color: transparent
+}
+
+.\[\&\&\]\:focus-visible\:shr-bg-white-darken:focus-visible.\[\&\&\]\:focus-visible\:shr-bg-white-darken:focus-visible {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\.entered\]\:shr-visible.entered {
@@ -4828,6 +5195,16 @@ a {
   flex: 1 1 0%
 }
 
+.\[\&\>li\]\:shr-px-0\.5>li {
+  padding-left: 8px;
+  padding-right: 8px
+}
+
+.\[\&\>li\]\:shr-py-0\.25>li {
+  padding-top: 4px;
+  padding-bottom: 4px
+}
+
 .\[\&\>span\]\:shr-translate-y-\[unset\]>span {
   --tw-translate-y: unset;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
@@ -4843,7 +5220,17 @@ a {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
+.\[\&\[aria-expanded\=\"true\"\]\>\.smarthr-ui-Icon\]\:shr-rotate-180[aria-expanded="true"]>.smarthr-ui-Icon {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
 .\[\&\[aria-expanded\=\"true\"\]_\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon:last-child {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.\[\&\[aria-expanded\=\'true\'\]\>\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded='true']>.smarthr-ui-Icon:last-child {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
@@ -4978,14 +5365,27 @@ a {
   border-style: none
 }
 
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-border-transparent .smarthr-ui-DropdownMenuButton-trigger {
+  border-color: transparent
+}
+
 .\[\&_\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-px-0\.5 .smarthr-ui-DropdownMenuButton-trigger {
   padding-left: 8px;
   padding-right: 8px
 }
 
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-font-normal .smarthr-ui-DropdownMenuButton-trigger {
+  font-weight: 400
+}
+
 .\[\&_\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-text-grey .smarthr-ui-DropdownMenuButton-trigger {
   --tw-text-opacity: 1;
   color: rgb(112 109 101 / var(--tw-text-opacity, 1))
+}
+
+.\[\&_\.smarthr-ui-Heading\]\:shr-text-black .smarthr-ui-Heading {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 .\[\&_\.smarthr-ui-Icon-withText\]\:-shr-my-0\.25 .smarthr-ui-Icon-withText {
@@ -5036,6 +5436,10 @@ a {
   }
 }
 
+.\[\&_\.smarthr-ui-Input\]\:shr-h-\[42px\] .smarthr-ui-Input {
+  height: 42px
+}
+
 .\[\&_\.smarthr-ui-Input\]\:shr-w-full .smarthr-ui-Input {
   width: 100%
 }
@@ -5080,6 +5484,37 @@ a {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
+.\[\&_\.smarthr-ui-SideNav-item\>button\>span\]\:shr-flex-nowrap .smarthr-ui-SideNav-item>button>span {
+  flex-wrap: nowrap
+}
+
+.\[\&_\.smarthr-ui-SideNav-item\>button\]\:shr-px-1 .smarthr-ui-SideNav-item>button {
+  padding-left: 16px;
+  padding-right: 16px
+}
+
+.\[\&_\.smarthr-ui-SideNav-item\>button\]\:shr-py-0\.75 .smarthr-ui-SideNav-item>button {
+  padding-top: 12px;
+  padding-bottom: 12px
+}
+
+.\[\&_\.smarthr-ui-SideNav-item\>button\]\:shr-pl-1\.5 .smarthr-ui-SideNav-item>button {
+  padding-left: 24px
+}
+
+.\[\&_\.smarthr-ui-SideNav-item\>button_\.smarthr-ui-Icon\]\:shr-shrink-0 .smarthr-ui-SideNav-item>button .smarthr-ui-Icon {
+  flex-shrink: 0
+}
+
+.\[\&_\.smarthr-ui-SideNav-item\>button_\.smarthr-ui-Icon\]\:shr-align-bottom .smarthr-ui-SideNav-item>button .smarthr-ui-Icon {
+  vertical-align: bottom
+}
+
+.\[\&_\.smarthr-ui-SideNav-item\>button_\.smarthr-ui-Icon\]\:shr-text-grey .smarthr-ui-SideNav-item>button .smarthr-ui-Icon {
+  --tw-text-opacity: 1;
+  color: rgb(112 109 101 / var(--tw-text-opacity, 1))
+}
+
 .\[\&_\.smarthr-ui-WarningIcon-mark\]\:shr-fill-warning-yellow .smarthr-ui-WarningIcon-mark {
   fill: #ffcc17
 }
@@ -5116,6 +5551,23 @@ a {
 .\[\&_\>_svg\]\:aria-expanded\:shr-rotate-180[aria-expanded="true"] > svg {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.\[\&_hr\]\:shr-m-0\.5 hr {
+  margin: 8px
+}
+
+.\[\&_hr\]\:shr-h-\[1px\] hr {
+  height: 1px
+}
+
+.\[\&_hr\]\:shr-border-none hr {
+  border-style: none
+}
+
+.\[\&_hr\]\:shr-bg-border hr {
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&_li\]\:shr-min-w-0 li {

@@ -1,9 +1,16 @@
 ---
-title: 'DatetimeLocalPicker'
+title: 'DatetimeLocalPicker（非推奨）'
 description: "ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。"
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+
+<BaseColumn>
+  <ResponseMessage type="warning">
+    <span>DatetimeLocalPickerは非推奨です。[Input[type="datetime-local"]](/products/components/input/) を使ってください。</span>
+  </ResponseMessage>
+</BaseColumn>
 
 ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。
 
