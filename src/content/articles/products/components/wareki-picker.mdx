@@ -5,11 +5,26 @@ description: '和暦の日付を西暦に変換する機能と和暦をプレビ
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
-ユーザーに日付を指定させ、その日付を和暦に変換して表示する際に使用するコンポーネントです。
+和暦の日付を西暦に変換する機能と和暦をプレビューする機能をもった入力要素です。
 
 例えば、「令和4年12月3日」という日付を入力欄に貼り付けると「2022-12-03」に変換する機能を備えています。
 
 <ComponentStory name="WarekiPicker" />
+
+## 使用上の注意
+
+### 和暦を西暦に変換できることを明示的に示す
+
+コンポーネントの見た目からは和暦変換できることがわからないため、和暦変換できることを明示的にラベルや説明文で示してください。
+
+```tsx editable
+<FormControl
+  title="入社年月日"
+  helpMessage="和暦と西暦のどちらでも入力できます。"
+>
+  <WarekiPicker />
+</FormControl>
+```
 
 ## Props
 
