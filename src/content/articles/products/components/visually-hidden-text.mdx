@@ -13,43 +13,38 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
 
 文脈をしっかり考慮し、スクリーンリーダーユーザーにとって価値のある情報を提供することが重要です。
 
-## 実装例
+## VisuallyHiddenTextを使用したコンポーネント
 
-### 日付入力の開始日と終了日
-「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`VisuallyHiddenText`を使用している。
-
-```tsx editable
-<>
-  <FormControl
-    title="入社年月日"
-    role="group"
-    titleType="subBlockTitle">
-    <Cluster gap={0.5} align="center" >
-      <VisuallyHiddenText>開始日</VisuallyHiddenText>
-      <DatePicker
-        name="startAtDate"
-      />
-
-      <RangeSeparator />
-      
-      <VisuallyHiddenText>終了日</VisuallyHiddenText>
-      <DatePicker
-        name="endAtDate"
-      />
-    </Cluster>
-  </FormControl>
-</>
-```
-
-### Badgeにアクセスブルな名前をつける
-ドット表示の場合には視覚情報しか持たないため、何らかの形で必ずアクセシブルな名前を与えてください。（参考：[Badge](/products/components/badge/)）
+### RangeSeparator
+期間や範囲を表す`〜`や`-`を`から`などの意味のわかる文字に置き換えてくれます。（参考：[RangeSeparator](/products/components/range-separator/)）
 
 ```tsx editable
-<>
-  <Badge dot count={9} />
-  <VisuallyHiddenText>通知があります</VisuallyHiddenText>
-</>
+<p>
+  兼務先（部署2
+  <RangeSeparator />
+  10）も所属部署として扱う
+</p>
 ```
+
+### FormControl[dangerouslyTitleHidden]
+「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`FormControl`の`dangerouslyTitleHidden`propsを使用している。
+
+```tsx editable
+<Fieldset title="入社年月日" >
+  <Cluster gap={0.5} align="center">
+    <FormControl title="開始日" dangerouslyTitleHidden>
+      <DatePicker name="startAtDate" />
+    </FormControl>
+
+    <RangeSeparator />
+
+    <FormControl title="終了日" dangerouslyTitleHidden>
+      <DatePicker name="EndAtDate" />
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
+
 
 ## Props
 
