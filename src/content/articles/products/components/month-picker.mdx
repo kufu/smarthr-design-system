@@ -1,10 +1,17 @@
 ---
-title: 'MonthPicker'
+title: 'MonthPicker（非推奨）'
 description: 'ユーザーに年と月を入力させる際に使用するコンポーネントです。'
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+
+<BaseColumn>
+  <ResponseMessage type="warning">
+    <span>MonthPickerは非推奨です。[Input[type="month"]](/products/components/input/) を使ってください。</span>
+  </ResponseMessage>
+</BaseColumn>
 
 ユーザーに年と月を入力させる際に使用するコンポーネントです。
 

@@ -1,9 +1,16 @@
 ---
-title: 'DatePicker'
+title: 'DatePicker（非推奨）'
 description: "ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。"
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+
+<BaseColumn>
+  <ResponseMessage type="warning">
+    <span>DatePickerは非推奨です。[Input[type=date]](/products/components/input/) を使ってください。</span>
+  </ResponseMessage>
+</BaseColumn>
 
 ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスすると[Calendar](/products/components/calendar/)が開き、視覚的に日付を選択できます。
 
