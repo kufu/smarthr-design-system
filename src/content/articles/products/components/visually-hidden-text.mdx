@@ -7,6 +7,12 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
 VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠しつつ、スクリーンリーダーで読み上げるテキストを提供する場合に使用します。見出しやラベルが自明で、表示すると視覚的に冗長になる場合などに使います。
 
+## 使用上の注意
+
+`VisuallyHiddenText`を必要以上に使いすぎないでください。情報が過剰になり、アクセシビリティが逆に損なわれる場合があります。
+
+文脈をしっかり考慮し、スクリーンリーダーユーザーにとって価値のある情報を提供することが重要です。
+
 ## 実装例
 
 ### 日付入力の開始日と終了日
@@ -44,13 +50,6 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
   <VisuallyHiddenText>通知があります</VisuallyHiddenText>
 </>
 ```
-
-## 使用上の注意
-
-`VisuallyHiddenText`を必要以上に使いすぎないでください。情報が過剰になり、アクセシビリティが逆に損なわれる場合があります。
-
-文脈をしっかり考慮し、スクリーンリーダーユーザーにとって価値のある情報を提供することが重要です。
-
 
 ## Props
 
