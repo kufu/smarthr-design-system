@@ -1,14 +1,22 @@
 ---
 title: 'TextLink'
-description: 'a要素の代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。'
+description: 'aタグの代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { FaUpRightFromSquareIcon, FaCircleQuestionIcon} from 'smarthr-ui'
 
-`a`の代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。
+`a`タグの代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。
 
 <ComponentStory name="TextLink" />
+
+## 使用上の注意
+
+### ボタンとして使わない
+
+`TextLink`は、ページを移動するためのリンクです。それ以外の処理を実行するボタンとして使わないでください。
+
+視覚的優先度の低いボタンを表現したい場合は、[Button variant="text"](/products/components/button/#h3-4)を使ってください。
 
 ## レイアウト
 
