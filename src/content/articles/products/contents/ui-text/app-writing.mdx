@@ -7,6 +7,7 @@ ignoreH3Nav: true
 
 アプリケーション上の表現で迷ったときの判断基準や、推奨する表記を記載しています。
 
+{<a id="use-polite-style-and-avoid-taigen-dome-in-descriptions" />}
 ## ディスクリプションは敬体（です、ます調）を用いて、動詞まで書く
 
 ### 説明
@@ -16,6 +17,7 @@ ignoreH3Nav: true
 
 画面ごとのライティングの詳細は、デザインパターンで確認してください。
 
+{<a id="use-no-particle-in-action-dialog-titles" />}
 ## アクションに関する画面やダイアログのタイトルでは、助詞は「の」を使用する
 
 ### 説明
@@ -23,10 +25,10 @@ ignoreH3Nav: true
 操作画面やアクションダイアログで、オブジェクトを明記しながら操作を表す場合には、助詞に「の」を使用します。
 
 **例**  
-
 OK：権限の追加、申請の取り消し  
 NG：権限を追加、申請を取り消し
 
+{<a id="use-wo-particle-in-buttons-and-text-links" />}
 ## ボタンやテキストリンクでは、助詞は「を」を使用する
 
 ### 説明
@@ -35,16 +37,15 @@ NG：権限を追加、申請を取り消し
 操作ボタンやリンクはユーザーの動作を表すので、操作を動詞として扱う「を」を伴います。
 
 **例**  
-
 OK：権限を追加、申請を取り消し  
 NG：権限の追加、申請の取り消し
 
 なお、画面タイトルは、操作を動名詞で表すという意図から「の」を使用します。
 
 ### 議事録
-
 https://smarthr-inc.docbase.io/posts/1512192
 
+{<a id="use-nouns-or-gerunds-in-titles-items-buttons" />}
 ## 画面タイトル、項目名、ボタンは名詞、動名詞で表記する
 
 ### 説明
@@ -61,18 +62,19 @@ NG：CSVを取り込み
 
 画面ごとのライティングの詳細は、デザインパターンで確認してください。
 
+{<a id="use-ni-for-specific-destination-and-e-for-relative-position" />}
 ## 移動の操作を表すときの助詞は、具体的な対象なら「に」、相対的な位置なら「へ」
 
 ### 説明
 
-移動の操作を書く場合、可能な限り場所を明示し「に」を伴います。
+移動の操作を書く場合、可能な限り場所を明示し「に」を伴います。  
 ただし、省略する場合は、相対的な位置で示して「へ」を伴います。
 
 ［○○］（画面名）や［〇〇一覧］といった具体的な場所を指す場合は「に」を使用します。
 
 #### 例
 
-OK：「一覧に戻る」、 「従業員リストに戻る」  
+OK：「一覧に戻る」、「従業員リストに戻る」  
 NG：「一覧へ戻る」
 
 前後左右といった相対的な位置を指す場合は「へ」を使用します。
@@ -83,9 +85,9 @@ OK：「前へ」、「前へ戻る」
 NG：「前に戻る」
 
 ### 議事録
-
 https://smarthr-inc.docbase.io/posts/1719994
 
+{<a id="avoid-kocchira-use-in-descriptive-links" />}
 ## テキストリンクは「こちら」ではなく、移動先を想起しやすい表現をする
 
 ### 説明
@@ -101,9 +103,9 @@ https://smarthr-inc.docbase.io/posts/1719994
 [Web Content Accessibility Guidelines - 2.4.4 リンクの目的（コンテキスト内）を理解する](https://waic.jp/translations/WCAG21/Understanding/link-purpose-in-context.html)
 
 ### 議事録
-
 https://smarthr-inc.docbase.io/posts/1308637#%E3%83%AA%E3%83%B3%E3%82%AF
 
+{<a id="dont-use-ichiran-in-common-tables" />}
 ## よくあるテーブルの見出しに「一覧」はつけない
 
 ### 説明
@@ -115,7 +117,7 @@ https://smarthr-inc.docbase.io/posts/1308637#%E3%83%AA%E3%83%B3%E3%82%AF
 ただし、機能名とオブジェクト名が一致する場合は、同じ画面内でコンテンツを区別するために「一覧」をつけてください。  
 
 #### 例：申請機能  
-- 申請機能の画面タイトルは「申請」
+- 申請機能の画面タイトルは「申請」  
 - 申請を一覧表示するテーブルの見出しは「申請一覧」
 
 [「上階層に戻る」リンク](/products/components/text-link/upward-link/)の場合は、戻る画面を具体的に伝えるために「〇〇一覧に戻る」の表記とします。簡潔な言い回しにするため、「〜の一覧」のように「の」はつけません。
@@ -125,6 +127,7 @@ https://smarthr-inc.docbase.io/posts/1308637#%E3%83%AA%E3%83%B3%E3%82%AF
 見出しについては、一覧であることが明白なので必要ないと判断。  
 前の画面をより具体的に伝えるために、戻るリンクには「〇〇一覧」の表記にした方が良いと考えました。
 
+{<a id="use-vertical-bar-with-page-titles" />}
 ## ページタイトルは、機能名とSmartHRをバーティカルバー（｜）でつなぐ
 
 ### 説明
@@ -138,9 +141,9 @@ https://smarthr-inc.docbase.io/posts/1308637#%E3%83%AA%E3%83%B3%E3%82%AF
 - 組織図｜SmartHR（スマートHR）
 
 ### 議事録
-
 https://kufuinc.slack.com/archives/CJX59GJFR/p1631164443066500
 
+{<a id="username-and-account-format" />}
 ## ユーザー名、アカウントの表記方法
 
 ### 説明
@@ -155,6 +158,7 @@ https://kufuinc.slack.com/archives/CJX59GJFR/p1631164443066500
 - 新しい従業員の育児休暇申請
 {/* textlint-enable */}
 
+{<a id="use-kakko-copy-prefix-for-duplicates" />}
 ## 複製したオブジェクトは、オブジェクト名の頭に（コピー）をつける
 
 ### 説明
@@ -167,9 +171,9 @@ https://kufuinc.slack.com/archives/CJX59GJFR/p1631164443066500
 ファイル名の末尾に「のコピー」などを追加していくと、一覧表示での視認性が悪くなるほか、長いオブジェクト名の場合にコピーであることに気がつきにくいため、プレフィクスをつけることにしました。
 
 ### 議事録
-
 https://kufuinc.slack.com/archives/CJX59GJFR/p1643274254069400
 
+{<a id="buttons-are-taigen-dome" />}
 ## ボタンのラベルは、そのボタンが担うアクションを体言止めで書く
 
 ### 説明
@@ -179,19 +183,20 @@ https://kufuinc.slack.com/archives/CJX59GJFR/p1643274254069400
 - タスクやオブジェクトを「追加」
 - 次のプロセスに進む「次へ」
 
-「権限を追加」「申請を取り消し」など、対象のオブジェクト名などを明記しないとアクションが伝わりにくい場合は「を」で接続します。
+「権限を追加」「申請を取り消し」など、対象のオブジェクト名などを明記しないとアクションが伝わりにくい場合は「を」で接続します。  
 - [ボタンやテキストリンクでは、助詞は「を」を使用する](/products/contents/ui-text/app-writing/#h2-2)
 
 ラベルの判断基準は以下のとおりです。
 
 ![判断基準の図](../images/button-label-decision-tree.png)
 
-
+{<a id="writing-headings" />}
 ## 見出しの書き方
 ### 説明
 
 画面上のオブジェクトや操作を、簡潔に体言止めで書きます。複数行になる長いタイトルは見直しましょう。
-- オブジェクトの一覧（コレクション）画面のタイトルでは、「[オブジェクト名]一覧」「[オブジェクト名]の一覧」のような冗長な表記をなるべく避け、「オブジェクト名」とのみ書くようにします。
+
+- オブジェクトの一覧（コレクション）画面のタイトルでは、「[オブジェクト名]一覧」「[オブジェクト名]の一覧」のような冗長な表記をなるべく避け、「オブジェクト名」とのみ書くようにします。  
 - [よくあるテーブルの見出しに「一覧」はつけない](/products/contents/ui-text/app-writing/#h2-6)
 
 アクションを伴う画面（新規作成画面、編集画面）のタイトルや、[ActionDialog](/products/components/dialog/action-dialog/)のタイトルでは、アクションに関わる動詞（動名詞）は、基本的に「の」で接続して表記します。
@@ -202,6 +207,7 @@ https://kufuinc.slack.com/archives/CJX59GJFR/p1643274254069400
 見出しが動詞で終わる場合でも、句点は省略します。
 - [見出しでは句点（。）を省略する](/products/contents/idiomatic-usage/symbol/#h2-1)
 
+{<a id="tooltip-writing" />}
 ## Tooltipのライティング
 
 ### 説明
