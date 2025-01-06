@@ -6,22 +6,25 @@ order: 1
 
 アプリケーション内に表示するエラーメッセージの作成に関するガイドラインです。
 
-エラーメッセージのライティングは、[基本的な考え方](/products/contents/writing-style/)、[用字用語](/products/contents/idiomatic-usage/)に準拠します。
+エラーメッセージのライティングは、[基本的な考え方](/products/contents/writing-style/)、[用字用語](/products/contents/idiomatic-usage/)に準拠します。  
 そのほか、エラーメッセージ特有の気をつけるべきポイントを記載しています。
 
+{<a id="scope-of-application" />}
 ## 適用範囲
 アプリケーションを操作してエラーが発生したときに表示するメッセージすべてです。
 
-ここでは、以下の場合について説明します。
-* バックグラウンド処理画面
+ここでは、以下の場合について説明します。  
+* バックグラウンド処理画面  
 * FlashMessage
 
+{<a id="basic-idea-of-error-messages" />}
 ## エラーメッセージの基本的な考え方
 エラーメッセージを表示する目的は、**ユーザーがメッセージを見て問題を解決でき、次の操作に進める**状態にすることです。
 
-この状態を実現できないエラーメッセージだった場合、ユーザーの戸惑いや不安につながります。
+この状態を実現できないエラーメッセージだった場合、ユーザーの戸惑いや不安につながります。  
 ユーザーが問題を解決できる対処方法を明示した内容にすることを考えます。
 
+{<a id="basic-elements-of-error-messages" />}
 ## エラーメッセージの基本的な要素
 どのエラーメッセージであっても、含める情報の要素は**事象・原因・対処**です。
 
@@ -41,11 +44,13 @@ order: 1
 
 スペースが足りないときなど、すべての要素を表示できない場合は、**原因＞対処＞事象**の順で優先しましょう。
 
-ユーザーの目的は「無事に操作を完了させること」であり、そのためにユーザーが知りたいことは「どうしたらエラーを解消できるか」です。
+ユーザーの目的は「無事に操作を完了させること」であり、そのためにユーザーが知りたいことは「どうしたらエラーを解消できるか」です。  
 そのため、エラーを解消するための原因とその対処の表示を優先します。
 
+{<a id="writing-patterns-for-error-messages" />}
 ## エラーメッセージのライティングパターン
 
+{<a id="background-process" />}
 ### バックグラウンド処理
 * バックグラウンド処理のエラーメッセージに含める要素は、**事象・原因・対処**です。
 * フラッシュメッセージと異なり、メッセージを表示するスペースがあるため、すべての要素を記載しましょう。
@@ -68,7 +73,7 @@ order: 1
 エラー詳細  
 「CSVファイルの文字コードが不正な形式です。」
 
-* 結果概要とエラー詳細に同じ内容が記載されており、詳細を確認しようとしたユーザーが詳しい情報得られない内容になっています。
+* 結果概要とエラー詳細に同じ内容が記載されており、詳細を確認しようとしたユーザーが詳しい情報を得られない内容になっています。
 * 結果概要に操作が失敗した**原因**が記載され、ユーザーの操作「CSVファイルの取り込み」の結果が記載されていません。
 * 具体的な**対処**が記載されておらず、エラーをどう解消すればいいのかがわからない内容になっています。
 
@@ -80,7 +85,7 @@ order: 1
     例：CSVを取り込んで、従業員を一括招待する
 
 2. ユーザーが実行する操作と目的の操作が一致している場合
-    
+
     例：PDFを一括でアップロードする
 
 ##### 1. CSVを取り込むことで、目的の操作をする場合
@@ -89,8 +94,9 @@ order: 1
 ##### 2. 目的となる操作とユーザーが実行する操作が一致している場合
 <iframe className="airtable-embed" src="https://airtable.com/embed/shrh2JnB7gShnieyO?backgroundColor=teal&viewControls=on" frameBorder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
 
+{<a id="flash-message" />}
 ### FlashMessage
-* [FlashMessage](https://smarthr.design/products/components/flash-message/)で伝える要素は、**原因**または**原因・対処**です。
+* [FlashMessage](/products/components/flash-message/)で伝える要素は、**原因**または**原因・対処**です。
 * FlashMessageは数秒で消えてしまい、かつメッセージの表示スペースが少ないため、ユーザーがひと目で把握できる情報量にする必要があります。
 
 #### OK例
@@ -104,7 +110,6 @@ order: 1
 
 * **事象・原因・対処**のすべてに言及し、親切そうではありますが、情報量が多く、数秒で消えてしまうFlashMessageには適しません。
 * **原因**の「対象のカスタムマスター項目は、存在しません。」は事実ではありますが、「なぜ存在しないのか（＝すでに削除されているから）」が説明されていません。
-
 
 #### ライティングパターン
 <iframe className="airtable-embed" src="https://airtable.com/embed/shrJesWWfaW3G0B02?backgroundColor=teal&viewControls=on" frameBorder="0" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
