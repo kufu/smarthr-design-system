@@ -27,45 +27,18 @@ import imageDont from './images/information-panel-on-base-dont.png'
 
 InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は`3`です。レイヤー順序が`1`の[Base](/products/components/base/)の中に直接配置しないでください。
 
-[削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)など、Baseのなかで見出しと内容を目立たせたい場合は、[BaseColumn](/products/components/base/base-column/)を使用してください。見出し部分は[Heading[type="blockTitle"]](/products/components/heading/)とResponseMessageで代替します。
+[削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)など、Baseのなかで見出しと内容をグルーピングしたい場合は、[BaseColumnでメッセージを表示するパターン](/products/components/base/base-column/)を使用してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={imageDo} alt="Do" />
-    <Text slot="label">BaseのなかでBaseColumnとResponseMessageを用いて代替されている</Text>
+    <Text slot="label">Baseのなかで「BaseColumnのメッセージを表示するパターン」を用いて代替されている</Text>
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={imageDont} alt="Dont" />
     <Text slot="label">Baseのなかに直接InformationPanelが置かれている</Text>
   </DoAndDont>
 </Cluster>
-
-具体的な代替コードは以下を参照してください。
-
-```tsx editable withStyled
-const StyledBase = styled(Base)`
-  width: 100%;
-`
-
-render(
-  <StyledBase forwardedAs="section" padding={1.5}>
-    <Stack gap={1.5}>
-      <BaseColumn>
-        <Stack gap={1}>
-          <Heading type="blockTitle">
-            <ResponseMessage type="warning" iconGap={0.5}>
-              Baseの中で目立たせたい情報
-            </ResponseMessage>
-          </Heading>
-          <Text as="p">
-            Baseの中で目立たせたい内容。
-          </Text>
-        </Stack>
-      </BaseColumn>
-    </Stack>
-  </StyledBase>
-)
-```
 
 ## 状態
 ### デフォルト

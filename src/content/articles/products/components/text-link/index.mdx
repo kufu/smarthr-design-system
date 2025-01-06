@@ -1,14 +1,42 @@
 ---
 title: 'TextLink'
-description: 'a要素の代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。'
+description: 'aタグの代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { FaUpRightFromSquareIcon, FaCircleQuestionIcon} from 'smarthr-ui'
 
-`a`の代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。
+`a`タグの代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。
 
 <ComponentStory name="TextLink" />
+
+## 使用上の注意
+
+### ボタンとして使わない
+
+`TextLink`は、ページを移動するためのリンクです。それ以外の処理を実行するボタンとして使わないでください。
+
+視覚的優先度の低いボタンを表現したい場合は、[Button variant="text"](/products/components/button/#h3-4)を使ってください。
+
+## レイアウト
+
+### アイコンの有無
+
+特定の役割を示すためにアイコンを使います。これはテキストが異なっていても、同じ挙動であることを示すためです。
+
+#### アイコン付きテキストリンク
+
+テキストリンクの左右にアイコンを配置できます。
+SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`prefix` props）に、`アイコン付き（右）`はサフィックス（`suffix` props）にIconを指定することで表現できます。  
+アイコンは左右どちらかにのみ指定してください。
+
+##### アイコン付き（左）
+
+テキストリンクを押した移動先の意味・内容を想起させるために使用します。
+
+##### アイコン付き（右）
+
+テキストリンクを押したときの挙動を表現するために使用します。
 
 ## デザインパターン
 
@@ -18,14 +46,23 @@ import { FaUpRightFromSquareIcon, FaCircleQuestionIcon} from 'smarthr-ui'
 
 #### 新規ウィンドウで開くテキストリンク 
 
-新規ウィンドウ（新規タブ）で開くテキストリンクには、**テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を必ず配置します。リンク先がSmartHRの内部ページ、外部サイトに関わらず表示します。
+テキストリンクで別の画面に移動することで、現在の画面での入力や作業が中断され作業効率が著しく落ちる場合には、新規ウィンドウ（新規タブ）でテキストリンクを開くことを検討します。
+
+- TextLinkは、**テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を自動で配置するため、個別に設定する必要はありません。
+    - リンク先がSmartHRの内部ページ、外部サイトに関わらず表示します。
+- `アイコン付き（左）`（プレフィックス）は指定しないでください。
 
 ```tsx editable
   <TextLink href="/" target="_blank">新規ウィンドウで開くテキストリンク</TextLink>
 ```
+
 #### ヘルプセンターを開くテキストリンク
 
-[ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンクには、**テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置することを推奨します。詳細は[ヘルプページへの動線](/products/design-patterns/help-link/#h3-2)を参照してください。
+- [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンクには、**テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置することを**推奨**します。
+  - 詳細は[ヘルプページへの動線](/products/contents/ui-text/help-link/#h3-2)を参照してください。
+- `アイコン付き（右）`（サフィックス）は指定しないでください。
+
+なお、ヘルプセンターを新規ウィンドウで開く場合には、[新規ウィンドウで開くテキストリンク](#h4-1)を優先して <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）は配置しないでください。
 
 ```tsx editable
   <TextLink href="/" prefix={<FaCircleQuestionIcon />}>ヘルプセンターを開くテキストリンク</TextLink>
@@ -33,7 +70,7 @@ import { FaUpRightFromSquareIcon, FaCircleQuestionIcon} from 'smarthr-ui'
 
 #### 一階層上のコンテンツに戻るテキストリンク
 
-一階層上のコンテンツに戻るテキストリンクはスタイリングやpropsを整えたコンポーネント[UpwardLink](/products/components/text-link/upward-link/)として提供しています。
+一階層上のコンテンツに戻るテキストリンクはスタイリングやpropsを整えたコンポーネント[UpwardLink](/products/components/text-link/upward-link/)として提供しています。`アイコン付き（右）`（サフィックス）は指定しないでください。
 
 ```tsx editable
   <UpwardLink href="/">オブジェクト一覧に戻る</UpwardLink>

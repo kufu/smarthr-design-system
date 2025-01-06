@@ -1,10 +1,17 @@
 ---
-title: 'TimePicker'
+title: 'TimePicker（非推奨）'
 description: 'ユーザーに時刻（時と分、任意で秒）を入力させる際に使用するコンポーネントです。'
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+
+<BaseColumn>
+  <ResponseMessage type="warning">
+    <span>TimePickerは非推奨です。[Input[type="time"]](/products/components/input/) を使ってください。</span>
+  </ResponseMessage>
+</BaseColumn>
 
 ユーザーに時刻（時と分、任意で秒）を入力させる際に使用するコンポーネントです。
 

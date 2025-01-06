@@ -1,13 +1,47 @@
 ---
 title: 'BaseColumn'
-description: ''
+description: '矩形で視覚的に要素をグルーピングするコンポーネントです。'
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
-<ComponentStory name="BaseColumn" noMargin />
+[矩形](/products/design-patterns/visual-grouping/#h3-3)で視覚的に要素をグルーピングするコンポーネントです。
 
+主に[Base](/products/components/base/)や各種[Dialog](/products/components/dialog/)の上で[視覚的グルーピングにおけるブロック](/products/design-patterns/visual-grouping/#h3-6)の表現に使います。
+
+<ComponentStory name="BaseColumn" />
+
+## デザインパターン
+
+### メッセージを表示するパターン
+
+注意事項や補足事項などを見出しと内容のセットで伝えるパターンです。Baseや各種Dialogの上など、[InformationPanel](/products/components/information-panel/)が配置できない場合に主に使います。
+
+```tsx editable withStyled
+const StyledBase = styled(Base)`
+  width: 100%;
+`
+
+render(
+  <StyledBase forwardedAs="section" padding={1.5}>
+    <Stack gap={1.5}>
+      <BaseColumn>
+        <Stack gap={1}>
+          <Heading type="blockTitle">
+            <ResponseMessage type="warning" iconGap={0.5}>
+              注意事項
+            </ResponseMessage>
+          </Heading>
+          <Text as="p">
+            注意事項内容テキスト。注意事項内容テキスト。注意事項内容テキスト。
+          </Text>
+        </Stack>
+      </BaseColumn>
+    </Stack>
+  </StyledBase>
+)
+```
 ## Props
 
 <ComponentPropsTable name="BaseColumn" />

@@ -10,6 +10,8 @@ import { Cluster, Text } from 'smarthr-ui'
 
 import RadioButtonDo from './images/radio-button-do.png';
 import RadioButtonDont from './images/radio-button-dont.png';
+import RadioButtonAlignmentDo from './images/radio-button-alignment-do.png';
+import RadioButtonAlignmenDont from './images/radio-button-alignment-dont.png';
 
 選択肢の中から単一の値を選択して入力できるコンポーネントです。
 `input[type='radio']`の代わりとして使用します。
@@ -40,6 +42,27 @@ import RadioButtonDont from './images/radio-button-dont.png';
 ラジオボタンは1クリックで選択肢ごとに異なる結果となるため、誤入力によって意図しない結果が反映されてしまう可能性あります。
 
 コレクションなどでオブジェクトの表示方法を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[TabBar](/products/components/tab-bar/)や[SegmentedControl](/products/components/segmented-control/)、または[Switch](/products/components/switch/)を使用してください。
+
+#### ラジオボタンの並び順
+
+横幅に十分なスペースがある場合は、基本的に横並びにすることで縦幅が長くなりすぎることを防ぎます。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={RadioButtonAlignmentDo} alt="スクリーンショット: ラジオボタンの縦横に配置するレイアウトのDo" />
+    <Text slot="label">横幅に十分なスペースがある場合は、基本的に横並びにします。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={RadioButtonAlignmenDont} alt="スクリーンショット: ラジオボタンの縦横に配置するレイアウトのDon't" />
+    <Text slot="label">縦並びにすると、親項目の幅に対して要素の配置が偏ってしまい、視認性が低下する恐れがあります。</Text>
+  </DoAndDont>
+</Cluster>
+
+ただし、選択肢の文字が長くなる場合は縦並びを検討します。
+
+![スクリーンショット: ラジオボタンの縦並びレイアウトの例](./images/radio-button-vertical-alignment.png)
+
 
 ### ラジオボタン内に操作可能な要素を含めない
 
@@ -76,7 +99,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 
 例えば設定画面などで、チェックボックスやラジオボタンのように複数の選択肢を持つ項目を、いくつも並べて表示する場合は、ラベルがかかる範囲や設定項目ごとの選択肢を区別しやすくするために[BaseColumn](/products/components/base/base-column/)でグルーピングする場合があります。
 
-[共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)のデザインパターンもあわせて参考にしてください。
+[共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)のデザインパターンもあわせて参考にしてください。
 
 ```tsx editable
 <>
@@ -104,7 +127,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 
 ## 関連リンク
 
-- [デザインパターン（基本機能）/共通設定の操作権限項目](/products/design-patterns-core-features/access-control-setting-pattern/)
+- [デザインパターン（基本機能）/共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)
 
 ## 参考文献
 
