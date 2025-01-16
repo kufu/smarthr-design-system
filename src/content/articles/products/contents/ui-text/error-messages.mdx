@@ -9,19 +9,23 @@ order: 1
 エラーメッセージのライティングは、[基本的な考え方](/products/contents/writing-style/)、[用字用語](/products/contents/idiomatic-usage/)に準拠します。  
 そのほか、エラーメッセージ特有の気をつけるべきポイントを記載しています。
 
+{<span id="scope-of-application" />}
 ## 適用範囲
 アプリケーションを操作してエラーが発生したときに表示するメッセージすべてです。
 
 ここでは、以下の場合について説明します。  
+
 * [バックグラウンド処理画面](https://smarthr.design/products/design-patterns/background-jobs-results/)  
 * [NotificationBar](/products/components/notification-bar/)
 
+{<span id="basic-idea-of-error-messages" />}
 ## エラーメッセージの基本的な考え方
 エラーメッセージを表示する目的は、**ユーザーがメッセージを見て問題を解決でき、次の操作に進める**状態にすることです。
 
 この状態を実現できないエラーメッセージだった場合、ユーザーの戸惑いや不安につながります。  
 ユーザーが問題を解決できる対処方法を明示した内容にすることを考えます。
 
+{<span id="basic-elements-of-error-messages" />}
 ## エラーメッセージの基本的な要素
 どのエラーメッセージであっても、含める情報の要素は**事象・原因・対処**です。
 
@@ -44,8 +48,10 @@ order: 1
 ユーザーの目的は「無事に操作を完了させること」であり、そのためにユーザーが知りたいことは「どうしたらエラーを解消できるか」です。  
 そのため、エラーを解消するための原因とその対処の表示を優先します。
 
+{<span id="writing-patterns-for-error-messages" />}
 ## エラーメッセージのライティングパターン
 
+{<span id="background-process" />}
 ### バックグラウンド処理
 * バックグラウンド処理のエラーメッセージに含める要素は、**事象・原因・対処**です。
 * フラッシュメッセージと異なり、メッセージを表示するスペースがあるため、すべての要素を記載しましょう。
