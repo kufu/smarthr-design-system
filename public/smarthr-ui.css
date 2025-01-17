@@ -1888,10 +1888,6 @@ a {
   margin-bottom: calc(128px * var(--tw-space-y-reverse))
 }
 
-.shr-self-start {
-  align-self: flex-start
-}
-
 .shr-self-center {
   align-self: center
 }
@@ -2463,11 +2459,6 @@ a {
 .shr-px-\[0\.5em\] {
   padding-left: 0.5em;
   padding-right: 0.5em
-}
-
-.shr-px-\[unset\] {
-  padding-left: unset;
-  padding-right: unset
 }
 
 .shr-py-0 {
@@ -4469,6 +4460,16 @@ a {
   .contrast-more\:before\:shr-content-\[\"\"\]::before {
     --tw-content: "";
     content: var(--tw-content)
+  }
+
+  .hover\:contrast-more\:shr-border-high-contrast:hover {
+    --tw-border-opacity: 1;
+    border-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
+  }
+
+  .focus-visible\:contrast-more\:shr-border-high-contrast:focus-visible {
+    --tw-border-opacity: 1;
+    border-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
   }
 
   .shr-peer:checked ~ .contrast-more\:peer-checked\:shr-border-high-contrast {
