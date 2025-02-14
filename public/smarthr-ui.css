@@ -4197,29 +4197,6 @@ a {
   white-space: nowrap
 }
 
-.aria-checked\:shr-border-main[aria-checked="true"] {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
-}
-
-.aria-checked\:shr-bg-main[aria-checked="true"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
-}
-
-.aria-checked\:shr-text-white[aria-checked="true"] {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
-}
-
-.aria-checked\:hover\:shr-border-main\/50:hover[aria-checked="true"] {
-  border-color: rgb(0 119 199 / 0.5)
-}
-
-.aria-checked\:hover\:shr-bg-main\/50:hover[aria-checked="true"] {
-  background-color: rgb(0 119 199 / 0.5)
-}
-
 .aria-disabled\:shr-cursor-not-allowed[aria-disabled="true"] {
   cursor: not-allowed
 }
@@ -4636,6 +4613,14 @@ a {
 .\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto {
   margin-top: auto;
   margin-bottom: auto
+}
+
+.\[\&\&\&\]\:shr--mt-0.\[\&\&\&\]\:shr--mt-0.\[\&\&\&\]\:shr--mt-0 {
+  margin-top: 0
+}
+
+.\[\&\&\&\]\:shr-mt-0.\[\&\&\&\]\:shr-mt-0.\[\&\&\&\]\:shr-mt-0 {
+  margin-top: 0
 }
 
 .\[\&\&\&\]\:shr-whitespace-normal.\[\&\&\&\]\:shr-whitespace-normal.\[\&\&\&\]\:shr-whitespace-normal {
@@ -5661,4 +5646,12 @@ a {
   :disabled~*>.forced-colors\:\[\:disabled\~\*\>\&\]\:shr-fill-\[GrayText\] {
     fill: GrayText
   }
+}
+
+:not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5 {
+  margin-top: 8px
+}
+
+:not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1 {
+  margin-top: 16px
 }
