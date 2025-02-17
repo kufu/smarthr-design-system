@@ -7,6 +7,7 @@ import remarkEmoji from 'remark-emoji';
 
 import remarkCodeBlock from './src/remark/remark-code-block';
 import remarkIndexIdHeader from './src/remark/remark-index-id-header';
+import remarkHeadingId from 'remark-heading-id';
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,7 +27,7 @@ export default defineConfig({
   ],
   markdown: {
     syntaxHighlight: false,
-    remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
+    remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji, remarkHeadingId],
   },
   vite: {
     css: {
