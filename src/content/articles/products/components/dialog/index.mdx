@@ -12,6 +12,7 @@ import {
   Dialog,
   MessageDialog,
   ModelessDialog,
+  StepFormDialog,
   Stack,
   Text,
   TextLink,
@@ -30,6 +31,7 @@ Dialogコンポーネントは、ダイアログボックス（もしくは単�
 import DynamicActionDialog from './_components/DynamicActionDialog'
 import DynamicMessageDialog from './_components/DynamicMessageDialog'
 import DynamicModelessDialog from './_components/DynamicModelessDialog'
+import DynamicStepFormDialog from './_components/DynamicStepFormDialog'
 
 ### ActionDialog
 
@@ -37,7 +39,7 @@ import DynamicModelessDialog from './_components/DynamicModelessDialog'
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
-詳しい使い方は、[ActionDialog](./action-dialog/)を参照してください。 
+詳しい使い方は、[ActionDialog](./dialog/action-dialog/)を参照してください。 
 
 <ComponentPreview>
   <DynamicActionDialog client:load />
@@ -49,7 +51,7 @@ import DynamicModelessDialog from './_components/DynamicModelessDialog'
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
-詳しい使い方は、[MessageDialog](./message-dialog/)を参照してください。
+詳しい使い方は、[MessageDialog](./dialog/message-dialog/)を参照してください。
 
 <ComponentPreview>
   <DynamicMessageDialog client:load />
@@ -61,10 +63,23 @@ import DynamicModelessDialog from './_components/DynamicModelessDialog'
 
 基本的に、ダイアログと裏側の画面を同時並行で閲覧・操作する場合に使います。
 
-詳しい使い方は、[ModelessDialog](./modeless-dialog/)を参照してください。
+詳しい使い方は、[ModelessDialog](./dialog/modeless-dialog/)を参照してください。
 
 <ComponentPreview>
   <DynamicModelessDialog client:load />
+</ComponentPreview>
+
+
+### StepFormDialog
+
+タスクの完了のために複数の操作が必要な場合には、ステップを複数に分けたダイアログです。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
+
+詳しい使い方は、[StepFormDialog](./dialog/step-form-dialog/)を参照してください。
+
+<ComponentPreview>
+  <DynamicStepFormDialog client:load />
 </ComponentPreview>
 
 ## Props
