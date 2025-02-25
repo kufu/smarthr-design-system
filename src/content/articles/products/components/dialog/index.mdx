@@ -12,6 +12,7 @@ import {
   Dialog,
   MessageDialog,
   ModelessDialog,
+  StepFormDialog,
   Stack,
   Text,
   TextLink,
@@ -30,6 +31,7 @@ Dialogコンポーネントは、ダイアログボックス（もしくは単�
 import DynamicActionDialog from './_components/DynamicActionDialog'
 import DynamicMessageDialog from './_components/DynamicMessageDialog'
 import DynamicModelessDialog from './_components/DynamicModelessDialog'
+import DynamicStepFormDialog from './_components/DynamicStepFormDialog'
 
 ### ActionDialog
 
@@ -66,6 +68,19 @@ import DynamicModelessDialog from './_components/DynamicModelessDialog'
 <ComponentPreview>
   <DynamicModelessDialog client:load />
 </ComponentPreview>
+
+### StepFormDialog
+
+ステップを複数に分けたダイアログです。タスクの完了に複数の操作が必要な場合に使います。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
+
+詳しい使い方は、[StepFormDialog](./step-form-dialog/)を参照してください。
+
+<ComponentPreview>
+  <DynamicStepFormDialog client:load />
+</ComponentPreview>
+
 
 ## Props
 
