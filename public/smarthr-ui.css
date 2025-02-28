@@ -5235,6 +5235,32 @@ a {
   }
 }
 
+.\[\&\[data-selected\=\"false\"\]\]\:hover\:shr-bg-white-darken:hover[data-selected="false"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\[data-selected\=\"true\"\]\[data-type\=\"last\"\]\]\:shr-bg-main[data-selected="true"][data-type="last"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\[data-selected\=\"true\"\]\[data-type\=\"last\"\]\]\:shr-text-white[data-selected="true"][data-type="last"] {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+}
+
+@media (forced-colors: active) {
+  .\[\&\[data-selected\=\"true\"\]\[data-type\=\"last\"\]\]\:forced-colors\:shr-bg-\[Highlight\][data-selected="true"][data-type="last"] {
+    background-color: Highlight
+  }
+}
+
+.\[\&\[data-selected\=\"true\"\]\[data-type\=\"parent\"\]\]\:shr-bg-white-darken[data-selected="true"][data-type="parent"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
+}
+
 .\[\&\]\:shr-box-border {
   box-sizing: border-box
 }
@@ -5698,4 +5724,17 @@ a {
 
 :not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1 {
   margin-top: 16px
+}
+
+[data-disabled=true]>.\[\[data-disabled\=true\]\>\&\]\:shr-pointer-events-none {
+  pointer-events: none
+}
+
+[data-disabled=true]>.\[\[data-disabled\=true\]\>\&\]\:shr-cursor-not-allowed {
+  cursor: not-allowed
+}
+
+[data-disabled=true]>.\[\[data-disabled\=true\]\>\&\]\:shr-text-disabled {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
