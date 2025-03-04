@@ -1,11 +1,17 @@
-import { PATTERNS_GITHUB_RAW } from '../constants/application'
+import { PATTERNS_GITHUB_RAW } from '@/constants/application';
 
-export const fetchPatternCode = async (patternName: string) => {
-  let patternCode = ''
-  const filePath = `${PATTERNS_GITHUB_RAW}${patternName}/${patternName}.tsx`
+/**
+ * パターンコードを取得する
+ * @param patternName パターン名
+ * @returns コード
+ */
+export async function fetchPatternCode(patternName: string) {
+  const rawFileUrl = new URL(`${patternName}/${patternName}.tsx`, PATTERNS_GITHUB_RAW);
 
-  const res = await fetch(filePath)
-  patternCode = res.ok ? await res.text() : ''
+  const res = await fetch(rawFileUrl.toString());
+  if (!res.ok) {
+    throw new Error(`${patternName}のPatternCodeが取得できませんでした: ${res.statusText}`);
+  }
 
-  return patternCode
+  return res.text();
 }

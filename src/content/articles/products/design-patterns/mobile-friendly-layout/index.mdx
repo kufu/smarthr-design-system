@@ -1,0 +1,242 @@
+---
+title: 'モバイルレイアウト'
+description: 'モバイル対応をする基準と、その対応方法を定義します。'
+order: 5
+---
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Base, BaseColumn, Button, Cluster, FormControl, Heading, Input, NotificationBar, Stack, Text } from 'smarthr-ui'
+import Caption from './_components/Caption.astro'
+
+モバイル対応をする基準と、その対応方法を定義します。
+
+SmartHRにおいて、従業員のモバイルからの利用は全体の7割以上を占めます。業種や業態によっても異なりますが、業務中にデスクトップを使わない利用者も多いためモバイルの考慮は必須です。
+
+
+## モバイルレイアウトの定義
+
+「モバイルレイアウト」とは、スマートフォンなどのモバイルでの利用を想定したUIを指します。
+
+ユーザーエージェントではモバイルかどうかを判別しきれないため、**画面幅が751px以下の場合をモバイルとし、モバイルレイアウトの適用対象とします。**
+（WIP： デザイントークンにしたい）
+
+### レスポンシブとアダプティブの使い分け
+
+本ドキュメントでは以下のように使い分けます。
+
+- レスポンシブ： 同じ要素・構造・データを保ちつつ、画面幅に応じてレイアウトを変えること
+  - 例： 画面幅に依って文章やボタンが折り返される
+- アダプティブ： 画面幅や端末、利用環境に応じて、構造やデータ、見た目を変えること
+  - 例： モバイルでは情報量を減らし、操作を簡略化する
+- レスポンシブ/アダプティブデザイン： レスポンシブ/アダプティブに設計すること
+- レスポンシブ/アダプティブレイアウト： レスポンシブ/アダプティブに設計されたUIのこと
+
+
+## 基本的な考え方
+
+### 複雑な操作を避ける
+
+モバイルはデスクトップと比べて、移動中や空き時間のような短い時間で利用される傾向があります。デスクトップ向けに設計されたUIをレスポンシブに再レイアウトするだけでなく、情報の取捨選択や簡潔な表現の徹底が求められます。
+
+モバイルにおける従業員向け機能では、基本的に1画面で複数の操作をさせるべきではありません。デスクトップ向けに最適化されたUIをレスポンシブデザインで対応するには限界があるため、アダプティブに設計する必要があります。
+
+## 設計基準
+
+### 複数カラムレイアウトを避ける
+
+画面の幅によってコンテンツの可読性を保てなくなるため、モバイルでは複数カラムレイアウトを避けましょう。代わりに垂直方向に積み上げるか、複数の画面に分けるなど、1度に表示する情報量を減らしてください。
+
+垂直方向に積み上げて解決ができない場合は、アダプティブなレイアウトを検討してください。
+
+<Cluster gap={1}>
+  <DoAndDont type="dont" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption1" style={{ display: 'flex', margin: 'unset', gap: '1em' }}>
+      <Base padding={1} style={{ flexShrink: 0, flexBasis: '25%' }}>
+        <Stack gap={0.5}>
+          <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
+          <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
+        </Stack>
+      </Base>
+      <Base padding={1} style={{ flexGrow: 1 }}>
+        <Stack>
+          <Caption>構造関係の理解も難しくなります。</Caption>
+          <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption1">
+      <Caption>コンテンツが読みにくく、構造を把握しにくい。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ display: 'flex', flexWrap: 'wrap', margin: 'unset', gap: '1em' }}>
+      <Base padding={1}>
+        <Stack gap={0.5}>
+          <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
+          <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
+        </Stack>
+      </Base>
+      <Base padding={1}>
+        <Stack>
+          <Caption>構造関係の理解も難しくなります。</Caption>
+          <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption2">
+      <Caption>垂直方向に積み上げると最低限の可読性を保てます。</Caption>
+    </figcaption>
+  </DoAndDont>
+</Cluster>
+
+### 水平方向のスクロールや2次元（垂直・水平方向）スクロールを避ける
+
+水平方向のスクロールや2次元（垂直・水平方向）スクロールは、コンテンツの理解を妨げます。画面幅からコンテンツがあふれる場合は、折り返してください。
+
+ただし、画像や動画・地図など2次元であることが情報を伝える上で重要な場合は、その限りではありません。
+
+### 余白の取り方
+
+デスクトップの[代表的なページ内レイアウトのパディング](/products/spacing-layout-pattern/#h4-2)に対して、モバイルでは表示コンテンツ量を増やしたいため余白を以下のように定めます。
+
+1. メインコンテンツのパディング：
+    - ブロック方向（垂直方向）： `1.5 (24px)` ※変更なし
+    - インライン方向（水平方向）： `1 (16px)`
+1. コンテンツエリアのパディング： `1 (16px)`
+1. コンテンツエリア内のグループのパディング： `1 (16px)` ※変更なし
+
+![スクリーンショット： 代表的なページ内レイアウトのパディングの例。コンテンツ内のパディングの大きさが色分けされて示されている。](./images/spacing-example.png)
+
+### Buttonの大きさとレイアウト
+
+モバイルでは基本的に[通常サイズのButton](/products/components/button/#h3-6)を使います。操作ミスが増えるため小サイズを使うことは避けます。
+
+#### 主要な操作ボタン
+
+画面内で主要な操作を置く場合は、コンテンツ幅いっぱいのボタンを使ってください。
+
+<Cluster gap={1}>
+  <DoAndDont type="dont" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
+      <Stack>
+        <Base padding={1}>
+          <FormControl title="何らかの入力">
+            <Input />
+          </FormControl>
+        </Base>
+        <div>
+          <Button variant="primary">保存</Button>
+        </div>
+      </Stack>
+    </BaseColumn>
+    <figcaption slot="label" id="caption3">
+      <Caption>ボタンが小さいと利用者の環境に依っては操作しにくい。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
+      <Stack>
+        <Base padding={1}>
+          <FormControl title="何らかの入力">
+            <Input />
+          </FormControl>
+        </Base>
+        <Button variant="primary">保存</Button>
+      </Stack>
+    </BaseColumn>
+    <figcaption slot="label" id="caption4">
+      <Caption>幅いっぱいに広げ、十分に操作領域を取る。</Caption>
+    </figcaption>
+  </DoAndDont>
+</Cluster>
+
+#### 複数の操作ボタン
+
+PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並べる場合は、識字方向の後方にPrimaryボタンが来るようにレイアウトしてください。LTR（Left To Right）では、右側にPrimaryボタンを置きます。  
+垂直方向に並べる場合は、慣習にならい（TODO 要出典）Primaryボタンの下にSecondaryボタンを置きます。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl title="何らかの入力">
+            <Input />
+          </FormControl>
+          <Cluster>
+            <Button>キャンセル</Button>
+            <Button variant="primary">保存</Button>
+          </Cluster>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption5">
+      <Caption>水平方向に並べる場合は後方にPrimaryボタンを置く。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl title="何らかの入力">
+            <Input />
+          </FormControl>
+          <Stack gap={0.5}>
+            <Button variant="primary">保存</Button>
+            <Button>キャンセル</Button>
+          </Stack>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption6">
+      <Caption>垂直方向に並べる場合はPrimaryボタンを上に置く。</Caption>
+    </figcaption>
+  </DoAndDont>
+</Cluster>
+
+## コンポーネントごとの使い方
+
+<p>
+  <NotificationBar base="base" layer={2} type="warning" message="SmartHR UIで対応中のため、リリースされていない内容を含みます。" />
+</p>
+
+SmartHR UIは基本的にレスポンシブに実装されているため、配慮が必要なコンポーネントについて記述します。
+
+### useDevice
+
+`useDevice` フックを使って `isNarrowView` を取得し、必要に応じてコンポーネントに割り当ててください。SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。各プロダクト側でユーザーエージェントの判定を実装する必要はありません。
+
+### [Dialog](/products/components/dialog/)
+
+（WIP）SmartHR UIで実装するため `isNarrowView` を渡してください。基本的にプロダクトで考慮することはありません。
+
+### [BottomFixedArea](/products/components/bottom-fixed-area/)と[FloatArea](/products/components/float-area/)
+
+そのままレスポンシブに折り返して使うと表示領域を圧迫するため、モバイル向けに再設計が必要です。[1画面で複雑な操作をさせない](#h3-1)ように調整してください。
+
+SmartHR UI でも最低限のレイアウトを実装するため `isNarrowView` を渡してください。
+
+### [Pagination](/products/components/pagination/)
+
+モバイルではPaginationを使わないでください。「さらに表示」ボタンの設置を推奨します。利用者はPaginationの小さいボタンを操作することなく、使い慣れた垂直方向のスクロールで必要な情報にたどり着けます。
+
+また、1ページ分以上のデータを見ることができ、前のページを再読み込みする必要もないため、データ通信量の削減が望めます。
+
+### [SideNav](/products/components/side-nav/)
+
+複数カラムを前提としたレイアウトになってしまうため、モバイルでは使わないでください。ページや項目を選択する専用の画面を挟むなど、別の切り替え機構を検討してください。
+
+### [Table](/products/components/table/)
+
+モバイルでは、画面幅を越えたテーブルは[2次元スクロール](#h3-3)を招くため、垂直方向に積みあげることを推奨します。
+
+（WIP）SmartHR UIで `isNarrowView` を用いたレイアウトの切り替えを検討中です。
+
+### [Tooltip](/products/components/tooltip/)と[LineClamp](/products/components/line-clamp/)
+
+モバイルでは表示領域が小さいことに加え、ホバー状態がなく、情報の確認が難しいためTooltipとLineClampを使わないでください。
+
+## 参考
+
+- [達成基準 1.4.10: リフローを理解する](https://waic.jp/translations/WCAG21/Understanding/reflow)
+- [ボタン | Apple Developer Documentation](https://developer.apple.com/jp/design/human-interface-guidelines/buttons#Best-practices)
+- [商品一覧ページにおけるページネーションの代替案 – U-Site](https://u-site.jp/alertbox/alternatives-pagination-listing-pages)

@@ -1,1 +1,0 @@
-export { TableWrapper } from './TableWrapper'

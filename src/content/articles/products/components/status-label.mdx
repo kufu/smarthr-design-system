@@ -1,0 +1,74 @@
+---
+title: 'StatusLabel'
+description: 'オブジェクトの状態を伝えるためのこのコンポーネントです。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+オブジェクトの状態を伝えるためのこのコンポーネントです。重要度によって2種類の見た目を使い分けます。警告やエラーは特別な状態として見た目を持っています。
+
+<ComponentStory name="StatusLabel" />
+
+## 使用上の注意
+### オブジェクト名自体をStatusLabelで表現しない
+
+StatusLabelはオブジェクトの状態を伝えるために利用し、オブジェクト名そのものをStatusLabelで表現しないでください。
+
+### StatusLabelをリンクやアクションボタンの代替にしない
+
+StatusLabel単体でリンクやアクションボタンの機能を持たないようにしてください。オブジェクト名とStatusLabelをまとめてリンクとする場合は許容します。
+
+## 種類
+
+特殊なステータスを表す場合は、背景色に警告色やエラー色を使います。  
+その他のステータスを表す場合は、プロダクトに応じて適宜色を選択します。
+
+すべての人が同じように色を認識できるわけではありません。  
+色のみでステータスを伝えることは避け、[ライティング](#h2-2)を参考に適切な名前を付けましょう。
+（参考：[カラーユニバーサルデザイン](/accessibility/#h3-2)）
+
+```tsx editable
+<Stack>
+  <Stack gap={0.5}>
+    <Heading type="blockTitle" tag="h4">特殊なステータス</Heading>
+    <Cluster>
+      <StatusLabel type="warning">警告</StatusLabel>
+      <StatusLabel type="error">エラー</StatusLabel>
+    </Cluster>
+  </Stack>
+  <Stack gap={0.5}>
+    <Heading type="blockTitle" tag="h4">その他のステータス</Heading>
+    <Cluster>
+      <StatusLabel type="green">ラベル名</StatusLabel>
+      <StatusLabel type="blue">ラベル名</StatusLabel>
+      <StatusLabel type="grey">ラベル名</StatusLabel>
+      <StatusLabel type="red">ラベル名</StatusLabel>
+    </Cluster>
+  </Stack>
+</Stack>
+```
+
+## 状態
+
+### 強調の有無
+
+他のステータスと区別して、視覚的に目立たせたい場合は、背景色と文字色を反転させた「強調あり」のラベルを使います。  
+例えばユーザーがアクションをしないと次に進めない場合などに使います。
+
+```tsx editable
+<Stack>
+  <Cluster>
+    <StatusLabel type="green" bold>ラベル名</StatusLabel>
+    <StatusLabel type="blue" bold>ラベル名</StatusLabel>
+    <StatusLabel type="grey" bold>ラベル名</StatusLabel>
+    <StatusLabel type="red" bold>ラベル名</StatusLabel>
+  </Cluster>
+  <Cluster>
+    <StatusLabel type="warning" bold>警告</StatusLabel>
+    <StatusLabel type="error" bold>エラー</StatusLabel>
+  </Cluster>
+</Stack>
+```
+## Props
+
+<ComponentPropsTable name="StatusLabel" />

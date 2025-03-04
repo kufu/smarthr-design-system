@@ -1,0 +1,581 @@
+---
+title: '機能ごとの検証結果'
+description: 'SmartHR 各機能のアクセシビリティ検証結果を掲載しています。'
+order: 2 
+---
+
+import { Table, Td, Text, Th } from 'smarthr-ui'
+
+SmartHRでは、[アクセシビリティ方針](https://accessibility.smarthr.co.jp/development/)で掲げる目標を達成するため、製品のアクセシビリティ向上を進めています。
+各機能のプロセスごとに、WCAG達成基準に基づく検証や、支援技術で利用可能であるかを検証しています。
+
+## アクセシビリティ検証結果一覧表
+対応状況をまとめた表です。機能名のリンクから、機能ごとの詳細な対応状況や検証結果を見られます。表の見出しや記号の意味については、[表の見方](./#h3-0)をご覧ください。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>機能</Th>
+      <Th>プロセス名</Th>
+      <Th>WCAG2.1</Th>
+      <Th>スクリーンリーダー</Th>
+      <Th>色反転・拡大鏡</Th>
+      <Th>限られた器用さ、または力</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="./entrance-procedures/"> 入社手続き・雇用契約</a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./entrance-procedures/#h2-0">招待メールから入社手続きを行う</a>
+          </li>
+          <li>
+            <a href="./entrance-procedures/#h2-1">通知用メールアドレスを登録する</a>
+          </li>
+          <li>
+            <a href="./entrance-procedures/#h2-2">入社・招待時に雇用契約を行なう</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+         <ul>
+          <li>
+            <a href="./entrance-procedures/#h3-2">◯</a>
+          </li>
+          <li>
+            <a href="./entrance-procedures/#h3-8">◯</a>
+          </li>
+          <li>
+           <a href="./entrance-procedures/#h3-14">◯</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./employee-info/">従業員情報</a>
+      </td>
+      <td>
+         <a href="./employee-info/#h2-0">従業員情報を変更する</a>
+      </td>
+      <td>
+       <a href="./employee-info/#h3-2">◯</a>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./personal-settings/"> 個人設定</a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./personal-settings/#h2-0">アカウントを設定する</a>
+          </li>
+          <li>
+            <a href="./personal-settings/#h2-1">2要素認証の設定を行なう</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+         <ul>
+          <li>
+            <a href="./personal-settings/#h3-2">◯</a>
+          </li>
+          <li>
+            <a href="./personal-settings/#h3-8">◯</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./procedure/">手続き</a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./procedure/#h2-0">扶養家族を追加する</a>
+          </li>
+          <li>
+            <a href="./procedure/#h2-1">扶養家族を削除する</a>
+          </li>
+           <li>
+            <a href="./procedure/#h2-2">氏名変更の手続きを行なう</a>
+          </li>
+          <li>
+            <a href="./procedure/#h2-3">住所変更の手続きを行なう</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+       <ul>
+          <li>
+            <a href="./procedure/#h3-2">◯</a>
+          </li>
+          <li>
+            <a href="./procedure/#h3-8">◯</a>
+          </li>
+          <li>
+           <a href="./procedure/#h3-14">◯</a>
+          </li>
+          <li>
+           <a href="./procedure/#h3-20">◯</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./distribution/">文書配付</a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./distribution/#h2-0">書類に合意する</a>
+          </li>
+          <li>
+            <a href="./distribution/#h2-1">依頼された書類を確認・合意する</a>
+          </li>
+          <li>
+            <a href="./distribution/#h2-2">就労条件通知に関する書類を受け取る</a>
+          </li>
+          <li>
+            <a href="./distribution/#h2-3">住所情報が必要な書類へ入力する</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+             −
+          </li>
+          <li>  
+            <a href="./distribution/#h3-9">◯</a>
+          </li>
+          <li>  
+            <a href="./distribution/#h3-14">◯</a>
+          </li>
+          <li>
+            <a href="./distribution/#h3-20">◯</a>
+         </li>
+       </ul> 
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./distribution/#h3-4">◯</a>
+          </li>
+          <li>  
+            −
+          </li>
+          <li>  
+            −
+          </li>
+          <li>
+           −
+         </li>
+       </ul> 
+      </td>
+      <td>
+       <ul>
+          <li>
+            <a href="./distribution/#h3-5">◯</a>
+          </li>
+          <li>  
+            −
+          </li>
+          <li>  
+           −
+          </li>
+          <li>  
+           −
+          </li>
+       </ul> 
+      </td>
+      <td>
+       <ul>
+          <li>
+            <a href="./distribution/#h3-6">◯</a>
+          </li>
+          <li>  
+            −
+          </li>
+          <li>  
+            −
+          </li>
+          <li>  
+            −
+          </li>
+       </ul> 
+      </td>
+    </tr>
+    <tr>
+      <td>
+        年末調整
+      </td>
+      <td>
+        なし
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <a href="./national-identity-number/">マイナンバー管理</a>
+      </td>
+      <td>
+       <a href="./national-identity-number/#h2-0">マイナンバーを提出する</a>
+      </td>
+      <td>
+        <a href="./national-identity-number/#h3-2">◯</a>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./application/"> 申請・承認　</a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./application/#h2-0">申請を提出する</a>
+          </li>
+          <li>
+            <a href="./application/#h2-1">申請を代理提出する</a>
+          </li>
+          <li>
+            <a href="./application/#h2-2">申請の提出を依頼する</a>
+          </li>
+          <li>
+            <a href="./application/#h2-3">申請を承認する</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+       <ul>
+          <li>
+            <a href="./application/#h3-2">◯</a>
+          </li>
+          <li>
+            <a href="./application/#h3-8">◯</a>
+          </li>
+          <li>
+           <a href="./application/#h3-14">◯</a>
+          </li>
+          <li>
+           <a href="./application/#h3-20">◯</a>
+          </li>
+       </ul>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./payslips/">Web給与明細</a>
+      </td>
+      <td>
+        <a href="./payslips/#h2-0">給与明細を確認する</a>
+      </td>
+      <td>
+        <a href="./payslips/#h3-2">△</a>
+      </td>
+      <td>
+        <a href="./payslips/#h3-3">◯</a>
+      </td>
+      <td>
+        <a href="./payslips/#h3-4">◯</a>
+      </td>
+      <td>
+        <a href="./payslips/#h3-5">◯</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./evaluation">人事評価</a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./evaluation/#h2-0">評価を提出する</a>
+          </li>
+          <li>
+            <a href="./evaluation/#h2-1">評価者が複数の評価を比較して調整する</a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./evaluation/#h3-2">△</a>
+          </li>
+          <li>
+            <a href="./evaluation/#h3-5">△</a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./evaluation/#h3-3">◯</a>
+          </li>
+          <li>
+            <a href="./evaluation/#h3-6">◯</a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./evaluation/#h3-4">◯</a>
+          </li>
+          <li>
+            <a href="./evaluation/#h3-7">◯</a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./status/simulation/">配置シミュレーション</a>
+      </td>
+      <td>
+        <a href="./status/simulation/#h2-0">人員配置をシミュレーションする</a>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="./survey/">従業員サーベイ</a>
+      </td>
+      <td>
+        <a href="./survey/#h2-0">サーベイに回答する</a>
+      </td>
+      <td>
+        <a href="./survey/#h3-2">◯</a>
+      </td>
+      <td>
+        <a href="./survey/#h3-3">◯</a>
+      </td>
+      <td>
+        <a href="./survey/#h3-4">◯</a>
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        分析レポート
+      </td>
+      <td>
+        なし
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        カスタム社員名簿
+      </td>
+      <td>
+        なし
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        組織図
+      </td>
+      <td>
+        なし
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        スキル管理
+      </td>
+      <td>
+      <ul>
+        <li>
+          <a href="./skill/#h2-0">申請を提出する</a>
+        </li>
+        <li>
+          <a href="./skill/#h2-1">コースを受講する</a>
+        </li>
+      </ul>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="./skill/#h3-3">◯</a>
+          </li>
+          <li>
+            <a href="./skill/#h3-9">◯</a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SmartHR UI
+      </td>
+      <td>
+        非推奨以外のコンポーネント
+      </td>
+      <td>
+        <a href="https://smarthr.design/accessibility/test/202306/">◯</a>
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+  </tbody>
+</Table>
+更新日: <time datatime="2024-11-05">2024/12/25</time>
+
+### 表の見方
+#### 機能
+SmartHR 製品の機能名です。リンク先に詳細な検証状況を掲載しています。
+
+### プロセス名
+検証した該当機能内のプロセス名です。
+
+### WCAG2.1
+WCAG2.1達成基準の検証の結果、検証した達成基準をすべて満たしている場合は◯、一部を満たしている場合は△、未実施は−を表示しています。
+
+### スクリーンリーダー
+スクリーンリーダーのみでプロセスを完了できる場合は◯、できない場合は✕、未検証は−を表示しています。
+
+### 色反転・拡大鏡
+色の反転と拡大鏡を利用してプロセスを完了できる場合は◯、できない場合は✕、未検証は−を表示しています。
+
+### 限られた器用さ、または力
+細かい運動制御なしでプロセスを完了できる場合は◯、できない場合は✕、未検証は−を表示しています。

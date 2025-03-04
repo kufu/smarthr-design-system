@@ -1,0 +1,266 @@
+.wrapper {
+  width: 100%;
+  position: relative;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.gotchaMain {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1272 / 352;
+
+  @supports not (aspect-ratio: 1272 / 352) {
+    height: calc((100vw - 160px) / 1272 * 352);
+
+    @include breakpointMobile3 {
+      height: calc((100vw - 32px) / 1272 * 352);
+    }
+
+    @include breakpointMobile2 {
+      height: calc(100vw / 1272 * 352);
+    }
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background-color: var(--color-smarthr-blue);
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: solid 1px var(--color-smarthr-blue);
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  @include breakpointMobile2 {
+    border-radius: 0;
+
+    &::after {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateY(-100%);
+  }
+
+  &.runAnimation {
+    img {
+      animation: bounce-animation 0.2s ease-out forwards;
+    }
+  }
+
+  @keyframes bounce-animation {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    40% {
+      transform: translateY(8%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+.gotchaButton {
+  --background: var(--color-white);
+  --text: var(--color-text-black);
+  --font-size: var(--font-size-14);
+  --duration: 0.15s;
+  --move-hover: 8px;
+  --font-shadow: var(--font-size);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--color-text-black);
+  background-color: white;
+  border: 2px solid var(--color-smarthr-blue);
+  border-radius: 8px;
+  width: 112px;
+  height: 36px;
+  padding: 0;
+  position: absolute;
+  bottom: -4px;
+  left: 40px;
+  font-weight: bold;
+
+  @include breakpointMobile3 {
+    bottom: -27px;
+  }
+
+  @include breakpointMobile2 {
+    right: 16px;
+    left: auto;
+  }
+
+  &:active {
+    animation: 0.6s ease 0s gotcha;
+  }
+
+  .animatedText {
+    overflow: hidden;
+    text-shadow: 0 var(--font-shadow) 0 var(--text);
+  }
+
+  .animatedLetter {
+    display: inline-block;
+    backface-visibility: hidden;
+    font-style: normal;
+    transition: transform var(--duration) ease;
+    transform: translateY(var(--m)) translateZ(0);
+  }
+
+  &:hover .animatedLetter {
+    --m: calc(var(--font-size) * -1);
+  }
+
+  &:disabled {
+    color: var(--color-light-grey-1);
+    border-color: var(--color-light-grey-1);
+    pointer-events: none;
+    cursor: pointer;
+
+    .animatedLetter {
+      --m: 0;
+      color: var(--color-light-grey-1);
+    }
+  }
+
+  @keyframes gotcha {
+    0% {
+      transform: translateY(0);
+    }
+
+    12% {
+      transform: translateY(7px);
+    }
+
+    24% {
+      transform: translateY(8px);
+    }
+
+    36% {
+      transform: translateY(9.2px);
+    }
+
+    54% {
+      transform: translateY(9.6px) scaleY(0.98);
+    }
+
+    74% {
+      transform: translateY(9.8px) scaleY(0.95);
+    }
+
+    82% {
+      transform: translateY(10px) scaleY(0.9);
+    }
+
+    96% {
+      transform: translateY(9.5px);
+    }
+
+    98% {
+      transform: translateY(-8px) scaleY(1.2);
+    }
+
+    100% {
+      transform: translateY(1px);
+    }
+  }
+}
+
+.gotchaLinks {
+  position: absolute;
+  color: var(--color-text-grey);
+  font-size: var(--font-size-11);
+  top: calc(100% + 22px);
+  left: 40px;
+  width: 20%;
+  max-width: 232px;
+
+  @include breakpointMobile3 {
+    top: calc(100% + 46px);
+  }
+
+  @include breakpointMobile2 {
+    width: auto;
+    max-width: 100%;
+    position: relative;
+    margin: 48px 32px auto;
+    left: auto;
+  }
+
+  > p {
+    margin: 0 0 4px;
+    font-weight: bold;
+  }
+
+  > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: var(--color-text-grey);
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.label {
+  &::before {
+    content: '';
+    display: block;
+    background-color: var(--color-smarthr-blue);
+    width: 100%;
+    height: 4px;
+    margin-bottom: 8px;
+    border-radius: 0 0 2px 2px;
+  }
+
+  position: absolute;
+  right: 40px;
+  top: 100%;
+  margin: 0;
+  margin-top: -2px;
+  color: var(--color-text-grey);
+  font-weight: bold;
+  font-size: var(--font-size-12);
+
+  @include breakpointMobile2 {
+    left: 32px;
+    right: auto;
+  }
+}

@@ -1,0 +1,167 @@
+---
+title: 'タイポグラフィ'
+description: '最小限に整理したフォントスタイルは可読性を高め、読み手の体験を妨げません。'
+order: 2
+---
+
+import { Table, Td, Th } from 'smarthr-ui'
+import TableWrapper from '@/components/article/TableWrapper.astro'
+import SampleText from './_components/SampleText'
+
+## 書体
+ユーザーが慣れ親しんでいる環境を尊重し、またOSの設定に委ねることでさまざまな言語で正しくレンダリングされることを期待し、以下の書体を指定します。
+
+```css
+font-family: system-ui, sans-serif;
+```
+
+## フォントサイズ
+基準値は`16px`です。
+
+[Text](/products/components/text/)を使うと、セマンティックトークンを使ってテキストのフォントサイズを指定できます。
+
+### セマンティックトークン
+
+| トークン名 | 値（rem）| 基準値をもとにした実値（px）|
+| :--- | :--- | :--- |
+| `XXS` | 0.667rem | 10.67px |
+| `XS` | 0.75rem | 12px |
+| `S` | 0.857rem | 13.71px |
+| `M`（標準） | 1rem | 16px |
+| `L` | 1.2rem | 19.2px |
+| `XL` | 1.5rem | 24px |
+| `XXL` | 2rem | 32px |
+
+#### セマンティックトークン（旧）
+`SHORT / TALL / GRANDE / VENTI`による定義は、抽象的な名前から実値を予想しづらいため非推奨となりました。（SmartHR UI v13以降）
+
+| トークン名 | 値（rem）| 基準値をもとにした実値（px）|
+| :--- | :--- | :--- |
+| `SHORT` | 0.6875rem | 11px |
+| `TALL` | 0.875rem | 14px |
+| `GRANDE` | 1.125rem | 18px |
+| `VENTI` | 1.5rem | 24px |
+
+### トークンの新旧対応
+新旧における対応は以下のとおりです。
+
+| 現トークン | 旧トークン |
+| :--- | :--- |
+| `XXS` | - |
+| `XS` | - |
+| `S` | `SHORT` |
+| `M` | `TALL` |
+| `L` | `GRANDE` |
+| `XL` | `VENTI` |
+| `XXL` | - |
+
+- <small>- は対応する値がありません。</small>
+
+
+## 行送り
+テキストスタイルによって使用する[行送り](/products/design-tokens/leading/)が異なります。以下のテキストスタイルを参照してください。
+
+
+## テキストスタイル
+
+### 見出し
+[Heading](/products/components/heading/)を参照してください。  
+行送りは、フォントサイズの1.25倍（[`TIGHT`](/products/design-tokens/leading/)）です。
+
+### 段落テキスト
+段落テキストに使用し、強調やリンクのスタイルを併せてとることがあります。  
+行送りは、基本的にフォントサイズの1.5倍（[`NORMAL`](/products/design-tokens/leading/)）です。
+
+サイズ小とサイズ極小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
+
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>種類</Th>
+        <Th>フォントサイズ</Th>
+        <Th>サンプル</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>標準</Td>
+        <Td><code>M</code></Td>
+        <Td><SampleText size={'M'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
+      </tr>
+      <tr>
+        <Td>サイズ小</Td>
+        <Td><code>S</code></Td>
+        <Td><SampleText size={'S'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
+      </tr>
+      <tr>
+        <Td>サイズ極小</Td>
+        <Td><code>XS</code></Td>
+        <Td><SampleText size={'XS'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
+
+### ラベルテキスト
+段落ではないボタンなどのラベルテキストに使います。  
+行送りは、フォントサイズの1倍（[`NONE`](/products/design-tokens/leading/)）です。
+
+サイズ小の積極的な使用は避け、レイアウトの都合上、どうしようもない場合に使います。
+
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>種類</Th>
+        <Th>フォントサイズ</Th>
+        <Th>サンプル</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>標準</Td>
+        <Td><code>M</code></Td>
+        <Td><SampleText size={'M'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
+      </tr>
+      <tr>
+        <Td>サイズ小</Td>
+        <Td><code>S</code></Td>
+        <Td><SampleText size={'S'}>well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</SampleText></Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
+
+### 表
+表中のテキストは、基本的に段落テキストと同じスタイルで揃えます。表で固有のスタイルは以下のとおりです。
+
+- 表の見出し（`th`）の文字揃えは、データ（`td`）の文字揃えに合わせます。
+- 表のデータに数字を表示する場合は、列を縦に読んだときに桁数を比較できるように右揃えにします。
+
+### ウェイト、強調
+テキストにウェイトや強調を指定する場合は、[Text](/products/components/text/)を使用します。
+
+[Heading](/products/components/heading/)の見出しのスタイルの一部や、[Button](/products/components/button/)のラベルテキストが太字を指定しているように、コンポーネントがウェイトも含めて提供している場合もあります。
+
+### リンク
+テキストリンクは、以下の場合に[TextLink](/products/components/text-link/)を使用して表します。  
+操作を表す場合は、[Button](/products/components/button/)を使用してください。
+
+- 他の画面やヘルプセンターなどに移動させるために、画面の説明文や補助テキストにリンクを設置する場合
+- 一覧ビュー（コレクション）から詳細ビュー（シングル）に移動させるために、そのインスタンス名にリンクを設置する場合（[「よくあるテーブル」の遷移リンクのスタイル](/products/design-patterns/smarthr-table/#h5-0)を参照）
+
+[TextLink](/products/components/text-link/)が使えないときは、テキストに下線を表示し、文字の色は[`TEXT_LINK`](/products/design-tokens/color/#h2-2)にします。
+
+新規ウィンドウを開くリンクや、ヘルプセンターのポップアップダイアログを表示するリンクでは、移動先を事前に認知できるようにアイコンを組み合わせて使います。
+[Iconの使い方](/products/components/icon/#h2-4)を参照してください。
+
+
+## 関連情報
+
+- [SmartHR UI v13 を取り込む場合の注意点 | DocBase](https://smarthr-inc.docbase.io/posts/1927229)
+
+
+## 参考
+
+- https://atlassian.design/foundations/typography/

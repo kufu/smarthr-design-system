@@ -1,0 +1,186 @@
+---
+title: 'コンポーネントのテンプレート'
+description: 'コンポーネント向けテンプレートです。'
+smarthr-ui: 'Button'
+order: 2
+---
+
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+コンポーネントについて簡潔な説明を書きます。
+
+複数行に渡っても問題ありません。
+
+<ComponentStory name="Button" />
+
+## 使用上の注意
+
+他のコンポーネントとの使い分けの基準、特に注意したいアンチパターンなど使用上の注意があれば書きます。  
+種類ごとの使いどころは[種類](#h2-2)に書きます。
+
+
+## \{コンポーネント名\}を使用したコンポーネント
+
+開発で頻繁に利用する実装を別のコンポーネント化している場合は、子ページへのリンクや説明を書きます。
+
+## 種類
+
+コンポーネントのバリエーションを小見出しにわけて書きます。もし網羅的な比較が必要な場合、テーブル or previewでコンポーネントを一覧を表示します。
+
+### コンポーネント名（種類） 例: Primary
+
+コンポーネント（種類）の説明が入ります。
+
+#### 単品
+
+```tsx editable
+// ```tsx editable
+// <>この中に JSX が書けます。コードブロック内にはすべての SmartHR UI コンポーネントが読み込まれているため明示的に import しないでも使えます。</>
+// ```
+<Button>ボタン</Button>
+```
+
+#### 複数
+
+```tsx editable
+// この編集可能な領域は Cluster で包まれ、gap と align を渡せます。
+<>
+  <Button variant="primary">ボタン</Button>
+  <Button>ボタン</Button>
+  <Button variant="danger">ボタン</Button>
+  <Button variant="text">ボタン</Button>
+</>
+```
+
+#### iframeを使用したくない場合（非推奨）
+
+```tsx editable noIframe
+// ```tsx editable noIframe
+// 編集可能なコードブロックは、iframe内にレンダリングされます。ツールチップがiframeの外にレンダリングされるなど不都合がある場合は`noIframe`を指定します。
+// `noIframe`では、CSSノーマライズが適用されないなどの問題があるため、非推奨です。
+// ```
+<Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
+  <NotificationBar type="warning" message={<LineClamp maxLines={1} withTooltip>非推奨ですが、LineClampを使用して省略もできます。そのでっかい領域によるヘッダー（のナビゲーション）へのアクセス性の低下をフォローするために多くのウェブサイトはヘッダーを固定していますが、それでは同時にコンテンツの閲覧性に影響を与えてしまいます。</LineClamp>} onClose={()=>{}} />
+</Stack>
+```
+
+#### プロダクト
+
+```tsx editable withStyled layout=product
+const AwesomeComponent:React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <Wrapper>
+      <Heading>編集可能なコードブロック</Heading>
+      <InformationPanel title="使い方">{children}</InformationPanel>
+    </Wrapper>
+  )
+}
+
+// withStyled を渡すと styled-components を扱えるようになります。
+// ただし必ず render() を呼ぶ必要があります。
+render (
+  <AwesomeComponent>
+    <p>
+      <code>withStyled</code> を渡すと styled-components を扱えるようになります。
+      <br />
+      また、<code>layout=product</code> を使うと擬似的にプロダクトのような見た目になります。
+    </p>
+  </AwesomeComponent>
+)
+
+const Wrapper = styled(Stack)`
+  ${({ theme: { space } }) => css`
+    margin-block: ${space(2)} ${space(1)};
+  `}
+`
+```
+
+## レイアウト
+
+メインの種類でなく、コンポーネントが持つその他の種類（サイズやアイコン付きなど）がある場合に書きます。
+
+### プレビューを埋め込む際の注意点
+
+次のようなReactのAPIを使っていたり、PropsでReactコンポーネントを受け取るコンポーネントはMDX内で定義できません。
+
+修正前：
+```tsx
+import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+
+// useStateを使っている
+export const DynamicMessageDialog = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
+      <MessageDialog
+        isOpen={isOpen}
+        title="メッセージダイアログタイトル"
+        description="本文が入ります。"
+        closeText="閉じる"
+        width={480}
+        onClickClose={() => setIsOpen(false)}
+        onPressEscape={() => setIsOpen(false)}
+        id="dialog-message"
+      />
+    </>
+  )
+}
+
+<ComponentPreview>
+  <DynamicMessageDialog />
+</ComponentPreview>
+
+// prefixでReactコンポーネントを受け取っている
+<Button prefix={<FaCirclePlusIcon />} size="default">ボタン</Button>
+```
+
+このようなコンポーネントのプレビューを埋め込みたい場合は、別ファイルに切り出して `import` してください。
+
+この際、内部でuseStateなどを使っている場合は`client:load`や`client:only="react"`を付与してクライアントで動作するようにしてください。
+
+修正後：
+```tsx
+import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+
+// 別ファイルに切り出した
+import DynamicMessageDialog from './_components/DynamicMessageDialog'
+
+<ComponentPreview>
+  <DynamicMessageDialog client:load />
+</ComponentPreview>
+
+// Reactコンポーネントを受け取らないよう修正したコンポーネントを使うように
+<SampleButton Prefix={FaCirclePlusIcon} size="default">ボタン</SampleButton>
+```
+
+## 状態
+
+コンポーネントが持つ（hoverやdisabledなど）状態がある場合に書きます。
+
+## ライティング
+
+主題に種類がなく、ライティングルールを書きたい場合はここに書きます。〇〇の使い方..などはこのグループに所属させます。AirTableも必要であれば埋め込めます。
+
+## アクセシビリティ
+
+主題全体に対するアクセシビリティの考え方として、特段言及したい場合は書きます。
+
+## デザインパターン
+
+コンポーネント独自のデザインパターンがあればこのグループ内に書きます、基準サイズなどもこの項目で書きます。
+
+## Props
+
+コンポーネントが持つPropsを網羅して書きます。
+
+<ComponentPropsTable name="Button" />
+
+## 関連リンク
+
+- link
+
+## 参考文献
+
+- link

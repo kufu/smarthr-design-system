@@ -1,0 +1,233 @@
+---
+title: '人事評価'
+description: 'SmartHRの人事評価機能のアクセシビリティ対応状況と検証結果を掲載しています。'
+order: 9
+---
+import { Table, Text, Td, Th } from 'smarthr-ui'
+
+## プロセス: 評価を提出する
+### 概要
+* 評価対象者が自己評価を入力して提出するプロセス
+* 評価者が評価対象者の評価を入力して提出するプロセス
+
+### 対象ページ
+* SmartHR人事評価機能ホーム画面
+* 評価対象者一覧画面
+* 評価シート画面
+
+### WCAG2.1 達成基準の検証
+[評価を入力して提出する アクセシビリティ検証の結果 - 2023年6月](./202306/)
+
+### スクリーンリーダーでの利用
+スクリーンリーダーの読み上げとキーボード操作でプロセスを完了できるか、検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>スクリーンリーダー</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        NVDA
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      {/* textlint-disable */}
+      <td>
+        PC-Talker
+      </td>
+      {/* textlint-enable */}
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VoiceOver
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 色反転・拡大鏡での利用
+色反転・拡大鏡機能を利用して、プロセスを完了できるか検証しています。視力での確認が難しい箇所については、スクリーンリーダーを併用しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        拡大鏡(NetReader ネオモード)、コントラストテーマ(Windows 11)
+      </td>
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 限られた器用さ、または力
+手の器用さや力が限られているユーザーが、プロセスを完了できるか検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        iPhone 
+      </td>
+      <td>
+        Safari
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+## プロセス: 評価者が複数の評価を比較して調整する
+### 概要
+* 評価者が複数の評価対象者の評価を比較して入力するプロセス
+
+### 対象ページ
+* 評価内容一覧画面
+
+### WCAG2.1 達成基準の検証
+[評価者が複数の評価を比較して調整する アクセシビリティ検証の結果 - 2023年12月](./202312/)
+
+### スクリーンリーダーでの利用
+スクリーンリーダーの読み上げとキーボード操作でプロセスを完了できるか、検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>スクリーンリーダー</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        NVDA
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      {/* textlint-disable */}
+      <td>
+        PC-Talker
+      </td>
+      {/* textlint-enable */}
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VoiceOver
+      </td>
+      <td>
+        Chrome
+      </td>
+      <td>
+        −
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 色反転・拡大鏡での利用
+色反転・拡大鏡機能を利用して、プロセスを完了できるか検証しています。視力での確認が難しい箇所については、スクリーンリーダーを併用しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        拡大鏡(NetReader ネオモード)、コントラストテーマ(Windows 11)
+      </td>
+      <td>
+        NetReader
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### 限られた器用さ、または力
+手の器用さや力が限られているユーザーが、プロセスを完了できるか検証しています。
+
+<Table>
+  <thead>
+    <tr>
+      <Th>使用した機能等</Th>
+      <Th>ブラウザ</Th>
+      <Th>プロセスを完了可能</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        iPhone AssistiveTouch
+      </td>
+      <td>
+        Safari
+      </td>
+      <td>
+        ◯
+      </td>
+    </tr>
+  </tbody>
+</Table>

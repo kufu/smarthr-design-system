@@ -1,0 +1,52 @@
+---
+title: 'VisuallyHiddenText'
+description: 'スクリーンリーダーによる音声読み上げを可能にしながら、テキストを視覚的に隠したい場合に使用するコンポーネントです。'
+---
+
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+
+VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠しつつ、スクリーンリーダーで読み上げるテキストを提供する場合に使用します。見出しやラベルが自明で、表示すると視覚的に冗長になる場合などに使います。
+
+## 使用上の注意
+
+`VisuallyHiddenText`を必要以上に使いすぎないでください。情報が過剰になり、アクセシビリティが逆に損なわれる場合があります。
+
+文脈をしっかり考慮し、スクリーンリーダーユーザーにとって価値のある情報を提供することが重要です。
+
+## VisuallyHiddenTextを使用したコンポーネント
+
+### RangeSeparator
+期間や範囲を表す`〜`や`-`を`から`などの意味のわかる文字に置き換えてくれます。（参考：[RangeSeparator](/products/components/range-separator/)）
+
+```tsx editable
+<p>
+  兼務先（部署2
+  <RangeSeparator />
+  10）も所属部署として扱う
+</p>
+```
+
+### FormControlの[dangerouslyTitleHidden]props
+「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`FormControl`の`dangerouslyTitleHidden`propsを使用している。
+
+```tsx editable
+<Fieldset title="入社年月日" >
+  <Cluster gap={0.5} align="center">
+    <FormControl title="開始日" dangerouslyTitleHidden>
+      <DatePicker name="startAtDate" />
+    </FormControl>
+
+    <RangeSeparator />
+
+    <FormControl title="終了日" dangerouslyTitleHidden>
+      <DatePicker name="EndAtDate" />
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
+
+
+## Props
+
+<ComponentPropsTable name="VisuallyHiddenText" />
+
