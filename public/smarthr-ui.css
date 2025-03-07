@@ -1399,10 +1399,6 @@ a {
   animation: shr-spin 1.6s linear infinite
 }
 
-.shr-cursor-\[revert\] {
-  cursor: revert
-}
-
 .shr-cursor-move {
   cursor: move
 }
@@ -2084,6 +2080,11 @@ a {
 .shr-border-\[\#0f7f85\] {
   --tw-border-opacity: 1;
   border-color: rgb(15 127 133 / var(--tw-border-opacity, 1))
+}
+
+.shr-border-\[\#ff8800\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 136 0 / var(--tw-border-opacity, 1))
 }
 
 .shr-border-\[theme\(colors\.main\)\] {
@@ -4060,6 +4061,16 @@ a {
   border-color: rgb(224 30 90 / var(--tw-border-opacity, 1))
 }
 
+.shr-peer:not(:disabled):hover ~ .peer-\[\:not\(\:disabled\)\]\:peer-hover\:shr-shadow-input-hover {
+  --tw-shadow: 0 0 0 2px rgba(0,119,199,0.22);
+  --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}
+
+.has-\[\:disabled\]\:shr-pointer-events-none:has(:disabled) {
+  pointer-events: none
+}
+
 .has-\[\:disabled\]\:shr-cursor-default:has(:disabled) {
   cursor: default
 }
@@ -4077,6 +4088,10 @@ a {
   border-color: rgb(224 30 90 / var(--tw-border-opacity, 1))
 }
 
+.has-\[\[readonly\]\]\:shr-border-\[theme\(backgroundColor\.background\)\]:has([readonly]) {
+  border-color: #f8f7f6
+}
+
 .has-\[\:checked\]\:shr-bg-main:has(:checked) {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
@@ -4085,6 +4100,16 @@ a {
 .has-\[\:disabled\]\:shr-bg-border:has(:disabled) {
   --tw-bg-opacity: 1;
   background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
+}
+
+.has-\[\:disabled\]\:shr-bg-white-darken:has(:disabled) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
+}
+
+.has-\[\[readonly\]\]\:shr-bg-background:has([readonly]) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
 }
 
 .has-\[\:checked\]\:before\:shr-ms-\[theme\(fontSize\.base\)\]:has(:checked)::before {
@@ -4686,6 +4711,10 @@ a {
 .\[\&\&\&\]\:shr-bg-background.\[\&\&\&\]\:shr-bg-background.\[\&\&\&\]\:shr-bg-background {
   --tw-bg-opacity: 1;
   background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1))
+}
+
+.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50:has(:disabled) {
+  border-color: rgb(214 211 208 / 0.5)
 }
 
 .\[\&\&\.shr-dialog-transition-enter-active\]\:shr-opacity-100.\[\&\&\.shr-dialog-transition-enter-active\]\:shr-opacity-100.shr-dialog-transition-enter-active {
@@ -5474,12 +5503,12 @@ a {
   margin-inline-start: 12px
 }
 
-.\[\&_\.smarthr-ui-RadioButton-label\]\:shr-cursor-pointer .smarthr-ui-RadioButton-label {
-  cursor: pointer
-}
-
 .has-\[\:disabled\]\:\[\&_\.smarthr-ui-RadioButton-label\]\:shr-cursor-default .smarthr-ui-RadioButton-label:has(:disabled) {
   cursor: default
+}
+
+.has-\[\:not\(\:disabled\)\]\:\[\&_\.smarthr-ui-RadioButton-label\]\:shr-cursor-pointer .smarthr-ui-RadioButton-label:has(:not(:disabled)) {
+  cursor: pointer
 }
 
 .\[\&_\.smarthr-ui-RadioButton-radioButton\:focus-visible_\+_span\]\:shr-shadow-none .smarthr-ui-RadioButton-radioButton:focus-visible + span {
@@ -5724,6 +5753,40 @@ a {
 
 :not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1 {
   margin-top: 16px
+}
+
+[aria-sort="ascending"] .\[\[aria-sort\=\"ascending\"\]_\&\]\:shr-text-black {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
+}
+
+[aria-sort="ascending"] .\[\[aria-sort\=\"ascending\"\]_\&\]\:shr-text-disabled {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
+}
+
+[aria-sort="descending"] .\[\[aria-sort\=\"descending\"\]_\&\]\:shr-text-black {
+  --tw-text-opacity: 1;
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
+}
+
+[aria-sort="descending"] .\[\[aria-sort\=\"descending\"\]_\&\]\:shr-text-disabled {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
+}
+
+[aria-sort="none"] .\[\[aria-sort\=\"none\"\]_\&\]\:shr-text-disabled {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
+}
+
+[data-disabled="true"]>.\[\[data-disabled\=\"true\"\]\>\&\]\:shr-cursor-\[revert\] {
+  cursor: revert
+}
+
+[data-disabled="true"]>.\[\[data-disabled\=\"true\"\]\>\&\]\:shr-text-disabled {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 [data-disabled=true]>.\[\[data-disabled\=true\]\>\&\]\:shr-pointer-events-none {
