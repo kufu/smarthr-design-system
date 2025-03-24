@@ -31,15 +31,12 @@ Switchはオン・オフのどちらか1つの状態を表します。対する�
 
 ### ラベルについて
 
-Switchは基本的にラベルを必要とします。周囲のコンテキストに依って省略できます。
+Switchは基本的にラベルを必要とします。周囲のコンテキストによって省略できます。
 
 また、利用者が状態を認識しにくくなるため、Switchの状態が切り替わってもラベルは変更しないでください。
 
 ```tsx editable
-<Cluster as="label" align="center">
-  <span>アーカイブを表示</span>
-  <Switch />
-</Cluster>
+  <Switch>アーカイブを表示</Switch>
 ```
 
 ## Props
