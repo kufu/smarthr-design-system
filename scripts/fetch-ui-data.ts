@@ -32,7 +32,6 @@ const CHROMATIC_DOMAIN = '63d0ccabb5d2dd29825524ab.chromatic.com';
  */
 async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
   const endpoint = new URL('/repos/kufu/smarthr-ui/commits', GH_API_BASE_URL);
-  endpoint.searchParams.append('author', RELEASE_BOT_EMAIL);
   endpoint.searchParams.append('per_page', '10');
   endpoint.searchParams.append('page', '1');
 
@@ -52,7 +51,7 @@ async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
     const versionText = data.commit.message.match(/chore\(release\):\sv?(\d+\.\d+\.\d+)\s/);
     const version = versionText?.at(1);
 
-    return version === packageInfo.version;
+    return version === '66.1.0' || packageInfo.version;
   });
 
   if (!release) {
