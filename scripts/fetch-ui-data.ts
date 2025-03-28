@@ -51,7 +51,7 @@ async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
     const versionText = data.commit.message.match(/chore\(release\):\sv?(\d+\.\d+\.\d+)\s/);
     const version = versionText?.at(1);
 
-    return version === '66.1.0' || packageInfo.version;
+    return version === packageInfo.version;
   });
 
   if (!release) {
