@@ -9,11 +9,19 @@ import type { StoryIndex } from '@storybook/types';
 type GitHubAPIResponse = {
   sha: string;
   commit: {
-    message: string;
     author: {
       date: string;
     };
   };
+};
+
+type ReleaseResponse = {
+  tag_name: string;
+  created_at: string;
+};
+
+type CommitResponse = {
+  sha: string;
 };
 
 type PropsResponse = {
@@ -24,34 +32,29 @@ type PropsResponse = {
 };
 
 const GH_API_BASE_URL = 'https://api.github.com';
-const RELEASE_BOT_EMAIL = '41898282+github-actions[bot]@users.noreply.github.com';
 const CHROMATIC_DOMAIN = '63d0ccabb5d2dd29825524ab.chromatic.com';
 
 /**
  * GitHub API から SmartHR UI のリリース情報を取得
  */
 async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
-  const endpoint = new URL('/repos/kufu/smarthr-ui/commits', GH_API_BASE_URL);
-  endpoint.searchParams.append('author', RELEASE_BOT_EMAIL);
-  endpoint.searchParams.append('per_page', '10');
-  endpoint.searchParams.append('page', '1');
+  const releaseEndpoint = new URL('/repos/kufu/smarthr-ui/releases', GH_API_BASE_URL);
+  releaseEndpoint.searchParams.append('per_page', '10');
+  releaseEndpoint.searchParams.append('page', '1');
 
-  const res = await fetch(endpoint.toString());
-  if (!res.ok) {
-    throw new Error(`GitHub からリリース情報を取得できませんでした: ${res.statusText}`);
+  const releaseRes = await fetch(releaseEndpoint.toString());
+  if (!releaseRes.ok) {
+    throw new Error(`GitHub からリリース情報を取得できませんでした: ${releaseRes.statusText}`);
   }
 
-  const json: GitHubAPIResponse[] = await res.json();
-  if (!json || json.length === 0) {
+  const releases: ReleaseResponse[] = await releaseRes.json();
+  if (!releases || releases.length === 0) {
     throw new Error('リリース情報が見つかりませんでした');
   }
 
   // package.json に記載されているバージョンと一致するリリース情報を取得
-  const release = json.find((data) => {
-    // バージョンを抽出
-    const versionText = data.commit.message.match(/chore\(release\):\sv?(\d+\.\d+\.\d+)\s/);
-    const version = versionText?.at(1);
-
+  const release = releases.find((data) => {
+    const version = data.tag_name.replace(/^v/, '');
     return version === packageInfo.version;
   });
 
@@ -59,7 +62,22 @@ async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
     throw new Error(`バージョン ${packageInfo.version} のリリース情報が見つかりませんでした`);
   }
 
-  return release;
+  const commitEndpoint = new URL(`/repos/kufu/smarthr-ui/commits/${release.tag_name}`, GH_API_BASE_URL);
+  const commitRes = await fetch(commitEndpoint.toString());
+  if (!commitRes.ok) {
+    throw new Error(`GitHub からコミット情報を取得できませんでした: ${commitRes.statusText}`);
+  }
+
+  const commit: CommitResponse = await commitRes.json();
+
+  return {
+    sha: commit.sha,
+    commit: {
+      author: {
+        date: release.created_at,
+      },
+    },
+  };
 }
 
 /**
