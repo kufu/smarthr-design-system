@@ -15,9 +15,10 @@
     ]
   },
   "scripts": {
+    "generate:llm-docs": "tsx ./scripts/generate-llm-docs.ts",
     "dev": "pnpm update:ui-data && astro dev",
     "start": "pnpm dev",
-    "build": "pnpm update:ui-data && astro build",
+    "build": "pnpm generate:llm-docs && pnpm update:ui-data && astro build",
     "build:prod": "pnpm build && pnpm tsx ./scripts/update-algoliasearch.ts",
     "preview": "astro preview",
     "astro": "astro",
