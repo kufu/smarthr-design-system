@@ -1,0 +1,43 @@
+name: Generate Combined MDX
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/content/**/*.mdx'  # MDXファイルが変更された場合のみ実行
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  generate-combined-mdx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '9.13.2'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate combined MDX
+        run: pnpm generate:combined-mdx
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/combined_content.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "🍱: Update combined MDX content [skip ci]"
+          git push 
