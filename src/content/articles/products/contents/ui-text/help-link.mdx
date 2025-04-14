@@ -47,10 +47,14 @@ import { FaExternalLinkAltIcon, FaQuestionCircleIcon } from 'smarthr-ui'
 - リンクテキストとリンク先ページタイトルが違っても問題ないか。
     - リンクの目的が判断できれば構いません。リンクテキストとリンク先のページタイトルは完全一致でなくても構いません。(※1.)
 
-## ライティングパターン
-<iframe class="airtable-embed" src="https://airtable.com/embed/shr0uo6clqu2YkINO?backgroundColor=teal&viewControls=on" frameborder="0" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
-
-
-
-## 参考文献
 ※1. [Web Content Accessibility Guidelines - 2.4.4 リンクの目的（コンテキスト内）を理解する](https://waic.jp/docs/UNDERSTANDING-WCAG20/navigation-mechanisms-refs.html)
+
+## ライティングパターン
+
+|   | 例 |
+| ---- | ---- |
+| 1 | 詳しくは、{ヘルプページタイトル} <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" /> を参照してください。 |
+| 2 | {hoge}については、{ヘルプページタイトル} <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。 |
+| 3 | {hoge}の詳しい操作方法は、{ヘルプページタイトル}<FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。 |
+| 4 | {hoge}や{fuga}、{piyo}については、{ヘルプページタイトル} <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。 |
+| 5 | <FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" /> {ヘルプページタイトル} |
