@@ -81,7 +81,7 @@ function readMdxFile(path: string): Article {
 }
 
 function generateLlmsTxt(articles: Article[]) {
-  let content = '# SmartHR Design System Documentation Structure\n\n';
+  let content = '# SmartHR Design System\n';
 
   // Group articles by directory
   const groupedArticles = articles.reduce(
@@ -101,7 +101,7 @@ function generateLlmsTxt(articles: Article[]) {
     content += `\n## ${dir}\n`;
     for (const article of sortedArticles) {
       const { title, description } = article.frontmatter;
-      content += `- ${title}${description ? `: ${description}` : ''}\n`;
+      content += `- [${title}](.${article.path.replace(/\.mdx/, '/')})${description.trim() ? `: ${description}` : ''}\n`;
     }
   }
 
@@ -109,7 +109,7 @@ function generateLlmsTxt(articles: Article[]) {
 }
 
 function generateLlmsFullTxt(articles: Article[]) {
-  let content = '# SmartHR Design System Full Documentation\n\n';
+  let content = '# SmartHR Design System\n';
 
   const sortedArticles = articles.sort((a, b) => (a.frontmatter.order || 0) - (b.frontmatter.order || 0));
 
