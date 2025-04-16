@@ -19,13 +19,13 @@ importers:
         version: 2.1.2
       '@astrojs/react':
         specifier: ^3.6.2
-        version: 3.6.2(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.10(@types/node@22.13.10)(sass-embedded@1.86.3)(sass@1.79.4))
+        version: 3.6.2(@types/react-dom@18.3.6(@types/react@18.3.12))(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.10(@types/node@22.13.10)(sass-embedded@1.86.3)(sass@1.79.4))
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
       '@types/react-dom':
-        specifier: ^18.3.1
-        version: 18.3.1
+        specifier: ^18.3.6
+        version: 18.3.6(@types/react@18.3.12)
       algoliasearch:
         specifier: ^5.13.0
         version: 5.13.0
@@ -1560,8 +1560,10 @@ packages:
   '@types/range-parser@1.2.7':
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
 
-  '@types/react-dom@18.3.1':
-    resolution: {integrity: sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==}
+  '@types/react-dom@18.3.6':
+    resolution: {integrity: sha512-nf22//wEbKXusP6E9pfOCDwFdHAX4u172eaJI4YkDRQEZiorm6KfYnSC2SWLDMVWUOWPERmJnN0ujeAfTBLvrw==}
+    peerDependencies:
+      '@types/react': ^18.0.0
 
   '@types/react@18.3.12':
     resolution: {integrity: sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==}
@@ -6298,10 +6300,10 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@3.6.2(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.10(@types/node@22.13.10)(sass-embedded@1.86.3)(sass@1.79.4))':
+  '@astrojs/react@3.6.2(@types/react-dom@18.3.6(@types/react@18.3.12))(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.10(@types/node@22.13.10)(sass-embedded@1.86.3)(sass@1.79.4))':
     dependencies:
       '@types/react': 18.3.12
-      '@types/react-dom': 18.3.1
+      '@types/react-dom': 18.3.6(@types/react@18.3.12)
       '@vitejs/plugin-react': 4.3.1(vite@5.4.10(@types/node@22.13.10)(sass-embedded@1.86.3)(sass@1.79.4))
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -7603,7 +7605,7 @@ snapshots:
 
   '@types/range-parser@1.2.7': {}
 
-  '@types/react-dom@18.3.1':
+  '@types/react-dom@18.3.6(@types/react@18.3.12)':
     dependencies:
       '@types/react': 18.3.12
 
