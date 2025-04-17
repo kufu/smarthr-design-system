@@ -22,7 +22,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint:ts": "eslint 'src/**/*.{astro,ts,tsx}'",
-    "lint:check": "astro check",
+    "lint:check": "pnpm update:ui-data && astro check",
     "lint:text": "textlint 'src/content/**/*.md{,x}'",
     "lint": "run-p lint:*",
     "format:eslint": "eslint --fix 'src/**/*.{astro,ts,tsx}'",
