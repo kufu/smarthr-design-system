@@ -29,6 +29,9 @@ export default defineConfig({
     remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
   },
   vite: {
+    define: {
+      'process.env': { NODE_ENV: JSON.stringify('production') },
+    },
     css: {
       preprocessorOptions: {
         scss: {

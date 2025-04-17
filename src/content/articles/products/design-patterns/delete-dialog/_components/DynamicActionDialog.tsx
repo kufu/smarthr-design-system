@@ -3,7 +3,7 @@ import {
   ActionDialog,
   BaseColumn,
   Button,
-  CheckBox,
+  Checkbox,
   DefinitionList,
   DefinitionListItem,
   ResponseMessage,
@@ -46,7 +46,7 @@ export default function DynamicActionDialog() {
               </ul>
             </BaseColumn>
             <BaseColumn>
-              <CheckBox name="delete_confirm">注意事項を確認しました。</CheckBox>
+              <Checkbox name="delete_confirm">注意事項を確認しました。</Checkbox>
             </BaseColumn>
           </Stack>
         </Stack>

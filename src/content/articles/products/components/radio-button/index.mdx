@@ -26,7 +26,7 @@ import RadioButtonAlignmenDont from './images/radio-button-alignment-dont.png';
 
 基本的に、選択肢の中から単一の値を選択して入力させる場合は、初期状態で選択肢が一覧しやすいラジオボタンを使用します。
 
-- 選択肢のラベルテキストが長大になる場合や、選択肢が表示領域内にすべて表示しきれないほど存在する場合では、[Select](/products/components/select/)や[SingleComboBox](/products/components/combo-box/single-combo-box/)も検討します。
+- 選択肢のラベルテキストが長大になる場合や、選択肢が表示領域内にすべて表示しきれないほど存在する場合では、[Select](/products/components/select/)や[SingleCombobox](/products/components/combo-box/single-combo-box/)も検討します。
   - ただし選択肢の一覧性が下がり、操作の手間が増えるので、選択肢の数が不定で予測できないなどの理由がない限りはラジオボタンの使用を推奨します。
 
 #### 選択肢のラベルテキストはなるべく簡潔に同程度の文量で収める
@@ -70,7 +70,7 @@ import RadioButtonAlignmenDont from './images/radio-button-alignment-dont.png';
 これらを配置してしまうと、ユーザーがフォーム入力するための操作難易度が上がり、誤操作などにつながるためです。（[※1](#h2-3)）
 
 - リンクを置きたい場合は、[Fieldset](/products/components/fieldset/)の`helpMessage` propsなどを使用します。
-- ComboBoxなどで選択肢に応じて段階的に別の操作をさせたい場合は、[RadioButton](/products/components/radio-button/)と`disabled`状態を組み合わせるか、[ステップを複数に分けたモード](/products/design-patterns/modal-ui/#h3-5)を検討します。
+- Comboboxなどで選択肢に応じて段階的に別の操作をさせたい場合は、[RadioButton](/products/components/radio-button/)と`disabled`状態を組み合わせるか、[ステップを複数に分けたモード](/products/design-patterns/modal-ui/#h3-5)を検討します。
 
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">
