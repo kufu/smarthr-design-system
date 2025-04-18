@@ -16,7 +16,7 @@ export default function DynamicModelessDialog() {
       </Button>
       <ModelessDialog
         isOpen={isOpen}
-        header="モードレスダイアログタイトル"
+        title="モードレスダイアログタイトル"
         footer={<div style={{ padding: '16px 24px' }}> フッター </div>}
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}

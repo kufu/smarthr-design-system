@@ -1,5 +1,5 @@
 ---
-title: 'CheckBox'
+title: 'Checkbox'
 description: "ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。"
 ---
 import { Image } from 'astro:assets'
@@ -16,7 +16,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。
 `input[type='checkbox']`の代わりとして使用します。
 
-<ComponentStory name="CheckBox" />
+<ComponentStory name="Checkbox" />
 
 ## 使用上の注意
 
@@ -27,7 +27,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 チェックボックスは選択肢を複数選択できる場合に使用します。
 
 - 複数の選択肢から単一選択しかできず、表示領域に余裕がある場合は原則として[RadioButton](/products/components/radio-button/)を検討してください。
-- 選択肢が多い場合や表示領域が狭い場合は、[MultiComboBox](/products/components/combo-box/multi-combo-box/)を検討してください。
+- 選択肢が多い場合や表示領域が狭い場合は、[MultiCombobox](/products/components/combo-box/multi-combo-box/)を検討してください。
 
 ```tsx editable
 <>
@@ -36,11 +36,11 @@ import checkBoxDont2 from './images/check-box-dont2.png';
     innerMargin={0.5}
   >
     <Cluster gap={{ row: 1, column: 1.5 }}>
-        <CheckBox name="sample">選択肢 1</CheckBox>
-        <CheckBox name="sample">選択肢 2</CheckBox>
-        <CheckBox name="sample">選択肢 3</CheckBox>
-        <CheckBox name="sample">選択肢 4</CheckBox>
-        <CheckBox name="sample">選択肢 5</CheckBox>
+        <Checkbox name="sample">選択肢 1</Checkbox>
+        <Checkbox name="sample">選択肢 2</Checkbox>
+        <Checkbox name="sample">選択肢 3</Checkbox>
+        <Checkbox name="sample">選択肢 4</Checkbox>
+        <Checkbox name="sample">選択肢 5</Checkbox>
     </Cluster>
   </Fieldset>
 </>
@@ -126,11 +126,11 @@ import checkBoxDont2 from './images/check-box-dont2.png';
   >
       <BaseColumn>
           <Cluster gap={{ row: 1, column: 1.5 }}>
-              <CheckBox name="sample">選択肢 1</CheckBox>
-              <CheckBox name="sample">選択肢 2</CheckBox>
-              <CheckBox name="sample">選択肢 3</CheckBox>
-              <CheckBox name="sample">選択肢 4</CheckBox>
-              <CheckBox name="sample">選択肢 5</CheckBox>
+              <Checkbox name="sample">選択肢 1</Checkbox>
+              <Checkbox name="sample">選択肢 2</Checkbox>
+              <Checkbox name="sample">選択肢 3</Checkbox>
+              <Checkbox name="sample">選択肢 4</Checkbox>
+              <Checkbox name="sample">選択肢 5</Checkbox>
           </Cluster>
       </BaseColumn>
   </Fieldset>
@@ -140,7 +140,7 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 
 ## Props
 
-<ComponentPropsTable name="CheckBox" />
+<ComponentPropsTable name="Checkbox" />
 
 ## 関連リンク
 

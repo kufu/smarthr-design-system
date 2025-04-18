@@ -260,10 +260,6 @@ a {
   top: -4px
 }
 
-.-shr-top-px {
-  top: -1px
-}
-
 .shr-bottom-0 {
   bottom: 0
 }
@@ -316,6 +312,10 @@ a {
   bottom: 128px
 }
 
+.shr-bottom-\[2px\] {
+  bottom: 2px
+}
+
 .shr-end-0\.5 {
   inset-inline-end: 8px
 }
@@ -346,6 +346,14 @@ a {
 
 .shr-left-\[calc\(50\%\+\(theme\(fontSize\.base\)\/2\)\+4px\+5px\)\] {
   left: calc(50% + (1rem / 2) + 4px + 5px)
+}
+
+.shr-right-0 {
+  right: 0
+}
+
+.shr-right-\[-4px\] {
+  right: -4px
 }
 
 .shr-top-0 {
@@ -497,10 +505,6 @@ a {
 
 .-shr-mt-0\.5 {
   margin-top: -8px
-}
-
-.-shr-mt-em {
-  margin-top: -1em
 }
 
 .shr--me-0\.25 {
@@ -672,6 +676,10 @@ a {
   height: 1rem
 }
 
+.shr-h-1 {
+  height: 16px
+}
+
 .shr-h-1\.5 {
   height: 24px
 }
@@ -823,6 +831,10 @@ a {
 
 .shr-min-h-em {
   min-height: 1em
+}
+
+.shr-w-1 {
+  width: 16px
 }
 
 .shr-w-1\.5 {
@@ -1413,6 +1425,12 @@ a {
 
 .shr-cursor-text {
   cursor: text
+}
+
+.shr-select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none
 }
 
 .shr-select-auto {
@@ -2543,6 +2561,10 @@ a {
   padding-bottom: 24px
 }
 
+.shr-pe-0 {
+  padding-inline-end: 0
+}
+
 .shr-pe-1 {
   padding-inline-end: 16px
 }
@@ -2553,10 +2575,6 @@ a {
 
 .shr-pe-2 {
   padding-inline-end: 32px
-}
-
-.shr-pl-1 {
-  padding-left: 16px
 }
 
 .shr-pl-2\.5 {
@@ -3062,6 +3080,18 @@ a {
   border-top-color: #d6d3d0
 }
 
+[data-is-today="true"]>.\[\[data-is-today\=\"true\"\]\>\&\&\&\]\:shr-border-shorthand.\[\[data-is-today\=\"true\"\]\>\&\&\&\]\:shr-border-shorthand.\[\[data-is-today\=\"true\"\]\>\&\&\&\]\:shr-border-shorthand {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d6d3d0
+}
+
+[data-this-year="true"]>.\[\[data-this-year\=\"true\"\]\>\&\]\:shr-border-shorthand {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d6d3d0
+}
+
 .file\:shr-h-full::file-selector-button {
   height: 100%
 }
@@ -3136,6 +3166,11 @@ a {
   bottom: calc(4px / 2)
 }
 
+.before\:shr-left-0\.5::before {
+  content: var(--tw-content);
+  left: 8px
+}
+
 .before\:shr-left-1\.5::before {
   content: var(--tw-content);
   left: 24px
@@ -3144,6 +3179,11 @@ a {
 .before\:shr-left-1\/2::before {
   content: var(--tw-content);
   left: 50%
+}
+
+.before\:shr-right-0\.5::before {
+  content: var(--tw-content);
+  right: 8px
 }
 
 .before\:shr-right-1\.5::before {
@@ -3414,6 +3454,11 @@ a {
   left: 0
 }
 
+.after\:shr-left-0\.5::after {
+  content: var(--tw-content);
+  left: 8px
+}
+
 .after\:shr-left-1\.5::after {
   content: var(--tw-content);
   left: 24px
@@ -3424,9 +3469,19 @@ a {
   left: 50%
 }
 
+.after\:shr-left-full::after {
+  content: var(--tw-content);
+  left: 100%
+}
+
 .after\:shr-right-0::after {
   content: var(--tw-content);
   right: 0
+}
+
+.after\:shr-right-0\.5::after {
+  content: var(--tw-content);
+  right: 8px
 }
 
 .after\:shr-right-1\.5::after {
@@ -4217,6 +4272,10 @@ a {
   display: none
 }
 
+.aria-selected\:shr-pl-1[aria-selected="true"] {
+  padding-left: 16px
+}
+
 .aria-selected\:shr-text-white[aria-selected="true"] {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1))
@@ -4264,40 +4323,29 @@ a {
   content: var(--tw-content)
 }
 
-.aria-current-page\:shr-cursor-default[aria-current="page"] {
-  cursor: default
-}
-
-.aria-current-page\:shr-border-solid[aria-current="page"] {
-  border-style: solid
-}
-
-.aria-current-page\:shr-border-main[aria-current="page"] {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
-}
-
 .aria-current-page\:shr-bg-grey-9[aria-current="page"] {
   --tw-bg-opacity: 1;
   background-color: rgb(237 235 232 / var(--tw-bg-opacity, 1))
-}
-
-.aria-current-page\:shr-bg-main[aria-current="page"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
 .aria-current-page\:shr-font-bold[aria-current="page"] {
   font-weight: 700
 }
 
-.aria-current-page\:shr-text-white[aria-current="page"] {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+.aria-\[hidden\]\:shr-absolute[aria-hidden] {
+  position: absolute
+}
+
+.aria-\[hidden\]\:shr-h-px[aria-hidden] {
+  height: 1px
 }
 
 .aria-\[sort\]\:shr-cursor-pointer[aria-sort] {
   cursor: pointer
+}
+
+.aria-\[hidden\]\:shr-overflow-hidden[aria-hidden] {
+  overflow: hidden
 }
 
 .aria-\[invalid\]\:shr-border-danger[aria-invalid] {
@@ -4325,8 +4373,12 @@ a {
   color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
-.data-\[selected\=true\]\:shr-relative[data-selected="true"] {
+.data-\[current\=true\]\:shr-relative[data-current="true"] {
   position: relative
+}
+
+.data-\[favorite\=\"false\"\]\:shr-grid-cols-\[1fr_1rem\][data-favorite="false"] {
+  grid-template-columns: 1fr 1rem
 }
 
 .data-\[active\=false\]\:shr-bg-white[data-active="false"] {
@@ -4339,95 +4391,99 @@ a {
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
-.data-\[selected\=true\]\:shr-bg-main[data-selected="true"] {
+.data-\[current\=true\]\:shr-bg-main[data-current="true"] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
-.data-\[selected\=true\]\:shr-text-white[data-selected="true"] {
+.data-\[with-releasenote\=\"true\"\]\:shr-pe-0[data-with-releasenote="true"] {
+  padding-inline-end: 0
+}
+
+.data-\[current\=true\]\:shr-text-white[data-current="true"] {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
-.data-\[selected\=true\]\:after\:shr-absolute[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-absolute[data-current="true"]::after {
   content: var(--tw-content);
   position: absolute
 }
 
-.data-\[selected\=true\]\:after\:-shr-right-0\.25[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:-shr-right-0\.25[data-current="true"]::after {
   content: var(--tw-content);
   right: -4px
 }
 
-.data-\[selected\=true\]\:after\:shr-top-1\/2[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-top-1\/2[data-current="true"]::after {
   content: var(--tw-content);
   top: 50%
 }
 
-.data-\[selected\=true\]\:after\:-shr-translate-y-1\/2[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:-shr-translate-y-1\/2[data-current="true"]::after {
   content: var(--tw-content);
   --tw-translate-y: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
-.data-\[selected\=true\]\:after\:shr-translate-x-0[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-translate-x-0[data-current="true"]::after {
   content: var(--tw-content);
   --tw-translate-x: 0;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
-.data-\[selected\=true\]\:after\:shr-border-b-4[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-b-4[data-current="true"]::after {
   content: var(--tw-content);
   border-bottom-width: 4px
 }
 
-.data-\[selected\=true\]\:after\:shr-border-l-4[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-l-4[data-current="true"]::after {
   content: var(--tw-content);
   border-left-width: 4px
 }
 
-.data-\[selected\=true\]\:after\:shr-border-r-0[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-r-0[data-current="true"]::after {
   content: var(--tw-content);
   border-right-width: 0px
 }
 
-.data-\[selected\=true\]\:after\:shr-border-t-4[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-t-4[data-current="true"]::after {
   content: var(--tw-content);
   border-top-width: 4px
 }
 
-.data-\[selected\=true\]\:after\:shr-border-solid[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-solid[data-current="true"]::after {
   content: var(--tw-content);
   border-style: solid
 }
 
-.data-\[selected\=true\]\:after\:shr-border-b-transparent[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-b-transparent[data-current="true"]::after {
   content: var(--tw-content);
   border-bottom-color: transparent
 }
 
-.data-\[selected\=true\]\:after\:shr-border-l-main[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-l-main[data-current="true"]::after {
   content: var(--tw-content);
   --tw-border-opacity: 1;
   border-left-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
 }
 
-.data-\[selected\=true\]\:after\:shr-border-r-transparent[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-r-transparent[data-current="true"]::after {
   content: var(--tw-content);
   border-right-color: transparent
 }
 
-.data-\[selected\=true\]\:after\:shr-border-t-transparent[data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-border-t-transparent[data-current="true"]::after {
   content: var(--tw-content);
   border-top-color: transparent
 }
 
-.data-\[selected\=true\]\:after\:shr-content-\[\"\"\][data-selected="true"]::after {
+.data-\[current\=true\]\:after\:shr-content-\[\"\"\][data-current="true"]::after {
   --tw-content: "";
   content: var(--tw-content)
 }
 
-.data-\[selected\=false\]\:hover\:shr-bg-column-darken:hover[data-selected="false"] {
+.data-\[current\=false\]\:hover\:shr-bg-column-darken:hover[data-current="false"] {
   --tw-bg-opacity: 1;
   background-color: rgb(237 234 232 / var(--tw-bg-opacity, 1))
 }
@@ -4585,6 +4641,10 @@ a {
     background-color: Mark
   }
 
+  .forced-colors\:shr-fill-\[ButtonText\] {
+    fill: ButtonText
+  }
+
   .forced-colors\:shr-fill-\[CanvasText\] {
     fill: CanvasText
   }
@@ -4669,16 +4729,6 @@ a {
   }
 }
 
-.\[\&\&\&\&\]\:shr-bg-main.\[\&\&\&\&\]\:shr-bg-main.\[\&\&\&\&\]\:shr-bg-main.\[\&\&\&\&\]\:shr-bg-main {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\&\&\&\]\:shr-text-white.\[\&\&\&\&\]\:shr-text-white.\[\&\&\&\&\]\:shr-text-white.\[\&\&\&\&\]\:shr-text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
-}
-
 .\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto {
   margin-top: auto;
   margin-bottom: auto
@@ -4715,6 +4765,29 @@ a {
 
 .has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50:has(:disabled) {
   border-color: rgb(214 211 208 / 0.5)
+}
+
+.aria-current-page\:\[\&\&\&\]\:shr-cursor-default.aria-current-page\:\[\&\&\&\]\:shr-cursor-default.aria-current-page\:\[\&\&\&\]\:shr-cursor-default[aria-current="page"] {
+  cursor: default
+}
+
+.aria-current-page\:\[\&\&\&\]\:shr-border-solid.aria-current-page\:\[\&\&\&\]\:shr-border-solid.aria-current-page\:\[\&\&\&\]\:shr-border-solid[aria-current="page"] {
+  border-style: solid
+}
+
+.aria-current-page\:\[\&\&\&\]\:shr-border-main.aria-current-page\:\[\&\&\&\]\:shr-border-main.aria-current-page\:\[\&\&\&\]\:shr-border-main[aria-current="page"] {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1))
+}
+
+.aria-current-page\:\[\&\&\&\]\:shr-bg-main.aria-current-page\:\[\&\&\&\]\:shr-bg-main.aria-current-page\:\[\&\&\&\]\:shr-bg-main[aria-current="page"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
+}
+
+.aria-current-page\:\[\&\&\&\]\:shr-text-white.aria-current-page\:\[\&\&\&\]\:shr-text-white.aria-current-page\:\[\&\&\&\]\:shr-text-white[aria-current="page"] {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 .\[\&\&\.shr-dialog-transition-enter-active\]\:shr-opacity-100.\[\&\&\.shr-dialog-transition-enter-active\]\:shr-opacity-100.shr-dialog-transition-enter-active {
@@ -4858,10 +4931,6 @@ a {
   padding-bottom: 8px
 }
 
-.\[\&\&\]\:shr-pe-0.\[\&\&\]\:shr-pe-0 {
-  padding-inline-end: 0
-}
-
 .\[\&\&\]\:shr-text-base.\[\&\&\]\:shr-text-base {
   font-size: 1rem
 }
@@ -4898,6 +4967,11 @@ a {
 
 .\[\&\&\]\:last-of-type\:-shr-me-0\.25:last-of-type.\[\&\&\]\:last-of-type\:-shr-me-0\.25:last-of-type {
   margin-inline-end: -4px
+}
+
+.\[\&\&\]\:hover\:shr-bg-head-darken:hover.\[\&\&\]\:hover\:shr-bg-head-darken:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 223 218 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\&\]\:hover\:shr-bg-transparent:hover.\[\&\&\]\:hover\:shr-bg-transparent:hover {
@@ -4940,10 +5014,6 @@ a {
 
 .\[\&\.fixed\]\:shr-sticky.fixed {
   position: sticky
-}
-
-.\[\&\.fixed\]\:shr-right-0.fixed {
-  right: 0
 }
 
 .\[\&\.fixed\]\:shr-bg-white.fixed {
@@ -5020,6 +5090,10 @@ a {
 
 .\[\&\:empty\]\:shr-gap-0:empty {
   gap: 0
+}
+
+.\[\&\:has\(\>_span_\>_\.smarthr-ui-Icon\:only-child\)\]\:shr-p-0\.75:has(> span > .smarthr-ui-Icon:only-child) {
+  padding: 12px
 }
 
 .\[\&\:not\(\:first-child\)\]\:shr-relative:not(:first-child) {
@@ -5217,27 +5291,17 @@ a {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
-.\[\&\>svg\]\:aria-expanded\:shr-rotate-180[aria-expanded="true"]>svg {
-  --tw-rotate: 180deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
-}
-
-.\[\&\[aria-expanded\=\"true\"\]\>\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded="true"]>.smarthr-ui-Icon:last-child {
-  --tw-rotate: 180deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
-}
-
-.\[\&\[aria-expanded\=\"true\"\]\>\.smarthr-ui-Icon\]\:shr-rotate-180[aria-expanded="true"]>.smarthr-ui-Icon {
-  --tw-rotate: 180deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
-}
-
 .\[\&\[aria-expanded\=\"true\"\]_\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon:last-child {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
-.\[\&\[aria-expanded\=\'true\'\]\>\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded='true']>.smarthr-ui-Icon:last-child {
+.\[\&\[aria-expanded\=\"true\"\]_\.smarthr-ui-Icon\]\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.\[\&\[aria-expanded\=\'true\'\]_\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded='true'] .smarthr-ui-Icon:last-child {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
@@ -5459,6 +5523,11 @@ a {
   color: rgb(112 109 101 / var(--tw-text-opacity, 1))
 }
 
+.\[\&_\.smarthr-ui-Icon\]\:aria-expanded\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
 @media (forced-colors: active) {
   .\[\&_\.smarthr-ui-Icon\]\:forced-colors\:shr-fill-\[LinkText\] .smarthr-ui-Icon {
     fill: LinkText
@@ -5567,23 +5636,6 @@ a {
 
 .\[\&_\>_\*\]\:shr-basis-auto > * {
   flex-basis: auto
-}
-
-.\[\&_\>_\[role\=\"img\"\]_\+_\[role\=\"img\"\]\]\:shr-absolute > [role="img"] + [role="img"] {
-  position: absolute
-}
-
-.\[\&_\>_\[role\=\"img\"\]_\+_\[role\=\"img\"\]\]\:shr-bottom-\[2px\] > [role="img"] + [role="img"] {
-  bottom: 2px
-}
-
-.\[\&_\>_\[role\=\"img\"\]_\+_\[role\=\"img\"\]\]\:shr-right-\[-4px\] > [role="img"] + [role="img"] {
-  right: -4px
-}
-
-.\[\&_\>_svg\]\:aria-expanded\:shr-rotate-180[aria-expanded="true"] > svg {
-  --tw-rotate: 180deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
 .\[\&_hr\]\:shr-m-0\.5 hr {
@@ -5729,20 +5781,17 @@ a {
   position: relative
 }
 
+.smarthr-ui-Th .\[\.smarthr-ui-Th_\&\]\:shr-text-link-darken {
+  --tw-text-opacity: 1;
+  color: rgb(0 94 161 / var(--tw-text-opacity, 1))
+}
+
 :checked~.\[\:checked\~\&\]\:shr-flex {
   display: flex
 }
 
-:checked~*>.\[\:checked\~\*\>\&\]\:shr-fill-white {
-  fill: #fff
-}
-
 @media (forced-colors: active) {
-  :checked~*>.forced-colors\:\[\:checked\~\*\>\&\]\:shr-fill-\[ButtonText\] {
-    fill: ButtonText
-  }
-
-  :disabled~*>.forced-colors\:\[\:disabled\~\*\>\&\]\:shr-fill-\[GrayText\] {
+  :disabled~.smarthr-ui-Switch-iconWrapper .forced-colors\:\[\:disabled\~\.smarthr-ui-Switch-iconWrapper_\&\]\:shr-fill-\[GrayText\] {
     fill: GrayText
   }
 }
@@ -5753,6 +5802,33 @@ a {
 
 :not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1 {
   margin-top: 16px
+}
+
+[aria-pressed="true"]>.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-bg-main.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-bg-main.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-bg-main {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
+}
+
+[aria-pressed="true"]>.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-text-white.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-text-white.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+}
+
+@media (prefers-contrast: more) {
+  [aria-pressed="true"]>.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:contrast-more\:shr-border-high-contrast.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:contrast-more\:shr-border-high-contrast.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:contrast-more\:shr-border-high-contrast {
+    --tw-border-opacity: 1;
+    border-color: rgb(35 34 30 / var(--tw-border-opacity, 1))
+  }
+}
+
+[aria-pressed="true"]>.\[\[aria-pressed\=\"true\"\]\>\&\]\:shr-bg-main {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
+}
+
+[aria-pressed="true"]>.\[\[aria-pressed\=\"true\"\]\>\&\]\:shr-text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
 }
 
 [aria-sort="ascending"] .\[\[aria-sort\=\"ascending\"\]_\&\]\:shr-text-black {
