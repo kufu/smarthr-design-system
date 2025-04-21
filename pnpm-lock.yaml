@@ -160,8 +160,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(typescript@5.6.3)
       textlint-rule-preset-smarthr:
-        specifier: ^1.32.1
-        version: 1.32.1
+        specifier: ^1.35.0
+        version: 1.35.0
       textlint-rule-prh:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1519,6 +1519,9 @@ packages:
   '@textlint/module-interop@14.3.0':
     resolution: {integrity: sha512-Adxkx8GSFVPhCZiveTD/u66f5T3W6yIlPUsKi7ZLar7ahYI/D4P/XfA0RNhgMF3xM4uw+vNrer2LcY4KY7cUfw==}
 
+  '@textlint/module-interop@14.6.0':
+    resolution: {integrity: sha512-eQFprk37rU6Sl250h52OaoHA4Dal4jSjWYWRdKfjvrdDcNWxPAOenAAGBf66lS7E34No9E9G51jsSc43N0CzJg==}
+
   '@textlint/regexp-string-matcher@1.1.1':
     resolution: {integrity: sha512-rrNUCKGKYBrZALotSF8D5A8xD05VHX6kxv0BP805Ig2M73Ha6LK+de31+ZocGm4CO+sikVFYyMCPPJhp7bCXcw==}
 
@@ -1847,8 +1850,8 @@ packages:
     resolution: {integrity: sha512-QzAKFHl3fm53s44VHrTdEo0TkpL3XVUYQpnZy1r6/EHvMAyIg+O4hwprzlsNmcCHTNyVcF2S13DAUn7XhkC6qg==}
     engines: {node: '>= 14.0.0'}
 
-  analyze-desumasu-dearu@5.0.1:
-    resolution: {integrity: sha512-r7ruCOqvqKxAzcvDzj7PdZOstOZP9wtw/wSIoV3FmNxF16CvytxhJnHYbSRhUwqzR542OO/J9CDRWS3SSp4hZA==}
+  analyze-desumasu-dearu@5.0.2:
+    resolution: {integrity: sha512-3PUxFk790GpQkME//hwiJellbtKMiAFX/CyA93etmAo5FujJ+5GKVXW+NU9v2MfF07iWcXsrNMbGW5/vVpqWwA==}
 
   ansi-align@3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
@@ -5456,9 +5459,6 @@ packages:
   textlint-rule-ja-space-between-half-and-full-width@2.4.2:
     resolution: {integrity: sha512-GqwSy0ivm4Q5Bok9LaOwfg+H1auLRMoMi2aY/7aSIrgvX/RD5aZ2Rk2lm3TTX42mR1UrQu8GDqktUEZfvQ913w==}
 
-  textlint-rule-max-ten@5.0.0:
-    resolution: {integrity: sha512-EWOvbEa3Ukxz0+GAUEJ91DYFSC3IkyJ10dBcsU6VlL33k1BvTRoFr3m26w6upnXJffXQUI70Etn39I++2duyhA==}
-
   textlint-rule-no-double-negative-ja@2.0.1:
     resolution: {integrity: sha512-LRofmNt+nd2mp+AHmG0ltk9AlbzKbWPE+EToYQ1zORCd8N8suE1YxNEplz9OeQ59ea9ITtudDIWoqeHaZnbDsg==}
 
@@ -5477,8 +5477,8 @@ packages:
   textlint-rule-no-hankaku-kana@2.0.1:
     resolution: {integrity: sha512-39s94HK6V1xnII1haYiYQnWy1YQAKK7Zj0mcpUMFHHC4M5JdsRnhGs6DQPVEff0gQIFV0iuDNlofXt15kjMtEA==}
 
-  textlint-rule-no-mix-dearu-desumasu@6.0.3:
-    resolution: {integrity: sha512-6yHxMUMEp8A267gIO9DB9ElNv5VBVNEpSUbxS6sUKZtETTGHQ3P6pdNW20EShvNfy3GA7gl1+vovkFPH8NEtYw==}
+  textlint-rule-no-mix-dearu-desumasu@6.0.4:
+    resolution: {integrity: sha512-SmALtOFbtmJ//k2iLMvtqhGrgJ/6uDVZFK7TBj2npVAbt10VxgLL87K+62pQ/BqiN9DpOVObshVFdug7lUOKHw==}
 
   textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet@1.0.1:
     resolution: {integrity: sha512-jRiBtdslvtFNgWhCT1FZW0Ct5lfO3Af39iKJV20hxOZMhxM0sz+pnfmooEQ9wpAQm5kL+W1kJoX2O9uKw01AvA==}
@@ -5486,9 +5486,9 @@ packages:
   textlint-rule-no-nfd@2.0.2:
     resolution: {integrity: sha512-lIUvcQ+wqtConpPQU2YwEJl2dRcRyyrxPYZ3V76UwnkVg++XPLIrE5mLDgyNE/UIQ34e/KitJfMLqKWvnkFbNQ==}
 
-  textlint-rule-preset-smarthr@1.32.1:
-    resolution: {integrity: sha512-cXcT/jXlwsclqt7LswYdOGtnEY9OdC7quTxHPIJzmxgLMOOL3BfRMAv2LrljNjpzb6cvTuLlZRFPxsCBYRfdvw==}
-    engines: {pnpm: '=9.13.2'}
+  textlint-rule-preset-smarthr@1.35.0:
+    resolution: {integrity: sha512-SNVPQskLR/cEKpTLRTSQKh3RF0lw34S1xK794un4IQghZf856fhDcPASPGfz/JztxaNIuaksO/NiM/ukuIWbqQ==}
+    engines: {pnpm: '=10.8.1'}
 
   textlint-rule-prh@5.3.0:
     resolution: {integrity: sha512-gdod+lL1SWUDyXs1ICEwvQawaSshT3mvPGufBIjF2R5WFPdKQDMsiuzsjkLm+aF+9d97dA6pFsiyC8gSW7mSgg==}
@@ -7538,6 +7538,8 @@ snapshots:
 
   '@textlint/module-interop@14.3.0': {}
 
+  '@textlint/module-interop@14.6.0': {}
+
   '@textlint/regexp-string-matcher@1.1.1':
     dependencies:
       escape-string-regexp: 2.0.0
@@ -7989,7 +7991,7 @@ snapshots:
       '@algolia/requester-fetch': 5.23.4
       '@algolia/requester-node-http': 5.23.4
 
-  analyze-desumasu-dearu@5.0.1:
+  analyze-desumasu-dearu@5.0.2:
     dependencies:
       kuromojin: 3.0.0
 
@@ -12689,13 +12691,6 @@ snapshots:
       match-index: 1.0.3
       textlint-rule-helper: 2.3.1
 
-  textlint-rule-max-ten@5.0.0:
-    dependencies:
-      kuromojin: 3.0.0
-      sentence-splitter: 5.0.0
-      textlint-rule-helper: 2.3.1
-      textlint-util-to-string: 3.3.4
-
   textlint-rule-no-double-negative-ja@2.0.1:
     dependencies:
       kuromojin: 3.0.0
@@ -12732,9 +12727,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  textlint-rule-no-mix-dearu-desumasu@6.0.3:
+  textlint-rule-no-mix-dearu-desumasu@6.0.4:
     dependencies:
-      analyze-desumasu-dearu: 5.0.1
+      analyze-desumasu-dearu: 5.0.2
       textlint-rule-helper: 2.3.1
 
   textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet@1.0.1:
@@ -12748,10 +12743,10 @@ snapshots:
       match-index: 1.0.3
       textlint-rule-helper: 2.3.1
 
-  textlint-rule-preset-smarthr@1.32.1:
+  textlint-rule-preset-smarthr@1.35.0:
     dependencies:
       '@textlint-rule/textlint-rule-no-unmatched-pair': 2.0.4
-      '@textlint/module-interop': 14.3.0
+      '@textlint/module-interop': 14.6.0
       textlint-rule-ja-hiragana-daimeishi: 1.0.0
       textlint-rule-ja-hiragana-hojodoushi: 1.1.0
       textlint-rule-ja-keishikimeishi: 1.0.5
@@ -12765,14 +12760,13 @@ snapshots:
       textlint-rule-ja-space-after-question: 2.4.2
       textlint-rule-ja-space-around-code: 2.4.2
       textlint-rule-ja-space-between-half-and-full-width: 2.4.2
-      textlint-rule-max-ten: 5.0.0
       textlint-rule-no-double-negative-ja: 2.0.1
       textlint-rule-no-doubled-conjunction: 3.0.0
       textlint-rule-no-doubled-conjunctive-particle-ga: 3.0.0
       textlint-rule-no-doubled-joshi: 5.1.0
       textlint-rule-no-dropping-the-ra: 3.0.0
       textlint-rule-no-hankaku-kana: 2.0.1
-      textlint-rule-no-mix-dearu-desumasu: 6.0.3
+      textlint-rule-no-mix-dearu-desumasu: 6.0.4
       textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet: 1.0.1
       textlint-rule-no-nfd: 2.0.2
       textlint-rule-prh: 6.0.0
@@ -12782,7 +12776,7 @@ snapshots:
 
   textlint-rule-prh@5.3.0:
     dependencies:
-      '@babel/parser': 7.26.2
+      '@babel/parser': 7.27.0
       prh: 5.4.4
       textlint-rule-helper: 2.3.1
       untildify: 3.0.3
@@ -12876,9 +12870,9 @@ snapshots:
 
   traverse@0.6.10:
     dependencies:
-      gopd: 1.0.1
+      gopd: 1.2.0
       typedarray.prototype.slice: 1.0.3
-      which-typed-array: 1.1.15
+      which-typed-array: 1.1.19
 
   trim-lines@3.0.1: {}
 
@@ -12967,7 +12961,7 @@ snapshots:
 
   typedarray.prototype.slice@1.0.3:
     dependencies:
-      call-bind: 1.0.7
+      call-bind: 1.0.8
       define-properties: 1.2.1
       es-abstract: 1.23.3
       es-errors: 1.3.0
