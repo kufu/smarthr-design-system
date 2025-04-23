@@ -12,9 +12,9 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ## アクセシビリティ
 
-### 行を選択するチェックボックスのラベル
+### 行を選択するチェックボックスやラジオボタンのラベル
 
-`<TdCheckbox>`を用いて`aria-labelledby`で行のオブジェクトを識別するためのテキストを参照してください。
+`<TdCheckbox>`や`<TdRadioButton>`を用いて`aria-labelledby`で行のオブジェクトを識別するためのテキストを参照してください。
 
 ```tsx
 <tr key={key}>
@@ -32,6 +32,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 <ComponentPropsTable name="ThCheckbox" showTitle />
 <ComponentPropsTable name="Td" showTitle />
 <ComponentPropsTable name="TdCheckbox" showTitle />
+<ComponentPropsTable name="TdRadioButton" showTitle />
 <ComponentPropsTable name="TableReel" showTitle />
 <ComponentPropsTable name="BulkActionRow" showTitle />
 <ComponentPropsTable name="EmptyTableBody" showTitle />
