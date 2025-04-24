@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Header } from 'smarthr-ui';
+import { Header, IntlProvider } from 'smarthr-ui';
 import styled, { css } from 'styled-components';
 
 import DefaultComponentPreview, { type ComponentPreviewProps } from '../ComponentPreview/ComponentPreview';
@@ -14,22 +14,32 @@ export default function ComponentPreview({ layout, children, ...props }: Props) 
   return useMemo(() => {
     switch (layout) {
       default: {
-        return <DefaultComponentPreview {...props}>{children}</DefaultComponentPreview>;
+        return (
+          <IntlProvider locale="ja">
+            <DefaultComponentPreview {...props}>{children}</DefaultComponentPreview>
+          </IntlProvider>
+        );
       }
       case 'product': {
         return (
-          <StyledWrapperBase>
-            <ResizableContainer defaultWidth="100%" defaultHeight="300px">
-              <BodyWrapper>
-                <Header logoHref="#" />
-                <Body>{children}</Body>
-              </BodyWrapper>
-            </ResizableContainer>
-          </StyledWrapperBase>
+          <IntlProvider locale="ja">
+            <StyledWrapperBase>
+              <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+                <BodyWrapper>
+                  <Header logoHref="#" />
+                  <Body>{children}</Body>
+                </BodyWrapper>
+              </ResizableContainer>
+            </StyledWrapperBase>
+          </IntlProvider>
         );
       }
       case 'none': {
-        return <WrapperBase>{children}</WrapperBase>;
+        return (
+          <IntlProvider locale="ja">
+            <WrapperBase>{children}</WrapperBase>
+          </IntlProvider>
+        );
       }
     }
   }, [layout, props, children]);

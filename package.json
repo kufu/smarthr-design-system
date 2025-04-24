@@ -22,6 +22,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint:ts": "eslint 'src/**/*.{astro,ts,tsx}'",
+    "lint:check": "pnpm update:ui-data && astro check",
     "lint:text": "textlint 'src/content/**/*.md{,x}'",
     "lint": "run-p lint:*",
     "format:eslint": "eslint --fix 'src/**/*.{astro,ts,tsx}'",
@@ -54,7 +55,7 @@
     "react-instantsearch-core": "^7.15.5",
     "react-live": "^4.1.8",
     "smarthr-normalize-css": "^1.1.0",
-    "smarthr-ui": "^65.3.0",
+    "smarthr-ui": "^70.0.1",
     "styled-components": "^6.1.17",
     "typescript": "^5.8.3"
   },

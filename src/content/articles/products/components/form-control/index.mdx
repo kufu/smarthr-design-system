@@ -40,7 +40,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 ```tsx editable
 <FormControl
   title="タイトル"
-  statusLabelProps={{ type: 'red', children: '必須' }}
+  statusLabels={<RequiredLabel />}
 >
   <Input name="defaultInput" />
 </FormControl>

@@ -13,7 +13,7 @@ import styles from './index.module.scss';
 import sharedStyles from './shared.module.scss';
 
 import type { LiveProvider } from 'react-live';
-import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
+import type { Gap, SeparateGap } from 'smarthr-ui/types';
 
 type LiveProviderProps = React.ComponentProps<typeof LiveProvider>;
 

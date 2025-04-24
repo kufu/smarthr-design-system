@@ -29,6 +29,9 @@ export default defineConfig({
     remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
   },
   vite: {
+    define: {
+      process: 'globalThis.process',
+    },
     css: {
       preprocessorOptions: {
         scss: {
