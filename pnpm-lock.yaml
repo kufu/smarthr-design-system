@@ -19,7 +19,7 @@ importers:
         version: 2.1.4
       '@astrojs/react':
         specifier: ^3.6.3
-        version: 3.6.3(@types/node@22.15.1)(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass-embedded@1.87.0)(sass@1.79.4)
+        version: 3.6.3(@types/node@22.15.1)(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.87.0)(sass@1.79.4)
       '@types/react':
         specifier: ^18.3.20
         version: 18.3.20
@@ -40,34 +40,34 @@ importers:
         version: 15.0.11
       prism-react-renderer:
         specifier: ^2.4.1
-        version: 2.4.1(react@18.3.1)
+        version: 2.4.1(react@19.1.0)
       react:
-        specifier: ^18.3.1
-        version: 18.3.1
+        specifier: ^19.1.0
+        version: 19.1.0
       react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
+        specifier: ^19.1.0
+        version: 19.1.0(react@19.1.0)
       react-frame-component:
         specifier: ^5.2.7
-        version: 5.2.7(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 5.2.7(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-instantsearch:
         specifier: ^7.15.5
-        version: 7.15.5(algoliasearch@5.23.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.15.5(algoliasearch@5.23.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-instantsearch-core:
         specifier: ^7.15.5
-        version: 7.15.5(algoliasearch@5.23.4)(react@18.3.1)
+        version: 7.15.5(algoliasearch@5.23.4)(react@19.1.0)
       react-live:
         specifier: ^4.1.8
-        version: 4.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       smarthr-normalize-css:
         specifier: ^1.1.0
-        version: 1.1.0(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        version: 1.1.0(styled-components@6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       smarthr-ui:
         specifier: ^70.1.0
-        version: 70.1.0(@types/react@18.3.20)(eslint@9.25.1(jiti@1.21.7))(react-dom@18.3.1(react@18.3.1))(react-intl@7.1.6(react@18.3.1)(typescript@5.8.3))(react@18.3.1)(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.8.3)
+        version: 70.1.0(@types/react@18.3.20)(eslint@9.25.1(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)
       styled-components:
         specifier: ^6.1.17
-        version: 6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -98,7 +98,7 @@ importers:
         version: 9.25.1(jiti@1.21.7)
       eslint-config-smarthr:
         specifier: ^7.3.0
-        version: 7.3.0(eslint@9.25.1(jiti@1.21.7))(react@18.3.1)(typescript@5.8.3)
+        version: 7.3.0(eslint@9.25.1(jiti@1.21.7))(react@19.1.0)(typescript@5.8.3)
       eslint-plugin-astro:
         specifier: ^1.3.1
         version: 1.3.1(eslint@9.25.1(jiti@1.21.7))(typescript@5.8.3)
@@ -4610,10 +4610,10 @@ packages:
   rc-config-loader@4.1.3:
     resolution: {integrity: sha512-kD7FqML7l800i6pS6pvLyIE2ncbk9Du8Q0gp/4hMPhJU6ZxApkoLcGD8ZeqgiAlfwZ6BlETq6qqe+12DUL207w==}
 
-  react-dom@18.3.1:
-    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
+  react-dom@19.1.0:
+    resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
     peerDependencies:
-      react: ^18.3.1
+      react: ^19.1.0
 
   react-draggable@4.4.6:
     resolution: {integrity: sha512-LtY5Xw1zTPqHkVmtM3X8MUOxNDOUhv/khTgBgrUvwaS064bwVvxT+q5El0uUFNx5IEPKXuRejr7UqLwBIg5pdw==}
@@ -4681,8 +4681,8 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
 
-  react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
+  react@19.1.0:
+    resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -5063,8 +5063,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  scheduler@0.23.2:
-    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
+  scheduler@0.26.0:
+    resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
 
   search-insights@2.17.2:
     resolution: {integrity: sha512-zFNpOpUO+tY2D85KrxJ+aqwnIfdEGi06UH2+xEb+Bp9Mwznmauqc9djbnBibJO5mpfUPPa8st6Sx65+vbeO45g==}
@@ -6351,13 +6351,13 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@3.6.3(@types/node@22.15.1)(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass-embedded@1.87.0)(sass@1.79.4)':
+  '@astrojs/react@3.6.3(@types/node@22.15.1)(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.87.0)(sass@1.79.4)':
     dependencies:
       '@types/react': 18.3.20
       '@types/react-dom': 18.3.6(@types/react@18.3.20)
       '@vitejs/plugin-react': 4.4.0(vite@5.4.10(@types/node@22.15.1)(sass-embedded@1.87.0)(sass@1.79.4))
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       ultrahtml: 1.5.3
       vite: 5.4.10(@types/node@22.15.1)(sass-embedded@1.87.0)(sass@1.79.4)
     transitivePeerDependencies:
@@ -9059,7 +9059,7 @@ snapshots:
     dependencies:
       eslint: 9.25.1(jiti@1.21.7)
 
-  eslint-config-smarthr@7.3.0(eslint@9.25.1(jiti@1.21.7))(react@18.3.1)(typescript@5.8.3):
+  eslint-config-smarthr@7.3.0(eslint@9.25.1(jiti@1.21.7))(react@19.1.0)(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/eslint-plugin': 8.18.0(@typescript-eslint/parser@8.31.0(eslint@9.25.1(jiti@1.21.7))(typescript@5.8.3))(eslint@9.25.1(jiti@1.21.7))(typescript@5.8.3)
       '@typescript-eslint/parser': 8.31.0(eslint@9.25.1(jiti@1.21.7))(typescript@5.8.3)
@@ -9070,7 +9070,7 @@ snapshots:
       eslint-plugin-react: 7.37.2(eslint@9.25.1(jiti@1.21.7))
       eslint-plugin-react-hooks: 4.6.2(eslint@9.25.1(jiti@1.21.7))
       eslint-plugin-smarthr: 0.5.20(eslint@9.25.1(jiti@1.21.7))
-      react: 18.3.1
+      react: 19.1.0
       typescript: 5.8.3
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
@@ -11520,11 +11520,11 @@ snapshots:
       diff: 4.0.2
       js-yaml: 3.14.1
 
-  prism-react-renderer@2.4.1(react@18.3.1):
+  prism-react-renderer@2.4.1(react@19.1.0):
     dependencies:
       '@types/prismjs': 1.26.4
       clsx: 2.1.1
-      react: 18.3.1
+      react: 19.1.0
 
   prismjs@1.29.0: {}
 
@@ -11591,54 +11591,53 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  react-dom@18.3.1(react@18.3.1):
+  react-dom@19.1.0(react@19.1.0):
     dependencies:
-      loose-envify: 1.4.0
-      react: 18.3.1
-      scheduler: 0.23.2
+      react: 19.1.0
+      scheduler: 0.26.0
 
-  react-draggable@4.4.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-draggable@4.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       clsx: 1.2.1
       prop-types: 15.8.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
-  react-frame-component@5.2.7(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-frame-component@5.2.7(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       prop-types: 15.8.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
-  react-icons@5.5.0(react@18.3.1):
+  react-icons@5.5.0(react@19.1.0):
     dependencies:
-      react: 18.3.1
+      react: 19.1.0
 
-  react-innertext@1.1.5(@types/react@18.3.20)(react@18.3.1):
+  react-innertext@1.1.5(@types/react@18.3.20)(react@19.1.0):
     dependencies:
       '@types/react': 18.3.20
-      react: 18.3.1
+      react: 19.1.0
 
-  react-instantsearch-core@7.15.5(algoliasearch@5.23.4)(react@18.3.1):
+  react-instantsearch-core@7.15.5(algoliasearch@5.23.4)(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.26.9
       algoliasearch: 5.23.4
       algoliasearch-helper: 3.24.3(algoliasearch@5.23.4)
       instantsearch.js: 4.78.1(algoliasearch@5.23.4)
-      react: 18.3.1
-      use-sync-external-store: 1.2.2(react@18.3.1)
+      react: 19.1.0
+      use-sync-external-store: 1.2.2(react@19.1.0)
 
-  react-instantsearch@7.15.5(algoliasearch@5.23.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-instantsearch@7.15.5(algoliasearch@5.23.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.26.9
       algoliasearch: 5.23.4
       instantsearch-ui-components: 0.11.1
       instantsearch.js: 4.78.1(algoliasearch@5.23.4)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-instantsearch-core: 7.15.5(algoliasearch@5.23.4)(react@18.3.1)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-instantsearch-core: 7.15.5(algoliasearch@5.23.4)(react@19.1.0)
 
-  react-intl@7.1.6(react@18.3.1)(typescript@5.8.3):
+  react-intl@7.1.6(react@19.1.0)(typescript@5.8.3):
     dependencies:
       '@formatjs/ecma402-abstract': 2.3.3
       '@formatjs/icu-messageformat-parser': 2.11.1
@@ -11647,35 +11646,33 @@ snapshots:
       '@types/react': 18.3.20
       hoist-non-react-statics: 3.3.2
       intl-messageformat: 10.7.15
-      react: 18.3.1
+      react: 19.1.0
       tslib: 2.8.1
     optionalDependencies:
       typescript: 5.8.3
 
   react-is@16.13.1: {}
 
-  react-live@4.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-live@4.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      prism-react-renderer: 2.4.1(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      prism-react-renderer: 2.4.1(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       sucrase: 3.35.0
-      use-editable: 2.3.3(react@18.3.1)
+      use-editable: 2.3.3(react@19.1.0)
 
   react-refresh@0.17.0: {}
 
-  react-transition-group@4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-transition-group@4.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
-  react@18.3.1:
-    dependencies:
-      loose-envify: 1.4.0
+  react@19.1.0: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -12162,9 +12159,7 @@ snapshots:
       source-map-js: 1.2.1
     optional: true
 
-  scheduler@0.23.2:
-    dependencies:
-      loose-envify: 1.4.0
+  scheduler@0.26.0: {}
 
   search-insights@2.17.2: {}
 
@@ -12386,13 +12381,13 @@ snapshots:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
 
-  smarthr-normalize-css@1.1.0(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+  smarthr-normalize-css@1.1.0(styled-components@6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)):
     dependencies:
-      styled-reset: 4.5.2(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      styled-reset: 4.5.2(styled-components@6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@70.1.0(@types/react@18.3.20)(eslint@9.25.1(jiti@1.21.7))(react-dom@18.3.1(react@18.3.1))(react-intl@7.1.6(react@18.3.1)(typescript@5.8.3))(react@18.3.1)(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.8.3):
+  smarthr-ui@70.1.0(@types/react@18.3.20)(eslint@9.25.1(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.13
@@ -12400,14 +12395,14 @@ snapshots:
       lodash.merge: 4.6.2
       lodash.range: 3.2.0
       polished: 4.3.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-draggable: 4.4.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-icons: 5.5.0(react@18.3.1)
-      react-innertext: 1.1.5(@types/react@18.3.20)(react@18.3.1)
-      react-intl: 7.1.6(react@18.3.1)(typescript@5.8.3)
-      react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      styled-components: 6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-draggable: 4.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-icons: 5.5.0(react@19.1.0)
+      react-innertext: 1.1.5(@types/react@18.3.20)(react@19.1.0)
+      react-intl: 7.1.6(react@19.1.0)(typescript@5.8.3)
+      react-transition-group: 4.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      styled-components: 6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       tailwind-variants: 0.3.1(tailwindcss@3.4.17)
       tailwindcss: 3.4.17
       typescript-eslint: 8.31.0(eslint@9.25.1(jiti@1.21.7))(typescript@5.8.3)
@@ -12575,7 +12570,7 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.4
 
-  styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  styled-components@6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/unitless': 0.8.1
@@ -12583,15 +12578,15 @@ snapshots:
       css-to-react-native: 3.2.0
       csstype: 3.1.3
       postcss: 8.4.49
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       shallowequal: 1.1.0
       stylis: 4.3.2
       tslib: 2.6.2
 
-  styled-reset@4.5.2(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+  styled-reset@4.5.2(styled-components@6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)):
     dependencies:
-      styled-components: 6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      styled-components: 6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
   stylis@4.3.2: {}
 
@@ -13232,13 +13227,13 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  use-editable@2.3.3(react@18.3.1):
+  use-editable@2.3.3(react@19.1.0):
     dependencies:
-      react: 18.3.1
+      react: 19.1.0
 
-  use-sync-external-store@1.2.2(react@18.3.1):
+  use-sync-external-store@1.2.2(react@19.1.0):
     dependencies:
-      react: 18.3.1
+      react: 19.1.0
 
   util-deprecate@1.0.2: {}
 
