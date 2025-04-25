@@ -33,7 +33,9 @@
     "update:ui-data": "tsx ./scripts/fetch-ui-data.ts",
     "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
     "generate:thumbnails": "tsx ./scripts/component-thumbnails/componentThumbnails.ts",
-    "postinstall": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
+    "copy:smarthr-ui-css": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
+    "postinstall": "run-s copy:smarthr-ui-css",
+    "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest && pnpm copy:smarthr-ui-css",
     "prepare": "husky"
   },
   "dependencies": {
@@ -55,7 +57,7 @@
     "react-instantsearch-core": "^7.15.5",
     "react-live": "^4.1.8",
     "smarthr-normalize-css": "^1.1.0",
-    "smarthr-ui": "^70.0.1",
+    "smarthr-ui": "^70.1.0",
     "styled-components": "^6.1.17",
     "typescript": "^5.8.3"
   },
