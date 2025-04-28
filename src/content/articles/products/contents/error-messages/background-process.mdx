@@ -1,0 +1,41 @@
+---
+title: 'バックグラウンド処理のライティングパターン'
+description: 'バックグラウンド処理に表示するエラーメッセージのライティングパターンまとめています。'
+order: 2
+---
+
+バックグラウンド処理のエラーメッセージに含める要素は、**事象・原因・対処**です。  
+フラッシュメッセージと異なり、メッセージを表示するスペースがあるため、すべての要素を記載しましょう。  
+結果概要に**事象**、エラー詳細に**原因**と**対処**を記載します。  
+
+## OK例
+### 結果概要
+`CSVファイルの取り込みに失敗しました。`
+
+### エラー詳細
+`CSVファイルの文字コードの形式が正しくありません。UTF-8形式で保存したCSVファイルを再度取り込んでください。`
+
+* 結果概要で、ユーザーがやろうとしていた操作の結果を端的に伝えます。ここでは、ユーザーがやろうとしていた操作は「CSVファイルの取り込み」です。
+* エラー詳細で、操作が失敗した理由、その解決方法を具体的に伝えます。
+
+## NG例
+### 結果概要
+`CSVファイルの文字コードが不正な形式です。`
+
+### エラー詳細
+`CSVファイルの文字コードが不正な形式です。`
+
+* 結果概要とエラー詳細に同じ内容が記載されており、詳細を確認しようとしたユーザーが詳しい情報を得られない内容になっています。
+* 結果概要に操作が失敗した**原因**が記載され、ユーザーの操作「CSVファイルの取り込み」の結果が記載されていません。
+* 具体的な**対処**が記載されておらず、エラーをどう解消すればいいのかがわからない内容になっています。
+
+## ライティングパターン
+2つのケースに分けて、ライティングパターンを用意しています。
+
+### CSVを取り込むことで、目的の操作をする場合
+例：`CSVを取り込んで、従業員を一括招待する`
+<iframe className="airtable-embed" src="https://airtable.com/embed/shrnuHRy5KGrszh4a?backgroundColor=teal&viewControls=on" frameBorder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+
+### 目的となる操作とユーザーが実行する操作が一致している場合
+例：`PDFを一括でアップロードする`
+<iframe className="airtable-embed" src="https://airtable.com/embed/shrh2JnB7gShnieyO?backgroundColor=teal&viewControls=on" frameBorder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
