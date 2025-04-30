@@ -188,11 +188,9 @@ Inputコンポーネントは基本的なアクセシビリティ機能を備え
 #### 良い実装例
 
 ```tsx editable
-
 <FormControl title="メールアドレス">
   <Input name="email" />
 </FormControl>
-
 ```
 
 FormControlを使うと、Inputに明確なラベルが設定され、アクセシブルネームも自動で関連付けられます。
@@ -201,12 +199,10 @@ FormControlを使うと、Inputに明確なラベルが設定され、アクセ�
 #### 悪い実装例
 
 ```tsx editable
-
 <Input
   name="email"
   placeholder="メールアドレスを入力してください"
 />
-
 ```
 
 FormControlを使用せず、Input単体でプレースホルダーをラベルの代わりにしています。この方法では、以下の問題があります。
