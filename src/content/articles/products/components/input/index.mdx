@@ -180,8 +180,9 @@ Inputコンポーネントは基本的なアクセシビリティ機能を備え
 
 ### 開発時の考慮点
 
-- 必ず[`FormControl`](/products/components/form-control/)コンポーネントと併用して、Inputに適切なラベルを設定してください。
-- 設定したラベルが、Inputの「`アクセシブルネーム」として正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
+- 必ず[FormControl](/products/components/form-control/)コンポーネントと併用して、Inputに適切なラベルを設定してください。
+  - eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは無効にしないでください。
+- 設定したラベルが、Inputの「アクセシブルネーム」として正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
 
 
 #### 良い実装例
