@@ -7,7 +7,7 @@ import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { BaseColumn, Cluster, CurrencyInput, FaMagnifyingGlassIcon, Text, } from 'smarthr-ui'
+import { BaseColumn, Cluster, CurrencyInput, FaMagnifyingGlassIcon, Text } from 'smarthr-ui'
 
 import inputWidthDo from './images/input-width-do.png'
 import inputWidthDont from './images/input-width-dont.png'
@@ -174,6 +174,44 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 />
 ```
 
+## アクセシビリティ
+
+Inputコンポーネントは基本的なアクセシビリティ機能を備えていますが、実装時には次の点に注意してください。
+
+### 開発時の考慮点
+
+- 必ず[`FormControl`](/products/components/form-control/)コンポーネントと併用して、Inputに適切なラベルを設定してください。
+- 設定したラベルが、Inputの「`アクセシブルネーム」として正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
+
+
+#### 良い実装例
+
+```tsx editable
+
+<FormControl title="メールアドレス">
+  <Input name="email" />
+</FormControl>
+
+```
+
+FormControlを使うと、Inputに明確なラベルが設定され、アクセシブルネームも自動で関連付けられます。
+これにより、ユーザーが入力内容を理解しやすくなり、スクリーンリーダーでも正しく読み上げられます。
+
+#### 悪い実装例
+
+```tsx editable
+
+<Input
+  name="email"
+  placeholder="メールアドレスを入力してください"
+/>
+
+```
+
+FormControlを使用せず、Input単体でプレースホルダーをラベルの代わりにしています。この方法では、以下の問題があります。
+
+- アクセシブルネームが適切に設定されないため、スクリーンリーダー利用者に入力項目の目的が正しく伝わりません。
+- ユーザーが入力を始めるとプレースホルダーが消えてしまい、入力の目的が確認できなくなります。
 
 ## Props
 
