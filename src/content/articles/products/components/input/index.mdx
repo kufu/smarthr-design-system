@@ -60,8 +60,9 @@ import inputWidthDont from './images/input-width-dont.png'
 Inputコンポーネントは基本的なアクセシビリティ機能を備えていますが、実装時には次の点に注意してください。
 
 - 必ず[FormControl](/products/components/form-control/)コンポーネントと併用して、Inputに適切なラベルを設定してください。
-  - eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは無効にしないでください。
-- 設定したラベルが、Inputの「アクセシブルネーム」として正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
+  - eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは無効にしないでください。このルールは、InputにFormControlを組み合わせて使うことを促し、ラベルの設定漏れを防ぐことで、アクセシブルネームが正しく付くようにするためのものです。
+無効化すると、スクリーンリーダーで項目名が読み上げられないなどのリスクがあるためご注意ください。
+- 設定したラベルが、Inputのアクセシブルネームとして正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
 
 
 #### 良い実装例
@@ -72,22 +73,17 @@ Inputコンポーネントは基本的なアクセシビリティ機能を備え
 </FormControl>
 ```
 
-FormControlを使うと、Inputに明確なラベルが設定され、アクセシブルネームも自動で関連付けられます。
-これにより、ユーザーが入力内容を理解しやすくなり、スクリーンリーダーでも正しく読み上げられます。
+FormControlを使うと、titleで指定したテキストが`<label>`としてInputに関連付けられ、可視ラベルとアクセシブルネームが適切に設定されるため、ユーザーが入力内容を理解しやすいフォームを実装できます。
 
 #### 悪い実装例
 
 ```tsx editable
 <Input
   name="email"
-  placeholder="メールアドレスを入力してください"
 />
 ```
 
-FormControlを使用せず、Input単体でプレースホルダーをラベルの代わりにしています。この方法では、以下の問題があります。
-
-- アクセシブルネームが適切に設定されないため、スクリーンリーダー利用者に入力項目の目的が正しく伝わりません。
-- ユーザーが入力を始めるとプレースホルダーが消えてしまい、入力の目的が確認できなくなります。
+FormControlを使わずにInputを使用すると、可視ラベルやアクセシブルネームが自動的に関連付けられず設定漏れが起きやすくなり、ユーザーが入力内容を理解しづらいフォームになってしまう可能性があります。
 
 ## Inputを使用したコンポーネント
 
