@@ -12,6 +12,9 @@ import checkBoxDo from './images/check-box-do.png';
 import checkBoxDont from './images/check-box-dont.png';
 import checkBoxDo2 from './images/check-box-do2.png';
 import checkBoxDont2 from './images/check-box-dont2.png';
+import checkBoxAlignmentDo from './images/check-box-alignment-do.png';
+import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
+
 
 ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。
 `input[type='checkbox']`の代わりとして使用します。
@@ -52,6 +55,26 @@ import checkBoxDont2 from './images/check-box-dont2.png';
 チェックボックスは1クリックで状態が正反対の結果となるため、誤入力によって意図しない結果が反映されてしまう可能性あります。
 
 よくあるテーブルで「表示/非表示」を切り替える場合や、表示領域上`submit`のボタンの配置が難しい場合など、即時反映を前提とする箇所では[TabBar](/products/components/tab-bar/)や[SegmentedControl](/products/components/segmented-control/)、または[Switch](/products/components/switch/)を使用してください。
+
+#### チェックボックスの並び順
+
+横幅に十分なスペースがある場合は、基本的に横並びにすることで縦幅が長くなりすぎることを防ぎます。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={checkBoxAlignmentDo} alt="スクリーンショット: チェックボックスの縦横に配置するレイアウトのDo" />
+    <Text slot="label">横幅に十分なスペースがある場合は、基本的に横並びにします。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={checkBoxAlignmentDont} alt="スクリーンショット: チェックボックスの縦横に配置するレイアウトのDon't" />
+    <Text slot="label">縦並びにすると、親項目の幅に対して要素の配置が偏ってしまい、視認性が低下する恐れがあります。</Text>
+  </DoAndDont>
+</Cluster>
+
+ただし、選択肢の文字が長くなる場合は縦並びを検討します。
+
+![スクリーンショット: チェックボックスの縦並びレイアウトの例](./images/check-box-vertical-alignment.png)
 
 ### 「ON/OFF」といった2択の切り替え入力に使用しない
 
