@@ -1,0 +1,129 @@
+---
+title: '日時インプットのアクセシブルネームの付与方法'
+description: '日時インプットのアクセシブルネームの付与方法'
+order: 2
+---
+
+
+
+日時インプットの実装によっては、アクセシブルネームの設定が漏れたり、各入力の目的がわかりづらくなることがあります。
+ここでは、それを防ぐためのパターン別の対応方法を紹介します。
+
+## 悪い実装例
+
+```tsx editable
+
+<Fieldset title="回答期限">
+  <Cluster>
+    <Input type="date" name="date" aria-label="年月日" />
+    <Select
+        aria-label="時"
+        options={[
+          {
+            label: '01',
+            value: '1'
+          },
+          {
+            label: '02',
+            value: '2'
+          },
+          {
+            label: '03',
+            value: '3'
+          },
+          {
+            label: '04',
+            value: '4'
+          },
+          {
+            label: '05',
+            value: '5'
+          }
+        ]}
+    />
+    <Select
+        aria-label="分"
+        options={[
+          {
+            label: '00',
+            value: '00'
+          },
+          {
+            label: '30',
+            value: '30'
+          }
+        ]}
+    />
+  </Cluster>
+</Fieldset>
+
+```
+
+アクセシブルネームが「年月日」「時」「分」だけでは情報が不十分で、スクリーンリーダーでは項目の目的が伝わりにくくなります。
+
+## 実装ガイドライン
+
+### 特定の入力条件や仕様上の制限がない場合
+
+[FormControl](/products/components/form-control/)コンポーネントと併用して、`Input[type="datetime-local"]`を組み合わせることで、可視ラベルとアクセシブルネームが設定され、入力内容が明確に伝わります
+
+```tsx editable
+
+<FormControl title="回答期限">
+  <Input type="datetime-local" name="response-deadline" />
+</FormControl>
+
+```
+
+### 日付・時刻を分けて入力する必要がある場合
+
+特定の要件や仕様で日付と時刻を別々に入力する必要がある場合は、それぞれのフィールドに適切なアクセシブルネームを設定しましょう。
+スクリーンリーダーでも入力内容が明確に伝わるようにすることが大切です。
+
+分割入力の場合、以下の2つのアプローチがあります。いずれの場合も、Fieldsetを使用して関連する入力フィールドをグループ化し、全体のコンテキストを提供することが重要です。
+
+#### 可視ラベルを表示できる場合
+
+[VisuallyHiddenText](/products/components/visually-hidden-text/)を活用して、視覚的には「日付」「時刻」のラベルを表示しつつ、スクリーンリーダーには「回答期限」の情報を提供します。
+
+```tsx editable
+<Fieldset title="回答期限">
+  <Cluster>
+    <FormControl title={<><VisuallyHiddenText>回答期限</VisuallyHiddenText>日付</>}>
+      <Input type="date" name="date" />
+    </FormControl>
+
+    <FormControl title={<><VisuallyHiddenText>回答期限</VisuallyHiddenText>時刻</>}>
+      <Input type="time" name="time" />
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
+{/* textlint-disable smarthr/ja-no-space-between-full-width */}
+この方法では：
+- スクリーンリーダーでは「回答期限 日付」「回答期限 時刻」と読み上げられます
+- 視覚的には「日付」「時刻」だけが表示されますが、Fieldsetのタイトルから全体の文脈（回答期限）も伝わります
+
+#### 可視ラベルを表示できない場合
+
+レイアウト上の制約でラベルを表示できない場合は、`dangerouslyTitleHidden` 属性を使用して、ラベルを非表示にしつつアクセシブルネームを設定できます。
+
+```tsx editable
+<Fieldset title="回答期限">
+  <Cluster>
+    <FormControl title="回答期限 日付" dangerouslyTitleHidden>
+      <Input type="date" name="date" />
+    </FormControl>
+
+    <FormControl title="回答期限 時刻" dangerouslyTitleHidden>
+      <Input type="time" name="time" />
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
+
+この方法では：
+- スクリーンリーダーユーザーには「回答期限 日付」「回答期限 時刻」と読み上げられて、入力内容が明確に伝わります
+- 視覚的にはFormControlのラベルは表示されませんが、Fieldsetのタイトルにより全体のコンテキストが提供されます
+
+{/* textlint-enable smarthr/ja-no-space-between-full-width */}
