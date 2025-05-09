@@ -35,7 +35,7 @@
     "generate:thumbnails": "tsx ./scripts/component-thumbnails/componentThumbnails.ts",
     "copy:smarthr-ui-css": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
     "postinstall": "run-s copy:smarthr-ui-css",
-    "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest && pnpm copy:smarthr-ui-css",
+    "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest && pnpm copy:smarthr-ui-css && cd scripts/component-thumbnails && pnpm install && cd ../.. && pnpm generate:thumbnails",
     "prepare": "husky"
   },
   "dependencies": {
