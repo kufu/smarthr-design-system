@@ -16,9 +16,6 @@ import responsemessageDont from './images/responsemessage-dont.png'
 <ComponentStory name="ResponseMessage" />
 
 ## 使用上の注意
-ユーザーが直前に操作していたButtonなどの近くに表示してください。
-これは、[操作部の近くでフィードバックする](/products/design-patterns/feedback/#h3-1)という基本的な考え方に基づいています。
-
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={responsemessageDo} alt="Do" />
@@ -30,20 +27,20 @@ import responsemessageDont from './images/responsemessage-dont.png'
     <Text slot="label">直前に操作したボタンから離れた位置に表示されている</Text>
   </DoAndDont>
 </Cluster>
+その他の注意事項は[フィードバック](/products/design-patterns/feedback/)をご確認ください。
 
 ## 種類
-情報、成功、警告、エラー、同期中の5種類の type が指定できます。
+情報、成功、警告、エラー、同期中の5種類の`type`が指定できます。
+同期中はNotificationBarのために存在し、基本的には使いません。
 
 ```tsx editable
-<>
-<Stack align="flex-start">
-    <ResponseMessage type="info">情報を表すアイコンが付きます。デフォルトです。</ResponseMessage>
-    <ResponseMessage type="success">成功を表すアイコンが付きます。</ResponseMessage>
-    <ResponseMessage type="warning">警告を表すアイコンが付きます。</ResponseMessage>
-    <ResponseMessage type="error">エラーを表すアイコンが付きます。</ResponseMessage>
-    <ResponseMessage type="sync">同期を表すアイコンが付きます。NotificationBarのために存在し、基本的には使いません。</ResponseMessage>
+<Stack>
+  <ResponseMessage type="info">情報を表すアイコンが付きます。デフォルトです。</ResponseMessage>
+  <ResponseMessage type="success">成功を表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage type="warning">警告を表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage type="error">エラーを表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage type="sync">同期を表すアイコンが付きます。</ResponseMessage>
 </Stack>
-</>
 ```
 
 ## Props
