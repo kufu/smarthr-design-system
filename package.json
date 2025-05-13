@@ -32,10 +32,10 @@
     "export:zip-images": "tsx ./scripts/zipImages.ts",
     "update:ui-data": "tsx ./scripts/fetch-ui-data.ts",
     "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
-    "generate:thumbnails": "tsx ./scripts/component-thumbnails/componentThumbnails.ts",
+    "generate:thumbnails": "cd ./scripts/component-thumbnails && pnpm install && cd ../.. && tsx ./scripts/component-thumbnails/componentThumbnails.ts",
     "copy:smarthr-ui-css": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
-    "postinstall": "run-s copy:smarthr-ui-css",
-    "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest && pnpm copy:smarthr-ui-css",
+    "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest",
+    "postupgrade:smarthr-ui": "run-s copy:smarthr-ui-css generate:thumbnails",
     "prepare": "husky"
   },
   "dependencies": {
