@@ -188,7 +188,7 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 ### 開発時の考慮点
 Inputコンポーネントを使用する際は、以下の点に注意して実装してください。
 
-- **必ずFormControlと併用する:** Inputコンポーネントは必ずFormControlコンポーネントと併用して、適切なラベルを設定してください。これにより、スクリーンリーダーユーザーが入力項目の目的を理解できるようになります。
+- **FormControlと併用する:** Inputコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーがInputに何を入力すべきかが理解できる適切なラベルを設定してください。これにより、スクリーンリーダーユーザーが入力項目の目的を理解できるようになります。
   - eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、有効のまま使うことをおすすめします。このルールは、InputにFormControlを組み合わせることを促すもので、無効にするとスクリーンリーダーで項目名が読み上げられないリスクがあります。
 - **アクセシブルネームの確認:** 設定したラベルがInputのアクセシブルネームとして正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
 
