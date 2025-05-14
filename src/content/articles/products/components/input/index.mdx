@@ -185,24 +185,24 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 ### 基本的なアクセシビリティ機能
 **FormControlとの統合:** FormControlと組み合わせることで、ラベルとInputの関連付け、補助テキストやエラーメッセージの適切な関連付けが自動的に行なわれます。詳しくは、[FormControlのドキュメント](/products/components/form-control/)を参照してください。
 
-**強制カラーモード対応:** ユーザーがテキストを読みやすくするために[強制カラーモード](https://developer.mozilla.org/ja/docs/Web/CSS/@media/forced-colors)を設定した場合、Inputのボーダーの色が適切に表示されるように実装されています。(図1)
+**強制カラーモード対応:** ユーザーがテキストを読みやすくするために[強制カラーモード](https://developer.mozilla.org/ja/docs/Web/CSS/@media/forced-colors)を設定した場合、Inputのボーダーの色が適切に表示されるように実装されています（図1）。
 <Grid autoRepeat="auto-fill">
   <ImgWithDesc description='図1: 強制カラーモードを有効にした場合の見た目の例。ボーダーの色が濃くなり、境界がわかりやすくなる'>
     ![強制カラーモードでの表示例。メールアドレス入力フィールドのボーダーが強調表示されている](./images/forced-color-input.png)
   </ImgWithDesc>
 </Grid>
-**エラー状態:** [error属性](https://github.com/kufu/smarthr-ui/blob/75eb34543a7bf10e77a251fb110bee7d456d8849/packages/smarthr-ui/src/components/Input/Input.tsx#L163)を設定するとaria-invalid属性が自動的に付与され、スクリーンリーダーでフォーカス時にエラー状態であることが通知されます。(図2-1、図2-2)
+**エラー状態:** [error属性](https://github.com/kufu/smarthr-ui/blob/75eb34543a7bf10e77a251fb110bee7d456d8849/packages/smarthr-ui/src/components/Input/Input.tsx#L163)を設定するとaria-invalid属性が自動的に付与され、スクリーンリーダーでフォーカス時にエラー状態であることが通知されます（図2-1、図2-2）。
   <Grid>
-    <ImgWithDesc description='図2-1: errorを設定した場合の見た目の例。'>
+    <ImgWithDesc description='図2-1: errorを設定した場合の見た目の例'>
       ![エラー状態のメールアドレス入力フィールド。エラーメッセージが表示され赤い枠線で視覚的に強調されている](./images/error-input.png)
     </ImgWithDesc>
-    <ImgWithDesc description='図2-2: errorを設定した場合のスクリーンリーダーでの読み上げの例。「エラーメッセージ」と「無効なデータ」がアナウンスされます。'>
+    <ImgWithDesc description='図2-2: errorを設定した場合のスクリーンリーダーでの読み上げの例。「エラーメッセージ」と「無効なデータ」がアナウンスされます'>
       ![スクリーンリーダーのエラー通知画面。入力フィールドのエラー状態が読み上げられている](./images/error-input-sr.png)
     </ImgWithDesc>
   </Grid>
 **キーボード操作:** Inputコンポーネントは、キーボード操作を前提に設計されています。
 - <kbd>Tab</kbd>キーでフォーカスの移動が可能。
-- フォーカス状態が視覚的に明確に表示される。(図3)
+- フォーカス状態が視覚的に明確に表示される（図3）。
 <Grid autoRepeat="auto-fill">
   <ImgWithDesc description='図3: フォーカス状態の見た目の例'>
     ![フォーカス状態のメールアドレス入力フィールド。青い枠線でフォーカスが視覚的に示されている](./images/focused-input.png)
