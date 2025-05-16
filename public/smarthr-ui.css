@@ -5354,6 +5354,18 @@ a {
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
+.\[\&\[type\=\"datetime-local\"\]\]\:shr-min-w-\[11em\][type="datetime-local"] {
+  min-width: 11em
+}
+
+.\[\&\[type\=\"month\"\]\]\:shr-min-w-\[8em\][type="month"] {
+  min-width: 8em
+}
+
+.\[\&\[type\=\"time\"\]\]\:shr-min-w-\[5em\][type="time"] {
+  min-width: 5em
+}
+
 .\[\&\]\:shr-box-border {
   box-sizing: border-box
 }
@@ -5663,6 +5675,14 @@ a {
   display: block
 }
 
+.\[\&_tbody\]\:shr-relative tbody {
+  position: relative
+}
+
+.\[\&_tbody\]\:shr-z-1 tbody {
+  z-index: 1
+}
+
 .\[\&_tbody\]\:shr-bg-white tbody {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
@@ -5733,8 +5753,8 @@ a {
   top: 0
 }
 
-.\[\&_thead\]\:shr-z-1 thead {
-  z-index: 1
+.\[\&_thead\]\:shr-z-\[2\] thead {
+  z-index: 2
 }
 
 .\[\&_tr\:first-child_th\:first-child\]\:shr-w-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\] tr:first-child th:first-child {
