@@ -131,6 +131,13 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 </FormControl>
 ```
 
+### 複数のFormControlを横に並べる場合
+
+入力要素同士に関連がありグルーピングできる場合は、[Fieldset](/products/components/fieldset/)を利用してください。
+`Fieldset`を利用することで、`errorMessages`が表示された際のレイアウトの崩れを防ぐことができます。
+
+表示領域の都合などでやむを得ず関連のない項目を横に並べる場合は、`errorMessages`の表示時に表示が崩れるリスクに注意して設計してください。
+
 ## 状態
 
 ### 無効（disabled）
