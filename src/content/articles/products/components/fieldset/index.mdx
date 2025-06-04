@@ -135,6 +135,43 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
 </Fieldset>
 ```
 
+### エラーメッセージの表示
+
+入力要素にエラーがある場合、エラーメッセージはそれぞれの`FormControl`ではなく`Fieldset`のタイトルの下に表示します。  
+このとき、エラーメッセージには該当のFormControlのタイトルを含めてください。
+
+エラーのあるフォーム要素をエラー状態にするには、`Fieldset`および`FormControl`に`autoBindErrorInput={false}`を指定する必要があります。
+
+```tsx editable
+<Fieldset
+    title="氏名"
+    errorMessages={["姓を入力してください。", "名を入力してください。"]}
+    autoBindErrorInput={false}
+>
+    <Stack gap={1.25}>
+        <Cluster gap={0.5}>
+            <FormControl
+                title="姓"
+                titleType="subBlockTitle"
+                statusLabels={<RequiredLabel />}
+                autoBindErrorInput={false}
+            >
+                <Input error name="lastName"/>
+            </FormControl>
+            <FormControl
+                title="名"
+                titleType="subBlockTitle"
+                statusLabels={<RequiredLabel />}
+                autoBindErrorInput={false}
+            >
+                <Input error name="firstName" />
+            </FormControl>
+        </Cluster>
+    </Stack>
+</Fieldset>
+```
+
+
 ## 状態
 
 ### 無効（disabled）
