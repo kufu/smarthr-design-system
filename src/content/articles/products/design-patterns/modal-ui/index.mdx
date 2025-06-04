@@ -51,7 +51,14 @@ SmartHRでは、プロダクトの中心的な画面はモードレスである�
 
 モーダルなUIのうち、最も典型的なものが、ダイアログを使ったモードです。モーダルダイアログと呼びます。
 
-SmartHR UIでは[ActionDialog](/products/components/dialog/action-dialog/)と[MessageDialog](/products/components/dialog/message-dialog/)の2種類があります。ユーザーに操作を求める場合はActionDialogを、メッセージを表示するだけでユーザーに操作を求めない場合はMessageDialogを利用します。
+SmartHR UIでは、以下の3種類のコンポーネントを用意しています。
+
+- [ActionDialog](/products/components/dialog/action-dialog/)
+  - ユーザーに操作を求める場合に使います。
+- [MessageDialog](/products/components/dialog/message-dialog/)
+  - メッセージを表示するだけでユーザーに操作を求めない場合に使います。
+- [StepFormDialog](/products/components/dialog/step-form-dialog/)
+  - ステップを複数に分ける場合に使います。詳しくは[ウィザード](/products/design-patterns/wizard/)を参照してください。
 
 ![ActionDialogの例](./images/modal-ui_actiondialog.png)
 
@@ -61,7 +68,7 @@ SmartHR UIでは[ActionDialog](/products/components/dialog/action-dialog/)と[Me
 
 ### ページ全体を使ったモード
 
-表示したい情報が多い以下のような場合には、ページ全体を使ったモードを検討します。
+表示したい情報が多い以下のような場合には、[FloatArea](/products/components/float-area/)を使ってページ全体をモードにします。
 
 - ダイアログのファーストビュー以外にも重要な情報が存在し、気づきづらい場合
 - ダイアログにするとスクロール（特に横スクロール）が多く発生する場合
@@ -79,6 +86,8 @@ SmartHR UIでは[ActionDialog](/products/components/dialog/action-dialog/)と[Me
 
 ### ステップを複数に分けたモード
 タスクの完了のために複数の操作が必要な場合には、モードのなかでステップを複数に分けることを検討します。
+
+詳しくは[ウィザード](/products/design-patterns/wizard/)を参照してください。
 
 ![ステップを複数に分けたモード](./images/modal-ui_wizard.png)
 
@@ -143,7 +152,7 @@ SmartHR UIでは[ActionDialog](/products/components/dialog/action-dialog/)と[Me
 
 ## エラー状態のアクセシビリティ
 
-モーダルなUIにおいては、「必須の入力要素が空欄になっている」などの理由でタスクを完了する条件が満たされていない場合であっても、原則として**完了ボタンは無効化せず、ユーザーに完了ボタンを押させた上で、エラーを返す**ようにします。
+モーダルなUIにおいては、「必須の入力要素が空欄になっている」などの理由でタスクを完了する条件が満たされていない場合であっても、原則として**完了ボタンは無効化せず、ユーザーに完了ボタンを押させた上で、エラーをフィードバック**します。
 
 これは、完了のためのボタンを無効化すると、以下の理由によりアクセシビリティやユーザビリティが低下する可能性があるためです。
 
