@@ -184,7 +184,7 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 ## アクセシビリティ
 ### 基本的なアクセシビリティ機能
 #### FormControlとの統合
-FormControlと組み合わせることで、ラベルとInputの関連付け、補助テキストやエラーメッセージの適切な関連付けが自動的に行なわれます。詳しくは、[FormControl](/products/components/form-control/)を参照してください。
+FormControlと組み合わせることで、ラベルとInput、補助テキスト、エラーメッセージが、それぞれ適切に関連付けされます。詳しくは、[FormControl](/products/components/form-control/)を参照してください。
 #### 強制カラーモード対応
 ユーザーがテキストを読みやすくするために[強制カラーモード](https://developer.mozilla.org/ja/docs/Web/CSS/@media/forced-colors)を設定した場合、Inputのボーダーの色が適切に表示されるように実装されています（図1）。
 <Grid autoRepeat="auto-fill">
@@ -203,9 +203,9 @@ FormControlと組み合わせることで、ラベルとInputの関連付け、�
     </ImgWithDesc>
   </Grid>
 #### キーボード操作
-Inputコンポーネントは、キーボード操作を前提に設計されています。
-- <kbd>Tab</kbd>キーでフォーカスの移動が可能。
-- フォーカス状態が視覚的に明確に表示される（図3）。
+
+- <kbd>Tab</kbd>キーでフォーカスの移動が可能
+- フォーカス状態が視覚的に明確に表示される（図3）
 <Grid autoRepeat="auto-fill">
   <ImgWithDesc description='図3: フォーカス状態の見た目の例'>
     ![図3:フォーカス状態のメールアドレス入力フィールド。入力フィールド全体が青い太枠で囲まれ、現在の入力位置が明確に分かるようになっています](./images/focused-input.png)
@@ -213,11 +213,12 @@ Inputコンポーネントは、キーボード操作を前提に設計されて
 </Grid>
 
 ### 開発時の考慮点
-Inputコンポーネントを使用する際は、以下の点に注意して実装してください。
 
-- **FormControlと併用する:** Inputコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を入力すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも入力の目的が伝達されます。
+#### FormControlと併用する
+Inputコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を入力すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも入力の目的が伝達されます。
   - eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、InputにFormControlを組み合わせることを促すものです。支援技術に入力の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
-- **アクセシブルネームの確認:** 設定したラベルがInputのアクセシブルネームとして正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
+#### アクセシブルネームの確認
+設定したラベルがInputのアクセシブルネームとして正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
 
 #### 良い実装例
 
@@ -234,7 +235,7 @@ Inputコンポーネントを使用する際は、以下の点に注意して実
 
 ```
 
-FormControlとInputを適切に組み合わせ、title属性で指定したテキストは`label`要素でInputに関連付けられます。可視ラベルとアクセシブルネームが適切に設定され、すべてのユーザーが入力内容を理解しやすいフォームになります。
+FormControlとInputを使用すると、title属性で指定したテキストは`label`要素で出力されます。可視ラベルとアクセシブルネームが適切に設定され、すべてのユーザーが入力内容を理解しやすいフォームになります。
 
 #### 悪い実装例
 
@@ -253,7 +254,6 @@ FormControlとInputを適切に組み合わせ、title属性で指定したテ�
 
 ```
 
-この実装には以下の問題があります。
 - FormControlを使用していないため、ラベルとInputが関連付けられず、アクセシブルネームが設定されません。支援技術を使用するユーザーには、入力の目的が伝わらず、フォームの内容を正しく理解しにくくなります。
 - エラーメッセージがInputと適切に関連付けられておらず、スクリーンリーダーでフォーカス時にエラー状態であることが通知されません。
 
