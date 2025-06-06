@@ -559,8 +559,12 @@ a {
   margin-inline-start: 8px
 }
 
-.shr-ms-1 {
-  margin-inline-start: 16px
+.shr-ms-0\.75 {
+  margin-inline-start: 12px
+}
+
+.shr-ms-\[1\.75em\] {
+  margin-inline-start: 1.75em
 }
 
 .shr-ms-\[initial\] {
@@ -959,6 +963,10 @@ a {
 
 .shr-min-w-\[80px\] {
   min-width: 80px
+}
+
+.shr-min-w-\[8em\] {
+  min-width: 8em
 }
 
 .shr-min-w-\[auto\] {
@@ -1539,54 +1547,6 @@ a {
 
 .shr-justify-stretch {
   justify-content: stretch
-}
-
-.-shr-gap-0\.25 {
-  gap: -4px
-}
-
-.-shr-gap-0\.5 {
-  gap: -8px
-}
-
-.-shr-gap-0\.75 {
-  gap: -12px
-}
-
-.-shr-gap-1 {
-  gap: -16px
-}
-
-.-shr-gap-1\.25 {
-  gap: -20px
-}
-
-.-shr-gap-1\.5 {
-  gap: -24px
-}
-
-.-shr-gap-2 {
-  gap: -32px
-}
-
-.-shr-gap-2\.5 {
-  gap: -40px
-}
-
-.-shr-gap-3 {
-  gap: -48px
-}
-
-.-shr-gap-3\.5 {
-  gap: -56px
-}
-
-.-shr-gap-4 {
-  gap: -64px
-}
-
-.-shr-gap-8 {
-  gap: -128px
 }
 
 .shr-gap-0 {
@@ -2545,6 +2505,11 @@ a {
   padding-bottom: 128px
 }
 
+.shr-py-\[calc\(0\.25rem_\+_1px\)\] {
+  padding-top: calc(0.25rem + 1px);
+  padding-bottom: calc(0.25rem + 1px)
+}
+
 .shr-pb-0\.25 {
   padding-bottom: 4px
 }
@@ -3119,11 +3084,6 @@ a {
   position: absolute
 }
 
-.before\:shr-relative::before {
-  content: var(--tw-content);
-  position: relative
-}
-
 .before\:shr-inset-x-0::before {
   content: var(--tw-content);
   left: 0;
@@ -3206,12 +3166,6 @@ a {
   z-index: 1
 }
 
-.before\:shr-mx-1::before {
-  content: var(--tw-content);
-  margin-left: 16px;
-  margin-right: 16px
-}
-
 .before\:shr-box-border::before {
   content: var(--tw-content);
   box-sizing: border-box
@@ -3266,11 +3220,6 @@ a {
 .before\:shr-w-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\]::before {
   content: var(--tw-content);
   width: calc(1em * 1.5)
-}
-
-.before\:shr-w-\[theme\(borderWidth\.2\)\]::before {
-  content: var(--tw-content);
-  width: 2px
 }
 
 .before\:-shr-translate-x-\[5px\]::before {
@@ -3339,18 +3288,6 @@ a {
   background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
 }
 
-.before\:shr-bg-border::before {
-  content: var(--tw-content);
-  --tw-bg-opacity: 1;
-  background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1))
-}
-
-.before\:shr-bg-main::before {
-  content: var(--tw-content);
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
-}
-
 .before\:shr-p-\[calc\(theme\(spacing\[0\.25\]\)_\/_2\)\]::before {
   content: var(--tw-content);
   padding: calc(4px / 2)
@@ -3416,6 +3353,11 @@ a {
 .after\:shr-absolute::after {
   content: var(--tw-content);
   position: absolute
+}
+
+.after\:shr-relative::after {
+  content: var(--tw-content);
+  position: relative
 }
 
 .after\:shr-inset-x-0\.5::after {
@@ -3509,6 +3451,12 @@ a {
   z-index: 0
 }
 
+.after\:shr-mx-1::after {
+  content: var(--tw-content);
+  margin-left: 16px;
+  margin-right: 16px
+}
+
 .after\:shr-block::after {
   content: var(--tw-content);
   display: block
@@ -3552,6 +3500,11 @@ a {
 .after\:shr-w-\[5px\]::after {
   content: var(--tw-content);
   width: 5px
+}
+
+.after\:shr-w-\[theme\(borderWidth\.2\)\]::after {
+  content: var(--tw-content);
+  width: 2px
 }
 
 .after\:-shr-translate-x-\[5px\]::after {
@@ -3679,6 +3632,10 @@ a {
 
 .last\:shr-rounded-tr-m:last-child {
   border-top-right-radius: 6px
+}
+
+.empty\:\!shr-mt-0:empty {
+  margin-top: 0 !important
 }
 
 .empty\:shr-gap-0:empty {
@@ -3907,7 +3864,7 @@ a {
   background-color: transparent
 }
 
-.shr-group\/stepItem:last-child .group-last\/stepItem\:before\:shr-bg-transparent::before {
+.shr-group\/stepItem:last-child .group-last\/stepItem\:after\:shr-bg-transparent::after {
   content: var(--tw-content);
   background-color: transparent
 }
@@ -4686,7 +4643,7 @@ a {
     background-color: ButtonBorder
   }
 
-  .forced-colors\:before\:shr-bg-\[Highlight\]::before {
+  .forced-colors\:after\:shr-bg-\[Highlight\]::after {
     content: var(--tw-content);
     background-color: Highlight
   }
@@ -5092,8 +5049,22 @@ a {
   gap: 0
 }
 
+.\[\&\:has\(\:disabled\)\]\:shr-text-disabled:has(:disabled) {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
+}
+
 .\[\&\:has\(\>_span_\>_\.smarthr-ui-Icon\:only-child\)\]\:shr-p-0\.75:has(> span > .smarthr-ui-Icon:only-child) {
   padding: 12px
+}
+
+.\[\&\:has\(thead\)_tr\:not\(\:where\(thead_tr\)\)_\:is\(\.smarthr-ui-Th\2c \.smarthr-ui-Td\)\]\:shr-border-t:has(thead) tr:not(:where(thead tr)) :is(.smarthr-ui-Th,.smarthr-ui-Td) {
+  border-top-width: 1px
+}
+
+.\[\&\:has\(thead\)_tr\:not\(\:where\(thead_tr\)\)_\:is\(\.smarthr-ui-Th\2c \.smarthr-ui-Td\)\]\:shr-border-t-default:has(thead) tr:not(:where(thead tr)) :is(.smarthr-ui-Th,.smarthr-ui-Td) {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .\[\&\:not\(\:first-child\)\]\:shr-relative:not(:first-child) {
@@ -5154,6 +5125,15 @@ a {
 
 .\[\&\:not\(\:has\(svg\)\)\]\:shr-ps-2:not(:has(svg)) {
   padding-inline-start: 32px
+}
+
+.\[\&\:not\(\:has\(thead\)\)_tr\:not\(\:first-of-type\)_\:is\(\.smarthr-ui-Th\2c \.smarthr-ui-Td\)\]\:shr-border-t:not(:has(thead)) tr:not(:first-of-type) :is(.smarthr-ui-Th,.smarthr-ui-Td) {
+  border-top-width: 1px
+}
+
+.\[\&\:not\(\:has\(thead\)\)_tr\:not\(\:first-of-type\)_\:is\(\.smarthr-ui-Th\2c \.smarthr-ui-Td\)\]\:shr-border-t-default:not(:has(thead)) tr:not(:first-of-type) :is(.smarthr-ui-Th,.smarthr-ui-Td) {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .\[\&\:not\(\:last-child\)\]\:shr-w-\[218px\]:not(:last-child) {
@@ -5354,6 +5334,18 @@ a {
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
+.\[\&\[type\=\"datetime-local\"\]\]\:shr-min-w-\[11em\][type="datetime-local"] {
+  min-width: 11em
+}
+
+.\[\&\[type\=\"month\"\]\]\:shr-min-w-\[8em\][type="month"] {
+  min-width: 8em
+}
+
+.\[\&\[type\=\"time\"\]\]\:shr-min-w-\[5em\][type="time"] {
+  min-width: 5em
+}
+
 .\[\&\]\:shr-box-border {
   box-sizing: border-box
 }
@@ -5409,47 +5401,51 @@ a {
   width: unset
 }
 
+.\[\&_\.smarthr-ui-Button-disabledWrapper_\>_\.smarthr-ui-Button\]\:shr-bg-transparent .smarthr-ui-Button-disabledWrapper > .smarthr-ui-Button {
+  background-color: transparent
+}
+
 .\[\&_\.smarthr-ui-Button-disabledWrapper_\>_\.smarthr-ui-Button\]\:shr-pe-\[unset\] .smarthr-ui-Button-disabledWrapper > .smarthr-ui-Button {
   padding-inline-end: unset
 }
 
-.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:shr-relative .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page]) {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:shr-relative .smarthr-ui-DropdownMenuButton-trigger:has([aria-current]) {
   position: relative
 }
 
-.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:shr-text-black .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page]) {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:shr-text-black .smarthr-ui-DropdownMenuButton-trigger:has([aria-current]) {
   --tw-text-opacity: 1;
   color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
-.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-absolute .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:after\:shr-absolute .smarthr-ui-DropdownMenuButton-trigger:has([aria-current])::after {
   content: var(--tw-content);
   position: absolute
 }
 
-.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-inset-x-0 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:after\:shr-inset-x-0 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current])::after {
   content: var(--tw-content);
   left: 0;
   right: 0
 }
 
-.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-bottom-0 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:after\:shr-bottom-0 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current])::after {
   content: var(--tw-content);
   bottom: 0
 }
 
-.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-h-0\.25 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:after\:shr-h-0\.25 .smarthr-ui-DropdownMenuButton-trigger:has([aria-current])::after {
   content: var(--tw-content);
   height: 4px
 }
 
-.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-bg-main .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:after\:shr-bg-main .smarthr-ui-DropdownMenuButton-trigger:has([aria-current])::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
 }
 
-.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\=page\]\)\]\:after\:shr-content-\[\"\"\] .smarthr-ui-DropdownMenuButton-trigger:has([aria-current=page])::after {
+.\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:after\:shr-content-\[\"\"\] .smarthr-ui-DropdownMenuButton-trigger:has([aria-current])::after {
   --tw-content: "";
   content: var(--tw-content)
 }
@@ -5572,18 +5568,15 @@ a {
   margin-inline-start: 12px
 }
 
-.has-\[\:disabled\]\:\[\&_\.smarthr-ui-RadioButton-label\]\:shr-cursor-default .smarthr-ui-RadioButton-label:has(:disabled) {
-  cursor: default
-}
-
-.has-\[\:not\(\:disabled\)\]\:\[\&_\.smarthr-ui-RadioButton-label\]\:shr-cursor-pointer .smarthr-ui-RadioButton-label:has(:not(:disabled)) {
-  cursor: pointer
-}
-
 .\[\&_\.smarthr-ui-RadioButton-radioButton\:focus-visible_\+_span\]\:shr-shadow-none .smarthr-ui-RadioButton-radioButton:focus-visible + span {
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}
+
+.has-\[\:disabled\]\:\[\&_\.smarthr-ui-RadioButtonPanel-description\]\:shr-text-disabled .smarthr-ui-RadioButtonPanel-description:has(:disabled) {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1))
 }
 
 .\[\&_\.smarthr-ui-SideNav-item\>button\>span\]\:shr-flex-nowrap .smarthr-ui-SideNav-item>button>span {
@@ -5625,6 +5618,27 @@ a {
   fill: #23221e
 }
 
+.\[\&_\:is\(\.smarthr-ui-Th\2c \.smarthr-ui-Td\)\]\:shr-border-solid :is(.smarthr-ui-Th,.smarthr-ui-Td) {
+  border-style: solid
+}
+
+.\[\&_\:is\(\.smarthr-ui-Th\2c \.smarthr-ui-Td\)\]\:shr-border-dashed :is(.smarthr-ui-Th,.smarthr-ui-Td) {
+  border-style: dashed
+}
+
+.\[\&_\:is\(\.smarthr-ui-Th\2c \.smarthr-ui-Td\)\]\:shr-border-dotted :is(.smarthr-ui-Th,.smarthr-ui-Td) {
+  border-style: dotted
+}
+
+.\[\&_\:is\(\.smarthr-ui-Th\:not\(\:first-child\)\2c \.smarthr-ui-Td\:not\(\:first-child\)\)\]\:shr-border-l :is(.smarthr-ui-Th:not(:first-child),.smarthr-ui-Td:not(:first-child)) {
+  border-left-width: 1px
+}
+
+.\[\&_\:is\(\.smarthr-ui-Th\:not\(\:first-child\)\2c \.smarthr-ui-Td\:not\(\:first-child\)\)\]\:shr-border-l-default :is(.smarthr-ui-Th:not(:first-child),.smarthr-ui-Td:not(:first-child)) {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
+}
+
 .\[\&_\>_\*\]\:shr-my-0 > * {
   margin-top: 0;
   margin-bottom: 0
@@ -5661,6 +5675,14 @@ a {
 
 .\[\&_svg\]\:shr-block svg {
   display: block
+}
+
+.\[\&_tbody\]\:shr-relative tbody {
+  position: relative
+}
+
+.\[\&_tbody\]\:shr-z-1 tbody {
+  z-index: 1
 }
 
 .\[\&_tbody\]\:shr-bg-white tbody {
@@ -5733,8 +5755,8 @@ a {
   top: 0
 }
 
-.\[\&_thead\]\:shr-z-1 thead {
-  z-index: 1
+.\[\&_thead\]\:shr-z-\[2\] thead {
+  z-index: 2
 }
 
 .\[\&_tr\:first-child_th\:first-child\]\:shr-w-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\] tr:first-child th:first-child {
@@ -5747,24 +5769,6 @@ a {
 
 .\[\&_ul\]\:shr-list-none ul {
   list-style-type: none
-}
-
-.shr-table-border-horizontal .\[\.shr-table-border-horizontal_\&\]\:shr-border-t {
-  border-top-width: 1px
-}
-
-.shr-table-border-horizontal .\[\.shr-table-border-horizontal_\&\]\:shr-border-t-default {
-  --tw-border-opacity: 1;
-  border-top-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
-}
-
-.shr-table-border-vertical .\[\.shr-table-border-vertical_\&\+\&\]\:shr-border-l+.\[\.shr-table-border-vertical_\&\+\&\]\:shr-border-l {
-  border-left-width: 1px
-}
-
-.shr-table-border-vertical .\[\.shr-table-border-vertical_\&\+\&\]\:shr-border-l-default+.\[\.shr-table-border-vertical_\&\+\&\]\:shr-border-l-default {
-  --tw-border-opacity: 1;
-  border-left-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
 .smarthr-ui-Base > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:first-child .\[\.smarthr-ui-Base_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:first-child_\&\]\:shr-rounded-t-l {

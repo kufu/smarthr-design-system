@@ -1,4 +1,4 @@
-import { Nav } from 'smarthr-ui';
+import { Heading, IntlProvider, Nav } from 'smarthr-ui';
 
 import type { NestedHeading } from '@/lib/getNestedHeadings';
 
@@ -20,10 +20,12 @@ export default function IndexNavItems({ headings, indexNavRef, currentHeadingId 
     ));
 
   return (
-    // eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
-    <Nav className={styles.nav}>
-      <ul ref={indexNavRef}>{nestedNavItems(headings)}</ul>
-    </Nav>
+    <IntlProvider locale="ja">
+      {/* eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content */}
+      <Nav className={styles.nav}>
+        <ul ref={indexNavRef}>{nestedNavItems(headings)}</ul>
+      </Nav>
+    </IntlProvider>
   );
 }
 

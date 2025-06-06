@@ -1,4 +1,4 @@
-import { Button } from 'smarthr-ui';
+import { Button, IntlProvider } from 'smarthr-ui';
 
 import type { ReactNode } from 'react';
 
@@ -10,5 +10,9 @@ type Props = {
 } & Omit<React.ComponentProps<typeof Button>, 'prefix' | 'suffix'>;
 
 export default function SampleButton({ Prefix, Suffix, ...props }: Props) {
-  return <Button {...props} prefix={Prefix ? <Prefix /> : undefined} suffix={Suffix ? <Suffix /> : undefined} />;
+  return (
+    <IntlProvider locale="ja">
+      <Button {...props} prefix={Prefix ? <Prefix /> : undefined} suffix={Suffix ? <Suffix /> : undefined} />
+    </IntlProvider>
+  );
 }
