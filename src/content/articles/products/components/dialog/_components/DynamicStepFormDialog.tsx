@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, StepFormDialog, StepFormDialogItem } from 'smarthr-ui';
+import { Button, IntlProvider, StepFormDialog, StepFormDialogItem } from 'smarthr-ui';
 
 export default function DynamicModelessDialog() {
   const [opened, setOpened] = useState(false);
@@ -29,7 +29,7 @@ export default function DynamicModelessDialog() {
   };
 
   return (
-    <>
+    <IntlProvider locale="ja">
       <Button onClick={() => setOpened(true)}>StepFormDialog を開く</Button>
       <StepFormDialog
         isOpen={opened}
@@ -54,6 +54,6 @@ export default function DynamicModelessDialog() {
           <p>{steps[currentStep].label}</p>
         </StepFormDialogItem>
       </StepFormDialog>
-    </>
+    </IntlProvider>
   );
 }

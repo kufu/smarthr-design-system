@@ -1,7 +1,7 @@
 import { liteClient } from 'algoliasearch/lite';
 import React, { useEffect, useState } from 'react';
 import { Hits, InstantSearch, type UseSearchBoxProps, useSearchBox } from 'react-instantsearch';
-import { FaMagnifyingGlassIcon, Input } from 'smarthr-ui';
+import { FaMagnifyingGlassIcon, Input, IntlProvider } from 'smarthr-ui';
 
 import HitComponent from './HitComponent';
 import styles from './SearchBox.module.scss';
@@ -74,14 +74,16 @@ export default function SearchBox(props: UseSearchBoxProps) {
   const searchClient = liteClient(import.meta.env.PUBLIC_ALGOLIA_APP_ID, import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY);
 
   return (
-    <InstantSearch
-      indexName={import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || ''}
-      searchClient={searchClient}
-      future={{
-        preserveSharedStateOnUnmount: true,
-      }}
-    >
-      <CustomSearchBox {...props} />
-    </InstantSearch>
+    <IntlProvider locale="ja">
+      <InstantSearch
+        indexName={import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || ''}
+        searchClient={searchClient}
+        future={{
+          preserveSharedStateOnUnmount: true,
+        }}
+      >
+        <CustomSearchBox {...props} />
+      </InstantSearch>
+    </IntlProvider>
   );
 }

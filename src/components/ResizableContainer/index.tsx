@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui';
+import { FaGripLinesIcon, FaGripLinesVerticalIcon, IntlProvider } from 'smarthr-ui';
 import styled from 'styled-components';
 
 import { CSS_COLOR } from '@/constants/style';
@@ -91,24 +91,26 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
   }, []);
 
   return (
-    <Container ref={container}>
-      <ResizeArea
-        style={{
-          width: boxSize.width === null ? defaultWidth || '100%' : `${boxSize.width}px`,
-          height: boxSize.height === null ? defaultHeight || '300px' : `${boxSize.height}px`,
-        }}
-        // ドラッグ中かどうかのフラグ。中身のiframeに`pointer-events: none`を追加しないとマウスイベントが取れなくなるため。
-        data-resizing={pointerPosition.x || pointerPosition.y ? 'true' : 'false'}
-      >
-        {children}
-        <VerticalResizeHandler onPointerDown={handleVerticalPointerDown}>
-          <FaGripLinesVerticalIcon alt="ドラッグして幅を変更" />
-        </VerticalResizeHandler>
-        <HorizontalResizeHandler onPointerDown={handleHorizontalPointerDown}>
-          <FaGripLinesIcon alt="ドラッグして高さを変更" />
-        </HorizontalResizeHandler>
-      </ResizeArea>
-    </Container>
+    <IntlProvider locale="ja">
+      <Container ref={container}>
+        <ResizeArea
+          style={{
+            width: boxSize.width === null ? defaultWidth || '100%' : `${boxSize.width}px`,
+            height: boxSize.height === null ? defaultHeight || '300px' : `${boxSize.height}px`,
+          }}
+          // ドラッグ中かどうかのフラグ。中身のiframeに`pointer-events: none`を追加しないとマウスイベントが取れなくなるため。
+          data-resizing={pointerPosition.x || pointerPosition.y ? 'true' : 'false'}
+        >
+          {children}
+          <VerticalResizeHandler onPointerDown={handleVerticalPointerDown}>
+            <FaGripLinesVerticalIcon alt="ドラッグして幅を変更" />
+          </VerticalResizeHandler>
+          <HorizontalResizeHandler onPointerDown={handleHorizontalPointerDown}>
+            <FaGripLinesIcon alt="ドラッグして高さを変更" />
+          </HorizontalResizeHandler>
+        </ResizeArea>
+      </Container>
+    </IntlProvider>
   );
 }
 
