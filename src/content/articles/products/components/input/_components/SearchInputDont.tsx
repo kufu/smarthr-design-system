@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Base, Button, Cluster, EmptyTableBody, SearchInput, Table, Td, Text, Th } from 'smarthr-ui';
+import { Base, Button, Cluster, EmptyTableBody, IntlProvider, SearchInput, Table, Td, Text, Th } from 'smarthr-ui';
 
 export default function SearchInputDont() {
   const objects = ['オブジェクト 1', 'オブジェクト 2', 'オブジェクト 3'];
@@ -10,56 +10,58 @@ export default function SearchInputDont() {
   };
 
   return (
-    <Base overflow="auto">
-      {/* eslint-disable-next-line smarthr/best-practice-for-layouts */}
-      <Cluster justify="space-between" align="center" className="shr-p-1">
-        <form role="search" onSubmit={(e) => e.preventDefault()}>
-          {/* eslint-disable-next-line smarthr/best-practice-for-layouts */}
-          <Cluster align="center" gap={1}>
-            <Cluster gap={0.5}>
-              <SearchInput
-                tooltipMessage="オブジェクト名で検索できます。"
-                value={query}
-                name="search"
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                }}
-              />
-              <Button
-                onClick={() => {
-                  search(query);
-                }}
-              >
-                検索
-              </Button>
+    <IntlProvider locale="ja">
+      <Base overflow="auto">
+        {/* eslint-disable-next-line smarthr/best-practice-for-layouts */}
+        <Cluster justify="space-between" align="center" className="shr-p-1">
+          <form role="search" onSubmit={(e) => e.preventDefault()}>
+            {/* eslint-disable-next-line smarthr/best-practice-for-layouts */}
+            <Cluster align="center" gap={1}>
+              <Cluster gap={0.5}>
+                <SearchInput
+                  tooltipMessage="オブジェクト名で検索できます。"
+                  value={query}
+                  name="search"
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                  }}
+                />
+                <Button
+                  onClick={() => {
+                    search(query);
+                  }}
+                >
+                  検索
+                </Button>
+              </Cluster>
             </Cluster>
-          </Cluster>
-        </form>
-      </Cluster>
-      <Table style={{ margin: 0 }}>
-        <thead>
-          <tr>
-            <Th>オブジェクト</Th>
-          </tr>
-        </thead>
-        {result.length === 0 ? (
-          <EmptyTableBody>
-            <Text>
-              該当するオブジェクトはありません。
-              <br />
-              別の条件を試してください。
-            </Text>
-          </EmptyTableBody>
-        ) : (
-          <tbody>
-            {result.map((object, index) => (
-              <tr key={index}>
-                <Td>{object}</Td>
-              </tr>
-            ))}
-          </tbody>
-        )}
-      </Table>
-    </Base>
+          </form>
+        </Cluster>
+        <Table style={{ margin: 0 }}>
+          <thead>
+            <tr>
+              <Th>オブジェクト</Th>
+            </tr>
+          </thead>
+          {result.length === 0 ? (
+            <EmptyTableBody>
+              <Text>
+                該当するオブジェクトはありません。
+                <br />
+                別の条件を試してください。
+              </Text>
+            </EmptyTableBody>
+          ) : (
+            <tbody>
+              {result.map((object, index) => (
+                <tr key={index}>
+                  <Td>{object}</Td>
+                </tr>
+              ))}
+            </tbody>
+          )}
+        </Table>
+      </Base>
+    </IntlProvider>
   );
 }

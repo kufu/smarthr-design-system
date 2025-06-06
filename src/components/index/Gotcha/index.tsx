@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
-import { FaArrowRotateRightIcon } from 'smarthr-ui';
+import { FaArrowRotateRightIcon, IntlProvider } from 'smarthr-ui';
 
 import { CLOUDINARY_CLOUD_NAME } from '@/constants/application';
 import gotchaItemJson from '@/data/gotchaItem.json';
@@ -87,73 +87,75 @@ export default function Gotcha() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.gotchaMain}>
-        <div className={clsx(styles.imageContainer, isAnimated && styles.runAnimation)} aria-busy={isAnimated}>
-          {/* 次の画像 */}
-          {nextItemIndex > -1 && (
-            <img
-              srcSet={createSrcSet(nextItemIndex)}
-              src={createSrc(nextItemIndex)}
-              width="1272"
-              height="352"
-              sizes="(min-width: 1024px) 2720px, 100vw"
-              alt={gotchaItem[nextItemIndex].alt}
-              aria-hidden="true"
-              onLoad={() => nextImgOnload()}
-            />
-          )}
-          {/* 表示中の画像 */}
-          {currentItemIndex > -1 && (
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-            <img
-              srcSet={createSrcSet(currentItemIndex)}
-              src={createSrc(currentItemIndex)}
-              sizes="(min-width: 1024px) 2720px, 100vw"
-              width="1272"
-              height="352"
-              alt={gotchaItem[currentItemIndex].alt}
-              onAnimationEnd={() => finishAnimation()}
-              onLoad={() => currentImgOnLoad()}
-            />
-          )}
-        </div>
-        {/* ガチャボタン */}
-        <button className={styles.gotchaButton} type="button" onClick={() => runGotcha()} disabled={shouldDisabled}>
-          <FaArrowRotateRightIcon />
-          <span className={styles.animatedText}>
-            {Array.from(BUTTON_TEXT).map((letter, index) => (
-              <span
-                key={index}
-                className={styles.animatedLetter}
-                style={{
-                  transitionDelay: `${index / 35}s`,
-                }}
-              >
-                {letter}
-              </span>
-            ))}
-          </span>
-        </button>
+    <IntlProvider locale="ja">
+      <div className={styles.wrapper}>
+        <div className={styles.gotchaMain}>
+          <div className={clsx(styles.imageContainer, isAnimated && styles.runAnimation)} aria-busy={isAnimated}>
+            {/* 次の画像 */}
+            {nextItemIndex > -1 && (
+              <img
+                srcSet={createSrcSet(nextItemIndex)}
+                src={createSrc(nextItemIndex)}
+                width="1272"
+                height="352"
+                sizes="(min-width: 1024px) 2720px, 100vw"
+                alt={gotchaItem[nextItemIndex].alt}
+                aria-hidden="true"
+                onLoad={() => nextImgOnload()}
+              />
+            )}
+            {/* 表示中の画像 */}
+            {currentItemIndex > -1 && (
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+              <img
+                srcSet={createSrcSet(currentItemIndex)}
+                src={createSrc(currentItemIndex)}
+                sizes="(min-width: 1024px) 2720px, 100vw"
+                width="1272"
+                height="352"
+                alt={gotchaItem[currentItemIndex].alt}
+                onAnimationEnd={() => finishAnimation()}
+                onLoad={() => currentImgOnLoad()}
+              />
+            )}
+          </div>
+          {/* ガチャボタン */}
+          <button className={styles.gotchaButton} type="button" onClick={() => runGotcha()} disabled={shouldDisabled}>
+            <FaArrowRotateRightIcon />
+            <span className={styles.animatedText}>
+              {Array.from(BUTTON_TEXT).map((letter, index) => (
+                <span
+                  key={index}
+                  className={styles.animatedLetter}
+                  style={{
+                    transitionDelay: `${index / 35}s`,
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+          </button>
 
-        {/* 活用事例ラベル */}
-        <p className={styles.label}>活用事例</p>
+          {/* 活用事例ラベル */}
+          <p className={styles.label}>活用事例</p>
+        </div>
+
+        {/* 関連リンク */}
+        {currentItemIndex > -1 && (
+          <div className={styles.gotchaLinks}>
+            <p>{gotchaItem[currentItemIndex].title}</p>
+            <ul>
+              {gotchaItem[currentItemIndex].links.map((link, index) => (
+                <li key={index}>
+                  <a href={link.url}>{link.text}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
-
-      {/* 関連リンク */}
-      {currentItemIndex > -1 && (
-        <div className={styles.gotchaLinks}>
-          <p>{gotchaItem[currentItemIndex].title}</p>
-          <ul>
-            {gotchaItem[currentItemIndex].links.map((link, index) => (
-              <li key={index}>
-                <a href={link.url}>{link.text}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+    </IntlProvider>
   );
 }
 
