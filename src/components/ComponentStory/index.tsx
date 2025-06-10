@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import { AnchorButton, Cluster, FaUpRightFromSquareIcon, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
+import { AnchorButton, Cluster, FaUpRightFromSquareIcon, IntlProvider, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
 
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
 import { UI_COMMIT_HASH, UI_VERSION } from '@/lib/getUIData';
@@ -53,62 +53,64 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
   };
 
   return (
-    <div className={clsx(!noMargin && styles.storyWrapper)}>
-      <Cluster align="center" justify="space-between" gap={1}>
-        <Cluster align="center" as="label">
-          <span>SmartHR UI</span>
-          <span>{UI_VERSION}</span>
+    <IntlProvider locale="ja">
+      <div className={clsx(!noMargin && styles.storyWrapper)}>
+        <Cluster align="center" justify="space-between" gap={1}>
+          <Cluster align="center" as="label">
+            <span>SmartHR UI</span>
+            <span>{UI_VERSION}</span>
+          </Cluster>
+          <Cluster>
+            <AnchorButton
+              href={storybookUrl.toString()}
+              target="_blank"
+              size="s"
+              suffix={<FaUpRightFromSquareIcon />}
+              rel="noreferrer"
+            >
+              Storybook
+            </AnchorButton>
+            <AnchorButton
+              href={githubUrl.toString()}
+              target="_blank"
+              size="s"
+              suffix={<FaUpRightFromSquareIcon />}
+              rel="noreferrer"
+            >
+              GitHub
+            </AnchorButton>
+          </Cluster>
         </Cluster>
-        <Cluster>
-          <AnchorButton
-            href={storybookUrl.toString()}
-            target="_blank"
-            size="s"
-            suffix={<FaUpRightFromSquareIcon />}
-            rel="noreferrer"
-          >
-            Storybook
-          </AnchorButton>
-          <AnchorButton
-            href={githubUrl.toString()}
-            target="_blank"
-            size="s"
-            suffix={<FaUpRightFromSquareIcon />}
-            rel="noreferrer"
-          >
-            GitHub
-          </AnchorButton>
-        </Cluster>
-      </Cluster>
 
-      <TabBar className={styles.tab}>
-        {stories.storyItems.map(({ label, iframeName }, index: number) => (
-          <TabItem id={iframeName} key={index} onClick={onClickTabItem} selected={iframeName === currentIframe}>
-            {label}
-          </TabItem>
-        ))}
-      </TabBar>
+        <TabBar className={styles.tab}>
+          {stories.storyItems.map(({ label, iframeName }, index: number) => (
+            <TabItem id={iframeName} key={index} onClick={onClickTabItem} selected={iframeName === currentIframe}>
+              {label}
+            </TabItem>
+          ))}
+        </TabBar>
 
-      <div className={styles.linkWrapper}>
-        <TextLink href={iframeViewModeUrl.toString()} target="_blank">
-          別画面で開く
-        </TextLink>
+        <div className={styles.linkWrapper}>
+          <TextLink href={iframeViewModeUrl.toString()} target="_blank">
+            別画面で開く
+          </TextLink>
+        </div>
+
+        <ResizableContainer defaultWidth="100%" defaultHeight="300px">
+          {!isLoadedIframe && <Loader className={styles.storyLoader} />}
+          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+          <iframe
+            className={styles.storyIframe}
+            title={stories.storyItems.find((item) => item?.name === currentIframe)?.label || ''}
+            src={iframeUrl.toString()}
+            onLoad={onIframeLoaded}
+          />
+        </ResizableContainer>
+
+        <div className={styles.codeWrapper}>
+          <CodeBlock code={code} language="tsx" isStorybook />
+        </div>
       </div>
-
-      <ResizableContainer defaultWidth="100%" defaultHeight="300px">
-        {!isLoadedIframe && <Loader className={styles.storyLoader} />}
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-        <iframe
-          className={styles.storyIframe}
-          title={stories.storyItems.find((item) => item?.name === currentIframe)?.label || ''}
-          src={iframeUrl.toString()}
-          onLoad={onIframeLoaded}
-        />
-      </ResizableContainer>
-
-      <div className={styles.codeWrapper}>
-        <CodeBlock code={code} language="tsx" isStorybook />
-      </div>
-    </div>
+    </IntlProvider>
   );
 }
