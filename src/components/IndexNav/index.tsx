@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger, IntlProvider } from 'smarthr-ui';
+import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui';
 
 import { throttle } from '@/lib/throttle';
 
@@ -62,7 +62,7 @@ export default function IndexNav({ targetId, headings, ignoreH3Nav = false }: Pr
   }, [currentHeadingId, indexNavRef]);
 
   return (
-    <IntlProvider locale="ja">
+    <>
       <div className={styles.navWrapper} ref={wrapperRef}>
         <IndexNavItems headings={headings} indexNavRef={indexNavRef} currentHeadingId={currentHeadingId} />
       </div>
@@ -80,6 +80,6 @@ export default function IndexNav({ targetId, headings, ignoreH3Nav = false }: Pr
           </AccordionPanel>
         </div>
       )}
-    </IntlProvider>
+    </>
   );
 }

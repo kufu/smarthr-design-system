@@ -1,12 +1,10 @@
 ---
 import type { ComponentPropsWithoutRef } from 'react';
-import { IntlProvider, Tooltip } from 'smarthr-ui';
+import { Tooltip } from 'smarthr-ui';
 
 type Props = ComponentPropsWithoutRef<typeof Tooltip>;
 ---
 
-<IntlProvider locale="ja" client:load>
-  <Tooltip {...Astro.props} client:load>
-    <slot />
-  </Tooltip>
-</IntlProvider>
+<Tooltip {...Astro.props} client:load>
+  <slot />
+</Tooltip>

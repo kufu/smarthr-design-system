@@ -77,26 +77,24 @@ export default function CodeBlock({
 
   if (editable) {
     return (
-      <ui.IntlProvider locale="ja">
-        <div className={styles.wrapper}>
-          {renderingComponent && (
-            <div className={styles.linkWrapper}>
-              <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
-                別画面で開く
-              </TextLink>
-            </div>
-          )}
-          <LiveContainer
-            code={codeString}
-            language={language}
-            withStyled={withStyled}
-            noIframe={noIframe}
-            gap={gap}
-            align={align}
-            layout={layout}
-          />
-        </div>
-      </ui.IntlProvider>
+      <div className={styles.wrapper}>
+        {renderingComponent && (
+          <div className={styles.linkWrapper}>
+            <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
+              別画面で開く
+            </TextLink>
+          </div>
+        )}
+        <LiveContainer
+          code={codeString}
+          language={language}
+          withStyled={withStyled}
+          noIframe={noIframe}
+          gap={gap}
+          align={align}
+          layout={layout}
+        />
+      </div>
     );
   }
 

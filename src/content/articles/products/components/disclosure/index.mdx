@@ -1,9 +1,15 @@
 ---
 title: 'Disclosure'
-description: '任意のコンテンツを展開して表示したり、折りたたんで隠したりするためのコンポーネントです。'
+description: 'コンテンツの表示・非表示を切り替えるUIを作るためのアクセシブルなコンポーネントです。'
 ---
-import PageIndex from '@/components/article/PageIndex.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
 
-任意のコンテンツを展開して表示したり、折りたたんで隠したりするためのコンポーネントです。
+コンテンツの表示・非表示を切り替えるUIを作るためのアクセシブルなコンポーネントです。
 
-<PageIndex basePath="/products/components/disclosure/" />
+<ComponentStory name="DisclosureContent" />
+
+## Props
+
+<ComponentPropsTable name="DisclosureTrigger" showTitle />
+<ComponentPropsTable name="DisclosureContent" showTitle />

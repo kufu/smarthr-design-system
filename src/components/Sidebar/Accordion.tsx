@@ -1,4 +1,4 @@
-import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger, IntlProvider } from 'smarthr-ui';
+import { AccordionPanel, AccordionPanelContent, AccordionPanelItem, AccordionPanelTrigger } from 'smarthr-ui';
 
 import type { ReactNode } from 'react';
 
@@ -12,13 +12,11 @@ type Props = {
 
 export default function Accordion({ title, children }: Props) {
   return (
-    <IntlProvider locale="ja">
-      <AccordionPanel iconPosition="right">
-        <AccordionPanelItem name="spSidebar">
-          <AccordionPanelTrigger>{title}</AccordionPanelTrigger>
-          <AccordionPanelContent>{children}</AccordionPanelContent>
-        </AccordionPanelItem>
-      </AccordionPanel>
-    </IntlProvider>
+    <AccordionPanel iconPosition="right">
+      <AccordionPanelItem name="spSidebar">
+        <AccordionPanelTrigger>{title}</AccordionPanelTrigger>
+        <AccordionPanelContent>{children}</AccordionPanelContent>
+      </AccordionPanelItem>
+    </AccordionPanel>
   );
 }

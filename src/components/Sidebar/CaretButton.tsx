@@ -1,4 +1,4 @@
-import { FaChevronDownIcon, IntlProvider } from 'smarthr-ui';
+import { FaChevronDownIcon } from 'smarthr-ui';
 
 import type { ArticleMeta } from '@/types/article';
 
@@ -28,16 +28,14 @@ export default function CaretButton({ currentPath, itemLink, depth, currentIndex
   const isExpanded = currentPath === itemLink || currentPath.startsWith(`${itemLink}/`);
 
   return (
-    <IntlProvider locale="ja">
-      <button
-        className={styles.caretButton}
-        type="button"
-        aria-controls={`Depth${depth + 1}Items__${currentIndex}`}
-        aria-expanded={isExpanded}
-        onClick={onClickCaret}
-      >
-        <FaChevronDownIcon alt={isExpanded ? '閉じる' : '開く'} />
-      </button>
-    </IntlProvider>
+    <button
+      className={styles.caretButton}
+      type="button"
+      aria-controls={`Depth${depth + 1}Items__${currentIndex}`}
+      aria-expanded={isExpanded}
+      onClick={onClickCaret}
+    >
+      <FaChevronDownIcon alt={isExpanded ? '閉じる' : '開く'} />
+    </button>
   );
 }

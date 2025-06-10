@@ -1,4 +1,4 @@
-import { IntlProvider, TableReel as OriginalTableReel } from 'smarthr-ui';
+import { TableReel as OriginalTableReel } from 'smarthr-ui';
 
 import styles from './index.module.scss';
 
@@ -9,9 +9,5 @@ type Props = {
 };
 
 export default function TableReel({ children }: Props) {
-  return (
-    <IntlProvider locale="ja">
-      <OriginalTableReel className={styles.tableReel}>{children}</OriginalTableReel>
-    </IntlProvider>
-  );
+  return <OriginalTableReel className={styles.tableReel}>{children}</OriginalTableReel>;
 }

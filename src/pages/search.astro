@@ -1,5 +1,5 @@
 ---
-import { IntlProvider, PageHeading } from 'smarthr-ui';
+import { PageHeading } from 'smarthr-ui';
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -12,9 +12,7 @@ import SearchBox from '@/components/search/Search/SearchBox';
     <Header />
 
     <main class="main">
-      <IntlProvider locale="ja" client:load>
-        <PageHeading className="pageHeading" id="label-for-search-input">SmartHR Design Systemを検索</PageHeading>
-      </IntlProvider>
+      <PageHeading className="pageHeading" id="label-for-search-input">SmartHR Design Systemを検索</PageHeading>
       <div class="search ais-SearchBox__root">
         <SearchBox client:only="react">
           {
