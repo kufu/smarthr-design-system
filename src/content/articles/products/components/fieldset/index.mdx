@@ -7,7 +7,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 Fieldsetコンポーネントは、フォームにおける複数の入力要素をグルーピングするためのコンポーネントです。
 
-姓名や電話番号のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
+姓名や期間の開始・終了のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
 
 <ComponentStory name="Fieldset" />
 
@@ -134,6 +134,16 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
     </Stack>
 </Fieldset>
 ```
+
+### エラーの表示方法
+
+Fieldsetに含まれる入力要素にエラーがある場合、エラーメッセージをそれぞれのFormControlではなくFieldsetのタイトルの下に表示できます。これによって、入力要素の組み合わせによって発生する複合的なエラーを表示したり、FormControlを横に並べたときのレイアウト崩れを防いだりできます。  
+
+このとき、エラーメッセージには該当のFormControlのタイトルを含めてください。
+
+![Fieldsetに対するエラー表示のサンプル](./images/fieldset_error_sample.png)
+
+※現時点ではFieldsetで出しているエラーメッセージと、エラー発生中のInputの紐づけができません。（実装予定）
 
 ## 状態
 

@@ -4,10 +4,17 @@ description: 'フォームとしての入力要素に対応するラベルとメ
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Image } from 'astro:assets'
 import {
   FaExclamationCircleIcon,
   StatusLabel,
+  Cluster,
+  Text
 } from 'smarthr-ui'
+
+import formControlErrorSampleDo from '../fieldset/images/fieldset_error_sample.png'
+import formControlErrorSampleDont from './image/formcontrol_error_sample_dont.png'
 
 FormControlコンポーネントは、フォームとしての入力要素に対応するラベルとメッセージテキストを表示するためのコンポーネントです。
 
@@ -19,7 +26,24 @@ FormControlコンポーネントは、フォームとしての入力要素に対
 
 FormControlは、入力要素が1つだけの場合にのみ使用できます。
 
-姓名や電話番号のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合は、[Fieldset](/products/components/fieldset/)を使用してください。
+姓名のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合は、[Fieldset](/products/components/fieldset/)を使用してください。
+
+#### 複数のフォームを横に並べる場合
+
+入力要素をグルーピングできる場合は、基本的に[Fieldset](/products/components/fieldset//)を使用してください。エラーが表示された際のレイアウト崩れを防ぐことができます。（[エラーの表示方法](/products/components/fieldset#h3-1)）
+
+表示領域の都合などでやむを得ずFormControlを横に並べる場合は、エラーの表示時にレイアウトが崩れないか注意してください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+    <DoAndDont type="do" width="calc(50% - 8px)">
+      <Image slot="img" src={formControlErrorSampleDo} alt="Do" />
+      <Text slot="label">Fieldsetを使うとエラー表示時にレイアウトが崩れません。</Text>
+    </DoAndDont>
+    <DoAndDont type="dont" width="calc(50% - 8px)">
+      <Image slot="img" src={formControlErrorSampleDont} alt="FormControlを横に並べただけだと、エラー表示時にInputの位置がずれる例" />
+      <Text slot="label">単にFormControlを横に並べると、エラー表示時にInputの位置がずれます。</Text>
+    </DoAndDont>
+</Cluster>
 
 ## レイアウト
 
