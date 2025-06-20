@@ -7,7 +7,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 Fieldsetコンポーネントは、フォームにおける複数の入力要素をグルーピングするためのコンポーネントです。
 
-姓名や電話番号のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
+姓名や期間の開始・終了のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
 
 <ComponentStory name="Fieldset" />
 
@@ -135,42 +135,15 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
 </Fieldset>
 ```
 
-### エラーメッセージの表示
+### エラーの表示方法
 
-入力要素にエラーがある場合、エラーメッセージはそれぞれの`FormControl`ではなく`Fieldset`のタイトルの下に表示します。  
+Fieldsetに含まれる入力要素にエラーがある場合、エラーメッセージをそれぞれのFormControlではなくFieldsetのタイトルの下に表示できます。これによって、入力要素の組み合わせによって発生する複合的なエラーを表示したり、FormControlを横に並べたときのレイアウト崩れを防いだりできます。  
+
 このとき、エラーメッセージには該当のFormControlのタイトルを含めてください。
 
-エラーのあるフォーム要素をエラー状態にするには、`Fieldset`および`FormControl`に`autoBindErrorInput={false}`を指定する必要があります。
+![Fieldsetに対するエラー表示のサンプル](./images/fieldset_error_sample.png)
 
-```tsx editable
-<Fieldset
-    title="氏名"
-    errorMessages={["姓を入力してください。", "名を入力してください。"]}
-    autoBindErrorInput={false}
->
-    <Stack gap={1.25}>
-        <Cluster gap={0.5}>
-            <FormControl
-                title="姓"
-                titleType="subBlockTitle"
-                statusLabels={<RequiredLabel />}
-                autoBindErrorInput={false}
-            >
-                <Input error name="lastName"/>
-            </FormControl>
-            <FormControl
-                title="名"
-                titleType="subBlockTitle"
-                statusLabels={<RequiredLabel />}
-                autoBindErrorInput={false}
-            >
-                <Input error name="firstName" />
-            </FormControl>
-        </Cluster>
-    </Stack>
-</Fieldset>
-```
-
+※現時点ではFieldsetで出しているエラーメッセージと、エラー発生中のInputの紐づけができません。（実装予定）
 
 ## 状態
 
