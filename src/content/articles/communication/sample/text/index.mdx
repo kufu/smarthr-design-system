@@ -19,70 +19,457 @@ SmartHRのサービス全体で利用できるサンプルテキストです。
 
 ## サンプルテキスト一覧
 
-### 従業員情報
-
-| 項目 | 推奨する表記 | 補足 |
-| --- | --- | --- |
-| 従業員氏名 | **[ユーザー社の従業員](https://smarthr.design/basics/illustration/user-co-other/)に掲載されている氏名を利用** |  |
-| メールアドレス | **\{名前.苗字\}@example.com** | 例：yamato.makoto@example.com |
-| 従業員番号 | **0064など、半端な数字を使用** | 従業員番号一桁台だと役員であるケースも多いため、二桁以上を推奨します。 |
-
-
-### 企業名
-
 import { Table, Th, Td } from 'smarthr-ui'
 import TableReel from './_components/TableReel'
 
+### 組織・事業所情報
+
 <TableReel>
-<Table>
-  <thead>
-    <tr>
-      <Th>シーン</Th>
-      <Th style={{ minWidth: "12em" }}>推奨する表記</Th>
-      <Th>補足</Th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <Td>1社記載</Td>
-        <Td><strong>株式会社＊＊＊＊＊</strong></Td>
+  <Table>
+    <thead>
+      <tr>
+        <Th style={{ minWidth: "8em" }}>項目</Th>
+        <Th style={{ minWidth: "14em" }}>サンプルテキスト</Th>
+        <Th style={{ minWidth: "26em" }}>補足</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>企業名（1社記載）</Td>
+        <Td><strong>・株式会社＊＊＊＊＊</strong></Td>
         <Td>
-            <ul>
-                <li>「全角のアスタリスク5つ」を基本とする。</li>
-                <li>スマートフォンなど横幅が短い場面ではアスタリスク3つ「株式会社＊＊＊」に短縮OK。</li>
-            </ul>
+          <ul>
+            <li>「全角のアスタリスク5つ」を基本とする</li>
+            <li>スマートフォンなど、横幅が短い場面ではアスタリスク3つ「株式会社＊＊＊」に短縮可能</li>
+          </ul>
         </Td>
-    </tr>
-    <tr>
-        <Td>複数社記載</Td>
-        <Td><strong>株式会社＊＊＊＊＊A<br />株式会社＊＊＊＊＊B<br />株式会社＊＊＊＊＊C</strong></Td>
+      </tr>
+      <tr>
+        <Td>企業名（複数社記載）</Td>
+        <Td><strong>・株式会社＊＊＊＊＊A<br />・株式会社＊＊＊＊＊B<br />・株式会社＊＊＊＊＊C<br />・…</strong></Td>
         <Td>
-            <ul>
-                <li>「全角のアスタリスク5つ＋アルファベット」を基本とする。</li>
-                <li>場面に応じて「＊」の個数および「A,B,」の表現は調整はOK。</li>
-            </ul>
+          <ul>
+            <li>「全角のアスタリスク5つ＋アルファベット」を基本とする</li>
+            <li>場面に応じて「＊」の個数および「A,B,」の表現は調整可能</li>
+          </ul>
         </Td>
-    </tr>
-    <tr>
-        <Td>社名を日本語表記にしたい場合</Td>
-        <Td><strong>株式会社SmartHR</strong></Td>
-        <Td>自社名とする</Td>
-    </tr>
-  </tbody>
-</Table>
+      </tr>
+      <tr>
+        <Td>企業名（リアルさを表現したい場合）</Td>
+        <Td><strong>・株式会社SmartHR</strong></Td>
+        <Td>
+          <ul>
+            <li>自社名とする</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>支店名・事業所名</Td>
+        <Td>（任意）</Td>
+        <Td>
+          <ul>
+            <li>実在する土地の名称を使用可能</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>事業所番号</Td>
+        <Td><strong>・12345</strong></Td>
+        <Td>{/* 補足がないので空にする */}</Td>
+      </tr>
+      <tr>
+        <Td>事業所番号（雇用保険）</Td>
+        <Td><strong>・1234-567890-1</strong></Td>
+        <Td>{/* 補足がないので空にする */}</Td>
+      </tr>
+      <tr>
+        <Td>事業所整理記号（社保）</Td>
+        <Td><strong>・61-クセリ</strong></Td>
+        <Td>
+          <ul>
+            <li>自社のものを使用する</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>法人番号</Td>
+        <Td><strong>・011001093311</strong></Td>
+        <Td>
+          <ul>
+            <li>自社のものを使用する</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>証券番号</Td>
+        <Td><strong>・987654321</strong></Td>
+        <Td>{/* 補足がないので空にする */}</Td>
+      </tr>
+    </tbody>
+  </Table>
 </TableReel>
 
+### 従業員情報
 
+<TableReel>
+  <Table>
+    <thead>
+      <tr>
+        <Th style={{ minWidth: "8em" }}>項目</Th>
+        <Th style={{ minWidth: "16em" }}>サンプルテキスト</Th>
+        <Th style={{ minWidth: "24em" }}>補足</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>社員番号</Td>
+        <Td><strong>・右記のリンクを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_従業員｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1fSpx7ffyUcAyvLJVt2xPwu4PpIdikYVvik5VGsJcjYM/edit?gid=1565540961#gid=1565540961)（CSVファイルのダウンロードができ、デモ環境にも利用可能）</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>従業員の氏名</Td>
+        <Td><strong>・右記のリンクを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_従業員｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1fSpx7ffyUcAyvLJVt2xPwu4PpIdikYVvik5VGsJcjYM/edit?gid=1565540961#gid=1565540961)（CSVファイルのダウンロードができ、デモ環境にも利用可能）</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>メールアドレス</Td>
+        <Td><strong>・{'{名前.名字}'}@example.com<br />・右記のリンクを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_従業員｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1fSpx7ffyUcAyvLJVt2xPwu4PpIdikYVvik5VGsJcjYM/edit?gid=1565540961#gid=1565540961)（CSVファイルのダウンロードができ、デモ環境にも利用可能）</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>部署（所属）</Td>
+        <Td><strong>・右記のリンクを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_部署｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1GAgtjnh8q1CLzh9KcGgiZJApiAJ-rjfYKCQpPcxRSGk/edit?gid=849778994#gid=849778994)（CSVファイルのダウンロードができ、デモ環境にも利用可能）</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>役職</Td>
+        <Td><strong>・右記のリンクを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_役職｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1zE5gAHsVBzc2luQH6BDLcZJaA1fLV5X538YxwM-SOLI/edit?gid=1405223709#gid=1405223709)</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>等級</Td>
+        <Td><strong>・右記のリンクを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_等級｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/11ngsV64b1TJCTBZbNYFJwDeVu6QZSlNSqbAlYxtSA4c/edit?gid=1405223709#gid=1405223709)</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>職種</Td>
+        <Td><strong>・右記のリンクを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_職種｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1ljVM6PC0PMRxrS3EVK92U2T2H3uXsQI8RbSqfe5p67g/edit?gid=1267697652#gid=1267697652)</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>マイナンバー</Td>
+        <Td><strong>・0000000000</strong></Td>
+        <Td></Td>
+      </tr>
+      <tr>
+        <Td>生命保険会社名</Td>
+        <Td><strong>・＊＊＊生命保険</strong></Td>
+        <Td>
+          <ul>
+            <li>2つ以上掲載したい場合は、「企業名」と同様、「＊＊＊A生命保険」「＊＊＊B生命保険」とする</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>銀行名</Td>
+        <Td><strong>・＊＊＊銀行</strong></Td>
+        <Td>
+          <ul>
+            <li>2つ以上掲載したい場合は、「企業名」と同様、「＊＊＊A銀行」「＊＊＊B銀行」とする</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>銀行コード</Td>
+        <Td><strong>・1234</strong></Td>
+        <Td>
+          <ul>
+            <li>2つ以上掲載したい場合は、0から9までの整数を順にする（2345）</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>銀行支店名</Td>
+        <Td>（任意）</Td>
+        <Td>
+          <ul>
+            <li>支店名は銀行名と紐づいてなければ問題ないため</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>銀行支店コード</Td>
+        <Td>（任意）</Td>
+        <Td>
+          <ul>
+            <li>支店名は銀行名と紐づいてなければ問題ないため</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>口座番号</Td>
+        <Td><strong>・1234567</strong></Td>
+        <Td>
+          <ul>
+            <li>2つ以上掲載したい場合は、0から9までの整数を順にする（2345678）</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>駅名</Td>
+        <Td>（任意）</Td>
+        <Td>
+          <ul>
+            <li>路線や駅名は実在するものを使用可能</li>
+          </ul>
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableReel>
 
-### その他
+### その他氏名
 
-| 項目 | 推奨する表記 | 補足 |
-| --- | --- | --- |
-| 住所 | **〒106-6217 東京都港区六本木3-2-1 住友不動産六本木グランドタワー** | 2つ以上掲載したい場合は、[コーポレートサイト](https://smarthr.co.jp/company/)を参照し、支社の住所を使用してください。 |
-| 固定電話番号 | **03-1234-5678** | 2つ以上掲載したい場合は、先頭を「03」にして、以降は0から9までの整数を順に記載してください（例：03-2345-6789） |
-| 携帯電話番号 | **080-1234-5678** | 2つ以上掲載したい場合は、先頭を「080」にして、以降は0から9までの整数を順に記載してください（例：080-2345-6789） |
+<TableReel>
+  <Table>
+    <thead>
+      <tr>
+        <Th style={{ minWidth: "8em" }}>項目</Th>
+        <Th style={{ minWidth: "14em" }}>サンプルテキスト</Th>
+        <Th style={{ minWidth: "26em" }}>補足</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>事業者氏名</Td>
+        <Td><strong>・須磨一郎</strong>（スマイチロウ）</Td>
+        <Td>{/* 補足がないので空にする */}</Td>
+      </tr>
+      <tr>
+        <Td>代表取締役名</Td>
+        <Td><strong>・須磨一郎</strong>（スマイチロウ）</Td>
+        <Td>{/* 補足がないので空にする */}</Td>
+      </tr>
+      <tr>
+        <Td>社労士氏名</Td>
+        <Td><strong>・社労士セイジ</strong>（シャロウシセイジ）</Td>
+        <Td>{/* 補足がないので空にする */}</Td>
+      </tr>
+      <tr>
+        <Td>SmartHR社の人物の氏名</Td>
+        <Td><strong>・須磨栄子</strong>（スマエイコ）<br /><strong>・須磨英知</strong>（スマエイチ）</Td>
+        <Td>{/* 補足がないので空にする */}</Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableReel>
 
+### スキル・学習
 
+<TableReel>
+  <Table>
+    <thead>
+      <tr>
+        <Th style={{ minWidth: "8em" }}>項目</Th>
+        <Th style={{ minWidth: "16em" }}>サンプルテキスト</Th>
+        <Th style={{ minWidth: "26em" }}>補足</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>スキル名</Td>
+        <Td><strong>・右記のドキュメントを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_スキル｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1EH5NbsN-QKxTtQx877P5IE8UxJQwCk61ZcMbD2W4KTY/edit?gid=125791884#gid=125791884)（CSVファイルのダウンロードができ、デモ環境にも利用可能）</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>資格名</Td>
+        <Td><strong>・＊＊＊検定<br />・＊＊＊資格<br />・＊＊＊エキスパート<br />・＊＊＊スペシャリスト<br />・＊＊＊試験</strong></Td>
+        <Td>
+          <ul>
+            <li>実在する資格は商標登録されている可能性があるため、左記のサンプルテキストを使用する</li>
+            <li>「2級」など、レベルを表現する数字をいれる場合はどんな数字でも使用可能</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>研修名</Td>
+        <Td><strong>・右記のドキュメントを参照</strong></Td>
+        <Td>
+          <ul>
+            <li>[サンプルテキスト\_研修｜Googleスプレッドシート](https://docs.google.com/spreadsheets/d/17iNboT2w6_0LECP9m_pkp_hhXRZTlawZkizdcSBUMis/edit?gid=1579050107#gid=1579050107)（CSVファイルのダウンロードができ、デモ環境にも利用可能）</li>
+          </ul>
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableReel>
+
+### 情報システム関連
+
+<TableReel>
+  <Table>
+    <thead>
+      <tr>
+        <Th style={{ minWidth: "8em" }}>項目</Th>
+        <Th style={{ minWidth: "14em" }}>サンプルテキスト</Th>
+        <Th style={{ minWidth: "26em" }}>補足</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>アプリ名</Td>
+        <Td><strong>・{'{機能}'}SaaS<br />・{'{機能}'}アプリ</strong></Td>
+        <Td>
+          <ul>
+            <li>例）オンライン商談SaaS 、ビジネスチャットSaaS、勤怠管理SaaS、経費精算SaaS、願客管理SaaS</li>
+            <li>実在するサービス名を掲載したい場合は、正式名称を記載する</li>
+          </ul>
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableReel>
+
+### 年月日・時間
+
+<TableReel>
+  <Table>
+    <thead>
+      <tr>
+        <Th style={{ minWidth: "8em" }}>項目</Th>
+        <Th style={{ minWidth: "14em" }}>サンプルテキスト</Th>
+        <Th style={{ minWidth: "26em" }}>補足</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>年月日（生年月日）</Td>
+        <Td><strong>・平成nn年mm月dd日<br />・yyyy年mm月dd日<br />・yyyy/mm/dd</strong></Td>
+        <Td>
+          <ul>
+            <li>機能や掲載する書類に表記を合わせる</li>
+            <li>例）公的書類の場合は年号のケースが多い、UIに掲載される場合はyyyy/mm/dd、など</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>年月日（給与明細）</Td>
+        <Td><strong>・yyyy（令和nn）年yy月dd日</strong></Td>
+        <Td>
+          <ul>
+            <li>リリースや掲載日に合わせて調整する</li>
+            <li>給与支払い日として一般的な日付を推奨する</li>
+            <li>土日祝日は避け、平日にする</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>年月日（被保険者資格取得票取得年月日）</Td>
+        <Td><strong>・令和nn年mm月dd日</strong></Td>
+        <Td>{/* 補足がないので空にする */}</Td>
+      </tr>
+      <tr>
+        <Td>年月日（その他）</Td>
+        <Td><strong>・平成nn年mm月dd日<br />・yyyy年mm月dd日<br />・yyyy/mm/dd<br />・yyyy/mm/dd 00:00</strong></Td>
+        <Td>
+          <ul>
+            <li>機能や掲載する書類に表記を合わせる</li>
+            <li>リリースや掲載日に合わせて調整する</li>
+            <li>特別な意味を持たない日時の場合、自然なUIに見せるため、日時が被らないようランダムにする</li>
+            <li>土日祝日は避け、平日にする</li>
+            <li>時間は、業務時間として一般的な「9:00〜17:00」の間にする</li>
+          </ul>
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableReel>
+
+### その他汎用的に使用できるもの
+
+<TableReel>
+  <Table>
+    <thead>
+      <tr>
+        <Th style={{ minWidth: "8em" }}>項目</Th>
+        <Th style={{ minWidth: "14em" }}>サンプルテキスト</Th>
+        <Th style={{ minWidth: "26em" }}>補足</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>住所（1つ記載）</Td>
+        <Td><strong>・〒106-6217 東京都港区六本木3-2-1 住友不動産六本木グランドタワー</strong></Td>
+        <Td>
+          <ul>
+            <li>自社の住所を使用する</li>
+            <li>ビル名は省略可能</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>住所（複数記載）</Td>
+        <Td><strong>・〒451-6008 愛知県名古屋市西区牛島町6-1 名古屋ルーセントタワー8階<br />・〒530-0011 大阪府大阪市北区大深町4-20 グランフロント大阪タワーA34階<br />・〒730-0011 広島県広島市中区基町11-10 合人社広島紙屋町ビル8階<br />・〒810-0001 福岡県福岡市中央区天神2-4-38 NTT-KFビル9階</strong></Td>
+        <Td>
+          <ul>
+            <li>2つ以上掲載したい場合は、支社の住所を使用する</li>
+            <li>ビル名・階数は省略可能</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>電話番号（固定電話）</Td>
+        <Td><strong>・03-1234-5678</strong></Td>
+        <Td>
+          <ul>
+            <li>2つ以上掲載したい場合は、先頭を「03」にして、以降は0から9までの整数を順にする（例：03-2345-6789）</li>
+          </ul>
+        </Td>
+      </tr>
+      <tr>
+        <Td>電話番号（携帯電話）</Td>
+        <Td><strong>・080-1234-5678</strong></Td>
+        <Td>
+          <ul>
+            <li>・2つ以上掲載したい場合は、先頭を「080」にして、以降は0から9までの整数を順にする（例：080-2345-6789）</li>
+          </ul>
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableReel>
 
 ## フィードバック先
 サンプルテキストの利用方法に関する相談・フィードバック
