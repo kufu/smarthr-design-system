@@ -19,13 +19,13 @@ importers:
         version: 2.1.4
       '@astrojs/react':
         specifier: ^3.6.3
-        version: 3.6.3(@types/node@24.0.3)(@types/react-dom@18.3.7(@types/react@18.3.21))(@types/react@18.3.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.89.2)(sass@1.79.4)
+        version: 3.6.3(@types/node@24.0.3)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.89.2)(sass@1.79.4)
       '@types/react':
-        specifier: ^18.3.21
-        version: 18.3.21
+        specifier: ^18.3.23
+        version: 18.3.23
       '@types/react-dom':
         specifier: ^18.3.7
-        version: 18.3.7(@types/react@18.3.21)
+        version: 18.3.7(@types/react@18.3.23)
       algoliasearch:
         specifier: ^5.25.0
         version: 5.25.0
@@ -64,7 +64,7 @@ importers:
         version: 1.1.0(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       smarthr-ui:
         specifier: ^74.0.0
-        version: 74.0.0(@types/react@18.3.21)(eslint@9.29.0(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)
+        version: 74.0.0(@types/react@18.3.23)(eslint@9.29.0(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)
       styled-components:
         specifier: ^6.1.18
         version: 6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1680,9 +1680,6 @@ packages:
   '@types/prismjs@1.26.4':
     resolution: {integrity: sha512-rlAnzkW2sZOjbqZ743IHUhFcvzaGbqijwOu8QZnZCjfQzBqFE3s4lOTJEsxikImav9uzz/42I+O7YUs1mWgMlg==}
 
-  '@types/prop-types@15.7.14':
-    resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
-
   '@types/prop-types@15.7.15':
     resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
 
@@ -1699,9 +1696,6 @@ packages:
     resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
     peerDependencies:
       '@types/react': ^18.0.0
-
-  '@types/react@18.3.21':
-    resolution: {integrity: sha512-gXLBtmlcRJeT09/sI4PxVwyrku6SaNUj/6cMubjE6T6XdY1fDmBL7r0nX0jbSZPU/Xr0KuwLLZh6aOYY5d91Xw==}
 
   '@types/react@18.3.23':
     resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
@@ -6404,10 +6398,10 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@3.6.3(@types/node@24.0.3)(@types/react-dom@18.3.7(@types/react@18.3.21))(@types/react@18.3.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.89.2)(sass@1.79.4)':
+  '@astrojs/react@3.6.3(@types/node@24.0.3)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.89.2)(sass@1.79.4)':
     dependencies:
-      '@types/react': 18.3.21
-      '@types/react-dom': 18.3.7(@types/react@18.3.21)
+      '@types/react': 18.3.23
+      '@types/react-dom': 18.3.7(@types/react@18.3.23)
       '@vitejs/plugin-react': 4.4.0(vite@5.4.10(@types/node@24.0.3)(sass-embedded@1.89.2)(sass@1.79.4))
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -7836,8 +7830,6 @@ snapshots:
 
   '@types/prismjs@1.26.4': {}
 
-  '@types/prop-types@15.7.14': {}
-
   '@types/prop-types@15.7.15': {}
 
   '@types/qs@6.14.0': {}
@@ -7846,14 +7838,9 @@ snapshots:
 
   '@types/range-parser@1.2.7': {}
 
-  '@types/react-dom@18.3.7(@types/react@18.3.21)':
+  '@types/react-dom@18.3.7(@types/react@18.3.23)':
     dependencies:
-      '@types/react': 18.3.21
-
-  '@types/react@18.3.21':
-    dependencies:
-      '@types/prop-types': 15.7.14
-      csstype: 3.1.3
+      '@types/react': 18.3.23
 
   '@types/react@18.3.23':
     dependencies:
@@ -11756,9 +11743,9 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  react-innertext@1.1.5(@types/react@18.3.21)(react@19.1.0):
+  react-innertext@1.1.5(@types/react@18.3.23)(react@19.1.0):
     dependencies:
-      '@types/react': 18.3.21
+      '@types/react': 18.3.23
       react: 19.1.0
 
   react-instantsearch-core@7.15.7(algoliasearch@5.25.0)(react@19.1.0):
@@ -12517,7 +12504,7 @@ snapshots:
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@74.0.0(@types/react@18.3.21)(eslint@9.29.0(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3):
+  smarthr-ui@74.0.0(@types/react@18.3.23)(eslint@9.29.0(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.13
@@ -12529,7 +12516,7 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       react-draggable: 4.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-icons: 5.5.0(react@19.1.0)
-      react-innertext: 1.1.5(@types/react@18.3.21)(react@19.1.0)
+      react-innertext: 1.1.5(@types/react@18.3.23)(react@19.1.0)
       react-intl: 7.1.6(react@19.1.0)(typescript@5.8.3)
       react-transition-group: 4.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       styled-components: 6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
