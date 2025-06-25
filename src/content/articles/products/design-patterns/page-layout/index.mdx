@@ -18,12 +18,13 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 
 エラー画面を除き、SmartHRが提供する画面では[AppHeader](/products/components/app-header/)をビューポート最上部に配置します。
 
-それぞれの要素同士をどのようにグルーピングするかについては、視覚的グルーピングの基準（WIP）を参照してください。
+それぞれの要素同士をどのようにグルーピングするかについては、[視覚的グルーピング](/products/design-patterns/visual-grouping/)を参照してください。
 
 ### コンテナ領域の幅
 
-[AppHeader](/products/components/app-header/)を除いたコンテナ領域の幅は、**基本的に1120px**とします。
-ただし、次のような場合には画面いっぱいにコンテナ領域を広げることもできます。
+[AppHeader](/products/components/app-header/)を除いたコンテナ領域は[Container](/products/components/layout/container)コンポーネントを使用し、コンテナ領域の横幅はサイズ（`size`props）で指定します。
+
+次のような場合には、より広い横幅の選択を検討します。
 
 - 大量のデータ項目を表示する場合
 - [サイドナビゲーションとコンテンツの2カラム](#3-6)や[コレクションとシングルの2カラム](#3-7)など、1つのカラムに1ページ相当の情報量を表示する場合
