@@ -8,8 +8,8 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Cluster, Text } from 'smarthr-ui'
 
-import checkBoxDo from './images/check-box-do.png';
-import checkBoxDont from './images/check-box-dont.png';
+import checkBoxDo from './images/check-box-do1.png';
+import checkBoxDont from './images/check-box-dont1.png';
 import checkBoxDo2 from './images/check-box-do2.png';
 import checkBoxDont2 from './images/check-box-dont2.png';
 import checkBoxAlignmentDo from './images/check-box-alignment-do.png';
@@ -76,13 +76,25 @@ import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
 
 ![スクリーンショット: チェックボックスの縦並びレイアウトの例](./images/check-box-vertical-alignment.png)
 
-### 「ON/OFF」といった2択の切り替え入力に使用しない
+### 2択の切り替え入力に使用する
 
-チェックボックスは、「ON/OFF」「有効/無効」「はい/いいえ」といった2択の切り替え入力には原則として使用しないでください。  
+チェックボックスは状況に応じて「ON/OFF」といった2択の切り替え入力に使用できます。 
 
-「ON/OFF」などのブール値で制御できる項目にチェックボックスを使用した場合、一方の選択肢が暗黙的になりチェック状態から現在の選択状態が認識しづらくなる場合があります。
-こうした場合には、選択肢を明示的に表示できる[RadioButton](/products/components/radio-button/)を使用してください。
+#### 2択の切り替え入力に使用できる場合
+- 選択肢のコンテキストがわかるラベルになっている
 
+説明文やほかの設定項目など前後のコンテキストにより、一方の選択肢が明示的になっている場合はチェックボックスを使用できます。
+
+![2択の切り替え入力に使用する際のチェックボックスの使用例](./images/check-box-onoff-ok.png)
+
+- 利用規約などユーザーに許諾を得る必要がある内容の確認を促す
+- [削除ダイアログ](https://smarthr.design/products/design-patterns/delete-dialog/#h3-5)など、重要な操作を行なう場合でユーザーに注意事項の確認を促す
+
+![削除ダイアログで操作の確認を促す際のチェックボックスの使用例](./images/check-box-confirm.png)
+
+#### 2択の切り替え入力に使用できない場合
+「ON/OFF」などのブール値で制御できる項目にチェックボックスを使用した場合、一方の選択肢が暗黙的になりチェック状態から現在の選択状態が認識しづらくなる場合があります。 
+こうした場合には、選択肢を明示的に表示できる[RadioButton](https://smarthr.design/products/components/radio-button/)を使用してください。
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={checkBoxDo} alt="Do" />
@@ -90,17 +102,11 @@ import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={checkBoxDont} alt="Dont" />
-    <Text slot="label">「無効」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
+    <Text slot="label">「通知しない」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
   </DoAndDont>
 </Cluster>
 
-例外として、以下のようにユーザーに操作内容の確認や設定の明示を促す手段としてチェックボックスを単独で使用することがあります。
 
-- 利用規約などユーザーに許諾を得る必要がある内容の確認を促す場合
-- [削除ダイアログ](/products/design-patterns/delete-dialog/#h3-5)など、重要な操作を行なう場合でユーザーに注意事項の確認を促す場合
-- 一方の選択肢が明確であり、[RadioButton](/products/components/radio-button/)を使うことで視覚的に冗長な構成になる場合
-
-![削除ダイアログで操作の確認を促す際のチェックボックスの使用例](./images/check-box-confirm.png)
 
 ### チェックボックス内に操作可能な要素を含めない
 
