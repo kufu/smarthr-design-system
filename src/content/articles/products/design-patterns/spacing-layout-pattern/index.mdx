@@ -143,9 +143,10 @@ SmartHRにおいては、**基準サイズの16pxを`1`** とした[プリミテ
 #### 代表的なページ内レイアウトのパディング
 
 1. メインコンテンツのパディング：`2（32px）`
-    - [UpwardLink](/products/components/text-link/upward-link/)がある場合は、[UpwardLinkがある場合のパディング](#h4-4)を参照してください。
+    - [Container](/products/components/layout/container)を使用することで、自動的に適用されます。`padding`propsで値を指定できます。
+    - [UpwardLink](/products/components/text-link/upward-link/)がある場合は、[UpwardLinkがある場合のパディング](#h4-4)を参照してContainerの`padding`propsを指定してください。
 2. コンテンツエリアのパディング：`1.5（24px）`
-    - [Base](/products/components/base/)の `padding` propsに値を指定してください。
+    - [Base](/products/components/base/)の`padding`propsに値を指定してください。
 3. コンテンツエリア内のグループのパディング：`1（16px）`
     - [BaseColumn](/products/components/base/base-column/)を使用することで、自動的に適用されます。
 
@@ -154,7 +155,7 @@ SmartHRにおいては、**基準サイズの16pxを`1`** とした[プリミテ
 #### 代表的なダイアログ内レイアウトのパディング
 
 1. コンテンツエリアのパディング：`1.5（24px）`
-    - [Dialog](/products/components/dialog/)を使用することで、自動的に適用されます。
+    - [Dialog](/products/components/dialog/)の各コンポーネントを使用することで、自動的に適用されます。`contentPadding`propsで値を指定できます。
 2. コンテンツエリア内のグループのパディング：`1（16px）`
     - [BaseColumn](/products/components/base/base-column/)を使用することで、自動的に適用されます。
 
