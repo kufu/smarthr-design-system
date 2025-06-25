@@ -1,0 +1,41 @@
+---
+title: 'Container'
+description: '主要なコンテンツ幅を管理するためのコンポーネントです。'
+---
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+
+主要なコンテンツ幅を管理するためのコンポーネントです。
+
+{/* TODO: smarthr-ui で Container がリリースされたらコメントを外す */}
+{/* <ComponentStory name="Container" /> */}
+
+## レイアウト
+
+指定された大きさを保ちながら、左右中央に配置されます。コンテナの大きさよりウィンドウ幅が小さい場合は、パディングを保ちながらコンテナの幅が狭くなります。
+
+### コンテナの大きさ
+
+`size` props を使ってコンテナの大きさを指定できます。デフォルトは`DEFAULT`です。
+
+大きさ | 幅トークン | 値（px）
+:--- | :--- | :---
+`NARROW` | `col6` | 880px
+`DEFAULT` | `col8` | 1184px
+`WIDE` | `col9` | 1336px
+`FULL` | - | `width: 100%`
+
+### コンテナのパディング
+
+`padding` props を使ってコンテナのパディングを指定できます。
+
+デフォルトで上下左右2文字ずつのパディングが設定されています。モバイルレイアウトの場合は上下1.5文字、左右1文字ずつのパディングが設定されます。いずれの値も上書きできます。
+
+
+## Props
+
+<ComponentPropsTable name="Container" />
+
+## 関連リンク
+
+- [幅トークン](/products/design-tokens/width/)
