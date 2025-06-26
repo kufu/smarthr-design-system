@@ -1,4 +1,4 @@
-import { IntlProvider, TextLink } from 'smarthr-ui';
+import { TextLink } from 'smarthr-ui';
 
 import type { ComponentPropsWithoutRef } from 'react';
 
@@ -17,10 +17,8 @@ export default function CustomLink({ children, href, ...rest }: Props) {
   const isExternal = href.match(/^https?:\/\/(?!smarthr\.design).*?$/) !== null;
 
   return (
-    <IntlProvider locale="ja">
-      <TextLink {...rest} href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noreferrer' : undefined}>
-        {children}
-      </TextLink>
-    </IntlProvider>
+    <TextLink {...rest} href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noreferrer' : undefined}>
+      {children}
+    </TextLink>
   );
 }

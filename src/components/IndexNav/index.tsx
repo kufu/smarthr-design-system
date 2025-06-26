@@ -63,6 +63,7 @@ export default function IndexNav({ targetId, headings, ignoreH3Nav = false }: Pr
 
   return (
     <>
+      {/* PC表示 */}
       <div className={styles.navWrapper} ref={wrapperRef}>
         <IndexNavItems headings={headings} indexNavRef={indexNavRef} currentHeadingId={currentHeadingId} />
       </div>
