@@ -107,6 +107,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 テキストに対して、Tooltipでさらに補足したい場合に使います。  
 補足する対象となるテキストの横に「<FaCircleInfoIcon color="TEXT_GREY" />」アイコン（`FaCircleInfoIcon`）を配置し、Tooltipの存在を明確に示します。
+アイコンの色には[`TEXT_GRAY`](/products/design-tokens/color/#3-2)を使います。
 
 #### B. アイコンのみ
 <ComponentPreview>
@@ -115,14 +116,14 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
     triggerType="icon"
     horizontal="left"
     vertical="bottom">
-      <FaUserLargeIcon color="TEXT_GREY" />
+      <FaUserLargeIcon color="TEXT_LINK" />
   </DynamicTooltip>
   <DynamicTooltip
     message="書類の名称"
     triggerType="icon"
     horizontal="left"
     vertical="bottom">
-      <FaFileIcon color="TEXT_GREY" />
+      <FaFileIcon color="TEXT_LINK" />
   </DynamicTooltip>
 </ComponentPreview>
 
@@ -130,6 +131,8 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 - アイコン単体で意味が伝わるようであれば、Tooltipは不要です。
 - アイコンに必ず代替テキストを設定します。
+
+テキストなどの他の要素と合わせず、アイコン単体で配置する場合は、マウスオーバーが可能であることを示唆するためにリンク色（[`TEXT_LINK`](/products/design-tokens/color/#h3-2)）を使います。
 
 ##### テキストとあわせて使用
 <ComponentPreview>
@@ -156,6 +159,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 </ComponentPreview>
 
 トリガーとなるのはアイコンのみで、タイトルや[よくあるテーブルのオブジェクト名](/products/design-patterns/smarthr-table/#h4-0)のテキストとあわせて使います。  
+アイコンの色には[`TEXT_GRAY`](/products/design-tokens/color/#h3-2)を使います。
 
 ##### ステータスの補足に使用
 <ComponentPreview>
