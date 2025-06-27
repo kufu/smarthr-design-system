@@ -8,8 +8,8 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Cluster, Text } from 'smarthr-ui'
 
-import checkBoxDo from './images/check-box-do.png';
-import checkBoxDont from './images/check-box-dont.png';
+import checkBoxDo from './images/check-box-do1.png';
+import checkBoxDont from './images/check-box-dont1.png';
 import checkBoxDo2 from './images/check-box-do2.png';
 import checkBoxDont2 from './images/check-box-dont2.png';
 import checkBoxAlignmentDo from './images/check-box-alignment-do.png';
@@ -76,11 +76,13 @@ import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
 
 ![スクリーンショット: チェックボックスの縦並びレイアウトの例](./images/check-box-vertical-alignment.png)
 
-### 「ON/OFF」といった2択の切り替え入力に使用しない
+### 2択の切り替えに使う場合の注意
 
-チェックボックスは、「ON/OFF」「有効/無効」「はい/いいえ」といった2択の切り替え入力には原則として使用しないでください。  
+原則として「ON/OFF」「有効/無効」「はい/いいえ」といった2択の切り替え入力には[RadioButton](/products/components/radio-button/)の利用を検討してください。
+ただし状況に応じてチェックボックスを2択の切り替え入力に使用できます。 
 
-「ON/OFF」などのブール値で制御できる項目にチェックボックスを使用した場合、一方の選択肢が暗黙的になりチェック状態から現在の選択状態が認識しづらくなる場合があります。
+#### チェックボックスを2択の切り替え入力に使用できない場合
+「ON/OFF」などのブール値で制御できる項目にチェックボックスを使用した際に、一方の選択肢が暗黙的になりチェック状態から現在の選択状態が認識しづらくなる場合があります。 
 こうした場合には、選択肢を明示的に表示できる[RadioButton](/products/components/radio-button/)を使用してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
@@ -90,14 +92,16 @@ import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={checkBoxDont} alt="Dont" />
-    <Text slot="label">「無効」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
+    <Text slot="label">「従業員に表示しない」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
   </DoAndDont>
 </Cluster>
 
-例外として、以下のようにユーザーに操作内容の確認を促す手段としてチェックボックスを単独で使用することがあります。
+#### チェックボックスを2択の切り替え入力に使用できる場合
+ラベルや説明文、ほかの設定項目など、前後のコンテキストによりもう一方の選択肢が明示的な場合は、チェックボックスを使用できます。
 
-- 利用規約などユーザーに許諾を得る必要がある内容の確認を促す場合
-- [削除ダイアログ](/products/design-patterns/delete-dialog/#h3-5)など、重要な操作を行なう場合でユーザーに注意事項の確認を促す場合
+![チェックボックスを2択の切り替え入力に使用する例](./images/check-box-onoff-ok.png)
+
+利用規約への同意や、[削除ダイアログ](/products/design-patterns/delete-dialog/#h3-5)での重要な操作に対する注意事項の確認など、ユーザーに対して明示的な許諾や確認を求める場合にチェックボックスを使用できます。
 
 ![削除ダイアログで操作の確認を促す際のチェックボックスの使用例](./images/check-box-confirm.png)
 
