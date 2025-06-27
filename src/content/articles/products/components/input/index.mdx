@@ -184,7 +184,7 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 ## アクセシビリティ
 ### 基本的なアクセシビリティ機能
 #### FormControlとの統合
-FormControlと組み合わせることで、ラベルとInput、補助テキスト、エラーメッセージが、それぞれ適切に関連付けされます。詳しくは、[FormControl](/products/components/form-control/)を参照してください。
+[FormControl](/products/components/form-control/)と組み合わせることで、ラベルとInput、補助テキスト、エラーメッセージが、それぞれ適切に関連付けされます。
 #### 強制カラーモード対応
 ユーザーがテキストを読みやすくするために[強制カラーモード](https://developer.mozilla.org/ja/docs/Web/CSS/@media/forced-colors)を設定した場合、Inputのボーダーなどの色が適切に表示されるように実装されています（図1）。
 <Grid autoRepeat="auto-fill">
@@ -193,7 +193,7 @@ FormControlと組み合わせることで、ラベルとInput、補助テキス�
   </ImgWithDesc>
 </Grid>
 #### エラー状態
-[error属性](https://github.com/kufu/smarthr-ui/blob/75eb34543a7bf10e77a251fb110bee7d456d8849/packages/smarthr-ui/src/components/Input/Input.tsx#L163)を設定するとaria-invalid属性が自動的に付与され、スクリーンリーダーでフォーカス時にエラー状態であることが通知されます（図2-1、図2-2）。
+error属性を設定するとaria-invalid属性が自動的に付与され、スクリーンリーダーでフォーカス時にエラー状態であることが通知されます（図2-1、図2-2）。
   <Grid>
     <ImgWithDesc description='図2-1: errorを設定した場合の見た目の例'>
       ![図2-1: エラー状態のメールアドレス入力フィールド。エラーメッセージが表示され赤い枠線で視覚的に強調されている](./images/error-input.png)
