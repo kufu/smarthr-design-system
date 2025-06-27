@@ -71,9 +71,9 @@ SmartHR UIでは、`variant` propsのデフォルトは`secondary`です。
 ```
 
 ### Tertiary
-Tertiaryボタンは、画面内の通常の操作をユーザーに示す役割を持ちます。
+Tertiaryボタンは、画面内の補助的な操作をユーザーに示す役割を持ちます。主にSecondaryボタンより重要度の低い操作に使います。
 
-Secondaryボタンと役割は同じですが、Secondaryボタンより重要度の低い操作や、Secondaryボタンではレイアウト上の不都合がある場合に使います。
+他の画面へ移動するリンクとして使いたい場合は、[TextLink](/products/components/text-link/)を使ってください。
 
 <p>
   <NotificationBar base="base" layer={2} type="warning" message="Tertiaryボタンはsmarthr-uiで実装予定です。" />
@@ -101,7 +101,7 @@ Dangerボタンは、[ワンクッション必要な操作](/products/design-pat
 ### Text
 Textボタンは、画面内の通常の操作をユーザーに示す役割を持ちます。
 
-SecondaryボタンやTertiaryボタンと役割は同じですが、それらの装飾（枠線や文字色）がレイアウト上の不都合を引き起こす場合にのみ使います。例えば、次のような場合です。
+Secondaryボタンと役割は同じですが、Secondaryボタンの装飾（枠線）が過剰な場合に使います。例えば、次のような場合です。
 
 - コンポーネントに内包する場合
   - 例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/) 
