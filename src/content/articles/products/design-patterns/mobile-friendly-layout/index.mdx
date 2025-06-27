@@ -96,13 +96,13 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 
 ### 余白の取り方
 
-デスクトップの[代表的なページ内レイアウトのパディング](/products/spacing-layout-pattern/#h4-2)に対して、モバイルでは表示コンテンツ量を増やしたいため余白を以下のように定めます。
+デスクトップの[代表的なページ内レイアウトのパディング](/products/design-patterns/spacing-layout-pattern/#h4-2)に対して、モバイルでは表示コンテンツ量を増やしたいため余白を以下のように定めます。
 
 1. メインコンテンツのパディング：
-    - ブロック方向（垂直方向）： `1.5 (24px)` ※変更なし
-    - インライン方向（水平方向）： `1 (16px)`
-1. コンテンツエリアのパディング： `1 (16px)`
-1. コンテンツエリア内のグループのパディング： `1 (16px)` ※変更なし
+    - ブロック方向（垂直方向）：`1.5 (24px)`、インライン方向（水平方向）：`1 (16px)`
+    - [Container](/products/components/layout/container/)を使用することで、自動的に適用されます。
+1. コンテンツエリアのパディング：`1 (16px)`
+1. コンテンツエリア内のグループのパディング：`1 (16px)` ※変更なし
 
 ![スクリーンショット： 代表的なページ内レイアウトのパディングの例。コンテンツ内のパディングの大きさが色分けされて示されている。](./images/spacing-example.png)
 
@@ -203,17 +203,21 @@ SmartHR UIは基本的にレスポンシブに実装されているため、配�
 
 ### useDevice
 
-`useDevice` フックを使って `isNarrowView` を取得し、必要に応じてコンポーネントに割り当ててください。SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。各プロダクト側でユーザーエージェントの判定を実装する必要はありません。
+`useDevice`フックを使って`isNarrowView`を取得し、必要に応じてコンポーネントに割り当ててください。SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。各プロダクト側でユーザーエージェントの判定を実装する必要はありません。
+
+### [Container](/products/components/layout/container/)
+
+画面が狭いときのパティングを`padding`propsの`narrowModeBlock`と`narrowModeInline`で指定できます。
 
 ### [Dialog](/products/components/dialog/)
 
-（WIP）SmartHR UIで実装するため `isNarrowView` を渡してください。基本的にプロダクトで考慮することはありません。
+（WIP）SmartHR UIで実装するため`isNarrowView`を渡してください。基本的にプロダクトで考慮することはありません。
 
 ### [BottomFixedArea](/products/components/bottom-fixed-area/)と[FloatArea](/products/components/float-area/)
 
 そのままレスポンシブに折り返して使うと表示領域を圧迫するため、モバイル向けに再設計が必要です。[1画面で複雑な操作をさせない](#h3-1)ように調整してください。
 
-SmartHR UI でも最低限のレイアウトを実装するため `isNarrowView` を渡してください。
+SmartHR UI でも最低限のレイアウトを実装するため`isNarrowView`を渡してください。
 
 ### [Pagination](/products/components/pagination/)
 
@@ -229,7 +233,7 @@ SmartHR UI でも最低限のレイアウトを実装するため `isNarrowView`
 
 モバイルでは、画面幅を越えたテーブルは[2次元スクロール](#h3-3)を招くため、垂直方向に積みあげることを推奨します。
 
-（WIP）SmartHR UIで `isNarrowView` を用いたレイアウトの切り替えを検討中です。
+（WIP）SmartHR UIで`isNarrowView`を用いたレイアウトの切り替えを検討中です。
 
 ### [Tooltip](/products/components/tooltip/)と[LineClamp](/products/components/line-clamp/)
 
