@@ -7,10 +7,15 @@ import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { BaseColumn, Cluster, CurrencyInput, FaMagnifyingGlassIcon, Text, } from 'smarthr-ui'
+import { BaseColumn, Cluster, CurrencyInput, FaMagnifyingGlassIcon, Text } from 'smarthr-ui'
+import Grid from '@/components/article/Grid.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
 import inputWidthDo from './images/input-width-do.png'
 import inputWidthDont from './images/input-width-dont.png'
+import inputFocused from './images/focused-input.png'
+import inputError from './images/error-input.png'
+import inputForcedColor from './images/forced-color-input.png'
 
 テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。
 
@@ -54,6 +59,8 @@ import inputWidthDont from './images/input-width-dont.png'
 入力項目の説明や例を載せる場合は[FormControl](/products/components/form-control/)のヘルプメッセージ（`helpMessage`）や入力例（`exampleMessage`）などを用い別途表示してください。どうしても表示領域が確保できない場合は[Tooltip](/products/components/tooltip/)を使うこともできます。
 
 プレースホルダ（`placeholder`）を使い入力項目の説明や例を載せてしまうと、入力中にプレースホルダの内容が確認できず入力補助として成立しないため非推奨です。
+
+
 
 ## Inputを使用したコンポーネント
 
@@ -174,6 +181,81 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 />
 ```
 
+## アクセシビリティ
+### 基本的なアクセシビリティ機能
+#### FormControlとの統合
+[FormControl](/products/components/form-control/)と組み合わせることで、ラベルとInput、補助テキスト、エラーメッセージが、それぞれ適切に関連付けされます。
+#### 強制カラーモード対応
+ユーザーがテキストを読みやすくするために[強制カラーモード](https://developer.mozilla.org/ja/docs/Web/CSS/@media/forced-colors)を設定した場合、Inputのボーダーなどの色が適切に表示されるように実装されています（図1）。
+<Grid autoRepeat="auto-fill">
+  <ImgWithDesc description='図1: 強制カラーモードを有効にした場合の見た目の例。ボーダーの色が濃くなり、境界がわかりやすくなる'>
+    ![図1: 強制カラーモードでの表示例。メールアドレス入力フィールドのボーダーが強調表示されている](./images/forced-color-input.png)
+  </ImgWithDesc>
+</Grid>
+#### エラー状態
+error属性を設定するとaria-invalid属性が自動的に付与され、スクリーンリーダーでフォーカス時にエラー状態であることが通知されます（図2-1、図2-2）。
+  <Grid>
+    <ImgWithDesc description='図2-1: errorを設定した場合の見た目の例'>
+      ![図2-1: エラー状態のメールアドレス入力フィールド。エラーメッセージが表示され赤い枠線で視覚的に強調されている](./images/error-input.png)
+    </ImgWithDesc>
+    <ImgWithDesc description='図2-2: errorを設定した場合のスクリーンリーダーでの読み上げの例。「エラーメッセージ」と「無効なデータ」がアナウンスされます'>
+      ![図2-2: スクリーンリーダーのエラー通知画面。入力フィールドのエラー状態が読み上げられている](./images/error-input-sr.png)
+    </ImgWithDesc>
+  </Grid>
+#### キーボード操作
+
+- <kbd>Tab</kbd>キーでフォーカスの移動が可能
+- フォーカス状態が視覚的に明確に表示される（図3）
+<Grid autoRepeat="auto-fill">
+  <ImgWithDesc description='図3: フォーカス状態の見た目の例'>
+    ![図3:フォーカス状態のメールアドレス入力フィールド。入力フィールド全体が青い太枠で囲まれ、現在の入力位置が明確に分かるようになっています](./images/focused-input.png)
+  </ImgWithDesc>
+</Grid>
+
+### 開発時の考慮点
+
+#### FormControlと併用する
+Inputコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を入力すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも入力の目的が伝達されます。
+  - eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、InputにFormControlを組み合わせることを促すものです。支援技術に入力の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
+#### アクセシブルネームの確認
+設定したラベルがInputのアクセシブルネームとして正しく関連付けられていることを確認してください。詳しくは、[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)を参照してください。
+
+#### 良い実装例
+
+```tsx editable
+
+<FormControl 
+  title="メールアドレス"
+>
+  <Input 
+    name="email" 
+    type="email"
+  />
+</FormControl>
+
+```
+
+FormControlとInputを使用すると、title属性で指定したテキストは`label`要素で出力されます。可視ラベルとアクセシブルネームが適切に設定され、すべてのユーザーが入力内容を理解しやすいフォームになります。
+
+#### 悪い実装例
+
+```tsx editable
+
+<Stack gap={0.5}>
+  <Text styleType="blockTitle">メールアドレス</Text>
+  <Input
+    name="email"
+    type="email"
+  />
+  <div style={{ color: 'red' }}>
+    正しいメールアドレスの形式で入力してください 
+  </div>
+</Stack>
+
+```
+
+- FormControlを使用していないため、ラベルとInputが関連付けられず、アクセシブルネームが設定されません。支援技術を使用するユーザーには、入力の目的が伝わらず、フォームの内容を正しく理解しにくくなります。
+- エラーメッセージがInputと適切に関連付けられておらず、スクリーンリーダーでフォーカス時にエラー状態であることが通知されません。
 
 ## Props
 
