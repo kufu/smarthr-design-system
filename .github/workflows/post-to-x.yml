@@ -1,0 +1,145 @@
+name: Post Release Note to X
+
+on:
+  push:
+    branches: [main]
+    # paths:
+      # - 'src/content/articles/releases/*.mdx'
+
+jobs:
+  post-to-x:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, 'feat: add release note')
+    
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get merged PR information
+        id: get-pr
+        run: |
+          # 最新のコミットに関連するPRを取得
+          COMMIT_SHA="${{ github.sha }}"
+          PR_NUMBER=$(gh pr list --state merged --limit 100 --json number,mergeCommit | jq -r --arg sha "$COMMIT_SHA" '.[] | select(.mergeCommit.oid == $sha) | .number')
+          
+          if [ -n "$PR_NUMBER" ]; then
+            echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+            echo "Found merged PR: #$PR_NUMBER"
+          else
+            echo "No merged PR found for this commit"
+            exit 0
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check if should post to X
+        id: check-post-to-x
+        if: steps.get-pr.outputs.pr_number != ''
+        run: |
+          PR_NUMBER=${{ steps.get-pr.outputs.pr_number }}
+          PR_BODY=$(gh pr view $PR_NUMBER --json body -q '.body')
+          
+          # X投稿フラグを確認
+          if echo "$PR_BODY" | grep -q "\[x\].*リリース時にXに投稿する"; then
+            echo "should_post=true" >> $GITHUB_OUTPUT
+            echo "Should post to X: true"
+            
+            # リリースノートの詳細を抽出
+            RELEASE_NOTE_SECTION=$(echo "$PR_BODY" | sed -n '/## リリースノート/,/$/p')
+            TITLE=$(echo "$RELEASE_NOTE_SECTION" | grep "**タイトル:**" | sed 's/.*\*\*タイトル:\*\* *//' | sed 's/<!-- .* -->//' | xargs)
+            DESCRIPTION=$(echo "$RELEASE_NOTE_SECTION" | grep "**説明:**" | sed 's/.*\*\*説明:\*\* *//' | sed 's/<!-- .* -->//' | xargs)
+            
+            echo "title=$TITLE" >> $GITHUB_OUTPUT
+            echo "description=$DESCRIPTION" >> $GITHUB_OUTPUT
+          else
+            echo "should_post=false" >> $GITHUB_OUTPUT
+            echo "Should post to X: false"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get release note file path
+        id: get-file-path
+        if: steps.check-post-to-x.outputs.should_post == 'true'
+        run: |
+          # 最新のリリースノートファイルを取得
+          LATEST_FILE=$(find src/content/articles/releases -name "*.mdx" -not -name "index.mdx" | sort -r | head -1)
+          
+          if [ -n "$LATEST_FILE" ]; then
+            echo "file_path=$LATEST_FILE" >> $GITHUB_OUTPUT
+            echo "Found release note file: $LATEST_FILE"
+            
+            # ファイル名からslugを生成
+            FILENAME=$(basename "$LATEST_FILE" .mdx)
+            SLUG="releases/$FILENAME"
+            echo "slug=$SLUG" >> $GITHUB_OUTPUT
+          else
+            echo "No release note file found"
+            exit 1
+          fi
+
+      - name: Post to X
+        if: steps.check-post-to-x.outputs.should_post == 'true'
+        run: |
+          TITLE="${{ steps.check-post-to-x.outputs.title }}"
+          DESCRIPTION="${{ steps.check-post-to-x.outputs.description }}"
+          SLUG="${{ steps.get-file-path.outputs.slug }}"
+          
+          # ベースURLを設定（実際の本番URLに変更してください）
+          BASE_URL="https://smarthr.design"
+          RELEASE_NOTE_URL="$BASE_URL/articles/$SLUG"
+          
+          # 投稿テキストを作成（文字数制限を考慮）
+          TWEET_TEXT="🎉 SmartHR Design System リリースノート
+
+$TITLE
+
+$DESCRIPTION
+
+詳細はこちら👇
+$RELEASE_NOTE_URL
+
+#SmartHR #DesignSystem"
+          
+          # 文字数制限（280文字）をチェック
+          TEXT_LENGTH=$(echo "$TWEET_TEXT" | wc -c)
+          if [ $TEXT_LENGTH -gt 280 ]; then
+            # 説明文を短縮
+            MAX_DESC_LENGTH=$((280 - $(echo "$TWEET_TEXT" | sed "s|$DESCRIPTION||" | wc -c) - 10))
+            SHORT_DESCRIPTION=$(echo "$DESCRIPTION" | cut -c1-$MAX_DESC_LENGTH)
+            TWEET_TEXT="🎉 SmartHR Design System リリースノート
+
+$TITLE
+
+${SHORT_DESCRIPTION}...
+
+詳細はこちら👇
+$RELEASE_NOTE_URL
+
+#SmartHR #DesignSystem"
+          fi
+          
+          echo "Tweet text:"
+          echo "$TWEET_TEXT"
+          
+          # 実際のX投稿処理（Twitter APIを使用）
+          # NOTE: 実際の実装では、Twitter API v2を使用してツイートを投稿する
+          # 以下はモック処理として記載
+          echo "Would post to X:"
+          echo "$TWEET_TEXT"
+          
+          # TODO: 実際のX API呼び出しを実装
+          # curl -X POST "https://api.twitter.com/2/tweets" \
+          #   -H "Authorization: Bearer ${{ secrets.TWITTER_BEARER_TOKEN }}" \
+          #   -H "Content-Type: application/json" \
+          #   -d "{\"text\":\"$TWEET_TEXT\"}"
+        env:
+          # TODO: 実際のTwitter APIトークンを設定
+          TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }} 
