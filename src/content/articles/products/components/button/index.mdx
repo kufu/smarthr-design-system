@@ -3,7 +3,7 @@ title: 'Button'
 description: 'Buttonコンポーネントは、押すことで特定の操作や処理を実行するコンポーネントです。'
 ---
 
-import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
+import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon, NotificationBar } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import SampleButton from './_components/SampleButton'
@@ -20,7 +20,7 @@ SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="butt
 
 
 ## 種類
-ボタンの優先度や役割に合わせた4種類のコンポーネントを総称して、Buttonコンポーネントとして定義しています。
+ボタンの優先度や役割に合わせた5種類のコンポーネントを総称して、Buttonコンポーネントとして定義しています。
 
 
 ```tsx editable
@@ -70,6 +70,16 @@ SmartHR UIでは、`variant` propsのデフォルトは`secondary`です。
 </>
 ```
 
+### Tertiary
+Tertiaryボタンは、画面内の補助的な操作をユーザーに示す役割を持ちます。主にSecondaryボタンより重要度の低い操作に使います。
+
+他の画面へ移動するリンクとして使いたい場合は、[TextLink](/products/components/text-link/)を使ってください。
+
+<p>
+  <NotificationBar base="base" layer={2} type="warning" message="Tertiaryボタンはsmarthr-uiで実装予定です。" />
+</p>
+
+![Tertiaryボタンの例。文字色はTEXT_LINK、枠線や背景色はなし、ウェイトはnormal。](./images/tertiary.png)
 
 ### Danger
 Dangerボタンは、[ワンクッション必要な操作](/products/design-patterns/confirmation-step/)を行なうときに、ユーザーに注意を促す役割を持ちます。
@@ -92,12 +102,14 @@ Dangerボタンは、[ワンクッション必要な操作](/products/design-pat
 
 ### Text
 Textボタンは、画面内の通常の操作をユーザーに示す役割を持ちます。
-Secondaryボタンと役割は同じですが、ほかのコンポーネントにボタンが内包される場合や、レイアウト上の不都合がある場合など、Secondaryボタンが使いづらいときにTextボタンの使用を検討します。
 
-- 例えば[ドロップダウンメニュー](/products/components/dropdown/dropdown-menu-button/#h3-1)内のボタンや[アイコンボタン](#h4-1)など、ボタンとしての装飾（背景色や枠線）を省いてもボタンとして認識できる場合に使用できます。  
-- Textボタンを単独で使用する場合は、ラベルテキストだけではボタンとして認識しづらいので、プレフィックス（`prefix`props）にアイコンを設定して使用します。
-- ほかの画面に移動させることが主目的の場合は、[TextLink](/products/components/text-link/)を使用してください。
+Secondaryボタンと役割は同じですが、Secondaryボタンの装飾（枠線）が過剰な場合に使います。例えば、次のような場合です。
 
+- コンポーネントに内包する場合
+  - 例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/) 
+- 多くのボタンを並べて表示する場合
+
+Textボタンは押せることがわかりづらいため、利用には注意が必要です。単独で使う場合にはプレフィックス（`prefix`props）またはサフィックス（`suffix`props）にアイコンを設定してください。
 
 ```tsx editable
 <>

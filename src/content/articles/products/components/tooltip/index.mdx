@@ -8,12 +8,11 @@ import {
   FaArrowLeftIcon,
   FaArrowRightIcon,
   FaArrowUpIcon,
-  FaExternalLinkAltIcon,
-  FaQuestionCircleIcon,
-  FaInfoCircleIcon,
-  FaUserAltIcon,
-  FaFileIcon,
+  FaCircleInfoIcon,
   FaCirclePlusIcon,
+  FaFileIcon,
+  FaUserLargeIcon,
+  TextLink
 } from 'smarthr-ui'
 import { Button, Cluster, Tooltip, Text } from 'smarthr-ui'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
@@ -79,7 +78,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 ## ライティング
 関連するライティングガイドラインを参照してください。
-- [tooltipのライティング](/products/contents/ui-text/app-writing/#h2-12)
+- [Tooltipのライティング](/products/contents/ui-text/app-writing/#h2-8)
 
 
 ## デザインパターン
@@ -99,16 +98,13 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
     triggerType="icon"
     horizontal="left"
     vertical="bottom">
-      <Cluster align="center" gap={0.25}>
-        <Text color="TEXT_LINK">テキスト</Text>
-        <FaInfoCircleIcon color="TEXT_LINK" />
-      </Cluster>
+    <FaCircleInfoIcon color="TEXT_GREY" text="編集済み" iconGap={0.25} right />
   </DynamicTooltip>
 </ComponentPreview>
 
-文章でさらに補足したい内容がある場合に使います。  
-補足する対象となるテキストの横に「<FaInfoCircleIcon color="TEXT_LINK" />」アイコン（`FaInfoCircleIcon`）を配置し、補足情報の存在を明確に表示します。
-アイコンの色は、テキストと同様に[`TEXT_LINK`](/products/design-tokens/color/#h2-2)とすることで、マウスオーバーが可能であることを示唆します。
+テキストに対して、Tooltipでさらに補足したい場合に使います。  
+補足する対象となるテキストの横に「<FaCircleInfoIcon color="TEXT_GREY" />」アイコン（`FaCircleInfoIcon`）を配置し、Tooltipの存在を明確に示します。
+アイコンの色には[`TEXT_GRAY`](/products/design-tokens/color/#3-2)を使います。
 
 #### B. アイコンのみ
 <ComponentPreview>
@@ -117,7 +113,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
     triggerType="icon"
     horizontal="left"
     vertical="bottom">
-      <FaUserAltIcon color="TEXT_LINK" />
+      <FaUserLargeIcon color="TEXT_LINK" />
   </DynamicTooltip>
   <DynamicTooltip
     message="書類の名称"
@@ -129,12 +125,11 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 </ComponentPreview>
 
 充分にスペースを確保できないときに、アイコン単体をトリガーにするパターンですが、**どうしても他に方法がないときだけ**使用してください。  
-何を対象とした補足説明なのかを明確にするために、可能な限り「[テキスト＋アイコン](#h4-6)」を採用することを推奨します。
-
-アイコンは、マウスオーバーが可能であることを示唆するためにリンク色（[`TEXT_LINK`](/products/design-tokens/color/#h2-2)）を使います。
 
 - アイコン単体で意味が伝わるようであれば、Tooltipは不要です。
 - アイコンに必ず代替テキストを設定します。
+
+テキストなどの他の要素と合わせず、アイコン単体で配置する場合は、マウスオーバーが可能であることを示唆するためにリンク色（[`TEXT_LINK`](/products/design-tokens/color/#h3-2)）を使います。
 
 ##### テキストとあわせて使用
 <ComponentPreview>
@@ -145,7 +140,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
       triggerType="icon"
       horizontal="left"
       vertical="bottom">
-        <FaInfoCircleIcon color="TEXT_GREY" />
+        <FaCircleInfoIcon color="TEXT_GREY" />
     </DynamicTooltip>
   </Cluster>
   <Cluster align="center" gap={0.25}>
@@ -155,13 +150,13 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
       triggerType="icon"
       horizontal="left"
       vertical="bottom">
-        <FaInfoCircleIcon color="TEXT_GREY" />
+        <FaCircleInfoIcon color="TEXT_GREY" />
     </DynamicTooltip>
   </Cluster>
 </ComponentPreview>
 
 トリガーとなるのはアイコンのみで、タイトルや[よくあるテーブルのオブジェクト名](/products/design-patterns/smarthr-table/#h4-0)のテキストとあわせて使います。  
-タイトルや[よくあるテーブルのオブジェクト名の遷移リンク](/products/design-patterns/smarthr-table/#h5-3)の役割を阻害しないために、アイコンのみに[`TEXT_GRAY`](/products/design-tokens/color/#h2-2)を使います。
+アイコンの色には[`TEXT_GRAY`](/products/design-tokens/color/#h3-2)を使います。
 
 ##### ステータスの補足に使用
 <ComponentPreview>
@@ -173,7 +168,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
       vertical="bottom">
         <WarningIcon color="WARNING" />
     </DynamicTooltip>
-    <Text color="TEXT_LINK">テキスト</Text>
+    <TextLink href='#'>警告</TextLink>
   </Cluster>
   <Cluster align="center" gap={0.25}>
     <DynamicTooltip
@@ -181,14 +176,15 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
       triggerType="icon"
       horizontal="left"
       vertical="bottom">
-        <FaInfoCircleIcon color="DANGER" />
+        <FaCircleInfoIcon color="DANGER" />
     </DynamicTooltip>
-    <Text color="TEXT_LINK">テキスト</Text>
+    <TextLink href='#'>エラー</TextLink>
   </Cluster>
 </ComponentPreview>
 
 ステータスの補足説明を加えるときにはテキストの左に配置し、ステータスの色に合わせます。  
-トリガーはステータスアイコンのみとなるので、テキストはリンクとして使用できます。
+トリガーはステータスアイコンのみとなるので、テキストはリンクとしても使用できます。
+
 #### C. アイコンボタン
 <ComponentPreview>
   <DynamicTooltip
