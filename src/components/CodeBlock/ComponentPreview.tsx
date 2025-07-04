@@ -14,11 +14,7 @@ export default function ComponentPreview({ layout, children, ...props }: Props) 
   return useMemo(() => {
     switch (layout) {
       default: {
-        return (
-          <IntlProvider locale="ja">
-            <DefaultComponentPreview {...props}>{children}</DefaultComponentPreview>
-          </IntlProvider>
-        );
+        return <DefaultComponentPreview {...props}>{children}</DefaultComponentPreview>;
       }
       case 'product': {
         return (
