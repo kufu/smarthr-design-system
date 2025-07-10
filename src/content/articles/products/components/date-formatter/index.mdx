@@ -1,0 +1,22 @@
+---
+title: 'DateFormatter'
+description: '日付をユーザーの言語や地域設定に適した形式で表示するためのコンポーネントです。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+日付を[ユーザーの言語や地域設定に適した形式](/products/contents/idiomatic-usage/count/#h4-0)で表示するためのコンポーネントです。  
+フォーマットする関数が必要な場合は、`useIntl`の`formatDate`を使用してください。
+
+<ComponentStory name="DateFormatter" />
+
+## 使用上の注意
+
+### 日付をフォーマットする機能だけがほしいとき
+
+DateFormatterは `time` 要素を使用して、日付をユーザーの言語や地域設定に適した形式で表示するためのコンポーネントです。
+日付をフォーマットする機能だけが必要な場合は、`useIntl`の`formatDate`を使用してください。
+
+## Props
+
+<ComponentPropsTable name="DateFormatter" />
