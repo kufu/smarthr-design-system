@@ -1,0 +1,117 @@
+---
+title: '日時インプットのアクセシブルネームの付与方法'
+description: '日時インプットのアクセシブルネームの付与方法'
+order: 2
+---
+日時インプットの実装によっては、アクセシブルネームの設定が漏れたりまたは設定されたアクセシブルネームにより、各入力の目的が伝わりにくくなることがあります。
+ここでは、それを防ぐためのパターン別の対応方法を紹介します。
+
+
+## 実装ガイドライン
+
+### 特定の入力条件や仕様上の制限がない場合
+
+[FormControl](/products/components/form-control/)コンポーネントと併用して、`Input[type="datetime-local"]`を組み合わせることで、可視ラベルとアクセシブルネームが設定され、入力内容が明確に伝わります
+
+```tsx editable
+
+<FormControl title="回答期限">
+  <Input type="datetime-local" name="response-deadline" />
+</FormControl>
+
+```
+
+### 日付・時刻を分けて入力する必要がある場合
+
+特定の要件や仕様により、日付と時刻を別々に入力する必要がある場合は、以下の点に注意してください。
+- 関連する入力項目（日付・時刻）は、Fieldset でグループ化し、全体のコンテキストが伝わるようにする
+- 可能な限り可視ラベルを表示する（例：「日付」「時刻」など）
+- レイアウトの制約でラベルを表示できない場合は、dangerouslyTitleHiddenを使用して視覚的には非表示にしつつ、アクセシブルネームを設定する
+
+```tsx editable
+<Stack as="section">
+<Heading>可視ラベルを表示できる場合</Heading>
+  <Fieldset title="回答期限">
+    <Cluster>
+      <FormControl title="日付">
+      <Input type="date" name="date" />
+    </FormControl>
+
+    <FormControl title="時刻">
+        <Input type="time" name="time" />
+      </FormControl>
+    </Cluster>
+  </Fieldset>
+
+<Heading>可視ラベルを表示できない場合</Heading>
+  <Fieldset title="回答期限">
+    <Cluster>
+      <FormControl title="日付" dangerouslyTitleHidden>
+        <Input type="date" name="date" />
+      </FormControl>
+
+      <FormControl title="時刻" dangerouslyTitleHidden>
+        <Input type="time" name="time" />
+      </FormControl>
+    </Cluster>
+  </Fieldset>
+</Stack>
+```
+
+#### さらに時刻を分けて入力する必要がある場合
+
+時刻を「時間」と「分」に分けて入力する場合は、それぞれのコンポーネントにユーザーが何を入力するのかが明確に伝わるアクセシブルネーム（例：「時間」「分」）を設定してください。
+
+また、複数の入力がひとまとまりの情報（例：回答期限）を表す場合は、Fieldsetを使用してグループ化することで、全体のコンテキストが伝わりやすくなります。
+
+```tsx editable
+
+<Fieldset title="回答期限">
+  <Cluster>
+    <FormControl title="日付">
+      <Input type="date" name="date" />
+    </FormControl>
+    <FormControl title="時間">
+      <Select
+        options={[
+          {
+            label: '01',
+            value: '1'
+          },
+          {
+            label: '02',
+            value: '2'
+          },
+          {
+            label: '03',
+            value: '3'
+          },
+          {
+            label: '04',
+            value: '4'
+          },
+          {
+            label: '05',
+            value: '5'
+          }
+        ]}
+    />
+    </FormControl>
+    <FormControl title="分">
+      <Select
+        options={[
+          {
+            label: '00',
+            value: '00'
+          },
+          {
+            label: '30',
+            value: '30'
+          }
+        ]}
+      />
+    </FormControl>
+  </Cluster>
+</Fieldset>
+
+```
