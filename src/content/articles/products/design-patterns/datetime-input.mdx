@@ -1,0 +1,105 @@
+---
+title: '日時入力のUI'
+description: '日時を入力するUIのパターンと注意事項をまとめています。'
+order: 14 
+---
+日付や時刻をユーザーに入力させるときの、コンポーネントの組み合わせの推奨パターンを定義しています。
+
+## Inputコンポーネントを使った日時入力
+[Input](/products/components/input/)コンポーネントにtypeを指定することで、基本的な日時入力に対応できます。
+
+```tsx editable
+
+<FormControl title="日付入力(date)">
+  <Input type="date" name="date" />
+</FormControl>
+
+<FormControl title="時刻入力(time)">
+  <Input type="time" name="time" />
+</FormControl>
+
+<FormControl title="日時入力(datetime-local)">
+  <Input type="datetime-local" name="datetime" />
+</FormControl>
+
+<FormControl title="年月入力(month)">
+  <Input type="month" name="month" />
+</FormControl>
+```
+
+## Inputコンポーネントの日時入力を組み合わせる場合
+日付と時刻の入力で、`datetime-local`を使用せず、日付と時刻の入力欄を分けて表示したい場合は、`date`と`time`を組み合わせて使用できます。
+
+- InputコンポーネントごとにラベルやAccessibleNameを検討する必要があることに注意してください。
+- 組み合わせた入力欄は[Fieldset](/products/components/fieldset/)を使用してグルーピングしてください。
+
+
+```tsx editable
+<Heading>Inputごとにラベルを表示できる場合</Heading>
+  <Fieldset title="日時入力">
+    <Cluster>
+      <FormControl title="日付">
+      <Input type="date" name="date" />
+    </FormControl>
+
+    <FormControl title="時刻">
+        <Input type="time" name="time" />
+      </FormControl>
+    </Cluster>
+  </Fieldset>
+```
+
+個別のラベルを表示したくない場合は、[FormControl](/products/components/form-control/)の`dangerouslyTitleHidden`を使用してラベルを非表示にします。
+
+```tsx editable
+
+<Heading>個別のラベルを表示したくない場合</Heading>
+  <Fieldset title="日時入力">
+    <Cluster>
+      <FormControl title="日付" dangerouslyTitleHidden>
+        <Input type="date" name="date" />
+      </FormControl>
+
+      <FormControl title="時刻" dangerouslyTitleHidden>
+        <Input type="time" name="time" />
+      </FormControl>
+    </Cluster>
+  </Fieldset>
+```
+
+## Input以外のコンポーネントを組み合わせ、入力欄を分割する場合
+入力できる値に制限がある場合などでは、[Select](/products/components/select/)がよく使用されます。
+Selectなどを使って入力欄をさらに分割する場合も、コンポーネントごとにラベルの設定が必要です。
+個別のラベルを表示したくない場合は、[FormControl](/products/components/form-control/)の`dangerouslyTitleHidden`を使用してラベルを非表示にします。
+
+```tsx editable noIframe
+
+<Fieldset title="日時入力">
+  <Cluster>
+    <FormControl title="日付">
+      <Input type="date" name="date" />
+    </FormControl>
+    <FormControl title="時間">
+      <Select
+        name="hour"
+        options={[
+          { label: '01', value: '1' },
+          { label: '02', value: '2' },
+          { label: '03', value: '3' },
+          { label: '04', value: '4' },
+          { label: '05', value: '5' }
+        ]}
+      />
+    </FormControl>
+    <FormControl title="分">
+      <Select
+        name="minute"
+        options={[
+          { label: '00', value: '00' },
+          { label: '30', value: '30' }
+        ]}
+      />
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
