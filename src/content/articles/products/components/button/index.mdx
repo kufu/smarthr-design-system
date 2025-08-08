@@ -27,6 +27,7 @@ SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="butt
 <>
   <Button variant="primary">Primary</Button>
   <Button>Secondary</Button>
+  <Button variant="tertiary">Tertiary</Button>
   <Button variant="danger">Danger</Button>
   <Button variant="text">Text</Button>
 </>
@@ -75,11 +76,16 @@ Tertiaryボタンは、画面内の補助的な操作をユーザーに示す役
 
 他の画面へ移動するリンクとして使いたい場合は、[TextLink](/products/components/text-link/)を使ってください。
 
-<p>
-  <NotificationBar base="base" layer={2} type="warning" message="Tertiaryボタンはsmarthr-uiで実装予定です。" />
-</p>
-
-![Tertiaryボタンの例。文字色はTEXT_LINK、枠線や背景色はなし、ウェイトはnormal。](./images/tertiary.png)
+```tsx editable
+<>
+  <Button variant="tertiary">ボタン</Button>
+  <Button variant="tertiary" prefix={<FaCirclePlusIcon />}>ボタン</Button>
+  <Button variant="tertiary" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="tertiary">
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+</>
+```
 
 ### Danger
 Dangerボタンは、[ワンクッション必要な操作](/products/design-patterns/confirmation-step/)を行なうときに、ユーザーに注意を促す役割を持ちます。
