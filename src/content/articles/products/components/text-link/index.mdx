@@ -58,14 +58,14 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 #### ヘルプセンターを開くテキストリンク
 
-- [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンクには、**テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置することを**推奨**します。
+[ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンクは[HelpLink](/products/components/text-link/help-link/)として提供しています。
+- HelpLinkは、**テキストの右側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を自動で配置するため、個別に設定する必要はありません。
+  - なお、ヘルプセンターを新規ウィンドウで開く場合には、<FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）は配置しません。`target="_blank"`を指定すると<FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコンは自動的に除かれます。
   - 詳細は[ヘルプページへの動線](/products/contents/ui-text/help-link/#h3-2)を参照してください。
 - `アイコン付き（右）`（サフィックス）は指定しないでください。
 
-なお、ヘルプセンターを新規ウィンドウで開く場合には、[新規ウィンドウで開くテキストリンク](#h4-1)を優先して <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）は配置しないでください。
-
 ```tsx editable
-  <TextLink href="/" prefix={<FaCircleQuestionIcon />}>ヘルプセンターを開くテキストリンク</TextLink>
+  <HelpLink href="/" target="_blank">ヘルプセンターを開くテキストリンク</TextLink>
 ```
 
 #### 一階層上のコンテンツに戻るテキストリンク
