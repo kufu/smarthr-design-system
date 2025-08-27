@@ -29,15 +29,16 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ![ファイルリスト](./images/input-file-filelist.png)
 
 ## アクセシビリティ
-InputFileのような入力要素では、入力すべき内容をユーザーに明確に伝えるラベルを設定してください。また、スクリーンリーダーなどの支援技術に情報を伝えるためにAccessible Nameも必要です。
+InputFileのような入力要素では、入力すべき内容をユーザーに明確に伝えるラベルの提供が必要です。また、スクリーンリーダーなどの支援技術に情報を伝えるためにAccessible Nameも設定してください。
+[FormControl](/products/components/form-control/)と組み合わせた使用する場合、`title`属性でラベルを設定することで、同じ内容がAccessible Nameとしても提供されます。
 
-### InputFileでラベルを提供する場合
-InputFileは見た目上「ファイルを選択する」というラベルを持つボタンのように見えますが、実際には入力要素であり、入力すべき内容を伝えるラベルの提供が必要です。「ファイルを選択する」だけでは、ユーザーはどのようなファイルを選択すべきかを特定できません。選択すべきファイルの種類や目的を別途ラベルとして提供する必要があります。
-
-SmartHR UIでは[FormControl](/products/components/form-control/)と組み合わせてInputFileを使用することで、ラベルとAccessible Nameを提供できます。
+### InputFileでラベルを提供する
+InputFileは「ファイルを選択する」というラベルを提供しているボタンのように見えますが、「ファイルを選択する」だけでは、ユーザーはどのようなファイルを選択すべきかを特定できません。
+どんなファイルを選択すべきかを伝えるためのラベルは、[FormControl](/products/components/form-control/)の`title`を利用して別途提供してください。
 
 ### InputFileでラベルを省略する場合
-InputFileを使用する画面・ダイアログなどの領域内において、入力の目的が十分にテキストで説明されており、見た目上のラベルが冗長な情報になると判断できる場合には、見た目上のラベルを省略できます。Accessible Nameを提供するために、以下のような方法で実装してください。
+InputFileを使用する画面・ダイアログなどの領域内において、入力の目的が十分にテキストで説明されており、見た目上のラベルが冗長な情報になると判断できる場合には、見た目上のラベルを省略できます。
+ラベルを省略する場合も、Accessible Nameを漏れなく提供するために、以下のような方法で実装してください。
 
 - [FormControl](/products/components/form-control/)の`dangerouslyTitleHidden`を使用して、ラベルを不可視化する
 - `aria-label`で、入力する内容を特定できるAccessible Nameを設定する
