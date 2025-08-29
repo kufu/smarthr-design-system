@@ -4,6 +4,15 @@ description: "ファイルを選択するためのコンポーネントです。
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+
+import { Image } from 'astro:assets'
+import {
+  Text
+} from 'smarthr-ui'
+
+import inputFileLabelDo from './images/input-file-label-do.png'
+import inputFileLabelDont from './images/input-file-label-dont.png'
 
 ファイルを選択するためのコンポーネントです。`input[type="file"]`の代わりに使用します。選択したファイル名の一覧を表示する領域を持っています。
 
@@ -33,8 +42,19 @@ InputFileのような入力要素では、入力すべき内容をユーザー�
 [FormControl](/products/components/form-control/)と組み合わせた使用する場合、`title`属性でラベルを設定することで、同じ内容がAccessible Nameとしても提供されます。
 
 ### InputFileでラベルを提供する
-InputFileは「ファイルを選択する」というラベルを提供しているボタンのように見えますが、「ファイルを選択する」だけでは、ユーザーはどのようなファイルを選択すべきかを特定できません。
-どんなファイルを選択すべきかを伝えるためのラベルは、[FormControl](/products/components/form-control/)の`title`を利用して別途提供してください。
+InputFileでは、入力要素として「何を入力すべきか」を示すラベルを[FormControl](/products/components/form-control/)の`title`で設定してください。
+
+InputFileのボタンには「ファイルを選択する」のラベルが表示されますが、この文言だけではユーザーは選択するファイルを特定できません。
+アップロードしてほしいファイルの内容をラベルで明示することで、迷わず適切なファイルを選択できます。
+
+<DoAndDont type="do">
+  <Image slot="img" src={inputFileLabelDo} alt="証明書の写真というラベルとセットで表示されているInputFile" />
+  <Text slot="label">アップロードしてほしいファイル「証明書の写真」をラベルで明示します。</Text>
+</DoAndDont>
+<DoAndDont type="dont" width="calc(50% - 8px)">
+  <Image slot="img" src={formControlErrorSampleDont} alt="証明書の種類を選択するSelectと並んだラベルのないInputFile" />
+  <Text slot="label">ファイル選択するファイルを明示していない場合、ユーザーが誤ったデータを入力する危険性があります。</Text>
+</DoAndDont>
 
 ### InputFileでラベルを省略する場合
 InputFileを使用する画面・ダイアログなどの領域内において、入力の目的が十分にテキストで説明されており、見た目上のラベルが冗長な情報になると判断できる場合には、見た目上のラベルを省略できます。
