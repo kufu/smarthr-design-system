@@ -8,7 +8,8 @@ import DoAndDont from '@/components/article/DoAndDont.astro'
 
 import { Image } from 'astro:assets'
 import {
-  Text
+  Text,
+  Cluster
 } from 'smarthr-ui'
 
 import inputFileLabelDo from './images/input-file-label-do.png'
@@ -47,14 +48,16 @@ InputFileでは、入力要素として「何を入力すべきか」を示す�
 InputFileのボタンには「ファイルを選択する」のラベルが表示されますが、この文言だけではユーザーは選択するファイルを特定できません。
 アップロードしてほしいファイルの内容をラベルで明示することで、迷わず適切なファイルを選択できます。
 
-<DoAndDont type="do">
-  <Image slot="img" src={inputFileLabelDo} alt="証明書の写真というラベルとセットで表示されているInputFile" />
-  <Text slot="label">アップロードしてほしいファイル「証明書の写真」をラベルで明示します。</Text>
-</DoAndDont>
-<DoAndDont type="dont" width="calc(50% - 8px)">
-  <Image slot="img" src={formControlErrorSampleDont} alt="証明書の種類を選択するSelectと並んだラベルのないInputFile" />
-  <Text slot="label">ファイル選択するファイルを明示していない場合、ユーザーが誤ったデータを入力する危険性があります。</Text>
-</DoAndDont>
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={inputFileLabelDo} alt="証明書の写真というラベルとセットで表示されているInputFile" />
+    <Text slot="label">アップロードしてほしいファイル「証明書の写真」をラベルで明示します。</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={inputFileLabelDont} alt="証明書の種類を選択するSelectと並んだラベルのないInputFile" />
+    <Text slot="label">選択すべきファイルを明示しない場合、誤ったデータを入力する危険性があります。</Text>
+  </DoAndDont>
+</Cluster>
 
 ### InputFileでラベルを省略する場合
 InputFileを使用する画面・ダイアログなどの領域内において、入力の目的が十分にテキストで説明されており、見た目上のラベルが冗長な情報になると判断できる場合には、見た目上のラベルを省略できます。
