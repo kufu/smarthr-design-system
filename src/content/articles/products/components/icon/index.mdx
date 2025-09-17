@@ -12,7 +12,10 @@ import {
   FaAnglesLeftIcon,
   FaAnglesRightIcon,
   FaCirclePlusIcon,
-  FaUpRightFromSquareIcon
+  FaArrowRightIcon,
+  FaUpRightFromSquareIcon,
+  Cluster,
+  Text
 } from 'smarthr-ui'
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
@@ -40,13 +43,39 @@ Font Awesomeから必要なものを取り込んでいます。
 
 ## アクセシビリティ
 
-アイコンのみ表示する場合、ラベルと合わせて使うよりも認知負荷を与えます。適切なラベルを付与してください。特にリンクやボタンにアイコンのみ表示する場合は必須です。
+アイコンが意味を持っている場合、適切な代替テキストを提供する必要があります。
+
+アイコンが情報を伝えている場合は、 `aria-label` を使って代替テキストを設定してください。
+一方、アイコンが装飾的な役割の場合や、付近のテキストと意味が重複する場合は、`aria-hidden="true"` を設定して装飾目的であることを表現してください。
+
+代替テキストについて詳しく知りたい方は、[画像の代替テキスト](/accessibility/alternative-text/)をご覧ください。
+
+### 例: 変更前後の違いを示すアイコン
+
+この矢印アイコンは変更前後の違いを示しているため、 `aria-label` を使って代替テキストをつけます。
 
 ```tsx editable
-<Button variant="primary">
-  <FaCirclePlusIcon alt="追加" />
-</Button>
+<>
+  <Cluster>
+    <span style={{ backgroundColor: '#ffc7c1'}}>変更前</span>
+    <FaArrowRightIcon aria-label="右矢印" />
+    <span style={{ backgroundColor: '#ADEDB3'}}>変更後</span>
+  </Cluster>
+</>
 ```
+
+### 例: 警告を示すアイコン
+
+この警告アイコンは、テキストと意味が重複してしまうため、 `aria-hidden` を使って装飾目的であることを示します。
+
+```tsx editable
+<>
+    <WarningIcon aria-hidden="true" />
+    <Text styleType="blockTitle">注意: 保存していない項目があります！</Text>
+</>
+```
+
+代替テキストが必要かどうかは、そのアイコンが読み込まれず非表示になったときでも問題なく理解できるかどうかで判断できます。
 
 また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
 
