@@ -1,9 +1,16 @@
 ---
-title: 'RangeSeparator'
+title: 'RangeSeparator（非推奨）'
 description: '期間や範囲を表すためのコンポーネントです。〜 や – といった文字に適切な意味を与えられます。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+
+<BaseColumn>
+  <ResponseMessage type="warning">
+    <span>スクリーンリーダー使用者にとって「〜」がそのまま「波線」等と読み上げられる方が情報量を減らさずに済むので、RangeSeparatorは非推奨です。</span>
+  </ResponseMessage>
+</BaseColumn>
 
 期間や範囲を表すためのコンポーネントです。`〜` や `–` といった文字に適切な意味を与えられます。
 
