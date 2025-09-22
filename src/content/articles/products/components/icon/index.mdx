@@ -13,9 +13,19 @@ import {
   FaAnglesRightIcon,
   FaCirclePlusIcon,
   FaArrowRightIcon,
+  FaCircleInfoIcon,
+  FaPenIcon,
+  FaCircleXmarkIcon,
+  WarningIcon,
+  FaGearIcon,
   FaUpRightFromSquareIcon,
   Cluster,
-  Text
+  Text,
+  Button,
+  Td,
+  DefinitionList,
+  DefinitionListItem,
+  Chip,
 } from 'smarthr-ui'
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
@@ -50,34 +60,17 @@ Font Awesomeから必要なものを取り込んでいます。
 
 代替テキストについて詳しく知りたい方は、[画像の代替テキスト](/accessibility/alternative-text/)をご覧ください。
 
-### 例: 変更前後の違いを示すアイコン
+### 情報を示すときと装飾時のアイコン例一覧
 
-この矢印アイコンは変更前後の違いを示しているため、 `aria-label` を使って代替テキストをつけます。
-
-```tsx editable
-<>
-  <Cluster>
-    <span style={{ backgroundColor: '#ffc7c1'}}>変更前</span>
-    <FaArrowRightIcon aria-label="右矢印" />
-    <span style={{ backgroundColor: '#ADEDB3'}}>変更後</span>
-  </Cluster>
-</>
-```
-
-### 例: 警告を示すアイコン
-
-この警告アイコンは、テキストと意味が重複してしまうため、 `aria-hidden` を使って装飾目的であることを示します。
-
-```tsx editable
-<>
-    <WarningIcon aria-hidden="true" />
-    <Text styleType="blockTitle">注意: 保存していない項目があります！</Text>
-</>
-```
-
-代替テキストが必要かどうかは、そのアイコンが読み込まれず非表示になったときでも問題なく理解できるかどうかで判断できます。
-
-また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
+| 表示例 | 代替テキストまたは `aria-hidden` の値 |
+| :-- | :-- |
+|<Cluster align="center"><span style={{ backgroundColor: '#ffc7c1'}}>Smarthr</span><FaArrowRightIcon aria-label="右矢印" /><span style={{ backgroundColor: '#ADEDB3'}}>SmartHR</span></Cluster> | 右矢印 |
+|<DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon aria-label="調整済み"/></Cluster></DefinitionListItem></DefinitionList>| 調整済みor編集可能 |
+|<Chip><Cluster inline={true} align="center">チップ<FaCircleXmarkIcon aria-label="削除"/></Cluster></Chip>| 削除 |
+|<Button><FaCircleInfoIcon aria-label="ヘルプ"/></Button>| ヘルプ |
+|<Cluster align="center"><WarningIcon aria-hidden="true" /><Text styleType="blockTitle">注意: 保存していない項目があります！</Text></Cluster> | `aria-hidden="true"` |
+|<Button><Cluster align="center"><FaGearIcon aria-hidden="true" />編集</Cluster></Button>| `aria-hidden="true"` |
+|<Button><Cluster align="center"><FaCirclePlusIcon aria-hidden="true" />追加</Cluster></Button>| `aria-hidden="true"` |
 
 ## デザインパターン
 
