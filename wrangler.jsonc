@@ -1,0 +1,14 @@
+/**
+ * https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/
+ * https://docs.astro.build/en/guides/integrations-guide/cloudflare/
+ */
+{
+	"name": "smarthr-design-system",
+	"main": "./dist/_worker.js/index.js",
+	"compatibility_date": "2025-09-22",
+	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	}
+}
