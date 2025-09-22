@@ -46,5 +46,8 @@ export default defineConfig({
         },
       },
     },
+    ssr: {
+      external: ['node:fs', 'node:path'],
+    },
   },
 });
