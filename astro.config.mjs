@@ -11,6 +11,7 @@ import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'static',
   adapter: cloudflare(),
   prefetch: {
     prefetchAll: true,
@@ -47,7 +48,27 @@ export default defineConfig({
       },
     },
     ssr: {
-      external: ['node:fs', 'node:path'],
+      external: [
+        'child_process',
+        'crypto',
+        'fs',
+        'fs/promises',
+        'http',
+        'https',
+        'node:buffer',
+        'node:crypto',
+        'node:fs',
+        'node:http2',
+        'node:module',
+        'node:path',
+        'node:process',
+        'node:url',
+        'os',
+        'path',
+        'tty',
+        'url',
+        'worker_threads',
+      ],
     },
   },
 });
