@@ -36,7 +36,8 @@
     "copy:smarthr-ui-css": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
     "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest",
     "postupgrade:smarthr-ui": "run-s copy:smarthr-ui-css generate:thumbnails",
-    "prepare": "husky"
+    "prepare": "husky",
+    "release:add-item": "tsx ./scripts/add-release-note-item.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
