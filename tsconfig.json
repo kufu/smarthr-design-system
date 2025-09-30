@@ -8,6 +8,6 @@
     "jsxImportSource": "react"
   },
   "extends": "astro/tsconfigs/strict",
-  "include": ["src"],
+  "include": [".astro/types.d.ts", "src"],
   "exclude": ["dist", "scripts"]
 }
