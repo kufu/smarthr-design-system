@@ -10,7 +10,7 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 import { Heading, Stack, Table, Td, Th } from 'smarthr-ui'
 
-Headingコンポーネントは、直後に続くコンテンツの見出しに使います。
+Heading および PageHeadingコンポーネントは、直後に続くコンテンツの見出しに使います。
 
 <ComponentStory name="Heading" />
 
@@ -27,8 +27,8 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 
 ```tsx editable
 <Stack>
-  <PageHeading tag="span">画面タイトル（type: screenTitle, fontSize: XL）</PageHeading>
-  <Heading tag="span">セクションタイトル（type: sectionTitle, fontSize: L）</Heading>
+  <PageHeading tag="span">画面タイトル（fontSize: XL）</PageHeading>
+  <Heading type="sectionTitle" tag="span">セクションタイトル（type: sectionTitle, fontSize: L）</Heading>
   <Heading type="blockTitle" tag="span">ブロックタイトル（type: blockTitle, fontSize: M）</Heading>
   <Heading type="subBlockTitle" tag="span">サブ・ブロックタイトル（type: subBlockTitle, fontSize: M）</Heading>
   <Heading type="subSubBlockTitle" tag="span">サブ・サブ・ブロックタイトル（type: subSubBlockTitle, fontSize: S）</Heading>
@@ -37,7 +37,8 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 
 ### 画面タイトル
 
-画面のタイトルとして、画面ごとに1度しか使えません。
+画面のタイトルとして、画面ごとに1度しか使えません。  
+PageHeadingコンポーネントを使用してください。screenTitleタイプと`h1`要素が自動的に設定されます。
 
 <TableWrapper>
   <Table>
@@ -176,4 +177,6 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 
 ## Props
 
-<ComponentPropsTable name="Heading" />
+<ComponentPropsTable name="Heading" showTitle />
+
+<ComponentPropsTable name="PageHeading" showTitle />
