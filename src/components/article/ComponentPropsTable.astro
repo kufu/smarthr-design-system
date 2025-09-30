@@ -21,7 +21,14 @@ const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
 
 {
   !data || data?.props === null || data.props.length === 0 ? (
-    <Text as={'p'}>Propsは設定されていません。</Text>
+    <>
+      {showTitle && (
+        <FragmentTitle tag="h3" id={fragmentId(name)}>
+          {name} props
+        </FragmentTitle>
+      )}
+      <Text as={'p'}>Propsは設定されていません。</Text>
+    </>
   ) : (
     <>
       {showTitle && (
