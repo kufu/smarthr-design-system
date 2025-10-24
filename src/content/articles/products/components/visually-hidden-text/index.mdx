@@ -19,13 +19,13 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
 「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`FormControl`の`dangerouslyTitleHidden`propsを使用している。
 
 ```tsx editable
-<Fieldset title="入社年月日" >
+<Fieldset label="入社年月日" >
   <Cluster gap={0.5} align="center">
-    <FormControl title="開始日" dangerouslyTitleHidden>
+    <FormControl label="開始日" dangerouslyHideLabel>
       <DatePicker name="startAtDate" />
     </FormControl>
     <Text>〜</Text>
-    <FormControl title="終了日" dangerouslyTitleHidden>
+    <FormControl label="終了日" dangerouslyHideLabel>
       <DatePicker name="EndAtDate" />
     </FormControl>
   </Cluster>
