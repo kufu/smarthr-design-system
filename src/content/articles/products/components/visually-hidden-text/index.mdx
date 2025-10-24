@@ -15,17 +15,6 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
 
 ## VisuallyHiddenTextを使用したコンポーネント
 
-### RangeSeparator
-期間や範囲を表す`〜`や`-`を`から`などの意味のわかる文字に置き換えてくれます。（参考：[RangeSeparator](/products/components/range-separator/)）
-
-```tsx editable
-<p>
-  兼務先（部署2
-  <RangeSeparator />
-  10）も所属部署として扱う
-</p>
-```
-
 ### FormControlの[dangerouslyTitleHidden]props
 「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`FormControl`の`dangerouslyTitleHidden`propsを使用している。
 
@@ -35,9 +24,7 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
     <FormControl title="開始日" dangerouslyTitleHidden>
       <DatePicker name="startAtDate" />
     </FormControl>
-
-    <RangeSeparator />
-
+    <Text>〜</Text>
     <FormControl title="終了日" dangerouslyTitleHidden>
       <DatePicker name="EndAtDate" />
     </FormControl>
