@@ -63,7 +63,7 @@ InputFileのボタンには「ファイルを選択する」のラベルが表�
 InputFileを使用する画面・ダイアログなどの領域内において、入力の目的が十分にテキストで説明されており、見た目上のラベルが冗長な情報になると判断できる場合には、見た目上のラベルを省略できます。
 ラベルを省略する場合も、Accessible Nameを漏れなく提供するために、以下のような方法で実装してください。
 
-- [FormControl](/products/components/form-control/)の`dangerouslyHideLabel`を使用して、ラベルを不可視化する
+- [FormControl](/products/components/form-control/)の`label.dangerouslyHide`を使用して、ラベルを不可視化する
 - `aria-label`で、入力する内容を特定できるAccessible Nameを設定する
 
 ## Props
