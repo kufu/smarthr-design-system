@@ -21,11 +21,21 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
 ```tsx editable
 <Fieldset legend="入社年月日" >
   <Cluster gap={0.5} align="center">
-    <FormControl label="開始日" dangerouslyHideLabel>
+    <FormControl 
+      label={{
+        text: '開始日',
+        dangerouslyHide: true,
+      }}
+    >
       <DatePicker name="startAtDate" />
     </FormControl>
     <Text>〜</Text>
-    <FormControl label="終了日" dangerouslyHideLabel>
+    <FormControl 
+      label={{
+        text: '終了日',
+        dangerouslyHide: true,
+      }}
+    >
       <DatePicker name="EndAtDate" />
     </FormControl>
   </Cluster>
