@@ -1,4 +1,5 @@
 // @ts-check
+import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
@@ -10,6 +11,8 @@ import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'static',
+  adapter: cloudflare(),
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
@@ -43,6 +46,29 @@ export default defineConfig({
           additionalData: `@use "./src/styles/mixin.scss" as *;`,
         },
       },
+    },
+    ssr: {
+      external: [
+        'child_process',
+        'crypto',
+        'fs',
+        'fs/promises',
+        'http',
+        'https',
+        'node:buffer',
+        'node:crypto',
+        'node:fs',
+        'node:http2',
+        'node:module',
+        'node:path',
+        'node:process',
+        'node:url',
+        'os',
+        'path',
+        'tty',
+        'url',
+        'worker_threads',
+      ],
     },
   },
 });
