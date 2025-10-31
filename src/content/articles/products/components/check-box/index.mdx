@@ -14,6 +14,8 @@ import checkBoxDo2 from './images/check-box-do2.png';
 import checkBoxDont2 from './images/check-box-dont2.png';
 import checkBoxAlignmentDo from './images/check-box-alignment-do.png';
 import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
+import checkBoxMobileDo from './images/check-box-mobile-do.png';
+import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 
 
 ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。
@@ -166,6 +168,16 @@ import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
 
 ## モバイル
 モバイル表示時は、画面の幅が狭いため基本的に縦並びにします。誤操作を防ぐために、[小さい要素間のマージン](/products/design-patterns/spacing-layout-pattern/)に従って十分なマージンを確保してください。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={checkBoxMobileDo} alt="Do" />
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={checkBoxMobileDont} alt="Dont" />
+  </DoAndDont>
+</Cluster>
 
 ## Props
 
