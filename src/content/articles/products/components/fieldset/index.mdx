@@ -31,37 +31,37 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
 
 ```tsx editable
 <Fieldset
-    title="ユーザー情報"
+    legend="ユーザー情報"
     helpMessage="登録するユーザー情報を入力してください。"
 >
     <Stack gap={1.25}>
         <Cluster gap={0.5}>
             <FormControl
-                title="姓"
+                label="姓"
                 titleType="subBlockTitle"
             >
                 <Input name="lastName" />
             </FormControl>
             <FormControl
-                title="名"
+                label="名"
                 titleType="subBlockTitle"
             >
                 <Input name="firstName" />
             </FormControl>
         </Cluster>
         <Fieldset
-            title="住所"
+            legend="住所"
             titleType="subBlockTitle"
         >
             <Stack>
                 <FormControl
-                    title="郵便番号"
+                    label="郵便番号"
                     titleType="subSubBlockTitle"
                 >
                     <Input name="address_postalCode" />
                 </FormControl>
                 <FormControl
-                    title="都道府県"
+                    label="都道府県"
                     titleType="subSubBlockTitle"
                 >
                     <Select
@@ -75,19 +75,19 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
                     />
                 </FormControl>
                 <FormControl
-                    title="市区町村"
+                    label="市区町村"
                     titleType="subSubBlockTitle"
                 >
                     <Input name="address_city" />
                 </FormControl>
                 <FormControl
-                    title="番地"
+                    label="番地"
                     titleType="subSubBlockTitle"
                 >
                     <Input name="address_streetNumber" />
                 </FormControl>
                 <FormControl
-                    title="建物名・部屋番号"
+                    label="建物名・部屋番号"
                     titleType="subSubBlockTitle"
                 >
                     <Input name="address_buildingName" />
@@ -95,7 +95,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
             </Stack>
         </Fieldset>
         <Fieldset
-            title="電話番号"
+            legend="電話番号"
             titleType="subBlockTitle"
             innerMargin={0.5}
         >
@@ -106,7 +106,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
             </Cluster>
         </Fieldset>
         <Fieldset
-            title="性別"
+            legend="性別"
             titleType="subBlockTitle"
             innerMargin={0.5}
         >
@@ -117,7 +117,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
             </Cluster>
         </Fieldset>
         <FormControl
-            title="職業"
+            label="職業"
             titleType="subBlockTitle"
             innerMargin={0.5}
         >
@@ -157,38 +157,38 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
 
 ```tsx editable
 <Fieldset
-    title="ユーザー情報"
+    legend="ユーザー情報"
     helpMessage="登録するユーザー情報を入力してください。"
     disabled
 >
     <Stack gap={1.25}>
         <Cluster gap={0.5}>
             <FormControl
-                title="姓"
+                label="姓"
                 titleType="subBlockTitle"
             >
                 <Input name="lastName" />
             </FormControl>
             <FormControl
-                title="名"
+                label="名"
                 titleType="subBlockTitle"
             >
                 <Input name="firstName" />
             </FormControl>
         </Cluster>
         <Fieldset
-            title="住所"
+            legend="住所"
             titleType="subBlockTitle"
         >
             <Stack>
                 <FormControl
-                    title="郵便番号"
+                    label="郵便番号"
                     titleType="subSubBlockTitle"
                 >
                     <Input name="address_postalCode" />
                 </FormControl>
                 <FormControl
-                    title="都道府県"
+                    label="都道府県"
                     titleType="subSubBlockTitle"
                 >
                     <Select
@@ -202,19 +202,19 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
                     />
                 </FormControl>
                 <FormControl
-                    title="市区町村"
+                    label="市区町村"
                     titleType="subSubBlockTitle"
                 >
                     <Input name="address_city" />
                 </FormControl>
                 <FormControl
-                    title="番地"
+                    label="番地"
                     titleType="subSubBlockTitle"
                 >
                     <Input name="address_streetNumber" />
                 </FormControl>
                 <FormControl
-                    title="建物名・部屋番号"
+                    label="建物名・部屋番号"
                     titleType="subSubBlockTitle"
                 >
                     <Input name="address_buildingName" />
@@ -222,7 +222,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
             </Stack>
         </Fieldset>
         <Fieldset
-            title="電話番号"
+            legend="電話番号"
             titleType="subBlockTitle"
             innerMargin={0.5}
         >
@@ -233,7 +233,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
             </Cluster>
         </Fieldset>
         <Fieldset
-            title="性別"
+            legend="性別"
             titleType="subBlockTitle"
             innerMargin={0.5}
         >
@@ -244,7 +244,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
             </Cluster>
         </Fieldset>
         <FormControl
-            title="職業"
+            label="職業"
             titleType="subBlockTitle"
             innerMargin={0.5}
         >
@@ -272,7 +272,7 @@ Fieldset自体には、読み取り専用の状態は存在しません。
 
 ```tsx editable
 <Fieldset
-    title="電話番号"
+    legend="電話番号"
     titleType="subBlockTitle"
     innerMargin={0.5}
 >
