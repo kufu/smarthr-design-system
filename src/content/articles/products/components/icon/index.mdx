@@ -16,11 +16,12 @@ import {
   FaCircleInfoIcon,
   FaPenIcon,
   FaCircleXmarkIcon,
+  FaUpRightFromSquareIcon,
   WarningIcon,
   FaGearIcon,
-  FaUpRightFromSquareIcon,
   Cluster,
   Text,
+  TextLink,
   Button,
   Td,
   DefinitionList,
@@ -53,24 +54,20 @@ Font Awesomeから必要なものを取り込んでいます。
 
 ## アクセシビリティ
 
-アイコンが意味を持っている場合、適切な代替テキストを提供する必要があります。
-
-アイコンが情報を伝えている場合は、 `aria-label` を使って代替テキストを設定してください。
-一方、アイコンが装飾的な役割の場合や、付近のテキストと意味が重複する場合は、`aria-hidden="true"` を設定して装飾目的であることを表現してください。
+アイコンだけで意味を示したいときは、適切な代替テキストを設定してください。
 
 代替テキストについて詳しく知りたい方は、[画像の代替テキスト](/accessibility/alternative-text/)をご覧ください。
 
-### 情報を示すときと装飾時のアイコン例一覧
+### 代替テキストが必要なアイコンの例
 
-| 表示例 | 代替テキストまたは `aria-hidden` の値 |
+| 表示例 | 代替テキスト |
 | :-- | :-- |
 |<Cluster align="center"><span style={{ backgroundColor: '#ffc7c1'}}>Smarthr</span><FaArrowRightIcon aria-label="右矢印" /><span style={{ backgroundColor: '#ADEDB3'}}>SmartHR</span></Cluster> | 右矢印 |
-|<DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon aria-label="調整済み"/></Cluster></DefinitionListItem></DefinitionList>| 調整済みor編集可能 |
+|<DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon aria-label="調整済み"/></Cluster></DefinitionListItem></DefinitionList>| 調整済み or 編集可能 |
 |<Chip><Cluster inline={true} align="center">チップ<FaCircleXmarkIcon aria-label="削除"/></Cluster></Chip>| 削除 |
 |<Button><FaCircleInfoIcon aria-label="ヘルプ"/></Button>| ヘルプ |
-|<Cluster align="center"><WarningIcon aria-hidden="true" /><Text styleType="blockTitle">注意: 保存していない項目があります！</Text></Cluster> | `aria-hidden="true"` |
-|<Button><Cluster align="center"><FaGearIcon aria-hidden="true" />編集</Cluster></Button>| `aria-hidden="true"` |
-|<Button><Cluster align="center"><FaCirclePlusIcon aria-hidden="true" />追加</Cluster></Button>| `aria-hidden="true"` |
+|[リンク](https://example.com/)|別タブで開く|
+
 
 ## デザインパターン
 
