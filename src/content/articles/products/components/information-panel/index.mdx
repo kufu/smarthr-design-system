@@ -6,7 +6,8 @@ import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { Base, BaseColumn, Cluster, Heading, ResponseMessage, Stack, Text } from 'smarthr-ui'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+import { Cluster, Text } from 'smarthr-ui'
 
 import imageDo from './images/information-panel-on-base-do.png'
 import imageDont from './images/information-panel-on-base-dont.png'
@@ -45,6 +46,26 @@ InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)�
 利用者に伝えたい情報を表示するためのコンポーネントなため、デフォルトでは開閉ボタンを表示しません。
 
 全文表示したままだと操作の妨げになるなど、利用者の使い勝手に影響する場合は開閉ボタンの表示を検討してください。その際、利用者のストレスを生みやすいため、開閉状態の保持を合せて検討してください。
+
+## モバイル
+
+### 開閉ボタンはアイコンボタンを使用する
+
+モバイルでは画面の表示領域が狭いため、開閉ボタンがある場合はアイコンボタンを使用してください。
+
+<ImgWithDesc description="開閉ボタンがある場合、モバイルではアイコンボタンに変更する">
+![スクリーンショット（モバイル）:InformationPanelの開閉ボタンの様子。アイコンボタンが使われている。](./images/information-panel-mobile-1.png)
+</ImgWithDesc>
+
+### モバイルでの余白
+
+コンポーネント内部の余白は[パディング](/products/design-patterns/spacing-layout-pattern/#h2-4)の通りに16pxに変更します。
+
+<ImgWithDesc description="モバイルでのコンポーネント内の余白は16pxに変更する">
+![スクリーンショット（モバイル）:InformationPanelの内側のパディングは16pxと示されている。](./images/information-panel-mobile-2.png)
+</ImgWithDesc>
+
+前後の要素との余白については[マージン](/products/design-patterns/spacing-layout-pattern/#h2-3)を参照してください。
 
 ## Props
 
