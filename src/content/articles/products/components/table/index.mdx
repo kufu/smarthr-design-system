@@ -14,17 +14,30 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ### 行を選択するチェックボックスやラジオボタンのラベル
 
-`<TdCheckbox>`や`<TdRadioButton>`を用いて`aria-labelledby`で行のオブジェクトを識別するためのテキストを参照してください。
+セルの内容としてチェックボックスやラジオボタンなどのコンポーネントを配置する場合には、アクセシビリティ上の注意を要します。これらのコンポーネントをそのまま配置すれば、アクセシブルネームが設定されず、[ウェブアクセシビリティ簡易チェックリスト](/accessibility/check-list/)の「[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)」に違反するおそれがあるためです。
+
+そのため、SmartHR UIでは`<TdCheckbox>`、`<ThCheckbox>`、および`<TdRadioButton>`という三種類の特別なコンポーネントを提供しています。これらのコンポーネントは、それぞれ`<Td><Checkbox /></Td>`、`<Th><Checkbox /></Th>`、および`<Td><RadioButton /></Td>`の代わりに使用できます。
+
+`<TdCheckbox>`および`<TdRadioButton>`では、`aria-labelledby`属性を必ず指定しなければなりません。この属性には、それだけで行を一意に判別できる要素へのID参照を指定します。多くのオブジェクトでは、この属性値はしばしば[オブジェクト名](/products/design-patterns/smarthr-table/#h4-0)へのID参照になるでしょう。
 
 ```tsx
 <tr key={key}>
   <TdCheckbox aria-labelledby={object.id} />
-  <Td>
-    <a href={`/hoge/${object.id}`} id={object.id}>{name}</a>
-  </Td>
-  ...
+  <Td id={object.id}>{name}</Td>
 </tr>
 ```
+
+オブジェクト名だけでは一意に判別できない可能性があるオブジェクトでは、[オブジェクトの情報](https://smarthr.design/products/design-patterns/smarthr-table/#h4-1)を含む複数の要素のID参照をスペース区切りで指定しなければなりません。例えば、従業員は同姓同名の人物が在籍する場合もあることから、以下のように社員番号と組み合わせます。
+
+```tsx
+<tr key={key}>
+  <TdCheckbox aria-labelledby={`${crew.id}-id ${crew.id}-name`} />
+  <Td id={`${crew.id}-id`}>{crew.crewId}</Td>
+  <Td id={`${crew.id}-name`}>{crew.name}</Td>
+</tr>
+```
+
+なお、チェックボックスおよびラジオボタンのラベルについては[eslint-plugin-smarthr](https://npm.im/eslint-plugin-smarthr)のルール[smarthr/a11y-prohibit-checkbox-or-radio-in-table-cell](https://github.com/kufu/tamatebako/tree/master/packages/eslint-plugin-smarthr/rules/a11y-prohibit-checkbox-or-radio-in-table-cell)を用いることで自動的に検証できます。
 
 ## モバイル
 
