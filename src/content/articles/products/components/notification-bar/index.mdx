@@ -169,7 +169,7 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
     <NotificationBar type="success" bold message="値の保存に成功しました。" />
     <Stack align="start" style={{padding: '16px'}}>
       <Fieldset
-        title="設定項目"
+        legend="設定項目"
         innerMargin={0.5}
       >
         <BaseColumn>
@@ -189,6 +189,14 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
   </Base>
 </Stack>
 ```
+## モバイル
+### メッセージの折り返し
+モバイルでは画面幅が狭いため、メッセージが折り返される場合があります。
+複数行になっても見づらくならないよう配慮してください。
+
+### 特定の操作範囲へのフィードバックでの表示位置
+モバイルでは、操作範囲の大きさによってはNotificationBarが画面外に表示される場合があります。
+その場合は、ユーザーがフィードバックを確認できる位置での表示方法を検討してください。
 
 ## Props
 
