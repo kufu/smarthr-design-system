@@ -24,7 +24,7 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 本ドキュメントでは以下のように使い分けます。
 
 - レスポンシブ： 同じ要素・構造・データを保ちつつ、画面幅に応じてレイアウトを変えること
-  - 例： 画面幅に依って文章やボタンが折り返される
+  - 例： 画面幅によって文章やボタンが折り返される
 - アダプティブ： 画面幅や端末、利用環境に応じて、構造やデータ、見た目を変えること
   - 例： モバイルでは情報量を減らし、操作を簡略化する
 - レスポンシブ/アダプティブデザイン： レスポンシブ/アダプティブに設計すること
@@ -95,16 +95,8 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 ただし、画像や動画・地図など2次元であることが情報を伝える上で重要な場合は、その限りではありません。
 
 ### 余白の取り方
-
-デスクトップの[代表的なページ内レイアウトのパディング](/products/spacing-layout-pattern/#h4-2)に対して、モバイルでは表示コンテンツ量を増やしたいため余白を以下のように定めます。
-
-1. メインコンテンツのパディング：
-    - ブロック方向（垂直方向）： `1.5 (24px)` ※変更なし
-    - インライン方向（水平方向）： `1 (16px)`
-1. コンテンツエリアのパディング： `1 (16px)`
-1. コンテンツエリア内のグループのパディング： `1 (16px)` ※変更なし
-
-![スクリーンショット： 代表的なページ内レイアウトのパディングの例。コンテンツ内のパディングの大きさが色分けされて示されている。](./images/spacing-example.png)
+モバイルでは画面の幅が小さいことから、[パディング](/products/design-patterns/spacing-layout-pattern/#h2-4)の一部を小さく設定することで、より多くのコンテンツを表示できるようにします。
+[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
 
 ### Buttonの大きさとレイアウト
 
@@ -119,7 +111,7 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
     <BaseColumn slot="img" as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
       <Stack>
         <Base padding={1}>
-          <FormControl title="何らかの入力">
+          <FormControl label="何らかの入力">
             <Input />
           </FormControl>
         </Base>
@@ -129,14 +121,14 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
       </Stack>
     </BaseColumn>
     <figcaption slot="label" id="caption3">
-      <Caption>ボタンが小さいと利用者の環境に依っては操作しにくい。</Caption>
+      <Caption>ボタンが小さいと利用者の環境によっては操作しにくい。</Caption>
     </figcaption>
   </DoAndDont>
   <DoAndDont type="do" width={320}>
     <BaseColumn slot="img" as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
       <Stack>
         <Base padding={1}>
-          <FormControl title="何らかの入力">
+          <FormControl label="何らかの入力">
             <Input />
           </FormControl>
         </Base>
@@ -159,7 +151,7 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
     <BaseColumn slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
       <Base padding={1}>
         <Stack gap={1.5}>
-          <FormControl title="何らかの入力">
+          <FormControl label="何らかの入力">
             <Input />
           </FormControl>
           <Cluster>
@@ -177,7 +169,7 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
     <BaseColumn slot="img" as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
       <Base padding={1}>
         <Stack gap={1.5}>
-          <FormControl title="何らかの入力">
+          <FormControl label="何らかの入力">
             <Input />
           </FormControl>
           <Stack gap={0.5}>
@@ -195,45 +187,36 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
 
 ## コンポーネントごとの使い方
 
+コンポーネントごとの使い方は、各コンポーネントのページの「モバイル」のセクションを参照してください。
+
+
+## 実装上の注意
+
+### モバイルかどうかの判定には`useDevice`を使う
+
+`useDevice`フックを使って`isNarrowView`を取得し、必要に応じてコンポーネントに割り当ててください。各プロダクトでユーザーエージェントの判定を実装する必要はありません。
+
 <p>
-  <NotificationBar base="base" layer={2} type="warning" message="SmartHR UIで対応中のため、リリースされていない内容を含みます。" />
+  <NotificationBar base="base" layer={2} type="warning" message="SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。" />
 </p>
 
-SmartHR UIは基本的にレスポンシブに実装されているため、配慮が必要なコンポーネントについて記述します。
 
-### useDevice
+```tsx
+import { useDevice } from 'smarthr-ui'
 
-`useDevice` フックを使って `isNarrowView` を取得し、必要に応じてコンポーネントに割り当ててください。SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。各プロダクト側でユーザーエージェントの判定を実装する必要はありません。
+export const YourComponent = () => {
+  const { isNarrowView } = useDevice()
 
-### [Dialog](/products/components/dialog/)
+  return (
+    <SomeComponent 
+      someProp={isNarrowView ? モバイル向けの値 : デスクトップ向けの値}
+    >
+      {/* コンテンツ */}
+    </SomeComponent>
+  )
+}
+```
 
-（WIP）SmartHR UIで実装するため `isNarrowView` を渡してください。基本的にプロダクトで考慮することはありません。
-
-### [BottomFixedArea](/products/components/bottom-fixed-area/)と[FloatArea](/products/components/float-area/)
-
-そのままレスポンシブに折り返して使うと表示領域を圧迫するため、モバイル向けに再設計が必要です。[1画面で複雑な操作をさせない](#h3-1)ように調整してください。
-
-SmartHR UI でも最低限のレイアウトを実装するため `isNarrowView` を渡してください。
-
-### [Pagination](/products/components/pagination/)
-
-モバイルではPaginationを使わないでください。「さらに表示」ボタンの設置を推奨します。利用者はPaginationの小さいボタンを操作することなく、使い慣れた垂直方向のスクロールで必要な情報にたどり着けます。
-
-また、1ページ分以上のデータを見ることができ、前のページを再読み込みする必要もないため、データ通信量の削減が望めます。
-
-### [SideNav](/products/components/side-nav/)
-
-複数カラムを前提としたレイアウトになってしまうため、モバイルでは使わないでください。ページや項目を選択する専用の画面を挟むなど、別の切り替え機構を検討してください。
-
-### [Table](/products/components/table/)
-
-モバイルでは、画面幅を越えたテーブルは[2次元スクロール](#h3-3)を招くため、垂直方向に積みあげることを推奨します。
-
-（WIP）SmartHR UIで `isNarrowView` を用いたレイアウトの切り替えを検討中です。
-
-### [Tooltip](/products/components/tooltip/)と[LineClamp](/products/components/line-clamp/)
-
-モバイルでは表示領域が小さいことに加え、ホバー状態がなく、情報の確認が難しいためTooltipとLineClampを使わないでください。
 
 ## 参考
 

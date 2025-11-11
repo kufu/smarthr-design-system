@@ -61,13 +61,13 @@ order: 6
 
 入力要素に対するエラーメッセージは、[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)の`errorMessages`で表示します。入力要素にも`error`状態を付加して意匠を変化させます。
 
-送信ボタンに対するエラーメッセージは、`error`状態の[ResponseMessage](/products/components/response-message/)（[ActionDialog](/products/components/dialog/action-dialog/)の場合は`responseMessage`）を利用して表示します。
+送信ボタンに対するエラーメッセージは、`error`状態の[ResponseMessage](/products/components/response-message/)（[ActionDialog](/products/components/dialog/action-dialog/)の場合は`responseStatus`）を利用して表示します。
 
 ![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「利用できない文字「$」が含まれています。」というエラーメッセージが表示されたResponseMessageがある。ActionDialogのPrimaryボタンの下部に「入力内容に不備があります。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-submit.png)
 
 ### 同期的な処理を開始したとき
 
-実行した[Button](/products/components/button/)を`loading`状態に変化させます（[ActionDialog](/products/components/dialog/action-dialog/)の場合は`responseMessage`を利用）。
+実行した[Button](/products/components/button/)を`loading`状態に変化させます（[ActionDialog](/products/components/dialog/action-dialog/)の場合は`responseStatus`を利用）。
 
 処理が完了したら表示を切り替え、[同期的な処理が完了したとき](#h3-5)のフィードバックを表示します。
 

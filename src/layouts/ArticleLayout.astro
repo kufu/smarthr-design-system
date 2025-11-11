@@ -51,34 +51,36 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
         <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
           <slot />
         </div>
-        <ul class="articleLinks">
-          {
-            prevSidebarItem !== null && (
-              <li class="prevArticleLinkWrapper">
-                <RoundedBoxLink
-                  path={prevSidebarItem.link}
-                  label="前へ"
-                  title={prevSidebarItem.title}
-                  align="left"
-                  caretPosition="left"
-                />
-              </li>
-            )
-          }
-          {
-            nextSidebarItem !== null && (
-              <li class="nextArticleLinkWrapper">
-                <RoundedBoxLink
-                  path={nextSidebarItem.link}
-                  label="次へ"
-                  title={nextSidebarItem.title}
-                  align="right"
-                  caretPosition="right"
-                />
-              </li>
-            )
-          }
-        </ul>
+        <nav>
+          <ul class="articleLinks">
+            {
+              prevSidebarItem !== null && (
+                <li class="prevArticleLinkWrapper">
+                  <RoundedBoxLink
+                    path={prevSidebarItem.link}
+                    label="前へ"
+                    title={prevSidebarItem.title}
+                    align="left"
+                    caretPosition="left"
+                  />
+                </li>
+              )
+            }
+            {
+              nextSidebarItem !== null && (
+                <li class="nextArticleLinkWrapper">
+                  <RoundedBoxLink
+                    path={nextSidebarItem.link}
+                    label="次へ"
+                    title={nextSidebarItem.title}
+                    align="right"
+                    caretPosition="right"
+                  />
+                </li>
+              )
+            }
+          </ul>
+        </nav>
       </Article>
     </main>
 

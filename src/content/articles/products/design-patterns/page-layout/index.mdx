@@ -16,14 +16,15 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 
 ### 構成要素
 
-エラー画面を除き、SmartHRが提供する画面では[ヘッダー](/products/design-patterns/contents-in-header/)をビューポート最上部に配置します。
+エラー画面を除き、SmartHRが提供する画面では[AppHeader](/products/components/app-header/)をビューポート最上部に配置します。
 
-それぞれの要素同士をどのようにグルーピングするかについては、視覚的グルーピングの基準（WIP）を参照してください。
+それぞれの要素同士をどのようにグルーピングするかについては、[視覚的グルーピング](/products/design-patterns/visual-grouping/)を参照してください。
 
 ### コンテナ領域の幅
 
-[ヘッダー](/products/design-patterns/contents-in-header/)を除いたコンテナ領域の幅は、**基本的に1120px**とします。
-ただし、次のような場合には画面いっぱいにコンテナ領域を広げることもできます。
+[AppHeader](/products/components/app-header/)を除いたコンテナ領域は[Container](/products/components/layout/container)コンポーネントを使用し、コンテナ領域の横幅はサイズ（`size`props）で指定します。
+
+次のような場合には、より広い横幅の選択を検討します。
 
 - 大量のデータ項目を表示する場合
 - [サイドナビゲーションとコンテンツの2カラム](#3-6)や[コレクションとシングルの2カラム](#3-7)など、1つのカラムに1ページ相当の情報量を表示する場合
@@ -34,7 +35,7 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 
 ## 種類
 
-代表的なページレイアウトの種類は以下の通りです。
+代表的なページレイアウトの種類は以下のとおりです。
 モーダルなページについては[モーダルなUI](/products/design-patterns/modal-ui/)を、エラー画面については[ErrorScreen](/products/components/error-screen/)を参照してください。
 
 - コレクション（テーブル）

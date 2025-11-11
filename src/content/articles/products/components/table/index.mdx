@@ -1,0 +1,48 @@
+---
+title: 'Table'
+description: '表形式でデータを表示するためのコンポーネントです。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+表形式でデータを表示するためのコンポーネントです。  
+他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
+
+<ComponentStory name="Table" />
+
+## アクセシビリティ
+
+### 行を選択するチェックボックスやラジオボタンのラベル
+
+`<TdCheckbox>`や`<TdRadioButton>`を用いて`aria-labelledby`で行のオブジェクトを識別するためのテキストを参照してください。
+
+```tsx
+<tr key={key}>
+  <TdCheckbox aria-labelledby={object.id} />
+  <Td>
+    <a href={`/hoge/${object.id}`} id={object.id}>{name}</a>
+  </Td>
+  ...
+</tr>
+```
+
+## モバイル
+
+モバイルでは、画面幅を越えたテーブルは[2次元スクロール](/products/design-patterns/mobile-friendly-layout/#h3-3)を招くため、垂直方向に積みあげることを推奨します。
+
+
+## Props
+
+<ComponentPropsTable name="Table" showTitle />
+<ComponentPropsTable name="Th" showTitle />
+<ComponentPropsTable name="ThCheckbox" showTitle />
+<ComponentPropsTable name="Td" showTitle />
+<ComponentPropsTable name="TdCheckbox" showTitle />
+<ComponentPropsTable name="TdRadioButton" showTitle />
+<ComponentPropsTable name="TableReel" showTitle />
+<ComponentPropsTable name="BulkActionRow" showTitle />
+<ComponentPropsTable name="WakuWakuButton" showTitle />
+<ComponentPropsTable name="EmptyTableBody" showTitle />
+
+## 関連リンク
+- [よくあるテーブル](/products/design-patterns/smarthr-table/)

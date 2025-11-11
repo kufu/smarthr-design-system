@@ -3,7 +3,7 @@ import { Cluster } from 'smarthr-ui';
 
 import WrapperBase from './WrapperBase';
 
-import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
+import type { Gap, SeparateGap } from 'smarthr-ui/types';
 
 export type ComponentPreviewProps = {
   children: React.ReactNode;

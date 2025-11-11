@@ -1,0 +1,47 @@
+---
+title: 'ResponseMessage'
+description: '操作に対する結果を表すためのコンポーネントです。'
+---
+import { Image } from 'astro:assets'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Cluster, Text } from 'smarthr-ui'
+
+import responsemessageDo from './images/responsemessage-do.png'
+import responsemessageDont from './images/responsemessage-dont.png'
+
+操作に対する結果を表すためのコンポーネントです。
+主に特定の操作（同期的な処理）が完了した結果をフィードバックする目的で使用されます。
+<ComponentStory name="ResponseMessage" />
+
+## 使用上の注意
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={responsemessageDo} alt="Do" />
+    <Text slot="label">直前に操作したボタンの近くにエラーメッセージが表示されている</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={responsemessageDont} alt="Dont" />
+    <Text slot="label">直前に操作したボタンから離れた位置に表示されている</Text>
+  </DoAndDont>
+</Cluster>
+その他の注意事項は[フィードバック](/products/design-patterns/feedback/)をご確認ください。
+
+## 種類
+情報、成功、警告、エラー、同期中の5種類の`type`が指定できます。
+同期中はNotificationBarのために存在し、基本的には使いません。
+
+```tsx editable
+<Stack>
+  <ResponseMessage type="info">情報を表すアイコンが付きます。デフォルトです。</ResponseMessage>
+  <ResponseMessage type="success">成功を表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage type="warning">警告を表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage type="error">エラーを表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage type="sync">同期を表すアイコンが付きます。</ResponseMessage>
+</Stack>
+```
+
+## Props
+<ComponentPropsTable name="ResponseMessage" />

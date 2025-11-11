@@ -1,0 +1,21 @@
+---
+title: 'Pagination'
+description: '主に「よくあるテーブル」などコレクションにおけるページを切り替えるためのコンポーネントです。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+主に「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などコレクションにおけるページを切り替えるためのコンポーネントです。使用する場所によって機能を落とせます。
+
+<ComponentStory name="Pagination" />
+
+### モバイル
+
+モバイルではPaginationを使わないでください。「さらに表示」ボタンの設置を推奨します。利用者はPaginationの小さいボタンを操作することなく、使い慣れた垂直方向のスクロールで必要な情報にたどり着けます。
+
+また、1ページ分以上のデータを見ることができ、前のページを再読み込みする必要もないため、データ通信量の削減が望めます。
+
+## Props
+
+<ComponentPropsTable name="Pagination" />
+

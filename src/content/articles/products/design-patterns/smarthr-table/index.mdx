@@ -210,6 +210,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 ### TableReel
 横スクロールが生じるとき、重要な情報が隠れてしまうことを防ぐため、[TableReel](/products/components/table/)を用いて列を固定できます。
 列を固定することにより、画面の表示幅の変更等により意図せぬ横スクロールが発生した場合にも操作性が担保できます。
+[Th](/products/components/table/#props-Th)と[Td](/products/components/table/#props-Td)の`fiexd`propsで`Left` `Right`を指定することで、左右どちらでも固定できます。
 
 ```tsx editable
 
@@ -218,7 +219,9 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
     <Table>
         <thead>
         <tr>
-            <Th>cell</Th>
+            <Th fixed="left">
+            cell
+            </Th>
             <Th>cell</Th>
             <Th>cell</Th>
             <Th>cell</Th>
@@ -232,14 +235,16 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
             <br />
             line
             </Th>
-            <Th fixed data-test="fixed-cell">
+            <Th fixed="right">
             操作
             </Th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <Td data-test="dynamic-change-text">株式会社SmartHR</Td>
+            <Td fixed="left">
+            株式会社SmartHR
+            </Td>
             <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
             <Td>cell</Td>
             <Td>cell</Td>
@@ -253,12 +258,14 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
             <br />
             line
             </Td>
-            <Td fixed>
+            <Td fixed="right">
             <Button size="s">操作</Button>
             </Td>
         </tr>
         <tr>
-            <Td>株式会社SmartHR</Td>
+            <Td fixed="left">
+            株式会社SmartHR
+            </Td>
             <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
             <Td>cell</Td>
             <Td>cell</Td>
@@ -272,12 +279,14 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
             <br />
             line
             </Td>
-            <Td fixed>
+            <Td fixed="right">
             <Button size="s">操作</Button>
             </Td>
         </tr>
         <tr>
-            <Td>株式会社SmartHR</Td>
+            <Td fixed="left">
+            株式会社SmartHR
+            </Td>
             <Td>プロダクトエンジニアグループ/XXXXXXユニット</Td>
             <Td>cell</Td>
             <Td>cell</Td>
@@ -291,7 +300,7 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
             <br />
             line
             </Td>
-            <Td fixed>
+            <Td fixed="right">
             <Button size="s">操作</Button>
             </Td>
         </tr>
@@ -311,8 +320,9 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
 
 1. テーブル
     - テーブルは表示しません。
-    - 代わりに`Base`内部に、`{オブジェクト名}はまだありません。`というメッセージと、オブジェクト追加を促すボタンを上下左右中央に表示します。
+    - 代わりに`Base`内部に、`{オブジェクト名}はありません。`というメッセージと、オブジェクト追加を促すボタンを上下左右中央に表示します。
         - オブジェクト追加を促すボタンは、基本的に[Secondaryボタンのサイズ小](/products/components/button/#h3-1)を使います。
+        - オブジェクト名が人を指す名詞などで「`ありません`」がそぐわない場合は、オブジェクト名を明記しない「`表示するデータはありません。`」というメッセージを表示します。
 2. 見出し
     - 表示の制約はありません。
 3. テーブル操作エリア
@@ -322,7 +332,6 @@ OOUIにおける`コレクション`と、コレクションに関連するア�
     - テーブルのページ送りも**非表示**とします。
 
 ![スクリーンショット: 「よくあるテーブル」の初期表示の例](./images/smarthr-table-variation1.png)
-
 
 ### 検索結果なし
 オブジェクトの検索結果や絞り込み結果が0件であった場合の表示パターンです。

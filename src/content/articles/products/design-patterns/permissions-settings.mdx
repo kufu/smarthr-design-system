@@ -72,7 +72,7 @@ ABACは、対象の属性（操作範囲）に基づいて、特定の行動（�
 表には以下の情報を必ず表示します。必要に応じて、列を追加しても問題ありません。
 
 - **アカウント名**
-  - `{姓} {名}<{メールアドレス}>`と表示します。メールアドレスの登録がない場合は`{姓} {名}`、姓名の登録がない場合は`{メールアドレス}`とします。
+  - [アカウントの表記方法ガイドライン](/products/contents/ui-text/crew-account/#account-display-format)を参照してください。
 - **操作の権限**
   - 権限名を表示します。
 - **操作**
@@ -125,11 +125,11 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 
 #### 2. アカウントの選択
 
-SmartHRのアカウントを選択します。単一選択の場合は[SingleComboBox](/products/components/combo-box/)を使ってください。複数まとめて追加する場合は[MultiComboBox](/products/components/combo-box/)を使ってください。
+SmartHRのアカウントを選択します。単一選択の場合は[SingleCombobox](/products/components/combo-box/)を使ってください。複数まとめて追加する場合は[MultiCombobox](/products/components/combo-box/)を使ってください。
 
-![スクリーンショット:アカウントのSingleComboBoxを開いたとき](./images/permissions-settings/permissions-settings-dialog-account.png)
+![スクリーンショット:アカウントのSingleComboboxを開いたとき](./images/permissions-settings/permissions-settings-dialog-account.png)
 
-ComboBoxのパネル内の説明には`{検索対象名1}、{検索対象名2}で検索できます。`と、検索できる項目を明記します。
+Comboboxのパネル内の説明には`{検索対象名1}、{検索対象名2}で検索できます。`と、検索できる項目を明記します。
 
 #### 3. 操作の権限
 
@@ -138,13 +138,13 @@ ComboBoxのパネル内の説明には`{検索対象名1}、{検索対象名2}�
 - 機能管理者：すべての操作の権限を持つ
 - 業務担当者：業務に必要な操作の権限のみを持つ
 
-操作の権限が上記の2つ以内の場合は、[RadioButtonPanel](/products/components/radio-button-panel/)を使ってください。
+操作の権限の指定には、[RadioButtonPanel](/products/components/radio-button-panel/)を使用してください。
 
-**「カスタム権限」** として、操作の権限をユーザーが増やせるプロダクトもあります。この場合は[SingleComboBox](/products/components/combo-box/)や[Select](/products/components/select/)を使ってください。
+**「カスタム権限」** として、操作の権限をユーザーが増やせるプロダクトもあります。この場合は[SingleCombobox](/products/components/combo-box/)や[Select](/products/components/select/)を使ってください。
 
 #### 4. 独自の権限設定
 
-独自の権限設定がある場合に表示します。用途に依って設定が異なるため、基準やパターンは定めません。
+独自の権限設定がある場合に表示します。用途によって設定が異なるため、基準やパターンは定めません。
 
 ### 構成（ABAC）
 

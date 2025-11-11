@@ -1,12 +1,13 @@
 ---
 title: 'その他のUIテキスト'
 description: 'アプリケーション上の表現で迷ったときの判断基準や、推奨する表記を記載しています。'
-order: 6
+order: 100
 ignoreH3Nav: true
 ---
 
 アプリケーション上の表現で迷ったときの判断基準や、推奨する表記を記載しています。
 
+{<span id="use-polite-style-and-avoid-taigen-dome-in-descriptions" />}
 ## ディスクリプションは敬体（です、ます調）を用いて、動詞まで書く
 
 ### 説明
@@ -16,6 +17,7 @@ ignoreH3Nav: true
 
 画面ごとのライティングの詳細は、デザインパターンで確認してください。
 
+{<span id="use-finite-verbs-in-button-labels" />}
 ## ボタンラベルには動詞の終止形を使用する
 
 ### 説明と例
@@ -36,6 +38,9 @@ NG例：「追加する」「削除する」
 OK例：権限を追加、申請を取り消す  
 NG例：権限の追加、申請の取り消し
 
+迷う場合には、社内Slack`#design_system_相談`で気軽に相談してください。
+
+{<span id="use-nouns-in-screen-titles-and-field-names" />}
 ## 画面タイトルや項目名には名詞を使用する
 
 ### 説明
@@ -49,18 +54,21 @@ NG例：権限の追加、申請の取り消し
 OK例：権限の追加、申請の取り消し  
 NG例：権限を追加、申請を取り消す
 
+画面ごとのライティングの詳細は、デザインパターンで確認してください。
+
+{<span id="use-ni-for-specific-destination-and-e-for-relative-position" />}
 ## 移動の操作を表すときの助詞は、具体的な対象なら「に」、相対的な位置なら「へ」
 
 ### 説明
 
-移動の操作を書く場合、可能な限り場所を明示し「に」を伴います。
+移動の操作を書く場合、可能な限り場所を明示し「に」を伴います。  
 ただし、省略する場合は、相対的な位置で示して「へ」を伴います。
 
-［○○］（画面名）や［〇〇一覧］といった具体的な場所を指す場合は「に」を使用します。
+〇〇画面や［〇〇一覧］といった具体的な場所を指す場合は「に」を使用します。
 
 #### 例
 
-OK：「一覧に戻る」、 「従業員リストに戻る」  
+OK：「一覧に戻る」、「従業員リストに戻る」  
 NG：「一覧へ戻る」
 
 前後左右といった相対的な位置を指す場合は「へ」を使用します。
@@ -71,9 +79,9 @@ OK：「前へ」、「前へ戻る」
 NG：「前に戻る」
 
 ### 議事録
-
 https://smarthr-inc.docbase.io/posts/1719994
 
+{<span id="avoid-kocchira-use-in-descriptive-links" />}
 ## テキストリンクは「こちら」ではなく、移動先を想起しやすい表現をする
 
 ### 説明
@@ -83,27 +91,27 @@ https://smarthr-inc.docbase.io/posts/1719994
 ただし、文字数に制限がある場合は「ヘルプを参照する」などの表現をして構いません。
 
 #### 関連ルール
-[ヘルプページへの動線](https://smarthr.design/products/contents/ui-text/help-link/)
+[ヘルプページへの動線](/products/contents/ui-text/help-link/)
 
 #### 参考文献
 [Web Content Accessibility Guidelines - 2.4.4 リンクの目的（コンテキスト内）を理解する](https://waic.jp/translations/WCAG21/Understanding/link-purpose-in-context.html)
 
 ### 議事録
-
 https://smarthr-inc.docbase.io/posts/1308637#%E3%83%AA%E3%83%B3%E3%82%AF
 
+{<span id="dont-use-ichiran-in-common-tables" />}
 ## よくあるテーブルの見出しに「一覧」はつけない
 
 ### 説明
 
-[よくあるテーブル](https://smarthr.design/products/design-patterns/smarthr-table/)のような表形式の一覧表示の見出しでは、「一覧」を省略します。
+[よくあるテーブル](/products/design-patterns/smarthr-table/)のような表形式の一覧表示の見出しでは、「一覧」を省略します。
 
 同様に、メインオブジェクトが一覧の画面タイトルも同様に「一覧」を省略します。
 
 ただし、機能名とオブジェクト名が一致する場合は、同じ画面内でコンテンツを区別するために「一覧」をつけてください。  
 
 #### 例：申請機能  
-- 申請機能の画面タイトルは「申請」
+- 申請機能の画面タイトルは「申請」  
 - 申請を一覧表示するテーブルの見出しは「申請一覧」
 
 [「上階層に戻る」リンク](/products/components/text-link/upward-link/)の場合は、戻る画面を具体的に伝えるために「〇〇一覧に戻る」の表記とします。簡潔な言い回しにするため、「〜の一覧」のように「の」はつけません。
@@ -113,6 +121,7 @@ https://smarthr-inc.docbase.io/posts/1308637#%E3%83%AA%E3%83%B3%E3%82%AF
 見出しについては、一覧であることが明白なので必要ないと判断。  
 前の画面をより具体的に伝えるために、戻るリンクには「〇〇一覧」の表記にした方が良いと考えました。
 
+{<span id="use-vertical-bar-with-page-titles" />}
 ## ページタイトルは、機能名とSmartHRをバーティカルバー（｜）でつなぐ
 
 ### 説明
@@ -126,23 +135,9 @@ https://smarthr-inc.docbase.io/posts/1308637#%E3%83%AA%E3%83%B3%E3%82%AF
 - 組織図｜SmartHR（スマートHR）
 
 ### 議事録
-
 https://kufuinc.slack.com/archives/CJX59GJFR/p1631164443066500
 
-## ユーザー名、アカウントの表記方法
-
-### 説明
-
-社員番号と従業員氏名を併記する場合は、社員番号と氏名の間に半角スペースを挿入して、「\{社員番号\} \{姓\} \{名\}さんの\{オブジェクト名\}」のように書きます。
-
-{/* textlint-disable */}
-**例**
-- 0001 須磨 英子さんの育児休暇申請
-- 0001 eiko.suma@example.com の育児休暇申請
-- 0001 の育児休暇申請
-- 新しい従業員の育児休暇申請
-{/* textlint-enable */}
-
+{<span id="use-kakko-copy-prefix-for-duplicates" />}
 ## 複製したオブジェクトは、オブジェクト名の頭に（コピー）をつける
 
 ### 説明
@@ -155,9 +150,9 @@ https://kufuinc.slack.com/archives/CJX59GJFR/p1631164443066500
 ファイル名の末尾に「のコピー」などを追加していくと、一覧表示での視認性が悪くなるほか、長いオブジェクト名の場合にコピーであることに気がつきにくいため、プレフィクスをつけることにしました。
 
 ### 議事録
-
 https://kufuinc.slack.com/archives/CJX59GJFR/p1643274254069400
 
+{<span id="tooltip-writing" />}
 ## Tooltipのライティング
 
 ### 説明

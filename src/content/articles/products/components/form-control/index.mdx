@@ -1,0 +1,190 @@
+---
+title: 'FormControl'
+description: 'フォームとしての入力要素に対応するラベルとメッセージテキストを表示するためのコンポーネントです。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Image } from 'astro:assets'
+import {
+  FaExclamationCircleIcon,
+  StatusLabel,
+  Cluster,
+  Text
+} from 'smarthr-ui'
+
+import formControlErrorSampleDo from '../fieldset/images/fieldset_error_sample.png'
+import formControlErrorSampleDont from './image/formcontrol_error_sample_dont.png'
+
+FormControlコンポーネントは、フォームとしての入力要素に対応するラベルとメッセージテキストを表示するためのコンポーネントです。
+
+<ComponentStory name="FormControl" />
+
+## 使用上の注意
+
+### 入力要素が1つの場合にのみ使用する
+
+FormControlは、入力要素が1つだけの場合にのみ使用できます。
+
+姓名のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合は、[Fieldset](/products/components/fieldset/)を使用してください。
+
+#### 複数のフォームを横に並べる場合
+
+入力要素をグルーピングできる場合は、基本的に[Fieldset](/products/components/fieldset///)を使用してください。エラーが表示された際のレイアウト崩れを防ぐことができます。（[エラーの表示方法](/products/components/fieldset#h3-1)）
+
+表示領域の都合などでやむを得ずFormControlを横に並べる場合は、エラーの表示時にレイアウトが崩れないか注意してください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+    <DoAndDont type="do" width="calc(50% - 8px)">
+      <Image slot="img" src={formControlErrorSampleDo} alt="Do" />
+      <Text slot="label">Fieldsetを使うとエラー表示時にレイアウトが崩れません。</Text>
+    </DoAndDont>
+    <DoAndDont type="dont" width="calc(50% - 8px)">
+      <Image slot="img" src={formControlErrorSampleDont} alt="FormControlを横に並べただけだと、エラー表示時にInputの位置がずれる例" />
+      <Text slot="label">単にFormControlを横に並べると、エラー表示時にInputの位置がずれます。</Text>
+    </DoAndDont>
+</Cluster>
+
+## レイアウト
+
+ステータスラベルやメッセージテキストの有無で、コンポーネント内のレイアウトにバリエーションがあります。
+
+### ステータスラベルの有無
+
+フォーム入力が入力必須か任意かをユーザーが区別できるようにするために使用します。
+代表的なステータスラベルは次のとおりです。
+
+| 種類 | 表示例 | 説明 |
+| :--- | :--- | :--- |
+| `必須` | <StatusLabel type="red">必須</StatusLabel> | 入力必須のフォームの場合に表示します。 |
+| `任意` | <StatusLabel type="grey">任意</StatusLabel> | 任意のフォームの場合に表示します。 |
+
+#### フォーム入力が必須の場合の表示例
+
+```tsx editable
+<FormControl
+  label="タイトル"
+  statusLabels={<RequiredLabel />}
+>
+  <Input name="defaultInput" />
+</FormControl>
+```
+
+#### フォーム入力が任意の場合の表示例
+
+```tsx editable
+<FormControl
+  label="タイトル"
+  statusLabelProps={{ type: 'grey', children: '任意' }}
+>
+  <Input name="defaultInput" />
+</FormControl>
+```
+
+#### ステータスラベルの省略
+
+ステータスラベルは視覚的に強い注意を惹くことから、認知負荷を減らすために省略する場合があります。
+具体的には、以下のケースには省略を検討してください。
+
+##### 必須を省略するケース
+
+- フォーム入力が極めて少なく、すべて必須であることが自明な場合
+- 任意のフォームよりも入力必須のフォームが多い場合
+
+##### ステータスラベル自体を省略するケース
+
+- フォームの説明文などで、すべての項目が必須、または任意であることが明記されている場合
+
+### メッセージテキストの有無
+
+以下の種類別のメッセージテキストを目的に応じて組み合わせて使用できます。
+
+| 種類 | Props | 説明 |
+| :--- | :--- | :--- |
+| ヘルプメッセージ | `helpMessage` | 入力して欲しい内容を具体的に伝えるテキストを入力要素の上に表示します。必要に応じて関連するヘルプページなどへのテキストリンクを設置できます。テキストリンクの詳細は[ヘルプページへの動線](/products/contents/ui-text/help-link/#h3-2)を参照してください。 |
+| 入力例 | `exampleMessage` | フォームの入力例を入力要素の上に表示します。原則として入力要素の`placeholder`はユーザビリティおよびアクセシビリティの観点から非推奨としているため、その代替として使用してください。 |
+| エラーメッセージ | `errorMessages` | フォームバリデーションなどで、適切な値が入力されていないことを伝えるテキストを、<FaExclamationCircleIcon alt="エラーメッセージ" color="DANGER" /> アイコン（`FaExclamationCircle`）とあわせて入力要素の上に表示します。 |
+| 補足メッセージ | `supplementaryMessage` | 入力時にユーザーが把握しなくても操作に影響のない情報を入力要素の下に表示します。 |
+
+#### メッセージテキストの表示例
+
+```tsx editable
+<FormControl
+  label="タイトル"
+  helpMessage="ヘルプメッセージ"
+  exampleMessage="入力例"
+  errorMessages={'エラーメッセージ'}
+  supplementaryMessage="補足メッセージ"
+>
+  <Input error />
+</FormControl>
+```
+
+#### エラーメッセージ
+
+エラーメッセージは、入力必須の入力要素の値が空の場合や、データ型が異なるなどの適切な値が入力されていない場合に表示します。
+
+どの入力要素がエラーとなっているかを視覚的に見つけやすくするために、入力要素にも`error`状態を付加します。
+
+同一画面上でエラーをリアルタイムに判定できる場合は、エラーの原因が解消されたらメッセージの表示を止めます。
+
+##### 初期状態の場合
+
+```tsx editable
+<FormControl
+  label="氏名"
+  helpMessage="氏名を入力してください。"
+  exampleMessage="入力例：須磨栄子"
+  supplementaryMessage="その他ご不明な点がありましたら、サポートまでお問い合わせください。"
+>
+  <Input name="fullname" width="100%" />
+</FormControl>
+```
+
+##### 適切な値が入力されていない場合
+
+```tsx editable
+<FormControl
+  label="氏名"
+  helpMessage="氏名を入力してください。"
+  exampleMessage="入力例：須磨栄子"
+  errorMessages={'氏名が入力されていません。'}
+  supplementaryMessage="その他ご不明な点がありましたら、サポートまでお問い合わせください。"
+>
+  <Input error name="fullname" width="100%" />
+</FormControl>
+```
+
+## 状態
+
+### 無効（disabled）
+
+フォームの操作ができない状態を表現する際は、[Input](/products/components/input/)など内包する要素の`disabled`を使用してください。
+
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+```tsx editable
+<FormControl
+  label="氏名"
+  helpMessage="氏名を入力してください。"
+  exampleMessage="入力例：須磨栄子"
+  supplementaryMessage="その他ご不明な点がありましたら、サポートまでお問い合わせください。"
+>
+  <Input name="fullname" width="100%" disabled />
+</FormControl>
+```
+
+### 読み取り専用
+
+
+入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、[Input](/products/components/input/)など内包する要素の`readOnly`を使用してください。
+
+```tsx editable
+<FormControl label="氏名">
+  <Input name="fullname" value="草野栄一郎" readOnly />
+</FormControl>
+```
+
+## Props
+
+<ComponentPropsTable name="FormControl" />

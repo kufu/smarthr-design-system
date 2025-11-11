@@ -3,7 +3,7 @@ title: 'Button'
 description: 'Buttonコンポーネントは、押すことで特定の操作や処理を実行するコンポーネントです。'
 ---
 
-import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
+import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaExternalLinkAltIcon, FaFilterIcon, FaCirclePlusIcon, NotificationBar } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import SampleButton from './_components/SampleButton'
@@ -20,13 +20,14 @@ SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="butt
 
 
 ## 種類
-ボタンの優先度や役割に合わせた4種類のコンポーネントを総称して、Buttonコンポーネントとして定義しています。
+ボタンの優先度や役割に合わせた5種類のコンポーネントを総称して、Buttonコンポーネントとして定義しています。
 
 
 ```tsx editable
 <>
   <Button variant="primary">Primary</Button>
   <Button>Secondary</Button>
+  <Button variant="tertiary">Tertiary</Button>
   <Button variant="danger">Danger</Button>
   <Button variant="text">Text</Button>
 </>
@@ -44,7 +45,7 @@ Primaryボタンは、画面内で主要な操作をユーザーに示す役割�
   <Button variant="primary">ボタン</Button>
   <Button variant="primary" prefix={<FaCirclePlusIcon />}>ボタン</Button>
   <Button variant="primary" suffix={<FaCaretDownIcon />}>ボタン</Button>
-  <Button variant="primary" square>
+  <Button variant="primary">
     <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
@@ -64,12 +65,27 @@ SmartHR UIでは、`variant` propsのデフォルトは`secondary`です。
   <Button>ボタン</Button>
   <Button prefix={<FaCirclePlusIcon />}>ボタン</Button>
   <Button suffix={<FaCaretDownIcon />}>ボタン</Button>
-  <Button square>
+  <Button>
     <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
 ```
 
+### Tertiary
+Tertiaryボタンは、画面内の補助的な操作をユーザーに示す役割を持ちます。主にSecondaryボタンより重要度の低い操作に使います。
+
+他の画面へ移動するリンクとして使いたい場合は、[TextLink](/products/components/text-link/)を使ってください。
+
+```tsx editable
+<>
+  <Button variant="tertiary">ボタン</Button>
+  <Button variant="tertiary" prefix={<FaCirclePlusIcon />}>ボタン</Button>
+  <Button variant="tertiary" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="tertiary">
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+</>
+```
 
 ### Danger
 Dangerボタンは、[ワンクッション必要な操作](/products/design-patterns/confirmation-step/)を行なうときに、ユーザーに注意を促す役割を持ちます。
@@ -83,7 +99,7 @@ Dangerボタンは、[ワンクッション必要な操作](/products/design-pat
   <Button variant="danger">ボタン</Button>
   <Button variant="danger" prefix={<FaCirclePlusIcon />}>ボタン</Button>
   <Button variant="danger" suffix={<FaCaretDownIcon />}>ボタン</Button>
-  <Button variant="danger" square>
+  <Button variant="danger">
     <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
@@ -92,19 +108,21 @@ Dangerボタンは、[ワンクッション必要な操作](/products/design-pat
 
 ### Text
 Textボタンは、画面内の通常の操作をユーザーに示す役割を持ちます。
-Secondaryボタンと役割は同じですが、ほかのコンポーネントにボタンが内包される場合や、レイアウト上の不都合がある場合など、Secondaryボタンが使いづらいときにTextボタンの使用を検討します。
 
-- 例えば[ドロップダウンメニュー](/products/components/dropdown/dropdown-menu-button/#h3-1)内のボタンや[アイコンボタン](#h4-1)など、ボタンとしての装飾（背景色や枠線）を省いてもボタンとして認識できる場合に使用できます。  
-- Textボタンを単独で使用する場合は、ラベルテキストだけではボタンとして認識しづらいので、プレフィックス（`prefix`props）にアイコンを設定して使用します。
-- ほかの画面に移動させることが主目的の場合は、[TextLink](/products/components/text-link/)を使用してください。
+Secondaryボタンと役割は同じですが、Secondaryボタンの装飾（枠線）が過剰な場合に使います。例えば、次のような場合です。
 
+- コンポーネントに内包する場合
+  - 例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/) 
+- 多くのボタンを並べて表示する場合
+
+Textボタンは押せることがわかりづらいため、利用には注意が必要です。単独で使う場合にはプレフィックス（`prefix`props）またはサフィックス（`suffix`props）にアイコンを設定してください。
 
 ```tsx editable
 <>
   <Button variant="text">ボタン</Button>
   <Button variant="text" prefix={<FaCirclePlusIcon />}>ボタン</Button>
   <Button variant="text" suffix={<FaCaretDownIcon />}>ボタン</Button>
-  <Button variant="text" square>
+  <Button variant="text">
     <FaCirclePlusIcon alt="追加" />
   </Button>
 </>
@@ -115,6 +133,7 @@ Secondaryボタンと役割は同じですが、ほかのコンポーネント�
 AnchorButtonは、リンク（`a`要素）をボタンのように装飾にするコンポーネントです。
 アクションボタンとして表現したい場合は、Buttonを使用してください。
 
+リンクを新規ウィンドウで開く場合には、テキストの右側に<FaExternalLinkAltIcon alt="新規ウィンドウ" color="TEXT_LINK"/>アイコン（`FaExternalLinkAltIcon`）が自動で配置されます。
 
 ```tsx editable
 <>
@@ -122,6 +141,7 @@ AnchorButtonは、リンク（`a`要素）をボタンのように装飾にす�
   <AnchorButton href="#h3-4">ボタン</AnchorButton>
   <AnchorButton variant="danger" href="#h3-4">ボタン</AnchorButton>
   <AnchorButton variant="text" href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton href="#h3-4" target="_blank">ボタン</AnchorButton>
 </>
 ```
 
@@ -176,13 +196,13 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 ```tsx editable
 <>
-  <Button square>
+  <Button>
     <FaCirclePlusIcon alt="追加" />
   </Button>
-  <Button square size="s">
+  <Button size="s">
     <FaCirclePlusIcon alt="追加" />
   </Button> 
-  <Button variant="text" square>
+  <Button variant="text">
     <FaCirclePlusIcon alt="追加" />
   </Button>
 </>

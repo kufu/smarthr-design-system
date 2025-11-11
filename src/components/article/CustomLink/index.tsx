@@ -1,12 +1,10 @@
-import { FaUpRightFromSquareIcon } from 'smarthr-ui';
-
-import styles from './index.module.scss';
+import { IntlProvider, TextLink } from 'smarthr-ui';
 
 import type { ComponentPropsWithoutRef } from 'react';
 
 type Props = {
   href: string;
-} & ComponentPropsWithoutRef<'a'>;
+} & ComponentPropsWithoutRef<typeof TextLink>;
 
 // NOTE:
 // Astro コンポーネントだと改行による空白文字が削除されず <slot /> (children) の前後に空白文字が入るため、
@@ -15,19 +13,14 @@ type Props = {
 // Slots render additional character spaces · Issue #6893 · withastro/astro
 // https://github.com/withastro/astro/issues/6893
 
-export default function CustomLink({ children, href, ...props }: Props) {
+export default function CustomLink({ children, href, ...rest }: Props) {
   const isExternal = href.match(/^https?:\/\/(?!smarthr\.design).*?$/) !== null;
 
   return (
-    <a
-      {...props}
-      className={styles.link}
-      href={href}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noreferrer' : undefined}
-    >
-      {children}
-      {isExternal && <FaUpRightFromSquareIcon />}
-    </a>
+    <IntlProvider locale="ja">
+      <TextLink {...rest} href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noreferrer' : undefined}>
+        {children}
+      </TextLink>
+    </IntlProvider>
   );
 }

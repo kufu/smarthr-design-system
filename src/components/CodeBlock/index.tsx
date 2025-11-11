@@ -13,7 +13,7 @@ import styles from './index.module.scss';
 import sharedStyles from './shared.module.scss';
 
 import type { LiveProvider } from 'react-live';
-import type { Gap, SeparateGap } from 'smarthr-ui/lib/types';
+import type { Gap, SeparateGap } from 'smarthr-ui/types';
 
 type LiveProviderProps = React.ComponentProps<typeof LiveProvider>;
 
@@ -77,24 +77,26 @@ export default function CodeBlock({
 
   if (editable) {
     return (
-      <div className={styles.wrapper}>
-        {renderingComponent && (
-          <div className={styles.linkWrapper}>
-            <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
-              別画面で開く
-            </TextLink>
-          </div>
-        )}
-        <LiveContainer
-          code={codeString}
-          language={language}
-          withStyled={withStyled}
-          noIframe={noIframe}
-          gap={gap}
-          align={align}
-          layout={layout}
-        />
-      </div>
+      <ui.IntlProvider locale="ja">
+        <div className={styles.wrapper}>
+          {renderingComponent && (
+            <div className={styles.linkWrapper}>
+              <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
+                別画面で開く
+              </TextLink>
+            </div>
+          )}
+          <LiveContainer
+            code={codeString}
+            language={language}
+            withStyled={withStyled}
+            noIframe={noIframe}
+            gap={gap}
+            align={align}
+            layout={layout}
+          />
+        </div>
+      </ui.IntlProvider>
     );
   }
 
