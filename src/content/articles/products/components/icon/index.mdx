@@ -6,6 +6,7 @@ description: 'アイデアやアクションを表すための視覚的な要素
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+import { ExternalTextLink } from './components/ExternalTextLink'
 import {
   FaAddressBookIcon,
   FaAddressCardIcon,
@@ -66,7 +67,7 @@ Font Awesomeから必要なものを取り込んでいます。
 |<DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon aria-label="調整済み"/></Cluster></DefinitionListItem></DefinitionList>| 調整済み or 編集可能 |
 |<Chip><Cluster inline={true} align="center">チップ<FaCircleXmarkIcon aria-label="削除"/></Cluster></Chip>| 削除 |
 |<Button><FaCircleInfoIcon aria-label="ヘルプ"/></Button>| ヘルプ |
-|[リンク](https://example.com/)|別タブで開く|
+| <ExternalTextLink href="https://example.com/">リンク</ExternalTextLink>|別タブで開く|
 
 
 ## デザインパターン
