@@ -3,7 +3,7 @@ title: 'Button'
 description: 'Buttonコンポーネントは、押すことで特定の操作や処理を実行するコンポーネントです。'
 ---
 
-import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon, NotificationBar } from 'smarthr-ui'
+import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaExternalLinkAltIcon, FaFilterIcon, FaCirclePlusIcon, NotificationBar } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import SampleButton from './_components/SampleButton'
@@ -133,6 +133,7 @@ Textボタンは押せることがわかりづらいため、利用には注意�
 AnchorButtonは、リンク（`a`要素）をボタンのように装飾にするコンポーネントです。
 アクションボタンとして表現したい場合は、Buttonを使用してください。
 
+リンクを新規ウィンドウで開く場合には、テキストの右側に<FaExternalLinkAltIcon alt="新規ウィンドウ" color="TEXT_LINK"/>アイコン（`FaExternalLinkAltIcon`）が自動で配置されます。
 
 ```tsx editable
 <>
@@ -140,6 +141,7 @@ AnchorButtonは、リンク（`a`要素）をボタンのように装飾にす�
   <AnchorButton href="#h3-4">ボタン</AnchorButton>
   <AnchorButton variant="danger" href="#h3-4">ボタン</AnchorButton>
   <AnchorButton variant="text" href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton href="#h3-4" target="_blank">ボタン</AnchorButton>
 </>
 ```
 
