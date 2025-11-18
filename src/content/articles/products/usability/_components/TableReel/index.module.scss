@@ -8,7 +8,7 @@
     width: 115% !important;
 
     @include breakpointMobile3 {
-      width: 250svw !important;
+      width: 200svw !important;
     }
   }
 
@@ -17,5 +17,9 @@
     min-width: initial;
     box-sizing: content-box;
     font-size: var(--font-size-14) !important;
+  }
+
+  :global(th) {
+    white-space: nowrap;
   }
 }
