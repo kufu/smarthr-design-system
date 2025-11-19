@@ -95,16 +95,8 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 ただし、画像や動画・地図など2次元であることが情報を伝える上で重要な場合は、その限りではありません。
 
 ### 余白の取り方
-
-デスクトップの[代表的なページ内レイアウトのパディング](/products/design-patterns/spacing-layout-pattern/#h4-2)に対して、モバイルでは表示コンテンツ量を増やしたいため余白を以下のように定めます。
-
-1. メインコンテンツのパディング：
-    - ブロック方向（垂直方向）：`1.5 (24px)`、インライン方向（水平方向）：`1 (16px)`
-    - [Container](/products/components/layout/container/)を使用することで、自動的に適用されます。
-1. コンテンツエリアのパディング：`1 (16px)`
-1. コンテンツエリア内のグループのパディング：`1 (16px)` ※変更なし
-
-![スクリーンショット： 代表的なページ内レイアウトのパディングの例。コンテンツ内のパディングの大きさが色分けされて示されている。](./images/spacing-example.png)
+モバイルでは画面の幅が小さいことから、[パディング](/products/design-patterns/spacing-layout-pattern/#h2-4)の一部を小さく設定することで、より多くのコンテンツを表示できるようにします。
+[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
 
 ### Buttonの大きさとレイアウト
 
@@ -205,7 +197,7 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
 `useDevice`フックを使って`isNarrowView`を取得し、必要に応じてコンポーネントに割り当ててください。各プロダクトでユーザーエージェントの判定を実装する必要はありません。
 
 <p>
-  <NotificationBar base="base" layer={2} type="warning" message="SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。" />
+  <NotificationBar base="base" layer={2} type="warning">SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。</NotificationBar>
 </p>
 
 
