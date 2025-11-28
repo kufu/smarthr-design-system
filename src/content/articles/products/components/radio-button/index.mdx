@@ -127,12 +127,12 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={radioButtonMobileDo} alt="Do" />
+    <Image slot="img" src={radioButtonMobileDo} alt="ラベル付きのラジオボタンが縦に並んでいる" />
     <Text slot="label">ラベルテキストの長さによらず、整列されていて操作しやすい</Text>
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={radioButtonMobileDont} alt="Dont" />
+    <Image slot="img" src={radioButtonMobileDont} alt="ラベル付きのラジオボタンが改行なしで並んでいる。幅が狭い画面のため、ラベルテキストの途中で折り返しが発生している" />
     <Text slot="label">折り返しによって不揃いなレイアウトになる上、隣り合う要素の誤タップも起きやすい</Text>
   </DoAndDont>
 </Cluster>
