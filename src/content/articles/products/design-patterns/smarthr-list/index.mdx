@@ -7,10 +7,14 @@ import { Image } from 'astro:assets'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import Grid from '@/components/article/Grid.astro'
-import { Cluster, Text } from 'smarthr-ui'
+import { BaseColumn, Cluster, FaInfoCircleIcon, Text } from 'smarthr-ui'
 
 import doOmitHeading from './images/smarthr-list-do-omit-heading.png'
 import dontOmitHeading from './images/smarthr-list-dont-omit-heading.png'
+
+<BaseColumn>
+  <FaInfoCircleIcon color="TEXT_GREY" text="よくあるリストを実現しやすくするための、Listコンポーネントをsmarthr-uiで実装予定です。"/>
+</BaseColumn>
 
 リスト形式でオブジェクトを一覧表示するUIのパターンをまとめています。
 
@@ -88,6 +92,10 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 クリックすると、リストのオブジェクトを絞り込むオプションを表示します。
 
 ### 4. リスト
+
+<BaseColumn>
+  <FaInfoCircleIcon color="TEXT_GREY" text="Listコンポーネントをsmarthr-uiで実装予定です。"/>
+</BaseColumn>
 
 オブジェクトをリスト形式で垂直方向に積み重ねて表示します。
 
