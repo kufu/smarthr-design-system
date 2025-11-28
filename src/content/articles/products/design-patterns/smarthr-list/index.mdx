@@ -161,11 +161,27 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 ### モバイル
 
+#### 要素間の余白
+
 要素間の余白は以下のとおりです。（コンポーネント内の余白は省略）
 
 基本的に[余白の取り方/モバイル](/products/design-patterns/spacing-layout-pattern/)に従って配置しますが、オブジェクトが詳細ビューを持つ場合のリスト項目の右側のPaddingは`0.5（8px）`とします。
 
 ![スクリーンショット: モバイルでのレイアウトの要素間の余白](./images/smarthr-list-spacing-mobile.png)
+
+#### 見出しとリスト操作エリアのレイアウト
+
+多様な画面幅で見やすいレイアウトとなるよう、[見出し](#h3-0)と[リスト操作エリア](#h3-1)は、[Sidebar](/products/components/layout/sidebar/)を使って配置します。
+
+```tsx editable
+<Sidebar gap={0.5} align="center" right>
+    <Heading>見出し</Heading>
+    <Cluster>
+        <Button>操作</Button>
+        <Button>操作</Button>
+    </Cluster>
+</Sidebar>
+```
 
 #### リストの各項目をBaseでグルーピングするパターン
 
