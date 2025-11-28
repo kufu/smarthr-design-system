@@ -5,9 +5,11 @@ order: 7
 ---
 
 import { Image } from 'astro:assets'
-import { Text } from 'smarthr-ui'
+import { Cluster, Text } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 
+import imageUrlFullScreenDialog from './images/modal-ui_full_screen_dialog_mobile.png'
+import imageUrlFullScreenDialogDont from './images/modal-ui_full_screen_dialog_mobile_dont.png'
 import imageUrlUpwardDont from './images/modal-ui_upward-navigation.png'
 import imageUrlAccessibilityDo from './images/modal-ui_actiondialog_accessibility_error.png'
 import imageUrlAccessibilityDont from './images/modal-ui_actiondialog_accessibility_disabled.png'
@@ -91,6 +93,27 @@ SmartHR UIでは、以下の3種類のコンポーネントを用意していま
 
 ![ステップを複数に分けたモード](./images/modal-ui_wizard.png)
 
+
+### モバイルにおけるダイアログの表示
+パソコンとモバイルでダイアログを表示する場合では、ダイアログが占める画面の割合や表示できる情報量が異なります。ユーザーがモードに行なうべき操作に集中できるよう、必要に応じてダイアログの表示の仕方を選択してください。
+
+以下の場合では、画面全体でダイアログを表示することを検討してください。
+- ダイアログの画面占有率が50％を超える場合
+- 入力や編集など、ユーザーの入力操作が多い場合
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrlFullScreenDialog} alt="Do" />
+    <Text slot="label">ダイアログで表示する情報が多い場合は画面全体でダイアログを表示する</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrlFullScreenDialogDont} alt="Dont" />
+    <Text slot="label">背景の情報がほとんど隠れているのに、ダイアログをそのまま表示する</Text>
+  </DoAndDont>
+</Cluster>
+
+モバイルでの詳しいダイアログの使い方は[Dialog](/products/components/dialog/)を参照してください。
 
 ## 構成
 
