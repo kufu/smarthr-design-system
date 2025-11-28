@@ -5,6 +5,8 @@ order: 9
 ---
 import { Image } from 'astro:assets'
 import DoAndDont from '@/components/article/DoAndDont.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+import Grid from '@/components/article/Grid.astro'
 import { Cluster, Text } from 'smarthr-ui'
 
 import doOmitHeading from './images/smarthr-list-do-omit-heading.png'
@@ -122,7 +124,15 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 `よくあるリスト`が主に想定しているモバイル環境では画面の幅が狭いことから、 表示できるボタンは**defaultサイズのアイコンボタン1つです**。複数の操作を表示したい場合は、[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)を使います。
 
-![スクリーンショット: オブジェクトが詳細ビューを持たない場合の操作](./images/smarthr-list-item-has-no-single-view.png)
+<Grid>
+    <ImgWithDesc description="Button">
+    ![スクリーンショット: オブジェクトが詳細ビューを持たない場合にButtonを表示する例](./images/smarthr-list-item-has-no-single-view-button.png)
+    </ImgWithDesc>
+
+    <ImgWithDesc description="DropdownMenuButton">
+    ![スクリーンショット: オブジェクトが詳細ビューを持たない場合にDropdownMenuButtonを表示する例](./images/smarthr-list-item-has-no-single-view-dropdownmenu-button.png)
+    </ImgWithDesc>
+</Grid>
 
 ### 5. 「さらに表示」ボタン
 
