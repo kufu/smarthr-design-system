@@ -7,6 +7,8 @@ import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStoryfrom from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+import Grid from '@/components/article/Grid.astro'
 import { Cluster, Text, FaCloudDownloadAltIcon } from 'smarthr-ui'
 
 import noTitleDo from './images/pattern-no-title-do.png'
@@ -378,7 +380,15 @@ OOUIにおける「コレクション」と、コレクションに関連する�
 
 `よくあるテーブル`と`よくあるリスト`の主な構成の違いを次に示します。デスクトップで表示している`よくあるテーブル`を、モバイル向けに`よくあるリスト`へ変換する際に参照してください。
 
-![よくあるテーブルからよくあるリストへの変換例](./images/smarthr-table-to-smarthr-list.png)
+
+<Grid>
+    <ImgWithDesc description="よくあるテーブル">
+    ![スクリーンショット: よくあるテーブル](./images/smarthr-table-conversion.png)
+    </ImgWithDesc>
+    <ImgWithDesc description="よくあるリスト">
+    ![スクリーンショット: よくあるリスト](./images/smarthr-list-conversion.png)
+    </ImgWithDesc>
+</Grid>
 
 #### テーブル操作エリア
 
@@ -388,7 +398,14 @@ OOUIにおける「コレクション」と、コレクションに関連する�
 | :--- | :--- | :--- | :--- |
 | ボタン | 最大3つ | 最大2つ | 3つ以上の操作は、[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)を使ってまとめます。その場合、Button→DropdownMenuButtonの順に配置します。よくあるテーブルの表示順とは異なる点に注意してください。 |
 
-![テーブル操作エリアとリスト操作エリアの例](./images/smarthr-table-to-smarthr-list-actionarea.png)
+<Grid>
+    <ImgWithDesc description="よくあるテーブルのテーブル操作エリア">
+    ![スクリーンショット: よくあるテーブルのテーブル操作エリア](./images/smarthr-table-conversion-actionarea.png)
+    </ImgWithDesc>
+    <ImgWithDesc description="よくあるリストのリスト操作エリア">
+    ![スクリーンショット: よくあるリストのリスト操作エリア](./images/smarthr-list-conversion-actionarea.png)
+    </ImgWithDesc>
+</Grid>
 
 #### 一時操作エリア
 `よくあるリスト`においても[同名のエリア](/products/design-patterns/smarthr-list/#h3-2)があります。
@@ -398,7 +415,14 @@ OOUIにおける「コレクション」と、コレクションに関連する�
 | Base内の上部に配置する操作 | ユースケースに応じて表示 | [SearchInput](/products/components/input/#h3-4)と[FilterDropdown](/products/components/dropdown/filter-dropdown/)のみ表示 | `よくあるテーブル`で表示しているそれ以外の操作は、`よくあるリスト`では表示しません。<br/>検索ボタンは表示せず、リターンキーが押されたら、検索処理を実行します。 |
 | Base外の下部に配置する操作 | 主にページ送りを表示 | 表示なし | 件数が多い場合は代わりに「さらに表示」ボタンを表示して、追加で読み込めるようにします。 |
 
-![よくあるテーブルとよくあるリスト一時操作エリアの例](./images/smarthr-table-to-smarthr-list-temporary-actionarea.png)
+<Grid>
+    <ImgWithDesc description="よくあるテーブルの一時操作エリア">
+    ![スクリーンショット: よくあるテーブルの一時操作エリア](./images/smarthr-table-conversion-temporary-actionarea.png)
+    </ImgWithDesc>
+    <ImgWithDesc description="よくあるリストの一時操作エリア">
+    ![スクリーンショット: よくあるリストの一時操作エリア](./images/smarthr-list-conversion-temporary-actionarea.png)
+    </ImgWithDesc>
+</Grid>
 
 #### テーブル
 
@@ -411,7 +435,14 @@ OOUIにおける「コレクション」と、コレクションに関連する�
 | オブジェクトの情報 | ユースケースに応じて表示 | ステータスと最大2行分の情報のみ表示 | `よくあるリスト`で表示しきれない情報は、詳細ビューで表示します。 |
 | オブジェクトの操作 | ユースケースに応じて表示 | （オブジェクトが詳細ビューを持つ場合）オブジェクトの操作を表示しない<br />（オブジェクトが詳細ビューを持たない場合）defaultサイズのアイコンボタン1つのみ表示 | オブジェクトの操作が複数ある場合は、[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)を使ってまとめます。 |
 
-![テーブルとリストの例](./images/smarthr-table-to-smarthr-list-table.png)
+<Grid>
+    <ImgWithDesc description="よくあるテーブルのテーブル">
+    ![スクリーンショット: よくあるテーブルのテーブル](./images/smarthr-table-conversion-table.png)
+    </ImgWithDesc>
+    <ImgWithDesc description="よくあるリストのリスト">
+    ![スクリーンショット: よくあるリストのリスト](./images/smarthr-list-conversion-table.png)
+    </ImgWithDesc>
+</Grid>
 
 ## 関連リンク
 
