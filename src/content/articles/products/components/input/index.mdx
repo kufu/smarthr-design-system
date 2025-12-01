@@ -186,27 +186,13 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 ```
 
 ## モバイル
-### フォントサイズ
-フォントサイズを16px未満にすることは避けてください。
-16px未満だとタップしたときに意図せず自動的にページ全体がズームします。
-レイアウトされたデザインが崩れることを防ぐためにフォントサイズを指定してください。
-![テキストサイズが16px未満になっているので自動的にページ全体がズームされている](./images/mobile-font-size.png)
+### フォントサイズは`M`以上を使用する
+一部のモバイル向けブラウザでは、Inputのフォントサイズが16px未満の場合、入力時に画面が拡大表示されることがあります。意図しない拡大を避けるため、Inputのフォントサイズは`M`以上を使用してください。
 
-### 横幅
-親要素の幅いっぱいに広げてください。
-スマートフォンを片手で持ち、右手親指で操作をする人でもタップできるように横幅を大きく取りましょう。
-ただし、画面幅が広すぎるタブレットは入力欄が長すぎると見づらくなるため、max-widthを指定し、広がりを制限してください。
-
-<Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={MobileinputWidthDo} alt="Do" />
-    <Text slot="label">親要素いっぱいに幅が調整されておらず右親指が届きにくい</Text>
-  </DoAndDont>
-  <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={MobileinputWidthDont} alt="Dont" />
-    <Text slot="label">親要素いっぱいに幅が調整されている</Text>
-  </DoAndDont>
-</Cluster>
+<DoAndDont type="dont" width="100%">
+  <Image slot="img" src={MobileFontSize} alt="Dont" />
+  <Text slot="label">ページ全体がズームされている</Text>
+</DoAndDont>
 
 ## アクセシビリティ
 ### 基本的なアクセシビリティ機能
