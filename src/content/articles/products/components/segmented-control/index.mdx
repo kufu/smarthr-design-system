@@ -38,19 +38,13 @@ SegmentedControlは異なる状態を切り替えるためのコンポーネン�
 - [Reel](/products/components/layout/reel/)を使用して水平方向にスクロールさせる
 
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { BaseColumn, Cluster, Reel, SegmentedControl, Text } from 'smarthr-ui'
+import { BaseColumn, Cluster, Text } from 'smarthr-ui'
+import { Dont, DoWithWrap, DoWithReel } from './_components/mobile-do-dont'
 
 <Cluster gap={1}>
   <DoAndDont type="dont" width={320}>
     <BaseColumn slot="img" as="figure" aria-labelledby="caption1" style={{ margin: 'unset' }}>
-      <SegmentedControl
-        value="button2"
-        options={[
-          { value: 'button1', content: 'ボタン' },
-          { value: 'button2', content: 'ながいラベルのボタン' },
-          { value: 'button3', content: 'もっとながいラベルのボタン' },
-        ]}
-      />
+      <Dont />
     </BaseColumn>
     <Text as="figcaption" slot="label" id="caption1">
       <p style={{ lineHeight: 1.5 }}>画面幅が小さくなると、SegmentedControlのボタンが折り返してしまう。</p>
@@ -58,14 +52,7 @@ import { BaseColumn, Cluster, Reel, SegmentedControl, Text } from 'smarthr-ui'
   </DoAndDont>
   <DoAndDont type="do" width={320}>
     <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ margin: 'unset' }}>
-      <SegmentedControl
-        value="button2"
-        options={[
-          { value: 'button1', content: <Text>ボタン</Text> },
-          { value: 'button2', content: <Text>ながいラベルのボタン</Text> },
-          { value: 'button3', content: <Text>ボタン</Text> },
-        ]}
-      />
+      <DoWithWrap />
     </BaseColumn>
     <Text as="figcaption" slot="label" id="caption2">
       <p style={{ lineHeight: 1.5 }}>ボタンのラベルを折り返して画面幅に収める。</p>
@@ -73,16 +60,7 @@ import { BaseColumn, Cluster, Reel, SegmentedControl, Text } from 'smarthr-ui'
   </DoAndDont>
   <DoAndDont type="do" width={320}>
     <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ margin: 'unset' }}>
-      <Reel>
-        <SegmentedControl
-          value="button2"
-          options={[
-            { value: 'button1', content: 'ボタン' },
-            { value: 'button2', content: 'ながいラベルのボタン' },
-            { value: 'button3', content: 'もっとながいラベルのボタン' },
-          ]}
-        />
-      </Reel>
+      <DoWithReel />
     </BaseColumn>
     <Text as="figcaption" slot="label" id="caption2">
       <p style={{ lineHeight: 1.5 }}>Reelを使用して水平方向にスクロールさせる。</p>
