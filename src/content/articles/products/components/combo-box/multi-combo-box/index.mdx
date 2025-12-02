@@ -29,6 +29,10 @@ import multiComboboxDont from '../images/multi-combo-box-dont.png'
 
 選択肢の数が6個以上で、ユーザーにテキスト入力で値を追加させたり、値を絞り込んで選択させたい場合はMultiComboboxを使用します。
 
+#### モバイルでの操作性に留意する
+モバイルでの利用時に仮想キーボードがドロップダウンの表示を狭め、かえって操作性を損なう場合があります。
+詳しくは[選択コンポーネントの使い分け - 検索機能が必要かどうか](/products/design-patterns/selection-component-usage/#h4-4)を参照してください。
+
 ### 入力補助のヒントメッセージとしてプレースホルダを使用しない
 
 MultiComboboxで入力補助のヒントメッセージを表示したい場合は`dropdownHelpMessage`や[FormControl](/products/components/form-control/)の`helpMessage`を使用し、プレースホルダ（`placeholder`）は使用しないでください。プレースホルダを使用した場合、テキスト入力するとプレースホルダの内容が確認できなくなるため、入力補助として成立しないためです。
