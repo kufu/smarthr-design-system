@@ -5,6 +5,8 @@ description: '主に「よくあるテーブル」などコレクションにお
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+
 主に「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などコレクションにおけるページを切り替えるためのコンポーネントです。使用する場所によって機能を落とせます。
 
 <ComponentStory name="Pagination" />
@@ -25,6 +27,10 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 - 一覧上から特定のデータを探して操作することが主要な使われ方として想定される場合
 
 モバイルでPaginationを表示する場合は、画面の幅が狭いため、`withoutNumber`propsを有効にするか、`Padding`propsに0~1の値を設定してください。
+
+<ImgWithDesc description="paddingを1に設定したPagination">
+    ![スクリーンショット：paddingを1に設定したPagination](./images/pagination-padding-1.png)
+</ImgWithDesc>
 
 ## Props
 
