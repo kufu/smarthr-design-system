@@ -19,9 +19,9 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 参考：[よくあるリストの「さらに表示」ボタン](/products/design-patterns/smarthr-list/#h3-4)
 ![「さらに表示」ボタンがリストの最下部に表示されている。](./images/smarthr-list-more-button.png)
 
-ただし、次のような場合にはモバイルでもPaginationが適している場合があります。
+ただし、次のような場合にはモバイルでもPaginationが適していることがあります。
 
-- 表示されるデータの件数が多い場合
+- 表示されるデータの件数が多いと想定される場合
 - 一覧上から特定のデータを探して操作することが主要な使われ方として想定される場合
 
 モバイルでPaginationを表示する場合は、画面の幅が狭いため、`withoutNumber`propsを有効にするか、`Padding`propsに0~1の値を設定してください。
