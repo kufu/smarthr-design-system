@@ -9,6 +9,11 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 <ComponentStory name="PageCounter" />
 
+## モバイル
+
+PageCounterはコレクションにページがあることを前提とするため、Paginationと合わせて使います。  
+モバイルでPaginationを表示していない場合（代わりに「さらに表示」ボタンを表示している場合など）、当該のコレクションにはページがないためPageCounterは使いません。
+
 ## Props
 
 <ComponentPropsTable name="PageCounter" />
