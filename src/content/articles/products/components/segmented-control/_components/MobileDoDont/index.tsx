@@ -6,9 +6,9 @@ export const Dont = () => (
   <SegmentedControl
     value="button2"
     options={[
-      { value: 'button1', content: 'ボタン' },
-      { value: 'button2', content: '長いラベルのボタン' },
-      { value: 'button3', content: 'ボタン' },
+      { value: 'button1', content: 'ボタン1' },
+      { value: 'button2', content: '長いラベルのボタン2' },
+      { value: 'button3', content: 'ボタン3' },
     ]}
   />
 );
@@ -17,9 +17,9 @@ export const DoWithWrap = () => (
   <SegmentedControl
     value="button2"
     options={[
-      { value: 'button1', content: 'ボタン' },
-      { value: 'button2', content: '長いラベルのボタン' },
-      { value: 'button3', content: 'ボタン' },
+      { value: 'button1', content: 'ボタン1' },
+      { value: 'button2', content: '長いラベルのボタン2' },
+      { value: 'button3', content: 'ボタン3' },
     ]}
     className={styles.doWithWrap}
   />
@@ -30,9 +30,9 @@ export const DoWithReel = () => (
     <SegmentedControl
       value="button2"
       options={[
-        { value: 'button1', content: 'ボタン' },
-        { value: 'button2', content: '長いラベルのボタン' },
-        { value: 'button3', content: 'ボタン' },
+        { value: 'button1', content: 'ボタン1' },
+        { value: 'button2', content: '長いラベルのボタン2' },
+        { value: 'button3', content: 'ボタン3' },
       ]}
     />
   </Reel>

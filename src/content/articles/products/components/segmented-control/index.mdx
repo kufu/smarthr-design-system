@@ -36,36 +36,39 @@ SegmentedControlは異なる状態を切り替えるためのコンポーネン�
 
 - ボタンのラベルを折り返す
 - [Reel](/products/components/layout/reel/)を使用して水平方向にスクロールさせる
+- `S`サイズのSegmentedControlを使用する（どうしようもないときにのみ）
 
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { BaseColumn, Cluster, Text } from 'smarthr-ui'
+import { BaseColumn, Cluster, Center, Text } from 'smarthr-ui'
 import { Dont, DoWithWrap, DoWithReel } from './_components/MobileDoDont'
 
-<Cluster gap={1}>
+<Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="dont" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption1" style={{ margin: 'unset' }}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption1" style={{ display: 'flex', alignItems: 'center', margin: 'unset', minHeight: '6rem' }}>
       <Dont />
     </BaseColumn>
     <Text as="figcaption" slot="label" id="caption1">
       <p style={{ lineHeight: 1.5 }}>画面幅が小さくなるとボタンが折り返してしまう。</p>
     </Text>
   </DoAndDont>
-  <DoAndDont type="do" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ margin: 'unset' }}>
-      <DoWithWrap />
-    </BaseColumn>
-    <Text as="figcaption" slot="label" id="caption2">
-      <p style={{ lineHeight: 1.5 }}>ボタンのラベルを折り返して画面幅に収める。</p>
-    </Text>
-  </DoAndDont>
-  <DoAndDont type="do" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ margin: 'unset' }}>
-      <DoWithReel />
-    </BaseColumn>
-    <Text as="figcaption" slot="label" id="caption2">
-      <p style={{ lineHeight: 1.5 }}>Reelを使用して水平方向にスクロールさせる。</p>
-    </Text>
-  </DoAndDont>
+  <Cluster gap={{ row: 0, column: 1 }}>
+    <DoAndDont type="do" width={320}>
+      <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ display: 'flex', alignItems: 'center', margin: 'unset', minHeight: '6rem' }}>
+        <DoWithWrap />
+      </BaseColumn>
+      <Text as="figcaption" slot="label" id="caption2">
+        <p style={{ lineHeight: 1.5 }}>ボタンのラベルを折り返して画面幅に収める。</p>
+      </Text>
+    </DoAndDont>
+    <DoAndDont type="do" width={320}>
+      <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ display: 'flex', alignItems: 'center', margin: 'unset', minHeight: '6rem' }}>
+        <DoWithReel />
+      </BaseColumn>
+      <Text as="figcaption" slot="label" id="caption2">
+        <p style={{ lineHeight: 1.5 }}>Reelを使用して水平方向にスクロールさせる。</p>
+      </Text>
+    </DoAndDont>
+  </Cluster>
 </Cluster>
 
 ## Props
