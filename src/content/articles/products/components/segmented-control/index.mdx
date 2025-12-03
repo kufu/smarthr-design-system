@@ -39,7 +39,7 @@ SegmentedControlは異なる状態を切り替えるためのコンポーネン�
 
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { BaseColumn, Cluster, Text } from 'smarthr-ui'
-import { Dont, DoWithWrap, DoWithReel } from './_components/mobile-do-dont'
+import { Dont, DoWithWrap, DoWithReel } from './_components/MobileDoDont'
 
 <Cluster gap={1}>
   <DoAndDont type="dont" width={320}>
@@ -47,7 +47,7 @@ import { Dont, DoWithWrap, DoWithReel } from './_components/mobile-do-dont'
       <Dont />
     </BaseColumn>
     <Text as="figcaption" slot="label" id="caption1">
-      <p style={{ lineHeight: 1.5 }}>画面幅が小さくなると、SegmentedControlのボタンが折り返してしまう。</p>
+      <p style={{ lineHeight: 1.5 }}>画面幅が小さくなるとボタンが折り返してしまう。</p>
     </Text>
   </DoAndDont>
   <DoAndDont type="do" width={320}>
