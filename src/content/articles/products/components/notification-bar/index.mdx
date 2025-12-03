@@ -35,11 +35,11 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar type="info" message="バックグラウンド処理中です。" />
-  <NotificationBar type="success" message="タスクの削除に成功しました。" />
-  <NotificationBar type="warning" message="情報の整合性が取れなくなる可能性があります。" />
-  <NotificationBar type="error" message="タスクの削除に失敗しました。" />
-  <NotificationBar type="sync" message="データ連携を実行中です。" />
+  <NotificationBar type="info">バックグラウンド処理中です。</NotificationBar>
+  <NotificationBar type="success">タスクの削除に成功しました。</NotificationBar>
+  <NotificationBar type="warning">情報の整合性が取れなくなる可能性があります。</NotificationBar>
+  <NotificationBar type="error">タスクの削除に失敗しました。</NotificationBar>
+  <NotificationBar type="sync">データ連携を実行中です。</NotificationBar>
 </Stack>
 ```
 
@@ -53,9 +53,9 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar type="success" bold message="タスクの削除に成功しました。" onClose={()=>{}} />
-  <NotificationBar type="warning" bold message="情報の整合性が取れなくなる可能性があります。" onClose={()=>{}} />
-  <NotificationBar type="error" bold message="タスクの削除に失敗しました。" onClose={()=>{}} />
+  <NotificationBar type="success" bold onClose={()=>{}}>タスクの削除に成功しました。</NotificationBar>
+  <NotificationBar type="warning" bold onClose={()=>{}}>情報の整合性が取れなくなる可能性があります。</NotificationBar>
+  <NotificationBar type="error" bold onClose={()=>{}}>タスクの削除に失敗しました。</NotificationBar>
 </Stack>
 ```
 
@@ -80,9 +80,9 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar base="base" type="info" message="このデータは読み取り専用です。" />
-  <NotificationBar base="base" type="warning" message="フォームに入力された値は保存されていません。" />
-  <NotificationBar base="base" type="error" message="タスクの削除に失敗しました。" onClose={()=>{}} />
+  <NotificationBar base="base" type="info">このデータは読み取り専用です。</NotificationBar>
+  <NotificationBar base="base" type="warning">フォームに入力された値は保存されていません。</NotificationBar>
+  <NotificationBar base="base" type="error" onClose={()=>{}}>タスクの削除に失敗しました。</NotificationBar>
 </Stack>
 ```
 
@@ -94,11 +94,11 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar base="base" type="info" message="このNotificationBarは「layer=0」です。" layer="0" />
-  <NotificationBar base="base" type="info" message="このNotificationBarは「layer=1」です。" layer="1" />
-  <NotificationBar base="base" type="info" message="このNotificationBarは「layer=2」です。" layer="2" />
-  <NotificationBar base="base" type="info" message="このNotificationBarは「layer=3」です。" layer="3" />
-  <NotificationBar base="base" type="info" message="このNotificationBarは「layer=4」です。" layer="4" />
+  <NotificationBar base="base" type="info" layer="0">このNotificationBarは「layer=0」です。</NotificationBar>
+  <NotificationBar base="base" type="info" layer="1">このNotificationBarは「layer=1」です。</NotificationBar>
+  <NotificationBar base="base" type="info" layer="2">このNotificationBarは「layer=2」です。</NotificationBar>
+  <NotificationBar base="base" type="info" layer="3">このNotificationBarは「layer=3」です。</NotificationBar>
+  <NotificationBar base="base" type="info" layer="4">このNotificationBarは「layer=4」です。</NotificationBar>
 </Stack>
 ```
 
@@ -108,13 +108,14 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar type="info" message="ボタンやテキストリンクを表示できます。" onClose={()=>{}}>
+  <NotificationBar type="info" onClose={()=>{}}>
+    ボタンやテキストリンクを表示できます。
     <Button size="s">編集</Button>
     <TextLink href="#">
       <Text size="S">ヘルプ</Text>
     </TextLink>
   </NotificationBar>
-  <NotificationBar type="success" message="onClose を省略すると、閉じるボタンを非表示にできます。" />
+  <NotificationBar type="success">onClose を省略すると、閉じるボタンを非表示にできます。</NotificationBar>
 </Stack>
 ```
 
@@ -166,7 +167,7 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 <Stack>
   <Heading type="sectionTitle">セクションタイトル</Heading>
   <Base overflow="auto">
-    <NotificationBar type="success" bold message="値の保存に成功しました。" />
+    <NotificationBar type="success" bold>値の保存に成功しました。</NotificationBar>
     <Stack align="start" style={{padding: '16px'}}>
       <Fieldset
         legend="設定項目"
