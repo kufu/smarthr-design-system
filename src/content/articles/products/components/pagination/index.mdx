@@ -11,13 +11,20 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ### モバイル
 
-モバイルではPaginationを使わないでください。「さらに表示」ボタンの設置を推奨します。利用者はPaginationの小さいボタンを操作することなく、使い慣れた垂直方向のスクロールで必要な情報にたどり着けます。
+以下の理由から、モバイルでのPaginationの表示には注意が必要です。Paginationの代わりに「さらに表示」ボタンを表示することを検討してください。
 
-また、1ページ分以上のデータを見ることができ、前のページを再読み込みする必要もないため、データ通信量の削減が望めます。
+- 水平方向に複数の操作が並ぶPaginationは誤操作を招きやすい
+- ユーザーはモバイル環境では垂直方向のスクロールで情報を閲覧する操作に慣れている
 
 参考：[よくあるリストの「さらに表示」ボタン](/products/design-patterns/smarthr-list/#h3-4)
-
 ![「さらに表示」ボタンがリストの最下部に表示されている。](./images/smarthr-list-more-button.png)
+
+ただし、次のような場合にはモバイルでもPaginationが適している場合があります。
+
+- 表示されるデータの件数が多い場合
+- 一覧上から特定のデータを探して操作することが主要な使われ方として想定される場合
+
+モバイルでPaginationを表示する場合は、画面の幅が狭いため、`withoutNumber`propsを有効にするか、`Padding`propsに0~1の値を設定してください。
 
 ## Props
 
