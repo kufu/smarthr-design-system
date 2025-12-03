@@ -33,8 +33,6 @@ import {
   Chip,
 } from 'smarthr-ui'
 
-import sumaEiko from './images/suma-eiko.png'
-
 
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
@@ -62,9 +60,12 @@ Font Awesomeから必要なものを取り込んでいます。
 
 ## アクセシビリティ
 
-アイコンだけで意味を示したいときは、適切な代替テキストを設定してください。
+SmartHRでは「ユーザーがタスクをスムーズに完了できるか」という観点で、代替テキストの要否を判断しています。
 
-![アイコンの代替テキストのフローチャート](./images/icon-alt-flow-chart.png)
+代替テキストをつける際は、以下を確認してください。
+
+- アイコンがない場合に、内容の理解が困難にならないか
+- SmartHR内の類似コンテンツと、表現（代替テキスト）が統一されているか
 
 代替テキストの詳細は、[画像の代替テキスト](/accessibility/alternative-text/)を参照してください。
 
@@ -73,19 +74,18 @@ Font Awesomeから必要なものを取り込んでいます。
 | 代替テキスト | 表示例 | 理由 |
 | :-- | :-- | :-- |
 | `右矢印` | <Cluster align="center"><span style={{ backgroundColor: '#ffc7c1'}}>Smarthr</span><FaArrowRightIcon aria-label="右矢印" /><span style={{ backgroundColor: '#ADEDB3'}}>SmartHR</span></Cluster> | アイコンによって、左の状態から右の状態に変化していることを示しているため。 `矢印` のみでは変化の方向がわからない |
-| `調整済み`または`編集可能` | <DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon aria-label="調整済み"/></Cluster></DefinitionListItem></DefinitionList> | アイコンがある箇所とない箇所がある場合、アイコンが情報を持っている |
+| `調整済み`または`編集可能` | <DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon aria-label="調整済み"/></Cluster></DefinitionListItem></DefinitionList> | 編集可能または調整済みなことをアイコンのみで示しているため |
 | `削除` | <Chip><Cluster inline={true} align="center">チップ<FaCircleXmarkIcon aria-label="削除"/></Cluster></Chip> | アイコンのみでチップが削除可能なことを示しているため |
 | `ヘルプ` | <Button><FaCircleInfoIcon aria-label="ヘルプ"/></Button> | ボタンのテキストがなくアイコンのみで表現しているため |
 | `別タブで開く` | <ExternalTextLink href="https://example.com/">リンク</ExternalTextLink> | アイコンある場合とない場合で、視覚的に別タブで開くことを表現しているため |
-| `ユーザーアイコン` | <AvatarIcon src={sumaEiko.src} alt="ユーザーアイコン" /> | ユーザーがプロフィール画像を設定しているという情報を持っているため |
 
 ### 代替テキストが必要ないアイコンの例
 
 |使われ方・用途|表示例|理由|
 |:--|:--|:--|
 |追加ボタン|<ButtonWithPlusIcon />|テキストのみで追加操作をすることがわかるため|
-|デフォルトのアバター| <AvatarIcon /> |ユーザーがプロフィール画像を設定していないという情報を示すため|
 |絞り込みボタン|<ButtonWithFilterIcon />|テキストのみで絞り込み操作をすることがわかるため|
+|デフォルトのアバター| <AvatarIcon /> |ユーザーがプロフィール画像を設定していないという情報を示すため|
 
 
 
