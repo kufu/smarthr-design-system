@@ -16,8 +16,6 @@ import inputWidthDont from './images/input-width-dont.png'
 import inputFocused from './images/focused-input.png'
 import inputError from './images/error-input.png'
 import inputForcedColor from './images/forced-color-input.png'
-import MobileinputWidthDo from './images/mobile-input-width-do.png'
-import MobileinputWidthDont from './images/mobile-input-width-dont.png'
 import MobileFontSize from './images/mobile-font-size.png'
 
 
@@ -191,7 +189,7 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 
 <DoAndDont type="dont" width="100%">
   <Image slot="img" src={MobileFontSize} alt="Dont" />
-  <Text slot="label">ページ全体がズームされている</Text>
+  <Text slot="label">Inputのフォントサイズが16px未満の場合、Inputにフォーカスするとページ全体がズームされてしまう</Text>
 </DoAndDont>
 
 ## アクセシビリティ
