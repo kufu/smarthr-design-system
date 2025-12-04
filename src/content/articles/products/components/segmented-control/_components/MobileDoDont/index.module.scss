@@ -1,7 +1,9 @@
 .doWithWrap {
+  /* MEMO: SegmentedControlのボタン群が幅に収まるようにする */
   > div {
     display: inline-flex !important;
 
+    /* MEMO: ボタンのラベルを折り返し、行間を調整 */
     > button {
       white-space: normal !important;
       line-height: 1.25 !important;
