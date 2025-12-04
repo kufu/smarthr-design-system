@@ -1,5 +1,5 @@
 .doWithWrap {
-  /* MEMO: SegmentedControlのボタン群が幅に収まるようにする */
+  /* MEMO: 素のSegmentedControlでは幅に収めるレイアウトが実現できないため、ボタン群を親要素の幅に収まるようにする */
   > div {
     display: inline-flex !important;
 
