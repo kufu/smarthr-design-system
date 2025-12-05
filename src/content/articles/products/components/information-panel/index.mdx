@@ -7,7 +7,7 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
-import { Cluster, Text } from 'smarthr-ui'
+import { Cluster, Text, ResponseMessage, BaseColumn } from 'smarthr-ui'
 
 import imageDo from './images/information-panel-on-base-do.png'
 import imageDont from './images/information-panel-on-base-dont.png'
@@ -45,7 +45,9 @@ InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)�
 
 ### [WIP] モバイル
 
-モバイルで自動的に切り替わるようにコンポーネントを改修予定です。
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に切り替わるようにコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
 
 #### 開閉ボタン
 
