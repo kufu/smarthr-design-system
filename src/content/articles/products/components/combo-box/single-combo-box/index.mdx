@@ -3,7 +3,7 @@ title: 'SingleCombobox'
 description: '選択肢の中から単一の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。'
 ---
 import { Image } from 'astro:assets'
-import { SingleCombobox, Cluster, Text } from 'smarthr-ui'
+import { SingleCombobox, Cluster, Text, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
@@ -17,6 +17,7 @@ import singleComboboxDont from '../images/single-combo-box-dont.png'
 ## 使用上の注意
 
 ### ユースケースに応じてコンポーネントを使い分ける
+詳しくは[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
 
 #### 単一選択の場合に使用する
 
@@ -28,12 +29,6 @@ import singleComboboxDont from '../images/single-combo-box-dont.png'
 
 選択肢が5個以下であれば、初期状態で選択肢が一覧できる[RadioButton](/products/components/radio-button/)を使用してください。
 ただし、RadioButtonを配置する十分スペースがない場合は、SingleComboboxや[Select](/products/components/select/)の使用を検討します。
-
-#### モバイルでの操作性に留意する
-モバイルでの利用時に仮想キーボードがドロップダウンの表示を狭め、かえって操作性を損なう場合があります。
-検索機能が不要な場合は、[Select](/products/components/select/)の使用を検討してください。
-
-詳しくは[選択コンポーネントの使い分け - 検索機能が必要かどうか](/products/design-patterns/selection-component-usage/#h4-4)を参照してください。
 
 ### 入力補助のヒントメッセージとしてプレースホルダを使用しない
 
@@ -52,6 +47,12 @@ SingleComboboxで入力補助のヒントメッセージを表示したい場合
     <Text slot="label">ユーザーがテキストを入力するとプレースホルダが確認できなくなり、入力補助として機能しない</Text>
   </DoAndDont>
 </Cluster>
+
+## [WIP] モバイル
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルに適したSingleComboboxを提供予定です。</ResponseMessage>
+</BaseColumn>
 
 ## 状態
 
