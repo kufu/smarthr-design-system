@@ -5,15 +5,35 @@ description: '主に「よくあるテーブル」などコレクションにお
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+
 主に「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などコレクションにおけるページを切り替えるためのコンポーネントです。使用する場所によって機能を落とせます。
 
 <ComponentStory name="Pagination" />
 
-### モバイル
+## モバイル
 
-モバイルではPaginationを使わないでください。「さらに表示」ボタンの設置を推奨します。利用者はPaginationの小さいボタンを操作することなく、使い慣れた垂直方向のスクロールで必要な情報にたどり着けます。
+### Paginationの代わりに、データを追加で読み込むボタンの利用を検討する
 
-また、1ページ分以上のデータを見ることができ、前のページを再読み込みする必要もないため、データ通信量の削減が望めます。
+以下の理由から、モバイルでのPaginationの表示には注意が必要です。Paginationの代わりに、データを追加で読み込んで表示するボタン（例：[よくあるリストの「さらに表示」ボタン](/products/design-patterns/smarthr-list/#h3-4)）を使うことを検討してください。
+
+- 水平方向に複数の操作が並ぶPaginationは誤操作を招きやすい
+- ユーザーはモバイル環境では垂直方向のスクロールで情報を閲覧する操作に慣れている
+
+<ImgWithDesc description="よくあるリストの「さらに表示」ボタン">
+    ![「さらに表示」ボタンがリストの最下部に表示されている。](./images/smarthr-list-more-button.png)
+</ImgWithDesc>
+
+ただし、次のような場合にはモバイルでもPaginationが適していることがあります。
+
+- 表示されるデータの件数が多いと想定される場合
+- 一覧上から特定のデータを探して操作することが主要な使われ方として想定される場合
+
+モバイルでPaginationを表示する場合は、画面の幅が狭いため、`withoutNumber`propsを有効にするか、`padding`propsに0~1の値を設定してください。
+
+<ImgWithDesc description="paddingを1に設定したPagination">
+    ![スクリーンショット：paddingを1に設定したPagination](./images/pagination-padding-1.png)
+</ImgWithDesc>
 
 ## Props
 
