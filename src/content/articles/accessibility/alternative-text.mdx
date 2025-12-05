@@ -59,10 +59,10 @@ HTMLの`img`要素で画像を挿入する場合は、`<img src="meaningless-ima
     <span id="q1">テキストを含む画像だ</span>（<a href="#q2">はい</a> / <a href="#q3">いいえ</a>）
     <ul>
       <li>
-        <span id="q2">はい: 画像に含まれるテキストは近くの説明や本文にも書かれている</span>（<a href="#a1">はい</a> / <a href="#a2">いいえ</a>）
+        <span id="q2">はい: ロゴだ</span>（<a href="#a1">はい</a> / <a href="#a2">いいえ</a>）
         <ul>
-          <li><span id="a1">はい: 代替テキストは空でOK</span></li>
-          <li><span id="a2">いいえ: 画像中のテキストを含む説明を代替テキストに設定しましょう</span></li>
+          <li><span id="a1">はい: ロゴの文字列を代替テキストに設定しましょう（ロゴの意匠を紹介するコンテンツなどでは、意匠について代替テキストで説明してください）</span></li>
+          <li><span id="a2">いいえ: 画像中の文字を含む説明を代替テキストに設定しましょう</span></li>
         </ul>
       </li>
       <li>
@@ -78,7 +78,7 @@ HTMLの`img`要素で画像を挿入する場合は、`<img src="meaningless-ima
                   <dd>
                     <figure style={{ margin: 0 }}>
                       ![追加ボタン、削除ボタン、編集ボタン](./images/alt-example1.png)
-                      <figcaption style={{ marginTop: '20px' }}>アイコンはラベルテキストと同じ意味を表しており、単独で示す情報がないため、装飾だと言える。</figcaption>
+                      <figcaption style={{ marginTop: '20px' }}>アイコンはラベルテキストと同じ意味を表しており、単独で示す情報がないため、装飾だと言える。代替テキストは空でOK。</figcaption>
                     </figure>
                   </dd>
                 </dl>
@@ -98,9 +98,26 @@ HTMLの`img`要素で画像を挿入する場合は、`<img src="meaningless-ima
             </ul>
           </li>
           <li>
-            <span id="q5">いいえ: 情報を示す画像やグラフだ</span>（<a href="#a5">はい</a> / <a href="#q6">いいえ</a>）
+            <span id="q5">いいえ: 図やグラフだ</span>（<a href="#q5a">はい</a> / <a href="#q6">いいえ</a>）
             <ul>
-              <li><span id="a5">はい: 近くの本文や説明で、画像と同等の情報を提供しましょう</span></li>
+              <li>
+                <span id="q5a">はい: 図やグラフの情報について本文で説明されている</span>（<a href="#a5">はい</a> / <a href="#a5b">いいえ</a>）
+                <ul>
+                  <li><span id="a5">はい: 「△△のグラフ」のような簡潔な代替テキストを設定しましょう</span></li>
+                  <li>
+                    <span id="a5b">いいえ: 図やグラフが示す情報は本文で説明しましょう</span> （<a href="#a5">はい</a>）
+                    <dl style={{ marginLeft: '2em' }}>
+                      <dt style={{ fontWeight: 'bold' }}>単独で意味を持つアイコンの例</dt>
+                      <dd>
+                        <figure style={{ margin: 0 }}>
+                       ![グラフ付きの記事のイメージ図。犬猫アンケートというタイトルの円グラフには、犬・猫・どちらでもない3つのデータが有る。それぞれ、40,40,20%だ。下には本文でグラフの説明が続く。2025年の犬猫アンケートでは、40%が犬、同数の40%が猫、残りの20%がどちらでもないと回答した。と書かれている。](./images/alt-example3.png)
+                          <figcaption style={{ marginTop: '20px' }}>アンケート結果の円グラフが示すデータについては本文で説明している。代替テキストは「犬猫アンケートの円グラフ」などの簡潔な内容を設定する。</figcaption>
+                        </figure>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+              </li>
               <li>
                 <span id="q6">いいえ: ページで提供する情報に意味を付加する画像だ</span>（<a href="#a6">はい</a> / <a href="#q7">いいえ</a>）
                 <ul>
