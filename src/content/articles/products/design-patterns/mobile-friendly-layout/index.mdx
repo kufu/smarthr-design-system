@@ -4,20 +4,22 @@ description: 'モバイル対応をする基準と、その対応方法を定義
 order: 5
 ---
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { Base, BaseColumn, Button, Cluster, FormControl, Heading, Input, NotificationBar, Stack, Text } from 'smarthr-ui'
+import { Base, BaseColumn, Button, Cluster, FormControl, Heading, Input, NotificationBar, Stack, Text, ResponseMessage } from 'smarthr-ui'
 import Caption from './_components/Caption.astro'
 
 モバイル対応をする基準と、その対応方法を定義します。
 
 SmartHRにおいて、従業員のモバイルからの利用は全体の7割以上を占めます。業種や業態によっても異なりますが、業務中にデスクトップを使わない利用者も多いためモバイルの考慮は必須です。
 
-
 ## モバイルレイアウトの定義
 
 「モバイルレイアウト」とは、スマートフォンなどのモバイルでの利用を想定したUIを指します。
 
-ユーザーエージェントではモバイルかどうかを判別しきれないため、**画面幅が751px以下の場合をモバイルとし、モバイルレイアウトの適用対象とします。**
-（WIP： デザイントークンにしたい）
+[メディアクエリのセマンティックトークン](/products/design-tokens/media-query/#h2-0)のうち `SCREEN_NARROW` に一致する環境である場合、その環境はモバイルと判定しモバイルレイアウトの適用対象とします。
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>環境がモバイルであるという判定は時代やプロダクトの事情により変わり得ます。簡単に判定できる機能をsmarthr-uiで提供予定です。</ResponseMessage>
+</BaseColumn>
 
 ### レスポンシブとアダプティブの使い分け
 
