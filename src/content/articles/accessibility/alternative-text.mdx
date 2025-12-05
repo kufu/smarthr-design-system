@@ -47,6 +47,98 @@ HTMLの`img`要素で画像を挿入する場合は、`<img src="meaningless-ima
 * 代替テキストはプレーンテキストとして扱われ、`<br>`などのHTML要素は使用できない
 * 画像に含まれる情報が多く、説明が長くなったり、複雑になってしまう場合は、要約した内容を代替テキストにするか、説明を本文に追加することを検討する
 
+## SmartHR alt ディシジョンツリー
+[altディシジョンツリー](https://www.w3.org/WAI/tutorials/images/decision-tree/ja)をベースに、SmartHRのプロダクトやウェブサイトの画像について判断しやすいようカスタマイズしたディシジョンツリーです。
+代替テキストが必要かどうか、判断に迷うときに使います。
+
+![altディシジョンツリーの画像](./images/altdecisiontree.png)
+
+### リスト版ディシジョンツリー
+<ul>
+  <li>
+    <span id="q1">テキストを含む画像だ</span>（<a href="#q2">はい</a> / <a href="#q3">いいえ</a>）
+    <ul>
+      <li>
+        <span id="q2">はい: ロゴだ</span>（<a href="#a1">はい</a> / <a href="#a2">いいえ</a>）
+        <ul>
+          <li><span id="a1">はい: ロゴの文字列を代替テキストに設定しましょう（ロゴの意匠を紹介するコンテンツなどでは、意匠について代替テキストで説明してください）</span></li>
+          <li><span id="a2">いいえ: 画像中の文字を含む説明を代替テキストに設定しましょう</span></li>
+        </ul>
+      </li>
+      <li>
+        <span id="q3">いいえ: リンクやボタンのなかで使うアイコンだ</span>（<a href="#q4">はい</a> / <a href="#q5">いいえ</a>）
+        <ul>
+          <li>
+            <span id="q4">はい: ラベルテキストを装飾する画像だ</span>（<a href="#a3">はい</a> / <a href="#a4">いいえ</a>）
+            <ul>
+              <li>
+                <span id="a3">はい: 代替テキストは空でOK</span>
+                <dl style={{ marginLeft: '2em' }}>
+                  <dt style={{ fontWeight: 'bold' }}>ラベルテキストを装飾するアイコンの例</dt>
+                  <dd>
+                    <figure style={{ margin: 0 }}>
+                      ![追加ボタン、削除ボタン、編集ボタン](./images/alt-example1.png)
+                      <figcaption style={{ marginTop: '20px' }}>アイコンはラベルテキストと同じ意味を表しており、単独で示す情報がないため、装飾だと言える。代替テキストは空でOK。</figcaption>
+                    </figure>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <span id="a4">いいえ: アイコンの意味を説明する代替テキストを設定しましょう</span>
+                <dl style={{ marginLeft: '2em' }}>
+                  <dt style={{ fontWeight: 'bold' }}>単独で意味を持つアイコンの例</dt>
+                  <dd>
+                    <figure style={{ margin: 0 }}>
+                      ![チェックマーク付きの編集ボタン、エクスクラメーションのついた同期ボタン、下向き三角のついた編集ボタン](./images/alt-example2.png)
+                      <figcaption style={{ marginTop: '20px' }}>１つ目のチェックマークは「編集済み」、２つ目のエクスクラメーションは「エラー発生」、３つ目の下向き三角は「クリックで展開すること」を示唆しており、テキストラベルでは提示していない情報を示しているため、代替テキストが必要。</figcaption>
+                    </figure>
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="q5">いいえ: 図やグラフだ</span>（<a href="#q5a">はい</a> / <a href="#q6">いいえ</a>）
+            <ul>
+              <li>
+                <span id="q5a">はい: 図やグラフの情報について本文で説明されている</span>（<a href="#a5">はい</a> / <a href="#a5b">いいえ</a>）
+                <ul>
+                  <li><span id="a5">はい: 「△△のグラフ」のような簡潔な代替テキストを設定しましょう</span></li>
+                  <li>
+                    <span id="a5b">いいえ: 図やグラフが示す情報は本文で説明しましょう</span> （<a href="#a5">はい</a>）
+                    <dl style={{ marginLeft: '2em' }}>
+                      <dt style={{ fontWeight: 'bold' }}>単独で意味を持つアイコンの例</dt>
+                      <dd>
+                        <figure style={{ margin: 0 }}>
+                       ![グラフ付きの記事のイメージ図。犬猫アンケートというタイトルの円グラフには、犬・猫・どちらでもない3つのデータが有る。それぞれ、40,40,20%だ。下には本文でグラフの説明が続く。2025年の犬猫アンケートでは、40%が犬、同数の40%が猫、残りの20%がどちらでもないと回答した。と書かれている。](./images/alt-example3.png)
+                          <figcaption style={{ marginTop: '20px' }}>アンケート結果の円グラフが示すデータについては本文で説明している。代替テキストは「犬猫アンケートの円グラフ」などの簡潔な内容を設定する。</figcaption>
+                        </figure>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="q6">いいえ: ページで提供する情報に意味を付加する画像だ</span>（<a href="#a6">はい</a> / <a href="#q7">いいえ</a>）
+                <ul>
+                  <li><span id="a6">はい: 画像を説明する代替テキストを設定しましょう</span></li>
+                  <li>
+                    <span id="q7">いいえ: その画像がなかったとしても機能や利便性に影響しない</span>（<a href="#a7">はい</a> / <a href="#q6">いいえ</a>）
+                    <ul>
+                      <li><span id="a7">はい: 代替テキストは空でOK</span></li>
+                      <li>いいえ: 前の質問「ページで提供する情報に意味を付加する画像だ」に<a href="#q6">戻る</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 ## 関連情報
 * [ウェブアクセシビリティ簡易チェックリスト - 代替テキスト](https://smarthr.design/accessibility/check-list/#h2-0) 
 * [altはつけるだけじゃなくて - 実践アクセシブルHTML 第一回](https://yuugop.com/articles/practicalaccessiblehtml/pah01.html)
