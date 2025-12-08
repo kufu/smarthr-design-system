@@ -9,6 +9,7 @@ import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 import { ExternalTextLink } from './components/ExternalTextLink'
 import { ButtonWithPlusIcon, ButtonWithFilterIcon } from './components/ButtonExamples'
 import { AvatarIcon } from './components/AvatarIcon'
+import { ChipWithButton } from './components/ChipWithButton'
 import {
   FaAddressBookIcon,
   FaAddressCardIcon,
@@ -60,14 +61,17 @@ Font Awesomeから必要なものを取り込んでいます。
 
 ## アクセシビリティ
 
-SmartHRでは「ユーザーがタスクをスムーズに完了できるか」という観点で、代替テキストの要否を判断しています。
+装飾以外の目的でアイコンを使用する場合、 `alt` propsに適切な代替テキストを付与してください。
 
-代替テキストをつける際は、以下を確認してください。
 
-- アイコンがない場合に、内容の理解が困難にならないか
-- SmartHR内の類似コンテンツと、表現（代替テキスト）が統一されているか
+```tsx editable
+<Button variant="primary">
+  <FaCirclePlusIcon alt="追加" />
+</Button>
+```
 
-代替テキストの詳細は、[画像の代替テキスト](/accessibility/alternative-text/)を参照してください。
+適切な代替テキストの判断は、[SmartHR alt ディシジョンツリー](/accessibility/alternative-text/#h2-2)を参考にしてください。
+
 
 ### 代替テキストが必要なアイコンの例
 
@@ -75,9 +79,9 @@ SmartHRでは「ユーザーがタスクをスムーズに完了できるか」�
 | :-- | :-- | :-- |
 | `右矢印` | <Cluster align="center"><span style={{ backgroundColor: '#ffc7c1'}}>Smarthr</span><FaArrowRightIcon aria-label="右矢印" /><span style={{ backgroundColor: '#ADEDB3'}}>SmartHR</span></Cluster> | アイコンによって、左の状態から右の状態に変化していることを示しているため。 `矢印` のみでは変化の方向がわからない |
 | `調整済み`または`編集可能` | <DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon aria-label="調整済み"/></Cluster></DefinitionListItem></DefinitionList> | 編集可能または調整済みなことをアイコンのみで示しているため |
-| `削除` | <Chip><Cluster inline={true} align="center">チップ<FaCircleXmarkIcon aria-label="削除"/></Cluster></Chip> | アイコンのみでチップが削除可能なことを示しているため |
+| `削除` | <ChipWithButton /> | アイコンのみでチップが削除可能なことを示しているため |
 | `ヘルプ` | <Button><FaCircleInfoIcon aria-label="ヘルプ"/></Button> | ボタンのテキストがなくアイコンのみで表現しているため |
-| `別タブで開く` | <ExternalTextLink href="https://example.com/">リンク</ExternalTextLink> | アイコンある場合とない場合で、視覚的に別タブで開くことを表現しているため |
+| `別タブで開く` | <ExternalTextLink href="https://example.com/">リンク</ExternalTextLink> | アイコンある場合とない場合で、視覚的に別タブで開くことを表現しているため。 <br /> ※`smarthr-ui/TextLink`を使う場合は代替テキストの追加は不要です |
 
 ### 代替テキストが必要ないアイコンの例
 
