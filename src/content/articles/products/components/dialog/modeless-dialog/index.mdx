@@ -5,7 +5,6 @@ description: 'モードレスなダイアログです。ダイアログを表示
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DialogBaseSize from '../_components/DialogBaseSize.mdx'
-import KeyboardAccessibility from '../_components/KeyboardAccessibility.mdx'
 
 モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。
 
@@ -24,7 +23,8 @@ ModelessDialogは、ユーザーが直前まで見ていた画面の一部を覆
 
 ## レイアウト
 
-{/* 基準サイズ */}
+### 基準サイズ
+
 <DialogBaseSize />
 
 ### 表示位置
@@ -36,8 +36,9 @@ ModelessDialogは、ユーザーが直前まで見ていた画面の一部を覆
 
 ## アクセシビリティ
 
-{/* キーボード操作 */}
-<KeyboardAccessibility />
+### キーボード操作
+
+`ESC`キーを押すことでダイアログを閉じることができます。
 
 ## 構成
 
