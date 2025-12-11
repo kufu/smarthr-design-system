@@ -12,6 +12,8 @@ import RadioButtonDo from './images/radio-button-do.png';
 import RadioButtonDont from './images/radio-button-dont.png';
 import RadioButtonAlignmentDo from './images/radio-button-alignment-do.png';
 import RadioButtonAlignmenDont from './images/radio-button-alignment-dont.png';
+import radioButtonMobileDo from './images/radio-button-mobile-do.png';
+import radioButtonMobileDont from './images/radio-button-mobile-dont.png';
 
 選択肢の中から単一の値を選択して入力できるコンポーネントです。
 `input[type='radio']`の代わりとして使用します。
@@ -120,6 +122,20 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 </>
 ```
 
+## モバイル
+モバイル表示時は、画面の幅が狭いため基本的に縦並びにします。誤操作を防ぐために、[小さい要素間のマージン](/products/design-patterns/spacing-layout-pattern/#h5-4)に従って十分なマージンを確保してください。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={radioButtonMobileDo} alt="ラベル付きのラジオボタンが縦に並んでいる" />
+    <Text slot="label">ラベルテキストの長さによらず、整列されていて操作しやすい</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={radioButtonMobileDont} alt="ラベル付きのラジオボタンが改行なしで並んでいる。幅が狭い画面のため、ラベルテキストの途中で折り返しが発生している" />
+    <Text slot="label">折り返しによって不揃いなレイアウトになる上、隣り合う要素の誤タップも起きやすい</Text>
+  </DoAndDont>
+</Cluster>
 
 ## Props
 

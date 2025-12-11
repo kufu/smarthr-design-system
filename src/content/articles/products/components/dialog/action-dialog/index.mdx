@@ -4,6 +4,8 @@ description: 'ユーザーに入力や選択などの操作を求めるための
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import MultipleModalWarning from '../_components/MultipleModalWarning.mdx'
+import DialogBaseSize from '../_components/DialogBaseSize.mdx'
 
 ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。
 
@@ -24,16 +26,13 @@ ActionDialogの表示中、ユーザーの操作範囲は強制的に制限さ�
 
 ### 複数のモーダルダイアログを同時に表示しない
 
-モーダルダイアログ（ActionDialogやMessageDialog）を1つの操作で複数個表示したり、モーダルダイアログ上の操作によって2つ目のモーダルダイアログを表示したりすることは、原則として推奨されません。3つの画面が重なり、画面どうしの関係性や、どんな操作をすれば何が起こるのかが予測しづらくなるためです。
-
-なお、モーダルダイアログ上の操作によってModelessDialogを表示したり、ModelessDialogが開いている状態でモーダルダイアログを開いたりすることは問題ありません。
+<MultipleModalWarning />
 
 ## レイアウト
 
 ### 基準サイズ
 
-ダイアログの横幅の基準値は[幅のセマンティックトークン](/products/design-tokens/width/#h3-2)を参照してください。  
-SmartHR UIでは、サイズ（`size`props）で指定できます。
+<DialogBaseSize />
 
 ### 表示位置
 
