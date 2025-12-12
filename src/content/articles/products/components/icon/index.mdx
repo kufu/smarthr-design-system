@@ -17,7 +17,6 @@ import {
   FaAnglesRightIcon,
   FaCirclePlusIcon,
   FaArrowRightIcon,
-  FaCircleInfoIcon,
   FaUserLargeIcon,
   FaPenIcon,
   FaCircleXmarkIcon,
@@ -77,10 +76,10 @@ Font Awesomeから必要なものを取り込んでいます。
 
 | 代替テキスト | 表示例 | 理由 |
 | :-- | :-- | :-- |
-| `右矢印` | <Cluster align="center"><span style={{ backgroundColor: '#ffc7c1'}}>Smarthr</span><FaArrowRightIcon aria-label="右矢印" /><span style={{ backgroundColor: '#ADEDB3'}}>SmartHR</span></Cluster> | アイコンによって、左の状態から右の状態に変化していることを示しているため。 `矢印` のみでは変化の方向がわからない |
-| `調整済み`または`編集可能` | <DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon aria-label="調整済み"/></Cluster></DefinitionListItem></DefinitionList> | 編集可能または調整済みなことをアイコンのみで示しているため |
+| `右矢印` | <Cluster align="center"><span style={{ backgroundColor: '#ffc7c1'}}>Smarthr</span><FaArrowRightIcon alt="右矢印" /><span style={{ backgroundColor: '#ADEDB3'}}>SmartHR</span></Cluster> | アイコンによって、左の状態から右の状態に変化していることを示しているため。 `矢印` のみでは変化の方向がわからない |
+| `調整済み`または`編集可能` | <DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon color="MAIN" alt="調整済み"/></Cluster></DefinitionListItem></DefinitionList> | 編集可能または調整済みなことをアイコンのみで示しているため |
 | `削除` | <ChipWithButton /> | アイコンのみでチップが削除可能なことを示しているため |
-| `ヘルプ` | <Button><FaCircleInfoIcon aria-label="ヘルプ"/></Button> | ボタンのテキストがなくアイコンのみで表現しているため |
+| `追加` | <Button><FaCirclePlusIcon alt="追加"/></Button> | ボタンのテキストがなくアイコンのみで表現しているため |
 | `別タブで開く` | <ExternalTextLink href="https://example.com/">リンク</ExternalTextLink> | アイコンある場合とない場合で、視覚的に別タブで開くことを表現しているため。 <br /> ※ [TextLink](/products/components/text-link/)や[HelpLink](/products/components/text-link/help-link/)を使う場合は代替テキストの追加は不要です |
 
 ### 代替テキストが必要ないアイコンの例
@@ -88,7 +87,6 @@ Font Awesomeから必要なものを取り込んでいます。
 |使われ方・用途|表示例|理由|
 |:--|:--|:--|
 |追加ボタン|<ButtonWithPlusIcon />|テキストのみで追加操作をすることがわかるため|
-|絞り込みボタン|<ButtonWithFilterIcon />|テキストのみで絞り込み操作をすることがわかるため|
 |デフォルトのアバター| <AvatarIcon /> |ユーザーがプロフィール画像を設定していないという情報を示すため|
 
 
