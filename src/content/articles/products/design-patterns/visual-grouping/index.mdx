@@ -7,6 +7,7 @@ order: 2
 import { Image } from 'astro:assets'
 import { Text, Cluster } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
 import imageUrlConsistencyDont from './images/consistency-dont.png'
 import imageUrlConsistencyDo from './images/consistency-do.png'
@@ -50,7 +51,6 @@ SmartHR全体で一貫性のあるグルーピングをすることで、ユー�
 ユーザーのユースケースに基づいて情報設計やページ構成を見直し、階層が深くなることを避け、素早く理解できるレイアウトを提供してください。
 
 ## 考慮する法則
-
 SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュタルト原則を考慮して視覚的グルーピングを設計します。
 
 [WIP]
@@ -58,10 +58,9 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
 ## 種類
 
 ### 余白
-
 関連の深い要素同士ほど近接させ、関連の薄い要素とはそれよりも大きな距離を取ることで要素のまとまりを示します。
 
-![](./images/gap.png)
+![スクリーンショット:余白の例](./images/gap.png)
 
 グルーピングのための視覚的な要素を用いずに要素間の距離でグループを表現するため、矩形や罫線に比べて大きく画面の複雑性を抑えることができます。
 
@@ -75,10 +74,9 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
 余白は[Cluster](/products/components/layout/cluster/)や[Stack](/products/components/layout/stack/)を用いて表現できます。[余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
 
 ### 矩形
-
 関連する複数の要素を長方形の領域に収めることで要素のまとまりを示します。階層を示すため、[影](/products/design-tokens/shadow/)を併用することがあります。
 
-![](./images/rectangle.png)
+![スクリーンショット:矩形の例](./images/rectangle.png)
 
 グループの範囲を明確に示すため、レイアウト上要素を近接させづらい場合や、複数の子グループを内包する場合にも、ユーザーに情報の関係性を伝えられます。
 
@@ -108,13 +106,13 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
     <Text slot="label">背景色`BACKGROUND`の上に`OVER_BACKGROUND`のSideNavがあり、境界を認識しやすい。</Text>
   </DoAndDont>
 </Cluster>
+
 矩形は[Base](/products/components/layout/base)や[BaseColumn](/products/components/layout/base/base-column)を用いて表現できます。
 
 ### 罫線
-
 関連する要素のグループと他のグループとの境界に線を引くことで要素のまとまりを示します。領域を直線の罫線で区切ったり、領域の四方を罫線で囲むことで明確な境界を示せます。
 
-![](./images/border.png)
+![スクリーンショット:罫線の例](./images/border.png)
 
 レイアウトする面積が小さいなど余白や矩形ではグルーピングが難しい場合でも明確にグループの境界を示すことができます。
 
@@ -122,62 +120,74 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
 - グループそのものよりも境界に対して強くユーザーの注意を惹くため、多用すると逆にグループが把握しづらくなる
 - SmartHR UIではInputやButtonなど操作可能な要素に対して罫線をつける意匠を使っているため、それらと競合し操作可能な領域がわかりづらくなる場合がある
 
-<DoAndDont type="dont">
-  <Image slot="img" src={imageUrlBorderDont} alt="Dont" />
-  <Text slot="label">どこまでの要素をどの見出しが支配するのか理解が難しい。操作可能な領域がわかりづらい。</Text>
-</DoAndDont>
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrlBorderDont} alt="Dont" />
+    <Text slot="label">どこまでの要素をどの見出しが支配するのか理解が難しい。操作可能な領域がわかりづらい。</Text>
+  </DoAndDont>
 
-<DoAndDont type="do">
-  <Image slot="img" src={imageUrlBorderDo} alt="Do" />
-  <Text slot="label">適切に余白を使ってレイアウトされており、素早く要素のまとまりを理解しやすい。</Text>
-</DoAndDont>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrlBorderDo} alt="Do" />
+    <Text slot="label">適切に余白を使ってレイアウトされており、素早く要素のまとまりを理解しやすい。</Text>
+  </DoAndDont>
+</Cluster>
+
 
 ## デザインパターン
 
 ### セクション
-
 見出し領域（[セクションタイトル](/products/components/heading/#h3-1)と操作）とコンテンツを内包する[Base](/products/components/base/)によって構成されるグループをセクションと呼びます。セクションについての説明はBaseの内部に含めます。[よくあるテーブル](/products/design-patterns/smarthr-table/)もセクションの一種です。
 
-![](./images/section-basic.png)
+![スクリーンショット:セクションの例](./images/section-basic.png)
 
 基本的に見出し領域とBaseを垂直方向に積み重ねてレイアウトしますが、以下のようにセクションの範囲を視覚的に明確に示したい場合にはBaseの中に見出し領域を含めることもできます。
-- ドラッグ&ドロップによってセクションをユーザーが並べ替える場合
 
-![](./images/section-alt.png)
+<ImgWithDesc description="ドラッグ&ドロップによってセクションをユーザーが並べ替える場合">
+![スクリーンショット:Baseの中に見出し領域を含める例](./images/section-alt.png)
+</ImgWithDesc>
 
-セクションの内容を切り替えるコントロールを提供する場合には、[TabBar](/products/components/tab-bar/)または[SideNav](/products/components/side-nav/)を利用し以下のようにレイアウトします。
+#### セクションの内容を切り替えるレイアウト
+[TabBar](/products/components/tab-bar/)または[SideNav](/products/components/side-nav/)を利用し、セクションの内容を切り替えるコントロールを提供できます。
 
-TabBarを使う場合、見出し領域にTabBarを配置し、Baseを切り替えます。見出しは省略できます。（ただし、Headingの`visuallyHidden`propsを使うなどマシンリーダブルになるよう注意してください。）操作の対象がタブごとに異なる場合は[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)で操作をまとめます。
-![](./images/section-with-tabbar.png)
+##### TabBarを使用する場合
+見出し領域にTabBarを配置し、Baseを切り替えます。
 
-SideNavを使う場合、Baseを左右に2分割しSideNavとコンテンツを配置し、左のSideNavで右のコンテンツを切り替えます。
-![](./images/section-with-sidenav.png)
+- 見出しは省略できます。（ただし、Headingの`visuallyHidden`propsを使うなどマシンリーダブルになるよう注意してください。）
+- 操作の対象がタブごとに異なる場合は[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)で操作をまとめます。
+
+![スクリーンショット:TabBarを利用したセクションの例](./images/section-with-tabbar.png)
+
+##### SideNavを使用する場合
+Baseを左右に2分割しSideNavとコンテンツを配置し、左のSideNavで右のコンテンツを切り替えます。
+
+![スクリーンショット:SideNavを利用したセクションの例](./images/section-with-sidenav.png)
 
 ### ブロック（セクション内のグループ）
-
 見出し領域（[ブロックタイトル](/products/components/heading/#h3-2)と操作）とコンテンツによって構成される、セクション内の要素のグループをブロックと呼びます。
 
-![](./images/block-basic.png)
+![スクリーンショット:ブロックの例](./images/block-basic.png)
 
 コンテンツは基本的に余白でグルーピングしますが、以下のようにまとまりを示しづらい場合には[BaseColumn](/products/components/base/base-column/)を利用して矩形により明確に領域を示すこともできます。
+
 - RadioButtonやCheckboxが並んでおり、グループの領域がわかりづらい場合
 - ドラッグ&ドロップによって項目をユーザーが並べ替える場合
 - 前後のブロックのコンテンツがBaseColumnでグルーピングされており、視覚的な印象を揃えたい場合（例：下記の画像左）
 
-![](./images/block-alt.png)
+![スクリーンショット:BaseColumnを利用したブロックの例](./images/block-alt.png)
 
 ### 複数のセクションを内包するグループ
-
 複数のセクションを[TabBar](/products/components/tab-bar/)や[SideNav](/products/components/side-nav/)で切り替える場合、複数のセクションを視覚的にグルーピングします。これによりユーザーが切り替えの影響範囲を明確に理解したうえで操作を行なえます。
 
 ただし、このパターンでは階層が深くなりやすいため、情報設計やページ構成の妥当性について検討したうえで注意して設計してください。
 
-WIP: TabBarを利用する場合のデザインパターンについては検討中です。
+#### [WIP] TabBarを使用する場合
+TabBarを利用する場合のデザインパターンについては検討中です。
 
+#### SideNavを使用する場合
 SideNavを使う場合は以下のようなレイアウトを採用します。
 
 - Baseを左右に2分割しSideNavとコンテンツを配置する。
 - 右カラムのコンテンツ内に複数のセクションを配置する。
 - 左カラムのSideNavによって、右カラムのコンテンツを切り替える。
 
-![](./images/sections-sidenav.png)
+![スクリーンショット:SideNavを利用した複数のセクションを内包するグループの例](./images/sections-sidenav.png)
