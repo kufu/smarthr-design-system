@@ -247,8 +247,83 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 基本的にボタンはコンテンツ幅いっぱいに広げてください。
 視線誘導やレイアウトを加味して調整が必要な場合、内包コンテンツに合わせた幅に調整できます。
 
+<Cluster gap={1}>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
+      <Stack>
+        <Base padding={1}>
+          <FormControl label="何らかの入力">
+            <Input />
+          </FormControl>
+        </Base>
+        <Button variant="primary">保存</Button>
+      </Stack>
+    </BaseColumn>
+    <figcaption slot="label" id="caption4">
+      <Caption>幅いっぱいに広げ、十分に操作領域を取る。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
+      <Stack>
+        <Base padding={1}>
+          <FormControl label="何らかの入力">
+            <Input />
+          </FormControl>
+        </Base>
+        <Cluster>
+          <Button>キャンセル</Button>
+          <Button variant="primary">保存</Button>
+        </Cluster>
+      </Stack>
+    </BaseColumn>
+    <figcaption slot="label" id="caption3">
+      <Caption>視線誘導やレイアウトを加味して内包コンテンツに合わせた幅に調整する。</Caption>
+    </figcaption>
+  </DoAndDont>
+</Cluster>
+
 ### 複数のボタンの並べ方
 基本的に垂直方向に並べることを推奨します。視線誘導やレイアウトを加味して調整が必要な場合、水平方向に並べることも可能です。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl label="何らかの入力">
+            <Input />
+          </FormControl>
+          <div className="shr-flex shr-flex-row shr-gap-0.5">
+            <Button wide>キャンセル</Button>
+            <Button variant="primary" wide>保存</Button>
+          </div>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption5">
+      <Caption>水平方向に並べる場合は後方にPrimaryボタンを置く。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl label="何らかの入力">
+            <Input />
+          </FormControl>
+          <Stack gap={0.5}>
+            <Button variant="primary">保存</Button>
+            <Button>キャンセル</Button>
+          </Stack>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption6">
+      <Caption>垂直方向に並べる場合はPrimaryボタンを上に置く。</Caption>
+    </figcaption>
+  </DoAndDont>
+</Cluster>
 
 #### ボタンの並び順
 PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並べる場合は、識字方向の後方にPrimaryボタンが来るようにレイアウトしてください。LTR（Left To Right）では、右側にPrimaryボタンを置きます。 垂直方向に並べる場合は、慣習にならい（TODO 要出典）Primaryボタンの下にSecondaryボタンを置きます。
