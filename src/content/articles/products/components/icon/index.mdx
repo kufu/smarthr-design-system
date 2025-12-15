@@ -6,7 +6,6 @@ description: 'アイデアやアクションを表すための視覚的な要素
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
-import { ExternalTextLink } from './components/ExternalTextLink'
 import { ButtonWithPlusIcon, ButtonWithFilterIcon } from './components/ButtonExamples'
 import { AvatarIcon } from './components/AvatarIcon'
 import { ChipWithButton } from './components/ChipWithButton'
@@ -80,7 +79,6 @@ Font Awesomeから必要なものを取り込んでいます。
 | `調整済み`または`編集可能` | <DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon color="MAIN" alt="調整済み"/></Cluster></DefinitionListItem></DefinitionList> | 編集可能または調整済みなことをアイコンのみで示しているため |
 | `削除` | <ChipWithButton /> | アイコンのみでチップが削除可能なことを示しているため |
 | `追加` | <Button><FaCirclePlusIcon alt="追加"/></Button> | ボタンのテキストがなくアイコンのみで表現しているため |
-| `別タブで開く` | <ExternalTextLink href="https://example.com/">リンク</ExternalTextLink> | アイコンある場合とない場合で、視覚的に別タブで開くことを表現しているため。 <br /> ※ [TextLink](/products/components/text-link/)や[HelpLink](/products/components/text-link/help-link/)を使う場合は代替テキストの追加は不要です |
 
 ### 代替テキストが必要ないアイコンの例
 
