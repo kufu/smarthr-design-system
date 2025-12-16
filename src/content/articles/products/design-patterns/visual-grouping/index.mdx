@@ -35,14 +35,14 @@ SmartHR全体で一貫性のあるグルーピングをすることで、ユー�
 
 また、階層や性質、コンテキストが同一の要素は、特別な理由がない限り同じ表現でグルーピングしてください。むやみに異なる表現をすると、それぞれが別の階層や性質であるかのような印象をユーザーに与えます。
 
-<DoAndDont type="dont">
-  <Image slot="img" src={imageUrlConsistencyDont} alt="Dont" />
-  <Text slot="label">見出し1~3それぞれグルーピングとしては適切だが、同じ画面に並んでいる同じ性質の要素が異なる表現でグルーピングされていることで別の性質を持つものに見えてしまう。</Text>
-</DoAndDont>
-
 <DoAndDont type="do">
   <Image slot="img" src={imageUrlConsistencyDo} alt="Do" />
   <Text slot="label">同じ画面に並んでいる同じ性質の要素が同一の表現でグルーピングされていることで、同じ階層や性質であることが理解しやすい。</Text>
+</DoAndDont>
+
+<DoAndDont type="dont">
+  <Image slot="img" src={imageUrlConsistencyDont} alt="Dont" />
+  <Text slot="label">見出し1~3それぞれグルーピングとしては適切だが、同じ画面に並んでいる同じ性質の要素が異なる表現でグルーピングされていることで別の性質を持つものに見えてしまう。</Text>
 </DoAndDont>
 
 ### 階層を深くしない
@@ -83,27 +83,27 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
 ただし、大きな面積で領域を強く区切る意匠であるため、過度な使用は画面を冗長で複雑にします。特にモバイルでは画面幅が小さい影響でこの傾向が顕著になるため、より慎重な検討が必要です。
 余白によるグルーピングでは不都合が生じる際に利用を検討してください。  
 
-<DoAndDont type="dont">
-  <Image slot="img" src={imageUrlRectangleDont} alt="Dont" />
-  <Text slot="label">コンテンツの内容よりもまず矩形に意識が向き、内容の理解に時間がかかる。矩形で示されるまとまりの範囲を理解して得られる情報が少ない。</Text>
-</DoAndDont>
-
 <DoAndDont type="do">
   <Image slot="img" src={imageUrlRectangleDo} alt="Do" />
   <Text slot="label">必要な箇所のみ矩形によってグルーピングされており、要素のまとまりを素早く理解しやすい。</Text>
 </DoAndDont>
 
+<DoAndDont type="dont">
+  <Image slot="img" src={imageUrlRectangleDont} alt="Dont" />
+  <Text slot="label">コンテンツの内容よりもまず矩形に意識が向き、内容の理解に時間がかかる。矩形で示されるまとまりの範囲を理解して得られる情報が少ない。</Text>
+</DoAndDont>
+
 また、背景と異なる色で矩形の領域を表現してください。影を併用できますが、影だけで表現することは避けてください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={imageUrlRectangleColorDont} alt="Dont" />
-    <Text slot="label">背景色`BACKGROUND`の上に同じ色のSideNavがあり、境界を認識しづらい。</Text>
-  </DoAndDont>
-
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={imageUrlRectangleColorDo} alt="Do" />
     <Text slot="label">背景色`BACKGROUND`の上に`OVER_BACKGROUND`のSideNavがあり、境界を認識しやすい。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrlRectangleColorDont} alt="Dont" />
+    <Text slot="label">背景色`BACKGROUND`の上に同じ色のSideNavがあり、境界を認識しづらい。</Text>
   </DoAndDont>
 </Cluster>
 
@@ -121,14 +121,14 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
 - SmartHR UIではInputやButtonなど操作可能な要素に対して罫線をつける意匠を使っているため、それらと競合し操作可能な領域がわかりづらくなる場合がある
 
 <Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={imageUrlBorderDont} alt="Dont" />
-    <Text slot="label">どこまでの要素をどの見出しが支配するのか理解が難しい。操作可能な領域がわかりづらい。</Text>
-  </DoAndDont>
-
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={imageUrlBorderDo} alt="Do" />
     <Text slot="label">適切に余白を使ってレイアウトされており、素早く要素のまとまりを理解しやすい。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={imageUrlBorderDont} alt="Dont" />
+    <Text slot="label">どこまでの要素をどの見出しが支配するのか理解が難しい。操作可能な領域がわかりづらい。</Text>
   </DoAndDont>
 </Cluster>
 
