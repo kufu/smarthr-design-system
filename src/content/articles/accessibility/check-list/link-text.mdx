@@ -3,7 +3,11 @@ title: 'リンクのテキストからリンク先が判別できる'
 description: ' '
 order: 64
 ---
-import { Table, Td, Th } from 'smarthr-ui'
+import { Table, Td, Th, Chip, Cluster } from 'smarthr-ui'
+
+<Cluster gap={0.25} style={{ margin: '-20px 0 -80px' }}>
+  <Chip>UIデザイン</Chip>
+</Cluster>
 
 ## 概要
 この基準では、リンクテキストを読むだけで、どのページに移動するかがわかるようにすることを確認してください。「こちらをクリック」や「もっと読む」のような曖昧な表現は避け、リンク先の内容が明確に伝わる言葉を使います。
