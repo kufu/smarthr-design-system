@@ -4,6 +4,12 @@ description: 'ステップを複数に分けたダイアログです。タスク
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import SheetForMobile from '../_components/SheetForMobile.mdx'
+import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import imageStepFormDialog from '../images/step_form_dialog_mobile.png'
+import imageStepFormDialogSheet from '../images/step_form_dialog_mobile_sheet.png'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Image } from 'astro:assets'
 
 ステップを複数に分けたダイアログです。タスクの完了に複数の操作が必要な場合に使います。
 
@@ -12,6 +18,28 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 詳しくは[ウィザード](/products/design-patterns/wizard/)を参照してください。
 
 <ComponentStory name="StepFormDialog" />
+
+## レイアウト
+
+### モバイル
+
+<BaseColumn>
+  <ResponseMessage type="info">シート形式のダイアログは、StepFormDialogのpropsとしてsmarthr-uiに実装予定です。</ResponseMessage>
+</BaseColumn>
+
+<SheetForMobile />
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageStepFormDialog} alt="Do" />
+    <Text slot="label">一般的なダイアログの意匠で表示する</Text>
+  </DoAndDont>
+
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageStepFormDialogSheet} alt="Do" />
+    <Text slot="label">表示する情報量が多い場合にシートの意匠で表示する</Text>
+  </DoAndDont>
+</Cluster>
 
 
 ## Props
