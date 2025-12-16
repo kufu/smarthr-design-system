@@ -6,14 +6,33 @@ description: 'アイデアやアクションを表すための視覚的な要素
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+import { ButtonWithPlusIcon, ButtonWithFilterIcon } from './components/ButtonExamples'
+import { AvatarIcon } from './components/AvatarIcon'
+import { ChipWithButton } from './components/ChipWithButton'
 import {
   FaAddressBookIcon,
   FaAddressCardIcon,
   FaAnglesLeftIcon,
   FaAnglesRightIcon,
   FaCirclePlusIcon,
-  FaUpRightFromSquareIcon
+  FaArrowRightIcon,
+  FaUserLargeIcon,
+  FaPenIcon,
+  FaCircleXmarkIcon,
+  FaUpRightFromSquareIcon,
+  WarningIcon,
+  FaGearIcon,
+  Cluster,
+  Text,
+  TextLink,
+  Button,
+  Td,
+  DefinitionList,
+  DefinitionListItem,
+  Chip,
 } from 'smarthr-ui'
+
+
 
 Iconコンポーネントは、アイデアやアクションを表すための視覚的な要素です。  
 一目でメッセージを伝え、重要な情報への注意を促します。適切なアイコンは認知を手助けします。
@@ -40,7 +59,8 @@ Font Awesomeから必要なものを取り込んでいます。
 
 ## アクセシビリティ
 
-アイコンのみ表示する場合、ラベルと合わせて使うよりも認知負荷を与えます。適切なラベルを付与してください。特にリンクやボタンにアイコンのみ表示する場合は必須です。
+装飾以外の目的でアイコンを使用する場合、 `alt` propsに適切な代替テキストを付与してください。
+
 
 ```tsx editable
 <Button variant="primary">
@@ -48,7 +68,26 @@ Font Awesomeから必要なものを取り込んでいます。
 </Button>
 ```
 
-また、アイコンの色と背景色のコントラスト比は最低でも `3:1` 以上を確保してください。
+適切な代替テキストの判断は、[SmartHR alt ディシジョンツリー](/accessibility/alternative-text/#h2-2)を参考にしてください。
+
+
+### 代替テキストが必要なアイコンの例
+
+| 代替テキスト | 表示例 | 理由 |
+| :-- | :-- | :-- |
+| `右矢印` | <Cluster align="center"><span style={{ backgroundColor: '#ffc7c1'}}>Smarthr</span><FaArrowRightIcon alt="右矢印" /><span style={{ backgroundColor: '#ADEDB3'}}>SmartHR</span></Cluster> | アイコンによって、左の状態から右の状態に変化していることを示しているため。 `矢印` のみでは変化の方向がわからない |
+| `調整済み`または`編集可能` | <DefinitionList><DefinitionListItem term="係数"><Cluster align="center">0.85<FaPenIcon color="MAIN" alt="調整済み"/></Cluster></DefinitionListItem></DefinitionList> | 編集可能または調整済みなことをアイコンのみで示しているため |
+| `削除` | <ChipWithButton /> | アイコンのみでチップが削除可能なことを示しているため |
+| `追加` | <Button><FaCirclePlusIcon alt="追加"/></Button> | ボタンのテキストがなくアイコンのみで表現しているため |
+
+### 代替テキストが必要ないアイコンの例
+
+|使われ方・用途|表示例|理由|
+|:--|:--|:--|
+|追加ボタン|<ButtonWithPlusIcon />|テキストのみで追加操作をすることがわかるため|
+|デフォルトのアバター| <AvatarIcon /> |ユーザーがプロフィール画像を設定していないという情報を示すため|
+
+
 
 ## デザインパターン
 
