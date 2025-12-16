@@ -6,6 +6,12 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import MultipleModalWarning from '../_components/MultipleModalWarning.mdx'
 import DialogBaseSize from '../_components/DialogBaseSize.mdx'
+import SheetForMobile from '../_components/SheetForMobile.mdx'
+import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import imageMessageDialog from '../images/message_dialog_mobile.png'
+import imageMessageDialogSheet from '../images/message_dialog_mobile_sheet.png'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Image } from 'astro:assets'
 
 ユーザーに情報を提示するためのダイアログです。
 
@@ -46,6 +52,26 @@ MessageDialogは、表示したままダイアログ外の操作ができず、�
 ### 表示位置
 
 表示位置は、画面の天地左右中央に表示されます。
+
+### モバイル
+
+<BaseColumn>
+  <ResponseMessage type="info">シート形式のMessageDialogは、propsに追加する形でsmarthr-uiに実装予定です。</ResponseMessage>
+</BaseColumn>
+
+<SheetForMobile />
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageMessageDialog} alt="Do" />
+    <Text slot="label">一般的なダイアログの意匠で表示する</Text>
+  </DoAndDont>
+
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageMessageDialogSheet} alt="Do" />
+    <Text slot="label">表示する情報量が多い場合にシートの意匠で表示する</Text>
+  </DoAndDont>
+</Cluster>
 
 ## アクセシビリティ
 
