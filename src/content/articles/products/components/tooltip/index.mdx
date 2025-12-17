@@ -15,12 +15,15 @@ import {
   TextLink
 } from 'smarthr-ui'
 import { Button, Cluster, Tooltip, Text } from 'smarthr-ui'
+import { Image } from 'astro:assets'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
 import Warning from './_components/Warning'
 import DynamicTooltip from './_components/DynamicTooltip.astro'
+import disabledDetailImage from './images/disabled-detail.png'
 
 <Warning />
 
@@ -222,6 +225,14 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 ## モバイル
 モバイルではTooltipを使わないでください。画面内の領域が小さいため、Tooltipの表示が他のUIの利用を妨げることがあります。
+
+### やむを得ずモバイルでTooltipを表示する例
+表示領域が限られている状況で、補足情報の提示が必須になる場合にはやむを得ずTooltipを使用することがあります。
+
+[disabled状態のButton](/products/components/button/#h3-10)では、無効状態の理由を表示するスペースがない場合`disabledDetail`Propsを使用しますが、この場合、理由はTooltipで表示されます。
+
+#### [よくあるリスト](/products/design-patterns/smarthr-list/)の例
+<Image src={disabledDetailImage} alt="disabledなButtonの上部にTooltipが表示されているサンプル画像" width={320} />
 
 ## Props
 
