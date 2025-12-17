@@ -3,6 +3,8 @@ title: '余白の取り方'
 description: 'マージン（Margin）やパディング（Padding）などの余白のパターンをシーン別にまとめています。'
 order: 4
 ---
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+
 UI設計における余白とは、情報を整理するために設ける要素間の視覚的な距離のことを指します。  
 ここでは、マージン（Margin）やパディング（Padding）などの余白のパターンをまとめています。
 
@@ -13,7 +15,13 @@ UI設計における余白とは、情報を整理するために設ける要素
 UI設計において開発者は適切な余白について意識することが重要ですが、[SmartHR UIのコンポーネント](/products/components/)の中には、あらかじめ適切な余白が設定されており、余白の選定を意識することなく利用できるものがあります。[Layoutコンポーネント](/products/components/layout/)を使う場合や、コンポーネントを組み合わせて画面に配置する場合に、下記を参考に適切な余白を設定してください。
 
 なお、ここで示す余白の基準は必ず従わなければならないものではありません。  
-ただし、基準を逸脱した余白を設定する場合はその理由や効果を説明できるようにしておきましょう。
+基準を逸脱した余白を設定する場合は、その理由や効果を説明できるようにしておきましょう。
+
+### 基準サイズ
+SmartHRにおいては、**基準サイズの16pxを`1`** とした[プリミティブトークン](/products/design-tokens/spacing/#h2-1)を使用します。
+
+### モバイルにおける余白
+モバイルでは画面の幅が小さいことから、[パディング](/products/design-patterns/spacing-layout-pattern/#h2-4)の一部をデスクトップよりも小さく設定することで、より多くのコンテンツを表示できるようにします。
 
 ## 考慮する法則
 SmartHRの製品開発では、人間の認知に関する以下の法則を考慮して余白を設計します。
@@ -35,12 +43,10 @@ SmartHRの製品開発では、人間の認知に関する以下の法則を考�
 ## 種類
 以下の余白を定義します。
 
-- マージン（Margin）
-- パディング（Padding）
+- [マージン（Margin）](#h2-3)
+- [パディング（Padding）](#h2-4)
 
-SmartHRにおいては、**基準サイズの16pxを`1`** とした[プリミティブトークン](/products/design-tokens/spacing/#h2-1)を使用します。
-
-### マージン（Margin）
+## マージン（Margin）
 マージンとは、要素と要素の間に設定する余白のことです。
 
 具体的な配置の基準は次のとおりです。
@@ -51,88 +57,115 @@ SmartHRにおいては、**基準サイズの16pxを`1`** とした[プリミテ
 以下の構成で紹介します。
 
 - 垂直方向のマージン
-  - [代表的なページ内レイアウトのマージン](#h5-0)
-  - [代表的なダイアログ内レイアウトのマージン](#h5-1)
-  - [見出しとコンテンツのマージン](#h5-2)
-  - [UpwardLinkと画面タイトルのマージン](#h5-3)
-  - [小さい要素間のマージン](#h5-4)
-  - [視覚的に余白が大きく見える場合のマージン](#h5-5)
+  - [代表的なページ内レイアウトのマージン](#h4-0)
+  - [代表的なダイアログ内レイアウトのマージン](#h4-1)
+  - [見出しとコンテンツのマージン](#h4-2)
+  - [UpwardLinkと画面タイトルのマージン](#h4-3)
+  - [小さい要素間のマージン](#h4-4)
+  - [視覚的に余白が大きく見える場合のマージン](#h4-5)
 - 水平方向のマージン
-  - [アイコンやラベルなどの小さい要素間のマージン](#h5-6)
+  - [アイコンやラベルなどの小さい要素間のマージン](#h4-6)
 
-#### 垂直方向のマージン
+### 垂直方向のマージン
 
 垂直方向に要素を配置する場合は[Stack](/products/components/layout/stack/)を使用し、`gap` propsにマージンを設定してください。
+モバイルでも、デスクトップと同一の余白設定を基本とします。
 
-##### 代表的なページ内レイアウトのマージン
+#### 代表的なページ内レイアウトのマージン
 
-1. セクション同士の間：`2（32px）`
-	- 必要に応じて`1.5（24px）`（[視覚的に余白が大きく見える場合のマージン](#h5-5)を参照）
-2. セクション内の要素同士の間：`1.5（24px）`
-3. セクション内の見出しとコンテンツの間：`1（16px）`
+| 場所 | デスクトップ・モバイル | 補足 |
+| :--- | :--- | :--- |
+| 1. セクション同士の間 | `2（32px）` | 必要に応じて`1.5（24px）`（[視覚的に余白が大きく見える場合のマージン](#h4-5)を参照） |
+| 2. セクション内の要素同士の間 | `1.5（24px）` |  |
+| 3. セクション内の見出しとコンテンツの間 | `1（16px）` |  |
 
+<ImgWithDesc description="デスクトップ">
 ![スクリーンショット:代表的なページ内レイアウトのマージンの例。セクションや要素同士の余白の大きさが色分けされて示されている。](./images/spacing-layout-pattern1.png)
+</ImgWithDesc>
 
-##### 代表的なダイアログ内レイアウトのマージン
+<ImgWithDesc description="モバイル">
+![スクリーンショット（モバイル）:代表的なページ内レイアウトのマージンの例。セクションや要素同士の余白の大きさが色分けされて示されている。](./images/spacing-layout-pattern1-mobile.png)
+</ImgWithDesc>
 
-1. 説明テキストとフォーム要素のセクションの間：`2（32px）`
-2. フォーム要素同士の間：`1.5（24px）`
-3. フォーム要素内の説明テキストとフォームの間：`1（16px）`
+#### 代表的なダイアログ内レイアウトのマージン
 
+| 場所 | デスクトップ・モバイル |
+| :--- | :--- |
+| 1. 説明テキストとフォーム要素のセクションの間 | `2（32px）` |
+| 2. フォーム要素同士の間 | `1.5（24px）` |
+| 3. フォーム要素内の説明テキストとフォームの間 | `1（16px）` |
+
+<ImgWithDesc description="デスクトップとモバイル">
 ![スクリーンショット:代表的なダイアログ内レイアウトのマージンの例。セクションや要素同士の余白の大きさが色分けされて示されている。](./images/spacing-layout-pattern2.png)
+</ImgWithDesc>
 
-##### 見出しとコンテンツのマージン
+#### 見出しとコンテンツのマージン
 
-- 各セクションの見出しとコンテンツの間：`1（16px）`
+| 場所 | デスクトップ・モバイル |
+| :--- | :--- |
+| 各セクションの見出しとコンテンツの間 | `1（16px）` |
 
+<ImgWithDesc description="デスクトップ">
 ![スクリーンショット:見出しとコンテンツのマージン](./images/spacing-layout-pattern3.png)
+</ImgWithDesc>
 
-##### UpwardLinkと画面タイトルのマージン
+<ImgWithDesc description="モバイル">
+![スクリーンショット（モバイル）:見出しとコンテンツのマージン](./images/spacing-layout-pattern3-mobile.png)
+</ImgWithDesc>
 
-- [UpwardLink](/products/components/text-link/upward-link/)と画面タイトルの間：`1（16px）`
+#### UpwardLinkと画面タイトルのマージン
+
+| 場所 | デスクトップ・モバイル |
+| :--- | :--- |
+| [UpwardLink](/products/components/text-link/upward-link/)と画面タイトルの間 | `1（16px）` |
 
 ![スクリーンショット:UpwardLinkと画面タイトルのマージン](./images/spacing-layout-pattern11.png)
 
-##### 小さい要素間のマージン
+#### 小さい要素間のマージン
 
 コンポーネント内で確保されているものと、個別で指定する必要のあるものがあります。
 
-1. ブロックの見出しや[Input](/products/components/input/)にラベルや説明テキストを複合的に組み合わせる場合：`1（16px）`または`0.5（8px）`
-    - [FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)を利用することで、自動的に適用されます。
-2. [Checkbox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)のrow-gap：`1（16px）`
-    - [Stack](/products/components/layout/stack/)を使用して余白を指定してください。
+| 場所 | デスクトップ・モバイル | 補足 |
+| :--- | :--- | :--- |
+| 1. ブロックの見出しや[Input](/products/components/input/)にラベルや説明テキストを複合的に組み合わせる場合 | `1（16px）`<br />または<br />`0.5（8px）` | [FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)を利用することで、自動的に適用されます。 |
+| 2. [Checkbox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)のrow-gap | `1（16px）` | [Stack](/products/components/layout/stack/)を使用して余白を指定してください。 |
 
 ![スクリーンショット:小さい要素間のマージンの例。ブロックタイトルや要素同士の余白の大きさが色分けされて示されている。](./images/spacing-layout-pattern4.png)
 
-##### 視覚的に余白が大きく見える場合のマージン
+#### 視覚的に余白が大きく見える場合のマージン
 
-配置するコンポーネントによっては、実際に指定した余白の値よりも**視覚的に余白が大きく見える**場合があります。以下のように例外的に小さな余白を設定することで、視覚的な余白を調整してください。
+配置するコンポーネントによっては、実際に指定した余白の値よりも**視覚的に余白が大きく見える**場合があります。以下のような場合に例外的に小さな余白を設定することで、視覚的な余白を調整します。
 
-- タイトルエリアに[InformationPanel](/products/components/information-panel/)を**配置しない**場合のタイトルエリアと最初のセクションの間：`1.5（24px）`
-  - [Heading](/products/components/heading/)や[Text](/products/components/text/)にはline-heightが設定されており、InformationPanelが配置されている場合と比べて余白が大きく見えるため
-  - セクションの見出しとボタンが横に並んでいる場合、見出しの高さをボタンの高さに合わせることでさらに余白が大きく見えるため
+- [Heading](/products/components/heading/)や[Text](/products/components/text/)にはline-heightが設定されており、InformationPanelが配置されている場合と比べて余白が大きく見える場合
+- セクションの見出しとボタンが横に並んでいる場合、見出しの高さをボタンの高さに合わせることでさらに余白が大きく見える場合
+
+| 場所 | デスクトップ・モバイル |
+| :--- | :--- |
+| タイトルエリアに[InformationPanel](/products/components/information-panel/)を**配置しない**場合のタイトルエリアと最初のセクションの間 | `1.5（24px）` |
 
 ![スクリーンショット:タイトルエリアにInformationPanelを配置しない場合のタイトルエリアと最初のセクションのマージン。実際に指定している24pxよりも余白が大きく見える。](./images/spacing-layout-pattern10.png)
 
-#### 水平方向のマージン
+### 水平方向のマージン
 
 水平方向に要素を配置する場合は[Cluster](/products/components/layout/cluster/)や[Reel](/products/components/layout/reel/)を使用し、`gap` propsにマージンを設定してください。
+モバイルでも、デスクトップと同一の余白設定を基本とします。
 
-##### アイコンやラベルなどの小さい要素間のマージン
+#### アイコンやラベルなどの小さい要素間のマージン
 
 コンポーネント内で確保されているものと、個別で指定する必要のあるものがあります。
 
-1. [StatusLabel](/products/components/status-label/)やアイコンなどの要素をテキストと組み合わせる場合：`0.5（8px）`または`0.25（4px）`
-    - [InformationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)、[TextLink](/products/components/text-link/)を利用することで、自動的に適用されます。
-    - その他の場合は、[Cluster](/products/components/layout/cluster/)を使用して余白を指定してください。
-2. フォームを水平方向に配置する場合：`1（16px）`
-3. [Checkbox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)のcolumn-gap：`1.5（24px）`
-	- [Cluster](/products/components/layout/cluster/)を使用して余白を指定してください。
-4. [Button](/products/components/button/)同士の間：`0.5（8px）`または`1（16px）`
+| 場所 | デスクトップ・モバイル | 補足 |
+| :--- | :--- | :--- |
+| 1. [StatusLabel](/products/components/status-label/)やアイコンなどの要素をテキストと組み合わせる場合 | `0.5（8px）`<br />または<br />`0.25（4px）` | [InformationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)、[TextLink](/products/components/text-link/)を利用することで、自動的に適用されます。その他の場合は、[Cluster](/products/components/layout/cluster/)を使用して余白を指定してください。 |
+| 2. フォームを水平方向に配置する場合 | `1（16px）` |  |
+| 3. [Checkbox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)のcolumn-gap | `1.5（24px）` | [Cluster](/products/components/layout/cluster/)を使用して余白を指定してください。 |
+| 4. [Button](/products/components/button/)同士の間 | `0.5（8px）`<br />または<br />`1（16px）` |  |
 
 ![スクリーンショット:アイコンやラベルなどの小さい要素間のマージンの例。インラインで配置される要素間の余白の大きさが色分けされて示されている。](./images/spacing-layout-pattern9.png)
 
-### パディング（Padding）
+
+
+## パディング（Padding）
 パディングとは、要素の内側に設定する余白のことです。
 
 具体的な配置の基準は次のとおりです。
@@ -140,31 +173,38 @@ SmartHRにおいては、**基準サイズの16pxを`1`** とした[プリミテ
 - セクションやブロックの見出しレベルや階層を下げるにつれて、段階的に適用する。
 - 同じ意味階層となる要素同士は、ぞれぞれ同じ大きさのパディングを適用する。
 
-#### 代表的なページ内レイアウトのパディング
+### 代表的なページ内レイアウトのパディング
 
-1. メインコンテンツのパディング：`2（32px）`
-    - [Container](/products/components/layout/container/)を使用することで、自動的に適用されます。`padding`propsで値を指定できます。
-    - [UpwardLink](/products/components/text-link/upward-link/)がある場合は、[UpwardLinkがある場合のパディング](#h4-4)を参照してContainerの`padding`propsを指定してください。
-2. コンテンツエリアのパディング：`1.5（24px）`
-    - [Base](/products/components/base/)の`padding`propsに値を指定してください。
-3. コンテンツエリア内のグループのパディング：`1（16px）`
-    - [BaseColumn](/products/components/base/base-column/)を使用することで、自動的に適用されます。
+| 場所 | デスクトップ | モバイル | 補足 |
+| :--- | :--- | :--- | :--- |
+| 1. メインコンテンツのパディング | `2（32px）` | 上下`1.5（24px）`<br />左右`1（16px）` | [Container](/products/components/layout/container/)を使用することで、自動的に適用されます。`padding`propsで値を指定できます。[UpwardLink](/products/components/text-link/upward-link/)がある場合は、<br />[UpwardLinkがある場合のパディング](#h3-8)を参照してContainerの`padding`propsを指定してください。 |
+| 2. コンテンツエリアのパディング | `1.5（24px）` | `1（16px）` | [Base](/products/components/base/)の`padding`propsに値を指定してください。 |
+| 3. コンテンツエリア内のグループのパディング | `1（16px）` | 同左 | [BaseColumn](/products/components/base/base-column/)を使用することで自動的に適用されます。 |
 
+<ImgWithDesc description="デスクトップ">
 ![スクリーンショット:代表的なページ内レイアウトのパディングの例。コンテンツ内のパディングの大きさが色分けされて示されている。](./images/spacing-layout-pattern5.png)
+</ImgWithDesc>
 
-#### 代表的なダイアログ内レイアウトのパディング
+<ImgWithDesc description="モバイル（デフォルトとBase幅いっぱいのパターン）">
+![スクリーンショット（モバイルのデフォルトとBase幅いっぱいのパターン）:代表的なページ内レイアウトのパディングの例。コンテンツ内のパディングの大きさが色分けされて示されている。](./images/spacing-layout-pattern5-mobile.png)
+</ImgWithDesc>
 
-1. コンテンツエリアのパディング：`1.5（24px）`
-    - [Dialog](/products/components/dialog/)の各コンポーネントを使用することで、自動的に適用されます。`contentPadding`propsで値を指定できます。
-2. コンテンツエリア内のグループのパディング：`1（16px）`
-    - [BaseColumn](/products/components/base/base-column/)を使用することで、自動的に適用されます。
+### 代表的なダイアログ内レイアウトのパディング
 
+| 場所 | デスクトップ | モバイル | 補足 |
+| :--- | :--- | :--- | :--- |
+| 1. コンテンツエリアのパディング | `1.5（24px）` | `1（16px）` | [Dialog](/products/components/dialog/)の各コンポーネントを使用することで、自動的に適用されます。`contentPadding`propsで値を指定できます。 |
+| 2. コンテンツエリア内のグループのパディング | `1（16px）` | 同左 | [BaseColumn](/products/components/base/base-column/)を使用することで自動的に適用されます。 |
+
+<ImgWithDesc description="デスクトップとモバイル">
 ![スクリーンショット:代表的なダイアログ内レイアウトのパディングの例。コンテンツ内のパディングの大きさが色分けされて示されている。](./images/spacing-layout-pattern6.png)
+</ImgWithDesc>
 
-#### UpwardLinkがある場合のパディング
+### UpwardLinkがある場合のパディング
 
-1. [UpwardLink](/products/components/text-link/upward-link/)がある場合のpadding-top：`2（32px）`
-2. 基本機能の共通設定において[UpwardLink](/products/components/text-link/upward-link/)がある場合のpadding-top：`22px`
-    - 基本機能のサイドナビゲーションとヘッダーの余白と揃えるため、この値としています。
+| 場所 | デスクトップ | モバイル | 補足 |
+| :--- | :--- | :--- | :--- |
+| 1. [UpwardLink](/products/components/text-link/upward-link/)がある場合のpadding-top | `2（32px）` | `1.5（24px）` | （[代表的なページ内レイアウトのパディング](#h3-6)の一部） |
+| 2. 基本機能の共通設定において[UpwardLink](/products/components/text-link/upward-link/)がある場合のpadding-top | `22px` | 同左 | 基本機能のサイドナビゲーションとヘッダーの余白と揃えるため、この値としています。 |
 
 ![スクリーンショット:基本機能の共通設定におけるUpwardLinkがある場合のpadding-top](./images/spacing-layout-pattern12.png)

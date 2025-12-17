@@ -30,7 +30,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 #### 複数のフォームを横に並べる場合
 
-入力要素をグルーピングできる場合は、基本的に[Fieldset](/products/components/fieldset//)を使用してください。エラーが表示された際のレイアウト崩れを防ぐことができます。（[エラーの表示方法](/products/components/fieldset#h3-1)）
+入力要素をグルーピングできる場合は、基本的に[Fieldset](/products/components/fieldset////)を使用してください。エラーが表示された際のレイアウト崩れを防ぐことができます。（[エラーの表示方法](/products/components/fieldset#h3-1)）
 
 表示領域の都合などでやむを得ずFormControlを横に並べる場合は、エラーの表示時にレイアウトが崩れないか注意してください。
 
@@ -63,7 +63,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ```tsx editable
 <FormControl
-  title="タイトル"
+  label="タイトル"
   statusLabels={<RequiredLabel />}
 >
   <Input name="defaultInput" />
@@ -74,7 +74,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ```tsx editable
 <FormControl
-  title="タイトル"
+  label="タイトル"
   statusLabelProps={{ type: 'grey', children: '任意' }}
 >
   <Input name="defaultInput" />
@@ -110,7 +110,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ```tsx editable
 <FormControl
-  title="タイトル"
+  label="タイトル"
   helpMessage="ヘルプメッセージ"
   exampleMessage="入力例"
   errorMessages={'エラーメッセージ'}
@@ -132,7 +132,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ```tsx editable
 <FormControl
-  title="氏名"
+  label="氏名"
   helpMessage="氏名を入力してください。"
   exampleMessage="入力例：須磨栄子"
   supplementaryMessage="その他ご不明な点がありましたら、サポートまでお問い合わせください。"
@@ -145,7 +145,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ```tsx editable
 <FormControl
-  title="氏名"
+  label="氏名"
   helpMessage="氏名を入力してください。"
   exampleMessage="入力例：須磨栄子"
   errorMessages={'氏名が入力されていません。'}
@@ -165,7 +165,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 ```tsx editable
 <FormControl
-  title="氏名"
+  label="氏名"
   helpMessage="氏名を入力してください。"
   exampleMessage="入力例：須磨栄子"
   supplementaryMessage="その他ご不明な点がありましたら、サポートまでお問い合わせください。"
@@ -180,7 +180,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、[Input](/products/components/input/)など内包する要素の`readOnly`を使用してください。
 
 ```tsx editable
-<FormControl title="氏名">
+<FormControl label="氏名">
   <Input name="fullname" value="草野栄一郎" readOnly />
 </FormControl>
 ```

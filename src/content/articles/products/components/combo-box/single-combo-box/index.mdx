@@ -3,7 +3,7 @@ title: 'SingleCombobox'
 description: '選択肢の中から単一の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。'
 ---
 import { Image } from 'astro:assets'
-import { SingleCombobox, Cluster, Text } from 'smarthr-ui'
+import { SingleCombobox, Cluster, Text, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
@@ -17,6 +17,7 @@ import singleComboboxDont from '../images/single-combo-box-dont.png'
 ## 使用上の注意
 
 ### ユースケースに応じてコンポーネントを使い分ける
+詳しくは[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
 
 #### 単一選択の場合に使用する
 
@@ -97,6 +98,12 @@ SingleComboboxに`disabled`を適用すると、テキスト入力不可にな�
   />
 </>
 ```
+
+## [WIP] モバイル
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルに適したSingleComboboxを提供予定です。</ResponseMessage>
+</BaseColumn>
 
 ## Props
 

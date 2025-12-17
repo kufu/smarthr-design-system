@@ -8,7 +8,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 import CodeBlock from '@/components/article/CodeBlock.astro'
 import TableWrapper from '@/components/article/TableWrapper.astro'
 
-import { Heading, Stack, Table, Td, Th } from 'smarthr-ui'
+import { Heading, Stack, Table, Td, Th, Text } from 'smarthr-ui'
 
 Heading および PageHeadingコンポーネントは、直後に続くコンテンツの見出しに使います。
 
@@ -40,6 +40,8 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 画面のタイトルとして、画面ごとに1度しか使えません。  
 PageHeadingコンポーネントを使用してください。screenTitleタイプと`h1`要素が自動的に設定されます。
 
+サイズは`XXL`、`XL`、`L`から選択できます。デフォルトは`XL`です。
+
 <TableWrapper>
   <Table>
     <thead>
@@ -54,16 +56,32 @@ PageHeadingコンポーネントを使用してください。screenTitleタイ�
     <tbody>
       <tr>
         <Td>screenTitle</Td>
-        <Td><a href="/products/design-tokens/typography/"><code>XL</code></a></Td>
+        <Td><a href="/products/design-tokens/typography/"><code>XXL</code></a></Td>
         <Td>normal</Td>
         <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
-        <Td><Heading type="screenTitle" tag="span">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Heading></Td>
+        <Td><Text size="XXL">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Text></Td>
+      </tr>
+      <tr>
+        <Td>screenTitle</Td>
+        <Td><a href="/products/design-tokens/typography/"><code>XL (デフォルト)</code></a></Td>
+        <Td>normal</Td>
+        <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
+        <Td><Text size="XL">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Text></Td>
+      </tr>
+      <tr>
+        <Td>screenTitle</Td>
+        <Td><a href="/products/design-tokens/typography/"><code>L</code></a></Td>
+        <Td>normal</Td>
+        <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
+        <Td><Text size="L">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Text></Td>
       </tr>
     </tbody>
   </Table>
 </TableWrapper>
 
 ### セクションタイトル
+
+サイズは`XXL`、`XL`、`L`から選択できます。デフォルトは`L`です。
 
 <TableWrapper>
   <Table>
@@ -79,7 +97,21 @@ PageHeadingコンポーネントを使用してください。screenTitleタイ�
     <tbody>
       <tr>
         <Td>sectionTitle</Td>
-        <Td><a href="/products/design-tokens/typography/"><code>L</code></a></Td>
+        <Td><a href="/products/design-tokens/typography/"><code>XXL</code></a></Td>
+        <Td>normal</Td>
+        <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
+        <Td><Heading size="XXL" tag="span">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Heading></Td>
+      </tr>
+      <tr>
+        <Td>sectionTitle</Td>
+        <Td><a href="/products/design-tokens/typography/"><code>XL</code></a></Td>
+        <Td>normal</Td>
+        <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
+        <Td><Heading size="XL" tag="span">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Heading></Td>
+      </tr>
+      <tr>
+        <Td>sectionTitle</Td>
+        <Td><a href="/products/design-tokens/typography/"><code>L（デフォルト）</code></a></Td>
         <Td>normal</Td>
         <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
         <Td><Heading tag="span">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Heading></Td>
@@ -174,6 +206,10 @@ PageHeadingコンポーネントを使用してください。screenTitleタイ�
 ## ライティング
 関連するライティングガイドラインを参照してください。
 - [画面タイトルや項目名には名詞を使用する](/products/contents/ui-text/app-writing/#h2-2)
+
+## モバイル
+
+モバイルでは、サイズがXXLのタイポグラフィは小さく調整されます。詳しくは[タイポグラフィ](/products/design-tokens/typography/)のページを参照してください。
 
 ## Props
 
