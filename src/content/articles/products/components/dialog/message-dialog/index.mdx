@@ -6,10 +6,11 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import MultipleModalWarning from '../_components/MultipleModalWarning.mdx'
 import DialogBaseSize from '../_components/DialogBaseSize.mdx'
-import SheetForMobile from '../_components/SheetForMobile.mdx'
+import ExpandedDialogUsecase from '../_components/ExpandedDialogUsecase.mdx'
+import ExpandedDialogPadding from '../_components/ExpandedDialogPadding.mdx'
 import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
 import imageMessageDialog from '../images/message_dialog_mobile.png'
-import imageMessageDialogSheet from '../images/message_dialog_mobile_sheet.png'
+import imageExpandedMessageDialog from '../images/expanded_message_dialog_mobile.png'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Image } from 'astro:assets'
 
@@ -53,25 +54,41 @@ MessageDialogは、表示したままダイアログ外の操作ができず、�
 
 表示位置は、画面の天地左右中央に表示されます。
 
-### モバイル
+## モバイル
 
 <BaseColumn>
-  <ResponseMessage type="info">シート形式のMessageDialogは、propsに追加する形でsmarthr-uiに実装予定です。</ResponseMessage>
+  <ResponseMessage type="info">ExpandedActionDialogは、propsに追加する形でsmarthr-uiに実装予定です。</ResponseMessage>
 </BaseColumn>
 
-<SheetForMobile />
+モバイルでは、通常のメッセージダイアログに加えて、拡大メッセージダイアログを使用できます。
+
+### 表示する情報量に応じて拡大メッセージダイアログが使用できる
+
+<ExpandedDialogUsecase />
 
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={imageMessageDialog} alt="Do" />
-    <Text slot="label">一般的なダイアログの意匠で表示する</Text>
+    <Text slot="label">通常のメッセージダイアログで表示する</Text>
   </DoAndDont>
 
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={imageMessageDialogSheet} alt="Do" />
-    <Text slot="label">モバイルで表示する情報量が多い場合にシート形式のダイアログで表示する</Text>
+    <Image slot="img" src={imageExpandedMessageDialog} alt="Do" />
+    <Text slot="label">モバイルで表示する情報量が多い場合に拡大メッセージダイアログで表示する</Text>
   </DoAndDont>
 </Cluster>
+
+### レイアウト
+［閉じる］ボタンはTitleAreaの右端に配置します。
+
+![拡大メッセージダイアログの例](../images/focus_expanded_message_dialog_mobile.png)
+
+#### 余白
+
+<ExpandedDialogPadding />
+
+![拡大メッセージダイアログの余白の説明図](../images/explain_expanded_message_dialog_mobile.png)
+
 
 ## アクセシビリティ
 
