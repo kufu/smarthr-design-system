@@ -4,10 +4,11 @@ description: 'ステップを複数に分けたダイアログです。タスク
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import SheetForMobile from '../_components/SheetForMobile.mdx'
+import ExpandedDialogUsecase from '../_components/ExpandedDialogUsecase.mdx'
+import ExpandedDialogPadding from '../_components/ExpandedDialogPadding.mdx'
 import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
 import imageStepFormDialog from '../images/step_form_dialog_mobile.png'
-import imageStepFormDialogSheet from '../images/step_form_dialog_mobile_sheet.png'
+import imageExpandedStepFormDialog from '../images/expanded_step_form_dialog_mobile.png'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Image } from 'astro:assets'
 
@@ -19,27 +20,45 @@ import { Image } from 'astro:assets'
 
 <ComponentStory name="StepFormDialog" />
 
-## レイアウト
-
-### モバイル
+## モバイル
 
 <BaseColumn>
-  <ResponseMessage type="info">シート形式のダイアログは、StepFormDialogのpropsとしてsmarthr-uiに実装予定です。</ResponseMessage>
+  <ResponseMessage type="info">ExpandedActionDialogは、propsに追加する形でsmarthr-uiに実装予定です。</ResponseMessage>
 </BaseColumn>
 
-<SheetForMobile />
+モバイルでは、通常のステップフォームダイアログに加えて、拡大ステップフォームダイアログを使用できます。
+
+### 表示する情報量に応じて拡大ステップフォームダイアログが使用できる
+
+<ExpandedDialogUsecase />
 
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={imageStepFormDialog} alt="Do" />
-    <Text slot="label">通常のダイアログの意匠で表示する</Text>
+    <Text slot="label">通常のダイアログで表示する</Text>
   </DoAndDont>
 
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={imageStepFormDialogSheet} alt="Do" />
-    <Text slot="label">モバイルで表示する情報量が多い場合にシート形式のダイアログで表示する</Text>
+    <Image slot="img" src={imageExpandedStepFormDialog} alt="Do" />
+    <Text slot="label">モバイルで表示する情報量が多い場合に拡大ステップフォームダイアログで表示する</Text>
   </DoAndDont>
 </Cluster>
+
+### レイアウト
+
+#### 余白
+
+<ExpandedDialogPadding />
+
+![拡大ステップフォームダイアログの余白の説明図](../images/explain_expanded_step_form_dialog_mobile.png)
+
+#### フッターエリア（任意）のレイアウト
+
+［戻る］ボタンと[Primaryボタン](https://smarthr.design/products/components/button/#h3-1)を[Cluster](https://smarthr.design/products/components/layout/cluster/)で横いっぱいに並べます。
+
+［キャンセル］ボタンは、それらのButtonの下部に配置します。
+
+![キャンセルボタンを表示した拡大ステップフォームダイアログの例]()
 
 
 ## Props
