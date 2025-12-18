@@ -26,9 +26,9 @@ import { Image } from 'astro:assets'
   <ResponseMessage type="info">ExpandedActionDialogは、propsに追加する形でsmarthr-uiに実装予定です。</ResponseMessage>
 </BaseColumn>
 
-モバイルでは、通常のステップフォームダイアログに加えて、拡大ステップフォームダイアログを使用できます。
+モバイルでは、通常のステップフォームダイアログに加えて、拡大したステップフォームダイアログを使用できます。
 
-### 表示する情報量に応じて拡大ステップフォームダイアログが使用できる
+### 表示する情報量に応じて拡大したステップフォームダイアログが使用できる
 
 <ExpandedDialogUsecase />
 
@@ -40,7 +40,7 @@ import { Image } from 'astro:assets'
 
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={imageExpandedStepFormDialog} alt="Do" />
-    <Text slot="label">モバイルで表示する情報量が多い場合に拡大ステップフォームダイアログで表示する</Text>
+    <Text slot="label">モバイルで表示する情報量が多い場合に拡大したダイアログで表示する</Text>
   </DoAndDont>
 </Cluster>
 
@@ -50,7 +50,7 @@ import { Image } from 'astro:assets'
 
 <ExpandedDialogPadding />
 
-![拡大ステップフォームダイアログの余白の説明図](../images/explain_expanded_step_form_dialog_mobile.png)
+![拡大したステップフォームダイアログの余白の説明図](../images/explain_expanded_step_form_dialog_mobile.png)
 
 #### フッターエリア（任意）のレイアウト
 
@@ -58,7 +58,7 @@ import { Image } from 'astro:assets'
 
 ［キャンセル］ボタンは、それらのButtonの下部に配置します。
 
-![キャンセルボタンを表示した拡大ステップフォームダイアログの例]()
+![キャンセルボタンを表示した拡大したステップフォームダイアログの例]()
 
 
 ## Props
