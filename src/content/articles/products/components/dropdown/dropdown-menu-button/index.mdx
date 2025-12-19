@@ -4,7 +4,14 @@ description: '複数の操作をまとめて提供するためのコンポーネ
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import { DropdownMenuButton, FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
+import { Image } from 'astro:assets'
+import { ResponseMessage, BaseColumn, Cluster, Text, DropdownMenuButton, FaCaretDownIcon, FaEllipsisHIcon } from 'smarthr-ui'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+
+import DropdownMenuButtonPanelWidthDo from '../images/dropdown-menu-button-panel-width-do.png'
+import DropdownMenuButtonPanelWidthDont from '../images/dropdown-menu-button-panel-width-dont.png'
+import DropdownMenuButtonPanelHeightDo from '../images/dropdown-menu-button-panel-height-do.png'
+import DropdownMenuButtonPanelHeightDont from '../images/dropdown-menu-button-panel-height-dont.png'
 
 DropdownMenuButtonは複数の操作をまとめて提供するためのコンポーネントで、パネル内には操作がリスト形式で表示されます。
 
@@ -29,8 +36,6 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 
 ![開かれた操作ドロップダウン。編集・複製・削除の順に操作が並んでいる。](../images/multiple-operation-button-smaple.png)
 
-
-
 ## レイアウト
 
 ドロップダウンの引き金となるボタン（トリガー）とドロップダウンパネルをあわせて、「ドロップダウンメニューボタン」と呼びます。
@@ -49,7 +54,53 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 操作をリスト形式でまとめて表示します。  
 まとめ方は、[デザインパターン](#h2-2)から用途にあったものを選択してください。
 
+#### [WIP] モバイル
 
+##### 横幅は画面幅の2/3程度までに収まるように調整する
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に調整されるようコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
+
+ドロップダウンパネルの横幅は画面幅の2/3程度までに収まるように調整してください。
+
+ドロップダウンパネルはパネル外を押すことで閉じることができますが、モバイルのような画面幅の狭い環境でもパネル外の押せる領域を十分に確保するためです。  
+また、横幅が画面幅いっぱいに広がったパネルとその下のコンテンツとの区別がつきにくくなってしまうことを避けるためです。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+    <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={DropdownMenuButtonPanelWidthDont} alt="Dont" />
+    <Text slot="label">ドロップダウンパネルの横幅が画面いっぱいに広がっていることで、パネルが閉じにくく、パネルの下のコンテンツとの区別がつきにくくなっている。</Text>
+    </DoAndDont>
+
+    <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={DropdownMenuButtonPanelWidthDo} alt="Do" />
+    <Text slot="label">ドロップダウンパネルの横幅が画面幅の2/3程度に収まっていることで、パネルが閉じやすく、パネルの下のコンテンツとの区別もつくようになっている。</Text>
+    </DoAndDont>
+</Cluster>
+
+##### 縦幅は画面内に収まるように調整する
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に調整されるようコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
+
+
+ドロップダウンパネルの縦幅は画面内に収まるように調整し、必要に応じてスクロールできるようにしてください。
+
+ドロップダウンパネルが画面外にはみ出ていると、はみ出ている操作を押すためにページをスクロールすることになります。この際モバイルのようなタッチ操作を中心とする環境でスクロールしたときに、誤ってパネル外を押すことで意図せずパネルが閉じてしまうことを避けるためです。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+    <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={DropdownMenuButtonPanelHeightDont} alt="Dont" />
+    <Text slot="label">ドロップダウンパネルの縦幅が画面外にはみ出していると、ページをスクロールしたときに誤ってパネル外を押してしまい意図せずパネルが閉じてしまうことがある。</Text>
+    </DoAndDont>
+
+    <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={DropdownMenuButtonPanelHeightDo} alt="Do" />
+    <Text slot="label">ドロップダウンパネルの縦幅が画面内に収まっていて、パネル内をスクロールすることで必要な操作を押せるようになっている。</Text>
+    </DoAndDont>
+</Cluster>
 
 ## デザインパターン
 用途によって5つのパターンを定義します。
@@ -124,8 +175,12 @@ A、B、Cのパターンに該当しないときに、異なる複数の操作�
 </DropdownMenuButton>
 ```
 
-### E. ラベル省略（非推奨）
-ボタンを配置するスペースを十分確保できないときの最終手段として検討できますが、基本的に利用を推奨しません。
+### E. ラベル省略（デスクトップでは非推奨）
+
+ボタンを配置するスペースを十分確保できないときの最終手段として検討できます。
+
+デスクトップでは基本的に利用を推奨しません。  
+モバイルはスペースが限られるため検討可能性は上がりますが、可能な限り避けることを推奨します。
 
 | 要素 | 説明 |
 | :--- | :--- |
@@ -169,7 +224,7 @@ DropdownMenuButton自体を無効にすると、ドロップダウンパネル�
 ```tsx editable noIframe
 <DropdownMenuButton label="｛オブジェクト名｝の操作">
   <Button>｛オブジェクト名｝を編集</Button>
-  <Button disabled disabledDetail={{ message: '無効状態の理由' }}>｛オブジェクト名｝を削除</Button>
+  <Button disabled disabledReason={{ message: '無効状態の理由' }}>｛オブジェクト名｝を削除</Button>
 </DropdownMenuButton>
 ```
 
