@@ -241,7 +241,8 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 ### ボタンの大きさ
 
 #### 通常サイズのボタンを使う
-モバイルでは基本的に通常サイズを使用してください。操作ミスが増えるためサイズ小のButtonを使うことは避けます。レイアウトの都合上サイズ小のButtonにする必要がある場合、間隔を十分にあけてください。その場合、アイコンボタンとして使うことはなるべく避けてください
+モバイルでは基本的に`通常`サイズを使用してください。操作ミスが増えるため`サイズ小`のボタンを使うことは避けます。
+レイアウトの都合上`サイズ小`のボタンにする必要がある場合、間隔を十分にあけてください。その場合、アイコンボタンとして使うことはなるべく避けてください
 
 #### ボタンの幅
 基本的にボタンはコンテンツ幅いっぱいに広げてください。
@@ -288,24 +289,6 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 <Cluster gap={1}>
   <DoAndDont type="do" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
-      <Base padding={1}>
-        <Stack gap={1.5}>
-          <FormControl label="何らかの入力">
-            <Input />
-          </FormControl>
-          <div className="shr-flex shr-flex-row shr-gap-0.5">
-            <Button wide>キャンセル</Button>
-            <Button variant="primary" wide>保存</Button>
-          </div>
-        </Stack>
-      </Base>
-    </BaseColumn>
-    <figcaption slot="label" id="caption5">
-      <Caption>水平方向に並べる場合は後方にPrimaryボタンを置く。</Caption>
-    </figcaption>
-  </DoAndDont>
-  <DoAndDont type="do" width={320}>
     <BaseColumn slot="img" as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
       <Base padding={1}>
         <Stack gap={1.5}>
@@ -321,6 +304,24 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
     </BaseColumn>
     <figcaption slot="label" id="caption6">
       <Caption>垂直方向に並べる場合はPrimaryボタンを上に置く。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl label="何らかの入力">
+            <Input />
+          </FormControl>
+          <div className="shr-flex shr-flex-row shr-gap-0.5">
+            <Button wide>キャンセル</Button>
+            <Button variant="primary" wide>保存</Button>
+          </div>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption5">
+      <Caption>水平方向に並べる場合は後方にPrimaryボタンを置く。</Caption>
     </figcaption>
   </DoAndDont>
 </Cluster>
