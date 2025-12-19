@@ -23,7 +23,6 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
 import Warning from './_components/Warning'
 import DynamicTooltip from './_components/DynamicTooltip.astro'
-import disabledDetailImage from './images/disabled-detail.png'
 
 <Warning />
 
@@ -227,12 +226,14 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 モバイルではTooltipを使わないでください。画面内の領域が小さいため、Tooltipの表示が他のUIの利用を妨げることがあります。
 
 ### やむを得ずモバイルでTooltipを表示する例
-表示領域が限られている状況で、補足情報の提示が必須になる場合にはやむを得ずTooltipを使用することがあります。
+表示領域が限られていて、補足情報の提示が必要な場合にはやむを得ずTooltipを使用することがあります。
 
-[disabled状態のButton](/products/components/button/#h3-10)では、無効状態の理由を表示するスペースがない場合`disabledDetail`Propsを使用しますが、この場合、理由はTooltipで表示されます。
+#### `disabledDetail`で無効状態の理由を表示する場合
+[disabledのButton](/products/components/button/#h3-10)では、無効状態の理由をTooltipで表示するためのPropsとして `disabledDetail` を提供しています。
 
-#### [よくあるリスト](/products/design-patterns/smarthr-list/)の例
-<Image src={disabledDetailImage} alt="disabledなButtonの上部にTooltipが表示されているサンプル画像" width={320} />
+[よくあるリストのリスト操作エリア](/products/design-patterns/smarthr-list/#h3-1) のように、レイアウト上テキストで理由を表示するスペースを確保できない場合は、無効状態のボタンに対して `disabledDetail` を用いてTooltipを表示します。
+
+![よくあるリストの右肩にあるボタンがdisabledになっている。ボタンの上にはdisabledの理由を示すためのツールチップが表示されている](./images/disabled-detail.png)
 
 ## Props
 
