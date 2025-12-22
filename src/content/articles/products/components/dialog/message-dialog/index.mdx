@@ -6,6 +6,13 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import MultipleModalWarning from '../_components/MultipleModalWarning.mdx'
 import DialogBaseSize from '../_components/DialogBaseSize.mdx'
+import ExpandedDialogUsecase from '../_components/ExpandedDialogUsecase.mdx'
+import ExpandedDialogPadding from '../_components/ExpandedDialogPadding.mdx'
+import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import imageMessageDialog from '../images/message_dialog_mobile.png'
+import imageExpandedMessageDialog from '../images/expanded_message_dialog_mobile.png'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Image } from 'astro:assets'
 
 ユーザーに情報を提示するためのダイアログです。
 
@@ -78,6 +85,41 @@ MessageDialogは以下の要素で構成されます。
 ### 3. アクションボタン
 
 ダイアログを閉じるボタンを配置し、ラベルは`閉じる`とします。
+
+## モバイル
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage type="info">拡大したMessageDialogはsmarthr-uiに実装予定です。</ResponseMessage>
+</BaseColumn>
+
+モバイルでは、通常のダイアログに加えて、拡大したダイアログを使用できます。
+
+### 表示する情報量に応じて拡大したダイアログの採用を検討する
+
+<ExpandedDialogUsecase />
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageMessageDialog} alt="Do" />
+    <Text slot="label">通常のダイアログで表示する</Text>
+  </DoAndDont>
+
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageExpandedMessageDialog} alt="Do" />
+    <Text slot="label">拡大したダイアログで表示する</Text>
+  </DoAndDont>
+</Cluster>
+
+### レイアウト
+［閉じる］ボタンはタイトルの右端に配置します。
+
+![拡大したメッセージダイアログの例](../images/focus_expanded_message_dialog_mobile.png)
+
+#### 余白
+
+<ExpandedDialogPadding />
+
+![拡大したメッセージダイアログの余白の説明図](../images/explain_expanded_message_dialog_mobile.png)
 
 
 ## Props
