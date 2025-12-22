@@ -248,19 +248,12 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 #### ボタンの幅
 基本的にボタンはコンテンツ幅いっぱいに広げてください。
 
-視線誘導やレイアウトを加味して調整が必要な場合、内包コンテンツに合わせた幅に調整できます。（Z型の視線誘導を期待して設置するコンポーネントである[FloatArea](/products/components/float-area/)や[ActionDialog](/products/components/dialog/action-dialog/)などでの利用を想定しています。）
+視線誘導やレイアウトを加味して調整が必要な場合、内包コンテンツに合わせた幅に調整できます。（[Z型の視線移動](/products/design-patterns/visual-guidance/#h4-1)を期待して設置するコンポーネントである[FloatArea](/products/components/float-area/)や[ActionDialog](/products/components/dialog/action-dialog/)などでの利用を想定しています。）
 
 <Cluster gap={1}>
   <DoAndDont type="do" width={320}>
     <BaseColumn slot="img" as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
-      <Stack>
-        <Base padding={1}>
-          <FormControl label="何らかの入力">
-            <Input />
-          </FormControl>
-        </Base>
-        <Button variant="primary">保存</Button>
-      </Stack>
+        <Button variant="primary" wide>保存</Button>
     </BaseColumn>
     <figcaption slot="label" id="caption4">
       <Caption>幅いっぱいに広げ、十分に操作領域を取る。</Caption>
@@ -268,17 +261,9 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
   </DoAndDont>
   <DoAndDont type="do" width={320}>
     <BaseColumn slot="img" as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
-      <Stack>
-        <Base padding={1}>
-          <FormControl label="何らかの入力">
-            <Input />
-          </FormControl>
-        </Base>
-        <Cluster>
-          <Button>キャンセル</Button>
+          <div style={{ display: 'flex', justifyContent: 'end'}}>
           <Button variant="primary">保存</Button>
-        </Cluster>
-      </Stack>
+          </div>
     </BaseColumn>
     <figcaption slot="label" id="caption3">
       <Caption>視線誘導やレイアウトを加味して内包コンテンツに合わせた幅に調整する。</Caption>
