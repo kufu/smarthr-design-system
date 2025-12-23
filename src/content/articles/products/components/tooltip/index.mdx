@@ -15,6 +15,8 @@ import {
   TextLink
 } from 'smarthr-ui'
 import { Button, Cluster, Tooltip, Text } from 'smarthr-ui'
+import { Image } from 'astro:assets'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
@@ -51,7 +53,7 @@ Tooltip内の情報は隠れるため、操作に必要な情報の表示への�
     - 折り返して表示することがどうしても難しい場合
   - [SearchInput](/products/components/input/search-input/)
     - 検索キーワードに該当する検索結果が得られなかったとき、再検索を行なうめのヒントを見える場所に必ず表示したうえで、補助としてTooltipのメッセージを使う場合
-  - [Button](/products/components/button/) の `disabledDetail` props 使用時
+  - [Button](/products/components/button/) の `disabledReason` props 使用時
     - [DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/) 内のButtonで使う場合（配置できるスペースがドロップダウン内に限られるため仕方なく使う）
     - Button単独の場合でも、ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的で使う場合
     - 上記以外のケースは、Tooltipを使わずにdisabledである理由を見える場所に表示する
@@ -220,11 +222,18 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 単純に文章を省略したい場合には、[LineClamp](/products/components/line-clamp/)を使用してください。
 
-
 ## モバイル
+モバイルではTooltipを使わないでください。画面内の領域が小さいため、Tooltipの表示が他のUIの利用を妨げることがあります。
 
-モバイル端末をはじめとしたタッチデバイスでは、hover状態がないためTooltipの使用は避けてください。
+### やむを得ずモバイルでTooltipを表示する例
+表示領域が限られていて、補足情報の提示が必要な場合にはやむを得ずTooltipを使用することがあります。
 
+#### `disabledReason`で無効状態の理由を表示する場合
+[無効状態(disabled)のButton](/products/components/button/#h3-10)では、無効状態の理由をTooltipで表示するためのPropsとして `disabledReason` を提供しています。
+
+[よくあるリストのリスト操作エリア](/products/design-patterns/smarthr-list/#h3-1) のように、レイアウト上テキストで理由を表示するスペースを確保できない場合は、無効状態のボタンに対して `disabledReason` を用いてTooltipを表示します。
+
+![よくあるリストの右肩にあるボタンがdisabledになっている。ボタンの上にはdisabledの理由を示すためのツールチップが表示されている](./images/disabled-reason.png)
 
 ## Props
 
