@@ -15,7 +15,7 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 
 「モバイルレイアウト」とは、スマートフォンなどのモバイルでの利用を想定したUIを指します。
 
-[メディアクエリのセマンティックトークン](/products/design-tokens/media-query/#h2-0)のうち `SCREEN_NARROW` に一致する環境である場合、その環境はモバイルと判定しモバイルレイアウトの適用対象とします。
+[メディアクエリのセマンティックトークン](/products/design-tokens/media-query/#h2-0)のうち `SCREEN_SMALL` に一致する環境である場合、その環境はモバイルと判定しモバイルレイアウトの適用対象とします。
 
 <BaseColumn className="shr-mt-2">
   <ResponseMessage>環境がモバイルであるという判定は時代やプロダクトの事情により変わり得ます。簡単に判定できる機能をsmarthr-uiで提供予定です。</ResponseMessage>
@@ -194,24 +194,23 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
 
 ## 実装上の注意
 
-### モバイルかどうかの判定には`useDevice`を使う
+### モバイルかどうかの判定には`useEnvironment`を使う
 
-`useDevice`フックを使って`isNarrowView`を取得し、必要に応じてコンポーネントに割り当ててください。各プロダクトでユーザーエージェントの判定を実装する必要はありません。
+`useEnvironment`フックを使って`mobile`を取得し、必要に応じてコンポーネントに割り当ててください。各プロダクトでユーザーエージェントの判定を実装する必要はありません。
 
-<p>
-  <NotificationBar base="base" layer={2} type="warning">SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。</NotificationBar>
-</p>
-
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>SmartHR UIのコンポーネントはレイアウトやスタイルが自動的に切り替わるよう順次改修予定です。</ResponseMessage>
+</BaseColumn>
 
 ```tsx
-import { useDevice } from 'smarthr-ui'
+import { useEnvironment } from 'smarthr-ui'
 
 export const YourComponent = () => {
-  const { isNarrowView } = useDevice()
+  const { mobile } = useEnvironment()
 
   return (
     <SomeComponent 
-      someProp={isNarrowView ? モバイル向けの値 : デスクトップ向けの値}
+      someProp={mobile ? モバイル向けの値 : デスクトップ向けの値}
     >
       {/* コンテンツ */}
     </SomeComponent>
