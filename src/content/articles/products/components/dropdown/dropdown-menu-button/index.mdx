@@ -48,13 +48,25 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 ![ドロップダウンメニューボタンの構成図](../images/multiple-operation-button-overview.png)
 
 ### 1. トリガー
-複数の操作がまとまっていることを示唆するために、[Secondaryボタンのアイコン付き（右）](/products/components/button/#h3-1)に <FaCaretDownIcon alt="展開" /> アイコン（`FaCaretDownIcon`）を使っています。
+複数の操作がまとまっていることを示唆するために、[Secondaryボタンのアイコン付き（右）](/products/components/button/#h3-2)に <FaCaretDownIcon alt="展開" /> アイコン（`FaCaretDownIcon`）を使っています。
 
 ### 2. ドロップダウンパネル
 操作をリスト形式でまとめて表示します。  
 まとめ方は、[デザインパターン](#h2-2)から用途にあったものを選択してください。
 
 #### [WIP] モバイル
+
+##### 操作項目の高さは通常サイズのボタンに揃える
+
+デフォルトではドロップダウンパネル内の操作項目の高さは[`小`サイズのボタン](/products/components/button/#h3-7)に揃えられています。  
+これを、操作しやすいようにモバイルでは通常サイズのボタンに揃えてください（TODO: ボタンの基準にリンクする）。
+
+```tsx editable noIframe
+<DropdownMenuButton label="｛オブジェクト名｝の操作">
+  <Button className="shr-py-0.75 shr-border-transparent hover:shr-border-transparent shr-border-solid">｛オブジェクト名｝を編集</Button>
+  <Button className="shr-py-0.75 shr-border-transparent hover:shr-border-transparent shr-border-solid">｛オブジェクト名｝を削除</Button>
+</DropdownMenuButton>
+```
 
 ##### 横幅は画面幅の2/3程度までに収まるように調整する
 
@@ -184,7 +196,7 @@ A、B、Cのパターンに該当しないときに、異なる複数の操作�
 
 | 要素 | 説明 |
 | :--- | :--- |
-| トリガー | [Secondaryボタンのアイコンのみ](/products/components/button/#h3-1)で、主に <FaEllipsisHIcon alt="その他の操作" /> アイコン（`FaEllipsisHIcon`）を使います。ラベルは視覚的に省いていますが、**必ず`label`属性は設定して**何のボタンなのかを伝えます。 |
+| トリガー | [Secondaryボタンのアイコンのみ](/products/components/button/#h3-2)で、主に <FaEllipsisHIcon alt="その他の操作" /> アイコン（`FaEllipsisHIcon`）を使います。ラベルは視覚的に省いていますが、**必ず`label`属性は設定して**何のボタンなのかを伝えます。 |
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 操作を複数入れます。 |
 
 ```tsx editable noIframe
@@ -219,7 +231,7 @@ DropdownMenuButton自体を無効にすると、ドロップダウンパネル�
 ```
 
 #### ドロップダウンパネルの操作の無効
-ドロップダウンパネル内の操作を無効にする場合、[ButtonのdisabledDetail](/products/components/button/#h3-9)を使って**無効状態の理由を表示します。**
+ドロップダウンパネル内の操作を無効にする場合、[ButtonのdisabledReason](/products/components/button/#h3-10)を使って**無効状態の理由を表示します。**
 
 ```tsx editable noIframe
 <DropdownMenuButton label="｛オブジェクト名｝の操作">
