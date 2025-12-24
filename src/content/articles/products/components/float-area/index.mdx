@@ -3,12 +3,14 @@ title: 'FloatArea'
 description: 'スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。'
 ---
 import { Image } from 'astro:assets'
-import { Text } from 'smarthr-ui'
+import { Text, Cluster } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import FloatAreaLayoutDo from './images/float-area-layout-do.png';
 import FloatAreaLayoutDont from './images/float-area-layout-dont.png';
+import FloatAreaStickyMobileKeyboard from './images/float-area-sticky-mobile-keyboard.png';
+import FloatAreaMobileKeyboard from './images/float-area-mobile-keyboard.png';
 
 スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。
 
@@ -53,6 +55,39 @@ FloatAreaには、ページ全体、もしくはページの一部を対象と�
 ## モバイル
 
 そのままレスポンシブに折り返して使うと表示領域を圧迫するため、モバイル向けに再設計が必要です。[1画面で複雑な操作をさせない](/products/design-patterns/mobile-friendly-layout/#h3-1)ように調整してください。
+
+
+モバイルでは1画面で表示できる情報量に限りがあります。
+FloatAreaが常に画面の下部に表示されていると、ユーザーの操作性を損ねる可能性があります。
+キーボード入力を行なう際、FloatAreaの固定を解除するかを検討してください。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={FloatAreaStickyMobileKeyboard} alt="Do" />
+    <Text slot="label">キーボード入力を行なう際でも常にFloatAreaを表示する</Text>
+  </DoAndDont>
+
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={FloatAreaMobileKeyboard} alt="Do" />
+    <Text slot="label">キーボード入力を行なう際はFloatAreaの固定を解除する</Text>
+  </DoAndDont>
+</Cluster>
+
+### レイアウト
+
+モバイルでは左右の余白を`0px`にして、画面の下部に固定して表示してください。
+
+[Secondaryボタン](https://smarthr.design/products/components/button/#h3-2)ボタン（任意）と[Primaryボタン](/products/components/button/#h3-1)を[Cluster](/products/components/layout/cluster/)で横いっぱいに並べます。
+また、tertiary領域に表示するボタン（任意）は、上記のButton群の下部に配置します。
+
+![](images/float-area-tertiary-mobile.png)
+
+
+#### 余白
+
+モバイルでFloatAreaを利用する場合、余白は以下のとおりです。
+
+![](images/explain-float-area-tertiary-error-mobile.png)
 
 ## Props
 
