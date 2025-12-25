@@ -3,7 +3,7 @@ title: 'FloatArea'
 description: 'スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。'
 ---
 import { Image } from 'astro:assets'
-import { Text, Cluster } from 'smarthr-ui'
+import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
@@ -54,6 +54,9 @@ FloatAreaには、ページ全体、もしくはページの一部を対象と�
 
 ## モバイル
 
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage type="info">モバイル対応したFloatAreaはsmarthr-uiに実装予定です。</ResponseMessage>
+</BaseColumn>
 
 モバイルでは1画面で表示できる情報量に限りがあります。
 FloatAreaが常に画面の下部に表示されていると、ユーザーの操作性を損ねる可能性があります。
@@ -78,14 +81,14 @@ FloatAreaが常に画面の下部に表示されていると、ユーザーの�
 [Secondaryボタン](https://smarthr.design/products/components/button/#h3-2)（任意）と[Primaryボタン](/products/components/button/#h3-1)は横いっぱいに並べます。
 また、[Tertiaryボタン](/products/components/button/#h3-3)（任意）は、上記のボタン群の下部に配置します。
 
-![](images/float-area-tertiary-mobile.png)
+![モバイルで全てのButton含めたFloatAreaの例](images/float-area-tertiary-mobile.png)
 
 
 #### 余白
 
 モバイルでFloatAreaを利用する場合、余白は以下のとおりです。
 
-![](images/explain-float-area-tertiary-error-mobile.png)
+![モバイルでFloatAreaを利用する場合の余白の説明画像](images/explain-float-area-tertiary-error-mobile.png)
 
 ## Props
 
