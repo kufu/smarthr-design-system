@@ -64,7 +64,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
   <TabItem suffix={<FaCircleExclamationIcon color="DANGER" alt="エラーあり"/>} id="tabitem2" onClick={() => null}>
     家族情報
   </TabItem>
-  <TabItem disabled disabledDetail={{ message: 'この情報は使えません。' }} id="tabitem3">
+  <TabItem disabled disabledReason={{ message: 'この情報は使えません。' }} id="tabitem3">
     その他
   </TabItem>
 </TabBar>
