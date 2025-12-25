@@ -2,8 +2,12 @@
 title: 'WarekiPicker'
 description: '和暦の日付を西暦に変換する機能と和暦をプレビューする機能をもった入力要素です。'
 ---
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import { Image } from 'astro:assets'
+import imageWarekiPositionRight from './images/wareki-position-right.png'
+import imageWarekiPositionBottom from './images/wareki-position-bottom.png'
 
 和暦の日付を西暦に変換する機能と和暦をプレビューする機能をもった入力要素です。
 
@@ -26,6 +30,28 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
   <WarekiPicker />
 </FormControl>
 ```
+
+## レイアウト
+
+### [WIP] 和暦の表示位置
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage>smarthr-uiに和暦の表示位置を指定するプロパティを実装予定です。</ResponseMessage>
+</BaseColumn>
+
+| 表示位置 | 表示例 | 説明 |
+| :--- | :--- | :--- |
+| `右` | <Image src={imageWarekiPositionRight} alt="和暦の表示位置（右）" /> | 通常の表示位置です。 |
+| `下` | <Image src={imageWarekiPositionBottom} alt="和暦の表示位置（下）" /> | レイアウトの都合や、スペースを節約したいときなどに使えます。 |
+
+
+## [WIP] モバイル
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage>smarthr-uiに和暦の表示位置を指定するプロパティを実装予定です。</ResponseMessage>
+</BaseColumn>
+
+モバイルでは画面幅が小さいことから、和暦の表示位置`下`を推奨します。
 
 ## Props
 
