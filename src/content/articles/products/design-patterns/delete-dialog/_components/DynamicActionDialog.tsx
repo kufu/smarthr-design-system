@@ -6,6 +6,7 @@ import {
   Checkbox,
   DefinitionList,
   DefinitionListItem,
+  IntlProvider,
   ResponseMessage,
   Stack,
   Text,
@@ -15,7 +16,7 @@ export default function DynamicActionDialog() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
+    <IntlProvider locale="ja">
       <Button onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
@@ -28,7 +29,7 @@ export default function DynamicActionDialog() {
         onClickAction={() => {
           setIsOpen(false);
         }}
-        width={640}
+        size="S"
       >
         <Stack gap={1.5}>
           <p>{'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}</p>
@@ -51,6 +52,6 @@ export default function DynamicActionDialog() {
           </Stack>
         </Stack>
       </ActionDialog>
-    </>
+    </IntlProvider>
   );
 }
