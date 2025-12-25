@@ -4,6 +4,9 @@ description: 'ユーザーの関心が近いものを並列化し、ビューを
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { TabBarWithReel } from './_components'
+import { BaseColumn, Text } from 'smarthr-ui'
 
 ユーザーの関心が近いものを並列化し、ビューを切り替えるためのコンポーネントです。
 
@@ -47,6 +50,27 @@ TabBarItem内にIconやBadgeを追加することでタブそのものやタブ�
   </TabItem>
 </TabBar>
 ```
+
+## モバイル
+
+### スクロールですべてのタブを操作できるようにする
+
+モバイル表示など横幅の狭い画面で、TabBarが画面に収まらない場合、[Reel](/products/components/layout/reel/)を使ってください。水平方向にスクロールして、すべてのタブを操作できるようにします。
+
+<DoAndDont type="do" width={320}>
+  <BaseColumn slot="img" as="figure" aria-labelledby="caption" style={{ display: 'flex', alignItems: 'center', margin: 'unset', minHeight: '6rem' }}>
+    <TabBarWithReel />
+  </BaseColumn>
+      <Text as="figcaption" slot="label" id="caption">
+      <p style={{ lineHeight: 1.5 }}>Reelを使用して水平方向にスクロールさせる。</p>
+    </Text>
+</DoAndDont>
+
+### タブが少ない場合の表示
+
+タブが2~3程度の場合、TabBarを画面幅いっぱいに広げて各タブを均等に配置できます。ターゲット領域が広がるため、操作性の向上を期待できます。ただし、タブに表示するテキストが長い場合には適していません。
+
+![タブバーとBaseが並んでいる](./images/tab-bar-stretched.png)
 
 ## Props
 
