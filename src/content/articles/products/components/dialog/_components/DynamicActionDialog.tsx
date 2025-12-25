@@ -13,7 +13,7 @@ export default function DynamicActionDialog() {
         // closeText="キャンセル"
         actionText="実行"
         actionTheme="primary"
-        width={480}
+        size="XS"
         onClickClose={() => {
           setIsOpen(false);
         }}
