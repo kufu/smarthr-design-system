@@ -9,8 +9,6 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import FloatAreaLayoutDo from './images/float-area-layout-do.png';
 import FloatAreaLayoutDont from './images/float-area-layout-dont.png';
-import FloatAreaStickyMobileKeyboard from './images/float-area-sticky-mobile-keyboard.png';
-import FloatAreaMobileKeyboard from './images/float-area-mobile-keyboard.png';
 
 スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。
 
@@ -60,19 +58,11 @@ FloatAreaには、ページ全体、もしくはページの一部を対象と�
 
 モバイルでは1画面で表示できる情報量に限りがあります。
 FloatAreaが常に画面の下部に表示されていると、ユーザーの操作性を損ねる可能性があります。
-キーボード入力を行なう際、FloatAreaの固定を解除するかを検討してください。
+そこで、モバイルではFloatAreaを画面の下部に固定せず、コンテンツの最後に置くことを推奨します。
 
-<Cluster gap={1}>
-  <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={FloatAreaStickyMobileKeyboard} alt="Do" />
-    <Text slot="label">キーボード入力を行なう際でも常にFloatAreaを表示する</Text>
-  </DoAndDont>
+![モバイルでFloatAreaをコンテンツの最後に置いた画面](images/float-area-mobile.png)
 
-  <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={FloatAreaMobileKeyboard} alt="Do" />
-    <Text slot="label">キーボード入力を行なう際はFloatAreaの固定を解除する</Text>
-  </DoAndDont>
-</Cluster>
+ただし、FloatAreaを画面の下部に固定したい場合、キーボード入力時に固定を解除すれば問題ありません。
 
 ### レイアウト
 
