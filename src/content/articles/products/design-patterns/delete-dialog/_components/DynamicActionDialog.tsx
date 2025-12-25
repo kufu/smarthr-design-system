@@ -28,7 +28,7 @@ export default function DynamicActionDialog() {
         onClickAction={() => {
           setIsOpen(false);
         }}
-        width={640}
+        size="S"
       >
         <Stack gap={1.5}>
           <p>{'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}</p>

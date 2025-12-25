@@ -48,7 +48,7 @@ export default function DynamicStepFormDialog() {
         }}
         onClickClose={handleClose}
         onClickBack={currentStep > 0 ? handleBack : undefined}
-        width="480px"
+        size="XS"
       >
         <StepFormDialogItem {...steps[currentStep]}>
           <p>{steps[currentStep].label}</p>
