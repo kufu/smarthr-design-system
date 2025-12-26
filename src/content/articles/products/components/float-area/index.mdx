@@ -9,6 +9,8 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import FloatAreaLayoutDo from './images/float-area-layout-do.png';
 import FloatAreaLayoutDont from './images/float-area-layout-dont.png';
+import imageFloatAreaNoStickyMobileKeyboard from './images/float-area-nosticky-mobile-keyboard.png';
+import imageFloatAreaStickyMobileKeyboard from './images/float-area-sticky-mobile-keyboard.png';
 
 スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。
 
@@ -59,26 +61,37 @@ FloatAreaには、ページ全体、もしくはページの一部を対象と�
 モバイルでは1画面で表示できる情報量に限りがあります。
 FloatAreaが常に画面の下部に固定されていると、コンテンツを閲覧・操作できる領域が狭くなります。
 
-そこで、モバイルではFloatAreaを画面の下部に固定せず、コンテンツの最後に置くことを推奨します。
+そこで、FloatAreaを画面の下部に固定せず、コンテンツの最後に置くことを推奨します。
 
-![モバイルでFloatAreaをコンテンツの最後に置いた画面](images/float-area-mobile.png)
+![モバイルでFloatAreaをコンテンツの最後に置いた画面](images/float-area-nosticky-mobile.png)
 
 必要に応じて、FloatAreaを画面の下部に固定できます。
 その場合、キーボード入力時に固定を解除することで、操作領域を確保してください。
 
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={ imageFloatAreaNoStickyMobileKeyboard } alt="Do" />
+    <Text slot="label">FloatAreaを画面の下部に固定した場合でも、keyboard入力時には固定を解除する</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={ imageFloatAreaStickyMobileKeyboard } alt="Don't" />
+    <Text slot="label">keyboard入力時にもFloatAreaを画面の下部に固定する</Text>
+  </DoAndDont>
+</Cluster>
+
 ### レイアウト
 
-モバイルでは画面幅に対して左右の余白がなくなり、画面の下部に固定して表示されます。
+FloatAreaを画面の下部に固定する場合、画面幅に対して左右の余白をなくす必要があります。
 
 [Secondaryボタン](https://smarthr.design/products/components/button/#h3-2)（任意）と[Primaryボタン](/products/components/button/#h3-1)は横いっぱいに並べます。
 また、[Tertiaryボタン](/products/components/button/#h3-3)（任意）は、上記のボタン群の下部に配置します。
 
 ![モバイルで全てのButton含めたFloatAreaの例](images/float-area-tertiary-mobile.png)
 
-
 #### 余白
 
-モバイルでFloatAreaを利用する場合、余白は以下のとおりです。
+モバイルでFloatAreaを画面の下部に固定する場合、余白は以下のとおりです。
 
 ![モバイルでFloatAreaを利用する場合の余白の説明画像](images/explain-float-area-tertiary-error-mobile.png)
 
