@@ -5,6 +5,7 @@ description: 'オン・オフを切り替えるコンポーネントです。状
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
 Switchコンポーネントは、オン・オフを切り替えます。状態の切り替えは即時で反映されます。
 
@@ -29,7 +30,7 @@ Switchはオン・オフのどちらか1つの状態を表します。対する�
 ]} value="list view" />
 ```
 
-### ラベルについて
+### ラベルの表示
 
 Switchは基本的にラベルを必要とします。周囲のコンテキストによって省略できます。
 
@@ -37,6 +38,22 @@ Switchは基本的にラベルを必要とします。周囲のコンテキス�
 
 ```tsx editable
   <Switch>アーカイブを表示</Switch>
+```
+
+## レイアウト
+
+### [WIP] モバイル
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に切り替わるようにコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
+
+Switchは小さくモバイルでは操作しづらいため、サイズを大きくしてください。
+
+```tsx editable noIframe
+<Switch className="before:shr-size-[theme(fontSize.xl)] shr-w-[calc(theme(fontSize.xl)*2)] has-[:checked]:before:shr-ms-[theme(fontSize.xl)] [&_.smarthr-ui-Switch-iconWrapper]:shr-size-[theme(fontSize.xl)] [&_.smarthr-ui-Switch-iconWrapper_svg]:shr-size-[theme(fontSize.base)]">
+  ラベル
+</Switch>
 ```
 
 ## Props
