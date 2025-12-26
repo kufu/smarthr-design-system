@@ -22,7 +22,7 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 
 ### リード文を適切に設定する
 
-リード文とは、ページの目的や内容を簡潔に伝えるためのテキストのことです。見出し領域にリード文を表示することで、ユーザーはページ内のすべての要素を確認することなく、ページの目的や内容を素早く理解できます。
+リード文とは、ページの目的や内容を簡潔に伝えるためのテキストのことです。[見出し領域](#h4-5)にリード文を表示することで、ユーザーはページ内のすべての要素を確認することなく、ページの目的や内容を素早く理解できます。
 
 SmartHRで提供するページでは、リード文を見出し領域に表示してください。ただし、次のような画面ではリード文は不要です。
 
@@ -54,7 +54,7 @@ SmartHRで提供するページでは、リード文を見出し領域に表示�
 
 #### ページをナビゲーションで分割する
 
-[TabBar](/products/components/tab-bar/)、[SideNav](/products/components/side-nav/)、[SideMenu](/products/components/side-menu/)といったナビゲーションを使ってページを分割します。
+[TabBar](/products/components/tab-bar/)、[SideNav](/products/components/side-nav/)、[SideMenu](/products/components/side-menu/)といった[ナビゲーション](#h4-4)を使ってページを分割します。
 
 TabBarやSideNavを使った例は、[視覚的グルーピング](/products/design-patterns/visual-grouping/#h3-7)を参照してください。
 
@@ -123,8 +123,6 @@ TabBarやSideNavを使った例は、[視覚的グルーピング](/products/des
     - 見出し領域
     - コンテンツ領域
 
-コンテナ領域内のレイアウトのパターンは、[種類](#h2-3)を参照してください。
-
 ### ヘッダー
 
 [AppHeader](/products/components/app-header/)を画面の最上部に配置します。
@@ -132,6 +130,22 @@ TabBarやSideNavを使った例は、[視覚的グルーピング](/products/des
 ### コンテナ領域
 
 [Container](/products/components/layout/container/)コンポーネントを使います。コンテナ領域の横幅はサイズ（`size`props）で指定します。サイズの選び方は[Container/コンテナの大きさ](/products/components/layout/container/#h3-0)を参照してください。
+
+コンテナ領域内のレイアウトのパターンは、[種類](#h2-3)を参照してください。
+
+#### ナビゲーション
+
+必要に応じて、ページ内で複数のビューを切り替えるナビゲーションを表示できます。[TabBar](/products/components/tab-bar/)や[SideNav](/products/components/side-nav/)、[SideMenu](/products/components/side-menu/)を使います。
+
+ナビゲーションを表示する場合のレイアウトは、[サイドナビゲーションとコンテンツの2カラム](#h3-12)や、[コレクションとシングルの2カラム](#h3-13)、また、[視覚的グルーピング](/products/design-patterns/visual-grouping/#h3-7)を参照してください。
+
+#### 見出し領域
+
+見出し領域には画面タイトル（[PageHeading](/products/components/heading/#h3-0)）とリード文、それに関連する情報や操作を表示します。
+
+#### コンテンツ領域
+
+コンテンツ領域には、ページの内容となる伝えたい情報や操作を表示します。主に[セクション](/products/design-patterns/visual-grouping/#h3-5)を表示します。
 
 ## レイアウト
 
