@@ -7,6 +7,8 @@ import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
+import Grid from '@/components/article/Grid.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import FloatAreaLayoutDo from './images/float-area-layout-do.png';
 import FloatAreaLayoutDont from './images/float-area-layout-dont.png';
 import imageFloatAreaNoStickyMobileKeyboard from './images/float-area-nosticky-mobile-keyboard.png';
@@ -63,7 +65,16 @@ FloatAreaには、ページ全体、もしくはページの一部を対象と�
 
 そこで、FloatAreaを画面の下部に固定せず、対象の領域の後に置くことを推奨します。
 
-![モバイルでFloatAreaをコンテンツの最後に置いた画面](images/float-area-nosticky-mobile.png)
+<Grid>
+  <ImgWithDesc description="［推奨］FloatAreaを対象の領域の後に配置する">
+  ![［推奨］FloatAreaの固定を解除する](images/float-area-nosticky-mobile.png)
+  </ImgWithDesc>
+
+  <ImgWithDesc description="FloatAreaを画面の下部に固定する">
+  ![ロゴのアイソレーションの領域を超えて要素を配置している画像に、斜線が引かれている](images/float-area-mobile.png)
+  </ImgWithDesc>
+</Grid>
+
 
 ただしユースケースに応じて必要な場合はFloatAreaを画面の下部に固定できます。  
 仮想キーボードの入力操作の妨げにならないよう、キーボード入力時（入力要素にフォーカス中）はFloatAreaの固定を解除することで、操作領域を確保します。
