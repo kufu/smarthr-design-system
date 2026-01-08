@@ -6,6 +6,7 @@ import {
   Checkbox,
   DefinitionList,
   DefinitionListItem,
+  IntlProvider,
   ResponseMessage,
   Stack,
   Text,
@@ -15,7 +16,7 @@ export default function DynamicActionDialog() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
+    <IntlProvider locale="ja">
       <Button onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
@@ -51,6 +52,6 @@ export default function DynamicActionDialog() {
           </Stack>
         </Stack>
       </ActionDialog>
-    </>
+    </IntlProvider>
   );
 }

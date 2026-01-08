@@ -4,8 +4,7 @@ description: 'モバイル対応をする基準と、その対応方法を定義
 order: 5
 ---
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { Base, BaseColumn, Button, Cluster, FormControl, Heading, Input, NotificationBar, Stack, Text, ResponseMessage } from 'smarthr-ui'
-import Caption from './_components/Caption.astro'
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
 
 モバイル対応をする基準と、その対応方法を定義します。
 
@@ -15,11 +14,7 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 
 「モバイルレイアウト」とは、スマートフォンなどのモバイルでの利用を想定したUIを指します。
 
-[メディアクエリのセマンティックトークン](/products/design-tokens/media-query/#h2-0)のうち `SCREEN_NARROW` に一致する環境である場合、その環境はモバイルと判定しモバイルレイアウトの適用対象とします。
-
-<BaseColumn className="shr-mt-2">
-  <ResponseMessage>環境がモバイルであるという判定は時代やプロダクトの事情により変わり得ます。簡単に判定できる機能をsmarthr-uiで提供予定です。</ResponseMessage>
-</BaseColumn>
+[メディアクエリのセマンティックトークン](/products/design-tokens/media-query/#h2-0)のうち `SCREEN_SMALL` に一致する環境である場合、その環境はモバイルと判定しモバイルレイアウトの適用対象とします。
 
 ### レスポンシブとアダプティブの使い分け
 
@@ -43,59 +38,6 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 
 ## 設計基準
 
-### 複数カラムレイアウトを避ける
-
-画面の幅によってコンテンツの可読性を保てなくなるため、モバイルでは複数カラムレイアウトを避けましょう。代わりに垂直方向に積み上げるか、複数の画面に分けるなど、1度に表示する情報量を減らしてください。
-
-垂直方向に積み上げて解決ができない場合は、アダプティブなレイアウトを検討してください。
-
-<Cluster gap={1}>
-  <DoAndDont type="dont" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption1" style={{ display: 'flex', margin: 'unset', gap: '1em' }}>
-      <Base padding={1} style={{ flexShrink: 0, flexBasis: '25%' }}>
-        <Stack gap={0.5}>
-          <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
-          <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
-        </Stack>
-      </Base>
-      <Base padding={1} style={{ flexGrow: 1 }}>
-        <Stack>
-          <Caption>構造関係の理解も難しくなります。</Caption>
-          <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
-        </Stack>
-      </Base>
-    </BaseColumn>
-    <figcaption slot="label" id="caption1">
-      <Caption>コンテンツが読みにくく、構造を把握しにくい。</Caption>
-    </figcaption>
-  </DoAndDont>
-  <DoAndDont type="do" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ display: 'flex', flexWrap: 'wrap', margin: 'unset', gap: '1em' }}>
-      <Base padding={1}>
-        <Stack gap={0.5}>
-          <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムレイアウトを避ける</Heading>
-          <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
-        </Stack>
-      </Base>
-      <Base padding={1}>
-        <Stack>
-          <Caption>構造関係の理解も難しくなります。</Caption>
-          <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
-        </Stack>
-      </Base>
-    </BaseColumn>
-    <figcaption slot="label" id="caption2">
-      <Caption>垂直方向に積み上げると最低限の可読性を保てます。</Caption>
-    </figcaption>
-  </DoAndDont>
-</Cluster>
-
-### 水平方向のスクロールや2次元（垂直・水平方向）スクロールを避ける
-
-水平方向のスクロールや2次元（垂直・水平方向）スクロールは、コンテンツの理解を妨げます。画面幅からコンテンツがあふれる場合は、折り返してください。
-
-ただし、画像や動画・地図など2次元であることが情報を伝える上で重要な場合は、その限りではありません。
-
 ### 余白の取り方
 モバイルでは画面の幅が小さいことから、[パディング](/products/design-patterns/spacing-layout-pattern/#h2-4)の一部を小さく設定することで、より多くのコンテンツを表示できるようにします。
 [余白の取り方](/products/design-patterns/spacing-layout-pattern/)を参照してください。
@@ -107,24 +49,23 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 
 ## 実装上の注意
 
-### モバイルかどうかの判定には`useDevice`を使う
+### モバイルかどうかの判定には`useEnvironment`を使う
 
-`useDevice`フックを使って`isNarrowView`を取得し、必要に応じてコンポーネントに割り当ててください。各プロダクトでユーザーエージェントの判定を実装する必要はありません。
+`useEnvironment`フックを使って`mobile`を取得し、必要に応じてコンポーネントに割り当ててください。各プロダクトでユーザーエージェントの判定を実装する必要はありません。
 
-<p>
-  <NotificationBar base="base" layer={2} type="warning">SmartHRにおける頻出パターンはSmartHR UIでアダプティブなレイアウトを実装予定です。</NotificationBar>
-</p>
-
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>SmartHR UIのコンポーネントはレイアウトやスタイルが自動的に切り替わるよう順次改修予定です。</ResponseMessage>
+</BaseColumn>
 
 ```tsx
-import { useDevice } from 'smarthr-ui'
+import { useEnvironment } from 'smarthr-ui'
 
 export const YourComponent = () => {
-  const { isNarrowView } = useDevice()
+  const { mobile } = useEnvironment()
 
   return (
     <SomeComponent 
-      someProp={isNarrowView ? モバイル向けの値 : デスクトップ向けの値}
+      someProp={mobile ? モバイル向けの値 : デスクトップ向けの値}
     >
       {/* コンテンツ */}
     </SomeComponent>

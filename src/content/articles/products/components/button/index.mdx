@@ -223,13 +223,13 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくボタン自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
 
-無効状態の理由を配置するスペースがどうしてもない場合、`disabledDetail`propsで理由を表示することを検討します。
+無効状態の理由を配置するスペースがどうしてもない場合、`disabledReason`propsで理由を表示することを検討します。
 
 ```tsx editable noIframe
 <>
   <Button variant="primary" prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
   <Button prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
-  <Button prefix={<FaCirclePlusIcon />} disabled disabledDetail={{ message: '無効状態の理由（理由を配置するスペースがない場合）' }}>ボタン</Button>
+  <Button prefix={<FaCirclePlusIcon />} disabled disabledReason={{ message: '無効状態の理由（理由を配置するスペースがない場合）' }}>ボタン</Button>
 </>
 ```
 
