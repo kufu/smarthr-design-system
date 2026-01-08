@@ -1,15 +1,11 @@
-import { BaseColumn, WarningIcon } from 'smarthr-ui';
+import { BaseColumn, ResponseMessage } from 'smarthr-ui';
 
 export default function Warning() {
   return (
     <BaseColumn>
-      <WarningIcon
-        text={
-          <span>
-            Tooltipはユーザーが能動的に表示しなければならない、拡大表示時に領域外に表示されてしまうなどの課題があるため、安易な使用はお勧めしません。基本的にはTooltip以外のUIを使用することを検討してください。
-          </span>
-        }
-      />
+      <ResponseMessage type="warning">
+        Tooltipはユーザーが能動的に表示しなければならない、拡大表示時に領域外に表示されてしまうなどの課題があるため、安易な使用はお勧めしません。基本的にはTooltip以外のUIを使用することを検討してください。
+      </ResponseMessage>
     </BaseColumn>
   );
 }

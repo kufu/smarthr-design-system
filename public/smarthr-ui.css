@@ -258,12 +258,16 @@ a {
   bottom: 0
 }
 
+.-shr-left-\[0\.625em\] {
+  left: -0.625em
+}
+
 .-shr-left-full {
   left: -100%
 }
 
-.-shr-top-0\.25 {
-  top: -4px
+.-shr-top-\[0\.75em\] {
+  top: -0.75em
 }
 
 .shr-bottom-0 {
@@ -336,10 +340,6 @@ a {
 
 .shr-left-1 {
   left: 16px
-}
-
-.shr-left-1\.5 {
-  left: 24px
 }
 
 .shr-left-1\/2 {
@@ -782,6 +782,10 @@ a {
   height: calc(1em * 1.5)
 }
 
+.shr-h-\[inherit\] {
+  height: inherit
+}
+
 .shr-h-\[theme\(borderWidth\.2\)\] {
   height: 2px
 }
@@ -825,6 +829,10 @@ a {
 
 .shr-max-h-\[calc\(100dvh-theme\(spacing\.2\)\)\] {
   max-height: calc(100dvh - 32px)
+}
+
+.shr-max-h-\[inherit\] {
+  max-height: inherit
 }
 
 .shr-min-h-0 {
@@ -5242,7 +5250,7 @@ a {
   opacity: 1
 }
 
-.\[\&\:disabled_\.smarthr-ui-FormControl-errorMessage\]\:shr-text-color-inherit:disabled .smarthr-ui-FormControl-errorMessage {
+.\[\&\:disabled_\.smarthr-ui-FormControl-errorMessage-Icon\]\:shr-text-color-inherit:disabled .smarthr-ui-FormControl-errorMessage-Icon {
   color: inherit
 }
 
