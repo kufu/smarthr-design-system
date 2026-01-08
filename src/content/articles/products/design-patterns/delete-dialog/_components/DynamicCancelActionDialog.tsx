@@ -18,7 +18,7 @@ export default function DynamicCancelActionDialog() {
         onClickAction={() => {
           setIsOpen(false);
         }}
-        width={480}
+        size="S"
       >
         <Text as="p">
           {'{操作名}を取り消しますか？'}

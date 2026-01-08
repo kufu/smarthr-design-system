@@ -12,7 +12,7 @@ export default function DynamicMessageDialog() {
         title="メッセージダイアログタイトル"
         description="本文が入ります。"
         // closeText="閉じる"
-        width={480}
+        size="S"
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
         id="dialog-message"

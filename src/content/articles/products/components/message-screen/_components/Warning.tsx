@@ -1,16 +1,14 @@
-import { BaseColumn, WarningIcon } from 'smarthr-ui';
+import { BaseColumn, ResponseMessage, Text } from 'smarthr-ui';
 
 export default function Warning() {
   return (
     <BaseColumn>
-      <WarningIcon
-        text={
-          <span>
-            MessageScreenコンポーネントは非推奨です。<a href="/products/components/error-screen/">ErrorScreen</a>
-            コンポーネントを使用してください。
-          </span>
-        }
-      />
+      <ResponseMessage type="warning">
+        <Text>
+          MessageScreenコンポーネントは非推奨です。<a href="/products/components/error-screen/">ErrorScreen</a>
+          コンポーネントを使用してください。
+        </Text>
+      </ResponseMessage>
     </BaseColumn>
   );
 }

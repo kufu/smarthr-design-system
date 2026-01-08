@@ -9,7 +9,7 @@ import ComponentStoryfrom from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import Grid from '@/components/article/Grid.astro'
-import { Cluster, Text, FaCloudDownloadAltIcon } from 'smarthr-ui'
+import { Cluster, Text, FaCloudArrowDownIcon } from 'smarthr-ui'
 
 import noTitleDo from './images/pattern-no-title-do.png'
 import noTitleDont from './images/pattern-no-title-dont.png'
@@ -155,7 +155,7 @@ OOUIにおける「コレクション」と、コレクションに関連する�
 | :--- | :--- | :--- |
 | オブジェクトの検索 | `検索` | 入力ボックス（[SearchInput](/products/components/input/#h3-4)）と検索ボタンがセットになった検索フォームです。 |
 | オブジェクトの絞り込み | `絞り込み` | [FilterDropdown](/products/components/dropdown/filter-dropdown/)を配置します。<br />クリックすると、テーブルのオブジェクトを絞り込むオプションをドロップダウンで表示します。 |
-| オブジェクト（一覧）のダウンロード | `ダウンロード`, `全件ダウンロード` | [Secondaryボタンのアイコン付き（左）](/products/components/button/#h3-1)を配置します。（<FaCloudDownloadAltIcon alt="ダウンロード" /> アイコン（`FaCloudDownloadAltIcon`）を使用）<br />オブジェクトの絞り込み状態に依存せず、オブジェクトの全件が常にダウンロードされる場合は、ラベルを`全件ダウンロード`とします。 |
+| オブジェクト（一覧）のダウンロード | `ダウンロード`, `全件ダウンロード` | [Secondaryボタンのアイコン付き（左）](/products/components/button/#h3-1)を配置します。（<FaCloudArrowDownIcon alt="ダウンロード" /> アイコン（`FaCloudArrowDownIcon`）を使用）<br />オブジェクトの絞り込み状態に依存せず、オブジェクトの全件が常にダウンロードされる場合は、ラベルを`全件ダウンロード`とします。 |
 | テーブルのページ数、ページ番号 | `9,999 件中 1-5 件` | 多くの場合、「`{総件数}` 件中 `{表示している順番の範囲}` 件」のように、現在表示しているテーブル内容の現在位置を示します。<br />1ページあたり20件〜50件とすることが多いですが、ユースケースや表示速度を考慮して適切な件数を設定します。<br />コンテンツの横幅に応じて、表示する内容の量を検討してください。 |
 | テーブルのページ送り | - | テーブルのオブジェクトの量（行数）が多くなる場合に、複数のページに分けて[Pagination](/products/components/pagination/)（`withoutNumbers = true`）を配置します。<br />コンテンツの横幅が狭い場合は省略することがあります。（[省略した例](#h3-9)） |
 
