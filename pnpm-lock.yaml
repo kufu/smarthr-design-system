@@ -61,13 +61,13 @@ importers:
         version: 4.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       smarthr-normalize-css:
         specifier: ^1.1.0
-        version: 1.1.0(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+        version: 1.1.0(styled-components@6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       smarthr-ui:
         specifier: ^80.0.0
-        version: 80.0.0(@types/react@18.3.21)(eslint@9.29.0(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(tsx@4.20.3)(typescript@5.8.3)(yaml@2.8.1)
+        version: 80.0.0(@types/react@18.3.21)(eslint@9.29.0(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(tsx@4.20.3)(typescript@5.8.3)(yaml@2.8.1)
       styled-components:
-        specifier: ^6.1.18
-        version: 6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.1.19
+        version: 6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1752,8 +1752,8 @@ packages:
   '@types/serve-static@1.15.10':
     resolution: {integrity: sha512-tRs1dB+g8Itk72rlSI2ZrW6vZg0YrLI81iQSTkMmOqnqCaNr/8Ek4VwWcN5vZgCYWbg/JJSGBlUaYGAOP73qBw==}
 
-  '@types/stylis@4.2.5':
-    resolution: {integrity: sha512-1Xve+NMN7FWjY14vLoY5tL3BVEQ/n42YLwaqJIPYhotZ9uBHt87VceMwWQpzmdEt2TNXIorIFG+YeCUUW7RInw==}
+  '@types/stylis@4.2.7':
+    resolution: {integrity: sha512-VgDNokpBoKF+wrdvhAAfS55OMQpL6QRglwTwNC3kIgBrzZxA4WsFj+2eLfEA/uMUDzBcEhYmjSbwQakn/i3ajA==}
 
   '@types/supports-color@8.1.3':
     resolution: {integrity: sha512-Hy6UMpxhE3j1tLpl27exp1XqHD7n8chAiNPzWfz16LPZoMMoSc4dzLl6w9qijkEb/r5O1ozdu1CWGA2L83ZeZg==}
@@ -4556,6 +4556,7 @@ packages:
 
   oniguruma-to-js@0.4.3:
     resolution: {integrity: sha512-X0jWUcAlxORhOqqBREgPMgnshB7ZGYszBNspP+tS9hPD3l13CdaXcHbgImoHUHlrvGx/7AvFEkTRhAGYh+jzjQ==}
+    deprecated: use oniguruma-to-es instead
 
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
@@ -5735,8 +5736,8 @@ packages:
   style-to-object@1.0.8:
     resolution: {integrity: sha512-xT47I/Eo0rwJmaXC4oilDGDWLohVhR6o/xAQcPQN8q6QBuZVL8qMYL85kLmST5cPjAorwvqIA4qXTRQoYHaL6g==}
 
-  styled-components@6.1.18:
-    resolution: {integrity: sha512-Mvf3gJFzZCkhjY2Y/Fx9z1m3dxbza0uI9H1CbNZm/jSHCojzJhQ0R7bByrlFJINnMzz/gPulpoFFGymNwrsMcw==}
+  styled-components@6.2.0:
+    resolution: {integrity: sha512-ryFCkETE++8jlrBmC+BoGPUN96ld1/Yp0s7t5bcXDobrs4XoXroY1tN+JbFi09hV6a5h3MzbcVi8/BGDP0eCgQ==}
     engines: {node: '>= 16'}
     peerDependencies:
       react: '>= 16.8.0'
@@ -5748,8 +5749,8 @@ packages:
     peerDependencies:
       styled-components: '>=4.0.0 || >=5.0.0 || >=6.0.0'
 
-  stylis@4.3.2:
-    resolution: {integrity: sha512-bhtUjWd/z6ltJiQwg0dUfxEJ+W+jdqQd8TbWLWyeIJHlnsqmGLRFFd8e5mA0AZi/zx90smXRlN66YMTcaSFifg==}
+  stylis@4.3.6:
+    resolution: {integrity: sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==}
 
   sucrase@3.35.0:
     resolution: {integrity: sha512-8EbVDiu9iN/nESwxeSxDKe0dunta1GOlHufmSSXxMD2z2/tMZpDMpvXQGsc+ajGo8y2uYUmixaSRUc/QPoQ0GA==}
@@ -8307,7 +8308,7 @@ snapshots:
       '@types/node': 24.10.2
       '@types/send': 0.17.6
 
-  '@types/stylis@4.2.5': {}
+  '@types/stylis@4.2.7': {}
 
   '@types/supports-color@8.1.3': {}
 
@@ -12304,7 +12305,7 @@ snapshots:
 
   postcss@8.4.49:
     dependencies:
-      nanoid: 3.3.8
+      nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -13308,13 +13309,13 @@ snapshots:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
 
-  smarthr-normalize-css@1.1.0(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)):
+  smarthr-normalize-css@1.1.0(styled-components@6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)):
     dependencies:
-      styled-reset: 4.5.2(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+      styled-reset: 4.5.2(styled-components@6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@80.0.0(@types/react@18.3.21)(eslint@9.29.0(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(tsx@4.20.3)(typescript@5.8.3)(yaml@2.8.1):
+  smarthr-ui@80.0.0(@types/react@18.3.21)(eslint@9.29.0(jiti@1.21.7))(react-dom@19.1.0(react@19.1.0))(react-intl@7.1.6(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(styled-components@6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(tsx@4.20.3)(typescript@5.8.3)(yaml@2.8.1):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.19
@@ -13331,7 +13332,7 @@ snapshots:
       react-intl: 7.1.6(react@19.1.0)(typescript@5.8.3)
       react-pdf: 9.2.1(@types/react@18.3.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-transition-group: 4.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      styled-components: 6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      styled-components: 6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       tailwind-variants: 0.3.1(tailwindcss@3.4.18(tsx@4.20.3)(yaml@2.8.1))
       tailwindcss: 3.4.18(tsx@4.20.3)(yaml@2.8.1)
       typescript-eslint: 8.49.0(eslint@9.29.0(jiti@1.21.7))(typescript@5.8.3)
@@ -13503,25 +13504,25 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.4
 
-  styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  styled-components@6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/unitless': 0.8.1
-      '@types/stylis': 4.2.5
+      '@types/stylis': 4.2.7
       css-to-react-native: 3.2.0
-      csstype: 3.1.3
+      csstype: 3.2.3
       postcss: 8.4.49
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       shallowequal: 1.1.0
-      stylis: 4.3.2
+      stylis: 4.3.6
       tslib: 2.6.2
 
-  styled-reset@4.5.2(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)):
+  styled-reset@4.5.2(styled-components@6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)):
     dependencies:
-      styled-components: 6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      styled-components: 6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
-  stylis@4.3.2: {}
+  stylis@4.3.6: {}
 
   sucrase@3.35.0:
     dependencies:
