@@ -701,6 +701,16 @@ a {
   height: 32px
 }
 
+.shr-size-4 {
+  width: 64px;
+  height: 64px
+}
+
+.shr-size-8 {
+  width: 128px;
+  height: 128px
+}
+
 .shr-size-\[theme\(fontSize\.base\)\] {
   width: 1rem;
   height: 1rem
@@ -5072,6 +5082,10 @@ a {
 
 .\[\&\&\]\:shr-rounded-m.\[\&\&\]\:shr-rounded-m {
   border-radius: 6px
+}
+
+.\[\&\&\]\:shr-rounded-none.\[\&\&\]\:shr-rounded-none {
+  border-radius: 0
 }
 
 .\[\&\&\]\:shr-border-none.\[\&\&\]\:shr-border-none {
