@@ -3,6 +3,13 @@ title: '表が<table>でマークアップされている'
 description: ' '
 order: 21
 ---
+
+import { Chip, Cluster } from 'smarthr-ui'
+
+<Cluster gap={0.25} style={{ margin: '-20px 0 -80px' }}>
+  <Chip>実装</Chip>
+</Cluster>
+
 ## 概要
 この基準では、データを表形式で表示する際に、HTMLのtable関連要素を適切に使用していることを確認してください。列と行の関係が明確になり、表の内容がスクリーンリーダーや他の支援技術によって正しく解釈され、すべてのユーザーにとってアクセスしやすくなります。
 

@@ -258,12 +258,16 @@ a {
   bottom: 0
 }
 
+.-shr-left-\[0\.625em\] {
+  left: -0.625em
+}
+
 .-shr-left-full {
   left: -100%
 }
 
-.-shr-top-0\.25 {
-  top: -4px
+.-shr-top-\[0\.75em\] {
+  top: -0.75em
 }
 
 .shr-bottom-0 {
@@ -336,10 +340,6 @@ a {
 
 .shr-left-1 {
   left: 16px
-}
-
-.shr-left-1\.5 {
-  left: 24px
 }
 
 .shr-left-1\/2 {
@@ -585,6 +585,10 @@ a {
   margin-inline-start: 12px
 }
 
+.shr-ms-1\.5 {
+  margin-inline-start: 24px
+}
+
 .shr-ms-\[1\.75em\] {
   margin-inline-start: 1.75em
 }
@@ -778,6 +782,10 @@ a {
   height: calc(1em * 1.5)
 }
 
+.shr-h-\[inherit\] {
+  height: inherit
+}
+
 .shr-h-\[theme\(borderWidth\.2\)\] {
   height: 2px
 }
@@ -823,6 +831,10 @@ a {
   max-height: calc(100dvh - 32px)
 }
 
+.shr-max-h-\[inherit\] {
+  max-height: inherit
+}
+
 .shr-min-h-0 {
   min-height: 0
 }
@@ -833,10 +845,6 @@ a {
 
 .shr-min-h-\[2rem\] {
   min-height: 2rem
-}
-
-.shr-min-h-\[355px\] {
-  min-height: 355px
 }
 
 .shr-min-h-\[40px\] {
@@ -1032,11 +1040,20 @@ a {
   width: 100%
 }
 
+.shr-w-min {
+  width: -moz-min-content;
+  width: min-content
+}
+
 .shr-w-px {
   width: 1px
 }
 
 .shr-min-w-0 {
+  min-width: 0
+}
+
+.shr-min-w-\[0\] {
   min-width: 0
 }
 
@@ -1046,6 +1063,10 @@ a {
 
 .shr-min-w-\[12em\] {
   min-width: 12em
+}
+
+.shr-min-w-\[13em\] {
+  min-width: 13em
 }
 
 .shr-min-w-\[15em\] {
@@ -1099,6 +1120,10 @@ a {
 
 .shr-max-w-\[calc\(100dvw-theme\(spacing\.1\)\)\] {
   max-width: calc(100dvw - 16px)
+}
+
+.shr-max-w-\[theme\(width\.1\/3\)\] {
+  max-width: 33.333333%
 }
 
 .shr-max-w-col6 {
@@ -1545,12 +1570,6 @@ a {
   cursor: text
 }
 
-.shr-select-none {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none
-}
-
 .shr-select-auto {
   -webkit-user-select: auto;
      -moz-user-select: auto;
@@ -1585,10 +1604,6 @@ a {
 
 .shr-grid-rows-\[auto_1fr\] {
   grid-template-rows: auto 1fr
-}
-
-.shr-flex-row {
-  flex-direction: row
 }
 
 .shr-flex-row-reverse {
@@ -3140,13 +3155,6 @@ a {
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
 }
 
-.\[\&\:not\(\:last-child\)\]\:shr-border-r-shorthand:not(:last-child) {
-  border-width: 0;
-  border-right-width: 1px;
-  border-right-style: solid;
-  border-right-color: #d6d3d0
-}
-
 .\[\&\>\*\:focus-visible\]\:shr-focus-indicator>*:focus-visible {
   outline: none;
   isolation: isolate;
@@ -3158,6 +3166,13 @@ a {
   border-top-width: 1px;
   border-top-style: solid;
   border-top-color: #d6d3d0
+}
+
+.\[\&_\+_\&\]\:shr-border-l-shorthand + .\[\&_\+_\&\]\:shr-border-l-shorthand {
+  border-width: 0;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #d6d3d0
 }
 
 .\[\&_td\]\:shr-border-shorthand td {
@@ -3832,8 +3847,8 @@ a {
   padding-top: 0
 }
 
-.last\:shr-flex-1:last-child {
-  flex: 1 1 0%
+.last\:shr-grow:last-child {
+  flex-grow: 1
 }
 
 .last\:shr-rounded-br-m:last-child {
@@ -3855,12 +3870,6 @@ a {
 .empty\:after\:shr-content-\[\'-----\'\]:empty::after {
   --tw-content: '-----';
   content: var(--tw-content)
-}
-
-.focus-within\:shr-shadow-outline:focus-within {
-  --tw-shadow: 0 0 0 2px white, 0 0 0 4px #0077c7;
-  --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color), 0 0 0 4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
 .hover\:shr-border-danger-darken:hover {
@@ -3885,6 +3894,11 @@ a {
 .hover\:shr-border-white-darken:hover {
   --tw-border-opacity: 1;
   border-color: rgb(242 242 242 / var(--tw-border-opacity, 1))
+}
+
+.hover\:shr-bg-column-darken:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 234 232 / var(--tw-bg-opacity, 1))
 }
 
 .hover\:shr-bg-danger-darken:hover {
@@ -4433,6 +4447,10 @@ a {
 .aria-disabled\:shr-text-disabled[aria-disabled="true"] {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity, 1))
+}
+
+.aria-disabled\:shr-text-link\/50[aria-disabled="true"] {
+  color: rgb(0 113 193 / 0.5)
 }
 
 .aria-disabled\:shr-text-white\/50[aria-disabled="true"] {
@@ -5232,7 +5250,7 @@ a {
   opacity: 1
 }
 
-.\[\&\:disabled_\.smarthr-ui-FormControl-errorMessage\]\:shr-text-color-inherit:disabled .smarthr-ui-FormControl-errorMessage {
+.\[\&\:disabled_\.smarthr-ui-FormControl-errorMessage-Icon\]\:shr-text-color-inherit:disabled .smarthr-ui-FormControl-errorMessage-Icon {
   color: inherit
 }
 
@@ -5349,10 +5367,6 @@ a {
   border-top-color: rgb(214 211 208 / var(--tw-border-opacity, 1))
 }
 
-.\[\&\:not\(\:last-child\)\]\:shr-w-\[218px\]:not(:last-child) {
-  width: 218px
-}
-
 .\[\&\:not\(\:last-child\)\]\:before\:shr-content-\[\"\"\]:not(:last-child)::before {
   --tw-content: "";
   content: var(--tw-content)
@@ -5462,18 +5476,6 @@ a {
   text-decoration-line: none
 }
 
-.\[\&\>div\:nth-child\(1\)\]\:shr-flex-1>div:nth-child(1) {
-  flex: 1 1 0%
-}
-
-.\[\&\>div\:nth-child\(2\)\]\:shr-flex-\[2\]>div:nth-child(2) {
-  flex: 2
-}
-
-.\[\&\>div\]\:shr-flex-1>div {
-  flex: 1 1 0%
-}
-
 .\[\&\>li\]\:shr-px-0\.5>li {
   padding-left: 8px;
   padding-right: 8px
@@ -5524,32 +5526,6 @@ a {
   .\[\&\[aria-sort\=none\]_\.smarthr-ui-Icon\]\:forced-colors\:shr-fill-\[GrayText\][aria-sort=none] .smarthr-ui-Icon {
     fill: GrayText
   }
-}
-
-.\[\&\[data-selected\=\"false\"\]\]\:hover\:shr-bg-white-darken:hover[data-selected="false"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\[data-selected\=\"true\"\]\[data-type\=\"last\"\]\]\:shr-bg-main[data-selected="true"][data-type="last"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1))
-}
-
-.\[\&\[data-selected\=\"true\"\]\[data-type\=\"last\"\]\]\:shr-text-white[data-selected="true"][data-type="last"] {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1))
-}
-
-@media (forced-colors: active) {
-  .\[\&\[data-selected\=\"true\"\]\[data-type\=\"last\"\]\]\:forced-colors\:shr-bg-\[Highlight\][data-selected="true"][data-type="last"] {
-    background-color: Highlight
-  }
-}
-
-.\[\&\[data-selected\=\"true\"\]\[data-type\=\"parent\"\]\]\:shr-bg-white-darken[data-selected="true"][data-type="parent"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
 }
 
 .\[\&\[type\=\"datetime-local\"\]\]\:shr-min-w-\[11em\][type="datetime-local"] {
@@ -5763,6 +5739,10 @@ a {
   border-color: rgb(214 211 208 / 50%)
 }
 
+.\[\&_\.smarthr-ui-Loader-line\]\:shr-border-link\/50 .smarthr-ui-Loader-line {
+  border-color: rgb(0 113 193 / 0.5)
+}
+
 .\[\&_\.smarthr-ui-Loader-line\]\:shr-border-white\/50 .smarthr-ui-Loader-line {
   border-color: rgb(255 255 255 / 0.5)
 }
@@ -5944,9 +5924,9 @@ a {
   font-weight: 400
 }
 
-.\[\&_th\]\:shr-text-grey th {
+.\[\&_th\]\:shr-text-black th {
   --tw-text-opacity: 1;
-  color: rgb(112 109 101 / var(--tw-text-opacity, 1))
+  color: rgb(35 34 30 / var(--tw-text-opacity, 1))
 }
 
 @media (prefers-contrast: more) {

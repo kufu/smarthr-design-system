@@ -4,6 +4,15 @@ description: 'ユーザーに情報を提示するためのダイアログです
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import MultipleModalWarning from '../_components/MultipleModalWarning.mdx'
+import DialogBaseSize from '../_components/DialogBaseSize.mdx'
+import ExpandedDialogUsecase from '../_components/ExpandedDialogUsecase.mdx'
+import ExpandedDialogPadding from '../_components/ExpandedDialogPadding.mdx'
+import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import imageMessageDialog from '../images/message_dialog_mobile.png'
+import imageExpandedMessageDialog from '../images/expanded_message_dialog_mobile.png'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Image } from 'astro:assets'
 
 ユーザーに情報を提示するためのダイアログです。
 
@@ -24,9 +33,7 @@ MessageDialogの表示中、ユーザーの操作範囲は強制的に制限さ�
 
 ### 複数のモーダルダイアログを同時に表示しない
 
-モーダルダイアログ（ActionDialogやMessageDialog）を1つの操作で複数個表示したり、モーダルダイアログ上の操作によって2つ目のモーダルダイアログを表示したりすることは、原則として推奨されません。3つの画面が重なり、画面どうしの関係性や、どんな操作をすれば何が起こるのかが予測しづらくなるためです。
-
-なお、モーダルダイアログ上の操作によってModelessDialogを表示したり、ModelessDialogが開いている状態でモーダルダイアログを開いたりすることは問題ありません。
+<MultipleModalWarning />
 
 ### フィードバックとして使わない
 
@@ -41,8 +48,7 @@ MessageDialogは、表示したままダイアログ外の操作ができず、�
 
 ### 基準サイズ
 
-ダイアログの横幅の基準値は[幅のセマンティックトークン](/products/design-tokens/width/#h3-2)を参照してください。  
-SmartHR UIでは、サイズ（`size`props）で指定できます。
+<DialogBaseSize />
 
 ### 表示位置
 
@@ -79,6 +85,41 @@ MessageDialogは以下の要素で構成されます。
 ### 3. アクションボタン
 
 ダイアログを閉じるボタンを配置し、ラベルは`閉じる`とします。
+
+## モバイル
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage type="info">拡大したMessageDialogはsmarthr-uiに実装予定です。</ResponseMessage>
+</BaseColumn>
+
+モバイルでは、通常のダイアログに加えて、拡大したダイアログを使用できます。
+
+### 表示する情報量に応じて拡大したダイアログの採用を検討する
+
+<ExpandedDialogUsecase />
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageMessageDialog} alt="Do" />
+    <Text slot="label">通常のダイアログで表示する</Text>
+  </DoAndDont>
+
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={imageExpandedMessageDialog} alt="Do" />
+    <Text slot="label">拡大したダイアログで表示する</Text>
+  </DoAndDont>
+</Cluster>
+
+### レイアウト
+［閉じる］ボタンはタイトルの右端に配置します。
+
+![拡大したメッセージダイアログの例](../images/focus_expanded_message_dialog_mobile.png)
+
+#### 余白
+
+<ExpandedDialogPadding />
+
+![拡大したメッセージダイアログの余白の説明図](../images/explain_expanded_message_dialog_mobile.png)
 
 
 ## Props

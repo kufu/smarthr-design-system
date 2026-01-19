@@ -16,6 +16,8 @@ import inputWidthDont from './images/input-width-dont.png'
 import inputFocused from './images/focused-input.png'
 import inputError from './images/error-input.png'
 import inputForcedColor from './images/forced-color-input.png'
+import MobileFontSize from './images/mobile-font-size.png'
+
 
 テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。
 
@@ -156,7 +158,7 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 
 ```tsx editable
 <FormControl
-  title="メールアドレス"
+  label="メールアドレス"
 >
   <Input
     value="example@example.com"
@@ -180,6 +182,15 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
   disabled
 />
 ```
+
+## モバイル
+### フォントサイズは`M`以上を使用する
+一部のモバイル向けブラウザでは、Inputのフォントサイズが16px未満の場合、入力時に画面が拡大表示されることがあります。意図しない拡大を避けるため、Inputのフォントサイズは`M`以上を使用してください。
+
+<DoAndDont type="dont" width="100%">
+  <Image slot="img" src={MobileFontSize} alt="Dont" />
+  <Text slot="label">Inputのフォントサイズが16px未満の場合、Inputにフォーカスするとページ全体がズームされてしまう</Text>
+</DoAndDont>
 
 ## アクセシビリティ
 ### 基本的なアクセシビリティ機能

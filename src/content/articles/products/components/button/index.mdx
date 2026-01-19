@@ -3,10 +3,13 @@ title: 'Button'
 description: 'Buttonコンポーネントは、押すことで特定の操作や処理を実行するコンポーネントです。'
 ---
 
-import { Button, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon, NotificationBar } from 'smarthr-ui'
+import { Base, BaseColumn, Button,FormControl, Input, Stack, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon, NotificationBar, ResponseMessage } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import SampleButton from './_components/SampleButton'
+import { OpenInNewTabIconInAnchorButton } from './_components/OpenInNewTabIcon'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import Caption from './_components/Caption.astro'
 
 Buttonコンポーネントは、押すことで特定の操作や処理を実行するコンポーネントです。
 
@@ -27,6 +30,7 @@ SmartHR UIのButtonには意図しない`submit`を防ぐために、`type="butt
 <>
   <Button variant="primary">Primary</Button>
   <Button>Secondary</Button>
+  <Button variant="tertiary">Tertiary</Button>
   <Button variant="danger">Danger</Button>
   <Button variant="text">Text</Button>
 </>
@@ -75,11 +79,16 @@ Tertiaryボタンは、画面内の補助的な操作をユーザーに示す役
 
 他の画面へ移動するリンクとして使いたい場合は、[TextLink](/products/components/text-link/)を使ってください。
 
-<p>
-  <NotificationBar base="base" layer={2} type="warning" message="Tertiaryボタンはsmarthr-uiで実装予定です。" />
-</p>
-
-![Tertiaryボタンの例。文字色はTEXT_LINK、枠線や背景色はなし、ウェイトはnormal。](./images/tertiary.png)
+```tsx editable
+<>
+  <Button variant="tertiary">ボタン</Button>
+  <Button variant="tertiary" prefix={<FaCirclePlusIcon />}>ボタン</Button>
+  <Button variant="tertiary" suffix={<FaCaretDownIcon />}>ボタン</Button>
+  <Button variant="tertiary">
+    <FaCirclePlusIcon alt="追加" />
+  </Button>
+</>
+```
 
 ### Danger
 Dangerボタンは、[ワンクッション必要な操作](/products/design-patterns/confirmation-step/)を行なうときに、ユーザーに注意を促す役割を持ちます。
@@ -127,6 +136,7 @@ Textボタンは押せることがわかりづらいため、利用には注意�
 AnchorButtonは、リンク（`a`要素）をボタンのように装飾にするコンポーネントです。
 アクションボタンとして表現したい場合は、Buttonを使用してください。
 
+リンクを新規ウィンドウで開く場合には、テキストの右側に<OpenInNewTabIconInAnchorButton />アイコン（`OpenInNewTabIcon`）が自動で配置されます。
 
 ```tsx editable
 <>
@@ -134,6 +144,7 @@ AnchorButtonは、リンク（`a`要素）をボタンのように装飾にす�
   <AnchorButton href="#h3-4">ボタン</AnchorButton>
   <AnchorButton variant="danger" href="#h3-4">ボタン</AnchorButton>
   <AnchorButton variant="text" href="#h3-4">ボタン</AnchorButton>
+  <AnchorButton href="#h3-4" target="_blank">ボタン</AnchorButton>
 </>
 ```
 
@@ -200,7 +211,6 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 </>
 ```
 
-
 ## 状態
 
 ### マウスオーバー
@@ -213,19 +223,102 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくボタン自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
 
-無効状態の理由を配置するスペースがどうしてもない場合、`disabledDetail`propsで理由を表示することを検討します。
+無効状態の理由を配置するスペースがどうしてもない場合、`disabledReason`propsで理由を表示することを検討します。
 
 ```tsx editable noIframe
 <>
   <Button variant="primary" prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
   <Button prefix={<FaCirclePlusIcon />} disabled>ボタン</Button>
-  <Button prefix={<FaCirclePlusIcon />} disabled disabledDetail={{ message: '無効状態の理由（理由を配置するスペースがない場合）' }}>ボタン</Button>
+  <Button prefix={<FaCirclePlusIcon />} disabled disabledReason={{ message: '無効状態の理由（理由を配置するスペースがない場合）' }}>ボタン</Button>
 </>
 ```
 
 
 ## ライティング
 [ボタンラベルには動詞の終止形を使用する](/products/contents/ui-text/app-writing/#h2-1)
+
+## モバイル
+
+### ボタンの大きさ
+
+#### 通常サイズのボタンを使う
+モバイルでは基本的に`通常`サイズを使用してください。操作ミスが増えるため`サイズ小`のボタンを使うことは避けます。
+
+レイアウトの都合上`サイズ小`のボタンにする必要がある場合、間隔を十分にあけてください。その場合、アイコンボタンとして使うことはなるべく避けてください
+
+#### ボタンの幅
+基本的にボタンはコンテンツ幅いっぱいに広げてください。
+
+視線誘導やレイアウトを加味して調整が必要な場合、内包コンテンツに合わせた幅に調整できます。（[Z型の視線移動](/products/design-patterns/visual-guidance/#h4-1)を期待して設置するコンポーネントである[FloatArea](/products/components/float-area/)や[ActionDialog](/products/components/dialog/action-dialog/)などでの利用を想定しています。）
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
+        <Button variant="primary" wide>保存</Button>
+    </BaseColumn>
+    <figcaption slot="label" id="caption4">
+      <Caption>幅いっぱいに広げ、十分に操作領域を取る。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
+          <div style={{ display: 'flex', justifyContent: 'end'}}>
+          <Button variant="primary">保存</Button>
+          </div>
+    </BaseColumn>
+    <figcaption slot="label" id="caption3">
+      <Caption>視線誘導やレイアウトを加味して内包コンテンツに合わせた幅に調整する。</Caption>
+    </figcaption>
+  </DoAndDont>
+</Cluster>
+
+### 複数のボタンの並べ方
+#### ボタンを並べる方向
+基本的に垂直方向に並べることを推奨します。視線誘導やレイアウトを加味して調整が必要な場合、水平方向に並べることも可能です。
+
+#### ボタンを並べる順番
+PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並べる場合は、識字方向の後方にPrimaryボタンが来るようにレイアウトしてください。LTR（Left To Right）では、右側にPrimaryボタンを置きます。 垂直方向に並べる場合は、慣習にならい（TODO 要出典）Primaryボタンの下にSecondaryボタンを置きます。
+
+#### 実装例
+<Cluster gap={1}>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl label="何らかの入力">
+            <Input />
+          </FormControl>
+          <Stack gap={0.5}>
+            <Button variant="primary">保存</Button>
+            <Button>キャンセル</Button>
+          </Stack>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption6">
+      <Caption>垂直方向に並べる場合はPrimaryボタンを上に置く。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
+      <Base padding={1}>
+        <Stack gap={1.5}>
+          <FormControl label="何らかの入力">
+            <Input />
+          </FormControl>
+          <div className="shr-flex shr-flex-row shr-gap-0.5">
+            <Button wide>キャンセル</Button>
+            <Button variant="primary" wide>保存</Button>
+          </div>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption5">
+      <Caption>水平方向に並べる場合は後方にPrimaryボタンを置く。</Caption>
+    </figcaption>
+  </DoAndDont>
+</Cluster>
+
 
 ## Props
 

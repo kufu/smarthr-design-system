@@ -3,12 +3,16 @@ title: 'FloatArea'
 description: 'スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。'
 ---
 import { Image } from 'astro:assets'
-import { Text } from 'smarthr-ui'
+import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
+import Grid from '@/components/article/Grid.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import FloatAreaLayoutDo from './images/float-area-layout-do.png';
 import FloatAreaLayoutDont from './images/float-area-layout-dont.png';
+import imageFloatAreaNoStickyMobileKeyboard from './images/float-area-nosticky-mobile-keyboard.png';
+import imageFloatAreaStickyMobileKeyboard from './images/float-area-sticky-mobile-keyboard.png';
 
 スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。
 
@@ -49,6 +53,63 @@ FloatAreaには、ページ全体、もしくはページの一部を対象と�
 ## デザインパターン
 
 [モーダルなUI](/products/design-patterns/modal-ui/)および[共通設定のアクションビュー](/products/design-patterns/main-admin-core-features/#h2-3)を参照してください。
+
+## モバイル
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage type="info">モバイル対応したFloatAreaはsmarthr-uiに実装予定です。</ResponseMessage>
+</BaseColumn>
+
+モバイル環境は画面が狭いため、FloatAreaが常に画面の下部に固定されていると対象の領域の閲覧や操作の妨げとなってしまいます。
+
+そのため、FloatAreaを画面の下部に固定せず、対象の領域の末尾に置くことを推奨します。
+ただしユースケースに応じて必要な場合はFloatAreaを画面の下部に固定できます。
+
+<Grid>
+  <ImgWithDesc description="［推奨］FloatAreaを対象の領域の後に配置する">
+  ![［推奨］FloatAreaの固定を解除する](images/float-area-nosticky-mobile.png)
+  </ImgWithDesc>
+
+  <ImgWithDesc description="FloatAreaを画面の下部に固定する">
+  ![FloatAreaを画面の下部に固定する](images/float-area-mobile.png)
+  </ImgWithDesc>
+</Grid>
+
+
+FloatAreaを画面の下部に固定する場合は、仮想キーボードの入力操作の妨げにならないよう、キーボード入力時（入力要素にフォーカス中）はFloatAreaの固定を解除することで、操作領域を確保します。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={ imageFloatAreaNoStickyMobileKeyboard } alt="Do" />
+    <Text slot="label">FloatAreaを画面の下部に固定した場合でも、キーボード入力時には固定を解除する</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={ imageFloatAreaStickyMobileKeyboard } alt="Don't" />
+    <Text slot="label">キーボード入力時にもFloatAreaを画面の下部に固定する</Text>
+  </DoAndDont>
+</Cluster>
+
+### レイアウト
+
+#### 画面の下部に固定する場合
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage type="info">以下のレイアウトを実現するFloatAreaはsmarthr-uiに実装予定です。</ResponseMessage>
+</BaseColumn>
+
+FloatAreaを画面の下部に固定する場合、左右の余白をなくし画面幅いっぱいに表示します。
+
+[Secondaryボタン](https://smarthr.design/products/components/button/#h3-2)（任意）と[Primaryボタン](/products/components/button/#h3-1)は横いっぱいに並べます。
+また、[Tertiaryボタン](/products/components/button/#h3-3)（任意）は、上記のボタン群の下部に配置します。
+
+![モバイルで全てのButton含めたFloatAreaの例](images/float-area-tertiary-mobile.png)
+
+##### 余白
+
+FloatAreaを画面の下部に固定する場合の余白は以下のとおりです。
+
+![モバイルでFloatAreaを利用する場合の余白の説明画像](images/explain-float-area-tertiary-error-mobile.png)
 
 ## Props
 

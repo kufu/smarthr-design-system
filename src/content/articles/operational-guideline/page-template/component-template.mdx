@@ -15,21 +15,18 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 <ComponentStory name="Button" />
 
 ## 使用上の注意
-
 他のコンポーネントとの使い分けの基準、特に注意したいアンチパターンなど使用上の注意があれば書きます。  
 種類ごとの使いどころは[種類](#h2-2)に書きます。
 
 
 ## \{コンポーネント名\}を使用したコンポーネント
-
 開発で頻繁に利用する実装を別のコンポーネント化している場合は、子ページへのリンクや説明を書きます。
 
-## 種類
 
+## 種類
 コンポーネントのバリエーションを小見出しにわけて書きます。もし網羅的な比較が必要な場合、テーブル or previewでコンポーネントを一覧を表示します。
 
 ### コンポーネント名（種類） 例: Primary
-
 コンポーネント（種類）の説明が入ります。
 
 #### 単品
@@ -60,9 +57,17 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 // 編集可能なコードブロックは、iframe内にレンダリングされます。ツールチップがiframeの外にレンダリングされるなど不都合がある場合は`noIframe`を指定します。
 // `noIframe`では、CSSノーマライズが適用されないなどの問題があるため、非推奨です。
 // ```
-<Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar type="warning" message={<LineClamp maxLines={1} withTooltip>非推奨ですが、LineClampを使用して省略もできます。そのでっかい領域によるヘッダー（のナビゲーション）へのアクセス性の低下をフォローするために多くのウェブサイトはヘッダーを固定していますが、それでは同時にコンテンツの閲覧性に影響を与えてしまいます。</LineClamp>} onClose={()=>{}} />
-</Stack>
+<TabBar>
+  <TabItem suffix={<Badge count={4} />} id="tabitem1" onClick={() => null} selected>
+    基本情報
+  </TabItem>
+  <TabItem suffix={<FaCircleExclamationIcon color="DANGER" alt="エラーあり"/>} id="tabitem2" onClick={() => null}>
+    家族情報
+  </TabItem>
+  <TabItem disabled disabledReason={{ message: 'この情報は使えません。' }} id="tabitem3">
+    その他
+  </TabItem>
+</TabBar>
 ```
 
 #### プロダクト
@@ -96,12 +101,11 @@ const Wrapper = styled(Stack)`
 `
 ```
 
-## レイアウト
 
+## レイアウト
 メインの種類でなく、コンポーネントが持つその他の種類（サイズやアイコン付きなど）がある場合に書きます。
 
 ### プレビューを埋め込む際の注意点
-
 次のようなReactのAPIを使っていたり、PropsでReactコンポーネントを受け取るコンポーネントはMDX内で定義できません。
 
 修正前：
@@ -155,32 +159,39 @@ import DynamicMessageDialog from './_components/DynamicMessageDialog'
 <SampleButton Prefix={FaCirclePlusIcon} size="default">ボタン</SampleButton>
 ```
 
-## 状態
 
+## 状態
 コンポーネントが持つ（hoverやdisabledなど）状態がある場合に書きます。
 
-## ライティング
 
+## ライティング
 主題に種類がなく、ライティングルールを書きたい場合はここに書きます。〇〇の使い方..などはこのグループに所属させます。AirTableも必要であれば埋め込めます。
 
-## アクセシビリティ
 
+## アクセシビリティ
 主題全体に対するアクセシビリティの考え方として、特段言及したい場合は書きます。
 
-## デザインパターン
 
-コンポーネント独自のデザインパターンがあればこのグループ内に書きます、基準サイズなどもこの項目で書きます。
+## デザインパターン
+コンポーネント独自のデザインパターンがあればこのグループ内に書きます。基準サイズなどもこのセクションで書きます。
+
+
+## モバイル
+モバイルでの表示について、特に言及したい場合はここに書きます。  
+
+モバイル表示におけるレイアウトやデザインパターンなどを記載する場合は、基本的にこのセクションにまとめて書くことを推奨します。
+ただし、各セクションのなかでモバイル表示について言及するほうが都合がよい場合は、それぞれのセクションの中に書くことも問題ありません。
+
 
 ## Props
-
 コンポーネントが持つPropsを網羅して書きます。
 
 <ComponentPropsTable name="Button" />
 
-## 関連リンク
 
+## 関連リンク
 - link
 
-## 参考文献
 
+## 参考文献
 - link

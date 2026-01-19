@@ -7,8 +7,7 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
 主要なコンテンツ幅を管理するためのコンポーネントです。
 
-{/* TODO: smarthr-ui で Container がリリースされたらコメントを外す */}
-{/* <ComponentStory name="Container" /> */}
+<ComponentStory name="Container" />
 
 ## レイアウト
 
@@ -17,6 +16,16 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 ### コンテナの大きさ
 
 `size` props を使ってコンテナの大きさを指定できます。デフォルトは`DEFAULT`です。
+
+次のような場合には、`WIDE`や`FULL`を検討します。
+
+- 大量のデータを表示する場合
+- [サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)や[コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)など、1つのカラムに1ページ相当の情報を表示する場合
+
+次のような場合には、`NARROW`を検討します。
+
+- ページに表示する情報が少ない場合
+- 入力要素が中心の画面の場合
 
 大きさ | 幅トークン | 値（px）
 :--- | :--- | :---
@@ -28,9 +37,13 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 ### コンテナのパディング
 
 `padding` props を使ってコンテナのパディングを指定できます。
+パディングはコンテナの幅には含まれません。
 
-デフォルトで上下左右2文字ずつのパディングが設定されています。モバイルレイアウトの場合は上下1.5文字、左右1文字ずつのパディングが設定されます。いずれの値も上書きできます。
+デフォルトで上下左右2文字（`32px`）ずつのパディングが設定されています。上書き可能です。
 
+#### モバイルでの表示
+
+デフォルトで上下1.5文字（`24px`）、左右1文字（`16px`）ずつのパディングが設定されます。`padding`propsの`narrowModeBlock`と`narrowModeInline`で上書き可能です。
 
 ## Props
 

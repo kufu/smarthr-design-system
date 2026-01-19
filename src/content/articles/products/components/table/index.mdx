@@ -12,21 +12,42 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ## アクセシビリティ
 
-### 行を選択するチェックボックスやラジオボタンのラベル
+### セル内にチェックボックスやラジオボタンをそのまま配置しない
 
-`<TdCheckbox>`や`<TdRadioButton>`を用いて`aria-labelledby`で行のオブジェクトを識別するためのテキストを参照してください。
+`<Td><Checkbox /></Td>`、`<Th><Checkbox /></Th>`、および`<Td><RadioButton /></Td>`などのように、セルの内部にチェックボックスやラジオボタンをそのまま配置してはいけません。それぞれの場合で`TdCheckbox`、`ThCheckbox`、および`TdRadioButton`という専用のコンポーネントが提供されているため、代わりにこれらを利用してください。
+
+これらの専用のコンポーネントを利用せずにチェックボックスやラジオボタンを配置すると、アクセシブルネームが設定されず、[ウェブアクセシビリティ簡易チェックリスト](/accessibility/check-list/)の「[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)」に違反するおそれがあります。
+
+なお、チェックボックスおよびラジオボタンのアクセシブルネームについては[eslint-plugin-smarthr](https://npm.im/eslint-plugin-smarthr)のルール[smarthr/a11y-prohibit-checkbox-or-radio-in-table-cell](https://github.com/kufu/tamatebako/tree/master/packages/eslint-plugin-smarthr/rules/a11y-prohibit-checkbox-or-radio-in-table-cell)を用いることで自動的に検証できます。
+
+### TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
+
+`TdCheckbox`および`TdRadioButton`を利用する場合は、`aria-labelledby`属性を必ず指定しなければなりません。この属性には、それだけで行を一意に判別できる要素へのID参照を指定します。多くのオブジェクトでは、この属性値はしばしば[オブジェクト名](/products/design-patterns/smarthr-table/#h4-0)へのID参照になるでしょう。
 
 ```tsx
 <tr key={key}>
   <TdCheckbox aria-labelledby={object.id} />
-  <Td>
-    <a href={`/hoge/${object.id}`} id={object.id}>{name}</a>
-  </Td>
-  ...
+  <Td id={object.id}>{name}</Td>
 </tr>
 ```
 
+オブジェクト名だけでは一意に判別できない可能性があるオブジェクトでは、[オブジェクトの情報](https://smarthr.design/products/design-patterns/smarthr-table/#h4-1)を含む複数の要素のID参照をスペース区切りで指定しなければなりません。例えば、従業員は同姓同名の人物が在籍する場合もあることから、以下のように社員番号と組み合わせます。
+
+```tsx
+<tr key={key}>
+  <TdCheckbox aria-labelledby={`${crew.id}-id ${crew.id}-name`} />
+  <Td id={`${crew.id}-id`}>{crew.crewId}</Td>
+  <Td id={`${crew.id}-name`}>{crew.name}</Td>
+</tr>
+```
+
+## モバイル
+
+モバイルでは、画面幅を越えたテーブルは[2次元スクロール](/products/design-patterns/mobile-friendly-layout/#h3-3)を招くため、垂直方向に積みあげることを推奨します。  
+[よくあるテーブルの「モバイル」セクション](/products/design-patterns/smarthr-table/#h2-3)を参照し、レイアウトに応じてListコンポーネント（WIP）への置き換えを検討してください。
+
 ## Props
+
 <ComponentPropsTable name="Table" showTitle />
 <ComponentPropsTable name="Th" showTitle />
 <ComponentPropsTable name="ThCheckbox" showTitle />
@@ -35,6 +56,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 <ComponentPropsTable name="TdRadioButton" showTitle />
 <ComponentPropsTable name="TableReel" showTitle />
 <ComponentPropsTable name="BulkActionRow" showTitle />
+<ComponentPropsTable name="WakuWakuButton" showTitle />
 <ComponentPropsTable name="EmptyTableBody" showTitle />
 
 ## 関連リンク

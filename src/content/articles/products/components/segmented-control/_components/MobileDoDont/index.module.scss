@@ -1,0 +1,12 @@
+.doWithWrap {
+  /* MEMO: 素のSegmentedControlでは幅に収めるレイアウトが実現できないため、ボタン群を親要素の幅に収まるようにする */
+  > div {
+    display: inline-flex !important;
+
+    /* MEMO: ボタンのラベルを折り返し、行間を調整 */
+    > button {
+      white-space: normal !important;
+      line-height: 1.25 !important;
+    }
+  }
+}
