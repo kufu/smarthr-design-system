@@ -66,7 +66,7 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 モバイルでは、操作しやすいように通常サイズのボタンに揃えてください（TODO: ボタンの基準にリンクする）。
 
 ```tsx editable noIframe
-<DropdownMenuButton label="｛オブジェクト名｝の操作">
+<DropdownMenuButton trigger="｛オブジェクト名｝の操作">
   <Button className="shr-py-0.75 shr-border-transparent hover:shr-border-transparent shr-border-solid">｛オブジェクト名｝を編集</Button>
   <Button className="shr-py-0.75 shr-border-transparent hover:shr-border-transparent shr-border-solid">｛オブジェクト名｝を削除</Button>
 </DropdownMenuButton>
@@ -86,12 +86,12 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={DropdownMenuButtonPanelWidthDo} alt="Do" />
-    <Text slot="label">ドロップダウンパネルの横幅が画面幅の2/3程度に収まっていることで、パネルが閉じやすく、パネルの下のコンテンツとの区別しやすい。</Text>
+    <Text slot="trigger">ドロップダウンパネルの横幅が画面幅の2/3程度に収まっていることで、パネルが閉じやすく、パネルの下のコンテンツとの区別しやすい。</Text>
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={DropdownMenuButtonPanelWidthDont} alt="Dont" />
-    <Text slot="label">ドロップダウンパネルの横幅が画面いっぱいに広がっていることで、パネルが閉じづらく、パネルの下のコンテンツと区別しづらい。</Text>
+    <Text slot="trigger">ドロップダウンパネルの横幅が画面いっぱいに広がっていることで、パネルが閉じづらく、パネルの下のコンテンツと区別しづらい。</Text>
   </DoAndDont>
 </Cluster>
 
@@ -109,12 +109,12 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
     <Image slot="img" src={DropdownMenuButtonPanelHeightDo} alt="Do" />
-    <Text slot="label">ドロップダウンパネルの縦幅が画面内に収まっていて、パネル内をスクロールすることで必要な操作を押せるようになっている。</Text>
+    <Text slot="trigger">ドロップダウンパネルの縦幅が画面内に収まっていて、パネル内をスクロールすることで必要な操作を押せるようになっている。</Text>
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={DropdownMenuButtonPanelHeightDont} alt="Dont" />
-    <Text slot="label">ドロップダウンパネルの縦幅が画面外にはみ出していると、ページをスクロールしたときに誤ってパネル外を押してしまい意図せずパネルが閉じてしまうことがある。</Text>
+    <Text slot="trigger">ドロップダウンパネルの縦幅が画面外にはみ出していると、ページをスクロールしたときに誤ってパネル外を押してしまい意図せずパネルが閉じてしまうことがある。</Text>
   </DoAndDont>
 </Cluster>
 
@@ -138,7 +138,7 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。 |
 
 ```tsx editable noIframe
-<DropdownMenuButton label="｛オブジェクト名｝の操作">
+<DropdownMenuButton trigger="｛オブジェクト名｝の操作">
   <Button>｛オブジェクト名｝を編集</Button>
   <Button>｛オブジェクト名｝を削除</Button>
 </DropdownMenuButton>
@@ -154,7 +154,7 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。トリガーのラベルと同様にオブジェクト名を省けます。 |
 
 ```tsx editable noIframe
-<DropdownMenuButton label="操作" triggerSize="s">
+<DropdownMenuButton trigger={{ size: "s", children: "操作" }}>
   <Button>編集</Button>
   <Button>削除</Button>
 </DropdownMenuButton>
@@ -169,7 +169,7 @@ DropdownMenuButtonは複数の操作をまとめて提供するためのコン�
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 同じ種類の操作を入れます。 |
 
 ```tsx editable noIframe
-<DropdownMenuButton label="一括操作">
+<DropdownMenuButton trigger="一括操作">
   <Button>｛オブジェクト名｝を一括追加</Button>
   <Button>｛オブジェクト名｝を一括更新</Button>
 </DropdownMenuButton>
@@ -184,7 +184,7 @@ A、B、Cのパターンに該当しないときに、異なる複数の操作�
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 異なる複数の操作を入れます。 |
 
 ```tsx editable noIframe
-<DropdownMenuButton label="その他の操作">
+<DropdownMenuButton trigger="その他の操作">
   <Button>｛その他の操作1｝</Button>
   <Button>｛その他の操作2｝</Button>
   <Button>｛その他の操作3｝</Button>
@@ -200,18 +200,18 @@ A、B、Cのパターンに該当しないときに、異なる複数の操作�
 
 | 要素 | 説明 |
 | :--- | :--- |
-| トリガー | [Secondaryボタンのアイコンのみ](/products/components/button/#h3-2)で、主に <FaEllipsisIcon alt="その他の操作" /> アイコン（`FaEllipsisIcon`）を使います。ラベルは視覚的に省いていますが、**必ず`label`属性は設定して**何のボタンなのかを伝えます。 |
+| トリガー | `trigger.onlyIcon` を設定するとボタンを [アイコンのみ](/products/components/button/#h3-2)で表示できます（標準：`FaEllipsisIcon`）。アイコンの変更は非推奨ですが、やむを得ない場合は`trigger.onlyIcon.component`で変更可能です。なお、何のボタンか識別できるようにするため**必ず`trigger.children`を設定**します。|
 | <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 操作を複数入れます。 |
 
 ```tsx editable noIframe
 <Cluster gap={1} align="center">
-  <DropdownMenuButton label="その他の操作" onlyIconTrigger>
+  <DropdownMenuButton trigger={{ onlyIcon: true, children: "その他の操作" }}>
     <Button>｛操作1｝</Button>
     <Button>｛操作2｝</Button>
     <Button>｛操作3｝</Button>
   </DropdownMenuButton>
 
-  <DropdownMenuButton label="その他の操作" triggerSize="s" onlyIconTrigger>
+  <DropdownMenuButton trigger={{ onlyIcon: true, size: "s", children: "その他の操作" }}>
     <Button>｛操作1｝</Button>
     <Button>｛操作2｝</Button>
     <Button>｛操作3｝</Button>
@@ -228,7 +228,7 @@ A、B、Cのパターンに該当しないときに、異なる複数の操作�
 DropdownMenuButton自体を無効にすると、ドロップダウンパネルも操作できません。
 
 ```tsx editable noIframe
-<DropdownMenuButton label="｛オブジェクト名｝の操作" disabled>
+<DropdownMenuButton trigger="｛オブジェクト名｝の操作" disabled>
   <Button>｛オブジェクト名｝を編集</Button>
   <Button>｛オブジェクト名｝を削除</Button>
 </DropdownMenuButton>
@@ -238,7 +238,7 @@ DropdownMenuButton自体を無効にすると、ドロップダウンパネル�
 ドロップダウンパネル内の操作を無効にする場合、[ButtonのdisabledReason](/products/components/button/#h3-10)を使って**無効状態の理由を表示します。**
 
 ```tsx editable noIframe
-<DropdownMenuButton label="｛オブジェクト名｝の操作">
+<DropdownMenuButton trigger="｛オブジェクト名｝の操作">
   <Button>｛オブジェクト名｝を編集</Button>
   <Button disabled disabledReason={{ message: '無効状態の理由' }}>｛オブジェクト名｝を削除</Button>
 </DropdownMenuButton>
