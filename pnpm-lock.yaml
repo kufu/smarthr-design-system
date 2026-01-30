@@ -51,10 +51,10 @@ importers:
         specifier: ^5.2.7
         version: 5.2.7(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-instantsearch:
-        specifier: ^7.15.8
+        specifier: ^7.22.1
         version: 7.22.1(algoliasearch@5.46.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-instantsearch-core:
-        specifier: ^7.15.8
+        specifier: ^7.22.1
         version: 7.22.1(algoliasearch@5.46.3)(react@19.1.0)
       react-live:
         specifier: ^4.1.8
@@ -438,10 +438,6 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
-
-  '@babel/runtime@7.28.4':
-    resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.28.6':
     resolution: {integrity: sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==}
@@ -7069,8 +7065,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/runtime@7.28.4': {}
-
   '@babel/runtime@7.28.6': {}
 
   '@babel/template@7.25.9':
@@ -9069,7 +9063,7 @@ snapshots:
       http-errors: 2.0.0
       iconv-lite: 0.6.3
       on-finished: 2.4.1
-      qs: 6.14.0
+      qs: 6.14.1
       raw-body: 3.0.0
       type-is: 2.0.1
     transitivePeerDependencies:
@@ -10745,7 +10739,7 @@ snapshots:
 
   instantsearch-ui-components@0.16.0(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       ai: 5.0.121(zod@4.3.5)
       markdown-to-jsx: 7.7.17(react@19.1.0)
       zod: 4.3.5
@@ -10767,7 +10761,7 @@ snapshots:
       htm: 3.1.1
       instantsearch-ui-components: 0.16.0(react@19.1.0)
       preact: 10.24.3
-      qs: 6.14.0
+      qs: 6.14.1
       react: 19.1.0
       search-insights: 2.17.2
       zod: 4.3.5
@@ -12568,7 +12562,7 @@ snapshots:
 
   react-instantsearch-core@7.22.1(algoliasearch@5.46.3)(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       ai: 5.0.121(zod@4.3.5)
       algoliasearch: 5.46.3
       algoliasearch-helper: 3.27.0(algoliasearch@5.46.3)
@@ -12580,7 +12574,7 @@ snapshots:
 
   react-instantsearch@7.22.1(algoliasearch@5.46.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.28.6
       algoliasearch: 5.46.3
       instantsearch-ui-components: 0.16.0(react@19.1.0)
       instantsearch.js: 4.86.1(algoliasearch@5.46.3)
