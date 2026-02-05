@@ -4,6 +4,12 @@ description: 'SmartHRプロダクトの基本的なページレイアウトの�
 order: 3
 ---
 
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+import Grid from '@/components/article/Grid.astro'
+import Caption from './_components/Caption.astro'
+import { Base, BaseColumn, Button, Cluster, FormControl, Heading, Input, NotificationBar, Stack, Text, ResponseMessage } from 'smarthr-ui'
+
 ビューポート内にどのような要素をどのような順序で配置するかをページレイアウトと呼びます。
 SmartHRプロダクトの基本的なページレイアウトのパターンをまとめています。
 
@@ -14,19 +20,136 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 適切なページレイアウトの設計には、ユーザーの業務とオブジェクトモデルの理解が必要です。
 ユーザーの利用目的に沿って、オブジェクトの関係性や重要度を表すように設計してください。
 
-### 構成要素
+### リード文を適切に設定する
 
-エラー画面を除き、SmartHRが提供する画面では[AppHeader](/products/components/app-header/)をビューポート最上部に配置します。
+リード文とは、ページの目的や内容を簡潔に伝えるためのテキストのことです。[見出し領域](#h4-5)にリード文を表示することで、ユーザーはページ内のすべての要素を確認することなく、ページの目的や内容を素早く理解できます。
 
-それぞれの要素同士をどのようにグルーピングするかについては、視覚的グルーピングの基準（WIP）を参照してください。
+SmartHRで提供するページでは、リード文を見出し領域に表示してください。ただし、次のような画面ではリード文は不要です。
 
-### コンテナ領域の幅
+- ユーザーが作成したオブジェクトの詳細画面
 
-[AppHeader](/products/components/app-header/)を除いたコンテナ領域の幅は、**基本的に1120px**とします。
-ただし、次のような場合には画面いっぱいにコンテナ領域を広げることもできます。
+### ページ内の要素同士を適切にグルーピングする
 
-- 大量のデータ項目を表示する場合
-- [サイドナビゲーションとコンテンツの2カラム](#3-6)や[コレクションとシングルの2カラム](#3-7)など、1つのカラムに1ページ相当の情報量を表示する場合
+[視覚的グルーピング](/products/design-patterns/visual-grouping/)を参照して、ページ内の要素を適切にグルーピングしてください。
+
+### ページが過度に長くなることを避ける
+
+多くの情報を1ページに表示するとページが縦方向に長くなってしまいます。縦方向に長いページでは、全体像の把握が難しく、目的の情報への到達が困難になります。特にモバイルでは画面の横幅が狭いため、この傾向が顕著です。
+
+ページが縦方向に長くなってしまう場合には次のような対処を検討してください。
+
+#### コンテンツを省略表示する
+
+すべてのコンテンツを最初から表示せず、一部を省略して表示します。あわせて、[Disclosure](/products/components/disclosure/)を使うことでユーザーが必要に応じてコンテンツをすべて表示できるようにします。
+
+<Grid>
+    <ImgWithDesc description="テキストを省略した場合の初期表示">
+        ![Base上に見出しと3行のテキストとターシャリボタン「すべてを表示」が表示されている。](./images/text-with-disclosure-closed.png)
+    </ImgWithDesc>
+
+    <ImgWithDesc description="省略されたテキストを展開した場合の表示">
+        ![Base上に見出しと8行のテキストとターシャリボタン「折りたたむ」が表示されている。](./images/text-with-disclosure-opened.png)
+    </ImgWithDesc>
+</Grid>
+
+#### ページをナビゲーションで分割する
+
+[TabBar](/products/components/tab-bar/)、[SideNav](/products/components/side-nav/)、[SideMenu](/products/components/side-menu/)といった[ナビゲーション](#h4-4)を使ってページを分割します。
+
+TabBarやSideNavを使った例は、[視覚的グルーピング](/products/design-patterns/visual-grouping/#h3-7)を参照してください。
+
+### モバイル
+
+#### 複数カラムのレイアウトを避ける
+
+画面の幅によってコンテンツの可読性を保てなくなるため、モバイルでは複数カラムのレイアウトを避けましょう。代わりに垂直方向に積み上げるか、複数の画面に分けるなど、1度に表示する情報量を減らしてください。
+
+垂直方向に積み上げて解決ができない場合は、アダプティブなレイアウトを検討してください。
+
+<Cluster gap={1}>
+  <DoAndDont type="dont" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption1" style={{ display: 'flex', margin: 'unset', gap: '1em' }}>
+      <Base padding={1} style={{ flexShrink: 0, flexBasis: '25%' }}>
+        <Stack gap={0.5}>
+          <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムのレイアウトを避ける</Heading>
+          <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
+        </Stack>
+      </Base>
+      <Base padding={1} style={{ flexGrow: 1 }}>
+        <Stack>
+          <Caption>構造関係の理解も難しくなります。</Caption>
+          <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption1">
+      <Caption>コンテンツが読みにくく、構造を把握しにくい。</Caption>
+    </figcaption>
+  </DoAndDont>
+  <DoAndDont type="do" width={320}>
+    <BaseColumn slot="img" as="figure" aria-labelledby="caption2" style={{ display: 'flex', flexWrap: 'wrap', margin: 'unset', gap: '1em' }}>
+      <Base padding={1}>
+        <Stack gap={0.5}>
+          <Heading type="blockTitle" tag="span" style={{ fontSize: '1rem', lineHeight: 1.25, marginBlockStart: 0 }}>複数カラムのレイアウトを避ける</Heading>
+          <p style={{ lineHeight: 1.5 }}>折り返しの多すぎるコンテンツの理解は難しいです。</p>
+        </Stack>
+      </Base>
+      <Base padding={1}>
+        <Stack>
+          <Caption>構造関係の理解も難しくなります。</Caption>
+          <p style={{ lineHeight: 1.5 }}>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
+        </Stack>
+      </Base>
+    </BaseColumn>
+    <figcaption slot="label" id="caption2">
+      <Caption>垂直方向に積み上げると最低限の可読性を保てます。</Caption>
+    </figcaption>
+  </DoAndDont>
+</Cluster>
+
+#### 水平方向のスクロールや2次元（垂直・水平方向）スクロールを避ける
+
+水平方向のスクロールや2次元（垂直・水平方向）スクロールは、コンテンツの理解を妨げます。画面幅からコンテンツがあふれる場合は、折り返してください。
+
+ただし、画像や動画・地図など2次元であることが情報を伝える上で重要な場合は、その限りではありません。
+
+## 構成
+
+エラー画面を除き、SmartHRのページは以下の要素と領域によって構成されます。
+
+- ヘッダー（[AppHeader](/products/components/app-header/)）
+- コンテナ領域（[Container](/products/components/layout/container/)）
+    - ナビゲーション（任意）
+    - 見出し領域
+    - コンテンツ領域
+
+### ヘッダー
+
+[AppHeader](/products/components/app-header/)を画面の最上部に配置します。
+
+### コンテナ領域
+
+[Container](/products/components/layout/container/)コンポーネントを使います。コンテナ領域の横幅はサイズ（`size`props）で指定します。サイズの選び方は[Container/コンテナの大きさ](/products/components/layout/container/#h3-0)を参照してください。
+
+コンテナ領域内のレイアウトのパターンは、[種類](#h2-3)を参照してください。
+
+#### ナビゲーション
+
+必要に応じて、ページ内で複数のビューを切り替えるナビゲーションを表示できます。[TabBar](/products/components/tab-bar/)や[SideNav](/products/components/side-nav/)、[SideMenu](/products/components/side-menu/)を使います。
+
+ナビゲーションを表示する場合のレイアウトは、[サイドナビゲーションとコンテンツの2カラム](#h3-12)や、[コレクションとシングルの2カラム](#h3-13)、また、[視覚的グルーピング](/products/design-patterns/visual-grouping/#h3-7)を参照してください。
+
+#### 見出し領域
+
+見出し領域には画面タイトル（[PageHeading](/products/components/heading/#h3-0)）とリード文、それに関連する情報や操作を表示します。
+
+基本的な考え方「[リード文を適切に設定する](#h3-0)」も参照してください。
+
+#### コンテンツ領域
+
+コンテンツ領域には、ページの内容となる伝えたい情報や操作を表示します。主に[セクション](/products/design-patterns/visual-grouping/#h3-5)を表示します。
+
+## レイアウト
 
 ### 余白の取り方
 
@@ -38,6 +161,7 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 モーダルなページについては[モーダルなUI](/products/design-patterns/modal-ui/)を、エラー画面については[ErrorScreen](/products/components/error-screen/)を参照してください。
 
 - コレクション（テーブル）
+- コレクション（リスト）
 - シングル（1カラム）
 - シングル（2カラム）
 - シングル（ベースのある見出し領域）
@@ -54,9 +178,27 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 
 ![イメージ画像：ヘッダー・見出し領域・よくあるテーブルが垂直方向に積み重なっている](./images/collection.png)
 
+#### モバイル
+
+コレクション（テーブル）は広い横幅を必要とするため、画面の横幅が狭いモバイルには適していません。代わりに、[コレクション（リスト）](#h3-8)を検討してください。
+
 #### 利用例
 
-![](./images/collection-sample.png)
+![実例画像：ヘッダー・見出し領域・よくあるテーブルが垂直方向に積み重なっている](./images/collection-sample.png)
+
+### コレクション（リスト）
+
+[よくあるリスト](/products/design-patterns/smarthr-list/)を用いてオブジェクトを一覧表示するパターンです。
+
+オブジェクトを一覧表示するページで利用します。狭い領域（主にモバイル）でオブジェクトを一覧表示する場合に有効です。
+
+見出し領域とよくあるリストで構成されます。
+
+![イメージ画像：ヘッダー・見出し領域・よくあるリストが垂直方向に積み重なっている](./images/collection-list.png)
+
+#### 利用例
+
+![実例画像：ヘッダー・見出し領域・よくあるリストが垂直方向に積み重なっている](./images/collection-list-sample.png)
 
 ### シングル（1カラム）
 
@@ -66,11 +208,29 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 
 見出し領域と複数のセクションで構成されます。
 
-![イメージ画像：ヘッダー・見出し領域・セクションが垂直方向に積み重なっている](./images/single-1column.png)
+![イメージ画像：ヘッダー・見出し領域・複数のセクションが垂直方向に積み重なっている](./images/single-1column.png)
+
+#### モバイル
+
+##### セクションが1つの場合のレイアウト
+
+セクションが1つの場合、コンテンツ領域にBaseを使わずレイアウトできます。Baseの代わりに、コンテンツ領域の背景色が`WHITE`になるよう領域を区切ります。Baseに関連する余白がなくなるため、横幅を広く使いたいケースで特に有効です。
+
+このレイアウトにおける余白の取り方は、[余白の取り方](/products/design-patterns/spacing-layout-pattern/#h3-6)を参照してください。
+
+![イメージ画像：ヘッダー・見出し領域・1つのセクションが垂直方向に積み重なっている。セクションのコンテンツ領域の背景色がWHITEになっている。](./images/single-1column-mobile-single-section.png)
 
 #### 利用例
 
-![](./images/single-1column-sample.png)
+<Grid>
+    <ImgWithDesc description="デスクトップ">
+        ![実例画像：横に広い画面に、ヘッダー・見出し領域・複数のセクションが垂直方向に積み重なっている](./images/single-1column-sample.png)
+    </ImgWithDesc>
+
+    <ImgWithDesc description="モバイル">
+        ![実例画像：縦長の画面に、ヘッダー・見出し領域・複数のセクションが垂直方向に積み重なっている](./images/single-1column-sample-mobile.png)
+    </ImgWithDesc>
+</Grid>
 
 ### シングル（2カラム）
 
@@ -85,29 +245,47 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 
 ![イメージ画像：ヘッダー・見出し領域が垂直方向に積み重なっている。その下に、左側に副情報、右側に主情報が並んでいる。](./images/single-2column.png)
 
+#### モバイル
+
+シングル（2カラム）は広い横幅を必要とするため、画面の横幅が狭いモバイルには適していません。代わりに、[シングル（1カラム）](#h3-9)として表示してください。副情報と主情報のうち、ユーザーが先に確認する必要のある情報から順番にセクションを表示します。
+
 #### 利用例
 
-![](./images/single-2column-sample.png)
+![実例画像：ヘッダー・見出し領域が垂直方向に積み重なっている。その下に、左側に副情報、右側に主情報が並んでいる。](./images/single-2column-sample.png)
 
 ### シングル（ベースのある見出し領域）
 
 ベースのある見出し領域でコンテンツ領域との境界を明確に示すパターンです。
 
-オブジェクトを詳細表示するページで利用します。見出し領域とコンテンツ領域の境界が余白だけではわかりづらい場合に有効です。例えば次のような場合です。
+オブジェクトを詳細表示するページで利用します。見出し領域とコンテンツ領域で、領域の幅が異なる場合に有効です。例えば次のような場合です。
 
-- 独自のビューを表示する場合
+- 二次元スクロールを伴う独自のビューを表示する場合
     - ツリー図
     - マトリクス表
     - グラフ
-- TabBarを利用してコンテンツ領域のビューを切り替える場合
 
 見出し領域とコンテンツ領域で構成されます。
 
 ![イメージ画像：ヘッダー・見出し領域・コンテンツ領域が垂直方向に積み重なっている](./images/single-custom-view.png)
 
+#### モバイル
+
+デスクトップに比べてモバイルでは二次元スクロールを伴う領域の操作がしづらい傾向にあります。シングル（ベースのある見出し領域）のコンテンツが二次元スクロールを伴う場合、モバイルでも同様のレイアウトが適しているか、モバイルに適した他のレイアウトはないか検討してください。  
+例えば、リストのような垂直方向のスクロールで操作できるレイアウトを使うと、モバイルでの操作性を高めることができます。
+
+関連：[モバイルレイアウト/水平方向のスクロールや2次元（垂直・水平方向）スクロールを避ける](https://smarthr.design/products/design-patterns/mobile-friendly-layout/#h3-3)
+
 #### 利用例
 
-![](./images/single-custom-view-sample.png)
+<Grid>
+    <ImgWithDesc description="デスクトップ">
+    ![実例画像：横に広い画面に、ヘッダー・見出し領域・コンテンツ領域が垂直方向に積み重なっている](./images/single-custom-view-sample.png)
+    </ImgWithDesc>
+
+    <ImgWithDesc description="モバイル（どうしても二次元スクロールを伴うレイアウトが必要な場合）">
+    ![実例画像：縦長の画面に、ヘッダー・見出し領域・コンテンツ領域が垂直方向に積み重なっている](./images/single-custom-view-sample-mobile.png)
+    </ImgWithDesc>
+</Grid>
 
 ### サイドナビゲーションとコンテンツの2カラム
 
@@ -119,11 +297,17 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 - ナビゲーション同士を頻繁に行き来する場合
 - ナビゲーションが階層構造になっている場合
 
-サイドナビゲーション領域とコンテンツ領域で構成されます。コンテンツ領域はコレクションかシングルのレイアウトをとります。
+サイドナビゲーション領域とコンテンツ領域で構成されます。サイドナビゲーションには[SideMenu](/products/components/side-menu/)を使います。コンテンツ領域はコレクションかシングルのレイアウトをとります。
 
 ![イメージ画像：ヘッダーが最上部にある。その下に、左側にサイドナビゲーション、右側にコンテンツが並んでいる。](./images/side-nav-with-contents.png)
 
-#### 利用例
+#### モバイル
+
+サイドナビゲーションとコンテンツの2カラムは広い横幅を必要とするため、画面の横幅が狭いモバイルには適していません。サイドナビゲーションの操作を、[AppNavi](/products/components/app-navi/)に含めることを検討してください。モバイルではAppNaviが画面全体に表示されるため、デスクトップではAppNaviに操作が収まらない場合でも、モバイルではAppNaviに収まることがあります。
+
+サイドナビゲーションがなくなるため、ページレイアウトは[コレクション（リスト）](#h3-8)、[シングル（1カラム）](#h3-9)のいずれかの形を取ります。
+
+#### [WIP] 利用例
 
 [WIP]
 
@@ -135,10 +319,26 @@ SmartHR全体で一貫性のあるページレイアウトを提供すること�
 
 - オブジェクトを頻繁に切り替える場合
 
-オブジェクトの見出し領域とコレクション領域、シングル領域で構成されます。シングル領域はシングルのレイアウトを取ります。
+オブジェクトの見出し領域とコレクション領域、シングル領域で構成されます。コレクション領域には[SideNav](/products/components/side-nav/)を使います。シングル領域はシングルのレイアウトを取ります。
 
 ![イメージ画像：ヘッダーと見出し領域が垂直方向に積み重なっている。その下に、左側にコレクション、右側にシングルが並んでいる。](./images/single-with-collection.png)
 
-#### 利用例
+#### モバイル
+
+コレクションとシングルの2カラムは広い横幅を必要とするため、画面の横幅が狭いモバイルには適していません。次のいずれかの方法で対処してください。
+
+##### コレクションとシングルの2画面に分割する
+
+コレクションとシングルの2カラムを、[コレクション（リスト）](#h3-8)と[シングル（1カラム）](#h3-9)の2つの画面に分割します。
+
+##### [WIP] SideNavをドロワーとして表示する
+
+<BaseColumn className="shr-mt-1">
+    <ResponseMessage type="info">SideNavをドロワーとして表示できるよう、smarthr-uiでの対応を検討中です。</ResponseMessage>
+</BaseColumn>
+
+[SideNav](/products/components/side-nav/)を使ったコレクションをドロワーとして表示します。コレクションがなくなるため、ページレイアウトは[シングル（1カラム）](#h3-9)の形を取ります。ドロワーを開くボタンを見出し領域に表示してください。
+
+#### [WIP] 利用例
 
 [WIP]

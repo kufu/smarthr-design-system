@@ -1,0 +1,250 @@
+---
+title: 'DropdownMenuButton'
+description: '複数の操作をまとめて提供するためのコンポーネントで、パネル内には操作がリスト形式で表示されます。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import { Image } from 'astro:assets'
+import { ResponseMessage, BaseColumn, Cluster, Text, DropdownMenuButton, FaCaretDownIcon, FaEllipsisIcon } from 'smarthr-ui'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+
+import DropdownMenuButtonPanelWidthDo from '../images/dropdown-menu-button-panel-width-do.png'
+import DropdownMenuButtonPanelWidthDont from '../images/dropdown-menu-button-panel-width-dont.png'
+import DropdownMenuButtonPanelHeightDo from '../images/dropdown-menu-button-panel-height-do.png'
+import DropdownMenuButtonPanelHeightDont from '../images/dropdown-menu-button-panel-height-dont.png'
+
+DropdownMenuButtonは複数の操作をまとめて提供するためのコンポーネントで、パネル内には操作がリスト形式で表示されます。
+
+<ComponentStory name="DropdownMenuButton" />
+
+## 使用上の注意
+
+### 操作の個数
+レイアウトの一貫性やユーザーの利便性に応じて適切な個数を設定してください。ひと目で把握できるように**できるだけ少ない個数が望ましい**です。
+
+ただし以下の場合には操作が1つの場合でも、あえてドロップダウンパネルの中に配置することがあります。
+
+- 類似する画面とのレイアウトの一貫性を保ちたいとき
+
+### 操作の順序
+**使用頻度が高い順**を推奨しますが、破壊的なアクション（例：オブジェクトの削除）に関しては、順序を下げて配置してください。  
+操作の順序の典型的な例は以下のとおりです。
+
+- 編集
+- 複製
+- 削除
+
+![開かれた操作ドロップダウン。編集・複製・削除の順に操作が並んでいる。](../images/multiple-operation-button-smaple.png)
+
+## レイアウト
+
+ドロップダウンの引き金となるボタン（トリガー）とドロップダウンパネルをあわせて、「ドロップダウンメニューボタン」と呼びます。
+
+ドロップダウンメニューボタンは、以下の要素で構成されています。
+
+1. トリガー
+2. ドロップダウンパネル
+
+![ドロップダウンメニューボタンの構成図](../images/multiple-operation-button-overview.png)
+
+### 1. トリガー
+複数の操作がまとまっていることを示唆するために、[Secondaryボタンのアイコン付き（右）](/products/components/button/#h3-2)に <FaCaretDownIcon alt="展開" /> アイコン（`FaCaretDownIcon`）を使っています。
+
+### 2. ドロップダウンパネル
+操作をリスト形式でまとめて表示します。  
+まとめ方は、[デザインパターン](#h2-2)から用途にあったものを選択してください。
+
+#### [WIP] モバイル
+
+##### 操作項目の高さは通常サイズのボタンに揃える
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に調整されるようコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
+
+デフォルトではドロップダウンパネル内の操作項目の高さは[`小`サイズのボタン](/products/components/button/#h3-7)に揃えられています。  
+モバイルでは、操作しやすいように通常サイズのボタンに揃えてください（TODO: ボタンの基準にリンクする）。
+
+```tsx editable noIframe
+<DropdownMenuButton trigger="｛オブジェクト名｝の操作">
+  <Button className="shr-py-0.75 shr-border-transparent hover:shr-border-transparent shr-border-solid">｛オブジェクト名｝を編集</Button>
+  <Button className="shr-py-0.75 shr-border-transparent hover:shr-border-transparent shr-border-solid">｛オブジェクト名｝を削除</Button>
+</DropdownMenuButton>
+```
+
+##### 横幅は画面幅の2/3程度までに収まるように調整する
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に調整されるようコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
+
+ドロップダウンパネルの横幅は画面幅の2/3程度までに収まるように調整してください。
+
+ドロップダウンパネルはパネル外を押すことで閉じることができますが、モバイルのような画面幅の狭い環境でもパネル外の押せる領域を十分に確保するためです。  
+また、横幅が画面幅いっぱいに広がったパネルとその下のコンテンツとの区別がつきづらくなってしまうことも防げます。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={DropdownMenuButtonPanelWidthDo} alt="Do" />
+    <Text slot="trigger">ドロップダウンパネルの横幅が画面幅の2/3程度に収まっていることで、パネルが閉じやすく、パネルの下のコンテンツとの区別しやすい。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={DropdownMenuButtonPanelWidthDont} alt="Dont" />
+    <Text slot="trigger">ドロップダウンパネルの横幅が画面いっぱいに広がっていることで、パネルが閉じづらく、パネルの下のコンテンツと区別しづらい。</Text>
+  </DoAndDont>
+</Cluster>
+
+##### 縦幅は画面内に収まるように調整する
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に調整されるようコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
+
+
+ドロップダウンパネルの縦幅は画面内に収まるように調整し、必要に応じてスクロールできるようにしてください。
+
+ドロップダウンパネルが画面外にはみ出ていると、はみ出ている操作を押すためにページをスクロールすることになります。この際モバイルのようなタッチ操作を中心とする環境でスクロールしたときに、誤ってパネル外を押すことで意図せずパネルが閉じてしまうことを避けるためです。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={DropdownMenuButtonPanelHeightDo} alt="Do" />
+    <Text slot="trigger">ドロップダウンパネルの縦幅が画面内に収まっていて、パネル内をスクロールすることで必要な操作を押せるようになっている。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={DropdownMenuButtonPanelHeightDont} alt="Dont" />
+    <Text slot="trigger">ドロップダウンパネルの縦幅が画面外にはみ出していると、ページをスクロールしたときに誤ってパネル外を押してしまい意図せずパネルが閉じてしまうことがある。</Text>
+  </DoAndDont>
+</Cluster>
+
+## デザインパターン
+用途によって5つのパターンを定義します。
+
+| # | パターン名 | 用途 |
+| :--- | :--- | :--- |
+| A | 単一のオブジェクトに対する操作 | オブジェクトに関する複数の操作をまとめるときに使います。   |
+| B | 単一のオブジェクトに対する操作（オブジェクト名省略） | 特定のオブジェクトの操作であることがレイアウト上自明なとき（例えば「[よくあるテーブル](/products/design-patterns/smarthr-table/)」の行の中など）に使います。 |
+| C | 同一の操作 | 同じ種類の操作をまとめるときに使います。  |
+| D | 異なる複数の操作 | A、B、Cのパターンに該当しないときに、異なる複数の操作をまとめるために使います。  |
+| E | ラベル省略（非推奨） | ボタンを配置するスペースを十分確保できないときの最終手段として検討できますが、基本的に利用を推奨しません。  |
+
+### A. 単一のオブジェクトに対する操作
+オブジェクトに関する操作をまとめるときに使います。
+
+| 要素 | 説明 |
+| :--- | :--- |
+| トリガー | ラベルは`{オブジェクト名}の操作`とします。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。 |
+
+```tsx editable noIframe
+<DropdownMenuButton trigger="｛オブジェクト名｝の操作">
+  <Button>｛オブジェクト名｝を編集</Button>
+  <Button>｛オブジェクト名｝を削除</Button>
+</DropdownMenuButton>
+```
+
+### B. 単一のオブジェクトに対する操作（オブジェクト名省略）
+操作の対象になるオブジェクトがレイアウト上、明らかなときに使います。  
+（例：「[よくあるテーブル](/products/design-patterns/smarthr-table/)」の行の中など）
+
+| 要素 | 説明 |
+| :--- | :--- |
+| トリガー | 基本的に「A. 単一のオブジェクトに対する操作」のようにオブジェクト名を表示しますが、狭い場所にレイアウトするときにオブジェクト名を省けます。ラベルは`操作`にします。  |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。トリガーのラベルと同様にオブジェクト名を省けます。 |
+
+```tsx editable noIframe
+<DropdownMenuButton trigger={{ size: "s", children: "操作" }}>
+  <Button>編集</Button>
+  <Button>削除</Button>
+</DropdownMenuButton>
+```
+
+### C. 同一の操作
+同じ種類の操作をまとめるときに使います。
+
+| 要素 | 説明 |
+| :--- | :--- |
+| トリガー | 操作をまとめるラベルにします。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 同じ種類の操作を入れます。 |
+
+```tsx editable noIframe
+<DropdownMenuButton trigger="一括操作">
+  <Button>｛オブジェクト名｝を一括追加</Button>
+  <Button>｛オブジェクト名｝を一括更新</Button>
+</DropdownMenuButton>
+```
+
+### D. 異なる複数の操作
+A、B、Cのパターンに該当しないときに、異なる複数の操作をまとめるために使います。
+
+| 要素 | 説明 |
+| :--- | :--- |
+| トリガー | ラベルは`その他の操作`とします。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 異なる複数の操作を入れます。 |
+
+```tsx editable noIframe
+<DropdownMenuButton trigger="その他の操作">
+  <Button>｛その他の操作1｝</Button>
+  <Button>｛その他の操作2｝</Button>
+  <Button>｛その他の操作3｝</Button>
+</DropdownMenuButton>
+```
+
+### E. ラベル省略（デスクトップでは非推奨）
+
+ボタンを配置するスペースを十分確保できないときの最終手段として検討できます。
+
+デスクトップでは基本的に利用を推奨しません。  
+モバイルはスペースが限られるため検討可能性は上がりますが、可能な限り避けることを推奨します。
+
+| 要素 | 説明 |
+| :--- | :--- |
+| トリガー | `trigger.onlyIcon` を設定するとボタンを [アイコンのみ](/products/components/button/#h3-2)で表示できます（標準：`FaEllipsisIcon`）。アイコンの変更は非推奨ですが、やむを得ない場合は`trigger.onlyIcon.component`で変更可能です。なお、何のボタンか識別できるようにするため**必ず`trigger.children`を設定**します。|
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | 操作を複数入れます。 |
+
+```tsx editable noIframe
+<Cluster gap={1} align="center">
+  <DropdownMenuButton trigger={{ onlyIcon: true, children: "その他の操作" }}>
+    <Button>｛操作1｝</Button>
+    <Button>｛操作2｝</Button>
+    <Button>｛操作3｝</Button>
+  </DropdownMenuButton>
+
+  <DropdownMenuButton trigger={{ onlyIcon: true, size: "s", children: "その他の操作" }}>
+    <Button>｛操作1｝</Button>
+    <Button>｛操作2｝</Button>
+    <Button>｛操作3｝</Button>
+  </DropdownMenuButton>
+</Cluster>
+```
+
+
+## 状態
+
+### 無効（disabled）
+
+#### トリガーの無効
+DropdownMenuButton自体を無効にすると、ドロップダウンパネルも操作できません。
+
+```tsx editable noIframe
+<DropdownMenuButton trigger="｛オブジェクト名｝の操作" disabled>
+  <Button>｛オブジェクト名｝を編集</Button>
+  <Button>｛オブジェクト名｝を削除</Button>
+</DropdownMenuButton>
+```
+
+#### ドロップダウンパネルの操作の無効
+ドロップダウンパネル内の操作を無効にする場合、[ButtonのdisabledReason](/products/components/button/#h3-10)を使って**無効状態の理由を表示します。**
+
+```tsx editable noIframe
+<DropdownMenuButton trigger="｛オブジェクト名｝の操作">
+  <Button>｛オブジェクト名｝を編集</Button>
+  <Button disabled disabledReason={{ message: '無効状態の理由' }}>｛オブジェクト名｝を削除</Button>
+</DropdownMenuButton>
+```
+
+
+## Props
+
+<ComponentPropsTable name="DropdownMenuButton" />

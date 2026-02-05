@@ -1,0 +1,109 @@
+---
+title: 'SortDropdown'
+description: '主に表の並べ替え操作を統一するためのコンポーネントです。並べ替え項目と並び順を指定でき、ボタンラベルとアイコンで現在の並び順を表します。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import { ResponseMessage, BaseColumn } from 'smarthr-ui'
+
+主に表の並べ替え操作を統一するためのコンポーネントです。並べ替え項目と並び順を指定でき、ボタンラベルとアイコンで現在の並び順を表します。
+
+<ComponentStory name="SortDropdown" />
+
+## 使用上の注意
+
+テーブルではないコレクションを並べ替える時に使います。テーブルの場合は[Th](/products/components/table/)の`sort`プロパティを使ってください。
+
+## レイアウト
+
+### [WIP] モバイル
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に切り替わるようにコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
+
+#### ドロップダウンパネル
+
+モバイル端末は画面が小さく誤操作しやすいため、ドロップダウンパネルは[ActionDialog](/products/components/dialog/action-dialog/)を用いてモーダルに表示します。
+
+```tsx editable noIframe withStyled
+const sortFields = [
+  { label: '基準日', value: 'date' },
+  { label: '組織図・名簿', value: 'organization' },
+]
+
+const sortFieldsMap = Object.fromEntries(
+  sortFields.map((field) => [field.value, field])
+)
+
+const sortAccessary = {
+  asc: {
+    label: '昇順',
+    icon: <FaArrowUpWideShortIcon />,
+  },
+  desc: {
+    label: '降順',
+    icon: <FaArrowDownWideShortIcon />,
+  },
+}
+
+const SortDropdownForMobile = () => {
+  const [sortKey, setSortKey] = React.useState('date')
+  const [sortOrder, setSortOrder] = React.useState('desc')
+
+  return (
+    <>
+      <RemoteDialogTrigger targetId="sort-dropdown-dialog">
+        <Button suffix={sortAccessary[sortOrder].icon}>{sortFieldsMap[sortKey].label}（{sortAccessary[sortOrder].label}）</Button>
+      </RemoteDialogTrigger>
+      <RemoteTriggerFormDialog
+        id="sort-dropdown-dialog"
+        title="並べ替え"
+        actionText="適用"
+        size="XS"
+        onSubmit={(close, e) => {
+          e.preventDefault()
+          const formData = new FormData(e.currentTarget)
+          setSortKey(formData.get('sortField'))
+          setSortOrder(formData.get('sortOrder'))
+          close()
+        }}
+      >
+        <Stack>
+          <FormControl label="並べ替え項目">
+            <Select
+              name="sortField"
+              options={sortFields}
+              defaultValue={sortKey}
+            />
+          </FormControl>
+          <Fieldset legend="並び順" innerMargin={0.5}>
+            <Cluster gap={1.25}>
+              <RadioButton
+                defaultChecked={sortOrder === 'asc'}
+                name="sortOrder"
+                value="asc"
+              >
+                {sortAccessary['asc'].label}
+              </RadioButton>
+              <RadioButton
+                defaultChecked={sortOrder === 'desc'}
+                name="sortOrder"
+                value="desc"
+              >
+                {sortAccessary['desc'].label}
+              </RadioButton>
+            </Cluster>
+          </Fieldset>
+        </Stack>
+      </RemoteTriggerFormDialog>
+    </>
+  )
+}
+
+render(<SortDropdownForMobile />)
+```
+
+## Props
+
+<ComponentPropsTable name="SortDropdown" />

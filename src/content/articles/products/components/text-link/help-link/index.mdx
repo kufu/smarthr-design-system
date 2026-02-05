@@ -1,0 +1,30 @@
+---
+title: 'HelpLink'
+description: 'ヘルプページを開くためのテキストリンクです。'
+---
+
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import { FaCircleQuestionIcon } from 'smarthr-ui'
+import { OpenInNewTabIconInTextLink } from '../_components/OpenInNewTabIconInTextLink'
+
+ヘルプページを開くためのテキストリンクです。
+
+<ComponentStory name="HelpLink" />
+
+## レイアウト
+HelpLinkは、リンクの開き方（同ウィンドウまたは新規ウィンドウ）に応じてアイコンの配置を自動で制御します。
+
+- リンクを同ウィンドウで開く場合は、テキストの左側に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）が配置されます。
+- リンクを新規ウィンドウで開く場合には、テキストの右側に<OpenInNewTabIconInTextLink /> アイコン（`FaExternalLinkAltIcon`）が配置されます。
+
+```tsx editable
+<HelpLink href="/" target="_blank">ヘルプセンターを開くテキストリンク</HelpLink>
+```
+
+## ライティング
+ヘルプページを開くリンクのテキストについては[ヘルプページへの動線](/products/contents/ui-text/help-link/)を参照してください。
+
+## Props
+
+<ComponentPropsTable name="HelpLink" />

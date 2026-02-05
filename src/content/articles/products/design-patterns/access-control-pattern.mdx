@@ -3,7 +3,7 @@ title: '権限による表示制御'
 description: '権限によるオブジェクトの表示・非表示・disabledの基準を定義します。'
 order: 8
 ---
-import { FaInfoCircleIcon } from 'smarthr-ui'
+import { FaCircleInfoIcon } from 'smarthr-ui'
 
 権限によるオブジェクトの表示・非表示・disabledの基準を定義します。
 
@@ -20,8 +20,8 @@ import { FaInfoCircleIcon } from 'smarthr-ui'
 | 表示パターン | 説明 | 権限一覧での例 |
 | :--- | :--- | :--- |
 | A | 操作に関わるUIは非表示とし、理由も明示しない。 | （管理者権限以外は権限設定を操作できないため、この条件には当てはまらない） |
-| B | 操作に関わるUIは非表示とし、その理由を明示する。表示方法は個別に検討する。（[理由の表示方法](#h3-1)） | システム標準の権限は削除できないため、非表示にする。<br />理由は、権限名の横の <FaInfoCircleIcon alt="情報通知" color="TEXT_GREY" /> アイコンと[Tooltip](/products/components/tooltip/)で伝える。 |
-| C | 操作に関わるUIはdisabledとし、その理由を明示する。（[理由の表示方法](#h3-1)） | アカウントに紐づいているカスタム権限は削除できないため、disabledにする。<br />理由は、[disabledにしたボタンの`disabledDetail`](/products/components/button/#h3-8)で伝える。 |
+| B | 操作に関わるUIは非表示とし、その理由を明示する。表示方法は個別に検討する。（[理由の表示方法](#h3-1)） | システム標準の権限は削除できないため、非表示にする。<br />理由は、権限名の横の <FaCircleInfoIcon alt="情報通知" color="TEXT_GREY" /> アイコンと[Tooltip](/products/components/tooltip/)で伝える。 |
+| C | 操作に関わるUIはdisabledとし、その理由を明示する。（[理由の表示方法](#h3-1)） | アカウントに紐づいているカスタム権限は削除できないため、disabledにする。<br />理由は、[disabledにしたボタンの`disabledReason`](/products/components/button/#h3-8)で伝える。 |
 | D | 操作に関わるUIを表示する。 | 上記に当てはまらない場合に編集・複製・削除ボタンを表示する。 |
 
 
@@ -34,9 +34,8 @@ import { FaInfoCircleIcon } from 'smarthr-ui'
 
 - 基本的に、非表示やdisabledにしたオブジェクトの付近に**理由が見えるように表示**します。
 - 理由を配置するスペースがない場合、以下のような方法を検討します。
-  - ボタンをdisabledにする場合、[Buttonコンポーネントの`disabledDetail`](/products/components/button/#h3-8)を使用する。
-  - オブジェクトの付近に <FaInfoCircleIcon alt="情報通知" color="TEXT_GREY" /> アイコン（`FaInfoCircleIcon`）を配置し、[Tooltip](/products/components/tooltip/)と組み合わせて理由を表示する。（参考：[Tooltipのトリガーパターン](/products/components/tooltip/#h3-3)）
-
+  - ボタンをdisabledにする場合、[Buttonコンポーネントの`disabledReson`](/products/components/button/#h3-8)を使用する。
+  - オブジェクトの付近に <FaCircleInfoIcon alt="情報通知" color="TEXT_GREY" /> アイコン（`FaCircleInfoIcon`）を配置し、[Tooltip](/products/components/tooltip/)と組み合わせて理由を表示する。（参考：[Tooltipのトリガーパターン](/products/components/tooltip/#h3-3)）
 
 ## ライティングパターン
 ### 理由の書き方

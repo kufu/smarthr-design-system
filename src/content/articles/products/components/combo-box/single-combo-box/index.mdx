@@ -1,0 +1,110 @@
+---
+title: 'SingleCombobox'
+description: '選択肢の中から単一の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。'
+---
+import { Image } from 'astro:assets'
+import { SingleCombobox, Cluster, Text, BaseColumn, ResponseMessage } from 'smarthr-ui'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import singleComboboxDo from '../images/single-combo-box-do.png'
+import singleComboboxDont from '../images/single-combo-box-dont.png'
+
+選択肢の中から単一の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。
+
+<ComponentStory name="SingleCombobox" />
+
+## 使用上の注意
+
+### ユースケースに応じてコンポーネントを使い分ける
+詳しくは[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
+
+#### 単一選択の場合に使用する
+
+値を複数選択させたい場合は[MultiCombobox](/products/components/combo-box/multi-combo-box/)を使用してください。
+
+#### 選択肢が6個以上の場合に使用する
+
+選択肢の数が6個以上で、ユーザーにテキスト入力で値を追加させたり、値を絞り込んで選択させたい場合はSingleComboboxを使用します。
+
+選択肢が5個以下であれば、初期状態で選択肢が一覧できる[RadioButton](/products/components/radio-button/)を使用してください。
+ただし、RadioButtonを配置する十分スペースがない場合は、SingleComboboxや[Select](/products/components/select/)の使用を検討します。
+
+### 入力補助のヒントメッセージとしてプレースホルダを使用しない
+
+SingleComboboxで入力補助のヒントメッセージを表示したい場合は`dropdownHelpMessage`や[FormControl](/products/components/form-control/)の`helpMessage`を使用し、プレースホルダ（`placeholder`）は使用しないでください。プレースホルダを使用した場合、テキスト入力するとプレースホルダの内容が確認できなくなるため、入力補助として成立しないためです。
+
+`dropdownHelpMessage`はドロップダウンパネルを表示したときのみ表示されるため、ヒントメッセージを常に表示したい場合は、[FormControl](/products/components/form-control/)の`helpMessage`を使用してください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={singleComboboxDo} alt="Do" width="346" />
+    <Text slot="label">ユーザーがテキストを入力しても入力補助としてヒントメッセージを確認できる</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={singleComboboxDont} alt="Dont" width="346" />
+    <Text slot="label">ユーザーがテキストを入力するとプレースホルダが確認できなくなり、入力補助として機能しない</Text>
+  </DoAndDont>
+</Cluster>
+
+## 状態
+
+### 無効（disabled）
+
+入力および選択操作ができない状態を表現したスタイルです。
+
+SingleComboboxに`disabled`を適用すると、テキスト入力不可になりドロップダウンパネルも表示されないため、ユーザーが選択肢を確認できなくなる点に注意してください。
+
+```tsx editable noIframe
+<>
+  <SingleCombobox
+    name="disabled"
+    items={[
+      { label: 'option 1', value: 'value-1' },
+      { label: 'option 2', value: 'value-2' },
+      { label: 'option 3', value: 'value-3' }
+    ]}
+    selectedItem={{ label: 'option 1', value: 'value-1' }}
+    dropdownHelpMessage="テキスト入力で検索できます。"
+    disabled
+  />
+</>
+```
+
+ユーザーはなぜ無効になっているのかわからないことがあります。[権限による表示制御](/products/design-patterns/access-control-pattern/)のデザインパターンを参考にして、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討してください。
+
+### 選択肢にない値の追加
+
+入力された値がリストにない場合、追加して選択できる状態を表現したスタイルです。
+
+ユーザーがその場で選択肢を追加できるようにしたい場合は、SingleComboboxに`creatable`を適用してコールバック関数`onAdd`を適切に実装してください。
+
+```tsx editable noIframe
+<>
+  <SingleCombobox
+    name="onAdd"
+    items={[
+      { label: 'option 1', value: 'value-1' },
+      { label: 'option 2', value: 'value-2' },
+      { label: 'option 3', value: 'value-3' }
+    ]}
+    selectedItem={{ label: 'option 1', value: 'value-1' }}
+    dropdownHelpMessage="テキスト入力で検索できます。"
+    creatable
+    onAdd={(label) => {
+      console.log(`Added: ${label}`)
+    }}
+  />
+</>
+```
+
+## [WIP] モバイル
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルに適したSingleComboboxを提供予定です。</ResponseMessage>
+</BaseColumn>
+
+## Props
+
+<ComponentPropsTable name="SingleCombobox" showTitle />

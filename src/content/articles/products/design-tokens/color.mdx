@@ -73,6 +73,46 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
   <ColorPalette colorValue="rgba(255,255,255,0)" colorName="TRANSPARENT" description="デザインツールだけで使う専用スタイル。コンポーネントの枠線などを消すときのAppearanceに使用" />
 </ColorPalettesWrapper>
 
+
+### チャート（グラフ）
+
+チャートで使用する色を定めています。チャートには指定された順序で色を使用します。
+
+#### 多色チャート
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#00c4cc" colorName="CHART_COLOR_1" description="多色チャート色1" />
+  <ColorPalette colorValue="#ffcd00" colorName="CHART_COLOR_2" description="多色チャート色2" />
+  <ColorPalette colorValue="#ff9100" colorName="CHART_COLOR_3" description="多色チャート色3" />
+  <ColorPalette colorValue="#e65537" colorName="CHART_COLOR_4" description="多色チャート色4" />
+  <ColorPalette colorValue="#2d4b9b" colorName="CHART_COLOR_5" description="多色チャート色5" />
+  <ColorPalette colorValue="#2d7df0" colorName="CHART_COLOR_6" description="多色チャート色6" />
+  <ColorPalette colorValue="#69d7ff" colorName="CHART_COLOR_7" description="多色チャート色7" />
+  <ColorPalette colorValue="#4bb47d" colorName="CHART_COLOR_8" description="多色チャート色8" />
+  <ColorPalette colorValue="#05878c" colorName="CHART_COLOR_9" description="多色チャート色9" />
+  <ColorPalette colorValue="#005a64" colorName="CHART_COLOR_10" description="多色チャート色10" />
+</ColorPalettesWrapper>
+
+#### 単色チャート
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#a1e3e6" colorName="SINGLE_CHART_COLOR_1" description="単色チャート色1" />
+  <ColorPalette colorValue="#00c4cc" colorName="SINGLE_CHART_COLOR_2" description="単色チャート色2" />
+  <ColorPalette colorValue="#00acb3" colorName="SINGLE_CHART_COLOR_3" description="単色チャート色3" />
+  <ColorPalette colorValue="#05868b" colorName="SINGLE_CHART_COLOR_4" description="単色チャート色4" />
+  <ColorPalette colorValue="#055659" colorName="SINGLE_CHART_COLOR_5" description="単色チャート色5" />
+  <ColorPalette colorValue="#033033" colorName="SINGLE_CHART_COLOR_6" description="単色チャート色6" />
+</ColorPalettesWrapper>
+
+#### その他のチャート色
+
+その他のチャート色は、チャート内の「その他」を示す項目に使います。
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#ebebeb" colorName="OTHER_CHART_COLOR" description="「その他」項目に使う色" />
+</ColorPalettesWrapper>
+
+
 ## プリミティブトークン
 **セマンティックトークンだけで視覚設計を十分に行なえない場合のみ**、プリミティブトークンから色を使用できます。
 
@@ -82,8 +122,9 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
   <ColorPalette colorValue="#fff" colorName="WHITE"/>
   <ColorPalette colorValue="#0077c7" colorName="BLUE_100" />
   <ColorPalette colorValue="#0071c1" colorName="BLUE_101" />
+  <ColorPalette colorValue="#0f7f85" colorName="GREEN_100" />
+  <ColorPalette colorValue="#f56121" colorName="ORANGE_100" />
   <ColorPalette colorValue="#e01e5a" colorName="RED_100" />
-  <ColorPalette colorValue="#ff8800" colorName="ORANGE_100" />
   <ColorPalette colorValue="#ffcc17" colorName="YELLOW_100" />
   <ColorPalette colorValue="#00c4cc" colorName="SMARTHR_BLUE"/>
 </ColorPalettesWrapper>

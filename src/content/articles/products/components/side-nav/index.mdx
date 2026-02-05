@@ -1,0 +1,26 @@
+---
+title: 'SideNav'
+description: 'ビューを適切な単位で分割して縦方向に並べ、切り替えるためのコンポーネントです。'
+---
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+
+ビューを適切な単位で分割して縦方向に並べ、切り替えるためのコンポーネントです。項目設定のビューを切り替えるときなどに使います。
+
+<ComponentStory name="SideNav" />
+
+## 使用上の注意
+
+### TabBarで代用できないか検討する
+SideNavは、異なるオブジェクトやビューを縦方向にスタックし、切り替えるためのコンポーネントです。スタックするアイテムが多いときやナビゲーション機能を持たせたいときに適していますが、そうでない場合はTabBarの使用を検討してください。
+
+### 入れ子で使用しない
+SideNavの影響範囲内のビューでは、SideNavの使用を避けてください。SideNav内のビューを分割したい場合はTabBarを使用してください。また、TabBar内でビューを分割したい場合はSideNavを使用してください。
+
+## モバイル
+複数カラムを前提としたレイアウトになってしまうため、モバイルでは使わないでください。ページや項目を選択する専用の画面を挟むなど、別の切り替え機構を検討してください。
+
+## Props
+
+<ComponentPropsTable name="SideNav" showTitle />
+<ComponentPropsTable name="SideNavItemButton" showTitle />

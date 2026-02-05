@@ -4,7 +4,7 @@ description: 'aタグの代わりに使用するコンポーネントです。�
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import { FaUpRightFromSquareIcon, FaCircleQuestionIcon} from 'smarthr-ui'
+import { OpenInNewTabIconInTextLink } from './_components/OpenInNewTabIconInTextLink'
 
 `a`タグの代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。
 
@@ -16,7 +16,7 @@ import { FaUpRightFromSquareIcon, FaCircleQuestionIcon} from 'smarthr-ui'
 
 `TextLink`は、ページを移動するためのリンクです。それ以外の処理を実行するボタンとして使わないでください。
 
-視覚的優先度の低いボタンを表現したい場合は、[Button variant="text"](/products/components/button/#h3-4)を使ってください。
+視覚的優先度の低いボタンを表現したい場合は、[Tertiaryボタン](/products/components/button/#h3-3)を使ってください。
 
 ## レイアウト
 
@@ -48,7 +48,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 テキストリンクで別の画面に移動することで、現在の画面での入力や作業が中断され作業効率が著しく落ちる場合には、新規ウィンドウ（新規タブ）でテキストリンクを開くことを検討します。
 
-- TextLinkは、**テキストの右側**に <FaUpRightFromSquareIcon alt="新規ウィンドウ" color="TEXT_LINK" /> アイコン（`FaUpRightFromSquareIcon`）を自動で配置するため、個別に設定する必要はありません。
+- TextLinkは、**テキストの右側**に <OpenInNewTabIconInTextLink /> アイコン（`OpenInNewTabIcon`）を自動で配置するため、個別に設定する必要はありません。
     - リンク先がSmartHRの内部ページ、外部サイトに関わらず表示します。
 - `アイコン付き（左）`（プレフィックス）は指定しないでください。
 
@@ -58,15 +58,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 
 #### ヘルプセンターを開くテキストリンク
 
-- [ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンクには、**テキストの左側**に <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）を配置することを**推奨**します。
-  - 詳細は[ヘルプページへの動線](/products/contents/ui-text/help-link/#h3-2)を参照してください。
-- `アイコン付き（右）`（サフィックス）は指定しないでください。
-
-なお、ヘルプセンターを新規ウィンドウで開く場合には、[新規ウィンドウで開くテキストリンク](#h4-1)を優先して <FaCircleQuestionIcon alt="ヘルプセンター" color="TEXT_LINK" /> アイコン（`FaCircleQuestionIcon`）は配置しないでください。
-
-```tsx editable
-  <TextLink href="/" prefix={<FaCircleQuestionIcon />}>ヘルプセンターを開くテキストリンク</TextLink>
-```
+[ヘルプセンター](https://support.smarthr.jp/ja/)を開くテキストリンクは[HelpLink](/products/components/text-link/help-link/)として提供しています。
 
 #### 一階層上のコンテンツに戻るテキストリンク
 

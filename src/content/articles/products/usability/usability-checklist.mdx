@@ -35,9 +35,9 @@ import TableReel from './_components/TableReel'
 <thead>
 <tr>
     <Th contentWidth={1}>#</Th>
-    <Th contentWidth={5}>カテゴリ</Th>
-    <Th>チェック内容</Th>
-    <Th contentWidth={6}>チェック内容<br />の達成基準</Th>
+    <Th contentWidth={4} style={{ minWidth: '4em' }}>カテゴリ</Th>
+    <Th style={{ minWidth: '20em' }}>チェック内容</Th>
+    <Th contentWidth={6} style={{ minWidth: '6em' }}>チェック内容<br />の達成基準</Th>
     <Th contentWidth={16}>関連する品質測定量<br />（JIS X 25023:2018）</Th>
     <Th contentWidth={11}>関連する副特性<br />（JIS X 25010:2013）</Th>
 </tr>
@@ -90,7 +90,7 @@ import TableReel from './_components/TableReel'
     <Td>[達成基準2](#h4-1)</Td>
     {/* textlint-disable */}
     <Td>`UIn-1-S ユーザインタフェースの外観の快美性`</Td>
-    <Td>ユーザインタフェース快美性</Td>
+    <Td>ユーザインタフェース快美性、アクセシビリティ</Td>
     {/* textlint-enable */}
 </tr>
 <tr>
@@ -100,7 +100,7 @@ import TableReel from './_components/TableReel'
     <Td>[達成基準2](#h4-1)</Td>
     {/* textlint-disable */}
     <Td>`UOp-1-G 操作一貫性`<br />`UOp-8-S 外観の一貫性`<br />`UIn-1-S ユーザインタフェースの外観の快美性`</Td>
-    <Td>運用操作性、ユーザインタフェース快美性</Td>
+    <Td>運用操作性、ユーザインタフェース快美性、アクセシビリティ</Td>
     {/* textlint-enable */}
 </tr>
 <tr>
@@ -129,7 +129,7 @@ import TableReel from './_components/TableReel'
     <Td>「[モバイルレイアウト](/products/design-patterns/mobile-friendly-layout/)」の基準に沿っているか</Td>
     <Td>[達成基準2](#h4-1)</Td>
     <Td>`UOp-1-G 操作一貫性`<br />`UOp-8-S 外観の一貫性`</Td>
-    <Td>運用操作性</Td>
+    <Td>運用操作性、アクセシビリティ</Td>
 </tr>
 <tr>
     <Td>11</Td>
@@ -137,7 +137,7 @@ import TableReel from './_components/TableReel'
     <Td>ユーザーへの通知・フィードバックの出し方が「[フィードバック](/products/design-patterns/feedback/)」の基準に沿っているか</Td>
     <Td>[達成基準2](#h4-1)</Td>
     <Td>`UOp-1-G 操作一貫性`<br />`UOp-8-S 外観の一貫性`<br />`UOp-2-G メッセージ明確性`</Td>
-    <Td>運用操作性</Td>
+    <Td>運用操作性、アクセシビリティ</Td>
 </tr>
 <tr>
     <Td>12</Td>
@@ -170,7 +170,7 @@ import TableReel from './_components/TableReel'
     <Td>[達成基準2](#h4-1)</Td>
     {/* textlint-disable */}
     <Td>`UEp-3-S ユーザエラー回復性`</Td>
-    <Td>ユーザエラー防止性</Td>
+    <Td>ユーザエラー防止性、アクセシビリティ</Td>
     {/* textlint-enable */}
 </tr>
 <tr>
@@ -197,7 +197,7 @@ import TableReel from './_components/TableReel'
     <Td>各[コンポーネント](/products/components/)の基準に沿った利用方法をしているか</Td>
     <Td>[達成基準2](#h4-1)</Td>
     <Td>`UOp-1-G 操作一貫性`<br />`UOp-8-S 外観の一貫性`</Td>
-    <Td>運用操作性</Td>
+    <Td>運用操作性、アクセシビリティ</Td>
     
 </tr>
 <tr>
@@ -223,8 +223,16 @@ import TableReel from './_components/TableReel'
     <Td>[達成基準2](#h4-1)</Td>
     <Td>`ULe-3-S エラーメッセージ理解性`<br />`UEp-2-S 利用者入力エラーの訂正`</Td>
     {/* textlint-disable */}
-    <Td>習得性、ユーザエラー防止性</Td>
+    <Td>習得性、ユーザエラー防止性、アクセシビリティ</Td>
     {/* textlint-enable */}
+</tr>
+<tr>
+    <Td>22</Td>
+    <Td>アクセシビリティ</Td>
+    <Td>[アクセシビリティ簡易チェックリスト](/accessibility/check-list/)を用いてデザインファイルをチェックしたか</Td>
+    <Td>[達成基準2](#h4-1)</Td>
+    <Td>`UAc1G 障害のある利用者に対するアクセシビリティ`</Td>
+    <Td>アクセシビリティ</Td>
 </tr>
 </tbody>
 </Table>
@@ -322,3 +330,6 @@ import UsabilityCheckListWarning from './_components/UsabilityCheckListWarning'
 また、フローチャートをどのように辿ったかを説明することで、他者に自身の判断プロセスを伝えることにも役立てられます。
 
 ![基準判定フローチャート](./images/guideline-check-flowchart.png)
+
+## 更新履歴
+- 2025/12/12：使用性チェックリストにアクセシビリティに関する項目（No.22）を追加

@@ -4,6 +4,12 @@ description: ' '
 order: 23
 ---
 
+import { Chip, Cluster } from 'smarthr-ui'
+
+<Cluster gap={0.25} style={{ margin: '-20px 0 -80px' }}>
+  <Chip>実装</Chip>
+</Cluster>
+
 ## 概要
 この基準では、リストに`<ul>`, `<ol>`, `<dl>`要素を使用していることを確認してください。これらの要素を使用することで、スクリーンリーダーなどの支援技術による読み上げが適切に行なわれるようになります。
 
@@ -23,7 +29,6 @@ order: 23
 ## テスト方法
 1. **コードの検証**:
     - ウェブページのソースコードを確認し、リストが適切な要素でマークアップされているかを確認します。
-   
 
 ## 関連するWCAG2.1達成基準
 - [達成基準 1.3.1: 情報及び関係性を理解する](https://waic.jp/translations/WCAG21/Understanding/info-and-relationships.html)

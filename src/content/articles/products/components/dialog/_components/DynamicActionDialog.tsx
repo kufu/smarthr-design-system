@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { ActionDialog, Button, Text } from 'smarthr-ui';
+import { ActionDialog, Button, IntlProvider, Text } from 'smarthr-ui';
 
 export default function DynamicActionDialog() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
+    <IntlProvider locale="ja">
       <Button onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
       <ActionDialog
         isOpen={isOpen}
@@ -13,7 +13,7 @@ export default function DynamicActionDialog() {
         // closeText="キャンセル"
         actionText="実行"
         actionTheme="primary"
-        width={480}
+        size="XS"
         onClickClose={() => {
           setIsOpen(false);
         }}
@@ -24,6 +24,6 @@ export default function DynamicActionDialog() {
       >
         <Text>本文が入ります。</Text>
       </ActionDialog>
-    </>
+    </IntlProvider>
   );
 }

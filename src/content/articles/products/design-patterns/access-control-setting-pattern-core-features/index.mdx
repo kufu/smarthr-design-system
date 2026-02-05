@@ -6,7 +6,7 @@ order: 101
 
 import { Image } from 'astro:assets'
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { FaExclamationTriangleIcon, Cluster, Text } from 'smarthr-ui'
+import { FaTriangleExclamationIcon, Cluster, Text } from 'smarthr-ui'
 
 import imageUrl6Do from './images/access-control-setting-pattern6-do.png'
 import imageUrl6Dont from './images/access-control-setting-pattern6-dont.png'
@@ -68,7 +68,7 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 
 ![スクリーンショット: 補足テキストの挿入例](./images/access-control-setting-pattern8.png)
 
-影響する範囲が複雑な場合など特殊な条件が含まれる設定項目には、<FaExclamationTriangleIcon alt="警告" color="WARNING" /> アイコン（`FaExclamationTriangleIcon`）と補足テキストを設定項目の下部に表示しユーザーに注意を促すことで、意図しない選択状態になることを防ぎます。
+影響する範囲が複雑な場合など特殊な条件が含まれる設定項目には、<FaTriangleExclamationIcon alt="警告" color="WARNING" /> アイコン（`FaTriangleExclamationIcon`）と補足テキストを設定項目の下部に表示しユーザーに注意を促すことで、意図しない選択状態になることを防ぎます。
 
 ![スクリーンショット: ユーザーに注意を促す補足テキストの挿入例](./images/access-control-setting-pattern9.png)
 
@@ -120,7 +120,7 @@ SmartHR基本機能の共通設定おける、操作権限を設定する項目�
 
 ![スクリーンショット: 設定項目の縦並びレイアウトの例](./images/access-control-setting-pattern7.png)
 
-（参考: [ラジオボタンの並び順](/products/components/radio-button/#h4-3)）
+（参考: [ラジオボタンの並び順](/products/components/radio-button/#h4-3), [チェックボックスの並び順](/products/components/check-box/#h4-2)）
 
 ### 組み合わせが決まっている操作権限項目で、一部未対応の設定項目がある場合
 
@@ -185,7 +185,7 @@ CRUD操作の「作成」「更新」「削除」は、基本的に「閲覧」�
 
 ![スクリーンショット: 操作権限項目を条件や範囲で指定したい場合の例](./images/access-control-setting-pattern16.png)
 
-より詳細に条件や範囲を指定したい場合は、[Select](/products/components/select/)や[MultiComboBox](/products/components/combo-box/)などの使用を検討します。
+より詳細に条件や範囲を指定したい場合は、[Select](/products/components/select/)や[MultiCombobox](/products/components/combo-box/)などの使用を検討します。
 
 ![スクリーンショット: ドロップダウンリストやマルチコンボボックスを使用した操作権限項目の例](./images/access-control-setting-pattern17.png)
 

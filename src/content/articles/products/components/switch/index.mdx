@@ -1,0 +1,67 @@
+---
+title: 'Switch'
+description: 'オン・オフを切り替えるコンポーネントです。状態の切り替えは即時で反映されます。'
+---
+
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import { ResponseMessage, BaseColumn } from 'smarthr-ui'
+
+Switchコンポーネントは、オン・オフを切り替えます。状態の切り替えは即時で反映されます。
+
+<ComponentStory name="Switch" />
+
+## 使用上の注意
+
+### Checkbox との違い
+
+Switchは操作時に即時実行されます。Checkboxと異なり、送信ボタンは不要です。
+
+また、未確定（`:indeterminate`）の状態を持ちません。内部的に `role=switch` を使っています。
+
+### SegmentedControl との違い
+
+Switchはオン・オフのどちらか1つの状態を表します。対する概念ではあるが、異なる状態を表す場合はSegmentedControlを使ってください。
+
+```tsx editable
+<SegmentedControl size="s" options={[
+  { value: 'list view', content: 'リスト表示' },
+  { value: 'map view', content: 'マップ表示' },
+]} value="list view" />
+```
+
+### ラベルの表示
+
+Switchは基本的にラベルを必要とします。周囲のコンテキストによって省略できます。
+
+また、利用者が状態を認識しにくくなるため、Switchの状態が切り替わってもラベルは変更しないでください。
+
+```tsx editable
+  <Switch>アーカイブを表示</Switch>
+```
+
+## レイアウト
+
+### [WIP] モバイル
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルで自動的に切り替わるようにコンポーネントを改修予定です。</ResponseMessage>
+</BaseColumn>
+
+Switchは小さくモバイルでは操作しづらいため、サイズを大きくしてください。
+
+```tsx editable noIframe
+<Switch className="before:shr-size-[theme(fontSize.xl)] shr-w-[calc(theme(fontSize.xl)*2)] has-[:checked]:before:shr-ms-[theme(fontSize.xl)] [&_.smarthr-ui-Switch-iconWrapper]:shr-size-[theme(fontSize.xl)] [&_.smarthr-ui-Switch-iconWrapper_svg]:shr-size-[theme(fontSize.base)]">
+  ラベル
+</Switch>
+```
+
+## Props
+
+<ComponentPropsTable name="Switch" />
+
+## 関連リンク
+
+* [Checkbox](/products/components/check-box/)
+* [SegmentedControl](/products/components/segmented-control/)
+* [ARIA: switch ロール - アクセシビリティ | MDN](https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/Roles/switch_role)

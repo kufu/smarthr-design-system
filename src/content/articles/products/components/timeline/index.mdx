@@ -1,0 +1,41 @@
+---
+title: 'Timeline'
+description: '情報を時間の流れに沿って、見やすく整理・表示するコンポーネントです。'
+smarthr-ui: 'Timeline'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+情報を時間の流れに沿って、見やすく整理・表示するコンポーネントです。
+
+<ComponentStory name="Timeline" />
+
+## 状態
+
+### 現在のアイテム（current）
+
+`current` プロパティを `true` にすると、そのアイテムが強調表示されます。
+
+```tsx editable
+<Timeline>
+  <TimelineItem datetime="2024-01-03T16:45:00">
+    通常のアイテム
+  </TimelineItem>
+  <TimelineItem datetime="2024-01-02T14:30:00" current>
+    現在のアイテム
+  </TimelineItem>
+  <TimelineItem datetime="2024-01-01T09:00:00">
+    通常のアイテム
+  </TimelineItem>
+</Timeline>
+```
+
+## Props
+
+### Timeline
+
+<ComponentPropsTable name="Timeline" />
+
+### TimelineItem
+
+<ComponentPropsTable name="TimelineItem" />

@@ -1,0 +1,54 @@
+---
+title: 'Container'
+description: '主要なコンテンツ幅を管理するためのコンポーネントです。'
+---
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+
+主要なコンテンツ幅を管理するためのコンポーネントです。
+
+<ComponentStory name="Container" />
+
+## レイアウト
+
+指定された大きさを保ちながら、左右中央に配置されます。コンテナの大きさよりウィンドウ幅が小さい場合は、パディングを保ちながらコンテナの幅が狭くなります。
+
+### コンテナの大きさ
+
+`size` props を使ってコンテナの大きさを指定できます。デフォルトは`DEFAULT`です。
+
+次のような場合には、`WIDE`や`FULL`を検討します。
+
+- 大量のデータを表示する場合
+- [サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)や[コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)など、1つのカラムに1ページ相当の情報を表示する場合
+
+次のような場合には、`NARROW`を検討します。
+
+- ページに表示する情報が少ない場合
+- 入力要素が中心の画面の場合
+
+大きさ | 幅トークン | 値（px）
+:--- | :--- | :---
+`NARROW` | `col6` | 880px
+`DEFAULT` | `col8` | 1184px
+`WIDE` | `col9` | 1336px
+`FULL` | - | `width: 100%`
+
+### コンテナのパディング
+
+`padding` props を使ってコンテナのパディングを指定できます。
+パディングはコンテナの幅には含まれません。
+
+デフォルトで上下左右2文字（`32px`）ずつのパディングが設定されています。上書き可能です。
+
+#### モバイルでの表示
+
+デフォルトで上下1.5文字（`24px`）、左右1文字（`16px`）ずつのパディングが設定されます。`padding`propsの`narrowModeBlock`と`narrowModeInline`で上書き可能です。
+
+## Props
+
+<ComponentPropsTable name="Container" />
+
+## 関連リンク
+
+- [幅トークン](/products/design-tokens/width/)
