@@ -15,7 +15,7 @@ jobs:
         working-directory: ./scripts/content-checker
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Setup pnpm
       - uses: pnpm/action-setup@v4
