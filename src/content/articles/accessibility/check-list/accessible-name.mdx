@@ -33,13 +33,10 @@ import { Chip, Cluster } from 'smarthr-ui'
 ## テスト方法
 1. **アクセシブルネームの確認**:
     - 開発者ツールやアクセシビリティチェックツールを使用して、フォームの各要素にアクセシブルネームが設定されているかを確認します。[ユーザー補助機能のリファレンス  |  Chrome DevTools  |  Chrome for Developers](https://developer.chrome.com/docs/devtools/accessibility/reference?hl=ja#pane) 
+    - `aria-labelledby` 属性で参照しているidが、適切な要素に設定されているかを確認します。
 
 2. **アクセシブルネームと可視ラベルの一致**:
     - 可視のラベルがある場合、アクセシブルネームの中に可視のラベルのテキストが含まれているかを確認します。
-
-3. **アクセシブルネームの参照元の確認**:
-    - `aria-labelledby` 属性で参照しているidが、適切な要素に設定されているかを確認します。
-
 
 
 ## 関連するWCAG2.1達成基準
