@@ -792,10 +792,6 @@ a {
   height: calc(1em * 1.5)
 }
 
-.shr-h-\[inherit\] {
-  height: inherit
-}
-
 .shr-h-\[theme\(borderWidth\.2\)\] {
   height: 2px
 }
@@ -839,10 +835,6 @@ a {
 
 .shr-max-h-\[calc\(100dvh-theme\(spacing\.2\)\)\] {
   max-height: calc(100dvh - 32px)
-}
-
-.shr-max-h-\[inherit\] {
-  max-height: inherit
 }
 
 .shr-min-h-0 {
@@ -3153,6 +3145,12 @@ a {
   border-bottom-color: #d6d3d0
 }
 
+.\[\&\&\]\:focus-visible\:shr-focus-indicator--inner:focus-visible.\[\&\&\]\:focus-visible\:shr-focus-indicator--inner:focus-visible {
+  outline: none;
+  isolation: isolate;
+  box-shadow: inset 0 0 0 2px #0077c7, inset 0 0 0 4px #fff
+}
+
 .\[\&\:has\(\:focus-visible\)\]\:shr-focus-indicator:has(:focus-visible) {
   outline: none;
   isolation: isolate;
@@ -5068,6 +5066,10 @@ a {
   align-items: center
 }
 
+.\[\&\&\]\:shr-justify-start.\[\&\&\]\:shr-justify-start {
+  justify-content: flex-start
+}
+
 .\[\&\&\]\:shr-justify-between.\[\&\&\]\:shr-justify-between {
   justify-content: space-between
 }
@@ -5200,6 +5202,15 @@ a {
 .\[\&\&\]\:focus-visible\:shr-bg-white-darken:focus-visible.\[\&\&\]\:focus-visible\:shr-bg-white-darken:focus-visible {
   --tw-bg-opacity: 1;
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\&\]\:aria-current-page\:shr-bg-grey-9[aria-current="page"].\[\&\&\]\:aria-current-page\:shr-bg-grey-9[aria-current="page"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 235 232 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\&\]\:aria-current-page\:shr-font-bold[aria-current="page"].\[\&\&\]\:aria-current-page\:shr-font-bold[aria-current="page"] {
+  font-weight: 700
 }
 
 .\[\&\.entered\]\:shr-visible.entered {
