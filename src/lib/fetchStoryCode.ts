@@ -13,6 +13,6 @@ export async function fetchStoryCode(version: string, filePath: string): Promise
 
     return await res.text();
   } catch (error) {
-    throw new Error(`Storyのコードの取得に失敗しました (path: ${filePath}): ${error}`);
+    throw new Error(`Storyのコードの取得に失敗しました (path: ${filePath}): ${error}`, { cause: error });
   }
 }
