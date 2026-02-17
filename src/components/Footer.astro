@@ -31,7 +31,7 @@ const { isArticlePage } = Astro.props;
           const subPages = await getSubPageCollection(path);
 
           const depth2Pages = subPages.filter((page) => {
-            const depth = page.slug.split('/').length;
+            const depth = page.id.split('/').length;
             return depth === 2;
           });
 
@@ -52,9 +52,9 @@ const { isArticlePage } = Astro.props;
               </h3>
               {depth2Pages.length > 0 && (
                 <ul>
-                  {depth2Pages.map(({ slug, data }) => (
+                  {depth2Pages.map(({ id, data }) => (
                     <li>
-                      <a class="link" href={`/${slug}`}>
+                      <a class="link" href={`/${id}`}>
                         {data.title}
                       </a>
                     </li>

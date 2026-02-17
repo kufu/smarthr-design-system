@@ -6,7 +6,7 @@ import { parse } from 'node-html-parser';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 
 export type NestedHeading = {
-  slug: string;
+  id: string;
   text?: string;
   children: NestedHeading[];
 };
@@ -51,12 +51,12 @@ export async function getNestedHeadings(content: AstroComponentFactory, ignoreH3
 
   headingTags.forEach((heading, index) => {
     const depth = heading.tagName === 'H2' ? 2 : 3;
-    const slug = heading.getAttribute('id') ?? `${heading.tagName.toLowerCase()}-c${index}`;
+    const id = heading.getAttribute('id') ?? `${heading.tagName.toLowerCase()}-c${index}`;
     const text = heading.textContent;
 
     if (depth === 2) {
       nestedHeadings.push({
-        slug,
+        id,
         text,
         children: [],
       });
@@ -66,11 +66,11 @@ export async function getNestedHeadings(content: AstroComponentFactory, ignoreH3
     if (depth === 3 && !ignoreH3Nav) {
       // 親となる階層がない場合、仮の親となるアイテムをpushする
       if (!nestedHeadings[nestedHeadings.length - 1]) {
-        nestedHeadings.push({ slug: '', children: [] });
+        nestedHeadings.push({ id: '', children: [] });
       }
 
       nestedHeadings[nestedHeadings.length - 1].children.push({
-        slug,
+        id,
         text,
         children: [],
       });

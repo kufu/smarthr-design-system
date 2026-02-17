@@ -8,11 +8,11 @@ type DepthItems = ArticleMeta[] | undefined;
 
 /**
  * 記事ページのメタ情報のアイテムを作成する
- * @param slug ページのslug
+ * @param id ページのid
  * @returns アイテムの配列, 階層毎にネストしたアイテムの配列
  */
-export async function createArticleMetaItems(slug: string) {
-  const rootDir = slug.split('/')[0];
+export async function createArticleMetaItems(id: string) {
+  const rootDir = id.split('/')[0];
   const subPages = await getSubPageCollection(rootDir);
 
   // ページのコレクションから階層ごとのアイテムを作成する
@@ -88,18 +88,18 @@ function createDepthItems(pages: Array<CollectionEntry<'articles'>>) {
   // NOTE: コンポーネントページは名前の順でソートするため分けてる
   const depthComponentItems: Record<number, DepthItems> = {};
 
-  for (const { slug, data } of pages) {
-    const depth = slug.split('/').length;
+  for (const { id, data } of pages) {
+    const depth = id.split('/').length;
 
     const item: ArticleMeta = {
-      link: `/${slug}`,
+      link: `/${id}`,
       order: data?.order ?? Number.MAX_SAFE_INTEGER,
       title: data?.title ?? '',
       depth,
       children: [],
     };
 
-    const isComponent = (depth === 3 || depth === 4) && slug.startsWith('products/components/');
+    const isComponent = (depth === 3 || depth === 4) && id.startsWith('products/components/');
     const targetItems = isComponent ? depthComponentItems : depthItems;
 
     // 無かったら初期化

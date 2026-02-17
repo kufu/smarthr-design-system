@@ -10,24 +10,24 @@ import Sidebar from '@/components/Sidebar/Sidebar.astro';
 import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
 import type { IndexNavItemsProps } from '@/components/IndexNav/IndexNavItems';
 
-type Props = Pick<IndexNavItemsProps, 'headings'> & Pick<CollectionEntry<'articles'>, 'slug' | 'data'>;
+type Props = Pick<IndexNavItemsProps, 'headings'> & Pick<CollectionEntry<'articles'>, 'id' | 'data'>;
 
 // 記事ページ内の要素にアクセスするためのID
 const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
 
-const { slug, data, headings } = Astro.props;
+const { id, data, headings } = Astro.props;
 
 // 親の記事を取得
-const parentArticleSlug = slug.replace(/\/[^\/]*$/, ''); // 例: 'basics/typography' → 'basics'
-const parentArticle = await getEntry('articles', parentArticleSlug);
+const parentArticleId = id.replace(/\/[^\/]*$/, ''); // 例: 'basics/typography' → 'basics'
+const parentArticle = await getEntry('articles', parentArticleId);
 
 // カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
 const categoryName = parentArticle?.data.title ?? '';
 const headTitle = categoryName === data.title ? data.title : `${data.title} | ${categoryName}`;
 
-const { flatArticleMetaItems, nestedArticleMetaItems } = await createArticleMetaItems(slug);
+const { flatArticleMetaItems, nestedArticleMetaItems } = await createArticleMetaItems(id);
 
-const currentPageIndex = flatArticleMetaItems.findIndex(({ link }) => link === `/${slug}`);
+const currentPageIndex = flatArticleMetaItems.findIndex(({ link }) => link === `/${id}`);
 const sidebarItemLength = flatArticleMetaItems.length - 1;
 
 // 前・次のページの情報
@@ -41,7 +41,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
 
     <main class="main">
       <div class="mainSidebar">
-        <Sidebar path={`/${slug}`} items={nestedArticleMetaItems} />
+        <Sidebar path={`/${id}`} items={nestedArticleMetaItems} />
       </div>
       <div class="mainIndexWrapper">
         <IndexNav targetId={MDX_STYLE_WRAPPER_ID} headings={headings} ignoreH3Nav={data.ignoreH3Nav} client:load />
