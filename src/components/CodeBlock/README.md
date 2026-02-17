@@ -2,7 +2,7 @@
 
 ## 使い方
 
-MDX内で記述したコードフェンスは `src/pages/[...slug].astro` 内の設定により、この`<CodeBlock>`コンポーネントに変換されます。
+MDX内で記述したコードフェンスは `src/pages/[...id].astro` 内の設定により、この`<CodeBlock>`コンポーネントに変換されます。
 
 ````
 ```typescript
