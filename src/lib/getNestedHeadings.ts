@@ -1,6 +1,6 @@
 import reactRenderer from '@astrojs/react/server.js';
 import { experimental_AstroContainer } from 'astro/container';
-import mdxRenderer from 'astro/jsx/server.js';
+import mdxRenderer from "@astrojs/mdx/server.js";
 import { parse } from 'node-html-parser';
 
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
@@ -31,8 +31,8 @@ export async function getNestedHeadings(content: AstroComponentFactory, ignoreH3
   // NOTE:
   // loadRenderers が import できないため、手動で renderer を追加しています
   // https://github.com/withastro/astro/issues/11697
-  container.addServerRenderer({ renderer: reactRenderer, name: '@astrojs/react' });
-  container.addServerRenderer({ renderer: mdxRenderer, name: '@astrojs/mdx' });
+  container.addServerRenderer({ renderer: reactRenderer });
+  container.addServerRenderer({ renderer: mdxRenderer });
 
   // アイランドコンポーネントを処理するために必要
   container.addClientRenderer({
