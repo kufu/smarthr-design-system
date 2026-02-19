@@ -1,22 +1,19 @@
 ---
-import type { FC, ReactNode } from 'react';
 import { FaLinkIcon } from 'smarthr-ui';
 
 type HeadingTagTypes = 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
 
-interface Props {
-  className?: string;
+type Props = {
   id: string;
   tag?: HeadingTagTypes;
-  children: ReactNode;
-}
+};
 
 const { id, tag = 'h2' } = Astro.props;
 
-const Wrapper: FC<Props> = ({ tag }) => tag as keyof JSX.IntrinsicElements;
+const Wrapper = tag as keyof JSX.IntrinsicElements;
 ---
 
-<Wrapper className="wrapper" id={id} tag={tag}>
+<Wrapper className="wrapper" id={id}>
   <a href={`#${id}`}>
     <FaLinkIcon className="icon" />
     <slot />
