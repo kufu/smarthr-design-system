@@ -18,7 +18,7 @@ const normalizedBasePath = basePath.replace(/^\/|\/$/g, '');
 
 // 1階層下のページのみを取得
 const regex = new RegExp(`^${normalizedBasePath}/[^/]+$`);
-const subPages = rawSubPages.filter((page) => regex.test(page.slug));
+const subPages = rawSubPages.filter((page) => regex.test(page.id));
 
 // order昇順でソート
 subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.order : 1));
@@ -28,14 +28,14 @@ subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.or
   <div class="pageList">
     {
       subPages.map(async (page) => {
-        const pageFileName = basename(page.slug);
+        const pageFileName = basename(page.id);
         const hasSlot = Astro.slots.has(pageFileName);
         const description = hasSlot ? await Astro.slots.render(pageFileName) : page.data.description;
 
         return (
           <>
             <Heading class="pageTitleHeadings">
-              <a href={join('/', page.slug)}>{page.data.title}</a>
+              <a href={join('/', page.id)}>{page.data.title}</a>
             </Heading>
             {hasSlot ? <Fragment set:html={description} /> : <p>{description}</p>}
           </>

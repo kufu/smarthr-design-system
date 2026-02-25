@@ -21,16 +21,16 @@ Astroの機能や導入しているプラグインの概要です。
 | index.astro | / (= トップページ) |
 | 404.astro | /404 (= 404ページ) |
 | search.astro | /search |
-| [...slug].astro | /{slug} |
+| [...id].astro | /{id} |
 
-`[...slug].astro`は、`src/content/articles/`以下にある.mdxファイルから生成しています。
+`[...id].astro`は、`src/content/articles/`以下にある.mdxファイルから生成しています。
 
 ### コンテンツとMDX
 
 [@astrojs/mdx](https://github.com/withastro/astro/tree/main/packages/integrations/mdx/)を使っています。
 内部で使用されているMDXのバージョンは3系です。
 
-ページ生成時には、`src/layouts/ArticleLayout.astro`をレイアウトに使用し、`[...slug].astro`でMDXをレンダリングしています。
+ページ生成時には、`src/layouts/ArticleLayout.astro`をレイアウトに使用し、`[...id].astro`でMDXをレンダリングしています。
 
 #### ArticleLayout.astro でやっていること
 
@@ -40,7 +40,7 @@ Astroの機能や導入しているプラグインの概要です。
 
 詳しくはテンプレート内のコメントもあわせて参照してください。
 
-#### [...slug].astro でやっていること
+#### [...id].astro でやっていること
 
 - 目次のための見出し情報の生成
 - タグ変換時のカスタムコンポーネントの適用

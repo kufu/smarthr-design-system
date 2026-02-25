@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import ArticleLayout from '@/layouts/ArticleLayout.astro';
 import CustomLink from '@/components/article/CustomLink';
 import CustomTable from '@/components/article/CustomTable.astro';
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
   return articles.map((article) => ({
     params: {
-      slug: article.slug,
+      id: article.id,
     },
     props: {
       article,
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 
-const { Content } = await article.render();
+const { Content } = await render(article);
 
 const nestedHeadings = await getNestedHeadings(Content, article.data.ignoreH3Nav);
 
@@ -41,6 +41,6 @@ const components = {
 };
 ---
 
-<ArticleLayout slug={article.slug} data={article.data} headings={nestedHeadings}>
+<ArticleLayout id={article.id} data={article.data} headings={nestedHeadings}>
   <Content components={components} />
 </ArticleLayout>

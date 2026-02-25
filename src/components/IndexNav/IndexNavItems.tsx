@@ -8,13 +8,13 @@ import type { ReactNode } from 'react';
 
 export type IndexNavItemsProps = {
   headings: NestedHeading[];
-  indexNavRef?: React.RefObject<HTMLUListElement>;
+  indexNavRef?: React.RefObject<HTMLUListElement | null>;
 } & Pick<ItemProps, 'currentHeadingId'>;
 
 export default function IndexNavItems({ headings, indexNavRef, currentHeadingId }: IndexNavItemsProps) {
   const nestedNavItems = (items: NestedHeading[]) =>
     items.map((item) => (
-      <Item key={item.slug} heading={item} currentHeadingId={currentHeadingId}>
+      <Item key={item.id} heading={item} currentHeadingId={currentHeadingId}>
         {item.children.length > 0 && <ul>{nestedNavItems(item.children)}</ul>}
       </Item>
     ));
@@ -38,7 +38,7 @@ function Item({ heading: item, currentHeadingId, children }: ItemProps) {
     <li>
       {item.text && (
         <div className={styles.depthItem}>
-          <a href={`#${item.slug}`} aria-current={item.slug === currentHeadingId}>
+          <a href={`#${item.id}`} aria-current={item.id === currentHeadingId}>
             {item.text}
           </a>
         </div>
