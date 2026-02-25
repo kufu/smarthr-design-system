@@ -33,7 +33,7 @@ export default function DynamicStepFormDialog() {
       <Button onClick={() => setOpened(true)}>StepFormDialog を開く</Button>
       <StepFormDialog
         isOpen={opened}
-        title="ステップフォームダイアログ"
+        heading="ステップフォームダイアログ"
         submitLabel={currentStep < steps.length - 1 ? '次へ' : '保存'}
         stepLength={steps.length}
         firstStep={steps[0]}

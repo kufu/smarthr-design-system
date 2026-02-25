@@ -9,7 +9,7 @@ export default function DynamicActionDialog() {
       <Button onClick={() => setIsOpen(true)}>ActionDialogを開く</Button>
       <ActionDialog
         isOpen={isOpen}
-        title="アクションダイアログタイトル"
+        heading="アクションダイアログタイトル"
         // closeText="キャンセル"
         actionText="実行"
         actionTheme="primary"

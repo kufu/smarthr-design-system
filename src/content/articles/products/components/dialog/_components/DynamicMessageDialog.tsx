@@ -9,7 +9,7 @@ export default function DynamicMessageDialog() {
       <Button onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
       <MessageDialog
         isOpen={isOpen}
-        title="メッセージダイアログタイトル"
+        heading="メッセージダイアログタイトル"
         // closeText="閉じる"
         size="XS"
         onClickClose={() => setIsOpen(false)}
