@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import metadata from 'smarthr-ui/metadata.json';
 import packageInfo from 'smarthr-ui/package.json';
 
 import type { PropsData, UIData, UIProps, UIStories } from '../src/types/ui';
@@ -26,7 +27,7 @@ type CommitResponse = {
 
 type PropsResponse = {
   displayName: string;
-  dirName: string;
+  dirName?: string;
   filePath: string;
   props: PropsData[];
 };
@@ -81,23 +82,10 @@ async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
 }
 
 /**
- * Chromatic から smarthr-ui-props.json を取得
- * @param commitHash 対象のコミットハッシュ
+ * smarthr-ui/metadata.jsonを元にUIPropsの情報を整形して返却
  */
-async function fetchProps(commitHash: string): Promise<UIProps[]> {
-  const endpoint = new URL('/exports/smarthr-ui-props.json', `https://${commitHash}--${CHROMATIC_DOMAIN}`);
-
-  const res = await fetch(endpoint.toString());
-  if (!res.ok) {
-    throw new Error(`Chromatic から smarthr-ui-props.json を取得できませんでした: ${res.statusText}`);
-  }
-
-  const json: PropsResponse[] = await res.json();
-  if (!json || json.length === 0) {
-    throw new Error('smarthr-ui-props.json が見つかりませんでした');
-  }
-
-  const uiProps = json.map((propsItem: PropsResponse): UIProps => {
+const getUIProps = (): UIProps[] => {
+  const uiProps = metadata.map((propsItem: PropsResponse): UIProps => {
     // Dropdown/DropdownMenuButton のように階層になっている場合は、親階層もデータに含めておく
     const directoryNames = propsItem.filePath.replace(/^.*lib\/components\//, '').split('/');
     const dirName = directoryNames.length > 2 && directoryNames.at(0);
@@ -118,7 +106,7 @@ async function fetchProps(commitHash: string): Promise<UIProps[]> {
   });
 
   return uiProps;
-}
+};
 
 /**
  * Chromatic から Storybook の情報を取得
@@ -194,9 +182,6 @@ const usedVersionRelease = await fetchSmartHRUIRelease();
 
 const commitHash = usedVersionRelease.sha.substring(0, 7);
 
-console.log('📚️ smarthr-ui-props.json を取得中');
-const uiProps = await fetchProps(commitHash);
-
 console.log('📚️ stories.json を取得中');
 const uiStories = await fetchStories(commitHash);
 
@@ -206,7 +191,7 @@ const uiVersion: UIData = {
   version: packageInfo.version,
   commitHash,
   commitDate: usedVersionRelease.commit.author.date,
-  uiProps,
+  uiProps: getUIProps(),
   uiStories: Object.values(uiStories),
 };
 
