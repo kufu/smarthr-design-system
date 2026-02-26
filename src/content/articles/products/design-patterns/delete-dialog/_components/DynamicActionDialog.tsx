@@ -20,7 +20,7 @@ export default function DynamicActionDialog() {
       <Button onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
-        title="{オブジェクト名}の削除"
+        heading="{オブジェクト名}の削除"
         actionText="削除"
         actionTheme="danger"
         onClickClose={() => {
@@ -33,8 +33,10 @@ export default function DynamicActionDialog() {
       >
         <Stack gap={1.5}>
           <p>{'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}</p>
-          <DefinitionList termStyleType="blockTitle">
-            <DefinitionListItem term="削除する{オブジェクト名}">{`{インスタンス名}`}</DefinitionListItem>
+          <DefinitionList>
+            <DefinitionListItem
+              term={{ text: '削除する{オブジェクト名}', styleType: 'blockTitle' }}
+            >{`{インスタンス名}`}</DefinitionListItem>
           </DefinitionList>
           <Stack gap={0.5}>
             <BaseColumn>

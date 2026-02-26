@@ -539,10 +539,6 @@ a {
   margin-bottom: 8px
 }
 
-.shr-mb-1 {
-  margin-bottom: 16px
-}
-
 .shr-me-0\.25 {
   margin-inline-end: 4px
 }
@@ -798,6 +794,10 @@ a {
   height: calc(1em * 1.5)
 }
 
+.shr-h-\[inherit\] {
+  height: inherit
+}
+
 .shr-h-\[theme\(borderWidth\.2\)\] {
   height: 2px
 }
@@ -841,6 +841,10 @@ a {
 
 .shr-max-h-\[calc\(100dvh-theme\(spacing\.2\)\)\] {
   max-height: calc(100dvh - 32px)
+}
+
+.shr-max-h-\[inherit\] {
+  max-height: inherit
 }
 
 .shr-min-h-0 {
@@ -1586,6 +1590,10 @@ a {
 
 .shr-resize {
   resize: both
+}
+
+.shr-scroll-pb-0\.5 {
+  scroll-padding-bottom: 8px
 }
 
 .shr-list-none {
@@ -3079,18 +3087,6 @@ a {
   outline-offset: 2px
 }
 
-:where(.focus\:shr-focus-indicator:focus) {
-  isolation: isolate;
-  box-shadow: 0 0 0 2px #fff;
-  outline: 2px solid #0077c7;
-  outline-offset: 2px
-}
-
-.focus\:shr-focus-indicator-none:focus {
-  box-shadow: none;
-  outline: none
-}
-
 :where(.focus-visible\:shr-focus-indicator:focus-visible) {
   isolation: isolate;
   box-shadow: 0 0 0 2px #fff;
@@ -3985,18 +3981,6 @@ a {
   --tw-shadow: 0 1px 0 0;
   --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
-}
-
-.focus\:shr-outline-dashed:focus {
-  outline-style: dashed
-}
-
-.focus\:shr-outline-\[3px\]:focus {
-  outline-width: 3px
-}
-
-.focus\:shr-outline-offset-2:focus {
-  outline-offset: 2px
 }
 
 .focus-visible\:shr-z-1:focus-visible {
