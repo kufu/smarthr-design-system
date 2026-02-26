@@ -1,5 +1,5 @@
 ---
-import { AnnotatedComponent } from './AnnotatedComponent.tsx';
+import { AnnotatedComponent as ReactAnnotatedComponent } from './AnnotatedComponent.tsx';
 
 interface Props {
   canvasWidth?: number;
@@ -9,9 +9,9 @@ interface Props {
 const { canvasWidth = 1000, className } = Astro.props;
 ---
 
-<AnnotatedComponent canvasWidth={canvasWidth} className={className} client:load>
+<ReactAnnotatedComponent canvasWidth={canvasWidth} className={className} client:load>
   <slot />
-</AnnotatedComponent>
+</ReactAnnotatedComponent>
 
 <style lang="scss" is:global>
   .annotated-container {
