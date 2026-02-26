@@ -1,0 +1,18 @@
+---
+title: 'Base Component - Annotated Demo'
+description: 'Baseコンポーネントの構成要素を番号付きで説明するデモページ'
+---
+
+```tsx noIframe  editable canvas=1000
+<Container className="shr-bg-background">
+  <Stack>
+    <Cluster align="center" justify="space-between">
+      <Heading>タイトル</Heading>
+      <Button data-annotation="2">追加</Button>
+    </Cluster>
+    <Base data-annotation="1" padding={1}>
+        <Text>hello</Text>
+    </Base>
+  </Stack>
+</Container>
+```

@@ -5,6 +5,16 @@ type Props = {
   code: string;
   language?: string;
   meta?: string;
+  editable?: boolean;
+  noIframe?: boolean;
+  isStorybook?: boolean;
+  renderingComponent?: string;
+  componentTitle?: string;
+  withStyled?: boolean;
+  gap?: any;
+  align?: any;
+  layout?: 'none' | 'product';
+  canvas?: number;
 };
 
 type MetaProps = {
@@ -32,8 +42,38 @@ const parseMeta = (meta: string | undefined): MetaProps => {
   return result;
 };
 
-const { code, language, meta } = Astro.props;
-const props = parseMeta(meta);
+const {
+  code,
+  language,
+  meta,
+  editable,
+  noIframe,
+  isStorybook,
+  renderingComponent,
+  componentTitle,
+  withStyled,
+  gap,
+  align,
+  layout,
+  canvas,
+} = Astro.props;
+
+const metaProps = parseMeta(meta);
 ---
 
-<ReactCodeBlock code={code} language={language} {...props} client:only="react" />
+<ReactCodeBlock
+  code={code}
+  language={language}
+  editable={editable}
+  noIframe={noIframe}
+  isStorybook={isStorybook}
+  renderingComponent={renderingComponent}
+  componentTitle={componentTitle}
+  withStyled={withStyled}
+  gap={gap}
+  align={align}
+  layout={layout}
+  canvas={canvas || (metaProps.canvas ? Number(metaProps.canvas) : undefined)}
+  {...metaProps}
+  client:only="react"
+/>
