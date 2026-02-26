@@ -1,0 +1,96 @@
+---
+title: 'リッチなインタラクション'
+description: 'SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。'
+order: 18
+---
+import { Image } from 'astro:assets'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import doUseHandle from './images/smarthr-draggable-list-handle.png'
+import dontUseCard from './images/smarthr-draggable-list-card.png'
+import doCancelAction from './images/smarthr-draggable-list-cancellable.png'
+import dontCancelAction from './images/smarthr-draggable-list-non-cancellable.png'
+import doUseKeyboard from './images/smarthr-draggable-list-keyboard.png'
+import dontUseKeyboard from './images/smarthr-draggable-list-no-keyboard.png'
+
+SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。
+
+リッチなインタラクションが必要なUIには、ユーザーが混乱させないように結束の高いUIが重要になります。
+ただ、それぞれのUIのパターンにおいて、アクセシビリティを確保することも重要です。
+
+この章では、リッチなインタラクションを実装する際のベストプラクティスを紹介します。
+
+## ドラッグ&ドロップ（DnD）リスト
+`ドラグアンドドロップ（DnD）リスト`は、ユーザーがアイテムをドラッグして順序を変更できるUIのパターンです。
+
+### キーボードの操作
+全部のユーザーがマウスやタッチ入力を使用できるわけではないため、ドラグアンドドロップの操作をキーボードでも可能にすることが重要です。
+
+これを実現する一般的な方法は、アイテムを上下に移動するためのボタンを提供することや、拡張された省略メニューのオプションを提供することです。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={doUseKeyboard} alt="Do" />
+    <Text slot="label">ドラグアンドドロップの操作をキーボードでも可能にする</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={dontUseKeyboard} alt="Dont" />
+    <Text slot="label">ドラグアンドドロップの操作がマウスやタッチ操作でしかできない</Text>
+  </DoAndDont>
+</Cluster>
+
+### アクセシビリティの関連情報
+アクセシブルなドラグアンドドロップの実装には、下記のWCAGのルールを参照してください。
+
+- [WCAG 2.1.1: キーボードを理解する](https://waic.jp/translations/WCAG22/Understanding/keyboard)
+- [WCAG 2.5.7: ドラッグ動作](https://waic.jp/translations/WCAG22/Understanding/dragging-movements.html)
+
+### ドラッグ可能な領域
+<Text weight="bold">ドラッグ可能な領域</Text>とは、ユーザーがリストアイテムをドラッグできる領域のことです。ドラッグ可能な領域は、ユーザーがアイテムをドラッグするための明確なインタラクションポイントを提供する必要があります。
+
+ドラッグ可能な領域を適切に識別し、ネストされたインタラクティブな要素を避けることが重要です。
+例えば、ドラッグ可能な領域が`role="button"`を設定されている場合、その中にHTMLのbutton要素をネストされると、`role="button"`がある予想の内部に`<button>`要素が存在することになり、支援技術に混乱を引き起こす恐れがあります。
+
+その変わりに、ARIA属性を使用して、ドラッグ可能な領域を`draggable=true`として適切に識別し、div要素のままにしておくことができます。また、「ドラッグハンドル」パターンを使用して、インタラクティブなカードコンポーネントとは別のドラッグハンドルを使用できます。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={doUseHandle} alt="Do" />
+    <Text slot="label">カード全体的がドラッグ可能より、ハンドラーのみがドラッグ可能</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={dontUseCard} alt="Dont" />
+    <Text slot="label">カードの中にボタン要素が存在するのに、カード全体がドラッグ可能</Text>
+  </DoAndDont>
+</Cluster>
+
+#### アクセシビリティの関連情報
+アクセシブルなドラグアンドドロップの実装には、下記のWCAGのルールを参照してください。
+
+- [WCAG 4.1.2: 名前 (name)・役割 (role)・値 (value)](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+### アクションのキャンセル操作
+
+リストアイテムがドラッグ中の状態で、ユーザーはアクションをキャンセルできるようにする必要があります。一般的には、`Escape`キーを使用してキャンセルする方法が実装されます。
+
+アクションをキャンセルできない場合は、最新のアクションを元に戻す方法を提供する必要があります。これは、`元に戻す`ボタンやメニューのオプションを通じて行なうことができます。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={doCancelAction} alt="Do" />
+    <Text slot="label">②と③の位置を変えるアクションのあとで、アクションをキャンセルをできるようにする</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+      <Image slot="img" src={dontCancelAction} alt="Dont" />
+    <Text slot="label">②と③の位置を変えるアクションのあとで、アクションをキャンセルをできないままにする</Text>
+  </DoAndDont>
+</Cluster>
+
+#### アクセシビリティの関連情報
+アクセシブルなドラグアンドドロップの実装には、下記のWCAGのルールを参照してください。
+
+- [WCAG 2.5.2: ポインタのキャンセル](https://waic.jp/translations/WCAG22/Understanding/pointer-cancellation.html)
+
