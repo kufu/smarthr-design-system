@@ -261,7 +261,7 @@ export const AnnotatedComponent: React.FC<{
             <div
               className="annotated-number"
               style={{
-                borderRadius: '50%',
+                borderRadius: '999px',
                 backgroundColor: '#e01e5a',
                 color: 'white',
                 display: 'flex',
