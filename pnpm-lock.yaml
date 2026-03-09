@@ -63,8 +63,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       smarthr-ui:
-        specifier: ^86.0.0
-        version: 86.0.0(@types/react@18.3.28)(eslint@9.39.3(jiti@1.21.7))(react-dom@19.2.4(react@19.2.4))(react-intl@7.1.14(react@19.2.4)(typescript@5.9.3))(react@19.2.4)(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
+        specifier: ^88.0.0
+        version: 88.0.0(@types/react@18.3.28)(eslint@9.39.3(jiti@1.21.7))(react-dom@19.2.4(react@19.2.4))(react-intl@7.1.14(react@19.2.4)(typescript@5.9.3))(react@19.2.4)(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
       styled-components:
         specifier: ^6.3.11
         version: 6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -4675,8 +4675,8 @@ packages:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
 
-  pump@3.0.3:
-    resolution: {integrity: sha512-todwxLMY7/heScKmntwQG8CXVkWUOdYxIvY2s0VWAAMh/nd8SoYiRaKjlr7+iCs984f2P8zvrfWcDDYVb73NfA==}
+  pump@3.0.4:
+    resolution: {integrity: sha512-VS7sjc6KR7e1ukRFhQSY5LM2uBWAUPiOPa/A3mkKmiMwSmRFUITt0xuj+/lesgnCv+dPIEYlkzrcyXgquIHMcA==}
 
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
@@ -4726,8 +4726,8 @@ packages:
       react: '>= 16.3'
       react-dom: '>= 16.3'
 
-  react-icons@5.5.0:
-    resolution: {integrity: sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==}
+  react-icons@5.6.0:
+    resolution: {integrity: sha512-RH93p5ki6LfOiIt0UtDyNg/cee+HLVR6cHHtW3wALfo+eOHTp8RnU2kRkI6E+H19zMIs03DyxUG/GfZMOGvmiA==}
     peerDependencies:
       react: '*'
 
@@ -5277,8 +5277,8 @@ packages:
   smarthr-normalize-css@1.1.0:
     resolution: {integrity: sha512-RNi5bkp8dYvZs/yqOihZ+an5Wf3oXiBMRRvSYhCKNhV+Qkg1otqIxmP3ELUWVwMZx9v+zZG1LLAJ0sxPkHXOcg==}
 
-  smarthr-ui@86.0.0:
-    resolution: {integrity: sha512-tGfNrfEySNBBiek7EZtnMx4urb0Jj/7HyiF1Mpk344BKZ5jZxGK2GygLZktP6rOG1d0RrMVFJSwkA2MEn+WABQ==}
+  smarthr-ui@88.0.0:
+    resolution: {integrity: sha512-N8SgF9l183J5wzwByyzzgh2OuL0PAxpgZMWe4dCuqkoa8dTeV5c7yUwgVvrG/B68tI0HWM3K4qCkTZaVzqtBHw==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -11499,7 +11499,7 @@ snapshots:
       mkdirp-classic: 0.5.3
       napi-build-utils: 2.0.0
       node-abi: 3.87.0
-      pump: 3.0.3
+      pump: 3.0.4
       rc: 1.2.8
       simple-get: 4.0.1
       tar-fs: 2.1.4
@@ -11571,7 +11571,7 @@ snapshots:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
-  pump@3.0.3:
+  pump@3.0.4:
     dependencies:
       end-of-stream: 1.4.5
       once: 1.4.0
@@ -11633,7 +11633,7 @@ snapshots:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
-  react-icons@5.5.0(react@19.2.4):
+  react-icons@5.6.0(react@19.2.4):
     dependencies:
       react: 19.2.4
 
@@ -12429,7 +12429,7 @@ snapshots:
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@86.0.0(@types/react@18.3.28)(eslint@9.39.3(jiti@1.21.7))(react-dom@19.2.4(react@19.2.4))(react-intl@7.1.14(react@19.2.4)(typescript@5.9.3))(react@19.2.4)(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2):
+  smarthr-ui@88.0.0(@types/react@18.3.28)(eslint@9.39.3(jiti@1.21.7))(react-dom@19.2.4(react@19.2.4))(react-intl@7.1.14(react@19.2.4)(typescript@5.9.3))(react@19.2.4)(styled-components@6.3.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.19
@@ -12441,7 +12441,7 @@ snapshots:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
       react-draggable: 4.5.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react-icons: 5.5.0(react@19.2.4)
+      react-icons: 5.6.0(react@19.2.4)
       react-innertext: 1.1.5(@types/react@18.3.28)(react@19.2.4)
       react-intl: 7.1.14(react@19.2.4)(typescript@5.9.3)
       react-pdf: 9.2.1(@types/react@18.3.28)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -12737,7 +12737,7 @@ snapshots:
     dependencies:
       chownr: 1.1.4
       mkdirp-classic: 0.5.3
-      pump: 3.0.3
+      pump: 3.0.4
       tar-stream: 2.2.0
     optional: true
 
