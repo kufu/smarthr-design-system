@@ -5,7 +5,7 @@ description: '内包するテキストが指定した幅や高さを越えて存
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
-内包するテキストが指定した幅や高さを越えて存在するときに、[Tooltip](/products/components/tooltip/)を用いて全文を表示するためのコンポーネントです。
+内包するテキストが指定した幅や高さを越えて存在するときに、[Tooltip](/products/components/tooltip/)や[Disclosure](/products/components/disclosure/)を用いて全文を表示するためのコンポーネントです。
 
 最大行数`maxLines`に1〜6を指定すると、その行数に収まらなかったテキストが「…」で省略されます。
 
@@ -13,7 +13,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ## 使用上の注意
 
-LineClampはテキストの全文表示にTooltipを利用しています。ユーザーが能動的に表示しないとToolitp内の情報は隠れたままであることに注意してください。
+LineClampはテキストの全文表示にTooltipもしくはDisclosureを利用しています。ユーザーが能動的に表示しないと情報は隠れたままであることに注意してください。
 
 ### LineClampの使用を推奨するケース
 
