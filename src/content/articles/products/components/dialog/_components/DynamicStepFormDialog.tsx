@@ -37,9 +37,9 @@ export default function DynamicStepFormDialog() {
         submitLabel={currentStep < steps.length - 1 ? '次へ' : '保存'}
         stepLength={steps.length}
         firstStep={steps[0]}
-        onSubmit={(closeDialog, _e, currentStepItem) => {
+        onSubmit={(_e, { close, currentStep: currentStepItem }) => {
           if (currentStepItem.id === steps[steps.length - 1].id) {
-            closeDialog();
+            close();
             setTimeout(handleClose, 300);
             return undefined;
           } else {
