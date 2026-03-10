@@ -3,7 +3,7 @@ import { Button, IntlProvider, StepFormDialog, StepFormDialogItem } from 'smarth
 
 export default function DynamicStepFormDialog() {
   const [opened, setOpened] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [stepIndex, setStepIndex] = useState(0);
 
   const steps = [
     { id: 'step1', label: 'ステップ1', stepNumber: 1 },
@@ -11,21 +11,15 @@ export default function DynamicStepFormDialog() {
     { id: 'step3', label: 'ステップ3', stepNumber: 3 },
   ];
 
-  const handleNext = () => {
-    const nextStep = Math.min(currentStep + 1, steps.length - 1);
-    setCurrentStep(nextStep);
-    return steps[nextStep]; // stepNumber を含む StepItem を返す
-  };
-
   const handleBack = () => {
-    const prevStep = Math.max(currentStep - 1, 0);
-    setCurrentStep(prevStep);
-    return steps[prevStep]; // stepNumber を含む StepItem を返す
+    const prevStep = Math.max(stepIndex - 1, 0);
+    setStepIndex(prevStep);
   };
 
   const handleClose = () => {
     setOpened(false);
-    setCurrentStep(0);
+    // ダイアログが閉じる前に中身の表示がステップ0に戻るのを視覚的に防ぐ
+    setTimeout(() => setStepIndex(0), 300);
   };
 
   return (
@@ -34,25 +28,27 @@ export default function DynamicStepFormDialog() {
       <StepFormDialog
         isOpen={opened}
         heading="ステップフォームダイアログ"
-        submitLabel={currentStep < steps.length - 1 ? '次へ' : '保存'}
+        submitLabel={stepIndex < steps.length - 1 ? '次へ' : '保存'}
         stepLength={steps.length}
         firstStep={steps[0]}
-        onSubmit={(_e, { close, currentStep: currentStepItem }) => {
-          if (currentStepItem.id === steps[steps.length - 1].id) {
+        onSubmit={(e, { goto, close, currentStep }) => {
+          if (currentStep.id === steps[steps.length - 1].id) {
             close();
-            setTimeout(handleClose, 300);
-            return undefined;
           } else {
-            return handleNext(); // StepItem を返す
+            const next = Math.min(stepIndex + 1, steps.length - 1);
+            setStepIndex(next);
+            goto(steps[next]);
           }
         }}
         onClickClose={handleClose}
-        onClickBack={currentStep > 0 ? handleBack : undefined}
+        onClickBack={stepIndex > 0 ? handleBack : undefined}
         size="XS"
       >
-        <StepFormDialogItem {...steps[currentStep]}>
-          <p>{steps[currentStep].label}</p>
-        </StepFormDialogItem>
+        {steps.map((step) => (
+          <StepFormDialogItem {...step} key={step.id}>
+            <p>{step.label}</p>
+          </StepFormDialogItem>
+        ))}
       </StepFormDialog>
     </IntlProvider>
   );
