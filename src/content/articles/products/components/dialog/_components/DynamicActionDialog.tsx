@@ -18,8 +18,8 @@ export default function DynamicActionDialog() {
           setIsOpen(false);
         }}
         onPressEscape={() => setIsOpen(false)}
-        onClickAction={() => {
-          setIsOpen(false);
+        onClickAction={(e, { close }) => {
+          close();
         }}
       >
         <Text>本文が入ります。</Text>
