@@ -1,31 +1,49 @@
 import { useState } from 'react';
 import { Button, IntlProvider, StepFormDialog, StepFormDialogItem } from 'smarthr-ui';
 
+interface Step {
+  id: string;
+  stepNumber: number;
+}
+
+interface StepMockItem extends Step {
+  label: string;
+}
+
 export default function DynamicStepFormDialog() {
   const [opened, setOpened] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [stepIndex, setStepIndex] = useState(0);
 
-  const steps = [
+  const steps: StepMockItem[] = [
     { id: 'step1', label: 'ステップ1', stepNumber: 1 },
     { id: 'step2', label: 'ステップ2', stepNumber: 2 },
     { id: 'step3', label: 'ステップ3', stepNumber: 3 },
   ];
 
-  const handleNext = () => {
-    const nextStep = Math.min(currentStep + 1, steps.length - 1);
-    setCurrentStep(nextStep);
-    return steps[nextStep]; // stepNumber を含む StepItem を返す
+  const stepLength = steps.length - 1;
+
+  const handleSubmit = (
+    e: React.FormEvent<HTMLFormElement>,
+    { goto, close, currentStep }: { goto: (step: Step) => void; close: () => void; currentStep: Step },
+  ) => {
+    if (currentStep.id === steps[stepLength].id) {
+      close();
+    } else {
+      const next = Math.min(stepIndex + 1, stepLength);
+      setStepIndex(next);
+      goto(steps[next]);
+    }
   };
 
   const handleBack = () => {
-    const prevStep = Math.max(currentStep - 1, 0);
-    setCurrentStep(prevStep);
-    return steps[prevStep]; // stepNumber を含む StepItem を返す
+    const prevStep = Math.max(stepIndex - 1, 0);
+    setStepIndex(prevStep);
   };
 
   const handleClose = () => {
     setOpened(false);
-    setCurrentStep(0);
+    // ダイアログが閉じる前に中身の表示がステップ0に戻るのを視覚的に防ぐ
+    setTimeout(() => setStepIndex(0), 300);
   };
 
   return (
@@ -34,25 +52,19 @@ export default function DynamicStepFormDialog() {
       <StepFormDialog
         isOpen={opened}
         heading="ステップフォームダイアログ"
-        submitLabel={currentStep < steps.length - 1 ? '次へ' : '保存'}
+        submitLabel={stepIndex < stepLength ? '次へ' : '保存'}
         stepLength={steps.length}
         firstStep={steps[0]}
-        onSubmit={(closeDialog, _e, currentStepItem) => {
-          if (currentStepItem.id === steps[steps.length - 1].id) {
-            closeDialog();
-            setTimeout(handleClose, 300);
-            return undefined;
-          } else {
-            return handleNext(); // StepItem を返す
-          }
-        }}
+        onSubmit={handleSubmit}
         onClickClose={handleClose}
-        onClickBack={currentStep > 0 ? handleBack : undefined}
+        onClickBack={stepIndex > 0 ? handleBack : undefined}
         size="XS"
       >
-        <StepFormDialogItem {...steps[currentStep]}>
-          <p>{steps[currentStep].label}</p>
-        </StepFormDialogItem>
+        {steps.map((step) => (
+          <StepFormDialogItem {...step} key={step.id}>
+            <p>{step.label}</p>
+          </StepFormDialogItem>
+        ))}
       </StepFormDialog>
     </IntlProvider>
   );
