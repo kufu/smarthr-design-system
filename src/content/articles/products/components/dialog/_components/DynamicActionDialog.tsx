@@ -14,13 +14,9 @@ export default function DynamicActionDialog() {
         actionText="実行"
         actionTheme="primary"
         size="XS"
-        onClickClose={() => {
-          setIsOpen(false);
-        }}
+        onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
-        onClickAction={(e, { close }) => {
-          close();
-        }}
+        onClickAction={(e, { close }) => close()}
       >
         <Text>本文が入ります。</Text>
       </ActionDialog>
