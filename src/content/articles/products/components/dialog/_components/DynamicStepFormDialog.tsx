@@ -1,11 +1,20 @@
 import { useState } from 'react';
 import { Button, IntlProvider, StepFormDialog, StepFormDialogItem } from 'smarthr-ui';
 
+interface Step {
+  id: string;
+  stepNumber: number;
+}
+
+interface StepMockItem extends Step {
+  label: string;
+}
+
 export default function DynamicStepFormDialog() {
   const [opened, setOpened] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
 
-  const steps = [
+  const steps: StepMockItem[] = [
     { id: 'step1', label: 'ステップ1', stepNumber: 1 },
     { id: 'step2', label: 'ステップ2', stepNumber: 2 },
     { id: 'step3', label: 'ステップ3', stepNumber: 3 },
