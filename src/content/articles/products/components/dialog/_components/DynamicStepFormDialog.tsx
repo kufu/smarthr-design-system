@@ -20,14 +20,16 @@ export default function DynamicStepFormDialog() {
     { id: 'step3', label: 'ステップ3', stepNumber: 3 },
   ];
 
+  const stepLength = steps.length - 1;
+
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement>,
     { goto, close, currentStep }: { goto: (step: Step) => void; close: () => void; currentStep: Step },
   ) => {
-    if (currentStep.id === steps[steps.length - 1].id) {
+    if (currentStep.id === steps[stepLength].id) {
       close();
     } else {
-      const next = Math.min(stepIndex + 1, steps.length - 1);
+      const next = Math.min(stepIndex + 1, stepLength);
       setStepIndex(next);
       goto(steps[next]);
     }
@@ -50,7 +52,7 @@ export default function DynamicStepFormDialog() {
       <StepFormDialog
         isOpen={opened}
         heading="ステップフォームダイアログ"
-        submitLabel={stepIndex < steps.length - 1 ? '次へ' : '保存'}
+        submitLabel={stepIndex < stepLength ? '次へ' : '保存'}
         stepLength={steps.length}
         firstStep={steps[0]}
         onSubmit={handleSubmit}
