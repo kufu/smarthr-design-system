@@ -327,18 +327,39 @@ TabBarやSideNavを使った例は、[視覚的グルーピング](/products/des
 
 コレクションとシングルの2カラムは広い横幅を必要とするため、画面の横幅が狭いモバイルには適していません。次のいずれかの方法で対処してください。
 
-##### コレクションとシングルの2画面に分割する
+##### コレクションとシングルの2ページに分割する
 
-コレクションとシングルの2カラムを、[コレクション（リスト）](#h3-8)と[シングル（1カラム）](#h3-9)の2つの画面に分割します。
+コレクションとシングルの2カラムを、[コレクション（リスト）](#h3-8)と[シングル（1カラム）](#h3-9)の2つのページに分割します。ページレイアウトはそれぞれ[コレクション（リスト）](#h3-8)と[シングル（1カラム）](#h3-9)の形を取ります。
 
-##### [WIP] SideNavをドロワーとして表示する
+<Grid>
+    <ImgWithDesc description="コレクション（リスト）">
+    ![実例画像：縦長の画面に、ヘッダー・見出し領域・ナビゲーションのリストが垂直方向に積み重なっている。](./images/collection-and-single-2column-mobile-split-pages-1.png)
+    </ImgWithDesc>
+
+    <ImgWithDesc description="シングル（1カラム）">
+    ![実例画像：縦長の画面に、ヘッダー・見出し領域・複数のセクションが垂直方向に積み重なっている。](./images/collection-and-single-2column-mobile-split-pages-2.png)
+    </ImgWithDesc>
+</Grid>
+
+##### [WIP] SideNavをドロワーで表示する
 
 <BaseColumn className="shr-mt-1">
-    <ResponseMessage type="info">SideNavをドロワーとして表示できるよう、smarthr-uiでの対応を検討中です。</ResponseMessage>
+    <ResponseMessage type="info">SideNavをドロワーで表示できるよう、smarthr-uiでの対応を検討中です。</ResponseMessage>
 </BaseColumn>
 
-[SideNav](/products/components/side-nav/)を使ったコレクションをドロワーとして表示します。コレクションがなくなるため、ページレイアウトは[シングル（1カラム）](#h3-9)の形を取ります。ドロワーを開くボタンを見出し領域に表示してください。
+[SideNav](/products/components/side-nav/)を使ったコレクションをドロワーで表示します。コレクションがなくなるため、ページレイアウトは[シングル（1カラム）](#h3-9)の形を取ります。ドロワーは該当のセクション内で開閉できます。ドロワーを開くボタンをセクション内に表示してください。
 
-#### [WIP] 利用例
 
-[WIP]
+<Grid>
+    <ImgWithDesc description="ドロワーが閉じている初期状態">
+    ![実例画像：縦長の画面に、ヘッダー・見出し領域・Baseが垂直方向に積み重なっている。Base内に、メニューと書かれたボタンと複数のセクションが垂直方向に積み重なっている。](./images/collection-and-single-2column-mobile-drawer-1.png)
+    </ImgWithDesc>
+
+    <ImgWithDesc description="ドロワーが開いた状態">
+    ![実例画像：縦長の画面に、ヘッダー・見出し領域・Baseが垂直方向に積み重なっている。Base上に、ナビゲーションのリストが表示されている。](./images/collection-and-single-2column-mobile-drawer-2.png)
+    </ImgWithDesc>
+</Grid>
+
+#### 利用例
+
+![実例画像：ヘッダー・見出し領域が垂直方向に積み重なっている。その下に、左側にサイドナビゲーション、右側にコンテンツを含んだBaseが配置されている。](./images/collection-and-single-2column-sample.png)
