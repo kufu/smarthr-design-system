@@ -154,16 +154,18 @@ a {
   color: inherit
 }
 
-.shr-focus-indicator {
-  outline: none;
+:where(.shr-focus-indicator) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
-.shr-focus-indicator--inner {
-  outline: none;
+:where(.shr-focus-indicator--inner) {
   isolation: isolate;
-  box-shadow: inset 0 0 0 2px #0077c7, inset 0 0 0 4px #fff
+  box-shadow: inset 0 0 0 4px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: -2px
 }
 
 .shr-border-shorthand {
@@ -1588,6 +1590,10 @@ a {
 
 .shr-resize {
   resize: both
+}
+
+.shr-scroll-pb-0\.5 {
+  scroll-padding-bottom: 8px
 }
 
 .shr-list-none {
@@ -3074,46 +3080,53 @@ a {
   border-bottom-color: #d6d3d0
 }
 
-.focus-within\:shr-focus-indicator:focus-within {
-  outline: none;
+:where(.focus-within\:shr-focus-indicator:focus-within) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
-.focus-visible\:shr-focus-indicator:focus-visible {
-  outline: none;
+:where(.focus-visible\:shr-focus-indicator:focus-visible) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
-.focus-visible\:shr-focus-indicator--inner:focus-visible {
-  outline: none;
+:where(.focus-visible\:shr-focus-indicator--inner:focus-visible) {
   isolation: isolate;
-  box-shadow: inset 0 0 0 2px #0077c7, inset 0 0 0 4px #fff
+  box-shadow: inset 0 0 0 4px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: -2px
 }
 
-.shr-group\/clearButton:focus-visible .group-focus-visible\/clearButton\:shr-focus-indicator {
-  outline: none;
+:where(.shr-group\/clearButton:focus-visible .group-focus-visible\/clearButton\:shr-focus-indicator) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
-.shr-group\/deleteButton:focus-visible .group-focus-visible\/deleteButton\:shr-focus-indicator {
-  outline: none;
+:where(.shr-group\/deleteButton:focus-visible .group-focus-visible\/deleteButton\:shr-focus-indicator) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
-.shr-peer:focus-visible ~ .peer-focus-visible\:shr-focus-indicator {
-  outline: none;
+:where(.shr-peer:focus-visible ~ .peer-focus-visible\:shr-focus-indicator) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
-.has-\[\:focus-visible\]\:shr-focus-indicator:has(:focus-visible) {
-  outline: none;
+:where(.has-\[\:focus-visible\]\:shr-focus-indicator:has(:focus-visible)) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
 .has-\[\:checked\]\:before\:shr-border-shorthand:has(:checked)::before {
@@ -3153,22 +3166,32 @@ a {
   border-bottom-color: #d6d3d0
 }
 
-.\[\&\:has\(\:focus-visible\)\]\:shr-focus-indicator:has(:focus-visible) {
-  outline: none;
+:where(.\[\&\&\]\:focus-visible\:shr-focus-indicator--inner:focus-visible.\[\&\&\]\:focus-visible\:shr-focus-indicator--inner:focus-visible) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: inset 0 0 0 4px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: -2px
 }
 
-.\[\&\:has\(\:focus-visible\)\]\:aria-\[sort\]\:shr-focus-indicator[aria-sort]:has(:focus-visible) {
-  outline: none;
+:where(.\[\&\:has\(\:focus-visible\)\]\:shr-focus-indicator:has(:focus-visible)) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
-.\[\&\>\*\:focus-visible\]\:shr-focus-indicator>*:focus-visible {
-  outline: none;
+:where(.\[\&\:has\(\:focus-visible\)\]\:aria-\[sort\]\:shr-focus-indicator[aria-sort]:has(:focus-visible)) {
   isolation: isolate;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0077c7
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
+}
+
+:where(.\[\&\>\*\:focus-visible\]\:shr-focus-indicator>*:focus-visible) {
+  isolation: isolate;
+  box-shadow: 0 0 0 2px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: 2px
 }
 
 .\[\&_\+_\&\]\:shr-border-t-shorthand + .\[\&_\+_\&\]\:shr-border-t-shorthand {
@@ -5068,6 +5091,10 @@ a {
   align-items: center
 }
 
+.\[\&\&\]\:shr-justify-start.\[\&\&\]\:shr-justify-start {
+  justify-content: flex-start
+}
+
 .\[\&\&\]\:shr-justify-between.\[\&\&\]\:shr-justify-between {
   justify-content: space-between
 }
@@ -5200,6 +5227,15 @@ a {
 .\[\&\&\]\:focus-visible\:shr-bg-white-darken:focus-visible.\[\&\&\]\:focus-visible\:shr-bg-white-darken:focus-visible {
   --tw-bg-opacity: 1;
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\&\]\:aria-current-page\:shr-bg-grey-9[aria-current="page"].\[\&\&\]\:aria-current-page\:shr-bg-grey-9[aria-current="page"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 235 232 / var(--tw-bg-opacity, 1))
+}
+
+.\[\&\&\]\:aria-current-page\:shr-font-bold[aria-current="page"].\[\&\&\]\:aria-current-page\:shr-font-bold[aria-current="page"] {
+  font-weight: 700
 }
 
 .\[\&\.entered\]\:shr-visible.entered {

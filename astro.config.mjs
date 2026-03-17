@@ -16,8 +16,8 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
   integrations: [
-    mdx(),
     react(),
+    mdx(),
     partytown({
       config: {
         // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
