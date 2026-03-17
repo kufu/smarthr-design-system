@@ -37,7 +37,7 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
 
   // パスからstories/*.tsxを削除
   const githubSourcePath = stories.filePath.replace(/(stories\/)?[^/]*?\.tsx$/, '');
-  const githubUrl = new URL(`v${UI_VERSION}/${githubSourcePath}`, SHRUI_GITHUB_PATH);
+  const githubUrl = new URL(`smarthr-ui-v${UI_VERSION}/${githubSourcePath}`, SHRUI_GITHUB_PATH);
 
   const onClickTabItem = (itemId: string) => {
     if (itemId === currentIframe) {
