@@ -74,7 +74,7 @@ importers:
     devDependencies:
       '@astrojs/tailwind':
         specifier: ^6.0.2
-        version: 6.0.2(astro@4.16.19(@types/node@25.5.0)(rollup@4.59.0)(sass-embedded@1.98.0)(sass@1.98.0)(typescript@5.9.3))(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.8.2))
+        version: 6.0.2(astro@4.16.19(@types/node@25.5.0)(rollup@4.59.0)(sass-embedded@1.98.0)(sass@1.98.0)(typescript@5.9.3))(tailwindcss@4.2.1)
       '@eslint/eslintrc':
         specifier: ^3.3.5
         version: 3.3.5
@@ -151,8 +151,8 @@ importers:
         specifier: 0.34.5
         version: 0.34.5
       tailwindcss:
-        specifier: '3'
-        version: 3.4.19(tsx@4.21.0)(yaml@2.8.2)
+        specifier: 4.2.1
+        version: 4.2.1
       textlint:
         specifier: ^15.5.2
         version: 15.5.2
@@ -5517,6 +5517,9 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
+  tailwindcss@4.2.1:
+    resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
+
   tar-fs@2.1.4:
     resolution: {integrity: sha512-mDAjwmZdh7LTT6pNleZ05Yt65HC3E+NiQzl672vQG38jIrehtJk/J3mNwIg+vShQPcLF/LV7CMnDW6vjj6sfYQ==}
 
@@ -6422,13 +6425,13 @@ snapshots:
       - supports-color
       - terser
 
-  '@astrojs/tailwind@6.0.2(astro@4.16.19(@types/node@25.5.0)(rollup@4.59.0)(sass-embedded@1.98.0)(sass@1.98.0)(typescript@5.9.3))(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.8.2))':
+  '@astrojs/tailwind@6.0.2(astro@4.16.19(@types/node@25.5.0)(rollup@4.59.0)(sass-embedded@1.98.0)(sass@1.98.0)(typescript@5.9.3))(tailwindcss@4.2.1)':
     dependencies:
       astro: 4.16.19(@types/node@25.5.0)(rollup@4.59.0)(sass-embedded@1.98.0)(sass@1.98.0)(typescript@5.9.3)
       autoprefixer: 10.4.27(postcss@8.5.8)
       postcss: 8.5.8
       postcss-load-config: 4.0.2(postcss@8.5.8)
-      tailwindcss: 3.4.19(tsx@4.21.0)(yaml@2.8.2)
+      tailwindcss: 4.2.1
     transitivePeerDependencies:
       - ts-node
 
@@ -12749,6 +12752,8 @@ snapshots:
     transitivePeerDependencies:
       - tsx
       - yaml
+
+  tailwindcss@4.2.1: {}
 
   tar-fs@2.1.4:
     dependencies:
