@@ -9,7 +9,7 @@ export default function DynamicCancelActionDialog() {
       <Button onClick={() => setIsOpen(true)}>取り消しダイアログを開く</Button>
       <ActionDialog
         isOpen={isOpen}
-        title="{操作名}の取り消し"
+        heading="{操作名}の取り消し"
         actionText="取り消し"
         actionTheme="danger"
         onClickClose={() => {
