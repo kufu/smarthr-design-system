@@ -409,6 +409,10 @@ a {
   z-index: 10000;
 }
 
+.-shr-m-px {
+  margin: -1px;
+}
+
 .shr-m-0 {
   margin: 0;
 }
@@ -1563,6 +1567,10 @@ a {
   animation: shr-spin 1.6s linear infinite;
 }
 
+.shr-cursor-\[inherit\] {
+  cursor: inherit;
+}
+
 .shr-cursor-move {
   cursor: move;
 }
@@ -2344,6 +2352,10 @@ a {
 
 .shr-bg-\[theme\(colors\.grey\.9\)\] {
   background-color: #edebe8;
+}
+
+.shr-bg-\[unset\] {
+  background-color: unset;
 }
 
 .shr-bg-action-background {
@@ -4490,6 +4502,11 @@ a {
   border-color: #f8f7f6;
 }
 
+.has-\[\.smarthr-ui-ModelessDialog-handle\:focus-visible\]\:shr-bg-white-darken:has(.smarthr-ui-ModelessDialog-handle:focus-visible) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1));
+}
+
 .has-\[\:checked\]\:shr-bg-main:has(:checked) {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
@@ -4512,6 +4529,20 @@ a {
 
 .has-\[\+_\&\]\:shr-pb-2:has(+ .has-\[\+_\&\]\:shr-pb-2) {
   padding-bottom: 32px;
+}
+
+.has-\[\.smarthr-ui-ModelessDialog-handle\:focus-visible\]\:shr-transition-colors:has(.smarthr-ui-ModelessDialog-handle:focus-visible) {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.has-\[\.smarthr-ui-ModelessDialog-handle\:focus-visible\]\:shr-duration-100:has(.smarthr-ui-ModelessDialog-handle:focus-visible) {
+  transition-duration: 100ms;
+}
+
+.has-\[\.smarthr-ui-ModelessDialog-handle\:focus-visible\]\:shr-ease-in-out:has(.smarthr-ui-ModelessDialog-handle:focus-visible) {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .has-\[\:checked\]\:before\:shr-ms-\[theme\(fontSize\.base\)\]:has(:checked)::before {
@@ -6157,10 +6188,6 @@ a {
 .smarthr-ui-Base > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:last-child .\[\.smarthr-ui-Base_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:last-child_\&\]\:shr-rounded-b-l {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-}
-
-.smarthr-ui-ModelessDialog-handle:focus-visible + .\[\.smarthr-ui-ModelessDialog-handle\:focus-visible_\+_\&\]\:shr-relative {
-  position: relative;
 }
 
 .smarthr-ui-Th .\[\.smarthr-ui-Th_\&\]\:shr-text-link-darken {
