@@ -9,14 +9,15 @@ export default function DynamicMessageDialog() {
       <Button onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
       <MessageDialog
         isOpen={isOpen}
-        title="メッセージダイアログタイトル"
-        description="本文が入ります。"
+        heading="メッセージダイアログタイトル"
         // closeText="閉じる"
         size="XS"
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
         id="dialog-message"
-      />
+      >
+        <p>本文が入ります。</p>
+      </MessageDialog>
     </IntlProvider>
   );
 }
