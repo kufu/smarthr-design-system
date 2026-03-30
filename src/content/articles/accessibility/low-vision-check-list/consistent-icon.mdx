@@ -5,8 +5,8 @@ order: 0
 ---
 import { Image } from 'astro:assets'
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import sameIconDo from '../images/sameIconDo.png'
-import sameIconDont from '../images/sameIconDont.png'
+import ConsistentIconDo from '../images/ConsistentIconDo.png'
+import ConsistentIconDont from '../images/ConsistentIconDont.png'
 import { Text, Chip, Cluster} from 'smarthr-ui'
 
 <Cluster gap={0.25} style={{ margin: '-20px 0 -80px' }}>
@@ -28,11 +28,11 @@ import { Text, Chip, Cluster} from 'smarthr-ui'
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={sameIconDo} alt="同じアイコンが複数箇所で使用されている" />
+    <Image slot="img" src={ConsistentIconDo} alt="同じアイコンが複数箇所で使用されている" />
     <Text slot="label">編集を行なうButtonにはすべて同じアイコンを使用している。</Text>
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={sameIconDont} alt="異なるアイコンが複数箇所で使用されている" />
+    <Image slot="img" src={ConsistentIconDont} alt="異なるアイコンが複数箇所で使用されている" />
     <Text slot="label">編集を行なうButtonには異なるアイコンが使用されている。</Text>
   </DoAndDont>
 </Cluster>
