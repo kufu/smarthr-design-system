@@ -1,7 +1,7 @@
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 
-import metadata from 'smarthr-ui/metadata.json';
 import packageInfo from 'smarthr-ui/package.json';
 
 import type { PropsData, UIData, UIProps, UIStories } from '../src/types/ui';
@@ -31,6 +31,26 @@ type PropsResponse = {
   filePath: string;
   props: PropsData[];
 };
+
+/**
+ * smarthr-ui v86 以降は npm パッケージ直下に metadata.json が同梱され、exports に `./metadata.json` も追加されている。
+ * v85 以前は同梱・export ともに無く `import 'smarthr-ui/metadata.json'` は ERR_PACKAGE_PATH_NOT_EXPORTED になる。
+ * `./package.json` は export されているためそれでインストール先を解決し、隣の metadata.json を読む。
+ */
+function loadPropsMetadata(): PropsResponse[] {
+  const require = createRequire(import.meta.url);
+  const packageJsonPath = require.resolve('smarthr-ui/package.json');
+  const metadataPath = path.join(path.dirname(packageJsonPath), 'metadata.json');
+  if (!fs.existsSync(metadataPath)) {
+    throw new Error(
+      `smarthr-ui の metadata.json が見つかりません (${metadataPath})。` +
+        'smarthr-ui を v86.0.0 以降に更新して pnpm install を実行してください。',
+    );
+  }
+  return JSON.parse(fs.readFileSync(metadataPath, 'utf-8')) as PropsResponse[];
+}
+
+const metadata = loadPropsMetadata();
 
 const GH_API_BASE_URL = 'https://api.github.com';
 const CHROMATIC_DOMAIN = '63d0ccabb5d2dd29825524ab.chromatic.com';
@@ -82,7 +102,7 @@ async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
 }
 
 /**
- * smarthr-ui/metadata.jsonを元にUIPropsの情報を整形して返却
+ * smarthr-ui の metadata.json を元に UIProps の情報を整形して返却
  */
 const getUIProps = (): UIProps[] => {
   const uiProps = metadata.map((propsItem: PropsResponse): UIProps => {

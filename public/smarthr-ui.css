@@ -2042,6 +2042,10 @@ a {
   overflow: visible;
 }
 
+.shr-overflow-scroll {
+  overflow: scroll;
+}
+
 .shr-overflow-x-auto {
   overflow-x: auto;
 }
@@ -2150,9 +2154,19 @@ a {
   border-radius: 4px;
 }
 
+.shr-rounded-b-l {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
 .shr-rounded-b-m {
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
+}
+
+.shr-rounded-l-l {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .shr-rounded-l-none {
@@ -2160,9 +2174,27 @@ a {
   border-bottom-left-radius: 0;
 }
 
+.shr-rounded-r-l {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
 .shr-rounded-r-none {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.shr-rounded-t-l {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.shr-rounded-bl-l {
+  border-bottom-left-radius: 8px;
+}
+
+.shr-rounded-br-l {
+  border-bottom-right-radius: 8px;
 }
 
 .shr-rounded-tl-l {
@@ -5660,6 +5692,22 @@ a {
   }
 }
 
+.\[\&\>\.smarthr-ui-AccordionPanel-item\:first-child_\.smarthr-ui-AccordionPanel-trigger\]\:shr-rounded-tl-l>.smarthr-ui-AccordionPanel-item:first-child .smarthr-ui-AccordionPanel-trigger {
+  border-top-left-radius: 8px;
+}
+
+.\[\&\>\.smarthr-ui-AccordionPanel-item\:first-child_\.smarthr-ui-AccordionPanel-trigger\]\:shr-rounded-tr-l>.smarthr-ui-AccordionPanel-item:first-child .smarthr-ui-AccordionPanel-trigger {
+  border-top-right-radius: 8px;
+}
+
+.\[\&\>\.smarthr-ui-AccordionPanel-item\:last-child_\.smarthr-ui-AccordionPanel-trigger\:not\(\[aria-expanded\=\"true\"\]\)\]\:shr-rounded-bl-l>.smarthr-ui-AccordionPanel-item:last-child .smarthr-ui-AccordionPanel-trigger:not([aria-expanded="true"]) {
+  border-bottom-left-radius: 8px;
+}
+
+.\[\&\>\.smarthr-ui-AccordionPanel-item\:last-child_\.smarthr-ui-AccordionPanel-trigger\:not\(\[aria-expanded\=\"true\"\]\)\]\:shr-rounded-br-l>.smarthr-ui-AccordionPanel-item:last-child .smarthr-ui-AccordionPanel-trigger:not([aria-expanded="true"]) {
+  border-bottom-right-radius: 8px;
+}
+
 .\[\&\>\.smarthr-ui-DropdownMenuButton-trigger\]\:shr-border-transparent>.smarthr-ui-DropdownMenuButton-trigger {
   border-color: transparent;
 }
@@ -5686,6 +5734,22 @@ a {
   margin-inline-end: -4px;
 }
 
+.\[\&\>\.smarthr-ui-SideNav-item\:first-child\]\:shr-rounded-tl-l>.smarthr-ui-SideNav-item:first-child {
+  border-top-left-radius: 8px;
+}
+
+.\[\&\>\.smarthr-ui-SideNav-item\:first-child\]\:shr-rounded-tr-l>.smarthr-ui-SideNav-item:first-child {
+  border-top-right-radius: 8px;
+}
+
+.\[\&\>\.smarthr-ui-SideNav-item\:last-child\]\:shr-rounded-bl-l>.smarthr-ui-SideNav-item:last-child {
+  border-bottom-left-radius: 8px;
+}
+
+.\[\&\>\.smarthr-ui-SideNav-item\:last-child\]\:shr-rounded-br-l>.smarthr-ui-SideNav-item:last-child {
+  border-bottom-right-radius: 8px;
+}
+
 .\[\&\>a\]\:shr-block>a {
   display: block;
 }
@@ -5707,6 +5771,38 @@ a {
 .\[\&\>span\]\:shr-translate-y-\[unset\]>span {
   --tw-translate-y: unset;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.\[\&\>tbody\:last-child\>tr\:last-child\>td\:first-child\]\:shr-rounded-bl-l>tbody:last-child>tr:last-child>td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.\[\&\>tbody\:last-child\>tr\:last-child\>td\:last-child\]\:shr-rounded-br-l>tbody:last-child>tr:last-child>td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+.\[\&\>tbody\:last-child\>tr\:last-child\>th\:first-child\]\:shr-rounded-bl-l>tbody:last-child>tr:last-child>th:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.\[\&\>tbody\:last-child\>tr\:last-child\>th\:last-child\]\:shr-rounded-br-l>tbody:last-child>tr:last-child>th:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+.\[\&\>thead\:first-child\>tr\:first-child\>td\:first-child\]\:shr-rounded-tl-l>thead:first-child>tr:first-child>td:first-child {
+  border-top-left-radius: 8px;
+}
+
+.\[\&\>thead\:first-child\>tr\:first-child\>td\:last-child\]\:shr-rounded-tr-l>thead:first-child>tr:first-child>td:last-child {
+  border-top-right-radius: 8px;
+}
+
+.\[\&\>thead\:first-child\>tr\:first-child\>th\:first-child\]\:shr-rounded-tl-l>thead:first-child>tr:first-child>th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.\[\&\>thead\:first-child\>tr\:first-child\>th\:last-child\]\:shr-rounded-tr-l>thead:first-child>tr:first-child>th:last-child {
+  border-top-right-radius: 8px;
 }
 
 .\[\&\[aria-expanded\=\"true\"\]_\.smarthr-ui-Icon\:last-child\]\:shr-rotate-180[aria-expanded="true"] .smarthr-ui-Icon:last-child {
