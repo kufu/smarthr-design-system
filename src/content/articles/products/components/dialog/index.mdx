@@ -6,23 +6,25 @@ description: 'ダイアログボックス（もしくは単に「ダイアログ
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
-import {
-  ActionDialog,
-  Button,
-  Dialog,
-  MessageDialog,
-  ModelessDialog,
-  StepFormDialog,
-  Stack,
-  Text,
-  TextLink,
-} from 'smarthr-ui'
 
 Dialogコンポーネントは、ダイアログボックス（もしくは単に「ダイアログ」）と呼ばれる、ページの前面に表示される領域のためのコンポーネントです。
 
 ダイアログは、ユーザーに入力や選択などの操作を求めたり、情報を提示するために使われます。ユーザーの操作を起点として表示され、ユーザーの操作によって閉じられます。
 
 <ComponentStory name="Dialog" />
+
+## SmartHR UI におけるコンポーネント名
+
+`RemoteTrigger*Dialog`（トリガーとセットで開くパターン）ではなく、`isOpen` などで開閉を制御する使い方をする場合、SmartHR UI の **export 名には `Controlled` プレフィックス**が付きます。次のアップデートでは、`RemoteTrigger*Dialog` が `*Dialog` に変更される予定です。
+
+| 設計・ドキュメント上の呼び方 | SmartHR UI のコンポーネント名 |
+| :--- | :--- |
+| ActionDialog | `ControlledActionDialog` |
+| FormDialog | `ControlledFormDialog` |
+| StepFormDialog | `ControlledStepFormDialog` |
+| MessageDialog | `ControlledMessageDialog` |
+
+本サイトの各ページでは、利用シーンが伝わる名称（上表の左列）をタイトルや見出しに使い、Props 一覧は export 名に対応しています。
 
 ## Dialogを使用したコンポーネント
 

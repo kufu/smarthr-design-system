@@ -4,7 +4,7 @@ description: '選択操作に関わるコンポーネント（MultiCombobox / Si
 order: 25
 ---
 
-import { BaseColumn, ResponseMessage, Stack, Heading, Text } from 'smarthr-ui'
+import { BaseColumn, Stack, Heading, Text, WarningIcon } from 'smarthr-ui'
 
 選択操作に関わるコンポーネント（[MultiCombobox](/products/components/combo-box/multi-combo-box/)、[SingleCombobox](/products/components/combo-box/single-combo-box/)、[Select](/products/components/select/)、[RadioButton](/products/components/radio-button/)、[RadioButtonPanel](/products/components/radio-button-panel/)、[Checkbox](/products/components/check-box/)、[Switch](/products/components/switch/)）の使い分けの基準を定義します。
 
@@ -74,10 +74,8 @@ import { BaseColumn, ResponseMessage, Stack, Heading, Text } from 'smarthr-ui'
 
 <BaseColumn className="shr-mt-2" padding={{ block: 1, inline: 1.5 }}>
   <Stack gap={0.25}>
-    <Heading type="blockTitle">
-      <ResponseMessage>
-        [WIP] モバイルに適したComboboxを提供予定です。
-      </ResponseMessage>
+    <Heading type="blockTitle" icon={<WarningIcon />}>
+      [WIP] モバイルに適したComboboxを提供予定です。
     </Heading>
     <Text as="p">
       提供までに検索機能よりモバイルでの操作性を優先する場合は、代替として[Select](/products/components/select/)または[Checkbox](/products/components/check-box/)を使用してください。
