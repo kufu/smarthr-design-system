@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import {
-  ActionDialog,
   BaseColumn,
   Button,
   Checkbox,
+  ControlledActionDialog,
   DefinitionList,
   DefinitionListItem,
   IntlProvider,
@@ -18,7 +18,7 @@ export default function DynamicActionDialog() {
   return (
     <IntlProvider locale="ja">
       <Button onClick={() => setIsOpen(true)}>削除ダイアログを開く</Button>
-      <ActionDialog
+      <ControlledActionDialog
         isOpen={isOpen}
         heading="{オブジェクト名}の削除"
         actionText="削除"
@@ -40,7 +40,7 @@ export default function DynamicActionDialog() {
           </DefinitionList>
           <Stack gap={0.5}>
             <BaseColumn>
-              <ResponseMessage type="warning">
+              <ResponseMessage status="warning">
                 <Text weight="bold">注意事項</Text>
               </ResponseMessage>
               <ul style={{ marginBottom: 0, paddingLeft: '16px' }}>
@@ -53,7 +53,7 @@ export default function DynamicActionDialog() {
             </BaseColumn>
           </Stack>
         </Stack>
-      </ActionDialog>
+      </ControlledActionDialog>
     </IntlProvider>
   );
 }

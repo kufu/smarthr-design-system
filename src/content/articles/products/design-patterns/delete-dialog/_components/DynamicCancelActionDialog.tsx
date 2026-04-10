@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ActionDialog, Button, IntlProvider, Text } from 'smarthr-ui';
+import { Button, ControlledActionDialog, IntlProvider, Text } from 'smarthr-ui';
 
 export default function DynamicCancelActionDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,7 +7,7 @@ export default function DynamicCancelActionDialog() {
   return (
     <IntlProvider locale="ja">
       <Button onClick={() => setIsOpen(true)}>取り消しダイアログを開く</Button>
-      <ActionDialog
+      <ControlledActionDialog
         isOpen={isOpen}
         heading="{操作名}の取り消し"
         actionText="取り消し"
@@ -25,7 +25,7 @@ export default function DynamicCancelActionDialog() {
           <br />
           {'「取り消し」を押すと変更内容が破棄されます。'}
         </Text>
-      </ActionDialog>
+      </ControlledActionDialog>
     </IntlProvider>
   );
 }
