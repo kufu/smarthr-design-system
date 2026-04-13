@@ -56,7 +56,7 @@ const SortDropdownForMobile = () => {
       <RemoteDialogTrigger targetId="sort-dropdown-dialog">
         <Button suffix={sortAccessary[sortOrder].icon}>{sortFieldsMap[sortKey].label}（{sortAccessary[sortOrder].label}）</Button>
       </RemoteDialogTrigger>
-      <RemoteTriggerFormDialog
+      <FormDialog
         id="sort-dropdown-dialog"
         title="並べ替え"
         actionText="適用"
@@ -96,7 +96,7 @@ const SortDropdownForMobile = () => {
             </Cluster>
           </Fieldset>
         </Stack>
-      </RemoteTriggerFormDialog>
+      </FormDialog>
     </>
   )
 }

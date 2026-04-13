@@ -53,7 +53,7 @@ const FilterDropdownForMobile = () => {
       <RemoteDialogTrigger targetId="filter-dropdown-dialog">
         <Button suffix={<FilterIcon filtered={filtered} />}>絞り込み</Button>
       </RemoteDialogTrigger>
-      <RemoteTriggerFormDialog
+      <FormDialog
         id="filter-dropdown-dialog"
         title="絞り込み"
         actionText="適用"
@@ -71,7 +71,7 @@ const FilterDropdownForMobile = () => {
           <RadioButtonPanel defaultChecked={filtered} name="filtered" value="true" label="有効" />
         </Stack>
       </Fieldset>
-      </RemoteTriggerFormDialog>
+      </FormDialog>
     </>
   )
 }
