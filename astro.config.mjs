@@ -11,6 +11,7 @@ import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://smarthr.design/',
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
