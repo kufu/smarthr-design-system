@@ -4,6 +4,12 @@ description: ' '
 order: 26
 ---
 
+import { Chip, Cluster } from 'smarthr-ui'
+
+<Cluster gap={0.25} style={{ margin: '-20px 0 -80px' }}>
+  <Chip>実装</Chip>
+</Cluster>
+
 ## 概要
 この基準では、ウェブページ内で同じ`id`属性値を持つ要素が複数存在しないことを確認してください。HTMLでは、IDは識別子として一意であるべきです。これにより、スクリーンリーダーやスクリプトが特定の要素を正確に識別できるようになります。
 

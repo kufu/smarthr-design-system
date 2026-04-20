@@ -16,11 +16,11 @@ export default function DynamicModelessDialog() {
       </Button>
       <ModelessDialog
         isOpen={isOpen}
-        title="モードレスダイアログタイトル"
+        heading="モードレスダイアログタイトル"
         footer={<div style={{ padding: '16px 24px' }}> フッター </div>}
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
-        width={480}
+        size="XS"
         right={'10%'}
         id="modeless-dialog-1"
         data-test="dialog"

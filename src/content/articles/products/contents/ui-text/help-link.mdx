@@ -4,7 +4,7 @@ description: 'アプリケーションからヘルプセンターの各ヘルプ
 order: 1
 ---
 
-import { FaExternalLinkAltIcon, FaQuestionCircleIcon } from 'smarthr-ui'
+import { FaCircleQuestionIcon } from 'smarthr-ui'
 
 アプリケーションからヘルプセンターの各ヘルプページへのテキストリンクを定義しています。
 
@@ -39,7 +39,7 @@ import { FaExternalLinkAltIcon, FaQuestionCircleIcon } from 'smarthr-ui'
 HelpLinkを使用することで、アイコンの配置は自動で制御されます。
 
 ## アクセシビリティの観点
-- <FaQuestionCircleIcon alt="FaQuestionCircleIcon" color="TEXT_LINK" /> アイコンだけでヘルプページへのリンクを設定してもよいか。
+- <FaCircleQuestionIcon alt="FaCircleQuestionIcon" color="TEXT_LINK" /> アイコンだけでヘルプページへのリンクを設定してもよいか。
 
     - 構いません。`alt`を記述したうえで、前後の文脈から関連したヘルプページに移動することが推測できれば良いです。
 - リンクテキストとリンク先ページタイトルが違っても問題ないか。
@@ -51,8 +51,8 @@ HelpLinkを使用することで、アイコンの配置は自動で制御され
 
 | ライティングパターン | 例 |
 | ---- | ---- |
-| `詳しくは、{ヘルプページタイトル} <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" /> を参照してください。` | 詳しくは、<u>SmartHR基本機能の通知設定を確認・変更する</u>を参照してください。 |
-| `{hoge}については、{ヘルプページタイトル} <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。` | 「旧経路（廃止予定）」については、<u>旧経路（廃止予定）はどんな経路ですか？</u>を参照してください。 |
-| `{hoge}の詳しい操作方法は、{ヘルプページタイトル}<FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。` | それぞれの詳しい操作方法は、<u>昨年分の保険や住宅借入金控除の申告情報を引き継ぐ</u>を参照してください。 |
-| `{hoge}や{fuga}、{piyo}については、{ヘルプページタイトル} <FaExternalLinkAltIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。` | 通知のタイミングや通知先については、<u>【一覧】申請機能の通知メール</u>を参照してください。 |
-| `<FaQuestionCircleIcon visuallyHiddenText="ヘルプセンター" /> {ヘルプページタイトル}` | <u>年末調整機能の事前準備の流れ</u> |
+| `詳しくは、{ヘルプページタイトル} <OpenInNewTabIcon visuallyHiddenText="新規ウィンドウ" /> を参照してください。` | 詳しくは、<u>SmartHR基本機能の通知設定を確認・変更する</u>を参照してください。 |
+| `{hoge}については、{ヘルプページタイトル} <OpenInNewTabIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。` | 「旧経路（廃止予定）」については、<u>旧経路（廃止予定）はどんな経路ですか？</u>を参照してください。 |
+| `{hoge}の詳しい操作方法は、{ヘルプページタイトル}<OpenInNewTabIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。` | それぞれの詳しい操作方法は、<u>昨年分の保険や住宅借入金控除の申告情報を引き継ぐ</u>を参照してください。 |
+| `{hoge}や{fuga}、{piyo}については、{ヘルプページタイトル} <OpenInNewTabIcon visuallyHiddenText="新規ウィンドウ" />を参照してください。` | 通知のタイミングや通知先については、<u>【一覧】申請機能の通知メール</u>を参照してください。 |
+| `<FaCircleQuestionIcon visuallyHiddenText="ヘルプセンター" /> {ヘルプページタイトル}` | <u>年末調整機能の事前準備の流れ</u> |

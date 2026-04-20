@@ -22,16 +22,19 @@ DropZoneは操作しやすさを担保するため一定以上の大きさでレ
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={InputFileDo} alt="Do" width="346" />
+    <Image slot="img" src={InputFileDo} alt="Do" />
     <Text slot="label">入力項目の大きさが揃っており、閲覧性が高い</Text>
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={InputFileDont} alt="Dont" width="346" />
+    <Image slot="img" src={InputFileDont} alt="Dont" />
     <Text slot="label">入力項目の大きさに差があり、項目を見落とす恐れがある</Text>
   </DoAndDont>
 </Cluster>
 
+## モバイル
 
+モバイルではドラッグアンドドロップでファイルを選択できません。
+モバイル中心のユースケースでは、[InputFile](/products/components/input-file/)を使ってください。
 
 ## Props
 

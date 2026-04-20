@@ -2,6 +2,7 @@
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
+import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
 import remarkEmoji from 'remark-emoji';
 
@@ -15,14 +16,15 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
   integrations: [
-    mdx(),
     react(),
+    mdx(),
     partytown({
       config: {
         // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
         forward: ['dataLayer.push'],
       },
     }),
+    tailwind(),
   ],
   markdown: {
     syntaxHighlight: false,

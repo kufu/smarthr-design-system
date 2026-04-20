@@ -1,13 +1,22 @@
 ---
 title: 'Stepper'
-description: ''
+description: '連続する操作を、操作のステップごとにグルーピングするコンポーネントです。'
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
+連続する操作を、操作のステップごとにグルーピングするコンポーネントです。
 
-<ComponentStory name="Stepper" noMargin />
+ステップの進行状況に応じて、現在地や完了のステータスを適切に表現してください。
+
+<ComponentStory name="Stepper" />
+
+## モバイル
+
+モバイル環境では画面の幅が狭いので、`type="horizontal"`を使用していると水平方向のスクロールが生じることがあります。その場合は`type="vertical"`を使用してください。
+
+隣接するセクションとのレイアウト調整が困難な場合は、Stepperを使用せず他の表現方法を検討してください。
 
 ## Props
 

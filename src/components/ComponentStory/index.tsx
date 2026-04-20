@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import { AnchorButton, Cluster, FaUpRightFromSquareIcon, IntlProvider, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
+import { AnchorButton, Cluster, IntlProvider, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
 
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
 import { UI_COMMIT_HASH, UI_VERSION } from '@/lib/getUIData';
@@ -37,7 +37,7 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
 
   // パスからstories/*.tsxを削除
   const githubSourcePath = stories.filePath.replace(/(stories\/)?[^/]*?\.tsx$/, '');
-  const githubUrl = new URL(`v${UI_VERSION}/${githubSourcePath}`, SHRUI_GITHUB_PATH);
+  const githubUrl = new URL(`smarthr-ui-v${UI_VERSION}/${githubSourcePath}`, SHRUI_GITHUB_PATH);
 
   const onClickTabItem = (itemId: string) => {
     if (itemId === currentIframe) {
@@ -61,22 +61,10 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
             <span>{UI_VERSION}</span>
           </Cluster>
           <Cluster>
-            <AnchorButton
-              href={storybookUrl.toString()}
-              target="_blank"
-              size="s"
-              suffix={<FaUpRightFromSquareIcon />}
-              rel="noreferrer"
-            >
+            <AnchorButton href={storybookUrl.toString()} target="_blank" size="S" rel="noreferrer">
               Storybook
             </AnchorButton>
-            <AnchorButton
-              href={githubUrl.toString()}
-              target="_blank"
-              size="s"
-              suffix={<FaUpRightFromSquareIcon />}
-              rel="noreferrer"
-            >
+            <AnchorButton href={githubUrl.toString()} target="_blank" size="S" rel="noreferrer">
               GitHub
             </AnchorButton>
           </Cluster>

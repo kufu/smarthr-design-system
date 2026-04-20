@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, IntlProvider, MessageDialog } from 'smarthr-ui';
+import { Button, ControlledMessageDialog, IntlProvider } from 'smarthr-ui';
 
 export default function DynamicMessageDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,16 +7,17 @@ export default function DynamicMessageDialog() {
   return (
     <IntlProvider locale="ja">
       <Button onClick={() => setIsOpen(true)}>MessageDialogを開く</Button>
-      <MessageDialog
+      <ControlledMessageDialog
         isOpen={isOpen}
-        title="メッセージダイアログタイトル"
-        description="本文が入ります。"
+        heading="メッセージダイアログタイトル"
         // closeText="閉じる"
-        width={480}
+        size="XS"
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
         id="dialog-message"
-      />
+      >
+        <p>本文が入ります。</p>
+      </ControlledMessageDialog>
     </IntlProvider>
   );
 }

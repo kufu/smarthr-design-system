@@ -1,59 +1,64 @@
 import { useState } from 'react';
-import { Button, IntlProvider, StepFormDialog, StepFormDialogItem } from 'smarthr-ui';
+import { Button, ControlledStepFormDialog, IntlProvider, StepFormDialogItem } from 'smarthr-ui';
+
+interface Step {
+  id: string;
+  stepNumber: number;
+}
+
+interface StepMockItem extends Step {
+  label: string;
+}
 
 export default function DynamicStepFormDialog() {
   const [opened, setOpened] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
 
-  const steps = [
+  const steps: StepMockItem[] = [
     { id: 'step1', label: 'ステップ1', stepNumber: 1 },
     { id: 'step2', label: 'ステップ2', stepNumber: 2 },
     { id: 'step3', label: 'ステップ3', stepNumber: 3 },
   ];
 
-  const handleNext = () => {
-    const nextStep = Math.min(currentStep + 1, steps.length - 1);
-    setCurrentStep(nextStep);
-    return steps[nextStep]; // stepNumber を含む StepItem を返す
-  };
+  const lastStep = steps[steps.length - 1];
 
-  const handleBack = () => {
-    const prevStep = Math.max(currentStep - 1, 0);
-    setCurrentStep(prevStep);
-    return steps[prevStep]; // stepNumber を含む StepItem を返す
+  const handleSubmit = (
+    _e: React.FormEvent<HTMLFormElement>,
+    { goto, close, currentStep }: { goto: (step: Step) => void; close: () => void; currentStep: Step },
+  ) => {
+    if (currentStep.id === lastStep.id) {
+      close();
+    } else {
+      const idx = steps.findIndex((s) => s.id === currentStep.id);
+      const next = steps[idx + 1];
+      if (next) {
+        goto(next);
+      }
+    }
   };
 
   const handleClose = () => {
     setOpened(false);
-    setCurrentStep(0);
   };
 
   return (
     <IntlProvider locale="ja">
       <Button onClick={() => setOpened(true)}>StepFormDialog を開く</Button>
-      <StepFormDialog
+      <ControlledStepFormDialog
         isOpen={opened}
-        title="ステップフォームダイアログ"
-        submitLabel={currentStep < steps.length - 1 ? '次へ' : '保存'}
+        heading="ステップフォームダイアログ"
+        submitButton={(currentStep) => (currentStep.id === lastStep.id ? '保存' : '次へ')}
         stepLength={steps.length}
         firstStep={steps[0]}
-        onSubmit={(closeDialog, _e, currentStepItem) => {
-          if (currentStepItem.id === steps[steps.length - 1].id) {
-            closeDialog();
-            setTimeout(handleClose, 300);
-            return undefined;
-          } else {
-            return handleNext(); // StepItem を返す
-          }
-        }}
+        onSubmit={handleSubmit}
         onClickClose={handleClose}
-        onClickBack={currentStep > 0 ? handleBack : undefined}
-        width="480px"
+        size="XS"
       >
-        <StepFormDialogItem {...steps[currentStep]}>
-          <p>{steps[currentStep].label}</p>
-        </StepFormDialogItem>
-      </StepFormDialog>
+        {steps.map((step) => (
+          <StepFormDialogItem {...step} key={step.id}>
+            <p>{step.label}</p>
+          </StepFormDialogItem>
+        ))}
+      </ControlledStepFormDialog>
     </IntlProvider>
   );
 }

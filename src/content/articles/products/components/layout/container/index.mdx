@@ -17,6 +17,16 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
 `size` props を使ってコンテナの大きさを指定できます。デフォルトは`DEFAULT`です。
 
+次のような場合には、`WIDE`や`FULL`を検討します。
+
+- 大量のデータを表示する場合
+- [サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)や[コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)など、1つのカラムに1ページ相当の情報を表示する場合
+
+次のような場合には、`NARROW`を検討します。
+
+- ページに表示する情報が少ない場合
+- 入力要素が中心の画面の場合
+
 大きさ | 幅トークン | 値（px）
 :--- | :--- | :---
 `NARROW` | `col6` | 880px

@@ -3,7 +3,7 @@ title: 'MultiCombobox'
 description: '選択肢の中から複数の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。'
 ---
 import { Image } from 'astro:assets'
-import { Text, MultiCombobox, Cluster } from 'smarthr-ui'
+import { Text, MultiCombobox, Cluster, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
@@ -17,6 +17,7 @@ import multiComboboxDont from '../images/multi-combo-box-dont.png'
 ## 使用上の注意
 
 ### ユースケースに応じてコンポーネントを使い分ける
+詳しくは[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
 
 #### 複数選択の場合に使用する
 
@@ -101,6 +102,12 @@ MultiComboboxに`disabled`を適用すると、テキスト入力不可になり
   />
 </>
 ```
+
+## [WIP] モバイル
+
+<BaseColumn className="shr-mt-2">
+  <ResponseMessage>モバイルに適したMultiComboboxを提供予定です。</ResponseMessage>
+</BaseColumn>
 
 ## Props
 

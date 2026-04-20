@@ -15,14 +15,14 @@ jobs:
         working-directory: ./scripts/content-checker
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Setup pnpm
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v5
 
       # Setup Node.js
       - name: Setup Node.js environment
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: 'pnpm'
