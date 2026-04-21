@@ -61,13 +61,13 @@ importers:
         version: 4.1.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       smarthr-normalize-css:
         specifier: ^1.1.0
-        version: 1.1.0(styled-components@6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
+        version: 1.1.0(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
       smarthr-ui:
         specifier: ^93.0.0
-        version: 93.0.0(@types/react@18.3.28)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.5(react@19.2.5))(react-intl@8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3))(react@19.2.5)(styled-components@6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
+        version: 93.0.0(@types/react@18.3.28)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.5(react@19.2.5))(react-intl@8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3))(react@19.2.5)(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
       styled-components:
-        specifier: ^6.3.12
-        version: 6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        specifier: ^6.4.0
+        version: 6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -452,9 +452,6 @@ packages:
 
   '@emotion/memoize@0.9.0':
     resolution: {integrity: sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==}
-
-  '@emotion/unitless@0.10.0':
-    resolution: {integrity: sha512-dFoMUuQA20zvtVTuxZww6OHoJYgrzfKM1t52mVySDJnMSEa08ruEvdYQbhvyu6soU+NeLVd3yKfTfT0NeV6qGg==}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -1831,9 +1828,6 @@ packages:
 
   '@types/react@18.3.28':
     resolution: {integrity: sha512-z9VXpC7MWrhfWipitjNdgCauoMLRdIILQsAEV+ZesIzBq/oUlxk0m3ApZuMFCXdnS4U7KrI+l3WRUEGQ8K1QKw==}
-
-  '@types/stylis@4.2.7':
-    resolution: {integrity: sha512-VgDNokpBoKF+wrdvhAAfS55OMQpL6QRglwTwNC3kIgBrzZxA4WsFj+2eLfEA/uMUDzBcEhYmjSbwQakn/i3ajA==}
 
   '@types/supports-color@8.1.3':
     resolution: {integrity: sha512-Hy6UMpxhE3j1tLpl27exp1XqHD7n8chAiNPzWfz16LPZoMMoSc4dzLl6w9qijkEb/r5O1ozdu1CWGA2L83ZeZg==}
@@ -4652,10 +4646,6 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.4.49:
-    resolution: {integrity: sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.8:
     resolution: {integrity: sha512-OW/rX8O/jXnm82Ey1k44pObPtdblfiuWnrd8X7GJ7emImCOstunGbXUpp7HdBrFQX6rJzn3sPT397Wp5aCwCHg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -5258,9 +5248,6 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shallowequal@1.1.0:
-    resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
-
   sharp@0.33.5:
     resolution: {integrity: sha512-haPVm1EkS9pgvHrQ/F3Xy+hgcuMV0Wm9vfIBSiwZ05k+xgb0PkBQpGsAA/oWdDobNaZTH5ppvHtzCFbnSEwHVw==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
@@ -5498,14 +5485,20 @@ packages:
   style-to-object@1.0.14:
     resolution: {integrity: sha512-LIN7rULI0jBscWQYaSswptyderlarFkjQ+t79nzty8tcIAceVomEVlLzH5VP4Cmsv6MtKhs7qaAiwlcp+Mgaxw==}
 
-  styled-components@6.3.12:
-    resolution: {integrity: sha512-hFR6xsVkVYbsdcUlzPYFvFfoc6o2KlV0VvgRIQwSYMtdThM7SCxnjX9efh/cWce2kTq16I/Kl3xM98xiLptsXA==}
+  styled-components@6.4.0:
+    resolution: {integrity: sha512-BL1EDFpt+q10eAeZB0q9ps6pSlPejaBQWBkiuM16pyoVTG4NhZrPrZK0cqNbrozxSsYwUsJ9SQYN6NyeKJYX9A==}
     engines: {node: '>= 16'}
     peerDependencies:
+      css-to-react-native: '>= 3.2.0'
       react: '>= 16.8.0'
       react-dom: '>= 16.8.0'
+      react-native: '>= 0.68.0'
     peerDependenciesMeta:
+      css-to-react-native:
+        optional: true
       react-dom:
+        optional: true
+      react-native:
         optional: true
 
   styled-reset@4.5.2:
@@ -6693,8 +6686,6 @@ snapshots:
       '@emotion/memoize': 0.9.0
 
   '@emotion/memoize@0.9.0': {}
-
-  '@emotion/unitless@0.10.0': {}
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
@@ -7939,8 +7930,6 @@ snapshots:
       '@types/prop-types': 15.7.15
       csstype: 3.2.3
 
-  '@types/stylis@4.2.7': {}
-
   '@types/supports-color@8.1.3': {}
 
   '@types/unist@2.0.11': {}
@@ -8623,7 +8612,8 @@ snapshots:
 
   camelcase@8.0.0: {}
 
-  camelize@1.0.1: {}
+  camelize@1.0.1:
+    optional: true
 
   caniuse-lite@1.0.30001780: {}
 
@@ -8800,7 +8790,8 @@ snapshots:
 
   crypt@0.0.2: {}
 
-  css-color-keywords@1.0.0: {}
+  css-color-keywords@1.0.0:
+    optional: true
 
   css-select@5.2.2:
     dependencies:
@@ -8817,6 +8808,7 @@ snapshots:
       camelize: 1.0.1
       css-color-keywords: 1.0.0
       postcss-value-parser: 4.2.0
+    optional: true
 
   css-what@6.2.2: {}
 
@@ -11619,12 +11611,6 @@ snapshots:
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.4.49:
-    dependencies:
-      nanoid: 3.3.11
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
   postcss@8.5.8:
     dependencies:
       nanoid: 3.3.11
@@ -12417,8 +12403,6 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shallowequal@1.1.0: {}
-
   sharp@0.33.5:
     dependencies:
       color: 4.2.3
@@ -12571,13 +12555,13 @@ snapshots:
 
   slide@1.1.6: {}
 
-  smarthr-normalize-css@1.1.0(styled-components@6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5)):
+  smarthr-normalize-css@1.1.0(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)):
     dependencies:
-      styled-reset: 4.5.2(styled-components@6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
+      styled-reset: 4.5.2(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@93.0.0(@types/react@18.3.28)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.5(react@19.2.5))(react-intl@8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3))(react@19.2.5)(styled-components@6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2):
+  smarthr-ui@93.0.0(@types/react@18.3.28)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.5(react@19.2.5))(react-intl@8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3))(react@19.2.5)(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.20
@@ -12594,7 +12578,7 @@ snapshots:
       react-intl: 8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3)
       react-pdf: 9.2.1(@types/react@18.3.28)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react-transition-group: 4.4.5(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      styled-components: 6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      styled-components: 6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       tailwind-variants: 0.3.1(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.8.2))
       tailwindcss: 3.4.19(tsx@4.21.0)(yaml@2.8.2)
       typescript-eslint: 8.58.2(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
@@ -12777,24 +12761,19 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.7
 
-  styled-components@6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
-      '@emotion/unitless': 0.10.0
-      '@types/stylis': 4.2.7
-      css-to-react-native: 3.2.0
       csstype: 3.2.3
-      postcss: 8.4.49
       react: 19.2.5
-      shallowequal: 1.1.0
       stylis: 4.3.6
-      tslib: 2.8.1
     optionalDependencies:
+      css-to-react-native: 3.2.0
       react-dom: 19.2.5(react@19.2.5)
 
-  styled-reset@4.5.2(styled-components@6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5)):
+  styled-reset@4.5.2(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)):
     dependencies:
-      styled-components: 6.3.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      styled-components: 6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
 
   stylis@4.3.6: {}
 
