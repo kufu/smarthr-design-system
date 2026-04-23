@@ -55,7 +55,7 @@ async function fetchSmartHRUIRelease(): Promise<GitHubAPIResponse> {
 
   // package.json に記載されているバージョンと一致するリリース情報を取得
   const release = releases.find((data) => {
-    const version = data.tag_name.replace(/^v/, '');
+    const version = data.tag_name.replace(/^(smarthr-ui-)?v/, '');
     return version === packageInfo.version;
   });
 

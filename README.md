@@ -13,25 +13,13 @@ main branch: https://smarthr-design-system.netlify.app
 3. `pnpm` to install dependencies
 4. `pnpm dev` to start the dev server
 
-## 開発の進め方
+## 関連ドキュメント
 
-https://smarthr-inc.docbase.io/posts/1726096
-
-## SmartHR Design System 環境構築の手引き 〜GitHubはじめての人向け〜
-
-https://smarthr-inc.docbase.io/posts/2162922
-
-## コンテンツを追加するまでの道のり 〜GitHubそんなにわからない人向けバージョン〜
-
-https://smarthr-inc.docbase.io/posts/2083788
-
-## ローカル環境やプレビューで困ったときの解決メモ
-
-https://smarthr-inc.docbase.io/posts/2289638
-
-## Gatsbyやコンポーネントに関する開発者向けドキュメント
-
-https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md
+- [開発の進め方](https://www.notion.so/SmartHR-Design-System-32637b6398eb80e5a142c87abc0c746e)
+- [SmartHR Design System 環境構築の手引き 〜GitHubはじめての人向け〜](https://www.notion.so/SmartHR-Design-System-GitHub-28c37b6398eb81fdb060cb5c8c4168ab)
+- [コンテンツを追加するまでの道のり 〜GitHubそんなにわからない人向けバージョン〜](https://www.notion.so/SmartHR-Design-System-GitHub-32237b6398eb80b99206f84cab4d90b0)
+- [ローカル環境やプレビューで困ったときの解決メモ](https://www.notion.so/SDS-32237b6398eb80db93a7ca2b0c82cdfe)
+- [Astroやコンポーネントに関する開発者向けドキュメント](https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md)
 
 ## コンテンツを編集するときに注意すること
 
