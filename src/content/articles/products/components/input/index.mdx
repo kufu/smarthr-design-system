@@ -88,31 +88,6 @@ import MobileFontSize from './images/mobile-font-size.png'
 
 `prefix`は検索アイコン「<FaMagnifyingGlassIcon alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン" />」に固定されています。
 
-```tsx editable noIframe withStyled
-render(() => {
-  const [query, setQuery] = React.useState('須磨 英子')
-  return (
-    <SearchInput
-      tooltipMessage="氏名、ヨミガナ、社員番号で検索できます。"
-      value={query}
-      onChange={(e) => { setQuery(e.target.value) }}
-      onClickClear={() => { setQuery('') }}
-    />
-  )
-})
-```
-
-`onClickClear`を使用すると、入力内容のクリアボタンが表示されます。検索ボタンのあるフォーム（インクリメンタル検索をしないフォーム）内のSearchInputでは入力内容のクリアボタンで検索まで実行せず、入力内容の削除にとどめてください。
-
-import SearchInputDont from './_components/SearchInputDont'
-
-<DoAndDont type="dont">
-  <BaseColumn slot="img">
-    <SearchInputDont />
-  </BaseColumn>
-  <Text slot="label">検索ボタンのあるフォーム内のSearchInputで、入力内容のクリアボタンを押すと検索まで実行される</Text>
-</DoAndDont>
-
 ## レイアウト
 
 ### プレフィックス・サフィックス
