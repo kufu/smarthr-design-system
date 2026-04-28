@@ -29,22 +29,26 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
 
 ```tsx editable
 <Stack>
-  <Stack gap={0.5}>
-    <Heading type="blockTitle">特殊なステータス</Heading>
-    <Cluster>
-      <StatusLabel type="warning">警告</StatusLabel>
-      <StatusLabel type="error">エラー</StatusLabel>
-    </Cluster>
-  </Stack>
-  <Stack gap={0.5}>
-    <Heading type="blockTitle">その他のステータス</Heading>
-    <Cluster>
-      <StatusLabel type="green">ラベル名</StatusLabel>
-      <StatusLabel type="blue">ラベル名</StatusLabel>
-      <StatusLabel type="grey">ラベル名</StatusLabel>
-      <StatusLabel type="red">ラベル名</StatusLabel>
-    </Cluster>
-  </Stack>
+  <Section>
+    <Stack gap={0.5}>
+      <Heading type="blockTitle">特殊なステータス</Heading>
+      <Cluster>
+        <StatusLabel type="warning">警告</StatusLabel>
+        <StatusLabel type="error">エラー</StatusLabel>
+      </Cluster>
+    </Stack>
+  </Section>
+  <Section>
+    <Stack gap={0.5}>
+      <Heading type="blockTitle">その他のステータス</Heading>
+      <Cluster>
+        <StatusLabel type="green">ラベル名</StatusLabel>
+        <StatusLabel type="blue">ラベル名</StatusLabel>
+        <StatusLabel type="grey">ラベル名</StatusLabel>
+        <StatusLabel type="red">ラベル名</StatusLabel>
+      </Cluster>
+    </Stack>
+  </Section>
 </Stack>
 ```
 
