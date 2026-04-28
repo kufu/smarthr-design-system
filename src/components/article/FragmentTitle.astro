@@ -10,63 +10,56 @@ type Props = {
 
 const { id, tag = 'h2' } = Astro.props;
 
-const fragmentTitle = (tag: HeadingTagTypes) => {
-  switch (tag) {
-    case 'h2':
-      return (<h2 class="wrapper" id={id}>
-        <a href={`#${id}`}>
-          <FaLinkIcon className="icon" />
-          <slot />
-        </a>
-      </h2>);
-    case 'h3':
-      return (<h3 class="wrapper" id={id}>
-        <a href={`#${id}`}>
-          <FaLinkIcon className="icon" />
-          <slot />
-        </a>
-      </h3>);
-    case 'h4':
-      return (<h4 class="wrapper" id={id}>
-        <a href={`#${id}`}>
-          <FaLinkIcon className="icon" />
-          <slot />
-        </a>
-      </h4>);
-    case 'h5':
-      return (<h5 class="wrapper" id={id}>
-        <a href={`#${id}`}>
-          <FaLinkIcon className="icon" />
-          <slot />
-        </a>
-      </h5>);
-    case 'h6':
-      return (<h6 class="wrapper" id={id}>
-        <a href={`#${id}`}>
-          <FaLinkIcon className="icon" />
-          <slot />
-        </a>
-      </h6>);
-    case 'span':
-      return (<span class="wrapper" id={id}>
-        <a href={`#${id}`}>
-          <FaLinkIcon className="icon" />
-          <slot />
-        </a>
-      </span>);
-    default:
-      return (<h2 class="wrapper" id={id}>
-        <a href={`#${id}`}>
-          <FaLinkIcon className="icon" />
-          <slot />
-        </a>
-      </h2>);
-  }
-};
-
 ---
 
-{fragmentTitle(tag)}
+{tag === 'h2' && (
+  <h2 class="wrapper" id={id}>
+    <a href={`#${id}`}>
+      <FaLinkIcon className="icon" />
+      <slot />
+    </a>
+  </h2>
+)}
+{tag === 'h3' && (
+  <h3 class="wrapper" id={id}>
+    <a href={`#${id}`}>
+      <FaLinkIcon className="icon" />
+      <slot />
+    </a>
+  </h3>
+)}
+{tag === 'h4' && (
+  <h4 class="wrapper" id={id}>
+    <a href={`#${id}`}>
+      <FaLinkIcon className="icon" />
+      <slot />
+    </a>
+  </h4>
+)}
+{tag === 'h5' && (
+  <h5 class="wrapper" id={id}>
+    <a href={`#${id}`}>
+      <FaLinkIcon className="icon" />
+      <slot />
+    </a>
+  </h5>
+)}
+{tag === 'h6' && (
+  <h6 class="wrapper" id={id}>
+    <a href={`#${id}`}>
+      <FaLinkIcon className="icon" />
+      <slot />
+    </a>
+  </h6>
+)}
+{tag === 'span' && (
+  <span class="wrapper" id={id  }>
+    <a href={`#${id}`}>
+      <FaLinkIcon className="icon" />
+      <slot />
+    </a>
+  </span>
+)}
 
 <style lang="scss">
   .wrapper {
