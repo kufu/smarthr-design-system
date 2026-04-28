@@ -19,13 +19,13 @@ importers:
         version: 2.1.7
       '@astrojs/react':
         specifier: ^3.6.3
-        version: 3.6.3(@types/node@25.5.0)(@types/react-dom@19.2.3(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(sass-embedded@1.99.0)(sass@1.99.0)
+        version: 3.6.3(@types/node@25.5.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(sass-embedded@1.99.0)(sass@1.99.0)
       '@types/react':
-        specifier: ^18.3.28
-        version: 18.3.28
+        specifier: ^19.2.14
+        version: 19.2.14
       '@types/react-dom':
         specifier: ^19.2.3
-        version: 19.2.3(@types/react@18.3.28)
+        version: 19.2.3(@types/react@19.2.14)
       algoliasearch:
         specifier: ^5.50.2
         version: 5.50.2
@@ -64,7 +64,7 @@ importers:
         version: 1.1.0(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
       smarthr-ui:
         specifier: ^93.0.1
-        version: 93.0.1(@types/react@18.3.28)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.5(react@19.2.5))(react-intl@8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3))(react@19.2.5)(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
+        version: 93.0.1(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.5(react@19.2.5))(react-intl@8.1.4(@types/react@19.2.14)(react@19.2.5)(typescript@5.9.3))(react@19.2.5)(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
       styled-components:
         specifier: ^6.4.0
         version: 6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -1815,9 +1815,6 @@ packages:
   '@types/prismjs@1.26.6':
     resolution: {integrity: sha512-vqlvI7qlMvcCBbVe0AKAb4f97//Hy0EBTaiW8AalRnG/xAN5zOiWWyrNqNXeq8+KAuvRewjCVY1+IPxk4RdNYw==}
 
-  '@types/prop-types@15.7.15':
-    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
-
   '@types/qs@6.15.0':
     resolution: {integrity: sha512-JawvT8iBVWpzTrz3EGw9BTQFg3BQNmwERdKE22vlTxawwtbyUSlMppvZYKLZzB5zgACXdXxbD3m1bXaMqP/9ow==}
 
@@ -1826,8 +1823,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react@18.3.28':
-    resolution: {integrity: sha512-z9VXpC7MWrhfWipitjNdgCauoMLRdIILQsAEV+ZesIzBq/oUlxk0m3ApZuMFCXdnS4U7KrI+l3WRUEGQ8K1QKw==}
+  '@types/react@19.2.14':
+    resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
 
   '@types/supports-color@8.1.3':
     resolution: {integrity: sha512-Hy6UMpxhE3j1tLpl27exp1XqHD7n8chAiNPzWfz16LPZoMMoSc4dzLl6w9qijkEb/r5O1ozdu1CWGA2L83ZeZg==}
@@ -6506,10 +6503,10 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/react@3.6.3(@types/node@25.5.0)(@types/react-dom@19.2.3(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(sass-embedded@1.99.0)(sass@1.99.0)':
+  '@astrojs/react@3.6.3(@types/node@25.5.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(sass-embedded@1.99.0)(sass@1.99.0)':
     dependencies:
-      '@types/react': 18.3.28
-      '@types/react-dom': 19.2.3(@types/react@18.3.28)
+      '@types/react': 19.2.14
+      '@types/react-dom': 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react': 4.7.0(vite@5.4.21(@types/node@25.5.0)(sass-embedded@1.99.0)(sass@1.99.0))
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
@@ -7931,9 +7928,9 @@ snapshots:
 
   '@types/hogan.js@3.0.5': {}
 
-  '@types/hoist-non-react-statics@3.3.7(@types/react@18.3.28)':
+  '@types/hoist-non-react-statics@3.3.7(@types/react@19.2.14)':
     dependencies:
-      '@types/react': 18.3.28
+      '@types/react': 19.2.14
       hoist-non-react-statics: 3.3.2
 
   '@types/is-empty@1.2.3': {}
@@ -7970,17 +7967,14 @@ snapshots:
 
   '@types/prismjs@1.26.6': {}
 
-  '@types/prop-types@15.7.15': {}
-
   '@types/qs@6.15.0': {}
 
-  '@types/react-dom@19.2.3(@types/react@18.3.28)':
+  '@types/react-dom@19.2.3(@types/react@19.2.14)':
     dependencies:
-      '@types/react': 18.3.28
+      '@types/react': 19.2.14
 
-  '@types/react@18.3.28':
+  '@types/react@19.2.14':
     dependencies:
-      '@types/prop-types': 15.7.15
       csstype: 3.2.3
 
   '@types/supports-color@8.1.3': {}
@@ -10923,9 +10917,9 @@ snapshots:
 
   merge-descriptors@2.0.0: {}
 
-  merge-refs@1.3.0(@types/react@18.3.28):
+  merge-refs@1.3.0(@types/react@19.2.14):
     optionalDependencies:
-      '@types/react': 18.3.28
+      '@types/react': 19.2.14
 
   merge2@1.4.1: {}
 
@@ -11885,9 +11879,9 @@ snapshots:
     dependencies:
       react: 19.2.5
 
-  react-innertext@1.1.5(@types/react@18.3.28)(react@19.2.5):
+  react-innertext@1.1.5(@types/react@19.2.14)(react@19.2.5):
     dependencies:
-      '@types/react': 18.3.28
+      '@types/react': 19.2.14
       react: 19.2.5
 
   react-instantsearch-core@7.29.0(algoliasearch@5.50.2)(react@19.2.5):
@@ -11911,13 +11905,13 @@ snapshots:
       react-dom: 19.2.5(react@19.2.5)
       react-instantsearch-core: 7.29.0(algoliasearch@5.50.2)(react@19.2.5)
 
-  react-intl@8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3):
+  react-intl@8.1.4(@types/react@19.2.14)(react@19.2.5)(typescript@5.9.3):
     dependencies:
       '@formatjs/ecma402-abstract': 3.1.1
       '@formatjs/icu-messageformat-parser': 3.5.1
       '@formatjs/intl': 4.1.2(typescript@5.9.3)
-      '@types/hoist-non-react-statics': 3.3.7(@types/react@18.3.28)
-      '@types/react': 18.3.28
+      '@types/hoist-non-react-statics': 3.3.7(@types/react@19.2.14)
+      '@types/react': 19.2.14
       hoist-non-react-statics: 3.3.2
       intl-messageformat: 11.1.2
       react: 19.2.5
@@ -11935,20 +11929,20 @@ snapshots:
       sucrase: 3.35.1
       use-editable: 2.3.3(react@19.2.5)
 
-  react-pdf@9.2.1(@types/react@18.3.28)(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  react-pdf@9.2.1(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       clsx: 2.1.1
       dequal: 2.0.3
       make-cancellable-promise: 1.3.2
       make-event-props: 1.6.2
-      merge-refs: 1.3.0(@types/react@18.3.28)
+      merge-refs: 1.3.0(@types/react@19.2.14)
       pdfjs-dist: 4.8.69
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
       tiny-invariant: 1.3.3
       warning: 4.0.3
     optionalDependencies:
-      '@types/react': 18.3.28
+      '@types/react': 19.2.14
 
   react-refresh@0.17.0: {}
 
@@ -12680,7 +12674,7 @@ snapshots:
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@93.0.1(@types/react@18.3.28)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.5(react@19.2.5))(react-intl@8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3))(react@19.2.5)(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2):
+  smarthr-ui@93.0.1(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.5(react@19.2.5))(react-intl@8.1.4(@types/react@19.2.14)(react@19.2.5)(typescript@5.9.3))(react@19.2.5)(styled-components@6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.20
@@ -12693,9 +12687,9 @@ snapshots:
       react-dom: 19.2.5(react@19.2.5)
       react-draggable: 4.5.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react-icons: 5.6.0(react@19.2.5)
-      react-innertext: 1.1.5(@types/react@18.3.28)(react@19.2.5)
-      react-intl: 8.1.4(@types/react@18.3.28)(react@19.2.5)(typescript@5.9.3)
-      react-pdf: 9.2.1(@types/react@18.3.28)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      react-innertext: 1.1.5(@types/react@19.2.14)(react@19.2.5)
+      react-intl: 8.1.4(@types/react@19.2.14)(react@19.2.5)(typescript@5.9.3)
+      react-pdf: 9.2.1(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react-transition-group: 4.4.5(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       styled-components: 6.4.0(css-to-react-native@3.2.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       tailwind-variants: 0.3.1(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.8.2))
