@@ -1,0 +1,96 @@
+# 使用上の注意 > 適切な幅に調整して使用する
+- severity: must
+  text: "入力する内容をあらかじめ精査し、適切な幅になるよう調整して使用する"
+  source_section: "使用上の注意 > 適切な幅に調整して使用する"
+  sub_items:
+    - "Input は常に 1 行で表示されるため、十分な幅を確保する"
+    - "入力する内容の文字数の予測が付く場合、過剰に幅を確保しない"
+    - "フォーム全体でレイアウトに統一性がなく感じられるときは、他の要素とのバランスを考慮して幅を調整する"
+
+# 使用上の注意 > ユースケースに応じてコンポーネントを使い分ける > 複数行のテキスト入力が想定される場合は使用しない
+- severity: must
+  text: "改行を含めたテキストの入力を受け付ける場合は Textarea を使用する"
+  source_section: "使用上の注意 > ユースケースに応じてコンポーネントを使い分ける > 複数行のテキスト入力が想定される場合は使用しない"
+
+# 使用上の注意 > ユースケースに応じてコンポーネントを使い分ける > データの編集や送信を伴わない画面では使用しない
+- severity: must
+  text: "データの編集や送信を伴わない画面でデータを表示する場合は DefinitionList を使用する"
+  source_section: "使用上の注意 > ユースケースに応じてコンポーネントを使い分ける > データの編集や送信を伴わない画面では使用しない"
+
+# 使用上の注意 > 入力項目の説明や例をプレースホルダで表示しない
+- severity: must
+  text: "入力項目の説明や例を載せる場合は FormControl の `helpMessage` や `exampleMessage` を用い別途表示する"
+  source_section: "使用上の注意 > 入力項目の説明や例をプレースホルダで表示しない"
+
+# Inputを使用したコンポーネント > CurrencyInput
+- severity: must
+  text: "金額を入力するときは CurrencyInput を使用する"
+  source_section: "Inputを使用したコンポーネント > CurrencyInput"
+
+# Inputを使用したコンポーネント > SearchInput
+- severity: should
+  text: "SearchInput はよくあるテーブルのオブジェクトの検索などに使用する"
+  source_section: "Inputを使用したコンポーネント > SearchInput"
+
+- severity: must
+  text: "SearchInput では `tooltipMessage` を使用して入力内容に対する説明を補足する"
+  source_section: "Inputを使用したコンポーネント > SearchInput"
+
+- severity: must
+  text: "検索ボタンのあるフォーム（インクリメンタル検索をしないフォーム）内の SearchInput では、入力内容のクリアボタンで検索まで実行せず入力内容の削除にとどめる"
+  source_section: "Inputを使用したコンポーネント > SearchInput"
+
+# レイアウト > プレフィックス・サフィックス > 要素の設置判断基準
+- severity: should
+  text: "プレフィックス（`prefix`）の要素は入力内容を想起させるために使用する"
+  source_section: "レイアウト > プレフィックス・サフィックス > 要素の設置判断基準"
+  sub_items:
+    - "テキストの場合、一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いる"
+
+- severity: should
+  text: "サフィックス（`suffix`）のアイコンは操作を想起させるため、または操作を提供するために使用する"
+  source_section: "レイアウト > プレフィックス・サフィックス > 要素の設置判断基準"
+  sub_items:
+    - "テキストの場合は入力内容を想起させるために使用し、一般的に内容に対して後方に置かれる単位（例: 日本円）に用いる"
+
+- severity: must
+  text: "入力内容を想起させるアイコンは基本的に明確に必要なときにのみつける"
+  source_section: "レイアウト > プレフィックス・サフィックス > 要素の設置判断基準"
+  note: "明確に必要 の定義不在。除外検討"
+
+# 状態 > デフォルト
+- severity: must
+  text: "何も入力されていない状態をデフォルトとする"
+  source_section: "状態 > デフォルト"
+  sub_items:
+    - "ユーザーの入力作業が向上したり、ミスを減らせる場合にはデフォルト値の設定を検討する"
+    - "新規作成画面などで自動的にオブジェクト名を決められる場合は `yyyy/mm/dd + オブジェクト名` のようにデフォルト値を設定するのを推奨する"
+
+# 状態 > 読み取り専用（readOnly）
+- severity: should
+  text: "当該画面では編集できないが、別の場所で入力済みの値をフォームの送信内容に含めて表示することが重要な場合は `readOnly` を使用する"
+  source_section: "状態 > 読み取り専用（readOnly）"
+
+# 状態 > 無効（disabled）
+- severity: should
+  text: "通常は編集できるが一時的または権限の制約により編集できない場合に `disabled` を使用する"
+  source_section: "状態 > 無効（disabled）"
+  sub_items:
+    - "送信内容に含めたい値はフォームには表示しないか `readOnly` の使用を検討する"
+    - "そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討する"
+
+# モバイル > フォントサイズはMを使用する
+- severity: must
+  text: "モバイルでの意図しない拡大を避けるため、Input のフォントサイズは `M` 以上を使用する"
+  source_section: "モバイル > フォントサイズはMを使用する"
+
+# アクセシビリティ > 開発時の考慮点 > FormControlと併用する
+- severity: must
+  text: "Input は必ず FormControl と併用して、ユーザーが何を入力すべきかを示すラベルを設定する"
+  source_section: "アクセシビリティ > 開発時の考慮点 > FormControlと併用する"
+  layer2_candidate: "a11y-input-in-form-control"
+
+# アクセシビリティ > 開発時の考慮点 > アクセシブルネームの確認
+- severity: must
+  text: "設定したラベルが Input のアクセシブルネームとして正しく関連付けられていることを確認する"
+  source_section: "アクセシビリティ > 開発時の考慮点 > アクセシブルネームの確認"
