@@ -10,15 +10,63 @@ type Props = {
 
 const { id, tag = 'h2' } = Astro.props;
 
-const Wrapper = tag as keyof JSX.IntrinsicElements;
+const fragmentTitle = (tag: HeadingTagTypes) => {
+  switch (tag) {
+    case 'h2':
+      return (<h2 class="wrapper" id={id}>
+        <a href={`#${id}`}>
+          <FaLinkIcon className="icon" />
+          <slot />
+        </a>
+      </h2>);
+    case 'h3':
+      return (<h3 class="wrapper" id={id}>
+        <a href={`#${id}`}>
+          <FaLinkIcon className="icon" />
+          <slot />
+        </a>
+      </h3>);
+    case 'h4':
+      return (<h4 class="wrapper" id={id}>
+        <a href={`#${id}`}>
+          <FaLinkIcon className="icon" />
+          <slot />
+        </a>
+      </h4>);
+    case 'h5':
+      return (<h5 class="wrapper" id={id}>
+        <a href={`#${id}`}>
+          <FaLinkIcon className="icon" />
+          <slot />
+        </a>
+      </h5>);
+    case 'h6':
+      return (<h6 class="wrapper" id={id}>
+        <a href={`#${id}`}>
+          <FaLinkIcon className="icon" />
+          <slot />
+        </a>
+      </h6>);
+    case 'span':
+      return (<span class="wrapper" id={id}>
+        <a href={`#${id}`}>
+          <FaLinkIcon className="icon" />
+          <slot />
+        </a>
+      </span>);
+    default:
+      return (<h2 class="wrapper" id={id}>
+        <a href={`#${id}`}>
+          <FaLinkIcon className="icon" />
+          <slot />
+        </a>
+      </h2>);
+  }
+};
+
 ---
 
-<Wrapper className="wrapper" id={id}>
-  <a href={`#${id}`}>
-    <FaLinkIcon className="icon" />
-    <slot />
-  </a>
-</Wrapper>
+{fragmentTitle(tag)}
 
 <style lang="scss">
   .wrapper {
