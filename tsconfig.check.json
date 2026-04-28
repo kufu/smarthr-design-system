@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["react", "react-dom"],
+    "noUnusedLocals": false
+  },
+  "include": [
+    "src/content/articles/**/_check/**/*.tsx"
+  ],
+  "exclude": ["dist", "scripts", "node_modules"]
+}

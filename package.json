@@ -5,26 +5,25 @@
   "license": "MIT",
   "type": "module",
   "lint-staged": {
-    "*.{astro,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "src/content/**/*.md{,x}": [
-      "textlint",
-      "tsx scripts/content-checker/linkChecker.ts --fix"
+    "*.{astro,ts,tsx,md,mdx}": [
+      "pnpm run lint"
     ]
   },
   "scripts": {
+    "clean": "rm -rf dist && find src/content/articles -type d -name '_check' -exec rm -rf {} +",
     "dev": "pnpm update:ui-data && astro dev",
     "start": "pnpm dev",
+    "prebuild": "run-p clean",
     "build": "pnpm update:ui-data && astro build",
     "build:prod": "pnpm build && pnpm tsx ./scripts/update-algoliasearch.ts",
     "preview": "astro preview",
     "astro": "astro",
-    "lint:ts": "eslint 'src/**/*.{astro,ts,tsx}'",
-    "lint:check": "pnpm update:ui-data && astro check",
+    "lint:ts:content": "eslint 'src/**/*.{astro,ts,tsx}'",
+    "lint:ts:codeblock": "tsc --project tsconfig.check.json && eslint 'src/content/articles/**/_check/**/*.tsx'",
+    "lint:check": "pnpm update:ui-data && astro check --tsconfig tsconfig.astro.json",
     "lint:text": "textlint 'src/content/**/*.md{,x}'",
-    "lint": "run-p lint:*",
+    "prelint": "tsx ./scripts/extract-editable-code.ts",
+    "lint": "run-p lint:**",
     "format:eslint": "eslint --fix 'src/**/*.{astro,ts,tsx}'",
     "format:prettier": "prettier --write .",
     "format:text": "textlint --fix 'src/content/**/*.md{,x}'",
