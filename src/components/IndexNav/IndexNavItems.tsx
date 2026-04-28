@@ -8,7 +8,7 @@ import type { ReactNode } from 'react';
 
 export type IndexNavItemsProps = {
   headings: NestedHeading[];
-  indexNavRef?: React.RefObject<HTMLUListElement>;
+  indexNavRef?: React.RefObject<HTMLUListElement | null>;
 } & Pick<ItemProps, 'currentHeadingId'>;
 
 export default function IndexNavItems({ headings, indexNavRef, currentHeadingId }: IndexNavItemsProps) {
