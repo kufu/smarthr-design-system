@@ -18,7 +18,6 @@ export default function ComponentPreview({
 }: ComponentPreviewProps) {
   return (
     <WrapperBase style={{ padding: '1.5em' }}>
-      { }
       <Cluster gap={gap} align={align}>
         {children}
       </Cluster>

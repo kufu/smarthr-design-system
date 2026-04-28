@@ -20,7 +20,6 @@ export default function IndexNavItems({ headings, indexNavRef, currentHeadingId 
     ));
 
   return (
-     
     <Nav className={styles.nav}>
       <ul ref={indexNavRef}>{nestedNavItems(headings)}</ul>
     </Nav>

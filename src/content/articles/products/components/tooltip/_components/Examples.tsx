@@ -60,14 +60,12 @@ export const StatusSupplement = () => (
       <Tooltip message="ステータスがはいります。" triggerType="icon">
         <WarningIcon color="WARNING" />
       </Tooltip>
-      { }
       <TextLink href="#">警告</TextLink>
     </Cluster>
     <Cluster align="center" gap={0.25}>
       <Tooltip message="ステータスがはいります。" triggerType="icon">
         <FaCircleInfoIcon color="DANGER" />
       </Tooltip>
-      { }
       <TextLink href="#">エラー</TextLink>
     </Cluster>
   </Cluster>
