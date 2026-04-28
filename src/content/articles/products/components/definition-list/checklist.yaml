@@ -1,0 +1,40 @@
+# 使用上の注意
+- severity: should
+  text: "原則としてデータの編集や送信を伴わない画面においてデータを表示する場合は DefinitionList を使用するのを推奨する"
+  source_section: "使用上の注意"
+
+# 使用上の注意 > Inputの意匠を残してデータを表示したいときはreadOnlyのInputを検討する
+- severity: should
+  text: "フォームに入力した内容の確認画面など、Input の意匠を残してデータを表示したい場合は readOnly の Input の利用を検討する"
+  source_section: "使用上の注意 > Inputの意匠を残してデータを表示したいときはreadOnlyのInputを検討する"
+
+# レイアウト > カラム数の指定
+- severity: must
+  text: "表示したいデータの内容に合わせて `maxColumns` props で適切な列数を指定する"
+  source_section: "レイアウト > カラム数の指定"
+
+# レイアウト > カラム数の指定 > 関連性のある項目がある場合
+- severity: should
+  text: "関連性のある項目（例: 氏名とヨミガナ）は横に並べて表示することで関連性をユーザーに伝える"
+  source_section: "レイアウト > カラム数の指定 > 関連性のある項目がある場合"
+
+- severity: must
+  text: "関連性のある項目を横並びにする場合は `maxColumns` props に横並びにしたい項目の数を指定する"
+  source_section: "レイアウト > カラム数の指定 > 関連性のある項目がある場合"
+
+# レイアウト > カラム数の指定 > 意図的に項目を一列で表示したい場合
+- severity: must
+  text: "画面幅や項目の文字数にかかわらず意図的に項目を一列で表示したい場合は `maxColumns` props に `1` を指定する"
+  source_section: "レイアウト > カラム数の指定 > 意図的に項目を一列で表示したい場合"
+
+# レイアウト > 見出しの種類
+- severity: must
+  text: "コンテンツのアウトラインに沿って適切な見出しレベルを指定する"
+  source_section: "レイアウト > 見出しの種類"
+  sub_items:
+    - "DefinitionList を含むコンテンツの見出しが `sectionTitle` の場合、`termStyleType` props に `blockTitle` を指定する"
+
+# レイアウト > 表示項目が1つしかない場合
+- severity: should
+  text: "表示項目が 1 つしかない場合に罫線が視線誘導を妨げるなら別の意匠を検討する"
+  source_section: "レイアウト > 表示項目が1つしかない場合"

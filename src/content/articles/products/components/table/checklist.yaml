@@ -1,0 +1,23 @@
+# アクセシビリティ > セル内にチェックボックスやラジオボタンをそのまま配置しない
+- severity: avoid
+  text: "セルの内部に Checkbox や RadioButton をそのまま配置せず、TdCheckbox / ThCheckbox / TdRadioButton を利用する"
+  source_section: "アクセシビリティ > セル内にチェックボックスやラジオボタンをそのまま配置しない"
+  layer2_candidate: "a11y-prohibit-checkbox-or-radio-in-table-cell"
+
+# アクセシビリティ > TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
+- severity: must
+  text: "TdCheckbox および TdRadioButton を利用する場合は `aria-labelledby` 属性を必ず指定し、それだけで行を一意に判別できる要素への ID 参照を指定する"
+  source_section: "アクセシビリティ > TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する"
+
+- severity: must
+  text: "オブジェクト名だけで一意に判別できないオブジェクトでは、複数の要素の ID 参照をスペース区切りで指定する"
+  source_section: "アクセシビリティ > TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する"
+
+# モバイル
+- severity: should
+  text: "モバイルでは画面幅を越えたテーブルは 2 次元スクロールを招くため、垂直方向に積みあげる"
+  source_section: "モバイル"
+
+- severity: should
+  text: "レイアウトに応じて List コンポーネント（WIP）への置き換えを検討する"
+  source_section: "モバイル"

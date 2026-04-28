@@ -1,0 +1,31 @@
+# 使用上の注意 > ダイアログを乱用しない
+- severity: should
+  text: "ダイアログとして表示する・操作させるべき内容なのか慎重にユースケースを定義し、使用を検討する"
+  source_section: "使用上の注意 > ダイアログを乱用しない"
+
+# 使用上の注意 > 複数のモーダルダイアログを同時に表示しない (via MultipleModalWarning.mdx)
+- severity: avoid
+  text: "モーダルダイアログを 1 つの操作で複数個表示したり、モーダルダイアログ上の操作によって 2 つ目のモーダルダイアログを表示したりしない"
+  source_section: "使用上の注意 > 複数のモーダルダイアログを同時に表示しない (via MultipleModalWarning.mdx)"
+
+# モバイル > 表示する情報量に応じて拡大したダイアログの採用を検討する (via ExpandedDialogUsecase.mdx)
+- severity: should
+  text: "モバイルで表示する情報量に応じて拡大したダイアログの採用を検討する"
+  source_section: "モバイル > 表示する情報量に応じて拡大したダイアログの採用を検討する (via ExpandedDialogUsecase.mdx)"
+  sub_items:
+    - "ダイアログ内で多くのスクロールを伴う場合"
+    - "入力や編集など、キーボードでの入力操作が多い場合"
+
+# モバイル > レイアウト > 余白 (via ExpandedDialogPadding.mdx)
+- severity: must
+  text: "拡大したダイアログの左右と裏側の領域（スクリムで隠されている領域）のパディングは `0`（0px）とする"
+  source_section: "モバイル > レイアウト > 余白 (via ExpandedDialogPadding.mdx)"
+
+# モバイル > レイアウト > フッターエリアのレイアウト
+- severity: must
+  text: "［キャンセル］ボタンと Primary ボタンを Cluster で横いっぱいに並べる"
+  source_section: "モバイル > レイアウト > フッターエリアのレイアウト"
+
+- severity: must
+  text: "`SubActionArea`（任意）は Button 群の下部に配置する"
+  source_section: "モバイル > レイアウト > フッターエリアのレイアウト"

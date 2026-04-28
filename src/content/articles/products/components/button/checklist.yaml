@@ -1,0 +1,147 @@
+# 使用上の注意 > type="button" について
+- severity: must
+  text: "form submit を使う場合は `type=\"submit\"` を明記する"
+  source_section: "使用上の注意 > type=\"button\" について"
+
+# 種類 > Primary
+- severity: must
+  text: "1 つの画面で Primary ボタンは最大 1 つまでにする"
+  source_section: "種類 > Primary"
+  sub_items:
+    - "主要な操作が複数ある場合は、画面内の主要な操作が 1 つになるように情報設計と画面構成を見直す"
+
+- severity: avoid
+  text: "ユーザーからの注目（視線）を集めることだけを目的に Primary ボタンを使用しない"
+  source_section: "種類 > Primary"
+
+# 種類 > Secondary
+- severity: should
+  text: "Secondary ボタンが多い場合は情報設計・画面構成の見直しや DropdownMenuButton の利用を検討する"
+  source_section: "種類 > Secondary"
+  note: "多すぎる の定義不在。除外検討"
+
+# 種類 > Tertiary
+- severity: should
+  text: "Tertiary ボタンは Secondary ボタンより重要度の低い操作に使う"
+  source_section: "種類 > Tertiary"
+
+- severity: must
+  text: "他の画面へ移動するリンクとして使いたい場合は TextLink を使う"
+  source_section: "種類 > Tertiary"
+
+# 種類 > Danger
+- severity: should
+  text: "Danger ボタンは主に削除ダイアログで使用する"
+  source_section: "種類 > Danger"
+
+- severity: should
+  text: "警告色（DANGER）に頼らず、ボタン配置のコンテキストやラベルテキストだけでもユーザーに伝わるよう検討する"
+  source_section: "種類 > Danger"
+
+# 種類 > Text
+- severity: should
+  text: "Text ボタンは Secondary ボタンの装飾（枠線）が過剰な場合に使う"
+  source_section: "種類 > Text"
+  sub_items:
+    - "コンポーネントに内包する場合（例: DropdownMenuButton）"
+    - "多くのボタンを並べて表示する場合"
+
+- severity: must
+  text: "Text ボタンを単独で使う場合は prefix または suffix にアイコンを設定する"
+  source_section: "種類 > Text"
+
+# 種類 > AnchorButton
+- severity: must
+  text: "アクションボタンとして表現したい場合は Button を使用する"
+  source_section: "種類 > AnchorButton"
+
+# レイアウト > ボタンサイズ
+- severity: should
+  text: "レイアウトの都合上スペースを節約したいときはサイズ `小` を使う"
+  source_section: "レイアウト > ボタンサイズ"
+
+# レイアウト > アイコンの有無 > アイコン付きボタン
+- severity: should
+  text: "アイコン付き（左）はボタンを押したときに実行される操作を想起させるために使用する"
+  source_section: "レイアウト > アイコンの有無 > アイコン付きボタン"
+
+- severity: must
+  text: "同じ操作のボタンには同じアイコンを指定する"
+  source_section: "レイアウト > アイコンの有無 > アイコン付きボタン"
+
+- severity: should
+  text: "アイコン付き（右）はボタンを押したときに特定の UI が表示される場合に使用する"
+  source_section: "レイアウト > アイコンの有無 > アイコン付きボタン"
+
+# レイアウト > アイコンの有無 > アイコン付きボタン > `アイコン付き`にする判断基準
+- severity: must
+  text: "アイコンは左右どちらかにのみ指定する"
+  source_section: "レイアウト > アイコンの有無 > アイコン付きボタン > `アイコン付き`にする判断基準"
+  sub_items:
+    - "どちらにもアイコンをつけられそうな場合は、アイコン付き（右）（サフィックス）を優先し、アイコン付き（左）（プレフィックス）には指定しない"
+
+# レイアウト > アイコンの有無 > アイコン付きボタン > `アイコン付き（左）`（プレフィックス）の判断基準
+- severity: should
+  text: "SmartHR 上で頻出する操作に関してはアイコンをつけるのを推奨する"
+  source_section: "レイアウト > アイコンの有無 > アイコン付きボタン > `アイコン付き（左）`（プレフィックス）の判断基準"
+  note: "頻出する の定義不在。除外検討"
+
+- severity: avoid
+  text: "明確な必要性や理由がなければ、アイコンをつけることは極力避ける"
+  source_section: "レイアウト > アイコンの有無 > アイコン付きボタン > `アイコン付き（左）`（プレフィックス）の判断基準"
+  note: "明確な必要性 の定義不在。除外検討"
+
+# レイアウト > アイコンの有無 > アイコンボタン
+- severity: should
+  text: "アイコンのみのボタンは、ラベルテキストを表示するレイアウト上の余裕がない場合に使う"
+  source_section: "レイアウト > アイコンの有無 > アイコンボタン"
+
+- severity: must
+  text: "アイコンには必ず代替テキストを含める"
+  source_section: "レイアウト > アイコンの有無 > アイコンボタン"
+
+# 状態 > 無効（disabled）
+- severity: avoid
+  text: "無効状態のボタンはできるだけ使わない"
+  source_section: "状態 > 無効（disabled）"
+  sub_items:
+    - "そもそも無効ではなくボタン自体を非表示にしたり、無効状態の理由を付近に表示することを検討する"
+    - "無効状態の理由を配置するスペースがどうしてもない場合、`disabledReason` props で理由を表示することを検討する"
+
+# ライティング
+- severity: must
+  text: "ボタンラベルには動詞の終止形を使用する"
+  source_section: "ライティング"
+
+# モバイル > ボタンの大きさ > 通常サイズのボタンを使う
+- severity: should
+  text: "モバイルでは基本的に `通常` サイズを使用する"
+  source_section: "モバイル > ボタンの大きさ > 通常サイズのボタンを使う"
+
+- severity: avoid
+  text: "モバイルで `サイズ小` のボタンを使うことは避ける"
+  source_section: "モバイル > ボタンの大きさ > 通常サイズのボタンを使う"
+
+- severity: must
+  text: "レイアウトの都合上 `サイズ小` のボタンにする必要がある場合、間隔を十分にあける"
+  source_section: "モバイル > ボタンの大きさ > 通常サイズのボタンを使う"
+  sub_items:
+    - "その場合、アイコンボタンとして使うことはなるべく避ける"
+
+# モバイル > ボタンの大きさ > ボタンの幅
+- severity: should
+  text: "ボタンは基本的にコンテンツ幅いっぱいに広げる"
+  source_section: "モバイル > ボタンの大きさ > ボタンの幅"
+
+# モバイル > 複数のボタンの並べ方 > ボタンを並べる方向
+- severity: should
+  text: "複数のボタンは基本的に垂直方向に並べる"
+  source_section: "モバイル > 複数のボタンの並べ方 > ボタンを並べる方向"
+
+# モバイル > 複数のボタンの並べ方 > ボタンを並べる順番
+- severity: must
+  text: "複数の操作を並べる場合は Primary ボタンの位置を一貫させる"
+  source_section: "モバイル > 複数のボタンの並べ方 > ボタンを並べる順番"
+  sub_items:
+    - "水平方向に並べる場合は、識字方向の後方に Primary ボタンが来るようにレイアウトする（LTR では右側）"
+    - "垂直方向に並べる場合は、Primary ボタンの下に Secondary ボタンを置く"
