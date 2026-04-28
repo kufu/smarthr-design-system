@@ -22,7 +22,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ### カラム数の指定
 
-`maxColumns` propsを指定することで、最大列数を指定できます。表示したいデータの内容に合わせて、適切な列数を指定してください。
+DefinitionListItemの `maxColumns` propsを指定することで、最大列数を指定できます。表示したいデータの内容に合わせて、適切な列数を指定してください。
 
 列数を指定しない場合、各アイテムは最低幅12emを保ちながら余った領域を埋めていきます。
 
@@ -31,11 +31,34 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 氏名とヨミガナなど、関連性のある項目は横に並べて表示することで、その関連性をユーザーに伝えることができます。  
 この場合、`maxColumns` propsには `2` など、横並びにしたい項目の数を指定してください。
 
-![maxColumnsが2のときの表示例](./images/definition-list-2columns.png)
+```tsx editable
+<DefinitionList>
+  <DefinitionListItem maxColumns={2} term="氏名">
+    須磨 英子
+  </DefinitionListItem>
+  <DefinitionListItem maxColumns={2} term="氏名（ヨミガナ）">
+    スマ エイコ
+  </DefinitionListItem>
+  <DefinitionListItem maxColumns={2} term="ビジネスネーム" />
+  <DefinitionListItem maxColumns={2} term="ビジネスネーム（ヨミガナ）" />
+</DefinitionList>
+```
 
 なお、`maxColumns` propsに `2` 以上の数字を指定している場合でも、あらかじめ長い文字列が入る想定があるDefinitionListItemに `fullWidth` propsを指定することで、その項目のみ一列で表示できます。
 
-![maxColumnsが2で一部の項目にfullWidthが指定されているときの表示例](./images/definition-list-2columns-full-width.png)
+```tsx editable
+<DefinitionList>
+  <DefinitionListItem maxColumns={2} term="氏名">
+    須磨 英子
+  </DefinitionListItem>
+  <DefinitionListItem maxColumns={2} term="氏名（ヨミガナ）">
+    スマ エイコ
+  </DefinitionListItem>
+  <DefinitionListItem fullWidth term="部署">
+    営業グループ/営業一課
+  </DefinitionListItem>
+</DefinitionList>
+```
 
 #### 意図的に項目を一列で表示したい場合
 
@@ -43,16 +66,47 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 画面幅や項目の文字数にかかわらず見た目を統一したい場合など、意図的に項目を一列で表示したい場合は、`maxColumns` propsに `1` を指定することで、画面幅や項目の文字数にかかわらず一列で表示できます。
 
-![maxColumnsが1のときの表示例](./images/definition-list-1column.png)
+```tsx editable
+<DefinitionList>
+  <DefinitionListItem maxColumns={1} term="社員番号">
+    0123
+  </DefinitionListItem>
+  <DefinitionListItem maxColumns={1} term="事業所">
+    本社
+  </DefinitionListItem>
+  <DefinitionListItem maxColumns={1} term="雇用形態">
+    正社員
+  </DefinitionListItem>
+</DefinitionList>
+```
+
 
 ### 見出しの種類
 
 `termStyleType` propsを指定することで、見出しの種類を変更できます。
 
 見出しはコンテンツのアウトラインに沿って[順に使用することを想定している](/products/components/heading/#h2-0)ため、DefinitionListにおいても適切な見出しレベルを指定してください。  
-例えば、DefinitionListを含むコンテンツの見出しが[sectionTitle](/products/components/heading/#h3-1)の場合、`termStyleType` propsに `blockTitle` を指定してください。
+例えば、DefinitionListを含むコンテンツの見出しが[sectionTitle](/products/components/heading/#h3-1)の場合、`term.styleType` propsに `blockTitle` を指定してください。
 
-![termStyleTypeにblockTitleを指定しているときの表示例](./images/definition-list-term-style-block-title.png)
+```tsx editable
+<div className="shr-bg-background shr-p-1.5">
+  <Stack>
+    <Heading type="sectionTitle">従業員情報</Heading>
+    <Base padding={1.5}>
+      <DefinitionList>
+        <DefinitionListItem maxColumns={2} term={{ styleType: 'blockTitle', text: '氏名' }}>
+          須磨 英子
+        </DefinitionListItem>
+        <DefinitionListItem maxColumns={2} term={{ styleType: 'blockTitle', text: '氏名（ヨミガナ）' }}>
+          スマ エイコ
+        </DefinitionListItem>
+        <DefinitionListItem maxColumns={2} term={{ styleType: 'blockTitle', text: 'ビジネスネーム' }} />
+        <DefinitionListItem maxColumns={2} term={{ styleType: 'blockTitle', text: 'ビジネスネーム（ヨミガナ）' }} />
+      </DefinitionList>
+    </Base>
+  </Stack>
+</div>
+```
 
 何も指定しない場合、見出しは `subBlockTitle` となります。
 
