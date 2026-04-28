@@ -2,12 +2,11 @@ import { Cluster } from 'smarthr-ui';
 
 import WrapperBase from './WrapperBase';
 
-import type { CSSProperties } from 'react';
-import type React from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import type { Gap, SeparateGap } from 'smarthr-ui/types';
 
 export type ComponentPreviewProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   gap?: Gap | SeparateGap;
   align?: CSSProperties['alignItems'];
 };

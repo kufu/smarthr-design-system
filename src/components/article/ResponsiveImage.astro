@@ -13,7 +13,7 @@ const { src, alt } = Astro.props;
 const imageUrl = typeof src === 'string' ? src : src.src;
 ---
 
-<span className="wrapper">
+<span class="wrapper">
   <a href={imageUrl} target="_blank" rel="noopener noreferrer">
     {
       typeof src === 'string' ? (

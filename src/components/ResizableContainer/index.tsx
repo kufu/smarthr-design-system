@@ -1,15 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { type PointerEvent, type ReactNode, useEffect, useRef, useState } from 'react';
 import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui';
 import styled from 'styled-components';
 
 import { CSS_COLOR } from '@/constants/style';
 
-import type React from 'react';
-
 type Props = {
   defaultWidth?: string;
   defaultHeight?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function ResizableContainer({ defaultWidth, defaultHeight, children }: Props) {
@@ -23,7 +21,28 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
 
   const container = useRef<HTMLDivElement>(null);
 
-  const handleVerticalPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerMove = (e: Event) => {
+    const event: PointerEvent<HTMLDivElement> = e as unknown as PointerEvent<HTMLDivElement>;
+    if (container.current === null) return;
+    //幅変更の場合
+    if (pointerPositionRef.current.x !== null) {
+      const containerWidth = container.current.offsetWidth;
+      const newWidth = (boxSizeRef.current.width || containerWidth) - (pointerPositionRef.current.x - event.clientX);
+      if (containerWidth < newWidth) return;
+      setPointerPosition({ x: event.clientX, y: null });
+      setBoxSize({ width: newWidth, height: boxSizeRef.current.height });
+    }
+
+    //高さ変更の場合
+    if (pointerPositionRef.current.y !== null) {
+      const containerHeight = container.current.offsetHeight;
+      const newHeight = (boxSizeRef.current.height || containerHeight) - (pointerPositionRef.current.y - event.clientY);
+      setPointerPosition({ x: null, y: event.clientY });
+      setBoxSize({ width: boxSizeRef.current.width, height: newHeight });
+    }
+  };
+
+  const handleVerticalPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     setPointerPosition({ x: event.clientX, y: null });
     if (typeof window !== 'undefined') {
       document.addEventListener('pointermove', handlePointerMove, false);
@@ -31,7 +50,7 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
     }
   };
 
-  const handleHorizontalPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+  const handleHorizontalPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     setPointerPosition({ x: null, y: event.clientY });
     if (typeof window !== 'undefined') {
       document.addEventListener('pointermove', handlePointerMove, false);
@@ -50,26 +69,6 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
     if (container.current === null || boxSizeRef.current.width === null) return;
     if (container.current.offsetWidth - boxSizeRef.current.width < 20) {
       setBoxSize({ width: container.current.offsetWidth, height: boxSizeRef.current.height });
-    }
-  };
-
-  const handlePointerMove = (event: PointerEvent) => {
-    if (container.current === null) return;
-    //幅変更の場合
-    if (pointerPositionRef.current.x !== null) {
-      const containerWidth = container.current.offsetWidth;
-      const newWidth = (boxSizeRef.current.width || containerWidth) - (pointerPositionRef.current.x - event.clientX);
-      if (containerWidth < newWidth) return;
-      setPointerPosition({ x: event.clientX, y: null });
-      setBoxSize({ width: newWidth, height: boxSizeRef.current.height });
-    }
-
-    //高さ変更の場合
-    if (pointerPositionRef.current.y !== null) {
-      const containerHeight = container.current.offsetHeight;
-      const newHeight = (boxSizeRef.current.height || containerHeight) - (pointerPositionRef.current.y - event.clientY);
-      setPointerPosition({ x: null, y: event.clientY });
-      setBoxSize({ width: boxSizeRef.current.width, height: newHeight });
     }
   };
 

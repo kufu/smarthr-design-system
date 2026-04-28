@@ -1,4 +1,5 @@
 import { themes } from 'prism-react-renderer';
+// eslint-disable-next-line no-restricted-imports
 import React, { type RefCallback, useState } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
@@ -13,7 +14,7 @@ import CopyButton from './CopyButton';
 import styles from './LiveContainer.module.scss';
 import sharedStyles from './shared.module.scss';
 
-import type { LiveContainerProps } from '.';
+import type { LiveContainerProps } from "./types";
 
 type Props = LiveContainerProps;
 

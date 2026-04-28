@@ -20,7 +20,7 @@ DateFormatterは日付を`time`要素としてレンダリングします。
 const FormatDateExample = () => {
   const { formatDate } = useIntl()
   return (
-    <Text>今日は{formatDate({ date: new Date(2025, 7 - 1, 10) })}ではありません。</Text>
+    <span>今日は{formatDate({ date: new Date(2025, 7 - 1, 10) })}ではありません。</span>
   )
 }
 

@@ -10,7 +10,7 @@ const SUB_LINKS = ['downloads', 'terms', 'contact', 'operational-guideline'];
 const { nestedArticleMetaItems } = await createArticleMetaItems('/');
 ---
 
-<div className="wrapper">
+<div class="wrapper">
   {
     navigationItem.map(({ key }) => {
       const level2Item = nestedArticleMetaItems.find((item) => item.link === `/${key}`);

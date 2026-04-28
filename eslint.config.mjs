@@ -33,4 +33,23 @@ export default [
       'react/jsx-no-useless-fragments': 'off',
     },
   },
+  {
+    files: ['**/*.astro'],
+    rules: {
+      'no-undef': 'off',
+      'jsx-a11y/media-has-caption': 'off',
+      'react/jsx-filename-extension': [1, { 'extensions': ['.astro'] }],
+      'react/no-unknown-property': 'off',
+      'react/jsx-key': 'off',
+      'react/jsx-pascal-case': 'off',
+      'react/jsx-no-undef': 'off',
+      'react/jsx-no-useless-fragment': 'off',
+      'smarthr/a11y-image-has-alt-attribute': 'off',
+      'smarthr/a11y-heading-in-sectioning-content': 'off',
+      'smarthr/require-i18n-text': 'off',
+      'smarthr/a11y-anchor-has-href-attribute': 'off',
+      'smarthr/a11y-aria-labelledby': 'off',
+      'smarthr/require-barrel-import': 'off',
+    },
+  },
 ];

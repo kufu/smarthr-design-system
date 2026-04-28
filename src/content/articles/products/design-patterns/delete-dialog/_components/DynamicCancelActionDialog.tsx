@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, ControlledActionDialog, IntlProvider, Text } from 'smarthr-ui';
+import { Button, ControlledActionDialog, IntlProvider } from 'smarthr-ui';
 
 export default function DynamicCancelActionDialog() {
   const [isOpen, setIsOpen] = useState(false);

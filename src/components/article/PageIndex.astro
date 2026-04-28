@@ -25,8 +25,8 @@ const subPages = rawSubPages.filter((page) => regex.test(page.slug));
 subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.order : 1));
 ---
 
-<div className="wrapper">
-  <div className="pageList">
+<div class="wrapper">
+  <div class="pageList">
     {
       subPages.map(async (page) => {
         const pageFileName = basename(page.slug);

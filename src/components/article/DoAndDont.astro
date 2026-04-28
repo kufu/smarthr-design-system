@@ -11,12 +11,12 @@ const { type, width } = Astro.props;
 const actualWidth = typeof width === 'number' ? `${width}px` : width;
 ---
 
-<div className="wrapper" style={{ width: actualWidth }}>
-  <div className="imageArea">
+<div class="wrapper" style={{ width: actualWidth }}>
+  <div class="imageArea">
     <slot name="img" />
   </div>
-  <div className="labelArea">
-    <div className="status">
+  <div class="labelArea">
+    <div class="status">
       {
         type === 'do' ? (
           <>

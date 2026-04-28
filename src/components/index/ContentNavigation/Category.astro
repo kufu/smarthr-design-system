@@ -14,25 +14,25 @@ const { data } = Astro.props;
 ---
 
 <Section className="navigationSection">
-  <div className="navigationText">
+  <div class="navigationText">
     <h2>{data.title}</h2>
     <p>{data.description}</p>
     <FloatingTextLink path={data.path}>もっと詳しく</FloatingTextLink>
   </div>
-  <div className="navigationLinksContainer">
+  <div class="navigationLinksContainer">
     {
       data.imagePath ? (
-        <div className="categoryImageWrapper">
+        <div class="categoryImageWrapper">
           <a href={data.path}>
             <img src={data.imagePath} width="832" height="144" alt="基本原則" />
           </a>
         </div>
       ) : (
-        <ul className="navigationLinks">
+        <ul class="navigationLinks">
           {data.items.map((item) => (
             <li>
               <a href={item.path}>
-                <div className="thumbnailImageWrapper">
+                <div class="thumbnailImageWrapper">
                   {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
                   <img src={item.imagePath} width="262" height="144" alt="" />
                 </div>

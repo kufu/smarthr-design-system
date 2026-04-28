@@ -8,8 +8,8 @@ type Props = {
 const { colorName, colorValue, description } = Astro.props;
 
 // source: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
-const convertHexToRGBA = (colorValue: string): string => {
-  let hex = colorValue && colorValue.replace('#', '');
+const convertHexToRGBA = (_colorValue: string): string => {
+  let hex = _colorValue && _colorValue.replace('#', '');
 
   if (hex.length === 3) {
     hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
@@ -23,21 +23,21 @@ const convertHexToRGBA = (colorValue: string): string => {
 };
 ---
 
-<div className="wrapper">
-  <div className="thumbnail" style={{ backgroundColor: colorValue }}></div>
+<div class="wrapper">
+  <div class="thumbnail" style={{ backgroundColor: colorValue }}></div>
   <div>
     <div class:list={['colorName', 'text']}>{colorName}</div>
     {
       colorValue.startsWith('#') ? (
         <>
-          <div className="text">{colorValue}</div>
-          <div className="text">{convertHexToRGBA(colorValue)}</div>
+          <div class="text">{colorValue}</div>
+          <div class="text">{convertHexToRGBA(colorValue)}</div>
         </>
       ) : (
-        <div className="text">{colorValue}</div>
+        <div class="text">{colorValue}</div>
       )
     }
-    <p className="text">{description}</p>
+    <p class="text">{description}</p>
   </div>
 </div>
 

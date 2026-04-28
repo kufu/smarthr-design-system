@@ -11,7 +11,7 @@ const storyGroups = await fetchComponentCaptures();
     storyGroups.map((group) => (
       <Section className="componentGroupSection" key={group.groupName}>
         <h2 id={`component-${group.groupName}`}>{group.groupName}</h2>
-        <div className="componentList">
+        <div class="componentList">
           {group.storyKinds.map((storyKind) =>
             storyKind.iframeUrl ? (
               <li>

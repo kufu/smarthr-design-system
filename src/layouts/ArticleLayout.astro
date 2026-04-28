@@ -19,7 +19,7 @@ const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
 const { slug, data, headings } = Astro.props;
 
 // 親の記事を取得
-const parentArticleSlug = slug.replace(/\/[^\/]*$/, ''); // 例: 'basics/typography' → 'basics'
+const parentArticleSlug = slug.replace(/\/[^/]*$/, ''); // 例: 'basics/typography' → 'basics'
 const parentArticle = await getEntry('articles', parentArticleSlug);
 
 // カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
@@ -37,26 +37,26 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
 ---
 
 <Layout title={headTitle} ogTitle={data.title} description={data.description}>
-  <div className="wrapper">
+  <div class="wrapper">
     <Header />
 
-    <main className="main">
-      <div className="mainSidebar">
+    <main class="main">
+      <div class="mainSidebar">
         <Sidebar path={`/${slug}`} items={nestedArticleMetaItems} />
       </div>
-      <div className="mainIndexWrapper">
+      <div class="mainIndexWrapper">
         <IndexNav targetId={MDX_STYLE_WRAPPER_ID} headings={headings} ignoreH3Nav={data.ignoreH3Nav} client:load />
       </div>
       <Article className="article">
-        <h1 className="articleTitle">{data.title}</h1>
-        <div className="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
+        <h1 class="articleTitle">{data.title}</h1>
+        <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
           <slot />
         </div>
         <nav>
-          <ul className="articleLinks">
+          <ul class="articleLinks">
             {
               prevSidebarItem !== null && (
-                <li className="prevArticleLinkWrapper">
+                <li class="prevArticleLinkWrapper">
                   <RoundedBoxLink
                     path={prevSidebarItem.link}
                     label="前へ"
@@ -69,7 +69,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
             }
             {
               nextSidebarItem !== null && (
-                <li className="nextArticleLinkWrapper">
+                <li class="nextArticleLinkWrapper">
                   <RoundedBoxLink
                     path={nextSidebarItem.link}
                     label="次へ"

@@ -13,21 +13,21 @@ type Props = {
 const { isArticlePage } = Astro.props;
 ---
 
-<footer className="wrapper">
+<footer class="wrapper">
   <div
-    className="footerContainer"
+    class="footerContainer"
     style={{
       borderTop: isArticlePage ? undefined : '1px solid var(--color-light-grey-1)',
     }}
   >
-    <div className="col1Container">
+    <div class="col1Container">
       <Section>
-        <h2 className="logoHeading">SmartHR Design System</h2>
+        <h2 class="logoHeading">SmartHR Design System</h2>
         <FootStaticLinks />
       </Section>
     </div>
 
-    <div className="col2Container">
+    <div class="col2Container">
       {
         navigationItem.map(async ({ title, key, path }) => {
           const subPages = await getSubPageCollection(path);
@@ -48,7 +48,7 @@ const { isArticlePage } = Astro.props;
           return (
             <Section style={{ gridArea: key }}>
               <h3>
-                <a className="link" href={path}>
+                <a class="link" href={path}>
                   {title}
                 </a>
               </h3>
@@ -56,7 +56,7 @@ const { isArticlePage } = Astro.props;
                 <ul>
                   {depth2Pages.map(({ slug, data }) => (
                     <li>
-                      <a className="link" href={`/${slug}`}>
+                      <a class="link" href={`/${slug}`}>
                         {data.title}
                       </a>
                     </li>
@@ -69,8 +69,8 @@ const { isArticlePage } = Astro.props;
       }
     </div>
 
-    <div className="copyrightContainer">
-      <p className="copyright">
+    <div class="copyrightContainer">
+      <p class="copyright">
         <img src="/images/logo_smarthr.svg" alt="SmartHR" width="84" height="15" />
         <small>© SmartHR, Inc.</small>
       </p>
