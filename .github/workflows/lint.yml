@@ -1,34 +1,21 @@
-# This is a basic workflow to help you get started with Actions
-
 name: lint
 
-# Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   pull_request:
     branches: [main]
-
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
-
-      # Setup pnpm
-      - uses: pnpm/action-setup@v5
-
-      # Setup Node.js
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
           cache: 'pnpm'
-
-      # Run scripts
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: linting
-        run: pnpm lint
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
