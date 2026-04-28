@@ -26,6 +26,20 @@ export default [
             'react/react-in-jsx-scope': 'off',
           },
         },
+        {
+          files: ['**/_check/*.tsx'],
+          rules: {
+            'import/order': 'off',
+            'arrow-body-style': 'off',
+            'react/jsx-no-useless-fragments': 'off',
+
+            // これらのルールはアクセシビリティの観点からは重要ですが、デザインシステムではサンプルを載せるために切り出しているため、これらのルールをオフにしています
+            'smarthr/a11y-anchor-has-href-attribute': 'off',
+            'smarthr/a11y-heading-in-sectioning-content': 'off',
+            'smarthr/a11y-form-control-in-form': 'off',
+            'smarthr/a11y-replace-unreadable-symbol': 'off',
+          },
+        },
       ],
     })
     .map((config) => ({

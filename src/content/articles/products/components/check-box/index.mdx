@@ -35,20 +35,18 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 - 選択肢が多い場合や表示領域が狭い場合は、[MultiCombobox](/products/components/combo-box/multi-combo-box/)を検討してください。
 
 ```tsx editable
-<>
-  <Fieldset
-    legend="タイトル"
-    innerMargin={0.5}
-  >
-    <Cluster gap={{ row: 1, column: 1.5 }}>
-        <Checkbox name="sample">選択肢 1</Checkbox>
-        <Checkbox name="sample">選択肢 2</Checkbox>
-        <Checkbox name="sample">選択肢 3</Checkbox>
-        <Checkbox name="sample">選択肢 4</Checkbox>
-        <Checkbox name="sample">選択肢 5</Checkbox>
-    </Cluster>
-  </Fieldset>
-</>
+<Fieldset
+  legend="タイトル"
+  innerMargin={0.5}
+>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+      <Checkbox name="sample">選択肢 1</Checkbox>
+      <Checkbox name="sample">選択肢 2</Checkbox>
+      <Checkbox name="sample">選択肢 3</Checkbox>
+      <Checkbox name="sample">選択肢 4</Checkbox>
+      <Checkbox name="sample">選択肢 5</Checkbox>
+  </Cluster>
+</Fieldset>
 ```
 
 #### ビューの切り替えを操作するUIとして使用しない
@@ -148,22 +146,20 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 [共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)のデザインパターンもあわせて参考にしてください。
 
 ```tsx editable
-<>
-  <Fieldset
-      legend="設定項目"
-      innerMargin={0.5}
-  >
-      <BaseColumn>
-          <Cluster gap={{ row: 1, column: 1.5 }}>
-              <Checkbox name="sample">選択肢 1</Checkbox>
-              <Checkbox name="sample">選択肢 2</Checkbox>
-              <Checkbox name="sample">選択肢 3</Checkbox>
-              <Checkbox name="sample">選択肢 4</Checkbox>
-              <Checkbox name="sample">選択肢 5</Checkbox>
-          </Cluster>
-      </BaseColumn>
-  </Fieldset>
-</>
+<Fieldset
+    legend="設定項目"
+    innerMargin={0.5}
+>
+    <BaseColumn>
+        <Cluster gap={{ row: 1, column: 1.5 }}>
+            <Checkbox name="sample">選択肢 1</Checkbox>
+            <Checkbox name="sample">選択肢 2</Checkbox>
+            <Checkbox name="sample">選択肢 3</Checkbox>
+            <Checkbox name="sample">選択肢 4</Checkbox>
+            <Checkbox name="sample">選択肢 5</Checkbox>
+        </Cluster>
+    </BaseColumn>
+</Fieldset>
 ```
 
 ## モバイル
