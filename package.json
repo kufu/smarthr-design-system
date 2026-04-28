@@ -5,26 +5,25 @@
   "license": "MIT",
   "type": "module",
   "lint-staged": {
-    "*.{astro,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "src/content/**/*.md{,x}": [
-      "textlint",
-      "tsx scripts/content-checker/linkChecker.ts --fix"
+    "*.{astro,ts,tsx,md,mdx}": [
+      "pnpm run lint"
     ]
   },
   "scripts": {
+    "clean": "rm -rf dist && find src/content/articles -type d -name '_check' -exec rm -rf {} +",
     "dev": "pnpm update:ui-data && astro dev",
     "start": "pnpm dev",
+    "prebuild": "run-p clean",
     "build": "pnpm update:ui-data && astro build",
     "build:prod": "pnpm build && pnpm tsx ./scripts/update-algoliasearch.ts",
     "preview": "astro preview",
     "astro": "astro",
-    "lint:ts": "eslint 'src/**/*.{astro,ts,tsx}'",
-    "lint:check": "pnpm update:ui-data && astro check",
+    "lint:ts:content": "eslint 'src/**/*.{astro,ts,tsx}'",
+    "lint:ts:codeblock": "tsc --project tsconfig.check.json && eslint 'src/content/articles/**/_check/**/*.tsx'",
+    "lint:check": "pnpm update:ui-data && astro check --tsconfig tsconfig.astro.json",
     "lint:text": "textlint 'src/content/**/*.md{,x}'",
-    "lint": "run-p lint:*",
+    "prelint": "tsx ./scripts/extract-editable-code.ts",
+    "lint": "run-p lint:**",
     "format:eslint": "eslint --fix 'src/**/*.{astro,ts,tsx}'",
     "format:prettier": "prettier --write .",
     "format:text": "textlint --fix 'src/content/**/*.md{,x}'",
@@ -44,11 +43,11 @@
     "@astrojs/partytown": "^2.1.7",
     "@astrojs/react": "^3.6.3",
     "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7",
+    "@types/react-dom": "^19.2.3",
     "algoliasearch": "^5.50.2",
     "astro": "^4.16.19",
     "clsx": "^2.1.1",
-    "marked": "^17.0.6",
+    "marked": "^18.0.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
@@ -57,7 +56,7 @@
     "react-instantsearch-core": "^7.29.0",
     "react-live": "^4.1.8",
     "smarthr-normalize-css": "^1.1.0",
-    "smarthr-ui": "^93.0.0",
+    "smarthr-ui": "^93.0.1",
     "styled-components": "^6.4.0",
     "typescript": "^5.9.3"
   },

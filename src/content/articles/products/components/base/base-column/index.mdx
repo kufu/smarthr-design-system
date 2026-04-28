@@ -18,27 +18,19 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 注意事項や補足事項などを見出しと内容のセットで伝えるパターンです。Baseや各種Dialogの上など、[InformationPanel](/products/components/information-panel/)が配置できない場合に主に使います。
 
-```tsx editable withStyled
-const StyledBase = styled(Base)`
-  width: 100%;
-`
-
-render(
-  <StyledBase forwardedAs="section" padding={1.5}>
-    <Stack gap={1.5}>
-      <BaseColumn>
-        <Stack gap={1}>
-          <Heading type="blockTitle" icon={<WarningIcon />}>
-            注意事項
-          </Heading>
-          <Text as="p">
-            注意事項内容テキスト。注意事項内容テキスト。注意事項内容テキスト。
-          </Text>
-        </Stack>
-      </BaseColumn>
+```tsx editable
+<Base padding={1.5}>
+  <BaseColumn>
+    <Stack gap={1}>
+      <Heading type="blockTitle" icon={<WarningIcon />}>
+        注意事項
+      </Heading>
+      <Text as="p">
+        注意事項内容テキスト。注意事項内容テキスト。注意事項内容テキスト。
+      </Text>
     </Stack>
-  </StyledBase>
-)
+  </BaseColumn>
+</Base>
 ```
 ## Props
 
