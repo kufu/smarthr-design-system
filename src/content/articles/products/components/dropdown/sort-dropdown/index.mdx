@@ -36,7 +36,7 @@ const sortFieldsMap = Object.fromEntries(
   sortFields.map((field) => [field.value, field])
 )
 
-const sortAccessary = {
+const sortAccessary: Record<string, { label: string; icon: React.ReactElement }> = {
   asc: {
     label: '昇順',
     icon: <FaArrowUpWideShortIcon />,
@@ -58,14 +58,14 @@ const SortDropdownForMobile = () => {
       </RemoteDialogTrigger>
       <FormDialog
         id="sort-dropdown-dialog"
-        title="並べ替え"
+        heading="並べ替え"
         actionText="適用"
         size="XS"
-        onSubmit={(close, e) => {
+        onSubmit={(e, { close }) => {
           e.preventDefault()
           const formData = new FormData(e.currentTarget)
-          setSortKey(formData.get('sortField'))
-          setSortOrder(formData.get('sortOrder'))
+          setSortKey(formData.get('sortField') as string)
+          setSortOrder(formData.get('sortOrder') as string)
           close()
         }}
       >
