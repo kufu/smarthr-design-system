@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaGripLinesIcon, FaGripLinesVerticalIcon } from 'smarthr-ui';
 import styled from 'styled-components';
 
 import { CSS_COLOR } from '@/constants/style';
+
+import type React from 'react';
 
 type Props = {
   defaultWidth?: string;

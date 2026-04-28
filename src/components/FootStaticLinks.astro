@@ -38,16 +38,16 @@ const Link2 = [
 ];
 ---
 
-<ul class="large">
+<ul className="large">
   {
     Link1.map(({ title, path, isExternal }) => (
       <li>
         {isExternal ? (
-          <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
+          <a className="anchor" href={path} target="_blank" rel="noopener noreferrer">
             {title}
           </a>
         ) : (
-          <a class="link" href={path}>
+          <a className="link" href={path}>
             {title}
           </a>
         )}
@@ -62,12 +62,12 @@ const Link2 = [
         {isExternal ? (
           // NOTE: タイトルとアイコンの間に空白文字が入るのを避けるためにくっつけておく
           // prettier-ignore
-          <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
+          <a className="anchor" href={path} target="_blank" rel="noopener noreferrer">
             {title}
             <OpenInNewTabIcon />
           </a>
         ) : (
-          <a class="link" href={path}>
+          <a className="link" href={path}>
             {title}
           </a>
         )}

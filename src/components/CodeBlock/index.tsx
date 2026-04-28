@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 // TODO SmartHR な Dark テーマほしいな!!!
 import { Highlight, themes } from 'prism-react-renderer';
-import React, { type CSSProperties } from 'react';
 import * as ui from 'smarthr-ui';
 
 import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
@@ -12,6 +11,8 @@ import LiveContainer from './LiveContainer';
 import styles from './index.module.scss';
 import sharedStyles from './shared.module.scss';
 
+import type { CSSProperties } from 'react';
+import type React from 'react';
 import type { LiveProvider } from 'react-live';
 import type { Gap, SeparateGap } from 'smarthr-ui/types';
 

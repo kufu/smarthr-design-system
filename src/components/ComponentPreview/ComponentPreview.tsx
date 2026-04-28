@@ -1,8 +1,9 @@
-import React, { type CSSProperties } from 'react';
 import { Cluster } from 'smarthr-ui';
 
 import WrapperBase from './WrapperBase';
 
+import type { CSSProperties } from 'react';
+import type React from 'react';
 import type { Gap, SeparateGap } from 'smarthr-ui/types';
 
 export type ComponentPreviewProps = {
@@ -18,7 +19,7 @@ export default function ComponentPreview({
 }: ComponentPreviewProps) {
   return (
     <WrapperBase style={{ padding: '1.5em' }}>
-      {/* eslint-disable-next-line smarthr/best-practice-for-layouts */}
+      { }
       <Cluster gap={gap} align={align}>
         {children}
       </Cluster>

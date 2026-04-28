@@ -1,11 +1,13 @@
 import { liteClient } from 'algoliasearch/lite';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Hits, InstantSearch, type UseSearchBoxProps, useSearchBox } from 'react-instantsearch';
 import { FaMagnifyingGlassIcon, Input } from 'smarthr-ui';
 
 import HitComponent from './HitComponent';
 import styles from './SearchBox.module.scss';
 import SearchResultOuter from './SearchResultOuter';
+
+import type React from 'react';
 
 function CustomSearchBox(props: UseSearchBoxProps) {
   const { refine } = useSearchBox(props);
@@ -44,7 +46,7 @@ function CustomSearchBox(props: UseSearchBoxProps) {
       {/* 検索インプット部分 */}
       <div className={styles.inputOuter}>
         <p id="desc-for-search-input">例：Button、画面キャプチャ、用字用語、須磨英知など</p>
-        {/* eslint-disable-next-line smarthr/a11y-input-in-form-control */}
+        { }
         <Input
           width="100%"
           prefix={<FaMagnifyingGlassIcon className={styles.searchIcon} aria-label="検索" />}

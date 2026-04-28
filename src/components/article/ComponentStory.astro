@@ -1,7 +1,7 @@
 ---
-import { getUIStories, UI_VERSION } from '@/lib/getUIData';
-import { fetchStoryCode } from '@/lib/fetchStoryCode';
 import ReactComponentStory, { type ComponentStoryProps } from '@/components/ComponentStory';
+import { fetchStoryCode } from '@/lib/fetchStoryCode';
+import { UI_VERSION, getUIStories } from '@/lib/getUIData';
 
 type Props = {
   name: string;
@@ -21,7 +21,7 @@ const code = await fetchStoryCode(UI_VERSION, stories.filePath);
 ---
 
 <ReactComponentStory {...props} stories={stories} code={code} client:only="react">
-  <div class="fallback" slot="fallback"></div>
+  <div className="fallback" slot="fallback"></div>
 </ReactComponentStory>
 
 <style lang="scss">

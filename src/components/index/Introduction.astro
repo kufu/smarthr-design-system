@@ -1,14 +1,16 @@
 ---
 import { PageHeading } from 'smarthr-ui';
+
 import InlineTexts from '@/components/InlineTexts.astro';
+
 import FloatingTextLink from './FloatingTextLink.astro';
 ---
 
-<div class="introductionContainer">
+<div className="introductionContainer">
   <PageHeading className="pageHeading">
     <InlineTexts texts={['だれでも・', '効率よく・', '迷わずに。']} as="span" />
   </PageHeading>
-  <p class="text">
+  <p className="text">
     <InlineTexts
       texts={[
         'SmartHR Design Systemは、',
@@ -18,11 +20,11 @@ import FloatingTextLink from './FloatingTextLink.astro';
       as="span"
     />
   </p>
-  <p class="text">
+  <p className="text">
     <FloatingTextLink path="/introduction/">デザインシステムとは？</FloatingTextLink>
   </p>
 </div>
-<div class="indexImageContainer">
+<div className="indexImageContainer">
   <img
     src="/images/index_introduction_illust.png"
     width="320"

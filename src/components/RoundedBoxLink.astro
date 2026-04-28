@@ -11,14 +11,14 @@ const { path, label, title, align = 'left', caretPosition = 'right' } = Astro.pr
 ---
 
 <a
-  class="boxLink"
+  className="boxLink"
   href={path}
   style={{
     textAlign: align,
   }}
 >
-  <p class="labelText">{label}</p>
-  <div class="linkText">
+  <p className="labelText">{label}</p>
+  <div className="linkText">
     <span>{title}</span>
   </div>
 </a>

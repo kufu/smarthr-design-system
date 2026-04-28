@@ -20,7 +20,7 @@ export default function IndexNavItems({ headings, indexNavRef, currentHeadingId 
     ));
 
   return (
-    // eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
+     
     <Nav className={styles.nav}>
       <ul ref={indexNavRef}>{nestedNavItems(headings)}</ul>
     </Nav>

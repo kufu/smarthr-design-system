@@ -6,7 +6,7 @@ type Props = {
 const { type = '' } = Astro.props;
 ---
 
-<div class="tableShadow" id="table-shadow">
+<div className="tableShadow" id="table-shadow">
   <div class:list={{ wrapper: true, wrapperNarrow: type === 'narrow' }} id="table-wrapper">
     <slot />
   </div>

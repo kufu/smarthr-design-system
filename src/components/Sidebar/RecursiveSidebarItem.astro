@@ -1,5 +1,6 @@
 ---
 import type { ArticleMeta } from '@/types/article';
+
 import CaretButton from './CaretButton';
 
 type Props = {
@@ -22,7 +23,7 @@ if (items.length <= 0) {
 
     return (
       <li>
-        <div class={`depth${depth}Item`}>
+        <div className={`depth${depth}Item`}>
           <a href={item.link} aria-current={item.link === currentPath}>
             {item.title}
           </a>

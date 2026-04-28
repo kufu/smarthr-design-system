@@ -60,14 +60,14 @@ export const StatusSupplement = () => (
       <Tooltip message="ステータスがはいります。" triggerType="icon">
         <WarningIcon color="WARNING" />
       </Tooltip>
-      {/* eslint-disable-next-line smarthr/a11y-anchor-has-href-attribute */}
+      { }
       <TextLink href="#">警告</TextLink>
     </Cluster>
     <Cluster align="center" gap={0.25}>
       <Tooltip message="ステータスがはいります。" triggerType="icon">
         <FaCircleInfoIcon color="DANGER" />
       </Tooltip>
-      {/* eslint-disable-next-line smarthr/a11y-anchor-has-href-attribute */}
+      { }
       <TextLink href="#">エラー</TextLink>
     </Cluster>
   </Cluster>

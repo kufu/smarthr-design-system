@@ -20,11 +20,11 @@ export default function DynamicCancelActionDialog() {
         }}
         size="XS"
       >
-        <Text as="p">
+        <p>
           {'{操作名}を取り消しますか？'}
           <br />
           {'「取り消し」を押すと変更内容が破棄されます。'}
-        </Text>
+        </p>
       </ControlledActionDialog>
     </IntlProvider>
   );

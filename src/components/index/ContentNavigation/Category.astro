@@ -1,8 +1,10 @@
 ---
 import { Section } from 'smarthr-ui';
+
+import type indexContentJson from '@/data/indexContent.json';
+
 import FloatingTextLink from '../FloatingTextLink.astro';
 
-import indexContentJson from '@/data/indexContent.json';
 
 type Props = {
   data: (typeof indexContentJson)[number];
@@ -12,25 +14,25 @@ const { data } = Astro.props;
 ---
 
 <Section className="navigationSection">
-  <div class="navigationText">
+  <div className="navigationText">
     <h2>{data.title}</h2>
     <p>{data.description}</p>
     <FloatingTextLink path={data.path}>もっと詳しく</FloatingTextLink>
   </div>
-  <div class="navigationLinksContainer">
+  <div className="navigationLinksContainer">
     {
       data.imagePath ? (
-        <div class="categoryImageWrapper">
+        <div className="categoryImageWrapper">
           <a href={data.path}>
             <img src={data.imagePath} width="832" height="144" alt="基本原則" />
           </a>
         </div>
       ) : (
-        <ul class="navigationLinks">
+        <ul className="navigationLinks">
           {data.items.map((item) => (
             <li>
               <a href={item.path}>
-                <div class="thumbnailImageWrapper">
+                <div className="thumbnailImageWrapper">
                   {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
                   <img src={item.imagePath} width="262" height="144" alt="" />
                 </div>

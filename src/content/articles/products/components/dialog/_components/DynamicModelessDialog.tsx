@@ -21,7 +21,7 @@ export default function DynamicModelessDialog() {
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
         size="XS"
-        right={'10%'}
+        right="10%"
         id="modeless-dialog-1"
         data-test="dialog"
       >

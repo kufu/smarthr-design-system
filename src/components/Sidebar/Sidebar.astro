@@ -10,14 +10,14 @@ const { path, items } = Astro.props;
 ---
 
 {/* PC表示 */}
-<div class="navWrapper">
+<div className="navWrapper">
   <SidebarItems path={path} items={items} showDepth1Item />
 </div>
 
 {
   // SP表示
   items[0]?.children?.length > 0 && (
-    <div class="spSidebar">
+    <div className="spSidebar">
       <Accordion title={items[0].title} client:load>
         <SidebarItems path={path} items={items} />
       </Accordion>

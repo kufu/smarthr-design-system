@@ -1,7 +1,9 @@
 ---
 import { Section } from 'smarthr-ui';
-import { getSubPageCollection } from '@/lib/getSubPageCollection';
+
 import navigationItem from '@/data/navigationItem.json';
+import { getSubPageCollection } from '@/lib/getSubPageCollection';
+
 import FootStaticLinks from './FootStaticLinks.astro';
 
 type Props = {
@@ -11,21 +13,21 @@ type Props = {
 const { isArticlePage } = Astro.props;
 ---
 
-<footer class="wrapper">
+<footer className="wrapper">
   <div
-    class="footerContainer"
+    className="footerContainer"
     style={{
       borderTop: isArticlePage ? undefined : '1px solid var(--color-light-grey-1)',
     }}
   >
-    <div class="col1Container">
+    <div className="col1Container">
       <Section>
-        <h2 class="logoHeading">SmartHR Design System</h2>
+        <h2 className="logoHeading">SmartHR Design System</h2>
         <FootStaticLinks />
       </Section>
     </div>
 
-    <div class="col2Container">
+    <div className="col2Container">
       {
         navigationItem.map(async ({ title, key, path }) => {
           const subPages = await getSubPageCollection(path);
@@ -46,7 +48,7 @@ const { isArticlePage } = Astro.props;
           return (
             <Section style={{ gridArea: key }}>
               <h3>
-                <a class="link" href={path}>
+                <a className="link" href={path}>
                   {title}
                 </a>
               </h3>
@@ -54,7 +56,7 @@ const { isArticlePage } = Astro.props;
                 <ul>
                   {depth2Pages.map(({ slug, data }) => (
                     <li>
-                      <a class="link" href={`/${slug}`}>
+                      <a className="link" href={`/${slug}`}>
                         {data.title}
                       </a>
                     </li>
@@ -67,8 +69,8 @@ const { isArticlePage } = Astro.props;
       }
     </div>
 
-    <div class="copyrightContainer">
-      <p class="copyright">
+    <div className="copyrightContainer">
+      <p className="copyright">
         <img src="/images/logo_smarthr.svg" alt="SmartHR" width="84" height="15" />
         <small>© SmartHR, Inc.</small>
       </p>

@@ -1,25 +1,26 @@
 ---
 import { PageHeading } from 'smarthr-ui';
-import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/Header/Header.astro';
+
 import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header/Header.astro';
 import IndexList from '@/components/search/IndexList.astro';
 import SearchBox from '@/components/search/Search/SearchBox';
+import Layout from '@/layouts/Layout.astro';
 ---
 
 <Layout title="検索" description="検索ページです。">
-  <div class="wrapper">
+  <div className="wrapper">
     <Header />
 
-    <main class="main">
+    <main className="main">
       <PageHeading className="pageHeading" id="label-for-search-input">SmartHR Design Systemを検索</PageHeading>
-      <div class="search ais-SearchBox__root">
+      <div className="search ais-SearchBox__root">
         <SearchBox client:only="react">
           {
             // client:loadでもSearchBoxが遅れて表示されCLSが起こるので、
             // client:onlyを使い同じ高さのフォールバックを表示することでCLSを軽減しています
           }
-          <div class="fallback" slot="fallback"></div>
+          <div className="fallback" slot="fallback"></div>
         </SearchBox>
       </div>
     </main>

@@ -1,7 +1,8 @@
 ---
 import { Section } from 'smarthr-ui';
-import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
+
 import navigationItem from '@/data/navigationItem.json';
+import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
 
 // リンク表示を別扱いにするページ
 const SUB_LINKS = ['downloads', 'terms', 'contact', 'operational-guideline'];
@@ -9,7 +10,7 @@ const SUB_LINKS = ['downloads', 'terms', 'contact', 'operational-guideline'];
 const { nestedArticleMetaItems } = await createArticleMetaItems('/');
 ---
 
-<div class="wrapper">
+<div className="wrapper">
   {
     navigationItem.map(({ key }) => {
       const level2Item = nestedArticleMetaItems.find((item) => item.link === `/${key}`);

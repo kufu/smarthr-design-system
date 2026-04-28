@@ -1,14 +1,15 @@
 ---
-import { getEntry, type CollectionEntry } from 'astro:content';
+import { type CollectionEntry, getEntry } from 'astro:content';
 import { Article } from 'smarthr-ui';
-import Layout from '@/layouts/Layout.astro';
-import IndexNav from '@/components/IndexNav';
-import Header from '@/components/Header/Header.astro';
+
 import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header/Header.astro';
+import IndexNav from '@/components/IndexNav';
+import type { IndexNavItemsProps } from '@/components/IndexNav/IndexNavItems';
 import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
 import Sidebar from '@/components/Sidebar/Sidebar.astro';
+import Layout from '@/layouts/Layout.astro';
 import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
-import type { IndexNavItemsProps } from '@/components/IndexNav/IndexNavItems';
 
 type Props = Pick<IndexNavItemsProps, 'headings'> & Pick<CollectionEntry<'articles'>, 'slug' | 'data'>;
 
@@ -36,26 +37,26 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
 ---
 
 <Layout title={headTitle} ogTitle={data.title} description={data.description}>
-  <div class="wrapper">
+  <div className="wrapper">
     <Header />
 
-    <main class="main">
-      <div class="mainSidebar">
+    <main className="main">
+      <div className="mainSidebar">
         <Sidebar path={`/${slug}`} items={nestedArticleMetaItems} />
       </div>
-      <div class="mainIndexWrapper">
+      <div className="mainIndexWrapper">
         <IndexNav targetId={MDX_STYLE_WRAPPER_ID} headings={headings} ignoreH3Nav={data.ignoreH3Nav} client:load />
       </div>
       <Article className="article">
-        <h1 class="articleTitle">{data.title}</h1>
-        <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
+        <h1 className="articleTitle">{data.title}</h1>
+        <div className="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
           <slot />
         </div>
         <nav>
-          <ul class="articleLinks">
+          <ul className="articleLinks">
             {
               prevSidebarItem !== null && (
-                <li class="prevArticleLinkWrapper">
+                <li className="prevArticleLinkWrapper">
                   <RoundedBoxLink
                     path={prevSidebarItem.link}
                     label="前へ"
@@ -68,7 +69,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
             }
             {
               nextSidebarItem !== null && (
-                <li class="nextArticleLinkWrapper">
+                <li className="nextArticleLinkWrapper">
                   <RoundedBoxLink
                     path={nextSidebarItem.link}
                     label="次へ"

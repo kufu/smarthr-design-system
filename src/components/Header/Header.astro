@@ -1,6 +1,8 @@
 ---
 import { Cluster, FaMagnifyingGlassIcon } from 'smarthr-ui';
+
 import FootStaticLinks from '../FootStaticLinks.astro';
+
 import HeaderItems from './HeaderItems.astro';
 import MobileMenuContainer from './MobileMenuContainer';
 
@@ -13,13 +15,13 @@ const { isIndex } = Astro.props;
 
 <header class:list={{ wrapper: true, isIndex }}>
   <Cluster gap={{ row: 0.75, column: 1 }} align="center" justify="space-between">
-    <a class="siteNameLink" href="/">
+    <a className="siteNameLink" href="/">
       <img src="/images/logo_smarthr_design_system.svg" alt="SmartHR Design System" width="264" height="24" />
     </a>
     <Cluster className="linkMenu" gap={{ row: 0.75, column: 0.5 }} justify="flex-start" as="nav">
-      <ul class="-optional">
+      <ul className="-optional">
         <li>
-          <a class="searchLink" href="/search/">
+          <a className="searchLink" href="/search/">
             <FaMagnifyingGlassIcon />
             さがす
           </a>
@@ -29,10 +31,10 @@ const { isIndex } = Astro.props;
         <HeaderItems />
       </ul>
       <MobileMenuContainer client:load>
-        <ul class="categoryUl">
+        <ul className="categoryUl">
           <HeaderItems isMobileMenu />
         </ul>
-        <div class="menuFootLinkContainer">
+        <div className="menuFootLinkContainer">
           <FootStaticLinks />
         </div>
       </MobileMenuContainer>

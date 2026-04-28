@@ -1,7 +1,9 @@
 ---
 import { marked } from 'marked';
 import { StatusLabel, Text, WarningIcon } from 'smarthr-ui';
+
 import { getUIProps } from '@/lib/getUIData';
+
 import ComponentPropsTableTag from './ComponentPropsTableTag.astro';
 import FragmentTitle from './FragmentTitle.astro';
 
@@ -27,7 +29,7 @@ const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
           {name} props
         </FragmentTitle>
       )}
-      <Text as={'p'}>Propsは設定されていません。</Text>
+      <p>Propsは設定されていません。</p>
     </>
   ) : (
     <>
@@ -36,22 +38,22 @@ const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
           {data.displayName} props
         </FragmentTitle>
       )}
-      <div class="wrapper">
+      <div className="wrapper">
         {data.props.map((prop) => (
-          <div class="propContent">
-            <div class="propName">
+          <div className="propContent">
+            <div className="propName">
               <span>{prop?.name}</span>
               {prop.required && <StatusLabel type="red">必須</StatusLabel>}
               {prop.description.includes('@deprecated') && <WarningIcon alt="非推奨" />}
             </div>
-            <div class="propTypes">
+            <div className="propTypes">
               {prop.type.name === 'enum' ? (
                 prop.type.value && prop.type.value.map(({ value }) => <ComponentPropsTableTag content={value ?? ''} />)
               ) : (
                 <ComponentPropsTableTag content={prop.type.name} />
               )}
             </div>
-            <div class="propDescription" set:html={marked.parse(prop.description ?? '')} />
+            <div className="propDescription" set:html={marked.parse(prop.description ?? '')} />
           </div>
         ))}
       </div>

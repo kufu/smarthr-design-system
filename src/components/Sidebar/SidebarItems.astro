@@ -1,7 +1,9 @@
 ---
 import { Nav } from 'smarthr-ui';
-import RecursiveSidebarItem from './RecursiveSidebarItem.astro';
+
 import type { ArticleMeta } from '@/types/article';
+
+import RecursiveSidebarItem from './RecursiveSidebarItem.astro';
 
 export type Props = {
   path: `/${string}`;
@@ -18,7 +20,7 @@ const { path, items, showDepth1Item = false } = Astro.props;
       <Fragment key={depth1Item.link}>
         {/* 第1階層 */}
         {showDepth1Item && (
-          <h2 class="depth1Heading">
+          <h2 className="depth1Heading">
             <a href={depth1Item.link} aria-current={depth1Item.link === path}>
               {depth1Item.title}
             </a>

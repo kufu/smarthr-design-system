@@ -47,7 +47,7 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
       <LiveProvider
         code={code}
         language={language}
-        scope={{ ...React, ...ui, styled, css, ...scope }}
+        scope={{ ...React, ...ui, ...scope, styled, css }}
         theme={{
           ...themes.vsDark,
           plain: {
