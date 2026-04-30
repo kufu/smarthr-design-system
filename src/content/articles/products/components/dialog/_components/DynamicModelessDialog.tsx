@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, IntlProvider, ModelessDialog, Text } from 'smarthr-ui';
+import { Button, IntlProvider, ModelessDialog } from 'smarthr-ui';
 
 export default function DynamicModelessDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,12 +21,12 @@ export default function DynamicModelessDialog() {
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
         size="XS"
-        right={'10%'}
+        right="10%"
         id="modeless-dialog-1"
         data-test="dialog"
       >
         <div>
-          <Text>本文が入ります。</Text>
+          <p>本文が入ります。</p>
         </div>
       </ModelessDialog>
     </IntlProvider>

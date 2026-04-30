@@ -1,7 +1,9 @@
 ---
 import { marked } from 'marked';
-import { StatusLabel, Text, WarningIcon } from 'smarthr-ui';
+import { StatusLabel, WarningIcon } from 'smarthr-ui';
+
 import { getUIProps } from '@/lib/getUIData';
+
 import ComponentPropsTableTag from './ComponentPropsTableTag.astro';
 import FragmentTitle from './FragmentTitle.astro';
 
@@ -27,7 +29,7 @@ const fragmentId = (propsName: string) => `props-${propsName.replace(' ', '-')}`
           {name} props
         </FragmentTitle>
       )}
-      <Text as={'p'}>Propsは設定されていません。</Text>
+      <p>Propsは設定されていません。</p>
     </>
   ) : (
     <>

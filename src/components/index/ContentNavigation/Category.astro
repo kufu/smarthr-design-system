@@ -1,8 +1,10 @@
 ---
 import { Section } from 'smarthr-ui';
+
+import type indexContentJson from '@/data/indexContent.json';
+
 import FloatingTextLink from '../FloatingTextLink.astro';
 
-import indexContentJson from '@/data/indexContent.json';
 
 type Props = {
   data: (typeof indexContentJson)[number];
