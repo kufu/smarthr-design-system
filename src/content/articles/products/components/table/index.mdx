@@ -4,6 +4,7 @@ description: '表形式でデータを表示するためのコンポーネント
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import { Button, Text ,BulkActionRow, Table, Cluster} from 'smarthr-ui'
 
 表形式でデータを表示するためのコンポーネントです。  
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
@@ -31,7 +32,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 </tr>
 ```
 
-オブジェクト名だけでは一意に判別できない可能性があるオブジェクトでは、[オブジェクトの情報](https://smarthr.design/products/design-patterns/smarthr-table/#h4-1)を含む複数の要素のID参照をスペース区切りで指定しなければなりません。例えば、従業員は同姓同名の人物が在籍する場合もあることから、以下のように社員番号と組み合わせます。
+オブジェクト名だけでは一意に判別できない可能性があるオブジェクトでは、[オブジェクトの情報](/products/design-patterns/smarthr-table/#h4-1)を含む複数の要素のID参照をスペース区切りで指定しなければなりません。例えば、従業員は同姓同名の人物が在籍する場合もあることから、以下のように社員番号と組み合わせます。
 
 ```tsx
 <tr key={key}>
@@ -39,6 +40,27 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
   <Td id={`${crew.id}-id`}>{crew.crewId}</Td>
   <Td id={`${crew.id}-name`}>{crew.name}</Td>
 </tr>
+```
+
+### BulkActionRowでの「すべてのオブジェクトを選択」ボタンの実装
+
+BulkActionRow内で「[すべてのオブジェクトを選択](/products/design-patterns/table-bulk-action/#h4-2)」ボタンを実装する際は、`Button`コンポーネントの`variant="tertiary"`を使用してください。
+
+[Button[variant="tertiary"]](/products/components/button/#h3-2)を使用することで、BulkActionRowの背景色に対してコントラスト比4.5:1を確保できるように内部的に実装されているため、視覚的に見やすくなります。
+
+```tsx editable noIframe
+<Table>
+  <thead>
+    <BulkActionRow>
+      <Cluster align="center">
+        <Text>このこのページの「オブジェクト名」50件件すべて選択されています。</Text>
+        <Button variant="tertiary" size="S">
+          一覧の「オブジェクト名」1000件すべてを選択
+        </Button>
+     </Cluster>
+    </BulkActionRow>
+  </thead>
+</Table>
 ```
 
 ## モバイル
