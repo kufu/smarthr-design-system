@@ -1,0 +1,30 @@
+# 使用上の注意 > ドラッグアンドドロップでのファイル選択
+- severity: should
+  text: "ドラッグアンドドロップでのファイル選択を提供したい場合など、より多くの操作方法を提供したい場合は DropZone の使用も検討する"
+  source_section: "使用上の注意 > ドラッグアンドドロップでのファイル選択"
+  sub_items:
+    - "DropZone を一定以上の大きさでレイアウトすることが難しい場合は InputFile を推奨する"
+    - "1 つの画面に複数のファイル選択 UI を配置する必要がある場合は InputFile を推奨する"
+
+# アクセシビリティ
+- severity: must
+  text: "InputFile では入力すべき内容をユーザーに明確に伝えるラベルと、支援技術向けの Accessible Name を設定する"
+  source_section: "アクセシビリティ"
+
+# アクセシビリティ > InputFileでラベルを提供する
+- severity: must
+  text: "入力要素として「何を入力すべきか」を示すラベルを FormControl の `title` で設定する"
+  source_section: "アクセシビリティ > InputFileでラベルを提供する"
+
+# アクセシビリティ > InputFileでラベルを省略する場合
+- severity: must
+  text: "ラベルを省略する場合も Accessible Name を漏れなく提供する"
+  source_section: "アクセシビリティ > InputFileでラベルを省略する場合"
+  sub_items:
+    - "FormControl の `label.dangerouslyHide` を使用してラベルを不可視化する"
+    - "`aria-label` で入力する内容を特定できる Accessible Name を設定する"
+
+# モバイル
+- severity: should
+  text: "目的のファイルを選択するステップが複数回に分かれるケースでは、必要に応じて `multiple={{ appendable: true }}` props の利用を検討する"
+  source_section: "モバイル"
