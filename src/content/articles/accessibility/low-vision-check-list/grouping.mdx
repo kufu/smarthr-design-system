@@ -1,0 +1,49 @@
+---
+title: '色のみで領域やグループを表現しない'
+description: ' '
+order: 6
+---
+
+import { Image } from 'astro:assets'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import GroupingDo from '../images/GroupingDo.png'
+import GroupingDont from '../images/GroupingDont.png'
+import { Text, Chip, Cluster } from 'smarthr-ui'
+
+<Cluster gap={0.25} style={{ margin: '-20px 0 -80px' }}>
+  <Chip>UIデザイン</Chip>
+</Cluster>
+
+## 概要
+この基準では、色のみで領域やグルーピングを表現していないことを確認してください。
+強制カラーモードなどの支援技術で色をカスタムするユーザーや、色を識別しづらいユーザーは、色による情報を理解することが難しい場合があります。
+領域やグルーピングを表現する際には、見出しやラベル、適切な余白など、色の情報に加えて他の視覚的な手がかりを提供することが重要です。
+
+## メリット
+1. 色を識別しづらいユーザーも、領域やグルーピングの情報を理解しやすくなります。
+2. 強制カラーモードなどの支援技術を使用してユーザーが色をカスタムしている状態でも情報を取得できるようになります。
+
+## 達成方法
+1. **複数の視覚的手がかりの提供**:
+    - 領域やグルーピングを表現する際には、色の情報に加えて、見出しやラベル、適切な余白など、複数の視覚的な手がかりを提供します。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={GroupingDo} alt="複数のcheckboxのうち一部の領域に背景色が設定されている" />
+    <Text slot="label">色に加えて見出しでグループを表現している</Text>
+  </DoAndDont>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Image slot="img" src={GroupingDont} alt="複数のcheckboxのうち一部の領域には背景色と見出しが設定されている" />
+    <Text slot="label">色のみでグループを表現している</Text>
+  </DoAndDont>
+</Cluster>
+
+## テスト方法
+1. **目視での確認**:
+    - ページ内の領域やグルーピングが、色以外の視覚的な手がかり（見出し、ラベル、余白など）を使用して表現されていることを確認します。
+    - 判断に迷う場合は、強制カラーモードなどの支援技術を使用して色をカスタムした状態で情報が取得できるかを確認します。
+
+## 参考
+- [達成基準 1.4.1: 色の使用を理解する](https://waic.jp/translations/WCAG21/Understanding/use-of-color.html)
+- [弱視・ロービジョンのユーザーのウェブ利用時の課題](https://smarthr.design/accessibility/low-vision/)
+
