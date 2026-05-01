@@ -59,12 +59,17 @@ const {
 } = Astro.props;
 
 const metaProps = parseMeta(meta);
+const _code: string = metaProps?.code && typeof metaProps.code === 'string' ? metaProps.code : code;
+const _language: string = metaProps?.language && typeof metaProps.language === 'string' ? metaProps.language : language || '';
+const _editable = metaProps?.editable && typeof metaProps.editable === 'boolean' ? metaProps.editable : editable;
 ---
 
 <ReactCodeBlock
-  code={code}
-  language={language}
-  editable={editable}
+  {...metaProps}
+  client:only="react"
+  code={_code}
+  language={_language}
+  editable={_editable}
   noIframe={noIframe}
   isStorybook={isStorybook}
   renderingComponent={renderingComponent}
@@ -74,6 +79,4 @@ const metaProps = parseMeta(meta);
   align={align}
   layout={layout}
   canvas={canvas || (metaProps.canvas ? Number(metaProps.canvas) : undefined)}
-  {...metaProps}
-  client:only="react"
 />

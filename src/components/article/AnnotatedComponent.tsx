@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type AnnotationPosition = {
   value: string;
@@ -62,7 +62,6 @@ export const AnnotatedComponent: React.FC<{
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [annotationPositions, setAnnotationPositions] = useState<AnnotationPosition[]>([]);
-  const [scale, setScale] = useState(1);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const initialTimersRef = useRef<NodeJS.Timeout[]>([]);
@@ -93,15 +92,14 @@ export const AnnotatedComponent: React.FC<{
       }
 
       // Calculate and apply scale
-      const calculatedScale = containerWidth / (canvasWidth ?? naturalWidth);
-      content.style.transform = `scale(${calculatedScale})`;
-      setScale(calculatedScale);
+      const scale = containerWidth / (canvasWidth ?? naturalWidth);
+      content.style.transform = `scale(${scale})`;
 
       // Measure actual scaled height
       const scaledHeight = content.getBoundingClientRect().height;
 
       setDimensions({
-        width: (canvasWidth ?? naturalWidth) * calculatedScale,
+        width: (canvasWidth ?? naturalWidth) * scale,
         height: scaledHeight,
       });
 

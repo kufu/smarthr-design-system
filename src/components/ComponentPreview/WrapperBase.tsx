@@ -5,11 +5,11 @@ export default function WrapperBase({ children, style, ...props }: ComponentProp
     <div
       {...props}
       style={{
+        ...style,
         marginBlockStart: '0.5em',
         border: '1px solid #d6d3d0',
         backgroundColor: '#fff',
         fontFamily: 'system-ui, sans-serif',
-        ...style,
       }}
     >
       {children}
