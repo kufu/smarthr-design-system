@@ -4,7 +4,7 @@ type Props = {
   poster: string;
   title: string;
   youtubeUrl?: string;
-  tracks?: astroHTML.JSX.IntrinsicElements['track'][];
+  tracks?: Array<astroHTML.JSX.IntrinsicElements['track']>;
 };
 
 const { source, poster, title, youtubeUrl, tracks } = Astro.props;
@@ -25,7 +25,7 @@ const { source, poster, title, youtubeUrl, tracks } = Astro.props;
   </video>
   {
     youtubeUrl && (
-      <a href={youtubeUrl} target="_blank" rel="noopener">
+      <a href={youtubeUrl} target="_blank" rel="noopener noreferrer">
         {title} | YouTube
       </a>
     )

@@ -1,5 +1,5 @@
 import { liteClient } from 'algoliasearch/lite';
-import React, { useEffect, useState } from 'react';
+import { type ChangeEvent, useEffect, useState } from 'react';
 import { Hits, InstantSearch, type UseSearchBoxProps, useSearchBox } from 'react-instantsearch';
 import { FaMagnifyingGlassIcon, Input } from 'smarthr-ui';
 
@@ -23,7 +23,7 @@ function CustomSearchBox(props: UseSearchBoxProps) {
   }, [search, searchState]);
 
   // テキスト入力による検索
-  const onSearchStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const onSearchStateChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const url = new URL(window.location.href);
 
     const searchQuery = event.target.value;
@@ -39,19 +39,21 @@ function CustomSearchBox(props: UseSearchBoxProps) {
     }
   }, [searchState, refine]);
 
+  const ariaLabelId = 'label-for-search-input';
+
   return (
     <>
       {/* 検索インプット部分 */}
       <div className={styles.inputOuter}>
         <p id="desc-for-search-input">例：Button、画面キャプチャ、用字用語、須磨英知など</p>
-        {/* eslint-disable-next-line smarthr/a11y-input-in-form-control */}
+        { }
         <Input
           width="100%"
           prefix={<FaMagnifyingGlassIcon className={styles.searchIcon} aria-label="検索" />}
           value={searchState ?? ''}
           onChange={onSearchStateChange}
           autoFocus // eslint-disable-line jsx-a11y/no-autofocus
-          aria-labelledby="label-for-search-input"
+          aria-labelledby={ariaLabelId}
           aria-describedby="desc-for-search-input"
           name="query"
         />

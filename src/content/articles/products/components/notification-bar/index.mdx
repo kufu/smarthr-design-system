@@ -164,31 +164,35 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 以下の例では、「保存」操作が成功した結果として、操作範囲の[Base](/products/components/base/)内に`type="success"`を表示しています。エラーの場合は`type="error"`を指定します。
 
 ```tsx editable
-<Stack>
-  <Heading type="sectionTitle">セクションタイトル</Heading>
-  <Base overflow="auto">
-    <NotificationBar type="success" bold>値の保存に成功しました。</NotificationBar>
-    <Stack align="start" style={{padding: '16px'}}>
-      <Fieldset
-        legend="設定項目"
-        innerMargin={0.5}
-      >
-        <BaseColumn>
-          <Cluster gap={{ row: 1, column: 1.5 }}>
-            <Checkbox name="sample" checked >選択肢 1</Checkbox>
-            <Checkbox name="sample">選択肢 2</Checkbox>
-            <Checkbox name="sample">選択肢 3</Checkbox>
-            <Checkbox name="sample">選択肢 4</Checkbox>
-            <Checkbox name="sample">選択肢 5</Checkbox>
-          </Cluster>
-        </BaseColumn>
-      </Fieldset>
-      <Button type="submit" variant="primary" >
-        保存
-      </Button>
-    </Stack>
-  </Base>
-</Stack>
+<Section>
+  <Stack>
+    <Heading type="sectionTitle">セクションタイトル</Heading>
+    <Base overflow="auto">
+      <NotificationBar type="success" bold>値の保存に成功しました。</NotificationBar>
+        <form onSubmit={(e) => {e.preventDefault()}}>
+        <Stack align="start" style={{padding: '16px'}}>
+          <Fieldset
+            legend="設定項目"
+            innerMargin={0.5}
+          >
+            <BaseColumn>
+              <Cluster gap={{ row: 1, column: 1.5 }}>
+                <Checkbox name="sample" checked >選択肢 1</Checkbox>
+                <Checkbox name="sample">選択肢 2</Checkbox>
+                <Checkbox name="sample">選択肢 3</Checkbox>
+                <Checkbox name="sample">選択肢 4</Checkbox>
+                <Checkbox name="sample">選択肢 5</Checkbox>
+              </Cluster>
+            </BaseColumn>
+          </Fieldset>
+          <Button type="submit" variant="primary" >
+            保存
+          </Button>
+        </Stack>
+      </form>
+    </Base>
+  </Stack>
+</Section>
 ```
 ## モバイル
 ### メッセージの折り返し
