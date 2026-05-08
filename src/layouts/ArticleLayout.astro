@@ -1,14 +1,15 @@
 ---
-import { getEntry, type CollectionEntry } from 'astro:content';
+import { type CollectionEntry, getEntry } from 'astro:content';
 import { Article } from 'smarthr-ui';
-import Layout from '@/layouts/Layout.astro';
-import IndexNav from '@/components/IndexNav';
-import Header from '@/components/Header/Header.astro';
+
 import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header/Header.astro';
+import IndexNav from '@/components/IndexNav';
+import type { IndexNavItemsProps } from '@/components/IndexNav/IndexNavItems';
 import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
 import Sidebar from '@/components/Sidebar/Sidebar.astro';
+import Layout from '@/layouts/Layout.astro';
 import { createArticleMetaItems } from '@/lib/createArticleMetaItems';
-import type { IndexNavItemsProps } from '@/components/IndexNav/IndexNavItems';
 
 type Props = Pick<IndexNavItemsProps, 'headings'> & Pick<CollectionEntry<'articles'>, 'slug' | 'data'>;
 
@@ -18,7 +19,7 @@ const MDX_STYLE_WRAPPER_ID = 'mdx-style-wrapper';
 const { slug, data, headings } = Astro.props;
 
 // 親の記事を取得
-const parentArticleSlug = slug.replace(/\/[^\/]*$/, ''); // 例: 'basics/typography' → 'basics'
+const parentArticleSlug = slug.replace(/\/[^/]*$/, ''); // 例: 'basics/typography' → 'basics'
 const parentArticle = await getEntry('articles', parentArticleSlug);
 
 // カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する

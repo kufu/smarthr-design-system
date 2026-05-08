@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    // Astro に baseUrl が必要だが、TS6 では baseUrl は非推奨フィールドなため、ignoreDeprecations を設定してエラーを回避する
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
