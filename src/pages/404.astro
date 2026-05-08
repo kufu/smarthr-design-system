@@ -1,8 +1,7 @@
 ---
-import { NotFoundErrorScreen } from 'smarthr-ui';
-
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header/Header.astro';
+import NotFoundPage from '@/components/NotFoundPage';
 import Layout from '@/layouts/Layout.astro';
 ---
 
@@ -17,7 +16,7 @@ import Layout from '@/layouts/Layout.astro';
 >
   <Header />
 
-  <NotFoundErrorScreen homeUrl="/" />
+  <NotFoundPage homeUrl="/" />
 
   <Footer />
 </Layout>
