@@ -1,0 +1,19 @@
+---
+title: 'UnauthorizedErrorScreen'
+description: '一定時間操作がなかったためにセッションが切れたときなど、認証が必要な状態でアクセスした場合に表示するコンポーネントです。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+一定時間操作がなかったためにセッションが切れたときなど、認証が必要な状態でアクセスした場合に表示するコンポーネントです。
+
+ユーザーが一定時間操作しなかった場合、自動でログアウトしたことがわかるメッセージとログインボタンを表示します。ログインボタンを押せば、再ログインできるようにしてください。
+
+「セッションがタイムアウトしました。」は一般的なユーザーには伝わりにくい表現なので「自動でログアウトしました」としています。
+
+<ComponentStory name="UnauthorizedErrorScreen" />
+
+## props
+
+<ComponentPropsTable name="UnauthorizedErrorScreen" />
+
