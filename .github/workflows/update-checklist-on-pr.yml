@@ -6,11 +6,18 @@
 #   - checklist.yaml なし → index.mdx を読んでルール記述が 2 件以上あれば初回生成（checklist-v3.md）
 #   - ルール記述 0〜1 件 → スキップ（FIX-10 基準）
 #
-# NOTE: このワークフローは anthropics/claude-code-action@v1 を使用しています。
-# 社内の kufu-claude-code-action に差し替える場合は以下を変更してください:
-#   - uses: の Action 名
-#   - anthropic_api_key のシークレット名
-#   - prompt / prompt_file の渡し方（社内 Action の仕様に合わせる）
+# NOTE: 社内の kufu/github-actions/.github/actions/claude-code Composite Action を使用しています。
+# 参照: https://github.com/kufu/github-actions/tree/main/docs/claude-code-action
+#
+# 前提条件:
+#   1. リポジトリに kufu-claude-code-action GitHub App をインストール（#dev__kiban_request 経由で依頼）
+#   2. kufu/terraform の smarthr-ai-lab/github_workload_identity.tf に当リポジトリを追加
+#
+# 必要な Organization secrets（既設）:
+#   - CLAUDE_CODE_APP_ID
+#   - CLAUDE_CODE_APP_PRIVATE_KEY
+#   - GCP_AI_LAB_GITHUB_WORKLOAD_IDENTITY_PROVIDER
+#   - GCP_AI_LAB_GITHUB_ACTIONS_SERVICE_ACCOUNT
 
 name: Update checklist.yaml on component change
 
@@ -34,9 +41,11 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
+      id-token: write
+      actions: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
@@ -88,13 +97,14 @@ jobs:
           echo "EOF" >> "$GITHUB_OUTPUT"
 
       # Claude Code Action で checklist.yaml を更新
-      # NOTE: 社内 Action に差し替える場合はこのステップを変更
       - name: Update checklist.yaml
         if: steps.detect.outputs.skip != 'true'
-        uses: anthropics/claude-code-action@v1
+        uses: kufu/github-actions/.github/actions/claude-code@main
         with:
-          # NOTE: 社内のシークレット名に差し替えてください
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_app_id: ${{ secrets.CLAUDE_CODE_APP_ID }}
+          claude_code_app_private_key: ${{ secrets.CLAUDE_CODE_APP_PRIVATE_KEY }}
+          gcp_workload_identity_provider: ${{ secrets.GCP_AI_LAB_GITHUB_WORKLOAD_IDENTITY_PROVIDER }}
+          gcp_service_account: ${{ secrets.GCP_AI_LAB_GITHUB_ACTIONS_SERVICE_ACCOUNT }}
 
           prompt: |
             以下のコンポーネントの checklist.yaml を更新してください。
