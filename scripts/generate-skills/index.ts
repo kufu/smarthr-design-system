@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { parseMetadata, type ComponentGroup } from './lib/parse-metadata.js';
+import { parseMetadata, loadPublicExports, type ComponentGroup } from './lib/parse-metadata.js';
 import {
   fetchEslintRules,
   buildComponentRuleMap,
@@ -23,11 +23,49 @@ const DESIGN_SYSTEM_DIR =
 const OUTPUT_DIR =
   process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
+const GROUP_SPLIT_PATH = path.join(__dirname, 'mapping/group-split.json');
+const SKILL_TRIGGERS_PATH = path.join(__dirname, 'mapping/skill-triggers.json');
 const ESLINT_CACHE_PATH = path.join(__dirname, '.cache/eslint-rules.json');
+
+function applyGroupSplit(
+  groups: Map<string, ComponentGroup>,
+  splitConfig: Record<string, string[]>,
+): Map<string, ComponentGroup> {
+  const result = new Map<string, ComponentGroup>();
+  for (const [dirName, group] of groups) {
+    const splitOrder = splitConfig[dirName];
+    if (!splitOrder) {
+      result.set(dirName, group);
+      continue;
+    }
+    // Split group by displayName prefix matching split order
+    for (const targetName of splitOrder) {
+      const matched = group.components.filter((c) => c.displayName === targetName);
+      if (matched.length === 0) continue;
+      result.set(targetName, {
+        dirName: targetName,
+        displayNames: matched.map((c) => c.displayName),
+        components: matched,
+      });
+    }
+  }
+  return result;
+}
 
 async function main() {
   console.log('📂 metadata.json を読み込み中…');
-  const groups = parseMetadata();
+  const publicExports = loadPublicExports();
+  console.log(`   ${publicExports.size} 個の public named exports を取得`);
+  const rawGroups = parseMetadata(publicExports);
+
+  const splitConfig: Record<string, string[]> = JSON.parse(
+    fs.readFileSync(GROUP_SPLIT_PATH, 'utf-8'),
+  );
+  const groups = applyGroupSplit(rawGroups, splitConfig);
+
+  const skillTriggers: Record<string, string> = JSON.parse(
+    fs.readFileSync(SKILL_TRIGGERS_PATH, 'utf-8'),
+  );
   console.log(`   ${groups.size} コンポーネントグループを検出`);
 
   console.log('🌐 eslint-plugin-smarthr ルール README を取得中…（キャッシュ優先）');
@@ -60,7 +98,7 @@ async function main() {
     if (designSystemDirName) {
       const compDir = path.join(DESIGN_SYSTEM_DIR, designSystemDirName);
       indexInfo = parseIndexMdx(path.join(compDir, 'index.mdx'));
-      checklist = parseChecklist(path.join(compDir, '__checklist.yaml'));
+      checklist = parseChecklist(path.join(compDir, '_checklist.yaml'));
       if (checklist !== null) withLayer3++;
     }
 
@@ -73,7 +111,7 @@ async function main() {
     }
     const eslintRules = [...eslintRulesSet.values()];
 
-    const content = renderSkill({ group, indexInfo, eslintRules, checklist });
+    const content = renderSkill({ group, indexInfo, eslintRules, checklist, skillTriggers });
     const skillSlug = pascalToKebab(dirName);
     const outDir = path.join(OUTPUT_DIR, skillSlug);
     fs.mkdirSync(outDir, { recursive: true });
