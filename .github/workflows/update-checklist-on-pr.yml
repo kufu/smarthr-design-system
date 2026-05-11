@@ -134,22 +134,70 @@ jobs:
             4. 既存の `checklist.yaml` を読む
             5. `.github/data/eslint-rule-names.txt` を参照情報として読む
             6. プロンプトに従って差分更新を実行し、checklist.yaml を上書き保存する
-            7. 変更がある場合のみコミットする
+            7. **コミット・git push はしないこと**（ワークフロー側が変更ファイルを検証してからコミットする）
 
             ### パターン B: checklist.yaml が存在しない場合（初回生成の判定）
             1. 対象コンポーネントの `index.mdx` を読む
             2. `_components/*.mdx`（.mdx のみ）があれば補助入力として読む
             3. `.github/prompts/checklist-v3.md`（初回生成プロンプト）のステップ 1 の基準で、ルール記述が何件あるか数える
-            4. **ルール記述が 2 件以上** → `.github/prompts/checklist-v3.md` に従って checklist.yaml を初回生成し、コミットする
+            4. **ルール記述が 2 件以上** → `.github/prompts/checklist-v3.md` に従って checklist.yaml を初回生成する（**コミット・git push はしないこと**）
             5. **ルール記述が 0〜1 件** → checklist.yaml は不要と判断し、スキップ。PR コメントで「<コンポーネント名>: ルール記述が少ないため checklist.yaml の生成をスキップしました」と報告する
 
             ## 注意
             - パターン A: 既存項目の severity・text は変更しない（index.mdx の該当記述が変わった場合のみ）
             - パターン A: 新規項目には `# NEW` コメント、更新項目には `# UPDATED` コメントを付ける
-            - パターン B: 初回生成は全項目が人間レビュー対象。コミットメッセージに「初回生成」と明記する
-            - 変更がなければ「変更なし」と報告してコミットしない
+            - パターン B: 初回生成は全項目が人間レビュー対象
+            - 変更がなければ「変更なし」と報告する
+            - **どのパターンでも git add / git commit / git push は実行しない**。ワークフロー側で行う。
 
           claude_args: |
             --max-turns 30
             --model claude-sonnet-4-6
-            --allowedTools Edit,Read,Write,Glob,Grep,Bash(git add:*),Bash(git commit:*),Bash(git status:*),Bash(git diff:*),Bash(ls:*),Bash(cat:*)
+            --allowedTools Edit,Read,Write,Glob,Grep
+
+      # Claude 実行後の物理的な変更ファイル制限。
+      # checklist.yaml 以外への変更を検出したらワークフローを失敗させ、
+      # 該当変更を捨てた上で対象ファイルのみコミットする。
+      - name: Enforce checklist.yaml-only changes
+        if: steps.detect.outputs.skip != 'true'
+        id: enforce
+        run: |
+          # 変更ファイル一覧（追加・変更・削除すべて含む。staged/unstaged 両方）
+          changed=$(git status --porcelain | awk '{print $2}')
+
+          if [ -z "$changed" ]; then
+            echo "No changes produced by Claude."
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # 許可パターン: src/content/articles/products/components/**/checklist.yaml のみ
+          violations=$(echo "$changed" | grep -vE '^src/content/articles/products/components/[^[:space:]]+/checklist\.yaml$' || true)
+
+          if [ -n "$violations" ]; then
+            echo "::error::Claude が許可されていないファイルを変更しました:"
+            echo "$violations" | sed 's/^/  - /'
+            echo "全変更を破棄してワークフローを失敗させます。"
+            # 全変更を破棄（追跡対象/未追跡 両方）
+            git reset --hard HEAD
+            git clean -fd
+            exit 1
+          fi
+
+          echo "All changes are within allowed paths (checklist.yaml only)."
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push checklist.yaml changes
+        if: steps.detect.outputs.skip != 'true' && steps.enforce.outputs.has_changes == 'true'
+        run: |
+          # GitHub App トークンで commit が作られるよう、ユーザー名は GitHub App の bot 表記に合わせる
+          git config user.name "kufu-claude-code-action[bot]"
+          git config user.email "kufu-claude-code-action[bot]@users.noreply.github.com"
+          # checklist.yaml のみを明示的にステージ
+          git add 'src/content/articles/products/components/**/checklist.yaml'
+          if git diff --cached --quiet; then
+            echo "No checklist.yaml changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update checklist.yaml via Claude Code Action"
+          git push
