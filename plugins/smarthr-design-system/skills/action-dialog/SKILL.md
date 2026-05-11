@@ -1,0 +1,59 @@
+---
+name: action-dialog
+description: "ユーザーに操作や入力を求めるダイアログを表示するとき、確認・実行ダイアログを作るとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。"
+metadata:
+  version: "1.0.0"
+  source: smarthr-design-system
+  generated-from: layer1+layer3
+---
+
+ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
+
+## import
+
+```ts
+import { ActionDialog } from 'smarthr-ui'
+```
+
+## Props
+
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
+| width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
+| className | string | - | - | - |
+| heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
+| decorators | DecoratorsType<"closeButtonLabel"> | - | - | コンポーネント内の文言を変更するための関数を設定 |
+| subActionArea | ReactNode | - | - | ダイアログフッターの左端操作領域 |
+| responseStatus | ResponseStatus | - | - | - |
+| firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
+| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 |
+| onPressEscape | (() => void) & ((close: () => void) => void) | - | - | エスケープキーを押下した時に発火するコールバック関数 |
+| ariaLabel | string | - | - | ダイアログの `aria-label` |
+| ariaLabelledby | string | - | - | ダイアログの `aria-labelledby` |
+| portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
+| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
+| contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
+| actionText | ReactNode | - | ✓ | アクションボタンのラベル |
+| actionTheme | "primary" \| "secondary" \| "danger" | - | - | アクションボタンのスタイル |
+| actionDisabled | boolean | - | - | アクションボタンを無効にするかどうか |
+| closeDisabled | boolean | - | - | 閉じるボタンを無効にするかどうか |
+| onClickAction | (e: MouseEvent<Element, MouseEvent>, helpers: ActionDialogHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 @param e マウスイベント @param helpers ダイアログ操作のためのヘルパー関数 |
+| onClickClose | (close: () => void) => void | - | - | - |
+| onToggle | (isOpen: boolean) => void | - | - | - |
+| onOpen | () => void | - | - | - |
+| onClose | () => void | - | - | - |
+
+## 実装ルール
+
+ActionDialog に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+
+## 使い方チェックリスト
+
+### 使用上の注意 > ダイアログを乱用しない
+- [should] ダイアログとして表示する・操作させるべき内容なのか慎重にユースケースを定義し、使用を検討する
+
+### 使用上の注意 > 複数のモーダルダイアログを同時に表示しない (via MultipleModalWarning.mdx)
+- [avoid] モーダルダイアログを 1 つの操作で複数個表示したり、モーダルダイアログ上の操作によって 2 つ目のモーダルダイアログを表示したりしない

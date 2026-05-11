@@ -1,6 +1,6 @@
 ---
 name: table
-description: "smarthr-ui の WakuWakuButton / ThSortButton / ThCheckbox / Th / TdRadioButton / TdCheckbox / Td / TableScrollContext / TableReel / Table / EmptyTableBody / BulkActionRow を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。表形式でデータを表示するためのコンポーネントです。"
+description: "表形式でデータを一覧表示するとき、行・列を持つデータを見せるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。表形式でデータを表示するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -14,21 +14,13 @@ metadata:
 ## import
 
 ```ts
-import { WakuWakuButton, ThSortButton, ThCheckbox, Th, TdRadioButton, TdCheckbox, Td, TableScrollContext, TableReel, Table, EmptyTableBody, BulkActionRow } from 'smarthr-ui'
+import { WakuWakuButton, ThCheckbox, Th, TdRadioButton, TdCheckbox, Td, Table, EmptyTableBody, BulkActionRow } from 'smarthr-ui'
 ```
 
 ## Props
 
 ### WakuWakuButton
 （固有 Props なし）
-
-### ThSortButton
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| align | "left" \| "right" | - | - | - |
-| onSort | () => void | - | - | - |
-| sort | "desc" \| "none" \| "asc" | - | - | - |
-| decorators | { sortDirectionIconAlt: (text: string, { sort }: { sort: sortTypes; }) => ReactNode; } | - | - | - |
 
 ### ThCheckbox
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -73,17 +65,6 @@ import { WakuWakuButton, ThSortButton, ThCheckbox, Th, TdRadioButton, TdCheckbox
 | nullable | boolean | - | - | - |
 | fixed | "left" \| "right" | - | - | 横スクロール時、カラムを左右いずれかに固定 |
 | contentWidth | CellContentWidth \| { base?: CellContentWidth; min?: CellContentWidth; max?: CellContentWidth; } | - | - | - |
-
-### TableScrollContext
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| fixedHead | boolean | - | - | - |
-
-### TableReel
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| ref | Ref<HTMLDivElement> | - | - | - |
-| tableWrapperRef | RefObject<HTMLDivElement> | - | ✓ | - |
 
 ### Table
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |

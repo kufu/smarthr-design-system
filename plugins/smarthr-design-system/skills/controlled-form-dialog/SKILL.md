@@ -1,6 +1,6 @@
 ---
 name: controlled-form-dialog
-description: "smarthr-ui の FormDialogContentInner / ControlledFormDialog を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の FormDialogContentInner / ControlledFormDialog コンポーネントの使い方ガイド。"
+description: "smarthr-ui の ControlledFormDialog を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の ControlledFormDialog コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -10,29 +10,11 @@ metadata:
 ## import
 
 ```ts
-import { FormDialogContentInner, ControlledFormDialog } from 'smarthr-ui'
+import { ControlledFormDialog } from 'smarthr-ui'
 ```
 
 ## Props
 
-### FormDialogContentInner
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
-| contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
-| className | string | - | - | - |
-| heading | any | - | ✓ | ダイアログタイトル |
-| actionText | ReactNode | - | ✓ | アクションボタンのラベル |
-| actionTheme | "primary" \| "secondary" \| "danger" | - | - | アクションボタンのスタイル |
-| onSubmit | (e: FormEvent<HTMLFormElement>, helpers: FormDialogHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 @param e フォームイベント @param helpers ダイアログ操作のためのヘルパー関数 |
-| actionDisabled | boolean | - | - | アクションボタンを無効にするかどうか |
-| closeDisabled | boolean | - | - | 閉じるボタンを無効にするかどうか |
-| subActionArea | ReactNode | - | - | ダイアログフッターの左端操作領域 |
-| decorators | DecoratorsType<"closeButtonLabel"> | - | - | コンポーネント内の文言を変更するための関数を設定 |
-| onClickClose | () => void | - | ✓ | - |
-| responseStatus | ResponseStatus | - | - | - |
-
-### ControlledFormDialog
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | className | string | - | - | - |
@@ -64,4 +46,4 @@ ControlledFormDialog に直接関連する eslint-plugin-smarthr のルールは
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

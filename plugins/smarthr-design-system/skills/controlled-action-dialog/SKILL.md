@@ -1,6 +1,6 @@
 ---
 name: controlled-action-dialog
-description: "smarthr-ui の ControlledActionDialog / ActionDialogContentInner を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の ControlledActionDialog / ActionDialogContentInner コンポーネントの使い方ガイド。"
+description: "smarthr-ui の ControlledActionDialog を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の ControlledActionDialog コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -10,12 +10,11 @@ metadata:
 ## import
 
 ```ts
-import { ControlledActionDialog, ActionDialogContentInner } from 'smarthr-ui'
+import { ControlledActionDialog } from 'smarthr-ui'
 ```
 
 ## Props
 
-### ControlledActionDialog
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | className | string | - | - | - |
@@ -41,27 +40,10 @@ import { ControlledActionDialog, ActionDialogContentInner } from 'smarthr-ui'
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
 
-### ActionDialogContentInner
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
-| contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
-| className | string | - | - | - |
-| heading | any | - | ✓ | ダイアログタイトル |
-| actionText | ReactNode | - | ✓ | アクションボタンのラベル |
-| actionTheme | "primary" \| "secondary" \| "danger" | - | - | アクションボタンのスタイル |
-| onClickAction | (e: MouseEvent<Element, MouseEvent>, helpers: ActionDialogHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 @param e マウスイベント @param helpers ダイアログ操作のためのヘルパー関数 |
-| actionDisabled | boolean | - | - | アクションボタンを無効にするかどうか |
-| closeDisabled | boolean | - | - | 閉じるボタンを無効にするかどうか |
-| subActionArea | ReactNode | - | - | ダイアログフッターの左端操作領域 |
-| decorators | DecoratorsType<"closeButtonLabel"> | - | - | コンポーネント内の文言を変更するための関数を設定 |
-| onClickClose | () => void | - | ✓ | - |
-| responseStatus | ResponseStatus | - | - | - |
-
 ## 実装ルール
 
 ControlledActionDialog に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

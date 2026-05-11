@@ -36,4 +36,4 @@ Timeline に直接関連する eslint-plugin-smarthr のルールは現時点で
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

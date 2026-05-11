@@ -1,6 +1,6 @@
 ---
 name: definition-list
-description: "smarthr-ui の DefinitionListItem / DefinitionList を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。見出しと説明がセットになった定義リストです。特定のデータを一覧して参照させたいときに使います。"
+description: "ラベルと値のペアを並べてデータを表示するとき、詳細情報を一覧するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。見出しと説明がセットになった定義リストです。特定のデータを一覧して参照させたいときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

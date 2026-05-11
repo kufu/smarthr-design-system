@@ -39,4 +39,4 @@ scroll可能な要素にtabindex属性を設定することを推奨し、イン
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

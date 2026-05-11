@@ -1,6 +1,6 @@
 ---
 name: input
-description: "smarthr-ui の Input を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type=\"text\"]`や`input[type=\"number\"]`などの代わりとして使用します。"
+description: "テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type=\"text\"]`や`input[type=\"number\"]`などの代わりとして使用します。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

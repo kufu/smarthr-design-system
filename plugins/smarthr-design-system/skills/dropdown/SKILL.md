@@ -1,6 +1,6 @@
 ---
 name: dropdown
-description: "smarthr-ui の DropdownTrigger / DropdownContentInner / DropdownContent / DropdownCloser / Dropdown を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ボタンを押すとパネルが開く機能の抽象コンポーネントです。パネルを開くための引き金となるDropdownTriggerとパネル自体を指すDropdownContentから構成されます。"
+description: "smarthr-ui の DropdownTrigger / DropdownContent / DropdownCloser / Dropdown を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ボタンを押すとパネルが開く機能の抽象コンポーネントです。パネルを開くための引き金となるDropdownTriggerとパネル自体を指すDropdownContentから構成されます。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -14,7 +14,7 @@ metadata:
 ## import
 
 ```ts
-import { DropdownTrigger, DropdownContentInner, DropdownContent, DropdownCloser, Dropdown } from 'smarthr-ui'
+import { DropdownTrigger, DropdownContent, DropdownCloser, Dropdown } from 'smarthr-ui'
 ```
 
 ## Props
@@ -23,12 +23,6 @@ import { DropdownTrigger, DropdownContentInner, DropdownContent, DropdownCloser,
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | tooltip | { message: ReactNode; show?: boolean; } | - | - | - |
-
-### DropdownContentInner
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| triggerRect | Rect | - | ✓ | - |
-| controllable | boolean | - | ✓ | - |
 
 ### DropdownContent
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -70,4 +64,4 @@ DropdownTriggerやDialogTrigger, DisclosureTrigger内にbutton要素を設置す
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

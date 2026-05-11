@@ -33,4 +33,4 @@ smarthr-ui/Layoutsに属するコンポーネント(Center,Cluster,Container,Ree
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

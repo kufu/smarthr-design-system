@@ -16,6 +16,7 @@ metadata:
 | コンポーネント | 用途（description） | 対応スキル |
 |---|---|---|
 | AccordionPanel | 表示したい要素を展開して表示したり、折りたたんで隠したりするためのコンポーネントです。 | `smarthr-design-system:accordion-panel` |
+| ActionDialog | ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。 | `smarthr-design-system:action-dialog` |
 | AppHeader | ページ上部に配置されるヘッダーです。横断的な機能やナビゲーションを提供します。各プロダクトでの表示を共通化するために、HeaderとAppNaviを結合し表示要素を固定化したコンポーネントです。 | `smarthr-design-system:app-header` |
 | AppLauncher | AppLauncher コンポーネント | `smarthr-design-system:app-launcher` |
 | AppNavi | プロダクト内の主要な機能を切り替えるためのコンポーネントです。機能の切り替えだけでなく、プロダクト全体に影響を及ぼす頻繁に行なう操作を埋め込めます。 | `smarthr-design-system:app-navi` |
@@ -31,8 +32,6 @@ metadata:
 | Checkbox | Checkbox コンポーネント | `smarthr-design-system:checkbox` |
 | Chip | テキストを装飾をするためのコンポーネントです。 | `smarthr-design-system:chip` |
 | Cluster | Every LayoutのClusterを参考にしたコンポーネントです。要素を横に均等に並べたいときに使います。幅に収まり切らなくなると要素を折返して並べます。 | `smarthr-design-system:cluster` |
-| Combobox | Combobox コンポーネント | `smarthr-design-system:combobox` |
-| common | common コンポーネント | `smarthr-design-system:common` |
 | Container | 主要なコンテンツ幅を管理するためのコンポーネントです。 | `smarthr-design-system:container` |
 | ControlledActionDialog | ControlledActionDialog コンポーネント | `smarthr-design-system:controlled-action-dialog` |
 | ControlledFormDialog | ControlledFormDialog コンポーネント | `smarthr-design-system:controlled-form-dialog` |
@@ -53,18 +52,17 @@ metadata:
 | FilterDropdown | 一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。 | `smarthr-design-system:filter-dropdown` |
 | FloatArea | スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。 | `smarthr-design-system:float-area` |
 | FormControl | フォームとしての入力要素に対応するラベルとメッセージテキストを表示するためのコンポーネントです。 | `smarthr-design-system:form-control` |
+| FormDialog | ダイアログボックス（もしくは単に「ダイアログ」）と呼ばれる、ページの前面に表示される領域のためのコンポーネントです。 | `smarthr-design-system:form-dialog` |
 | Header | アカウントやシステムの設定、およびSmartHR内の他のアプリケーションへの横断的なアクセスを提供するコンポーネントです。ページの最上部に配置されます。 | `smarthr-design-system:header` |
 | Heading | 直後に続くコンテンツの見出しに使うコンポーネントです。 | `smarthr-design-system:heading` |
 | HelpLink | ヘルプページを開くためのテキストリンクです。 | `smarthr-design-system:help-link` |
-| Icon | アイデアやアクションを表すための視覚的な要素を表示するためのコンポーネントです。 | `smarthr-design-system:icon` |
 | InformationPanel | ユーザーに伝えたい情報を他の要素より視覚的に目立たせるためのコンポーネントです。 | `smarthr-design-system:information-panel` |
 | Input | テキストや数値などの情報を1行で入力するためのコンポーネントです。`input[type="text"]`や`input[type="number"]`などの代わりとして使用します。 | `smarthr-design-system:input` |
 | InputFile | ファイルを選択するためのコンポーネントです。input[type='file']要素の代わりに使用します。選択したファイル名の一覧を表示する領域を持っています。 | `smarthr-design-system:input-file` |
-| InputWithTooltip | InputWithTooltip コンポーネント | `smarthr-design-system:input-with-tooltip` |
 | LanguageSwitcher | LanguageSwitcher コンポーネント | `smarthr-design-system:language-switcher` |
-| Layout | レイアウトのためのコンポーネントです。Every Layoutを参考に作成しています。 | `smarthr-design-system:layout` |
 | LineClamp | 内包するテキストが指定した幅や高さを越えて存在するときに、Tooltipを用いて全文を表示するためのコンポーネントです。 | `smarthr-design-system:line-clamp` |
 | Loader | 読み込み中や操作中など何らかの操作が仕掛り中であることを伝えるためのコンポーネントです。 | `smarthr-design-system:loader` |
+| MessageDialog | ユーザーに情報を提示するためのダイアログです。 | `smarthr-design-system:message-dialog` |
 | mobile | mobile コンポーネント | `smarthr-design-system:mobile` |
 | ModelessDialog | モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。 | `smarthr-design-system:modeless-dialog` |
 | MultiCombobox | MultiCombobox コンポーネント | `smarthr-design-system:multi-combobox` |
@@ -76,7 +74,7 @@ metadata:
 | RadioButton | 選択肢の中から単一の値を選択して入力できるコンポーネントです。 | `smarthr-design-system:radio-button` |
 | RadioButtonPanel | パネル型の選択肢の中から単一の値を選択して入力できるコンポーネントです。 | `smarthr-design-system:radio-button-panel` |
 | Reel | Every LayoutのReelを参考にしたコンポーネントです。要素を横に均等に並べたいときに使います。幅に収まり切らなくなると水平方向のスクロールが生じます。 | `smarthr-design-system:reel` |
-| RemoteDialogTrigger | ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。 | `smarthr-design-system:remote-dialog-trigger` |
+| RemoteDialogTrigger | RemoteDialogTrigger コンポーネント | `smarthr-design-system:remote-dialog-trigger` |
 | RequiredLabel | FormControlやFieldsetで入力必須を表すときに利用するコンポーネントです。 | `smarthr-design-system:required-label` |
 | ResponseMessage | 操作に対する結果を表すためのコンポーネントです。 | `smarthr-design-system:response-message` |
 | Scroller | Scroller コンポーネント | `smarthr-design-system:scroller` |
@@ -94,6 +92,7 @@ metadata:
 | SpreadsheetTable | 表データを表計算ソフトのように表示します。CSVのインポートなど、利用者にCSVファイルを想像させたい場面で有効です。 | `smarthr-design-system:spreadsheet-table` |
 | Stack | Every LayoutのStackを参考にしたコンポーネントです。要素を縦に均等に並べたいときに使います。 | `smarthr-design-system:stack` |
 | StatusLabel | オブジェクトの状態を伝えるためのこのコンポーネントです。 | `smarthr-design-system:status-label` |
+| StepFormDialog | ステップを複数に分けたダイアログです。タスクの完了に複数の操作が必要な場合に使います。 | `smarthr-design-system:step-form-dialog` |
 | Stepper | 連続する操作を、操作のステップごとにグルーピングするコンポーネントです。 | `smarthr-design-system:stepper` |
 | Switch | オン・オフを切り替えるコンポーネントです。状態の切り替えは即時で反映されます。 | `smarthr-design-system:switch` |
 | TabBar | ユーザーの関心が近いものを並列化し、ビューを切り替えるためのコンポーネントです。 | `smarthr-design-system:tab-bar` |

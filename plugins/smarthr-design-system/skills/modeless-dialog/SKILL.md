@@ -1,6 +1,6 @@
 ---
 name: modeless-dialog
-description: "smarthr-ui の ModelessDialog を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。"
+description: "ページの操作を妨げないモードレスダイアログを使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。モードレスなダイアログです。ダイアログを表示したまま、ダイアログの裏側の画面も操作できます。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -45,4 +45,4 @@ ModelessDialog に直接関連する eslint-plugin-smarthr のルールは現時
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

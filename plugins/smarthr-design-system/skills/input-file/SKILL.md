@@ -1,6 +1,6 @@
 ---
 name: input-file
-description: "smarthr-ui の InputFileNative / InputFileMultiplyAppendable / InputFile を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ファイルを選択するためのコンポーネントです。input[type='file']要素の代わりに使用します。選択したファイル名の一覧を表示する領域を持っています。"
+description: "ファイルをアップロードさせるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。ファイルを選択するためのコンポーネントです。input[type='file']要素の代わりに使用します。選択したファイル名の一覧を表示する領域を持っています。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -14,35 +14,11 @@ Text, Cluster } from 'smarthr-ui'
 ## import
 
 ```ts
-import { InputFileNative, InputFileMultiplyAppendable, InputFile } from 'smarthr-ui'
+import { InputFile } from 'smarthr-ui'
 ```
 
 ## Props
 
-### InputFileNative
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| label | ReactNode | - | ✓ | フォームのラベル |
-| disabled | boolean | false | - | - |
-| multiple | boolean | - | - | - |
-| size | "S" \| "M" | - | - | - |
-| onChange | (files: File[]) => void | - | - | ファイルの選択に変更があったときに発火するコールバック関数 |
-| error | boolean | - | - | - |
-| decorators | DecoratorsType<"destroy"> | - | - | コンポーネント内のテキストを変更する関数 |
-| hasFileList | boolean | true | - | ファイルリストを表示するかどうか |
-
-### InputFileMultiplyAppendable
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| label | ReactNode | - | ✓ | フォームのラベル |
-| disabled | boolean | false | - | - |
-| size | "S" \| "M" | - | - | - |
-| onChange | (files: File[]) => void | - | - | ファイルの選択に変更があったときに発火するコールバック関数 |
-| error | boolean | - | - | - |
-| decorators | DecoratorsType<"destroy"> | - | - | コンポーネント内のテキストを変更する関数 |
-| hasFileList | boolean | true | - | ファイルリストを表示するかどうか |
-
-### InputFile
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | label | ReactNode | - | ✓ | フォームのラベル |

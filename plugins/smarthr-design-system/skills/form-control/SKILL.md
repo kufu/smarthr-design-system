@@ -1,6 +1,6 @@
 ---
 name: form-control
-description: "smarthr-ui の ActualFormControl / FormControl を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。フォームとしての入力要素に対応するラベルとメッセージテキストを表示するためのコンポーネントです。"
+description: "フォーム要素にラベルやエラーメッセージを付けるとき、入力欄をアクセシブルにするとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。フォームとしての入力要素に対応するラベルとメッセージテキストを表示するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -14,26 +14,11 @@ FaCircleExclamationIcon, StatusLabel, Cluster, Text } from 'smarthr-ui'
 ## import
 
 ```ts
-import { ActualFormControl, FormControl } from 'smarthr-ui'
+import { FormControl } from 'smarthr-ui'
 ```
 
 ## Props
 
-### ActualFormControl
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| label | ReactNode \| { text: ReactNode; styleType?: TextProps; icon?: any; unrecommendedHide?: boolean; htmlFor?: string; id?: string; } | - | ✓ | グループのラベル名 |
-| subActionArea | ReactNode | - | - | タイトル右の領域 |
-| innerMargin | Gap | - | - | タイトル群と子要素の間の間隔調整用（基本的には不要） |
-| statusLabels | FunctionComponentElement<any> \| FunctionComponentElement<any>[] | - | - | タイトルの隣に表示する `StatusLabel` の配列 |
-| helpMessage | ReactNode | - | - | タイトルの下に表示するヘルプメッセージ |
-| exampleMessage | ReactNode | - | - | タイトルの下に表示する入力例 |
-| errorMessages | ReactNode \| ReactNode[] | - | - | タイトルの下に表示するエラーメッセージ |
-| autoBindErrorInput | boolean | true | - | エラーがある場合に自動的に入力要素を error にするかどうか |
-| supplementaryMessage | ReactNode | - | - | フォームコントロールの下に表示する補足メッセージ |
-| disabled | boolean | - | - | `true` のとき、文字色を `TEXT_DISABLED` にする |
-
-### FormControl
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | label | ReactNode \| { text: ReactNode; styleType?: TextProps; icon?: any; unrecommendedHide?: boolean; htmlFor?: string; id?: string; } | - | ✓ | グループのラベル名 |
