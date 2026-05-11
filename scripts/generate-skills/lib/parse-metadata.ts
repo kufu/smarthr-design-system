@@ -1,3 +1,7 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+
 import metadata from 'smarthr-ui/metadata.json' with { type: 'json' };
 
 export type PropType = {
@@ -28,16 +32,40 @@ export type ComponentGroup = {
 };
 
 /**
+ * smarthr-ui の lib/index.d.ts から public named exports の Set を返す。
+ * この Set でフィルタすることで内部実装コンポーネントを除外できる。
+ */
+export function loadPublicExports(): Set<string> {
+  const require = createRequire(import.meta.url);
+  const pkgDir = path.dirname(require.resolve('smarthr-ui/package.json'));
+  const dtsPath = path.join(pkgDir, 'lib', 'index.d.ts');
+  const src = fs.readFileSync(dtsPath, 'utf-8');
+  const names = new Set<string>();
+  for (const line of src.split('\n')) {
+    if (!line.startsWith('export {')) continue;
+    const m = line.match(/\{([^}]+)\}/);
+    if (!m) continue;
+    for (const token of m[1].split(',')) {
+      const name = token.trim();
+      if (name && /^[A-Z]/.test(name)) names.add(name);
+    }
+  }
+  return names;
+}
+
+/**
  * smarthr-ui の metadata.json をコンポーネントグループに整形して返す。
  * グルーピングキーは filePath の直上ディレクトリ名（例: `src/components/Button/Button.tsx` → `Button`）。
+ * publicExports を渡すと、そこに含まれない displayName を除外する。
  */
-export function parseMetadata(): Map<string, ComponentGroup> {
+export function parseMetadata(publicExports?: Set<string>): Map<string, ComponentGroup> {
   const data = metadata as unknown as ComponentMeta[];
   const groups = new Map<string, ComponentGroup>();
 
   for (const component of data) {
     if (!component.filePath.startsWith('src/components/')) continue;
     if (/^Fa.+Icon$/.test(component.displayName)) continue;
+    if (publicExports && !publicExports.has(component.displayName)) continue;
 
     const parts = component.filePath.split('/');
     if (parts.length < 3) continue;
