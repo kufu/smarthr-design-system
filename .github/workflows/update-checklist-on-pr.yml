@@ -1,0 +1,132 @@
+# M2: コンポーネントドキュメント変更時に checklist.yaml を更新する
+#
+# トリガ: コンポーネントの index.mdx または _components/*.mdx が変更された PR
+# 動作:
+#   - checklist.yaml あり → 差分更新（update-checklist.md）
+#   - checklist.yaml なし → index.mdx を読んでルール記述が 2 件以上あれば初回生成（checklist-v3.md）
+#   - ルール記述 0〜1 件 → スキップ（FIX-10 基準）
+#
+# NOTE: このワークフローは anthropics/claude-code-action@v1 を使用しています。
+# 社内の kufu-claude-code-action に差し替える場合は以下を変更してください:
+#   - uses: の Action 名
+#   - anthropic_api_key のシークレット名
+#   - prompt / prompt_file の渡し方（社内 Action の仕様に合わせる）
+
+name: Update checklist.yaml on component change
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'src/content/articles/products/components/**/index.mdx'
+      - 'src/content/articles/products/components/**/_components/*.mdx'
+
+jobs:
+  update-checklist:
+    # セキュリティガード:
+    # - bot コミットによる無限ループ防止
+    # - fork PR を除外（シークレットへのアクセスを防ぐ）
+    if: >
+      github.actor != 'github-actions[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      # 変更されたコンポーネントのディレクトリを特定する
+      - name: Detect changed components
+        id: detect
+        run: |
+          # PR のベースブランチとの diff から変更ファイルを取得
+          changed_files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- \
+            'src/content/articles/products/components/**/index.mdx' \
+            'src/content/articles/products/components/**/_components/*.mdx')
+
+          if [ -z "$changed_files" ]; then
+            echo "No component files changed."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # 変更ファイルからコンポーネントディレクトリを抽出（重複除去）
+          # index.mdx → そのディレクトリ
+          # _components/*.mdx → 親ディレクトリ
+          component_dirs=$(echo "$changed_files" | while read -r f; do
+            if [[ "$f" == *"/_components/"* ]]; then
+              # _components/Foo.mdx → 親コンポーネントディレクトリ
+              echo "$f" | sed 's|/_components/.*||'
+            else
+              # index.mdx → そのディレクトリ
+              dirname "$f"
+            fi
+          done | sort -u)
+
+          echo "Changed components:"
+          echo "$component_dirs"
+
+          # checklist.yaml の有無を記録（Claude Code 側で分岐するため）
+          for dir in $component_dirs; do
+            if [ -f "$dir/checklist.yaml" ]; then
+              echo "  ✓ $dir (checklist.yaml exists → diff update)"
+            else
+              echo "  ○ $dir (no checklist.yaml → Claude will evaluate)"
+            fi
+          done
+
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+          # 改行区切りで保存
+          echo "dirs<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$component_dirs" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      # Claude Code Action で checklist.yaml を更新
+      # NOTE: 社内 Action に差し替える場合はこのステップを変更
+      - name: Update checklist.yaml
+        if: steps.detect.outputs.skip != 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          # NOTE: 社内のシークレット名に差し替えてください
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+
+          prompt: |
+            以下のコンポーネントの checklist.yaml を更新してください。
+
+            ## 対象コンポーネント
+            ${{ steps.detect.outputs.dirs }}
+
+            ## 手順
+            各コンポーネントについて、checklist.yaml の有無で処理を分岐してください。
+
+            ### パターン A: checklist.yaml が存在する場合（差分更新）
+            1. `.github/prompts/update-checklist.md` のプロンプトを読む
+            2. 対象コンポーネントの `index.mdx` を読む
+            3. `_components/*.mdx`（.mdx のみ）があれば補助入力として読む
+            4. 既存の `checklist.yaml` を読む
+            5. `.github/data/eslint-rule-names.txt` を参照情報として読む
+            6. プロンプトに従って差分更新を実行し、checklist.yaml を上書き保存する
+            7. 変更がある場合のみコミットする
+
+            ### パターン B: checklist.yaml が存在しない場合（初回生成の判定）
+            1. 対象コンポーネントの `index.mdx` を読む
+            2. `_components/*.mdx`（.mdx のみ）があれば補助入力として読む
+            3. `.github/prompts/checklist-v3.md`（初回生成プロンプト）のステップ 1 の基準で、ルール記述が何件あるか数える
+            4. **ルール記述が 2 件以上** → `.github/prompts/checklist-v3.md` に従って checklist.yaml を初回生成し、コミットする
+            5. **ルール記述が 0〜1 件** → checklist.yaml は不要と判断し、スキップ。PR コメントで「<コンポーネント名>: ルール記述が少ないため checklist.yaml の生成をスキップしました」と報告する
+
+            ## 注意
+            - パターン A: 既存項目の severity・text は変更しない（index.mdx の該当記述が変わった場合のみ）
+            - パターン A: 新規項目には `# NEW` コメント、更新項目には `# UPDATED` コメントを付ける
+            - パターン B: 初回生成は全項目が人間レビュー対象。コミットメッセージに「初回生成」と明記する
+            - 変更がなければ「変更なし」と報告してコミットしない
+
+          claude_args: |
+            --max-turns 30
+            --model claude-sonnet-4-6
