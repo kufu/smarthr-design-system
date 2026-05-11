@@ -1,5 +1,5 @@
 import 'styled-components';
-import { createTheme } from 'smarthr-ui';
+import type { createTheme } from 'smarthr-ui';
 
 type Theme = ReturnType<typeof createTheme>;
 

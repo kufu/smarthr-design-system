@@ -16,7 +16,9 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 デフォルトの出力要素は`<span>`になるため、入れ子にしたときにValidなHTMLになるように注意してください。
 
 ```tsx editable
+// eslint-disable-next-line smarthr/best-practice-for-text-component
 <Text as="p">
+  { /* eslint-disable-next-line smarthr/best-practice-for-text-component */ }
   <Text emphasis>入れ子</Text>にしたときに
   <Text color="TEXT_GREY" weight="bold">
     Valid
@@ -57,6 +59,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ```tsx editable
 <Stack>
+  { /* eslint-disable-next-line smarthr/best-practice-for-text-component */ }
   <Text emphasis>強調されたテキスト</Text>
   <Text italic>イタリック体のテキスト</Text>
 </Stack>
