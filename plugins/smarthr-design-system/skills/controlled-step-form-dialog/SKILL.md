@@ -1,0 +1,78 @@
+---
+name: controlled-step-form-dialog
+description: "smarthr-ui の StepFormDialogProvider / StepFormDialogItem / StepFormDialogContentInner / ControlledStepFormDialog を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の StepFormDialogProvider / StepFormDialogItem / StepFormDialogContentInner / ControlledStepFormDialog コンポーネントの使い方ガイド。"
+metadata:
+  version: "1.0.0"
+  source: smarthr-design-system
+  generated-from: layer1
+---
+
+## import
+
+```ts
+import { StepFormDialogProvider, StepFormDialogItem, StepFormDialogContentInner, ControlledStepFormDialog } from 'smarthr-ui'
+```
+
+## Props
+
+### StepFormDialogProvider
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| firstStep | { id: string; stepNumber: number; } | - | ✓ | - |
+
+### StepFormDialogItem
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| stepNumber | number | - | ✓ | 何ステップ目か |
+
+### StepFormDialogContentInner
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
+| contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
+| className | string | - | - | - |
+| heading | any | - | ✓ | ダイアログタイトル |
+| activeStep | number | - | ✓ | 現在のStepNo |
+| submitButton | { text: string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode>; theme: ButtonThemeType; disabled: boolean; hidden: boolean; functionCall: { ...; }; } | - | ✓ | submitボタン |
+| onSubmit | (e: FormEvent<HTMLFormElement>, helpers: StepFormHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 @param e フォームイベント @param helpers ステップ操作用のヘルパー関数群 |
+| closeButton | { text: string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode>; theme: ButtonThemeType; disabled: boolean; hidden: boolean; functionCall: { ...; }; } | - | ✓ | キャンセルボタン |
+| backButton | { text: string \| number \| boolean \| ReactElement<any, string \| JSXElementConstructor<any>> \| Iterable<ReactNode>; theme: ButtonThemeType; disabled: boolean; hidden: boolean; functionCall: { ...; }; } | - | ✓ | 戻るボタン |
+| firstStep | { id: string; stepNumber: number; } | - | ✓ | - |
+| onClickClose | () => void | - | ✓ | - |
+| responseStatus | ResponseStatus | - | - | - |
+| stepLength | number | - | ✓ | ステップの総数 |
+| onClickBack | () => void | - | - | - |
+
+### ControlledStepFormDialog
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| className | string | - | - | - |
+| onSubmit | (e: FormEvent<HTMLFormElement>, helpers: StepFormHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 @param e フォームイベント @param helpers ステップ操作用のヘルパー関数群 |
+| responseStatus | ResponseStatus | - | - | - |
+| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
+| contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
+| firstStep | { id: string; stepNumber: number; } | - | ✓ | - |
+| onClickClose | () => void | - | ✓ | - |
+| stepLength | number | - | ✓ | ステップの総数 |
+| onClickBack | () => void | - | - | - |
+| size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
+| width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
+| firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
+| ariaLabel | string | - | - | ダイアログの `aria-label` |
+| ariaLabelledby | string | - | - | ダイアログの `aria-labelledby` |
+| isOpen | boolean | - | ✓ | ダイアログを開いているかどうか |
+| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 |
+| onPressEscape | () => void | - | - | エスケープキーを押下した時に発火するコールバック関数 |
+| portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
+| heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
+| submitButton | ButtonArgType \| ObjectButtonType | - | ✓ | - |
+| closeButton | ButtonArgType \| ObjectButtonType | - | - | - |
+| backButton | ButtonArgType \| ObjectButtonType | - | - | - |
+
+## 実装ルール
+
+ControlledStepFormDialog に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+
+## 使い方チェックリスト
+
+checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

@@ -1,0 +1,85 @@
+---
+name: input-file
+description: "smarthr-ui の InputFileNative / InputFileMultiplyAppendable / InputFile を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ファイルを選択するためのコンポーネントです。input[type='file']要素の代わりに使用します。選択したファイル名の一覧を表示する領域を持っています。"
+metadata:
+  version: "1.0.0"
+  source: smarthr-design-system
+  generated-from: layer1+layer3
+---
+
+ファイルを選択するためのコンポーネントです。input[type='file']要素の代わりに使用します。選択したファイル名の一覧を表示する領域を持っています。
+
+Text, Cluster } from 'smarthr-ui'
+
+## import
+
+```ts
+import { InputFileNative, InputFileMultiplyAppendable, InputFile } from 'smarthr-ui'
+```
+
+## Props
+
+### InputFileNative
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| label | ReactNode | - | ✓ | フォームのラベル |
+| disabled | boolean | false | - | - |
+| multiple | boolean | - | - | - |
+| size | "S" \| "M" | - | - | - |
+| onChange | (files: File[]) => void | - | - | ファイルの選択に変更があったときに発火するコールバック関数 |
+| error | boolean | - | - | - |
+| decorators | DecoratorsType<"destroy"> | - | - | コンポーネント内のテキストを変更する関数 |
+| hasFileList | boolean | true | - | ファイルリストを表示するかどうか |
+
+### InputFileMultiplyAppendable
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| label | ReactNode | - | ✓ | フォームのラベル |
+| disabled | boolean | false | - | - |
+| size | "S" \| "M" | - | - | - |
+| onChange | (files: File[]) => void | - | - | ファイルの選択に変更があったときに発火するコールバック関数 |
+| error | boolean | - | - | - |
+| decorators | DecoratorsType<"destroy"> | - | - | コンポーネント内のテキストを変更する関数 |
+| hasFileList | boolean | true | - | ファイルリストを表示するかどうか |
+
+### InputFile
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| label | ReactNode | - | ✓ | フォームのラベル |
+| disabled | boolean | - | - | - |
+| multiple | boolean \| { appendable?: boolean; } | - | - | - |
+| size | "S" \| "M" | - | - | - |
+| onChange | (files: File[]) => void | - | - | ファイルの選択に変更があったときに発火するコールバック関数 |
+| error | boolean | - | - | - |
+| decorators | DecoratorsType<"destroy"> | - | - | コンポーネント内のテキストを変更する関数 |
+| hasFileList | boolean | - | - | ファイルリストを表示するかどうか |
+
+## 実装ルール
+
+InputFile に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+
+## 使い方チェックリスト
+
+### 使用上の注意 > ボタンとして使わない
+- [avoid] TextLink はページを移動するためのリンク用途で使い、それ以外の処理を実行するボタンとして使わない
+- [must] 視覚的優先度の低いボタンを表現したい場合は Tertiary ボタンを使う
+
+### レイアウト > アイコンの有無 > アイコン付きテキストリンク
+- [must] アイコンは左右どちらかにのみ指定する
+
+### レイアウト > アイコンの有無 > アイコン付きテキストリンク > アイコン付き（左）
+- [should] アイコン付き（左）はテキストリンクを押した移動先の意味・内容を想起させるために使用する
+
+### レイアウト > アイコンの有無 > アイコン付きテキストリンク > アイコン付き（右）
+- [should] アイコン付き（右）はテキストリンクを押したときの挙動を表現するために使用する
+
+### デザインパターン > 特別なテキストリンク > 新規ウィンドウで開くテキストリンク
+- [should] 別画面に移動することで現在の画面での入力や作業が中断され作業効率が著しく落ちる場合は、新規ウィンドウ（新規タブ）でテキストリンクを開くことを検討する
+- [avoid] 新規ウィンドウで開くテキストリンクには `アイコン付き（左）`（プレフィックス）を指定しない
+
+### デザインパターン > 特別なテキストリンク > ヘルプセンターを開くテキストリンク
+- [should] ヘルプセンターを開くテキストリンクには HelpLink を使う
+
+### デザインパターン > 特別なテキストリンク > 一階層上のコンテンツに戻るテキストリンク
+- [should] 一階層上のコンテンツに戻るテキストリンクには UpwardLink を使う
+- [avoid] UpwardLink には `アイコン付き（右）`（サフィックス）を指定しない
