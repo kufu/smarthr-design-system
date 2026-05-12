@@ -1,0 +1,54 @@
+---
+name: multi-combobox
+description: "選択肢一覧から複数選択 + 自由入力もできる入力欄を置くとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。選択肢の中から複数の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。"
+metadata:
+  version: "1.0.0"
+  source: smarthr-design-system
+  generated-from: layer1
+---
+
+選択肢の中から複数の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。
+
+## import
+
+```ts
+import { MultiCombobox } from 'smarthr-ui'
+```
+
+## Props
+
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| items | ComboboxItem<T>[] | - | ✓ | 選択可能なアイテムのリスト |
+| name | string | - | - | input 要素の `name` 属性の値 |
+| disabled | boolean | false | - | input 要素の `disabled` 属性の値 |
+| required | boolean | false | - | input 要素の `required` 属性の値 |
+| className | string | - | - | コンポーネント内の一番外側の要素に適用するクラス名 |
+| error | boolean | false | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
+| creatable | boolean | false | - | `true` のとき、 `items` 内に存在しないアイテムを新しく追加できるようになる |
+| placeholder | string |  | - | input 要素の `placeholder` 属性の値 |
+| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
+| width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
+| dropdownHelpMessage | ReactNode | - | - | ドロップダウンリスト内に表示するヘルプメッセージ |
+| dropdownWidth | string \| number | auto | - | ドロップダウンリストの `width` スタイルに適用する値 |
+| onChangeInput | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
+| onAdd | (label: string) => void | - | - | `items` 内に存在しないアイテムが追加されたときに発火するコールバック関数 |
+| onSelect | (item: ComboboxItem<T>) => void | - | - | アイテムが選択された時に発火するコールバック関数 |
+| onChange | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 @deprecated `onChange` は非推奨なため、 代わりに `onChangeInput` を使用してください。 |
+| selectedItems | (ComboboxItem<T> & { deletable?: boolean; })[] | - | ✓ | 選択されているアイテムのリスト |
+| selectedItemEllipsis | boolean | - | - | 選択されているアイテムのラベルを省略表示するかどうか |
+| inputValue | string | - | - | テキストボックスの `value` 属性の値。 `onChangeInput` と併せて設定することで、テキストボックスの挙動が制御可能になる。 |
+| onDelete | (item: ComboboxItem<T>) => void | - | - | 選択されているアイテムの削除ボタンがクリックされた時に発火するコールバック関数 |
+| onChangeSelected | (selectedItems: ComboboxItem<T>[]) => void | - | - | 選択されているアイテムのリストが変わった時に発火するコールバック関数 |
+| onFocus | () => void | - | - | コンポーネントがフォーカスされたときに発火するコールバック関数 |
+| onBlur | () => void | - | - | コンポーネントからフォーカスが外れた時に発火するコールバック関数 |
+| isItemSelected | (targetItem: ComboboxItem<T>, selectedItems: ComboboxItem<T>[]) => boolean | - | - | アイテムが選択されたときに選択済みかどうかを判定するコールバック関数/ |
+| noResultText | ReactNode | - | - | 検索結果が0件の時に表示するコンテンツ |
+
+## 実装ルール
+
+MultiCombobox に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+
+## 使い方チェックリスト
+
+checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
