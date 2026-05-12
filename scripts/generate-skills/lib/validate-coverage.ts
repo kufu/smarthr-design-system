@@ -15,6 +15,18 @@ export type CoverageReport = {
 };
 
 /**
+ * smarthr-ui のコンポーネントに対応しない design-system ディレクトリ。
+ * design-system 独自の親カテゴリページや intl 配下コンポーネントなど。
+ * orphan として警告対象から除外する。
+ */
+const ORPHAN_IGNORE = new Set([
+  'icon', // design-system 独自の親カテゴリページ
+  'layout', // 同上（Stack/Cluster/Center 等の親）
+  'date-formatter', // smarthr-ui の intl 配下、src/components/ 外
+  'combo-box', // 親カテゴリページ（SingleCombobox / MultiCombobox が配下に独立）
+]);
+
+/**
  * smarthr-ui の metadata.json と design-system の index.mdx / mapping の整合性を検証する。
  * smarthr-ui バージョン更新時の追従漏れを検出するための機構。
  */
@@ -66,7 +78,9 @@ export function validateCoverage(args: {
       }
     }
   }
-  const orphanDirs = designDirsWithIndex.filter((d) => !mappedPaths.has(d));
+  const orphanDirs = designDirsWithIndex.filter(
+    (d) => !mappedPaths.has(d) && !ORPHAN_IGNORE.has(d),
+  );
 
   // staleTriggers: skill-triggers のキーが metadata.json の displayName に不在
   const staleTriggers = Object.keys(skillTriggers).filter((name) => !allDisplayNames.has(name));

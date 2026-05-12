@@ -95,6 +95,19 @@ async function main() {
 
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
+  // 生成予定の skill slug 一覧を先に計算し、出力先の古いディレクトリを削除する。
+  // smarthr-ui からコンポーネントが削除/rename されたときの残骸を防ぐ。
+  const expectedSlugs = new Set<string>(['component-selector']);
+  for (const dirName of groups.keys()) expectedSlugs.add(pascalToKebab(dirName));
+
+  for (const existing of fs.readdirSync(OUTPUT_DIR, { withFileTypes: true })) {
+    if (!existing.isDirectory()) continue;
+    if (!expectedSlugs.has(existing.name)) {
+      console.log(`   🗑️  古い skill ディレクトリを削除: ${existing.name}`);
+      fs.rmSync(path.join(OUTPUT_DIR, existing.name), { recursive: true, force: true });
+    }
+  }
+
   const routerEntries: RouterEntry[] = [];
   let generated = 0;
   let withLayer3 = 0;
