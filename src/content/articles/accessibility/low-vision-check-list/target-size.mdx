@@ -1,0 +1,52 @@
+---
+title: 'クリックやタップができる領域を広くする'
+description: ' '
+order: 8
+---
+
+import { Chip, Cluster } from 'smarthr-ui'
+
+<Cluster gap={0.25} style={{ margin: '-20px 0 -80px' }}>
+  <Chip>UIデザイン</Chip>
+  <Chip>実装</Chip>
+</Cluster>
+
+## 概要
+この基準では、ボタンやリンクなどのクリック・タップ可能な要素のターゲット領域が十分な大きさであることを確認してください。
+拡大鏡を使用しているユーザーは、小さなターゲットを正確に操作することが困難な場合があります。
+ターゲット領域を広くすることで、操作のしやすさが向上するだけでなく、視認性が向上します。
+ただし、文章中のテキストリンクは行の高さによってクリック領域の高さが制約されるため、この基準の対象外です。
+
+## メリット
+1. 拡大鏡を使用しているユーザーが、ターゲットを見つけやすく、正確に操作しやすくなります。
+2. 端末の画面が小さい場合でも、ユーザーがターゲットを操作しやすくなります。
+
+## 達成方法
+- **24×24px以上のターゲット領域を確保**:
+    - クリック・タップ可能な要素の最低サイズを24×24px以上にします。
+    - 可能であれば、44×44px以上のターゲット領域を確保することが推奨されます。
+- **`Padding`やラベルの追加**:
+    - [アイコンボタン](https://smarthr.design/products/components/button/#h4-1)など視覚的に小さい要素は、`Padding`を追加するなどしてクリック可能な領域が24×24px以上になるように拡張します。
+    - ラベルテキストを追加できるスペースがある場合は、ラベルテキストを追加してクリック可能な領域を拡張します。
+- **余白の確保**:
+    - デザインの都合上どうしてもクリック領域を24×24px以上に拡張できない場合は、クリック可能な要素の周囲に十分な余白を確保します。クリック領域が小さい要素の隣接を避け、余白を含めた領域が24×24px以上になるようにデザインします。
+
+## テスト方法
+**実装後の画面の確認**:
+ - 実装後の画面で、以下のブックマークレットを使用して、ボタン、リンク、フォームコントロールなどのクリック・タップ可能な要素の大きさが24×24px以上であることを確認します。
+ - 「24×24px以上である」とは、クリック・タップできる要素の高さ・横幅の両方が、24×24pxの枠より大きい状態を指します。
+
+### ブックマークレットの登録方法
+1. 以下のコードをすべてコピーします。
+    ```
+    javascript:(function(){const id='a11y-focus-box-multi';let c=document.getElementById(id);if(c){c.remove();document.removeEventListener('mousemove',window.fbm);return;}c=document.createElement('div');c.id=id;c.style.cssText='position:fixed;pointer-events:none;z-index:999999;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;';let b44=document.createElement('div');b44.style.cssText='position:absolute;width:44px;height:44px;background:rgba(245,97,33,0.2);border:2px solid #f56121;box-sizing:border-box;';let b24=document.createElement('div');b24.style.cssText='position:absolute;width:24px;height:24px;background:rgba(224,30,90,0.2);border:2px solid #e01e5a;box-sizing:border-box;';c.appendChild(b44);c.appendChild(b24);document.body.appendChild(c);window.fbm=function(e){c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';};document.addEventListener('mousemove',window.fbm);})();
+    ```
+2. ブラウザのブックマークバーを右クリックし、「ページを追加」または「ブックマークを追加」を選択します。
+3. 名前に「ターゲットサイズ確認」など任意の名前を入力します。
+4. URLの欄にコピーしたコードを貼り付けて保存します。
+5. 確認したいページでブックマークをクリックすると、マウスカーソルにサイズ確認用の枠が表示されます。
+
+
+## 参考
+- [解説書 達成基準 2.5.8: ターゲットのサイズ (最低限) | WAI | W3C](https://waic.jp/translations/WCAG22/Understanding/target-size-minimum.html)
+- [達成基準 2.5.5: ターゲットのサイズを理解する](https://waic.jp/translations/WCAG21/Understanding/target-size.html)
