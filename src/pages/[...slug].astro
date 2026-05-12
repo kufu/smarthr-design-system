@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 import CodeBlock from '@/components/article/CodeBlock.astro';
 import CustomLink from '@/components/article/CustomLink';
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
   return articles.map((article) => ({
     params: {
-      slug: article.slug,
+      slug: article.id,
     },
     props: {
       article,
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 
-const { Content } = await article.render();
+const { Content } = await render(article);
 
 const nestedHeadings = await getNestedHeadings(Content, article.data.ignoreH3Nav);
 
@@ -42,6 +42,6 @@ const components = {
 };
 ---
 
-<ArticleLayout slug={article.slug} data={article.data} headings={nestedHeadings}>
+<ArticleLayout id={article.id} data={article.data} headings={nestedHeadings}>
   <Content components={components} />
 </ArticleLayout>
