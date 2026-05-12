@@ -13,6 +13,7 @@ import { parseIndexMdx, type IndexMdxInfo } from './lib/parse-index-mdx.js';
 import { buildDirMapping, loadManualMappings, pascalToKebab } from './lib/name-mapping.js';
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
+import { validateCoverage, printCoverageReport } from './lib/validate-coverage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
@@ -84,6 +85,14 @@ async function main() {
   const dirMapping = buildDirMapping([...groups.keys()], DESIGN_SYSTEM_DIR, manualMappings);
   console.log(`   ${dirMapping.size}/${groups.size} を design-system dir に対応付け`);
 
+  const coverageReport = validateCoverage({
+    groups,
+    dirMapping,
+    skillTriggers,
+    designSystemDir: DESIGN_SYSTEM_DIR,
+  });
+  printCoverageReport(coverageReport);
+
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
   const routerEntries: RouterEntry[] = [];
@@ -126,7 +135,11 @@ async function main() {
   console.log('🧭 ルータースキル component-selector を生成中…');
   const routerDir = path.join(OUTPUT_DIR, 'component-selector');
   fs.mkdirSync(routerDir, { recursive: true });
-  fs.writeFileSync(path.join(routerDir, 'SKILL.md'), renderRouterSkill(routerEntries), 'utf-8');
+  fs.writeFileSync(
+    path.join(routerDir, 'SKILL.md'),
+    renderRouterSkill(routerEntries, skillTriggers),
+    'utf-8',
+  );
   console.log(`   → ${path.relative(REPO_ROOT, path.join(routerDir, 'SKILL.md'))}`);
 
   console.log('🎉 完了');
