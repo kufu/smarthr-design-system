@@ -1,6 +1,6 @@
 ---
 name: app-launcher
-description: "smarthr-ui の AppLauncher を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の AppLauncher コンポーネントの使い方ガイド。"
+description: "アプリケーション切替メニューを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の AppLauncher コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

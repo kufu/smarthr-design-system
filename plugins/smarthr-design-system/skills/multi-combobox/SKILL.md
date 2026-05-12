@@ -1,11 +1,13 @@
 ---
 name: multi-combobox
-description: "smarthr-ui の MultiCombobox を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の MultiCombobox コンポーネントの使い方ガイド。"
+description: "選択肢一覧から複数選択 + 自由入力もできる入力欄を置くとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。選択肢の中から複数の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
+
+選択肢の中から複数の値を選択するコンポーネントです。テキスト入力によって選択肢を絞り込んだり、選択肢に新たな値を追加できます。
 
 ## import
 

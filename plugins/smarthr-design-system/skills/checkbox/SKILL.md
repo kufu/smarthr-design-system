@@ -1,11 +1,15 @@
 ---
 name: checkbox
-description: "smarthr-ui の Checkbox を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の Checkbox コンポーネントの使い方ガイド。"
+description: "選択肢の中から複数の値を選択させるとき、オン/オフを切り替えさせるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
+
+ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。
+
+`input[type='checkbox']`の代わりとして使用します。
 
 ## import
 

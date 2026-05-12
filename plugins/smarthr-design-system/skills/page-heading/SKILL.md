@@ -1,6 +1,6 @@
 ---
 name: page-heading
-description: "smarthr-ui の PageHeading を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の PageHeading コンポーネントの使い方ガイド。"
+description: "ページ全体の見出しを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の PageHeading コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

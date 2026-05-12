@@ -1,6 +1,6 @@
 ---
 name: remote-dialog-trigger
-description: "smarthr-ui の RemoteDialogTrigger を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の RemoteDialogTrigger コンポーネントの使い方ガイド。"
+description: "別コンポーネント階層からダイアログを開くとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の RemoteDialogTrigger コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

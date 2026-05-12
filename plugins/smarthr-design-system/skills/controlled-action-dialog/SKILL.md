@@ -1,6 +1,6 @@
 ---
 name: controlled-action-dialog
-description: "smarthr-ui の ControlledActionDialog を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の ControlledActionDialog コンポーネントの使い方ガイド。"
+description: "ActionDialog の開閉状態を外部 state で制御するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の ControlledActionDialog コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

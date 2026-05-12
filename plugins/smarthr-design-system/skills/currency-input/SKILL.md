@@ -1,6 +1,6 @@
 ---
 name: currency-input
-description: "smarthr-ui の CurrencyInput を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の CurrencyInput コンポーネントの使い方ガイド。"
+description: "金額・通貨を入力させるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の CurrencyInput コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: balloon
-description: "smarthr-ui の Balloon を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の Balloon コンポーネントの使い方ガイド。"
+description: "吹き出し風の補足説明を表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の Balloon コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

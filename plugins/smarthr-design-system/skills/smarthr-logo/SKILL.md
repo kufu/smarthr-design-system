@@ -1,11 +1,13 @@
 ---
-name: smart-hr-logo
-description: "smarthr-ui の SmartHRLogo を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の SmartHRLogo コンポーネントの使い方ガイド。"
+name: smarthr-logo
+description: "SmartHR のロゴを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。SmartHRのロゴを表示するコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
+
+SmartHRのロゴを表示するコンポーネントです。
 
 ## import
 

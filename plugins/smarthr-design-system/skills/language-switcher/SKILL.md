@@ -1,6 +1,6 @@
 ---
 name: language-switcher
-description: "smarthr-ui の LanguageSwitcher を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。smarthr-ui の LanguageSwitcher コンポーネントの使い方ガイド。"
+description: "表示言語を切り替えるUIを置くとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の LanguageSwitcher コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
