@@ -119,10 +119,10 @@ export function renderSkill(opts: SkillRenderOptions): string {
   parts.push('## 使い方チェックリスト');
   parts.push('');
   if (checklist === null) {
-    parts.push('_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。');
+    parts.push('checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。');
     parts.push('');
   } else if (checklist.length === 0) {
-    parts.push('_checklist.yaml は存在しますが、現時点で項目はありません。');
+    parts.push('checklist.yaml は存在しますが、現時点で項目はありません。');
     parts.push('');
   } else {
     for (const section of checklist) {

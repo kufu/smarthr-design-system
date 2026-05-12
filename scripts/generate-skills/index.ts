@@ -120,7 +120,7 @@ async function main() {
     if (designSystemDirName) {
       const compDir = path.join(DESIGN_SYSTEM_DIR, designSystemDirName);
       indexInfo = parseIndexMdx(path.join(compDir, 'index.mdx'));
-      checklist = parseChecklist(path.join(compDir, '_checklist.yaml'));
+      checklist = parseChecklist(path.join(compDir, 'checklist.yaml'));
       if (checklist !== null) withLayer3++;
     }
 
