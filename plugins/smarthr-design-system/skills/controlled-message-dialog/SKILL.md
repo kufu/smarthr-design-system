@@ -40,4 +40,4 @@ ControlledMessageDialog に直接関連する eslint-plugin-smarthr のルール
 
 ## 使い方チェックリスト
 
-_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

@@ -85,4 +85,4 @@ Headingレベルの自動計算用のコンポーネントであるSectioningFra
 
 ## 使い方チェックリスト
 
-_checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。

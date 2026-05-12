@@ -20,6 +20,7 @@ metadata:
 | AppHeader | ページ上部に配置されるヘッダーです。横断的な機能やナビゲーションを提供します。各プロダクトでの表示を共通化するために、HeaderとAppNaviを結合し表示要素を固定化したコンポーネントです。 | `smarthr-design-system:app-header` |
 | AppLauncher | アプリケーション切替メニューを表示するとき | `smarthr-design-system:app-launcher` |
 | AppNavi | プロダクト内の主要な機能を切り替えるためのコンポーネントです。機能の切り替えだけでなく、プロダクト全体に影響を及ぼす頻繁に行なう操作を埋め込めます。 | `smarthr-design-system:app-navi` |
+| AuthErrorScreen | 認証エラーが発生した場合に表示するコンポーネントです。 | `smarthr-design-system:auth-error-screen` |
 | Badge | 件数などの数値を視覚的に表すためのコンポーネントです。 | `smarthr-design-system:badge` |
 | Balloon | 吹き出し風の補足説明を表示するとき | `smarthr-design-system:balloon` |
 | Base | 矩形で視覚的に要素をグルーピングするコンポーネントです。 | `smarthr-design-system:base` |
@@ -51,6 +52,7 @@ metadata:
 | FileViewer | 画像やPDFファイルを表示・拡大縮小・回転できるファイルビューアーです。 | `smarthr-design-system:file-viewer` |
 | FilterDropdown | 一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。 | `smarthr-design-system:filter-dropdown` |
 | FloatArea | スクロール時に固定表示する領域のためのコンポーネントです。特定のアクションボタンやテキストを、スクロール位置にかかわらず画面内の特定の位置に表示できます。 | `smarthr-design-system:float-area` |
+| ForbiddenErrorScreen | ページにアクセスする権限がない場合に表示するコンポーネントです。 | `smarthr-design-system:forbidden-error-screen` |
 | FormControl | フォーム要素にラベルやエラーメッセージを付けるとき、入力欄をアクセシブルにするとき | `smarthr-design-system:form-control` |
 | FormDialog | フォームをダイアログ内に表示するとき | `smarthr-design-system:form-dialog` |
 | Header | アカウントやシステムの設定、およびSmartHR内の他のアプリケーションへの横断的なアクセスを提供するコンポーネントです。ページの最上部に配置されます。 | `smarthr-design-system:header` |
@@ -66,6 +68,7 @@ metadata:
 | ModelessDialog | ページの操作を妨げないモードレスダイアログを使うとき | `smarthr-design-system:modeless-dialog` |
 | MonthPicker | 年月を選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:month-picker` |
 | MultiCombobox | 選択肢一覧から複数選択 + 自由入力もできる入力欄を置くとき | `smarthr-design-system:multi-combobox` |
+| NotFoundErrorScreen | 存在しないページにアクセスした場合に表示するコンポーネントです。 | `smarthr-design-system:not-found-error-screen` |
 | NotificationBar | 操作の結果などをシステムからの通知として表示するためのコンポーネントです。 | `smarthr-design-system:notification-bar` |
 | PageCounter | 主に「よくあるテーブル」などコレクションの全件数と選択されている現在のページの件数を表示するためのコンポーネントです。 | `smarthr-design-system:page-counter` |
 | PageHeading | ページ全体の見出しを表示するとき | `smarthr-design-system:page-heading` |
@@ -102,6 +105,8 @@ metadata:
 | Timeline | 情報を時間の流れに沿って、見やすく整理・表示するコンポーネントです。 | `smarthr-design-system:timeline` |
 | TimePicker | 時刻を選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:time-picker` |
 | Tooltip | UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使うコンポーネントです。 | `smarthr-design-system:tooltip` |
+| UnauthorizedErrorScreen | 一定時間操作がなかったためにセッションが切れたときなど、認証が必要な状態でアクセスした場合に表示するコンポーネントです。 | `smarthr-design-system:unauthorized-error-screen` |
+| UnexpectedErrorScreen | 予期しないエラーが発生した場合に表示するコンポーネントです。 | `smarthr-design-system:unexpected-error-screen` |
 | UpwardLink | 一階層上のコンテンツに戻るためのテキストリンクです。 | `smarthr-design-system:upward-link` |
 | VisuallyHiddenText | スクリーンリーダーによる音声読み上げを可能にしながら、テキストを視覚的に隠したい場合に使用するコンポーネントです。 | `smarthr-design-system:visually-hidden-text` |
 | WarekiPicker | 和暦の日付を西暦に変換する機能と和暦をプレビューする機能をもった入力要素です。 | `smarthr-design-system:wareki-picker` |
