@@ -6,8 +6,10 @@ export function pascalToKebab(name: string): string {
   //   "Button"        → "button"
   //   "TextLink"      → "text-link"
   //   "HTMLElement"   → "html-element"
-  //   "SmartHRAILogo" → "smart-hrai-logo"
+  //   "SmartHRLogo"   → "smarthr-logo"    (SmartHR は 1 単語として扱う)
+  //   "SmartHRAILogo" → "smarthr-ai-logo"
   return name
+    .replace(/^SmartHR/, 'Smarthr')
     .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
     .replace(/([a-z\d])([A-Z])/g, '$1-$2')
     .toLowerCase()

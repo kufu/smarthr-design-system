@@ -64,6 +64,10 @@ export function parseMetadata(publicExports?: Set<string>): Map<string, Componen
 
   for (const component of data) {
     if (!component.filePath.startsWith('src/components/')) continue;
+    // 内部実装パターン (例: src/components/AppHeader/components/desktop/AppLauncher.tsx) を除外。
+    // 同一 displayName が別所で公開エクスポートされる場合はそちらの定義のみ採用。
+    const rest = component.filePath.slice('src/components/'.length);
+    if (rest.includes('/components/')) continue;
     if (/^Fa.+Icon$/.test(component.displayName)) continue;
     if (publicExports && !publicExports.has(component.displayName)) continue;
 
