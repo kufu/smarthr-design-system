@@ -94,7 +94,7 @@ function createDepthItems(pages: Array<CollectionEntry<'articles'>>) {
     const item: ArticleMeta = {
       link: `/${id}`,
       order: data?.order ?? Number.MAX_SAFE_INTEGER,
-      title: data?.title ?? '',
+      title: data?.deprecated ? `${data.title}（非推奨）` : (data?.title ?? ''),
       depth,
       children: [],
     };

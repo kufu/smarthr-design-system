@@ -36,7 +36,7 @@ subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.or
         return (
           <>
             <Heading class="pageTitleHeadings">
-              <a href={join('/', page.id)}>{page.data.title}</a>
+              <a href={join('/', page.id)}>{page.data.deprecated ? `${page.data.title}（非推奨）` : page.data.title}</a>
             </Heading>
             {hasSlot ? <Fragment set:html={description} /> : <p>{description}</p>}
           </>
