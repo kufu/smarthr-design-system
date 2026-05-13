@@ -4,6 +4,8 @@ import matter from 'gray-matter';
 export type IndexMdxInfo = {
   description: string;
   leadParagraph: string;
+  deprecated: boolean;
+  deprecatedMessage: string;
 };
 
 export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
@@ -12,11 +14,15 @@ export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
   const content = fs.readFileSync(indexMdxPath, 'utf-8');
 
   let frontmatterDescription = '';
+  let deprecated = false;
+  let deprecatedMessage = '';
   let bodyContent = content;
 
   try {
     const parsed = matter(content);
     frontmatterDescription = (parsed.data.description as string) ?? '';
+    deprecated = (parsed.data.deprecated as boolean) ?? false;
+    deprecatedMessage = (parsed.data.deprecatedMessage as string) ?? '';
     bodyContent = parsed.content;
   } catch {
     // Fallback: no frontmatter
@@ -24,7 +30,7 @@ export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
 
   const leadParagraph = extractLeadParagraph(bodyContent, frontmatterDescription);
 
-  return { description: frontmatterDescription, leadParagraph };
+  return { description: frontmatterDescription, leadParagraph, deprecated, deprecatedMessage };
 }
 
 function extractLeadParagraph(body: string, description: string): string {

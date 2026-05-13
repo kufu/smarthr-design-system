@@ -35,6 +35,8 @@ function buildFrontmatterDescription(
 
   const scenarios: string[] = [];
   for (const entry of entries) {
+    // 非推奨コンポーネントは frontmatter のトリガーから除外（AI に推奨させない）
+    if (entry.indexInfo?.deprecated) continue;
     for (const name of entry.group.displayNames) {
       const trigger = skillTriggers[name];
       if (trigger) scenarios.push(`${name}（${trigger}）`);
@@ -94,11 +96,14 @@ export function renderRouterSkill(
   for (const entry of sorted) {
     const name = entry.group.dirName;
     const skillName = pascalToKebab(name);
-    const desc = resolveEntryDescription(entry, skillTriggers)
+    const isDeprecated = entry.indexInfo?.deprecated ?? false;
+    const displayName = isDeprecated ? `⚠️ ${name}（非推奨）` : name;
+    const rawDesc = resolveEntryDescription(entry, skillTriggers)
       .replace(/\r?\n/g, ' ')
       .replace(/\|/g, '\\|')
       .trim();
-    parts.push(`| ${name} | ${desc} | \`smarthr-design-system:${skillName}\` |`);
+    const desc = isDeprecated ? `【非推奨】${rawDesc}` : rawDesc;
+    parts.push(`| ${displayName} | ${desc} | \`smarthr-design-system:${skillName}\` |`);
   }
   parts.push('');
   parts.push('## 利用フロー');

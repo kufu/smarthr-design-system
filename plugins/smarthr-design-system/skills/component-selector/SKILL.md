@@ -25,7 +25,7 @@ metadata:
 | Balloon | 吹き出し風の補足説明を表示するとき | `smarthr-design-system:balloon` |
 | Base | 矩形で視覚的に要素をグルーピングするコンポーネントです。 | `smarthr-design-system:base` |
 | BaseColumn | 矩形で視覚的に要素をグルーピングするコンポーネントです。 | `smarthr-design-system:base-column` |
-| BottomFixedArea | FloatAreaと役割が重複しているためBottomFixedAreaは非推奨です。より柔軟に使えるFloatAreaを使ってください。 | `smarthr-design-system:bottom-fixed-area` |
+| ⚠️ BottomFixedArea（非推奨） | 【非推奨】FloatAreaと役割が重複しているためBottomFixedAreaは非推奨です。より柔軟に使えるFloatAreaを使ってください。 | `smarthr-design-system:bottom-fixed-area` |
 | Browser | 階層構造を持つデータを選択するためのコンポーネントです。 | `smarthr-design-system:browser` |
 | Button | ボタンを置くとき、クリックで操作を実行させるとき、リンクをボタン風に表示するとき | `smarthr-design-system:button` |
 | Calendar | カレンダーを表示し日付を選択するためのコンポーネントです。基本的にはDatePickerと合わせて使用されるため、単独で使用することはありません。 | `smarthr-design-system:calendar` |
@@ -39,7 +39,7 @@ metadata:
 | ControlledMessageDialog | MessageDialog の開閉状態を外部 state で制御するとき | `smarthr-design-system:controlled-message-dialog` |
 | ControlledStepFormDialog | StepFormDialog の開閉状態を外部 state で制御するとき | `smarthr-design-system:controlled-step-form-dialog` |
 | CurrencyInput | 金額・通貨を入力させるとき | `smarthr-design-system:currency-input` |
-| DatePicker | ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。 | `smarthr-design-system:date-picker` |
+| ⚠️ DatePicker（非推奨） | 【非推奨】ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。 | `smarthr-design-system:date-picker` |
 | DatetimeLocalPicker | 日付と時刻を一度に選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:datetime-local-picker` |
 | DefinitionList | ラベルと値のペアを並べてデータを表示するとき、詳細情報を一覧するとき | `smarthr-design-system:definition-list` |
 | Dialog | ダイアログを独自制御で実装するとき | `smarthr-design-system:dialog` |
