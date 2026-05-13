@@ -1,6 +1,6 @@
 ---
 name: component-selector
-description: "smarthr-ui のどのコンポーネントを使うべきかの選定ガイド。フォームを作る、テーブルを表示する、ボタンを置く、ダイアログを開く、通知を出すなど、何らかの UI を実装しようとしているときに使う。具体的なコンポーネントの SKILL.md を呼ぶ前にまず読む。 主なシナリオ: ActionDialog（ユーザーに操作や入力を求めるダイアログを表示するとき、確認・実行ダイアログを作るとき）、AppLauncher（アプリケーション切替メニューを表示するとき）、Balloon（吹き出し風の補足説明を表示するとき）、Button（ボタンを置くとき、クリックで操作を実行させるとき、リンクをボタン風に表示するとき）、Checkbox（選択肢の中から複数の値を選択させるとき、オン/オフを切り替えさせるとき）、ControlledActionDialog（ActionDialog の開閉状態を外部 state で制御するとき）、ControlledFormDialog（FormDialog の開閉状態を外部 state で制御するとき）、ControlledMessageDialog（MessageDialog の開閉状態を外部 state で制御するとき）、ControlledStepFormDialog（StepFormDialog の開閉状態を外部 state で制御するとき）、CurrencyInput（金額・通貨を入力させるとき）、DatetimeLocalPicker（日付と時刻を一度に選択させるとき（非推奨・将来削除予定））、DefinitionList（ラベルと値のペアを並べてデータを表示するとき、詳細情報を一覧するとき）、Dialog（ダイアログを独自制御で実装するとき）、FormControl（フォーム要素にラベルやエラーメッセージを付けるとき、入力欄をアクセシブルにするとき）、FormDialog（フォームをダイアログ内に表示するとき）、Input（テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するとき）、InputFile（ファイルをアップロードさせるとき）、LanguageSwitcher（表示言語を切り替えるUIを置くとき）、MessageDialog（メッセージや情報をダイアログで通知するとき）、ModelessDialog（ページの操作を妨げないモードレスダイアログを使うとき）、MonthPicker（年月を選択させるとき（非推奨・将来削除予定））、MultiCombobox（選択肢一覧から複数選択 + 自由入力もできる入力欄を置くとき）、PageHeading（ページ全体の見出しを表示するとき）、RadioButton（複数の選択肢から1つだけ選ばせるとき）、RemoteDialogTrigger（別コンポーネント階層からダイアログを開くとき）、Scroller（コンテンツを横スクロール可能領域に収めるとき）、SearchInput（検索キーワードを入力させるとき）、SingleCombobox（選択肢一覧から1つ選択 + 自由入力もできる入力欄を置くとき）、SmartHRAILogo（SmartHR AI のロゴを表示するとき）、SmartHRLogo（SmartHR のロゴを表示するとき）、StepFormDialog（複数ステップのフォームをダイアログ内に表示するとき）。"
+description: "smarthr-ui のどのコンポーネントを使うべきかの選定ガイド。フォームを作る、テーブルを表示する、ボタンを置く、ダイアログを開く、通知を出すなど、何らかの UI を実装しようとしているときに使う。具体的なコンポーネントの SKILL.md を呼ぶ前にまず読む。 主なシナリオ: ActionDialog（ユーザーに操作や入力を求めるダイアログを表示するとき、確認・実行ダイアログを作るとき）、AppLauncher（アプリケーション切替メニューを表示するとき）、Balloon（吹き出し風の補足説明を表示するとき）、Button（ボタンを置くとき、クリックで操作を実行させるとき、リンクをボタン風に表示するとき）、Checkbox（選択肢の中から複数の値を選択させるとき、オン/オフを切り替えさせるとき）、ControlledActionDialog（ActionDialog の開閉状態を外部 state で制御するとき）、ControlledFormDialog（FormDialog の開閉状態を外部 state で制御するとき）、ControlledMessageDialog（MessageDialog の開閉状態を外部 state で制御するとき）、ControlledStepFormDialog（StepFormDialog の開閉状態を外部 state で制御するとき）、CurrencyInput（金額・通貨を入力させるとき）、DefinitionList（ラベルと値のペアを並べてデータを表示するとき、詳細情報を一覧するとき）、Dialog（ダイアログを独自制御で実装するとき）、FormControl（フォーム要素にラベルやエラーメッセージを付けるとき、入力欄をアクセシブルにするとき）、FormDialog（フォームをダイアログ内に表示するとき）、Input（テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するとき）、InputFile（ファイルをアップロードさせるとき）、LanguageSwitcher（表示言語を切り替えるUIを置くとき）、MessageDialog（メッセージや情報をダイアログで通知するとき）、ModelessDialog（ページの操作を妨げないモードレスダイアログを使うとき）、MultiCombobox（選択肢一覧から複数選択 + 自由入力もできる入力欄を置くとき）、PageHeading（ページ全体の見出しを表示するとき）、RadioButton（複数の選択肢から1つだけ選ばせるとき）、RemoteDialogTrigger（別コンポーネント階層からダイアログを開くとき）、Scroller（コンテンツを横スクロール可能領域に収めるとき）、SearchInput（検索キーワードを入力させるとき）、SingleCombobox（選択肢一覧から1つ選択 + 自由入力もできる入力欄を置くとき）、SmartHRAILogo（SmartHR AI のロゴを表示するとき）、SmartHRLogo（SmartHR のロゴを表示するとき）、StepFormDialog（複数ステップのフォームをダイアログ内に表示するとき）、Table（表形式でデータを一覧表示するとき、行・列を持つデータを見せるとき）、TextLink（テキストにリンクを付けるとき、アンカー要素をデザインシステム準拠で使うとき）。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -40,7 +40,7 @@ metadata:
 | ControlledStepFormDialog | StepFormDialog の開閉状態を外部 state で制御するとき | `smarthr-design-system:controlled-step-form-dialog` |
 | CurrencyInput | 金額・通貨を入力させるとき | `smarthr-design-system:currency-input` |
 | ⚠️ DatePicker（非推奨） | 【非推奨】ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。 | `smarthr-design-system:date-picker` |
-| DatetimeLocalPicker | 日付と時刻を一度に選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:datetime-local-picker` |
+| ⚠️ DatetimeLocalPicker（非推奨） | 【非推奨】日付と時刻を一度に選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:datetime-local-picker` |
 | DefinitionList | ラベルと値のペアを並べてデータを表示するとき、詳細情報を一覧するとき | `smarthr-design-system:definition-list` |
 | Dialog | ダイアログを独自制御で実装するとき | `smarthr-design-system:dialog` |
 | Disclosure | コンテンツの表示・非表示を切り替えるUIを作るためのアクセシブルなコンポーネントです。 | `smarthr-design-system:disclosure` |
@@ -66,7 +66,7 @@ metadata:
 | Loader | 読み込み中や操作中など何らかの操作が仕掛り中であることを伝えるためのコンポーネントです。 | `smarthr-design-system:loader` |
 | MessageDialog | メッセージや情報をダイアログで通知するとき | `smarthr-design-system:message-dialog` |
 | ModelessDialog | ページの操作を妨げないモードレスダイアログを使うとき | `smarthr-design-system:modeless-dialog` |
-| MonthPicker | 年月を選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:month-picker` |
+| ⚠️ MonthPicker（非推奨） | 【非推奨】年月を選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:month-picker` |
 | MultiCombobox | 選択肢一覧から複数選択 + 自由入力もできる入力欄を置くとき | `smarthr-design-system:multi-combobox` |
 | NotFoundErrorScreen | 存在しないページにアクセスした場合に表示するコンポーネントです。 | `smarthr-design-system:not-found-error-screen` |
 | NotificationBar | 操作の結果などをシステムからの通知として表示するためのコンポーネントです。 | `smarthr-design-system:notification-bar` |
@@ -103,7 +103,7 @@ metadata:
 | Textarea | テキストなどの情報を複数行入力するためのコンポーネントです。`textarea`の代わりとして使用します。入力文字数を数える機能や入力によって自動で領域が広がる機能を備えています。 | `smarthr-design-system:textarea` |
 | TextLink | テキストにリンクを付けるとき、アンカー要素をデザインシステム準拠で使うとき | `smarthr-design-system:text-link` |
 | Timeline | 情報を時間の流れに沿って、見やすく整理・表示するコンポーネントです。 | `smarthr-design-system:timeline` |
-| TimePicker | 時刻を選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:time-picker` |
+| ⚠️ TimePicker（非推奨） | 【非推奨】時刻を選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:time-picker` |
 | Tooltip | UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使うコンポーネントです。 | `smarthr-design-system:tooltip` |
 | UnauthorizedErrorScreen | 一定時間操作がなかったためにセッションが切れたときなど、認証が必要な状態でアクセスした場合に表示するコンポーネントです。 | `smarthr-design-system:unauthorized-error-screen` |
 | UnexpectedErrorScreen | 予期しないエラーが発生した場合に表示するコンポーネントです。 | `smarthr-design-system:unexpected-error-screen` |
