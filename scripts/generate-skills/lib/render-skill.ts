@@ -35,6 +35,11 @@ export function renderSkill(opts: SkillRenderOptions): string {
   parts.push('');
 
   if (indexInfo) {
+    if (indexInfo.deprecated) {
+      const messagePlain = stripHtml(indexInfo.deprecatedMessage).trim();
+      parts.push(`> ⚠️ **非推奨**${messagePlain ? `: ${messagePlain}` : ''}`);
+      parts.push('');
+    }
     if (indexInfo.description) parts.push(indexInfo.description);
     if (indexInfo.leadParagraph && indexInfo.leadParagraph !== indexInfo.description) {
       parts.push('');
@@ -153,7 +158,12 @@ function buildDescription(
   const triggerPhrase = trigger
     ? `${trigger}、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき`
     : `smarthr-ui の ${names} を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するとき`;
-  return `${triggerPhrase}に使う。${base}`;
+  const deprecatedPrefix = indexInfo?.deprecated ? '【非推奨】' : '';
+  return `${deprecatedPrefix}${triggerPhrase}に使う。${base}`;
+}
+
+function stripHtml(value: string): string {
+  return value.replace(/<[^>]*>/g, '');
 }
 
 function buildGeneratedFromTag(hasLayer2: boolean, hasLayer3: boolean): string {
