@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getEntry } from 'astro:content';
-import { Article } from 'smarthr-ui';
+import { Article, BaseColumn, ResponseMessage } from 'smarthr-ui';
 
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header/Header.astro';
@@ -22,9 +22,12 @@ const { id, data, headings } = Astro.props;
 const parentArticleId = id.replace(/\/[^/]*$/, ''); // 例: 'basics/typography' → 'basics'
 const parentArticle = await getEntry('articles', parentArticleId);
 
+// 非推奨コンポーネントのタイトル装飾
+const displayTitle = data.deprecated ? `${data.title}（非推奨）` : data.title;
+
 // カテゴリのtitleとカテゴリ直下のindexページのタイトルが重複した場合はカテゴリ名のみを表示する
 const categoryName = parentArticle?.data.title ?? '';
-const headTitle = categoryName === data.title ? data.title : `${data.title} | ${categoryName}`;
+const headTitle = categoryName === displayTitle ? displayTitle : `${displayTitle} | ${categoryName}`;
 
 const { flatArticleMetaItems, nestedArticleMetaItems } = await createArticleMetaItems(id);
 
@@ -36,7 +39,7 @@ const prevSidebarItem = currentPageIndex > 0 ? (flatArticleMetaItems.at(currentP
 const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaItems.at(currentPageIndex + 1) ?? null) : null;
 ---
 
-<Layout title={headTitle} ogTitle={data.title} description={data.description}>
+<Layout title={headTitle} ogTitle={displayTitle} description={data.description}>
   <div class="wrapper">
     <Header />
 
@@ -48,8 +51,17 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
         <IndexNav targetId={MDX_STYLE_WRAPPER_ID} headings={headings} ignoreH3Nav={data.ignoreH3Nav} client:load />
       </div>
       <Article className="article">
-        <h1 class="articleTitle">{data.title}</h1>
+        <h1 class="articleTitle">{displayTitle}</h1>
         <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
+          {
+            data.deprecated && data.deprecatedMessage && (
+              <BaseColumn>
+                <ResponseMessage status="warning">
+                  <span set:html={data.deprecatedMessage} />
+                </ResponseMessage>
+              </BaseColumn>
+            )
+          }
           <slot />
         </div>
         <nav>
