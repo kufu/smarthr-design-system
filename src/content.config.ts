@@ -8,6 +8,8 @@ export const articleSchema = z.object({
   robotsNoIndex: z.boolean().default(false),
   ignoreH3Nav: z.boolean().default(false),
   order: z.number().optional(),
+  deprecated: z.boolean().optional(),
+  deprecatedMessage: z.string().optional(),
 });
 
 const articleCollection = defineCollection({
