@@ -20,7 +20,6 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 FormDialogは内部でコンテンツを`<form>`要素で包むため、ActionDialogにはない以下の挙動を持ちます。ユースケースに合わせて使い分けてください。
 
 - `Enter`キーの押下でアクションボタンの送信処理を実行します。
-- HTML5のフォーム検証（`required`や`pattern`など）を利用できます。
 - アクション系コールバックは`onSubmit`で、引数は`FormEvent<HTMLFormElement>`を受け取ります（ActionDialogの`onClickAction`は`MouseEvent`を受け取ります）。
 
 ## Props
