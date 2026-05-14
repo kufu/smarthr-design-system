@@ -10,6 +10,7 @@ import {
 } from './lib/fetch-eslint-rules.js';
 import { parseChecklist } from './lib/parse-checklist.js';
 import { parseIndexMdx, type IndexMdxInfo } from './lib/parse-index-mdx.js';
+import { collectInheritedSkills } from './lib/inherited-by.js';
 import { buildDirMapping, loadManualMappings, pascalToKebab } from './lib/name-mapping.js';
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
@@ -85,6 +86,10 @@ async function main() {
   const dirMapping = buildDirMapping([...groups.keys()], DESIGN_SYSTEM_DIR, manualMappings);
   console.log(`   ${dirMapping.size}/${groups.size} を design-system dir に対応付け`);
 
+  console.log('🧬 inheritedBy 宣言を集約中…');
+  const inheritedSkills = collectInheritedSkills(DESIGN_SYSTEM_DIR);
+  console.log(`   ${inheritedSkills.size} 件の inheritedBy 宣言を検出`);
+
   const coverageReport = validateCoverage({
     groups,
     dirMapping,
@@ -122,6 +127,21 @@ async function main() {
       indexInfo = parseIndexMdx(path.join(compDir, 'index.mdx'));
       checklist = parseChecklist(path.join(compDir, 'checklist.yaml'));
       if (checklist !== null) withLayer3++;
+    } else if (inheritedSkills.has(dirName)) {
+      // 派生先コンポーネント: 親 mdx の本文を継承し、description のみ派生先固有に差し替える
+      const inh = inheritedSkills.get(dirName)!;
+      indexInfo = {
+        ...inh.parentInfo,
+        description: inh.description,
+        inheritedBy: [],
+      };
+      // 親コンポーネントの checklist も継承する
+      const parentDesignDirName = dirMapping.get(inh.parentName);
+      if (parentDesignDirName) {
+        const parentCompDir = path.join(DESIGN_SYSTEM_DIR, parentDesignDirName);
+        checklist = parseChecklist(path.join(parentCompDir, 'checklist.yaml'));
+        if (checklist !== null) withLayer3++;
+      }
     }
 
     const eslintRulesSet = new Map<string, EslintRuleWithContent>();

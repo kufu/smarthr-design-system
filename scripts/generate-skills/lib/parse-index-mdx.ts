@@ -1,11 +1,17 @@
 import fs from 'node:fs';
 import matter from 'gray-matter';
 
+export type InheritedByEntry = {
+  name: string;
+  description: string;
+};
+
 export type IndexMdxInfo = {
   description: string;
   leadParagraph: string;
   deprecated: boolean;
   deprecatedMessage: string;
+  inheritedBy: InheritedByEntry[];
 };
 
 export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
@@ -16,6 +22,7 @@ export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
   let frontmatterDescription = '';
   let deprecated = false;
   let deprecatedMessage = '';
+  let inheritedBy: InheritedByEntry[] = [];
   let bodyContent = content;
 
   try {
@@ -23,6 +30,7 @@ export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
     frontmatterDescription = (parsed.data.description as string) ?? '';
     deprecated = (parsed.data.deprecated as boolean) ?? false;
     deprecatedMessage = (parsed.data.deprecatedMessage as string) ?? '';
+    inheritedBy = normalizeInheritedBy(parsed.data.inheritedBy);
     bodyContent = parsed.content;
   } catch {
     // Fallback: no frontmatter
@@ -30,7 +38,26 @@ export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
 
   const leadParagraph = extractLeadParagraph(bodyContent, frontmatterDescription);
 
-  return { description: frontmatterDescription, leadParagraph, deprecated, deprecatedMessage };
+  return {
+    description: frontmatterDescription,
+    leadParagraph,
+    deprecated,
+    deprecatedMessage,
+    inheritedBy,
+  };
+}
+
+function normalizeInheritedBy(value: unknown): InheritedByEntry[] {
+  if (!Array.isArray(value)) return [];
+  const result: InheritedByEntry[] = [];
+  for (const entry of value) {
+    if (!entry || typeof entry !== 'object') continue;
+    const name = (entry as { name?: unknown }).name;
+    const description = (entry as { description?: unknown }).description;
+    if (typeof name !== 'string' || typeof description !== 'string') continue;
+    result.push({ name, description });
+  }
+  return result;
 }
 
 function extractLeadParagraph(body: string, description: string): string {
