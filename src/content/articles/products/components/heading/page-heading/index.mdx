@@ -1,0 +1,68 @@
+---
+title: 'PageHeading'
+description: '画面タイトル用の見出しコンポーネントです。`screenTitle`タイプと`h1`要素が自動的に設定されます。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import TableWrapper from '@/components/article/TableWrapper.astro'
+import { Heading, PageHeading, Table, Td, Th, Text } from 'smarthr-ui'
+
+画面タイトルとして使用する見出しコンポーネントです。  
+[Heading](/products/components/heading/)の派生コンポーネントとして、`screenTitle`タイプと`h1`要素が自動的に設定されたものです。
+
+<ComponentStory name="PageHeading" />
+
+## 使用上の注意
+
+### 画面ごとに1度しか使わない
+
+画面のタイトルとして、画面ごとに1度しか使えません。
+
+```tsx editable
+<PageHeading>画面タイトル（fontSize: XL）</PageHeading>
+```
+
+## 種類
+
+サイズを`XXL`、`XL`、`L`から選択できます。デフォルトは`XL`です。
+
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>タイプ</Th>
+        <Th>フォントサイズ</Th>
+        <Th>ウェイト</Th>
+        <Th>色</Th>
+        <Th>サンプル</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>screenTitle</Td>
+        <Td><a href="/products/design-tokens/typography/"><code>XXL</code></a></Td>
+        <Td>normal</Td>
+        <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
+        <Td><Text size="XXL" leading="TIGHT">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Text></Td>
+      </tr>
+      <tr>
+        <Td>screenTitle</Td>
+        <Td><a href="/products/design-tokens/typography/"><code>XL (デフォルト)</code></a></Td>
+        <Td>normal</Td>
+        <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
+        <Td><Text size="XL" leading="TIGHT">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Text></Td>
+      </tr>
+      <tr>
+        <Td>screenTitle</Td>
+        <Td><a href="/products/design-tokens/typography/"><code>L</code></a></Td>
+        <Td>normal</Td>
+        <Td><a href="/products/design-tokens/color/#h3-2"><code>TEXT_BLACK</code></a></Td>
+        <Td><Text size="L" leading="TIGHT">well-working 労働にまつわる社会課題をなくし、誰もがその人らしく働ける社会をつくる。</Text></Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
+
+## Props
+
+<ComponentPropsTable name="PageHeading" />
