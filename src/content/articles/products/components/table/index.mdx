@@ -1,6 +1,23 @@
 ---
 title: 'Table'
 description: '表形式でデータを表示するためのコンポーネントです。'
+inheritedBy:
+  - name: Th
+    description: 'テーブルの列見出しセルです。'
+  - name: Td
+    description: 'テーブルのデータセルです。'
+  - name: ThCheckbox
+    description: 'チェックボックスを内包するThです。'
+  - name: TdCheckbox
+    description: 'チェックボックスを内包するTdです。aria-labelledby属性が必須です。'
+  - name: TdRadioButton
+    description: 'ラジオボタンを内包するTdです。aria-labelledby属性が必須です。'
+  - name: ThSortButton
+    description: 'ソート機能付きのThです。'
+  - name: BulkActionRow
+    description: 'テーブル内の一括操作行です。'
+  - name: EmptyTableBody
+    description: 'テーブルが空の場合の表示用tbodyです。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
