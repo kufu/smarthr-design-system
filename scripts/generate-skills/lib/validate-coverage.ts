@@ -35,22 +35,24 @@ export function validateCoverage(args: {
   dirMapping: Map<string, string>;
   skillTriggers: Record<string, string>;
   designSystemDir: string;
+  inheritedNames?: Set<string>;
 }): CoverageReport {
-  const { groups, dirMapping, skillTriggers, designSystemDir } = args;
+  const { groups, dirMapping, skillTriggers, designSystemDir, inheritedNames } = args;
 
   const allDisplayNames = new Set<string>();
   for (const g of groups.values()) {
     for (const n of g.displayNames) allDisplayNames.add(n);
   }
 
-  // newComponents: dir mapping なし かつ skill-triggers にも未登録
+  // newComponents: dir mapping なし、skill-triggers にも未登録、inheritedBy 派生先でもない
   const newComponents: string[] = [];
   const unmappedGroups: string[] = [];
   for (const [dir, g] of groups) {
     if (!dirMapping.has(dir)) {
       unmappedGroups.push(dir);
       const hasTrigger = g.displayNames.some((n) => skillTriggers[n]);
-      if (!hasTrigger) newComponents.push(dir);
+      const isInherited = inheritedNames?.has(dir) ?? false;
+      if (!hasTrigger && !isInherited) newComponents.push(dir);
     }
   }
 

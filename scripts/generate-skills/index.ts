@@ -95,6 +95,7 @@ async function main() {
     dirMapping,
     skillTriggers,
     designSystemDir: DESIGN_SYSTEM_DIR,
+    inheritedNames: new Set(inheritedSkills.keys()),
   });
   printCoverageReport(coverageReport);
 
