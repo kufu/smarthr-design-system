@@ -1,13 +1,13 @@
 ---
 title: 'ErrorScreen'
-description: 'エラーを全画面で表示をするためのコンポーネントです。'
+description: 'エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import PageIndex from '@/components/article/PageIndex.astro'
 import { Button, Center, Cluster, ErrorScreen, Stack, Text, TextLink } from 'smarthr-ui'
 
-ErrorScreenコンポーネントはエラーを全画面で表示するためのコンポーネントです。
+エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。
 
 なんらかのエラーによってユーザーが操作できなくなった場合や、ユーザーに操作をさせたくない場合に使用してください。
 
