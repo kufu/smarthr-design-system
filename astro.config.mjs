@@ -11,6 +11,7 @@ import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://smarthr.design',
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
@@ -41,8 +42,9 @@ export default defineConfig({
           // を出ないようにするために sass-embedded を指定
           // 参考: https://retrorocket.biz/archives/fix-scss-deprecate-with-astro-v4
           api: 'modern-compiler',
+          loadPaths: ['src'],
           // media query での出し分けのための mixin をグローバルで使えるように
-          additionalData: `@use "./src/styles/mixin.scss" as *;`,
+          additionalData: `@use "styles/mixin.scss" as *;`,
         },
       },
     },

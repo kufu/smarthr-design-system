@@ -30,16 +30,16 @@ import responsemessageDont from './images/responsemessage-dont.png'
 その他の注意事項は[フィードバック](/products/design-patterns/feedback/)をご確認ください。
 
 ## 種類
-情報、成功、警告、エラー、同期中の5種類の`type`が指定できます。
+情報、成功、警告、エラー、同期中の5種類の`status`が指定できます。
 同期中はNotificationBarのために存在し、基本的には使いません。
 
 ```tsx editable
 <Stack>
-  <ResponseMessage type="info">情報を表すアイコンが付きます。デフォルトです。</ResponseMessage>
-  <ResponseMessage type="success">成功を表すアイコンが付きます。</ResponseMessage>
-  <ResponseMessage type="warning">警告を表すアイコンが付きます。</ResponseMessage>
-  <ResponseMessage type="error">エラーを表すアイコンが付きます。</ResponseMessage>
-  <ResponseMessage type="sync">同期を表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage status="info">情報を表すアイコンが付きます。デフォルトです。</ResponseMessage>
+  <ResponseMessage status="success">成功を表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage status="warning">警告を表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage status="error">エラーを表すアイコンが付きます。</ResponseMessage>
+  <ResponseMessage status="sync">同期を表すアイコンが付きます。</ResponseMessage>
 </Stack>
 ```
 

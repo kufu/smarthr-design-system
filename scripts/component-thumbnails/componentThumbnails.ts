@@ -45,9 +45,7 @@ const generateThumbnails = async (storyGroups: StoryGroup[]) => {
   // 強制更新フラグ
   const forceUpdate = process.argv.includes('--force');
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-  });
+  const browser = await puppeteer.launch();
 
   let updatedCount = 0;
   let skippedCount = 0;

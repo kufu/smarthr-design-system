@@ -61,10 +61,10 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
             <span>{UI_VERSION}</span>
           </Cluster>
           <Cluster>
-            <AnchorButton href={storybookUrl.toString()} target="_blank" size="s" rel="noreferrer">
+            <AnchorButton href={storybookUrl.toString()} target="_blank" size="S" rel="noreferrer">
               Storybook
             </AnchorButton>
-            <AnchorButton href={githubUrl.toString()} target="_blank" size="s" rel="noreferrer">
+            <AnchorButton href={githubUrl.toString()} target="_blank" size="S" rel="noreferrer">
               GitHub
             </AnchorButton>
           </Cluster>
