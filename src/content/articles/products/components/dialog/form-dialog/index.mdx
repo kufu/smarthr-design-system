@@ -1,0 +1,28 @@
+---
+title: 'FormDialog'
+description: 'フォームを含むダイアログコンポーネントです。ユーザーは入力内容をシステムに送信できます。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+ダイアログコンテンツにフォームが含まれている場合に使用する[ActionDialog](/products/components/dialog/action-dialog/)の派生コンポーネントです。  
+ユーザーに入力や選択などの操作を求め、入力内容をシステムに送信するために使います。
+
+各種基準は[ActionDialog](/products/components/dialog/action-dialog/)と共通です。
+
+<ComponentStory name="FormDialog" />
+
+## 使用上の注意
+### ダイアログコンテンツにフォームが含まれている場合は、FormDialogの使用を検討する
+
+ダイアログコンテンツにフォーム要素を含む場合にはFormDialogの使用を検討してください。
+
+FormDialogは内部でコンテンツを`<form>`要素で包むため、ActionDialogにはない以下の挙動を持ちます。ユースケースに合わせて使い分けてください。
+
+- `Enter`キーの押下でアクションボタンの送信処理を実行します。
+- アクション系コールバックは`onSubmit`で、引数は`FormEvent<HTMLFormElement>`を受け取ります（ActionDialogの`onClickAction`は`MouseEvent`を受け取ります）。
+
+## Props
+
+<ComponentPropsTable name="FormDialog" showTitle />
+<ComponentPropsTable name="ControlledFormDialog" showTitle />
