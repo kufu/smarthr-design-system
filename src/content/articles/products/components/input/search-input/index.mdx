@@ -1,0 +1,22 @@
+---
+title: 'SearchInput'
+description: '検索欄のためのコンポーネントです。'
+---
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import { FaMagnifyingGlassIcon } from 'smarthr-ui'
+
+検索欄のためのコンポーネントです。`prefix`は検索アイコン「<FaMagnifyingGlassIcon alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン" />」に固定されています。  
+[よくあるテーブルのオブジェクトの検索](/products/design-patterns/smarthr-table/#h4-4)などに使用します。
+
+<ComponentStory name="SearchInput" />
+
+## 使用上の注意
+
+### tooltipMessageで入力内容を補足する
+
+`tooltipMessage`を使用して入力内容に対する説明を補足してください。
+
+## Props
+
+<ComponentPropsTable name="SearchInput" />
