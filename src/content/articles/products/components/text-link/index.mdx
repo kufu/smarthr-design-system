@@ -1,12 +1,13 @@
 ---
 title: 'TextLink'
-description: 'a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLink/UpwardLinkで表現できないテキストリンクを提供するときに使います。'
+description: 'a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { OpenInNewTabIconInTextLink } from './_components/OpenInNewTabIconInTextLink'
+import PageIndex from '@/components/article/PageIndex.astro'
 
-`a`要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLink/UpwardLinkで表現できないテキストリンクを提供するときに使います。
+`a`要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、[HelpLink](/products/components/text-link/help-link/)や[UpwardLink](/products/components/text-link/upward-link/)で表現できないテキストリンクを提供するときに使います。
 
 <ComponentStory name="TextLink" />
 
@@ -17,6 +18,12 @@ import { OpenInNewTabIconInTextLink } from './_components/OpenInNewTabIconInText
 `TextLink`は、ページを移動するためのリンクです。それ以外の処理を実行するボタンとして使わないでください。
 
 視覚的優先度の低いボタンを表現したい場合は、[Tertiaryボタン](/products/components/button/#h3-3)を使ってください。
+
+## TextLinkを使用したコンポーネント
+
+開発で頻繁に利用する実装をコンポーネント化しています。
+
+<PageIndex basePath="/products/components/text-link/" heading="h3" />
 
 ## レイアウト
 
