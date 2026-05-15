@@ -1,11 +1,15 @@
 ---
 name: page-heading
-description: "ページ全体の見出しを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の PageHeading コンポーネントの使い方ガイド。"
+description: "ページ全体の見出しを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。画面タイトル用の見出しコンポーネントです。`screenTitle`タイプと`h1`要素が自動的に設定されます。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
+
+画面タイトル用の見出しコンポーネントです。`screenTitle`タイプと`h1`要素が自動的に設定されます。
+
+画面タイトルとして使用する見出しコンポーネントです。 [Heading](/products/components/heading/)の派生コンポーネントとして、`screenTitle`タイプと`h1`要素が自動的に設定されたものです。
 
 ## import
 

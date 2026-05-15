@@ -9,7 +9,7 @@ metadata:
 
 直後に続くコンテンツの見出しに使うコンポーネントです。
 
-Heading および PageHeadingコンポーネントは、直後に続くコンテンツの見出しに使います。
+Headingおよび[PageHeading](/products/components/heading/page-heading/)コンポーネントは、直後に続くコンテンツの見出しに使うコンポーネントです。
 
 ## import
 

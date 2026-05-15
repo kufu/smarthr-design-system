@@ -1,11 +1,15 @@
 ---
 name: search-input
-description: "検索キーワードを入力させるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の SearchInput コンポーネントの使い方ガイド。"
+description: "検索キーワードを入力させるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。検索欄のためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
+
+検索欄のためのコンポーネントです。
+
+検索欄のためのコンポーネントです。`prefix`は検索アイコン「<FaMagnifyingGlassIcon alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン" />」に固定されています。 [よくあるテーブルのオブジェクトの検索](/products/design-patterns/smarthr-table/#h4-4)などに使用します。
 
 ## import
 

@@ -1,11 +1,15 @@
 ---
 name: currency-input
-description: "金額・通貨を入力させるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の CurrencyInput コンポーネントの使い方ガイド。"
+description: "金額・通貨を入力させるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。金額を入力するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
+
+金額を入力するためのコンポーネントです。
+
+金額を入力するためのコンポーネントです。入力値が整数であった場合、入力欄からフォーカスを外したときに3桁ごとにカンマが入った値で表示されます。
 
 ## import
 
