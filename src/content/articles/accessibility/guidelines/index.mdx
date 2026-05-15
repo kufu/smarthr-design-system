@@ -6,16 +6,16 @@ order: 3
 import { Chip } from 'smarthr-ui'
 
 
-すべての人が利用できる、アクセシブルなウェブアプリケーションを開発するための設計と実装のガイドラインです。品質基準で定めた標準品質を達成するために対応すべき項目を網羅しています。
+すべての人が利用できる、アクセシブルなウェブアプリケーションを開発するための設計と実装のガイドラインです。[品質基準](../standards-and-process/)で定めた標準品質を達成するために対応すべき項目を網羅しています。
 
 [アクセシビリティ方針](https://accessibility.smarthr.co.jp/development/)で目標とする範囲を網羅するため、[WCAG2.2](https://waic.jp/translations/WCAG22/)と[テクニック集](https://waic.jp/translations/WCAG22/Techniques/)を参考に作成しています。
 
 ## 1. 画像
 
 写真やアイコン、図などの画像を使用する場合は、画像を閲覧しない場合に対する情報提供について検討します。
-画像に[代替テキスト](./insight/alternative-text/)を指定すると、音声読み上げ利用時や、何かの理由でページが画像を読み込めない場合にも、代替テキストを通して情報を提示できます。
+画像に[代替テキスト](../insight/alternative-text/)を指定すると、音声読み上げ利用時や、何かの理由でページが画像を読み込めない場合にも、代替テキストを通して情報を提示できます。
 
-* 画像がユーザーに何かを知らせたり、伝えたり、説明する役割を持つ場合は、[代替テキスト](./insight/alternative-text/)を設定して、画像を見ない状況にも同等の情報を提供します。
+* 画像がユーザーに何かを知らせたり、伝えたり、説明する役割を持つ場合は、代替テキストを設定して、画像を見ない状況にも同等の情報を提供します。
 * 画像が見た目上の単なる飾りである場合は、無視できるよう実装します。
 
 ### デザイン時
@@ -36,8 +36,8 @@ import { Chip } from 'smarthr-ui'
 
 | チェック内容 | カテゴリ |
 | :---- | :---- |
-| 1-1. [画像に代替テキストが付与されている](./guidelines/alternative-text/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
-| 1-2. [装飾目的の画像が無視できるようになっている](./guidelines/decorative-image/) | <Chip>実装</Chip> |
+| 1-1. [画像に代替テキストが付与されている](./alternative-text/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 1-2. [装飾目的の画像が無視できるようになっている](./decorative-image/) | <Chip>実装</Chip> |
 
 ## 2. アニメーションやサウンドを含むコンテンツ
 
@@ -85,11 +85,11 @@ import { Chip } from 'smarthr-ui'
 
 | チェック内容 | カテゴリ |
 | :---- | :---- |
-| 3-1. [表が`<table>`でマークアップされている](./guidelines/markup-table/) | <Chip>実装</Chip> |
-| 3-2. [見出しが `<h1>` ~ `<h6>`でマークアップされている](./guidelines/markup-heading/) | <Chip>実装</Chip> |
-| 3-3. [リストが `<ul>`、`<ol>`、`<dl>`でマークアップされている](./guidelines/markup-list/) | <Chip>実装</Chip> |
-| 3-4. [空白文字を用いてレイアウトをしていない](./guidelines/markup-using-white-space/) | <Chip>実装</Chip> |
-| 3-5. [同じ `id` を持つ要素がページ内に複数存在しない](./guidelines/markup-unique-id/) | <Chip>実装</Chip> |
+| 3-1. [表が`<table>`でマークアップされている](./markup-table/) | <Chip>実装</Chip> |
+| 3-2. [見出しが `<h1>` ~ `<h6>`でマークアップされている](./markup-heading/) | <Chip>実装</Chip> |
+| 3-3. [リストが `<ul>`、`<ol>`、`<dl>`でマークアップされている](./markup-list/) | <Chip>実装</Chip> |
+| 3-4. [空白文字を用いてレイアウトをしていない](./markup-using-white-space/) | <Chip>実装</Chip> |
+| 3-5. [同じ `id` を持つ要素がページ内に複数存在しない](./markup-unique-id/) | <Chip>実装</Chip> |
 
 ## 4. 認識可能
 
@@ -109,9 +109,9 @@ import { Chip } from 'smarthr-ui'
 
 | チェック内容 | カテゴリ |
 | :---- | :---- |
-| 4-1. [画面を200%拡大、または文字サイズを2倍に変更しても情報が取得できる](./guidelines/browser-zoom/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
-| 4-2. [背景色と文字色のコントラスト比が `4.5:1` （大きな文字:29px以上は `3:1`）以上ある](./guidelines/contrast/) | <Chip>UIデザイン</Chip> |
-| 4-3. [色や、形、音、レイアウト情報のみでコンテンツを説明していない](./guidelines/sensory-characteristics/) | <Chip>UIデザイン</Chip> |
+| 4-1. [画面を200%拡大、または文字サイズを2倍に変更しても情報が取得できる](./browser-zoom/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 4-2. [背景色と文字色のコントラスト比が `4.5:1` （大きな文字:29px以上は `3:1`）以上ある](./contrast/) | <Chip>UIデザイン</Chip> |
+| 4-3. [色や、形、音、レイアウト情報のみでコンテンツを説明していない](./sensory-characteristics/) | <Chip>UIデザイン</Chip> |
 
 ## 5. 操作可能
 
@@ -132,9 +132,9 @@ import { Chip } from 'smarthr-ui'
 
 | チェック内容 | カテゴリ |
 | :---- | :---- |
-| 5-1. [キーボードで操作可能](./guidelines/keyboard/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
-| 5-2. [キーボード操作の順序が見た目の順序とあっている](./guidelines/focus-order/) | <Chip>実装</Chip> |
-| 5-3. [コンテンツに制限時間がかけられていない（必須の場合は除く）](./guidelines/timing-adjustable/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 5-1. [キーボードで操作可能](./keyboard/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 5-2. [キーボード操作の順序が見た目の順序とあっている](./focus-order/) | <Chip>実装</Chip> |
+| 5-3. [コンテンツに制限時間がかけられていない（必須の場合は除く）](./timing-adjustable/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
 
 ## 6. ナビゲーション
 
@@ -155,10 +155,10 @@ import { Chip } from 'smarthr-ui'
 
 | チェック内容 | カテゴリ |
 | :---- | :---- |
-| 6-1. [ページの言語が `<html>` に記載されている](./guidelines/lang/) | <Chip>実装</Chip> |
-| 6-2. [ページのタイトルがページの内容を表している](./guidelines/title/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
-| 6-3. [ページの主要コンテンツに見出しが付与されている](./guidelines/heading/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
-| 6-4. [リンクのテキストからリンク先が判別できる](./guidelines/link-text/) | <Chip>UIデザイン</Chip> |
+| 6-1. [ページの言語が `<html>` に記載されている](./lang/) | <Chip>実装</Chip> |
+| 6-2. [ページのタイトルがページの内容を表している](./title/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 6-3. [ページの主要コンテンツに見出しが付与されている](./heading/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 6-4. [リンクのテキストからリンク先が判別できる](./link-text/) | <Chip>UIデザイン</Chip> |
 
 ## 7. フォーム
 
@@ -177,7 +177,7 @@ import { Chip } from 'smarthr-ui'
 
 | チェック内容 | カテゴリ |
 | :---- | :---- |
-| 7-1. [入力する内容や、操作がラベルとして表示されている](./guidelines/label/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
-| 7-2. [フォームパーツにアクセシブルネームがある](./guidelines/accessible-name/) | <Chip>実装</Chip> |
-| 7-3. [エラーの発生とエラーの内容が特定できる](./guidelines/error/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
-| 7-4. [入力欄や選択肢を選択、または入力したときに大きな変化を起こさない](./guidelines/consistent-behavior/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 7-1. [入力する内容や、操作がラベルとして表示されている](./label/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 7-2. [フォームパーツにアクセシブルネームがある](./accessible-name/) | <Chip>実装</Chip> |
+| 7-3. [エラーの発生とエラーの内容が特定できる](./error/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
+| 7-4. [入力欄や選択肢を選択、または入力したときに大きな変化を起こさない](./consistent-behavior/) | <Chip>UIデザイン</Chip><Chip>実装</Chip> |
