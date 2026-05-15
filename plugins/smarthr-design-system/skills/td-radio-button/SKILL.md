@@ -1,37 +1,41 @@
 ---
-name: table
-description: "表形式でデータを一覧表示するとき、行・列を持つデータを見せるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。表形式でデータを表示するためのコンポーネントです。"
+name: td-radio-button
+description: "smarthr-ui の TdRadioButton を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ラジオボタンを内包するTdです。aria-labelledby属性が必須です。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2+layer3
 ---
 
-表形式でデータを表示するためのコンポーネントです。
+ラジオボタンを内包するTdです。aria-labelledby属性が必須です。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
 
 ## import
 
 ```ts
-import { Table } from 'smarthr-ui'
+import { TdRadioButton } from 'smarthr-ui'
 ```
 
 ## Props
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| fixedHead | boolean | - | - | - |
-| borderType | "both" \| "horizontal" \| "vertical" \| "all" \| "outer" | - | - | - |
-| borderStyle | "solid" \| "dotted" \| "dashed" | - | - | - |
-| layout | "fixed" \| "auto" | - | - | - |
-| rounded | boolean \| "all" \| "left" \| "right" \| "bottom" \| "top" | - | - | - |
-| reel | boolean | true | - | - |
+| aria-labelledby | string | - | - | RadioButtonのaccessible nameとして設定するテキストを参照するためのid属性値。同じ親Tr配下のTdかTh、もしくはその子孫要素のidを指定する。複数要素のテキストを指定する場合は空白区切りでidをつなぐ Identifies the element (or elements) that labels the current element. @see aria-describedby. |
+| vAlign | "baseline" \| "middle" | - | - | - |
 
 ## 実装ルール
 
 ### a11y-prohibit-checkbox-or-radio-in-table-cell
 テーブルセル（Th, Td）内に直接 Checkbox, RadioButton を配置することを禁止するルールです。<br /> SmartHR UI には、デフォルトでアクセシブルネームを設定する TdCheckbox, ThCheckbox, TdRadioButton といったより適切なコンポーネントが用意されています。
+
+✅ OK:
+
+```jsx
+<TdCheckbox aria-labelledby="id1" />
+<TdRadioButton aria-labelledby="id2" />
+<ThCheckbox />
+```
 
 詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 

@@ -1,39 +1,32 @@
 ---
-name: table
-description: "表形式でデータを一覧表示するとき、行・列を持つデータを見せるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。表形式でデータを表示するためのコンポーネントです。"
+name: empty-table-body
+description: "smarthr-ui の EmptyTableBody を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。テーブルが空の場合の表示用tbodyです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1+layer2+layer3
+  generated-from: layer1+layer3
 ---
 
-表形式でデータを表示するためのコンポーネントです。
+テーブルが空の場合の表示用tbodyです。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
 
 ## import
 
 ```ts
-import { Table } from 'smarthr-ui'
+import { EmptyTableBody } from 'smarthr-ui'
 ```
 
 ## Props
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| fixedHead | boolean | - | - | - |
-| borderType | "both" \| "horizontal" \| "vertical" \| "all" \| "outer" | - | - | - |
-| borderStyle | "solid" \| "dotted" \| "dashed" | - | - | - |
-| layout | "fixed" \| "auto" | - | - | - |
-| rounded | boolean \| "all" \| "left" \| "right" \| "bottom" \| "top" | - | - | - |
-| reel | boolean | true | - | - |
+| padding | any | - | - | 境界とコンテンツの間の余白 |
+| ref | Ref<HTMLTableSectionElement> | - | - | - |
 
 ## 実装ルール
 
-### a11y-prohibit-checkbox-or-radio-in-table-cell
-テーブルセル（Th, Td）内に直接 Checkbox, RadioButton を配置することを禁止するルールです。<br /> SmartHR UI には、デフォルトでアクセシブルネームを設定する TdCheckbox, ThCheckbox, TdRadioButton といったより適切なコンポーネントが用意されています。
-
-詳細は eslint-plugin-smarthr の各ルール README を参照してください。
+EmptyTableBody に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
 
 ## 使い方チェックリスト
 

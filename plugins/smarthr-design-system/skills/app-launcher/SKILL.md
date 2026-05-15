@@ -1,11 +1,17 @@
 ---
 name: app-launcher
-description: "アプリケーション切替メニューを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の AppLauncher コンポーネントの使い方ガイド。"
+description: "【非推奨】アプリケーション切替メニューを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。Header内に配置されるSmartHRの複数のアプリケーション間を遷移するためのランチャーコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
+
+> ⚠️ **非推奨**: AppLauncherは古いコンポーネントです。代わりにAppHeaderのアプリランチャー（features props）を使用してください。
+
+Header内に配置されるSmartHRの複数のアプリケーション間を遷移するためのランチャーコンポーネントです。
+
+SmartHRの複数のアプリケーション間を移動するためのランチャーコンポーネントです。
 
 ## import
 

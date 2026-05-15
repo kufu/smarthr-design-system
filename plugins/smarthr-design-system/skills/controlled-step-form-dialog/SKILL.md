@@ -1,11 +1,15 @@
 ---
 name: controlled-step-form-dialog
-description: "StepFormDialog の開閉状態を外部 state で制御するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の StepFormDialogItem / ControlledStepFormDialog コンポーネントの使い方ガイド。"
+description: "StepFormDialog の開閉状態を外部 state で制御するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。外部stateで開閉を制御するStepFormDialogです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
+
+外部stateで開閉を制御するStepFormDialogです。
+
+モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
 ## import
 

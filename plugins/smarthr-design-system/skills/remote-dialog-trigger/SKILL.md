@@ -1,11 +1,15 @@
 ---
 name: remote-dialog-trigger
-description: "別コンポーネント階層からダイアログを開くとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。smarthr-ui の RemoteDialogTrigger コンポーネントの使い方ガイド。"
+description: "別コンポーネント階層からダイアログを開くとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。ボタンから少し離れた場所に置いたダイアログを開くためのトリガーコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
+
+ボタンから少し離れた場所に置いたダイアログを開くためのトリガーコンポーネントです。
+
+ボタンとダイアログを離れた場所に書きたい場合に使用するトリガーコンポーネントです。
 
 ## import
 
