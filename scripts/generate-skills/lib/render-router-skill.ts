@@ -64,6 +64,12 @@ export function renderRouterSkill(
   parts.push('---');
   parts.push('name: component-selector');
   parts.push(`description: "${escapedDescription}"`);
+  // §8: paths は router スキルのみに付与する方針。
+  // 個別スキル (render-skill.ts) には付けない。
+  // 拡張子は tsx / jsx に限定（.ts / .mjs / .cjs / .mdx は React コンポーネント実装ファイルでないため除外）。
+  parts.push('paths:');
+  parts.push('  - "**/*.tsx"');
+  parts.push('  - "**/*.jsx"');
   parts.push('metadata:');
   parts.push('  version: "1.0.0"');
   parts.push('  source: smarthr-design-system');
