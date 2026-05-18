@@ -23,7 +23,7 @@ const ORPHAN_IGNORE = new Set([
   'icon', // design-system 独自の親カテゴリページ
   'layout', // 同上（Stack/Cluster/Center 等の親）
   'date-formatter', // smarthr-ui の intl 配下、src/components/ 外
-  'combo-box', // 親カテゴリページ（SingleCombobox / MultiCombobox が配下に独立）
+  'combobox', // 親カテゴリページ（SingleCombobox / MultiCombobox が配下に独立）
 ]);
 
 /**
