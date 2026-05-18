@@ -1,13 +1,13 @@
 ---
 name: td
-description: "smarthr-ui の Td を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。テーブルのデータセルです。"
+description: "smarthr-ui の Td を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。td要素の代替としてテーブルのデータセルを表すコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2+layer3
 ---
 
-テーブルのデータセルです。
+td要素の代替としてテーブルのデータセルを表すコンポーネントです。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
 

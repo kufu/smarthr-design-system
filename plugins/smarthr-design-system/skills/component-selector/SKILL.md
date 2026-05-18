@@ -27,7 +27,7 @@ metadata:
 | BaseColumn | 矩形で視覚的に要素をグルーピングするコンポーネントです。 | `smarthr-design-system:base-column` |
 | ⚠️ BottomFixedArea（非推奨） | 【非推奨】FloatAreaと役割が重複しているためBottomFixedAreaは非推奨です。より柔軟に使えるFloatAreaを使ってください。 | `smarthr-design-system:bottom-fixed-area` |
 | Browser | 階層構造を持つデータを選択するためのコンポーネントです。 | `smarthr-design-system:browser` |
-| BulkActionRow | テーブル内の一括操作行です。 | `smarthr-design-system:bulk-action-row` |
+| BulkActionRow | テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。 | `smarthr-design-system:bulk-action-row` |
 | Button | ボタンを置くとき、クリックで操作を実行させるとき、リンクをボタン風に表示するとき | `smarthr-design-system:button` |
 | Calendar | カレンダーを表示し日付を選択するためのコンポーネントです。基本的にはDatePickerと合わせて使用されるため、単独で使用することはありません。 | `smarthr-design-system:calendar` |
 | Center | Every LayoutのCenterを参考にしたコンポーネントです。要素を天地左右中央に配置したいときに使います。 | `smarthr-design-system:center` |
@@ -48,7 +48,7 @@ metadata:
 | Dropdown | ボタンを押すとパネルが開く機能の抽象コンポーネントです。パネルを開くための引き金となるDropdownTriggerとパネル自体を指すDropdownContentから構成されます。 | `smarthr-design-system:dropdown` |
 | DropdownMenuButton | 複数の操作をまとめて提供するためのコンポーネントで、パネル内には操作がリスト形式で表示されます。 | `smarthr-design-system:dropdown-menu-button` |
 | DropZone | ファイルを選択するためのコンポーネントです。ドラッグアンドドロップによるファイル選択をするためにドロップ領域を広く持っています。 | `smarthr-design-system:drop-zone` |
-| EmptyTableBody | テーブルが空の場合の表示用tbodyです。 | `smarthr-design-system:empty-table-body` |
+| EmptyTableBody | テーブルにデータがない場合に空状態を表示するtbodyコンポーネントです。空状態のメッセージを提示するときに使います。 | `smarthr-design-system:empty-table-body` |
 | ErrorScreen | エラーを全画面で表示をするためのコンポーネントです。 | `smarthr-design-system:error-screen` |
 | Fieldset | フォームにおける複数の入力要素をグルーピングするためのコンポーネントです。 | `smarthr-design-system:fieldset` |
 | FileViewer | 画像やPDFファイルを表示・拡大縮小・回転できるファイルビューアーです。 | `smarthr-design-system:file-viewer` |
@@ -101,14 +101,14 @@ metadata:
 | Switch | オン・オフを切り替えるコンポーネントです。状態の切り替えは即時で反映されます。 | `smarthr-design-system:switch` |
 | TabBar | ユーザーの関心が近いものを並列化し、ビューを切り替えるためのコンポーネントです。 | `smarthr-design-system:tab-bar` |
 | Table | 表形式でデータを一覧表示するとき、行・列を持つデータを見せるとき | `smarthr-design-system:table` |
-| Td | テーブルのデータセルです。 | `smarthr-design-system:td` |
-| TdCheckbox | チェックボックスを内包するTdです。aria-labelledby属性が必須です。 | `smarthr-design-system:td-checkbox` |
-| TdRadioButton | ラジオボタンを内包するTdです。aria-labelledby属性が必須です。 | `smarthr-design-system:td-radio-button` |
+| Td | td要素の代替としてテーブルのデータセルを表すコンポーネントです。 | `smarthr-design-system:td` |
+| TdCheckbox | Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。 | `smarthr-design-system:td-checkbox` |
+| TdRadioButton | RadioButtonを内包するデータセル（Td）の派生コンポーネントです。テーブル各行から1行だけ選ばせるときに使います。 | `smarthr-design-system:td-radio-button` |
 | Text | テキストを表示するためのコンポーネントです。タイポグラフィのデザイントークンを使用しています。 | `smarthr-design-system:text` |
 | Textarea | テキストなどの情報を複数行入力するためのコンポーネントです。`textarea`の代わりとして使用します。入力文字数を数える機能や入力によって自動で領域が広がる機能を備えています。 | `smarthr-design-system:textarea` |
 | TextLink | テキストにリンクを付けるとき、アンカー要素をデザインシステム準拠で使うとき | `smarthr-design-system:text-link` |
-| Th | テーブルの列見出しセルです。 | `smarthr-design-system:th` |
-| ThCheckbox | チェックボックスを内包するThです。 | `smarthr-design-system:th-checkbox` |
+| Th | th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。 | `smarthr-design-system:th` |
+| ThCheckbox | Checkboxを内包する列見出しセル（Th）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル全行の一括選択UIを列見出しに配置するときに使います。 | `smarthr-design-system:th-checkbox` |
 | Timeline | 情報を時間の流れに沿って、見やすく整理・表示するコンポーネントです。 | `smarthr-design-system:timeline` |
 | ⚠️ TimePicker（非推奨） | 【非推奨】時刻を選択させるとき（非推奨・将来削除予定） | `smarthr-design-system:time-picker` |
 | Tooltip | UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使うコンポーネントです。 | `smarthr-design-system:tooltip` |

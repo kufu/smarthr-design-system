@@ -3,21 +3,21 @@ title: 'Table'
 description: '表形式でデータを表示するためのコンポーネントです。'
 inheritedBy:
   - name: Th
-    description: 'テーブルの列見出しセルです。'
+    description: 'th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。'
   - name: Td
-    description: 'テーブルのデータセルです。'
+    description: 'td要素の代替としてテーブルのデータセルを表すコンポーネントです。'
   - name: ThCheckbox
-    description: 'チェックボックスを内包するThです。'
+    description: 'Checkboxを内包する列見出しセル（Th）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル全行の一括選択UIを列見出しに配置するときに使います。'
   - name: TdCheckbox
-    description: 'チェックボックスを内包するTdです。aria-labelledby属性が必須です。'
+    description: 'Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。'
   - name: TdRadioButton
-    description: 'ラジオボタンを内包するTdです。aria-labelledby属性が必須です。'
+    description: 'RadioButtonを内包するデータセル（Td）の派生コンポーネントです。テーブル各行から1行だけ選ばせるときに使います。'
   - name: ThSortButton
-    description: 'ソート機能付きのThです。'
+    description: 'ソートボタンを内包する列見出しセル（Th）の派生コンポーネントです。列ヘッダーからデータセルの並べ替えを実行するときに使います。'
   - name: BulkActionRow
-    description: 'テーブル内の一括操作行です。'
+    description: 'テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。'
   - name: EmptyTableBody
-    description: 'テーブルが空の場合の表示用tbodyです。'
+    description: 'テーブルにデータがない場合に空状態を表示するtbodyコンポーネントです。空状態のメッセージを提示するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'

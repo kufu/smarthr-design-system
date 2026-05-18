@@ -1,13 +1,13 @@
 ---
 name: controlled-form-dialog
-description: "FormDialog の開閉状態を外部 state で制御するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。外部stateで開閉を制御するFormDialogです。"
+description: "FormDialog の開閉状態を外部 state で制御するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。FormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-外部stateで開閉を制御するFormDialogです。
+FormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
 
 ダイアログコンテンツにフォームが含まれている場合に使用する[ActionDialog](/products/components/dialog/action-dialog/)の派生コンポーネントです。 ユーザーに入力や選択などの操作を求め、入力内容をシステムに送信するために使います。
 

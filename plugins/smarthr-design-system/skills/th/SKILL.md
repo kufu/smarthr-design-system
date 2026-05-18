@@ -1,13 +1,13 @@
 ---
 name: th
-description: "smarthr-ui の Th を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。テーブルの列見出しセルです。"
+description: "smarthr-ui の Th を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2+layer3
 ---
 
-テーブルの列見出しセルです。
+th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
 
