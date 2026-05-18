@@ -8,8 +8,6 @@ export type RouterEntry = {
   designSystemDir: string | undefined;
 };
 
-const DESCRIPTION_MAX = 1500; // Claude Code は 1536 文字でカット
-
 /**
  * skill-triggers を優先しつつ、未登録なら index.mdx description にフォールバックする。
  */
@@ -23,39 +21,29 @@ function resolveEntryDescription(entry: RouterEntry, skillTriggers: Record<strin
 }
 
 /**
- * frontmatter の description を組み立てる。skill-triggers を意図ベースのトリガー語句として詰め込む。
- * Claude Code の 1536 文字制限に収まる範囲で。
+ * router スキル description の代表シナリオ (M4-S8 結論: パターンC)。
+ * 34件列挙はトークン圧迫のみで発火率に寄与しなかったため、典型 5 件のみを残す。
+ */
+const REPRESENTATIVE_SCENARIOS = ['Button', 'Input', 'Table', 'ActionDialog', 'TextLink'] as const;
+
+/**
+ * frontmatter の description を組み立てる (パターンC: head + 代表シナリオ5件、約220字)。
  */
 function buildFrontmatterDescription(
-  entries: RouterEntry[],
+  _entries: RouterEntry[],
   skillTriggers: Record<string, string>,
 ): string {
   const head =
     'smarthr-ui のどのコンポーネントを使うべきかの選定ガイド。フォームを作る、テーブルを表示する、ボタンを置く、ダイアログを開く、通知を出すなど、何らかの UI を実装しようとしているときに使う。具体的なコンポーネントの SKILL.md を呼ぶ前にまず読む。';
 
   const scenarios: string[] = [];
-  for (const entry of entries) {
-    // 非推奨コンポーネントは frontmatter のトリガーから除外（AI に推奨させない）
-    if (entry.indexInfo?.deprecated) continue;
-    for (const name of entry.group.displayNames) {
-      const trigger = skillTriggers[name];
-      if (trigger) scenarios.push(`${name}（${trigger}）`);
-    }
+  for (const name of REPRESENTATIVE_SCENARIOS) {
+    const trigger = skillTriggers[name];
+    if (trigger) scenarios.push(`${name}（${trigger}）`);
   }
 
   if (scenarios.length === 0) return head;
-
-  // head + " 主なシナリオ: " + scenarios を最大長以内に
-  const prefix = `${head} 主なシナリオ: `;
-  let remaining = DESCRIPTION_MAX - prefix.length;
-  const chosen: string[] = [];
-  for (const s of scenarios) {
-    const cost = (chosen.length === 0 ? 0 : 2) + s.length; // 区切り "、"
-    if (cost > remaining) break;
-    chosen.push(s);
-    remaining -= cost;
-  }
-  return prefix + chosen.join('、') + '。';
+  return `${head} 主なシナリオ: ${scenarios.join('、')}。`;
 }
 
 /**
