@@ -1,0 +1,73 @@
+---
+title: 'TimestampFormatter'
+description: '日付と時刻をユーザーの言語や地域設定に適した形式で表示するための機能です。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+
+日付と時刻を[ユーザーの言語や地域設定に適した形式](/products/contents/idiomatic-usage/count/#h4-0)で表示するための機能です。
+
+`useIntl`フックの`formatTimestamp`関数を使用して、日付と時刻を組み合わせてフォーマットできます。
+
+```tsx editable noIframe withStyled
+const TimestampFormatterExample = () => {
+  const { formatTimestamp } = useIntl()
+  const date = new Date(2026, 4, 18, 14, 30, 0)
+  
+  return (
+    <time dateTime={date.toISOString()}>
+      {formatTimestamp({ date })}
+    </time>
+  )
+}
+
+render(<TimestampFormatterExample />)
+```
+
+## 使用上の注意
+
+### DateFormatterやTimeFormatterとの使い分け
+
+日付と時刻を扱う機能は用途に応じて使い分けます。
+
+- **TimestampFormatter**： 日付と時刻を両方表示したい場合
+- **[DateFormatter](/products/components/date-formatter/)**： 日付のみを表示したい場合
+- **[TimeFormatter](/products/components/time-formatter/)**： 時刻のみを表示したい場合
+
+日付と時刻を分けて表示したい場合は、DateFormatterとTimeFormatterを個別に使用することを検討してください。
+
+### 表示する時刻のパーツをカスタマイズする
+
+`timeParts`オプションを使って、表示する時刻のパーツを指定できます。デフォルトは`['hour', 'minute']`（時と分）です。
+
+```tsx editable noIframe withStyled
+const TimestampPartsExample = () => {
+  const { formatTimestamp } = useIntl()
+  const date = new Date(2026, 4, 18, 14, 30, 45)
+  
+  return (
+    <Stack gap={0.5}>
+      <div><strong>デフォルト（時：分）：</strong> 
+        <time dateTime={date.toISOString()}>
+          {formatTimestamp({ date })}
+        </time>
+      </div>
+      <div><strong>秒を含む（時：分：秒）：</strong> 
+        <time dateTime={date.toISOString()}>
+          {formatTimestamp({ date, timeParts: ['hour', 'minute', 'second'] })}
+        </time>
+      </div>
+      <div><strong>時のみ：</strong> 
+        <time dateTime={date.toISOString()}>
+          {formatTimestamp({ date, timeParts: ['hour'] })}
+        </time>
+      </div>
+    </Stack>
+  )
+}
+
+render(<TimestampPartsExample />)
+```
+
+## Props
+
+<ComponentPropsTable name="TimestampFormatter" />
