@@ -12,7 +12,10 @@ import { Chip, Cluster } from 'smarthr-ui'
 
 ## 概要
 この基準では、`hover`によって表示されるコンテンツ（[Tooltip](https://smarthr.design/products/components/tooltip/)など）が、ポインタを追加コンテンツ上に移動しても表示が継続されることを確認してください。
-なお、ページのタスク実行に必須の情報や、ページの横幅いっぱいに広がる程度の長文のテキストの場合は、Tooltipを避け[Dialog](https://smarthr.design/products/components/dialog/)などを使用することを検討してください。
+以下の場合は、ToolTipではなく、[Dialog](https://smarthr.design/products/components/dialog/)などを使用することを検討してください。
+
+- 操作の実行に必要度の高い説明
+- ToolTip内に表示する文字数が多く、ToolTipの幅が320px以上になるとき
 
 ## 背景
 Tooltipがトリガー要素からポインタを外した瞬間に閉じる実装の場合、拡大鏡を使用しているユーザーなどは内容を確認しづらくなることがあります。
