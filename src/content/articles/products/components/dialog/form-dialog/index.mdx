@@ -1,6 +1,6 @@
 ---
 title: 'FormDialog'
-description: 'フォームを含むダイアログコンポーネントです。ユーザーは入力内容をシステムに送信できます。'
+description: 'フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるためのActionDialog派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、Enterキーでの送信が必要なときに使います。'
 inheritedBy:
   - name: ControlledFormDialog
     description: '外部stateで開閉を制御するFormDialogです。'
@@ -8,8 +8,7 @@ inheritedBy:
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
-ダイアログコンテンツにフォームが含まれている場合に使用する[ActionDialog](/products/components/dialog/action-dialog/)の派生コンポーネントです。  
-ユーザーに入力や選択などの操作を求め、入力内容をシステムに送信するために使います。
+フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるための[ActionDialog](/products/components/dialog/action-dialog/)派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、`Enter`キーでの送信が必要なときに使います。
 
 各種基準は[ActionDialog](/products/components/dialog/action-dialog/)と共通です。
 
