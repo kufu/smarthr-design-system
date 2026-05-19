@@ -1,0 +1,32 @@
+---
+title: 'DateFormatter'
+description: 'ISO 8601形式の日付データを任意の形式にフォーマットして表示するコンポーネントです。日付をユーザーの言語や地域設定に適した形式で表示するときに使います。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+ISO 8601形式の日付データを任意の形式にフォーマットして表示するコンポーネントです。日付を[ユーザーの言語や地域設定に適した形式](/products/contents/idiomatic-usage/count/#h4-0)で表示するときに使います。
+
+<ComponentStory name="DateFormatter" />
+
+## 使用上の注意
+
+### 日付をフォーマットする機能だけ必要な場合
+
+DateFormatterは日付を`time`要素としてレンダリングします。  
+フォーマットされた日付の文字列だけが必要な場合は、`useIntl`の`formatDate`を使用してください。
+
+```tsx editable noIframe withStyled
+const FormatDateExample = () => {
+  const { formatDate } = useIntl()
+  return (
+    <span>今日は{formatDate({ date: new Date(2025, 7 - 1, 10) })}ではありません。</span>
+  )
+}
+
+render(<FormatDateExample />)
+```
+
+## Props
+
+<ComponentPropsTable name="DateFormatter" />
