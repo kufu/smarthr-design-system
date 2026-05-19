@@ -9,14 +9,15 @@ export type RouterEntry = {
 };
 
 /**
- * skill-triggers を優先しつつ、未登録なら index.mdx description にフォールバックする。
+ * index.mdx の description を優先する (Phase 3 で mdx description に統一済)。
+ * mdx が無い場合のみ skill-triggers にフォールバックする。
  */
 function resolveEntryDescription(entry: RouterEntry, skillTriggers: Record<string, string>): string {
+  const fromMdx = entry.indexInfo?.description?.replace(/\r?\n/g, ' ').trim();
+  if (fromMdx) return fromMdx;
   for (const name of entry.group.displayNames) {
     if (skillTriggers[name]) return skillTriggers[name];
   }
-  const fromMdx = entry.indexInfo?.description?.replace(/\r?\n/g, ' ').trim();
-  if (fromMdx) return fromMdx;
   return `${entry.group.dirName} コンポーネント`;
 }
 
@@ -29,10 +30,7 @@ const REPRESENTATIVE_SCENARIOS = ['Button', 'Input', 'Table', 'ActionDialog', 'T
 /**
  * frontmatter の description を組み立てる (パターンC: head + 代表シナリオ5件、約220字)。
  */
-function buildFrontmatterDescription(
-  _entries: RouterEntry[],
-  skillTriggers: Record<string, string>,
-): string {
+function buildFrontmatterDescription(_entries: RouterEntry[], skillTriggers: Record<string, string>): string {
   const head =
     'smarthr-ui のどのコンポーネントを使うべきかの選定ガイド。フォームを作る、テーブルを表示する、ボタンを置く、ダイアログを開く、通知を出すなど、何らかの UI を実装しようとしているときに使う。具体的なコンポーネントの SKILL.md を呼ぶ前にまず読む。';
 
@@ -51,10 +49,7 @@ function buildFrontmatterDescription(
  * 各コンポーネントの description（index.mdx の frontmatter）を集約して、
  * AI が「どのコンポーネントの SKILL.md を呼ぶべきか」を判断する一覧を生成する。
  */
-export function renderRouterSkill(
-  entries: RouterEntry[],
-  skillTriggers: Record<string, string> = {},
-): string {
+export function renderRouterSkill(entries: RouterEntry[], skillTriggers: Record<string, string> = {}): string {
   const sorted = [...entries].sort((a, b) => a.group.dirName.localeCompare(b.group.dirName));
   const description = buildFrontmatterDescription(sorted, skillTriggers);
   // frontmatter 内の " はエスケープ
@@ -92,10 +87,7 @@ export function renderRouterSkill(
     const skillName = pascalToKebab(name);
     const isDeprecated = entry.indexInfo?.deprecated ?? false;
     const displayName = isDeprecated ? `⚠️ ${name}（非推奨）` : name;
-    const rawDesc = resolveEntryDescription(entry, skillTriggers)
-      .replace(/\r?\n/g, ' ')
-      .replace(/\|/g, '\\|')
-      .trim();
+    const rawDesc = resolveEntryDescription(entry, skillTriggers).replace(/\r?\n/g, ' ').replace(/\|/g, '\\|').trim();
     const desc = isDeprecated ? `【非推奨】${rawDesc}` : rawDesc;
     parts.push(`| ${displayName} | ${desc} | \`smarthr-design-system:${skillName}\` |`);
   }
