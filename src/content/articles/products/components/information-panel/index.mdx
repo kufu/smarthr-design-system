@@ -1,18 +1,19 @@
 ---
 title: 'InformationPanel'
-description: 'ユーザーに伝えたい情報を他の要素より視覚的に目立たせるためのコンポーネントです。'
+description: 'ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。'
 ---
 import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
-import { Cluster, Text, ResponseMessage, BaseColumn } from 'smarthr-ui'
+import { Text, ResponseMessage, BaseColumn } from 'smarthr-ui'
 
-import imageDo from './images/information-panel-on-base-do.png'
+import imageDo1 from './images/information-panel-on-base-do1.png'
+import imageDo2 from './images/information-panel-on-base-do2.png'
 import imageDont from './images/information-panel-on-base-dont.png'
 
-ユーザーに伝えたい情報を他の要素より視覚的に目立たせるためのコンポーネントです。伝えたい情報の種類によってアイコンを切り替えて使います。
+ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、[ResponseMessage](/products/components/response-message/)や[NotificationBar](/products/components/notification-bar/)では収まらない量のフィードバック情報などを表示するときに使います。
 
 <ComponentStory name="InformationPanel" />
 
@@ -24,22 +25,28 @@ import imageDont from './images/information-panel-on-base-dont.png'
 
 詳しい使い分けは[フィードバック - 同期的な処理が完了したとき](/products/design-patterns/feedback/#h3-6)を参照してください。
 
-### Baseのなかに直接配置しない
+### 白背景の中に配置しない
 
-InformationPanelの[レイヤー順序](/products/design-tokens/z-index/#h2-1)は`3`です。レイヤー順序が`1`の[Base](/products/components/base/)の中に直接配置しないでください。
+InformationPanelの背景色は白いため、[Base](/products/components/base/)やダイアログコンテンツなど背景が白い要素の中にそのまま配置しないでください。
 
-[削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)など、Baseのなかで見出しと内容をグルーピングしたい場合は、[BaseColumnでメッセージを表示するパターン](/products/components/base/base-column/)を使用してください。
+[BaseColumn](/products/components/base/base-column/)のなかや、背景色を[`COLUMN`や`OVER_BACKGROUND`](/products/design-tokens/color/#h3-3)などの白以外に変更したBaseやダイアログコンテンツのなかであれば配置できます。
 
-<Cluster gap={{ row: 0, column: 1 }}>
-  <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={imageDo} alt="Do" />
-    <Text slot="label">Baseのなかで「BaseColumnのメッセージを表示するパターン」を用いて代替されている</Text>
-  </DoAndDont>
-  <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={imageDont} alt="Dont" />
-    <Text slot="label">Baseのなかに直接InformationPanelが置かれている</Text>
-  </DoAndDont>
-</Cluster>
+InformationPanelでは視覚的に強調されすぎる場合は、[削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)のようにBaseColumnを使った代替パターンも検討してください。
+
+<DoAndDont type="do">
+  <Image slot="img" src={imageDo1} alt="Do" />
+  <Text slot="label">Baseの背景色が`OVER_BACKGROUND`になっている</Text>
+</DoAndDont>
+
+<DoAndDont type="do">
+  <Image slot="img" src={imageDo2} alt="Do" />
+  <Text slot="label">BaseのなかでBaseColumnを使って代替されている</Text>
+</DoAndDont>
+
+<DoAndDont type="dont">
+  <Image slot="img" src={imageDont} alt="Dont" />
+  <Text slot="label">Baseが白背景のままInformationPanelが置かれている</Text>
+</DoAndDont>
 
 ## レイアウト
 

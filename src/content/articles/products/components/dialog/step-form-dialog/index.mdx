@@ -1,6 +1,6 @@
 ---
 title: 'StepFormDialog'
-description: 'ステップを複数に分けたダイアログです。タスクの完了に複数の操作が必要な場合に使います。'
+description: '複数ステップに分けたフォームを内包するダイアログコンポーネントです。ウィザード形式で複数の操作を順に進めるタスクをダイアログで提供するときに使います。'
 inheritedBy:
   - name: ControlledStepFormDialog
     description: 'StepFormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。'
@@ -15,11 +15,9 @@ import imageExpandedStepFormDialog from '../images/expanded_step_form_dialog_mob
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Image } from 'astro:assets'
 
-ステップを複数に分けたダイアログです。タスクの完了に複数の操作が必要な場合に使います。
+複数ステップに分けたフォームを内包するダイアログコンポーネントです。[ウィザード](/products/design-patterns/wizard/)形式で複数の操作を順に進めるタスクをダイアログで提供するときに使います。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
-
-詳しくは[ウィザード](/products/design-patterns/wizard/)を参照してください。
 
 <ComponentStory name="StepFormDialog" />
 
