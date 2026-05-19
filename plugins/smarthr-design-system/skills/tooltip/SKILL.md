@@ -1,13 +1,13 @@
 ---
 name: tooltip
-description: "smarthr-ui の Tooltip を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使うコンポーネントです。"
+description: "smarthr-ui の Tooltip を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-UI上のスペースが限られている場合に、補足テキストを一時的に表示するために使うコンポーネントです。
+補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
 
 WarningIcon, FaArrowDownIcon, FaArrowLeftIcon, FaArrowRightIcon, FaArrowUpIcon, FaCircleInfoIcon, FaCirclePlusIcon, FaFileIcon, FaUserLargeIcon, TextLink } from 'smarthr-ui'
 

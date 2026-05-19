@@ -1,15 +1,15 @@
 ---
 name: base
-description: "smarthr-ui の Base を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。矩形で視覚的に要素をグルーピングするコンポーネントです。"
+description: "smarthr-ui の Base を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-矩形で視覚的に要素をグルーピングするコンポーネントです。
+矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。
 
-[矩形](/products/design-patterns/visual-grouping/#h3-3)で視覚的に要素をグルーピングするコンポーネントです。
+[矩形](/products/design-patterns/visual-grouping/#h3-3)で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「[セクション](/products/design-patterns/visual-grouping/#h3-5)」領域として示すときに使います。
 
 ## import
 

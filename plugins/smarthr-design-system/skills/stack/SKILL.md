@@ -1,15 +1,15 @@
 ---
 name: stack
-description: "smarthr-ui の Stack を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。Every LayoutのStackを参考にしたコンポーネントです。要素を縦に均等に並べたいときに使います。"
+description: "smarthr-ui の Stack を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。要素を垂直方向に並べるためのレイアウトコンポーネントです。ページの「セクション」や「ブロック」、段落、フォーム項目などあらゆる要素を垂直に積み重ねて配置するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
 
-Every LayoutのStackを参考にしたコンポーネントです。要素を縦に均等に並べたいときに使います。
+要素を垂直方向に並べるためのレイアウトコンポーネントです。ページの「セクション」や「ブロック」、段落、フォーム項目などあらゆる要素を垂直に積み重ねて配置するときに使います。
 
-[Every Layout](https://every-layout.dev/)の`Stack`を参考にしたコンポーネントです。要素を垂直方向に等間隔で並べたいときに使います。
+要素を垂直方向に並べるためのレイアウトコンポーネントです。ページの「[セクション](/products/design-patterns/visual-grouping/#h3-5)」や「[ブロック](/products/design-patterns/visual-grouping/#h3-6)」、段落、フォーム項目などあらゆる要素を垂直に積み重ねて配置するときに使います。
 
 ## import
 

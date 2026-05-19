@@ -1,13 +1,13 @@
 ---
 name: accordion-panel
-description: "smarthr-ui の AccordionPanelTrigger / AccordionPanelItem / AccordionPanelContent / AccordionPanel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。表示したい要素を展開して表示したり、折りたたんで隠したりするためのコンポーネントです。"
+description: "smarthr-ui の AccordionPanelTrigger / AccordionPanelItem / AccordionPanelContent / AccordionPanel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。縦に積まれた見出しのリストで、関連する詳細の表示・非表示を切り替えられるコンポーネントです。情報量が多い場合に表示内容を絞るときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-表示したい要素を展開して表示したり、折りたたんで隠したりするためのコンポーネントです。
+縦に積まれた見出しのリストで、関連する詳細の表示・非表示を切り替えられるコンポーネントです。情報量が多い場合に表示内容を絞るときに使います。
 
 補足的な情報を折りたたんで画面をシンプルに保つことで、情報量が増えてもユーザーが重要な情報にたどりつきやすくなります。また、ページの要素が多くスクロールが生じる画面において、まず見出しだけを表示してユーザーに全体像を把握させたい場合にも使用できます。
 

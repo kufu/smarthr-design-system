@@ -1,15 +1,15 @@
 ---
 name: side-menu
-description: "smarthr-ui の SideMenuItem / SideMenuGroup / SideMenu を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。複数のページを切り替えるためのコンポーネントです。主にページレイアウト「サイドナビゲーションとコンテンツの2カラム」で使います。"
+description: "smarthr-ui の SideMenuItem / SideMenuGroup / SideMenu を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-複数のページを切り替えるためのコンポーネントです。主にページレイアウト「サイドナビゲーションとコンテンツの2カラム」で使います。
+複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。
 
-複数のページを切り替えるためのコンポーネントです。主にページレイアウト「[サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h2-7)」で使います。
+複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「[サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)」ページレイアウトで、[AppNavi](/products/components/app-navi/)の下層に多数のページ項目を配置するときに使います。
 
 ## import
 

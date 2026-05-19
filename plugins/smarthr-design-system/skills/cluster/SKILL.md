@@ -1,15 +1,15 @@
 ---
 name: cluster
-description: "smarthr-ui の Cluster を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。Every LayoutのClusterを参考にしたコンポーネントです。要素を横に均等に並べたいときに使います。幅に収まり切らなくなると要素を折返して並べます。"
+description: "smarthr-ui の Cluster を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。要素を水平方向に並べるためのレイアウトコンポーネントです。幅に収まり切らない場合は折り返します。ボタンやテキストなどあらゆる要素を横並びで配置するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
 
-Every LayoutのClusterを参考にしたコンポーネントです。要素を横に均等に並べたいときに使います。幅に収まり切らなくなると要素を折返して並べます。
+要素を水平方向に並べるためのレイアウトコンポーネントです。幅に収まり切らない場合は折り返します。ボタンやテキストなどあらゆる要素を横並びで配置するときに使います。
 
-[Every Layout](https://every-layout.dev/)の`Cluster`を参考にしたコンポーネントです。要素を水平方向に等間隔で並べたいときに使います。幅に収まり切らなくなると要素を折り返して並べます。
+[Every Layout](https://every-layout.dev/)の`Cluster`を参考にしています。 折り返すのではなく、要素を水平方向にスクロールさせたいときは[Reel](/products/components/layout/reel/)を使います。
 
 ## import
 

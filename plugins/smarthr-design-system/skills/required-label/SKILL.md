@@ -1,15 +1,15 @@
 ---
 name: required-label
-description: "smarthr-ui の RequiredLabel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。FormControlやFieldsetで入力必須を表すときに利用するコンポーネントです。"
+description: "smarthr-ui の RequiredLabel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。FormControlやFieldsetで入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-FormControlやFieldsetで入力必須を表すときに利用するコンポーネントです。
+FormControlやFieldsetで入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。
 
-[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)で入力必須を表すときに利用するコンポーネントです
+[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)で入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。
 
 ## import
 

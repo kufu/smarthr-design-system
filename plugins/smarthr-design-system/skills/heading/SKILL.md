@@ -1,15 +1,15 @@
 ---
 name: heading
-description: "smarthr-ui の Heading を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。直後に続くコンテンツの見出しに使うコンポーネントです。"
+description: "smarthr-ui の Heading を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
 
-直後に続くコンテンツの見出しに使うコンポーネントです。
+見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。
 
-Headingおよび[PageHeading](/products/components/heading/page-heading/)コンポーネントは、直後に続くコンテンツの見出しに使うコンポーネントです。
+見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「[セクション](/products/design-patterns/visual-grouping/#h3-5)」や「[ブロック](/products/design-patterns/visual-grouping/#h3-6)」に見出しをつけるときに使います。
 
 ## import
 

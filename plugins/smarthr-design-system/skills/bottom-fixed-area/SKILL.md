@@ -1,6 +1,6 @@
 ---
 name: bottom-fixed-area
-description: "【非推奨】smarthr-ui の BottomFixedArea を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。FloatAreaと役割が重複しているためBottomFixedAreaは非推奨です。より柔軟に使えるFloatAreaを使ってください。"
+description: "【非推奨】smarthr-ui の BottomFixedArea を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。画面下部に固定表示する領域のためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -9,7 +9,7 @@ metadata:
 
 > ⚠️ **非推奨**: FloatAreaと役割が重複しているためBottomFixedAreaは非推奨です。より柔軟に使えるFloatAreaを使ってください。
 
-FloatAreaと役割が重複しているためBottomFixedAreaは非推奨です。より柔軟に使えるFloatAreaを使ってください。
+画面下部に固定表示する領域のためのコンポーネントです。
 
 画面下部に固定で表示する操作パネルです。主に[モーダルなUI](/products/design-patterns/modal-ui/)を作るために使います。
 

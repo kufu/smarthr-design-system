@@ -1,15 +1,15 @@
 ---
 name: information-panel
-description: "smarthr-ui の InformationPanel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ユーザーに伝えたい情報を他の要素より視覚的に目立たせるためのコンポーネントです。"
+description: "smarthr-ui の InformationPanel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-ユーザーに伝えたい情報を他の要素より視覚的に目立たせるためのコンポーネントです。
+ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。
 
-ユーザーに伝えたい情報を他の要素より視覚的に目立たせるためのコンポーネントです。伝えたい情報の種類によってアイコンを切り替えて使います。
+ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、[ResponseMessage](/products/components/response-message/)や[NotificationBar](/products/components/notification-bar/)では収まらない量のフィードバック情報などを表示するときに使います。
 
 ## import
 

@@ -1,15 +1,15 @@
 ---
 name: header
-description: "smarthr-ui の HeaderLink / HeaderDropdownMenuButton / Header を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。アカウントやシステムの設定、およびSmartHR内の他のアプリケーションへの横断的なアクセスを提供するコンポーネントです。ページの最上部に配置されます。"
+description: "smarthr-ui の HeaderLink / HeaderDropdownMenuButton / Header を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。アカウント設定やアプリ切替などSmartHR共通の横断機能を提供するヘッダーコンポーネントです。基本はAppHeaderの利用を推奨し、独自のヘッダー構成が必要なときのみHeader単体で使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-アカウントやシステムの設定、およびSmartHR内の他のアプリケーションへの横断的なアクセスを提供するコンポーネントです。ページの最上部に配置されます。
+アカウント設定やアプリ切替などSmartHR共通の横断機能を提供するヘッダーコンポーネントです。基本はAppHeaderの利用を推奨し、独自のヘッダー構成が必要なときのみHeader単体で使います。
 
-複数のSmartHRのプロダクトを使っていたとしても同じSmartHRブランドの製品であることをユーザーが認知できるよう、共通のHeaderを提供します。 レイアウトなどは[AppHeader](/products/components/app-header/)を参照してください。
+アカウント設定やアプリ切替などSmartHR共通の横断機能を提供するヘッダーコンポーネントです。基本は[AppHeader](/products/components/app-header/)の利用を推奨し、独自のヘッダー構成が必要なときのみHeader単体で使います。
 
 ## import
 

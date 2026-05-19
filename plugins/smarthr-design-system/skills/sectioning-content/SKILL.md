@@ -1,15 +1,15 @@
 ---
 name: sectioning-content
-description: "smarthr-ui の Section / Article / Aside / Nav を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。header要素やfooter要素、見出しの範囲を定義するためのコンポーネントです。Headingと組み合わせて使うと、見出しレベルを自動計算します。"
+description: "smarthr-ui の Section / Article / Aside / Nav を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。header、footer、section、articleなどのセクショニング要素を表現するためのコンポーネントです。Headingと組み合わせて見出しレベルを自動計算するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
 
-header要素やfooter要素、見出しの範囲を定義するためのコンポーネントです。Headingと組み合わせて使うと、見出しレベルを自動計算します。
+header、footer、section、articleなどのセクショニング要素を表現するためのコンポーネントです。Headingと組み合わせて見出しレベルを自動計算するときに使います。
 
-`header`や`footer`、見出しの範囲を定義するためのコンポーネントです。[Heading](/products/components/heading/)と組み合わせて使うと、見出しレベルを自動計算します。
+`header`、`footer`、`section`、`article`などのセクショニング要素を表現するためのコンポーネントです。[Heading](/products/components/heading/)と組み合わせて見出しレベルを自動計算するときに使います。
 
 ## import
 
