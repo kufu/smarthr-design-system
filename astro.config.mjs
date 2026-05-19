@@ -9,6 +9,8 @@ import remarkEmoji from 'remark-emoji';
 import remarkCodeBlock from './src/remark/remark-code-block';
 import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://smarthr.design',
@@ -16,17 +18,12 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
-  integrations: [
-    react(),
-    mdx(),
-    partytown({
-      config: {
-        // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
-        forward: ['dataLayer.push'],
-      },
-    }),
-    tailwind(),
-  ],
+  integrations: [react(), mdx(), partytown({
+    config: {
+      // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
+      forward: ['dataLayer.push'],
+    },
+  }), tailwind(), sitemap()],
   markdown: {
     syntaxHighlight: false,
     remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
