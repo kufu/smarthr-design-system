@@ -1,6 +1,6 @@
 ---
 name: visually-hidden-text
-description: "smarthr-ui の VisuallyHiddenText を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。視覚的には隠しつつスクリーンリーダーには読み上げさせたいテキスト用のコンポーネントです。見出しやラベルが自明で、表示すると視覚的に冗長になるときなどに使います。"
+description: "視覚的には隠しつつスクリーンリーダーには読み上げさせたいテキスト用のコンポーネントです。見出しやラベルが自明で、表示すると視覚的に冗長になるときなどに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

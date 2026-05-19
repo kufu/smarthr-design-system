@@ -1,6 +1,6 @@
 ---
 name: wareki-picker
-description: "smarthr-ui の WarekiPicker を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。和暦で日付を入力させ西暦に変換する機能を備えた入力コンポーネントです。和暦の日付入力が必要なときに使います。"
+description: "和暦で日付を入力させ西暦に変換する機能を備えた入力コンポーネントです。和暦の日付入力が必要なときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

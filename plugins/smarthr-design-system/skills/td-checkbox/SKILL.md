@@ -1,6 +1,6 @@
 ---
 name: td-checkbox
-description: "smarthr-ui の TdCheckbox を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。"
+description: "Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

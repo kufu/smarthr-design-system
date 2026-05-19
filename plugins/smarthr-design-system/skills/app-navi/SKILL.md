@@ -1,6 +1,6 @@
 ---
 name: app-navi
-description: "smarthr-ui の AppNaviDropdownMenuButton / AppNaviDropdown / AppNaviCustomTag / AppNaviButton / AppNaviAnchor / AppNavi を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。アプリケーション内の主要機能を切り替えるグローバルナビゲーションコンポーネントです。機能間を行き来するとき、機能切替以外でアプリ全体に関わる頻繁な操作を常設するときに使います。"
+description: "アプリケーション内の主要機能を切り替えるグローバルナビゲーションコンポーネントです。機能間を行き来するとき、機能切替以外でアプリ全体に関わる頻繁な操作を常設するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

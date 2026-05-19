@@ -1,6 +1,6 @@
 ---
 name: bottom-fixed-area
-description: "【非推奨】smarthr-ui の BottomFixedArea を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。画面下部に固定表示する領域のためのコンポーネントです。"
+description: "【非推奨】画面下部に固定表示する領域のためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

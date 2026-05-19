@@ -1,6 +1,6 @@
 ---
 name: dialog
-description: "ダイアログを独自制御で実装するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。"
+description: "ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

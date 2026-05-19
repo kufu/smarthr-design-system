@@ -1,6 +1,6 @@
 ---
 name: smarthr-logo
-description: "SmartHR のロゴを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。SmartHRのロゴを表示するためのコンポーネントです。"
+description: "SmartHRのロゴを表示するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

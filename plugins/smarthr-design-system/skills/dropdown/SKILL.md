@@ -1,6 +1,6 @@
 ---
 name: dropdown
-description: "smarthr-ui の DropdownTrigger / DropdownContent / DropdownCloser / Dropdown を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ボタンを押すとパネルが開く動作を提供するプリミティブコンポーネントです。DropdownMenuButton/FilterDropdown/SortDropdownで実現できない独自のドロップダウンUIを提供するときに使います。"
+description: "ボタンを押すとパネルが開く動作を提供するプリミティブコンポーネントです。DropdownMenuButton/FilterDropdown/SortDropdownで実現できない独自のドロップダウンUIを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

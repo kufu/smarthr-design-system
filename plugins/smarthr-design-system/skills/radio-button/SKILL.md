@@ -1,6 +1,6 @@
 ---
 name: radio-button
-description: "複数の選択肢から1つだけ選ばせるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。input[type='radio']要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。"
+description: "input[type='radio']要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

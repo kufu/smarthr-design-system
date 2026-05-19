@@ -1,6 +1,6 @@
 ---
 name: loader
-description: "smarthr-ui の Loader を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。読み込み中や処理中であることを伝えるためのコンポーネントです。"
+description: "読み込み中や処理中であることを伝えるためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

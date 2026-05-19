@@ -1,6 +1,6 @@
 ---
 name: spreadsheet-table
-description: "smarthr-ui の SpreadsheetTableCorner / SpreadsheetTable を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。表データを表計算ソフト風に表示するためのコンポーネントです。CSVインポート画面などで利用者にスプレッドシートを想像させるときに使います。"
+description: "表データを表計算ソフト風に表示するためのコンポーネントです。CSVインポート画面などで利用者にスプレッドシートを想像させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

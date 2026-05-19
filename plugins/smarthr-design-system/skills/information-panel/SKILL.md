@@ -1,10 +1,10 @@
 ---
 name: information-panel
-description: "smarthr-ui の InformationPanel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。"
+description: "ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer2
 ---
 
 ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。
@@ -31,7 +31,10 @@ import { InformationPanel } from 'smarthr-ui'
 
 ## 実装ルール
 
-InformationPanel に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+### design-system-guideline-prohibit-information-panel-in-white-bg
+InformationPanelを白背景に配置することを禁止します。
+
+詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
 

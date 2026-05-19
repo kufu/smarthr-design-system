@@ -1,10 +1,10 @@
 ---
 name: definition-list
-description: "ラベルと値のペアを並べてデータを表示するとき、詳細情報を一覧するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。"
+description: "見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1+layer3
+  generated-from: layer1+layer2+layer3
 ---
 
 見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。
@@ -29,7 +29,55 @@ import { DefinitionListItem, DefinitionList } from 'smarthr-ui'
 
 ## 実装ルール
 
-DefinitionList に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+### best-practice-for-consecutive-definition-list
+同階層に `DefinitionList` が連続して配置されている場合に警告するルールです。
+
+❌ NG:
+
+```jsx
+<DefinitionList>
+  <DefinitionListItem term="項目1">内容1</DefinitionListItem>
+</DefinitionList>
+<DefinitionList>
+  <DefinitionListItem term="項目2">内容2</DefinitionListItem>
+  <DefinitionListItem term="項目3">内容3</DefinitionListItem>
+</DefinitionList>
+```
+
+✅ OK:
+
+```jsx
+// 1つのDefinitionListにまとめる
+<DefinitionList>
+  <DefinitionListItem term="項目1">内容1</DefinitionListItem>
+  <DefinitionListItem term="項目2">内容2</DefinitionListItem>
+  <DefinitionListItem term="項目3">内容3</DefinitionListItem>
+</DefinitionList>
+```
+
+```jsx
+// maxColumns を使用してカラム数を指定
+<DefinitionList>
+  <DefinitionListItem maxColumns={1} term="項目1">内容1</DefinitionListItem>
+  <DefinitionListItem maxColumns={2} term="項目2">内容2</DefinitionListItem>
+  <DefinitionListItem maxColumns={2} term="項目3">内容3</DefinitionListItem>
+</DefinitionList>
+```
+
+```jsx
+// 意味的に異なるグループを表現する場合は、間に別の要素を挿入
+<DefinitionList>
+  <DefinitionListItem term="基本情報">...</DefinitionListItem>
+</DefinitionList>
+
+<h2>詳細情報</h2>
+
+<DefinitionList>
+  <DefinitionListItem term="詳細項目">...</DefinitionListItem>
+</DefinitionList>
+```
+
+詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
 

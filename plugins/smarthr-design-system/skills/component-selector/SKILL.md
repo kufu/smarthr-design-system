@@ -1,6 +1,6 @@
 ---
 name: component-selector
-description: "smarthr-ui のどのコンポーネントを使うべきかの選定ガイド。フォームを作る、テーブルを表示する、ボタンを置く、ダイアログを開く、通知を出すなど、何らかの UI を実装しようとしているときに使う。具体的なコンポーネントの SKILL.md を呼ぶ前にまず読む。 主なシナリオ: Button（ボタンを置くとき、クリックで操作を実行させるとき、リンクをボタン風に表示するとき）、Input（テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するとき）、Table（表形式でデータを一覧表示するとき、行・列を持つデータを見せるとき）、ActionDialog（ユーザーに操作や入力を求めるダイアログを表示するとき、確認・実行ダイアログを作るとき）、TextLink（テキストにリンクを付けるとき、アンカー要素をデザインシステム準拠で使うとき）。"
+description: "smarthr-ui のどのコンポーネントを使うべきかの選定ガイド。フォームを作る、テーブルを表示する、ボタンを置く、ダイアログを開く、通知を出すなど、何らかの UI を実装しようとしているときに使う。具体的なコンポーネントの SKILL.md を呼ぶ前にまず読む。 主なシナリオ: Button（ボタンを置くとき、クリックで操作を実行させるとき）、Input（テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するとき）、Table（表形式でデータを一覧表示するとき）、ActionDialog（ユーザーに操作や入力を求めるダイアログを表示するとき）、TextLink（テキストにリンクを付けるとき）。"
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -25,7 +25,7 @@ metadata:
 | AppNavi | アプリケーション内の主要機能を切り替えるグローバルナビゲーションコンポーネントです。機能間を行き来するとき、機能切替以外でアプリ全体に関わる頻繁な操作を常設するときに使います。 | `smarthr-design-system:app-navi` |
 | AuthErrorScreen | 認証フローで問題が発生したことを表示する全画面コンポーネントです。SSOやOAuthなどログイン処理に失敗したときに使います。 | `smarthr-design-system:auth-error-screen` |
 | Badge | 件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。 | `smarthr-design-system:badge` |
-| Balloon | 吹き出し風の補足説明を表示するとき | `smarthr-design-system:balloon` |
+| Balloon | Balloon コンポーネント | `smarthr-design-system:balloon` |
 | Base | 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。 | `smarthr-design-system:base` |
 | BaseColumn | BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。 | `smarthr-design-system:base-column` |
 | ⚠️ BottomFixedArea（非推奨） | 【非推奨】画面下部に固定表示する領域のためのコンポーネントです。 | `smarthr-design-system:bottom-fixed-area` |

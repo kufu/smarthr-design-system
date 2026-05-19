@@ -1,6 +1,6 @@
 ---
 name: text-link
-description: "テキストにリンクを付けるとき、アンカー要素をデザインシステム準拠で使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。"
+description: "a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

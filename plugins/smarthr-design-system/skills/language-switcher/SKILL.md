@@ -1,6 +1,6 @@
 ---
 name: language-switcher
-description: "表示言語を切り替えるUIを置くとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。表示言語を切り替えるためのコンポーネントです。多言語対応したアプリケーションで利用者に言語選択UIを提供するときに使います。"
+description: "表示言語を切り替えるためのコンポーネントです。多言語対応したアプリケーションで利用者に言語選択UIを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
