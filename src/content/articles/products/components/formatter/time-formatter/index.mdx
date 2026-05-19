@@ -35,22 +35,31 @@ const TimePartsExample = () => {
   const date = new Date(2026, 4, 18, 14, 30, 45)
   
   return (
-    <Stack gap={0.5}>
-      <div><strong>デフォルト（時：分）：</strong> 
-        <time dateTime={date.toISOString()}>
-          {formatTime({ date })}
-        </time>
-      </div>
-      <div><strong>秒を含む（時：分：秒）：</strong> 
-        <time dateTime={date.toISOString()}>
-          {formatTime({ date, parts: ['hour', 'minute', 'second'] })}
-        </time>
-      </div>
-      <div><strong>時のみ：</strong> 
-        <time dateTime={date.toISOString()}>
-          {formatTime({ date, parts: ['hour'] })}
-        </time>
-      </div>
+    <Stack gap={0.5} as="dl">
+      <Cluster gap={1} align="center">
+        <Text styleType="blockTitle" as="dt">デフォルト（時：分）</Text>
+        <dd>
+          <time dateTime={date.toISOString()}>
+            {formatTime({ date })}
+          </time>
+        </dd>
+      </Cluster>
+      <Cluster gap={1} align="center">
+        <Text styleType="blockTitle" as="dt">秒を含む（時：分：秒）</Text>
+        <dd>
+          <time dateTime={date.toISOString()}>
+            {formatTime({ date, parts: ['hour', 'minute', 'second'] })}
+          </time>
+        </dd>
+      </Cluster>
+      <Cluster gap={1} align="center">
+        <Text styleType="blockTitle" as="dt">時のみ</Text>
+        <dd>
+          <time dateTime={date.toISOString()}>
+            {formatTime({ date, parts: ['hour'] })}
+          </time>
+        </dd>
+      </Cluster>
     </Stack>
   )
 }
@@ -68,17 +77,23 @@ const Hour12Example = () => {
   const date = new Date(2026, 4, 18, 14, 30, 0)
   
   return (
-    <Stack gap={0.5}>
-      <div><strong>24時間形式：</strong> 
-        <time dateTime={date.toISOString()}>
-          {formatTime({ date })}
-        </time>
-      </div>
-      <div><strong>12時間形式：</strong> 
-        <time dateTime={date.toISOString()}>
-          {formatTime({ date, options: { hour12: true } })}
-        </time>
-      </div>
+    <Stack gap={0.5} as="dl">
+      <Cluster gap={1} align="center">
+        <Text styleType="blockTitle" as="dt">24時間形式</Text>
+        <dd>
+          <time dateTime={date.toISOString()}>
+            {formatTime({ date })}
+          </time>
+        </dd>
+      </Cluster>
+      <Cluster gap={1} align="center">
+        <Text styleType="blockTitle" as="dt">12時間形式</Text>
+        <dd>
+          <time dateTime={date.toISOString()}>
+            {formatTime({ date, options: { hour12: true } })}
+          </time>
+        </dd>
+      </Cluster>
     </Stack>
   )
 }
