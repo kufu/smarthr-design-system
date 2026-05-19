@@ -32,7 +32,19 @@ import { Chip, Cluster } from 'smarthr-ui'
 2. **自動検証ツールの利用**:
     - HTML検証ツールやアクセシビリティチェックツールを利用して、ページ内のIDの重複をチェックします。
 3. **ブラウザの開発者ツールを使用する**:
-    - ブラウザの開発者ツールを使用して、特定のIDに関連する要素を検索し、そのIDがページ内で一度だけ使われているかを確認します。
+    - 下記の関数をブラウザの開発者ツールのコンソールに入力して、重複するIDを検出できます。
+      ```js
+      (function() {
+        const seen = new Set();
+        const dupes = new Set();
+        document.querySelectorAll('[id]').forEach(el => seen.has(el.id) ? dupes.add(el.id) : seen.add(el.id));
+        dupes.forEach(id => console.warn(`重複IDが見つかりました: #${id}`, document.querySelectorAll(`[id="${id}"]`)));
+      })();
+      ```
+
+
+
+
 
 ## 関連するWCAG2.1達成基準
 - [達成基準 4.1.1: 構文解析を理解する](https://waic.jp/translations/WCAG21/Understanding/parsing.html)
