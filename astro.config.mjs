@@ -18,12 +18,18 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
-  integrations: [react(), mdx(), partytown({
-    config: {
-      // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
-      forward: ['dataLayer.push'],
-    },
-  }), tailwind(), sitemap()],
+  integrations: [
+    react(),
+    mdx(),
+    partytown({
+      config: {
+        // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
+        forward: ['dataLayer.push'],
+      },
+    }),
+    tailwind(),
+    sitemap(),
+  ],
   markdown: {
     syntaxHighlight: false,
     remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],

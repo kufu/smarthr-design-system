@@ -6,7 +6,7 @@ export default [
   ...smarthr,
   {
     ...mdx.flat,
-    files: ['**/*.mdx']
+    files: ['**/*.mdx'],
   },
   ...eslintPluginAstro.configs.recommended,
   ...eslintPluginAstro.configs['jsx-a11y-recommended'],
@@ -38,7 +38,7 @@ export default [
     rules: {
       'no-undef': 'off',
       'jsx-a11y/media-has-caption': 'off',
-      'react/jsx-filename-extension': [1, { 'extensions': ['.astro'] }],
+      'react/jsx-filename-extension': [1, { extensions: ['.astro'] }],
       'react/no-unknown-property': 'off',
       'react/jsx-key': 'off',
       'react/jsx-pascal-case': 'off',
