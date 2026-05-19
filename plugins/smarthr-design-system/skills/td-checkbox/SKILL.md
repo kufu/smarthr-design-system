@@ -1,15 +1,15 @@
 ---
 name: td-checkbox
-description: "smarthr-ui の TdCheckbox を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。チェックボックスを内包するTdです。aria-labelledby属性が必須です。"
+description: "smarthr-ui の TdCheckbox を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2+layer3
 ---
 
-チェックボックスを内包するTdです。aria-labelledby属性が必須です。
+Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。
 
-他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
+`table`要素の代替として表形式でデータを表示するためのコンポーネントです。データを行列で一覧表示するとき、レコードを並べて比較するビューを提示するときに使います。
 
 ## import
 

@@ -1,15 +1,15 @@
 ---
 name: error-screen
-description: "smarthr-ui の ErrorScreen を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。エラーを全画面で表示をするためのコンポーネントです。"
+description: "smarthr-ui の ErrorScreen を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-エラーを全画面で表示をするためのコンポーネントです。
+エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。
 
-ErrorScreenコンポーネントはエラーを全画面で表示するためのコンポーネントです。
+なんらかのエラーによってユーザーが操作できなくなった場合や、ユーザーに操作をさせたくない場合に使用してください。
 
 ## import
 

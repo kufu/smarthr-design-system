@@ -1,15 +1,15 @@
 ---
 name: td-radio-button
-description: "smarthr-ui の TdRadioButton を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ラジオボタンを内包するTdです。aria-labelledby属性が必須です。"
+description: "smarthr-ui の TdRadioButton を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。RadioButtonを内包するデータセル（Td）の派生コンポーネントです。テーブル各行から1行だけ選ばせるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2+layer3
 ---
 
-ラジオボタンを内包するTdです。aria-labelledby属性が必須です。
+RadioButtonを内包するデータセル（Td）の派生コンポーネントです。テーブル各行から1行だけ選ばせるときに使います。
 
-他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
+`table`要素の代替として表形式でデータを表示するためのコンポーネントです。データを行列で一覧表示するとき、レコードを並べて比較するビューを提示するときに使います。
 
 ## import
 

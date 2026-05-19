@@ -1,15 +1,15 @@
 ---
 name: filter-dropdown
-description: "smarthr-ui の FilterDropdown を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。"
+description: "smarthr-ui の FilterDropdown を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。
+「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。
 
-FilterDropdownは一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。
+「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。[Checkbox](/products/components/check-box/)/[RadioButton](/products/components/radio-button/)/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。
 
 ## import
 

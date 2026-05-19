@@ -1,15 +1,15 @@
 ---
 name: line-clamp
-description: "smarthr-ui の LineClamp を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。内包するテキストが指定した幅や高さを越えて存在するときに、Tooltipを用いて全文を表示するためのコンポーネントです。"
+description: "smarthr-ui の LineClamp を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-内包するテキストが指定した幅や高さを越えて存在するときに、Tooltipを用いて全文を表示するためのコンポーネントです。
+テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。
 
-内包するテキストが指定した幅や高さを越えて存在するときに、[Tooltip](/products/components/tooltip/)や[Disclosure](/products/components/disclosure/)を用いて全文を表示するためのコンポーネントです。
+テキストが指定幅・高さを超えるときに省略表示し[Tooltip](/products/components/tooltip/)で全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。
 
 ## import
 

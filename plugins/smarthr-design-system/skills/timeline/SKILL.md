@@ -1,13 +1,13 @@
 ---
 name: timeline
-description: "smarthr-ui の TimelineItem / Timeline を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。情報を時間の流れに沿って、見やすく整理・表示するコンポーネントです。"
+description: "smarthr-ui の TimelineItem / Timeline を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-情報を時間の流れに沿って、見やすく整理・表示するコンポーネントです。
+情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。
 
 ## import
 

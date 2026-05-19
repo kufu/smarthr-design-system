@@ -1,13 +1,15 @@
 ---
 name: disclosure
-description: "smarthr-ui の DisclosureTrigger / DisclosureContent を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。コンテンツの表示・非表示を切り替えるUIを作るためのアクセシブルなコンポーネントです。"
+description: "smarthr-ui の DisclosureTrigger / DisclosureContent を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。トリガーやコンテンツに装飾を持たない、コンテンツの表示・非表示を切り替えるためのプリミティブコンポーネントです。開閉動作だけを提供するとき、AccordionPanelで実現できない独自の開閉UIを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
 
-コンテンツの表示・非表示を切り替えるUIを作るためのアクセシブルなコンポーネントです。
+トリガーやコンテンツに装飾を持たない、コンテンツの表示・非表示を切り替えるためのプリミティブコンポーネントです。開閉動作だけを提供するとき、AccordionPanelで実現できない独自の開閉UIを提供するときに使います。
+
+トリガーやコンテンツに装飾を持たない、コンテンツの表示・非表示を切り替えるためのプリミティブコンポーネントです。開閉動作だけを提供するとき、[AccordionPanel](/products/components/accordion-panel/)で実現できない独自の開閉UIを提供するときに使います。
 
 ## import
 

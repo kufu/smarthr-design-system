@@ -1,15 +1,15 @@
 ---
 name: reel
-description: "smarthr-ui の Reel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。Every LayoutのReelを参考にしたコンポーネントです。要素を横に均等に並べたいときに使います。幅に収まり切らなくなると水平方向のスクロールが生じます。"
+description: "smarthr-ui の Reel を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。要素を水平方向に並べ、はみ出した場合は水平方向にスクロールさせるレイアウトコンポーネントです。複数の要素を水平方向にスクロールさせて見せるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
 
-Every LayoutのReelを参考にしたコンポーネントです。要素を横に均等に並べたいときに使います。幅に収まり切らなくなると水平方向のスクロールが生じます。
+要素を水平方向に並べ、はみ出した場合は水平方向にスクロールさせるレイアウトコンポーネントです。複数の要素を水平方向にスクロールさせて見せるときに使います。
 
-[Every Layout](https://every-layout.dev/)の`Reel`を参考にしたコンポーネントです。要素を水平方向に等間隔で並べたいときに使います。幅に収まり切らなくなると水平方向のスクロールが生じます。
+[Every Layout](https://every-layout.dev/)の`Reel`を参考にしています。 要素を折り返して並べたいときは[Cluster](/products/components/layout/cluster/)を使います。
 
 ## import
 

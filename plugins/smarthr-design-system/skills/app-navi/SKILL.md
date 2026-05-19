@@ -1,13 +1,13 @@
 ---
 name: app-navi
-description: "smarthr-ui の AppNaviDropdownMenuButton / AppNaviDropdown / AppNaviCustomTag / AppNaviButton / AppNaviAnchor / AppNavi を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。プロダクト内の主要な機能を切り替えるためのコンポーネントです。機能の切り替えだけでなく、プロダクト全体に影響を及ぼす頻繁に行なう操作を埋め込めます。"
+description: "smarthr-ui の AppNaviDropdownMenuButton / AppNaviDropdown / AppNaviCustomTag / AppNaviButton / AppNaviAnchor / AppNavi を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。アプリケーション内の主要機能を切り替えるグローバルナビゲーションコンポーネントです。機能間を行き来するとき、機能切替以外でアプリ全体に関わる頻繁な操作を常設するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1
 ---
 
-プロダクト内の主要な機能を切り替えるためのコンポーネントです。機能の切り替えだけでなく、プロダクト全体に影響を及ぼす頻繁に行なう操作を埋め込めます。
+アプリケーション内の主要機能を切り替えるグローバルナビゲーションコンポーネントです。機能間を行き来するとき、機能切替以外でアプリ全体に関わる頻繁な操作を常設するときに使います。
 
 レイアウトなどは[AppHeader](/products/components/app-header/)を参照してください。
 

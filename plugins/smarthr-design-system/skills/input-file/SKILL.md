@@ -1,13 +1,13 @@
 ---
 name: input-file
-description: "ファイルをアップロードさせるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。ファイルを選択するためのコンポーネントです。input[type='file']要素の代わりに使用します。選択したファイル名の一覧を表示する領域を持っています。"
+description: "ファイルをアップロードさせるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer3
 ---
 
-ファイルを選択するためのコンポーネントです。input[type='file']要素の代わりに使用します。選択したファイル名の一覧を表示する領域を持っています。
+input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。
 
 Text, Cluster } from 'smarthr-ui'
 

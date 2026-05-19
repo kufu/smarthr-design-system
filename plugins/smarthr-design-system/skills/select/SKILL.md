@@ -1,15 +1,15 @@
 ---
 name: select
-description: "smarthr-ui の Select を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。select要素の代わりに使用するコンポーネントです。"
+description: "smarthr-ui の Select を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢を検索不要で効率よくレイアウトするときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
   generated-from: layer1+layer2
 ---
 
-select要素の代わりに使用するコンポーネントです。
+select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢を検索不要で効率よくレイアウトするときに使います。
 
-`select`の代わりに使用するコンポーネントです。[Input](/products/components/input/)と見た目を揃えるために存在します。
+`select`要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。 [Input](/products/components/input/)と見た目を揃えるために存在します。
 
 ## import
 
