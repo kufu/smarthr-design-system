@@ -46,7 +46,6 @@ function CustomSearchBox(props: UseSearchBoxProps) {
       {/* 検索インプット部分 */}
       <div className={styles.inputOuter}>
         <p id="desc-for-search-input">例：Button、画面キャプチャ、用字用語、須磨英知など</p>
-        { }
         <Input
           width="100%"
           prefix={<FaMagnifyingGlassIcon className={styles.searchIcon} aria-label="検索" />}
