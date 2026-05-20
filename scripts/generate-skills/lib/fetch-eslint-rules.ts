@@ -26,44 +26,90 @@ function isExcluded(ruleName: string): boolean {
   return EXCLUDED_RULE_PREFIXES.some((prefix) => ruleName.startsWith(prefix));
 }
 
-async function ghFetch(url: string): Promise<Response> {
+type GhFetchOptions = {
+  /** 404 を許容する場合 true。許容時は null を返す。 */
+  allow404?: boolean;
+  /** rate limit 検出時の retry 試行回数。デフォルト 3 回。 */
+  maxRetries?: number;
+};
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function ghFetch(url: string, options: GhFetchOptions = {}): Promise<Response | null> {
+  const { allow404 = false, maxRetries = 3 } = options;
   const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
   if (process.env.GITHUB_TOKEN) {
     headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
-  const res = await fetch(url, { headers });
-  if (!res.ok) {
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    const res = await fetch(url, { headers });
+    if (res.ok) return res;
+    if (res.status === 404 && allow404) return null;
+
+    // rate limit: X-RateLimit-Remaining: 0 か 403/429 のときは reset まで待って再試行
+    const remaining = res.headers.get('x-ratelimit-remaining');
+    const isRateLimited = (res.status === 403 || res.status === 429) && (remaining === '0' || res.headers.get('retry-after'));
+    if (isRateLimited && attempt < maxRetries) {
+      const retryAfterSec = Number(res.headers.get('retry-after')) || 0;
+      const resetEpoch = Number(res.headers.get('x-ratelimit-reset')) || 0;
+      const nowSec = Math.floor(Date.now() / 1000);
+      const waitSec = Math.max(retryAfterSec, resetEpoch ? resetEpoch - nowSec : 0, 1);
+      console.warn(`⚠️  GitHub API rate limit に遭遇。${waitSec}s 待機して再試行 (${attempt + 1}/${maxRetries}): ${url}`);
+      await sleep(waitSec * 1000);
+      continue;
+    }
+
     throw new Error(`GitHub API ${res.status} ${res.statusText}: ${url}`);
   }
-  return res;
+
+  throw new Error(`GitHub API rate limit 再試行回数を超過: ${url}`);
 }
 
 /**
  * tamatebako の eslint-plugin-smarthr/rules/ 配下から各ルールの README.md を取得する。
  * 結果は cachePath にキャッシュし、存在すれば再利用する。
+ *
+ * `ruleNamesOutputPath` を渡した場合、上流のルールディレクトリ名一覧 (除外前の全件) を
+ * 改行区切りで書き出す。AI プロンプト (`.github/prompts/checklist-v3.md` 等) から参照される。
  */
-export async function fetchEslintRules(cachePath: string): Promise<EslintRuleRaw[]> {
+export async function fetchEslintRules(cachePath: string, ruleNamesOutputPath?: string): Promise<EslintRuleRaw[]> {
   if (fs.existsSync(cachePath)) {
     const raw = JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
     if (Array.isArray(raw)) return raw as EslintRuleRaw[];
   }
 
+  if (!process.env.GITHUB_TOKEN) {
+    console.warn(
+      '⚠️  GITHUB_TOKEN が未設定です。GitHub API の unauthenticated rate limit (60 req/hour) のためルール取得が rate limit にかかる可能性があります。',
+    );
+  }
+
   const dirRes = await ghFetch(`${GH_API}/repos/${REPO}/contents/${RULES_PATH}`);
+  if (!dirRes) throw new Error(`GitHub API: rules ディレクトリ取得失敗`);
   const entries = (await dirRes.json()) as Array<{ name: string; type: string }>;
-  const ruleNames = entries.filter((e) => e.type === 'dir').map((e) => e.name);
+  const allRuleNames = entries
+    .filter((e) => e.type === 'dir')
+    .map((e) => e.name)
+    .sort();
+
+  if (ruleNamesOutputPath) {
+    fs.mkdirSync(path.dirname(ruleNamesOutputPath), { recursive: true });
+    fs.writeFileSync(ruleNamesOutputPath, allRuleNames.join('\n') + '\n');
+  }
 
   const rules: EslintRuleRaw[] = [];
-  for (const ruleName of ruleNames) {
+  for (const ruleName of allRuleNames) {
     if (isExcluded(ruleName)) continue;
     const readmeUrl = `${GH_API}/repos/${REPO}/contents/${RULES_PATH}/${ruleName}/README.md`;
-    try {
-      const r = await ghFetch(readmeUrl);
-      const json = (await r.json()) as { content: string; encoding: string };
-      const readme = Buffer.from(json.content, json.encoding as BufferEncoding).toString('utf-8');
-      rules.push({ name: ruleName, readme });
-    } catch {
-      // README が無いルールはスキップ
+    const r = await ghFetch(readmeUrl, { allow404: true });
+    if (!r) {
+      // README.md が無いルールは意図的にスキップ
+      continue;
     }
+    const json = (await r.json()) as { content: string; encoding: string };
+    const readme = Buffer.from(json.content, json.encoding as BufferEncoding).toString('utf-8');
+    rules.push({ name: ruleName, readme });
   }
 
   fs.mkdirSync(path.dirname(cachePath), { recursive: true });
@@ -112,11 +158,7 @@ function extractSection(content: string, headerPattern: RegExp): string {
   return sectionLines.join('\n');
 }
 
-function extractPrimaryComponents(
-  ruleName: string,
-  description: string,
-  componentDisplayNames: Set<string>,
-): Set<string> {
+function extractPrimaryComponents(ruleName: string, description: string, componentDisplayNames: Set<string>): Set<string> {
   const primary = new Set<string>();
   const segments = ruleName.split('-');
   const cleanedDescription = description.replace(/\[[^\]]*\]\([^)]*\)/g, '');
@@ -182,10 +224,7 @@ export function buildComponentRuleMap(
   return componentRules;
 }
 
-export function getRelevantCodeExamples(
-  rule: EslintRuleWithContent,
-  componentName: string,
-): { ng: string[]; ok: string[] } {
+export function getRelevantCodeExamples(rule: EslintRuleWithContent, componentName: string): { ng: string[]; ok: string[] } {
   const extract = (sectionContent: string): string[] => {
     const blocks: string[] = [];
     const codeBlockRegex = /```(?:\w+)?\n([\s\S]*?)```/g;
