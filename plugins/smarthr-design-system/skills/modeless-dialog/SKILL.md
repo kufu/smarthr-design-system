@@ -4,7 +4,7 @@ description: "背面の画面操作を妨げないモードレスダイアログ
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。
@@ -43,4 +43,14 @@ ModelessDialog に直接関連する eslint-plugin-smarthr のルールは現時
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### 使用上の注意 > ダイアログを乱用しない
+- [should] ダイアログとして表示する・操作させるべき内容なのか、慎重にユースケースを定義し使用を検討する
+
+### レイアウト > 表示位置
+- [must] ModelessDialog はダイアログを開く操作をした箇所の付近に表示する
+
+### 構成 > 1. ヘッダーエリア
+- [must] ダイアログのタイトルは、表示する情報を簡潔に表現するものをつける
+
+### モバイル
+- [must] モバイルでは ModelessDialog の代わりに MessageDialog を利用する
