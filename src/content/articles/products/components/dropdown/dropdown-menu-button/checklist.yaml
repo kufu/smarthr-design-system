@@ -1,0 +1,81 @@
+items:
+  # 使用上の注意 > 操作の個数
+  - severity: should
+    text: 'DropdownMenuButton の操作はひと目で把握できるようできるだけ少ない個数にする'
+    source_section: '使用上の注意 > 操作の個数'
+    note: '適切な個数 / できるだけ少ない の定義不在。除外検討'
+
+  # 使用上の注意 > 操作の順序
+  - severity: should
+    text: 'DropdownMenuButton の操作は使用頻度が高い順に並べる'
+    source_section: '使用上の注意 > 操作の順序'
+    sub_items:
+      - '典型的な順序の例: 編集 → 複製 → 削除'
+
+  - severity: must
+    text: '破壊的なアクション（例: オブジェクトの削除）は操作の順序を下げて配置する'
+    source_section: '使用上の注意 > 操作の順序'
+
+  # レイアウト > [WIP] モバイル > 操作項目の高さは通常サイズのボタンに揃える
+  - severity: must
+    text: 'モバイルでは、ドロップダウンパネル内の操作項目の高さを通常サイズのボタンに揃える'
+    source_section: 'レイアウト > [WIP] モバイル > 操作項目の高さは通常サイズのボタンに揃える'
+    note: 'smarthr-ui 未実装（WIP: モバイル自動調整予定）。除外検討'
+
+  # レイアウト > [WIP] モバイル > 横幅は画面幅の2/3程度までに収まるように調整する
+  - severity: must
+    text: 'モバイルでは、ドロップダウンパネルの横幅を画面幅の 2/3 程度までに収まるように調整する'
+    source_section: 'レイアウト > [WIP] モバイル > 横幅は画面幅の2/3程度までに収まるように調整する'
+    note: 'smarthr-ui 未実装（WIP: モバイル自動調整予定）。除外検討'
+
+  # レイアウト > [WIP] モバイル > 縦幅は画面内に収まるように調整する
+  - severity: must
+    text: 'モバイルでは、ドロップダウンパネルの縦幅を画面内に収まるように調整し、必要に応じてスクロールできるようにする'
+    source_section: 'レイアウト > [WIP] モバイル > 縦幅は画面内に収まるように調整する'
+    note: 'smarthr-ui 未実装(WIP: モバイル自動調整予定)。除外検討'
+
+  # デザインパターン > A. 単一のオブジェクトに対する操作
+  - severity: must
+    text: 'トリガーのラベルを `{オブジェクト名}の操作` とする'
+    source_section: 'デザインパターン > A. 単一のオブジェクトに対する操作'
+
+  # デザインパターン > B. 単一のオブジェクトに対する操作(オブジェクト名省略)
+  - severity: should
+    text: '操作の対象がレイアウト上明らかなとき・狭い場所にレイアウトするときに使う'
+    source_section: 'デザインパターン > B. 単一のオブジェクトに対する操作（オブジェクト名省略）'
+
+  - severity: must
+    text: 'トリガーのラベルを `操作` にする'
+    source_section: 'デザインパターン > B. 単一のオブジェクトに対する操作（オブジェクト名省略）'
+
+  # デザインパターン > C. 同一の操作
+  - severity: must
+    text: 'トリガーのラベルを操作をまとめるラベルにする'
+    source_section: 'デザインパターン > C. 同一の操作'
+
+  # デザインパターン > D. 異なる複数の操作
+  - severity: must
+    text: 'トリガーのラベルを `その他の操作` とする'
+    source_section: 'デザインパターン > D. 異なる複数の操作'
+
+  # デザインパターン > E. ラベル省略(デスクトップでは非推奨)
+  - severity: avoid
+    text: 'デスクトップでは利用を避ける'
+    source_section: 'デザインパターン > E. ラベル省略（デスクトップでは非推奨）'
+
+  - severity: avoid
+    text: 'モバイルでも可能な限り利用を避ける'
+    source_section: 'デザインパターン > E. ラベル省略（デスクトップでは非推奨）'
+
+  - severity: avoid
+    text: '標準アイコン（`FaEllipsisIcon`）の変更は避ける'
+    source_section: 'デザインパターン > E. ラベル省略（デスクトップでは非推奨）'
+
+  - severity: must
+    text: '何のボタンか識別できるよう必ず `trigger.children` を設定する'
+    source_section: 'デザインパターン > E. ラベル省略（デスクトップでは非推奨）'
+
+  # 状態 > 無効(disabled) > ドロップダウンパネルの操作の無効
+  - severity: must
+    text: 'ドロップダウンパネル内の操作を無効にする場合、Button の `disabledReason` を使って無効状態の理由を表示する'
+    source_section: '状態 > 無効（disabled） > ドロップダウンパネルの操作の無効'
