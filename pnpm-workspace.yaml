@@ -1,6 +1,11 @@
-minimumReleaseAge: 7
+packages:
+  - scripts/*
+
+minimumReleaseAge: 10080
+
 allowBuilds:
   '@parcel/watcher': true
   canvas: true
   esbuild: true
+  puppeteer: true
   sharp: true
