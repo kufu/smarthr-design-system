@@ -4,7 +4,7 @@ description: "縦に積まれた見出しのリストで、関連する詳細の
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 縦に積まれた見出しのリストで、関連する詳細の表示・非表示を切り替えられるコンポーネントです。情報量が多い場合に表示内容を絞るときに使います。
@@ -48,4 +48,20 @@ AccordionPanel に直接関連する eslint-plugin-smarthr のルールは現時
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### 使用上の注意 > AccordionPanelを乱用しない
+- [should] 画面内の情報量や粒度、構造が適切かどうかを精査して AccordionPanel を使用する
+
+### 使用上の注意 > ModelessDialogとの使い分け
+- [should] 「ヘルプページを参照しながら別の操作を行なう」など、画面のスクロールに依存せずモードレスに情報を表示したい場合は、AccordionPanel ではなく ModelessDialog を使用する
+
+### レイアウト > アイコンの位置
+- [avoid] `iconPosition` props でアイコンを右に配置するのは非推奨
+
+### レイアウト > デフォルトの開閉状態
+- [avoid] ユーザーの操作や閲覧が必ず必要な、重要性の高い情報を AccordionPanel で隠さない
+  - デフォルトで閉じる使い方の例: 一部のユーザーしか利用しない機能（例: 高度な設定など）を隠し画面の表示要素をシンプルに保ちたい場合
+  - デフォルトで閉じる使い方の例: 見出しを並べ、ユーザーに情報全体の構造を把握させたい場合
+
+### アクセシビリティ > ユーザーが操作していないリストを勝手に閉じない
+- [must] `expandableMultiply` props は `expandableMultiply={true}` に指定する
+  - `expandableMultiply={false}` だと、1つのリストを展開するとすでに展開している別のリストが同時に閉じ、ユーザーが予測・意図していない動きが発生するため非推奨
