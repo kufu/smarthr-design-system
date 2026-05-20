@@ -4,7 +4,7 @@ description: "ページ前面に表示されるダイアログ領域のプリミ
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1+layer2
+  generated-from: layer1+layer2+layer3
 ---
 
 ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。
@@ -84,4 +84,15 @@ Dialogのボタンテキストにアイコンコンポーネント（名前が"I
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### Dialogを使用したコンポーネント > ActionDialog、FormDialog
+- [should] ユーザーに入力や選択などの操作を求める場合は ActionDialog / FormDialog を使う
+- [should] ダイアログコンテンツにフォームが含まれている場合は FormDialog を使う
+
+### Dialogを使用したコンポーネント > MessageDialog
+- [should] ユーザーに情報を提示する場合は MessageDialog を使う
+
+### Dialogを使用したコンポーネント > ModelessDialog
+- [should] ダイアログと裏側の画面を同時並行で閲覧・操作する場合は ModelessDialog を使う
+
+### Dialogを使用したコンポーネント > StepFormDialog
+- [should] タスクの完了に複数の操作が必要な場合は StepFormDialog を使う

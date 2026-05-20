@@ -4,7 +4,7 @@ description: "「よくあるテーブル」などの一覧の総件数と現在
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。
@@ -31,4 +31,6 @@ PageCounter に直接関連する eslint-plugin-smarthr のルールは現時点
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### モバイル
+- [must] PageCounter は Pagination と合わせて使う
+- [avoid] モバイルで Pagination を表示していない場合（代わりに「さらに表示」ボタンを表示している場合など）は PageCounter を使わない

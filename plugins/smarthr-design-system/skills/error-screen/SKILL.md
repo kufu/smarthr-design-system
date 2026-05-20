@@ -4,7 +4,7 @@ description: "エラーを全画面で表示するためのプリミティブコ
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。
@@ -33,4 +33,18 @@ ErrorScreen に直接関連する eslint-plugin-smarthr のルールは現時点
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### 使用上の注意
+- [avoid] 全画面でエラーを表示する必要がないエラーには ErrorScreen を使用しない
+- [should] フォームのバリデーションエラーや連携 API の疎通エラーのような一時的なエラーの場合は、NotificationBar / ResponseMessage / InformationPanel の使用を検討する
+
+### レイアウト > ロゴ
+- [should] 特別な理由がない限り、ロゴを表示する
+
+### レイアウト > タイトル
+- [must] タイトルには、どのようなエラーが発生したのかがわかる文言を設定する
+
+### レイアウト > メッセージ
+- [should] タイトルに補足が必要な場合、メッセージを設定する
+
+### レイアウト > リンク
+- [should] エラーになったときにユーザーの助けになるようなページへ誘導できる場合はリンクを表示する
