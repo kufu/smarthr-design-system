@@ -1,0 +1,13 @@
+items:
+  # 使用上の注意 > レイヤー順序に注意する
+  - severity: avoid
+    text: 'レイヤー順序が 2 以上の要素（InformationPanel など）を Base の上に配置しない'
+    source_section: '使用上の注意 > レイヤー順序に注意する'
+
+  - severity: should
+    text: 'Base の上で矩形によるグルーピングをする場合は基本的に BaseColumn を使う'
+    source_section: '使用上の注意 > レイヤー順序に注意する'
+
+  - severity: must
+    text: 'レイアウト上 Base を重ねる必要がある場合は、背景色が同色（WHITE）にならないよう OVER_BACKGROUND などに変更してレイヤー順序を表現する'
+    source_section: '使用上の注意 > レイヤー順序に注意する'
