@@ -4,7 +4,7 @@ description: "ユーザーに伝えたい情報を視覚的に目立たせるパ
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1+layer2
+  generated-from: layer1+layer2+layer3
 ---
 
 ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。
@@ -38,4 +38,19 @@ InformationPanelを白背景に配置することを禁止します。
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### 使用上の注意 > 短い一文で説明できるものに使用しない
+- [must] 見出しと内容を必ずセットにして使用する
+- [should] 短い一文で説明できる場合は、ResponseMessage や NotificationBar の使用を検討する
+
+### (Layer 2 でカバー: design-system-guideline-prohibit-information-panel-in-white-bg)
+- [should] InformationPanel では視覚的に強調されすぎる場合は、BaseColumn を使った代替パターンも検討する
+
+### レイアウト > [WIP] モバイル > 開閉ボタン
+- [must] モバイルでは開閉ボタンをアイコンボタンで表示する
+
+### レイアウト > [WIP] モバイル > 余白
+- [must] モバイルではコンポーネント内部の余白を 16px に変更する
+
+### 状態 > デフォルト
+- [should] 全文表示したままだと操作の妨げになるなど、利用者の使い勝手に影響する場合は開閉ボタンの表示を検討する
+- [should] 開閉ボタンを表示する際は、利用者のストレスを避けるため開閉状態の保持を合わせて検討する
