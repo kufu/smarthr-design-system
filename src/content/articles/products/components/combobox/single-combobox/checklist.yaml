@@ -1,0 +1,41 @@
+items:
+  # 使用上の注意 > 単一選択の場合に使用する
+  - severity: must
+    text: '値を複数選択させたい場合は MultiCombobox を使用する'
+    source_section: '使用上の注意 > ユースケースに応じてコンポーネントを使い分ける > 単一選択の場合に使用する'
+
+  # 使用上の注意 > 選択肢が6個以上の場合に使用する
+  - severity: should
+    text: '選択肢の数が 6 個以上で、ユーザーにテキスト入力で値を追加させたり、値を絞り込んで選択させたい場合は SingleCombobox を使用する'
+    source_section: '使用上の注意 > ユースケースに応じてコンポーネントを使い分ける > 選択肢が6個以上の場合に使用する'
+
+  - severity: should
+    text: '選択肢が 5 個以下であれば、初期状態で選択肢が一覧できる RadioButton を使用する'
+    source_section: '使用上の注意 > ユースケースに応じてコンポーネントを使い分ける > 選択肢が6個以上の場合に使用する'
+
+  - severity: should
+    text: 'RadioButton を配置する十分スペースがない場合は、SingleCombobox や Select の使用を検討する'
+    source_section: '使用上の注意 > ユースケースに応じてコンポーネントを使い分ける > 選択肢が6個以上の場合に使用する'
+
+  # 使用上の注意 > 入力補助のヒントメッセージとしてプレースホルダを使用しない
+  - severity: avoid
+    text: '入力補助のヒントメッセージとしてプレースホルダ（`placeholder`）を使用しない'
+    source_section: '使用上の注意 > 入力補助のヒントメッセージとしてプレースホルダを使用しない'
+
+  - severity: must
+    text: '入力補助のヒントメッセージを表示したい場合は、`dropdownHelpMessage` または FormControl の `helpMessage` を使用する'
+    source_section: '使用上の注意 > 入力補助のヒントメッセージとしてプレースホルダを使用しない'
+
+  - severity: must
+    text: 'ヒントメッセージを常に表示したい場合は、FormControl の `helpMessage` を使用する'
+    source_section: '使用上の注意 > 入力補助のヒントメッセージとしてプレースホルダを使用しない'
+
+  # 状態 > 無効（disabled）
+  - severity: should
+    text: '無効状態にする場合は、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討する'
+    source_section: '状態 > 無効（disabled）'
+
+  # 状態 > 選択肢にない値の追加
+  - severity: should
+    text: 'ユーザーがその場で選択肢を追加できるようにしたい場合は、`creatable` を適用してコールバック関数 `onAdd` を適切に実装する'
+    source_section: '状態 > 選択肢にない値の追加'

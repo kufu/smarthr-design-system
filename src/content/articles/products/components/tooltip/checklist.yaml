@@ -1,0 +1,102 @@
+items:
+  # 冒頭 Warning (via _components/Warning.tsx)
+  - severity: should
+    text: '基本的には Tooltip 以外の UI を使用することを検討する'
+    source_section: '冒頭 (via Warning.tsx)'
+
+  # 使用上の注意 > Tooltipの使用を避けるケース
+  - severity: avoid
+    text: 'Tooltip 内の情報は隠れるため、操作に必要な情報の表示への使用は避ける'
+    source_section: '使用上の注意 > Tooltipの使用を避けるケース'
+
+  - severity: should
+    text: 'ユーザーが把握しておかないと操作が進められないような重要な情報は、常に表示することを検討する'
+    source_section: '使用上の注意 > Tooltipの使用を避けるケース'
+    sub_items:
+      - 'パスワードに使用できる文字や、エラーになる入力値などの入力要件'
+      - '入力エラーとなった際のエラーメッセージ'
+      - '操作補助になる情報（ショートカットなど）'
+
+  # 使用上の注意 > Tooltipの使用を避けるケース > 例外
+  - severity: should
+    text: 'Tooltip の使用は例外ケースに限定する（付加的情報の表示、Tooltip 提供コンポーネントの利用基準に沿った使用）'
+    source_section: '使用上の注意 > Tooltipの使用を避けるケース > 例外'
+    sub_items:
+      - 'ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的'
+      - 'LineClamp で折り返して表示することがどうしても難しい場合'
+      - 'SearchInput で検索結果が得られなかったときの再検索ヒントを補助として使う場合（再検索ヒント自体は必ず見える場所に表示する）'
+      - 'Button の disabledReason: DropdownMenuButton 内の Button で使う場合'
+      - 'Button の disabledReason: Button 単独でも付加的情報を表示する目的で使う場合'
+
+  - severity: must
+    text: 'Button の disabled 理由を示す場合は、Tooltip を使わず見える場所に表示する'
+    source_section: '使用上の注意 > Tooltipの使用を避けるケース > 例外'
+
+  # レイアウト > 構成 > 2. トリガー
+  - severity: should
+    text: 'トリガーは、マウスオーバーが可能な要素であることを想起させるテキスト・アイコン・色を組み合わせる'
+    source_section: 'レイアウト > 構成 > 2. トリガー'
+
+  # デザインパターン > Tooltipのトリガーパターン > A. テキスト＋アイコン
+  - severity: must
+    text: '補足する対象となるテキストの横に `FaCircleInfoIcon` を配置し、Tooltip の存在を明確に示す'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > A. テキスト＋アイコン'
+
+  - severity: must
+    text: 'テキスト＋アイコンパターンのアイコンの色には `TEXT_GRAY` を使う'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > A. テキスト＋アイコン'
+
+  # デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ
+  - severity: must
+    text: 'アイコン単体をトリガーにするパターンは、どうしても他に方法がないときだけ使用する'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ'
+
+  - severity: avoid
+    text: 'アイコン単体で意味が伝わる場合は Tooltip を使わない'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ'
+
+  - severity: must
+    text: 'アイコン単体をトリガーにする場合は、アイコンに必ず代替テキストを設定する'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ'
+
+  - severity: must
+    text: 'アイコン単体でテキストなど他の要素と合わせず配置する場合は、リンク色（`TEXT_LINK`）を使う'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ'
+
+  # デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > テキストとあわせて使用
+  - severity: must
+    text: 'テキストとあわせて使うアイコンの色には `TEXT_GRAY` を使う'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > テキストとあわせて使用'
+
+  # デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > ステータスの補足に使用
+  - severity: must
+    text: 'ステータスの補足説明を加えるときはアイコンをテキストの左に配置し、ステータスの色に合わせる'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > ステータスの補足に使用'
+
+  # デザインパターン > Tooltipのトリガーパターン > C. アイコンボタン
+  - severity: avoid
+    text: 'Text ボタンのアイコンボタンには Tooltip を使用しない'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > C. アイコンボタン'
+
+  - severity: should
+    text: 'ラベルテキスト以上の説明を表示したい場合は、ラベルテキストがあるボタンの採用や、説明テキストが入るレイアウトを検討する'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > C. アイコンボタン'
+
+  # デザインパターン > Tooltipのトリガーパターン > D. 省略テキスト
+  - severity: must
+    text: '省略テキストパターンでは、テキストは `ellipsis` を使い省略されていることを示す'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > D. 省略テキスト'
+
+  - severity: must
+    text: '単純に文章を省略したい場合は LineClamp を使用する'
+    source_section: 'デザインパターン > Tooltipのトリガーパターン > D. 省略テキスト'
+
+  # モバイル
+  - severity: avoid
+    text: 'モバイルでは Tooltip を使わない'
+    source_section: 'モバイル'
+
+  # モバイル > やむを得ずモバイルでTooltipを表示する例 > disabledReason
+  - severity: should
+    text: 'モバイルでも、よくあるリストのリスト操作エリアなどテキストで理由を表示するスペースを確保できない無効状態のボタンには `disabledReason` を用いて Tooltip を表示する'
+    source_section: 'モバイル > やむを得ずモバイルでTooltipを表示する例 > `disabledReason`で無効状態の理由を表示する場合'
