@@ -34,9 +34,9 @@ smarthr-design-system のコンポーネントページ（index.mdx）から、A
 
 sub-mdx がある場合（index.mdx 内で import されている .mdx）はそれも読む。
 
-### Step 2: FIX-10 判定（スキップ判定）
+### Step 2: スキップ判定
 
-index.mdx を読んだ後、**ルール候補が 0〜1 件しかない場合は checklist.yaml を作らずスキップ**する。
+index.mdx を読んだ後、**ルール候補が 0 件の場合は checklist.yaml を作らずスキップ**する。1 件以上あれば生成する（1 件でも使い方ガイドとして意味があれば出力する）。
 
 スキップになりやすいパターン:
 - **Every Layout 外部委譲**: Stack / Cluster / Center / Sidebar / Reel 等。機能説明のみで指示文がない
@@ -70,7 +70,7 @@ index.mdx を読んだ後、**ルール候補が 0〜1 件しかない場合は 
 
 #### 親ページの扱い
 
-11. **索引のみの親ページ → FIX-10 スキップ**: Combobox 親、Dropdown 親
+11. **索引のみの親ページ → スキップ**: Combobox 親、Dropdown 親
 12. **子への使い分けガイドがある親ページ → 生成する**: Dialog 親（Action/Form/Message/Modeless/StepForm の使い分け）、ErrorScreen 親（子5種の使い分け）
 
 ### Step 4: バリデーション
@@ -264,8 +264,8 @@ items:
 
 | パターン | 判断 |
 |---------|------|
-| Every Layout 委譲（Stack/Cluster/Center/Sidebar/Reel） | FIX-10 スキップ |
-| 索引のみの親ページ（Combobox/Dropdown） | FIX-10 スキップ |
+| Every Layout 委譲（Stack/Cluster/Center/Sidebar/Reel） | スキップ |
+| 索引のみの親ページ（Combobox/Dropdown） | スキップ |
 | 子への使い分けガイドがある親ページ（Dialog/ErrorScreen） | 生成する |
 | eslint ルールでカバーされる項目 | checklist.yaml に含めない |
 | WIP モバイルルール | note 付きで残す |
