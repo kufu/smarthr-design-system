@@ -19,10 +19,9 @@ smarthr-design-system のコンポーネントページ（index.mdx）から、A
 
 ## 前提条件
 
-- リポジトリ: `kufu/smarthr-design-system`
-- ブランチ: `feature/ai-agent-skills` から作業ブランチを切る
 - 抽出ルール詳細: `.github/prompts/checklist-v3.md`（severity 推測の語気手がかり、Do/Don't 変換の具体例等）
 - ディレクトリ名解決: `scripts/generate-skills/mapping/component-dir-map.json`
+- 参考例: `src/content/articles/products/components/button/checklist.yaml`
 
 ## 生成フロー
 
@@ -74,17 +73,7 @@ index.mdx を読んだ後、**ルール候補が 0〜1 件しかない場合は 
 11. **索引のみの親ページ → FIX-10 スキップ**: Combobox 親、Dropdown 親
 12. **子への使い分けガイドがある親ページ → 生成する**: Dialog 親（Action/Form/Message/Modeless/StepForm の使い分け）、ErrorScreen 親（子5種の使い分け）
 
-### Step 4: 人間レビュー
-
-生成結果を見せて確認を取る。**自動で次のコンポーネントに進まない。**
-
-よくあるレビュー指摘:
-- 重複ルールの削除（同義ルールが複数見出しに登場）
-- severity の調整（must ↔ should）
-- sub_items への統合
-- 不要項目の削除（description と重複、Layer 2 と重複）
-
-### Step 5: バリデーション
+### Step 4: バリデーション
 
 ```bash
 # YAML 構文チェック
@@ -96,35 +85,13 @@ grep -c "^- severity:" path/to/checklist.yaml
 
 期待範囲: 2〜20 項目。極端に多い（20 超）場合は統合の余地あり。
 
-### Step 6: SKILL.md 再生成
+### Step 5: SKILL.md 再生成
 
 ```bash
 pnpm generate
 ```
 
 Layer 3 あり件数が増えていることを確認。
-
-### Step 7: コミットと PR
-
-```bash
-git add src/content/articles/products/components/**/checklist.yaml
-git commit -m "feat(m6-sN): <区分> checklist.yaml 生成
-
-Session N: <コンポーネント名一覧>
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
-
-git add plugins/smarthr-design-system/skills/
-git commit -m "chore(m6-sN): SKILL.md 再生成"
-
-git push origin feature/m6-sessionN
-```
-
-PR 作成:
-- **Draft PR** で作成
-- **base**: `feature/ai-agent-skills`
-- **概要**: `.github/PULL_REQUEST_TEMPLATE.md` を読み、そのフォーマットに従って記述
-- pre-commit hook が rate limit でエラーになる場合は `--no-verify` で回避可（SKILL.md は自動生成物のためリスク低い）
 
 ## checklist.yaml のフォーマット
 
