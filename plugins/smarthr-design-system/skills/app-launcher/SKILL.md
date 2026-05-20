@@ -1,6 +1,6 @@
 ---
 name: app-launcher
-description: "【非推奨】アプリケーション切替メニューを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。Header内に配置されるSmartHRの複数のアプリケーション間を遷移するためのランチャーコンポーネントです。"
+description: "【非推奨】Header内に配置されるSmartHRの複数のアプリケーション間を遷移するためのランチャーコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

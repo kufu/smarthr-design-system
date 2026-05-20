@@ -1,6 +1,6 @@
 ---
 name: help-link
-description: "smarthr-ui の HelpLink を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。ヘルプページを開くためのテキストリンクコンポーネントです。SmartHRのヘルプセンターへ誘導するリンクを置くときに使います。"
+description: "ヘルプページを開くためのテキストリンクコンポーネントです。SmartHRのヘルプセンターへ誘導するリンクを置くときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

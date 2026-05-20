@@ -3,11 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { parseMetadata, loadPublicExports, type ComponentGroup } from './lib/parse-metadata.js';
-import {
-  fetchEslintRules,
-  buildComponentRuleMap,
-  type EslintRuleWithContent,
-} from './lib/fetch-eslint-rules.js';
+import { fetchEslintRules, buildComponentRuleMap, type EslintRuleWithContent } from './lib/fetch-eslint-rules.js';
 import { parseChecklist } from './lib/parse-checklist.js';
 import { parseIndexMdx, type IndexMdxInfo } from './lib/parse-index-mdx.js';
 import { collectInheritedSkills } from './lib/inherited-by.js';
@@ -19,15 +15,12 @@ import { validateCoverage, printCoverageReport } from './lib/validate-coverage.j
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
 
-const DESIGN_SYSTEM_DIR =
-  process.env.DESIGN_SYSTEM_DIR ??
-  path.join(REPO_ROOT, 'src/content/articles/products/components');
-const OUTPUT_DIR =
-  process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
+const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/components');
+const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
 const GROUP_SPLIT_PATH = path.join(__dirname, 'mapping/group-split.json');
-const SKILL_TRIGGERS_PATH = path.join(__dirname, 'mapping/skill-triggers.json');
 const ESLINT_CACHE_PATH = path.join(__dirname, '.cache/eslint-rules.json');
+const ESLINT_RULE_NAMES_PATH = path.join(REPO_ROOT, '.github/data/eslint-rule-names.txt');
 
 function applyGroupSplit(
   groups: Map<string, ComponentGroup>,
@@ -60,18 +53,13 @@ async function main() {
   console.log(`   ${publicExports.size} 個の public named exports を取得`);
   const rawGroups = parseMetadata(publicExports);
 
-  const splitConfig: Record<string, string[]> = JSON.parse(
-    fs.readFileSync(GROUP_SPLIT_PATH, 'utf-8'),
-  );
+  const splitConfig: Record<string, string[]> = JSON.parse(fs.readFileSync(GROUP_SPLIT_PATH, 'utf-8'));
   const groups = applyGroupSplit(rawGroups, splitConfig);
 
-  const skillTriggers: Record<string, string> = JSON.parse(
-    fs.readFileSync(SKILL_TRIGGERS_PATH, 'utf-8'),
-  );
   console.log(`   ${groups.size} コンポーネントグループを検出`);
 
   console.log('🌐 eslint-plugin-smarthr ルール README を取得中…（キャッシュ優先）');
-  const rules = await fetchEslintRules(ESLINT_CACHE_PATH);
+  const rules = await fetchEslintRules(ESLINT_CACHE_PATH, ESLINT_RULE_NAMES_PATH);
   console.log(`   ${rules.length} ルールを取得`);
 
   const allDisplayNames = new Set<string>();
@@ -93,7 +81,6 @@ async function main() {
   const coverageReport = validateCoverage({
     groups,
     dirMapping,
-    skillTriggers,
     designSystemDir: DESIGN_SYSTEM_DIR,
     inheritedNames: new Set(inheritedSkills.keys()),
   });
@@ -154,7 +141,7 @@ async function main() {
     }
     const eslintRules = [...eslintRulesSet.values()];
 
-    const content = renderSkill({ group, indexInfo, eslintRules, checklist, skillTriggers });
+    const content = renderSkill({ group, indexInfo, eslintRules, checklist });
     const skillSlug = pascalToKebab(dirName);
     const outDir = path.join(OUTPUT_DIR, skillSlug);
     fs.mkdirSync(outDir, { recursive: true });
@@ -169,11 +156,7 @@ async function main() {
   console.log('🧭 ルータースキル component-selector を生成中…');
   const routerDir = path.join(OUTPUT_DIR, 'component-selector');
   fs.mkdirSync(routerDir, { recursive: true });
-  fs.writeFileSync(
-    path.join(routerDir, 'SKILL.md'),
-    renderRouterSkill(routerEntries, skillTriggers),
-    'utf-8',
-  );
+  fs.writeFileSync(path.join(routerDir, 'SKILL.md'), renderRouterSkill(routerEntries), 'utf-8');
   console.log(`   → ${path.relative(REPO_ROOT, path.join(routerDir, 'SKILL.md'))}`);
 
   console.log('🎉 完了');

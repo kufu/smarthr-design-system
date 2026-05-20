@@ -1,6 +1,6 @@
 ---
 name: datetime-local-picker
-description: "【非推奨】日付と時刻を一度に選択させるとき（非推奨・将来削除予定）、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。"
+description: "【非推奨】ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

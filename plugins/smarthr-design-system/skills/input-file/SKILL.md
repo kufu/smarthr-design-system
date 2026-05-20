@@ -1,6 +1,6 @@
 ---
 name: input-file
-description: "ファイルをアップロードさせるとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。"
+description: "input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

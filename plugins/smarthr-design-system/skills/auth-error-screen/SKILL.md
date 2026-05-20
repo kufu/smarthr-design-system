@@ -1,6 +1,6 @@
 ---
 name: auth-error-screen
-description: "smarthr-ui の AuthErrorScreen を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。認証フローで問題が発生したことを表示する全画面コンポーネントです。SSOやOAuthなどログイン処理に失敗したときに使います。"
+description: "認証フローで問題が発生したことを表示する全画面コンポーネントです。SSOやOAuthなどログイン処理に失敗したときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ai-logo
-description: "SmartHR AI のロゴを表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。SmartHRのAI関連の機能ラベルを表示するためのコンポーネントです。"
+description: "SmartHRのAI関連の機能ラベルを表示するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

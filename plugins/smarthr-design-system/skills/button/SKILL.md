@@ -1,6 +1,6 @@
 ---
 name: button
-description: "ボタンを置くとき、クリックで操作を実行させるとき、リンクをボタン風に表示するとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。"
+description: "button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
@@ -73,6 +73,27 @@ DropdownTriggerやDialogTrigger, DisclosureTrigger内にbutton要素を設置す
 <DropdownTrigger>
   <Button />
 </DropdownTrigger>
+```
+
+### design-system-guideline-bulk-action-row-button
+BulkActionRow内では「すべてのオブジェクトを選択」ボタンの実装には Button[variant="tertiary"] を使用することを推奨するルールです
+
+✅ OK:
+
+```jsx
+// 「すべてのオブジェクトの選択」ボタンにvariant="tertiary"を指定
+<Table>
+  <thead>
+    <BulkActionRow>
+      <Cluster align="center">
+        <Text>このページの「オブジェクト名」50件すべて選択されています。</Text>
+        <Button variant="tertiary" size="S">
+          一覧の「オブジェクト名」1000件すべてを選択
+        </Button>
+      </Cluster>
+    </BulkActionRow>
+  </thead>
+</Table>
 ```
 
 ### design-system-guideline-prohibit-dialog-button-icon

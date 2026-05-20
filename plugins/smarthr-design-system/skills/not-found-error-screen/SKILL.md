@@ -1,6 +1,6 @@
 ---
 name: not-found-error-screen
-description: "smarthr-ui の NotFoundErrorScreen を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。存在しないページであることを表示する全画面コンポーネントです。404相当のエラーを伝えるときに使います。"
+description: "存在しないページであることを表示する全画面コンポーネントです。404相当のエラーを伝えるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

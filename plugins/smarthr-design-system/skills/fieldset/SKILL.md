@@ -1,6 +1,6 @@
 ---
 name: fieldset
-description: "smarthr-ui の Fieldset を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。fieldset要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。"
+description: "fieldset要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -11,17 +11,16 @@ export type SkillRenderOptions = {
   indexInfo: IndexMdxInfo | null;
   eslintRules: EslintRuleWithContent[];
   checklist: ChecklistSection[] | null;
-  skillTriggers?: Record<string, string>;
 };
 
 const SOURCE_TAG = 'smarthr-design-system';
 
 export function renderSkill(opts: SkillRenderOptions): string {
-  const { group, indexInfo, eslintRules, checklist, skillTriggers } = opts;
+  const { group, indexInfo, eslintRules, checklist } = opts;
   const groupName = group.dirName;
   const skillName = pascalToKebab(groupName);
   const generatedFrom = buildGeneratedFromTag(eslintRules.length > 0, checklist !== null);
-  const description = buildDescription(group, indexInfo, skillTriggers);
+  const description = buildDescription(group, indexInfo);
 
   const parts: string[] = [];
   parts.push('---');
@@ -147,19 +146,13 @@ export function renderSkill(opts: SkillRenderOptions): string {
   return parts.join('\n');
 }
 
-function buildDescription(
-  group: ComponentGroup,
-  indexInfo: IndexMdxInfo | null,
-  skillTriggers?: Record<string, string>,
-): string {
+function buildDescription(group: ComponentGroup, indexInfo: IndexMdxInfo | null): string {
   const names = group.displayNames.join(' / ');
-  const base = indexInfo?.description?.trim() || `smarthr-ui の ${names} コンポーネントの使い方ガイド。`;
-  const trigger = skillTriggers?.[group.dirName];
-  const triggerPhrase = trigger
-    ? `${trigger}、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき`
-    : `smarthr-ui の ${names} を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するとき`;
+  const base =
+    indexInfo?.description?.replace(/\r?\n/g, ' ').trim() ||
+    `smarthr-ui の ${names} コンポーネントの使い方ガイド。`;
   const deprecatedPrefix = indexInfo?.deprecated ? '【非推奨】' : '';
-  return `${deprecatedPrefix}${triggerPhrase}に使う。${base}`;
+  return `${deprecatedPrefix}${base}`;
 }
 
 function stripHtml(value: string): string {

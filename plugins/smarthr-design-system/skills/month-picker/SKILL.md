@@ -1,6 +1,6 @@
 ---
 name: month-picker
-description: "【非推奨】年月を選択させるとき（非推奨・将来削除予定）、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するときに使う。ユーザーに年と月を入力させる際に使用するコンポーネントです。"
+description: "【非推奨】ユーザーに年と月を入力させる際に使用するコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

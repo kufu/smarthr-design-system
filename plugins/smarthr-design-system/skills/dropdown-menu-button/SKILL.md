@@ -1,6 +1,6 @@
 ---
 name: dropdown-menu-button
-description: "smarthr-ui の DropdownMenuGroup / DropdownMenuButton を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。同じ対象に関連する複数の操作をまとめてドロップダウン表示するメニューボタンコンポーネントです。編集・複製・削除など、オブジェクトに対する複数アクションをまとめるときに使います。"
+description: "同じ対象に関連する複数の操作をまとめてドロップダウン表示するメニューボタンコンポーネントです。編集・複製・削除など、オブジェクトに対する複数アクションをまとめるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -64,10 +64,4 @@ Layer 3: checklist.yaml（このリポジトリで管理する人手作成ルー
 - 形式: 1 行 1 ルール名
 - 全ルールを含みます（対象外判定はプロンプト側）
 
-更新方法（手動）:
-
-```sh
-gh api repos/kufu/tamatebako/contents/packages/eslint-plugin-smarthr/rules \
-  --paginate --jq '.[] | select(.type=="dir") | .name' \
-  > .github/data/eslint-rule-names.txt
-```
+更新方法: `scripts/generate-skills` の `pnpm generate` 実行時に、eslint ルール README を上流から取得する処理の副産物として自動更新されます。手動更新は不要です（GitHub API 認証付きでの実行を推奨。`GITHUB_TOKEN` 環境変数を設定してください）。

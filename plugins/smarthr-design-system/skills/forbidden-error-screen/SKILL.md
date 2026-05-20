@@ -1,6 +1,6 @@
 ---
 name: forbidden-error-screen
-description: "smarthr-ui の ForbiddenErrorScreen を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。アクセス権限がないことを表示する全画面コンポーネントです。403相当の権限エラーを伝えるときに使います。"
+description: "アクセス権限がないことを表示する全画面コンポーネントです。403相当の権限エラーを伝えるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

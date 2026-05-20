@@ -1,10 +1,10 @@
 ---
 name: bulk-action-row
-description: "smarthr-ui の BulkActionRow を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。"
+description: "テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1+layer3
+  generated-from: layer1+layer2+layer3
 ---
 
 テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。
@@ -25,7 +25,93 @@ import { BulkActionRow } from 'smarthr-ui'
 
 ## 実装ルール
 
-BulkActionRow に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+### design-system-guideline-bulk-action-row-button
+BulkActionRow内では「すべてのオブジェクトを選択」ボタンの実装には Button[variant="tertiary"] を使用することを推奨するルールです
+
+❌ NG:
+
+```jsx
+// TextLinkは画面遷移を示すセマンティックなマークアップです
+// BulkActionRowは一括操作用の領域であり、画面遷移以外の動作を担うため、Linkは不適切です
+// また、コントラスト比も確保できません
+<Table>
+  <thead>
+    <BulkActionRow>
+      <Cluster align="center">
+        <Text>このページの「オブジェクト名」50件すべて選択されています。</Text>
+        <TextLink href={undefined} onClick={toggleAllChecked}>
+          一覧の「オブジェクト名」1000件すべてを選択
+        </TextLink>
+      </Cluster>
+    </BulkActionRow>
+  </thead>
+</Table>
+```
+
+```jsx
+// AnchorButtonはa要素ベースのコンポーネントであり、画面遷移を示すセマンティックなマークアップです
+// BulkActionRowは一括操作用の領域であり、画面遷移以外の動作を担うため、AnchorButtonは不適切です
+<Table>
+  <thead>
+    <BulkActionRow>
+      <Cluster align="center">
+        <Text>このページの「オブジェクト名」50件すべて選択されています。</Text>
+        <AnchorButton href={undefined} onClick={toggleAllChecked}>
+          一覧の「オブジェクト名」1000件すべてを選択
+        </AnchorButton>
+      </Cluster>
+    </BulkActionRow>
+  </thead>
+</Table>
+```
+
+```jsx
+// prefixが付いたButtonコンポーネントを使用している
+<Table>
+  <thead>
+    <BulkActionRow>
+      <Cluster align="center">
+        <Text>このページの「オブジェクト名」50件すべて選択されています。</Text>
+        <SelectAllButton>一覧の「オブジェクト名」1000件すべてを選択</SelectAllButton>
+      </Cluster>
+    </BulkActionRow>
+  </thead>
+</Table>
+```
+
+```jsx
+// prefixが付いたButtonコンポーネントを使用している
+<Table>
+  <thead>
+    <BulkActionRow>
+      <Cluster align="center">
+        <Text>このページの「オブジェクト名」50件すべて選択されています。</Text>
+        <button>一覧の「オブジェクト名」1000件すべてを選択</button>
+      </Cluster>
+    </BulkActionRow>
+  </thead>
+</Table>
+```
+
+✅ OK:
+
+```jsx
+// 「すべてのオブジェクトの選択」ボタンにvariant="tertiary"を指定
+<Table>
+  <thead>
+    <BulkActionRow>
+      <Cluster align="center">
+        <Text>このページの「オブジェクト名」50件すべて選択されています。</Text>
+        <Button variant="tertiary" size="S">
+          一覧の「オブジェクト名」1000件すべてを選択
+        </Button>
+      </Cluster>
+    </BulkActionRow>
+  </thead>
+</Table>
+```
+
+詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
 

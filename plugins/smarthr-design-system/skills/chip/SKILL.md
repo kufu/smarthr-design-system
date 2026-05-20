@@ -1,6 +1,6 @@
 ---
 name: chip
-description: "smarthr-ui の Chip を使うとき、props を選ぶとき、関連するアクセシビリティ・デザインシステムのルールを確認するとき、コンポーネントの組み合わせを判断するときに使う。テキストをタグのように装飾して表示するためのコンポーネントです。"
+description: "テキストをタグのように装飾して表示するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
