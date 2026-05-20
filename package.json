@@ -6,7 +6,16 @@
   "type": "module",
   "lint-staged": {
     "*.{astro,ts,tsx,md,mdx}": [
-      "pnpm run lint --"
+      "pnpm lint"
+    ],
+    "*.{astro,ts,tsx}": [
+      "pnpm format:eslint"
+    ],
+    "*.md{,x}": [
+      "pnpm format:text"
+    ],
+    "*": [
+      "pnpm format:prettier"
     ]
   },
   "scripts": {
