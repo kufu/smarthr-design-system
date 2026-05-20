@@ -7,6 +7,15 @@
   "lint-staged": {
     "*.{astro,ts,tsx,md,mdx}": [
       "pnpm run lint --"
+    ],
+    "*.{astro,ts,tsx}": [
+      "pnpm run format:eslint --"
+    ],
+    "*.md{,x}": [
+      "pnpm run format:text --"
+    ],
+    "*": [
+      "pnpm run format:prettier --"
     ]
   },
   "scripts": {
