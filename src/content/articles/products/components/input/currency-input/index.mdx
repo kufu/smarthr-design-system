@@ -1,0 +1,35 @@
+---
+title: 'CurrencyInput'
+description: '金額を入力させるためのコンポーネントです。給与・税額など金額値を入力させるときに使います。'
+---
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+
+金額を入力させるためのコンポーネントです。給与・税額など金額値を入力させるときに使います。入力値が整数であった場合、入力欄からフォーカスを外したときに3桁ごとにカンマが入った値で表示されます。
+
+<ComponentStory name="CurrencyInput" />
+
+## 使用上の注意
+
+### 金額入力にはCurrencyInputを使用する
+
+`<Input type="number">`の代わりに、金額入力にはCurrencyInputを使用してください。
+
+```tsx editable
+<FormControl label="金額">
+  <CurrencyInput
+    name="currency"
+    defaultValue="1000"
+  />
+</FormControl>
+```
+
+### プレフィックス・サフィックスで単位を補足する
+
+通貨記号や単位は`prefix`または`suffix`で補足してください。一般的に内容に対して前方に置かれる単位（例: 米ドル）には`prefix`を、後方に置かれる単位（例: 日本円）には`suffix`を用いてください。
+
+詳細は[Inputのプレフィックス・サフィックス](/products/components/input/#h3-5)を参照してください。
+
+## Props
+
+<ComponentPropsTable name="CurrencyInput" />

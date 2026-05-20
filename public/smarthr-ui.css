@@ -616,6 +616,10 @@ a {
   margin-top: 16px;
 }
 
+.shr-mt-1\.5 {
+  margin-top: 24px;
+}
+
 .shr-mt-2 {
   margin-top: 32px;
 }
@@ -2795,6 +2799,10 @@ a {
 
 .shr-ps-1\.5 {
   padding-inline-start: 24px;
+}
+
+.shr-ps-\[1\.5em\] {
+  padding-inline-start: 1.5em;
 }
 
 .shr-ps-\[unset\] {
@@ -5920,6 +5928,11 @@ a {
 
 .\[\&_\.smarthr-ui-Button-disabledWrapper_\>_\.smarthr-ui-Button\]\:shr-pe-\[unset\] .smarthr-ui-Button-disabledWrapper > .smarthr-ui-Button {
   padding-inline-end: unset;
+}
+
+.\[\&_\.smarthr-ui-Button\.shr-text-link\]\:shr-text-link-darken .smarthr-ui-Button.shr-text-link {
+  --tw-text-opacity: 1;
+  color: rgb(0 94 161 / var(--tw-text-opacity, 1));
 }
 
 .\[\&_\.smarthr-ui-Button\]\:shr-rounded-none .smarthr-ui-Button {
