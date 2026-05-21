@@ -1,11 +1,11 @@
-import type { CSSProperties } from 'react';
+import type { ComponentPreviewProps } from '../ComponentPreview/ComponentPreview';
 import type { LiveProvider } from 'react-live';
-import type { Gap, SeparateGap } from 'smarthr-ui/types';
 
 type LiveProviderProps = React.ComponentProps<typeof LiveProvider>;
 
 export type LiveContainerProps = {
   code?: string;
+  hideCode?: boolean;
   language?: string;
   withStyled?: boolean;
   /**
@@ -13,7 +13,6 @@ export type LiveContainerProps = {
    */
   noIframe?: boolean;
 } & Pick<LiveProviderProps, 'scope'> & {
-    gap?: Gap | SeparateGap;
-    align?: CSSProperties['alignItems'];
-    layout?: 'none' | 'product';
+    background?: ComponentPreviewProps['background'];
+    canvas?: ComponentPreviewProps['canvas'];
   };
