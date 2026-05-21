@@ -46,4 +46,4 @@ SideMenu に直接関連する eslint-plugin-smarthr のルールは現時点で
 ## 使い方チェックリスト
 
 ### モバイル
-- [must] 横幅の狭いモバイルでは SideMenu を使わない
+- [avoid] 横幅の狭いモバイルでは SideMenu を使わない
