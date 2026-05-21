@@ -4,7 +4,7 @@ import type { EslintRuleWithContent } from './fetch-eslint-rules.js';
 import { getRelevantCodeExamples } from './fetch-eslint-rules.js';
 import type { ChecklistSection } from './parse-checklist.js';
 import type { IndexMdxInfo } from './parse-index-mdx.js';
-import { pascalToKebab } from './name-mapping.js';
+import { toSkillSlug } from './name-mapping.js';
 
 export type SkillRenderOptions = {
   group: ComponentGroup;
@@ -18,7 +18,7 @@ const SOURCE_TAG = 'smarthr-design-system';
 export function renderSkill(opts: SkillRenderOptions): string {
   const { group, indexInfo, eslintRules, checklist } = opts;
   const groupName = group.dirName;
-  const skillName = pascalToKebab(groupName);
+  const skillName = toSkillSlug(groupName);
   const generatedFrom = buildGeneratedFromTag(eslintRules.length > 0, checklist !== null && checklist.length > 0);
   const description = buildDescription(group, indexInfo);
 

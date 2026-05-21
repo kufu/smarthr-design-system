@@ -7,7 +7,7 @@ import { fetchEslintRules, buildComponentRuleMap, type EslintRuleWithContent } f
 import { parseChecklist } from './lib/parse-checklist.js';
 import { parseIndexMdx, type IndexMdxInfo } from './lib/parse-index-mdx.js';
 import { collectInheritedSkills } from './lib/inherited-by.js';
-import { buildDirMapping, loadManualMappings, pascalToKebab } from './lib/name-mapping.js';
+import { buildDirMapping, loadManualMappings, toSkillSlug } from './lib/name-mapping.js';
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
 import { validateCoverage, printCoverageReport } from './lib/validate-coverage.js';
@@ -91,7 +91,7 @@ async function main() {
   // 生成予定の skill slug 一覧を先に計算し、出力先の古いディレクトリを削除する。
   // smarthr-ui からコンポーネントが削除/rename されたときの残骸を防ぐ。
   const expectedSlugs = new Set<string>(['component-selector']);
-  for (const dirName of groups.keys()) expectedSlugs.add(pascalToKebab(dirName));
+  for (const dirName of groups.keys()) expectedSlugs.add(toSkillSlug(dirName));
 
   for (const existing of fs.readdirSync(OUTPUT_DIR, { withFileTypes: true })) {
     if (!existing.isDirectory()) continue;
@@ -142,7 +142,7 @@ async function main() {
     const eslintRules = [...eslintRulesSet.values()];
 
     const content = renderSkill({ group, indexInfo, eslintRules, checklist });
-    const skillSlug = pascalToKebab(dirName);
+    const skillSlug = toSkillSlug(dirName);
     const outDir = path.join(OUTPUT_DIR, skillSlug);
     fs.mkdirSync(outDir, { recursive: true });
     fs.writeFileSync(path.join(outDir, 'SKILL.md'), content, 'utf-8');
