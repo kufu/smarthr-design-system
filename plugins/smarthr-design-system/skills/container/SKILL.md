@@ -4,7 +4,7 @@ description: "ページの主要コンテンツの横幅と外側のパディン
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1+layer2
+  generated-from: layer1+layer2+layer3
 ---
 
 ページの主要コンテンツの横幅と外側のパディングを制御するレイアウトコンポーネントです。すべてのページで本文領域の最大幅と上下左右の余白を設定するときに使います。
@@ -31,4 +31,6 @@ smarthr-ui/Layoutsに属するコンポーネント(Center,Cluster,Container,Ree
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### レイアウト > コンテナの大きさ
+- [should] 大量のデータを表示する場合や 2 カラムレイアウトで 1 つのカラムに 1 ページ相当の情報を表示する場合は `WIDE` や `FULL` を検討する
+- [should] ページに表示する情報が少ない場合や入力要素が中心の画面の場合は `NARROW` を検討する
