@@ -81,21 +81,25 @@ import { DefinitionListItem, DefinitionList } from 'smarthr-ui'
 
 ## 使い方チェックリスト
 
-### 使用上の注意 > ドラッグアンドドロップでのファイル選択
-- [should] ドラッグアンドドロップでのファイル選択を提供したい場合など、より多くの操作方法を提供したい場合は DropZone の使用も検討する
-  - DropZone を一定以上の大きさでレイアウトすることが難しい場合は InputFile を推奨する
-  - 1 つの画面に複数のファイル選択 UI を配置する必要がある場合は InputFile を推奨する
+### 使用上の注意
+- [should] 原則としてデータの編集や送信を伴わない画面においてデータを表示する場合は DefinitionList を使用するのを推奨する
 
-### アクセシビリティ
-- [must] InputFile では入力すべき内容をユーザーに明確に伝えるラベルと、支援技術向けの Accessible Name を設定する
+### 使用上の注意 > Inputの意匠を残してデータを表示したいときはreadOnlyのInputを検討する
+- [should] フォームに入力した内容の確認画面など、Input の意匠を残してデータを表示したい場合は DefinitionList ではなく readOnly の Input の利用を検討する
 
-### アクセシビリティ > InputFileでラベルを提供する
-- [must] 入力要素として「何を入力すべきか」を示すラベルを FormControl の `title` で設定する
+### レイアウト > カラム数の指定
+- [must] 表示したいデータの内容に合わせて `maxColumns` props で適切な列数を指定する
 
-### アクセシビリティ > InputFileでラベルを省略する場合
-- [must] ラベルを省略する場合も Accessible Name を漏れなく提供する
-  - FormControl の `label.dangerouslyHide` を使用してラベルを不可視化する
-  - `aria-label` で入力する内容を特定できる Accessible Name を設定する
+### レイアウト > カラム数の指定 > 関連性のある項目がある場合
+- [should] 関連性のある項目（例: 氏名とヨミガナ）は横に並べて表示することで関連性をユーザーに伝える
+- [must] 関連性のある項目を横並びにする場合は `maxColumns` props に横並びにしたい項目の数を指定する
 
-### モバイル
-- [should] 目的のファイルを選択するステップが複数回に分かれるケースでは、必要に応じて `multiple={{ appendable: true }}` props の利用を検討する
+### レイアウト > カラム数の指定 > 意図的に項目を一列で表示したい場合
+- [must] 画面幅や項目の文字数にかかわらず意図的に項目を一列で表示したい場合は `maxColumns` props に `1` を指定する
+
+### レイアウト > 見出しの種類
+- [must] コンテンツのアウトラインに沿って適切な見出しレベルを指定する
+  - DefinitionList を含むコンテンツの見出しが `sectionTitle` の場合、`termStyleType` props に `blockTitle` を指定する
+
+### レイアウト > 表示項目が1つしかない場合
+- [should] 表示項目が 1 つしかない場合に罫線が視線誘導を妨げるなら別の意匠を検討する

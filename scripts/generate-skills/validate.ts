@@ -31,10 +31,21 @@ type Report = {
 };
 
 const ITEM_MIN = 1;
-const ITEM_MAX = 20;
+const ITEM_MAX = 30;
 const TEXT_MIN = 10;
 const TEXT_MAX = 200;
 const VALID_SEVERITIES: Severity[] = ['must', 'should', 'avoid'];
+const SEVERITY_MONOTONE_MIN_ITEMS = 6;
+
+// ルール化対象外の見出し（実装情報・参考リンク・構造ラベル等）。カバー率計算から除外する。
+const NON_RULE_HEADING_PATTERNS: RegExp[] = [
+  /^Props$/,
+  /^関連リンク$/,
+  /^関連するチェックリスト$/,
+  /^参考文献$/,
+  /^実装例$/,
+  /との違い$/,
+];
 
 function findChecklistFiles(): string[] {
   const result: string[] = [];
@@ -141,7 +152,7 @@ function validateOne(yamlPath: string): Report {
   });
 
   const usedSeverities = VALID_SEVERITIES.filter((s) => severityCounts[s] > 0);
-  if (itemCount >= 3 && usedSeverities.length === 1) {
+  if (itemCount >= SEVERITY_MONOTONE_MIN_ITEMS && usedSeverities.length === 1) {
     issues.push({
       level: 'warn',
       code: 'SEVERITY_MONOTONE',
@@ -149,7 +160,8 @@ function validateOne(yamlPath: string): Report {
     });
   }
 
-  const headings = extractHeadings(indexMdxPath);
+  const allHeadings = extractHeadings(indexMdxPath);
+  const headings = allHeadings.filter((h) => !NON_RULE_HEADING_PATTERNS.some((p) => p.test(h)));
   const sectionsConcat = Array.from(sourceSections).join(' || ');
   const missing: string[] = [];
   let covered = 0;

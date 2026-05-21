@@ -37,25 +37,9 @@ import { Table } from 'smarthr-ui'
 
 ## 使い方チェックリスト
 
-### 使用上の注意
-- [should] 原則としてデータの編集や送信を伴わない画面においてデータを表示する場合は DefinitionList を使用するのを推奨する
+### アクセシビリティ > セル内にチェックボックスやラジオボタンをそのまま配置しない
+- [avoid] セルの内部に Checkbox や RadioButton をそのまま配置せず、TdCheckbox / ThCheckbox / TdRadioButton を利用する
 
-### 使用上の注意 > Inputの意匠を残してデータを表示したいときはreadOnlyのInputを検討する
-- [should] フォームに入力した内容の確認画面など、Input の意匠を残してデータを表示したい場合は DefinitionList ではなく readOnly の Input の利用を検討する
-
-### レイアウト > カラム数の指定
-- [must] 表示したいデータの内容に合わせて `maxColumns` props で適切な列数を指定する
-
-### レイアウト > カラム数の指定 > 関連性のある項目がある場合
-- [should] 関連性のある項目（例: 氏名とヨミガナ）は横に並べて表示することで関連性をユーザーに伝える
-- [must] 関連性のある項目を横並びにする場合は `maxColumns` props に横並びにしたい項目の数を指定する
-
-### レイアウト > カラム数の指定 > 意図的に項目を一列で表示したい場合
-- [must] 画面幅や項目の文字数にかかわらず意図的に項目を一列で表示したい場合は `maxColumns` props に `1` を指定する
-
-### レイアウト > 見出しの種類
-- [must] コンテンツのアウトラインに沿って適切な見出しレベルを指定する
-  - DefinitionList を含むコンテンツの見出しが `sectionTitle` の場合、`termStyleType` props に `blockTitle` を指定する
-
-### レイアウト > 表示項目が1つしかない場合
-- [should] 表示項目が 1 つしかない場合に罫線が視線誘導を妨げるなら別の意匠を検討する
+### アクセシビリティ > TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
+- [must] TdCheckbox および TdRadioButton を利用する場合は `aria-labelledby` 属性を必ず指定し、それだけで行を一意に判別できる要素への ID 参照を指定する
+- [must] オブジェクト名だけで一意に判別できないオブジェクトでは、複数の要素の ID 参照をスペース区切りで指定する
