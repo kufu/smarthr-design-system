@@ -136,9 +136,9 @@ Baseの上にBaseを重ねることもレイヤー順序を把握しづらくさ
 <Container>
   <Stack>
     <TabBar bordered={false}>
-      <TabItem selected>タブ1</TabItem>
-      <TabItem>タブ2</TabItem>
-      <TabItem>タブ3</TabItem>
+      <TabItem id="tab1" onClick={() => {}} selected >タブ1</TabItem>
+      <TabItem id="tab2" onClick={() => {}}>タブ2</TabItem>
+      <TabItem id="tab3" onClick={() => {}}>タブ3</TabItem>
     </TabBar>
     <Base>
       <BaseColumn rounded bgColor="OVER_BACKGROUND" padding={1.5}>
@@ -189,7 +189,7 @@ Baseの上にBaseを重ねることもレイヤー順序を把握しづらくさ
                   <FormControl
                     label="タイトル"
                   >
-                    <Input defaultValue="テキスト" />
+                    <Input name="sample" defaultValue="テキスト" />
                   </FormControl>
                 </form>
                 <Stack gap={0.5}>
