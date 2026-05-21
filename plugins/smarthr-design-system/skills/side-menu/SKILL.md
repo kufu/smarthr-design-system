@@ -4,7 +4,7 @@ description: "複数のページを切り替えるためのサイドナビゲー
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。
@@ -45,4 +45,5 @@ SideMenu に直接関連する eslint-plugin-smarthr のルールは現時点で
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### モバイル
+- [avoid] 横幅の狭いモバイルでは SideMenu を使わない
