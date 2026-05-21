@@ -1,11 +1,11 @@
 ---
 title: 'コンポーネントのテンプレート'
 description: 'コンポーネント向けテンプレートです。'
-smarthr-ui: 'Button'
+# 「運用ガイドライン」カテゴリ特有の設定です。「コンポーネント」カテゴリ内ではorderは無視され、アルファベット順に並びます。
 order: 2
 # 非推奨コンポーネントの場合は以下のフィールドを追加します。
-# deprecated: true でタイトルへの「（非推奨）」自動付与と、本文冒頭の警告 ResponseMessage 自動描画が有効になります。
-# deprecatedMessage は HTML を含められます（リンクは <a href="..."> で記述）。
+# `deprecated: true` でタイトルへの「（非推奨）」自動付与と、本文冒頭の警告ResponseMessage自動描画が有効になります。
+# deprecatedMessageはHTMLを含められます（リンクは `<a href="...">` で記述可能）。
 # deprecated: true
 # deprecatedMessage: '○○は非推奨です。<a href="/products/components/xxx/">XXX</a> を使ってください。'
 ---
@@ -13,9 +13,21 @@ order: 2
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
-コンポーネントについて簡潔な説明を書きます。
+コンポーネントの説明と主な利用シーンを書きます。  
+1文目には、frontmatterの`description`と同じ文を記載します。一覧ページや検索結果、AIによる索引にも使われるため、以下の書式ルールに則ってください。
 
-複数行に渡っても問題ありません。
+**description書式ルール**：`〜のためのコンポーネントです。〜とき、〜ときに使います。`
+
+- 1文目：「何の代わりに使うか」または「何のためか」を冒頭に置き、対象（テキスト・日付など）と中心動詞（入力させる／表示する／選択する／切り替えるなど）を1セットで含める。詳細は2文目以降へ回す。
+  - 例：「`input[type="text"]`の代替としてテキストや数値を1行で入力させるコンポーネントです。」
+- 2文目：「〜するときに使います。」または「〜させるときに使います。」で利用シーンを書く。
+  - 主語の使い分け
+    - **入力系（フォーム系の要素）**：システムを主語にして「〜させるとき」基調  
+      例:「金額値を入力させるときに使います。」
+    - **操作系（上記以外のナビゲーション・操作系の要素）**：ユーザーを主語にして「〜するとき」基調  
+      例:「アクションを選択するときに使います。」
+
+さらに必要な説明があれば本文には続けて書けます。複数行に渡っても問題ありません。
 
 <ComponentStory name="Button" />
 
