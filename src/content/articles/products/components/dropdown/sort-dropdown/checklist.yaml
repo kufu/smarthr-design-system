@@ -1,0 +1,11 @@
+items:
+  # 使用上の注意
+  - severity: must
+    text: 'テーブルを並べ替える場合は Th の `sort` プロパティを使う'
+    source_section: '使用上の注意'
+
+  # レイアウト > [WIP] モバイル > ドロップダウンパネル
+  - severity: should
+    text: 'モバイル端末ではドロップダウンパネルを ActionDialog を用いてモーダルに表示する'
+    source_section: 'レイアウト > [WIP] モバイル > ドロップダウンパネル'
+    note: 'smarthr-ui 未実装（モバイル自動切替）。モバイル対応時に有効化'
