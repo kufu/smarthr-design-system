@@ -42,6 +42,13 @@ index.mdx を読んだ後、**ルール候補が 0 件の場合は checklist.yam
 - **Every Layout 外部委譲**: Stack / Cluster / Center / Sidebar / Reel 等。機能説明のみで指示文がない
 - **索引のみの親ページ**: Combobox 親、Dropdown 親。子コンポーネントへのリンク集のみ
 - **機能説明のみ**: SectioningContent 等。「〜できます」の記述はあるが Do/Don't がない
+- **自動挙動・props 規約のみのコンポーネント**: AppHeader 等。「props を渡すと自動で〜になる」「props に入れる内容のフォーマット規約」のみで利用者の判断材料が少ない → スキップ
+- **deprecated 指定のコンポーネント**: frontmatter に `deprecated: true` がセットされているコンポーネントは `deprecatedMessage` で代替を示しているため checklist.yaml 不要 (例: AppLauncher)
+- **description で十分カバーされる内容**: 「〜の場合に使う」「〜の場合は使わない」が description と重複している場合 (例: Header / Calendar / LanguageSwitcher / Disclosure)
+
+スキップ判定の例外（1 項目でも作成すべきケース）:
+- **a11y 必須ルール**: アクセシブルな名前付与・代替テキスト等の重要ルールは Layer 2 でカバーされないことが多く、1 項目でも残す価値あり (例: Badge のドット表示時のアクセシブル名)
+- **レイアウト判断ルール**: 他コンポーネントとの組み合わせを必要とする判断ルール (例: SpreadsheetTable の Reel 組み合わせ)
 
 スキップ時は理由を報告して次へ進む。
 
@@ -60,18 +67,21 @@ index.mdx を読んだ後、**ルール候補が 0 件の場合は checklist.yam
 4. **severity は提案**: must / should / avoid は元資料の語気から推測。人間レビューで確定
 5. **「使用を推奨します」→「検討してよい」**: 原文の推奨表現をそのまま text にすると強い指示に誤読される
 6. **text からパターン名を除去**: source_section が SKILL.md の見出しになるため、text 内に「パターン A」等を含めると重複する
+7. **否定的事実記述「適していません」「不適切」等は severity avoid**: 「〜してください」のような強い指示でなくても、否定的な事実 + 暗黙の指示は禁止表現に近く、must より avoid が適切 (例: SideMenu「モバイルには適していません」)
+8. **同じ表現の severity は他コンポーネントと整合性を取る**: 別コンポーネントで同じ表現に同じ severity を当てる。レビュー時に既存 checklist.yaml を grep して確認 (例: 「モーダルに表示します」は FilterDropdown も SortDropdown も must)
+9. **eslint ルール名と mdx 記述の意味的一致を確認**: 紐付け前に eslint ルール README を読み、mdx 記述と同じ概念をカバーしているか必ず確認。名前が似ていても別概念ならば紐付けない (例: `best-practice-for-text-component` は「Text コンポーネント最適化」で、mdx「HTML validity」とは別物 → 紐付け不可)
 
 #### 構造ルール
 
-7. **同見出し下の avoid + 代替ペアは 1 項に統合**: 「使わない」と「代わりに〜を使う」が同じ見出し下にある場合、1 つの項目にまとめる
-8. **同見出し下の関連ルール群は sub_items で階層化**: 親ルール + sub_items の構造にすると読みやすい
-9. **sub-mdx は source_section に `via xxx.mdx` 表記**: index.mdx から import される sub-mdx 由来の項目は出典を明示
-10. **WIP モバイルルール**: smarthr-ui 未実装だが mdx に記載されているルールは `note: "smarthr-ui未実装（モバイル対応時に有効化）"` 付きで残す
+10. **同見出し下の avoid + 代替ペアは 1 項に統合**: 「使わない」と「代わりに〜を使う」が同じ見出し下にある場合、1 つの項目にまとめる
+11. **同見出し下の関連ルール群は sub_items で階層化**: 親ルール + sub_items の構造にすると読みやすい
+12. **sub-mdx は source_section に `via xxx.mdx` 表記**: index.mdx から import される sub-mdx 由来の項目は出典を明示
+13. **WIP モバイルルール**: smarthr-ui 未実装だが mdx に記載されているルールは `note: "smarthr-ui未実装（モバイル対応時に有効化）"` 付きで残す
 
 #### 親ページの扱い
 
-11. **索引のみの親ページ → スキップ**: Combobox 親、Dropdown 親
-12. **子への使い分けガイドがある親ページ → 生成する**: Dialog 親（Action/Form/Message/Modeless/StepForm の使い分け）、ErrorScreen 親（子5種の使い分け）
+14. **索引のみの親ページ → スキップ**: Combobox 親、Dropdown 親
+15. **子への使い分けガイドがある親ページ → 生成する**: Dialog 親（Action/Form/Message/Modeless/StepForm の使い分け）、ErrorScreen 親（子5種の使い分け）
 
 ### Step 4: バリデーション
 
@@ -266,10 +276,16 @@ items:
 |---------|------|
 | Every Layout 委譲（Stack/Cluster/Center/Sidebar/Reel） | スキップ |
 | 索引のみの親ページ（Combobox/Dropdown） | スキップ |
+| 自動挙動・props 規約のみ（AppHeader 等） | スキップ |
+| deprecated 指定のコンポーネント（AppLauncher 等） | スキップ |
+| description と内容が重複する記述しかない | スキップ |
 | 子への使い分けガイドがある親ページ（Dialog/ErrorScreen） | 生成する |
-| eslint ルールでカバーされる項目 | checklist.yaml に含めない |
+| a11y 必須ルール / レイアウト判断ルール | 1 項目でも生成する |
+| eslint ルールでカバーされる項目 | checklist.yaml に含めない（README で意味的一致を確認） |
 | WIP モバイルルール | note 付きで残す |
 | 同見出し下の avoid + 代替 | 1 項に統合 |
 | description と重複する冒頭記述 | 含めない |
 | sub-mdx import がある | 読み込んで source_section に via 表記 |
 | text にパターン名が含まれる | source_section と重複するため除去 |
+| 「適していません」「不適切」等の否定的事実 | severity avoid 推奨 |
+| 同じ表現の severity | 他コンポーネントと整合性を取る |
