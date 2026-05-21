@@ -42,7 +42,7 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
       if (height > 0) {
         setIframeHeight(height + 8); // ComponentPreviewコンポーネントに`margin-block-start: 8px`が指定されているため
       }
-    }, 2000);
+    }, 500);
   };
 
   return (
