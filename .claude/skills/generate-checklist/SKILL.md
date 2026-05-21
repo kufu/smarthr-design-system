@@ -83,25 +83,68 @@ index.mdx を読んだ後、**ルール候補が 0 件の場合は checklist.yam
 14. **索引のみの親ページ → スキップ**: Combobox 親、Dropdown 親
 15. **子への使い分けガイドがある親ページ → 生成する**: Dialog 親（Action/Form/Message/Modeless/StepForm の使い分け）、ErrorScreen 親（子5種の使い分け）
 
-### Step 4: バリデーション
+### Step 4: 事前セルフレビュー
+
+人間レビューに渡す前に、AI が自分でドラフトを精査する。以下の 3 つの観点で各項目を再評価する。Layer 1 との重複チェックは SKILL.md 生成後に行うため Step 7 で実施。
+
+#### 4-1. 各項目の精査
+
+各項目に対して以下を自問する。Yes が出たら削除候補としてマークする。
+
+- これは smarthr-ui の自動挙動の説明か？（props を渡すと自動で〜になる、等）
+- これは props 規約のフォーマット指定のみか？（実装者の判断材料を含まないか）
+- description で同等内容が既に言及されているか？
+
+例:
+- AppHeader「企業アカウント切り替え機能を提供しない場合はアカウント名のみ表示」→ tenants props の自動挙動 → 削除候補
+- Disclosure「AccordionPanel で実現できない独自の開閉 UI に使う」→ description と重複 → 削除候補
+
+#### 4-2. severity 横串確認
+
+各項目の text に含まれる特徴的な表現（「モーダルに表示します」「を使わない」等）を、既存の checklist.yaml で検索する。
+
+```bash
+grep -r "<特徴的な表現>" src/content/articles/products/components/**/checklist.yaml
+```
+
+同じ表現に異なる severity が当たっていれば整合性を取る（例: 「モーダルに表示します」は FilterDropdown も SortDropdown も must）。
+
+#### 4-3. 文体パターンの検知
+
+- 「適していません」「不適切」等の否定的事実記述に must が当たっていないか → avoid に変更検討
+- 「〜を推奨します」「〜が望ましい」を text にそのまま入れていないか → 「検討してよい」表現に変更
+
+セルフレビューで検知した修正候補を反映してから次の Step に進む。
+
+### Step 5: バリデーション
 
 ```bash
 # YAML 構文チェック
-python3 -c "import yaml; yaml.safe_load(open('path/to/checklist.yaml')); print('OK')"
+ruby -ryaml -e "YAML.load_file('path/to/checklist.yaml'); puts 'OK'"
 
 # 項目数カウント
-grep -c "^- severity:" path/to/checklist.yaml
+ruby -ryaml -e "puts (YAML.load_file('path/to/checklist.yaml')['items'] || []).size"
 ```
 
-期待範囲: 2〜20 項目。極端に多い（20 超）場合は統合の余地あり。
+期待範囲: 1〜20 項目。極端に多い（20 超）場合は統合の余地あり。
 
-### Step 5: SKILL.md 再生成
+### Step 6: SKILL.md 再生成
 
 ```bash
 pnpm generate
 ```
 
 Layer 3 あり件数が増えていることを確認。
+
+### Step 7: Layer 1 重複チェック
+
+生成された SKILL.md の Layer 1 部分（冒頭の説明文）を読み、checklist.yaml の各項目と同内容が含まれていないか確認する。
+
+```bash
+cat plugins/smarthr-design-system/skills/<component>/SKILL.md
+```
+
+mdx 本文が短く「冒頭説明 + props」構造のコンポーネント（ErrorScreen 子等）では、mdx 冒頭の見出しなし説明文がそのまま Layer 1 として SKILL.md に取り込まれることが多い。その場合、Layer 3 で同内容を含めると重複出力されるため、checklist.yaml の該当項目を削除し、Step 6 を再実行する。
 
 ## checklist.yaml のフォーマット
 
