@@ -19,7 +19,7 @@ export function renderSkill(opts: SkillRenderOptions): string {
   const { group, indexInfo, eslintRules, checklist } = opts;
   const groupName = group.dirName;
   const skillName = pascalToKebab(groupName);
-  const generatedFrom = buildGeneratedFromTag(eslintRules.length > 0, checklist !== null);
+  const generatedFrom = buildGeneratedFromTag(eslintRules.length > 0, checklist !== null && checklist.length > 0);
   const description = buildDescription(group, indexInfo);
 
   const parts: string[] = [];
@@ -70,9 +70,7 @@ export function renderSkill(opts: SkillRenderOptions): string {
       const typeStr = escapeTableCell(formatType(prop));
       const defaultStr = escapeTableCell(formatDefault(prop));
       const required = prop.required ? '✓' : '-';
-      const desc = prop.description
-        ? escapeTableCell(prop.description.replace(/\r?\n/g, ' ').trim())
-        : '-';
+      const desc = prop.description ? escapeTableCell(prop.description.replace(/\r?\n/g, ' ').trim()) : '-';
       parts.push(`| ${prop.name} | ${typeStr} | ${defaultStr} | ${required} | ${desc} |`);
     }
     parts.push('');
@@ -91,8 +89,7 @@ export function renderSkill(opts: SkillRenderOptions): string {
         parts.push(rule.description);
         parts.push('');
       }
-      const targetComponent =
-        group.displayNames.find((n) => rule.matchedComponents.has(n)) ?? mainDisplayName;
+      const targetComponent = group.displayNames.find((n) => rule.matchedComponents.has(n)) ?? mainDisplayName;
       const examples = getRelevantCodeExamples(rule, targetComponent);
 
       if (examples.ng.length > 0) {
@@ -122,11 +119,8 @@ export function renderSkill(opts: SkillRenderOptions): string {
 
   parts.push('## 使い方チェックリスト');
   parts.push('');
-  if (checklist === null) {
-    parts.push('checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。');
-    parts.push('');
-  } else if (checklist.length === 0) {
-    parts.push('checklist.yaml は存在しますが、現時点で項目はありません。');
+  if (checklist === null || checklist.length === 0) {
+    parts.push('使い方チェックリスト（Layer 3）は設定されていません。');
     parts.push('');
   } else {
     for (const section of checklist) {
@@ -148,9 +142,7 @@ export function renderSkill(opts: SkillRenderOptions): string {
 
 function buildDescription(group: ComponentGroup, indexInfo: IndexMdxInfo | null): string {
   const names = group.displayNames.join(' / ');
-  const base =
-    indexInfo?.description?.replace(/\r?\n/g, ' ').trim() ||
-    `smarthr-ui の ${names} コンポーネントの使い方ガイド。`;
+  const base = indexInfo?.description?.replace(/\r?\n/g, ' ').trim() || `smarthr-ui の ${names} コンポーネントの使い方ガイド。`;
   const deprecatedPrefix = indexInfo?.deprecated ? '【非推奨】' : '';
   return `${deprecatedPrefix}${base}`;
 }

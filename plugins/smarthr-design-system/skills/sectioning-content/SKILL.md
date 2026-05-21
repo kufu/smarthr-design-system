@@ -98,4 +98,4 @@ const AnyComponent = <form>
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+使い方チェックリスト（Layer 3）は設定されていません。

@@ -1,0 +1,36 @@
+items:
+  # 使用上の注意 > 選択肢が6個以上の場合に使用する
+  - severity: should
+    text: '基本的に選択肢の数が 6 個以上になる場合は Select を使う'
+    source_section: '使用上の注意 > 選択肢が6個以上の場合に使用する'
+
+  # 使用上の注意 > 選択肢が6個以上の場合に使用する > 選択肢が5個以下の場合
+  - severity: should
+    text: '選択肢が 5 個以下であれば RadioButton の使用を検討する'
+    source_section: '使用上の注意 > 選択肢が6個以上の場合に使用する > 選択肢が5個以下の場合'
+    sub_items:
+      - 'RadioButton で配置するスペースがない場合は Select も使用可能'
+
+  # 使用上の注意 > 選択肢が6個以上の場合に使用する > 選択肢の数が不定の場合
+  - severity: should
+    text: '選択肢の数が実装時に固定できない場合は想定される最大数を考慮して使用するコンポーネントを判断する'
+    source_section: '使用上の注意 > 選択肢が6個以上の場合に使用する > 選択肢の数が不定の場合'
+
+  # 使用上の注意 > SingleComboboxとの使い分け
+  - severity: should
+    text: '単一選択かつユーザーに選択肢をフィルタリングさせたい場合は SingleCombobox の使用を検討する'
+    source_section: '使用上の注意 > SingleComboboxとの使い分け'
+
+  # 使用上の注意 > 即時反映が期待されるビューの切り替えには使わない
+  - severity: avoid
+    text: '即時反映が期待されるビューの切り替えに Select を使わない'
+    source_section: '使用上の注意 > 即時反映が期待されるビューの切り替えには使わない'
+    sub_items:
+      - 'ビューの切り替えには TabBar や SegmentedControl、SideNav を使う'
+
+  # 状態 > デフォルト
+  - severity: should
+    text: 'デフォルトは空の状態で表示する'
+    source_section: '状態 > デフォルト'
+    sub_items:
+      - 'ユーザーの入力作業が向上したりミスを減らせる場合には他の選択肢を設定することを検討する'

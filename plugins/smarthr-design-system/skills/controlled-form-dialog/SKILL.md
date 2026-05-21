@@ -4,7 +4,7 @@ description: "FormDialogの開閉状態を外部stateで制御する派生コン
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 FormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
@@ -50,4 +50,7 @@ ControlledFormDialog に直接関連する eslint-plugin-smarthr のルールは
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### 使用上の注意 > ダイアログコンテンツにフォームが含まれている場合は、FormDialogの使用を検討する
+- [should] ダイアログコンテンツにフォーム要素を含む場合は FormDialog の使用を検討する
+  - `Enter` キーの押下でアクションボタンの送信処理を実行する
+  - アクション系コールバックは `onSubmit` で、引数は `FormEvent<HTMLFormElement>` を受け取る

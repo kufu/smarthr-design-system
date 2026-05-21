@@ -4,7 +4,7 @@ description: "見出し要素の代替として直後のコンテンツの見出
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1+layer2
+  generated-from: layer1+layer2+layer3
 ---
 
 見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。
@@ -85,4 +85,9 @@ Headingレベルの自動計算用のコンポーネントであるSectioningFra
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### 使用上の注意
+- [must] Heading はコンテンツのアウトラインに沿って順に使用する
+  - ブロックタイトルの前にサブ・ブロックタイトルを使わない
+
+### 種類 > 画面タイトル
+- [must] 画面のタイトルには PageHeading コンポーネントを使う
