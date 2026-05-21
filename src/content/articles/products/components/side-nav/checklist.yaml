@@ -1,0 +1,19 @@
+items:
+  # 使用上の注意 > TabBarで代用できないか検討する
+  - severity: should
+    text: 'スタックするアイテムが多くなくナビゲーション機能が不要な場合は TabBar の使用を検討する'
+    source_section: '使用上の注意 > TabBarで代用できないか検討する'
+
+  # 使用上の注意 > 入れ子で使用しない
+  - severity: avoid
+    text: 'SideNav の影響範囲内のビューで SideNav を使わない'
+    source_section: '使用上の注意 > 入れ子で使用しない'
+    sub_items:
+      - 'SideNav 内のビューを分割したい場合は TabBar を使う'
+      - 'TabBar 内でビューを分割したい場合は SideNav を使う'
+
+  # モバイル
+  - severity: must
+    text: 'SideNav を使った 2 カラムのレイアウトはモバイルに適さないため、ページを分割するか SideNav をドロワーで表示する'
+    source_section: 'モバイル'
+    note: 'smarthr-ui 未実装（ドロワー表示）。モバイル対応時に有効化'

@@ -4,7 +4,7 @@ description: "件数などの数値を視覚的に表すためのコンポーネ
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。
@@ -31,4 +31,5 @@ Badge に直接関連する eslint-plugin-smarthr のルールは現時点では
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### アクセシビリティ
+- [must] ドット表示の場合は視覚情報しか持たないため、何らかの形で必ずアクセシブルな名前を与える
