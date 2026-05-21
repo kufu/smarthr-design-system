@@ -71,9 +71,7 @@ export function validateCoverage(args: {
       }
     }
   }
-  const orphanDirs = designDirsWithIndex.filter(
-    (d) => !mappedPaths.has(d) && !ORPHAN_IGNORE.has(d),
-  );
+  const orphanDirs = designDirsWithIndex.filter((d) => !mappedPaths.has(d) && !ORPHAN_IGNORE.has(d));
 
   return { newComponents, orphanDirs, unmappedGroups };
 }
@@ -101,7 +99,9 @@ export function printCoverageReport(report: CoverageReport): boolean {
     console.log(
       `   ⚠️  smarthr-ui に対応がなくなった design-system ディレクトリ (${report.orphanDirs.length}): ${report.orphanDirs.join(', ')}`,
     );
-    console.log(`       → smarthr-ui から削除/rename された可能性。mapping/component-dir-map.json で再マッピングするか、index.mdx を削除してください`);
+    console.log(
+      `       → smarthr-ui から削除/rename された可能性。mapping/component-dir-map.json で再マッピングするか、index.mdx を削除してください`,
+    );
   }
 
   if (!hasIssue) {

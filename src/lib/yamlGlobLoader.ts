@@ -26,7 +26,11 @@ export function yamlGlob({ pattern, base, generateId }: YamlGlobOptions): Loader
   const baseDir = path.resolve(base);
   const defaultId = (rel: string) => rel.replace(/\.ya?ml$/, '').replaceAll(path.sep, '/');
 
-  async function loadFile(store: Parameters<NonNullable<Loader['load']>>[0]['store'], parseData: Parameters<NonNullable<Loader['load']>>[0]['parseData'], rel: string) {
+  async function loadFile(
+    store: Parameters<NonNullable<Loader['load']>>[0]['store'],
+    parseData: Parameters<NonNullable<Loader['load']>>[0]['parseData'],
+    rel: string,
+  ) {
     const absPath = path.join(baseDir, rel);
     const text = fs.readFileSync(absPath, 'utf-8');
     const raw = parseYaml(text) ?? {};
@@ -51,9 +55,7 @@ export function yamlGlob({ pattern, base, generateId }: YamlGlobOptions): Loader
       }
 
       if (watcher) {
-        const patterns = (Array.isArray(pattern) ? pattern : [pattern]).map((p) =>
-          path.join(baseDir, p),
-        );
+        const patterns = (Array.isArray(pattern) ? pattern : [pattern]).map((p) => path.join(baseDir, p));
         watcher.add(patterns);
         const reload = async (filePath: string) => {
           const rel = path.relative(baseDir, filePath);
