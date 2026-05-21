@@ -45,6 +45,7 @@ index.mdx を読んだ後、**ルール候補が 0 件の場合は checklist.yam
 - **自動挙動・props 規約のみのコンポーネント**: AppHeader 等。「props を渡すと自動で〜になる」「props に入れる内容のフォーマット規約」のみで利用者の判断材料が少ない → スキップ
 - **deprecated 指定のコンポーネント**: frontmatter に `deprecated: true` がセットされているコンポーネントは `deprecatedMessage` で代替を示しているため checklist.yaml 不要 (例: AppLauncher)
 - **description で十分カバーされる内容**: 「〜の場合に使う」「〜の場合は使わない」が description と重複している場合 (例: Header / Calendar / LanguageSwitcher / Disclosure)
+- **mdx 冒頭の見出しなし説明文に規定が含まれ Layer 1 でカバーされる場合**: mdx 本文が短く「冒頭説明文 + props」の構造のコンポーネント (例: ErrorScreen 子 5 種) では、冒頭文がそのまま Layer 1 として SKILL.md に取り込まれる。同内容を Layer 3 に入れると重複出力されるためスキップ。Step 7 の Layer 1 重複チェックで事後検出も可能だが、ドラフト前に mdx 構造で予想できる
 
 スキップ判定の例外（1 項目でも作成すべきケース）:
 - **a11y 必須ルール**: アクセシブルな名前付与・代替テキスト等の重要ルールは Layer 2 でカバーされないことが多く、1 項目でも残す価値あり (例: Badge のドット表示時のアクセシブル名)
@@ -322,6 +323,7 @@ items:
 | 自動挙動・props 規約のみ（AppHeader 等） | スキップ |
 | deprecated 指定のコンポーネント（AppLauncher 等） | スキップ |
 | description と内容が重複する記述しかない | スキップ |
+| mdx 冒頭の見出しなし説明文に規定が含まれる（Layer 1 でカバー） | スキップ |
 | 子への使い分けガイドがある親ページ（Dialog/ErrorScreen） | 生成する |
 | a11y 必須ルール / レイアウト判断ルール | 1 項目でも生成する |
 | eslint ルールでカバーされる項目 | checklist.yaml に含めない（README で意味的一致を確認） |
