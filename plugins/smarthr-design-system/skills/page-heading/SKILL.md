@@ -4,7 +4,7 @@ description: "画面全体の最上位見出しを表示するためのコンポ
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 画面全体の最上位見出しを表示するためのコンポーネントです。h1要素として画面タイトルを示すときに使います。
@@ -33,4 +33,5 @@ PageHeading に直接関連する eslint-plugin-smarthr のルールは現時点
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### 使用上の注意 > 画面ごとに1度しか使わない
+- [must] PageHeading は画面のタイトルとして画面ごとに 1 度しか使わない

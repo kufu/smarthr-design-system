@@ -4,7 +4,7 @@ description: "検索キーワードを入力させるためのコンポーネン
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1
+  generated-from: layer1+layer3
 ---
 
 検索キーワードを入力させるためのコンポーネントです。検索フォームで検索語句を入力させるときに使います。
@@ -36,4 +36,5 @@ SearchInput に直接関連する eslint-plugin-smarthr のルールは現時点
 
 ## 使い方チェックリスト
 
-checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
+### 使用上の注意 > tooltipMessageで入力内容を補足する
+- [must] `tooltipMessage` を使用して入力内容に対する説明を補足する
