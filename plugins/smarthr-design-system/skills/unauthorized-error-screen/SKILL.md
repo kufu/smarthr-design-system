@@ -4,7 +4,7 @@ description: "セッション切れなど認証が必要な状態を伝える全
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
-  generated-from: layer1+layer3
+  generated-from: layer1
 ---
 
 セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。
@@ -30,5 +30,4 @@ UnauthorizedErrorScreen に直接関連する eslint-plugin-smarthr のルール
 
 ## 使い方チェックリスト
 
-### 冒頭
-- [must] ログインボタンを押せば再ログインできるようにする
+checklist.yaml は未作成です。Layer 3（使い方チェックリスト）は今後追加されます。
