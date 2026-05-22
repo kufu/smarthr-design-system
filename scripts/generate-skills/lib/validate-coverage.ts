@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import type { ComponentGroup } from './parse-metadata.js';
+import type { RelatedComponentSkill } from './related-components.js';
 
 export type CoverageReport = {
   /** metadata.json には存在するが index.mdx が未対応 */
@@ -10,6 +11,13 @@ export type CoverageReport = {
   orphanDirs: string[];
   /** design-system dir 未割当（参考情報。relatedComponents で親に紐付けられていないものは newComponents 側で警告） */
   unmappedGroups: string[];
+  /**
+   * 子 dir なし & relatedComponents.description 未指定の組み合わせ。
+   * Th/Td 系のように子に独立 index.mdx を持たないコンポーネントでは、親 mdx の
+   * relatedComponents 宣言で description を提供する必要があるためチェックする。
+   * 形式: `"<name> (parent: <parentName>)"`
+   */
+  missingDescriptions: string[];
 };
 
 /**
@@ -34,8 +42,9 @@ export function validateCoverage(args: {
   dirMapping: Map<string, string>;
   designSystemDir: string;
   inheritedNames?: Set<string>;
+  relatedSkills?: Map<string, RelatedComponentSkill>;
 }): CoverageReport {
-  const { groups, dirMapping, designSystemDir, inheritedNames } = args;
+  const { groups, dirMapping, designSystemDir, inheritedNames, relatedSkills } = args;
 
   // newComponents: dir mapping なし、relatedComponents 経由でもない
   const newComponents: string[] = [];
@@ -45,6 +54,19 @@ export function validateCoverage(args: {
       unmappedGroups.push(dir);
       const isRelated = inheritedNames?.has(dir) ?? false;
       if (!isRelated) newComponents.push(dir);
+    }
+  }
+
+  // missingDescriptions: 子 dir なし & description 未指定
+  // 子 dir があれば dirMapping 経由で子 mdx の description が採用されるため description 不要。
+  // 子 dir がないケース (Th/Td 等) は relatedComponents 宣言で description を提供すべき。
+  const missingDescriptions: string[] = [];
+  if (relatedSkills) {
+    for (const [name, rel] of relatedSkills) {
+      const hasChildDir = dirMapping.has(name);
+      if (!hasChildDir && rel.description === undefined) {
+        missingDescriptions.push(`${name} (parent: ${rel.parentName})`);
+      }
     }
   }
 
@@ -74,7 +96,7 @@ export function validateCoverage(args: {
   }
   const orphanDirs = designDirsWithIndex.filter((d) => !mappedPaths.has(d) && !ORPHAN_IGNORE.has(d));
 
-  return { newComponents, orphanDirs, unmappedGroups };
+  return { newComponents, orphanDirs, unmappedGroups, missingDescriptions };
 }
 
 /**
@@ -102,6 +124,16 @@ export function printCoverageReport(report: CoverageReport): boolean {
     );
     console.log(
       `       → smarthr-ui から削除/rename された可能性。mapping/component-dir-map.json で再マッピングするか、index.mdx を削除してください`,
+    );
+  }
+
+  if (report.missingDescriptions.length > 0) {
+    hasIssue = true;
+    console.log(
+      `   ⚠️  relatedComponents の description 未指定 & 子 dir なし (${report.missingDescriptions.length}): ${report.missingDescriptions.join(', ')}`,
+    );
+    console.log(
+      `       → 親 mdx の relatedComponents 宣言で description を追加するか、子 dir 配下に index.mdx を作成してください`,
     );
   }
 

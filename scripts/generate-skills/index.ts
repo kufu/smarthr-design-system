@@ -99,6 +99,7 @@ async function main() {
     dirMapping,
     designSystemDir: DESIGN_SYSTEM_DIR,
     inheritedNames: new Set(relatedSkills.keys()),
+    relatedSkills,
   });
   printCoverageReport(coverageReport);
 
