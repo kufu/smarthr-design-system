@@ -6,7 +6,7 @@ import { parseMetadata, loadPublicExports, type ComponentGroup } from './lib/par
 import { fetchEslintRules, buildComponentRuleMap, type EslintRuleWithContent } from './lib/fetch-eslint-rules.js';
 import { parseChecklist } from './lib/parse-checklist.js';
 import { parseIndexMdx, type IndexMdxInfo } from './lib/parse-index-mdx.js';
-import { collectInheritedSkills } from './lib/inherited-by.js';
+import { collectRelatedComponents } from './lib/related-components.js';
 import { buildDirMapping, loadManualMappings, toSkillSlug } from './lib/name-mapping.js';
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
@@ -18,29 +18,47 @@ const REPO_ROOT = path.resolve(__dirname, '../..');
 const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/components');
 const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
-const GROUP_SPLIT_PATH = path.join(__dirname, 'mapping/group-split.json');
 const ESLINT_CACHE_PATH = path.join(__dirname, '.cache/eslint-rules.json');
 const ESLINT_RULE_NAMES_PATH = path.join(REPO_ROOT, '.github/data/eslint-rule-names.txt');
 
-function applyGroupSplit(
-  groups: Map<string, ComponentGroup>,
-  splitConfig: Record<string, string[]>,
-): Map<string, ComponentGroup> {
+/**
+ * smarthr-ui の親ディレクトリ単位グループから、design-system 側の `relatedComponents` 宣言に
+ * 含まれる displayName を個別グループとして分離する。残った displayName は元の親グループ名
+ * で保持する。
+ *
+ * 例: smarthr-ui `Dialog/RemoteDialogTrigger/` 配下に `ActionDialog/FormDialog/MessageDialog/
+ * StepFormDialog/RemoteDialogTrigger` がまとめられている場合、design-system `dialog/index.mdx`
+ * の `relatedComponents` 宣言を起点に各 displayName を独立グループへ分離する。
+ */
+function autoSplitGroups(groups: Map<string, ComponentGroup>, relatedNames: Set<string>): Map<string, ComponentGroup> {
   const result = new Map<string, ComponentGroup>();
   for (const [dirName, group] of groups) {
-    const splitOrder = splitConfig[dirName];
-    if (!splitOrder) {
+    const splitTargets = group.components.filter((c) => relatedNames.has(c.displayName));
+    // 分離トリガは「relatedComponents 宣言が 2 件以上 group 内に存在する」ときに発動する。
+    // これにより、smarthr-ui の親ディレクトリに複数の displayName が同居しているグループ
+    // (例: `Dialog/RemoteDialogTrigger/` 配下に 5 つの Dialog) のみが分離対象となる。
+    // 1 件以下の場合は元グループをそのまま保持し、`ControlledStepFormDialog` グループの
+    // `StepFormDialogItem` のような同居 named export を取りこぼさない。
+    if (splitTargets.length < 2) {
       result.set(dirName, group);
       continue;
     }
-    // Split group by displayName prefix matching split order
-    for (const targetName of splitOrder) {
-      const matched = group.components.filter((c) => c.displayName === targetName);
-      if (matched.length === 0) continue;
-      result.set(targetName, {
-        dirName: targetName,
-        displayNames: matched.map((c) => c.displayName),
-        components: matched,
+    for (const target of splitTargets) {
+      result.set(target.displayName, {
+        dirName: target.displayName,
+        displayNames: [target.displayName],
+        components: [target],
+      });
+    }
+    // 親グループ自体は、group 名と同名の displayName のみを含める。
+    // group 名と一致しない displayName(例: smarthr-ui の Table 配下にある WakuWakuButton や
+    // TableScrollContext 等の内部部品で `relatedComponents` 宣言もないもの) は SKILL 生成対象外とする。
+    const primary = group.components.filter((c) => c.displayName === dirName);
+    if (primary.length > 0) {
+      result.set(dirName, {
+        dirName,
+        displayNames: primary.map((c) => c.displayName),
+        components: primary,
       });
     }
   }
@@ -53,9 +71,11 @@ async function main() {
   console.log(`   ${publicExports.size} 個の public named exports を取得`);
   const rawGroups = parseMetadata(publicExports);
 
-  const splitConfig: Record<string, string[]> = JSON.parse(fs.readFileSync(GROUP_SPLIT_PATH, 'utf-8'));
-  const groups = applyGroupSplit(rawGroups, splitConfig);
+  console.log('🧬 relatedComponents 宣言を集約中…');
+  const relatedSkills = collectRelatedComponents(DESIGN_SYSTEM_DIR);
+  console.log(`   ${relatedSkills.size} 件の relatedComponents 宣言を検出`);
 
+  const groups = autoSplitGroups(rawGroups, new Set(relatedSkills.keys()));
   console.log(`   ${groups.size} コンポーネントグループを検出`);
 
   console.log('🌐 eslint-plugin-smarthr ルール README を取得中…（キャッシュ優先）');
@@ -74,15 +94,13 @@ async function main() {
   const dirMapping = buildDirMapping([...groups.keys()], DESIGN_SYSTEM_DIR, manualMappings);
   console.log(`   ${dirMapping.size}/${groups.size} を design-system dir に対応付け`);
 
-  console.log('🧬 inheritedBy 宣言を集約中…');
-  const inheritedSkills = collectInheritedSkills(DESIGN_SYSTEM_DIR);
-  console.log(`   ${inheritedSkills.size} 件の inheritedBy 宣言を検出`);
-
   const coverageReport = validateCoverage({
     groups,
     dirMapping,
     designSystemDir: DESIGN_SYSTEM_DIR,
-    inheritedNames: new Set(inheritedSkills.keys()),
+    inheritedNames: new Set(relatedSkills.keys()),
+    relatedSkills,
+    publicExports,
   });
   printCoverageReport(coverageReport);
 
@@ -115,17 +133,20 @@ async function main() {
       indexInfo = parseIndexMdx(path.join(compDir, 'index.mdx'));
       checklist = parseChecklist(path.join(compDir, 'checklist.yaml'));
       if (checklist !== null) withLayer3++;
-    } else if (inheritedSkills.has(dirName)) {
-      // 派生先コンポーネント: 親 mdx の本文を継承し、description のみ派生先固有に差し替える
-      const inh = inheritedSkills.get(dirName)!;
+    } else if (relatedSkills.has(dirName)) {
+      // サブコンポーネント: 親 mdx の本文を継承し、description のみ派生先固有に差し替える。
+      // 子に独立 index.mdx がある場合は dirMapping 側で処理されるためここに来ない。
+      // ここに来るのは Th/Td のように子 dir がないケース → 親 mdx の relatedComponents で
+      // description を宣言しておく必要がある。
+      const rel = relatedSkills.get(dirName)!;
       indexInfo = {
-        ...inh.parentInfo,
-        title: inh.name,
-        description: inh.description,
-        inheritedBy: [],
+        ...rel.parentInfo,
+        title: rel.name,
+        description: rel.description ?? rel.parentInfo.description,
+        relatedComponents: [],
       };
       // 親コンポーネントの checklist も継承する
-      const parentDesignDirName = dirMapping.get(inh.parentName);
+      const parentDesignDirName = dirMapping.get(rel.parentName);
       if (parentDesignDirName) {
         const parentCompDir = path.join(DESIGN_SYSTEM_DIR, parentDesignDirName);
         checklist = parseChecklist(path.join(parentCompDir, 'checklist.yaml'));

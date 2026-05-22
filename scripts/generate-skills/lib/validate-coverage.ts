@@ -1,28 +1,60 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { kebabToPascal } from './name-mapping.js';
 import type { ComponentGroup } from './parse-metadata.js';
+import type { RelatedComponentSkill } from './related-components.js';
 
 export type CoverageReport = {
   /** metadata.json には存在するが index.mdx が未対応 */
   newComponents: string[];
   /** index.mdx は存在するが metadata.json の対応 displayName が消えた（rename / 削除） */
   orphanDirs: string[];
-  /** design-system dir 未割当（参考情報。inheritedBy 派生先でないものは newComponents 側で警告） */
+  /** design-system dir 未割当（参考情報。relatedComponents で親に紐付けられていないものは newComponents 側で警告） */
   unmappedGroups: string[];
+  /**
+   * 子 dir なし & relatedComponents.description 未指定の組み合わせ。
+   * Th/Td 系のように子に独立 index.mdx を持たないコンポーネントでは、親 mdx の
+   * relatedComponents 宣言で description を提供する必要があるためチェックする。
+   * 形式: `"<name> (parent: <parentName>)"`
+   */
+  missingDescriptions: string[];
 };
 
 /**
- * smarthr-ui のコンポーネントに対応しない design-system ディレクトリ。
- * design-system 独自の親カテゴリページや intl 配下コンポーネントなど。
- * orphan として警告対象から除外する。
+ * smarthr-ui の `export * from './components/Icon'` 形式で再エクスポートされる
+ * コンポーネントは `loadPublicExports` の `export { X } from` パターンに合致せず
+ * 自動判定では拾えないため、明示的に除外する。
  */
-const ORPHAN_IGNORE = new Set([
-  'icon', // design-system 独自の親カテゴリページ
-  'layout', // 同上（Stack/Cluster/Center 等の親）
-  'date-formatter', // smarthr-ui の intl 配下、src/components/ 外
-  'combobox', // 親カテゴリページ（SingleCombobox / MultiCombobox が配下に独立）
-]);
+const ORPHAN_IGNORE_EXPLICIT = new Set(['icon']);
+
+/**
+ * orphan 警告から除外すべき dir かを自動判定する。
+ *
+ * ルール 1 (親カテゴリページ): 配下に「dirMapping で smarthr-ui に対応付け済みの子 dir」があれば、
+ * 親カテゴリページとみなして除外する。`layout`/`combobox`/`picker`/`formatter` 等が該当。
+ *
+ * ルール 2 (公開 export 一致): dir 名 (kebab-case) を PascalCase に戻して smarthr-ui の公開
+ * named export 集合に含まれていれば除外する。`date-formatter` (= `DateFormatter`) のように
+ * smarthr-ui で公開はされているが `src/components/` 外 (例: `src/intl/`) にあり parseMetadata
+ * のフィルタから漏れるケースをカバーする。
+ */
+function shouldIgnoreOrphan(dir: string, mappedPaths: Set<string>, publicExports: Set<string>): boolean {
+  if (ORPHAN_IGNORE_EXPLICIT.has(dir)) return true;
+
+  // ルール 1: 配下に mapped 子 dir があるか
+  const prefix = `${dir}/`;
+  for (const p of mappedPaths) {
+    if (p.startsWith(prefix)) return true;
+  }
+
+  // ルール 2: 末尾セグメントを PascalCase 化して公開 export と一致するか
+  const lastSegment = dir.split('/').filter(Boolean).pop() ?? dir;
+  const pascalName = kebabToPascal(lastSegment);
+  if (publicExports.has(pascalName)) return true;
+
+  return false;
+}
 
 /**
  * smarthr-ui の metadata.json と design-system の index.mdx / mapping の整合性を検証する。
@@ -33,17 +65,32 @@ export function validateCoverage(args: {
   dirMapping: Map<string, string>;
   designSystemDir: string;
   inheritedNames?: Set<string>;
+  relatedSkills?: Map<string, RelatedComponentSkill>;
+  publicExports?: Set<string>;
 }): CoverageReport {
-  const { groups, dirMapping, designSystemDir, inheritedNames } = args;
+  const { groups, dirMapping, designSystemDir, inheritedNames, relatedSkills, publicExports } = args;
 
-  // newComponents: dir mapping なし、inheritedBy 派生先でもない
+  // newComponents: dir mapping なし、relatedComponents 経由でもない
   const newComponents: string[] = [];
   const unmappedGroups: string[] = [];
   for (const [dir] of groups) {
     if (!dirMapping.has(dir)) {
       unmappedGroups.push(dir);
-      const isInherited = inheritedNames?.has(dir) ?? false;
-      if (!isInherited) newComponents.push(dir);
+      const isRelated = inheritedNames?.has(dir) ?? false;
+      if (!isRelated) newComponents.push(dir);
+    }
+  }
+
+  // missingDescriptions: 子 dir なし & description 未指定
+  // 子 dir があれば dirMapping 経由で子 mdx の description が採用されるため description 不要。
+  // 子 dir がないケース (Th/Td 等) は relatedComponents 宣言で description を提供すべき。
+  const missingDescriptions: string[] = [];
+  if (relatedSkills) {
+    for (const [name, rel] of relatedSkills) {
+      const hasChildDir = dirMapping.has(name);
+      if (!hasChildDir && rel.description === undefined) {
+        missingDescriptions.push(`${name} (parent: ${rel.parentName})`);
+      }
     }
   }
 
@@ -71,9 +118,12 @@ export function validateCoverage(args: {
       }
     }
   }
-  const orphanDirs = designDirsWithIndex.filter((d) => !mappedPaths.has(d) && !ORPHAN_IGNORE.has(d));
+  const orphanDirs = designDirsWithIndex.filter((d) => {
+    if (mappedPaths.has(d)) return false;
+    return !shouldIgnoreOrphan(d, mappedPaths, publicExports ?? new Set());
+  });
 
-  return { newComponents, orphanDirs, unmappedGroups };
+  return { newComponents, orphanDirs, unmappedGroups, missingDescriptions };
 }
 
 /**
@@ -90,7 +140,7 @@ export function printCoverageReport(report: CoverageReport): boolean {
       `   ⚠️  smarthr-ui 新規/未対応コンポーネント (${report.newComponents.length}): ${report.newComponents.join(', ')}`,
     );
     console.log(
-      `       → src/content/articles/products/components/<name>/index.mdx を作成するか、inheritedBy で親に紐付けてください`,
+      `       → src/content/articles/products/components/<name>/index.mdx を作成するか、親 index.mdx の relatedComponents で紐付けてください`,
     );
   }
 
@@ -101,6 +151,16 @@ export function printCoverageReport(report: CoverageReport): boolean {
     );
     console.log(
       `       → smarthr-ui から削除/rename された可能性。mapping/component-dir-map.json で再マッピングするか、index.mdx を削除してください`,
+    );
+  }
+
+  if (report.missingDescriptions.length > 0) {
+    hasIssue = true;
+    console.log(
+      `   ⚠️  relatedComponents の description 未指定 & 子 dir なし (${report.missingDescriptions.length}): ${report.missingDescriptions.join(', ')}`,
+    );
+    console.log(
+      `       → 親 mdx の relatedComponents 宣言で description を追加するか、子 dir 配下に index.mdx を作成してください`,
     );
   }
 

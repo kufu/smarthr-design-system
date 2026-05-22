@@ -1,9 +1,14 @@
 import fs from 'node:fs';
 import matter from 'gray-matter';
 
-export type InheritedByEntry = {
+export type RelatedComponentEntry = {
   name: string;
-  description: string;
+  /**
+   * 子 mdx の description を上書きしたい場合に指定する。
+   * 子に独立 index.mdx があるケース (例: ActionDialog) では子 mdx の description が
+   * 優先採用されるため省略可。子 dir がないケース (例: Th, Td) では必須。
+   */
+  description?: string;
 };
 
 export type IndexMdxInfo = {
@@ -13,7 +18,13 @@ export type IndexMdxInfo = {
   leadParagraph: string;
   deprecated: boolean;
   deprecatedMessage: string;
-  inheritedBy: InheritedByEntry[];
+  /**
+   * 親 mdx に紐づくサブコンポーネント（派生継承・内部部品・カテゴリメンバーを含む）。
+   * 派生継承の例: `ControlledActionDialog`（`ActionDialog` を継承）
+   * 内部部品の例: `Th`、`Td`（`Table` の構成要素）
+   * カテゴリメンバーの例: `ActionDialog`、`FormDialog`（`Dialog` 配下）
+   */
+  relatedComponents: RelatedComponentEntry[];
 };
 
 export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
@@ -25,7 +36,7 @@ export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
   let frontmatterDescription = '';
   let deprecated = false;
   let deprecatedMessage = '';
-  let inheritedBy: InheritedByEntry[] = [];
+  let relatedComponents: RelatedComponentEntry[] = [];
   let bodyContent = content;
 
   try {
@@ -34,7 +45,7 @@ export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
     frontmatterDescription = (parsed.data.description as string) ?? '';
     deprecated = (parsed.data.deprecated as boolean) ?? false;
     deprecatedMessage = (parsed.data.deprecatedMessage as string) ?? '';
-    inheritedBy = normalizeInheritedBy(parsed.data.inheritedBy);
+    relatedComponents = normalizeRelatedComponents(parsed.data.relatedComponents);
     bodyContent = parsed.content;
   } catch {
     // Fallback: no frontmatter
@@ -48,19 +59,22 @@ export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
     leadParagraph,
     deprecated,
     deprecatedMessage,
-    inheritedBy,
+    relatedComponents,
   };
 }
 
-function normalizeInheritedBy(value: unknown): InheritedByEntry[] {
+function normalizeRelatedComponents(value: unknown): RelatedComponentEntry[] {
   if (!Array.isArray(value)) return [];
-  const result: InheritedByEntry[] = [];
+  const result: RelatedComponentEntry[] = [];
   for (const entry of value) {
     if (!entry || typeof entry !== 'object') continue;
     const name = (entry as { name?: unknown }).name;
     const description = (entry as { description?: unknown }).description;
-    if (typeof name !== 'string' || typeof description !== 'string') continue;
-    result.push({ name, description });
+    if (typeof name !== 'string') continue;
+    result.push({
+      name,
+      ...(typeof description === 'string' && description.length > 0 ? { description } : {}),
+    });
   }
   return result;
 }

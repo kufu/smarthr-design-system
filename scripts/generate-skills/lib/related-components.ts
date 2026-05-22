@@ -3,30 +3,33 @@ import path from 'node:path';
 
 import { parseIndexMdx, type IndexMdxInfo } from './parse-index-mdx.js';
 
-export type InheritedSkill = {
-  /** 派生先コンポーネント名(例: ControlledActionDialog) */
+export type RelatedComponentSkill = {
+  /** サブコンポーネント名(例: ControlledActionDialog, Th, ActionDialog) */
   name: string;
-  /** 派生先コンポーネント固有の description */
-  description: string;
-  /** 派生元 mdx の IndexMdxInfo(本文継承元) */
+  /** サブコンポーネント固有の description (子 mdx の description を上書きしたい場合のみ) */
+  description?: string;
+  /** 親 mdx の IndexMdxInfo(本文継承元) */
   parentInfo: IndexMdxInfo;
-  /** 派生元コンポーネント名(例: ActionDialog) */
+  /** 親コンポーネント名(例: ActionDialog, Table, Dialog) */
   parentName: string;
-  /** 派生元 mdx の所在(設計システム相対パス、ログ用) */
+  /** 親 mdx の所在(設計システム相対パス、ログ用) */
   parentDir: string;
 };
 
 /**
- * 設計システム配下の全 mdx を走査し、frontmatter `inheritedBy` 宣言を集約する。
- * key: 派生先コンポーネント名、value: 派生情報
+ * 設計システム配下の全 mdx を走査し、frontmatter `relatedComponents` 宣言を集約する。
+ * key: サブコンポーネント名、value: 親情報
+ *
+ * `relatedComponents` は派生継承（Controlled*）、内部部品（Th/Td 等）、
+ * カテゴリメンバー（Dialog 配下の ActionDialog 等）を包括的に扱う。
  */
-export function collectInheritedSkills(designSystemDir: string): Map<string, InheritedSkill> {
-  const result = new Map<string, InheritedSkill>();
+export function collectRelatedComponents(designSystemDir: string): Map<string, RelatedComponentSkill> {
+  const result = new Map<string, RelatedComponentSkill>();
   walkMdx(designSystemDir, designSystemDir, result);
   return result;
 }
 
-function walkMdx(rootDir: string, currentDir: string, acc: Map<string, InheritedSkill>): void {
+function walkMdx(rootDir: string, currentDir: string, acc: Map<string, RelatedComponentSkill>): void {
   if (!fs.existsSync(currentDir)) return;
   for (const entry of fs.readdirSync(currentDir, { withFileTypes: true })) {
     const full = path.join(currentDir, entry.name);
@@ -38,16 +41,16 @@ function walkMdx(rootDir: string, currentDir: string, acc: Map<string, Inherited
     if (entry.name !== 'index.mdx') continue;
 
     const info = parseIndexMdx(full);
-    if (!info || info.inheritedBy.length === 0) continue;
+    if (!info || info.relatedComponents.length === 0) continue;
 
     const relDir = path.relative(rootDir, path.dirname(full));
     const parentName = inferParentName(relDir);
 
-    for (const child of info.inheritedBy) {
+    for (const child of info.relatedComponents) {
       if (acc.has(child.name)) continue;
       acc.set(child.name, {
         name: child.name,
-        description: child.description,
+        ...(child.description !== undefined ? { description: child.description } : {}),
         parentInfo: info,
         parentName,
         parentDir: relDir,
