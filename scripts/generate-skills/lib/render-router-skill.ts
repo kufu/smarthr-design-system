@@ -1,6 +1,6 @@
 import type { ComponentGroup } from './parse-metadata.js';
 import type { IndexMdxInfo } from './parse-index-mdx.js';
-import { pascalToKebab } from './name-mapping.js';
+import { toSkillSlug } from './name-mapping.js';
 
 export type RouterEntry = {
   group: ComponentGroup;
@@ -97,17 +97,17 @@ export function renderRouterSkill(entries: RouterEntry[]): string {
   parts.push('# smarthr-ui コンポーネント選定ガイド');
   parts.push('');
   parts.push(
-    'このスキルは、UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、各コンポーネント名のスキル（例: `smarthr-design-system:button`）を参照してください。',
+    'このスキルは、UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、各コンポーネント名のスキル（例: `smarthr-design-system:smarthr-ui-button`）を参照してください。',
   );
   parts.push('');
   parts.push('## コンポーネント一覧');
   parts.push('');
-  parts.push('| コンポーネント | 用途 | 対応スキル |');
+  parts.push('| コンポーネント | 説明・利用シーン | 対応スキル |');
   parts.push('|---|---|---|');
 
   for (const entry of sorted) {
     const name = entry.group.dirName;
-    const skillName = pascalToKebab(name);
+    const skillName = toSkillSlug(name);
     const isDeprecated = entry.indexInfo?.deprecated ?? false;
     const displayName = isDeprecated ? `⚠️ ${name}（非推奨）` : name;
     const rawDesc = resolveEntryDescription(entry).replace(/\r?\n/g, ' ').replace(/\|/g, '\\|').trim();

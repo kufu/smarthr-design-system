@@ -4,7 +4,7 @@ import type { EslintRuleWithContent } from './fetch-eslint-rules.js';
 import { getRelevantCodeExamples } from './fetch-eslint-rules.js';
 import type { ChecklistSection } from './parse-checklist.js';
 import type { IndexMdxInfo } from './parse-index-mdx.js';
-import { pascalToKebab } from './name-mapping.js';
+import { toSkillSlug } from './name-mapping.js';
 
 export type SkillRenderOptions = {
   group: ComponentGroup;
@@ -18,7 +18,7 @@ const SOURCE_TAG = 'smarthr-design-system';
 export function renderSkill(opts: SkillRenderOptions): string {
   const { group, indexInfo, eslintRules, checklist } = opts;
   const groupName = group.dirName;
-  const skillName = pascalToKebab(groupName);
+  const skillName = toSkillSlug(groupName);
   const generatedFrom = buildGeneratedFromTag(eslintRules.length > 0, checklist !== null && checklist.length > 0);
   const description = buildDescription(group, indexInfo);
 
@@ -144,7 +144,24 @@ function buildDescription(group: ComponentGroup, indexInfo: IndexMdxInfo | null)
   const names = group.displayNames.join(' / ');
   const base = indexInfo?.description?.replace(/\r?\n/g, ' ').trim() || `smarthr-ui の ${names} コンポーネントの使い方ガイド。`;
   const deprecatedPrefix = indexInfo?.deprecated ? '【非推奨】' : '';
-  return `${deprecatedPrefix}${base}`;
+  const componentName = indexInfo?.title || group.dirName;
+  return `${deprecatedPrefix}${prependComponentName(base, componentName)}`;
+}
+
+/**
+ * description 先頭にコンポーネント名(PascalCase)を「<Name>は、」の形で付与する。
+ * description が既に同名で始まる場合は二重化を避けるため何もしない。
+ */
+export function prependComponentName(description: string, name: string): string {
+  if (!name) return description;
+  const trimmed = description.trim();
+  // 既に「<Name>は」「<Name>が」「<Name>の」「<Name>に」「<Name>を」「<Name>と」で始まる場合はスキップ
+  if (new RegExp(`^${escapeRegExp(name)}(は|が|の|に|を|と)`).test(trimmed)) return trimmed;
+  return `${name}は、${trimmed}`;
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 function stripHtml(value: string): string {
