@@ -1,7 +1,7 @@
 import fs from 'node:fs';
+import { glob } from 'node:fs/promises';
 import path from 'node:path';
 
-import { glob as fastGlob } from 'tinyglobby';
 import { parse as parseYaml } from 'yaml';
 
 import type { Loader } from 'astro/loaders';
@@ -21,6 +21,7 @@ interface YamlGlobOptions {
 /**
  * Astro v6 の glob loader は yaml 形式に未対応のため、yaml 専用 loader を自作する。
  * パターン記述・watcher 連携・schema 適用の流れは公式 glob loader と同等。
+ * ファイル列挙には Node 22+ の標準 `fs.promises.glob` を使用（依存ゼロ）。
  */
 export function yamlGlob({ pattern, base, generateId }: YamlGlobOptions): Loader {
   const baseDir = path.resolve(base);
@@ -44,9 +45,8 @@ export function yamlGlob({ pattern, base, generateId }: YamlGlobOptions): Loader
   return {
     name: 'yaml-glob-loader',
     load: async ({ store, parseData, logger, watcher }) => {
-      const files = await fastGlob(pattern, { cwd: baseDir });
       store.clear();
-      for (const rel of files) {
+      for await (const rel of glob(pattern, { cwd: baseDir })) {
         try {
           await loadFile(store, parseData, rel);
         } catch (err) {
