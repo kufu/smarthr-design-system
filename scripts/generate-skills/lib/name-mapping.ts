@@ -1,6 +1,21 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+/**
+ * kebab-case を PascalCase に戻す。
+ * 例: "date-formatter" → "DateFormatter"、"smarthr-logo" → "SmarthrLogo"
+ *
+ * 注意: `pascalToKebab` の逆操作だが、SmartHR の特殊処理 (`SmartHR` → `Smarthr`) は
+ * 戻せないため `SmarthrLogo` のような表記になる。smarthr-ui 公開 export 名との
+ * 照合用途では呼び出し側で別途吸収する。
+ */
+export function kebabToPascal(name: string): string {
+  return name
+    .split('-')
+    .map((s) => (s.length === 0 ? '' : s[0].toUpperCase() + s.slice(1)))
+    .join('');
+}
+
 export function pascalToKebab(name: string): string {
   // 連続大文字は 1 つの略語として束ねる:
   //   "Button"        → "button"

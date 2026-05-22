@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { kebabToPascal } from './name-mapping.js';
 import type { ComponentGroup } from './parse-metadata.js';
 import type { RelatedComponentSkill } from './related-components.js';
 
@@ -21,17 +22,39 @@ export type CoverageReport = {
 };
 
 /**
- * smarthr-ui のコンポーネントに対応しない design-system ディレクトリ。
- * design-system 独自の親カテゴリページや intl 配下コンポーネントなど。
- * orphan として警告対象から除外する。
+ * smarthr-ui の `export * from './components/Icon'` 形式で再エクスポートされる
+ * コンポーネントは `loadPublicExports` の `export { X } from` パターンに合致せず
+ * 自動判定では拾えないため、明示的に除外する。
  */
-const ORPHAN_IGNORE = new Set([
-  'icon', // design-system 独自の親カテゴリページ
-  'layout', // 同上（Stack/Cluster/Center 等の親）
-  'date-formatter', // smarthr-ui の intl 配下、src/components/ 外
-  'combobox', // 親カテゴリページ（SingleCombobox / MultiCombobox が配下に独立）
-  'picker', // 親カテゴリページ（TimePicker / MonthPicker / DatetimeLocalPicker が配下に独立）
-]);
+const ORPHAN_IGNORE_EXPLICIT = new Set(['icon']);
+
+/**
+ * orphan 警告から除外すべき dir かを自動判定する。
+ *
+ * ルール 1 (親カテゴリページ): 配下に「dirMapping で smarthr-ui に対応付け済みの子 dir」があれば、
+ * 親カテゴリページとみなして除外する。`layout`/`combobox`/`picker`/`formatter` 等が該当。
+ *
+ * ルール 2 (公開 export 一致): dir 名 (kebab-case) を PascalCase に戻して smarthr-ui の公開
+ * named export 集合に含まれていれば除外する。`date-formatter` (= `DateFormatter`) のように
+ * smarthr-ui で公開はされているが `src/components/` 外 (例: `src/intl/`) にあり parseMetadata
+ * のフィルタから漏れるケースをカバーする。
+ */
+function shouldIgnoreOrphan(dir: string, mappedPaths: Set<string>, publicExports: Set<string>): boolean {
+  if (ORPHAN_IGNORE_EXPLICIT.has(dir)) return true;
+
+  // ルール 1: 配下に mapped 子 dir があるか
+  const prefix = `${dir}/`;
+  for (const p of mappedPaths) {
+    if (p.startsWith(prefix)) return true;
+  }
+
+  // ルール 2: 末尾セグメントを PascalCase 化して公開 export と一致するか
+  const lastSegment = dir.split('/').filter(Boolean).pop() ?? dir;
+  const pascalName = kebabToPascal(lastSegment);
+  if (publicExports.has(pascalName)) return true;
+
+  return false;
+}
 
 /**
  * smarthr-ui の metadata.json と design-system の index.mdx / mapping の整合性を検証する。
@@ -43,8 +66,9 @@ export function validateCoverage(args: {
   designSystemDir: string;
   inheritedNames?: Set<string>;
   relatedSkills?: Map<string, RelatedComponentSkill>;
+  publicExports?: Set<string>;
 }): CoverageReport {
-  const { groups, dirMapping, designSystemDir, inheritedNames, relatedSkills } = args;
+  const { groups, dirMapping, designSystemDir, inheritedNames, relatedSkills, publicExports } = args;
 
   // newComponents: dir mapping なし、relatedComponents 経由でもない
   const newComponents: string[] = [];
@@ -94,7 +118,10 @@ export function validateCoverage(args: {
       }
     }
   }
-  const orphanDirs = designDirsWithIndex.filter((d) => !mappedPaths.has(d) && !ORPHAN_IGNORE.has(d));
+  const orphanDirs = designDirsWithIndex.filter((d) => {
+    if (mappedPaths.has(d)) return false;
+    return !shouldIgnoreOrphan(d, mappedPaths, publicExports ?? new Set());
+  });
 
   return { newComponents, orphanDirs, unmappedGroups, missingDescriptions };
 }

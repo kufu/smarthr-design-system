@@ -100,6 +100,7 @@ async function main() {
     designSystemDir: DESIGN_SYSTEM_DIR,
     inheritedNames: new Set(relatedSkills.keys()),
     relatedSkills,
+    publicExports,
   });
   printCoverageReport(coverageReport);
 
