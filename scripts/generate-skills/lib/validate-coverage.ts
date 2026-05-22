@@ -8,7 +8,7 @@ export type CoverageReport = {
   newComponents: string[];
   /** index.mdx は存在するが metadata.json の対応 displayName が消えた（rename / 削除） */
   orphanDirs: string[];
-  /** design-system dir 未割当（参考情報。inheritedBy 派生先でないものは newComponents 側で警告） */
+  /** design-system dir 未割当（参考情報。relatedComponents で親に紐付けられていないものは newComponents 側で警告） */
   unmappedGroups: string[];
 };
 
@@ -22,6 +22,7 @@ const ORPHAN_IGNORE = new Set([
   'layout', // 同上（Stack/Cluster/Center 等の親）
   'date-formatter', // smarthr-ui の intl 配下、src/components/ 外
   'combobox', // 親カテゴリページ（SingleCombobox / MultiCombobox が配下に独立）
+  'picker', // 親カテゴリページ（TimePicker / MonthPicker / DatetimeLocalPicker が配下に独立）
 ]);
 
 /**
@@ -36,14 +37,14 @@ export function validateCoverage(args: {
 }): CoverageReport {
   const { groups, dirMapping, designSystemDir, inheritedNames } = args;
 
-  // newComponents: dir mapping なし、inheritedBy 派生先でもない
+  // newComponents: dir mapping なし、relatedComponents 経由でもない
   const newComponents: string[] = [];
   const unmappedGroups: string[] = [];
   for (const [dir] of groups) {
     if (!dirMapping.has(dir)) {
       unmappedGroups.push(dir);
-      const isInherited = inheritedNames?.has(dir) ?? false;
-      if (!isInherited) newComponents.push(dir);
+      const isRelated = inheritedNames?.has(dir) ?? false;
+      if (!isRelated) newComponents.push(dir);
     }
   }
 
@@ -90,7 +91,7 @@ export function printCoverageReport(report: CoverageReport): boolean {
       `   ⚠️  smarthr-ui 新規/未対応コンポーネント (${report.newComponents.length}): ${report.newComponents.join(', ')}`,
     );
     console.log(
-      `       → src/content/articles/products/components/<name>/index.mdx を作成するか、inheritedBy で親に紐付けてください`,
+      `       → src/content/articles/products/components/<name>/index.mdx を作成するか、親 index.mdx の relatedComponents で紐付けてください`,
     );
   }
 
