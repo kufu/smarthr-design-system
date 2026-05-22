@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-datetime-local-picker
-description: "【非推奨】ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。"
+description: "【非推奨】DatetimeLocalPickerは、ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

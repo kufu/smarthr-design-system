@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-segmented-control
-description: "同一オブジェクトの異なる状態や視点を切り替えるためのコンポーネントです。リスト表示とカード表示の切替など、選択と同時に即座に表示を変えるときに使います。"
+description: "SegmentedControlは、同一オブジェクトの異なる状態や視点を切り替えるためのコンポーネントです。リスト表示とカード表示の切替など、選択と同時に即座に表示を変えるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

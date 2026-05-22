@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-accordion-panel
-description: "縦に積まれた見出しのリストで、関連する詳細の表示・非表示を切り替えられるコンポーネントです。情報量が多い場合に表示内容を絞るときに使います。"
+description: "AccordionPanelは、縦に積まれた見出しのリストで、関連する詳細の表示・非表示を切り替えられるコンポーネントです。情報量が多い場合に表示内容を絞るときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

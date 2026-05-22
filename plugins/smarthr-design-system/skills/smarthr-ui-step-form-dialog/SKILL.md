@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-step-form-dialog
-description: "複数ステップに分けたフォームを内包するダイアログコンポーネントです。ウィザード形式で複数の操作を順に進めるタスクをダイアログで提供するときに使います。"
+description: "StepFormDialogは、複数ステップに分けたフォームを内包するダイアログコンポーネントです。ウィザード形式で複数の操作を順に進めるタスクをダイアログで提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

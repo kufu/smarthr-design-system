@@ -120,6 +120,7 @@ async function main() {
       const inh = inheritedSkills.get(dirName)!;
       indexInfo = {
         ...inh.parentInfo,
+        title: inh.name,
         description: inh.description,
         inheritedBy: [],
       };

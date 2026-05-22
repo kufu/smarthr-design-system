@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-search-input
-description: "検索キーワードを入力させるためのコンポーネントです。検索フォームで検索語句を入力させるときに使います。"
+description: "SearchInputは、検索キーワードを入力させるためのコンポーネントです。検索フォームで検索語句を入力させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

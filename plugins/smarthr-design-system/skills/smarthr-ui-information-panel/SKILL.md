@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-information-panel
-description: "ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。"
+description: "InformationPanelは、ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

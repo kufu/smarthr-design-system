@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-upward-link
-description: "一階層上のコンテンツに戻るためのテキストリンクコンポーネントです。詳細画面から一覧画面など親階層へ戻る導線を置くときに使います。"
+description: "UpwardLinkは、一階層上のコンテンツに戻るためのテキストリンクコンポーネントです。詳細画面から一覧画面など親階層へ戻る導線を置くときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

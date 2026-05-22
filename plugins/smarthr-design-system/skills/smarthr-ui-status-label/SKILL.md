@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-status-label
-description: "オブジェクトの状態を短いラベルで伝えるためのコンポーネントです。Table内のステータス欄や、オブジェクト詳細の画面タイトルで状態を提示するときに使います。"
+description: "StatusLabelは、オブジェクトの状態を短いラベルで伝えるためのコンポーネントです。Table内のステータス欄や、オブジェクト詳細の画面タイトルで状態を提示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

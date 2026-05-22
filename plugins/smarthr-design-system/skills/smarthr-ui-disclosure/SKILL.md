@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-disclosure
-description: "トリガーやコンテンツに装飾を持たない、コンテンツの表示・非表示を切り替えるためのプリミティブコンポーネントです。開閉動作だけを提供するとき、AccordionPanelで実現できない独自の開閉UIを提供するときに使います。"
+description: "Disclosureは、トリガーやコンテンツに装飾を持たない、コンテンツの表示・非表示を切り替えるためのプリミティブコンポーネントです。開閉動作だけを提供するとき、AccordionPanelで実現できない独自の開閉UIを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-line-clamp
-description: "テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。"
+description: "LineClampは、テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

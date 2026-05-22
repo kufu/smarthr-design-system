@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-modeless-dialog
-description: "背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。"
+description: "ModelessDialogは、背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

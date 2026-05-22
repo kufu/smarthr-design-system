@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-not-found-error-screen
-description: "存在しないページであることを表示する全画面コンポーネントです。404相当のエラーを伝えるときに使います。"
+description: "NotFoundErrorScreenは、存在しないページであることを表示する全画面コンポーネントです。404相当のエラーを伝えるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-chip
-description: "テキストをタグのように装飾して表示するためのコンポーネントです。"
+description: "Chipは、テキストをタグのように装飾して表示するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

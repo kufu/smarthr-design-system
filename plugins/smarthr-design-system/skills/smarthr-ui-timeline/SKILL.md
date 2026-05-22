@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-timeline
-description: "情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。"
+description: "Timelineは、情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

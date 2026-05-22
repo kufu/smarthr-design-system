@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-form-dialog
-description: "フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるためのActionDialog派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、Enterキーでの送信が必要なときに使います。"
+description: "FormDialogは、フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるためのActionDialog派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、Enterキーでの送信が必要なときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-th
-description: "th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。"
+description: "Thは、th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

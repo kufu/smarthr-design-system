@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-dropdown
-description: "ボタンを押すとパネルが開く動作を提供するプリミティブコンポーネントです。DropdownMenuButton/FilterDropdown/SortDropdownで実現できない独自のドロップダウンUIを提供するときに使います。"
+description: "Dropdownは、ボタンを押すとパネルが開く動作を提供するプリミティブコンポーネントです。DropdownMenuButton/FilterDropdown/SortDropdownで実現できない独自のドロップダウンUIを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

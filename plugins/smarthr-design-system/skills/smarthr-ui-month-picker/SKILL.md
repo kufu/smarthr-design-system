@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-month-picker
-description: "【非推奨】ユーザーに年と月を入力させる際に使用するコンポーネントです。"
+description: "【非推奨】MonthPickerは、ユーザーに年と月を入力させる際に使用するコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

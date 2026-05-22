@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-textarea
-description: "textarea要素の代替としてテキストを複数行で入力させるコンポーネントです。長文を入力させるとき、文字数カウンタが必要なときに使います。"
+description: "Textareaは、textarea要素の代替としてテキストを複数行で入力させるコンポーネントです。長文を入力させるとき、文字数カウンタが必要なときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-td-radio-button
-description: "RadioButtonを内包するデータセル（Td）の派生コンポーネントです。テーブル各行から1行だけ選ばせるときに使います。"
+description: "TdRadioButtonは、RadioButtonを内包するデータセル（Td）の派生コンポーネントです。テーブル各行から1行だけ選ばせるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

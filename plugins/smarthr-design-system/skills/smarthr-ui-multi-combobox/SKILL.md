@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-multi-combobox
-description: "選択肢から複数の値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら複数を選択するときに使います。"
+description: "MultiComboboxは、選択肢から複数の値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら複数を選択するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

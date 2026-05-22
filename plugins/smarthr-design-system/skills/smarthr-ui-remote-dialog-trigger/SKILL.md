@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-remote-dialog-trigger
-description: "別コンポーネント階層から離れた位置のダイアログを開くためのトリガーコンポーネントです。ボタン配置とダイアログ定義を分離して管理するときに使います。"
+description: "RemoteDialogTriggerは、別コンポーネント階層から離れた位置のダイアログを開くためのトリガーコンポーネントです。ボタン配置とダイアログ定義を分離して管理するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

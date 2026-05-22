@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-definition-list
-description: "見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。"
+description: "DefinitionListは、見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

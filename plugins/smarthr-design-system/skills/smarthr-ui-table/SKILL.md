@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-table
-description: "table要素の代替として表形式でデータを表示するためのコンポーネントです。データを行列で一覧表示するとき、レコードを並べて比較するビューを提示するときに使います。"
+description: "Tableは、table要素の代替として表形式でデータを表示するためのコンポーネントです。データを行列で一覧表示するとき、レコードを並べて比較するビューを提示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-sort-dropdown
-description: "コレクションの並べ替えを提供するためのドロップダウンコンポーネントです。主にテーブル以外のリストやカード一覧の並べ替え項目と並び順を設定するときに使います。"
+description: "SortDropdownは、コレクションの並べ替えを提供するためのドロップダウンコンポーネントです。主にテーブル以外のリストやカード一覧の並べ替え項目と並び順を設定するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

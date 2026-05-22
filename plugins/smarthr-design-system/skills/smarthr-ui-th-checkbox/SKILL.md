@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-th-checkbox
-description: "Checkboxを内包する列見出しセル（Th）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル全行の一括選択UIを列見出しに配置するときに使います。"
+description: "ThCheckboxは、Checkboxを内包する列見出しセル（Th）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル全行の一括選択UIを列見出しに配置するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-page-counter
-description: "「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。"
+description: "PageCounterは、「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

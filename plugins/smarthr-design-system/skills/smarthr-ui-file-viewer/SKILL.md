@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-file-viewer
-description: "画像やPDFファイルを表示・拡大縮小・回転できるファイルビューアーコンポーネントです。ファイルの内容をプレビューするときに使います。"
+description: "FileViewerは、画像やPDFファイルを表示・拡大縮小・回転できるファイルビューアーコンポーネントです。ファイルの内容をプレビューするときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

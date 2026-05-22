@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-container
-description: "ページの主要コンテンツの横幅と外側のパディングを制御するレイアウトコンポーネントです。すべてのページで本文領域の最大幅と上下左右の余白を設定するときに使います。"
+description: "Containerは、ページの主要コンテンツの横幅と外側のパディングを制御するレイアウトコンポーネントです。すべてのページで本文領域の最大幅と上下左右の余白を設定するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

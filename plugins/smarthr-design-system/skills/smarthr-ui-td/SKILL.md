@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-td
-description: "td要素の代替としてテーブルのデータセルを表すコンポーネントです。"
+description: "Tdは、td要素の代替としてテーブルのデータセルを表すコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

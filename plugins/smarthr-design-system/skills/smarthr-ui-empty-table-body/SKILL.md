@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-empty-table-body
-description: "テーブルにデータがない場合に空状態を表示するtbodyコンポーネントです。空状態のメッセージを提示するときに使います。"
+description: "EmptyTableBodyは、テーブルにデータがない場合に空状態を表示するtbodyコンポーネントです。空状態のメッセージを提示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

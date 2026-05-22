@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-required-label
-description: "FormControlやFieldsetで入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。"
+description: "RequiredLabelは、FormControlやFieldsetで入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

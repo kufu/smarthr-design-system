@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-app-launcher
-description: "【非推奨】Header内に配置されるSmartHRの複数のアプリケーション間を遷移するためのランチャーコンポーネントです。"
+description: "【非推奨】AppLauncherは、Header内に配置されるSmartHRの複数のアプリケーション間を遷移するためのランチャーコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

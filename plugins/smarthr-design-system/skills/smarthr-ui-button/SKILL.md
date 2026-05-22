@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-button
-description: "button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。"
+description: "Buttonは、button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

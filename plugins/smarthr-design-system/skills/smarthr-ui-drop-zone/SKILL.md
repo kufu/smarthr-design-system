@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-drop-zone
-description: "ドラッグアンドドロップでのファイル選択を主目的としたコンポーネントです。広いドロップ領域でファイルをアップロードさせるときに使います。"
+description: "DropZoneは、ドラッグアンドドロップでのファイル選択を主目的としたコンポーネントです。広いドロップ領域でファイルをアップロードさせるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-error-screen
-description: "エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。"
+description: "ErrorScreenは、エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

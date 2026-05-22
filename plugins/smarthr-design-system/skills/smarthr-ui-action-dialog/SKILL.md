@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-action-dialog
-description: "ユーザーに確認や単純な操作を求めるためのダイアログコンポーネントです。フォーム要素を含まない確認・実行のダイアログを表示するときに使います。"
+description: "ActionDialogは、ユーザーに確認や単純な操作を求めるためのダイアログコンポーネントです。フォーム要素を含まない確認・実行のダイアログを表示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

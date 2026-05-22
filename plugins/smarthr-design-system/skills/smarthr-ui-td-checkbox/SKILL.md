@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-td-checkbox
-description: "Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。"
+description: "TdCheckboxは、Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

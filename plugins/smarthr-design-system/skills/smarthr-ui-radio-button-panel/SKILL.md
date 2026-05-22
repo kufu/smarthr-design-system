@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-radio-button-panel
-description: "RadioButtonをパネル型に視覚的強化した単一選択コンポーネントです。選択肢に説明やステータスを付加するとき、視覚的に強調して操作領域を確保するときに使います。"
+description: "RadioButtonPanelは、RadioButtonをパネル型に視覚的強化した単一選択コンポーネントです。選択肢に説明やステータスを付加するとき、視覚的に強調して操作領域を確保するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-float-area
-description: "画面内に固定表示する領域のためのコンポーネントです。スクロール位置によらずフォーム送信ボタンや主要アクションを常時見せるときに使います。"
+description: "FloatAreaは、画面内に固定表示する領域のためのコンポーネントです。スクロール位置によらずフォーム送信ボタンや主要アクションを常時見せるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

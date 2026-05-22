@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-pagination
-description: "「よくあるテーブル」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。"
+description: "Paginationは、「よくあるテーブル」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

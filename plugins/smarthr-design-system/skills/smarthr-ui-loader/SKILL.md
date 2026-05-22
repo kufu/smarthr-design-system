@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-loader
-description: "読み込み中や処理中であることを伝えるためのコンポーネントです。"
+description: "Loaderは、読み込み中や処理中であることを伝えるためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

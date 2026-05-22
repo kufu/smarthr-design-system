@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-input-file
-description: "input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。"
+description: "InputFileは、input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-app-header
-description: "画面上部に配置するSmartHR共通ヘッダーコンポーネントです。HeaderとAppNaviを結合し、各アプリケーションの表示を共通化します。"
+description: "AppHeaderは、画面上部に配置するSmartHR共通ヘッダーコンポーネントです。HeaderとAppNaviを結合し、各アプリケーションの表示を共通化します。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-center
-description: "要素を上下左右中央に配置するためのレイアウトコンポーネントです。コンテンツを画面中央に置くとき、ボックス内に中央寄せをするときに使います。"
+description: "Centerは、要素を上下左右中央に配置するためのレイアウトコンポーネントです。コンテンツを画面中央に置くとき、ボックス内に中央寄せをするときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

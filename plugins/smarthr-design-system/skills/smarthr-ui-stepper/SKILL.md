@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-stepper
-description: "複数ステップに分かれた操作の進行状況を示すコンポーネントです。手続きの現在位置や全体ステップ数を可視化するときに使います。"
+description: "Stepperは、複数ステップに分かれた操作の進行状況を示すコンポーネントです。手続きの現在位置や全体ステップ数を可視化するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

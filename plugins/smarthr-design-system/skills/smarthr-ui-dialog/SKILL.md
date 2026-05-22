@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-dialog
-description: "ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。"
+description: "Dialogは、ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

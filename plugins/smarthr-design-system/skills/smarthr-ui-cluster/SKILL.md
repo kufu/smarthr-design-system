@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-cluster
-description: "要素を水平方向に並べるためのレイアウトコンポーネントです。幅に収まり切らない場合は折り返します。ボタンやテキストなどあらゆる要素を横並びで配置するときに使います。"
+description: "Clusterは、要素を水平方向に並べるためのレイアウトコンポーネントです。幅に収まり切らない場合は折り返します。ボタンやテキストなどあらゆる要素を横並びで配置するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

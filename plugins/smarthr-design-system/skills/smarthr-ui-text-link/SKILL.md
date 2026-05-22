@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-text-link
-description: "a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。"
+description: "TextLinkは、a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

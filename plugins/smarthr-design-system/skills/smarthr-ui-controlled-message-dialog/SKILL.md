@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-controlled-message-dialog
-description: "MessageDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。"
+description: "ControlledMessageDialogは、MessageDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

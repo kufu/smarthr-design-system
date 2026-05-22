@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-fieldset
-description: "fieldset要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。"
+description: "Fieldsetは、fieldset要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

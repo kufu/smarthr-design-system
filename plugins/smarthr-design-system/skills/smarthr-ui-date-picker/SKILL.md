@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-date-picker
-description: "【非推奨】ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。"
+description: "【非推奨】DatePickerは、ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

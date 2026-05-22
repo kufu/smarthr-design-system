@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-header
-description: "アカウント設定やアプリ切替などSmartHR共通の横断機能を提供するヘッダーコンポーネントです。基本はAppHeaderの利用を推奨し、独自のヘッダー構成が必要なときのみHeader単体で使います。"
+description: "Headerは、アカウント設定やアプリ切替などSmartHR共通の横断機能を提供するヘッダーコンポーネントです。基本はAppHeaderの利用を推奨し、独自のヘッダー構成が必要なときのみHeader単体で使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

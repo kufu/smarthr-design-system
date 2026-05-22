@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-switch
-description: "オン/オフを即時に切り替えるスイッチコンポーネントです。機能の有効/無効や表示切替をユーザー操作で即座にシステムに反映させるときに使います。"
+description: "Switchは、オン/オフを即時に切り替えるスイッチコンポーネントです。機能の有効/無効や表示切替をユーザー操作で即座にシステムに反映させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

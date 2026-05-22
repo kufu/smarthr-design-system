@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-spreadsheet-table
-description: "表データを表計算ソフト風に表示するためのコンポーネントです。CSVインポート画面などで利用者にスプレッドシートを想像させるときに使います。"
+description: "SpreadsheetTableは、表データを表計算ソフト風に表示するためのコンポーネントです。CSVインポート画面などで利用者にスプレッドシートを想像させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

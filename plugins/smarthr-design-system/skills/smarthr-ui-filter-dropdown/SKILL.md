@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-filter-dropdown
-description: "「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。"
+description: "FilterDropdownは、「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

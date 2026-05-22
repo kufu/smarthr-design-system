@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-dropdown-menu-button
-description: "同じ対象に関連する複数の操作をまとめてドロップダウン表示するメニューボタンコンポーネントです。編集・複製・削除など、オブジェクトに対する複数アクションをまとめるときに使います。"
+description: "DropdownMenuButtonは、同じ対象に関連する複数の操作をまとめてドロップダウン表示するメニューボタンコンポーネントです。編集・複製・削除など、オブジェクトに対する複数アクションをまとめるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-controlled-action-dialog
-description: "ActionDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。"
+description: "ControlledActionDialogは、ActionDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

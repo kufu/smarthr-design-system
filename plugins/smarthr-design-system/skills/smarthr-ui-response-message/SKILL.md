@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-response-message
-description: "システムからの通知を表示するためのアイコン付きテキストコンポーネントです。要素の状態や操作結果のフィードバックを要素の近くに表示するときに使います。"
+description: "ResponseMessageは、システムからの通知を表示するためのアイコン付きテキストコンポーネントです。要素の状態や操作結果のフィードバックを要素の近くに表示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

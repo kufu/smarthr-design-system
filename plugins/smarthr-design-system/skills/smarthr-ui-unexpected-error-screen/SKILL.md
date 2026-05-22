@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-unexpected-error-screen
-description: "予期しないエラーが発生したことを表示する全画面コンポーネントです。500相当のサーバーエラーを伝えるときに使います。"
+description: "UnexpectedErrorScreenは、予期しないエラーが発生したことを表示する全画面コンポーネントです。500相当のサーバーエラーを伝えるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

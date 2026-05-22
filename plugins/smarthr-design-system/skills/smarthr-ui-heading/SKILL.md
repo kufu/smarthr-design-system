@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-heading
-description: "見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。"
+description: "Headingは、見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

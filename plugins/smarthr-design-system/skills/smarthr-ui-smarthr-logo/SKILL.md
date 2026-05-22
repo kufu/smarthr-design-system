@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-smarthr-logo
-description: "SmartHRのロゴを表示するためのコンポーネントです。"
+description: "SmartHRLogoは、SmartHRのロゴを表示するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-message-dialog
-description: "ユーザーに情報を提示するためのダイアログコンポーネントです。入力などの操作を伴わずにメッセージや情報をダイアログで提示するときに使います。"
+description: "MessageDialogは、ユーザーに情報を提示するためのダイアログコンポーネントです。入力などの操作を伴わずにメッセージや情報をダイアログで提示するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

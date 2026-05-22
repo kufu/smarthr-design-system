@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-help-link
-description: "ヘルプページを開くためのテキストリンクコンポーネントです。SmartHRのヘルプセンターへ誘導するリンクを置くときに使います。"
+description: "HelpLinkは、ヘルプページを開くためのテキストリンクコンポーネントです。SmartHRのヘルプセンターへ誘導するリンクを置くときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

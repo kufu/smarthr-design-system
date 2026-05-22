@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-side-menu
-description: "複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。"
+description: "SideMenuは、複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

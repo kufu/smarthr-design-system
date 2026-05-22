@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-time-picker
-description: "【非推奨】ユーザーに時刻（時と分、任意で秒）を入力させる際に使用するコンポーネントです。"
+description: "【非推奨】TimePickerは、ユーザーに時刻（時と分、任意で秒）を入力させる際に使用するコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

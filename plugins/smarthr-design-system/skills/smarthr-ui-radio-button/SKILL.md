@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-radio-button
-description: "input[type='radio']要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。"
+description: "RadioButtonは、input[type='radio']要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

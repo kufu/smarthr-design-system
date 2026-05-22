@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-smarthr-ai-logo
-description: "SmartHRのAI関連の機能ラベルを表示するためのコンポーネントです。"
+description: "SmartHRAILogoは、SmartHRのAI関連の機能ラベルを表示するためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

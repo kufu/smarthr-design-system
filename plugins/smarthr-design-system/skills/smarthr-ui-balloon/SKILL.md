@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-balloon
-description: "smarthr-ui の Balloon コンポーネントの使い方ガイド。"
+description: "Balloonは、smarthr-ui の Balloon コンポーネントの使い方ガイド。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

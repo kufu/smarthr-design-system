@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-input
-description: "input[type='text']やinput[type='number']などの代替としてテキストや数値を1行で入力させるコンポーネントです。テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するときに使います。"
+description: "Inputは、input[type='text']やinput[type='number']などの代替としてテキストや数値を1行で入力させるコンポーネントです。テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

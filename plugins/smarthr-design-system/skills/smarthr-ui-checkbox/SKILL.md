@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-checkbox
-description: "input[type='checkbox']要素の代替としてオン/オフや真偽の状態を入力させるコンポーネントです。5個以下の選択肢から複数の値を選択させるとき、即時反映ではなく送信ボタンで確定させるときに使います。"
+description: "Checkboxは、input[type='checkbox']要素の代替としてオン/オフや真偽の状態を入力させるコンポーネントです。5個以下の選択肢から複数の値を選択させるとき、即時反映ではなく送信ボタンで確定させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

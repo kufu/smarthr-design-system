@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-bottom-fixed-area
-description: "【非推奨】画面下部に固定表示する領域のためのコンポーネントです。"
+description: "【非推奨】BottomFixedAreaは、画面下部に固定表示する領域のためのコンポーネントです。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

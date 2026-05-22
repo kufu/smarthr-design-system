@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-wareki-picker
-description: "和暦で日付を入力させ西暦に変換する機能を備えた入力コンポーネントです。和暦の日付入力が必要なときに使います。"
+description: "WarekiPickerは、和暦で日付を入力させ西暦に変換する機能を備えた入力コンポーネントです。和暦の日付入力が必要なときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

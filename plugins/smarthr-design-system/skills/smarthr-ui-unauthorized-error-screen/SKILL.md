@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-unauthorized-error-screen
-description: "セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。"
+description: "UnauthorizedErrorScreenは、セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

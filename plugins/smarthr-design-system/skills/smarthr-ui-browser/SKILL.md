@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-browser
-description: "階層構造を持つデータを選択するためのコンポーネントです。カテゴリや組織、フォルダなどのツリー状のデータをドリルダウンで選択するときに使います。"
+description: "Browserは、階層構造を持つデータを選択するためのコンポーネントです。カテゴリや組織、フォルダなどのツリー状のデータをドリルダウンで選択するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

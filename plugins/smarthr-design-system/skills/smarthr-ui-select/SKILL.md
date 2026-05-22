@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-select
-description: "select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢を検索不要で効率よくレイアウトするときに使います。"
+description: "Selectは、select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢を検索不要で効率よくレイアウトするときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-visually-hidden-text
-description: "視覚的には隠しつつスクリーンリーダーには読み上げさせたいテキスト用のコンポーネントです。見出しやラベルが自明で、表示すると視覚的に冗長になるときなどに使います。"
+description: "VisuallyHiddenTextは、視覚的には隠しつつスクリーンリーダーには読み上げさせたいテキスト用のコンポーネントです。見出しやラベルが自明で、表示すると視覚的に冗長になるときなどに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

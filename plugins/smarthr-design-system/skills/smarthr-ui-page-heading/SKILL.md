@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-page-heading
-description: "画面全体の最上位見出しを表示するためのコンポーネントです。h1要素として画面タイトルを示すときに使います。"
+description: "PageHeadingは、画面全体の最上位見出しを表示するためのコンポーネントです。h1要素として画面タイトルを示すときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

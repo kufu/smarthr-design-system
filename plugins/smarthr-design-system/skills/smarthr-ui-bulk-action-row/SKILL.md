@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-bulk-action-row
-description: "テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。"
+description: "BulkActionRowは、テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -16,7 +16,7 @@ metadata:
 
 ## コンポーネント一覧
 
-| コンポーネント | 用途 | 対応スキル |
+| コンポーネント | 説明・利用シーン | 対応スキル |
 |---|---|---|
 | AccordionPanel | 縦に積まれた見出しのリストで、関連する詳細の表示・非表示を切り替えられるコンポーネントです。情報量が多い場合に表示内容を絞るときに使います。 | `smarthr-design-system:smarthr-ui-accordion-panel` |
 | ActionDialog | ユーザーに確認や単純な操作を求めるためのダイアログコンポーネントです。フォーム要素を含まない確認・実行のダイアログを表示するときに使います。 | `smarthr-design-system:smarthr-ui-action-dialog` |

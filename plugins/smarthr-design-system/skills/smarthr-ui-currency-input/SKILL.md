@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-currency-input
-description: "金額を入力させるためのコンポーネントです。給与・税額など金額値を入力させるときに使います。"
+description: "CurrencyInputは、金額を入力させるためのコンポーネントです。給与・税額など金額値を入力させるときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

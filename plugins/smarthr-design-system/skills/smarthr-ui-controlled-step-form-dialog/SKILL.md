@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-controlled-step-form-dialog
-description: "StepFormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。"
+description: "ControlledStepFormDialogは、StepFormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-calendar
-description: "カレンダーを表示し日付を選択するためのコンポーネントです。基本的にDatePickerやWarekiPickerの内部部品として使われるため、単独では使用しません。"
+description: "Calendarは、カレンダーを表示し日付を選択するためのコンポーネントです。基本的にDatePickerやWarekiPickerの内部部品として使われるため、単独では使用しません。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-base-column
-description: "BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。"
+description: "BaseColumnは、BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

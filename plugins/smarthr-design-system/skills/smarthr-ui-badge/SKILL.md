@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-badge
-description: "件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。"
+description: "Badgeは、件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system

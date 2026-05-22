@@ -102,7 +102,7 @@ export function renderRouterSkill(entries: RouterEntry[]): string {
   parts.push('');
   parts.push('## コンポーネント一覧');
   parts.push('');
-  parts.push('| コンポーネント | 用途 | 対応スキル |');
+  parts.push('| コンポーネント | 説明・利用シーン | 対応スキル |');
   parts.push('|---|---|---|');
 
   for (const entry of sorted) {

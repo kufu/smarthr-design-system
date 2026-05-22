@@ -1,6 +1,6 @@
 ---
 name: smarthr-ui-sectioning-content
-description: "header、footer、section、articleなどのセクショニング要素を表現するためのコンポーネントです。Headingと組み合わせて見出しレベルを自動計算するときに使います。"
+description: "SectioningContentは、header、footer、section、articleなどのセクショニング要素を表現するためのコンポーネントです。Headingと組み合わせて見出しレベルを自動計算するときに使います。"
 metadata:
   version: "1.0.0"
   source: smarthr-design-system
