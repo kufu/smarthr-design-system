@@ -3,15 +3,10 @@ title: 'ErrorScreen'
 description: 'エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。'
 relatedComponents:
   - name: AuthErrorScreen
-    description: '認証フローで問題が発生したことを表示する全画面コンポーネントです。SSOやOAuthなどログイン処理に失敗したときに使います。'
   - name: ForbiddenErrorScreen
-    description: 'アクセス権限がないことを表示する全画面コンポーネントです。403相当の権限エラーを伝えるときに使います。'
   - name: NotFoundErrorScreen
-    description: '存在しないページであることを表示する全画面コンポーネントです。404相当のエラーを伝えるときに使います。'
   - name: UnauthorizedErrorScreen
-    description: 'セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。'
   - name: UnexpectedErrorScreen
-    description: '予期しないエラーが発生したことを表示する全画面コンポーネントです。500相当のサーバーエラーを伝えるときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'

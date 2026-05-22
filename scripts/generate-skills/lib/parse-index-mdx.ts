@@ -3,7 +3,12 @@ import matter from 'gray-matter';
 
 export type RelatedComponentEntry = {
   name: string;
-  description: string;
+  /**
+   * 子 mdx の description を上書きしたい場合に指定する。
+   * 子に独立 index.mdx があるケース (例: ActionDialog) では子 mdx の description が
+   * 優先採用されるため省略可。子 dir がないケース (例: Th, Td) では必須。
+   */
+  description?: string;
 };
 
 export type IndexMdxInfo = {
@@ -65,8 +70,11 @@ function normalizeRelatedComponents(value: unknown): RelatedComponentEntry[] {
     if (!entry || typeof entry !== 'object') continue;
     const name = (entry as { name?: unknown }).name;
     const description = (entry as { description?: unknown }).description;
-    if (typeof name !== 'string' || typeof description !== 'string') continue;
-    result.push({ name, description });
+    if (typeof name !== 'string') continue;
+    result.push({
+      name,
+      ...(typeof description === 'string' && description.length > 0 ? { description } : {}),
+    });
   }
   return result;
 }

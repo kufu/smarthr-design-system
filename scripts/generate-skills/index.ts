@@ -132,12 +132,15 @@ async function main() {
       checklist = parseChecklist(path.join(compDir, 'checklist.yaml'));
       if (checklist !== null) withLayer3++;
     } else if (relatedSkills.has(dirName)) {
-      // サブコンポーネント: 親 mdx の本文を継承し、description のみ派生先固有に差し替える
+      // サブコンポーネント: 親 mdx の本文を継承し、description のみ派生先固有に差し替える。
+      // 子に独立 index.mdx がある場合は dirMapping 側で処理されるためここに来ない。
+      // ここに来るのは Th/Td のように子 dir がないケース → 親 mdx の relatedComponents で
+      // description を宣言しておく必要がある。
       const rel = relatedSkills.get(dirName)!;
       indexInfo = {
         ...rel.parentInfo,
         title: rel.name,
-        description: rel.description,
+        description: rel.description ?? rel.parentInfo.description,
         relatedComponents: [],
       };
       // 親コンポーネントの checklist も継承する

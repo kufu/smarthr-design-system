@@ -6,8 +6,8 @@ import { parseIndexMdx, type IndexMdxInfo } from './parse-index-mdx.js';
 export type RelatedComponentSkill = {
   /** サブコンポーネント名(例: ControlledActionDialog, Th, ActionDialog) */
   name: string;
-  /** サブコンポーネント固有の description */
-  description: string;
+  /** サブコンポーネント固有の description (子 mdx の description を上書きしたい場合のみ) */
+  description?: string;
   /** 親 mdx の IndexMdxInfo(本文継承元) */
   parentInfo: IndexMdxInfo;
   /** 親コンポーネント名(例: ActionDialog, Table, Dialog) */
@@ -50,7 +50,7 @@ function walkMdx(rootDir: string, currentDir: string, acc: Map<string, RelatedCo
       if (acc.has(child.name)) continue;
       acc.set(child.name, {
         name: child.name,
-        description: child.description,
+        ...(child.description !== undefined ? { description: child.description } : {}),
         parentInfo: info,
         parentName,
         parentDir: relDir,
