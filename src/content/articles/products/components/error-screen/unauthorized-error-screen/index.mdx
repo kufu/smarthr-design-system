@@ -1,0 +1,19 @@
+---
+title: 'UnauthorizedErrorScreen'
+description: 'セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。
+
+ユーザーが一定時間操作しなかった場合、自動でログアウトしたことがわかるメッセージとログインボタンを表示します。ログインボタンを押せば、再ログインできるようにしてください。
+
+「セッションがタイムアウトしました。」は一般的なユーザーには伝わりにくい表現なので「自動でログアウトしました」としています。
+
+<ComponentStory name="UnauthorizedErrorScreen" />
+
+## props
+
+<ComponentPropsTable name="UnauthorizedErrorScreen" />
+

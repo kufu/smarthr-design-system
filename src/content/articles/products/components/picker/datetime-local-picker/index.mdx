@@ -1,19 +1,13 @@
 ---
-title: 'DatetimeLocalPicker（非推奨）'
+title: 'DatetimeLocalPicker'
 description: "ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。"
+deprecated: true
+deprecatedMessage: 'DatetimeLocalPickerは非推奨です。<a href="/products/components/input/">Input[type="datetime-local"]</a>を使ってください。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
-import { BaseColumn, ResponseMessage } from 'smarthr-ui'
-
-<BaseColumn>
-  <ResponseMessage status="warning">
-    <span>DatetimeLocalPickerは非推奨です。[Input[type="datetime-local"]](/products/components/input/) を使ってください。</span>
-  </ResponseMessage>
-</BaseColumn>
 
 ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。
 
 ## Props
 
 <ComponentPropsTable name="DatetimeLocalPicker" />
-
