@@ -1,7 +1,7 @@
 items:
   # 使用上の注意 > type="button" について
-  - severity: must
-    text: 'form submit を使う場合は `type="submit"` を明記する'
+  # test/phase4-8: severity 欠落で validate error を再現
+  - text: 'form submit を使う場合は `type="submit"` を明記する'
     source_section: '使用上の注意 > type="button" について'
 
   # 種類 > Primary
