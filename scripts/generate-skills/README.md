@@ -32,7 +32,7 @@ pnpm generate
 
 Layer 2 のキャッシュ更新は `.cache/eslint-rules.json` を削除して再実行。GitHub API のレートリミット回避のため、`GITHUB_TOKEN` 環境変数を設定すると認証付きでリクエストされます（未設定時は警告を出力）。レートリミット遭遇時は `X-RateLimit-Reset` / `Retry-After` を見て自動的に待機・再試行します（最大 3 回）。
 
-`pnpm generate` 実行時、上流の全ルール名（除外前）一覧を `.github/data/eslint-rule-names.txt` に自動書き出しします。これは Claude の `checklist.yaml` 生成プロンプト (`.github/prompts/checklist-v3.md` 等) が参照する AI 向けリファレンスです。手動更新は不要です。
+`pnpm generate` 実行時、上流の全ルール名（除外前）一覧を `.github/data/eslint-rule-names.txt` に自動書き出しします。これは Claude の `checklist.yaml` 生成プロンプト (`.github/prompts/generate-checklist.md` 等) が参照する AI 向けリファレンスです。手動更新は不要です。
 
 ## 環境変数
 

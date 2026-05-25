@@ -19,7 +19,7 @@ smarthr-design-system のコンポーネントページ（index.mdx）から、A
 
 ## 前提条件
 
-- 抽出ルール詳細: `.github/prompts/checklist-v3.md`（severity 推測の語気手がかり、Do/Don't 変換の具体例等）
+- 抽出ルール詳細: `.github/prompts/generate-checklist.md`（severity 推測の語気手がかり、Do/Don't 変換の具体例等）
 - ディレクトリ名解決: `scripts/generate-skills/mapping/component-dir-map.json`
 - 参考例: `src/content/articles/products/components/button/checklist.yaml`
 
@@ -55,7 +55,7 @@ index.mdx を読んだ後、**ルール候補が 0 件の場合は checklist.yam
 
 ### Step 3: checklist.yaml をドラフト生成
 
-`.github/prompts/checklist-v3.md` のルールに従い生成する。以下は運用で確立した追加ルール:
+`.github/prompts/generate-checklist.md` のルールに従い生成する。以下は運用で確立した追加ルール:
 
 #### 絶対ルール
 

@@ -71,7 +71,7 @@ async function ghFetch(url: string, options: GhFetchOptions = {}): Promise<Respo
  * 結果は cachePath にキャッシュし、存在すれば再利用する。
  *
  * `ruleNamesOutputPath` を渡した場合、上流のルールディレクトリ名一覧 (除外前の全件) を
- * 改行区切りで書き出す。AI プロンプト (`.github/prompts/checklist-v3.md` 等) から参照される。
+ * 改行区切りで書き出す。AI プロンプト (`.github/prompts/generate-checklist.md` 等) から参照される。
  */
 export async function fetchEslintRules(cachePath: string, ruleNamesOutputPath?: string): Promise<EslintRuleRaw[]> {
   if (fs.existsSync(cachePath)) {
