@@ -1,0 +1,44 @@
+name: validate-skills
+
+# checklist.yaml の形式検証を行う。
+# - error が 1 件でも出たら PR をブロックする（required check 想定）。
+# - フォーク PR でも実行する（read-only で機密に触れないため安全）。
+# - SKILL.md の再生成は generate-skills.yml 側で行う（ここでは検証のみ）。
+
+on:
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'src/content/articles/products/components/**/index.mdx'
+      - 'src/content/articles/products/components/**/checklist.yaml'
+      - 'src/content/articles/products/components/**/_components/**/*.mdx'
+      - 'scripts/generate-skills/**'
+      - '.github/data/eslint-rule-names.txt'
+      - '.github/workflows/validate-skills.yml'
+  workflow_dispatch:
+
+# 同一 PR の古い実行はキャンセルし、最新コミットのみ評価する。
+concurrency:
+  group: validate-skills-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Validate checklist.yaml
+        run: pnpm --filter ./scripts/generate-skills validate
