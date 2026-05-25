@@ -7,6 +7,8 @@ name: validate-skills
 
 on:
   pull_request:
+    # labeled / unlabeled も拾い、ラベル付与/解除で checklist-sync を再評価する。
+    types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
       - 'package.json'
       - 'src/content/articles/products/components/**/index.mdx'
