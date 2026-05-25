@@ -40,7 +40,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Setup pnpm
@@ -55,10 +54,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Generate SKILL.md
-        # kufu/tamatebako の eslint ルール README を fetch する際のレートリミット回避のため
-        # secrets.GITHUB_TOKEN を渡す（tamatebako は public のため認証は任意だがレートリミット緩和になる）。
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # kufu/tamatebako は public のため未認証で fetch する。
+        # レートリミットに遭遇するようになったら secrets.GITHUB_TOKEN や PAT の利用を検討する。
         run: pnpm --filter ./scripts/generate-skills generate
 
       - name: Commit & push if SKILL.md changed
