@@ -1,26 +1,30 @@
 ---
 title: 'TimeFormatter'
-description: 'ISO 8601形式の時刻データを任意の形式にフォーマットして表示するコンポーネントです。時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。'
+description: '時刻データを任意の形式にフォーマットして表示するコンポーネントです。時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
 
-ISO 8601形式の時刻データを任意の形式にフォーマットして表示するコンポーネントです。時刻を[ユーザーの言語や地域設定に適した形式](/products/contents/idiomatic-usage/count/#h4-0)で表示するときに使います。
+時刻データを任意の形式にフォーマットして表示するコンポーネントです。時刻を[ユーザーの言語や地域設定に適した形式](/products/contents/idiomatic-usage/count/#h4-0)で表示するときに使います。
 
-`useIntl`フックの`formatTime`関数を使用して、時刻をフォーマットできます。
+<ComponentStory name="TimeFormatter" />
+
+## 使用上の注意
+
+### 時刻をフォーマットする機能だけ必要な場合
+
+TimeFormatterは時刻を`time`要素としてレンダリングします。  
+フォーマットされた時刻の文字列だけが必要な場合は、`useIntl`の`formatTime`を使用してください。
 
 ```tsx editable noIframe withStyled
-const TimeFormatterExample = () => {
+const FormatTimeExample = () => {
   const { formatTime } = useIntl()
-  const date = new Date(2026, 4, 18, 14, 30, 0)
-  
   return (
-    <time dateTime={date.toISOString()}>
-      {formatTime({ date })}
-    </time>
+    <span>現在時刻は{formatTime({ date: new Date(2026, 4, 18, 14, 30, 0) })}です。</span>
   )
 }
 
-render(<TimeFormatterExample />)
+render(<FormatTimeExample />)
 ```
 
 ## 使用例
@@ -31,33 +35,26 @@ render(<TimeFormatterExample />)
 
 ```tsx editable noIframe withStyled
 const TimePartsExample = () => {
-  const { formatTime } = useIntl()
   const date = new Date(2026, 4, 18, 14, 30, 45)
-  
+
   return (
     <Stack gap={0.5} as="dl">
       <Cluster gap={1} align="center">
         <Text styleType="blockTitle" as="dt">デフォルト（時：分）</Text>
         <dd>
-          <time dateTime={date.toISOString()}>
-            {formatTime({ date })}
-          </time>
+          <TimeFormatter date={date} />
         </dd>
       </Cluster>
       <Cluster gap={1} align="center">
         <Text styleType="blockTitle" as="dt">秒を含む（時：分：秒）</Text>
         <dd>
-          <time dateTime={date.toISOString()}>
-            {formatTime({ date, parts: ['hour', 'minute', 'second'] })}
-          </time>
+          <TimeFormatter date={date} parts={['hour', 'minute', 'second']} />
         </dd>
       </Cluster>
       <Cluster gap={1} align="center">
         <Text styleType="blockTitle" as="dt">時のみ</Text>
         <dd>
-          <time dateTime={date.toISOString()}>
-            {formatTime({ date, parts: ['hour'] })}
-          </time>
+          <TimeFormatter date={date} parts={['hour']} />
         </dd>
       </Cluster>
     </Stack>
@@ -73,25 +70,20 @@ render(<TimePartsExample />)
 
 ```tsx editable noIframe withStyled
 const Hour12Example = () => {
-  const { formatTime } = useIntl()
   const date = new Date(2026, 4, 18, 14, 30, 0)
-  
+
   return (
     <Stack gap={0.5} as="dl">
       <Cluster gap={1} align="center">
         <Text styleType="blockTitle" as="dt">24時間形式</Text>
         <dd>
-          <time dateTime={date.toISOString()}>
-            {formatTime({ date })}
-          </time>
+          <TimeFormatter date={date} />
         </dd>
       </Cluster>
       <Cluster gap={1} align="center">
         <Text styleType="blockTitle" as="dt">12時間形式</Text>
         <dd>
-          <time dateTime={date.toISOString()}>
-            {formatTime({ date, options: { hour12: true } })}
-          </time>
+          <TimeFormatter date={date} options={{ hour12: true }} />
         </dd>
       </Cluster>
     </Stack>
