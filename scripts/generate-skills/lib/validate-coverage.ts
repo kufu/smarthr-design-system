@@ -19,6 +19,12 @@ export type CoverageReport = {
    * 形式: `"<name> (parent: <parentName>)"`
    */
   missingDescriptions: string[];
+  /**
+   * relatedComponents で宣言された name が smarthr-ui の公開 export 集合に存在しない。
+   * typo / 削除済み displayName を参照しているケースを検出する。
+   * 形式: `"<name> (parent: <parentName>)"`
+   */
+  unknownRelatedNames: string[];
 };
 
 /**
@@ -89,11 +95,17 @@ export function validateCoverage(args: {
   // 子 dir があれば dirMapping 経由で子 mdx の description が採用されるため description 不要。
   // 子 dir がないケース (Th/Td 等) は relatedComponents 宣言で description を提供すべき。
   const missingDescriptions: string[] = [];
+  // unknownRelatedNames: relatedComponents の name が smarthr-ui の公開 export に存在しない
+  const unknownRelatedNames: string[] = [];
   if (relatedSkills) {
     for (const [name, rel] of relatedSkills) {
       const hasChildDir = dirMapping.has(name);
       if (!hasChildDir && rel.description === undefined) {
         missingDescriptions.push(`${name} (parent: ${rel.parentName})`);
+      }
+      // 公開 export 集合に存在しない name は typo or 削除済みコンポーネント参照の疑い
+      if (publicExports && !publicExports.has(name)) {
+        unknownRelatedNames.push(`${name} (parent: ${rel.parentName})`);
       }
     }
   }
@@ -128,7 +140,63 @@ export function validateCoverage(args: {
     return !shouldIgnoreOrphan(d, designDirsWithIndexSet, publicExports ?? new Set());
   });
 
-  return { newComponents, orphanDirs, unmappedGroups, missingDescriptions };
+  return { newComponents, orphanDirs, unmappedGroups, missingDescriptions, unknownRelatedNames };
+}
+
+export type CoverageBaseline = Partial<Record<keyof CoverageReport, string[]>>;
+
+/**
+ * baseline ファイルを読み込む。存在しない場合は空 baseline を返す。
+ * baseline は coverage チェックの既知違反を明示するためのリスト。
+ * 該当エントリは違反として扱われず、CI でも exit 1 しない。
+ */
+export function loadCoverageBaseline(baselinePath: string): CoverageBaseline {
+  if (!fs.existsSync(baselinePath)) return {};
+  const raw = JSON.parse(fs.readFileSync(baselinePath, 'utf-8')) as Record<string, unknown>;
+  const baseline: CoverageBaseline = {};
+  for (const key of ['newComponents', 'orphanDirs', 'missingDescriptions', 'unknownRelatedNames'] as const) {
+    const val = raw[key];
+    if (Array.isArray(val) && val.every((v) => typeof v === 'string')) {
+      baseline[key] = val as string[];
+    }
+  }
+  return baseline;
+}
+
+/**
+ * report から baseline 内エントリを除外した新しい report を返す。
+ * baseline 内の既知違反は表示・exit 判定の対象外になる。
+ */
+export function applyCoverageBaseline(report: CoverageReport, baseline: CoverageBaseline): CoverageReport {
+  const exclude = (list: string[], baselineList: string[] | undefined): string[] => {
+    if (!baselineList || baselineList.length === 0) return list;
+    const ignore = new Set(baselineList);
+    return list.filter((item) => !ignore.has(item));
+  };
+  return {
+    newComponents: exclude(report.newComponents, baseline.newComponents),
+    orphanDirs: exclude(report.orphanDirs, baseline.orphanDirs),
+    unmappedGroups: report.unmappedGroups,
+    missingDescriptions: exclude(report.missingDescriptions, baseline.missingDescriptions),
+    unknownRelatedNames: exclude(report.unknownRelatedNames, baseline.unknownRelatedNames),
+  };
+}
+
+/**
+ * baseline に列挙されているがレポートに含まれていない (= 解消済み) エントリを抽出。
+ * baseline メンテナンス用の情報として返す。
+ */
+export function findStaleBaselineEntries(report: CoverageReport, baseline: CoverageBaseline): string[] {
+  const stale: string[] = [];
+  for (const key of ['newComponents', 'orphanDirs', 'missingDescriptions', 'unknownRelatedNames'] as const) {
+    const baselineList = baseline[key];
+    if (!baselineList) continue;
+    const reportSet = new Set(report[key]);
+    for (const entry of baselineList) {
+      if (!reportSet.has(entry)) stale.push(`${key}: ${entry}`);
+    }
+  }
+  return stale;
 }
 
 /**
@@ -166,6 +234,16 @@ export function printCoverageReport(report: CoverageReport): boolean {
     );
     console.log(
       `       → 親 mdx の relatedComponents 宣言で description を追加するか、子 dir 配下に index.mdx を作成してください`,
+    );
+  }
+
+  if (report.unknownRelatedNames.length > 0) {
+    hasIssue = true;
+    console.log(
+      `   ⚠️  relatedComponents の name が smarthr-ui の公開 export に存在しません (${report.unknownRelatedNames.length}): ${report.unknownRelatedNames.join(', ')}`,
+    );
+    console.log(
+      `       → typo または smarthr-ui で削除/rename された name の可能性。親 mdx の relatedComponents を修正してください`,
     );
   }
 

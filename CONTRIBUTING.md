@@ -189,6 +189,7 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 
 - **`validate`**: 上記の`pnpm --filter ./scripts/generate-skills validate`をCI上で実行します。`error`があるとマージブロックされます。
 - **`checklist-sync`**: `index.mdx`または`_components/*.mdx`を変更したコンポーネントについて、同一PR内で`checklist.yaml`も更新されているかを確認します。未更新の場合はマージブロックされます。
+- **`coverage`**: smarthr-uiの`metadata.json`と設計システム側`index.mdx`/`relatedComponents`の追従整合性をチェックします。`scripts/generate-skills/coverage-baseline.json`に列挙された既知違反は除外され、新規違反のみPRブロックの対象になります。
 
 `checklist-sync`が失敗した場合の対応は以下のいずれか:
 
@@ -207,6 +208,16 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 - `index.mdx`冒頭の説明文がそのまま`SKILL.md`の Layer 1 に取り込まれるケース
 
 新規コンポーネント追加時は、`generate-checklist` SKILLを実行すると上記スキップ判定パターンに該当する場合は自動的に作成をスキップし、理由を報告します。報告された理由をPR descriptionに転記してラベルを付与してください。
+
+#### `coverage`が失敗した場合の対応
+
+`coverage`ジョブは、smarthr-uiに新しく追加された未対応コンポーネントや、`relatedComponents`の`name`がsmarthr-uiの公開exportに存在しないケース（typo・rename等）を検知します。
+
+対応のいずれか:
+
+1. 該当コンポーネントの`index.mdx`を新規作成、または親mdxの`relatedComponents`で紐付ける
+2. 別PRでの対応にしたい場合（smarthr-uiアップデートPRで新コンポーネント追加だけ後回しにする等）→ `scripts/generate-skills/coverage-baseline.json`に追加してCIを通す
+3. baselineに追加した違反は別PRで解消したら、`coverage-baseline.json`から削除する（解消済みエントリは`coverage`実行時に警告として通知されます）
 
 ### マージ後の自動再生成（`generate-skills` ワークフロー）
 
