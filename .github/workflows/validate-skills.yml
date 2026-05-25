@@ -30,6 +30,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          # PR base との diff を取るため履歴を遡れるようにする
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
@@ -42,7 +45,40 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Validate checklist.yaml
+      # 差分のみ検証する。検証ロジック自体が変更された場合 (scripts/generate-skills/**) は
+      # 全件評価に切り替え、潜在的なリグレッションを拾えるようにする。
+      - name: Determine validation scope
+        id: scope
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          set -euo pipefail
+          BASE="origin/${BASE_REF}"
+          # script 自身が変更されていれば全件評価
+          if git diff --name-only "$BASE"...HEAD | grep -qE '^scripts/generate-skills/'; then
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            echo "scripts/generate-skills/** が変更されているため全件評価します。"
+            exit 0
+          fi
+          # 変更された checklist.yaml のみ収集 (削除ファイルは除外)
+          mapfile -t files < <(git diff --name-only --diff-filter=d "$BASE"...HEAD \
+            | grep -E '^src/content/articles/products/components/.*/checklist\.yaml$' || true)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "mode=none" >> "$GITHUB_OUTPUT"
+            echo "変更された checklist.yaml はありません。validate をスキップします。"
+            exit 0
+          fi
+          echo "mode=files" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "${files[@]}"
+          # スペース区切りで保持 (パスに空白なし前提)
+          echo "files=${files[*]}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate (changed files only)
+        if: steps.scope.outputs.mode == 'files'
+        run: pnpm --filter ./scripts/generate-skills validate --files ${{ steps.scope.outputs.files }}
+
+      - name: Validate (all)
+        if: steps.scope.outputs.mode == 'all'
         run: pnpm --filter ./scripts/generate-skills validate
 
   # index.mdx を変更したのに同一コンポーネントの checklist.yaml が未更新の
