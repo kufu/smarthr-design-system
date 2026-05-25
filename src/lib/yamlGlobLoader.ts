@@ -57,7 +57,17 @@ export function yamlGlob({ pattern, base, generateId }: YamlGlobOptions): Loader
       if (watcher) {
         const patterns = (Array.isArray(pattern) ? pattern : [pattern]).map((p) => path.join(baseDir, p));
         watcher.add(patterns);
+
+        // Astro 共有 watcher は base 外のファイル変更イベントも流すため、
+        // base 配下かつ .yaml/.yml のみを処理対象にする。
+        const isTarget = (filePath: string) => {
+          const rel = path.relative(baseDir, filePath);
+          if (!rel || rel.startsWith('..') || path.isAbsolute(rel)) return false;
+          return /\.ya?ml$/.test(rel);
+        };
+
         const reload = async (filePath: string) => {
+          if (!isTarget(filePath)) return;
           const rel = path.relative(baseDir, filePath);
           try {
             await loadFile(store, parseData, rel);
@@ -68,6 +78,7 @@ export function yamlGlob({ pattern, base, generateId }: YamlGlobOptions): Loader
         watcher.on('add', reload);
         watcher.on('change', reload);
         watcher.on('unlink', (filePath) => {
+          if (!isTarget(filePath)) return;
           const rel = path.relative(baseDir, filePath);
           const id = (generateId ?? defaultId)(rel);
           store.delete(id);
