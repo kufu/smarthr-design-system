@@ -81,6 +81,30 @@ jobs:
         if: steps.scope.outputs.mode == 'all'
         run: pnpm --filter ./scripts/generate-skills validate
 
+  # smarthr-ui の metadata.json と design-system 側の追従整合性をチェック。
+  # 既知違反は coverage-baseline.json で除外されるため、ノイズなく新規違反のみ拾える。
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Run coverage check
+        env:
+          CI: 'true'
+        run: pnpm --filter ./scripts/generate-skills coverage
+
   # index.mdx を変更したのに同一コンポーネントの checklist.yaml が未更新の
   # PR を検知し、ラベル運用で例外を許す。設計詳細は CONTRIBUTING.md 参照。
   checklist-sync:
