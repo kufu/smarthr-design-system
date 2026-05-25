@@ -21,8 +21,7 @@ export default function DynamicActionDialog() {
       <ControlledActionDialog
         isOpen={isOpen}
         heading="{オブジェクト名}の削除"
-        actionText="削除"
-        actionTheme="danger"
+        actionButton={{ text: '削除', theme: 'danger' }}
         onClickClose={() => {
           setIsOpen(false);
         }}
