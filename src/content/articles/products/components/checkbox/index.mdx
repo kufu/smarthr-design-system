@@ -162,6 +162,68 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 </Fieldset>
 ```
 
+## アクセシビリティ
+
+### 関連するチェックリスト
+簡易チェックリスト
+- [フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)
+- [入力する内容や、操作がラベルとして表示されている](/accessibility/check-list/label/)
+
+### 基本的なアクセシビリティ機能
+
+#### ラベルとの関連付け
+Checkboxコンポーネントは、children（子要素）に渡したテキストが自動的にラベルとして関連付けられます。これにより、スクリーンリーダーを使用するユーザーにもチェックボックスの目的が伝わります。
+
+#### キーボード操作
+- <kbd>Tab</kbd>キーでフォーカスの移動が可能
+- <kbd>Space</kbd>キーでチェック状態の切り替えが可能
+- フォーカス状態が視覚的に明確に表示される
+
+### 開発時の考慮点
+
+#### 必ずラベルを提供する
+Checkboxコンポーネントは必ずchildren（子要素）に可視ラベルテキストを提供してください。ラベルがないとスクリーンリーダーを使用するユーザーは、何にチェックを入れているのか理解できません。
+
+#### Fieldsetでグループ化する
+複数のCheckboxをグループとして提示する場合は、[Fieldset](/products/components/fieldset/)コンポーネントを使用してグループ化し、legend属性でグループの目的を説明してください。
+
+#### 良い実装例
+
+```tsx
+// 単一のCheckbox
+<Checkbox name="agree">
+  利用規約に同意する
+</Checkbox>
+
+// グループ化されたCheckbox
+<Fieldset
+  legend="通知設定"
+  innerMargin={0.5}
+>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+    <Checkbox name="emailNotification">メール通知を受け取る</Checkbox>
+    <Checkbox name="smsNotification">SMS通知を受け取る</Checkbox>
+    <Checkbox name="pushNotification">プッシュ通知を受け取る</Checkbox>
+  </Cluster>
+</Fieldset>
+```
+
+#### 悪い実装例
+
+```tsx
+// ❌ ラベルテキストが関連付けられていない
+<input type="checkbox" />
+<span>利用規約に同意する</span>
+
+// ❌ グループの目的が不明確
+<div>
+  <Checkbox name="notification1">メール通知</Checkbox>
+  <Checkbox name="notification2">SMS通知</Checkbox>
+</div>
+```
+
+ラベルテキストが関連付けられていない場合、スクリーンリーダーを使用するユーザーには「チェックボックス、チェックなし」のように読み上げられ、何に同意するのかわかりません。また、グループ化されていない場合、複数の選択肢がどのような関係にあるのか理解することが困難になります。
+
 ## モバイル
 モバイル表示時は、画面の幅が狭いため基本的に縦並びにします。誤操作を防ぐために、[小さい要素間のマージン](/products/design-patterns/spacing-layout-pattern/#h5-4)に従って十分なマージンを確保してください。
 

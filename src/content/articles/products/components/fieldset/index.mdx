@@ -140,6 +140,90 @@ Fieldsetに含まれる入力要素にエラーがある場合、エラーメッ
 
 ※現時点ではFieldsetで出しているエラーメッセージと、エラー発生中のInputの紐づけができません。（実装予定）
 
+## アクセシビリティ
+
+### 関連するチェックリスト
+簡易チェックリスト
+- [入力する内容や、操作がラベルとして表示されている](/accessibility/check-list/label/)
+- [フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)
+
+### 基本的なアクセシビリティ機能
+
+#### グループの意味的な構造化
+Fieldsetコンポーネントは、複数の入力要素を`<fieldset>`要素でグループ化し、`legend`属性で指定したテキストを`<legend>`要素として出力します。これにより、支援技術を使用するユーザーにも、フォーム要素のグループとその目的が伝わります。
+
+#### スクリーンリーダーでの読み上げ
+グループ内の各入力要素にフォーカスすると、スクリーンリーダーは「[グループ名]、[ラベル名]」のように読み上げます。これにより、ユーザーは現在入力している項目がどのグループに属しているかを理解できます。
+
+### 開発時の考慮点
+
+#### 複数の入力要素をグループ化する際は必ずFieldsetを使用する
+CheckboxやRadioButtonなど、複数の関連する入力要素をグループ化する際は、必ずFieldsetコンポーネントを使用してください。単に視覚的にグループ化するだけでなく、支援技術にもグループの構造が伝わるようにすることが重要です。
+
+#### legendでグループの目的を明確に示す
+`legend`属性には、グループ化された入力要素の目的を明確に示すテキストを設定してください。例えば、「通知設定」「住所」「性別」のように、グループ全体が何を表しているのかがわかるテキストにします。
+
+#### CheckboxやRadioButtonのグループには必ずFieldsetを使用する
+CheckboxやRadioButtonの選択肢をグループとして提示する場合は、必ずFieldsetでグループ化してください。グループ化しないと、スクリーンリーダーを使用するユーザーは、複数の選択肢がどのような質問や設定に対するものなのか理解できません。
+
+#### 良い実装例
+
+```tsx
+// CheckboxまたはRadioButtonのグループ
+<Fieldset
+  legend="通知設定"
+  innerMargin={0.5}
+>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+    <Checkbox name="emailNotification">メール通知</Checkbox>
+    <Checkbox name="smsNotification">SMS通知</Checkbox>
+    <Checkbox name="pushNotification">プッシュ通知</Checkbox>
+  </Cluster>
+</Fieldset>
+
+// 複数のFormControlをグループ化
+<Fieldset
+  legend="住所"
+  helpMessage="ご自宅の住所を入力してください"
+>
+  <Stack gap={1}>
+    <FormControl label="郵便番号">
+      <Input name="postalCode" />
+    </FormControl>
+    <FormControl label="都道府県">
+      <Select
+        name="prefecture"
+        options={[
+          { label: '都道府県を選択してください', value: '' },
+          // ...
+        ]}
+      />
+    </FormControl>
+  </Stack>
+</Fieldset>
+```
+
+#### 悪い実装例
+
+```tsx
+// ❌ Fieldsetを使用せずdivでグループ化
+<div>
+  <Text styleType="blockTitle">通知設定</Text>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+    <Checkbox name="emailNotification">メール通知</Checkbox>
+    <Checkbox name="smsNotification">SMS通知</Checkbox>
+  </Cluster>
+</div>
+
+// ❌ legendが曖昧
+<Fieldset legend="設定">
+  <Checkbox name="emailNotification">メール通知</Checkbox>
+  <Checkbox name="smsNotification">SMS通知</Checkbox>
+</Fieldset>
+```
+
+Fieldsetを使用せずdivでグループ化すると、支援技術にグループの構造が伝わりません。また、legendが曖昧だと、ユーザーは何の設定なのか理解しにくくなります。
+
 ## 状態
 
 ### 無効（disabled）
