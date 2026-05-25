@@ -1,5 +1,5 @@
 ---
-title: 'ホバーで表示される追加コンテンツはホバー中も表示が維持される'
+title: 'hoverで表示されるコンテンツはhover中も表示が維持される'
 description: ' '
 order: 7
 ---
@@ -11,12 +11,15 @@ import { Chip, Cluster } from 'smarthr-ui'
 </Cluster>
 
 ## 概要
-この基準では、ホバーによって表示される追加コンテンツ（[Tooltip](https://smarthr.design/products/components/tooltip/)など）が、ポインタを追加コンテンツ上に移動しても表示が継続されることを確認してください。
-なお、ページのタスク実行に必須の情報や、ページの横幅いっぱいに広がる程度の長文のテキストの場合は、Tooltipを避け[Dialog](https://smarthr.design/products/components/dialog/)などを使用することを検討してください。
+この基準では、`hover`によって表示されるコンテンツ（[Tooltip](https://smarthr.design/products/components/tooltip/)など）が、ポインタを追加コンテンツ上に移動しても表示が継続されることを確認してください。
+以下の場合は、ToolTipではなく、[Dialog](https://smarthr.design/products/components/dialog/)などを使用することを検討してください。
+
+- 操作の実行に必要度の高い説明
+- ToolTip内に表示する文字数が多く、ToolTipの幅が320px以上になるとき
 
 ## 背景
-Tooltipがトリガー要素からポインタを外した瞬間に閉じる実装の場合、拡大鏡を使用しているユーザーなどは内容を確認しづらくなることがあります。
-そのため、追加コンテンツ自体をホバーしている間も表示が継続される必要があります。
+トリガーからポインタを外した後、直ちにTooltipが非表示になると、拡大鏡を使用しているなど可視の領域が狭い場合に、内容を確認できないことがあります。
+そのため、Tooltipが`hover`状態になっている間も表示を継続する必要があります。
 
 ## メリット
 1. 拡大鏡を使用しているユーザーが、追加コンテンツ上にポインタを移動して内容を確認できるようになります。
