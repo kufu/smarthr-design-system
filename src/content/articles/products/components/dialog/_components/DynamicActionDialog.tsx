@@ -11,8 +11,7 @@ export default function DynamicActionDialog() {
         isOpen={isOpen}
         heading="アクションダイアログタイトル"
         // closeText="キャンセル"
-        actionText="実行"
-        actionTheme="primary"
+        actionButton={{ text: '実行', theme: 'primary' }}
         size="XS"
         onClickClose={() => setIsOpen(false)}
         onPressEscape={() => setIsOpen(false)}
