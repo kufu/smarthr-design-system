@@ -42,6 +42,7 @@ metadata:
 | ControlledMessageDialog | MessageDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。 | `smarthr-design-system:smarthr-ui-controlled-message-dialog` |
 | ControlledStepFormDialog | StepFormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。 | `smarthr-design-system:smarthr-ui-controlled-step-form-dialog` |
 | CurrencyInput | 金額を入力させるためのコンポーネントです。給与・税額など金額値を入力させるときに使います。 | `smarthr-design-system:smarthr-ui-currency-input` |
+| DateFormatter | 日付データを任意の形式にフォーマットして表示するコンポーネントです。日付をユーザーの言語や地域設定に適した形式で表示するときに使います。 | `smarthr-design-system:smarthr-ui-date-formatter` |
 | ⚠️ DatePicker（非推奨） | 【非推奨】ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。 | `smarthr-design-system:smarthr-ui-date-picker` |
 | ⚠️ DatetimeLocalPicker（非推奨） | 【非推奨】ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。 | `smarthr-design-system:smarthr-ui-datetime-local-picker` |
 | DefinitionList | 見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。 | `smarthr-design-system:smarthr-ui-definition-list` |
@@ -111,8 +112,10 @@ metadata:
 | TextLink | a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。 | `smarthr-design-system:smarthr-ui-text-link` |
 | Th | th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。 | `smarthr-design-system:smarthr-ui-th` |
 | ThCheckbox | Checkboxを内包する列見出しセル（Th）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル全行の一括選択UIを列見出しに配置するときに使います。 | `smarthr-design-system:smarthr-ui-th-checkbox` |
+| TimeFormatter | 時刻データを任意の形式にフォーマットして表示するコンポーネントです。時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。 | `smarthr-design-system:smarthr-ui-time-formatter` |
 | Timeline | 情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。 | `smarthr-design-system:smarthr-ui-timeline` |
 | ⚠️ TimePicker（非推奨） | 【非推奨】ユーザーに時刻（時と分、任意で秒）を入力させる際に使用するコンポーネントです。 | `smarthr-design-system:smarthr-ui-time-picker` |
+| TimestampFormatter | 日付と時刻データを任意の形式にフォーマットして表示するコンポーネントです。日付と時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。 | `smarthr-design-system:smarthr-ui-timestamp-formatter` |
 | Tooltip | 補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。 | `smarthr-design-system:smarthr-ui-tooltip` |
 | UnauthorizedErrorScreen | セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。 | `smarthr-design-system:smarthr-ui-unauthorized-error-screen` |
 | UnexpectedErrorScreen | 予期しないエラーが発生したことを表示する全画面コンポーネントです。500相当のサーバーエラーを伝えるときに使います。 | `smarthr-design-system:smarthr-ui-unexpected-error-screen` |
