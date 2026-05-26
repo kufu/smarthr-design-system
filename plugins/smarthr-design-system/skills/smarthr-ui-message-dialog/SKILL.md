@@ -26,7 +26,7 @@ import { MessageDialog } from 'smarthr-ui'
 | width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
 | className | string | - | - | - |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
-| decorators | DecoratorsType<"closeButtonLabel"> | - | - | コンポーネント内の文言を変更するための関数を設定 |
+| closeButton | ReactNode | - | - | 閉じるボタン |
 | firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
 | onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 |
 | onPressEscape | (() => void) & ((close: () => void) => void) | - | - | エスケープキーを押下した時に発火するコールバック関数 |

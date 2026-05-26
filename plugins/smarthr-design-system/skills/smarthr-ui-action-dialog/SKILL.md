@@ -25,7 +25,7 @@ import { ActionDialog } from 'smarthr-ui'
 | width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
 | className | string | - | - | - |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
-| decorators | DecoratorsType<"closeButtonLabel"> | - | - | コンポーネント内の文言を変更するための関数を設定 |
+| closeButton | ReactNode \| { text: ReactNode; disabled?: boolean; } | - | - | - |
 | subActionArea | ReactNode | - | - | ダイアログフッターの左端操作領域 |
 | responseStatus | ResponseStatus | - | - | - |
 | firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
@@ -36,10 +36,7 @@ import { ActionDialog } from 'smarthr-ui'
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
 | contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
-| actionText | ReactNode | - | ✓ | アクションボタンのラベル |
-| actionTheme | "primary" \| "secondary" \| "danger" | - | - | アクションボタンのスタイル |
-| actionDisabled | boolean | - | - | アクションボタンを無効にするかどうか |
-| closeDisabled | boolean | - | - | 閉じるボタンを無効にするかどうか |
+| actionButton | ReactNode \| { text: ReactNode; theme?: "primary" \| "danger" \| "secondary"; disabled?: boolean; } | - | ✓ | - |
 | onClickAction | (e: MouseEvent<Element, MouseEvent>, helpers: ActionDialogHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 @param e マウスイベント @param helpers ダイアログ操作のためのヘルパー関数 |
 | onClickClose | (close: () => void) => void | - | - | - |
 | onToggle | (isOpen: boolean) => void | - | - | - |

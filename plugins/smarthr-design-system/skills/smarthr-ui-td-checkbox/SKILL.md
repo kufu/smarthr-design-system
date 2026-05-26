@@ -24,7 +24,7 @@ import { TdCheckbox } from 'smarthr-ui'
 | aria-labelledby | string | - | ✓ | Checkboxのaccessible nameとして設定するテキストを参照するためのid属性値。同じ親Tr配下のTdかTh、もしくはその子孫要素のidを指定する。複数要素のテキストを指定する場合は空白区切りでidをつなぐ |
 | error | boolean | - | - | チェックボックスにエラーがあるかどうか |
 | mixed | boolean | - | - | `true` のとき、チェック状態を `mixed` にする |
-| vAlign | "baseline" \| "middle" | - | - | - |
+| vAlign | "middle" \| "baseline" | - | - | - |
 | fixed | "left" \| "right" | - | - | 横スクロール時、カラムを左右いずれかに固定 |
 
 ## 実装ルール

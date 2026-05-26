@@ -21,9 +21,9 @@ import { Sidebar } from 'smarthr-ui'
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| right | boolean | false | - | - |
 | gap | Gap \| SeparateGap | 1 | - | 各領域の間隔の指定（gap） |
 | align | "center" \| "start" \| "flex-start" \| "end" \| "flex-end" \| "baseline" \| "stretch" | stretch | - | - |
-| right | boolean | false | - | - |
 | contentsMinWidth | MinWidth<string \| number> | 50% | - | コンポーネントの `min-width` 値 |
 
 ## 実装ルール

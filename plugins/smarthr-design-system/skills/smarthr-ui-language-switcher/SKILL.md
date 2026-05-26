@@ -25,7 +25,6 @@ import { LanguageSwitcher } from 'smarthr-ui'
 | localeMap | Partial<Record<"ja" \| "en-us" \| "id-id" \| "pt" \| "vi" \| "ko" \| "zh-cn" \| "zh-tw" \| "ja-easy", string>> | - | ✓ | - |
 | locale | string | - | - | - |
 | defaultLocale | string | - | - | - |
-| decorators | DecoratorsType<DecoratorKeyTypes> | - | - | コンポーネント内の文言を変更するための関数を設定 |
 | onLanguageSelect | (code: string) => void | - | - | 言語切替UIで言語を選択した時に発火するコールバック関数 |
 | enableNew | boolean | - | - | - |
 | invert | boolean | - | - | - |

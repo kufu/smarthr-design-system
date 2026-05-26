@@ -25,7 +25,7 @@ import { Table } from 'smarthr-ui'
 | borderType | "both" \| "horizontal" \| "vertical" \| "all" \| "outer" | - | - | - |
 | borderStyle | "solid" \| "dotted" \| "dashed" | - | - | - |
 | layout | "fixed" \| "auto" | - | - | - |
-| rounded | boolean \| "all" \| "left" \| "right" \| "bottom" \| "top" | - | - | - |
+| rounded | boolean \| "all" \| "top" \| "bottom" \| "left" \| "right" | - | - | - |
 | reel | boolean | true | - | - |
 
 ## 実装ルール

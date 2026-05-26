@@ -23,7 +23,7 @@ import { BaseColumn } from 'smarthr-ui'
 |---|---|---|---|---|
 | overflow | "hidden" \| "auto" \| "clip" \| "scroll" \| "visible" \| { x: "hidden" \| "auto" \| "clip" \| "scroll" \| "visible"; y: "hidden" \| "auto" \| "clip" \| "scroll" \| "visible"; } | - | - | コンテンツが要素内に収まらない場合の処理方法 |
 | padding | Gap \| { block?: Gap; inline?: Gap; narrowModeBlock?: Gap; narrowModeInline?: Gap; } | 1 | - | 境界とコンテンツの間の余白 |
-| rounded | boolean \| "all" \| "left" \| "right" \| "bottom" \| "top" | - | - | - |
+| rounded | boolean \| "all" \| "top" \| "bottom" \| "left" \| "right" | - | - | - |
 | bgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
 
 ## 実装ルール

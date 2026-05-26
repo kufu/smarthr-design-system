@@ -32,29 +32,29 @@ export type CoverageReport = {
  *
  * - `icon`: smarthr-ui の `export * from './components/Icon'` 形式は `loadPublicExports` の
  *   `export { X } from` パターンに合致しないため拾えない
- * - `formatter` / `formatter/time-formatter` / `formatter/timestamp-formatter`: design-system 側
- *   (PR #2064) がドキュメントを先行追加。`TimeFormatter` / `TimestampFormatter` の
- *   smarthr-ui 側実装公開（metadata 掲載・公開 named export 追加）の後にエントリを削除する
  */
-const ORPHAN_IGNORE_EXPLICIT = new Set(['icon', 'formatter', 'formatter/time-formatter', 'formatter/timestamp-formatter']);
+const ORPHAN_IGNORE_EXPLICIT = new Set(['icon']);
 
 /**
  * orphan 警告から除外すべき dir かを自動判定する。
  *
- * ルール 1 (親カテゴリページ): 配下に「dirMapping で smarthr-ui に対応付け済みの子 dir」があれば、
- * 親カテゴリページとみなして除外する。`layout`/`combobox`/`picker`/`formatter` 等が該当。
+ * ルール 1 (親カテゴリページ): 配下に index.mdx を持つ子 dir が 1 つでもあれば、親カテゴリ
+ * ページとみなして除外する。`layout`/`combobox`/`picker`/`formatter` 等が該当。
+ * `dirMapping` ではなく `designDirsWithIndex` を見ることで、smarthr-ui の `src/intl/` 配下に
+ * ある DateFormatter のように parseMetadata の `src/components/` フィルタから漏れて dirMapping
+ * に入らないケースでも親 dir を正しく ignore できる。
  *
  * ルール 2 (公開 export 一致): dir 名 (kebab-case) を PascalCase に戻して smarthr-ui の公開
  * named export 集合に含まれていれば除外する。`date-formatter` (= `DateFormatter`) のように
  * smarthr-ui で公開はされているが `src/components/` 外 (例: `src/intl/`) にあり parseMetadata
  * のフィルタから漏れるケースをカバーする。
  */
-function shouldIgnoreOrphan(dir: string, mappedPaths: Set<string>, publicExports: Set<string>): boolean {
+function shouldIgnoreOrphan(dir: string, designDirsWithIndex: Set<string>, publicExports: Set<string>): boolean {
   if (ORPHAN_IGNORE_EXPLICIT.has(dir)) return true;
 
-  // ルール 1: 配下に mapped 子 dir があるか
+  // ルール 1: 配下に index.mdx を持つ子 dir があるか
   const prefix = `${dir}/`;
-  for (const p of mappedPaths) {
+  for (const p of designDirsWithIndex) {
     if (p.startsWith(prefix)) return true;
   }
 
@@ -134,9 +134,10 @@ export function validateCoverage(args: {
       }
     }
   }
+  const designDirsWithIndexSet = new Set(designDirsWithIndex);
   const orphanDirs = designDirsWithIndex.filter((d) => {
     if (mappedPaths.has(d)) return false;
-    return !shouldIgnoreOrphan(d, mappedPaths, publicExports ?? new Set());
+    return !shouldIgnoreOrphan(d, designDirsWithIndexSet, publicExports ?? new Set());
   });
 
   return { newComponents, orphanDirs, unmappedGroups, missingDescriptions, unknownRelatedNames };
