@@ -10,8 +10,7 @@ export default function DynamicCancelActionDialog() {
       <ControlledActionDialog
         isOpen={isOpen}
         heading="{操作名}の取り消し"
-        actionText="取り消し"
-        actionTheme="danger"
+        actionButton={{ text: '取り消し', theme: 'danger' }}
         onClickClose={() => {
           setIsOpen(false);
         }}
