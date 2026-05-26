@@ -4,6 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    smarthr-ui:
+      specifier: ^95.0.0
+      version: 95.0.0
+
 importers:
 
   .:
@@ -66,7 +72,7 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
       smarthr-ui:
-        specifier: ^95.0.0
+        specifier: 'catalog:'
         version: 95.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.21.0)(typescript@6.0.3)(yaml@2.9.0)
       styled-components:
         specifier: ^6.4.1
@@ -217,7 +223,7 @@ importers:
         specifier: ^4.1.0
         version: 4.1.1
       smarthr-ui:
-        specifier: ^95.0.0
+        specifier: 'catalog:'
         version: 95.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.21.0)(typescript@5.9.3)(yaml@2.9.0)
     devDependencies:
       '@types/js-yaml':

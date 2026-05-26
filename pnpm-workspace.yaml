@@ -1,6 +1,12 @@
 packages:
   - scripts/*
 
+# workspace 内で smarthr-ui のバージョンを統一するための catalog。
+# root と scripts/generate-skills が同じバージョンを参照する。
+# バージョン更新時はここ 1 ヶ所を変更すれば全 member に反映される。
+catalog:
+  smarthr-ui: ^95.0.0
+
 minimumReleaseAge: 10080
 
 allowBuilds:
