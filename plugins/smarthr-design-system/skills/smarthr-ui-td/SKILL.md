@@ -22,7 +22,7 @@ import { Td } from 'smarthr-ui'
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | align | "left" \| "right" | - | - | - |
-| vAlign | "baseline" \| "middle" | - | - | - |
+| vAlign | "middle" \| "baseline" | - | - | - |
 | nullable | boolean | - | - | - |
 | fixed | "left" \| "right" | - | - | 横スクロール時、カラムを左右いずれかに固定 |
 | contentWidth | CellContentWidth \| { base?: CellContentWidth; min?: CellContentWidth; max?: CellContentWidth; } | - | - | - |

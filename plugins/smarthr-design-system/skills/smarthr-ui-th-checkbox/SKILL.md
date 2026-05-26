@@ -23,8 +23,7 @@ import { ThCheckbox } from 'smarthr-ui'
 |---|---|---|---|---|
 | error | boolean | - | - | チェックボックスにエラーがあるかどうか |
 | mixed | boolean | - | - | `true` のとき、チェック状態を `mixed` にする |
-| decorators | DecoratorsType<"checkAllInvisibleLabel"> & { checkColumnName?: (text: string) => string; } | - | - | - |
-| vAlign | "baseline" \| "middle" \| "bottom" | - | - | - |
+| vAlign | "bottom" \| "middle" \| "baseline" | - | - | - |
 | fixed | "left" \| "right" | - | - | 横スクロール時、カラムを左右いずれかに固定 |
 
 ## 実装ルール

@@ -40,7 +40,7 @@ import { AccordionPanelTrigger, AccordionPanelItem, AccordionPanelContent, Accor
 | expandableMultiply | boolean | true | - | 複数のパネルを同時に開くことを許容するかどうか |
 | defaultExpanded | string[] | [] | - | デフォルトで開いた状態にするアイテムの `name` の配列 |
 | onClick | (expandedItems: string[]) => void | - | - | トリガのクリックイベントを処理するハンドラ |
-| rounded | boolean \| "all" \| "left" \| "right" \| "bottom" \| "top" | - | - | - |
+| rounded | boolean \| "all" \| "top" \| "bottom" \| "left" \| "right" | - | - | - |
 
 ## 実装ルール
 

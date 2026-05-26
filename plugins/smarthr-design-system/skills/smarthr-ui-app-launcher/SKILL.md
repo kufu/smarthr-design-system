@@ -25,7 +25,7 @@ import { AppLauncher } from 'smarthr-ui'
 |---|---|---|---|---|
 | apps | Category[] | - | ✓ | - |
 | urlToShowAll | string | - | - | - |
-| decorators | DecoratorsType<"triggerLabel"> | - | - | コンポーネント内の文言を変更するための関数を設定 |
+| triggerLabel | ReactNode | - | - | トリガーボタンのラベル。指定しない場合はIntlProviderから取得 |
 | enableNew | boolean | - | - | - |
 
 ## 実装ルール

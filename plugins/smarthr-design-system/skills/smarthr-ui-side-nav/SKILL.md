@@ -48,7 +48,7 @@ import { SideNavItemButton, SideNavItemAnchor, SideNav } from 'smarthr-ui'
 | size | "S" \| "M" | M | - | 各アイテムの大きさ |
 | onClick | (e: MouseEvent<HTMLAnchorElement \| HTMLButtonElement, MouseEvent>, id: string) => void | - | - | アイテムを押下したときに発火するコールバック関数 |
 | className | string | - | - | コンポーネントに適用するクラス名 |
-| rounded | boolean \| "all" \| "left" \| "right" \| "bottom" \| "top" | - | - | - |
+| rounded | boolean \| "all" \| "top" \| "bottom" \| "left" \| "right" | - | - | - |
 
 ## 実装ルール
 

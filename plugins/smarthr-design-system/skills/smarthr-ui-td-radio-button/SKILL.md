@@ -22,7 +22,7 @@ import { TdRadioButton } from 'smarthr-ui'
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | aria-labelledby | string | - | - | RadioButtonのaccessible nameとして設定するテキストを参照するためのid属性値。同じ親Tr配下のTdかTh、もしくはその子孫要素のidを指定する。複数要素のテキストを指定する場合は空白区切りでidをつなぐ Identifies the element (or elements) that labels the current element. @see aria-describedby. |
-| vAlign | "baseline" \| "middle" | - | - | - |
+| vAlign | "middle" \| "baseline" | - | - | - |
 
 ## 実装ルール
 
