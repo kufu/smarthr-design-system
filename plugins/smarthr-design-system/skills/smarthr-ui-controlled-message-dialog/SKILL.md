@@ -23,7 +23,7 @@ import { ControlledMessageDialog } from 'smarthr-ui'
 |---|---|---|---|---|
 | children | ReactNode | - | - | ダイアログの説明 |
 | className | string | - | - | - |
-| decorators | DecoratorsType<"closeButtonLabel"> | - | - | コンポーネント内の文言を変更するための関数を設定 |
+| closeButton | ReactNode | - | - | 閉じるボタン |
 | contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
 | onClickClose | () => void | - | ✓ | - |

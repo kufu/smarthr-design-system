@@ -27,7 +27,6 @@ import { InputFile } from 'smarthr-ui'
 | size | "S" \| "M" | - | - | - |
 | onChange | (files: File[]) => void | - | - | ファイルの選択に変更があったときに発火するコールバック関数 |
 | error | boolean | - | - | - |
-| decorators | DecoratorsType<"destroy"> | - | - | コンポーネント内のテキストを変更する関数 |
 | hasFileList | boolean | - | - | ファイルリストを表示するかどうか |
 
 ## 実装ルール

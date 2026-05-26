@@ -27,7 +27,7 @@ import { Th } from 'smarthr-ui'
 | decorators | { sortDirectionIconAlt: (text: string, { sort }: { sort: sortTypes; }) => ReactNode; } | - | - | 文言を変更するための関数 |
 | contentWidth | CellContentWidth | - | - | - |
 | align | "left" \| "right" | - | - | - |
-| vAlign | "baseline" \| "middle" \| "bottom" | - | - | - |
+| vAlign | "bottom" \| "middle" \| "baseline" | - | - | - |
 
 ## 実装ルール
 
