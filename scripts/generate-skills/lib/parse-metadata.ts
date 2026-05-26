@@ -55,7 +55,13 @@ export function loadPublicExports(): Set<string> {
 
 /**
  * smarthr-ui の metadata.json をコンポーネントグループに整形して返す。
- * グルーピングキーは filePath の直上ディレクトリ名（例: `src/components/Button/Button.tsx` → `Button`）。
+ *
+ * 対応する filePath:
+ * - `src/components/<Component>/<Component>.tsx` (通常パターン)
+ *   グルーピングキーは直上ディレクトリ名 (例: `Button`)。
+ * - `src/intl/<Component>.tsx` (フラット構成。`DateFormatter` / `TimeFormatter` / `TimestampFormatter` 等)
+ *   グルーピングキーは displayName そのまま (1 file = 1 component)。
+ *
  * publicExports を渡すと、そこに含まれない displayName を除外する。
  */
 export function parseMetadata(publicExports?: Set<string>): Map<string, ComponentGroup> {
@@ -63,18 +69,33 @@ export function parseMetadata(publicExports?: Set<string>): Map<string, Componen
   const groups = new Map<string, ComponentGroup>();
 
   for (const component of data) {
-    if (!component.filePath.startsWith('src/components/')) continue;
-    // 内部実装パターン (例: src/components/AppHeader/components/desktop/AppLauncher.tsx) を除外。
-    // 同一 displayName が別所で公開エクスポートされる場合はそちらの定義のみ採用。
-    const rest = component.filePath.slice('src/components/'.length);
-    if (rest.includes('/components/')) continue;
+    const isComponentsDir = component.filePath.startsWith('src/components/');
+    const isIntlDir = component.filePath.startsWith('src/intl/');
+    if (!isComponentsDir && !isIntlDir) continue;
+
+    if (isComponentsDir) {
+      // 内部実装パターン (例: src/components/AppHeader/components/desktop/AppLauncher.tsx) を除外。
+      // 同一 displayName が別所で公開エクスポートされる場合はそちらの定義のみ採用。
+      const rest = component.filePath.slice('src/components/'.length);
+      if (rest.includes('/components/')) continue;
+    }
     if (/^Fa.+Icon$/.test(component.displayName)) continue;
+    // Context Provider 系 (IntlProvider / StepFormDialogProvider 等) は UI コンポーネントではなく
+    // 設計システムのドキュメント対象外。`src/components/` 配下では従来から SKILL 化されておらず、
+    // src/intl/ から取り込んだ際に意図せず対象化されるのを防ぐため除外する。
+    if (/Provider$/.test(component.displayName)) continue;
     if (publicExports && !publicExports.has(component.displayName)) continue;
 
-    const parts = component.filePath.split('/');
-    if (parts.length < 3) continue;
-
-    const dirName = parts[parts.length - 2];
+    let dirName: string;
+    if (isIntlDir) {
+      // src/intl/ 配下はフラット構成。displayName を dirName とする
+      // (design-system 側のディレクトリ名 kebab-case と pascalToKebab 経由で対応付け可能)。
+      dirName = component.displayName;
+    } else {
+      const parts = component.filePath.split('/');
+      if (parts.length < 3) continue;
+      dirName = parts[parts.length - 2];
+    }
 
     if (!groups.has(dirName)) {
       groups.set(dirName, { dirName, displayNames: [], components: [] });
