@@ -28,11 +28,15 @@ export type CoverageReport = {
 };
 
 /**
- * smarthr-ui の `export * from './components/Icon'` 形式で再エクスポートされる
- * コンポーネントは `loadPublicExports` の `export { X } from` パターンに合致せず
- * 自動判定では拾えないため、明示的に除外する。
+ * 自動判定で拾えない事情から明示的に orphan 警告を除外する dir 一覧。
+ *
+ * - `icon`: smarthr-ui の `export * from './components/Icon'` 形式は `loadPublicExports` の
+ *   `export { X } from` パターンに合致しないため拾えない
+ * - `formatter` / `formatter/time-formatter` / `formatter/timestamp-formatter`: design-system 側
+ *   (PR #2064) がドキュメントを先行追加。`TimeFormatter` / `TimestampFormatter` の
+ *   smarthr-ui 側実装公開（metadata 掲載・公開 named export 追加）の後にエントリを削除する
  */
-const ORPHAN_IGNORE_EXPLICIT = new Set(['icon']);
+const ORPHAN_IGNORE_EXPLICIT = new Set(['icon', 'formatter', 'formatter/time-formatter', 'formatter/timestamp-formatter']);
 
 /**
  * orphan 警告から除外すべき dir かを自動判定する。

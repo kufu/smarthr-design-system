@@ -1,0 +1,69 @@
+---
+title: 'TimestampFormatter'
+description: '日付と時刻データを任意の形式にフォーマットして表示するコンポーネントです。日付と時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+日付と時刻データを任意の形式にフォーマットして表示するコンポーネントです。日付と時刻を[ユーザーの言語や地域設定に適した形式](/products/contents/idiomatic-usage/count/#h4-0)で表示するときに使います。
+
+<ComponentStory name="TimestampFormatter" />
+
+## 使用上の注意
+
+### タイムスタンプをフォーマットする機能だけ必要な場合
+
+TimestampFormatterは日付と時刻を`time`要素としてレンダリングします。  
+フォーマットされたタイムスタンプの文字列だけが必要な場合は、`useIntl`の`formatTimestamp`を使用してください。
+
+```tsx editable noIframe withStyled
+const FormatTimestampExample = () => {
+  const { formatTimestamp } = useIntl()
+  return (
+    <span>更新日時：{formatTimestamp({ date: new Date(2026, 4, 18, 14, 30, 0) })}</span>
+  )
+}
+
+render(<FormatTimestampExample />)
+```
+
+## 使用例
+
+### 表示する時刻のパーツをカスタマイズする
+
+`timeParts`オプションを使って、表示する時刻のパーツを指定できます。デフォルトは`['hour', 'minute']`（時と分）です。
+
+```tsx editable noIframe withStyled
+const TimestampPartsExample = () => {
+  const date = new Date(2026, 4, 18, 14, 30, 45)
+
+  return (
+    <Stack gap={0.5} as="dl">
+      <Cluster gap={1} align="center">
+        <Text styleType="blockTitle" as="dt">デフォルト（時：分）</Text>
+        <dd>
+          <TimestampFormatter date={date} />
+        </dd>
+      </Cluster>
+      <Cluster gap={1} align="center">
+        <Text styleType="blockTitle" as="dt">秒を含む（時：分：秒）</Text>
+        <dd>
+          <TimestampFormatter date={date} timeParts={['hour', 'minute', 'second']} />
+        </dd>
+      </Cluster>
+      <Cluster gap={1} align="center">
+        <Text styleType="blockTitle" as="dt">時のみ</Text>
+        <dd>
+          <TimestampFormatter date={date} timeParts={['hour']} />
+        </dd>
+      </Cluster>
+    </Stack>
+  )
+}
+
+render(<TimestampPartsExample />)
+```
+
+## Props
+
+<ComponentPropsTable name="TimestampFormatter" />
