@@ -66,8 +66,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
       smarthr-ui:
-        specifier: ^94.0.0
-        version: 94.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.21.0)(typescript@6.0.3)(yaml@2.9.0)
+        specifier: ^95.0.0
+        version: 95.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.21.0)(typescript@6.0.3)(yaml@2.9.0)
       styled-components:
         specifier: ^6.4.1
         version: 6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -841,8 +841,14 @@ packages:
   '@formatjs/icu-messageformat-parser@3.5.8':
     resolution: {integrity: sha512-uZLvzLFN7iV2l8cbDdROwgKGtdELeLI4bpnsuz1DnyscHDxn8TdDE0anHzcfjtWK66XYCllGLV3Mi3CYcEPg/g==}
 
+  '@formatjs/icu-messageformat-parser@3.5.9':
+    resolution: {integrity: sha512-PZm6O9JI/gUPtQV9r2eaMuLb4yWqV2vz+ot03ORHWTKO343LSpZi0TqeXLB2ZZGDXLCw2SbfgsQ0GxoxXMl79g==}
+
   '@formatjs/icu-skeleton-parser@2.1.8':
     resolution: {integrity: sha512-iX5i0O15gPf69l1WqmLFYwn7wq53lauvytvWFnHamIfX/5Ta56gpFj6fdeHRcKTV58IhrKv8QOvWfTYZYm7f+g==}
+
+  '@formatjs/icu-skeleton-parser@2.1.9':
+    resolution: {integrity: sha512-rsxswgHMfU1zUgB2byc08fesf83wLGjFnzLCEtuf00mx2doiqc6pYrf67raI37XqdRcGUviQepk2UKGqpng74Q==}
 
   '@formatjs/intl@4.1.10':
     resolution: {integrity: sha512-Zv9FqRVdEFsHLsXGkcthyuXv4hlTLvbvTr4Fi16w+VCd7MSz2RtI18mXd4B44N7nuvF5be2+JGauU3QoJ2wELw==}
@@ -3313,6 +3319,9 @@ packages:
   intl-messageformat@11.2.5:
     resolution: {integrity: sha512-zaROHiUsnlSFXVypU54AsQuAm3DLmmSH8KfDhiUuG1XZ9NTQ4o3xlxIJYVNmeWAklyp3CWg0lhexNUnee8PsYQ==}
 
+  intl-messageformat@11.2.6:
+    resolution: {integrity: sha512-afAN2yNN7zjB77G1ZC5L8GtLrEshyBvOQXz88flxCO/ocTIQist98gu0r/O6H/SSiQhQsOOtWPxmCEvtDABXXQ==}
+
   ip-address@10.2.0:
     resolution: {integrity: sha512-/+S6j4E9AHvW9SWMSEY9Xfy66O5PWvVEJ08O0y5JGyEKQpojb0K0GKpz/v5HJ/G0vi3D2sjGK78119oXZeE0qA==}
     engines: {node: '>= 12'}
@@ -5251,8 +5260,8 @@ packages:
   smarthr-normalize-css@1.1.0:
     resolution: {integrity: sha512-RNi5bkp8dYvZs/yqOihZ+an5Wf3oXiBMRRvSYhCKNhV+Qkg1otqIxmP3ELUWVwMZx9v+zZG1LLAJ0sxPkHXOcg==}
 
-  smarthr-ui@94.0.0:
-    resolution: {integrity: sha512-cgPU352ig19WBlRTC9rzTjBi03Pi3xfBZ1Hy8Rd4kLGdEu4Y9bfSHgbCZlo259cRN01ibOX/wSZQjYJA+eO/1g==}
+  smarthr-ui@95.0.0:
+    resolution: {integrity: sha512-fZFD/vzy2gmHvQEYR99RcasBn/hmikC8AK+B8CTKdKBkiwfmQE49RYiSICLORGujm/SzZ2dOzOBYAnvw0ewptQ==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -6946,7 +6955,13 @@ snapshots:
     dependencies:
       '@formatjs/icu-skeleton-parser': 2.1.8
 
+  '@formatjs/icu-messageformat-parser@3.5.9':
+    dependencies:
+      '@formatjs/icu-skeleton-parser': 2.1.9
+
   '@formatjs/icu-skeleton-parser@2.1.8': {}
+
+  '@formatjs/icu-skeleton-parser@2.1.9': {}
 
   '@formatjs/intl@4.1.10':
     dependencies:
@@ -10025,6 +10040,11 @@ snapshots:
       '@formatjs/fast-memoize': 3.1.5
       '@formatjs/icu-messageformat-parser': 3.5.8
 
+  intl-messageformat@11.2.6:
+    dependencies:
+      '@formatjs/fast-memoize': 3.1.5
+      '@formatjs/icu-messageformat-parser': 3.5.9
+
   ip-address@10.2.0: {}
 
   ipaddr.js@1.9.1: {}
@@ -12514,12 +12534,12 @@ snapshots:
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@94.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.21.0)(typescript@6.0.3)(yaml@2.9.0):
+  smarthr-ui@95.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.21.0)(typescript@6.0.3)(yaml@2.9.0):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.20
       decimal.js: 10.6.0
-      intl-messageformat: 11.2.5
+      intl-messageformat: 11.2.6
       lodash.merge: 4.6.2
       lodash.range: 3.2.0
       polished: 4.3.1
