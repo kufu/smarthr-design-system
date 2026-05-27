@@ -39,11 +39,11 @@ export default function CodeBlock({
   withStyled = false,
   renderingComponent,
   componentTitle,
-  gap,
-  align,
-  layout,
   code,
   language,
+  background = 'WHITE',
+  canvas,
+  hideCode,
   ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }: Props) {
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
@@ -70,12 +70,12 @@ export default function CodeBlock({
           )}
           <LiveContainer
             code={codeString}
+            hideCode={hideCode}
             language={language}
             withStyled={withStyled}
             noIframe={noIframe}
-            gap={gap}
-            align={align}
-            layout={layout}
+            background={background}
+            canvas={canvas}
           />
         </div>
       </ui.IntlProvider>
