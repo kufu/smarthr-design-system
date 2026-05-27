@@ -44,6 +44,7 @@ export default function CodeBlock({
   layout,
   code,
   language,
+  canvas,
   ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }: Props) {
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
@@ -63,7 +64,7 @@ export default function CodeBlock({
         <div className={styles.wrapper}>
           {renderingComponent && (
             <div className={styles.linkWrapper}>
-              <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/`} target="_blank">
+              <TextLink href={`${PATTERNS_STORYBOOK_URL}?path=/story/${componentTitle}/}`} target="_blank">
                 別画面で開く
               </TextLink>
             </div>
@@ -76,6 +77,7 @@ export default function CodeBlock({
             gap={gap}
             align={align}
             layout={layout}
+            canvas={canvas}
           />
         </div>
       </ui.IntlProvider>

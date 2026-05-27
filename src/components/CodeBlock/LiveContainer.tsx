@@ -7,6 +7,7 @@ import { CssBaseLine } from 'smarthr-normalize-css';
 import * as ui from 'smarthr-ui';
 import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components';
 
+import { AnnotatedComponent } from '@/components/article/AnnotatedComponent';
 import { CSS_COLOR } from '@/constants/style';
 
 import ComponentPreview from './ComponentPreview';
@@ -23,7 +24,7 @@ const smarthrTheme = ui.createTheme();
 const transformCode = (snippet: string) =>
   // Storybookでも利用するため、コード内に`import`・`export`が記述されているが、ここではエラーになるので削除する。
   snippet.replace(/^import\s.*\sfrom\s.*$/gm, '').replace(/^export\s/gm, '');
-export default function LiveContainer({ code, language, scope, noIframe, withStyled, gap, align, layout }: Props) {
+export default function LiveContainer({ code, language, scope, noIframe, withStyled, gap, align, layout, canvas }: Props) {
   const [iframeHeight, setIframeHeight] = useState(600); // デフォルトの高さを設定
 
   // iframeの高さをコンテンツに合わせて変更する
@@ -41,6 +42,14 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
         setIframeHeight(height + 8); // ComponentPreviewコンポーネントに`margin-block-start: 8px`が指定されているため
       }
     }, 500);
+  };
+
+  // Wrap preview content in AnnotatedComponent if canvas is provided
+  const wrapWithAnnotation = (children: React.ReactNode) => {
+    if (canvas) {
+      return <AnnotatedComponent canvasWidth={canvas}>{children}</AnnotatedComponent>;
+    }
+    return children;
   };
 
   return (
@@ -75,7 +84,7 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
                 <StyleSheetManager target={document?.head}>
                   <ComponentPreview gap={gap} align={align} layout={layout}>
                     <CssBaseLine />
-                    <LivePreview Component={React.Fragment} />
+                    {wrapWithAnnotation(<LivePreview Component={React.Fragment} />)}
                   </ComponentPreview>
                 </StyleSheetManager>
               )}
@@ -83,7 +92,7 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
           </Frame>
         ) : (
           <ComponentPreview gap={gap} align={align} layout={layout}>
-            <LivePreview Component={React.Fragment} />
+            {wrapWithAnnotation(<LivePreview Component={React.Fragment} />)}
           </ComponentPreview>
         )}
         <div className={styles.codeWrapper}>

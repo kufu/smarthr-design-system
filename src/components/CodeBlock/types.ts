@@ -12,6 +12,7 @@ export type LiveContainerProps = {
    * @deprecated noIframe は非推奨です。iframeが原因で表示が崩れるなどやむを得ない場合のみ使用してください。
    */
   noIframe?: boolean;
+  canvas?: number;
 } & Pick<LiveProviderProps, 'scope'> & {
     gap?: Gap | SeparateGap;
     align?: CSSProperties['alignItems'];
