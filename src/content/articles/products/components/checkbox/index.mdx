@@ -161,9 +161,7 @@ import { Cluster, Text } from 'smarthr-ui'
     innerMargin={0.5}
     helpMessage={<p>通常は管理者にのみ表示されます。<br />従業員にも表示する場合は、チェックしてください。</p>}
   >
-    <Cluster gap={{ row: 1, column: 1.5 }}>
-      <Checkbox name="sample">従業員にも表示する</Checkbox>
-    </Cluster>
+    <Checkbox name="sample">従業員にも表示する</Checkbox>
   </Fieldset>
 </Base>
 ```
@@ -184,9 +182,7 @@ import { Cluster, Text } from 'smarthr-ui'
     innerMargin={0.5}
     helpMessage="ビジネスネームが登録されていない場合には本名が表示されます。"
   >
-    <Cluster gap={{ row: 1, column: 1.5 }}>
-      <Checkbox name="sample" defaultChecked>ビジネスネームを優先的に表示する</Checkbox>
-    </Cluster>
+    <Checkbox name="sample" defaultChecked>ビジネスネームを優先的に表示する</Checkbox>
   </Fieldset>
 </Base>
 ```
@@ -211,6 +207,7 @@ import { Cluster, Text } from 'smarthr-ui'
     onSubmit={() => {}}
   >
     <Stack gap={1.5}>
+      { /* eslint-disable-next-line no-irregular-whitespace */ }
       <p>以下の&#123;オブジェクト名&#125;を削除しますか？　この操作は元に戻せません。</p>
       <DefinitionList>
         <DefinitionListItem term={{ text: '削除する{オブジェクト名}', styleType: 'blockTitle' }}>
@@ -251,9 +248,7 @@ import { Cluster, Text } from 'smarthr-ui'
     innerMargin={0.5}
     helpMessage={<p><TextLink target="_blank" href="#">利用規約</TextLink>を確認し、同意する場合はチェックしてください。</p>}
   >
-    <Cluster gap={{ row: 1, column: 1.5 }}>
-      <Checkbox name="agreement">利用規約に同意します</Checkbox>
-    </Cluster>
+    <Checkbox name="agreement">利用規約に同意します</Checkbox>
   </Fieldset>
 </Base>
 ```
@@ -269,9 +264,7 @@ import { Cluster, Text } from 'smarthr-ui'
     legend="利用規約への同意"
     innerMargin={0.5}
   >
-    <Cluster gap={{ row: 1, column: 1.5 }}>
-      <Checkbox name="agreement"><TextLink target="_blank" href="#">利用規約</TextLink>に同意します</Checkbox>
-    </Cluster>
+    <Checkbox name="agreement"><TextLink target="_blank" href="#">利用規約</TextLink>に同意します</Checkbox>
   </Fieldset>
 </Base>
 ```
