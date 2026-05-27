@@ -1,0 +1,381 @@
+---
+title: 'Internationalization (i18n)'
+description: 'SmartHRを多言語化しやすく、翻訳後も壊れにくいプロダクトにするための実装原則です。'
+order: 1
+---
+
+Internationalizationは、プロダクトを特定の言語や日本語の文法・表記に依存しない形で設計・実装することです。
+
+このページでは、SmartHRを多言語化しやすく、翻訳後も壊れにくいプロダクトにするための実装原則を説明します。
+
+下記のガイドラインは、バックエンド・フロントエンドにも適用するものですが、ユーザーに見せる文言は主にフロントエンドの管轄であるべきという点を踏まえ、NG/OKの事例をフロントエンドのものにしています。
+また、SmartHRのプロダクトのほとんどが`react-intl`というi18nライブラリを使用していることから、事例は`react-intl`をベースにしています。
+注記：推奨ライブラリが変わり（`next-intl`）かつその展開がある程度進んだ際、改めて見直す予定です。
+
+## i18nに関連する主な概念・用語
+
+### 原文・翻訳文
+
+原文とは、翻訳のもとになる文言です。SmartHRでは、日本語の文言が原文になることがほとんどです。
+
+翻訳文とは、原文をもとに、対象の言語向けに調整した文言です。
+
+### ロケール（locale）
+
+ロケールとは、言語だけでなく、地域や表記上の慣習を含めた設定のことです。ロケールコードは、そのロケールを識別するためのコードです。
+
+たとえば、`ja-JP` は日本で使われる日本語、`en-US` はアメリカで使われる英語を表します。言語だけを表す場合は、`ja`（日本語）や`en`（英語）のような言語コードを使うこともあります。
+
+同じ言語でも、地域によって日付、数値、通貨、住所、敬称などの扱いが異なる場合があります。そのため、多言語対応では、単に「日本語」「英語」と考えるだけでなく、必要に応じてロケールとして扱います。
+
+### 文言の外部化（string externalization）
+
+文言の外部化とは、画面に表示する文言をコードに直接書かず、**翻訳キー**に置き換えて、そのキーに対しての文言を**翻訳辞書**で管理できるようにすることです。
+
+要するに、コード上では、画面に表示する文言そのものではなく、翻訳キーを使って対応する文言を翻訳辞書から呼び出します。
+この抽象化のおかげで、言語ごとの文言を切り替えやすくなり、翻訳漏れや表記ゆれにも気づきやすくなります。さらに、翻訳支援ツールとの連携、翻訳会社への外注も可能になります。
+
+```tsx
+<h1>
+  扶養家族
+</h1>
+```
+ではなく、
+
+```tsx
+// コード側
+intl.formatMessage({
+  id: 'EmployeeForm/DependentFamily/Title',
+  defaultMessage: "扶養家族"
+  })
+
+// 辞書側
+export locale = {
+  "EmployeeForm/DependentFamily/Title": "扶養家族"
+}
+```
+
+### 補間（interpolation）
+
+補間とは、文言の中に、利用者名、日付、件数、書類名などの変数を差し込むことです。
+
+```tsx
+intl.formatMessage({
+  id: 'EmployeeForm/FormTitle',
+  defaultMessage: "{name}さんの招待フォーム",
+  {
+    name: employee.name,
+  }
+  })
+```
+
+補間を使うときは、日本語の語順だけを前提に文を分割しないようにします。言語によって自然な語順が異なるため、文全体を1つの翻訳単位として管理します。
+
+### フォールバック
+
+フォールバックとは、対象の言語の翻訳文がない場合に、別の言語の文言を代わりに表示することです。
+
+SmartHRの場合は、英語の翻訳文がまだ用意されていない場合に、日本語の文言を表示する、といった挙動にしています。
+使用するライブラリによって翻訳がない場合の挙動は、IDを表示させること、エラーをRaiseすること、扱い方がさまざまですが、SmartHRとしては「日本語を表示する」ことに統一しています。
+その理由は、人間が解読できないIDを見せる、エラーにより使えなくするよりも、日本語が読めなくても機械翻訳を使えば意味を理解できる
+
+### ICU Message Format
+i18nを前提としたUI文言の国際フォーマット定義。SmartHRでは現在、複数形（plural）と序数（selectordinal）の対応を可能にしています。
+
+## i18nのベストプラクティス：実装編
+### ユーザーに見える文言をハードコードしない
+
+ユーザーに見える文言は、翻訳対象として外部化します。
+
+画面上のテキストだけでなく、次のような文言も対象です。
+
+- `aria-label`や`alt`などのアクセシブルネーム
+- プレースホルダー
+- エラーメッセージ
+- メール件名、メール本文 (※)
+- 通知 (※)
+
+※ 現時点、技術問題により翻訳（L10N）はできていませんが、問題を解消してから対応する予定です。そのため、方針としては「今後のL10Nのために、必ずI18N化する」とします。
+
+### 文章を複数パーツから組み立てない
+
+言語ごとに語順や文構造が変わるため、日本語の語順で文言を細かく分割したり、UIの外側で断片をつなぎ合わせたりすると、自然な翻訳や正しい文法になりません。
+
+#### 1. 一文・意味のまとまりを1キーにまとめる（リンクあれば、それも含める）
+
+- NG: リンク文字列と後続の文を別キーに分ける
+```tsx
+<>
+  {intl.formatMessage(
+    { id: 'DocumentSubmission/UserPrefix', defaultMessage: '{userName}さんが' },
+    { userName },
+  )}
+  <TextLink href={ links.currentDocument }>
+    {intl.formatMessage(
+      { id: 'DocumentSubmission/Object', defaultMessage: '{documentName}を' },
+      { documentName },
+    )}
+  <TextLink />
+  {intl.formatMessage({
+    id: 'DocumentSubmission/Verb',
+    defaultMessage: '提出しました',
+  })}
+</>
+
+// 辞書側
+export locale = {
+  "DocumentSubmission/UserPrefix": "{userName}さんが",
+  "DocumentSubmission/Object": "{documentName}を",
+  "DocumentSubmission/Verb": "提出しました",
+}
+```
+- OK: リンク用のマークアップを含めて1メッセージにまとめる
+```tsx
+intl.formatMessage(
+  {
+    id: 'DocumentSubmission/Submitted',
+    defaultMessage: '{userName}さんが<link>{documentName}を</link>提出しました',
+  },
+  { 
+    userName,
+    documentName,
+    link: (chunks) => (
+      <TextLink href={ links.currentDocument }>
+        { chunks }
+      <TextLink />
+    ),
+  }
+)
+
+// 辞書側
+export locale = {
+  "DocumentSubmission/Submitted": "{userName}さんが{documentName}を提出しました",
+}
+```
+
+#### 2. 句読点・記号をメッセージの外に出さない
+
+句読点や記号（`:`, `()`, `・` など）は、翻訳文字列の内側に含めます。
+
+- NG: 翻訳キーの外に記号を置く
+```tsx
+<>
+  {intl.formatMessage(
+    {
+      id: 'Dashboard/TargetEmployee',
+      defaultMessage: '対象者',
+    },
+  )}
+  ：
+  {targetEmployeeName}
+<>
+```
+
+- OK: 記号まで含めた1つの文字列にする
+```tsx
+<>
+  {intl.formatMessage(
+    {
+      id: 'Dashboard/TargetEmployee',
+      defaultMessage: '対象者：{targetEmployeeName}',
+    },
+    {targetEmployeeName},
+  )}
+<>
+```
+
+#### 3. 数値と単位を同じキーにまとめる（日付・時刻は4に任せる）
+
+数値と単位・名詞・カウンタは、同じ翻訳キーにまとめます（必要なら ICU の plural などを使います）。
+
+- NG: `{employeeCount}` と `"人"` を別要素で出す
+```tsx
+<>
+  {employee.count}
+  {intl.formatMessage(
+    {
+      id: 'EmployeeList/TotalEmployees',
+      defaultMessage: '人',
+    },
+  )}
+<>
+```
+- OK: ICU Message Formatの通りに`"{count, plural, other {#人}}"`とする
+```tsx
+<>
+  {intl.formatMessage(
+    {
+      id: 'EmployeeList/TotalEmployees',
+      defaultMessage: '{count, plural, other {#人}}',
+    },
+    { count: employee.count },
+  )}
+<>
+```
+- 注意: `"{month}月"` のような年月のつなぎは、このルールの「数値と同じキーに入れた例」ではなく、手組みの日付表現に当たるため使わない（次項のフォーマッタを使う）
+
+#### 4. 日付・時刻を手組みしない
+
+日付・年月・時刻を含む表示は、**必ず** SmartHR UIの`formatDate` や `DateFormatter` / `TimeFormatter` などのフォーマッタ経由の結果だけを文言に埋め込みます。
+
+- NG: `defaultMessage` のなかで、`{year}年{month}月`、`{month}月`、`{hour}:{minute}` のように連結する
+- OK: フォーマッタで加工した値を `values` に渡す
+
+```tsx
+intl.formatMessage({
+  id: "Attendance/Schedule/TableTitle",
+  defaultMessage: "{formattedMonth}度の勤務予定表",
+  {
+    formattedMonth: (
+      <DateFormatter
+        date={targetDate}
+        parts={['year', 'month']}
+        options={{ disableSlashInJa: true }}
+      />
+    ),
+  }}
+)
+```
+
+#### 5. 複数のアイテムが想定される場合、日本語でもICU通りのplural対応をさせる
+- plural
+日本語では複数形が文法上で（ほとんど）存在しない概念ですが、言語によってさまざまなものが存在しています。
+```tsx
+{count, plural, other {#件}}の申請が届いています
+```
+英語では、
+```tsx
+You {count, plural,
+    one {have # application}
+    other {have # applications}
+}.
+```
+- selectordinal
+日本語ではあまり意識されていない概念（◯番目）ですが、言語によって語尾の形が変わることがあるので、対応します。
+```tsx
+{count, selectordinal, other {#番目}}の申請
+```
+英語では、
+```tsx
+{count, selectordinal,
+    one {#st}
+    two {#nd}
+    few {#rd}
+    other {#th}
+} application
+```
+
+
+## i18nのベストプラクティス：デザイン編
+
+### 日本語の文法を前提にしない
+
+日本語では自然でも、他の言語では不自然になる表現があります。
+
+たとえば、次のような前提をコードに埋め込まないようにします。
+
+- 氏名の順序が「姓・名」である
+- 敬称が常に名前の後ろにつく
+- 単数形と複数形を区別しなくてよい
+- 文の最後だけ変えれば意味が成立する
+- 助詞を差し替えれば文が成立する
+
+### UI文言を再利用せず、用途によって分ける
+
+UI文言は、画面単位ではなく意味単位で管理します。
+
+同じ日本語に見える文言でも、文脈によって翻訳が変わることがあります。
+たとえば「申請」は、名詞としての申請なのか、操作としての申請なのかによって訳し分けが必要になる場合があります。
+
+- NG: ボタンのラベルとタイトルの文言が同じキーを再利用している
+
+```tsx
+<Title text={intl.formatMessage({id: "ApplicationScreen/Apply", defaultMessage: "申請"})} />
+<Button label={intl.formatMessage({id: "ApplicationScreen/Apply", defaultMessage: "申請"})} />
+
+// 辞書側
+
+export locale = {
+  "ApplicationScreen/Apply": "申請"
+}
+```
+
+- OK: 用途の違う文言を再利用せず、原文でもはっきりと分ける
+
+```tsx
+<Title text={intl.formatMessage({id: "ApplicationScreen/Title", defaultMessage: "申請"})} />
+<Button label={intl.formatMessage({id: "ApplicationScreen/ApplyButtonLabel", defaultMessage: "申請する"})} />
+
+// 辞書側
+
+export locale = {
+  "ApplicationScreen/Title": "申請",
+  "ApplicationScreen/ApplyButtonLabel": "申請する"
+}
+```
+
+### 氏名を日本人名を前提に絞らない
+
+氏名は、日本語の姓名構造だけを前提にしないでください。
+
+確認すること:
+
+- 表示名を「姓 + 名」の固定順で組み立てていない
+- ミドルネーム、長い名前、スペース、記号を不必要に拒否していない
+- 氏名の分割が必要な場合、その理由が明確である
+- 表示名と法的な氏名を混同していない
+
+### 住所を国外の住所も許容できるようにする（必要な範囲で）
+
+SmartHRは日本国内向けのプロダクトですが、利用者や家族の情報として多様な住所表記が登場する可能性があります。
+
+確認すること:
+
+- 日本の住所構造を前提にしてよい項目か確認している
+- 入力値の文字種を不必要に制限していない
+- 長い住所や英字表記でレイアウトが崩れない
+- 郵便番号や都道府県など、日本固有の項目であることが明確になっている
+
+### フォームとバリデーションで日本語入力だけを前提にしない
+
+フォームでは、表示言語だけでなく入力できる内容にも注意します。
+
+確認すること:
+
+- 日本語入力だけを前提にしていない
+  - 全角・半角、英字、記号、スペースの制限が妥当である
+- エラー内容が翻訳後も具体的である
+- プレースホルダーだけに入力条件を依存していない
+- 入力例が対象言語の利用者にとって理解しやすい
+
+### 文言の長さの違いによって、レイアウトの崩れが発生しないようにする
+
+翻訳すると、文言の長さは大きく変わります。
+日本語では短い文言でも、他の言語では長くなることがあります。
+
+確認すること:
+
+- ボタンやラベルの幅を固定していない
+- 長い文言で折り返し・省略・表示崩れが起きない
+- テーブル、モーダル、サイドナビゲーション、モバイル表示で確認している
+- アイコンだけに意味を依存していない
+- 省略表示しても必要な情報が失われない
+
+### アクセシビリティ要素もInternationalization化する
+
+Internationalizationはアクセシビリティにも影響します。
+画面上の文言だけを翻訳しても、支援技術向けの情報が翻訳されていないと、同じ内容を理解できません。
+
+確認すること:
+
+- ページやコンテンツの言語が適切に指定されている
+- アクセシブルネームが翻訳対象になっている
+- 視覚上の文言とスクリーンリーダー向けの文言が矛盾していない
+- エラーの発生箇所と内容を支援技術でも特定できる
+- 画像内テキストやアイコンの代替テキストが翻訳対象として扱われている
+
+## 関連ページ
+
+- [多言語化のガイドライン](/accessibility/multilingual-guidelines/)
+- [Localization (l10n)](/accessibility/multilingual-guidelines/localization-principles/)
+- [ウェブアクセシビリティ簡易チェックリスト](/accessibility/check-list/)
