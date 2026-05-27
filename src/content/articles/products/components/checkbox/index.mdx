@@ -351,7 +351,8 @@ import { Cluster, Text } from 'smarthr-ui'
     <Container>
       <Stack gap={2}>
         <Stack>
-          <PageHeading>見出し</PageHeading>
+          { /* プロダクトではautoPageTitleはtrueがデフォルトですが、デザインシステムでは例にもかかわらずページの見出しが変わってしまうためfalseにしています。 */ }
+          <PageHeading autoPageTitle={false}>見出し</PageHeading>
           <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
         </Stack>
         <Base padding={{ block: 1.5, inline: 1}}>
