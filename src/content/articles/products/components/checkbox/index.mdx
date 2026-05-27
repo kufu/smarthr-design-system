@@ -208,8 +208,9 @@ import { Cluster, Text } from 'smarthr-ui'
     id="delete-dialog"
     heading="{オブジェクト名}の削除"
     actionButton={{ text: '削除', theme: 'danger' }}
+    onSubmit={() => {}}
   >
-  <Stack gap={1.5}>
+    <Stack gap={1.5}>
       <p>以下の&#123;オブジェクト名&#125;を削除しますか？　この操作は元に戻せません。</p>
       <DefinitionList>
         <DefinitionListItem term={{ text: '削除する{オブジェクト名}', styleType: 'blockTitle' }}>
