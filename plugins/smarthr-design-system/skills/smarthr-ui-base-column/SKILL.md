@@ -9,8 +9,6 @@ metadata:
 
 BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。
 
-[Base](/products/components/base/)や[Dialog](/products/components/dialog/)の内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「[ブロック](/products/design-patterns/visual-grouping/#h3-6)」領域として示すときに使います。
-
 ## import
 
 ```ts

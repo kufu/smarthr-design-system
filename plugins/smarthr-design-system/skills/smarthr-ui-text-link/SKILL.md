@@ -9,8 +9,6 @@ metadata:
 
 a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。
 
-`a`要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、[HelpLink](/products/components/text-link/help-link/)や[UpwardLink](/products/components/text-link/upward-link/)で表現できないテキストリンクを提供するときに使います。
-
 ## import
 
 ```ts

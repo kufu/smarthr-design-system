@@ -9,7 +9,7 @@ metadata:
 
 fieldset要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。
 
-`fieldset`要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。
+姓名や期間の開始・終了のように値を分割して入力する場合や、[Checkbox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)といった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
 
 ## import
 

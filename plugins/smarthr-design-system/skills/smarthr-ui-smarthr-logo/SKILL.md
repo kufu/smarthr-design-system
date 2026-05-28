@@ -9,8 +9,6 @@ metadata:
 
 SmartHRのロゴを表示するためのコンポーネントです。
 
-[SmartHRのロゴ](/basics/logos/)を表示するためのコンポーネントです。
-
 ## import
 
 ```ts

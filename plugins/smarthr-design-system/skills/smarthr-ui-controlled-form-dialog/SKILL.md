@@ -9,7 +9,7 @@ metadata:
 
 FormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
 
-フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるための[ActionDialog](/products/components/dialog/action-dialog/)派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、`Enter`キーでの送信が必要なときに使います。
+各種基準は[ActionDialog](/products/components/dialog/action-dialog/)と共通です。
 
 ## import
 

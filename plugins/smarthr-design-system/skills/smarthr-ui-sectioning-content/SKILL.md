@@ -9,8 +9,6 @@ metadata:
 
 header、footer、section、articleなどのセクショニング要素を表現するためのコンポーネントです。Headingと組み合わせて見出しレベルを自動計算するときに使います。
 
-`header`、`footer`、`section`、`article`などのセクショニング要素を表現するためのコンポーネントです。[Heading](/products/components/heading/)と組み合わせて見出しレベルを自動計算するときに使います。
-
 ## import
 
 ```ts

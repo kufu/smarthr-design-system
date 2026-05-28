@@ -9,8 +9,6 @@ metadata:
 
 「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。
 
-「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。[Pagination](/products/components/pagination/)と併用し件数を提示するときに使います。
-
 ## import
 
 ```ts

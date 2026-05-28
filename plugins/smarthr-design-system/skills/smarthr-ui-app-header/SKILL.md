@@ -9,8 +9,6 @@ metadata:
 
 画面上部に配置するSmartHR共通ヘッダーコンポーネントです。HeaderとAppNaviを結合し、各アプリケーションの表示を共通化します。
 
-画面上部に配置するSmartHR共通ヘッダーコンポーネントです。[Header](/products/components/header/)と[AppNavi](/products/components/app-navi/)を結合し、各アプリケーションの表示を共通化します。
-
 ## import
 
 ```ts
