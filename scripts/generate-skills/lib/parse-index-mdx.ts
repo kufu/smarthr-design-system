@@ -83,11 +83,25 @@ function extractLeadParagraph(body: string, description: string): string {
   const lines = body.split('\n');
   const paragraphLines: string[] = [];
   let started = false;
+  let inImportBlock = false;
 
   for (const line of lines) {
     const trimmed = line.trim();
 
-    if (trimmed.startsWith('import ')) continue;
+    if (inImportBlock) {
+      if (/\bfrom\s+['"]/.test(trimmed)) inImportBlock = false;
+      continue;
+    }
+
+    if (trimmed.startsWith('import ')) {
+      if (isMultilineImportStart(trimmed)) {
+        inImportBlock = true;
+      }
+      continue;
+    }
+
+    if (/^} from ['"]/.test(trimmed)) continue;
+
     if (trimmed.startsWith('<') && !trimmed.startsWith('<!--')) continue;
     if (trimmed.startsWith('```')) continue;
     if (trimmed.startsWith('##')) break;
@@ -107,7 +121,30 @@ function extractLeadParagraph(body: string, description: string): string {
     paragraphLines.push(trimmed);
   }
 
-  return paragraphLines.join(' ');
+  return joinLeadParagraphLines(paragraphLines);
+}
+
+/** `import {` で始まり同一行に ` from ` がない複数行 import の開始行 */
+function isMultilineImportStart(line: string): boolean {
+  return /\bimport\s+\{/.test(line) && !/\bfrom\s+['"]/.test(line);
+}
+
+function isMarkdownListItem(line: string): boolean {
+  return /^[-*]\s+/.test(line) || /^\d+\.\s+/.test(line);
+}
+
+/** 連続する箇条書き行は改行で結合し、それ以外は同一段落としてスペースで結合する */
+function joinLeadParagraphLines(lines: string[]): string {
+  if (lines.length === 0) return '';
+
+  let result = lines[0]!;
+  for (let i = 1; i < lines.length; i++) {
+    const prev = lines[i - 1]!;
+    const current = lines[i]!;
+    const separator = isMarkdownListItem(prev) && isMarkdownListItem(current) ? '\n' : ' ';
+    result += separator + current;
+  }
+  return result;
 }
 
 /**

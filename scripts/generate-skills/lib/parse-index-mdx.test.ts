@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { isLeadSupersetOfDescription, isSubstantivelyDuplicate } from './parse-index-mdx.js';
+import { isLeadSupersetOfDescription, isSubstantivelyDuplicate, parseIndexMdx } from './parse-index-mdx.js';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 
 const CHECKBOX_DESCRIPTION =
   "input[type='checkbox']要素の代替としてオン/オフや真偽の状態を入力させるコンポーネントです。5個以下の選択肢から複数の値を選択させるとき、即時反映ではなく送信ボタンで確定させるときに使います。";
@@ -39,5 +43,21 @@ describe('isLeadSupersetOfDescription', () => {
 describe('isSubstantivelyDuplicate with superset', () => {
   it('Pagination の追記付き本文は重複とみなさない', () => {
     assert.equal(isSubstantivelyDuplicate(PAGINATION_DESCRIPTION, PAGINATION_BODY), false);
+  });
+});
+
+describe('parseIndexMdx extractLeadParagraph', () => {
+  it('複数行 import を leadParagraph に含めない', () => {
+    for (const component of ['tooltip', 'form-control', 'input-file'] as const) {
+      const info = parseIndexMdx(path.join(repoRoot, `src/content/articles/products/components/${component}/index.mdx`));
+      assert.ok(info);
+      assert.equal(info.leadParagraph.includes('from smarthr-ui'), false, component);
+    }
+  });
+
+  it('箇条書き行は改行を保持する', () => {
+    const info = parseIndexMdx(path.join(repoRoot, 'src/content/articles/products/components/tooltip/index.mdx'));
+    assert.ok(info);
+    assert.match(info.leadParagraph, /^- .+\n- .+\n- .+$/);
   });
 });
