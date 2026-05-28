@@ -9,7 +9,7 @@ metadata:
 
 input[type=file]要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。
 
-Text, Cluster } from smarthr-ui
+DropZoneの内部でも使用されています。
 
 ## import
 
