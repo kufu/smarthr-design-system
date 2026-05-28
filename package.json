@@ -48,7 +48,7 @@
     "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
     "generate:thumbnails": "cd ./scripts/component-thumbnails && pnpm install && cd ../.. && tsx ./scripts/component-thumbnails/componentThumbnails.ts",
     "copy:smarthr-ui-css": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
-    "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest",
+    "upgrade:smarthr-ui": "pnpm -r upgrade smarthr-ui@latest",
     "postupgrade:smarthr-ui": "run-s copy:smarthr-ui-css generate:thumbnails",
     "prepare": "husky"
   },
@@ -74,7 +74,8 @@
     "smarthr-normalize-css": "^1.1.0",
     "smarthr-ui": "^95.0.0",
     "styled-components": "^6.4.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "yaml": "^2.8.4"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",

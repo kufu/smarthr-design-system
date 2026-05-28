@@ -1,0 +1,27 @@
+items:
+  # 使用上の注意 > オブジェクト名自体をStatusLabelで表現しない
+  - severity: avoid
+    text: 'オブジェクト名そのものを StatusLabel で表現しない'
+    source_section: '使用上の注意 > オブジェクト名自体をStatusLabelで表現しない'
+
+  # 使用上の注意 > StatusLabelをリンクやアクションボタンの代替にしない
+  - severity: avoid
+    text: 'StatusLabel 単体でリンクやアクションボタンの機能を持たせない'
+    source_section: '使用上の注意 > StatusLabelをリンクやアクションボタンの代替にしない'
+
+  # 種類
+  - severity: must
+    text: 'ステータスの種類に応じて色を使い分ける'
+    source_section: '種類'
+    sub_items:
+      - '特殊なステータス（警告・エラー）を表す場合は、背景色に警告色やエラー色を使う'
+      - 'その他のステータスを表す場合は、プロダクトに応じて適宜色を選択する'
+
+  - severity: must
+    text: '色のみでステータスを伝えず、適切な名前を付ける'
+    source_section: '種類'
+
+  # 状態 > 強調の有無
+  - severity: should
+    text: '他のステータスと区別して視覚的に目立たせたい場合は、背景色と文字色を反転させた「強調あり」のラベルを使う'
+    source_section: '状態 > 強調の有無'
