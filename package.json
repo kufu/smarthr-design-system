@@ -7,18 +7,13 @@
   "lint-staged": {
     "src/**/*.{astro,ts,tsx}": [
       "pnpm prelint",
-      "pnpm lint:ts:content",
-      "pnpm lint:ts:codeblock",
-      "pnpm lint:check",
-      "pnpm format:eslint",
-      "pnpm format:prettier"
+      "pnpm run-p lint:ts:content lint:ts:codeblock lint:check -- ",
+      "pnpm run-p format:eslint format:prettier -- "
     ],
     "src/**/*.md{,x}": [
       "pnpm prelint",
-      "pnpm lint:check",
-      "pnpm lint:text",
-      "pnpm format:text",
-      "pnpm format:prettier"
+      "pnpm run-p lint:check lint:text -- ",
+      "pnpm run-p format:text format:prettier -- "
     ],
     "!(src/**/*.{astro,ts,tsx,md,mdx})": [
       "pnpm format:prettier"
@@ -96,7 +91,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.0.4",
     "node-html-parser": "^7.1.0",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all2": "9.0.0",
     "prettier": "^3.8.3",
     "prettier-config-smarthr": "^1.0.1",
     "prettier-plugin-astro": "^0.14.1",
