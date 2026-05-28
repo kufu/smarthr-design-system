@@ -15,11 +15,16 @@ plugins/smarthr-design-system/
 ├── README.md
 ├── LICENSE
 └── skills/
-    ├── component-selector/SKILL.md   ルータースキル
-    └── components/<name>/SKILL.md    各コンポーネントスキル
+    └── component-guidelines/              唯一のスキル
+        ├── SKILL.md                       エントリポイント（手動管理）
+        ├── component-selector.md          コンポーネント選定ガイド（自動生成）
+        └── components/                    各コンポーネントガイド（自動生成）
+            ├── Button.md
+            ├── Table.md
+            └── ...
 ```
 
-スキルは `scripts/generate-skills/` のスクリプトで生成された自動生成物です。直接編集せず、入力ソース（`metadata.json`、`eslint-plugin-smarthr` のルール README、`src/content/articles/products/components/**/checklist.yaml`）を更新して再生成してください。
+`components/*.md` と `component-selector.md` は `scripts/generate-skills/` のスクリプトで生成された自動生成物です。直接編集せず、入力ソース（`metadata.json`、`eslint-plugin-smarthr` のルール README、`src/content/articles/products/components/**/checklist.yaml`）を更新して再生成してください。`SKILL.md` はエントリポイントとして手動管理しています。
 
 ## ローカル動作確認（Claude Code）
 
