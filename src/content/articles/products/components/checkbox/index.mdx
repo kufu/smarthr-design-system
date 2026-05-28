@@ -8,15 +8,6 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Cluster, Text } from 'smarthr-ui'
 
-import checkBoxDo from './images/check-box-do1.png';
-import checkBoxDont from './images/check-box-dont1.png';
-import checkBoxDo2 from './images/check-box-do2.png';
-import checkBoxDont2 from './images/check-box-dont2.png';
-import checkBoxAlignmentDo from './images/check-box-alignment-do.png';
-import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
-import checkBoxMobileDo from './images/check-box-mobile-do.png';
-import checkBoxMobileDont from './images/check-box-mobile-dont.png';
-
 `input[type="checkbox"]`要素の代替としてオン/オフや真偽の状態を入力させるコンポーネントです。5個以下の選択肢から複数の値を選択させるときに使います。
 
 <ComponentStory name="Checkbox" />
@@ -40,11 +31,11 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
   innerMargin={0.5}
 >
   <Cluster gap={{ row: 1, column: 1.5 }}>
-      <Checkbox name="sample">選択肢 1</Checkbox>
-      <Checkbox name="sample">選択肢 2</Checkbox>
-      <Checkbox name="sample">選択肢 3</Checkbox>
-      <Checkbox name="sample">選択肢 4</Checkbox>
-      <Checkbox name="sample">選択肢 5</Checkbox>
+    <Checkbox name="sample">選択肢 1</Checkbox>
+    <Checkbox name="sample">選択肢 2</Checkbox>
+    <Checkbox name="sample">選択肢 3</Checkbox>
+    <Checkbox name="sample">選択肢 4</Checkbox>
+    <Checkbox name="sample">選択肢 5</Checkbox>
   </Cluster>
 </Fieldset>
 ```
@@ -62,19 +53,73 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={checkBoxAlignmentDo} alt="スクリーンショット: チェックボックスの縦横に配置するレイアウトのDo" />
     <Text slot="label">横幅に十分なスペースがある場合は、基本的に横並びにします。</Text>
+    <div slot="img">
+```tsx editable canvas=480 background=BACKGROUND hideCode
+<Base padding={1.5} className="shr-w-full">
+  <Fieldset
+    legend="タイトル"
+    innerMargin={0.5}
+  >
+    <BaseColumn className="shr-w-fit">
+      <Cluster gap={{ row: 1, column: 1.5 }}>
+        <Checkbox name="sample">選択肢 1</Checkbox>
+        <Checkbox name="sample">選択肢 2</Checkbox>
+        <Checkbox name="sample">選択肢 3</Checkbox>
+      </Cluster>
+    </BaseColumn>
+  </Fieldset>
+</Base>
+```
+    </div>
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={checkBoxAlignmentDont} alt="スクリーンショット: チェックボックスの縦横に配置するレイアウトのDon't" />
     <Text slot="label">縦並びにすると、親項目の幅に対して要素の配置が偏ってしまい、視認性が低下する恐れがあります。</Text>
+    <div slot="img">
+```tsx editable canvas=480 background=BACKGROUND hideCode
+<Base padding={1.5} className="shr-w-full">
+  <Fieldset
+    legend="タイトル"
+    innerMargin={0.5}
+  >
+    <BaseColumn className="shr-w-fit">
+      <Stack gap={1}>
+        <Checkbox name="sample">選択肢 1</Checkbox>
+        <Checkbox name="sample">選択肢 2</Checkbox>
+        <Checkbox name="sample">選択肢 3</Checkbox>
+      </Stack>
+    </BaseColumn>
+  </Fieldset>
+</Base>
+```
+    </div>
   </DoAndDont>
 </Cluster>
 
 ただし、選択肢の文字が長くなる場合は縦並びを検討します。
 
-![スクリーンショット: チェックボックスの縦並びレイアウトの例](./images/check-box-vertical-alignment.png)
+<DoAndDont type="do" width="calc(50% - 8px)">
+  <Text slot="label">選択肢の文字が長い場合は縦並びにしても要素の配置が偏らず、視認性が低下しません。</Text>
+  <div slot="img">
+```tsx editable canvas=480 background=BACKGROUND hideCode
+<Base padding={1.5} className="shr-w-full">
+<Fieldset
+  legend="タイトル"
+  innerMargin={0.5}
+>
+  <BaseColumn className="shr-w-fit">
+    <Stack gap={1}>
+      <Checkbox name="sample">比較的長いテキストの選択肢 1</Checkbox>
+      <Checkbox name="sample">比較的長いテキストの選択肢 2</Checkbox>
+      <Checkbox name="sample">比較的長いテキストの選択肢 3</Checkbox>
+    </Stack>
+  </BaseColumn>
+</Fieldset>
+</Base>
+```
+  </div>
+</DoAndDont>
 
 ### 2択の切り替えに使う場合の注意
 
@@ -87,23 +132,103 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={checkBoxDo} alt="Do" />
     <Text slot="label">すべての選択肢が明示的に表示されているため、現在の状態が把握しやすい</Text>
+    <div slot="img">
+```tsx editable canvas=480 background=BACKGROUND hideCode
+<Base padding={1.5} className="shr-w-full">
+  <Fieldset
+    legend="従業員に表示"
+    innerMargin={0.5}
+    helpMessage="オンにすると、従業員にも表示されます。"
+  >
+    <Cluster gap={{ row: 1, column: 1.5 }}>
+      <RadioButton name="sample" defaultChecked>オン</RadioButton>
+      <RadioButton name="sample">オフ（管理者にのみ表示）</RadioButton>
+    </Cluster>
+  </Fieldset>
+</Base>
+```
+    </div>
   </DoAndDont>
+
   <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={checkBoxDont} alt="Dont" />
     <Text slot="label">「従業員に表示しない」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
+    <div slot="img">
+```tsx editable canvas=480 background=BACKGROUND hideCode
+<Base padding={1.5} className="shr-w-full">
+  <Fieldset
+    legend="従業員に表示"
+    innerMargin={0.5}
+    helpMessage={<p>通常は管理者にのみ表示されます。<br />従業員にも表示する場合は、チェックしてください。</p>}
+  >
+    <Checkbox name="sample">従業員にも表示する</Checkbox>
+  </Fieldset>
+</Base>
+```
+    </div>
   </DoAndDont>
 </Cluster>
 
 #### チェックボックスを2択の切り替え入力に使用できる場合
 ラベルや説明文、ほかの設定項目など、前後のコンテキストによりもう一方の選択肢が明示的な場合は、チェックボックスを使用できます。
 
-![チェックボックスを2択の切り替え入力に使用する例](./images/check-box-onoff-ok.png)
+<DoAndDont type="do">
+  <Text slot="label">2択の切り替えの入力だが、前後のコンテキストから両方の選択肢が明示的であり現在の状態が把握しやすい。</Text>
+  <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Base padding={1.5} className="shr-w-full">
+  <Fieldset
+    legend="氏名の表示設定"
+    innerMargin={0.5}
+    helpMessage="ビジネスネームが登録されていない場合には本名が表示されます。"
+  >
+    <Checkbox name="sample" defaultChecked>ビジネスネームを優先的に表示する</Checkbox>
+  </Fieldset>
+</Base>
+```
+  </div>
+</DoAndDont>
 
 利用規約への同意や、[削除ダイアログ](/products/design-patterns/delete-dialog/#h3-5)での重要な操作に対する注意事項の確認など、ユーザーに対して明示的な許諾や確認を求める場合にチェックボックスを使用できます。
 
 ![削除ダイアログで操作の確認を促す際のチェックボックスの使用例](./images/check-box-confirm.png)
+
+実装例：
+
+```tsx editable background=BACKGROUND hideCode
+<>
+  <RemoteDialogTrigger targetId="delete-dialog">
+    <Button>&#123;オブジェクト名&#125;を削除</Button>
+  </RemoteDialogTrigger>
+  <FormDialog
+    id="delete-dialog"
+    heading="{オブジェクト名}の削除"
+    actionButton={{ text: '削除', theme: 'danger' }}
+    onSubmit={() => {}}
+  >
+    <Stack gap={1.5}>
+      { /* eslint-disable-next-line no-irregular-whitespace */ }
+      <p>以下の&#123;オブジェクト名&#125;を削除しますか？　この操作は元に戻せません。</p>
+      <DefinitionList>
+        <DefinitionListItem term={{ text: '削除する{オブジェクト名}', styleType: 'blockTitle' }}>
+          &#123;インスタンス名&#125;
+        </DefinitionListItem>
+      </DefinitionList>
+      <Stack gap={0.5}>
+        <BaseColumn>
+          <Stack>
+            <Heading type="blockTitle" icon={<WarningIcon />}>注意事項</Heading>
+            <p>オブジェクトを削除すると起きる影響についての説明</p>
+          </Stack>
+        </BaseColumn>
+        <BaseColumn>
+          <Checkbox name="confirm" required>注意事項を確認しました。</Checkbox>
+        </BaseColumn>
+      </Stack>
+    </Stack>
+  </FormDialog>
+</>
+```
 
 ### チェックボックス内に操作可能な要素を含めない
 
@@ -113,14 +238,37 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 チェックボックスの操作に関連するリンクを置きたい場合は、[Fieldset](/products/components/fieldset/)の`helpMessage` propsなどを使用してください。
 
 <Cluster gap={1}>
-  <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={checkBoxDo2} alt="Do" width="346" />
+  <DoAndDont type="do" width="100%">
     <Text slot="label">ユーザーは選択する操作に集中でき、それ以外の操作と区別しやすい</Text>
+    <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Base padding={1.5} className="shr-w-full">
+  <Fieldset
+    legend="利用規約への同意"
+    innerMargin={0.5}
+    helpMessage={<p><TextLink target="_blank" href="#">利用規約</TextLink>を確認し、同意する場合はチェックしてください。</p>}
+  >
+    <Checkbox name="agreement">利用規約に同意します</Checkbox>
+  </Fieldset>
+</Base>
+```
+    </div>
   </DoAndDont>
 
-  <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={checkBoxDont2} alt="Dont" width="346" />
+  <DoAndDont type="dont" width="100%">
     <Text slot="label">ユーザーが選択操作に集中できず、操作難易度が上がる</Text>
+    <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Base padding={1.5} className="shr-w-full">
+  <Fieldset
+    legend="利用規約への同意"
+    innerMargin={0.5}
+  >
+    <Checkbox name="agreement"><TextLink target="_blank" href="#">利用規約</TextLink>に同意します</Checkbox>
+  </Fieldset>
+</Base>
+```
+    </div>
   </DoAndDont>
 </Cluster>
 
@@ -145,20 +293,20 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 
 [共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)のデザインパターンもあわせて参考にしてください。
 
-```tsx editable
+```tsx editable hideCode
 <Fieldset
     legend="設定項目"
     innerMargin={0.5}
 >
-    <BaseColumn>
-        <Cluster gap={{ row: 1, column: 1.5 }}>
-            <Checkbox name="sample">選択肢 1</Checkbox>
-            <Checkbox name="sample">選択肢 2</Checkbox>
-            <Checkbox name="sample">選択肢 3</Checkbox>
-            <Checkbox name="sample">選択肢 4</Checkbox>
-            <Checkbox name="sample">選択肢 5</Checkbox>
-        </Cluster>
-    </BaseColumn>
+  <BaseColumn>
+    <Cluster gap={{ row: 1, column: 1.5 }}>
+      <Checkbox name="sample">選択肢 1</Checkbox>
+      <Checkbox name="sample">選択肢 2</Checkbox>
+      <Checkbox name="sample">選択肢 3</Checkbox>
+      <Checkbox name="sample">選択肢 4</Checkbox>
+      <Checkbox name="sample">選択肢 5</Checkbox>
+    </Cluster>
+  </BaseColumn>
 </Fieldset>
 ```
 
@@ -167,13 +315,127 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={checkBoxMobileDo} alt="ラベル付きのチェックボックスが縦に並んでいる" />
     <Text slot="label">ラベルテキストの長さによらず、整列されていて操作しやすい</Text>
+    <div slot="img">
+```tsx editable canvas=400 background=DOT hideCode
+<EnvironmentProvider environment={{ mobile: true }}>
+  <div className="shr-w-full shr-bg-background">
+    <AppHeader
+      appName="すごいアプリ"
+      currentTenantId="tenant-1"
+      features={[
+        {
+          favorite: false,
+          id: 'feature-1',
+          name: '従業員リスト',
+          position: null,
+          url: 'https://example.com'
+        },
+      ]}
+      navigations={[
+        {
+          children: 'ホーム',
+          href: 'https://example.com'
+        },
+      ]}
+      helpPageUrl="https://example.com"
+      schoolUrl="https://example.com"
+      userInfo={{
+        accountUrl: 'https://example.com',
+        email: 'smarthr@example.com',
+        empCode: '001',
+        firstName: '須磨',
+        lastName: '栄子'
+      }}
+    />
+    <Container>
+      <Stack gap={2}>
+        <Stack>
+          { /* プロダクトではautoPageTitleはtrueがデフォルトですが、デザインシステムでは例にもかかわらずページの見出しが変わってしまうためfalseにしています。 */ }
+          <PageHeading autoPageTitle={false}>見出し</PageHeading>
+          <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        </Stack>
+        <Base padding={{ block: 1.5, inline: 1}}>
+         <Fieldset
+            legend="タイトル"
+          >
+            <Stack>
+              <Checkbox name="sample" defaultChecked>ラベル</Checkbox>
+              <Checkbox name="sample">ラベルテキスト</Checkbox>
+              <Checkbox name="sample">ラベル123</Checkbox>
+              <Checkbox name="sample">ラベルテキスト123</Checkbox>
+              <Checkbox name="sample">長いラベルテキスト長いラベルテキスト</Checkbox>
+            </Stack>
+          </Fieldset>
+        </Base>
+      </Stack>
+    </Container>
+  </div>
+</EnvironmentProvider>
+```
+    </div>
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Image slot="img" src={checkBoxMobileDont} alt="ラベル付きのチェックボックスが改行なしで並んでいる。幅が狭い画面のため、ラベルテキストの途中で折り返しが発生している" />
     <Text slot="label">折り返しによって不揃いなレイアウトになる上、隣り合う要素の誤タップも起きやすい</Text>
+    <div slot="img">
+```tsx editable canvas=400 background=DOT hideCode
+<EnvironmentProvider environment={{ mobile: true }}>
+  <div className="shr-w-full shr-bg-background">
+    <AppHeader
+      appName="すごいアプリ"
+      currentTenantId="tenant-1"
+      features={[
+        {
+          favorite: false,
+          id: 'feature-1',
+          name: '従業員リスト',
+          position: null,
+          url: 'https://example.com'
+        },
+      ]}
+      navigations={[
+        {
+          children: 'ホーム',
+          href: 'https://example.com'
+        },
+      ]}
+      helpPageUrl="https://example.com"
+      schoolUrl="https://example.com"
+      userInfo={{
+        accountUrl: 'https://example.com',
+        email: 'smarthr@example.com',
+        empCode: '001',
+        firstName: '須磨',
+        lastName: '栄子'
+      }}
+    />
+    <Container>
+      <Stack gap={2}>
+        <Stack>
+          { /* プロダクトではautoPageTitleはtrueがデフォルトですが、デザインシステムでは例にもかかわらずページの見出しが変わってしまうためfalseにしています。 */ }
+          <PageHeading autoPageTitle={false}>見出し</PageHeading>
+          <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        </Stack>
+        <Base padding={{ block: 1.5, inline: 1}}>
+         <Fieldset
+            legend="タイトル"
+          >
+            <Cluster gap={{ row: 1, column: 1.5 }}>
+              <Checkbox name="sample" defaultChecked>ラベル</Checkbox>
+              <Checkbox name="sample">ラベルテキスト</Checkbox>
+              <Checkbox name="sample">ラベル123</Checkbox>
+              <Checkbox name="sample">ラベルテキスト123</Checkbox>
+              <Checkbox name="sample">長いラベルテキスト長いラベルテキスト</Checkbox>
+            </Cluster>
+          </Fieldset>
+        </Base>
+      </Stack>
+    </Container>
+  </div>
+</EnvironmentProvider>
+```
+    </div>
   </DoAndDont>
 </Cluster>
 
