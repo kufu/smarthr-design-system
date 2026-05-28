@@ -3,7 +3,7 @@ import { formatType, formatDefault, escapeTableCell } from './parse-metadata.js'
 import type { EslintRuleWithContent } from './fetch-eslint-rules.js';
 import { getRelevantCodeExamples } from './fetch-eslint-rules.js';
 import type { ChecklistSection } from './parse-checklist.js';
-import type { IndexMdxInfo } from './parse-index-mdx.js';
+import { stripMarkdownInline, type IndexMdxInfo } from './parse-index-mdx.js';
 import { toSkillSlug } from './name-mapping.js';
 
 export type SkillRenderOptions = {
@@ -40,7 +40,7 @@ export function renderSkill(opts: SkillRenderOptions): string {
       parts.push('');
     }
     if (indexInfo.description) parts.push(indexInfo.description);
-    if (indexInfo.leadParagraph && indexInfo.leadParagraph !== indexInfo.description) {
+    if (indexInfo.leadParagraph && stripMarkdownInline(indexInfo.leadParagraph) !== stripMarkdownInline(indexInfo.description)) {
       parts.push('');
       parts.push(indexInfo.leadParagraph);
     }

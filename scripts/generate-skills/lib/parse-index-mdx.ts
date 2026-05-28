@@ -98,7 +98,7 @@ function extractLeadParagraph(body: string, description: string): string {
       continue;
     }
 
-    if (trimmed === description) {
+    if (stripMarkdownInline(trimmed) === stripMarkdownInline(description)) {
       started = true;
       continue;
     }
@@ -108,4 +108,15 @@ function extractLeadParagraph(body: string, description: string): string {
   }
 
   return paragraphLines.join(' ');
+}
+
+/**
+ * Markdown のインライン記法を除去し、frontmatter description と本文冒頭の比較に使う。
+ */
+export function stripMarkdownInline(text: string): string {
+  return text
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/['"]/g, '')
+    .trim();
 }
