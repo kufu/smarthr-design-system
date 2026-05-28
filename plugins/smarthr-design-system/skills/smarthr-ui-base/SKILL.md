@@ -9,8 +9,6 @@ metadata:
 
 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。
 
-[矩形](/products/design-patterns/visual-grouping/#h3-3)で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「[セクション](/products/design-patterns/visual-grouping/#h3-5)」領域として示すときに使います。
-
 ## import
 
 ```ts

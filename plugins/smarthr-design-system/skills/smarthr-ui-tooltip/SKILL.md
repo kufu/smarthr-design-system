@@ -9,7 +9,9 @@ metadata:
 
 補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
 
-WarningIcon, FaArrowDownIcon, FaArrowLeftIcon, FaArrowRightIcon, FaArrowUpIcon, FaCircleInfoIcon, FaCirclePlusIcon, FaFileIcon, FaUserLargeIcon, TextLink } from 'smarthr-ui'
+- 補足的な説明テキストを表示する場合
+- アイコンだけのボタンにラベルを表示する場合
+- 省略されたテキストを全文表示する場合
 
 ## import
 

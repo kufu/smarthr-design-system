@@ -83,11 +83,25 @@ function extractLeadParagraph(body: string, description: string): string {
   const lines = body.split('\n');
   const paragraphLines: string[] = [];
   let started = false;
+  let inImportBlock = false;
 
   for (const line of lines) {
     const trimmed = line.trim();
 
-    if (trimmed.startsWith('import ')) continue;
+    if (inImportBlock) {
+      if (/\bfrom\s+['"]/.test(trimmed)) inImportBlock = false;
+      continue;
+    }
+
+    if (trimmed.startsWith('import ')) {
+      if (isMultilineImportStart(trimmed)) {
+        inImportBlock = true;
+      }
+      continue;
+    }
+
+    if (/^} from ['"]/.test(trimmed)) continue;
+
     if (trimmed.startsWith('<') && !trimmed.startsWith('<!--')) continue;
     if (trimmed.startsWith('```')) continue;
     if (trimmed.startsWith('##')) break;
@@ -98,7 +112,7 @@ function extractLeadParagraph(body: string, description: string): string {
       continue;
     }
 
-    if (trimmed === description) {
+    if (isSubstantivelyDuplicate(description, trimmed)) {
       started = true;
       continue;
     }
@@ -107,5 +121,69 @@ function extractLeadParagraph(body: string, description: string): string {
     paragraphLines.push(trimmed);
   }
 
-  return paragraphLines.join(' ');
+  return joinLeadParagraphLines(paragraphLines);
+}
+
+/** `import {` で始まり同一行に ` from ` がない複数行 import の開始行 */
+function isMultilineImportStart(line: string): boolean {
+  return /\bimport\s+\{/.test(line) && !/\bfrom\s+['"]/.test(line);
+}
+
+function isMarkdownListItem(line: string): boolean {
+  return /^[-*]\s+/.test(line) || /^\d+\.\s+/.test(line);
+}
+
+/** 連続する箇条書き行は改行で結合し、それ以外は同一段落としてスペースで結合する */
+function joinLeadParagraphLines(lines: string[]): string {
+  if (lines.length === 0) return '';
+
+  let result = lines[0]!;
+  for (let i = 1; i < lines.length; i++) {
+    const prev = lines[i - 1]!;
+    const current = lines[i]!;
+    const separator = isMarkdownListItem(prev) && isMarkdownListItem(current) ? '\n' : ' ';
+    result += separator + current;
+  }
+  return result;
+}
+
+/**
+ * Markdown のインライン記法を除去し、frontmatter description と本文冒頭の比較に使う。
+ */
+export function stripMarkdownInline(text: string): string {
+  return text
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/['"]/g, '')
+    .trim();
+}
+
+/**
+ * frontmatter description と leadParagraph が実質同じかどうか。
+ * Markdown 記法の差異に加え、本文が frontmatter の略称版であるケースも検出する。
+ */
+export function isSubstantivelyDuplicate(description: string, leadParagraph: string): boolean {
+  const a = stripMarkdownInline(description);
+  const b = stripMarkdownInline(leadParagraph);
+  if (!b) return true;
+  if (a === b) return true;
+  // lead が description を包含し追記がある場合は superset（Pagination 等）として別扱い
+  if (b.includes(a) && b.length > a.length) return false;
+  if (a.includes(b) || b.includes(a)) return true;
+
+  const firstSentenceA = a.split('。')[0] ?? '';
+  const firstSentenceB = b.split('。')[0] ?? '';
+  // 先頭文が同一で lead が description より短い = 本文が略称版（Checkbox 等）
+  if (firstSentenceA && firstSentenceA === firstSentenceB && b.length <= a.length) {
+    return true;
+  }
+
+  return false;
+}
+
+/** lead が description の内容を先頭に含み追記がある場合（Pagination 等） */
+export function isLeadSupersetOfDescription(description: string, leadParagraph: string): boolean {
+  const a = stripMarkdownInline(description);
+  const b = stripMarkdownInline(leadParagraph);
+  return Boolean(a && b && b.startsWith(a) && b.length > a.length);
 }

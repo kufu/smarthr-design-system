@@ -9,8 +9,6 @@ metadata:
 
 見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。
 
-見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「[セクション](/products/design-patterns/visual-grouping/#h3-5)」や「[ブロック](/products/design-patterns/visual-grouping/#h3-6)」に見出しをつけるときに使います。
-
 ## import
 
 ```ts

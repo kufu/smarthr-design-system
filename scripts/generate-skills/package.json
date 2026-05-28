@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "generate": "tsx index.ts",
+    "test": "node --import tsx --test lib/**/*.test.ts",
     "validate": "tsx validate.ts"
   },
   "dependencies": {

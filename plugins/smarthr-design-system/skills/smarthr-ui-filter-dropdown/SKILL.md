@@ -9,8 +9,6 @@ metadata:
 
 「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。
 
-「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。[Checkbox](/products/components/check-box/)/[RadioButton](/products/components/radio-button/)/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。
-
 ## import
 
 ```ts

@@ -9,8 +9,6 @@ metadata:
 
 FormControlやFieldsetで入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。
 
-[FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)で入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。
-
 ## import
 
 ```ts

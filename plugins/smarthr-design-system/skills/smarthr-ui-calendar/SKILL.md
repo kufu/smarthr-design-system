@@ -9,8 +9,6 @@ metadata:
 
 カレンダーを表示し日付を選択するためのコンポーネントです。基本的にDatePickerやWarekiPickerの内部部品として使われるため、単独では使用しません。
 
-カレンダーを表示し日付を選択するためのコンポーネントです。基本的に[DatePicker](/products/components/date-picker/)や[WarekiPicker](/products/components/wareki-picker/)の内部部品として使われるため、単独では使用しません。
-
 ## import
 
 ```ts

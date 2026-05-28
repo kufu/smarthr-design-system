@@ -3,7 +3,8 @@ import { formatType, formatDefault, escapeTableCell } from './parse-metadata.js'
 import type { EslintRuleWithContent } from './fetch-eslint-rules.js';
 import { getRelevantCodeExamples } from './fetch-eslint-rules.js';
 import type { ChecklistSection } from './parse-checklist.js';
-import type { IndexMdxInfo } from './parse-index-mdx.js';
+import { formatSkillBodyText } from './format-skill-body-text.js';
+import { isLeadSupersetOfDescription, isSubstantivelyDuplicate, type IndexMdxInfo } from './parse-index-mdx.js';
 import { toSkillSlug } from './name-mapping.js';
 
 export type SkillRenderOptions = {
@@ -39,10 +40,15 @@ export function renderSkill(opts: SkillRenderOptions): string {
       parts.push(`> ⚠️ **非推奨**${messagePlain ? `: ${messagePlain}` : ''}`);
       parts.push('');
     }
-    if (indexInfo.description) parts.push(indexInfo.description);
-    if (indexInfo.leadParagraph && indexInfo.leadParagraph !== indexInfo.description) {
-      parts.push('');
-      parts.push(indexInfo.leadParagraph);
+    const { description: bodyDescription, leadParagraph } = indexInfo;
+    if (bodyDescription && leadParagraph && isLeadSupersetOfDescription(bodyDescription, leadParagraph)) {
+      parts.push(formatSkillBodyText(leadParagraph));
+    } else {
+      if (bodyDescription) parts.push(formatSkillBodyText(bodyDescription));
+      if (leadParagraph && !isSubstantivelyDuplicate(bodyDescription, leadParagraph)) {
+        parts.push('');
+        parts.push(formatSkillBodyText(leadParagraph));
+      }
     }
     parts.push('');
   }
