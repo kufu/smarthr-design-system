@@ -183,6 +183,46 @@ pnpm install
 
    成功すると、`plugins/smarthr-design-system/skills/<コンポーネント名>/SKILL.md`が更新されます。
 
+### CIでの自動チェック（`validate-skills` ワークフロー）
+
+PRを出すと、GitHub Actionsで以下が自動実行されます。
+
+- **`validate`**: 上記の`pnpm --filter ./scripts/generate-skills validate`をCI上で実行します。`error`があるとマージブロックされます。
+- **`checklist-sync`**: `index.mdx`または`_components/*.mdx`を変更したコンポーネントについて、同一PR内で`checklist.yaml`も更新されているかを確認します。未更新の場合はマージブロックされます。
+- **`coverage`**: smarthr-uiの`metadata.json`と設計システム側`index.mdx`/`relatedComponents`の追従整合性をチェックします。`scripts/generate-skills/coverage-baseline.json`に列挙された既知違反は除外され、新規違反のみPRブロックの対象になります。
+
+`checklist-sync`が失敗した場合の対応は以下のいずれか:
+
+1. ローカルで`checklist.yaml`を更新（または新規作成）してPRに追加
+2. `generate-checklist` SKILLの判定で「スキップ対象」だった場合 → スキップ理由をPR descriptionに書き、PRに `skip-checklist-update` ラベルを付与
+3. typo / description のみ等の軽微修正で更新不要な場合 → PRに `skip-checklist-update` ラベルを付与
+
+**スキップ判定の典型例**（`generate-checklist` SKILLが自動判定します）:
+
+- Every Layout の外部委譲（`Stack` / `Cluster` / `Center` / `Sidebar` / `Reel`）
+- 索引のみの親ページ（`Combobox` 親、`Dropdown` 親）
+- 機能説明のみで指示文がないコンポーネント
+- 自動挙動・props 規約のみ（`AppHeader` 等）
+- `deprecated: true` 指定（`deprecatedMessage` で代替を示すため不要）
+- `description`で十分カバーされる内容
+- `index.mdx`冒頭の説明文がそのまま`SKILL.md`の Layer 1 に取り込まれるケース
+
+新規コンポーネント追加時は、`generate-checklist` SKILLを実行すると上記スキップ判定パターンに該当する場合は自動的に作成をスキップし、理由を報告します。報告された理由をPR descriptionに転記してラベルを付与してください。
+
+#### `coverage`が失敗した場合の対応
+
+`coverage`ジョブは、smarthr-uiに新しく追加された未対応コンポーネントや、`relatedComponents`の`name`がsmarthr-uiの公開exportに存在しないケース（typo・rename等）を検知します。
+
+対応のいずれか:
+
+1. 該当コンポーネントの`index.mdx`を新規作成、または親mdxの`relatedComponents`で紐付ける
+2. 別PRでの対応にしたい場合（smarthr-uiアップデートPRで新コンポーネント追加だけ後回しにする等）→ `scripts/generate-skills/coverage-baseline.json`に追加してCIを通す
+3. baselineに追加した違反は別PRで解消したら、`coverage-baseline.json`から削除する（解消済みエントリは`coverage`実行時に警告として通知されます）
+
+### マージ後の自動再生成（`generate-skills` ワークフロー）
+
+`feature/ai-agent-skills`（リリース後は`main`）にマージされると、`SKILL.md`が自動再生成され、差分があれば `github-actions[bot]` が自動コミット&pushします。手動で`pnpm --filter ./scripts/generate-skills generate`を実行する必要はありません。
+
 ### バリデーション出力の見方
 
 - **`error`**: 必須項目の欠落、型の不正、YAML構文エラーなど。CIで失敗するため必ず修正します。AIアシスタントに「validateのエラーを直して」と依頼すれば自動修正できます。

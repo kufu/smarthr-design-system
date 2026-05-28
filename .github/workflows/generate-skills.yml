@@ -1,0 +1,70 @@
+name: generate-skills
+
+# マージ後に SKILL.md を自動再生成し、差分があればそのまま push する。
+# - SKILL.md は自動生成物として扱い、PR 上の diff は気にしない方針。
+# - LLM は CI 上で回さない（M2-S5 の教訓）。LLM 実行は更新者ローカル限定、CI は再生成だけ。
+# - フォーク PR からの push トリガーは構造上発生しないが、念のため repo 一致を確認する。
+#
+# 【リリース時の切替】
+# 正式リリースで `main` に統合したら、以下 `branches:` を `main` に変更する。
+# 変更箇所はここ 1 箇所のみ（ハードコードしているのは on.push の制約による）。
+
+on:
+  push:
+    branches:
+      - feature/ai-agent-skills # リリース時に main に切替
+    paths:
+      - 'package.json'
+      - 'src/content/articles/products/components/**/index.mdx'
+      - 'src/content/articles/products/components/**/checklist.yaml'
+      - 'src/content/articles/products/components/**/_components/**/*.mdx'
+      - 'scripts/generate-skills/**'
+      - '.github/data/eslint-rule-names.txt'
+      - '.github/workflows/generate-skills.yml'
+  workflow_dispatch:
+
+# 同一ブランチでの再生成は直列化し、race を防ぐ。
+concurrency:
+  group: generate-skills-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    # フォーク PR からのトリガーは構造上発生しないが、念のため二重防御。
+    if: github.repository == 'kufu/smarthr-design-system'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate SKILL.md
+        # kufu/tamatebako は public のため未認証で fetch する。
+        # レートリミットに遭遇するようになったら secrets.GITHUB_TOKEN や PAT の利用を検討する。
+        run: pnpm --filter ./scripts/generate-skills generate
+
+      - name: Commit & push if SKILL.md changed
+        run: |
+          if [ -z "$(git status --porcelain plugins/smarthr-design-system/skills)" ]; then
+            echo "No SKILL.md changes. Skipping commit."
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add plugins/smarthr-design-system/skills
+          git commit -m "chore: SKILL.md 自動再生成 [skip ci]"
+          git push
