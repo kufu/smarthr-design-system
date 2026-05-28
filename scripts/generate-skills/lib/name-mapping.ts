@@ -37,6 +37,10 @@ export function toSkillSlug(dirName: string): string {
   return `${SKILL_NAME_PREFIX}${pascalToKebab(dirName)}`;
 }
 
+export function toDocFileName(dirName: string): string {
+  return `${dirName}.md`;
+}
+
 export function loadManualMappings(mappingPath: string): Record<string, string> {
   if (!fs.existsSync(mappingPath)) return {};
   return JSON.parse(fs.readFileSync(mappingPath, 'utf-8'));
