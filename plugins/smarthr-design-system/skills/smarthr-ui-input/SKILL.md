@@ -7,7 +7,7 @@ metadata:
   generated-from: layer1+layer2+layer3
 ---
 
-input[type='text']やinput[type='number']などの代替としてテキストや数値を1行で入力させるコンポーネントです。テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するときに使います。
+input[type=text]やinput[type=number]などの代替としてテキストや数値を1行で入力させるコンポーネントです。テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するときに使います。
 
 ## import
 

@@ -9,7 +9,7 @@ metadata:
 
 要素を上下左右中央に配置するためのレイアウトコンポーネントです。コンテンツを画面中央に置くとき、ボックス内に中央寄せをするときに使います。
 
-[Every Layout](https://every-layout.dev/)の`Center`を参考にしています。
+Every Layout（https://every-layout.dev/）のCenterを参考にしています。
 
 ## import
 

@@ -11,7 +11,7 @@ metadata:
 
 画面下部に固定表示する領域のためのコンポーネントです。
 
-画面下部に固定で表示する操作パネルです。主に[モーダルなUI](/products/design-patterns/modal-ui/)を作るために使います。
+画面下部に固定で表示する操作パネルです。主にモーダルなUI（https://smarthr.design/products/design-patterns/modal-ui/）を作るために使います。
 
 ## import
 

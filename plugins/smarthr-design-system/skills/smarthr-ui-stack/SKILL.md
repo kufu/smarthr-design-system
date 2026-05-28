@@ -9,7 +9,7 @@ metadata:
 
 要素を垂直方向に並べるためのレイアウトコンポーネントです。ページの「セクション」や「ブロック」、段落、フォーム項目などあらゆる要素を垂直に積み重ねて配置するときに使います。
 
-[Every Layout](https://every-layout.dev/)の`Stack`を参考にしています。
+Every Layout（https://every-layout.dev/）のStackを参考にしています。
 
 ## import
 

@@ -9,7 +9,7 @@ metadata:
 
 表示言語を切り替えるためのコンポーネントです。多言語対応したアプリケーションで利用者に言語選択UIを提供するときに使います。
 
-通常はAppHeaderの中に組み込んで使用します。詳細は[AppHeader](/products/components/app-header/)を参照してください。
+通常はAppHeaderの中に組み込んで使用します。詳細はAppHeaderを参照してください。
 
 ## import
 

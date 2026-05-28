@@ -9,7 +9,7 @@ metadata:
 
 FormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
 
-各種基準は[ActionDialog](/products/components/dialog/action-dialog/)と共通です。
+各種基準はActionDialogと共通です。
 
 ## import
 

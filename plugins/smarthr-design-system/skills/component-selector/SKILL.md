@@ -88,7 +88,7 @@ metadata:
 | SearchInput | 検索キーワードを入力させるためのコンポーネントです。検索フォームで検索語句を入力させるときに使います。 | `smarthr-design-system:smarthr-ui-search-input` |
 | SectioningContent | header、footer、section、articleなどのセクショニング要素を表現するためのコンポーネントです。Headingと組み合わせて見出しレベルを自動計算するときに使います。 | `smarthr-design-system:smarthr-ui-sectioning-content` |
 | SegmentedControl | 同一オブジェクトの異なる状態や視点を切り替えるためのコンポーネントです。リスト表示とカード表示の切替など、選択と同時に即座に表示を変えるときに使います。 | `smarthr-design-system:smarthr-ui-segmented-control` |
-| Select | select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢を検索不要で効率よくレイアウトするときに使います。 | `smarthr-design-system:smarthr-ui-select` |
+| Select | select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。 | `smarthr-design-system:smarthr-ui-select` |
 | Sidebar | メインコンテンツとサイドコンテンツの2カラムを配置するためのレイアウトコンポーネントです。「コレクションとシングルの2カラム」ページレイアウトなど、メインとサブの関係がある要素を左右に並べるときに使います。 | `smarthr-design-system:smarthr-ui-sidebar` |
 | SideMenu | 複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。 | `smarthr-design-system:smarthr-ui-side-menu` |
 | SideNav | 同一画面内のビューを縦方向に並べて切り替えるためのナビゲーションコンポーネントです。「コレクションとシングルの2カラム」ページレイアウトのコレクション領域で一覧から選んだオブジェクトの詳細を切り替えるとき、設定画面などで1つの画面内に並ぶビューを切り替えるときに使います。 | `smarthr-design-system:smarthr-ui-side-nav` |

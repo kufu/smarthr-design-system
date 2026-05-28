@@ -9,7 +9,7 @@ metadata:
 
 単一の入力要素にラベル、ヘルプ/エラー/補足のメッセージテキスト、入力必須か否かを紐づけるためのコンポーネントです。1つの入力欄にラベル付けするとき、入力欄にエラーや補足メッセージを表示するときに使います。
 
-FaCircleExclamationIcon, StatusLabel, Cluster, Text } from 'smarthr-ui'
+FaCircleExclamationIcon, StatusLabel, Cluster, Text } from smarthr-ui
 
 ## import
 

@@ -7,9 +7,9 @@ metadata:
   generated-from: layer1+layer3
 ---
 
-input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。
+input[type=file]要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。
 
-Text, Cluster } from 'smarthr-ui'
+Text, Cluster } from smarthr-ui
 
 ## import
 

@@ -9,7 +9,7 @@ metadata:
 
 要素を水平方向に並べ、はみ出した場合は水平方向にスクロールさせるレイアウトコンポーネントです。複数の要素を水平方向にスクロールさせて見せるときに使います。
 
-[Every Layout](https://every-layout.dev/)の`Reel`を参考にしています。 要素を折り返して並べたいときは[Cluster](/products/components/layout/cluster/)を使います。
+Every Layout（https://every-layout.dev/）のReelを参考にしています。 要素を折り返して並べたいときはClusterを使います。
 
 ## import
 
