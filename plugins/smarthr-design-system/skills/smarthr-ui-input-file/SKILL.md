@@ -7,7 +7,7 @@ metadata:
   generated-from: layer1+layer3
 ---
 
-input[type=file]要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。
+input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。
 
 DropZoneの内部でも使用されています。
 

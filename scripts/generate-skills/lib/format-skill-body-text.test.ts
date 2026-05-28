@@ -31,4 +31,15 @@ describe('formatSkillBodyText', () => {
       '具体的な使用方法はよくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）を参照してください。',
     );
   });
+
+  it('属性値や type セレクタの引用符は保持する', () => {
+    assert.equal(
+      formatSkillBodyText('input[type="text"]や`input[type=\'number\']`の代替'),
+      'input[type="text"]やinput[type=\'number\']の代替',
+    );
+    assert.equal(
+      formatSkillBodyText('alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン"'),
+      'alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン"',
+    );
+  });
 });

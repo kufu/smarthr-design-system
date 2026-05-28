@@ -6,7 +6,6 @@ export function formatSkillBodyText(text: string): string {
   return text
     .replace(/`([^`]+)`/g, '$1')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label: string, href: string) => formatLink(label, href))
-    .replace(/['"]/g, '')
     .trim();
 }
 
