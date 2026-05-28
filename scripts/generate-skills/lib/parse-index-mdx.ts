@@ -98,7 +98,7 @@ function extractLeadParagraph(body: string, description: string): string {
       continue;
     }
 
-    if (stripMarkdownInline(trimmed) === stripMarkdownInline(description)) {
+    if (isSubstantivelyDuplicate(description, trimmed)) {
       started = true;
       continue;
     }
@@ -119,4 +119,34 @@ export function stripMarkdownInline(text: string): string {
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/['"]/g, '')
     .trim();
+}
+
+/**
+ * frontmatter description と leadParagraph が実質同じかどうか。
+ * Markdown 記法の差異に加え、本文が frontmatter の略称版であるケースも検出する。
+ */
+export function isSubstantivelyDuplicate(description: string, leadParagraph: string): boolean {
+  const a = stripMarkdownInline(description);
+  const b = stripMarkdownInline(leadParagraph);
+  if (!b) return true;
+  if (a === b) return true;
+  // lead が description を包含し追記がある場合は superset（Pagination 等）として別扱い
+  if (b.includes(a) && b.length > a.length) return false;
+  if (a.includes(b) || b.includes(a)) return true;
+
+  const firstSentenceA = a.split('。')[0] ?? '';
+  const firstSentenceB = b.split('。')[0] ?? '';
+  // 先頭文が同一で lead が description より短い = 本文が略称版（Checkbox 等）
+  if (firstSentenceA && firstSentenceA === firstSentenceB && b.length <= a.length) {
+    return true;
+  }
+
+  return false;
+}
+
+/** lead が description の内容を先頭に含み追記がある場合（Pagination 等） */
+export function isLeadSupersetOfDescription(description: string, leadParagraph: string): boolean {
+  const a = stripMarkdownInline(description);
+  const b = stripMarkdownInline(leadParagraph);
+  return Boolean(a && b && b.startsWith(a) && b.length > a.length);
 }
