@@ -162,6 +162,85 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 </Fieldset>
 ```
 
+## アクセシビリティ
+
+### 開発時の考慮点
+
+#### テーブルのセル内に直接配置しない
+
+テーブル内にチェックボックスを配置する場合は、専用のコンポーネント（`TdCheckbox`、`ThCheckbox`）を使用してください。
+セル内に直接 `Checkbox` コンポーネントを配置すると、チェックボックスと行見出しが関連付かず、スクリーンリーダーでは「どの行に対するチェックボックスか」がわかりにくくなる場合があります。
+
+`TdCheckbox` を利用することで、チェックボックスと同じ行のテキストが関連付けられ、スクリーンリーダーを使用するユーザーにも、どの項目を選択するためのチェックボックスかが伝わりやすくなります。
+また、`ThCheckbox` では、「すべての項目を選択 / 解除」のアクセシブルネームが設定されるため、チェックボックスの目的が伝わりやすくなります。
+
+詳しい実装方法と注意点については、以下のTableコンポーネントのドキュメントを参照してください。
+
+- [セル内にチェックボックスやラジオボタンをそのまま配置しない](/products/components/table/#h3-0)
+- [TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する](/products/components/table/#h3-1)
+
+#### Fieldsetでグループ化する
+複数のCheckboxをグループとして提示する場合は、[Fieldset](/products/components/fieldset/)コンポーネントを使用してグループ化し、`legend` propsでグループの目的を説明してください。これにより、関連するCheckboxを「同じ質問・設定グループ」としてスクリーンリーダーへ正しく伝えられ、フォームの文脈を理解しやすくなります。
+
+#### 良い実装例
+
+```tsx
+<BaseColumn>
+  <Cluster gap={0.5} align="center">
+    <Heading type="screenTitle">
+      <WarningIcon color="WARNING_YELLOW" />
+      注意事項
+    </Heading>
+  </Cluster>
+  
+  <Text>
+    {オブジェクトの削除に付随する影響について説明する}
+  </Text>
+  
+  <BaseColumn bgColor="COLUMN" padding={1.5}>
+    {/* 単一のCheckbox  */}
+    <Checkbox name="confirm">
+      注意事項を確認しました。
+    </Checkbox>
+  </BaseColumn>
+</BaseColumn>
+
+
+// グループ化されたCheckbox
+<Fieldset
+  legend="通知設定"
+  innerMargin={0.5}
+>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+    <Checkbox name="emailNotification">メール通知を受け取る</Checkbox>
+    <Checkbox name="smsNotification">SMS通知を受け取る</Checkbox>
+    <Checkbox name="pushNotification">プッシュ通知を受け取る</Checkbox>
+  </Cluster>
+</Fieldset>
+```
+
+#### 悪い実装例
+
+```tsx
+// ❌ ラベルが関連付けられていない
+<input type="checkbox" />
+<span>利用規約に同意する</span>
+
+// ❌ グループの目的が不明確
+<div>
+  <Checkbox name="notification1">メール通知</Checkbox>
+  <Checkbox name="notification2">SMS通知</Checkbox>
+</div>
+```
+
+ラベルが関連付けられていない場合、スクリーンリーダーでは「チェックボックス」とだけ読み上げられ、何を選択するためのチェックボックスかわかりません。
+また、グループ化されていない場合、複数のチェックボックスが何についての選択肢なのか伝わりにくくなります。
+
+### 関連するチェックリスト
+簡易チェックリスト
+- [フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)
+- [入力する内容や、操作がラベルとして表示されている](/accessibility/check-list/label/)
+
 ## モバイル
 モバイル表示時は、画面の幅が狭いため基本的に縦並びにします。誤操作を防ぐために、[小さい要素間のマージン](/products/design-patterns/spacing-layout-pattern/#h5-4)に従って十分なマージンを確保してください。
 
@@ -187,4 +266,4 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 
 ## 参考文献
 
-※1. [\<label\\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)
+※1. [\<label\>: The Label element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#interactive_content)

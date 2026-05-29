@@ -77,6 +77,102 @@ render(
 
 入力項目の説明や例を載せる場合は[FormControl](/products/components/form-control/)のヘルプメッセージ（`helpMessage`）や入力例（`exampleMessage`）などを用い別途表示してください。
 
+## アクセシビリティ
+
+### 関連するチェックリスト
+簡易チェックリスト
+- [入力する内容や、操作がラベルとして表示されている](/accessibility/check-list/label/)
+- [フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)
+- [エラーの発生とエラーの内容が特定できる](/accessibility/check-list/error/)
+
+弱視・ロービジョンのユーザビリティチェックリスト
+- [関連するフォームパーツは隣り合う位置に配置する](/accessibility/low-vision-check-list/adjacent-fields/)
+
+### 基本的なアクセシビリティ機能
+
+#### FormControlとの統合
+[FormControl](/products/components/form-control/)と組み合わせることで、ラベルとTextarea、補助テキスト、エラーメッセージが、それぞれ適切に関連付けされます。
+
+#### キーボード操作
+- <kbd>Tab</kbd>キーでフォーカスの移動が可能
+- フォーカス状態が視覚的に明確に表示される
+- テキスト編集のための標準的なキーボード操作が使用可能
+
+#### エラー状態
+error属性を設定するとaria-invalid属性が自動的に付与され、スクリーンリーダーでフォーカス時にエラー状態であることが通知されます。
+
+### 開発時の考慮点
+
+#### FormControlと併用する
+Textareaコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を入力すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも入力の目的が伝達されます。
+
+#### placeholderをラベル代わりに使用しない
+`placeholder`属性は入力例を示すための補助的な機能であり、ラベルの代わりにはなりません。以下の理由から、必ずFormControlの`label`属性で可視ラベルを提供してください：
+
+- placeholderは入力中に消えてしまう
+- スクリーンリーダーで安定して読み上げられない環境がある
+- 視認性が低い（コントラストが低い）
+
+入力例を示したい場合は、FormControlの`exampleMessage`属性を使用してください。
+
+#### 文字数制限を適切に伝える
+`maxLetters`を使用して文字数制限を設定する場合、現在の入力文字数と上限が自動的に表示され、視覚的にもスクリーンリーダーでも伝わります。
+
+#### 良い実装例
+
+```tsx
+// 基本的な使い方
+<FormControl label="ご意見・ご感想">
+  <Textarea name="feedback" rows={4} />
+</FormControl>
+
+// ヘルプメッセージと文字数制限を含む
+<FormControl
+  label="感想をお寄せください"
+  helpMessage="製品の改善に役立てます"
+>
+  <Textarea
+    name="feedback"
+    rows={4}
+    maxLetters={140}
+  />
+</FormControl>
+
+// エラー状態
+<FormControl
+  label="ご意見・ご感想"
+  errorMessages="ご意見・ご感想を入力してください"
+>
+  <Textarea name="feedback" rows={4} error />
+</FormControl>
+```
+
+#### 悪い実装例
+
+```tsx
+// ❌ FormControlを使用せずラベルを別要素で表示
+<Stack gap={0.5}>
+  <Text styleType="blockTitle">ご意見・ご感想</Text>
+  <Textarea name="feedback" rows={4} />
+</Stack>
+
+// ❌ placeholderのみでラベルを提供
+<Textarea
+  name="feedback"
+  rows={4}
+  placeholder="ご意見・ご感想を入力してください"
+/>
+
+// ❌ aria-labelのみでラベルを提供
+<Textarea
+  name="feedback"
+  rows={4}
+  aria-label="ご意見・ご感想"
+/>
+```
+
+FormControlを使用しない場合、ラベルと入力要素が関連付けられず、スクリーンリーダーを使用するユーザーには入力の目的が伝わりません。また、placeholderやaria-labelのみでラベルを提供すると、視覚的な理解や音声入力での操作が困難になります。
+
 ## 状態
 
 ### 無効（disabled）
