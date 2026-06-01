@@ -161,59 +161,41 @@ async function fetchStories(commitHash: string): Promise<Record<string, UIStorie
   return uiStories;
 }
 
-const UI_DATA_CACHE_DIR = path.resolve(import.meta.dirname, '../node_modules/.cache');
-const VERSION_CACHE_DIR = path.join(UI_DATA_CACHE_DIR, `smarthr-ui@v${packageInfo.version}`);
-const VERSION_CACHE_FILE = path.join(VERSION_CACHE_DIR, 'data.json');
-
 /**
- * バージョン別キャッシュからデータを読み込む
+ * .cache 以下に保存
+ * @param data 保存するデータ
  */
-function loadFromVersionCache(): UIData | null {
-  if (fs.existsSync(VERSION_CACHE_FILE)) {
-    const raw = fs.readFileSync(VERSION_CACHE_FILE, 'utf-8');
-    return JSON.parse(raw) as UIData;
+function save(data: UIData) {
+  const cacheDir = path.resolve(import.meta.dirname, '../src/cache');
+
+  // cacheディレクトリが無ければ作成
+  if (!fs.existsSync(cacheDir)) {
+    fs.mkdirSync(cacheDir);
   }
-  return null;
+
+  const cacheFile = path.join(cacheDir, 'smarthr-ui.json');
+  fs.writeFileSync(cacheFile, JSON.stringify(data, null, 2));
 }
 
-/**
- * バージョン別キャッシュにデータを保存
- */
-function saveToVersionCache(data: UIData) {
-  if (!fs.existsSync(VERSION_CACHE_DIR)) {
-    fs.mkdirSync(VERSION_CACHE_DIR, { recursive: true });
-  }
-  fs.writeFileSync(VERSION_CACHE_FILE, JSON.stringify(data, null, 2));
-}
+console.log('📦️ リリース情報を取得中');
+const usedVersionRelease = await fetchSmartHRUIRelease();
 
-const cached = loadFromVersionCache();
+const commitHash = usedVersionRelease.sha.substring(0, 7);
 
-let uiVersion: UIData;
+console.log('📚️ stories.json を取得中');
+const uiStories = await fetchStories(commitHash);
 
-if (cached) {
-  console.log(`💾 リリース情報をキャッシュから取得完了 (v${packageInfo.version})`);
-  uiVersion = cached;
-} else {
-  console.log('📦️ リリース情報を取得中');
-  const usedVersionRelease = await fetchSmartHRUIRelease();
+console.log('✅️ 取得完了');
 
-  const commitHash = usedVersionRelease.sha.substring(0, 7);
+const uiVersion: UIData = {
+  version: packageInfo.version,
+  commitHash,
+  commitDate: usedVersionRelease.commit.author.date,
+  uiProps: getUIProps(),
+  uiStories: Object.values(uiStories),
+};
 
-  console.log('📚️ stories.json を取得中');
-  const uiStories = await fetchStories(commitHash);
+console.log('📝 保存中');
+save(uiVersion);
 
-  console.log('✅️ 取得完了');
-
-  uiVersion = {
-    version: packageInfo.version,
-    commitHash,
-    commitDate: usedVersionRelease.commit.author.date,
-    uiProps: getUIProps(),
-    uiStories: Object.values(uiStories),
-  };
-
-  console.log('💾 バージョンキャッシュに保存中');
-  saveToVersionCache(uiVersion);
-
-  console.log('✅️ 保存完了');
-}
+console.log('✅️ 保存完了');
