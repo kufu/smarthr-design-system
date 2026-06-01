@@ -1,12 +1,5 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
-import packageInfo from 'smarthr-ui/package.json';
-
-import type { UIData, UIProps, UIStories } from '@/types/ui';
-
-const cacheFile = path.resolve(process.cwd(), `node_modules/.cache/smarthr-ui@v${packageInfo.version}/data.json`);
-const uiData: UIData = JSON.parse(fs.readFileSync(cacheFile, 'utf-8'));
+import uiData from '@/cache/smarthr-ui.json';
+import type { UIProps, UIStories } from '@/types/ui';
 
 /** Smarthr UIのバージョン */
 export const UI_VERSION = uiData.version;
