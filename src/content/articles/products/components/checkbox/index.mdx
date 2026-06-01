@@ -206,7 +206,7 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 </BaseColumn>
 
 
-// グループ化されたCheckbox
+// 何について選択するグループなのか伝わらない
 <Fieldset
   legend="通知設定"
   innerMargin={0.5}
@@ -222,7 +222,7 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 #### 悪い実装例
 
 ```tsx
-// ❌ ラベルが関連付けられていない
+// ❌ チェックボックスとラベルが関連付けられていない
 <input type="checkbox" />
 <span>利用規約に同意する</span>
 
