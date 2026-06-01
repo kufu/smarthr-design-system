@@ -1,12 +1,12 @@
 ---
 title: 'SortDropdown'
-description: '主に表の並べ替え操作を統一するためのコンポーネントです。並べ替え項目と並び順を指定でき、ボタンラベルとアイコンで現在の並び順を表します。'
+description: 'コレクションの並べ替えを提供するためのドロップダウンコンポーネントです。主にテーブル以外のリストやカード一覧の並べ替え項目と並び順を設定するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
-主に表の並べ替え操作を統一するためのコンポーネントです。並べ替え項目と並び順を指定でき、ボタンラベルとアイコンで現在の並び順を表します。
+コレクションの並べ替えを提供するためのドロップダウンコンポーネントです。主にテーブル以外のリストやカード一覧の並べ替え項目と並び順を設定するときに使います。
 
 <ComponentStory name="SortDropdown" />
 
@@ -36,7 +36,7 @@ const sortFieldsMap = Object.fromEntries(
   sortFields.map((field) => [field.value, field])
 )
 
-const sortAccessary = {
+const sortAccessary: Record<string, { label: string; icon: React.ReactElement }> = {
   asc: {
     label: '昇順',
     icon: <FaArrowUpWideShortIcon />,
@@ -58,14 +58,14 @@ const SortDropdownForMobile = () => {
       </RemoteDialogTrigger>
       <FormDialog
         id="sort-dropdown-dialog"
-        title="並べ替え"
-        actionText="適用"
+        heading="並べ替え"
+        actionButton={{ text: '適用' }}
         size="XS"
-        onSubmit={(close, e) => {
+        onSubmit={(e, { close }) => {
           e.preventDefault()
           const formData = new FormData(e.currentTarget)
-          setSortKey(formData.get('sortField'))
-          setSortOrder(formData.get('sortOrder'))
+          setSortKey(formData.get('sortField') as string)
+          setSortOrder(formData.get('sortOrder') as string)
           close()
         }}
       >
@@ -84,14 +84,14 @@ const SortDropdownForMobile = () => {
                 name="sortOrder"
                 value="asc"
               >
-                {sortAccessary['asc'].label}
+                {sortAccessary.asc.label}
               </RadioButton>
               <RadioButton
                 defaultChecked={sortOrder === 'desc'}
                 name="sortOrder"
                 value="desc"
               >
-                {sortAccessary['desc'].label}
+                {sortAccessary.desc.label}
               </RadioButton>
             </Cluster>
           </Fieldset>

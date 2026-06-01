@@ -1,0 +1,189 @@
+import fs from 'node:fs';
+import matter from 'gray-matter';
+
+export type RelatedComponentEntry = {
+  name: string;
+  /**
+   * 子 mdx の description を上書きしたい場合に指定する。
+   * 子に独立 index.mdx があるケース (例: ActionDialog) では子 mdx の description が
+   * 優先採用されるため省略可。子 dir がないケース (例: Th, Td) では必須。
+   */
+  description?: string;
+};
+
+export type IndexMdxInfo = {
+  /** mdx frontmatter `title` (PascalCase コンポーネント名。例: "ActionDialog") */
+  title: string;
+  description: string;
+  leadParagraph: string;
+  deprecated: boolean;
+  deprecatedMessage: string;
+  /**
+   * 親 mdx に紐づくサブコンポーネント（派生継承・内部部品・カテゴリメンバーを含む）。
+   * 派生継承の例: `ControlledActionDialog`（`ActionDialog` を継承）
+   * 内部部品の例: `Th`、`Td`（`Table` の構成要素）
+   * カテゴリメンバーの例: `ActionDialog`、`FormDialog`（`Dialog` 配下）
+   */
+  relatedComponents: RelatedComponentEntry[];
+};
+
+export function parseIndexMdx(indexMdxPath: string): IndexMdxInfo | null {
+  if (!fs.existsSync(indexMdxPath)) return null;
+
+  const content = fs.readFileSync(indexMdxPath, 'utf-8');
+
+  let frontmatterTitle = '';
+  let frontmatterDescription = '';
+  let deprecated = false;
+  let deprecatedMessage = '';
+  let relatedComponents: RelatedComponentEntry[] = [];
+  let bodyContent = content;
+
+  try {
+    const parsed = matter(content);
+    frontmatterTitle = (parsed.data.title as string) ?? '';
+    frontmatterDescription = (parsed.data.description as string) ?? '';
+    deprecated = (parsed.data.deprecated as boolean) ?? false;
+    deprecatedMessage = (parsed.data.deprecatedMessage as string) ?? '';
+    relatedComponents = normalizeRelatedComponents(parsed.data.relatedComponents);
+    bodyContent = parsed.content;
+  } catch {
+    // Fallback: no frontmatter
+  }
+
+  const leadParagraph = extractLeadParagraph(bodyContent, frontmatterDescription);
+
+  return {
+    title: frontmatterTitle,
+    description: frontmatterDescription,
+    leadParagraph,
+    deprecated,
+    deprecatedMessage,
+    relatedComponents,
+  };
+}
+
+function normalizeRelatedComponents(value: unknown): RelatedComponentEntry[] {
+  if (!Array.isArray(value)) return [];
+  const result: RelatedComponentEntry[] = [];
+  for (const entry of value) {
+    if (!entry || typeof entry !== 'object') continue;
+    const name = (entry as { name?: unknown }).name;
+    const description = (entry as { description?: unknown }).description;
+    if (typeof name !== 'string') continue;
+    result.push({
+      name,
+      ...(typeof description === 'string' && description.length > 0 ? { description } : {}),
+    });
+  }
+  return result;
+}
+
+function extractLeadParagraph(body: string, description: string): string {
+  const lines = body.split('\n');
+  const paragraphLines: string[] = [];
+  let started = false;
+  let inImportBlock = false;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+
+    if (inImportBlock) {
+      if (/\bfrom\s+['"]/.test(trimmed)) inImportBlock = false;
+      continue;
+    }
+
+    if (trimmed.startsWith('import ')) {
+      if (isMultilineImportStart(trimmed)) {
+        inImportBlock = true;
+      }
+      continue;
+    }
+
+    if (/^} from ['"]/.test(trimmed)) continue;
+
+    if (trimmed.startsWith('<') && !trimmed.startsWith('<!--')) continue;
+    if (trimmed.startsWith('```')) continue;
+    if (trimmed.startsWith('##')) break;
+    if (trimmed.startsWith('# ')) continue;
+
+    if (trimmed === '') {
+      if (started && paragraphLines.length > 0) break;
+      continue;
+    }
+
+    if (isSubstantivelyDuplicate(description, trimmed)) {
+      started = true;
+      continue;
+    }
+
+    started = true;
+    paragraphLines.push(trimmed);
+  }
+
+  return joinLeadParagraphLines(paragraphLines);
+}
+
+/** `import {` で始まり同一行に ` from ` がない複数行 import の開始行 */
+function isMultilineImportStart(line: string): boolean {
+  return /\bimport\s+\{/.test(line) && !/\bfrom\s+['"]/.test(line);
+}
+
+function isMarkdownListItem(line: string): boolean {
+  return /^[-*]\s+/.test(line) || /^\d+\.\s+/.test(line);
+}
+
+/** 連続する箇条書き行は改行で結合し、それ以外は同一段落としてスペースで結合する */
+function joinLeadParagraphLines(lines: string[]): string {
+  if (lines.length === 0) return '';
+
+  let result = lines[0]!;
+  for (let i = 1; i < lines.length; i++) {
+    const prev = lines[i - 1]!;
+    const current = lines[i]!;
+    const separator = isMarkdownListItem(prev) && isMarkdownListItem(current) ? '\n' : ' ';
+    result += separator + current;
+  }
+  return result;
+}
+
+/**
+ * Markdown のインライン記法を除去し、frontmatter description と本文冒頭の比較に使う。
+ */
+export function stripMarkdownInline(text: string): string {
+  return text
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/['"]/g, '')
+    .trim();
+}
+
+/**
+ * frontmatter description と leadParagraph が実質同じかどうか。
+ * Markdown 記法の差異に加え、本文が frontmatter の略称版であるケースも検出する。
+ */
+export function isSubstantivelyDuplicate(description: string, leadParagraph: string): boolean {
+  const a = stripMarkdownInline(description);
+  const b = stripMarkdownInline(leadParagraph);
+  if (!b) return true;
+  if (a === b) return true;
+  // lead が description を包含し追記がある場合は superset（Pagination 等）として別扱い
+  if (b.includes(a) && b.length > a.length) return false;
+  if (a.includes(b) || b.includes(a)) return true;
+
+  const firstSentenceA = a.split('。')[0] ?? '';
+  const firstSentenceB = b.split('。')[0] ?? '';
+  // 先頭文が同一で lead が description より短い = 本文が略称版（Checkbox 等）
+  if (firstSentenceA && firstSentenceA === firstSentenceB && b.length <= a.length) {
+    return true;
+  }
+
+  return false;
+}
+
+/** lead が description の内容を先頭に含み追記がある場合（Pagination 等） */
+export function isLeadSupersetOfDescription(description: string, leadParagraph: string): boolean {
+  const a = stripMarkdownInline(description);
+  const b = stripMarkdownInline(leadParagraph);
+  return Boolean(a && b && b.startsWith(a) && b.length > a.length);
+}

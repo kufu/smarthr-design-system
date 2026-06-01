@@ -1,6 +1,6 @@
+import mdxRenderer from '@astrojs/mdx/server.js';
 import reactRenderer from '@astrojs/react/server.js';
 import { experimental_AstroContainer } from 'astro/container';
-import mdxRenderer from 'astro/jsx/server.js';
 import { parse } from 'node-html-parser';
 
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';

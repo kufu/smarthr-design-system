@@ -8,7 +8,7 @@ import type { ReactNode } from 'react';
 
 export type IndexNavItemsProps = {
   headings: NestedHeading[];
-  indexNavRef?: React.RefObject<HTMLUListElement>;
+  indexNavRef?: React.RefObject<HTMLUListElement | null>;
 } & Pick<ItemProps, 'currentHeadingId'>;
 
 export default function IndexNavItems({ headings, indexNavRef, currentHeadingId }: IndexNavItemsProps) {
@@ -20,7 +20,6 @@ export default function IndexNavItems({ headings, indexNavRef, currentHeadingId 
     ));
 
   return (
-    // eslint-disable-next-line smarthr/a11y-heading-in-sectioning-content
     <Nav className={styles.nav}>
       <ul ref={indexNavRef}>{nestedNavItems(headings)}</ul>
     </Nav>

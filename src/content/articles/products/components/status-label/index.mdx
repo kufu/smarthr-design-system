@@ -1,11 +1,13 @@
 ---
 title: 'StatusLabel'
-description: 'オブジェクトの状態を伝えるためのこのコンポーネントです。'
+description: 'オブジェクトの状態を短いラベルで伝えるためのコンポーネントです。Table内のステータス欄や、オブジェクト詳細の画面タイトルで状態を提示するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
-オブジェクトの状態を伝えるためのこのコンポーネントです。重要度によって2種類の見た目を使い分けます。警告やエラーは特別な状態として見た目を持っています。
+オブジェクトの状態を短いラベルで伝えるためのコンポーネントです。[Table](/products/components/table/)内のステータス欄や、オブジェクト詳細の画面タイトルで状態を提示するときに使います。
+
+重要度によって2種類の見た目を使い分けます。警告やエラーは特別な状態として見た目を持っています。
 
 <ComponentStory name="StatusLabel" />
 
@@ -29,22 +31,26 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
 
 ```tsx editable
 <Stack>
-  <Stack gap={0.5}>
-    <Heading type="blockTitle" tag="h4">特殊なステータス</Heading>
-    <Cluster>
-      <StatusLabel type="warning">警告</StatusLabel>
-      <StatusLabel type="error">エラー</StatusLabel>
-    </Cluster>
-  </Stack>
-  <Stack gap={0.5}>
-    <Heading type="blockTitle" tag="h4">その他のステータス</Heading>
-    <Cluster>
-      <StatusLabel type="green">ラベル名</StatusLabel>
-      <StatusLabel type="blue">ラベル名</StatusLabel>
-      <StatusLabel type="grey">ラベル名</StatusLabel>
-      <StatusLabel type="red">ラベル名</StatusLabel>
-    </Cluster>
-  </Stack>
+  <Section>
+    <Stack gap={0.5}>
+      <Heading type="blockTitle">特殊なステータス</Heading>
+      <Cluster>
+        <StatusLabel type="warning">警告</StatusLabel>
+        <StatusLabel type="error">エラー</StatusLabel>
+      </Cluster>
+    </Stack>
+  </Section>
+  <Section>
+    <Stack gap={0.5}>
+      <Heading type="blockTitle">その他のステータス</Heading>
+      <Cluster>
+        <StatusLabel type="green">ラベル名</StatusLabel>
+        <StatusLabel type="blue">ラベル名</StatusLabel>
+        <StatusLabel type="grey">ラベル名</StatusLabel>
+        <StatusLabel type="red">ラベル名</StatusLabel>
+      </Cluster>
+    </Stack>
+  </Section>
 </Stack>
 ```
 

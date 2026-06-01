@@ -1,12 +1,12 @@
 ---
 title: 'FilterDropdown'
-description: '一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。'
+description: '「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
-FilterDropdownは一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。
+「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。[Checkbox](/products/components/check-box/)/[RadioButton](/products/components/radio-button/)/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。
 
 <ComponentStory name="FilterDropdown" />
 
@@ -34,7 +34,7 @@ FilterDropdownは一覧の絞り込みを行なうためのコンポーネント
 モバイル端末は画面が小さく誤操作しやすいため、ドロップダウンパネルは[ActionDialog](/products/components/dialog/action-dialog/)を用いてモーダルに表示します。
 
 ```tsx editable noIframe withStyled
-const FilterIcon = ({ filtered }) => (
+const FilterIcon = ({ filtered }: { filtered: boolean }) => (
   <span className={`shr-relative shr-leading-none ${filtered ? 'shr-text-main' : ''}`}>
     <FaFilterIcon />
     {filtered && (
@@ -55,10 +55,10 @@ const FilterDropdownForMobile = () => {
       </RemoteDialogTrigger>
       <FormDialog
         id="filter-dropdown-dialog"
-        title="絞り込み"
-        actionText="適用"
+        heading="絞り込み"
+        actionButton={{ text: '適用' }}
         size="S"
-        onSubmit={(close, e) => {
+        onSubmit={(e, { close }) => {
           e.preventDefault()
           const formData = new FormData(e.currentTarget)
           setFiltered(formData.get('filtered') === 'true')

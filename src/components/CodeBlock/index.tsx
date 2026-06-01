@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 // TODO SmartHR な Dark テーマほしいな!!!
 import { Highlight, themes } from 'prism-react-renderer';
-import React, { type CSSProperties } from 'react';
 import * as ui from 'smarthr-ui';
 
 import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
@@ -12,24 +11,7 @@ import LiveContainer from './LiveContainer';
 import styles from './index.module.scss';
 import sharedStyles from './shared.module.scss';
 
-import type { LiveProvider } from 'react-live';
-import type { Gap, SeparateGap } from 'smarthr-ui/types';
-
-type LiveProviderProps = React.ComponentProps<typeof LiveProvider>;
-
-export type LiveContainerProps = {
-  code?: string;
-  language?: string;
-  withStyled?: boolean;
-  /**
-   * @deprecated noIframe は非推奨です。iframeが原因で表示が崩れるなどやむを得ない場合のみ使用してください。
-   */
-  noIframe?: boolean;
-} & Pick<LiveProviderProps, 'scope'> & {
-    gap?: Gap | SeparateGap;
-    align?: CSSProperties['alignItems'];
-    layout?: 'none' | 'product';
-  };
+import type { LiveContainerProps } from './types';
 
 type Props = {
   className?: string;
@@ -57,11 +39,11 @@ export default function CodeBlock({
   withStyled = false,
   renderingComponent,
   componentTitle,
-  gap,
-  align,
-  layout,
   code,
   language,
+  background = 'WHITE',
+  canvas,
+  hideCode,
   ...componentProps // 残りのpropsはLivePreviewするコンポーネントに渡す
 }: Props) {
   // Storybookとのコード共通化のため、childrenで渡ってくるコードには`render()`が含まれていない。LivePreviewでコンポーネントのレンダリングが必要な場合には、末尾に追加する。
@@ -88,12 +70,12 @@ export default function CodeBlock({
           )}
           <LiveContainer
             code={codeString}
+            hideCode={hideCode}
             language={language}
             withStyled={withStyled}
             noIframe={noIframe}
-            gap={gap}
-            align={align}
-            layout={layout}
+            background={background}
+            canvas={canvas}
           />
         </div>
       </ui.IntlProvider>

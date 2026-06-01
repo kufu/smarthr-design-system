@@ -1,0 +1,19 @@
+items:
+  # 使用上の注意 > SegmentedControl との違い
+  - severity: must
+    text: '異なる状態（オン/オフ以外）を表す場合は Switch ではなく SegmentedControl を使う'
+    source_section: '使用上の注意 > SegmentedControl との違い'
+
+  # 使用上の注意 > ラベルの表示
+  - severity: must
+    text: 'Switch にはラベルをつける'
+    source_section: '使用上の注意 > ラベルの表示'
+    sub_items:
+      - '周囲のコンテキストによって省略できる'
+      - 'Switch の状態が切り替わってもラベルは変更しない'
+
+  # レイアウト > [WIP] モバイル
+  - severity: must
+    text: 'モバイルでは Switch のサイズを大きくする'
+    source_section: 'レイアウト > [WIP] モバイル'
+    note: 'smarthr-ui 未実装（WIP: モバイル自動切替予定）。除外検討'
