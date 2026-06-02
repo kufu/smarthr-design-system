@@ -18,7 +18,7 @@ const REPO_ROOT = path.resolve(__dirname, '../..');
 const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/components');
 const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
-const ESLINT_CACHE_PATH = path.join(__dirname, '.cache/eslint-rules.json');
+const ESLINT_SNAPSHOT_PATH = path.join(__dirname, 'eslint-rules-snapshot.json');
 const ESLINT_RULE_NAMES_PATH = path.join(REPO_ROOT, '.github/data/eslint-rule-names.txt');
 
 /**
@@ -78,8 +78,8 @@ async function main() {
   const groups = autoSplitGroups(rawGroups, new Set(relatedSkills.keys()));
   console.log(`   ${groups.size} コンポーネントグループを検出`);
 
-  console.log('🌐 eslint-plugin-smarthr ルール README を取得中…（キャッシュ優先）');
-  const rules = await fetchEslintRules(ESLINT_CACHE_PATH, ESLINT_RULE_NAMES_PATH);
+  console.log('🌐 eslint-plugin-smarthr ルール README を読み込み中…（コミット済みスナップショット優先）');
+  const rules = await fetchEslintRules(ESLINT_SNAPSHOT_PATH, ESLINT_RULE_NAMES_PATH);
   console.log(`   ${rules.length} ルールを取得`);
 
   const allDisplayNames = new Set<string>();
