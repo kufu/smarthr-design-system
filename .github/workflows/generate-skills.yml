@@ -5,14 +5,16 @@ name: generate-skills
 # - LLM は CI 上で回さない（M2-S5 の教訓）。LLM 実行は更新者ローカル限定、CI は再生成だけ。
 # - フォーク PR からの push トリガーは構造上発生しないが、念のため repo 一致を確認する。
 #
-# 【リリース時の切替】
-# 正式リリースで `main` に統合したら、以下 `branches:` を `main` に変更する。
-# 変更箇所はここ 1 箇所のみ（ハードコードしているのは on.push の制約による）。
+# 【push 先について】
+# main にマージされた変更を起点に再生成し、生成物 (plugins/.../skills) の差分を
+# github-actions[bot] が直接コミット&push する。main は保護ブランチのため、
+# bot の push を許可する bypass 設定（ruleset / branch protection の bypass actor に
+# github-actions を追加）がリポジトリ側に必要。
 
 on:
   push:
     branches:
-      - feat/generate-skills-progressive-disclosure # リリース時に main に切替
+      - main
     paths:
       - 'package.json'
       - 'src/content/articles/products/components/**/index.mdx'
