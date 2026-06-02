@@ -98,7 +98,7 @@ OGP画像の動的生成とGoatcha画像のホスティングに[Cloudinary](htt
 
 このセクションは、コンポーネントページ（`index.mdx`）を執筆する人向けの説明です。
 
-smarthr-uiを使うAIエージェント（Claude Code / Cursorなど）向けに、コンポーネントごとの利用ガイドを`SKILL.md`として配布しています。`SKILL.md`は以下の3層から自動合成されます。
+smarthr-uiを使うAIエージェント（Claude Code / Cursorなど）向けに、コンポーネントごとの利用ガイドを`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`として配布しています。ガイドは以下の3層から自動合成されます。
 
 - Layer 1: `metadata.json`（コンポーネント基本情報）
 - Layer 2: `eslint-plugin-smarthr`のルールREADME（自動検出可能なルール）
@@ -144,13 +144,13 @@ pnpm install
    - **項目の網羅性**: `index.mdx`に書かれているルールが漏れなく抽出されているか
    - **不要項目の混入**: 自動挙動の説明やprops規約のみの項目など、AIエージェント向けの判断材料にならない項目が含まれていないか
    - **`text`の表現**: Do/Don't形・終止形になっているか（「〜してください」など強い指示の言い回しが残っていないか）
-5. 以下のコマンドを実行して、`checklist.yaml`を`SKILL.md`に反映します。
+5. 以下のコマンドを実行して、`checklist.yaml`をコンポーネントガイドに反映します。
 
    ```sh
    pnpm --filter ./scripts/generate-skills generate
    ```
 
-   成功すると、`plugins/smarthr-design-system/skills/<コンポーネント名>/SKILL.md`が追加されます。
+   成功すると、`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`が追加されます。
 
 ### checklist.yamlの更新
 
@@ -175,13 +175,13 @@ pnpm install
    - **削除項目**: 該当ルールが`index.mdx`から本当に削除されているか（誤削除でないか）
    - **更新項目**: 変更前後のdiffが`index.mdx`の変更意図と一致しているか
    - **無変更項目**: 既存のレビュー済み項目が誤って書き換わっていないか
-4. `SKILL.md`を再生成します。
+4. ガイドを再生成します。
 
    ```sh
    pnpm --filter ./scripts/generate-skills generate
    ```
 
-   成功すると、`plugins/smarthr-design-system/skills/<コンポーネント名>/SKILL.md`が更新されます。
+   成功すると、`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`が更新されます。
 
 ### バリデーション出力の見方
 

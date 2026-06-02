@@ -68,20 +68,23 @@ async function ghFetch(url: string, options: GhFetchOptions = {}): Promise<Respo
 
 /**
  * tamatebako の eslint-plugin-smarthr/rules/ 配下から各ルールの README.md を取得する。
- * 結果は cachePath にキャッシュし、存在すれば再利用する。
+ *
+ * `snapshotPath` にコミット済みスナップショットが存在すればそれを再利用し、GitHub API も
+ * `GITHUB_TOKEN` も不要でオフライン生成できる（通常運用）。スナップショットが無い場合のみ
+ * GitHub API から取得し、`snapshotPath` に書き出す（上流ルール更新時の意図的な再生成）。
  *
  * `ruleNamesOutputPath` を渡した場合、上流のルールディレクトリ名一覧 (除外前の全件) を
  * 改行区切りで書き出す。AI プロンプト (`.github/prompts/generate-checklist.md` 等) から参照される。
  */
-export async function fetchEslintRules(cachePath: string, ruleNamesOutputPath?: string): Promise<EslintRuleRaw[]> {
-  if (fs.existsSync(cachePath)) {
-    const raw = JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
+export async function fetchEslintRules(snapshotPath: string, ruleNamesOutputPath?: string): Promise<EslintRuleRaw[]> {
+  if (fs.existsSync(snapshotPath)) {
+    const raw = JSON.parse(fs.readFileSync(snapshotPath, 'utf-8'));
     if (Array.isArray(raw)) return raw as EslintRuleRaw[];
   }
 
   if (!process.env.GITHUB_TOKEN) {
     console.warn(
-      '⚠️  GITHUB_TOKEN が未設定です。GitHub API の unauthenticated rate limit (60 req/hour) のためルール取得が rate limit にかかる可能性があります。',
+      '⚠️  スナップショットが無く GITHUB_TOKEN も未設定です。GitHub API の unauthenticated rate limit (60 req/hour) のためルール取得が rate limit にかかる可能性があります。上流ルールを更新する場合は GITHUB_TOKEN を設定してください。',
     );
   }
 
@@ -112,8 +115,8 @@ export async function fetchEslintRules(cachePath: string, ruleNamesOutputPath?: 
     rules.push({ name: ruleName, readme });
   }
 
-  fs.mkdirSync(path.dirname(cachePath), { recursive: true });
-  fs.writeFileSync(cachePath, JSON.stringify(rules, null, 2));
+  fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
+  fs.writeFileSync(snapshotPath, JSON.stringify(rules, null, 2));
   return rules;
 }
 
