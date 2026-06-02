@@ -12,7 +12,7 @@ name: generate-skills
 on:
   push:
     branches:
-      - feature/ai-agent-skills # リリース時に main に切替
+      - feat/generate-skills-progressive-disclosure # リリース時に main に切替
     paths:
       - 'package.json'
       - 'src/content/articles/products/components/**/index.mdx'
@@ -52,8 +52,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Generate SKILL.md
-        # kufu/tamatebako は public のため未認証で fetch する。
-        # レートリミットに遭遇するようになったら secrets.GITHUB_TOKEN や PAT の利用を検討する。
+        # eslint ルール README はコミット済みスナップショット (eslint-rules-snapshot.json) を
+        # 使うため、CI 上ではネットワーク・GITHUB_TOKEN なしで生成できる。
+        # 上流ルールを更新する場合はローカルでスナップショットを再生成してコミットする。
         run: pnpm --filter ./scripts/generate-skills generate
 
       - name: Commit & push if SKILL.md changed
