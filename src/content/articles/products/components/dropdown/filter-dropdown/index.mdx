@@ -1,12 +1,12 @@
 ---
 title: 'FilterDropdown'
-description: '一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。'
+description: '「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
-FilterDropdownは一覧の絞り込みを行なうためのコンポーネントで、パネル内に自由に入力要素を配置できるほか、絞り込みを適用したり解除したりするための機能も有しています。
+「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。[Checkbox](/products/components/check-box/)/[RadioButton](/products/components/radio-button/)/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。
 
 <ComponentStory name="FilterDropdown" />
 
@@ -56,7 +56,7 @@ const FilterDropdownForMobile = () => {
       <FormDialog
         id="filter-dropdown-dialog"
         heading="絞り込み"
-        actionText="適用"
+        actionButton={{ text: '適用' }}
         size="S"
         onSubmit={(e, { close }) => {
           e.preventDefault()

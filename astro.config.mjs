@@ -9,6 +9,8 @@ import remarkEmoji from 'remark-emoji';
 import remarkCodeBlock from './src/remark/remark-code-block';
 import remarkIndexIdHeader from './src/remark/remark-index-id-header';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://smarthr.design',
@@ -26,6 +28,7 @@ export default defineConfig({
       },
     }),
     tailwind(),
+    sitemap(),
   ],
   markdown: {
     syntaxHighlight: false,

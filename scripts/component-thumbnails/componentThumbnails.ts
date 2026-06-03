@@ -25,7 +25,7 @@ const loadPreviousStories = async () => {
 
 // ストーリー情報を保存
 const saveStoryCache = async (storyData) => {
-  await fs.writeFile(cacheFilePath, JSON.stringify(storyData, null, 2), 'utf8');
+  await fs.writeFile(cacheFilePath, `${JSON.stringify(storyData, null, 2)}\n`, 'utf8');
 };
 
 // ストーリーが変更されたかチェック

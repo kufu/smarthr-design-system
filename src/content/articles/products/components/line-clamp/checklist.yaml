@@ -1,0 +1,30 @@
+items:
+  # 使用上の注意 > LineClampの使用を推奨するケース > 付加的な情報を表示する場合
+  - severity: should
+    text: 'ユーザーの操作過程で「確認が必須ではない」程度の情報を表示する場合は LineClamp の使用を検討してよい'
+    source_section: '使用上の注意 > LineClampの使用を推奨するケース > 付加的な情報を表示する場合'
+
+  # 使用上の注意 > LineClampの使用を推奨するケース > 全文表示するとレイアウトが崩れて視認性が下がる場合
+  - severity: should
+    text: 'テーブルのセル内やリスト形式の UI で視認性を確保する場合は LineClamp の使用を検討してよい'
+    source_section: '使用上の注意 > LineClampの使用を推奨するケース > 全文表示するとレイアウトが崩れて視認性が下がる場合'
+
+  # 使用上の注意 > LineClampの使用を避けるケース > 単に情報を省略して小さく表示する場合
+  - severity: avoid
+    text: '単に情報を省略する目的では LineClamp を使用しない'
+    source_section: '使用上の注意 > LineClampの使用を避けるケース > 単に情報を省略して小さく表示する場合'
+
+  # 使用上の注意 > LineClampの使用を避けるケース > 重要な情報を省略する場合
+  - severity: avoid
+    text: 'ユーザーが把握しておかないと操作が進められないような重要な情報には LineClamp を使用せず、常に表示することを検討する'
+    source_section: '使用上の注意 > LineClampの使用を避けるケース > 重要な情報を省略する場合'
+    sub_items:
+      - 'パスワードに使用できる文字や、エラーになる入力値などの入力要件'
+      - '入力エラーとなった際のエラーメッセージ'
+      - '操作補助になる情報（ショートカットなど）'
+      - 'ボタンなどの操作 UI のラベル'
+
+  # モバイル
+  - severity: must
+    text: 'タッチデバイスでは hover 表示を前提とした Tooltip は使用せず、Disclosure を使用する'
+    source_section: 'モバイル'

@@ -1,6 +1,6 @@
 ---
 title: 'Checkbox'
-description: "ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。"
+description: "input[type='checkbox']要素の代替としてオン/オフや真偽の状態を入力させるコンポーネントです。5個以下の選択肢から複数の値を選択させるとき、即時反映ではなく送信ボタンで確定させるときに使います。"
 ---
 import { Image } from 'astro:assets'
 import ComponentStory from '@/components/article/ComponentStory.astro'
@@ -17,9 +17,7 @@ import checkBoxAlignmentDont from './images/check-box-alignment-dont.png';
 import checkBoxMobileDo from './images/check-box-mobile-do.png';
 import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 
-
-ユーザーに「true/false」といった正反対の状態を入力させるコンポーネントです。
-`input[type='checkbox']`の代わりとして使用します。
+`input[type="checkbox"]`要素の代替としてオン/オフや真偽の状態を入力させるコンポーネントです。5個以下の選択肢から複数の値を選択させるとき、即時反映ではなく送信ボタンで確定させるときに使います。
 
 <ComponentStory name="Checkbox" />
 
@@ -33,6 +31,8 @@ import checkBoxMobileDont from './images/check-box-mobile-dont.png';
 
 - 複数の選択肢から単一選択しかできず、表示領域に余裕がある場合は原則として[RadioButton](/products/components/radio-button/)を検討してください。
 - 選択肢が多い場合や表示領域が狭い場合は、[MultiCombobox](/products/components/combo-box/multi-combo-box/)を検討してください。
+
+選択操作に関わるコンポーネントの使い分けは[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
 
 ```tsx editable
 <Fieldset

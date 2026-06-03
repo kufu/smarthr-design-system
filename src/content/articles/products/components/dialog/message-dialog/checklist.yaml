@@ -1,0 +1,44 @@
+items:
+  # 使用上の注意 > ダイアログを乱用しない
+  - severity: should
+    text: 'ダイアログとして表示する・操作させるべき内容なのか、慎重にユースケースを定義し使用を検討する'
+    source_section: '使用上の注意 > ダイアログを乱用しない'
+
+  # 使用上の注意 > 複数のモーダルダイアログを同時に表示しない (via MultipleModalWarning.mdx)
+  - severity: avoid
+    text: 'モーダルダイアログ（ActionDialog や MessageDialog）を 1 つの操作で複数個表示したり、モーダルダイアログ上の操作によって 2 つ目のモーダルダイアログを表示しない'
+    source_section: '使用上の注意 > 複数のモーダルダイアログを同時に表示しない (via MultipleModalWarning.mdx)'
+
+  # 使用上の注意 > フィードバックとして使わない
+  - severity: must
+    text: 'MessageDialog を原則として処理結果のフィードバックには使わず、フィードバックには NotificationBar や ResponseMessage などを使う'
+    source_section: '使用上の注意 > フィードバックとして使わない'
+
+  # 構成 > 1. タイトル
+  - severity: must
+    text: 'このダイアログで表示する情報を簡潔に表現するタイトルをつける'
+    source_section: '構成 > 1. タイトル'
+
+  - severity: should
+    text: 'サブタイトルは基本的に使わない'
+    source_section: '構成 > 1. タイトル'
+
+  # 構成 > 2. 本文
+  - severity: must
+    text: '入力要素を含めたい場合は MessageDialog ではなく ActionDialog を使用する'
+    source_section: '構成 > 2. 本文'
+
+  # 構成 > 3. アクションボタン
+  - severity: must
+    text: 'ダイアログを閉じるボタンを配置し、ラベルは `閉じる` とする'
+    source_section: '構成 > 3. アクションボタン'
+
+  # モバイル
+  - severity: should
+    text: 'モバイルで情報量が多い場合は拡大したダイアログの採用を検討する'
+    source_section: 'モバイル'
+    sub_items:
+      - '採用を検討するケース: ダイアログ内で多くのスクロールを伴う場合・入力や編集などキーボード入力操作が多い場合'
+      - '［閉じる］ボタンはタイトルの右端に配置する'
+      - 'ダイアログの左右と裏側の領域（スクリムで隠されている領域）のパディングは `0（0px）` とする'
+    note: 'smarthr-ui 未実装（WIP: 拡大したダイアログ実装予定）。除外検討'

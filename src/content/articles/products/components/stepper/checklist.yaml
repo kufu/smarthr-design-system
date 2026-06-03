@@ -1,0 +1,9 @@
+items:
+  # モバイル
+  - severity: must
+    text: 'モバイル環境で `type="horizontal"` を使用すると水平方向のスクロールが生じる場合は `type="vertical"` を使う'
+    source_section: 'モバイル'
+
+  - severity: should
+    text: '隣接するセクションとのレイアウト調整が困難な場合は Stepper を使用せず他の表現方法を検討する'
+    source_section: 'モバイル'

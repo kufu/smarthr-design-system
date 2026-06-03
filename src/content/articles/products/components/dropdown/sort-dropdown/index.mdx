@@ -1,12 +1,12 @@
 ---
 title: 'SortDropdown'
-description: '主に表の並べ替え操作を統一するためのコンポーネントです。並べ替え項目と並び順を指定でき、ボタンラベルとアイコンで現在の並び順を表します。'
+description: 'コレクションの並べ替えを提供するためのドロップダウンコンポーネントです。主にテーブル以外のリストやカード一覧の並べ替え項目と並び順を設定するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
-主に表の並べ替え操作を統一するためのコンポーネントです。並べ替え項目と並び順を指定でき、ボタンラベルとアイコンで現在の並び順を表します。
+コレクションの並べ替えを提供するためのドロップダウンコンポーネントです。主にテーブル以外のリストやカード一覧の並べ替え項目と並び順を設定するときに使います。
 
 <ComponentStory name="SortDropdown" />
 
@@ -59,7 +59,7 @@ const SortDropdownForMobile = () => {
       <FormDialog
         id="sort-dropdown-dialog"
         heading="並べ替え"
-        actionText="適用"
+        actionButton={{ text: '適用' }}
         size="XS"
         onSubmit={(e, { close }) => {
           e.preventDefault()

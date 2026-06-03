@@ -5,8 +5,23 @@
   "license": "MIT",
   "type": "module",
   "lint-staged": {
-    "*.{astro,ts,tsx,md,mdx}": [
-      "pnpm run lint --"
+    "src/**/*.{astro,ts,tsx}": [
+      "pnpm prelint",
+      "pnpm lint:ts:content",
+      "pnpm lint:ts:codeblock",
+      "pnpm lint:check",
+      "pnpm format:eslint",
+      "pnpm format:prettier"
+    ],
+    "src/**/*.md{,x}": [
+      "pnpm prelint",
+      "pnpm lint:check",
+      "pnpm lint:text",
+      "pnpm format:text",
+      "pnpm format:prettier"
+    ],
+    "!(src/**/*.{astro,ts,tsx,md,mdx})": [
+      "pnpm format:prettier"
     ]
   },
   "scripts": {
@@ -27,38 +42,40 @@
     "format:eslint": "eslint --fix 'src/**/*.{astro,ts,tsx}'",
     "format:prettier": "prettier --write .",
     "format:text": "textlint --fix 'src/content/**/*.md{,x}'",
-    "format": "run-s format:*",
+    "format": "run-p format:*",
     "export:zip-images": "tsx ./scripts/zipImages.ts",
     "update:ui-data": "tsx ./scripts/fetch-ui-data.ts",
     "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
     "generate:thumbnails": "cd ./scripts/component-thumbnails && pnpm install && cd ../.. && tsx ./scripts/component-thumbnails/componentThumbnails.ts",
     "copy:smarthr-ui-css": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
-    "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest",
+    "upgrade:smarthr-ui": "pnpm -r upgrade smarthr-ui@latest",
     "postupgrade:smarthr-ui": "run-s copy:smarthr-ui-css generate:thumbnails",
     "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/mdx": "^5.0.6",
     "@astrojs/partytown": "^2.1.7",
-    "@astrojs/react": "^5.0.4",
+    "@astrojs/react": "^5.0.5",
+    "@astrojs/sitemap": "^3.7.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "algoliasearch": "^5.52.1",
-    "astro": "^6.3.1",
+    "astro": "^6.3.7",
     "clsx": "^2.1.1",
     "marked": "^18.0.3",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-frame-component": "^5.3.2",
-    "react-instantsearch": "^7.32.2",
-    "react-instantsearch-core": "^7.32.2",
+    "react-instantsearch": "^7.32.3",
+    "react-instantsearch-core": "^7.32.3",
     "react-live": "^4.1.8",
     "smarthr-normalize-css": "^1.1.0",
-    "smarthr-ui": "^93.1.2",
+    "smarthr-ui": "^95.0.0",
     "styled-components": "^6.4.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "yaml": "^2.8.4"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
@@ -67,7 +84,7 @@
     "@types/adm-zip": "^0.5.8",
     "@types/mdast": "^4.0.4",
     "@types/unist": "^3.0.3",
-    "@typescript-eslint/parser": "^8.59.2",
+    "@typescript-eslint/parser": "^8.59.3",
     "adm-zip": "^0.5.17",
     "eslint": "^9.39.4",
     "eslint-config-smarthr": "^14.0.1",
@@ -88,7 +105,7 @@
     "sass-embedded": "^1.99.0",
     "sharp": "0.34.5",
     "tailwindcss": "3",
-    "textlint": "^15.6.0",
+    "textlint": "^15.7.1",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-filter-rule-comments": "^1.3.0",
     "textlint-plugin-mdx": "^1.1.0",
@@ -97,5 +114,5 @@
     "tsx": "^4.21.0",
     "unist-util-visit": "^5.1.0"
   },
-  "packageManager": "pnpm@11.0.9"
+  "packageManager": "pnpm@11.1.2"
 }
