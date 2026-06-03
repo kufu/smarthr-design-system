@@ -38,7 +38,25 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>プライマリーカラー（プロダクトの印象を司る箇所に使う）</Td>
+        <Td>
+        **使用用途**
+        - プライマリーカラーとして使うアイコン、背景色、枠線
+        - プライマリーカラーとして使うコンポーネントの背景色、枠線
+        - フォーカスリングの枠線
+        - `Selected`になっているコンポーネントの背景色、枠線
+          - NotificationBar
+          - RadioButton等
+        - `Current`になっているコンポーネントの背景色、枠線
+          - SideMenu
+          - SideNav等
+        - `Checked`になっているコンポーネントの背景色
+          - Checkbox
+          - Switch等
+          
+        **他のトークンとの使い分け**
+        - `TEXT_LINK`
+          - テキストの場合は使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>WHITE</code></Td>
@@ -51,7 +69,17 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>コンポーネントの背景色（Baseコンポーネントなど）</Td>
+        <Td>
+        **利用用途**
+        - コンポーネントの背景色
+          - Base
+            - Dialog
+            - Dropdown等
+
+        **他のトークンとの使い分け**
+        - `TEXT_WHITE`
+          - テキストの場合は使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>DANGER</code></Td>
@@ -64,7 +92,15 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>エラー色（操作前に、個人情報の流出や金銭的／法的リスクなど、強い警告をする場合も含む）</Td>
+        <Td>
+        **利用用途**
+        - エラー時のコンポーネントの文字色、背景色、線
+        - 削除など破壊的な変更を行なうアイコン、ボタン、文字色、背景色、枠線
+
+        **他のトークンとの使い分け**
+        - `WARNING_YELLOW`
+          - 警告時には使わない（削除前などのアクション前）
+        </Td>
       </tr>
       <tr>
         <Td><code>WARNING_YELLOW</code></Td>
@@ -77,7 +113,20 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>警告色（削除やUndoなどの破壊的アクションをする前の注意に使う）。必ずTEXT_BLACKと組み合わせて使う</Td>
+        <Td>
+        **利用用途**
+        - 警告時のコンポーネントの背景色、WarningIconなどのアイコン
+        - 削除やUndoなどの破壊的アクションをする前の注意に使う
+
+        **他のトークンとの使い分け**
+        - `DANGER`
+          - 削除の実行アクションには使わない
+
+        **注意事項**
+        - 必ず`TEXT_BLACK`と組み合わせて使う
+        - 基本的には文字色には使わない
+
+        </Td>
       </tr>
       <tr>
         <Td><code>TEXT_BLACK</code></Td>
@@ -90,7 +139,15 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>基本的な文字の色</Td>
+        <Td>
+        **利用用途**
+        - 基本的な文字の色、アイコンの色
+        - Buttonなどのコンポーネントの通常時の文字の色
+
+        **他のトークンとの使い分け**
+        - `TEXT_GREY`
+          - ジャンプ率がある場合は使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>TEXT_GREY</code></Td>
@@ -103,7 +160,15 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>TEXT_BLACKからジャンプ率を確保するときに使う文字の色</Td>
+        <Td>
+        **利用用途**
+        - `TEXT_BLACK`からジャンプ率を確保するときに使う文字の色、アイコンの色
+        - Definition List、Heddingなどのジャンプ率を確保した見出しコンポーネントの文字の色
+
+        **他のトークンとの使い分け**
+        - `TEXT_BLACK`
+          - 通常の文字の色には使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>TEXT_LINK</code></Td>
@@ -116,7 +181,15 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>リンクを表す文字の色</Td>
+        <Td>
+        **利用用途**
+        - リンクを表す文字の色、下線、アイコン
+        - Buttonの`tertiary`の文字の色
+
+        **他のトークンとの使い分け**
+        - `MAIN`
+          - リンクの場合は使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>TEXT_DISABLED</code></Td>
@@ -129,7 +202,17 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>disabled状態を表す文字の色</Td>
+        <Td>
+        **利用用途**
+        - `disabled`状態を表す文字の色
+        - Button、SegmentedControl、Select、Input等
+
+        **他のトークンとの使い分け**
+        - `TEXT_GREY`
+          - 単なるグレーテキストの場合は使わない
+        - `BORDER_DISABLED`
+          - 線の色には使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>TEXT_WHITE</code></Td>
@@ -142,7 +225,15 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>暗い地色やMAINに対して使う文字の色</Td>
+        <Td>
+        **利用用途**
+          - `DANGER`、`MAIN`に対して使う文字、アイコンの色
+            - Button、AppHeader等
+
+        **他のトークンとの使い分け**
+        - `WHITE`
+          - 背景色では使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>BORDER</code></Td>
@@ -155,7 +246,11 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>枠線・罫線の色</Td>
+        <Td>
+        **利用用途**
+        - 基本的な枠線・罫線の色
+        - Buttonなどの通常時のコンポーネントの枠線
+        </Td>
       </tr>
       <tr>
         <Td><code>ACTION_BACKGROUND</code></Td>
@@ -168,7 +263,17 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>TableBulkActionAreaの背景色</Td>
+        <Td>
+        **利用用途**
+        - TableBulkActionAreaの背景色
+
+        **他のトークンとの使い分け**
+        - `HEAD`
+          - テーブルヘッダーの背景色では使わない
+
+        **注意事項**
+        - `OVER_BACKGROUND`の上に置く色として使われることもある
+        </Td>
       </tr>
       <tr>
         <Td><code>HEAD</code></Td>
@@ -181,7 +286,15 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>テーブルヘッダーの背景色</Td>
+        <Td>
+        **利用用途**
+        - テーブルヘッダーの背景色
+        - 視覚的グルーピングの`COLUMN`以上のネストが必要なときに使用
+
+        **他のトークンとの使い分け**
+        - `ACTION_BACKGROUND`
+          - TableBulkActionAreaでは使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>OVER_BACKGROUND</code></Td>
@@ -194,7 +307,17 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>BACKGROUNDの上で使う囲み色（要素をグルーピングするときに使う色）</Td>
+        <Td>
+        **利用用途**
+        - `BACKGROUND`の上で使う囲み色（要素をグルーピングするときに使う色）
+        - hover時に`COLUMN`を使っている場合の背景色
+
+        **他のトークンとの使い分け**
+        - `BACKGROUND`
+          - 画面の背景色では使わない
+        - `COLUMN`
+          - `WHITE`の上では使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>COLUMN</code></Td>
@@ -207,7 +330,18 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>WHITEの上で使う囲み色（要素をグルーピングするときに使う色）</Td>
+        <Td>
+        **利用用途**
+        - `WHITE`の上で使う囲み色（要素をグルーピングするときに使う色）
+        - 各コンポーネントの背景色
+          - DropZone、SideNav
+
+        **他のトークンとの使い分け**
+        - `BACKGROUND`
+          - 画面の背景色では使わない
+        - `OVER_BACKGROUND`
+          - `BACKGROUND`の上では使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>BACKGROUND</code></Td>
@@ -220,7 +354,16 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>画面の背景色</Td>
+        <Td>
+        **利用用途**
+        - 画面の背景色
+        - 広い背景のある各コンポーネントの背景色
+          - InputFile
+
+        **他のトークンとの使い分け**
+        - `COLUMN`
+          - `WHITE`の上では使わない
+        </Td>
       </tr>
       <tr>
         <Td><code>OVERLAY</code></Td>
@@ -244,7 +387,10 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色</Td>
+        <Td>
+        **利用用途**
+          - モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色
+        </Td>
       </tr>
       <tr>
         <Td><code>TRANSPARENT</code></Td>
@@ -256,7 +402,10 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
             </div>
           </div>
         </Td>
-        <Td>デザインツールだけで使う専用スタイル。コンポーネントの枠線などを消すときのAppearanceに使用</Td>
+        <Td>
+        **利用用途**
+        - コンポーネントの枠線などを消すときのAppearanceに使用
+        </Td>
       </tr>
       <tr>
         <Td><code>CHART_COLOR_1</code></Td>
