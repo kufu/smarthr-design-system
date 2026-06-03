@@ -27,6 +27,23 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 </FormControl>
 ```
 
+## アクセシビリティ
+
+### 開発時の考慮点
+
+#### FormControlと併用する
+WarekiPickerコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を入力すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも入力の目的が伝達されます。
+
+eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、WarekiPickerにFormControlを組み合わせることを促すものです。支援技術に入力の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
+
+### 関連するチェックリスト
+
+簡易チェックリスト
+
+- [入力する内容や、操作がラベルとして表示されている](/accessibility/check-list/label/)
+- [フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)
+- [エラーの発生とエラーの内容が特定できる](/accessibility/check-list/error/)
+
 ## Props
 
 <ComponentPropsTable name="WarekiPicker" />

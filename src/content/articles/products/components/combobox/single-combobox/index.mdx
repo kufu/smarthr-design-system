@@ -3,7 +3,7 @@ title: 'SingleCombobox'
 description: '選択肢から1つの値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら1つを選択するときに使います。'
 ---
 import { Image } from 'astro:assets'
-import { SingleCombobox, Cluster, Text, BaseColumn, ResponseMessage } from 'smarthr-ui'
+import { SingleCombobox, Cluster, Text, BaseColumn, ResponseMessage, Stack } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
@@ -117,8 +117,9 @@ SingleComboboxは、候補の状態や選択された項目が支援技術でも
 
 #### FormControlと併用する
 
-SingleComboboxを使用する場合は、FormControlコンポーネントと併用してラベルを設定してください。
-これにより、スクリーンリーダーを使用するユーザーにも、何を選択するための項目なのかが伝わります。
+SingleComboboxコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を選択すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも選択の目的が伝達されます。
+
+eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、SingleComboboxにFormControlを組み合わせることを促すものです。支援技術に選択の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
 
 ### 関連するチェックリスト
 
