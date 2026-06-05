@@ -354,7 +354,7 @@ import { Cluster, Text } from 'smarthr-ui'
 </BaseColumn>
 
 
-// 何について選択するグループなのか伝わらない
+// Fieldsetでグループ化されたCheckbox
 <Fieldset
   legend="通知設定"
   innerMargin={0.5}
@@ -374,7 +374,7 @@ import { Cluster, Text } from 'smarthr-ui'
 <input type="checkbox" />
 <span>利用規約に同意する</span>
 
-// ❌ グループの目的が不明確
+// ❌ 何について選択するグループなのか伝わらない
 <div>
   <Checkbox name="notification1">メール通知</Checkbox>
   <Checkbox name="notification2">SMS通知</Checkbox>
