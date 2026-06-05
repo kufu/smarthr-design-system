@@ -15,17 +15,7 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 
 ### コンテナの大きさ
 
-`size` props を使ってコンテナの大きさを指定できます。デフォルトは`DEFAULT`です。
-
-次のような場合には、`WIDE`や`FULL`を検討します。
-
-- 大量のデータを表示する場合
-- [サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)や[コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)など、1つのカラムに1ページ相当の情報を表示する場合
-
-次のような場合には、`NARROW`を検討します。
-
-- ページに表示する情報が少ない場合
-- 入力要素が中心の画面の場合
+`size` props を使ってコンテナの大きさを指定できます。
 
 大きさ | 幅トークン | 値（px）
 :--- | :--- | :---
@@ -33,6 +23,22 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 `DEFAULT` | `col8` | 1184px
 `WIDE` | `col9` | 1336px
 `FULL` | - | `width: 100%`
+
+#### NARROW
+
+入力要素が中心の画面など、ページ内の要素が横幅を広く必要とせず、`DEFAULT`では不要な余白が大きくなってしまう場合に使います。
+
+#### DEFAULT
+
+デフォルトの幅です。特に理由がない場合にはこの幅を使います。
+
+#### WIDE
+
+主に、複数カラムのレイアウトで1つのカラムに1ページ相当の情報を表示する場合（主に[サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)や[コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)、[シングル（2カラム）](/products/design-patterns/page-layout/#h3-10)）に使います。
+
+#### FULL
+
+主に、横スクロールを必須とするような大量のデータを表示する場合に使います。
 
 ### コンテナのパディング
 
