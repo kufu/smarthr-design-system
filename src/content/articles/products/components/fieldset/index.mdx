@@ -294,6 +294,81 @@ Fieldset自体には、読み取り専用の状態は存在しません。
 </Fieldset>
 ```
 
+## アクセシビリティ
+
+### 基本的なアクセシビリティ機能
+
+#### 関連する入力項目をグループ化する
+
+Fieldsetコンポーネントは、関連する複数の入力項目を`<fieldset>`要素でグループ化し、`legend` propsで指定した内容をグループ名として提供します。
+これにより、支援技術を使用するユーザーにも、入力項目同士の関係性やグループの目的が伝わります。
+
+### 開発時の考慮点
+
+#### 関連する入力項目はFieldsetでグループ化する
+
+複数の入力項目が同じ質問や設定に関するものである場合は、Fieldsetコンポーネントを使用してグループ化してください。
+Fieldsetを利用することで、支援技術にも入力項目同士の関係性やグループの目的を伝えられます。これは、CheckboxやRadioButtonの選択肢だけでなく、住所入力のような複数の入力項目をまとめる場合にも有効です。
+
+#### legendでグループの目的を示す
+
+`legend` propsには、グループ全体が何についての入力項目なのかがわかるテキストを設定してください。
+
+#### 良い実装例
+
+```tsx
+<Fieldset
+  legend="通知設定"
+  innerMargin={0.5}
+>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+    <Checkbox name="emailNotification">メール通知</Checkbox>
+    <Checkbox name="smsNotification">SMS通知</Checkbox>
+    <Checkbox name="pushNotification">プッシュ通知</Checkbox>
+  </Cluster>
+</Fieldset>
+
+<Fieldset
+  legend="住所"
+  helpMessage="ご自宅の住所を入力してください"
+>
+  <Stack gap={1}>
+    <FormControl label="郵便番号">
+      <Input name="postalCode" />
+    </FormControl>
+    <FormControl label="都道府県">
+      <Select
+        name="prefecture"
+        options={[
+          { label: '都道府県を選択してください', value: '' },
+        ]}
+      />
+    </FormControl>
+  </Stack>
+</Fieldset>
+```
+
+#### 悪い実装例
+
+```tsx
+// ❌ Fieldsetを使用せず見た目だけグループ化
+<div>
+  <Text styleType="blockTitle">通知設定</Text>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+    <Checkbox name="emailNotification">メール通知</Checkbox>
+    <Checkbox name="smsNotification">SMS通知</Checkbox>
+  </Cluster>
+</div>
+```
+
+Fieldsetを使用せず見た目だけでグループ化すると、支援技術には入力項目同士の関係性やグループの目的が伝わりません。
+
+### 関連するチェックリスト
+
+簡易チェックリスト
+- [入力する内容や、操作がラベルとして表示されている](/accessibility/check-list/label/)
+- [フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)
+
 ## Props
 
 <ComponentPropsTable name="Fieldset" />
