@@ -6,7 +6,7 @@ order: 1
 
 import ColorPalette from '@/components/article/ColorPalette.astro'
 import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro'
-import { Table, Td, Th } from 'smarthr-ui'
+import { Table, Td, Th, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import TableWrapper from '@/components/article/TableWrapper.astro'
 
 プロダクトを構成するために必要な最低限の色を定義しています。
@@ -446,30 +446,30 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
     </tbody>
   </Table>
 </TableWrapper>
-### MAIN
+
+### `MAIN`
 
 以下の場合に使います。
 
 - プライマリーカラーとして使うアイコン、背景色、枠線
 - プライマリーカラーとして使うコンポーネントの背景色、枠線
 - フォーカスリングの枠線
-- `Selected`になっているコンポーネントの背景色、枠線
+- `selected`になっているコンポーネントの背景色、枠線
   - NotificationBar
-  - RadioButtonなど
-- `Current`になっているコンポーネントの背景色、枠線
+  - RadioButton
+- `current`になっているコンポーネントの背景色、枠線
   - SideMenu
-  - SideNavなど
-- `Checked`になっているコンポーネントの背景色
+  - SideNav
+- `checked`になっているコンポーネントの背景色
   - Checkbox
-  - Switchなど
+  - Switch
 
 #### 使用上の注意
 
-- `TEXT_LINK`
-  - テキストの場合は使わない
+- テキストには使わない
+  - `TEXT_LINK`を使ってください。
 
-
-### WHITE
+### `WHITE`
 
 コンポーネントの背景色（Baseコンポーネントなど）に使用します
   - Dialog
@@ -477,39 +477,34 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 #### 使用上の注意
 
-- `TEXT_WHITE`
-  - テキストの場合は使わない
+- テキストには使わない
+  - `TEXT_WHITE`を使ってください。
 
-
-### DANGER
+### `DANGER`
 
 以下の場合に使います。
 
 - エラー時のコンポーネントの文字色、背景色、線
 - 削除など破壊的な変更を行なうアイコン、ボタン、文字色、背景色、枠線
 
-
 #### 使用上の注意
 
-- `WARNING_YELLOW`
-  - 警告時には使わない（削除前などのアクション前）
+- 警告時には使わない（削除前などのアクション前）
+  - `WARNING_YELLOW`を使ってください。
 
-
-### WARNING_YELLOW
+### `WARNING_YELLOW`
 
 以下の場合に使います。
 
 - 警告時のコンポーネントの背景色、WarningIconなどのアイコン
 - 削除やUndoなどの破壊的アクションをする前の注意に使う
 
-
 #### 使用上の注意
 
-- `DANGER`
-  - 削除の実行アクションには使わない
+- 削除の実行アクションには使わない
+  - `DANGER`を使ってください。
 
-
-### TEXT_BLACK
+### `TEXT_BLACK`
 
 以下の場合に使います。
 
@@ -518,11 +513,10 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 #### 使用上の注意
 
-- `TEXT_GREY`
-  - ジャンプ率がある場合は使わない
+- ジャンプ率が文字の大きさで確保できないときは使わない
+  - `TEXT_GREY`を使うことでジャンプ率を確保してください。
 
-
-### TEXT_GREY
+### `TEXT_GREY`
 
 以下の場合に使います。
 
@@ -531,11 +525,10 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 #### 使用上の注意
 
-- `TEXT_BLACK`
-  - 通常の文字の色には使わない
+- 通常の文字の色には使わない
+  - 基本的には`TEXT_BLACK`を使ってください。
 
-
-### TEXT_LINK
+### `TEXT_LINK`
 
 以下の場合に使います。
 
@@ -544,11 +537,10 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 #### 使用上の注意
 
-- `MAIN`
-  - リンクの場合は使わない
+- 文字やアイコン以外の塗りつぶしや線には使わない
+  - `MAIN`を使ってください。
 
-
-### TEXT_DISABLED
+### `TEXT_DISABLED`
 
 以下の場合に使います。
 
@@ -557,51 +549,47 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 #### 使用上の注意
 
-- `TEXT_GREY`
-  - 単なるグレーテキストの場合は使わない
-- `BORDER_DISABLED`
-  - 線の色には使わない
+- 単なるグレーテキストの場合は使わない
+  - ジャンプ率を確保したいだけのときは`TEXT_GREY`を使ってください。
+- 線や塗りの色には使わない
 
-
-### TEXT_WHITE
+### `TEXT_WHITE`
 
 `DANGER`、`MAIN`に対して使う文字、アイコンの色に使います。
   - Button、AppHeaderなど
 
 #### 使用上の注意
 
-- `WHITE`
-  - 背景色では使わない
+- 線や塗りには使わない
+  - `WHITE`を使ってください。
 
-
-### BORDER
+### `BORDER`
 
 以下の場合に使います。
 
 - 基本的な枠線・罫線の色
   - Buttonなどの通常時のコンポーネントの枠線
 
+### `ACTION_BACKGROUND`
 
-### ACTION_BACKGROUND
+以下の場合に使います。
 
-TableBulkActionAreaの背景色に使います。
+- `TableBulkActionArea`の背景色に使います。
+- `OVER_BACKGROUND`の上に置く色として使われることもあります
 
 #### 使用上の注意
 
-- `HEAD`
-  - テーブルヘッダーの背景色では使わない
-- `OVER_BACKGROUND`の上に置く色として使われることもあります
+- テーブルヘッダーの背景色では使わない
+  - `HEAD`を使ってください。
 
-
-### BORDER
+### `BORDER`
 
 以下の場合に使います。
 
 - 基本的な枠線・罫線の色
 - Buttonなどの通常時のコンポーネントの枠線
 
-
-### HEAD
+### `HEAD`
 
 以下の場合に使います。
 
@@ -610,11 +598,10 @@ TableBulkActionAreaの背景色に使います。
 
 #### 使用上の注意
 
-- `ACTION_BACKGROUND`
-  - TableBulkActionAreaでは使わない
+- TableBulkActionAreaでは使わない
+  - `ACTION_BACKGROUND`を使ってください。
 
-
-### OVER_BACKGROUND
+### `OVER_BACKGROUND`
 
 以下の場合に使います。
 
@@ -623,13 +610,12 @@ TableBulkActionAreaの背景色に使います。
 
 #### 使用上の注意
 
-- `BACKGROUND`
-  - 画面の背景色では使わない
-- `COLUMN`
-  - `WHITE`の上では使わない
+- 画面の背景色では使わない
+  - `BACKGROUND`を使ってください。
+- Baseの中など、`WHITE`の上では使わない
+  - `COLUMN`を使ってください。
 
-
-### COLUMN
+### `COLUMN`
 
 以下の場合に使います。
 
@@ -639,45 +625,42 @@ TableBulkActionAreaの背景色に使います。
 
 #### 使用上の注意
 
-- `BACKGROUND`
-  - 画面の背景色では使わない
-- `OVER_BACKGROUND`
-  - `BACKGROUND`の上では使わない
+- 画面の背景色では使わない
+  - `BACKGROUND`を使ってください。
+- `BACKGROUND`の上では使わない
+  - 色が`BACKGROUND`と同じため、`BACKGROUND`の上にはおかないでください。
+  - `OVER_BACKGROUND`を使ってください。
 
-
-### BACKGROUND
+### `BACKGROUND`
 
 以下の場合に使います。
 
 - 画面の背景色
-- 広い背景のある各コンポーネントの背景色
-  - InputFile
 
 #### 使用上の注意
 
-- `COLUMN`
-  - `WHITE`の上では使わない
+- `WHITE`の上では使わない
+  - `COLUMN`を使ってください。
 
+### `OVERLAY`
 
-### OVERLAY
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage status="info">現在`OVERLAY`は使用されていません。</ResponseMessage>
+</BaseColumn>
 
 ボタンなどhover時に重ねる色に使います。
 
-
-### SCRIM
+### `SCRIM`
 
 モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色に使います。
 
-
-### TRANSPARENT
+### `TRANSPARENT`
 
 コンポーネントの枠線などを消すときのAppearanceに使用に使います。
 
+### その他の`CHART_COLOR`
 
-### OTHER_CHART_COLOR
-
-「その他」項目に使う色に使います。
-
+「その他」項目に使う色に使います。チャートの表示に主に使われます。
 
 ## プリミティブトークン
 **セマンティックトークンだけで視覚設計を十分に行なえない場合のみ**、プリミティブトークンから色を使用できます。
