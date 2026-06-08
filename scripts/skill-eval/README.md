@@ -88,7 +88,7 @@ pnpm audit -- --only Button,DatePicker
 | 3 | mdx整合 | コンポーネント index.mdx | タイトル不一致 / 説明文が生成結果と乖離 |
 | 4 | 構造lint | テンプレ（render-skill） | 必須セクション欠落 / 並び順 / import不正 / checklist未反映 |
 
-### 重大度区分（Phase 4 で確定する叩き台）
+### 重大度区分（確定）
 
 - **error（hard）**: 単一ソースに対する事実誤り。エージェントを誤誘導しうる。
   存在しないprops記載 / 型・必須の不一致 / 「固有Propsなし」だが実際はある / 必須セクション欠落 /
@@ -100,12 +100,12 @@ pnpm audit -- --only Button,DatePicker
   対応index.mdx無し（派生コンポーネント）/ metadata非公開のimport名 / props説明文中の非推奨ヒント /
   checklist.yaml無しだが本文あり。
 
-### 非推奨ステータスの取得元（調査結果と方針案）
+### 非推奨ステータスの取得元（確定: index.mdx を canonical）
 
 - **コンポーネント単位の非推奨は2ソースに存在**:
   - index.mdx frontmatter `deprecated: true` / `deprecatedMessage` ← **生成器が ⚠️ バナーをレンダリングする canonical ソース**
   - metadata.json `tags.deprecated`（文字列）← 6コンポーネントのみ保持。mdx 側より少ない
-  - → **方針案**: ガイドの非推奨表示は **index.mdx を正** とし、metadata との食い違いは warning で報告（実際 AppLauncher で検出）。
+  - → **確定**: ガイドの非推奨表示は **index.mdx を正** とし、metadata との食い違いは warning で報告（実際 AppLauncher で検出）。
 - **props 単位の非推奨は機械可読フィールドが metadata に無い**（`tags.deprecated` を持つ prop はゼロ）。
   → props説明文の「非推奨」キーワードを info で拾うのみ（誤検出ありうるため要確認扱い）。
 
