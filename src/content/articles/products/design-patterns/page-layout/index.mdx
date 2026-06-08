@@ -227,7 +227,8 @@ const CollectionTableLayout = () => {
           <Stack gap={1.5}>
             <Stack>
               <Cluster align="center" gap={1}>
-                <PageHeading>ページタイトル</PageHeading>
+                { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+                <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
                 <DropdownMenuButton trigger="操作">
                   <Button>オブジェクトの削除</Button>
                 </DropdownMenuButton>
@@ -440,26 +441,28 @@ const SingleOneColumnLayout = () => {
           }}
         />
       </div>
+      <NotificationBar type="success" bold onClose={() => {}} className="shr-sticky shr-top-0 shr-z-1">
+        オブジェクトの作成に成功しました。
+      </NotificationBar>
       <Container>
         <Stack gap={2}>
-          <Stack gap={1.5}>
-            <UpwardLink href="#">一覧に戻る</UpwardLink>
-            <Stack gap={1}>
-              <Cluster align="center" justify="space-between">
-                <div className="shr-inline-black">
-                  <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
-                  <PageHeading className="shr-inline">ページタイトル</PageHeading>
-                </div>
-                <Cluster>
-                  <Button>ボタン</Button>
-                  <Button>ボタン</Button>
-                  <Button>ボタン</Button>
-                </Cluster>
-              </Cluster>
-              <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
-            </Stack>
-          </Stack>
           <Stack gap={1}>
+            <UpwardLink href="#">一覧に戻る</UpwardLink>
+            <Cluster align="center" justify="space-between">
+              <div className="shr-inline-black">
+                <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
+                { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+                <PageHeading autoPageTitle={false} className="shr-inline">ページタイトル</PageHeading>
+              </div>
+              <Cluster>
+                <Button>ボタン</Button>
+                <Button>ボタン</Button>
+                <Button>ボタン</Button>
+              </Cluster>
+            </Cluster>
+            <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+          </Stack>
+          <Stack gap={1} className="shr-mt-1.5">
             <Cluster align="center" justify="space-between" gap={0.5}>
               <Heading>セクションタイトル</Heading>
               <Button>ボタン</Button>
@@ -635,12 +638,13 @@ render(<SingleOneColumnLayout />)
   <Container>
     <Stack gap={2}>
       <Stack gap={1.5}>
-        <UpwardLink href="#">一覧に戻る</UpwardLink>
         <Stack>
+          <UpwardLink href="#">一覧に戻る</UpwardLink>
           <Sidebar align="center" right>
             <div className="shr-inline-block">
               <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
-              <PageHeading className="shr-inline">ページタイトル</PageHeading>
+              { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+              <PageHeading autoPageTitle={false} className="shr-inline">ページタイトル</PageHeading>
             </div>
             <Cluster>
               <Button>操作</Button>
@@ -828,7 +832,8 @@ render(<SingleOneColumnLayout />)
 
       <Stack gap={2}>
         <Stack>
-          <PageHeading>ページタイトル</PageHeading>
+          { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+          <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
           <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
         </Stack>
         <Section>
@@ -909,7 +914,8 @@ render(<SingleOneColumnLayout />)
           <Sidebar align="center" right>
             <div className="shr-inline-block">
               <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
-              <PageHeading size="XXL" className="shr-inline">ページタイトル</PageHeading>
+              { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+              <PageHeading autoPageTitle={false} size="XXL" className="shr-inline">ページタイトル</PageHeading>
             </div>
             <Cluster>
               <Button>操作</Button>
