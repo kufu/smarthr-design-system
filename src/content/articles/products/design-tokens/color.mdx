@@ -6,6 +6,8 @@ order: 1
 
 import ColorPalette from '@/components/article/ColorPalette.astro'
 import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro'
+import { Table, Td, Th, BaseColumn, ResponseMessage } from 'smarthr-ui'
+import TableWrapper from '@/components/article/TableWrapper.astro'
 
 プロダクトを構成するために必要な最低限の色を定義しています。
 
@@ -15,103 +17,650 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
 
 ## セマンティックトークン
 
-### メイン
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>トークン名</Th>
+        <Th>色</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td><code>MAIN</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#0077c7', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#0077c7</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(0,119,199)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>WHITE</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#fff', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#fff</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(255,255,255)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>DANGER</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#e01e5a', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#e01e5a</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(224,30,90)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>WARNING_YELLOW</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#ffcc17', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#ffcc17</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(255,204,23)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>TEXT_BLACK</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#23221e', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#23221e</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(35,34,30)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>TEXT_GREY</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#706d65', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#706d65</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(112,109,101)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>TEXT_LINK</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#0071c1', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#0071c1</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(0,113,193)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>TEXT_DISABLED</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#c1bdb7', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#c1bdb7</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(193,189,183)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>TEXT_WHITE</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#fff', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#fff</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(255,255,255)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>BORDER</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#d6d3d0', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#d6d3d0</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(214,211,208)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>ACTION_BACKGROUND</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#d6d3d0', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#d6d3d0</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(214,211,208)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>HEAD</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#edebe8', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#edebe8</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(237,235,232)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>OVER_BACKGROUND</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#f2f1f0', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#f2f1f0</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(242,241,240)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>COLUMN</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#f8f7f6', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#f8f7f6</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(248,247,246)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>BACKGROUND</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#f8f7f6', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#f8f7f6</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(248,247,246)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>OVERLAY</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: 'rgba(3,3,2,0.15)', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>rgba(3,3,2,0.15)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>SCRIM</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: 'rgba(3,3,2,0.5)', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>rgba(3,3,2,0.5)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>TRANSPARENT</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: 'rgba(255,255,255,0)', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>rgba(255,255,255,0)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_1</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#00c4cc', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#00c4cc</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(0,196,204)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_2</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#ffcd00', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#ffcd00</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(255,205,0)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_3</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#ff9100', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#ff9100</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(255,145,0)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_4</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#e65537', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#e65537</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(230,85,55)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_5</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#2d4b9b', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#2d4b9b</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(45,75,155)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_6</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#2d7df0', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#2d7df0</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(45,125,240)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_7</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#69d7ff', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#69d7ff</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(105,215,255)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_8</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#4bb47d', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#4bb47d</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(75,180,125)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_9</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#05878c', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#05878c</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(5,135,140)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>CHART_COLOR_10</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#005a64', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#005a64</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(0,90,100)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>SINGLE_CHART_COLOR_1</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#a1e3e6', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#a1e3e6</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(161,227,230)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>SINGLE_CHART_COLOR_2</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#00c4cc', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#00c4cc</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(0,196,204)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>SINGLE_CHART_COLOR_3</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#00acb3', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#00acb3</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(0,172,179)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>SINGLE_CHART_COLOR_4</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#05868b', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#05868b</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(5,134,139)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>SINGLE_CHART_COLOR_5</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#055659', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#055659</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(5,86,89)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>SINGLE_CHART_COLOR_6</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#033033', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#033033</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(3,48,51)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+      <tr>
+        <Td><code>OTHER_CHART_COLOR</code></Td>
+        <Td>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '48px', height: '48px', backgroundColor: '#ebebeb', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' }}></div>
+            <div>
+              <div>#ebebeb</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(235,235,235)</div>
+            </div>
+          </div>
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
 
-プライマリーカラーである`MAIN`と、コンポーネントのベースカラーとなる`WHITE`を定めています。
+### `MAIN`
 
-プライマリーカラーは、プロダクトの印象を司る箇所に使います。具体的な使用箇所は、各コンポーネントを参照してください。
+以下の場合に使います。
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#0077c7" colorName="MAIN" description="プライマリーカラー（プロダクトの印象を司る箇所に使う）" />
-  <ColorPalette colorValue="#fff" colorName="WHITE" description="コンポーネントの背景色（Baseコンポーネントなど）" />
-</ColorPalettesWrapper>
+- プライマリーカラーとして使うアイコン、背景色、枠線
+- プライマリーカラーとして使うコンポーネントの背景色、枠線
+- フォーカスリングの枠線
+- `selected`になっているコンポーネントの背景色、枠線
+  - NotificationBar
+  - RadioButton
+- `current`になっているコンポーネントの背景色、枠線
+  - SideMenu
+  - SideNav
+- `checked`になっているコンポーネントの背景色
+  - Checkbox
+  - Switch
 
+#### 使用上の注意
 
-### アクセント
-コンテキストに応じた色を定めています。
+- テキストには使わない
+  - `TEXT_LINK`を使ってください。
 
-`MAIN`と合わせて、ユーザーのメインアクションや、アクションに対する結果、ヘルプの表示、オブジェクトの状態を表します。
+### `WHITE`
 
-具体的な使用箇所は、各コンポーネントを参照してください。
+コンポーネントの背景色（Baseコンポーネントなど）に使用します
+  - Dialog
+  - Dropdownなど
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#e01e5a" colorName="DANGER" description="エラー色（操作前に、個人情報の流出や金銭的／法的リスクなど、強い警告をする場合も含む）" />
-  <ColorPalette colorValue="#ffcc17" colorName="WARNING_YELLOW" description="警告色（削除やUndoなどの破壊的アクションをする前の注意に使う）。必ずTEXT_BLACKと組み合わせて使う" />
-</ColorPalettesWrapper>
+#### 使用上の注意
 
+- テキストには使わない
+  - `TEXT_WHITE`を使ってください。
 
-### 文字
+### `DANGER`
 
-テキストの状態に応じた文字の色を定めています。
+以下の場合に使います。
 
-強調などの文字スタイルは、[タイポグラフィ](/products/design-tokens/typography/)を参照してください。
+- エラー時のコンポーネントの文字色、背景色、線
+- 削除など破壊的な変更を行なうアイコン、ボタン、文字色、背景色、枠線
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#23221e" colorName="TEXT_BLACK" description="基本的な文字の色" />
-  <ColorPalette colorValue="#706d65" colorName="TEXT_GREY" description="TEXT_BLACKからジャンプ率を確保するときに使う文字の色" />
-  <ColorPalette colorValue="#0071c1" colorName="TEXT_LINK" description="リンクを表す文字の色" />
-  <ColorPalette colorValue="#c1bdb7" colorName="TEXT_DISABLED" description="disabled状態を表す文字の色" />
-  <ColorPalette colorValue="#fff" colorName="TEXT_WHITE" description="暗い地色やMAINに対して使う文字の色" />
-</ColorPalettesWrapper>
+#### 使用上の注意
 
+- 警告時には使わない（削除前などのアクション前）
+  - `WARNING_YELLOW`を使ってください。
 
-### コンポーネント
+### `WARNING_YELLOW`
 
-コンポーネントを構成する要素に必要な色を定めています。
+以下の場合に使います。
 
-具体的な使用箇所は、各コンポーネントを参照してください。
+- 警告時のコンポーネントの背景色、WarningIconなどのアイコン
+- 削除やUndoなどの破壊的アクションをする前の注意に使う
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#d6d3d0" colorName="BORDER" description="枠線・罫線の色" />
-  <ColorPalette colorValue="#d6d3d0" colorName="ACTION_BACKGROUND" description="TableBulkActionAreaの背景色" />
-  <ColorPalette colorValue="#edebe8" colorName="HEAD" description="テーブルヘッダーの背景色" />
-  <ColorPalette colorValue="#f2f1f0" colorName="OVER_BACKGROUND" description="BACKGROUNDの上で使う囲み色（要素をグルーピングするときに使う色）" />
-  <ColorPalette colorValue="#f8f7f6" colorName="COLUMN" description="WHITEの上で使う囲み色（要素をグルーピングするときに使う色）" />
-  <ColorPalette colorValue="#f8f7f6" colorName="BACKGROUND" description="画面の背景色" />
-  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="OVERLAY" description="ボタンなどhover時に重ねる色" />
-  <ColorPalette colorValue="rgba(3,3,2,0.5)" colorName="SCRIM" description="モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色" />
-  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="TRANSPARENT" description="デザインツールだけで使う専用スタイル。コンポーネントの枠線などを消すときのAppearanceに使用" />
-</ColorPalettesWrapper>
+#### 使用上の注意
 
+- 削除の実行アクションには使わない
+  - `DANGER`を使ってください。
 
-### チャート（グラフ）
+### `TEXT_BLACK`
 
-チャートで使用する色を定めています。チャートには指定された順序で色を使用します。
+以下の場合に使います。
 
-#### 多色チャート
+- 基本的な文字の色、アイコンの色
+- Buttonなどのコンポーネントの通常時の文字の色
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#00c4cc" colorName="CHART_COLOR_1" description="多色チャート色1" />
-  <ColorPalette colorValue="#ffcd00" colorName="CHART_COLOR_2" description="多色チャート色2" />
-  <ColorPalette colorValue="#ff9100" colorName="CHART_COLOR_3" description="多色チャート色3" />
-  <ColorPalette colorValue="#e65537" colorName="CHART_COLOR_4" description="多色チャート色4" />
-  <ColorPalette colorValue="#2d4b9b" colorName="CHART_COLOR_5" description="多色チャート色5" />
-  <ColorPalette colorValue="#2d7df0" colorName="CHART_COLOR_6" description="多色チャート色6" />
-  <ColorPalette colorValue="#69d7ff" colorName="CHART_COLOR_7" description="多色チャート色7" />
-  <ColorPalette colorValue="#4bb47d" colorName="CHART_COLOR_8" description="多色チャート色8" />
-  <ColorPalette colorValue="#05878c" colorName="CHART_COLOR_9" description="多色チャート色9" />
-  <ColorPalette colorValue="#005a64" colorName="CHART_COLOR_10" description="多色チャート色10" />
-</ColorPalettesWrapper>
+#### 使用上の注意
 
-#### 単色チャート
+- ジャンプ率が文字の大きさで確保できないときは使わない
+  - `TEXT_GREY`を使うことでジャンプ率を確保してください。
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#a1e3e6" colorName="SINGLE_CHART_COLOR_1" description="単色チャート色1" />
-  <ColorPalette colorValue="#00c4cc" colorName="SINGLE_CHART_COLOR_2" description="単色チャート色2" />
-  <ColorPalette colorValue="#00acb3" colorName="SINGLE_CHART_COLOR_3" description="単色チャート色3" />
-  <ColorPalette colorValue="#05868b" colorName="SINGLE_CHART_COLOR_4" description="単色チャート色4" />
-  <ColorPalette colorValue="#055659" colorName="SINGLE_CHART_COLOR_5" description="単色チャート色5" />
-  <ColorPalette colorValue="#033033" colorName="SINGLE_CHART_COLOR_6" description="単色チャート色6" />
-</ColorPalettesWrapper>
+### `TEXT_GREY`
 
-#### その他のチャート色
+以下の場合に使います。
 
-その他のチャート色は、チャート内の「その他」を示す項目に使います。
+- `TEXT_BLACK`からジャンプ率を確保するときに使う文字の色、アイコンの色
+- Definition List、Heddingなどのジャンプ率を確保した見出しコンポーネントの文字の色
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#ebebeb" colorName="OTHER_CHART_COLOR" description="「その他」項目に使う色" />
-</ColorPalettesWrapper>
+#### 使用上の注意
 
+- 通常の文字の色には使わない
+  - 基本的には`TEXT_BLACK`を使ってください。
+
+### `TEXT_LINK`
+
+以下の場合に使います。
+
+- リンクを表す文字の色、下線、アイコン
+- Buttonの`tertiary`の文字の色
+
+#### 使用上の注意
+
+- 文字やアイコン以外の塗りつぶしや線には使わない
+  - `MAIN`を使ってください。
+
+### `TEXT_DISABLED`
+
+以下の場合に使います。
+
+- `disabled`状態を表す文字の色
+- Button、SegmentedControl、Select、Inputなど
+
+#### 使用上の注意
+
+- 単なるグレーテキストの場合は使わない
+  - ジャンプ率を確保したいだけのときは`TEXT_GREY`を使ってください。
+- 線や塗りの色には使わない
+
+### `TEXT_WHITE`
+
+`DANGER`、`MAIN`に対して使う文字、アイコンの色に使います。
+  - Button、AppHeaderなど
+
+#### 使用上の注意
+
+- 線や塗りには使わない
+  - `WHITE`を使ってください。
+
+### `BORDER`
+
+以下の場合に使います。
+
+- 基本的な枠線・罫線の色
+  - Buttonなどの通常時のコンポーネントの枠線
+
+### `ACTION_BACKGROUND`
+
+以下の場合に使います。
+
+- `TableBulkActionArea`の背景色に使います。
+- `OVER_BACKGROUND`の上に置く色として使われることもあります
+
+#### 使用上の注意
+
+- テーブルヘッダーの背景色では使わない
+  - `HEAD`を使ってください。
+
+### `BORDER`
+
+以下の場合に使います。
+
+- 基本的な枠線・罫線の色
+- Buttonなどの通常時のコンポーネントの枠線
+
+### `HEAD`
+
+以下の場合に使います。
+
+- テーブルヘッダーの背景色
+- 視覚的グルーピングの`COLUMN`以上のネストが必要なとき
+
+#### 使用上の注意
+
+- TableBulkActionAreaでは使わない
+  - `ACTION_BACKGROUND`を使ってください。
+
+### `OVER_BACKGROUND`
+
+以下の場合に使います。
+
+- `BACKGROUND`の上で使う囲み色（要素をグルーピングするときに使う色）
+- hover時に`COLUMN`を使っている場合の背景色
+
+#### 使用上の注意
+
+- 画面の背景色では使わない
+  - `BACKGROUND`を使ってください。
+- Baseの中など、`WHITE`の上では使わない
+  - `COLUMN`を使ってください。
+
+### `COLUMN`
+
+以下の場合に使います。
+
+- `WHITE`の上で使う囲み色（要素をグルーピングするときに使う色）
+- 各コンポーネントの背景色
+  - DropZone、SideNavなど
+
+#### 使用上の注意
+
+- 画面の背景色では使わない
+  - `BACKGROUND`を使ってください。
+- `BACKGROUND`の上では使わない
+  - 色が`BACKGROUND`と同じため、`BACKGROUND`の上にはおかないでください。
+  - `OVER_BACKGROUND`を使ってください。
+
+### `BACKGROUND`
+
+以下の場合に使います。
+
+- 画面の背景色
+
+#### 使用上の注意
+
+- `WHITE`の上では使わない
+  - `COLUMN`を使ってください。
+
+### `OVERLAY`
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage status="info">現在`OVERLAY`は使用されていません。</ResponseMessage>
+</BaseColumn>
+
+ボタンなどhover時に重ねる色に使います。
+
+### `SCRIM`
+
+モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色に使います。
+
+### `TRANSPARENT`
+
+コンポーネントの枠線などを消すときのAppearanceに使用に使います。
+
+### その他の`CHART_COLOR`
+
+「その他」項目に使う色に使います。チャートの表示に主に使われます。
 
 ## プリミティブトークン
 **セマンティックトークンだけで視覚設計を十分に行なえない場合のみ**、プリミティブトークンから色を使用できます。
