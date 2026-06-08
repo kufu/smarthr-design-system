@@ -66,6 +66,49 @@ workspace/
 
 `workspace/` は `.gitignore` 済み（成果物はコミットしない。共有は Notion へ転記）。
 
+## 層2: 静的監査（`audit/`・全104件・LLM不使用・決定的）
+
+各ガイド doc（`components/<PascalCase>.md`）の中身が単一ソースと整合しているかを全件検査する。
+生成パイプライン（`scripts/generate-skills`）のライブラリを流用し、生成器の出力を忠実に再現して突き合わせる。
+
+```sh
+cd scripts/skill-eval
+pnpm audit                 # 全104件
+pnpm audit -- --only Button,DatePicker
+```
+
+出力: `audit/output/audit-summary.md`（要修正フラグ + 指摘詳細）と `findings.json`（`.gitignore` 済み）。
+
+### チェック4種
+
+| # | チェック | 単一ソース | 主な検出 |
+|---|---|---|---|
+| 1 | metadata.json照合 | `smarthr-ui/metadata.json` | 存在しないprops / 型不一致 / 必須フラグ不一致 / 取りこぼし / デフォルト値差異 |
+| 2 | 非推奨参照検出 | index.mdx + metadata.json | 非推奨なのにバナー無し / 非推奨コンポーネントの言及 / ソース間不一致 |
+| 3 | mdx整合 | コンポーネント index.mdx | タイトル不一致 / 説明文が生成結果と乖離 |
+| 4 | 構造lint | テンプレ（render-skill） | 必須セクション欠落 / 並び順 / import不正 / checklist未反映 |
+
+### 重大度区分（Phase 4 で確定する叩き台）
+
+- **error（hard）**: 単一ソースに対する事実誤り。エージェントを誤誘導しうる。
+  存在しないprops記載 / 型・必須の不一致 / 「固有Propsなし」だが実際はある / 必須セクション欠落 /
+  非推奨なのにバナー無し / 説明文が空。
+- **warning**: 陳腐化・取りこぼし・ソース間不整合。要再生成・要確認。
+  metadataにあるがガイドに無いprops / デフォルト値差異 / 説明文の生成結果との不一致 /
+  非推奨ステータスのmdx↔metadata食い違い / 非推奨コンポーネントの言及 / セクション並び順 / checklist未反映。
+- **info**: 参考。監査不能・未整備。
+  対応index.mdx無し（派生コンポーネント）/ metadata非公開のimport名 / props説明文中の非推奨ヒント /
+  checklist.yaml無しだが本文あり。
+
+### 非推奨ステータスの取得元（調査結果と方針案）
+
+- **コンポーネント単位の非推奨は2ソースに存在**:
+  - index.mdx frontmatter `deprecated: true` / `deprecatedMessage` ← **生成器が ⚠️ バナーをレンダリングする canonical ソース**
+  - metadata.json `tags.deprecated`（文字列）← 6コンポーネントのみ保持。mdx 側より少ない
+  - → **方針案**: ガイドの非推奨表示は **index.mdx を正** とし、metadata との食い違いは warning で報告（実際 AppLauncher で検出）。
+- **props 単位の非推奨は機械可読フィールドが metadata に無い**（`tags.deprecated` を持つ prop はゼロ）。
+  → props説明文の「非推奨」キーワードを info で拾うのみ（誤検出ありうるため要確認扱い）。
+
 ## ファイル構成
 
 - `config.ts` — パス・モデル・反復数
@@ -75,4 +118,9 @@ workspace/
 - `lib/machine-check.ts` / `lib/eslint-runner.ts` / `lib/metadata.ts` — 機械チェック
 - `lib/judge.ts` — LLM-as-Judge
 - `lib/aggregate.ts` / `lib/stats.ts` / `lib/report.ts` — 集計・回帰抽出・サマリ生成
-- `run.ts` — オーケストレータ
+- `run.ts` — オーケストレータ（層1）
+- `audit/run-audit.ts` — 静的監査オーケストレータ（層2）
+- `audit/lib/sources.ts` — 単一ソース読み込み（metadata flat map / 非推奨registry / dirMapping / index.mdx / checklist存在）。generate-skills のライブラリを流用
+- `audit/lib/guide-parser.ts` — ガイド `.md` の構造化パース
+- `audit/lib/checks.ts` — チェック4種
+- `audit/lib/finding.ts` / `audit/lib/audit-report.ts` — finding 型・重大度・レポート生成
