@@ -3,7 +3,7 @@ description: >-
   smarthr-design-system のコンポーネント mdx から checklist.yaml を生成・更新する。
   「checklist を作って」「checklist.yaml を生成して」「Layer 3 を整備して」等の
   依頼に対応する。対象コンポーネントの index.mdx を読み、使い分けガイドを
-  YAML 形式で抽出し、pnpm generate で SKILL.md に反映する。
+  YAML 形式で抽出する。
 globs:
   - "src/content/articles/products/components/**/index.mdx"
   - "src/content/articles/products/components/**/checklist.yaml"
@@ -15,7 +15,7 @@ globs:
 
 smarthr-design-system のコンポーネントページ（index.mdx）から、AI エージェント向けの使い分けガイド（checklist.yaml）を生成する手順書。
 
-生成した checklist.yaml は `pnpm generate` で SKILL.md に Layer 3 として取り込まれ、エンジニアが smarthr-ui コンポーネントを正しく使うためのガイドになる。
+生成した checklist.yaml は、マージ後に CI が再生成する SKILL ドキュメントへ Layer 3 として取り込まれ、エンジニアが smarthr-ui コンポーネントを正しく使うためのガイドになる。
 
 ## 前提条件
 
@@ -129,23 +129,29 @@ ruby -ryaml -e "puts (YAML.load_file('path/to/checklist.yaml')['items'] || []).s
 
 期待範囲: 1〜20 項目。極端に多い（20 超）場合は統合の余地あり。
 
-### Step 6: SKILL.md 再生成
+### Step 6: SKILL ドキュメントへの反映（CI が自動実行・コミット不要）
+
+`checklist.yaml` から SKILL ドキュメントへの再生成は、**マージ後に CI（`generate-skills.yml`）が自動実行**する。作業者がローカルで再生成して生成物（`plugins/smarthr-design-system/skills/` 配下）をコミットする必要はない。
+
+**コミット対象は `checklist.yaml` のみ**。生成物 `plugins/...` はコミットしない。
+
+反映結果を手元で確認したい場合のみ、リポジトリルートから次を実行する（実行しても生成物はコミットしない）。
 
 ```bash
-pnpm generate
+pnpm --filter ./scripts/generate-skills generate
 ```
-
-Layer 3 あり件数が増えていることを確認。
 
 ### Step 7: Layer 1 重複チェック
 
-生成された SKILL.md の Layer 1 部分（冒頭の説明文）を読み、checklist.yaml の各項目と同内容が含まれていないか確認する。
+Layer 3 に入れようとしている項目が Layer 1（mdx 冒頭の説明文）と重複していないか確認する。mdx 構造から事前に予測でき（短い「冒頭説明 + props」構造のコンポーネントで重複しやすい）、Step 6 でローカル再生成した場合は生成された SKILL ドキュメントの Layer 1 部分と突き合わせて検証する。
+
+ローカル再生成した場合の確認先（生成物。コミット対象外）:
 
 ```bash
-cat plugins/smarthr-design-system/skills/<component>/SKILL.md
+cat plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md
 ```
 
-mdx 本文が短く「冒頭説明 + props」構造のコンポーネント（ErrorScreen 子等）では、mdx 冒頭の見出しなし説明文がそのまま Layer 1 として SKILL.md に取り込まれることが多い。その場合、Layer 3 で同内容を含めると重複出力されるため、checklist.yaml の該当項目を削除し、Step 6 を再実行する。
+mdx 本文が短く「冒頭説明 + props」構造のコンポーネント（ErrorScreen 子等）では、mdx 冒頭の見出しなし説明文がそのまま Layer 1 として取り込まれることが多い。その場合、Layer 3 で同内容を含めると重複出力されるため、checklist.yaml の該当項目を削除する。
 
 ## checklist.yaml のフォーマット
 
