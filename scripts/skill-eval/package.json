@@ -1,0 +1,27 @@
+{
+  "name": "sds-skill-eval",
+  "version": "0.1.0",
+  "author": "SmartHR Design System Team",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "description": "M8 Skill実効性ベンチ: component-guidelines (Progressive Disclosure) の with_skill / without_skill 定量比較ハーネス",
+  "scripts": {
+    "eval": "tsx run.ts",
+    "eval:dry": "tsx run.ts --dry-run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "@typescript-eslint/parser": "^8.59.3",
+    "eslint": "^9.39.4",
+    "eslint-config-smarthr": "^14.0.1",
+    "gray-matter": "^4.0.3",
+    "smarthr-ui": "^95.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "tsx": "^4.22.3",
+    "typescript": "^5.7.3"
+  }
+}
