@@ -227,7 +227,8 @@ const CollectionTableLayout = () => {
           <Stack gap={1.5}>
             <Stack>
               <Cluster align="center" gap={1}>
-                <PageHeading>ページタイトル</PageHeading>
+                { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+                <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
                 <DropdownMenuButton trigger="操作">
                   <Button>オブジェクトの削除</Button>
                 </DropdownMenuButton>
@@ -376,6 +377,216 @@ render(<CollectionTableLayout />)
 
 ![イメージ画像：ヘッダー・見出し領域・複数のセクションが垂直方向に積み重なっている](./images/single-1column.png)
 
+#### 実装例
+
+```tsx editable hideCode background=DOT canvas=1400 withStyled
+const SingleOneColumnLayout = () => {
+  const pagination = {
+    currentPage: 1,
+    limitValue: 10,
+    totalCount: 100,
+    totalPages: 10,
+  }
+  const sampleObjects = [...Array(10).fill(0)].map((_, i) => ({
+    id: `${i}`,
+    href: '#',
+    empCode: `SHR${`${i}`.padStart(3, '0')}`,
+    name: `須磨 英子`,
+    status: 'ステータス',
+    department: `営業部`,
+    position: `部長`,
+    employmentType:`正社員`,
+    hireDate: `2012/12/12`,
+  }))
+
+  const { totalPages, currentPage, totalCount, limitValue } = pagination
+  const isInitialState = totalCount === 0
+  const hasNoSearchResult = totalCount === 0
+  return (
+    <div className="shr-bg-background" style={{ minHeight: '100svh', width: '100%' }}>
+      <div className="shr-z-1 shr-relative">
+        <AppHeader
+          appName="機能名"
+          tenants={[{ id: 'smarthr', name: '株式会社SmartHR' }]}
+          currentTenantId="smarthr"
+          helpPageUrl="#"
+          locale={{ onSelectLocale: () => null }}
+          features={[
+            { id: 'app', name: 'アプリ', url: '#', favorite: true },
+          ]}
+          userInfo={{ empCode: '001', email: 'info@example.com', firstName: '須磨', lastName: '栄子' }}
+          navigations={[
+            { children: 'ナビゲーション', href: '#', current: true },
+            { children: 'ナビゲーション', href: '#' },
+            { children: 'ナビゲーション', href: '#' },
+            { children: 'ナビゲーション', href: '#' },
+            {
+              children: 'ナビゲーション',
+              childNavigations: [
+                { children: 'マスター設定', href: '#' },
+              ],
+            },
+          ]}
+          desktopNavigationAdditionalContent={
+            <>
+              <span>最終同期：2024/01/01 10:09</span>
+              <Button size="S" prefix={<FaArrowsRotateIcon />}>
+                データを同期
+              </Button>
+            </>
+          }
+          releaseNote={{
+            indexUrl: '#',
+            links: [{ title: 'リリースノート', url: '#' }],
+          }}
+        />
+      </div>
+      <NotificationBar type="success" bold onClose={() => {}} className="shr-sticky shr-top-0 shr-z-1">
+        オブジェクトの作成に成功しました。
+      </NotificationBar>
+      <Container>
+        <Stack gap={2}>
+          <Stack gap={1}>
+            <UpwardLink href="#">一覧に戻る</UpwardLink>
+            <Cluster align="center" justify="space-between">
+              <div className="shr-inline-black">
+                <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
+                { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+                <PageHeading autoPageTitle={false} className="shr-inline">ページタイトル</PageHeading>
+              </div>
+              <Cluster>
+                <Button>ボタン</Button>
+                <Button>ボタン</Button>
+                <Button>ボタン</Button>
+              </Cluster>
+            </Cluster>
+            <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+          </Stack>
+          <Stack gap={1} className="shr-mt-1.5">
+            <Cluster align="center" justify="space-between" gap={0.5}>
+              <Heading>セクションタイトル</Heading>
+              <Button>ボタン</Button>
+            </Cluster>
+            <Base padding={1.5}>
+              <Stack gap={1.5}>
+                <Stack gap={1}>
+                  <Heading type="blockTitle">ブロックタイトル</Heading>
+                  <DefinitionList>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                  </DefinitionList>
+                </Stack>
+                <Stack gap={1}>
+                  <Heading type="blockTitle">ブロックタイトル</Heading>
+                  <DefinitionList>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                    <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                  </DefinitionList>
+                </Stack>
+              </Stack>
+            </Base>
+          </Stack>
+          <Stack gap={1}>
+            <Cluster align="center" justify="space-between" gap={0.5}>
+              <Heading>セクションタイトル</Heading>
+              <Button prefix={<FaCirclePlusIcon />}>追加</Button>
+            </Cluster>
+            
+            <Stack gap={1.5}>
+              <Base>
+                {!isInitialState && (
+                  <Cluster justify="space-between" align="center" className="shr-p-1">
+                    <form onSubmit={(e) => e.preventDefault()}>
+                      <Cluster align="center" gap={1}>
+                        <Cluster gap={0.5}>
+                          <SearchInput tooltipMessage="社員番号、氏名で検索できます。" name="search" />
+                          <Button type="submit">検索</Button>
+                        </Cluster>
+                        <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+                        <Button type="submit" prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
+                      </Cluster>
+                    </form>
+                    {totalCount > 0 && (
+                      <Cluster gap={1} align="center">
+                        <PageCounter start={1 + (currentPage - 1) * limitValue} end={currentPage * limitValue} total={totalCount} />
+                        <Pagination current={currentPage} total={totalPages} withoutNumbers onClick={() => null} />
+                      </Cluster>
+                    )}
+                  </Cluster>
+                )}
+
+                <Table reel rounded="bottom">
+                  <thead>
+                    <tr>
+                      <ThCheckbox name="allRowCheckbox" disabled={isInitialState || hasNoSearchResult} />
+                      <Th>ステータス</Th>
+                      <Th>社員番号</Th>
+                      <Th>氏名</Th>
+                      <Th>部署</Th>
+                      <Th>役職</Th>
+                      <Th>雇用形態</Th>
+                      <Th>入社日</Th>
+                    </tr>
+                  </thead>
+                  {isInitialState ? (
+                    <EmptyTableBody>
+                      <Stack align="center">
+                        <span>社員はまだ登録されていません。</span>
+                        <Button size="S" prefix={<FaCirclePlusIcon />}>項目を追加</Button>
+                      </Stack>
+                    </EmptyTableBody>
+                  ) : hasNoSearchResult ? (
+                    <EmptyTableBody>
+                      <p>
+                        <span>条件に該当する従業員はいません。</span>
+                        <br />
+                        <span>別の条件をお探し下さい。</span>
+                      </p>
+                    </EmptyTableBody>
+                  ) : (
+                    <tbody>
+                      {sampleObjects.map(({ id, status, href, empCode, name, department, position, employmentType, hireDate }) => {
+                        const ariaLabelledBy = `name-${id}`
+                        return (
+                          <tr key={id}>
+                            <TdCheckbox name="tableCheckbox" aria-labelledby={ariaLabelledBy} />
+                            <Td contentWidth="1px">
+                              <StatusLabel>{status}</StatusLabel>
+                            </Td>
+                            <Td>{empCode}</Td>
+                            <Td id={ariaLabelledBy}><TextLink href={href}>{name}</TextLink></Td>
+                            <Td>{department}</Td>
+                            <Td>{position}</Td>
+                            <Td>{employmentType}</Td>
+                            <Td>{hireDate}</Td>
+                          </tr>
+                        )})}
+                    </tbody>
+                  )}
+                </Table>
+              </Base>
+              {totalPages > 1 && !isInitialState && !hasNoSearchResult && (
+                <Center>
+                  <Pagination current={currentPage} total={totalPages} onClick={() => null} />
+                </Center>
+              )}
+            </Stack>
+          </Stack>
+        </Stack>
+      </Container>
+    </div>
+  )
+}
+
+render(<SingleOneColumnLayout />)
+
+```
+
 #### モバイル
 
 ##### セクションが1つの場合のレイアウト
@@ -388,15 +599,9 @@ render(<CollectionTableLayout />)
 
 #### 利用例
 
-<Grid>
-    <ImgWithDesc description="デスクトップ">
-        ![実例画像：横に広い画面に、ヘッダー・見出し領域・複数のセクションが垂直方向に積み重なっている](./images/single-1column-sample.png)
-    </ImgWithDesc>
-
-    <ImgWithDesc description="モバイル">
-        ![実例画像：縦長の画面に、ヘッダー・見出し領域・複数のセクションが垂直方向に積み重なっている](./images/single-1column-sample-mobile.png)
-    </ImgWithDesc>
-</Grid>
+  <ImgWithDesc description="モバイル">
+      ![実例画像：縦長の画面に、ヘッダー・見出し領域・複数のセクションが垂直方向に積み重なっている](./images/single-1column-sample-mobile.png)
+  </ImgWithDesc>
 
 ### シングル（2カラム）
 
@@ -433,12 +638,13 @@ render(<CollectionTableLayout />)
   <Container>
     <Stack gap={2}>
       <Stack gap={1.5}>
-        <UpwardLink href="#">一覧に戻る</UpwardLink>
         <Stack>
+          <UpwardLink href="#">一覧に戻る</UpwardLink>
           <Sidebar align="center" right>
             <div className="shr-inline-block">
               <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
-              <PageHeading className="shr-inline">ページタイトル</PageHeading>
+              { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+              <PageHeading autoPageTitle={false} className="shr-inline">ページタイトル</PageHeading>
             </div>
             <Cluster>
               <Button>操作</Button>
@@ -626,7 +832,8 @@ render(<CollectionTableLayout />)
 
       <Stack gap={2}>
         <Stack>
-          <PageHeading>ページタイトル</PageHeading>
+          { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+          <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
           <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
         </Stack>
         <Section>
@@ -707,7 +914,8 @@ render(<CollectionTableLayout />)
           <Sidebar align="center" right>
             <div className="shr-inline-block">
               <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
-              <PageHeading size="XXL" className="shr-inline">ページタイトル</PageHeading>
+              { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+              <PageHeading autoPageTitle={false} size="XXL" className="shr-inline">ページタイトル</PageHeading>
             </div>
             <Cluster>
               <Button>操作</Button>
