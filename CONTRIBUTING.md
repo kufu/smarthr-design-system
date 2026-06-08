@@ -144,13 +144,9 @@ pnpm install
    - **項目の網羅性**: `index.mdx`に書かれているルールが漏れなく抽出されているか
    - **不要項目の混入**: 自動挙動の説明やprops規約のみの項目など、AIエージェント向けの判断材料にならない項目が含まれていないか
    - **`text`の表現**: Do/Don't形・終止形になっているか（「〜してください」など強い指示の言い回しが残っていないか）
-5. 以下のコマンドを実行して、`checklist.yaml`をコンポーネントガイドに反映します。
+5. `checklist.yaml`をコミットしてPRを出します。**コミット対象は`checklist.yaml`のみ**です。
 
-   ```sh
-   pnpm --filter ./scripts/generate-skills generate
-   ```
-
-   成功すると、`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`が追加されます。
+   コンポーネントガイド（`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`）への反映は、マージ後にCI（`generate-skills`ワークフロー）が自動実行します。手元で`pnpm --filter ./scripts/generate-skills generate`を実行して生成物をコミットする必要はありません（反映結果を確認したい場合のみ実行できます。生成物はコミットしません）。
 
 ### checklist.yamlの更新
 
@@ -175,13 +171,7 @@ pnpm install
    - **削除項目**: 該当ルールが`index.mdx`から本当に削除されているか（誤削除でないか）
    - **更新項目**: 変更前後のdiffが`index.mdx`の変更意図と一致しているか
    - **無変更項目**: 既存のレビュー済み項目が誤って書き換わっていないか
-4. ガイドを再生成します。
-
-   ```sh
-   pnpm --filter ./scripts/generate-skills generate
-   ```
-
-   成功すると、`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`が更新されます。
+4. `checklist.yaml`をコミットしてPRを出します。新規作成と同じく**コミット対象は`checklist.yaml`のみ**で、コンポーネントガイドへの反映はマージ後にCIが自動実行します。
 
 ### CIでの自動チェック（`validate-skills` ワークフロー）
 
@@ -205,7 +195,7 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 - 自動挙動・props 規約のみ（`AppHeader` 等）
 - `deprecated: true` 指定（`deprecatedMessage` で代替を示すため不要）
 - `description`で十分カバーされる内容
-- `index.mdx`冒頭の説明文がそのまま`SKILL.md`の Layer 1 に取り込まれるケース
+- `index.mdx`冒頭の説明文がそのままコンポーネントガイドの Layer 1 に取り込まれるケース
 
 新規コンポーネント追加時は、`generate-checklist` SKILLを実行すると上記スキップ判定パターンに該当する場合は自動的に作成をスキップし、理由を報告します。報告された理由をPR descriptionに転記してラベルを付与してください。
 
@@ -221,7 +211,7 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 
 ### マージ後の自動再生成（`generate-skills` ワークフロー）
 
-`feature/ai-agent-skills`（リリース後は`main`）にマージされると、`SKILL.md`が自動再生成され、差分があれば `github-actions[bot]` が自動コミット&pushします。手動で`pnpm --filter ./scripts/generate-skills generate`を実行する必要はありません。
+`main`にマージされると、コンポーネントガイド（`plugins/smarthr-design-system/skills/component-guidelines/`配下）が自動再生成され、差分があれば `github-actions[bot]` が自動コミット&pushします。手動で`pnpm --filter ./scripts/generate-skills generate`を実行する必要はありません。
 
 ### バリデーション出力の見方
 
@@ -230,7 +220,7 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 
 ### relatedComponentsの宣言
 
-`relatedComponents`は、`index.mdx`の先頭にあるfrontmatter（`---`で囲まれたYAMLブロック）で宣言する項目です。「このコンポーネントに付随する派生コンポーネントや内部部品の一覧」を記載し、ドキュメントページ上での関連コンポーネント表示と、AIエージェント向け`SKILL.md`の関連情報の両方に使われます。
+`relatedComponents`は、`index.mdx`の先頭にあるfrontmatter（`---`で囲まれたYAMLブロック）で宣言する項目です。「このコンポーネントに付随する派生コンポーネントや内部部品の一覧」を記載し、ドキュメントページ上での関連コンポーネント表示と、AIエージェント向けコンポーネントガイドの関連情報の両方に使われます。
 
 書き方は、`name`（smarthr-uiのコンポーネント名）と、必要に応じて`description`（説明文）を並べます。
 
