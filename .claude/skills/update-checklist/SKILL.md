@@ -126,29 +126,15 @@ pnpm --filter ./scripts/generate-skills validate
 
 `error` がないことを確認。`warn` は内容に応じて対応。
 
-### Step 8: SKILL ドキュメントへの反映（CI が自動実行・コミット不要）
+### Step 8: Layer 1 重複チェック
 
-`checklist.yaml` から SKILL ドキュメントへの再生成は、**マージ後に CI（`generate-skills.yml`）が自動実行**する。作業者がローカルで再生成して生成物（`plugins/smarthr-design-system/skills/` 配下）をコミットする必要はない。
+Layer 3 に入れようとしている項目が Layer 1（mdx 冒頭の説明文）と重複していないか確認する。mdx 構造から事前に予測でき（短い「冒頭説明 + props」構造のコンポーネントで重複しやすい）、重複する項目は checklist.yaml から削除する。ErrorScreen 子のように mdx 冒頭の見出しなし説明文がそのまま Layer 1 に取り込まれるケースで起きやすい。
 
-**コミット対象は `checklist.yaml` のみ**。生成物 `plugins/...` はコミットしない。
+反映結果を手元で確認したい場合のみ、リポジトリルートから `pnpm --filter ./scripts/generate-skills generate` を実行し、生成された `plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md` の Layer 1 部分と突き合わせる（生成物はコミットしない）。
 
-反映結果を手元で確認したい場合のみ、リポジトリルートから次を実行する（実行しても生成物はコミットしない）。
+## 成果物とコミット
 
-```sh
-pnpm --filter ./scripts/generate-skills generate
-```
-
-### Step 9: Layer 1 重複チェック
-
-Layer 3 に入れようとしている項目が Layer 1（mdx 冒頭の説明文）と重複していないか確認する。mdx 構造から事前に予測でき（短い「冒頭説明 + props」構造のコンポーネントで重複しやすい）、Step 8 でローカル再生成した場合は生成された SKILL ドキュメントの Layer 1 部分と突き合わせて検証する。
-
-ローカル再生成した場合の確認先（生成物。コミット対象外）:
-
-```bash
-cat plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md
-```
-
-mdx 本文が短く「冒頭説明 + props」構造のコンポーネント（ErrorScreen 子等）では、mdx 冒頭の見出しなし説明文がそのまま Layer 1 として取り込まれることが多い。その場合、Layer 3 で同内容を含めると重複出力されるため、checklist.yaml の該当項目を削除する。
+この SKILL の成果物は更新後の `checklist.yaml` のみ。**コミット対象は `checklist.yaml` だけ**で、コンポーネントガイド（`plugins/...`）への反映はマージ後に CI（`generate-skills.yml`）が自動実行する。ローカルで `pnpm generate` を実行して生成物をコミットする必要はない。
 
 ## やってはいけないこと
 
