@@ -20,7 +20,7 @@ smarthr-design-system のコンポーネントページ（index.mdx）から、A
 ## 前提条件
 
 - 抽出ルール詳細: `.github/prompts/generate-checklist.md`（severity 推測の語気手がかり、Do/Don't 変換の具体例等）
-- ディレクトリ名解決: `scripts/generate-skills/mapping/component-dir-map.json`
+- ディレクトリ名解決: `src/content/articles/products/components/` 配下を直接探索する（コンポーネント名を kebab-case 化したディレクトリ名。ネストする場合あり）
 - 参考例: `src/content/articles/products/components/button/checklist.yaml`
 
 ## 生成フロー
@@ -28,7 +28,7 @@ smarthr-design-system のコンポーネントページ（index.mdx）から、A
 ### Step 1: 対象コンポーネントの index.mdx を読む
 
 パスの解決:
-- `component-dir-map.json` でコンポーネント名 → ディレクトリ名を確認
+- `src/content/articles/products/components/` 配下を `find` / glob で探索し、コンポーネント名（kebab-case）に対応するディレクトリを特定する
 - 基本パス: `src/content/articles/products/components/<dir>/index.mdx`
 - ネストあり: `dialog/message-dialog/`, `dialog/modeless-dialog/`, `combobox/single-combobox/` 等
 

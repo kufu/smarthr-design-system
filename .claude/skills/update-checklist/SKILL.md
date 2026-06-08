@@ -25,14 +25,14 @@ globs:
 ## 前提条件
 
 - 既存 `checklist.yaml` の確認: `src/content/articles/products/components/<dir>/checklist.yaml`
-- ディレクトリ名解決: `scripts/generate-skills/mapping/component-dir-map.json`
+- ディレクトリ名解決: `src/content/articles/products/components/` 配下を直接探索する（コンポーネント名を kebab-case 化したディレクトリ名。ネストする場合あり）
 - 参考例: `src/content/articles/products/components/button/checklist.yaml`
 
 ## 更新フロー
 
 ### Step 1: 対象を特定
 
-依頼文から対象コンポーネントを抽出。複数指定可。コンポーネント名 → ディレクトリ名の解決は `scripts/generate-skills/mapping/component-dir-map.json` を参照。
+依頼文から対象コンポーネントを抽出。複数指定可。コンポーネント名 → ディレクトリ名の解決は `src/content/articles/products/components/` 配下を `find` / glob で探索する（コンポーネント名を kebab-case 化したディレクトリ名。ネストする場合あり）。
 
 ### Step 2: 入力を読み込む
 
