@@ -14,7 +14,7 @@ function resolveEntryDescription(entry: RouterEntry): string {
   return `${entry.group.dirName} コンポーネント`;
 }
 
-export function renderRouterSkill(entries: RouterEntry[]): string {
+export function renderRouterSkill(entries: RouterEntry[], smarthrUiVersion: string): string {
   const sorted = [...entries].sort((a, b) => a.group.dirName.localeCompare(b.group.dirName));
 
   const parts: string[] = [];
@@ -22,6 +22,10 @@ export function renderRouterSkill(entries: RouterEntry[]): string {
   parts.push('');
   parts.push(
     'UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、対応するガイドファイルを参照してください。',
+  );
+  parts.push('');
+  parts.push(
+    `> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v${smarthrUiVersion}** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、\`node_modules/smarthr-ui\` の \`.d.ts\` / \`metadata.json\`）を正としてください。`,
   );
   parts.push('');
   parts.push('## コンポーネント一覧');

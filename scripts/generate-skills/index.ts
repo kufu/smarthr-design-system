@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -14,6 +15,10 @@ import { validateCoverage, printCoverageReport } from './lib/validate-coverage.j
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
+
+const SMARTHR_UI_VERSION: string = JSON.parse(
+  fs.readFileSync(createRequire(import.meta.url).resolve('smarthr-ui/package.json'), 'utf-8'),
+).version;
 
 const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/components');
 const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
@@ -159,7 +164,7 @@ async function main() {
     }
     const eslintRules = [...eslintRulesSet.values()];
 
-    const content = renderSkill({ group, indexInfo, eslintRules, checklist });
+    const content = renderSkill({ group, indexInfo, eslintRules, checklist, smarthrUiVersion: SMARTHR_UI_VERSION });
     const docFileName = toDocFileName(dirName);
     fs.writeFileSync(path.join(COMPONENTS_DIR, docFileName), content, 'utf-8');
     generated++;
@@ -171,7 +176,7 @@ async function main() {
 
   console.log('🧭 component-selector ドキュメントを生成中…');
   const routerPath = path.join(COMPONENT_GUIDELINES_DIR, 'component-selector.md');
-  fs.writeFileSync(routerPath, renderRouterSkill(routerEntries), 'utf-8');
+  fs.writeFileSync(routerPath, renderRouterSkill(routerEntries, SMARTHR_UI_VERSION), 'utf-8');
   console.log(`   → ${path.relative(REPO_ROOT, routerPath)}`);
 
   console.log('🎉 完了');
