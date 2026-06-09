@@ -6,6 +6,8 @@ order: 13
 
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 
+import { DynamicActionDialog, DynamicCancelActionDialog } from './_components'
+
 削除操作をするときのアクションダイアログを定義します。
 
 ## 基本的な考え方
@@ -31,8 +33,6 @@ import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 6. アクションボタン
 
 ![ダイアログ内の要素](./images/delete-dialog_components.png)
-
-import DynamicActionDialog from './_components/DynamicActionDialog'
 
 <ComponentPreview>
   <DynamicActionDialog client:load />
@@ -102,9 +102,6 @@ import DynamicActionDialog from './_components/DynamicActionDialog'
 
 ### 「取り消し」操作時の確認ダイアログ
 操作を取り消す際も、同様の確認ダイアログを表示します。
-
-
-import DynamicCancelActionDialog from './_components/DynamicCancelActionDialog'
 
 <ComponentPreview>
   <DynamicCancelActionDialog client:load />
