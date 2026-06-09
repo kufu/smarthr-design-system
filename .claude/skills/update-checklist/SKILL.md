@@ -25,14 +25,14 @@ globs:
 ## 前提条件
 
 - 既存 `checklist.yaml` の確認: `src/content/articles/products/components/<dir>/checklist.yaml`
-- ディレクトリ名解決: `scripts/generate-skills/mapping/component-dir-map.json`
+- ディレクトリ名解決: `src/content/articles/products/components/` 配下を直接探索する（コンポーネント名を kebab-case 化したディレクトリ名。ネストする場合あり）
 - 参考例: `src/content/articles/products/components/button/checklist.yaml`
 
 ## 更新フロー
 
 ### Step 1: 対象を特定
 
-依頼文から対象コンポーネントを抽出。複数指定可。コンポーネント名 → ディレクトリ名の解決は `scripts/generate-skills/mapping/component-dir-map.json` を参照。
+依頼文から対象コンポーネントを抽出。複数指定可。コンポーネント名 → ディレクトリ名の解決は `src/content/articles/products/components/` 配下を `find` / glob で探索する（コンポーネント名を kebab-case 化したディレクトリ名。ネストする場合あり）。
 
 ### Step 2: 入力を読み込む
 
@@ -126,23 +126,15 @@ pnpm --filter ./scripts/generate-skills validate
 
 `error` がないことを確認。`warn` は内容に応じて対応。
 
-### Step 8: SKILL.md 再生成
+### Step 8: Layer 1 重複チェック
 
-```sh
-pnpm --filter ./scripts/generate-skills generate
-```
+Layer 3 に入れようとしている項目が Layer 1（mdx 冒頭の説明文）と重複していないか確認する。mdx 構造から事前に予測でき（短い「冒頭説明 + props」構造のコンポーネントで重複しやすい）、重複する項目は checklist.yaml から削除する。ErrorScreen 子のように mdx 冒頭の見出しなし説明文がそのまま Layer 1 に取り込まれるケースで起きやすい。
 
-`plugins/smarthr-design-system/skills/<component>/SKILL.md` に Layer 3 が反映されることを確認。
+反映結果を手元で確認したい場合のみ、リポジトリルートから `pnpm --filter ./scripts/generate-skills generate` を実行し、生成された `plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md` の Layer 1 部分と突き合わせる（生成物はコミットしない）。
 
-### Step 9: Layer 1 重複チェック
+## 成果物とコミット
 
-生成された SKILL.md の Layer 1 部分（mdx 冒頭の説明文）を読み、checklist.yaml の各項目と同内容が含まれていないか確認する。
-
-```bash
-cat plugins/smarthr-design-system/skills/<component>/SKILL.md
-```
-
-mdx 本文が短く「冒頭説明 + props」構造のコンポーネント（ErrorScreen 子等）では、mdx 冒頭の見出しなし説明文がそのまま Layer 1 として SKILL.md に取り込まれることが多い。その場合、Layer 3 で同内容を含めると重複出力されるため、checklist.yaml の該当項目を削除し、Step 8 を再実行する。
+この SKILL の成果物は更新後の `checklist.yaml` のみ。**コミット対象は `checklist.yaml` だけ**で、コンポーネントガイド（`plugins/...`）への反映はマージ後に CI（`generate-skills.yml`）が自動実行する。ローカルで `pnpm generate` を実行して生成物をコミットする必要はない。
 
 ## やってはいけないこと
 

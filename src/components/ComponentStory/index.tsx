@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { AnchorButton, Cluster, IntlProvider, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
 
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
-import { UI_COMMIT_HASH, UI_VERSION } from '@/lib/getUIData';
 import type { UIStories } from '@/types/ui';
 
 import CodeBlock from '../CodeBlock';
@@ -14,22 +13,24 @@ import styles from './index.module.scss';
 export type ComponentStoryProps = {
   code: string;
   stories: UIStories;
+  uiVersion: string;
+  uiCommitHash: string;
   // MDX内でこのコンポーネントを一番上に置いたとき、アイランドの関係で :first-child でマージンを消す CSS が効かないため
   // これでマージンを消せるように
   noMargin?: boolean;
 };
 
-const STORYBOOK_BASE_URL = `https://${UI_COMMIT_HASH}--${SHRUI_CHROMATIC_ID}.chromatic.com/`;
-
-export default function ComponentStory({ code, stories, noMargin = false }: ComponentStoryProps) {
+export default function ComponentStory({ code, stories, uiVersion, uiCommitHash, noMargin = false }: ComponentStoryProps) {
   const [currentIframe, setCurrentIframe] = useState(stories.storyItems.at(0)?.iframeName ?? '');
   const [isLoadedIframe, setIsLoadedIframe] = useState(false);
 
+  const storybookBaseUrl = `https://${uiCommitHash}--${SHRUI_CHROMATIC_ID}.chromatic.com/`;
+
   const getStoryName = (currentName: string) => stories.storyItems?.find((item) => item?.iframeName === currentName)?.iframeName;
 
-  const storybookUrl = new URL(`?path=/story/${getStoryName(currentIframe)}`, STORYBOOK_BASE_URL);
+  const storybookUrl = new URL(`?path=/story/${getStoryName(currentIframe)}`, storybookBaseUrl);
 
-  const iframeUrl = new URL(`/iframe.html`, STORYBOOK_BASE_URL);
+  const iframeUrl = new URL(`/iframe.html`, storybookBaseUrl);
   iframeUrl.searchParams.append('id', getStoryName(currentIframe) ?? '');
 
   const iframeViewModeUrl = new URL(iframeUrl);
@@ -37,7 +38,7 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
 
   // パスからstories/*.tsxを削除
   const githubSourcePath = stories.filePath.replace(/(stories\/)?[^/]*?\.tsx$/, '');
-  const githubUrl = new URL(`smarthr-ui-v${UI_VERSION}/${githubSourcePath}`, SHRUI_GITHUB_PATH);
+  const githubUrl = new URL(`smarthr-ui-v${uiVersion}/${githubSourcePath}`, SHRUI_GITHUB_PATH);
 
   const onClickTabItem = (itemId: string) => {
     if (itemId === currentIframe) {
@@ -58,7 +59,7 @@ export default function ComponentStory({ code, stories, noMargin = false }: Comp
         <Cluster align="center" justify="space-between" gap={1}>
           <Cluster align="center" as="label">
             <span>SmartHR UI</span>
-            <span>{UI_VERSION}</span>
+            <span>{uiVersion}</span>
           </Cluster>
           <Cluster>
             <AnchorButton href={storybookUrl.toString()} target="_blank" size="S" rel="noreferrer">

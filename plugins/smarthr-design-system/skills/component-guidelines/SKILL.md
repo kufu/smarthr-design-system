@@ -31,3 +31,13 @@ smarthr-ui のコンポーネントを正しく選択・使用するためのガ
 - **Props・型情報**: smarthr-ui の公開 API（自動生成）
 - **実装ルール**: eslint-plugin-smarthr のルールに基づく Do/Don't
 - **使い分けチェックリスト**: デザインシステムの運用知識（一部未整備）
+
+## smarthr-ui のバージョンについて
+
+各ガイドの Props・型情報は、ガイド生成時点の smarthr-ui バージョンを基準にしている（基準バージョンは各ガイドの Props セクションと [component-selector.md](component-selector.md) の冒頭に明記）。利用しているプロジェクトの smarthr-ui バージョンが基準と異なる場合、props がずれていることがある（例: 型・必須・デフォルト値・追加/削除された props）。
+
+その場合は **実際の型定義を正とすること**:
+- エディタの型補完
+- プロジェクトの `node_modules/smarthr-ui` の `.d.ts` / `metadata.json`
+
+ガイドの props と実装が食い違って表示・挙動が崩れるときは、まずバージョン差異を疑う。
