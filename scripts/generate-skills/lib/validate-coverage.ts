@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { kebabToPascal } from './name-mapping.js';
+import { parseIndexMdx } from './parse-index-mdx.js';
 import type { ComponentGroup } from './parse-metadata.js';
 import type { RelatedComponentSkill } from './related-components.js';
 
@@ -25,6 +26,12 @@ export type CoverageReport = {
    * 形式: `"<name> (parent: <parentName>)"`
    */
   unknownRelatedNames: string[];
+  /**
+   * metadata.json で非推奨 (tags.deprecated) なのに、対応する index.mdx frontmatter が
+   * deprecated を立てていない部品（= smarthr-ui の非推奨化に design-system が未追従）。
+   * 粒度は部品単位のみ（prop 単位は対象外）。形式: dirName（PascalCase）。
+   */
+  deprecatedNotFollowed: string[];
 };
 
 /**
@@ -77,8 +84,24 @@ export function validateCoverage(args: {
   inheritedNames?: Set<string>;
   relatedSkills?: Map<string, RelatedComponentSkill>;
   publicExports?: Set<string>;
+  /** metadata.json で tags.deprecated を持つ displayName 集合（部品単位の非推奨追従チェック用） */
+  metadataDeprecated?: Set<string>;
 }): CoverageReport {
-  const { groups, dirMapping, designSystemDir, inheritedNames, relatedSkills, publicExports } = args;
+  const { groups, dirMapping, designSystemDir, inheritedNames, relatedSkills, publicExports, metadataDeprecated } =
+    args;
+
+  // deprecatedNotFollowed: metadata=非推奨 だが index.mdx が deprecated 未設定の部品。
+  // dir 名 = 公開コンポーネントの displayName（doc 名と一致）。独自 dir を持たない内部部品は対象外。
+  const deprecatedNotFollowed: string[] = [];
+  if (metadataDeprecated) {
+    for (const dir of groups.keys()) {
+      if (!metadataDeprecated.has(dir)) continue;
+      const rel = dirMapping.get(dir);
+      if (!rel) continue; // 独自 index.mdx を持たない（内部部品など）→ 検証対象外
+      const info = parseIndexMdx(path.join(designSystemDir, rel, 'index.mdx'));
+      if (!info?.deprecated) deprecatedNotFollowed.push(dir);
+    }
+  }
 
   // newComponents: dir mapping なし、relatedComponents 経由でもない
   const newComponents: string[] = [];
@@ -140,7 +163,7 @@ export function validateCoverage(args: {
     return !shouldIgnoreOrphan(d, designDirsWithIndexSet, publicExports ?? new Set());
   });
 
-  return { newComponents, orphanDirs, unmappedGroups, missingDescriptions, unknownRelatedNames };
+  return { newComponents, orphanDirs, unmappedGroups, missingDescriptions, unknownRelatedNames, deprecatedNotFollowed };
 }
 
 export type CoverageBaseline = Partial<Record<keyof CoverageReport, string[]>>;
@@ -154,7 +177,13 @@ export function loadCoverageBaseline(baselinePath: string): CoverageBaseline {
   if (!fs.existsSync(baselinePath)) return {};
   const raw = JSON.parse(fs.readFileSync(baselinePath, 'utf-8')) as Record<string, unknown>;
   const baseline: CoverageBaseline = {};
-  for (const key of ['newComponents', 'orphanDirs', 'missingDescriptions', 'unknownRelatedNames'] as const) {
+  for (const key of [
+    'newComponents',
+    'orphanDirs',
+    'missingDescriptions',
+    'unknownRelatedNames',
+    'deprecatedNotFollowed',
+  ] as const) {
     const val = raw[key];
     if (Array.isArray(val) && val.every((v) => typeof v === 'string')) {
       baseline[key] = val as string[];
@@ -179,6 +208,7 @@ export function applyCoverageBaseline(report: CoverageReport, baseline: Coverage
     unmappedGroups: report.unmappedGroups,
     missingDescriptions: exclude(report.missingDescriptions, baseline.missingDescriptions),
     unknownRelatedNames: exclude(report.unknownRelatedNames, baseline.unknownRelatedNames),
+    deprecatedNotFollowed: exclude(report.deprecatedNotFollowed, baseline.deprecatedNotFollowed),
   };
 }
 
@@ -188,7 +218,13 @@ export function applyCoverageBaseline(report: CoverageReport, baseline: Coverage
  */
 export function findStaleBaselineEntries(report: CoverageReport, baseline: CoverageBaseline): string[] {
   const stale: string[] = [];
-  for (const key of ['newComponents', 'orphanDirs', 'missingDescriptions', 'unknownRelatedNames'] as const) {
+  for (const key of [
+    'newComponents',
+    'orphanDirs',
+    'missingDescriptions',
+    'unknownRelatedNames',
+    'deprecatedNotFollowed',
+  ] as const) {
     const baselineList = baseline[key];
     if (!baselineList) continue;
     const reportSet = new Set(report[key]);
@@ -244,6 +280,16 @@ export function printCoverageReport(report: CoverageReport): boolean {
     );
     console.log(
       `       → typo または smarthr-ui で削除/rename された name の可能性。親 mdx の relatedComponents を修正してください`,
+    );
+  }
+
+  if (report.deprecatedNotFollowed.length > 0) {
+    hasIssue = true;
+    console.log(
+      `   ⚠️  metadata.json で非推奨だが index.mdx が未追従 (${report.deprecatedNotFollowed.length}): ${report.deprecatedNotFollowed.join(', ')}`,
+    );
+    console.log(
+      `       → 該当コンポーネントの index.mdx frontmatter に deprecated: true と deprecatedMessage を追加してください`,
     );
   }
 

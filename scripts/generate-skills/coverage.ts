@@ -9,10 +9,12 @@
  * - orphanDirs: index.mdx あるが smarthr-ui 側 displayName が消えた
  * - missingDescriptions: 子 dir なし & relatedComponents.description 未指定
  * - unknownRelatedNames: relatedComponents.name が公開 export に存在しない (typo / 削除)
+ * - deprecatedNotFollowed: metadata.json=非推奨 だが index.mdx が deprecated 未設定 (部品単位)
  *
  * CI=true で違反検知時 exit 1。
  */
 import path from 'node:path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 import { parseMetadata, loadPublicExports, type ComponentGroup } from './lib/parse-metadata.js';
@@ -78,6 +80,14 @@ function main() {
   const manualMappings = loadManualMappings(MANUAL_MAPPING_PATH);
   const dirMapping = buildDirMapping([...groups.keys()], DESIGN_SYSTEM_DIR, manualMappings);
 
+  // metadata.json の非推奨フラグ (tags.deprecated) を持つ displayName 集合
+  const require = createRequire(import.meta.url);
+  const rawMetadata = require('smarthr-ui/metadata.json') as Array<{
+    displayName: string;
+    tags?: { deprecated?: unknown };
+  }>;
+  const metadataDeprecated = new Set(rawMetadata.filter((c) => c.tags?.deprecated).map((c) => c.displayName));
+
   const rawReport = validateCoverage({
     groups,
     dirMapping,
@@ -85,6 +95,7 @@ function main() {
     inheritedNames: new Set(relatedSkills.keys()),
     relatedSkills,
     publicExports,
+    metadataDeprecated,
   });
 
   const baseline = loadCoverageBaseline(COVERAGE_BASELINE_PATH);
