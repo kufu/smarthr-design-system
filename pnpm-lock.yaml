@@ -19,16 +19,16 @@ importers:
         version: 2.1.7
       '@astrojs/react':
         specifier: ^5.0.6
-        version: 5.0.6(@types/node@25.7.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(jiti@1.21.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass-embedded@1.99.0)(sass@1.99.0)(tsx@4.22.3)(yaml@2.9.0)
+        version: 5.0.6(@types/node@25.7.0)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(jiti@1.21.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass-embedded@1.99.0)(sass@1.99.0)(tsx@4.22.3)(yaml@2.9.0)
       '@astrojs/sitemap':
         specifier: ^3.7.3
         version: 3.7.3
       '@types/react':
-        specifier: ^19.2.14
-        version: 19.2.14
+        specifier: ^19.2.16
+        version: 19.2.16
       '@types/react-dom':
         specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.14)
+        version: 19.2.3(@types/react@19.2.16)
       algoliasearch:
         specifier: ^5.52.1
         version: 5.52.1
@@ -67,7 +67,7 @@ importers:
         version: 1.1.0(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
       smarthr-ui:
         specifier: ^95.0.0
-        version: 95.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.22.3)(typescript@6.0.3)(yaml@2.9.0)
+        version: 95.0.0(@types/react@19.2.16)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.16)(react@19.2.6))(react@19.2.6)(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.22.3)(typescript@6.0.3)(yaml@2.9.0)
       styled-components:
         specifier: ^6.4.2
         version: 6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -218,7 +218,7 @@ importers:
         version: 4.1.1
       smarthr-ui:
         specifier: ^95.0.0
-        version: 95.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)
+        version: 95.0.0(@types/react@19.2.16)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.16)(react@19.2.6))(react@19.2.6)(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)
     devDependencies:
       '@types/js-yaml':
         specifier: ^4.0.9
@@ -1845,8 +1845,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react@19.2.14':
-    resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
+  '@types/react@19.2.16':
+    resolution: {integrity: sha512-esJiCAnl0kfpNdE69f3So4WJUXy95dLZydX0KwK46riIHDzHM7O9Vtf9xCHW0PXIqvgqNrswl522kA/5yx+F4w==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
@@ -6683,11 +6683,11 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/react@5.0.6(@types/node@25.7.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(jiti@1.21.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass-embedded@1.99.0)(sass@1.99.0)(tsx@4.22.3)(yaml@2.9.0)':
+  '@astrojs/react@5.0.6(@types/node@25.7.0)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(jiti@1.21.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass-embedded@1.99.0)(sass@1.99.0)(tsx@4.22.3)(yaml@2.9.0)':
     dependencies:
       '@astrojs/internal-helpers': 0.10.0
-      '@types/react': 19.2.14
-      '@types/react-dom': 19.2.3(@types/react@19.2.14)
+      '@types/react': 19.2.16
+      '@types/react-dom': 19.2.3(@types/react@19.2.16)
       '@vitejs/plugin-react': 5.2.0(vite@7.3.3(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.99.0)(sass@1.99.0)(tsx@4.22.3)(yaml@2.9.0))
       devalue: 5.8.0
       react: 19.2.6
@@ -8091,11 +8091,11 @@ snapshots:
 
   '@types/qs@6.15.1': {}
 
-  '@types/react-dom@19.2.3(@types/react@19.2.14)':
+  '@types/react-dom@19.2.3(@types/react@19.2.16)':
     dependencies:
-      '@types/react': 19.2.14
+      '@types/react': 19.2.16
 
-  '@types/react@19.2.14':
+  '@types/react@19.2.16':
     dependencies:
       csstype: 3.2.3
 
@@ -11070,9 +11070,9 @@ snapshots:
 
   merge-descriptors@2.0.0: {}
 
-  merge-refs@1.3.0(@types/react@19.2.14):
+  merge-refs@1.3.0(@types/react@19.2.16):
     optionalDependencies:
-      '@types/react': 19.2.14
+      '@types/react': 19.2.16
 
   merge2@1.4.1: {}
 
@@ -12069,9 +12069,9 @@ snapshots:
     dependencies:
       react: 19.2.6
 
-  react-innertext@1.1.5(@types/react@19.2.14)(react@19.2.6):
+  react-innertext@1.1.5(@types/react@19.2.16)(react@19.2.6):
     dependencies:
-      '@types/react': 19.2.14
+      '@types/react': 19.2.16
       react: 19.2.6
 
   react-instantsearch-core@7.32.3(algoliasearch@5.52.1)(react@19.2.6):
@@ -12095,11 +12095,11 @@ snapshots:
       react-dom: 19.2.6(react@19.2.6)
       react-instantsearch-core: 7.32.3(algoliasearch@5.52.1)(react@19.2.6)
 
-  react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6):
+  react-intl@10.1.6(@types/react@19.2.16)(react@19.2.6):
     dependencies:
       '@formatjs/icu-messageformat-parser': 3.5.8
       '@formatjs/intl': 4.1.10
-      '@types/react': 19.2.14
+      '@types/react': 19.2.16
       intl-messageformat: 11.2.5
       react: 19.2.6
 
@@ -12113,20 +12113,20 @@ snapshots:
       sucrase: 3.35.1
       use-editable: 2.3.3(react@19.2.6)
 
-  react-pdf@9.2.1(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  react-pdf@9.2.1(@types/react@19.2.16)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       clsx: 2.1.1
       dequal: 2.0.3
       make-cancellable-promise: 1.3.2
       make-event-props: 1.6.2
-      merge-refs: 1.3.0(@types/react@19.2.14)
+      merge-refs: 1.3.0(@types/react@19.2.16)
       pdfjs-dist: 4.8.69
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
       tiny-invariant: 1.3.3
       warning: 4.0.3
     optionalDependencies:
-      '@types/react': 19.2.14
+      '@types/react': 19.2.16
 
   react-refresh@0.18.0: {}
 
@@ -12830,7 +12830,7 @@ snapshots:
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@95.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0):
+  smarthr-ui@95.0.0(@types/react@19.2.16)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.16)(react@19.2.6))(react@19.2.6)(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.20
@@ -12843,9 +12843,9 @@ snapshots:
       react-dom: 19.2.6(react@19.2.6)
       react-draggable: 4.5.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-icons: 5.6.0(react@19.2.6)
-      react-innertext: 1.1.5(@types/react@19.2.14)(react@19.2.6)
-      react-intl: 10.1.6(@types/react@19.2.14)(react@19.2.6)
-      react-pdf: 9.2.1(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      react-innertext: 1.1.5(@types/react@19.2.16)(react@19.2.6)
+      react-intl: 10.1.6(@types/react@19.2.16)(react@19.2.6)
+      react-pdf: 9.2.1(@types/react@19.2.16)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-transition-group: 4.4.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       styled-components: 6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       tailwind-variants: 0.3.1(tailwindcss@3.4.19(tsx@4.22.3)(yaml@2.9.0))
@@ -12859,7 +12859,7 @@ snapshots:
       - typescript
       - yaml
 
-  smarthr-ui@95.0.0(@types/react@19.2.14)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.22.3)(typescript@6.0.3)(yaml@2.9.0):
+  smarthr-ui@95.0.0(@types/react@19.2.16)(eslint@9.39.4(jiti@1.21.7))(react-dom@19.2.6(react@19.2.6))(react-intl@10.1.6(@types/react@19.2.16)(react@19.2.6))(react@19.2.6)(styled-components@6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(tsx@4.22.3)(typescript@6.0.3)(yaml@2.9.0):
     dependencies:
       '@smarthr/wareki': 1.3.0
       dayjs: 1.11.20
@@ -12872,9 +12872,9 @@ snapshots:
       react-dom: 19.2.6(react@19.2.6)
       react-draggable: 4.5.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-icons: 5.6.0(react@19.2.6)
-      react-innertext: 1.1.5(@types/react@19.2.14)(react@19.2.6)
-      react-intl: 10.1.6(@types/react@19.2.14)(react@19.2.6)
-      react-pdf: 9.2.1(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      react-innertext: 1.1.5(@types/react@19.2.16)(react@19.2.6)
+      react-intl: 10.1.6(@types/react@19.2.16)(react@19.2.6)
+      react-pdf: 9.2.1(@types/react@19.2.16)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-transition-group: 4.4.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       styled-components: 6.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       tailwind-variants: 0.3.1(tailwindcss@3.4.19(tsx@4.22.3)(yaml@2.9.0))
