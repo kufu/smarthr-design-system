@@ -49,31 +49,34 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
         return;
       }
 
-      // ResizeObserverでbody要素のサイズ変化を監視
-      resizeObserverRef.current = new ResizeObserver(() => {
-        const height = innerWindow.document.body.scrollHeight;
+      const measureHeight = () => {
+        const currentHeight = parseFloat(iframe.style.height) || 0;
+        let height = innerWindow.document.body.scrollHeight;
+
+        // scrollHeight >= currentHeight のとき、min-h-screen などビューポート依存の高さが
+        // iframeの高さと連動してループしている可能性がある。
+        // iframeを0に縮めてから計測することで100vh=0となり、実コンテンツの高さだけが得られる。
+        // 縮小・計測・復元は同一JSタスク内で完結するためユーザーには見えない。
+        if (height >= currentHeight) {
+          iframe.style.height = '0px';
+          height = innerWindow.document.body.scrollHeight;
+        }
+
         if (height <= 0) {
           return;
         }
 
-        const newHeight = height + 8;
-        // state を使わず、直接 iframe の高さを更新（再レンダリングを避ける）
-        if (iframe && iframe.style) {
-          iframe.style.height = `${newHeight}px`;
-        }
-      });
+        iframe.style.height = `${height + 8}px`;
+      };
+
+      // ResizeObserverでbody要素のサイズ変化を監視
+      resizeObserverRef.current = new ResizeObserver(measureHeight);
 
       // body要素を監視対象に追加
       resizeObserverRef.current.observe(innerWindow.document.body);
 
       // 初期高さの計算
-      const initialHeight = innerWindow.document.body.scrollHeight;
-      if (initialHeight > 0) {
-        const newHeight = initialHeight + 8;
-        if (iframe && iframe.style) {
-          iframe.style.height = `${newHeight}px`;
-        }
-      }
+      measureHeight();
     };
 
     // iframe の内容がレンダリングされるのを待つ
@@ -108,28 +111,37 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
       >
         {/* smarthr-ui側が対応したらnoIframeの条件分岐は削除し、iframeのdocument.bodyをLiveEditorに渡してportalにする予定です。 */}
         {!noIframe ? (
-          <Frame
-            ref={iframeRef}
-            width="100%"
-            height="600px"
-            style={{ border: 'none', overflow: 'hidden', display: 'block' }}
-            referrerPolicy="same-origin"
-            head={<link href="/smarthr-ui.css" rel="stylesheet" />}
-          >
-            <FrameContextConsumer>
-              {({ document }) => (
-                <StyleSheetManager target={document?.head}>
-                  <ComponentPreview background={background} canvas={canvas}>
-                    <CssBaseLine />
-                    <LivePreview Component={React.Fragment} />
-                  </ComponentPreview>
-                </StyleSheetManager>
-              )}
-            </FrameContextConsumer>
-          </Frame>
+          <ComponentPreview background={background} canvas={canvas}>
+            <Frame
+              ref={iframeRef}
+              width="100%"
+              height="600px"
+              style={{ border: 'none', overflow: 'hidden', display: 'block' }}
+              referrerPolicy="same-origin"
+              head={<link href="/smarthr-ui.css" rel="stylesheet" />}
+              initialContent='<!DOCTYPE html><html><head></head><body class="shr-p-1"><div></div></body></html>'
+            >
+              <FrameContextConsumer>
+                {({ document }) => (
+                  <StyleSheetManager target={document?.head}>
+                    <ui.Text size="M" leading="NORMAL" as="div">
+                      <ui.Cluster gap={1} align="center">
+                        <CssBaseLine />
+                        <LivePreview Component={React.Fragment} />
+                      </ui.Cluster>
+                    </ui.Text>
+                  </StyleSheetManager>
+                )}
+              </FrameContextConsumer>
+            </Frame>
+          </ComponentPreview>
         ) : (
           <ComponentPreview background={background} canvas={canvas}>
-            <LivePreview Component={React.Fragment} />
+            <ui.Text size="M" leading="NORMAL" as="div">
+              <ui.Cluster gap={1} align="center">
+                <LivePreview Component={React.Fragment} />
+              </ui.Cluster>
+            </ui.Text>
           </ComponentPreview>
         )}
         <div

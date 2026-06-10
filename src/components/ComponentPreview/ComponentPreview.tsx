@@ -1,5 +1,4 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
-import { Cluster, Text } from 'smarthr-ui';
 
 export type ComponentPreviewProps = {
   background?: keyof typeof backgroundColors;
@@ -40,7 +39,7 @@ export default function ComponentPreview({ background = 'WHITE', canvas, childre
   return (
     <div
       style={{
-        padding: '1.5rem',
+        padding: '1rem',
         marginBlockStart: '0.5em',
         border: background === 'WHITE' ? '1px solid #d6d3d0' : undefined,
         backgroundColor: backgroundColors[background].color ?? undefined,
@@ -54,16 +53,12 @@ export default function ComponentPreview({ background = 'WHITE', canvas, childre
       <div style={{ width: '100%', height: 'fit-content' }} ref={ref}>
         <div
           style={{
-            width: canvas && `${canvas}px`,
-            zoom: canvas && 'var(--scale)',
+            width: canvas ? `${canvas}px` : undefined,
+            zoom: canvas ? 'var(--scale)' : undefined,
             transformOrigin: 'top left',
           }}
         >
-          <Text size="M" leading="NORMAL" as="div">
-            <Cluster gap={1} align="center">
-              {children}
-            </Cluster>
-          </Text>
+          {children}
         </div>
       </div>
     </div>

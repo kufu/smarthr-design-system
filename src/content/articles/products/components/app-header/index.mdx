@@ -30,6 +30,211 @@ Headerは以下の要素で構成されています。
 
 ![Headerの構成](./images/global-header-anatomy.png)
 
+実装例：
+
+```tsx editable canvas=1400 hideCode background=BACKGROUND
+<AppHeader
+  appName="勤怠管理"
+  currentTenantId="tenant-1"
+  desktopAdditionalContent={<span>デスクトップの追加コンテンツ</span>}
+  desktopNavigationAdditionalContent={<span>デスクトップのナビゲーション追加コンテンツ</span>}
+  features={[
+    {
+      favorite: false,
+      id: 'feature-1',
+      name: '従業員リスト',
+      position: null,
+      url: 'https://example.com'
+    },
+    {
+      favorite: true,
+      id: 'feature-2',
+      name: '共通設定',
+      position: 4,
+      url: 'https://example.com'
+    },
+    {
+      favorite: true,
+      id: 'feature-3',
+      name: 'お知らせ管理',
+      position: 3,
+      url: 'https://example.com'
+    },
+    {
+      favorite: true,
+      id: 'feature-4',
+      name: '給与明細',
+      position: 1,
+      url: 'https://example.com'
+    },
+    {
+      favorite: false,
+      id: 'feature-5',
+      name: '申請',
+      position: null,
+      url: 'https://example.com'
+    },
+    {
+      favorite: false,
+      id: 'feature-6',
+      name: '給与明細管理',
+      position: null,
+      url: 'https://example.com'
+    },
+    {
+      favorite: false,
+      id: 'feature-7',
+      name: 'マイナンバー管理',
+      position: null,
+      url: 'https://example.com'
+    },
+    {
+      favorite: false,
+      id: 'feature-8',
+      name: '源泉徴収票管理',
+      position: null,
+      url: 'https://example.com'
+    },
+    {
+      favorite: false,
+      id: 'feature-9',
+      name: '手続き',
+      position: null,
+      url: 'https://example.com'
+    },
+    {
+      favorite: false,
+      id: 'feature-10',
+      name: '手続きToDo',
+      position: null,
+      url: 'https://example.com'
+    },
+    {
+      favorite: false,
+      id: 'feature-11',
+      name: '文書配付',
+      position: null,
+      url: 'https://example.com'
+    },
+    {
+      favorite: true,
+      id: 'feature-12',
+      name: 'IdP',
+      position: 2,
+      url: 'https://example.com'
+    }
+  ]}
+  helpPageUrl="https://example.com"
+  locale={{
+    onSelectLocale: function uDe(){}
+  }}
+  mobileAdditionalContent={<p>モバイルの追加コンテンツ</span>}
+  navigations={[
+    {
+      children: 'aタグ',
+      href: 'https://example.com'
+    },
+    {
+      children: 'カスタムタグ',
+      elementAs: function uDe(){},
+      to: 'https://example.com'
+    },
+    {
+      children: 'ボタン',
+      onClick: function uDe(){}
+    },
+    {
+      childNavigations: [
+        {
+          children: 'aタグ',
+          href: 'https://example.com'
+        },
+        {
+          children: 'カスタムタグ',
+          elementAs: function uDe(){},
+          to: 'https://example.com'
+        },
+        {
+          children: 'ボタン',
+          onClick: function uDe(){}
+        }
+      ],
+      children: 'ドロップダウン'
+    },
+    {
+      childNavigations: [
+        {
+          childNavigations: [
+            {
+              children: 'グループ1_アイテム1',
+              current: '[Circular]',
+              href: 'https://example.com'
+            },
+            {
+              children: 'グループ1_アイテム2',
+              href: 'https://example.com'
+            }
+          ],
+          title: 'グループ1'
+        },
+        {
+          childNavigations: [
+            {
+              children: 'グループ2_アイテム1',
+              href: 'https://example.com'
+            },
+            {
+              children: 'グループ2_アイテム2',
+              href: 'https://example.com'
+            }
+          ],
+          title: 'グループ2'
+        }
+      ],
+      children: 'グループ'
+    }
+  ]}
+  onTenantSelect={function uDe(){}}
+  releaseNote={{
+    indexUrl: 'https://example.com',
+    links: [
+      {
+        title: 'リリースノート1',
+        url: 'https://example.com'
+      },
+      {
+        title: 'リリースノート2',
+        url: 'https://example.com'
+      },
+      {
+        title: 'リリースノート3',
+        url: 'https://example.com'
+      }
+    ]
+  }}
+  schoolUrl="https://example.com"
+  tenants={[
+    {
+      id: 'tenant-1',
+      name: '株式会社テストテナント壱'
+    },
+    {
+      id: 'tenant-2',
+      name: '株式会社テストテナント弐'
+    }
+  ]}
+  userInfo={{
+    accountUrl: 'https://example.com',
+    email: 'smarthr@example.com',
+    empCode: '001',
+    firstName: '須磨',
+    lastName: '栄子'
+  }}
+>
+  小要素
+</AppHeader>
+```
+
 #### 1. SmartHRロゴ
 
 SmartHRのホーム（`/`）へ移動するためのリンクです。
