@@ -1,0 +1,29 @@
+items:
+  # 使用上の注意
+  - severity: avoid
+    text: '全画面でエラーを表示する必要がないエラーには ErrorScreen を使用しない'
+    source_section: '使用上の注意'
+
+  - severity: should
+    text: 'フォームのバリデーションエラーや連携 API の疎通エラーのような一時的なエラーの場合は、NotificationBar / ResponseMessage / InformationPanel の使用を検討する'
+    source_section: '使用上の注意'
+
+  # レイアウト > ロゴ
+  - severity: should
+    text: '特別な理由がない限り、ロゴを表示する'
+    source_section: 'レイアウト > ロゴ'
+
+  # レイアウト > タイトル
+  - severity: must
+    text: 'タイトルには、どのようなエラーが発生したのかがわかる文言を設定する'
+    source_section: 'レイアウト > タイトル'
+
+  # レイアウト > メッセージ
+  - severity: should
+    text: 'タイトルに補足が必要な場合、メッセージを設定する'
+    source_section: 'レイアウト > メッセージ'
+
+  # レイアウト > リンク
+  - severity: should
+    text: 'エラーになったときにユーザーの助けになるようなページへ誘導できる場合はリンクを表示する'
+    source_section: 'レイアウト > リンク'

@@ -1,0 +1,38 @@
+items:
+  # 使用上の注意 > 入力要素が2つ以上の場合にのみ使用する
+  - severity: must
+    text: 'Fieldset は 2 つ以上の入力要素を持つフォームをグループ化する場合に使用する'
+    source_section: '使用上の注意 > 入力要素が2つ以上の場合にのみ使用する'
+
+  - severity: must
+    text: '入力要素が 1 つだけの場合は FormControl を使用する'
+    source_section: '使用上の注意 > 入力要素が2つ以上の場合にのみ使用する'
+
+  # レイアウト
+  - severity: must
+    text: 'Fieldset には複数の入力要素のグループの目的を明確にするタイトルをつける'
+    source_section: 'レイアウト'
+
+  - severity: must
+    text: 'Fieldset に内包されるフォーム要素のタイトルは、グルーピングしている Fieldset のタイトルよりも低い見出しレベルにする'
+    source_section: 'レイアウト'
+
+  # レイアウト > エラーの表示方法
+  - severity: must
+    text: 'Fieldset のタイトル下にエラーメッセージを表示する場合は、該当の FormControl のタイトルを含める'
+    source_section: 'レイアウト > エラーの表示方法'
+
+  # 状態 > 無効（disabled）
+  - severity: should
+    text: '無効状態にする場合は、そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討する'
+    source_section: '状態 > 無効（disabled）'
+
+  # 状態 > 読み取り専用
+  - severity: should
+    text: '入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、Input の `readOnly` を使用する'
+    source_section: '状態 > 読み取り専用'
+
+  - severity: should
+    text: 'Fieldset 内の値を readOnly で表示する場合、分割されたフォームの値をそれぞれコピーする必要があり手間になる点に注意する'
+    source_section: '状態 > 読み取り専用'
+    note: '配慮喚起のみ。除外検討'

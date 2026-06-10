@@ -7,18 +7,13 @@
   "lint-staged": {
     "src/**/*.{astro,ts,tsx}": [
       "pnpm prelint",
-      "pnpm lint:ts:content",
-      "pnpm lint:ts:codeblock",
-      "pnpm lint:check",
-      "pnpm format:eslint",
-      "pnpm format:prettier"
+      "pnpm run-p lint:ts:content lint:ts:codeblock lint:check -- ",
+      "pnpm run-p format:eslint format:prettier -- "
     ],
     "src/**/*.md{,x}": [
       "pnpm prelint",
-      "pnpm lint:check",
-      "pnpm lint:text",
-      "pnpm format:text",
-      "pnpm format:prettier"
+      "pnpm run-p lint:check lint:text -- ",
+      "pnpm run-p format:text format:prettier -- "
     ],
     "!(src/**/*.{astro,ts,tsx,md,mdx})": [
       "pnpm format:prettier"
@@ -26,11 +21,13 @@
   },
   "scripts": {
     "clean": "rm -rf dist && find src/content/articles -type d -name '_check' -exec rm -rf {} +",
-    "dev": "pnpm update:ui-data && astro dev",
+    "predev": "run-s update:ui-data",
+    "dev": "astro dev",
     "start": "pnpm dev",
-    "prebuild": "run-p clean",
-    "build": "pnpm update:ui-data && astro build",
+    "prebuild": "run-s clean update:ui-data",
+    "build": "astro build",
     "build:prod": "pnpm build && pnpm tsx ./scripts/update-algoliasearch.ts",
+    "prepreview": "run-s clean update:ui-data",
     "preview": "astro preview",
     "astro": "astro",
     "lint:ts:content": "eslint 'src/**/*.{astro,ts,tsx}'",
@@ -48,20 +45,20 @@
     "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
     "generate:thumbnails": "cd ./scripts/component-thumbnails && pnpm install && cd ../.. && tsx ./scripts/component-thumbnails/componentThumbnails.ts",
     "copy:smarthr-ui-css": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
-    "upgrade:smarthr-ui": "pnpm upgrade smarthr-ui@latest",
+    "upgrade:smarthr-ui": "pnpm -r upgrade smarthr-ui@latest",
     "postupgrade:smarthr-ui": "run-s copy:smarthr-ui-css generate:thumbnails",
     "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/mdx": "^5.0.6",
     "@astrojs/partytown": "^2.1.7",
-    "@astrojs/react": "^5.0.4",
+    "@astrojs/react": "^5.0.5",
     "@astrojs/sitemap": "^3.7.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "algoliasearch": "^5.52.1",
-    "astro": "^6.3.1",
+    "astro": "^6.3.7",
     "clsx": "^2.1.1",
     "marked": "^18.0.3",
     "prism-react-renderer": "^2.4.1",
@@ -73,8 +70,9 @@
     "react-live": "^4.1.8",
     "smarthr-normalize-css": "^1.1.0",
     "smarthr-ui": "^95.0.0",
-    "styled-components": "^6.4.1",
-    "typescript": "^6.0.3"
+    "styled-components": "^6.4.2",
+    "typescript": "^6.0.3",
+    "yaml": "^2.8.4"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
@@ -89,13 +87,13 @@
     "eslint-config-smarthr": "^14.0.1",
     "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-mdx": "^3.7.0",
+    "eslint-plugin-mdx": "^3.8.1",
     "gray-matter": "^4.0.3",
     "hast-util-select": "^6.0.4",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.4",
+    "lint-staged": "^17.0.7",
     "node-html-parser": "^7.1.0",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all2": "9.0.0",
     "prettier": "^3.8.3",
     "prettier-config-smarthr": "^1.0.1",
     "prettier-plugin-astro": "^0.14.1",
@@ -104,13 +102,13 @@
     "sass-embedded": "^1.99.0",
     "sharp": "0.34.5",
     "tailwindcss": "3",
-    "textlint": "^15.6.1",
+    "textlint": "^15.7.1",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-filter-rule-comments": "^1.3.0",
     "textlint-plugin-mdx": "^1.1.0",
     "textlint-rule-preset-smarthr": "^1.37.1",
     "textlint-rule-prh": "^6.1.0",
-    "tsx": "^4.21.0",
+    "tsx": "^4.22.3",
     "unist-util-visit": "^5.1.0"
   },
   "packageManager": "pnpm@11.1.2"

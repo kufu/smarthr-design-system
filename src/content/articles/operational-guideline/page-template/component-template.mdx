@@ -8,6 +8,17 @@ order: 2
 # deprecatedMessageはHTMLを含められます（リンクは `<a href="...">` で記述可能）。
 # deprecated: true
 # deprecatedMessage: '○○は非推奨です。<a href="/products/components/xxx/">XXX</a> を使ってください。'
+#
+# 派生コンポーネントや内部部品がある場合は relatedComponents を宣言します。
+# ドキュメントページの関連コンポーネント表示と、AIエージェント向け SKILL.md の関連情報に使われます。
+# - 子 index.mdx を持つサブコンポーネント(例: Dialog 配下の ActionDialog): description 省略可。子の index.mdx から自動採用されます。
+# - 子 index.mdx を持たないサブコンポーネント(例: Table 配下の Th / Td、Controlled* 等の派生継承): description 必須。書き忘れると CI で失敗します。
+# 詳細は CONTRIBUTING.md の「relatedComponents の宣言」を参照してください。
+# relatedComponents:
+#   - name: Th
+#     description: 'th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。'
+#   - name: Td
+#     description: 'td要素の代替としてテーブルのデータセルを表すコンポーネントです。'
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
@@ -168,7 +179,7 @@ export const DynamicMessageDialog = () => {
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 
 // 別ファイルに切り出した
-import DynamicMessageDialog from './_components/DynamicMessageDialog'
+import { DynamicMessageDialog } from './_components'
 
 <ComponentPreview>
   <DynamicMessageDialog client:load />

@@ -1,0 +1,24 @@
+{
+  "name": "sds-generate-skills",
+  "version": "0.1.0",
+  "author": "SmartHR Design System Team",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "tsx index.ts",
+    "test": "node --import tsx --test lib/**/*.test.ts",
+    "validate": "tsx validate.ts"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.1",
+    "smarthr-ui": "^95.0.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.19.19",
+    "tsx": "^4.22.3",
+    "typescript": "^5.7.3"
+  }
+}

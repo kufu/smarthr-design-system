@@ -1,11 +1,20 @@
 ---
 title: 'Dialog'
 description: 'ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。'
+relatedComponents:
+  - name: ActionDialog
+  - name: FormDialog
+  - name: MessageDialog
+  - name: ModelessDialog
+  - name: StepFormDialog
+  - name: RemoteDialogTrigger
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
+
+import { DynamicActionDialog, DynamicMessageDialog, DynamicModelessDialog, DynamicStepFormDialog } from './_components'
 
 ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。
 
@@ -16,11 +25,6 @@ import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 ## Dialogを使用したコンポーネント
 
 頻繁に利用するダイアログのパターンを、スタイリングやpropsを整えたコンポーネントとして用意しています。
-
-import DynamicActionDialog from './_components/DynamicActionDialog'
-import DynamicMessageDialog from './_components/DynamicMessageDialog'
-import DynamicModelessDialog from './_components/DynamicModelessDialog'
-import DynamicStepFormDialog from './_components/DynamicStepFormDialog'
 
 ### ActionDialog、FormDialog
 

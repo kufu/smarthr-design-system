@@ -1,0 +1,13 @@
+items:
+  # 使用上の注意 > 金額入力にはCurrencyInputを使用する
+  - severity: must
+    text: '金額入力には `<Input type="number">` の代わりに CurrencyInput を使う'
+    source_section: '使用上の注意 > 金額入力にはCurrencyInputを使用する'
+
+  # 使用上の注意 > プレフィックス・サフィックスで単位を補足する
+  - severity: must
+    text: '通貨記号や単位は `prefix` または `suffix` で補足する'
+    source_section: '使用上の注意 > プレフィックス・サフィックスで単位を補足する'
+    sub_items:
+      - '一般的に内容に対して前方に置かれる単位（例: 米ドル）には `prefix` を用いる'
+      - '後方に置かれる単位（例: 日本円）には `suffix` を用いる'

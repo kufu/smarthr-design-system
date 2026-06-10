@@ -92,3 +92,140 @@ Astroと直接関連しない、独自の機能もいくつかあります。
 ### Cloudinary
 
 OGP画像の動的生成とGoatcha画像のホスティングに[Cloudinary](https://cloudinary.com/)を利用しています。
+
+----
+## smarthr-uiコンポーネント向けAIスキルの整備
+
+このセクションは、コンポーネントページ（`index.mdx`）を執筆する人向けの説明です。
+
+smarthr-uiを使うAIエージェント（Claude Code / Cursorなど）向けに、コンポーネントごとの利用ガイドを`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`として配布しています。ガイドは以下の3層から自動合成されます。
+
+- Layer 1: `metadata.json`（コンポーネント基本情報）
+- Layer 2: `eslint-plugin-smarthr`のルールREADME（自動検出可能なルール）
+- Layer 3: `checklist.yaml`（このリポジトリで管理する人手作成ルール）
+
+このうちLayer 3の`checklist.yaml`は、`index.mdx`から「AIエージェントに伝えたいルール」を抜き出したファイルです。AIアシスタントに依頼すれば自動で作成・更新できるため、YAMLを手書きする必要はありません。あわせて`index.mdx`のfrontmatterで宣言する`relatedComponents`の運用についても本セクションで説明します。
+
+### 事前準備
+
+ターミナル操作は、本リポジトリのルートディレクトリ（`smarthr-design-system/`）で実行します。初回のみ、依存パッケージのインストールが必要です。
+
+```sh
+pnpm install
+```
+
+### checklist.yamlの新規作成
+
+1. 対象コンポーネントの`index.mdx`を整備します。
+2. Claude CodeまたはCursorのAgentモードのチャットで、コンポーネント名を明示して依頼します。
+
+   ```
+   Button の checklist.yaml を作って
+   ```
+
+   複数のコンポーネントを同時に作成する場合は、対象をすべて列挙します。
+
+   ```
+   Button と Dialog の checklist.yaml を作って
+   ```
+
+   依頼すると`generate-checklist` SKILLが自動で読み込まれ、`index.mdx`と`_components/*.mdx`からルールを抽出します。Cursorでも同じSKILLが動作します。
+
+3. バリデーションを実行し、形式エラーがないことを確認します。
+
+   ```sh
+   pnpm --filter ./scripts/generate-skills validate
+   ```
+
+   `error`が出た場合は、AIアシスタントに「validateのエラーを直して」と依頼すれば自動修正できます。`warn`の対処は[出力の見方](#バリデーション出力の見方)を参照してください。
+
+4. `checklist.yaml`の内容を確認します。以下の観点でチェックし、必要に応じて修正します。
+   - **`severity`の妥当性**: 各項目の`severity`（`must` / `should` / `avoid`）が`index.mdx`の語気と一致しているか
+   - **項目の網羅性**: `index.mdx`に書かれているルールが漏れなく抽出されているか
+   - **不要項目の混入**: 自動挙動の説明やprops規約のみの項目など、AIエージェント向けの判断材料にならない項目が含まれていないか
+   - **`text`の表現**: Do/Don't形・終止形になっているか（「〜してください」など強い指示の言い回しが残っていないか）
+5. 以下のコマンドを実行して、`checklist.yaml`をコンポーネントガイドに反映します。
+
+   ```sh
+   pnpm --filter ./scripts/generate-skills generate
+   ```
+
+   成功すると、`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`が追加されます。
+
+### checklist.yamlの更新
+
+`index.mdx`を変更した場合、既存の`checklist.yaml`に差分を反映します。
+
+1. AIアシスタントに依頼します。
+
+   ```
+   Button の checklist.yaml を更新して
+   ```
+
+   依頼すると`update-checklist` SKILLが自動で読み込まれ、差分のみを既存の項目にマージします。レビュー済みの項目（`severity`・本文・補足など）は自動的に保護されます。
+
+2. バリデーションを実行し、形式エラーがないことを確認します。
+
+   ```sh
+   pnpm --filter ./scripts/generate-skills validate
+   ```
+
+3. 差分の内容を確認します。AIアシスタントは追加・削除・更新の差分をレポートするため、以下の観点でチェックし、必要に応じて修正します。
+   - **追加項目**: 提案された`severity`（`must` / `should` / `avoid`）が`index.mdx`の語気と一致しているか
+   - **削除項目**: 該当ルールが`index.mdx`から本当に削除されているか（誤削除でないか）
+   - **更新項目**: 変更前後のdiffが`index.mdx`の変更意図と一致しているか
+   - **無変更項目**: 既存のレビュー済み項目が誤って書き換わっていないか
+4. ガイドを再生成します。
+
+   ```sh
+   pnpm --filter ./scripts/generate-skills generate
+   ```
+
+   成功すると、`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`が更新されます。
+
+### バリデーション出力の見方
+
+- **`error`**: 必須項目の欠落、型の不正、YAML構文エラーなど。CIで失敗するため必ず修正します。AIアシスタントに「validateのエラーを直して」と依頼すれば自動修正できます。
+- **`warn`**: 項目数の上限超過、`relatedComponents`の`description`欠落（`missingDescriptions`）など。内容に応じて対応します。なお`relatedComponents`の`description`欠落はCIでも失敗扱いです。
+
+### relatedComponentsの宣言
+
+`relatedComponents`は、`index.mdx`の先頭にあるfrontmatter（`---`で囲まれたYAMLブロック）で宣言する項目です。「このコンポーネントに付随する派生コンポーネントや内部部品の一覧」を記載し、ドキュメントページ上での関連コンポーネント表示と、AIエージェント向け`SKILL.md`の関連情報の両方に使われます。
+
+書き方は、`name`（smarthr-uiのコンポーネント名）と、必要に応じて`description`（説明文）を並べます。
+
+```yaml
+---
+relatedComponents:
+  - name: Th
+    description: 'th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。'
+  - name: Td
+    description: 'td要素の代替としてテーブルのデータセルを表すコンポーネントです。'
+---
+```
+
+`description`が必要かどうかは、サブコンポーネントが独自のページ（子`index.mdx`）を持っているかで決まります。
+
+- **子`index.mdx`あり**（`Dialog`配下の`ActionDialog`など）: `description`は省略できます。子`index.mdx`の冒頭説明文が自動で採用されます。
+- **子`index.mdx`なし**（`Table`配下の`Th` / `Td`など）: `description`を必ず書きます。書き忘れるとバリデーションで警告（`missingDescriptions`）となり、CIでも失敗します。
+
+サブコンポーネントの典型的な分類:
+
+|分類|例|子`index.mdx`|`description`|
+|-|-|-|-|
+| 派生継承 | `ControlledDialog`などの`Controlled*` | なし | 必須 |
+| 内部部品 | `Th` / `Td`など | なし | 必須 |
+| カテゴリメンバー | `Dialog` / `ErrorScreen` / `Picker`配下 | あり | 省略可 |
+
+### 関連ファイル（参考）
+
+仕組みを詳しく知りたい開発者向けの参照先です。通常の運用では触りません。
+
+|ファイル|役割|
+|-|-|
+| `.claude/skills/generate-checklist/SKILL.md` | 新規生成用のSKILL定義 |
+| `.claude/skills/update-checklist/SKILL.md` | 差分更新用のSKILL定義 |
+| `.github/prompts/generate-checklist.md` | 抽出ルールの詳細仕様 |
+| `.github/prompts/update-checklist.md` | 差分更新プロンプトの詳細仕様 |
+| `scripts/generate-skills/validate.ts` | バリデーションスクリプト |
+| `scripts/generate-skills/index.ts` | `SKILL.md`再生成スクリプト |
