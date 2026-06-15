@@ -98,7 +98,7 @@ OGP画像の動的生成とGoatcha画像のホスティングに[Cloudinary](htt
 
 このセクションは、コンポーネントページ（`index.mdx`）を執筆する人向けの説明です。
 
-smarthr-uiを使うAIエージェント（Claude Code / Cursorなど）向けに、コンポーネントごとの利用ガイドを`SKILL.md`として配布しています。`SKILL.md`は以下の3層から自動合成されます。
+smarthr-uiを使うAIエージェント（Claude Code / Cursorなど）向けに、コンポーネントごとの利用ガイドを`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`として配布しています。ガイドは以下の3層から自動合成されます。
 
 - Layer 1: `metadata.json`（コンポーネント基本情報）
 - Layer 2: `eslint-plugin-smarthr`のルールREADME（自動検出可能なルール）
@@ -144,13 +144,9 @@ pnpm install
    - **項目の網羅性**: `index.mdx`に書かれているルールが漏れなく抽出されているか
    - **不要項目の混入**: 自動挙動の説明やprops規約のみの項目など、AIエージェント向けの判断材料にならない項目が含まれていないか
    - **`text`の表現**: Do/Don't形・終止形になっているか（「〜してください」など強い指示の言い回しが残っていないか）
-5. 以下のコマンドを実行して、`checklist.yaml`を`SKILL.md`に反映します。
+5. `checklist.yaml`をコミットしてPRを出します。**コミット対象は`checklist.yaml`のみ**です。
 
-   ```sh
-   pnpm --filter ./scripts/generate-skills generate
-   ```
-
-   成功すると、`plugins/smarthr-design-system/skills/<コンポーネント名>/SKILL.md`が追加されます。
+   コンポーネントガイド（`plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`）への反映は、マージ後にCI（`generate-skills`ワークフロー）が自動実行します。手元で`pnpm --filter ./scripts/generate-skills generate`を実行して生成物をコミットする必要はありません（反映結果を確認したい場合のみ実行できます。生成物はコミットしません）。
 
 ### checklist.yamlの更新
 
@@ -175,13 +171,47 @@ pnpm install
    - **削除項目**: 該当ルールが`index.mdx`から本当に削除されているか（誤削除でないか）
    - **更新項目**: 変更前後のdiffが`index.mdx`の変更意図と一致しているか
    - **無変更項目**: 既存のレビュー済み項目が誤って書き換わっていないか
-4. `SKILL.md`を再生成します。
+4. `checklist.yaml`をコミットしてPRを出します。新規作成と同じく**コミット対象は`checklist.yaml`のみ**で、コンポーネントガイドへの反映はマージ後にCIが自動実行します。
 
-   ```sh
-   pnpm --filter ./scripts/generate-skills generate
-   ```
+### CIでの自動チェック（`validate-skills` ワークフロー）
 
-   成功すると、`plugins/smarthr-design-system/skills/<コンポーネント名>/SKILL.md`が更新されます。
+PRを出すと、GitHub Actionsで以下が自動実行されます。
+
+- **`validate`**: 上記の`pnpm --filter ./scripts/generate-skills validate`をCI上で実行します。`error`があるとマージブロックされます。
+- **`checklist-sync`**: `index.mdx`または`_components/*.mdx`を変更したコンポーネントについて、同一PR内で`checklist.yaml`も更新されているかを確認します。未更新の場合はマージブロックされます。
+- **`coverage`**: smarthr-uiの`metadata.json`と設計システム側`index.mdx`/`relatedComponents`の追従整合性をチェックします。`scripts/generate-skills/coverage-baseline.json`に列挙された既知違反は除外され、新規違反のみPRブロックの対象になります。
+
+`checklist-sync`が失敗した場合の対応は以下のいずれか:
+
+1. ローカルで`checklist.yaml`を更新（または新規作成）してPRに追加
+2. `generate-checklist` SKILLの判定で「スキップ対象」だった場合 → スキップ理由をPR descriptionに書き、PRに `skip-checklist-update` ラベルを付与
+3. typo / description のみ等の軽微修正で更新不要な場合 → PRに `skip-checklist-update` ラベルを付与
+
+**スキップ判定の典型例**（`generate-checklist` SKILLが自動判定します）:
+
+- Every Layout の外部委譲（`Stack` / `Cluster` / `Center` / `Sidebar` / `Reel`）
+- 索引のみの親ページ（`Combobox` 親、`Dropdown` 親）
+- 機能説明のみで指示文がないコンポーネント
+- 自動挙動・props 規約のみ（`AppHeader` 等）
+- `deprecated: true` 指定（`deprecatedMessage` で代替を示すため不要）
+- `description`で十分カバーされる内容
+- `index.mdx`冒頭の説明文がそのままコンポーネントガイドの Layer 1 に取り込まれるケース
+
+新規コンポーネント追加時は、`generate-checklist` SKILLを実行すると上記スキップ判定パターンに該当する場合は自動的に作成をスキップし、理由を報告します。報告された理由をPR descriptionに転記してラベルを付与してください。
+
+#### `coverage`が失敗した場合の対応
+
+`coverage`ジョブは、smarthr-uiに新しく追加された未対応コンポーネントや、`relatedComponents`の`name`がsmarthr-uiの公開exportに存在しないケース（typo・rename等）を検知します。
+
+対応のいずれか:
+
+1. 該当コンポーネントの`index.mdx`を新規作成、または親mdxの`relatedComponents`で紐付ける
+2. 別PRでの対応にしたい場合（smarthr-uiアップデートPRで新コンポーネント追加だけ後回しにする等）→ `scripts/generate-skills/coverage-baseline.json`に追加してCIを通す
+3. baselineに追加した違反は別PRで解消したら、`coverage-baseline.json`から削除する（解消済みエントリは`coverage`実行時に警告として通知されます）
+
+### マージ後の自動再生成（`generate-skills` ワークフロー）
+
+`main`にマージされると、コンポーネントガイド（`plugins/smarthr-design-system/skills/component-guidelines/`配下）が自動再生成され、差分があれば `github-actions[bot]` が自動コミット&pushします。手動で`pnpm --filter ./scripts/generate-skills generate`を実行する必要はありません。
 
 ### バリデーション出力の見方
 
@@ -190,7 +220,7 @@ pnpm install
 
 ### relatedComponentsの宣言
 
-`relatedComponents`は、`index.mdx`の先頭にあるfrontmatter（`---`で囲まれたYAMLブロック）で宣言する項目です。「このコンポーネントに付随する派生コンポーネントや内部部品の一覧」を記載し、ドキュメントページ上での関連コンポーネント表示と、AIエージェント向け`SKILL.md`の関連情報の両方に使われます。
+`relatedComponents`は、`index.mdx`の先頭にあるfrontmatter（`---`で囲まれたYAMLブロック）で宣言する項目です。「このコンポーネントに付随する派生コンポーネントや内部部品の一覧」を記載し、ドキュメントページ上での関連コンポーネント表示と、AIエージェント向けコンポーネントガイドの関連情報の両方に使われます。
 
 書き方は、`name`（smarthr-uiのコンポーネント名）と、必要に応じて`description`（説明文）を並べます。
 

@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -7,18 +8,23 @@ import { fetchEslintRules, buildComponentRuleMap, type EslintRuleWithContent } f
 import { parseChecklist } from './lib/parse-checklist.js';
 import { parseIndexMdx, type IndexMdxInfo } from './lib/parse-index-mdx.js';
 import { collectRelatedComponents } from './lib/related-components.js';
-import { buildDirMapping, loadManualMappings, toSkillSlug } from './lib/name-mapping.js';
+import { buildDirMapping, loadManualMappings, toDocFileName } from './lib/name-mapping.js';
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
-import { validateCoverage, printCoverageReport } from './lib/validate-coverage.js';
+import { validateCoverage, printCoverageReport, loadCoverageBaseline, applyCoverageBaseline } from './lib/validate-coverage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
 
+const SMARTHR_UI_VERSION: string = JSON.parse(
+  fs.readFileSync(createRequire(import.meta.url).resolve('smarthr-ui/package.json'), 'utf-8'),
+).version;
+
 const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/components');
 const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
-const ESLINT_CACHE_PATH = path.join(__dirname, '.cache/eslint-rules.json');
+const COVERAGE_BASELINE_PATH = path.join(__dirname, 'coverage-baseline.json');
+const ESLINT_SNAPSHOT_PATH = path.join(__dirname, 'eslint-rules-snapshot.json');
 const ESLINT_RULE_NAMES_PATH = path.join(REPO_ROOT, '.github/data/eslint-rule-names.txt');
 
 /**
@@ -78,8 +84,8 @@ async function main() {
   const groups = autoSplitGroups(rawGroups, new Set(relatedSkills.keys()));
   console.log(`   ${groups.size} コンポーネントグループを検出`);
 
-  console.log('🌐 eslint-plugin-smarthr ルール README を取得中…（キャッシュ優先）');
-  const rules = await fetchEslintRules(ESLINT_CACHE_PATH, ESLINT_RULE_NAMES_PATH);
+  console.log('🌐 eslint-plugin-smarthr ルール README を読み込み中…（コミット済みスナップショット優先）');
+  const rules = await fetchEslintRules(ESLINT_SNAPSHOT_PATH, ESLINT_RULE_NAMES_PATH);
   console.log(`   ${rules.length} ルールを取得`);
 
   const allDisplayNames = new Set<string>();
@@ -94,7 +100,7 @@ async function main() {
   const dirMapping = buildDirMapping([...groups.keys()], DESIGN_SYSTEM_DIR, manualMappings);
   console.log(`   ${dirMapping.size}/${groups.size} を design-system dir に対応付け`);
 
-  const coverageReport = validateCoverage({
+  const rawCoverageReport = validateCoverage({
     groups,
     dirMapping,
     designSystemDir: DESIGN_SYSTEM_DIR,
@@ -102,20 +108,23 @@ async function main() {
     relatedSkills,
     publicExports,
   });
+  const coverageBaseline = loadCoverageBaseline(COVERAGE_BASELINE_PATH);
+  const coverageReport = applyCoverageBaseline(rawCoverageReport, coverageBaseline);
   printCoverageReport(coverageReport);
 
-  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  const COMPONENT_GUIDELINES_DIR = path.join(OUTPUT_DIR, 'component-guidelines');
+  const COMPONENTS_DIR = path.join(COMPONENT_GUIDELINES_DIR, 'components');
+  fs.mkdirSync(COMPONENTS_DIR, { recursive: true });
 
-  // 生成予定の skill slug 一覧を先に計算し、出力先の古いディレクトリを削除する。
-  // smarthr-ui からコンポーネントが削除/rename されたときの残骸を防ぐ。
-  const expectedSlugs = new Set<string>(['component-selector']);
-  for (const dirName of groups.keys()) expectedSlugs.add(toSkillSlug(dirName));
+  // 生成予定のドキュメントファイル名を先に計算し、古いファイルを削除する。
+  const expectedDocFiles = new Set<string>();
+  for (const dirName of groups.keys()) expectedDocFiles.add(toDocFileName(dirName));
 
-  for (const existing of fs.readdirSync(OUTPUT_DIR, { withFileTypes: true })) {
-    if (!existing.isDirectory()) continue;
-    if (!expectedSlugs.has(existing.name)) {
-      console.log(`   🗑️  古い skill ディレクトリを削除: ${existing.name}`);
-      fs.rmSync(path.join(OUTPUT_DIR, existing.name), { recursive: true, force: true });
+  for (const existing of fs.readdirSync(COMPONENTS_DIR, { withFileTypes: true })) {
+    if (!existing.isFile() || !existing.name.endsWith('.md')) continue;
+    if (!expectedDocFiles.has(existing.name)) {
+      console.log(`   🗑️  古いドキュメントファイルを削除: ${existing.name}`);
+      fs.rmSync(path.join(COMPONENTS_DIR, existing.name), { force: true });
     }
   }
 
@@ -134,10 +143,6 @@ async function main() {
       checklist = parseChecklist(path.join(compDir, 'checklist.yaml'));
       if (checklist !== null) withLayer3++;
     } else if (relatedSkills.has(dirName)) {
-      // サブコンポーネント: 親 mdx の本文を継承し、description のみ派生先固有に差し替える。
-      // 子に独立 index.mdx がある場合は dirMapping 側で処理されるためここに来ない。
-      // ここに来るのは Th/Td のように子 dir がないケース → 親 mdx の relatedComponents で
-      // description を宣言しておく必要がある。
       const rel = relatedSkills.get(dirName)!;
       indexInfo = {
         ...rel.parentInfo,
@@ -145,7 +150,6 @@ async function main() {
         description: rel.description ?? rel.parentInfo.description,
         relatedComponents: [],
       };
-      // 親コンポーネントの checklist も継承する
       const parentDesignDirName = dirMapping.get(rel.parentName);
       if (parentDesignDirName) {
         const parentCompDir = path.join(DESIGN_SYSTEM_DIR, parentDesignDirName);
@@ -163,23 +167,20 @@ async function main() {
     }
     const eslintRules = [...eslintRulesSet.values()];
 
-    const content = renderSkill({ group, indexInfo, eslintRules, checklist });
-    const skillSlug = toSkillSlug(dirName);
-    const outDir = path.join(OUTPUT_DIR, skillSlug);
-    fs.mkdirSync(outDir, { recursive: true });
-    fs.writeFileSync(path.join(outDir, 'SKILL.md'), content, 'utf-8');
+    const content = renderSkill({ group, indexInfo, eslintRules, checklist, smarthrUiVersion: SMARTHR_UI_VERSION });
+    const docFileName = toDocFileName(dirName);
+    fs.writeFileSync(path.join(COMPONENTS_DIR, docFileName), content, 'utf-8');
     generated++;
 
     routerEntries.push({ group, indexInfo, designSystemDir: designSystemDirName });
   }
 
-  console.log(`✅ ${generated} 個のコンポーネント SKILL.md を生成（うち Layer 3 あり: ${withLayer3}）`);
+  console.log(`✅ ${generated} 個のコンポーネントドキュメントを生成（うち Layer 3 あり: ${withLayer3}）`);
 
-  console.log('🧭 ルータースキル component-selector を生成中…');
-  const routerDir = path.join(OUTPUT_DIR, 'component-selector');
-  fs.mkdirSync(routerDir, { recursive: true });
-  fs.writeFileSync(path.join(routerDir, 'SKILL.md'), renderRouterSkill(routerEntries), 'utf-8');
-  console.log(`   → ${path.relative(REPO_ROOT, path.join(routerDir, 'SKILL.md'))}`);
+  console.log('🧭 component-selector ドキュメントを生成中…');
+  const routerPath = path.join(COMPONENT_GUIDELINES_DIR, 'component-selector.md');
+  fs.writeFileSync(routerPath, renderRouterSkill(routerEntries, SMARTHR_UI_VERSION), 'utf-8');
+  console.log(`   → ${path.relative(REPO_ROOT, routerPath)}`);
 
   console.log('🎉 完了');
 }

@@ -5,33 +5,21 @@ import { getRelevantCodeExamples } from './fetch-eslint-rules.js';
 import type { ChecklistSection } from './parse-checklist.js';
 import { formatSkillBodyText } from './format-skill-body-text.js';
 import { isLeadSupersetOfDescription, isSubstantivelyDuplicate, type IndexMdxInfo } from './parse-index-mdx.js';
-import { toSkillSlug } from './name-mapping.js';
 
 export type SkillRenderOptions = {
   group: ComponentGroup;
   indexInfo: IndexMdxInfo | null;
   eslintRules: EslintRuleWithContent[];
   checklist: ChecklistSection[] | null;
+  smarthrUiVersion: string;
 };
 
-const SOURCE_TAG = 'smarthr-design-system';
-
 export function renderSkill(opts: SkillRenderOptions): string {
-  const { group, indexInfo, eslintRules, checklist } = opts;
+  const { group, indexInfo, eslintRules, checklist, smarthrUiVersion } = opts;
   const groupName = group.dirName;
-  const skillName = toSkillSlug(groupName);
-  const generatedFrom = buildGeneratedFromTag(eslintRules.length > 0, checklist !== null && checklist.length > 0);
-  const description = buildDescription(group, indexInfo);
 
   const parts: string[] = [];
-  parts.push('---');
-  parts.push(`name: ${skillName}`);
-  parts.push(`description: ${yamlEscapeInline(description)}`);
-  parts.push('metadata:');
-  parts.push('  version: "1.0.0"');
-  parts.push(`  source: ${SOURCE_TAG}`);
-  parts.push(`  generated-from: ${generatedFrom}`);
-  parts.push('---');
+  parts.push(`# ${groupName}`);
   parts.push('');
 
   if (indexInfo) {
@@ -61,6 +49,10 @@ export function renderSkill(opts: SkillRenderOptions): string {
   parts.push('');
 
   parts.push('## Props');
+  parts.push('');
+  parts.push(
+    `> ℹ️ この Props 情報は **smarthr-ui v${smarthrUiVersion}** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、\`node_modules/smarthr-ui\` の \`.d.ts\` / \`metadata.json\`）を正としてください。`,
+  );
   parts.push('');
   const multipleComponents = group.components.length > 1;
   for (const component of group.components) {
@@ -146,42 +138,6 @@ export function renderSkill(opts: SkillRenderOptions): string {
   return parts.join('\n');
 }
 
-function buildDescription(group: ComponentGroup, indexInfo: IndexMdxInfo | null): string {
-  const names = group.displayNames.join(' / ');
-  const base = indexInfo?.description?.replace(/\r?\n/g, ' ').trim() || `smarthr-ui の ${names} コンポーネントの使い方ガイド。`;
-  const deprecatedPrefix = indexInfo?.deprecated ? '【非推奨】' : '';
-  const componentName = indexInfo?.title || group.dirName;
-  return `${deprecatedPrefix}${prependComponentName(base, componentName)}`;
-}
-
-/**
- * description 先頭にコンポーネント名(PascalCase)を「<Name>は、」の形で付与する。
- * description が既に同名で始まる場合は二重化を避けるため何もしない。
- */
-export function prependComponentName(description: string, name: string): string {
-  if (!name) return description;
-  const trimmed = description.trim();
-  // 既に「<Name>は」「<Name>が」「<Name>の」「<Name>に」「<Name>を」「<Name>と」で始まる場合はスキップ
-  if (new RegExp(`^${escapeRegExp(name)}(は|が|の|に|を|と)`).test(trimmed)) return trimmed;
-  return `${name}は、${trimmed}`;
-}
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
 function stripHtml(value: string): string {
   return value.replace(/<[^>]*>/g, '');
-}
-
-function buildGeneratedFromTag(hasLayer2: boolean, hasLayer3: boolean): string {
-  const layers = ['layer1'];
-  if (hasLayer2) layers.push('layer2');
-  if (hasLayer3) layers.push('layer3');
-  return layers.join('+');
-}
-
-function yamlEscapeInline(value: string): string {
-  const sanitized = value.replace(/\r?\n/g, ' ').trim();
-  return `"${sanitized.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
 }
