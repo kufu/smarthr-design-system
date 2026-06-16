@@ -180,6 +180,137 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
   </DoAndDont>
 </Cluster>
 
+## 実装例
+
+`よくあるテーブル`の実装例です。  
+ページレイアウト全体の実装例は[コレクション（テーブル）](/products/design-patterns/page-layout/#h3-7)を参照してください。
+
+```tsx editable hideCode background=BACKGROUND withStyled
+const SmartHRTableExample = () => {
+  const pagination = {
+    currentPage: 1,
+    limitValue: 25,
+    totalCount: 100,
+    totalPages: 4,
+  }
+  const sampleObjects = [...Array(10).fill(0)].map((_, i) => ({
+    id: `${i}`,
+    href: '#',
+    empCode: `SHR${`${i}`.padStart(3, '0')}`,
+    name: `須磨 英子`,
+    status: 'ステータス',
+  }))
+
+  const { totalPages, currentPage, totalCount, limitValue } = pagination
+  const isInitialState = totalCount === 0
+  const hasNoSearchResult = totalCount === 0
+
+  return (
+    <Section>
+      <Stack gap={1}>
+        <Sidebar align="center" right>
+          <Heading>オブジェクト</Heading>
+          <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
+        </Sidebar>
+        <Stack gap={1.5}>
+          <Base>
+            {!isInitialState && (
+              <Cluster justify="space-between" align="center" className="shr-p-1">
+                <form onSubmit={(e) => e.preventDefault()}>
+                  <Cluster align="center" gap={1}>
+                    <Cluster gap={0.5}>
+                      <SearchInput tooltipMessage="オブジェクト名で検索できます。" name="search" />
+                      <Button type="submit">検索</Button>
+                    </Cluster>
+                    <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+                    <Button type="submit" prefix={<FaCloudArrowDownIcon />}>
+                      ダウンロード
+                    </Button>
+                  </Cluster>
+                </form>
+                {totalCount > 0 && (
+                  <Cluster gap={1} align="center">
+                    <PageCounter start={1 + (currentPage - 1) * limitValue} end={currentPage * limitValue} total={totalCount} />
+                    <Pagination current={currentPage} total={totalPages} withoutNumbers onClick={() => null} />
+                  </Cluster>
+                )}
+              </Cluster>
+            )}
+            <Table reel rounded="bottom">
+              <thead>
+                <tr>
+                  <ThCheckbox name="allRowCheckbox" disabled={isInitialState || hasNoSearchResult} />
+                  <Th>ステータス</Th>
+                  <Th>社員番号</Th>
+                  <Th>氏名</Th>
+                  <Th>操作</Th>
+                </tr>
+              </thead>
+              {isInitialState ? (
+                <EmptyTableBody>
+                  <Stack align="center">
+                    <span>オブジェクトはまだ登録されていません。</span>
+                    <div>
+                      <Button size="S" prefix={<FaCirclePlusIcon />}>
+                        項目を追加
+                      </Button>
+                    </div>
+                  </Stack>
+                </EmptyTableBody>
+              ) : hasNoSearchResult ? (
+                <EmptyTableBody>
+                  <p>
+                    <span>お探しの条件に該当するオブジェクトはありません。</span>
+                    <br />
+                    <span>別の条件をお試しください。</span>
+                  </p>
+                </EmptyTableBody>
+              ) : (
+                <tbody>
+                  {sampleObjects.map(({ id, status, href, empCode, name }) => {
+                    const ariaLabelledBy = `name-${id}`
+                    return (
+                      <tr key={id}>
+                        <TdCheckbox name="tableCheckbox" aria-labelledby={ariaLabelledBy} />
+                        <Td contentWidth="1px">
+                          <StatusLabel>{status}</StatusLabel>
+                        </Td>
+                        <Td>{empCode}</Td>
+                        <Td id={ariaLabelledBy}><TextLink href={href}>{name}</TextLink></Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>
+                              操作1
+                            </Button>
+                            <Button size="S" prefix={<FaCopyIcon />}>
+                              操作2
+                            </Button>
+                            <Button size="S" prefix={<FaTrashCanIcon/>}>
+                              操作3
+                            </Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              )}
+            </Table>
+          </Base>
+          {totalPages > 1 && !isInitialState && !hasNoSearchResult && (
+            <Center>
+              <Pagination current={currentPage} total={totalPages} onClick={() => null} />
+            </Center>
+          )}
+        </Stack>
+      </Stack>
+    </Section>
+  )
+}
+
+render(<SmartHRTableExample />)
+```
+
 ## レイアウト
 
 `よくあるテーブル`のレイアウトは2パターンあります。  
