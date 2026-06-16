@@ -1,0 +1,92 @@
+name: generate-skills
+
+# マージ後に SKILL.md を自動再生成し、差分があればそのまま push する。
+# - SKILL.md は自動生成物として扱い、PR 上の diff は気にしない方針。
+# - LLM は CI 上で回さない（M2-S5 の教訓）。LLM 実行は更新者ローカル限定、CI は再生成だけ。
+# - フォーク PR からの push トリガーは構造上発生しないが、念のため repo 一致を確認する。
+#
+# 【push 先について】
+# main にマージされた変更を起点に再生成し、生成物 (plugins/.../skills) の差分を
+# 専用 GitHub App (skill-bot) のトークンで main へ直接コミット&push する。
+# main は保護ブランチ (Ruleset) だが、bypass_actors に当 App を bypass_mode: always で
+# 登録済みのため直接 push が許可される。push 主体を App トークンにすることで bypass が効く
+# （GITHUB_TOKEN は push に使わない）。
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+      - 'src/content/articles/products/components/**/index.mdx'
+      - 'src/content/articles/products/components/**/checklist.yaml'
+      - 'src/content/articles/products/components/**/_components/**/*.mdx'
+      - 'scripts/generate-skills/**'
+      - '.github/data/eslint-rule-names.txt'
+      - '.github/workflows/generate-skills.yml'
+  workflow_dispatch:
+
+# 同一ブランチでの再生成は直列化し、race を防ぐ。
+concurrency:
+  group: generate-skills-${{ github.ref }}
+  cancel-in-progress: false
+
+# push は App トークンで行うため GITHUB_TOKEN には書き込み権限を与えない。
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    # フォーク PR からのトリガーは構造上発生しないが、念のため二重防御。
+    if: github.repository == 'kufu/smarthr-design-system'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate app token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.SKILL_BOT_APP_ID }}
+          private-key: ${{ secrets.SKILL_BOT_APP_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          # App トークンで checkout し、後続の push も App として実行する（Ruleset の bypass 対象）。
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0e279bb959325dab635dd2c09392533439d90093 # v6.0.8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate SKILL.md
+        # eslint ルール README はコミット済みスナップショット (eslint-rules-snapshot.json) を
+        # 使うため、CI 上ではネットワーク・GITHUB_TOKEN なしで生成できる。
+        # 上流ルールを更新する場合はローカルでスナップショットを再生成してコミットする。
+        run: pnpm --filter ./scripts/generate-skills generate
+
+      - name: Get app user id
+        id: app-user
+        # コミットの author/committer を App bot に正しく帰属させるため user id を取得する。
+        run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
+      - name: Commit & push if SKILL.md changed
+        run: |
+          if [ -z "$(git status --porcelain plugins/smarthr-design-system/skills)" ]; then
+            echo "No SKILL.md changes. Skipping commit."
+            exit 0
+          fi
+
+          git config user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
+          git config user.email '${{ steps.app-user.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
+          git add plugins/smarthr-design-system/skills
+          git commit -m "chore: SKILL.md 自動再生成 [skip ci]"
+          git push

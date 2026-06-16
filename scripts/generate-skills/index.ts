@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -10,14 +11,19 @@ import { collectRelatedComponents } from './lib/related-components.js';
 import { buildDirMapping, loadManualMappings, toDocFileName } from './lib/name-mapping.js';
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
-import { validateCoverage, printCoverageReport } from './lib/validate-coverage.js';
+import { validateCoverage, printCoverageReport, loadCoverageBaseline, applyCoverageBaseline } from './lib/validate-coverage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
 
+const SMARTHR_UI_VERSION: string = JSON.parse(
+  fs.readFileSync(createRequire(import.meta.url).resolve('smarthr-ui/package.json'), 'utf-8'),
+).version;
+
 const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/components');
 const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
+const COVERAGE_BASELINE_PATH = path.join(__dirname, 'coverage-baseline.json');
 const ESLINT_SNAPSHOT_PATH = path.join(__dirname, 'eslint-rules-snapshot.json');
 const ESLINT_RULE_NAMES_PATH = path.join(REPO_ROOT, '.github/data/eslint-rule-names.txt');
 
@@ -94,7 +100,7 @@ async function main() {
   const dirMapping = buildDirMapping([...groups.keys()], DESIGN_SYSTEM_DIR, manualMappings);
   console.log(`   ${dirMapping.size}/${groups.size} を design-system dir に対応付け`);
 
-  const coverageReport = validateCoverage({
+  const rawCoverageReport = validateCoverage({
     groups,
     dirMapping,
     designSystemDir: DESIGN_SYSTEM_DIR,
@@ -102,6 +108,8 @@ async function main() {
     relatedSkills,
     publicExports,
   });
+  const coverageBaseline = loadCoverageBaseline(COVERAGE_BASELINE_PATH);
+  const coverageReport = applyCoverageBaseline(rawCoverageReport, coverageBaseline);
   printCoverageReport(coverageReport);
 
   const COMPONENT_GUIDELINES_DIR = path.join(OUTPUT_DIR, 'component-guidelines');
@@ -159,7 +167,7 @@ async function main() {
     }
     const eslintRules = [...eslintRulesSet.values()];
 
-    const content = renderSkill({ group, indexInfo, eslintRules, checklist });
+    const content = renderSkill({ group, indexInfo, eslintRules, checklist, smarthrUiVersion: SMARTHR_UI_VERSION });
     const docFileName = toDocFileName(dirName);
     fs.writeFileSync(path.join(COMPONENTS_DIR, docFileName), content, 'utf-8');
     generated++;
@@ -171,7 +179,7 @@ async function main() {
 
   console.log('🧭 component-selector ドキュメントを生成中…');
   const routerPath = path.join(COMPONENT_GUIDELINES_DIR, 'component-selector.md');
-  fs.writeFileSync(routerPath, renderRouterSkill(routerEntries), 'utf-8');
+  fs.writeFileSync(routerPath, renderRouterSkill(routerEntries, SMARTHR_UI_VERSION), 'utf-8');
   console.log(`   → ${path.relative(REPO_ROOT, routerPath)}`);
 
   console.log('🎉 完了');

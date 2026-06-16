@@ -27,6 +27,18 @@ e.g.
 - Previewでみてね。
 -->
 
+## checklist.yaml の更新
+
+<!--
+コンポーネントの index.mdx を変更/追加した場合のみチェックしてください。
+詳細は CONTRIBUTING.md「smarthr-ui コンポーネント向け AI スキルの整備」を参照。
+-->
+
+- [ ] checklist.yaml を新規作成 or 更新した
+- [ ] generate-checklist SKILL の判定でスキップ対象だった（理由: ）→ `skip-checklist-update` ラベルを付与
+- [ ] index.mdx の変更が軽微（typo / description のみ等）→ `skip-checklist-update` ラベルを付与
+- [ ] index.mdx の変更なし
+
 ## キャプチャ
 
 |Before|After|
