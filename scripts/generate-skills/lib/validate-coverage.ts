@@ -87,8 +87,7 @@ export function validateCoverage(args: {
   /** metadata.json で tags.deprecated を持つ displayName 集合（部品単位の非推奨追従チェック用） */
   metadataDeprecated?: Set<string>;
 }): CoverageReport {
-  const { groups, dirMapping, designSystemDir, inheritedNames, relatedSkills, publicExports, metadataDeprecated } =
-    args;
+  const { groups, dirMapping, designSystemDir, inheritedNames, relatedSkills, publicExports, metadataDeprecated } = args;
 
   // deprecatedNotFollowed: metadata=非推奨 だが index.mdx が deprecated 未設定の部品。
   // dir 名 = 公開コンポーネントの displayName（doc 名と一致）。独自 dir を持たない内部部品は対象外。

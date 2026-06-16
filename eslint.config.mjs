@@ -21,6 +21,7 @@ export default [
       'smarthr/a11y-form-control-in-form': 'off',
       'smarthr/a11y-replace-unreadable-symbol': 'off',
       'smarthr/require-i18n-text': 'off',
+      'smarthr/require-barrel-import': 'off',
     },
   },
   {
