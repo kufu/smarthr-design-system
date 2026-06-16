@@ -1,0 +1,63 @@
+---
+title: '多言語化のガイドライン'
+description: 'SmartHRにおける多言語化の必要性・考え方と、Internationalization・Localizationの各原則ページへの入口です。'
+order: 5
+---
+SmartHRは日本国内向けのプロダクトですが、従業員・管理者のなかには、日本語以外を得意な言語とする人や、日本語の読解に負担を感じる人も含まれます。
+
+多言語対応は、単に画面の文言を別の言語に置き換えることにとどまりません。利用者がSmartHR上の情報を理解し、実際の書類や制度と照らし合わせながら、自分で正しく手続きを進められる状態をつくるための設計・実装・文言調整を含みます。
+
+このセクションでは、SmartHRにおける多言語対応の考え方を、Internationalization（i18n）とLocalization（l10n）に分けて整理します。
+
+多言語化の品質基準（標準品質・理想品質）や、開発フェーズごとの役割・プロセスは、[多言語化の品質基準とプロセス](/accessibility/multilingual-standards/)で説明しています。
+
+## 多言語対応が必要な理由
+
+日本で働く外国人は増え続けており、労務・人事で使われる日本語は日常会話とは異なる難しさがあります。利用者が手続きの意味を理解し、自分で正しく操作できることは、アクセシビリティの「情報を理解できること」にも関わります。
+
+背景の詳細やデータは、[多言語対応が必要な理由](/accessibility/multilingual-standards/background/)を参照してください。
+
+## やさしい日本語との関係
+
+SmartHRでは、日本語の情報をわかりやすく伝えるための考え方として、[やさしい日本語](/accessibility/insight/yasashii-nihongo/)も整理しています。
+
+やさしい日本語は、日本語のまま文を短くしたり、難しい表現を避けたりして、読みやすくするアプローチです。一方、多言語対応は、利用者の得意な言語や表記で情報を届けるアプローチです。
+
+どちらか一方だけで十分とは限りません。日本語で読む利用者にはやさしい日本語が有効な場合があり、日本語以外の言語で読む利用者には多言語対応が必要な場合があります。利用者や場面に応じて、両方の考え方を組み合わせます。
+
+## Internationalization と Localization
+
+多言語対応では、複数の言語・表記に対応できる土台をつくることと、特定の言語の利用者に伝わるように翻訳・調整することを分けて考えます。
+
+- Internationalization (i18n): 複数の言語で使われることを前提にプロダクトを設計・実装すること：言語（ロケール）、語順、日付・数値形式
+- Localization (l10n): 特定の言語の利用者がSmartHR上の情報を理解し、実際の書類や制度と照合できるように、文言・表記・説明を調整すること
+
+どちらか一方だけでは、利用しやすい多言語体験はつくれません。
+
+Internationalizationが不十分だと、翻訳文を入れても、文として不自然になったり、画面が崩れたり、日付・数値・氏名などの表示が適切に扱えなかったりします。
+
+Localizationが不十分だと、技術的には翻訳できても、利用者が手続きの意味を理解できなかったり、実際の書類や行政情報と照合できなかったりします。
+
+## このセクションで扱うこと
+
+### プロダクトの設計・実装に関わるもの
+
+[Internationalization (i18n)](/accessibility/multilingual-guidelines/internationalization/)を参照してください。
+
+UI文言、エラーメッセージ、日付、数値、氏名、住所、フォーム、レイアウト、アクセシビリティ、メール、PDF、CSVなどを実装するときに確認する観点をまとめています。
+
+### 文言・翻訳・レビューに関わるもの
+
+[Localization (l10n)](/accessibility/multilingual-guidelines/localization/)を参照してください。
+
+公的書類名、法律・労務用語、和暦と西暦、在留資格、続柄、日本語併記、検索しやすさなど、利用者が理解・照合しやすい表現にするための考え方をまとめています。
+
+
+## 関連ページ
+
+- [アクセシビリティ](/accessibility/)
+- [多言語化の品質基準とプロセス](/accessibility/multilingual-standards/)
+- [多言語対応が必要な理由](/accessibility/multilingual-standards/background/)
+- [Internationalization (i18n)](/accessibility/multilingual-guidelines/internationalization/)
+- [Localization (l10n)](/accessibility/multilingual-guidelines/localization/)
+- [やさしい日本語](/accessibility/insight/yasashii-nihongo/)
