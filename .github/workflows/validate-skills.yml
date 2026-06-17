@@ -6,17 +6,16 @@ name: validate-skills
 # - SKILL.md の再生成は generate-skills.yml 側で行う（ここでは検証のみ）。
 
 on:
+  # paths フィルタは使わない。
+  # validate / coverage / checklist-sync は required status check に指定しているため、
+  # paths でワークフロー自体をスキップすると check が報告されず、対象外ファイルのみの PR
+  # （例: plugins/ 配下のスキル追加）が「Expected — Waiting for status」で永久にブロックされる。
+  # 各ジョブは対象差分が無い場合に何もせず success を返す設計のため、全 PR で起動させてよい
+  # （validate: 変更対象 yaml が無ければ検証をスキップして success / coverage: baseline 適用で
+  #  違反が無ければ success / checklist-sync: 対象の index.mdx 変更が無ければ success）。
   pull_request:
     # labeled / unlabeled も拾い、ラベル付与/解除で checklist-sync を再評価する。
     types: [opened, synchronize, reopened, labeled, unlabeled]
-    paths:
-      - 'package.json'
-      - 'src/content/articles/products/components/**/index.mdx'
-      - 'src/content/articles/products/components/**/checklist.yaml'
-      - 'src/content/articles/products/components/**/_components/**/*.mdx'
-      - 'scripts/generate-skills/**'
-      - '.github/data/eslint-rule-names.txt'
-      - '.github/workflows/validate-skills.yml'
   workflow_dispatch:
 
 # 同一 PR の古い実行はキャンセルし、最新コミットのみ評価する。
