@@ -11,10 +11,11 @@ export type SkillRenderOptions = {
   indexInfo: IndexMdxInfo | null;
   eslintRules: EslintRuleWithContent[];
   checklist: ChecklistSection[] | null;
+  smarthrUiVersion: string;
 };
 
 export function renderSkill(opts: SkillRenderOptions): string {
-  const { group, indexInfo, eslintRules, checklist } = opts;
+  const { group, indexInfo, eslintRules, checklist, smarthrUiVersion } = opts;
   const groupName = group.dirName;
 
   const parts: string[] = [];
@@ -48,6 +49,10 @@ export function renderSkill(opts: SkillRenderOptions): string {
   parts.push('');
 
   parts.push('## Props');
+  parts.push('');
+  parts.push(
+    `> ℹ️ この Props 情報は **smarthr-ui v${smarthrUiVersion}** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、\`node_modules/smarthr-ui\` の \`.d.ts\` / \`metadata.json\`）を正としてください。`,
+  );
   parts.push('');
   const multipleComponents = group.components.length > 1;
   for (const component of group.components) {
