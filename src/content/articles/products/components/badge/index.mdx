@@ -53,12 +53,65 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ## アクセシビリティ
 
-ドット表示の場合には視覚情報しか持たないため、何らかの形で必ずアクセシブルな名前を与えてください。
+### 開発時の考慮点
 
-```tsx editable
+#### ドット表示の場合は状態が伝わるテキストを提供する
+
+ドット表示のBadgeは視覚情報のみで状態の変化を示すため、スクリーンリーダーを使用するユーザーには何を表しているのか伝わりません。
+そのため、ドット表示を使用する場合は、状態や目的が伝わる補助テキストを提供してください。
+
+`VisuallyHiddenText`コンポーネントを使用すると、視覚的には表示せずにスクリーンリーダー向けのテキストを提供できます。
+
+##### 良い実装例
+
+```tsx
 <>
-  <Badge dot count={9} />
-  <VisuallyHiddenText>通知があります</VisuallyHiddenText>
+  <Badge dot />
+  <VisuallyHiddenText>未読通知</VisuallyHiddenText>
+</>
+```
+
+##### 悪い実装例
+
+```tsx
+// ❌ ドットの意味が伝わらない
+<>
+  <Badge dot />
+</>
+```
+
+##### 補助テキストは不足している情報のみを補足する
+
+Badgeの状態を補足するために`VisuallyHiddenText`を追加する際は、周辺のテキストやアイコンですでに伝わっている情報を繰り返さず、不足している情報のみを補足してください。
+スクリーンリーダーでは、DOMの順序に従って情報が読み上げられるため、「通知 10 未読通知」のように情報を重複して伝えたり、「〜です」「〜があります」などの説明的な表現を使用したりすると、聞き取りの負担になる場合があります。
+
+##### 良い実装例
+
+```tsx
+// スクリーンリーダーでの読み上げ: 「通知 10 未読」
+<>
+  <Wrapper>
+    <FaBellIcon alt="通知" />
+    <Badge count={10} overflowCount={99} />
+  </Wrapper>
+  <VisuallyHiddenText>未読</VisuallyHiddenText>
+</>
+```
+
+
+
+##### 悪い実装例
+
+```tsx
+// スクリーンリーダーでの読み上げ: 「通知 10 未読の通知があります」（情報が重複し冗長)
+<>
+  <Wrapper>
+    <FaBellIcon alt="通知" />
+    <Badge count={10} overflowCount={99} />
+  </Wrapper>
+  <VisuallyHiddenText>
+    未読の通知があります
+  </VisuallyHiddenText>
 </>
 ```
 
