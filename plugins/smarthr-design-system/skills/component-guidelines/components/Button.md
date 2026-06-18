@@ -10,6 +10,8 @@ import { UnstyledButton, Button, AnchorButton } from 'smarthr-ui'
 
 ## Props
 
+> ℹ️ この Props 情報は **smarthr-ui v96.0.1** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+
 ### UnstyledButton
 （固有 Props なし）
 
@@ -134,6 +136,7 @@ Dialogのボタンテキストにアイコンコンポーネント（名前が"I
 
 ### 種類 > Tertiary
 - [should] Tertiary ボタンは Secondary ボタンより重要度の低い操作に使う
+- [must] Tertiary ボタンを単独で利用する場合は prefix または suffix にアイコンを設定する
 - [must] 他の画面へ移動するリンクとして使いたい場合は TextLink を使う
 
 ### 種類 > Danger
@@ -176,6 +179,12 @@ Dialogのボタンテキストにアイコンコンポーネント（名前が"I
 
 ### ライティング
 - [must] ボタンラベルには動詞の終止形を使用する
+
+### アクセシビリティ > 開発時の考慮点 > 色以外の情報でもボタンであることを伝える
+- [must] Tertiary ボタンや Text ボタンにはアイコンを追加し、色だけでなく形や見た目の違いからも操作できる要素であることが伝わるようにする
+
+### アクセシビリティ > 開発時の考慮点 > アイコンボタンにはアクセシブルネームを設定する
+- [must] アイコンボタンはアイコンコンポーネントの `alt` props に操作内容を表すテキストを設定する
 
 ### モバイル > ボタンの大きさ > 通常サイズのボタンを使う
 - [should] モバイルでは基本的に `通常` サイズを使用する

@@ -8,17 +8,18 @@
   "scripts": {
     "generate": "tsx index.ts",
     "test": "node --import tsx --test lib/**/*.test.ts",
-    "validate": "tsx validate.ts"
+    "validate": "tsx validate.ts",
+    "coverage": "tsx coverage.ts"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.1",
-    "smarthr-ui": "^95.0.0"
+    "smarthr-ui": "^96.0.1"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^22.19.19",
-    "tsx": "^4.22.3",
-    "typescript": "^5.7.2"
+    "@types/node": "^22.19.21",
+    "tsx": "^4.22.4",
+    "typescript": "^5.9.3"
   }
 }

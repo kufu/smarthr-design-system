@@ -4,8 +4,6 @@ description: '削除操作をするときのアクションダイアログを定
 order: 13
 ---
 
-import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
-
 削除操作をするときのアクションダイアログを定義します。
 
 ## 基本的な考え方
@@ -32,11 +30,45 @@ import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 
 ![ダイアログ内の要素](./images/delete-dialog_components.png)
 
-import DynamicActionDialog from './_components/DynamicActionDialog'
+実装例：
 
-<ComponentPreview>
-  <DynamicActionDialog client:load />
-</ComponentPreview>
+```tsx editable hideCode
+<>
+  <RemoteDialogTrigger targetId="delete-dialog">
+    <Button prefix={<FaTrashCanIcon />}>削除</Button>
+  </RemoteDialogTrigger>
+  <FormDialog
+    id="delete-dialog"
+    heading="{オブジェクト名}の削除"
+    actionButton={{ text: '削除', theme: 'danger' }}
+    onSubmit={(_, { close }) => {
+      close()
+    }}
+    size="S"
+  >
+    <Stack gap={1.5}>
+      <p>{'以下の{オブジェクト名}を削除しますか？　この操作は元に戻せません。'}</p>
+      <DefinitionList>
+        <DefinitionListItem term={{ text: '削除する{オブジェクト名}', styleType: 'blockTitle' }}>{`{インスタンス名}`}</DefinitionListItem>
+      </DefinitionList>
+      <Stack gap={0.5}>
+        <BaseColumn>
+          <Stack>
+            <Heading type="blockTitle" icon={<WarningIcon />}>注意事項</Heading>
+            <ul className="shr-ps-1">
+              <li>{'{関連するオブジェクト名など}に登録されているデータも削除されます。'}</li>
+              <li>{'{選択したオブジェクトのインスタンス名}に含まれる{オブジェクト名}も削除されます。'}</li>
+            </ul>
+          </Stack>
+        </BaseColumn>
+        <BaseColumn>
+          <Checkbox name="delete_confirm" required>注意事項を確認しました。</Checkbox>
+        </BaseColumn>
+      </Stack>
+    </Stack>
+  </FormDialog>
+</>
+```
 
 ### 1. タイトル
 
@@ -103,9 +135,27 @@ import DynamicActionDialog from './_components/DynamicActionDialog'
 ### 「取り消し」操作時の確認ダイアログ
 操作を取り消す際も、同様の確認ダイアログを表示します。
 
+実装例：
 
-import DynamicCancelActionDialog from './_components/DynamicCancelActionDialog'
-
-<ComponentPreview>
-  <DynamicCancelActionDialog client:load />
-</ComponentPreview>
+```tsx editable hideCode
+<>
+  <RemoteDialogTrigger targetId="cancel-dialog">
+    <Button>{'{操作名}を取り消す'}</Button>
+  </RemoteDialogTrigger>
+  <ActionDialog
+    id="cancel-dialog"
+    heading="{操作名}の取り消し"
+    actionButton={{ text: '取り消す', theme: 'danger' }}
+    onClickAction={(e, { close }) => {
+      close()
+    }}
+    size="XS"
+  >
+    <p>
+      {'{操作名}を取り消しますか？'}
+      <br />
+      「取り消し」を押すと変更内容が破棄されます。
+    </p>
+  </ActionDialog>
+</>
+```

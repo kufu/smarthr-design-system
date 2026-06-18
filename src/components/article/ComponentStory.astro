@@ -1,7 +1,7 @@
 ---
 import ReactComponentStory, { type ComponentStoryProps } from '@/components/ComponentStory';
 import { fetchStoryCode } from '@/lib/fetchStoryCode';
-import { UI_VERSION, getUIStories } from '@/lib/getUIData';
+import { UI_COMMIT_HASH, UI_VERSION, getUIStories } from '@/lib/getUIData';
 
 type Props = {
   name: string;
@@ -20,7 +20,14 @@ if (!stories) {
 const code = await fetchStoryCode(UI_VERSION, stories.filePath);
 ---
 
-<ReactComponentStory {...props} stories={stories} code={code} client:only="react">
+<ReactComponentStory
+  {...props}
+  stories={stories}
+  code={code}
+  uiVersion={UI_VERSION}
+  uiCommitHash={UI_COMMIT_HASH}
+  client:only="react"
+>
   <div class="fallback" slot="fallback"></div>
 </ReactComponentStory>
 

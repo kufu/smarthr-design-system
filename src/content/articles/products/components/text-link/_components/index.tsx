@@ -1,0 +1,1 @@
+export { OpenInNewTabIconInTextLink } from './OpenInNewTabIconInTextLink';
