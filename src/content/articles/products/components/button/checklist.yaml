@@ -27,6 +27,10 @@ items:
     source_section: '種類 > Tertiary'
 
   - severity: must
+    text: 'Tertiary ボタンを単独で利用する場合は prefix または suffix にアイコンを設定する'
+    source_section: '種類 > Tertiary'
+
+  - severity: must
     text: '他の画面へ移動するリンクとして使いたい場合は TextLink を使う'
     source_section: '種類 > Tertiary'
 
@@ -113,6 +117,16 @@ items:
   - severity: must
     text: 'ボタンラベルには動詞の終止形を使用する'
     source_section: 'ライティング'
+
+  # アクセシビリティ > 開発時の考慮点 > 色以外の情報でもボタンであることを伝える
+  - severity: must
+    text: 'Tertiary ボタンや Text ボタンにはアイコンを追加し、色だけでなく形や見た目の違いからも操作できる要素であることが伝わるようにする'
+    source_section: 'アクセシビリティ > 開発時の考慮点 > 色以外の情報でもボタンであることを伝える'
+
+  # アクセシビリティ > 開発時の考慮点 > アイコンボタンにはアクセシブルネームを設定する
+  - severity: must
+    text: 'アイコンボタンはアイコンコンポーネントの `alt` props に操作内容を表すテキストを設定する'
+    source_section: 'アクセシビリティ > 開発時の考慮点 > アイコンボタンにはアクセシブルネームを設定する'
 
   # モバイル > ボタンの大きさ > 通常サイズのボタンを使う
   - severity: should
