@@ -316,21 +316,21 @@ import { Cluster, Text } from 'smarthr-ui'
 
 #### テーブルのセル内に直接配置しない
 
-テーブル内にチェックボックスを配置する場合は、専用のコンポーネント（`TdCheckbox`、`ThCheckbox`）を使用してください。
-セル内に直接 `Checkbox` コンポーネントを配置すると、チェックボックスと行見出しが関連付かず、スクリーンリーダーでは「どの行に対するチェックボックスか」がわかりにくくなる場合があります。
+テーブル内に`Checkbox`を配置する場合は、専用のコンポーネント（`TdCheckbox`、`ThCheckbox`）を使用してください。
+セル内に直接`Checkbox`コンポーネントを配置すると、`Checkbox`と行見出しが関連付かず、スクリーンリーダーでは「どの行に対する`Checkbox`か」がわかりにくくなる場合があります。
 
-`TdCheckbox` を利用することで、チェックボックスと同じ行のテキストが関連付けられ、スクリーンリーダーを使用するユーザーにも、どの項目を選択するためのチェックボックスかが伝わりやすくなります。
-また、`ThCheckbox` では、「すべての項目を選択 / 解除」のアクセシブルネームが設定されるため、チェックボックスの目的が伝わりやすくなります。
+`TdCheckbox`を利用することで、`Checkbox`と同じ行のテキストが関連付けられ、スクリーンリーダーを使用するユーザーにも、どの項目を選択するための`Checkbox`かが伝わりやすくなります。
+また、`ThCheckbox`では、「すべての項目を選択 / 解除」のアクセシブルネームが設定されるため、`Checkbox`の目的が伝わりやすくなります。
 
-詳しい実装方法と注意点については、以下のTableコンポーネントのドキュメントを参照してください。
+詳しい実装方法と注意点については、以下の[Table](/products/components/table/)コンポーネントのドキュメントを参照してください。
 
 - [セル内にチェックボックスやラジオボタンをそのまま配置しない](/products/components/table/#h3-0)
-- [TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する](/products/components/table/#h3-1)
+- [`TdCheckbox`および`TdRadioButton`では行を特定できる要素をIDで参照する](/products/components/table/#h3-1)
 
 #### Fieldsetでグループ化する
 複数のCheckboxをグループとして提示する場合は、[Fieldset](/products/components/fieldset/)コンポーネントを使用してグループ化し、`legend` propsでグループの目的を説明してください。これにより、関連するCheckboxを「同じ質問・設定グループ」としてスクリーンリーダーへ正しく伝えられ、フォームの文脈を理解しやすくなります。
 
-#### 良い実装例
+##### 良い実装例
 
 ```tsx
 <BaseColumn>
@@ -367,10 +367,10 @@ import { Cluster, Text } from 'smarthr-ui'
 </Fieldset>
 ```
 
-#### 悪い実装例
+##### 悪い実装例
 
 ```tsx
-// ❌ チェックボックスとラベルが関連付けられていない
+// ❌ Checkbox とラベルが関連付けられていない
 <input type="checkbox" />
 <span>利用規約に同意する</span>
 
