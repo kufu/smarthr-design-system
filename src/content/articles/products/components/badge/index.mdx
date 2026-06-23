@@ -65,7 +65,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ##### 良い実装例
 
-```tsx
+```tsx editable noIframe
 <>
   <Badge dot />
   <VisuallyHiddenText>未読通知</VisuallyHiddenText>
@@ -74,51 +74,12 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ##### 悪い実装例
 
-```tsx
+```tsx editable noIframe
 // ❌ ドットの意味が伝わらない
 <>
   <Badge dot />
 </>
 ```
-
-##### 補助テキストは不足している情報のみを補足する
-
-Badgeの状態を補足するために`VisuallyHiddenText`を追加する際は、周辺のテキストやアイコンですでに伝わっている情報を繰り返さず、不足している情報のみを補足してください。
-スクリーンリーダーでは、DOMの順序に従って情報が読み上げられるため、「通知 10 未読通知」のように情報を重複して伝えたり、「〜です」「〜があります」などの説明的な表現を使用したりすると、聞き取りの負担になる場合があります。
-
-##### 良い実装例
-
-```tsx
-// スクリーンリーダーでの読み上げ: 「通知 10 未読」
-<>
-  <Wrapper>
-    <FaBellIcon alt="通知" />
-    <Badge count={10} overflowCount={99} />
-  </Wrapper>
-  <VisuallyHiddenText>未読</VisuallyHiddenText>
-</>
-```
-
-
-
-##### 悪い実装例
-
-```tsx
-// スクリーンリーダーでの読み上げ: 「通知 10 未読の通知があります」（情報が重複し冗長)
-<>
-  <Wrapper>
-    <FaBellIcon alt="通知" />
-    <Badge count={10} overflowCount={99} />
-  </Wrapper>
-  <VisuallyHiddenText>
-    未読の通知があります
-  </VisuallyHiddenText>
-</>
-```
-
-## 使い方チェックリスト
-
-<Checklist name="Badge" />
 
 ## Props
 
