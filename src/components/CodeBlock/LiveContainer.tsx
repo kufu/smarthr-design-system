@@ -155,7 +155,7 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
                 <div className={sharedStyles.preContainer}>
                   <CopyButton text={code || ''} />
                   {/* @ts-expect-error -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-                  <LiveEditor padding={0} />
+                  <LiveEditor padding={0} tabMode="focus" />
                 </div>
               </div>
             </div>
