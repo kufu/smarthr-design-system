@@ -86,7 +86,7 @@ const GroupedView = ({ groups, showSection }: { groups: ChecklistGroup[]; showSe
     <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
       {groups.map((group, gi) => (
         <Stack key={gi} style={{ marginTop: '-1px', padding: '16px 24px', border: defaultBorder.shorthand }}>
-          <Text styleType="blockTitle">{group.section}</Text>
+          <Text styleType="subSubBlockTitle">{group.section}</Text>
           <Stack
             as="ul"
             gap={0.75}
@@ -181,15 +181,13 @@ export const ChecklistPanel = ({ groups, variant, id, title, headingTag, showSec
   // 見出しは id 参照（URL ハッシュ）のアンカー、Disclosure は別 id で開閉状態を同期する
   const contentId = `${id}-content`;
 
-  // showSection=false のときは source_section でまとめず、severity 順に並べ替えた 1 グループにする
+  // 項目は severity 順（必須 → 非推奨 → 推奨）に並べ替える。
+  // showSection=true: セクションごとに並べ替え / showSection=false: source_section でまとめず全体を 1 グループにして並べ替え
+  const sortBySeverity = (target: ChecklistItemData[]) =>
+    [...target].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
   const renderGroups: ChecklistGroup[] = showSection
-    ? groups
-    : [
-        {
-          section: '',
-          items: groups.flatMap((group) => group.items).sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]),
-        },
-      ];
+    ? groups.map((group) => ({ ...group, items: sortBySeverity(group.items) }))
+    : [{ section: '', items: sortBySeverity(groups.flatMap((group) => group.items)) }];
 
   return (
     <Stack>
