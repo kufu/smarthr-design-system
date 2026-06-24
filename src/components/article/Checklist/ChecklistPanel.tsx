@@ -1,19 +1,17 @@
-import { Fragment } from 'react';
 import {
   Cluster,
   DisclosureContent,
   DisclosureTrigger,
   FaAngleDownIcon,
   FaAngleRightIcon,
+  FaArrowUpIcon,
   Stack,
   StatusLabel,
-  Table,
-  Td,
   Text,
-  Th,
+  TextLink,
+  Tooltip,
   UnstyledButton,
   defaultBorder,
-  defaultColor,
   defaultSpacing,
 } from 'smarthr-ui';
 
@@ -26,16 +24,16 @@ export type ChecklistItemData = {
 
 export type ChecklistGroup = {
   section: string;
+  /** source_section を解決した本文見出しの id（例: 'h3-1'）。未解決ならリンクを出さない */
+  sectionId?: string;
   items: ChecklistItemData[];
 };
 
-type Variant = 'grouped' | 'table';
 // トリガを包む要素のタグ。'span' は見出しにせず目次・見出し階層に含めないために使う。
 type HeadingTag = 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
 
 type Props = {
   groups: ChecklistGroup[];
-  variant: Variant;
   /** 見出しアンカー・Disclosure 開閉同期に使う一意な DOM id */
   id: string;
   /** トリガの見出しに表示するコンポーネント名（例: Button） */
@@ -83,9 +81,25 @@ const GroupedView = ({ groups }: { groups: ChecklistGroup[] }) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
     {groups.map((group, gi) => (
       <Stack key={gi} style={{ marginTop: '-1px', padding: '16px 24px', border: defaultBorder.shorthand }}>
-        <Text styleType="subSubBlockTitle">
-          参照元：
-          <Text weight="normal">{group.section}</Text>
+        <Text
+          size="S"
+          leading="TIGHT"
+          icon={
+            group.sectionId
+              ? {
+                  suffix: (
+                    <Tooltip message={`「${group.section}」の本文へ移動`}>
+                      <TextLink href={`#${group.sectionId}`} style={{ boxShadow: 'none' }}>
+                        <FaArrowUpIcon alt={`「${group.section}」の本文へ移動`} />
+                      </TextLink>
+                    </Tooltip>
+                  ),
+                }
+              : undefined
+          }
+        >
+          <Text styleType="subSubBlockTitle">参照元：</Text>
+          {group.section}
         </Text>
         <Stack
           as="ul"
@@ -110,50 +124,8 @@ const GroupedView = ({ groups }: { groups: ChecklistGroup[] }) => (
   </div>
 );
 
-// 案B: テーブル（source_section は colspan の見出し行）
-const TableView = ({ groups }: { groups: ChecklistGroup[] }) => (
-  <Table borderType="outer" style={{ marginBlockStart: 0 }}>
-    <thead>
-      <tr>
-        <Th style={{ whiteSpace: 'nowrap' }}>区分</Th>
-        <Th>チェック項目</Th>
-      </tr>
-    </thead>
-    <tbody>
-      {groups.map((group, gi) => (
-        <Fragment key={gi}>
-          <tr>
-            <Th
-              colSpan={2}
-              style={{
-                padding: '8px 16px',
-                height: 'auto',
-                backgroundColor: defaultColor.OVER_BACKGROUND,
-                textAlign: 'left',
-              }}
-            >
-              <Text whiteSpace="normal">{group.section}</Text>
-            </Th>
-          </tr>
-          {group.items.map((item, ii) => (
-            <tr key={ii}>
-              <Td contentWidth={{ min: '1em' }}>
-                <Badge severity={item.severity} />
-              </Td>
-              <Td>
-                {item.text}
-                {item.sub_items && <SubList items={item.sub_items} paddingLeft="1.25em" />}
-              </Td>
-            </tr>
-          ))}
-        </Fragment>
-      ))}
-    </tbody>
-  </Table>
-);
-
 // 開閉に JS が必要なため、ツリー全体を 1 つの React アイランドとして描画する。
-export const ChecklistPanel = ({ groups, variant, id, title, headingTag }: Props) => {
+export const ChecklistPanel = ({ groups, id, title, headingTag }: Props) => {
   // 見出しは id 参照（URL ハッシュ）のアンカー、Disclosure は別 id で開閉状態を同期する
   const contentId = `${id}-content`;
 
@@ -195,7 +167,7 @@ export const ChecklistPanel = ({ groups, variant, id, title, headingTag }: Props
         )}
       </DisclosureTrigger>
       <DisclosureContent id={contentId} visuallyHidden>
-        {variant === 'grouped' ? <GroupedView groups={renderGroups} /> : <TableView groups={renderGroups} />}
+        <GroupedView groups={renderGroups} />
       </DisclosureContent>
     </Stack>
   );
