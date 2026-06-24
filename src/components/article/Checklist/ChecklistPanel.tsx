@@ -42,8 +42,6 @@ type Props = {
   title: string;
   /** トリガ見出しの HTML タグレベル。ページの見出し階層に合わせる */
   headingTag: HeadingTag;
-  /** セクションを表示するか。true で表示、未指定時は表示しない */
-  showSection: boolean;
 };
 
 // severity の表示マッピング（StatusLabel の type と整合）
@@ -81,59 +79,39 @@ const Badge = ({ severity }: { severity: ChecklistItemData['severity'] }) => {
 };
 
 // 案A: グループ化リスト（source_section ごとに枠線で区切る）
-const GroupedView = ({ groups, showSection }: { groups: ChecklistGroup[]; showSection: boolean }) =>
-  showSection ? (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-      {groups.map((group, gi) => (
-        <Stack key={gi} style={{ marginTop: '-1px', padding: '16px 24px', border: defaultBorder.shorthand }}>
-          <Text styleType="subSubBlockTitle">{group.section}</Text>
-          <Stack
-            as="ul"
-            gap={0.75}
-            style={{
-              listStyle: 'none',
-              paddingInline: 0,
-            }}
-          >
-            {group.items.map((item, ii) => (
-              <li key={ii}>
-                <Cluster gap={0.75} align="baseline" style={{ flexWrap: 'nowrap' }}>
-                  <Badge severity={item.severity} />
-                  <Text leading="NORMAL">{item.text}</Text>
-                </Cluster>
-                {item.sub_items && <SubList items={item.sub_items} paddingLeft="5.5em" />}
-              </li>
-            ))}
-          </Stack>
+const GroupedView = ({ groups }: { groups: ChecklistGroup[] }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+    {groups.map((group, gi) => (
+      <Stack key={gi} style={{ marginTop: '-1px', padding: '16px 24px', border: defaultBorder.shorthand }}>
+        <Text styleType="subSubBlockTitle">
+          参照元：
+          <Text weight="normal">{group.section}</Text>
+        </Text>
+        <Stack
+          as="ul"
+          gap={0.75}
+          style={{
+            listStyle: 'none',
+            paddingInline: 0,
+          }}
+        >
+          {group.items.map((item, ii) => (
+            <li key={ii}>
+              <Cluster gap={0.75} align="baseline" style={{ flexWrap: 'nowrap' }}>
+                <Badge severity={item.severity} />
+                <Text leading="NORMAL">{item.text}</Text>
+              </Cluster>
+              {item.sub_items && <SubList items={item.sub_items} paddingLeft="5.5em" />}
+            </li>
+          ))}
         </Stack>
-      ))}
-    </div>
-  ) : (
-    groups.map((group, gi) => (
-      <Stack
-        as="ul"
-        style={{
-          listStyle: 'none',
-          paddingInline: 0,
-          marginTop: showSection ? undefined : 0,
-        }}
-        key={gi}
-      >
-        {group.items.map((item, ii) => (
-          <li key={ii}>
-            <Cluster gap={0.75} align="baseline" style={{ flexWrap: 'nowrap' }}>
-              <Badge severity={item.severity} />
-              <Text leading="NORMAL">{item.text}</Text>
-            </Cluster>
-            {item.sub_items && <SubList items={item.sub_items} paddingLeft="5.5em" />}
-          </li>
-        ))}
       </Stack>
-    ))
-  );
+    ))}
+  </div>
+);
 
 // 案B: テーブル（source_section は colspan の見出し行）
-const TableView = ({ groups, showSection }: { groups: ChecklistGroup[]; showSection: boolean }) => (
+const TableView = ({ groups }: { groups: ChecklistGroup[] }) => (
   <Table borderType="outer" style={{ marginBlockStart: 0 }}>
     <thead>
       <tr>
@@ -144,21 +122,19 @@ const TableView = ({ groups, showSection }: { groups: ChecklistGroup[]; showSect
     <tbody>
       {groups.map((group, gi) => (
         <Fragment key={gi}>
-          {showSection && (
-            <tr>
-              <Th
-                colSpan={2}
-                style={{
-                  padding: '8px 16px',
-                  height: 'auto',
-                  backgroundColor: defaultColor.OVER_BACKGROUND,
-                  textAlign: 'left',
-                }}
-              >
-                <Text whiteSpace="normal">{group.section}</Text>
-              </Th>
-            </tr>
-          )}
+          <tr>
+            <Th
+              colSpan={2}
+              style={{
+                padding: '8px 16px',
+                height: 'auto',
+                backgroundColor: defaultColor.OVER_BACKGROUND,
+                textAlign: 'left',
+              }}
+            >
+              <Text whiteSpace="normal">{group.section}</Text>
+            </Th>
+          </tr>
           {group.items.map((item, ii) => (
             <tr key={ii}>
               <Td contentWidth={{ min: '1em' }}>
@@ -177,7 +153,7 @@ const TableView = ({ groups, showSection }: { groups: ChecklistGroup[]; showSect
 );
 
 // 開閉に JS が必要なため、ツリー全体を 1 つの React アイランドとして描画する。
-export const ChecklistPanel = ({ groups, variant, id, title, headingTag, showSection = true }: Props) => {
+export const ChecklistPanel = ({ groups, variant, id, title, headingTag }: Props) => {
   // 見出しは id 参照（URL ハッシュ）のアンカー、Disclosure は別 id で開閉状態を同期する
   const contentId = `${id}-content`;
 
@@ -185,9 +161,7 @@ export const ChecklistPanel = ({ groups, variant, id, title, headingTag, showSec
   // showSection=true: セクションごとに並べ替え / showSection=false: source_section でまとめず全体を 1 グループにして並べ替え
   const sortBySeverity = (target: ChecklistItemData[]) =>
     [...target].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
-  const renderGroups: ChecklistGroup[] = showSection
-    ? groups.map((group) => ({ ...group, items: sortBySeverity(group.items) }))
-    : [{ section: '', items: sortBySeverity(groups.flatMap((group) => group.items)) }];
+  const renderGroups: ChecklistGroup[] = groups.map((group) => ({ ...group, items: sortBySeverity(group.items) }));
 
   return (
     <Stack>
@@ -221,11 +195,7 @@ export const ChecklistPanel = ({ groups, variant, id, title, headingTag, showSec
         )}
       </DisclosureTrigger>
       <DisclosureContent id={contentId} visuallyHidden>
-        {variant === 'grouped' ? (
-          <GroupedView groups={renderGroups} showSection={showSection} />
-        ) : (
-          <TableView groups={renderGroups} showSection={showSection} />
-        )}
+        {variant === 'grouped' ? <GroupedView groups={renderGroups} /> : <TableView groups={renderGroups} />}
       </DisclosureContent>
     </Stack>
   );
