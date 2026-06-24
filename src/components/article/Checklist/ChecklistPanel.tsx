@@ -3,8 +3,8 @@ import {
   Cluster,
   DisclosureContent,
   DisclosureTrigger,
-  FaCaretDownIcon,
-  FaCaretRightIcon,
+  FaAngleDownIcon,
+  FaAngleRightIcon,
   Stack,
   StatusLabel,
   Table,
@@ -173,11 +173,7 @@ export const ChecklistPanel = ({ groups, variant, id, title, headingTag }: Props
                 leading="TIGHT"
                 weight="bold"
                 icon={{
-                  prefix: expanded ? (
-                    <FaCaretDownIcon color={defaultColor.TEXT_GREY} />
-                  ) : (
-                    <FaCaretRightIcon color={defaultColor.TEXT_GREY} />
-                  ),
+                  prefix: expanded ? <FaAngleDownIcon /> : <FaAngleRightIcon />,
                 }}
               >
                 {title}
