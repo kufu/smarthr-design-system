@@ -14,9 +14,11 @@ type Props = {
   title?: string;
   /** タイトルを見出しとして表示するか。true で h3 見出し（目次に含む）、未指定時は span にして見出し階層・目次に含めない */
   showTitle?: boolean;
+  /** 見出しを表示するか。true で表示、未指定時は表示しない */
+  showSection?: boolean;
 };
 
-const { name, variant = 'grouped', title, showTitle = false } = Astro.props;
+const { name, variant = 'grouped', title, showTitle = false, showSection = true } = Astro.props;
 
 // PascalCase の name を checklist.yaml のディレクトリ id（kebab-case）に変換（例: Button → button, ActionDialog → action-dialog）
 const dirName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
@@ -52,4 +54,12 @@ const displayName = title ?? name;
 const resolvedHeadingTag = showTitle ? 'h3' : 'span';
 ---
 
-<ChecklistPanel client:visible groups={groups} variant={variant} id={panelId} title={displayName} headingTag={resolvedHeadingTag} />
+<ChecklistPanel
+  client:visible
+  groups={groups}
+  variant={variant}
+  id={panelId}
+  title={displayName}
+  headingTag={resolvedHeadingTag}
+  showSection={showSection}
+/>

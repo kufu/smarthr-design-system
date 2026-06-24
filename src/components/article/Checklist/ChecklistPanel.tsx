@@ -42,14 +42,19 @@ type Props = {
   title: string;
   /** トリガ見出しの HTML タグレベル。ページの見出し階層に合わせる */
   headingTag: HeadingTag;
+  /** セクションを表示するか。true で表示、未指定時は表示しない */
+  showSection: boolean;
 };
 
 // severity の表示マッピング（StatusLabel の type と整合）
 const severityConfig = {
-  must: { label: '必須', type: 'red' },
-  should: { label: '推奨', type: 'blue' },
-  avoid: { label: '非推奨', type: 'grey' },
+  must: { label: 'Must', type: 'red', bold: false },
+  should: { label: 'Should', type: 'blue', bold: false },
+  avoid: { label: 'Avoid', type: 'grey', bold: true },
 } as const;
+
+// showSection=false のときの並び順（必須 → 非推奨 → 推奨）
+const severityOrder: Record<ChecklistItemData['severity'], number> = { must: 0, avoid: 1, should: 2 };
 
 const SubList = ({ items, paddingLeft }: { items: string[]; paddingLeft: string }) => (
   <ul
@@ -69,43 +74,66 @@ const SubList = ({ items, paddingLeft }: { items: string[]; paddingLeft: string 
 const Badge = ({ severity }: { severity: ChecklistItemData['severity'] }) => {
   const sev = severityConfig[severity];
   return (
-    <StatusLabel type={sev.type} style={{ minWidth: '3em' }}>
+    <StatusLabel type={sev.type} bold={sev.bold} style={{ minWidth: '3em' }}>
       <Text size="XS">{sev.label}</Text>
     </StatusLabel>
   );
 };
 
 // 案A: グループ化リスト（source_section ごとに枠線で区切る）
-const GroupedView = ({ groups }: { groups: ChecklistGroup[] }) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-    {groups.map((group, gi) => (
-      <Stack key={gi} style={{ marginTop: '-1px', padding: '16px 24px', border: defaultBorder.shorthand }}>
-        <Text styleType="blockTitle">{group.section}</Text>
-        <Stack
-          as="ul"
-          gap={0.75}
-          style={{
-            listStyle: 'none',
-            paddingInline: 0,
-          }}
-        >
-          {group.items.map((item, ii) => (
-            <li key={ii}>
-              <Cluster gap={0.75} align="baseline" style={{ flexWrap: 'nowrap' }}>
-                <Badge severity={item.severity} />
-                <Text leading="NORMAL">{item.text}</Text>
-              </Cluster>
-              {item.sub_items && <SubList items={item.sub_items} paddingLeft="80px" />}
-            </li>
-          ))}
+const GroupedView = ({ groups, showSection }: { groups: ChecklistGroup[]; showSection: boolean }) =>
+  showSection ? (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+      {groups.map((group, gi) => (
+        <Stack key={gi} style={{ marginTop: '-1px', padding: '16px 24px', border: defaultBorder.shorthand }}>
+          <Text styleType="blockTitle">{group.section}</Text>
+          <Stack
+            as="ul"
+            gap={0.75}
+            style={{
+              listStyle: 'none',
+              paddingInline: 0,
+            }}
+          >
+            {group.items.map((item, ii) => (
+              <li key={ii}>
+                <Cluster gap={0.75} align="baseline" style={{ flexWrap: 'nowrap' }}>
+                  <Badge severity={item.severity} />
+                  <Text leading="NORMAL">{item.text}</Text>
+                </Cluster>
+                {item.sub_items && <SubList items={item.sub_items} paddingLeft="5.5em" />}
+              </li>
+            ))}
+          </Stack>
         </Stack>
+      ))}
+    </div>
+  ) : (
+    groups.map((group, gi) => (
+      <Stack
+        as="ul"
+        style={{
+          listStyle: 'none',
+          paddingInline: 0,
+          marginTop: showSection ? undefined : 0,
+        }}
+        key={gi}
+      >
+        {group.items.map((item, ii) => (
+          <li key={ii}>
+            <Cluster gap={0.75} align="baseline" style={{ flexWrap: 'nowrap' }}>
+              <Badge severity={item.severity} />
+              <Text leading="NORMAL">{item.text}</Text>
+            </Cluster>
+            {item.sub_items && <SubList items={item.sub_items} paddingLeft="5.5em" />}
+          </li>
+        ))}
       </Stack>
-    ))}
-  </div>
-);
+    ))
+  );
 
 // 案B: テーブル（source_section は colspan の見出し行）
-const TableView = ({ groups }: { groups: ChecklistGroup[] }) => (
+const TableView = ({ groups, showSection }: { groups: ChecklistGroup[]; showSection: boolean }) => (
   <Table borderType="outer" style={{ marginBlockStart: 0 }}>
     <thead>
       <tr>
@@ -116,19 +144,21 @@ const TableView = ({ groups }: { groups: ChecklistGroup[] }) => (
     <tbody>
       {groups.map((group, gi) => (
         <Fragment key={gi}>
-          <tr>
-            <Th
-              colSpan={2}
-              style={{
-                padding: '8px 16px',
-                height: 'auto',
-                backgroundColor: defaultColor.OVER_BACKGROUND,
-                textAlign: 'left',
-              }}
-            >
-              <Text whiteSpace="normal">{group.section}</Text>
-            </Th>
-          </tr>
+          {showSection && (
+            <tr>
+              <Th
+                colSpan={2}
+                style={{
+                  padding: '8px 16px',
+                  height: 'auto',
+                  backgroundColor: defaultColor.OVER_BACKGROUND,
+                  textAlign: 'left',
+                }}
+              >
+                <Text whiteSpace="normal">{group.section}</Text>
+              </Th>
+            </tr>
+          )}
           {group.items.map((item, ii) => (
             <tr key={ii}>
               <Td contentWidth={{ min: '1em' }}>
@@ -147,9 +177,19 @@ const TableView = ({ groups }: { groups: ChecklistGroup[] }) => (
 );
 
 // 開閉に JS が必要なため、ツリー全体を 1 つの React アイランドとして描画する。
-export const ChecklistPanel = ({ groups, variant, id, title, headingTag }: Props) => {
+export const ChecklistPanel = ({ groups, variant, id, title, headingTag, showSection = true }: Props) => {
   // 見出しは id 参照（URL ハッシュ）のアンカー、Disclosure は別 id で開閉状態を同期する
   const contentId = `${id}-content`;
+
+  // showSection=false のときは source_section でまとめず、severity 順に並べ替えた 1 グループにする
+  const renderGroups: ChecklistGroup[] = showSection
+    ? groups
+    : [
+        {
+          section: '',
+          items: groups.flatMap((group) => group.items).sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]),
+        },
+      ];
 
   return (
     <Stack>
@@ -183,7 +223,11 @@ export const ChecklistPanel = ({ groups, variant, id, title, headingTag }: Props
         )}
       </DisclosureTrigger>
       <DisclosureContent id={contentId} visuallyHidden>
-        {variant === 'grouped' ? <GroupedView groups={groups} /> : <TableView groups={groups} />}
+        {variant === 'grouped' ? (
+          <GroupedView groups={renderGroups} showSection={showSection} />
+        ) : (
+          <TableView groups={renderGroups} showSection={showSection} />
+        )}
       </DisclosureContent>
     </Stack>
   );
