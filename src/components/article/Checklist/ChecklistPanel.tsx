@@ -66,7 +66,7 @@ const SubList = ({ items }: { items: string[] }) => (
 const Badge = ({ severity }: { severity: ChecklistItemData['severity'] }) => {
   const sev = severityConfig[severity];
   return (
-    <StatusLabel type={sev.type} bold={sev.bold} style={{ minWidth: '3em' }}>
+    <StatusLabel type={sev.type} bold={sev.bold} style={{ minWidth: '3.5em' }}>
       <Text size="XS">{sev.label}</Text>
     </StatusLabel>
   );
