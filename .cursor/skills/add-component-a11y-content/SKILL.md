@@ -1,5 +1,5 @@
 ---
-name: component-page-accessibility
+name: add-component-a11y-content
 description: >-
   smarthr-design-system のコンポーネントページ向けのアクセシビリティコンテンツを作成・更新する。
   対象コンポーネントの用途、実装例、デザインパターン、既存のアクセシビリティコンテンツを確認し、
