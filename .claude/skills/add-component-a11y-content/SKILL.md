@@ -6,7 +6,8 @@ description: >-
   一貫した構成と記述スタイルでアクセシビリティセクションを生成する。
   「アクセシビリティコンテンツを追加して」「a11yセクションを作成して」
   「コンポーネントページにアクセシビリティ情報を追加して」等の依頼に対応する。
-globs: src/content/articles/products/components/**/index.mdx
+globs: 
+  - src/content/articles/products/components/**/index.mdx
 ---
 
 
@@ -290,5 +291,3 @@ DOM確認が有効な場合（両方ともeditable）：
 5. コンテンツを生成して Edit
 
 ---
-
-最後にこのスキルで消費したトークン数を確認して教えて
