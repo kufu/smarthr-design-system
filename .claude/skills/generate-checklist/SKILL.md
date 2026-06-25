@@ -78,6 +78,7 @@ index.mdx を読んだ後、**ルール候補が 0 件の場合は checklist.yam
 11. **同見出し下の関連ルール群は sub_items で階層化**: 親ルール + sub_items の構造にすると読みやすい
 12. **sub-mdx は source_section に `via xxx.mdx` 表記**: index.mdx から import される sub-mdx 由来の項目は出典を明示
 13. **WIP モバイルルール**: smarthr-ui 未実装だが mdx に記載されているルールは `note: "smarthr-ui未実装（モバイル対応時に有効化）"` 付きで残す
+14. **チェックリスト自己参照を除外**: `## 使い方チェックリスト` 節と、その中の `<Checklist ... />`（checklist.yaml を表示するコンポーネント）は抽出対象外。生成物を表示するための節でありルールの出典ではない（自己参照・循環を防ぐ。詳細は generate-checklist.md の除外ルール）
 
 #### 親ページの扱い
 
