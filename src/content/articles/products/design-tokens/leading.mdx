@@ -11,11 +11,34 @@ CSSでは`line-height`を指しています。
 
 ## セマンティックトークン
 
-| トークン名  | 値 | 使用例 |
-| :--- | :--- | :--- |
-| `NONE`    | 1    | [ラベルテキスト](/products/design-tokens/typography/#h3-4) |
-| `TIGHT`   | 1.25 | [Dialogのタイトル](/products/components/dialog/)、[Heading](/products/components/heading/)、[NotificationBar](/products/components/notification-bar/) |
-| `NORMAL`（標準）  | 1.5  | [段落テキスト](/products/design-tokens/typography/#h3-3) |
-| `RELAXED` | 1.75 | |
+| トークン名  | 値 |
+| :--- | :--- |
+| `NONE`    | 1    |
+| `TIGHT`   | 1.25 |
+| `NORMAL`（標準）  | 1.5  |
+| `RELAXED` | 1.75 |
+
+### `NONE`
+
+どのような状況でも改行が発生しない[ラベルテキスト](/products/design-tokens/typography/#h3-4)に使います。
+
+### `TIGHT`
+
+以下の場合に使います。
+
+- フォントサイズがL以上の見出しテキスト
+  - コンポーネント内部での使用例：[Dialogのタイトル](/products/components/dialog/)、[Heading](/products/components/heading/)
+- 3行以上の改行が想定されず、コンパクトに表示したい[段落テキスト](/products/design-tokens/typography/#h3-3)・[ラベルテキスト](/products/design-tokens/typography/#h3-4)
+  - コンポーネント内部での使用例：[NotificationBar](/products/components/notification-bar/)
+
+### `NORMAL`
+
+[段落テキスト](/products/design-tokens/typography/#h3-3)に使います。**特別な意図がない場合にはこのトークンを選択します**。
+
+### RELAXED
+
+特別な意図がない場合にはこのトークンを選択します。
+
+- 記事や投稿のような、長文の[段落テキスト](/products/design-tokens/typography/#h3-3)
 
 ## ［WIP］コード
