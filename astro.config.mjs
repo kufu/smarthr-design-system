@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
 import remarkEmoji from 'remark-emoji';
+import { unified } from '@astrojs/markdown-remark';
 
 import remarkCodeBlock from './src/remark/remark-code-block';
 import remarkIndexIdHeader from './src/remark/remark-index-id-header';
@@ -31,8 +32,10 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
+    processor: unified({
+      remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
+    }),
     syntaxHighlight: false,
-    remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
   },
   vite: {
     define: {
