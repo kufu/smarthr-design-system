@@ -161,6 +161,7 @@ Layer 3 に入れようとしている項目が Layer 1（mdx 冒頭の説明文
 | WIP モバイルルール | note 付きで残す |
 | 同見出し下の avoid + 代替 | 1 項に統合 |
 | sub-mdx import がある | 読み込んで source_section に via 表記 |
+| `## 使い方チェックリスト` 節 / `<Checklist ... />` | 抽出対象外（自己参照・循環防止） |
 | text にパターン名が含まれる | source_section と重複するため除去 |
 | 「適していません」「不適切」等の否定的事実 | severity avoid 推奨 |
 | 同じ表現の severity | 他コンポーネントと整合性を取る |
