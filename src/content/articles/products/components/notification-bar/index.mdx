@@ -5,6 +5,7 @@ description: 'システムからの通知を表示するためのコンポーネ
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import VideoEmbed from '@/components/article/VideoEmbed.astro'
 
 システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。
@@ -204,6 +205,10 @@ import { AnimateNotificationBar } from './_components'
 ### 特定の操作範囲へのフィードバックでの表示位置
 モバイルでは、操作範囲の大きさによってはNotificationBarが画面外に表示される場合があります。
 その場合は、ユーザーがフィードバックを確認できる位置での表示方法を検討してください。
+
+## 使い方チェックリスト
+
+<Checklist name="NotificationBar" />
 
 ## Props
 

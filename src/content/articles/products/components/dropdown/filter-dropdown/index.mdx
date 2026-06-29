@@ -3,6 +3,7 @@ title: 'FilterDropdown'
 description: '「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
@@ -77,6 +78,10 @@ const FilterDropdownForMobile = () => {
 }
 render(<FilterDropdownForMobile />)
 ```
+
+## 使い方チェックリスト
+
+<Checklist name="FilterDropdown" />
 
 ## Props
 
