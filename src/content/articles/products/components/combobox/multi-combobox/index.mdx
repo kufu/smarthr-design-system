@@ -6,6 +6,7 @@ import { Image } from 'astro:assets'
 import { Text, MultiCombobox, Cluster, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import multiComboboxDo from '../images/multi-combo-box-do.png'
 import multiComboboxDont from '../images/multi-combo-box-dont.png'
@@ -136,6 +137,10 @@ eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/
 <ResponseMessage>モバイルに適したMultiComboboxを提供予定です。</ResponseMessage>
 </BaseColumn>
 
+## 使い方チェックリスト
+
+<Checklist name="MultiCombobox" />
+
 ## Props
 
-<ComponentPropsTable name="MultiCombobox" showTitle />
+<ComponentPropsTable name="MultiCombobox" />
