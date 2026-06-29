@@ -3,7 +3,7 @@ import { FaCircleInfoIcon, Text, TextLink } from 'smarthr-ui';
 export const ObjectModelNote = () => (
   <Text icon={<FaCircleInfoIcon color="TEXT_GREY" />}>
     <span>
-      SmartHRのオブジェクトモデルの考え方は、
+      SmartHRのオブジェクトモデルの考え方やフォーマットは、
       <TextLink href="https://gihyo.jp/book/2020/978-4-297-11351-3">
         書籍『オブジェクト指向UIデザイン』（ソシオメディア・技術評論社）
       </TextLink>
