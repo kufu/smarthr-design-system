@@ -1,12 +1,12 @@
 items:
-  # 使用上の注意 > AccordionPanelを乱用しない
+  # 使用上の注意 > Accordionを乱用しない
   - severity: should
-    text: '画面内の情報量や粒度、構造が適切かどうかを精査して AccordionPanel を使用する'
-    source_section: '使用上の注意 > AccordionPanelを乱用しない'
+    text: '画面内の情報量や粒度、構造が適切かどうかを精査して Accordion を使用する'
+    source_section: '使用上の注意 > Accordionを乱用しない'
 
   # 使用上の注意 > ModelessDialogとの使い分け
   - severity: should
-    text: '「ヘルプページを参照しながら別の操作を行なう」など、画面のスクロールに依存せずモードレスに情報を表示したい場合は、AccordionPanel ではなく ModelessDialog を使用する'
+    text: '「ヘルプページを参照しながら別の操作を行なう」など、画面のスクロールに依存せずモードレスに情報を表示したい場合は、Accordion ではなく ModelessDialog を使用する'
     source_section: '使用上の注意 > ModelessDialogとの使い分け'
 
   # レイアウト > アイコンの位置
@@ -16,7 +16,7 @@ items:
 
   # レイアウト > デフォルトの開閉状態
   - severity: avoid
-    text: 'ユーザーの操作や閲覧が必ず必要な、重要性の高い情報を AccordionPanel で隠さない'
+    text: 'ユーザーの操作や閲覧が必ず必要な、重要性の高い情報を Accordion で隠さない'
     source_section: 'レイアウト > デフォルトの開閉状態'
     sub_items:
       - 'デフォルトで閉じる使い方の例: 一部のユーザーしか利用しない機能（例: 高度な設定など）を隠し画面の表示要素をシンプルに保ちたい場合'

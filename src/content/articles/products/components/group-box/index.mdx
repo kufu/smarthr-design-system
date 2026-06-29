@@ -1,0 +1,43 @@
+---
+title: 'GroupBox'
+description: 'PanelやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Panel内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。'
+---
+
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Text } from 'smarthr-ui'
+
+[Panel](/products/components/panel/)や[Dialog](/products/components/dialog/)の内部で視覚的に要素をグルーピングするコンポーネントです。Panel内やダイアログコンテンツ内でコンテンツを囲んで「[ブロック](/products/design-patterns/visual-grouping/#h3-6)」領域として示すときに使います。
+
+<ComponentStory name="BaseColumn" />
+
+## デザインパターン
+
+### メッセージを表示するパターン
+
+注意事項や補足事項などを見出しと内容のセットで伝えるパターンです。Panelや各種Dialog（`contentBgColor`が`WHITE`の場合）の内側など、[InformationPanel](/products/components/information-panel/)が配置できない場合に主に使います。
+
+<DoAndDont type="do">
+  <Text slot="label">Panelの内側ではInformationPanelの代わりにGroupBoxで注意事項を表示する。</Text>
+  <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Base padding={1.5}>
+  <BaseColumn>
+    <Stack gap={1}>
+      <Heading type="blockTitle" icon={<WarningIcon />}>
+        注意事項
+      </Heading>
+      <p>
+        注意事項内容テキスト。注意事項内容テキスト。注意事項内容テキスト。
+      </p>
+    </Stack>
+  </BaseColumn>
+</Base>
+```
+  </div>
+</DoAndDont>
+
+## Props
+
+<ComponentPropsTable name="BaseColumn" />

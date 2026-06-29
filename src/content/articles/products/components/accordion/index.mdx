@@ -1,5 +1,5 @@
 ---
-title: 'AccordionPanel'
+title: 'Accordion'
 description: '縦に積まれた見出しのリストで、関連する詳細の表示・非表示を切り替えられるコンポーネントです。情報量が多い場合に表示内容を絞るときに使います。'
 ---
 import ComponentStory from '@/components/article/ComponentStory.astro'
@@ -12,18 +12,18 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 <ComponentStory name="AccordionPanel" />
 
 ## 使用上の注意
-### AccordionPanelを乱用しない
-AccordionPanelを使用することで、スペースを省略しつつ画面内に多くの要素を配置できるようになりますが、多用しすぎると1画面の情報量が増えユーザーの使いづらさに繋がります。画面内の情報量や粒度、構造が適切かどうかを精査してAccordionPanelを使用してください。
+### Accordionを乱用しない
+Accordionを使用することで、スペースを省略しつつ画面内に多くの要素を配置できるようになりますが、多用しすぎると1画面の情報量が増えユーザーの使いづらさに繋がります。画面内の情報量や粒度、構造が適切かどうかを精査してAccordionを使用してください。
 
 ### ModelessDialogとの使い分け
-モードレスに情報を表示したい場合、AccordionPanelの代替として[ModelessDialog](/products/components/dialog/modeless-dialog/)を使用できます。  
+モードレスに情報を表示したい場合、Accordionの代替として[ModelessDialog](/products/components/dialog/modeless-dialog/)を使用できます。  
 例えば、「ヘルプページを参照しながら別の操作を行なう」といったケースでは、画面のスクロールに依存しない[ModelessDialog](/products/components/dialog/modeless-dialog/)を使用してヘルプページを表示するほうが適切です。
 
 ## レイアウト
 
 ### アイコンの位置
 開閉する機能をアイコンによって認識しやすくするため、デフォルトは見出しの左にアイコンを配置しています。  
-`iconPosition` props によってアイコンの位置を左または右に指定できますが、アイコンと見出しの位置が離れAccordionPanelとして認識しづらくなるため、右に配置するのは非推奨です。
+`iconPosition` props によってアイコンの位置を左または右に指定できますが、アイコンと見出しの位置が離れAccordionとして認識しづらくなるため、右に配置するのは非推奨です。
 
 ### デフォルトの開閉状態
 
@@ -36,7 +36,7 @@ AccordionPanelを使用することで、スペースを省略しつつ画面内
 ## 状態
 
 ### マウスオーバー
-AccordionPanelItemに触れている状態（hover状態）のスタイルです。アイコンや見出しを含む行全体が操作対象です。マウスオーバーを認知できるように、標準時の背景色に[`OVERLAY`](/products/design-tokens/color/#h3-3)を重ねて表現しています。  
+AccordionItemに触れている状態（hover状態）のスタイルです。アイコンや見出しを含む行全体が操作対象です。マウスオーバーを認知できるように、標準時の背景色に[`OVERLAY`](/products/design-tokens/color/#h3-3)を重ねて表現しています。  
 
 ### 展開時
 - アイコンが左にある場合（`iconPosition="left"`）、`FaCaretRightIcon` アイコンを90度回転して展開を表現しています。
