@@ -183,9 +183,11 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 
 `checklist-sync`が失敗した場合の対応は以下のいずれか:
 
-1. ローカルで`checklist.yaml`を更新（または新規作成）してPRに追加
-2. `generate-checklist` SKILLの判定で「スキップ対象」だった場合 → スキップ理由をPR descriptionに書き、PRに `skip-checklist-update` ラベルを付与
-3. typo / description のみ等の軽微修正で更新不要な場合 → PRに `skip-checklist-update` ラベルを付与
+まず対象コンポーネントで生成/更新スキル（`generate-checklist` / `update-checklist`）を実行します。typo・descriptionのみの軽微な変更でも、更新要否は作業者が判断せずスキルに委ねます。実行結果に応じて以下のいずれかで対応します。
+
+1. スキルが差分を出した場合 → その`checklist.yaml`をPRに含める
+2. スキルを実行したが差分が出なかった場合（既存項目でカバー済み、または新規コンポーネントでスキップ判定）→ 差分が出なかった理由をPR descriptionに書き、PRに `skip-checklist-update` ラベルを付与
+3. 複数コンポーネントを変更し、一部は差分あり・一部は差分なしが混在する場合 → 差分ありの`checklist.yaml`をPRに含めたうえで、`checklist-sync`は現状PR単位判定のため `skip-checklist-update` ラベルを付与する。このときラベルは「更新がない」意味ではなく「CIをPR単位でスキップする」ためのもの。差分が出なかったコンポーネントと理由はPR descriptionに明記し、レビュアーが妥当性を確認できるようにする
 
 **スキップ判定の典型例**（`generate-checklist` SKILLが自動判定します）:
 
