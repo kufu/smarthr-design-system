@@ -1,6 +1,6 @@
 import { FaCircleInfoIcon, Text, TextLink } from 'smarthr-ui';
 
-export const IaOutputsNote = () => (
+export const ConceptualModelNote = () => (
   <Text icon={<FaCircleInfoIcon color="TEXT_GREY" />}>
     <span>
       SmartHRの概念モデルの考え方やフォーマットは、
