@@ -4,6 +4,35 @@ items:
     text: 'ダイアログとして表示する・操作させるべき内容なのか、慎重にユースケースを定義し使用を検討する'
     source_section: '使用上の注意 > ダイアログを乱用しない'
 
+  # レイアウト > 基準サイズ (via DialogBaseSize.mdx)
+  - severity: should
+    text: '入力要素を 1 つだけ持つなど、内容が極めて少ないダイアログには `XS` を使う'
+    source_section: 'レイアウト > 基準サイズ (via DialogBaseSize.mdx)'
+
+  - severity: should
+    text: '要素が少なく、要素が垂直方向に並ぶ、広い横幅を必要としないダイアログには `S` を使う'
+    source_section: 'レイアウト > 基準サイズ (via DialogBaseSize.mdx)'
+
+  - severity: should
+    text: '数行に渡るテキストの表示や、水平方向に要素を並べて表示する標準的なダイアログには `M` を使う'
+    source_section: 'レイアウト > 基準サイズ (via DialogBaseSize.mdx)'
+
+  - severity: should
+    text: 'テーブルの表示やダイアログを複数カラムに分割するなど、広い横幅が必要なダイアログには `L` を使う'
+    source_section: 'レイアウト > 基準サイズ (via DialogBaseSize.mdx)'
+
+  - severity: should
+    text: '広い横幅が必要で、`L` ではコンテンツが収まりきらないダイアログには `XL` を使う'
+    source_section: 'レイアウト > 基準サイズ (via DialogBaseSize.mdx)'
+
+  - severity: should
+    text: '広い横幅が必要で、`XL` ではコンテンツが収まりきらないダイアログには `XXL` を使う'
+    source_section: 'レイアウト > 基準サイズ (via DialogBaseSize.mdx)'
+
+  - severity: should
+    text: '広い横幅が必要で、`XXL` ではコンテンツが収まりきらないダイアログには `FULL` を使う'
+    source_section: 'レイアウト > 基準サイズ (via DialogBaseSize.mdx)'
+
   # レイアウト > 表示位置
   - severity: must
     text: 'ModelessDialog はダイアログを開く操作をした箇所の付近に表示する'
