@@ -168,8 +168,8 @@ find src/content/articles/accessibility -name "*.mdx" | grep -E "(accessible-nam
 **記述形式：**
 
 DOM確認が有効な場合（両方ともeditable）：
+##### 良い実装例
 ```tsx editable noIframe
-// 良い実装例
 <Tooltip message="追加" type="label">
   <Button>
     <FaCirclePlusIcon />
@@ -177,6 +177,7 @@ DOM確認が有効な場合（両方ともeditable）：
 </Tooltip>
 ```
 
+##### 悪い実装例
 ```tsx editable noIframe
 // ❌ 悪い実装例
 <Tooltip message="追加">
@@ -187,11 +188,12 @@ DOM確認が有効な場合（両方ともeditable）：
 ```
 
 静的な説明で十分な場合（両方とも通常のコードブロック）：
+##### 良い実装例
 ```tsx
-// 良い実装例
 <Button variant="tertiary" prefix={<FaCirclePlusIcon />}>項目を追加</Button>
 ```
 
+##### 悪い実装例
 ```tsx
 // ❌ 悪い実装例
 <Button variant="tertiary">項目を追加</Button>
@@ -219,8 +221,6 @@ DOM確認が有効な場合（両方ともeditable）：
 - 本文で十分説明している
 - コンポーネントとの関連性が低い
 - 同じ内容を繰り返すだけになる
-
-関連ページは最大5件までとする。
 
 リンク先の見出しをそのまま利用し、独自に言い換えない。
 
