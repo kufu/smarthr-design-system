@@ -24,7 +24,26 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 `WIDE` | `col9` | 1336px
 `FULL` | - | `width: 100%`
 
-各サイズの用途は[幅トークン](/products/design-tokens/width/#h3-1)を参照してください。
+#### `NARROW`
+
+フォーム要素が中心の画面など、ページ内の要素が横幅を広く必要とせず、`DEFAULT`では不要な余白が大きくなってしまう画面に使います。
+
+#### `DEFAULT`
+
+コレクションやシングルの標準的な画面に使います。特に理由がない場合にはこの幅を使います。
+
+#### `WIDE`
+
+複数カラムのレイアウトで1つのカラムに1ページ相当の情報を表示する画面に使います。
+
+主に以下のページレイアウトが対象です。
+- [サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)
+- [コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)
+- [シングル（2カラム）](/products/design-patterns/page-layout/#h3-10)
+
+#### `FULL`
+
+横スクロールを必須とするような大量のデータを表示する画面に使います。
 
 ### コンテナのパディング
 
