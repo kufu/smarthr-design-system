@@ -47,7 +47,7 @@
 
 ## 注意
 
-- 更新済みのトークンは余白・色・タイポグラフィ・行送り・幅の5種類。shadow（`shadow-layer-1` など）・radius・z-index・media-query は現時点では未整備のため、別リポジトリである`https://github.com/kufu/smarthr-design-system.git`の`src/content/articles/products/design-tokens/` を直接参照すること。
+- 更新済みのトークンは色・行送り・角丸・影・余白・タイポグラフィ・幅の7種類。z-index・media-query は現時点では未整備のため、別リポジトリである`https://github.com/kufu/smarthr-design-system.git`の`src/content/articles/products/design-tokens/` を直接参照すること。
 - 色トークンは**セマンティックトークンを優先**する。セマンティックトークンで表現できない場合のみプリミティブトークンを使うこと（`tokens/color.mdx` 参照）。
 - 余白トークンのセマンティックトークン（`XS`、`S`、`M` など）は**非推奨**。プリミティブトークン（数値）で指定すること（`tokens/spacing.mdx` 参照）。
 
