@@ -1,0 +1,15 @@
+---
+// 行番号を持つmarkdown テーブル用のラッパー。
+// グローバルの `table th/td { min-width: 7em }`（Layout.astro）により
+// 番号列が必要以上に広くなるため、1 列目だけ min-width を解除して内容幅に収める。
+---
+
+<div class="numberedTable"><slot /></div>
+
+<style>
+  /* No.列（1列目）のみ、グローバルの min-width: 7em を解除して内容幅に収める */
+  .numberedTable :global(table th:first-child),
+  .numberedTable :global(table td:first-child) {
+    min-width: initial;
+  }
+</style>
