@@ -10,8 +10,10 @@
 | `Stack` の `gap`、`Cluster` の `gap`、`Base` の `padding`、`margin`、`padding`、`top`/`left` などの余白指定 | `tokens/spacing.mdx` |
 | `BaseColumn` の `bgColor`、`StatusLabel` の `type` 以外で色を指定する場合、背景色・テキスト色・枠線色の選択 | `tokens/color.mdx` |
 | フォントサイズ（`Text` の `size`）、テキストスタイル（見出し・段落・ラベル）の選択 | `tokens/typography.mdx` |
-| `line-height`（行送り）の指定 | `tokens/leading.mdx` |
+| `Text` の `leading`、`line-height`（行送り）の指定 | `tokens/leading.mdx` |
 | `Container` の `size`、`Dialog` の `width` の選択 | `tokens/width.mdx` |
+| `Base` の `layer` や `shr-shadow-layer-1` などの Tailwind CSS クラス名 | `tokens/shadow.mdx` |
+| `Base` の `radius` や `shr-rounded-m`` などの Tailwind CSS クラス名 | `tokens/radius.mdx` |
 
 ## よくある使用箇所とトークンの対応
 
@@ -30,13 +32,22 @@
 - `<Text size="S">` → `tokens/typography.mdx` のフォントサイズセクション
 
 ### 行送り（leading）
+- `<Text leading="TIGHT">` → `tokens/leading.mdx`
 - `line-height` を指定する場合 → `tokens/leading.mdx`
 
 ### 幅（width）
 - `<Container size="WIDE">` → `tokens/width.mdx` の Container セクション
 - ダイアログのサイズ指定 → `tokens/width.mdx` の Dialog セクション
 
+### 影（shadow）
+- `<Base layer={2}>` → `tokens/shadow.mdx` のセマンティックトークン
+
+### 角丸（radius）
+- `<Base radius="m">` → `tokens/radius.mdx` のセマンティックトークン
+
 ## 注意
 
-- 更新済みのトークンは色・余白・タイポグラフィ・行送り・幅・shadow（`shadow-layer-1` など）・radiusの7種類。z-index・media-query は現時点では未整備のため、`src/content/articles/products/design-tokens/` を直接参照すること。
-- 余白トークンは、プリミティブトークン（数値）で指定すること（`tokens/spacing.mdx` 参照）。
+- 更新済みのトークンは余白・色・タイポグラフィ・行送り・幅の5種類。shadow（`shadow-layer-1` など）・radius・z-index・media-query は現時点では未整備のため、別リポジトリである`https://github.com/kufu/smarthr-design-system.git`の`src/content/articles/products/design-tokens/` を直接参照すること。
+- 色トークンは**セマンティックトークンを優先**する。セマンティックトークンで表現できない場合のみプリミティブトークンを使うこと（`tokens/color.mdx` 参照）。
+- 余白トークンのセマンティックトークン（`XS`、`S`、`M` など）は**非推奨**。プリミティブトークン（数値）で指定すること（`tokens/spacing.mdx` 参照）。
+

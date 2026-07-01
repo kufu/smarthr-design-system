@@ -5,7 +5,7 @@ order: 7
 ---
 
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
-import { ShadowSample } from './_components'
+import ShadowSample from './_components/ShadowSample'
 
 影のトークンは、要素の周りに落とす影（シャドウ）の大きさを定義します。
 
@@ -46,6 +46,11 @@ CSSでは`box-shadow`や`drop-shadow`を指しています。
 ### `LAYER0`
 
 例外的に、コンポーネントの影を打ち消したい場合に使います。Baseの影を打ち消す場合は、`layer`propsに`0`を指定します。
+
+#### 使用上の注意
+
+- `BACKGROUND`の上に置く`Base`には使わない
+  - `LAYER0`は影なしのため、`BACKGROUND`との境界が視覚的に区別できなくなります。`layer`を省略するか`LAYER1`以上を使ってください。
 
 ### `LAYER1`
 
