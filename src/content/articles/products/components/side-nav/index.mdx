@@ -4,6 +4,7 @@ description: '同一画面内のビューを縦方向に並べて切り替える
 ---
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import { BaseColumn, ResponseMessage } from 'smarthr-ui'
 
 同一画面内のビューを縦方向に並べて切り替えるためのナビゲーションコンポーネントです。「[コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)」ページレイアウトのコレクション領域で一覧から選んだオブジェクトの詳細を切り替えるとき、設定画面などで1つの画面内に並ぶビューを切り替えるときに使います。
@@ -24,6 +25,10 @@ SideNavの影響範囲内のビューでは、SideNavの使用を避けてくだ
 </BaseColumn>
 
 SideNavを使った2カラムのレイアウトは広い横幅を必要とするため、画面の横幅が狭いモバイルには適していません。ページを分割するか、SideNavをドロワーで表示してください。詳しくは、[ページレイアウト](/products/design-patterns/page-layout/#h4-18)を参照してください。
+
+## 使い方チェックリスト
+
+<Checklist name="SideNav" />
 
 ## Props
 

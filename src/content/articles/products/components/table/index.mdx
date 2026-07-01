@@ -18,6 +18,7 @@ relatedComponents:
     description: 'テーブルにデータがない場合に空状態を表示するtbodyコンポーネントです。空状態のメッセージを提示するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
 
@@ -84,6 +85,10 @@ import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
 モバイルでは、画面幅を越えたテーブルは[2次元スクロール](/products/design-patterns/mobile-friendly-layout/#h3-3)を招くため、垂直方向に積みあげることを推奨します。
 
 [よくあるテーブルの「モバイル」セクション](/products/design-patterns/smarthr-table/#h2-3)を参照し、レイアウトに応じてListコンポーネント（WIP）への置き換えを検討してください。
+
+## 使い方チェックリスト
+
+<Checklist name="Table" />
 
 ## Props
 

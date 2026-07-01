@@ -9,6 +9,7 @@ relatedComponents:
   - name: UnexpectedErrorScreen
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import PageIndex from '@/components/article/PageIndex.astro'
 import { Button, Center, Cluster, ErrorScreen, Stack, Text, TextLink } from 'smarthr-ui'
@@ -86,7 +87,11 @@ ErrorScreenコンポーネントではロゴ、タイトル、メッセージ、
 
 <PageIndex basePath="/products/components/error-screen/" heading="h3" />
 
-## props
+## 使い方チェックリスト
+
+<Checklist name="ErrorScreen" />
+
+## Props
 
 <ComponentPropsTable name="ErrorScreen" />
 

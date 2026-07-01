@@ -4,6 +4,7 @@ description: '複数ステップに分かれた操作の進行状況を示すコ
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
 複数ステップに分かれた操作の進行状況を示すコンポーネントです。手続きの現在位置や全体ステップ数を可視化するときに使います。
@@ -17,6 +18,10 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 モバイル環境では画面の幅が狭いので、`type="horizontal"`を使用していると水平方向のスクロールが生じることがあります。その場合は`type="vertical"`を使用してください。
 
 隣接するセクションとのレイアウト調整が困難な場合は、Stepperを使用せず他の表現方法を検討してください。
+
+## 使い方チェックリスト
+
+<Checklist name="Stepper" />
 
 ## Props
 

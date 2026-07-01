@@ -4,6 +4,7 @@ description: 'システムからの通知を表示するためのアイコン付
 ---
 import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Cluster, Text } from 'smarthr-ui'
@@ -42,6 +43,10 @@ import responsemessageDont from './images/responsemessage-dont.png'
   <ResponseMessage status="sync">同期を表すアイコンが付きます。</ResponseMessage>
 </Stack>
 ```
+
+## 使い方チェックリスト
+
+<Checklist name="ResponseMessage" />
 
 ## Props
 <ComponentPropsTable name="ResponseMessage" />
