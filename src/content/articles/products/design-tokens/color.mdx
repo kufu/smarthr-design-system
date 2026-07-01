@@ -451,89 +451,84 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 以下の場合に使います。
 
-- 画面内で最も重要度が高く、ユーザーのアクションを促す要素
-  - [Button](/products/components/button) などの主要なコンポーネントの背景色、枠線
-  - [Checkbox](/products/components/checkbox/)、[RadioButton](/products/components/radio-button/) などの選択状態（アクティブ）を表す背景色、枠線
-  - ユーザーのアクション（操作）を促す主要なアイコン
-- フォーカスリングの枠線
+- 画面内で強調させたい最も重要な操作要素の背景色
+- 選択状態を表すための背景色・線
+
+コンポーネント内部での使用例：variant propsが`primary`の[Button](/products/components/button) の背景色、選択状態の[Checkbox](/products/components/checkbox/)の背景色
 
 #### 使用上の注意
 
-- テキストには使わない
-  - `TEXT_LINK`を使ってください。
+テキストには`TEXT_LINK`を使ってください。
 
 ### `WHITE`
 
-[Base](/products/components/base/)、[Dialog](/products/components/dialog/)などのコンポーネントの背景色に使います。
+以下の場合に使います。
+
+- 視覚的グルーピングに使う背景色
+- 操作可能な状態を示すための背景色
+
+コンポーネント内部での使用例：[Base](/products/components/base/)の背景色、[Dialog](/products/components/dialog/)の背景色、操作可能な状態の[Checkbox](/products/components/checkbox/)の背景色
 
 #### 使用上の注意
 
-- テキストには使わない
-  - `TEXT_WHITE`を使ってください。
+テキストには`TEXT_WHITE`を使ってください。
 
 ### `DANGER`
 
 以下の場合に使います。
 
-- エラー時のコンポーネントの文字色、背景色、線
-- 削除など破壊的な変更を行なうアイコン、ボタン、文字色、背景色、枠線
+- エラー状態を示す要素の背景色、線
+- 削除など破壊的な操作を示す要素の背景色、線
 
 #### 使用上の注意
 
-- 警告時には使わない（削除前などのアクション前）
-  - `WARNING_YELLOW`を使ってください。
+警告時（削除前などのアクション前）には`WARNING_YELLOW`を使ってください。
 
 ### `WARNING_YELLOW`
 
-以下の場合に使います。
-
-- 警告時のコンポーネントの背景色、WarningIconなどのアイコン
-- 削除やUndoなどの破壊的アクションをする前の注意に使う
+警告を示す要素の背景色、線の色に使います。
 
 #### 使用上の注意
 
-- 削除の実行アクションには使わない
-  - `DANGER`を使ってください。
+削除の実行アクションには`DANGER`を使ってください。
 
 ### `TEXT_BLACK`
 
-以下の場合に使います。
-
-- 基本的な文字の色、アイコンの色
-- [Button](/products/components/button/)などのコンポーネントの通常時の文字の色
+標準的な[見出し](https://smarthr.design/products/design-tokens/typography/#h3-2)、[段落テキスト](https://smarthr.design/products/design-tokens/typography/#h3-3)、[ラベルテキスト](https://smarthr.design/products/design-tokens/typography/#h3-4)に使います。
+**特別な意図がない場合にはこのトークンを選択します**。
 
 #### 使用上の注意
 
-- ジャンプ率が文字の大きさで確保できないときは使わない
-  - `TEXT_GREY`を使うことでジャンプ率を確保してください。
+ジャンプ率が文字の大きさで確保できないときは`TEXT_GREY`を使ってください。
 
 ### `TEXT_GREY`
 
-以下の場合に使います。
+本文に対して補足として扱う文字の色に使います。
 
-- `TEXT_BLACK`からジャンプ率を確保するときに使う文字の色、アイコンの色
-- [DefinitionList](/products/components/definition-list/)、[Heading](/products/components/heading/)などのジャンプ率を確保した見出しコンポーネントの文字の色
+コンポーネント内部での使用例：[DefinitionList](/products/components/definition-list/)の文字の色、[Heading](/products/components/heading/)の文字の色
 
 #### 使用上の注意
 
-- 通常の文字の色には使わない
-  - 基本的には`TEXT_BLACK`を使ってください。
+通常の文字の色には`TEXT_BLACK`を使ってください。
 
 ### `TEXT_LINK`
 
 以下の場合に使います。
 
-- リンクを表す文字の色、下線、アイコン
-- [Button](/products/components/button/)の`tertiary`の文字の色
+- リンクを表す文字の色、下線
+- インタラクション可能な要素の文字の色
+
+コンポーネント内部での使用例：variant propsが`tertiary`の[Button](/products/components/button/)の文字の色
 
 #### 使用上の注意
 
-- 文字やアイコン以外の塗りつぶしや線には使わない
-  - `MAIN`を使ってください。
+文字やアイコン以外の塗りつぶしや線には`MAIN`を使ってください。
 
 ### `TEXT_DISABLED`
 
-[Button](/products/components/button/)、[Input](/products/components/input/)などの非活性状態を表す文字の色に使います。
+非活性状態を表す文字の色に使います。
+
+コンポーネント内部での使用例：非活性状態の[Button](/products/components/button/)の文字の色
 
 #### 使用上の注意
 
@@ -543,50 +538,46 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 ### `TEXT_WHITE`
 
-[Button](/products/components/button/)などの`DANGER`、`MAIN`に対して使う文字、アイコンの色に使います。
+`DANGER`、`MAIN`などの強い塗りの上にある文字の色に使います。
+
+コンポーネント内部での使用例：variant propsが`primary`の[Button](/products/components/button/)の文字の色
 
 #### 使用上の注意
 
-- 線や塗りには使わない
-  - `WHITE`を使ってください。
+線や塗りには`WHITE`を使ってください。
 
 ### `BORDER`
 
-以下の場合に使います。
+線の色に使います。
 
-- 基本的な枠線・罫線の色
-- [Button](/products/components/button/)などの通常時のコンポーネントの枠線
+コンポーネント内部での使用例：variant propsが`secondary`の[Button](/products/components/button/)の枠線の色
 
 ### `ACTION_BACKGROUND`
 
-以下の場合に使います。
+操作する要素を配置するための視覚的グルーピングとして、前後の背景に`WHITE`、`OVER_BACKGROUND`、`COLUMN`などが使われており差別化するときに使います。
 
-- `TableBulkActionArea`の背景色
-- `OVER_BACKGROUND`の上に置く色として使われることもあります
+コンポーネント内部での使用例：[Table](/products/components/table)のTableBulkActionAreaの背景色
 
 #### 使用上の注意
 
-- テーブルヘッダーの背景色では使わない
-  - `HEAD`を使ってください。
+テーブルヘッダーの背景色には`HEAD`を使ってください。
 
 ### `HEAD`
 
 以下の場合に使います。
 
 - テーブルヘッダーの背景色
-- 視覚的グルーピングの`COLUMN`以上のネストが必要なとき
+- 視覚的グルーピングの`OVER_BACKGROUND`以上のネストが必要なとき
+
+コンポーネント内部での使用例：[Table](/products/components/table)のテーブルヘッダーの背景色
 
 #### 使用上の注意
 
-- TableBulkActionAreaでは使わない
-  - `ACTION_BACKGROUND`を使ってください。
+TableBulkActionAreaには`ACTION_BACKGROUND`を使ってください。
 
 ### `OVER_BACKGROUND`
 
-以下の場合に使います。
-
-- `BACKGROUND`の上で使う囲み色（要素をグルーピングするときに使う色）
-- hover時に`COLUMN`を使っている場合の背景色
+`BACKGROUND`の上で使う囲み色（要素をグルーピングするときに使う色）に使います。
 
 #### 使用上の注意
 
@@ -597,27 +588,25 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 ### `COLUMN`
 
-以下の場合に使います。
+`WHITE`の上で使う囲み色（要素をグルーピングするときに使う色）に使います。
 
-- `WHITE`の上で使う囲み色（要素をグルーピングするときに使う色）
-- [DropZone](/products/components/drop-zone/)、[SideNav](/products/components/side-nav/)などのコンポーネントの背景色
+コンポーネント内部での使用例：[DropZone](/products/components/drop-zone/)の背景色、[SideNav](/products/components/side-nav/)の背景色
 
 #### 使用上の注意
 
 - 画面の背景色では使わない
   - `BACKGROUND`を使ってください。
 - `BACKGROUND`の上では使わない
-  - 色が`BACKGROUND`と同じため、`BACKGROUND`の上にはおかないでください。
+  - 色が`BACKGROUND`と同じなため、`BACKGROUND`の上にはおかないでください。
   - `OVER_BACKGROUND`を使ってください。
 
 ### `BACKGROUND`
 
-画面の背景色に使います。
+ページの最背面の背景色に使います。
 
 #### 使用上の注意
 
-- `WHITE`の上では使わない
-  - `COLUMN`を使ってください。
+`WHITE`の上では`COLUMN`を使ってください。
 
 ### `OVERLAY`
 
@@ -633,7 +622,7 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 ### `TRANSPARENT`
 
-コンポーネントの枠線などを消すときに使います。
+例外的に、コンポーネントの枠線などを消すときに使います。
 
 ### `CHART_COLOR`
 
