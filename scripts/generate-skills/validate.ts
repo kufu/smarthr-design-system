@@ -189,9 +189,36 @@ function validateOne(yamlPath: string): Report {
   };
 }
 
+function parseFilesArg(): string[] | null {
+  const args = process.argv.slice(2);
+  const idx = args.indexOf('--files');
+  if (idx < 0) return null;
+  // --files の後続トークンを取り、フラグ (--xxx) が出たら打ち切り
+  const tail = args.slice(idx + 1);
+  const files: string[] = [];
+  for (const a of tail) {
+    if (a.startsWith('--')) break;
+    files.push(a);
+  }
+  return files;
+}
+
 function main() {
   const jsonMode = process.argv.includes('--json');
-  const files = findChecklistFiles();
+  const explicit = parseFilesArg();
+  const files = explicit
+    ? // 明示指定: REPO_ROOT 起点で解決し、components 配下かつ checklist.yaml のみに正規化
+      explicit
+        .map((f) => (path.isAbsolute(f) ? f : path.resolve(REPO_ROOT, f)))
+        .filter((f) => f.endsWith('/checklist.yaml') && f.startsWith(COMPONENTS_DIR + path.sep))
+        .filter((f) => fs.existsSync(f))
+    : findChecklistFiles();
+
+  if (files.length === 0) {
+    if (!jsonMode) console.log('対象ファイルなし。何もしません。');
+    process.exit(0);
+  }
+
   const reports = files.map(validateOne);
 
   if (jsonMode) {

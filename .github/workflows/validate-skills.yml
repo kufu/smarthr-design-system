@@ -1,0 +1,189 @@
+name: validate-skills
+
+# checklist.yaml の形式検証を行う。
+# - error が 1 件でも出たら PR をブロックする（required check 想定）。
+# - フォーク PR でも実行する（read-only で機密に触れないため安全）。
+# - SKILL.md の再生成は generate-skills.yml 側で行う（ここでは検証のみ）。
+
+on:
+  # paths フィルタは使わない。
+  # validate / coverage / checklist-sync は required status check に指定しているため、
+  # paths でワークフロー自体をスキップすると check が報告されず、対象外ファイルのみの PR
+  # （例: plugins/ 配下のスキル追加）が「Expected — Waiting for status」で永久にブロックされる。
+  # 各ジョブは対象差分が無い場合に何もせず success を返す設計のため、全 PR で起動させてよい
+  # （validate: 変更対象 yaml が無ければ検証をスキップして success / coverage: baseline 適用で
+  #  違反が無ければ success / checklist-sync: 対象の index.mdx 変更が無ければ success）。
+  pull_request:
+    # labeled / unlabeled も拾い、ラベル付与/解除で checklist-sync を再評価する。
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  workflow_dispatch:
+
+# 同一 PR の古い実行はキャンセルし、最新コミットのみ評価する。
+concurrency:
+  group: validate-skills-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          # PR base との diff を取るため履歴を遡れるようにする
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      # 差分のみ検証する。検証ロジック自体が変更された場合 (scripts/generate-skills/**) は
+      # 全件評価に切り替え、潜在的なリグレッションを拾えるようにする。
+      - name: Determine validation scope
+        id: scope
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          set -euo pipefail
+          BASE="origin/${BASE_REF}"
+          # script 自身が変更されていれば全件評価
+          if git diff --name-only "$BASE"...HEAD | grep -qE '^scripts/generate-skills/'; then
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            echo "scripts/generate-skills/** が変更されているため全件評価します。"
+            exit 0
+          fi
+          # 変更された checklist.yaml のみ収集 (削除ファイルは除外)
+          mapfile -t files < <(git diff --name-only --diff-filter=d "$BASE"...HEAD \
+            | grep -E '^src/content/articles/products/components/.*/checklist\.yaml$' || true)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "mode=none" >> "$GITHUB_OUTPUT"
+            echo "変更された checklist.yaml はありません。validate をスキップします。"
+            exit 0
+          fi
+          echo "mode=files" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "${files[@]}"
+          # スペース区切りで保持 (パスに空白なし前提)
+          echo "files=${files[*]}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate (changed files only)
+        if: steps.scope.outputs.mode == 'files'
+        run: pnpm --filter ./scripts/generate-skills validate --files ${{ steps.scope.outputs.files }}
+
+      - name: Validate (all)
+        if: steps.scope.outputs.mode == 'all'
+        run: pnpm --filter ./scripts/generate-skills validate
+
+  # smarthr-ui の metadata.json と design-system 側の追従整合性をチェック。
+  # 既知違反は coverage-baseline.json で除外されるため、ノイズなく新規違反のみ拾える。
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Run coverage check
+        env:
+          CI: 'true'
+        run: pnpm --filter ./scripts/generate-skills coverage
+
+  # index.mdx を変更したのに同一コンポーネントの checklist.yaml が未更新の
+  # PR を検知し、ラベル運用で例外を許す。設計詳細は CONTRIBUTING.md 参照。
+  checklist-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check index.mdx ↔ checklist.yaml sync
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        env:
+          SKIP_LABEL: skip-checklist-update
+        with:
+          script: |
+            const SKIP_LABEL = process.env.SKIP_LABEL;
+            const labels = (context.payload.pull_request.labels ?? []).map((l) => l.name);
+            const skip = labels.includes(SKIP_LABEL);
+
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            });
+
+            // src/content/articles/products/components/<parent>/{index.mdx | checklist.yaml | _components/**.mdx}
+            // <parent> はネストあり (例: dialog/action-dialog)。_components は親解決対象。
+            const BASE = 'src/content/articles/products/components/';
+            const mdxParents = new Set();
+            const yamlParents = new Set();
+            const removedMdxParents = new Set();
+
+            for (const f of files) {
+              if (!f.filename.startsWith(BASE)) continue;
+              const rel = f.filename.slice(BASE.length);
+
+              // _components/*.mdx は親ディレクトリ(_components の直上)を対象とする
+              const subMatch = rel.match(/^(.+?)\/_components\/.+\.mdx$/);
+              if (subMatch) {
+                if (f.status !== 'removed') mdxParents.add(subMatch[1]);
+                else removedMdxParents.add(subMatch[1]);
+                continue;
+              }
+
+              const mdxMatch = rel.match(/^(.+?)\/index\.mdx$/);
+              if (mdxMatch) {
+                if (f.status !== 'removed') mdxParents.add(mdxMatch[1]);
+                else removedMdxParents.add(mdxMatch[1]);
+                continue;
+              }
+
+              const yamlMatch = rel.match(/^(.+?)\/checklist\.yaml$/);
+              if (yamlMatch) {
+                yamlParents.add(yamlMatch[1]);
+              }
+            }
+
+            // index.mdx 自体が削除されている (rename / 削除) コンポーネントはチェック対象外
+            const missing = [...mdxParents]
+              .filter((p) => !yamlParents.has(p))
+              .filter((p) => !removedMdxParents.has(p));
+
+            if (missing.length === 0) {
+              core.info('checklist.yaml の同期は問題ありません。');
+              return;
+            }
+
+            const list = missing.map((p) => `- \`${p}\``).join('\n');
+            if (skip) {
+              core.warning(`checklist.yaml 未更新 (${SKIP_LABEL} ラベルでスキップ):\n${list}`);
+              return;
+            }
+
+            core.setFailed(
+              [
+                '以下のコンポーネントで index.mdx 関連ファイルが変更されていますが、checklist.yaml が未更新です:',
+                list,
+                '',
+                '対応のいずれか:',
+                '1. ローカルで AI アシスタントに「<コンポーネント名> の checklist.yaml を更新して」と依頼 (update-checklist SKILL)',
+                '2. 新規コンポーネントの場合は「<コンポーネント名> の checklist.yaml を作って」と依頼 (generate-checklist SKILL)。SKILL がスキップ判定を出した場合は、その理由を PR description に書き `' + SKIP_LABEL + '` ラベルを付与',
+                '3. typo / description のみ等の軽微修正の場合は `' + SKIP_LABEL + '` ラベルを付与',
+                '',
+                '詳細は CONTRIBUTING.md「smarthr-ui コンポーネント向け AI スキルの整備」を参照してください。',
+              ].join('\n'),
+            );

@@ -10,6 +10,8 @@ import { Checkbox } from 'smarthr-ui'
 
 ## Props
 
+> ℹ️ この Props 情報は **smarthr-ui v96.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | error | boolean | - | - | チェックボックスにエラーがあるかどうか |
@@ -81,6 +83,9 @@ import { Checkbox } from 'smarthr-ui'
 
 ### 状態 > 混在（mixed）
 - [should] 複数のチェックボックスの状態をまとめて示す必要があるチェックボックスで選択状態と未選択状態が混ざっている状態を示す場合は混在選択状態（`mixed=true`）を採用する
+
+### アクセシビリティ > 開発時の考慮点 > Fieldsetでグループ化する
+- [must] 複数の Checkbox をグループとして提示する場合は Fieldset コンポーネントを使用してグループ化し、`legend` props でグループの目的を説明する
 
 ### モバイル
 - [must] モバイル表示時は画面の幅が狭いため基本的に縦並びにする

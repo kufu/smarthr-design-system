@@ -3,6 +3,8 @@ title: 'UIデザイン使用性チェックリスト'
 description: '日本産業規格（JIS X 25000シリーズ）を参考に開発した、プロダクトの「使用性」を担保するためにUIデザイン時点で考慮すべき観点と、その使い方を説明します。'
 order: 1
 ---
+import { Th, Td } from 'smarthr-ui'
+import { Table, UsabilityCheckListWarning } from './_components'
 
 UIデザイン使用性チェックリストは、SmartHRのプロダクトデザイナーが日本産業規格（JIS X 25000シリーズ）を参考に開発した、[プロダクトの使用性](/products/usability/#h2-0)という「ユーザーがプロダクトをどのくらい使えるかの品質」を担保するための、UIデザイン時点で考慮すべき観点の一覧です。
 
@@ -24,11 +26,8 @@ JIS X 25000シリーズで定義されている「使用性」の特性や測定
 
 
 ## チェック内容
-使用性チェックリストには、2023年11月現在、21項目のチェック内容があります。  
+使用性チェックリストには、2023年11月現在、21項目のチェック内容があります。
 今後の活用によって、チェックリストは随時更新される可能性があります。
-
-import { Th, Td } from 'smarthr-ui'
-import Table from './_components/Table'
 
 <Table>
 <thead>
@@ -197,7 +196,6 @@ import Table from './_components/Table'
     <Td>[達成基準2](#h4-1)</Td>
     <Td>`UOp-1-G 操作一貫性`<br />`UOp-8-S 外観の一貫性`</Td>
     <Td>運用操作性、アクセシビリティ</Td>
-    
 </tr>
 <tr>
     <Td>19</Td>
@@ -228,7 +226,7 @@ import Table from './_components/Table'
 <tr>
     <Td>22</Td>
     <Td>アクセシビリティ</Td>
-    <Td>[アクセシビリティ簡易チェックリスト](/accessibility/check-list/)を用いてデザインファイルをチェックしたか</Td>
+    <Td>[アクセシビリティガイドライン](/accessibility/guidelines/)を用いてデザインファイルをチェックしたか</Td>
     <Td>[達成基準2](#h4-1)</Td>
     <Td>`UAc1G 障害のある利用者に対するアクセシビリティ`</Td>
     <Td>アクセシビリティ</Td>
@@ -256,18 +254,16 @@ import Table from './_components/Table'
 カテゴリに応じて各チェック内容を達成する基準を設定しています。
 
 #### 1. 情報設計カテゴリの達成基準
-- [情報設計のアウトプット](/products/design-review/ia-review/ia-outputs/)を作成していること
-- 対象となる開発プロジェクトは、[情報設計レビュー](/products/design-review/ia-review/)を実施していること
+- [情報設計のアウトプット](/products/information-architecture/#h2-0)を作成していること
+- 対象となる開発プロジェクトは、[情報設計レビュー](/products/usability/ia-review/)を実施していること
 
 #### 2. その他のカテゴリの達成基準
-
-import UsabilityCheckListWarning from './_components/UsabilityCheckListWarning'
 
 <UsabilityCheckListWarning />
 
 - チェック内容にある基準に則っていること
     - 基準に則っていない場合、[基準判断フローチャート](#h3-6)などを活用して説明可能であること
-- 対象となる開発プロジェクトは、[UIレビュー](/products/design-review/ui-review/)を実施していること
+- 対象となる開発プロジェクトは、[UIレビュー](/products/usability/ui-review/)を実施していること
 
 
 ## SmartHRにおける運用
@@ -316,7 +312,7 @@ import UsabilityCheckListWarning from './_components/UsabilityCheckListWarning'
 
 
 ### 基準判定フローチャート
-開発現場においては、チェック内容の基準に合わせられない状況は頻繁に発生します。  
+開発現場においては、チェック内容の基準に合わせられない状況は頻繁に発生します。
 例えば、以下のようなケースです。
 
 - 基準に合っていない既存プロダクトに機能追加する必要があり、基準に合わせると既存とズレてしまう場合

@@ -4,6 +4,7 @@ description: '見出し要素の代替として直後のコンテンツの見出
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import CodeBlock from '@/components/article/CodeBlock.astro'
 import TableWrapper from '@/components/article/TableWrapper.astro'
@@ -168,13 +169,11 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 
 ## アクセシビリティ
 
-### 関連するチェックリスト
-簡易チェックリスト
-- [ページのタイトルがページの内容を表している](/accessibility/check-list/title/)
-- [ページのメインコンテンツに見出しが付与されている](/accessibility/check-list/heading/)
+### 関連ページ
 
-弱視・ロービジョンのユーザビリティチェックリスト
-- [画面の左側に見出しやUIを配置する](/accessibility/low-vision-check-list/left-layout/)
+- [ページのタイトルがページの内容を表している | アクセシビリティガイドライン](/accessibility/guidelines/title/)
+- [ページのメインコンテンツに見出しが付与されている | アクセシビリティガイドライン](/accessibility/guidelines/heading/)
+- [画面の左側に見出しやUIを配置する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision-check-list/left-layout/)
 
 ## ライティング
 関連するライティングガイドラインを参照してください。
@@ -183,6 +182,10 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 ## モバイル
 
 モバイルでは、サイズがXXLのタイポグラフィは小さく調整されます。詳しくは[タイポグラフィ](/products/design-tokens/typography/)のページを参照してください。
+
+## 使い方チェックリスト
+
+<Checklist name="Heading" />
 
 ## Props
 

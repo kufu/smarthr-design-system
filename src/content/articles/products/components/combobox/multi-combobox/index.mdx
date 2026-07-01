@@ -6,6 +6,7 @@ import { Image } from 'astro:assets'
 import { Text, MultiCombobox, Cluster, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import multiComboboxDo from '../images/multi-combo-box-do.png'
 import multiComboboxDont from '../images/multi-combo-box-dont.png'
@@ -21,7 +22,7 @@ import multiComboboxDont from '../images/multi-combo-box-dont.png'
 
 #### 複数選択の場合に使用する
 
-値を単一選択させたい場合は[SingleCombobox](/products/components/combo-box/single-combo-box/)を使用してください。
+値を単一選択させたい場合は[SingleCombobox](/products/components/combobox/single-combobox/)を使用してください。
 
 #### 選択肢が6個以上の場合に使用する
 
@@ -103,12 +104,43 @@ MultiComboboxに`disabled`を適用すると、テキスト入力不可になり
 </FormControl>
 ```
 
+## アクセシビリティ
+
+### 基本的なアクセシビリティ機能
+
+#### 候補や選択状態を把握できる
+
+MultiComboboxは、候補の状態や選択された項目が支援技術でも確認できるよう実装されています。
+これにより、現在の候補や選択状態を確認しながら操作できます。
+
+#### キーボードで操作できる
+
+候補の検索や選択、選択済み項目の削除はキーボードで操作できます。
+これにより、マウスを利用できないユーザーも操作できます。
+
+### 開発時の考慮点
+
+#### FormControlと併用する
+
+MultiComboboxコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を選択すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも選択の目的が伝達されます。
+
+eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、MultiComboboxにFormControlを組み合わせることを促すものです。支援技術に選択の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
+
+### 関連ページ
+
+- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
+- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
+
 ## [WIP] モバイル
 
 <BaseColumn className="shr-mt-2">
-  <ResponseMessage>モバイルに適したMultiComboboxを提供予定です。</ResponseMessage>
+<ResponseMessage>モバイルに適したMultiComboboxを提供予定です。</ResponseMessage>
 </BaseColumn>
+
+## 使い方チェックリスト
+
+<Checklist name="MultiCombobox" />
 
 ## Props
 
-<ComponentPropsTable name="MultiCombobox" showTitle />
+<ComponentPropsTable name="MultiCombobox" />

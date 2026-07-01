@@ -14,13 +14,16 @@ import { Tooltip } from 'smarthr-ui'
 
 ## Props
 
+> ℹ️ この Props 情報は **smarthr-ui v96.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | message | ReactNode | - | ✓ | ツールチップ内に表示するメッセージ |
+| type | "label" \| "description" | description | - | ツールチップの種類。`label` の場合は children の要素に `aria-labelledby` を付与しアクセシブルネームとして機能する。`description`（デフォルト）の場合は `aria-describedby` を付与し補足説明として機能する |
 | triggerType | "text" \| "icon" | - | - | ツールチップを表示する対象のタイプ。アイコンの場合は `icon` を指定する |
 | ellipsisOnly | boolean | - | - | `true` のとき、ツールチップを表示する対象が省略されている場合のみツールチップ表示を有効にする |
-| tabIndex | number | 0 | - | ツールチップを表示する対象の tabIndex 値 |
-| ariaDescribedbyTarget | "wrapper" \| "inner" | wrapper | - | ツールチップを内包要素に紐付けるかどうか |
+| tabIndex | number | - | - | ツールチップを表示する対象の tabIndex 値 |
+| ariaDescribedbyTarget | "wrapper" \| "inner" | wrapper | - | `type` が `description` の場合に `aria-describedby` を付与する対象。children が focusable な場合は常に children に付与されるため無視される |
 
 ## 実装ルール
 

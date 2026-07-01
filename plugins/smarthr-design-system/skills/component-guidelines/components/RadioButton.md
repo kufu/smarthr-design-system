@@ -10,6 +10,8 @@ import { RadioButton } from 'smarthr-ui'
 
 ## Props
 
+> ℹ️ この Props 情報は **smarthr-ui v96.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+
 （固有 Props なし）
 
 ## 実装ルール
@@ -76,6 +78,9 @@ import { RadioButton } from 'smarthr-ui'
 
 ### デザインパターン > 選択肢のグルーピング
 - [should] 複数の選択肢を持つ項目をいくつも並べて表示する場合は、ラベルがかかる範囲や設定項目ごとの選択肢を区別しやすくするため BaseColumn でグルーピングする
+
+### アクセシビリティ > 開発時の考慮点 > Fieldsetでグループ化する
+- [must] Fieldset コンポーネントを使用してグループ化し、`legend` props でグループの目的を説明する
 
 ### モバイル
 - [should] モバイルでは画面幅が狭いため基本的に縦並びにする
