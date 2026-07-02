@@ -14,6 +14,35 @@ items:
     text: 'MessageDialog を原則として処理結果のフィードバックには使わず、フィードバックには NotificationBar や ResponseMessage などを使う'
     source_section: '使用上の注意 > フィードバックとして使わない'
 
+  # レイアウト > 基準サイズ
+  - severity: should
+    text: '入力要素を 1 つだけ持つなど、内容が極めて少ないダイアログには `XS` を使う'
+    source_section: 'レイアウト > 基準サイズ'
+
+  - severity: should
+    text: '要素が少なく、要素が垂直方向に並ぶ、広い横幅を必要としないダイアログには `S` を使う'
+    source_section: 'レイアウト > 基準サイズ'
+
+  - severity: should
+    text: '数行に渡るテキストの表示や、水平方向に要素を並べて表示する標準的なダイアログには `M` を使う'
+    source_section: 'レイアウト > 基準サイズ'
+
+  - severity: should
+    text: 'テーブルの表示やダイアログを複数カラムに分割するなど、広い横幅が必要なダイアログには `L` を使う'
+    source_section: 'レイアウト > 基準サイズ'
+
+  - severity: should
+    text: '広い横幅が必要で、`L` ではコンテンツが収まりきらないダイアログには `XL` を使う'
+    source_section: 'レイアウト > 基準サイズ'
+
+  - severity: should
+    text: '広い横幅が必要で、`XL` ではコンテンツが収まりきらないダイアログには `XXL` を使う'
+    source_section: 'レイアウト > 基準サイズ'
+
+  - severity: should
+    text: '広い横幅が必要で、`XXL` ではコンテンツが収まりきらないダイアログには `FULL` を使う'
+    source_section: 'レイアウト > 基準サイズ'
+
   # 構成 > 1. タイトル
   - severity: must
     text: 'このダイアログで表示する情報を簡潔に表現するタイトルをつける'
