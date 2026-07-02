@@ -1,0 +1,153 @@
+---
+title: 'ドラッグ&ドロップ'
+description: 'SmartHRに頻出する、ドラッグ&ドロップを使用するUIのパターンをまとめています。'
+order: 18
+---
+import { Image } from 'astro:assets'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+import { BaseColumn, Cluster, ResponseMessage, Text, FaGripVerticalIcon, FaGripIcon, FaTriangleExclamationIcon } from 'smarthr-ui'
+import doUseHandle from './images/smarthr-draggable-list-handle.png'
+import dontUseCard from './images/smarthr-draggable-list-card.png'
+import doCancelAction from './images/smarthr-draggable-list-cancellable.png'
+import dontCancelAction from './images/smarthr-draggable-list-non-cancellable.png'
+import doUseKeyboard from './images/smarthr-draggable-list-keyboard.png'
+import doUseKeyboardMenu from './images/smarthr-draggable-list-keyboard-menu.png'
+import dontUseKeyboard from './images/smarthr-draggable-list-no-keyboard.png'
+
+SmartHRに頻出する、ドラッグ&ドロップを使用するUIのパターンやベストプラクティスをまとめています。
+
+## 用語定義
+
+| 用語 | 定義 |
+| ---- | ---- |
+| ドラッガブル領域 | <Text weight="bold">ユーザーがアイテムをドラッグする操作に反応する領域のこと</Text>です。この領域には、ユーザーがドラッグ操作を開始できる要素を提供する必要があります。 |
+| ハンドル | ユーザーがアイテムをドラッグするための特定のドラッガブル領域のことです。 |
+
+
+## 基本的な考え方
+
+ドラッグ&ドロップが必要なUIには、ユーザーを混乱させないように操作に一貫性をもたせつつアクセシビリティを確保することが重要です。
+
+### アクセシビリティ
+
+ドラッグ&ドロップのUIを実装する際は、以下のアクセシビリティ要件を満たす必要があります。
+
+- マウスやタッチ入力を使用できないユーザーでも利用できるように、[キーボード操作](#h3-4)も可能にすること
+- [インタラクティブな要素を適切に配置し](#h2-2)、支援技術で操作できるようにすること
+- [アクションをキャンセル](#h3-5)または元に戻す方法を提供すること
+
+## 種類
+### カード形式
+一般的に、ユーザーがカード全体をドラッグできることを期待する場合、ドラッガブル領域はカード全体になります。
+<ImgWithDesc description="カード形式では赤い枠の全体をドラッガブル領域にする">
+![カード全体がドラッガブル領域として示されている様子](./images/smarthr-draggable-list-full-card-handler.png)
+</ImgWithDesc>
+
+#### 注意点
+
+ドラッガブル領域内にアクションボタンやリンクなどのインタラクティブな要素を含まないでください。支援技術が内側のインタラクティブな要素にフォーカスできないなどの問題が起こります。
+こうしたカードの内部にインタラクティブな要素が存在する場合は、<Text weight="bold">ハンドル形式</Text>パターンで対応してください。
+
+### ハンドル形式
+HTMLのインタラクティブな要素がカードの中にある場合は、カード全体をドラッグ操作のためのドラッガブル領域にせず、ハンドルを提供してください。この場合は**ハンドルのみがドラッガブル領域**になります。
+
+ハンドルには「FaGripVerticalIcon（<FaGripVerticalIcon />）やFaGripIcon（<FaGripIcon />）」アイコンを使用します。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc((100% - 16px) / 2)">
+    <Image slot="img" src={doUseHandle} alt="Do" />
+    <Text slot="label">カード全体ではなく、ハンドルのみがドラッガブル領域になっている</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc((100% - 16px) / 2)">
+    <Image slot="img" src={dontUseCard} alt="Dont" />
+    <Text slot="label">カード全体がドラッガブル領域になっているのに、カードの中にインタラクティブな要素が含まれている</Text>
+  </DoAndDont>
+</Cluster>
+
+### やむを得ない場合の対応方法
+この方法では支援技術の動作に不具合が発生する可能性が高いため<Text weight="bold">推奨しません。</Text>
+
+インタラクティブな要素を含むカード全体をドラッガブル領域にしなければならない場合は、カードを`div`要素にして正確なARIA属性とHTMLの[drag-and-drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)を使用してください。
+
+推奨するデザインパターンでの実装が難しい場合は、社内Slack`#accessibility_相談`で気軽に相談してください。
+
+
+## ドラッグ操作の補足的な操作
+
+### キーボードの操作
+すべてのユーザーがマウスやタッチ入力を使用できるとは限らないため、ドラッグ&ドロップの操作をキーボードでも可能にする必要があります。
+
+アイテムの位置を変更できる`Button`や、`DropdownMenuButton`を使って同等の機能を提供してください。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc((100% - 32px) / 3)">
+    <Image slot="img" src={doUseKeyboard} alt="Do" />
+    <Text slot="label">ドラッグ&ドロップと同等の機能を、キーボードで操作可能な`Button`で提供している。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="do" width="calc((100% - 32px) / 3)">
+    <Image slot="img" src={doUseKeyboardMenu} alt="Do" />
+    <Text slot="label">ドラッグ&ドロップと同等の機能を、キーボードで操作可能な`DropdownMenuButton`で提供している。</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc((100% - 32px) / 3)">
+    <Image slot="img" src={dontUseKeyboard} alt="Dont" />
+    <Text slot="label">ドラッグ&ドロップの操作がマウスやタッチ操作でしかできない</Text>
+  </DoAndDont>
+</Cluster>
+
+### アクションのキャンセル操作
+
+ユーザーがアイテムをドラッグしている最中に<kbd>Escape</kbd>キーを押した場合、そのドラッグをキャンセルして、アイテムがドラッグ前の状態に戻るようにしてください。
+
+ドラッグ最中のキャンセルができない場合は、ドラッグ完了後に元に戻せるようにしてください。これは、`元に戻す`ボタンや`DropdownMenuButton`で提供します。
+
+ドラッグ最中のキャンセルと、ドラッグ完了後に元に戻す機能を両方実装しても良いです。
+
+<Cluster gap={1}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Image slot="img" src={doCancelAction} alt="Do" />
+    <Text slot="label">②と③の位置を変えるアクションのあとで、アクションをキャンセルをできるようにする</Text>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+      <Image slot="img" src={dontCancelAction} alt="Dont" />
+    <Text slot="label">②と③の位置を変えるアクションのあとで、アクションをキャンセルする方法がない</Text>
+  </DoAndDont>
+</Cluster>
+
+## 視覚的フィードバック
+
+ユーザーがドラッグ&ドロップ操作を直感的に理解できるように、適切な視覚的フィードバックを提供する必要があります。
+
+### ドラッグ領域の状態の表示
+
+ユーザーがどの要素をドラッグできるかを明確にするため、以下の視覚的な手がかりを提供します。
+
+- ハンドルにカーソルを合わせたときに、カーソルを`grab`に変更してください。
+
+### ドラッガブル領域の状態の表示
+ドラッガブル領域を明確にするため、以下の視覚的な手がかりを提供します。
+- ドラッガブル領域にカーソルを合わせたときに、カーソルを`grab`に変更してください。
+- `disabled`状態のアイテムはドラッグできないことを明確にためにカーソルを`not-allowed`に変更してください。
+
+### ドラッグ中の視覚的フィードバック
+
+ユーザーがアイテムをドラッグしている間、以下の視覚的フィードバックを提供します。
+
+- カーソルを`grabbing`に変更して、ドラッグ中であることを示す
+- ドラッグ中のアイテムに視覚的な変化を加える（例：透明度を下げる、影を追加する）
+- ドラッグ元の位置にプレースホルダーを表示して、元の位置を示す
+
+
+
+## 参考文献
+
+- [WCAG 4.1.2: 名前 (name)・役割 (role)・値 (value)](https://waic.jp/translations/WCAG22/Understanding/name-role-value.html)
+- [WCAG 2.1.1: キーボード](https://waic.jp/translations/WCAG22/Understanding/keyboard)
+- [WCAG 2.5.7: ドラッグ動作](https://waic.jp/translations/WCAG22/Understanding/dragging-movements.html)
+- [WCAG 2.5.2: ポインタのキャンセル](https://waic.jp/translations/WCAG22/Understanding/pointer-cancellation.html)
+- [WCAG G212: Using native controls to ensure functionality is triggered on the up-event](https://waic.jp/translations/WCAG22/Techniques/general/G212)
+
