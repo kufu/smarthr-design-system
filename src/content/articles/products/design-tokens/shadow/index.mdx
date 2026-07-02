@@ -5,7 +5,7 @@ order: 7
 ---
 
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
-import { ShadowSample } from './_components'
+import ShadowSample from './_components/ShadowSample'
 
 影のトークンは、要素の周りに落とす影（シャドウ）の大きさを定義します。
 
@@ -35,10 +35,43 @@ CSSでは`box-shadow`や`drop-shadow`を指しています。
 `LAYER0`は影なし。
 色は[透明色](/products/design-tokens/color/#h3-6)を使用しています。
 
-| トークン名 | 値（`box-shadow`） | 利用コンポーネント例 |
-| :--- | :--- | :--- |
+| トークン名 | 値（`box-shadow`） |
+| :--- | :--- |
 | `LAYER0` | none |
-| `LAYER1` | 0 1px 2px 0 [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) | [AppNavi](/products/components/app-navi/)<br />[Base](/products/components/base/#h3-0) |
-| `LAYER2` | 0 2px 4px 1px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) | [Tooltip](/products/components/tooltip/) |
-| `LAYER3` | 0 4px 8px 2px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) | [BottomFixedArea](/products/components/bottom-fixed-area/)（上方向）<br />[Calendar](/products/components/calendar/)<br />[Dropdown](/products/components/dropdown/)<br />[FloatArea](/products/components/float-area/)<br />[InformationPanel](/products/components/information-panel/) |
-| `LAYER4` | 0 8px 16px 4px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) | |
+| `LAYER1` | 0 1px 2px 0 [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) |
+| `LAYER2` | 0 2px 4px 1px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) |
+| `LAYER3` | 0 4px 8px 2px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) |
+| `LAYER4` | 0 8px 16px 4px [`TRANSPARENCY_30`](/products/design-tokens/color/#h3-6) |
+
+### `LAYER0`
+
+例外的に、コンポーネントの影を打ち消したい場合に使います。（主に[Base](/products/components/base)）
+
+### `LAYER1`
+
+背景の上に表示する視覚的グルーピングのための矩形に使います。
+
+コンポーネント内部での使用例：[AppNavi](/products/components/app-navi/)、[Base](/products/components/base/#h3-0)
+
+### `LAYER2`
+
+以下の場合に使います。
+
+- マウスオーバー時のみ表示される要素
+    - コンポーネント内部での使用例：[Tooltip](/products/components/tooltip/)
+- 矩形（主に[Base](/products/components/base)）を垂直方向または水平方向に分割し、それぞれが異なるスクロール領域を持つ場合
+
+### `LAYER3`
+
+以下の場合に使います。
+
+- スクロールに関わらず画面内に固定表示する要素
+    - コンポーネント内部での使用例：[FloatArea](/products/components/float-area/)
+- 一時的に要素の上に重なって表示され、ユーザーによる明示的な操作で閉じられる要素
+    - コンポーネント内部での使用例：[Calendar](/products/components/calendar/)、[Dropdown](/products/components/dropdown/)
+- 一時的に既存の要素間に割り込んで表示される要素を視覚的に目立たせたい場合
+    - コンポーネント内部での使用例：[InformationPanel](/products/components/information-panel/)
+
+### `LAYER4`
+
+例外的に、`LAYER3`を用いても背景とのコントラストが十分でない場合に使います。
