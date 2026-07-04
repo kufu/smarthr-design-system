@@ -18,7 +18,7 @@ import { CurrencyInput } from 'smarthr-ui'
 | value | string | - | - | 通貨の値 |
 | width | string \| number | - | - | コンポーネントの幅 |
 | defaultValue | string | - | - | デフォルトで表示する通貨の値 |
-| autoFocus | boolean | - | - | オートフォーカスを行うかどうか |
+| autoFocus | boolean | - | - | オートフォーカスをするかどうか |
 | prefix | ReactNode | - | - | コンポーネント内の先頭に表示する内容 |
 | error | boolean | - | - | フォームにエラーがあるかどうか |
 | suffix | ReactNode | - | - | コンポーネント内の末尾に表示する内容 |
