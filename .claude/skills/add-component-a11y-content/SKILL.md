@@ -6,7 +6,7 @@ description: >-
   一貫した構成と記述スタイルでアクセシビリティセクションを生成する。
   「アクセシビリティコンテンツを追加して」「a11yセクションを作成して」
   「コンポーネントページにアクセシビリティ情報を追加して」等の依頼に対応する。
-globs:
+globs: 
   - "src/content/articles/products/components/**/index.mdx"
 ---
 
