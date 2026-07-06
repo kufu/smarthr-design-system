@@ -17,7 +17,7 @@ import { Input } from 'smarthr-ui'
 | placeholder | string | - | - | @deprecated placeholder属性は非推奨です。別途ヒント用要素を設置するか、それらの領域を確保出来ない場合はTooltipコンポーネントの利用を検討してください。 |
 | type | string | - | - | input 要素の `type` 値 |
 | width | string \| number | - | - | コンポーネントの幅 |
-| autoFocus | boolean | - | - | オートフォーカスをするかどうか |
+| autoFocus | boolean | - | - | オートフォーカスを行うかどうか |
 | prefix | ReactNode | - | - | コンポーネント内の先頭に表示する内容 |
 | error | boolean | - | - | フォームにエラーがあるかどうか |
 | suffix | ReactNode | - | - | コンポーネント内の末尾に表示する内容 |

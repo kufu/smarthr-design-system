@@ -19,7 +19,7 @@ import { SearchInput } from 'smarthr-ui'
 | placeholder | string | - | - | @deprecated placeholder属性は非推奨です。別途ヒント用要素を設置するか、それらの領域を確保出来ない場合はTooltipコンポーネントの利用を検討してください。 |
 | type | string | - | - | input 要素の `type` 値 |
 | width | string \| number | - | - | コンポーネントの幅 |
-| autoFocus | boolean | - | - | オートフォーカスをするかどうか |
+| autoFocus | boolean | - | - | オートフォーカスを行うかどうか |
 | error | boolean | - | - | フォームにエラーがあるかどうか |
 | suffix | ReactNode | - | - | コンポーネント内の末尾に表示する内容 |
 | bgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| "BORDER" \| "ACTION_BACKGROUND" | - | - | 背景色。readOnly を下地の上に載せる場合に使う |
