@@ -47,7 +47,7 @@ AccordionPanel に直接関連する eslint-plugin-smarthr のルールは現時
 - [should] 画面内の情報量や粒度、構造が適切かどうかを精査して AccordionPanel を使用する
 
 ### 使用上の注意 > ModelessDialogとの使い分け
-- [should] 「ヘルプページを参照しながら別の操作を行なう」など、画面のスクロールに依存せずモードレスに情報を表示したい場合は、AccordionPanel ではなく ModelessDialog を使用する
+- [should] 「ヘルプページを参照しながら別の操作をする」など、画面のスクロールに依存せずモードレスに情報を表示したい場合は、AccordionPanel ではなく ModelessDialog を使用する
 
 ### レイアウト > アイコンの位置
 - [avoid] `iconPosition` props でアイコンを右に配置するのは非推奨
