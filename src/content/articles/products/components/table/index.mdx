@@ -34,7 +34,7 @@ import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
 
 `<Td><Checkbox /></Td>`、`<Th><Checkbox /></Th>`、および`<Td><RadioButton /></Td>`などのように、セルの内部にチェックボックスやラジオボタンをそのまま配置してはいけません。それぞれの場合で`TdCheckbox`、`ThCheckbox`、および`TdRadioButton`という専用のコンポーネントが提供されているため、代わりにこれらを利用してください。
 
-これらの専用のコンポーネントを利用せずにチェックボックスやラジオボタンを配置すると、アクセシブルネームが設定されず、[ウェブアクセシビリティ簡易チェックリスト](/accessibility/check-list/)の「[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)」に違反するおそれがあります。
+これらの専用のコンポーネントを利用せずにチェックボックスやラジオボタンを配置すると、アクセシブルネームが設定されず、[ガイドライン](/accessibility/guidelines/)の「[フォームパーツにアクセシブルネームがある](/accessibility/guidelines/accessible-name/)」に違反するおそれがあります。
 
 なお、チェックボックスおよびラジオボタンのアクセシブルネームについては[eslint-plugin-smarthr](https://npm.im/eslint-plugin-smarthr)のルール[smarthr/a11y-prohibit-checkbox-or-radio-in-table-cell](https://github.com/kufu/tamatebako/tree/master/packages/eslint-plugin-smarthr/rules/a11y-prohibit-checkbox-or-radio-in-table-cell)を用いることで自動的に検証できます。
 
