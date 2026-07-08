@@ -172,8 +172,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(typescript@6.0.3)
       textlint-rule-preset-smarthr:
-        specifier: ^1.37.1
-        version: 1.37.1
+        specifier: ^1.37.5
+        version: 1.37.5
       textlint-rule-prh:
         specifier: ^6.1.0
         version: 6.1.0
@@ -1856,9 +1856,6 @@ packages:
 
   '@textlint/markdown-to-ast@15.7.1':
     resolution: {integrity: sha512-9DLSah7g6mYNHvO6pssLdFvFPAl3HHyEIm4RE5of/1QN9FXJXDgdOcVV3YpQmbYT/YntuIvOQiqOndCSPWTW2A==}
-
-  '@textlint/module-interop@15.6.1':
-    resolution: {integrity: sha512-hrsG9S7dlTPoFQ9ImKCHt1I7uPGt25lBXoc/ENP0U47tETAsg8mwjwHBQ4SEEH/X+AXYIEg6+saPyKAj08Aa+Q==}
 
   '@textlint/module-interop@15.7.1':
     resolution: {integrity: sha512-Jg+sQW2L/cRJypk59wtcMUVVpt8vmit5ZMT3gUnFwevP3A6Qp1HfOtUy9ObT4hBX3lOSGT/ekcCDxR1pL7uH1g==}
@@ -5993,8 +5990,8 @@ packages:
   textlint-rule-no-nfd@2.0.2:
     resolution: {integrity: sha512-lIUvcQ+wqtConpPQU2YwEJl2dRcRyyrxPYZ3V76UwnkVg++XPLIrE5mLDgyNE/UIQ34e/KitJfMLqKWvnkFbNQ==}
 
-  textlint-rule-preset-smarthr@1.37.1:
-    resolution: {integrity: sha512-RpkgeisUQymOTag0SBxWm+bhIFRaV4xi8F+DWPrbewJ0TtK7z6U4yI+Sf/nLttUE6Mhhjo1e7h59dfneCe+3zA==}
+  textlint-rule-preset-smarthr@1.37.5:
+    resolution: {integrity: sha512-7vf13Fn8NTbduNeV27Kq6LiNApMEaryy8Na8tfV1ESNg/tnCLIzUvoO43HoRNFLw1dGa6vAhrmHAfTi1318Pog==}
     engines: {pnpm: '=10.16.1'}
 
   textlint-rule-prh@5.3.0:
@@ -6832,7 +6829,7 @@ snapshots:
     dependencies:
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.4
-      js-yaml: 4.1.1
+      js-yaml: 4.2.0
       picomatch: 4.0.4
       retext-smartypants: 6.2.0
       shiki: 4.0.2
@@ -6876,7 +6873,7 @@ snapshots:
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.3
       hast-util-to-text: 4.0.2
-      js-yaml: 4.1.1
+      js-yaml: 4.2.0
       mdast-util-definitions: 6.0.0
       rehype-raw: 7.0.0
       rehype-stringify: 10.0.1
@@ -8265,8 +8262,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/module-interop@15.6.1': {}
-
   '@textlint/module-interop@15.7.1': {}
 
   '@textlint/regexp-string-matcher@1.1.1':
@@ -9430,7 +9425,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
-      js-yaml: 4.1.1
+      js-yaml: 4.2.0
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.9.3
@@ -13878,12 +13873,12 @@ snapshots:
       match-index: 1.0.3
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-preset-smarthr@1.37.1:
+  textlint-rule-preset-smarthr@1.37.5:
     dependencies:
       '@textlint-rule/textlint-rule-no-unmatched-pair': 2.0.4
       '@textlint-rule/textlint-rule-pattern': 2.0.2
-      '@textlint/module-interop': 15.6.1
-      js-yaml: 4.1.1
+      '@textlint/module-interop': 15.7.1
+      js-yaml: 4.2.0
       textlint-rule-ja-hiragana-daimeishi: 1.0.0
       textlint-rule-ja-hiragana-hojodoushi: 1.1.0
       textlint-rule-ja-keishikimeishi: 1.0.5
@@ -14022,7 +14017,7 @@ snapshots:
     dependencies:
       gopd: 1.2.0
       typedarray.prototype.slice: 1.0.5
-      which-typed-array: 1.1.20
+      which-typed-array: 1.1.22
 
   trim-lines@3.0.1: {}
 
