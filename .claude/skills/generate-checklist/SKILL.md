@@ -183,7 +183,7 @@ items:
   - severity: should
     text: "Secondary ボタンが多い場合は情報設計・画面構成の見直しや DropdownMenuButton の利用を検討する"
     source_section: "種類 > Secondary"
-    note: "多すぎる の定義不在。除外検討"
+    note: "多すぎる の定義不在。要人間判断"
   
   # 種類 > Tertiary
   - severity: should
@@ -249,12 +249,12 @@ items:
   - severity: should
     text: "SmartHR 上で頻出する操作に関してはアイコンをつけるのを推奨する"
     source_section: "レイアウト > アイコンの有無 > アイコン付きボタン > `アイコン付き（左）`（プレフィックス）の判断基準"
-    note: "頻出する の定義不在。除外検討"
+    note: "頻出する の定義不在。要人間判断"
   
   - severity: avoid
     text: "明確な必要性や理由がなければ、アイコンをつけることは極力避ける"
     source_section: "レイアウト > アイコンの有無 > アイコン付きボタン > `アイコン付き（左）`（プレフィックス）の判断基準"
-    note: "明確な必要性 の定義不在。除外検討"
+    note: "明確な必要性 の定義不在。要人間判断"
   
   # レイアウト > アイコンの有無 > アイコンボタン
   - severity: should
