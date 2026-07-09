@@ -144,6 +144,7 @@ Layer 3 に入れようとしている項目が Layer 1（mdx 冒頭の説明文
 - リンク先（外部 URL や別 mdx）を辿って情報を取り込む
 - フィールド順を変える（`severity → text → source_section → sub_items → note` を維持）
 - Layer 2 でカバーされる項目を `note` 付きで出力に残す（generate-checklist と方針統一）
+- mdx 差分と無関係に `note` の内容だけを理由に既存項目を削除・変更する（`note` 付き項目の扱いに疑問があれば、削除せず人間に報告して確認を取る）
 
 ## よくある判断パターン
 
