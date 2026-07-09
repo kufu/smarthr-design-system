@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 
 export type Severity = 'must' | 'should' | 'avoid';
 
@@ -42,7 +42,7 @@ export function parseChecklist(checklistPath: string): ChecklistSection[] | null
 export function parseChecklistContent(content: string): ChecklistSection[] {
   let allItems: ChecklistItem[] = [];
   try {
-    const parsed = (yaml.load(content) ?? {}) as { items?: unknown };
+    const parsed = (load(content) ?? {}) as { items?: unknown };
     if (Array.isArray(parsed.items)) {
       allItems = parsed.items as ChecklistItem[];
     }
