@@ -47,13 +47,25 @@ order: 14
 
 ### 1: 2つの入力欄で範囲の開始と終了を指定するパターン
 
-![入社年月日を開始日と終了日の範囲を指定する例。](./images/pattern-a.png)
-
-#### 例
-
-- 日付の期間:`入社年月日 開始日`〜`入社年月日 終了日`
-- 年齢の範囲:`年齢 最小`〜`年齢 最大`
-- 時刻の範囲:`勤務時間 開始`〜`勤務時間 終了`
+```tsx editable hideCode canvas=800 background=BACKGROUND
+<Fieldset legend="入社年月日">
+  <Cluster align="center">
+    <FormControl label={{
+      "text": "開始日",
+      "unrecommendedHide": true
+    }}>
+      <Input type="date" name="start_date"/>
+    </FormControl>
+    <span aria-hidden="true">〜</span>
+    <FormControl label={{
+      "text": "終了日",
+      "unrecommendedHide": true
+    }}>
+      <Input type="date" name="end_date"/>
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
 
 #### アクセシビリティ
 
@@ -71,7 +83,32 @@ order: 14
 
 ### 2: 入力を桁数で分割するパターン
 
-![郵便番号を3桁と4桁に分割して入力する例。](./images/pattern-b.png)
+```tsx editable hideCode canvas=800 background=BACKGROUND
+<Fieldset legend="電話番号">
+  <Cluster align="center">
+    <FormControl label={{
+      "text": "市外局番",
+      "unrecommendedHide": true
+    }}>
+      <Input type="tel" name="area_code"/>
+    </FormControl>
+    <span aria-hidden="true">-</span>
+    <FormControl label={{
+      "text": "市内局番",
+      "unrecommendedHide": true
+    }}>
+      <Input type="tel" name="local_code"/>
+    </FormControl>
+    <span aria-hidden="true">-</span>
+    <FormControl label={{
+      "text": "個別番号",
+      "unrecommendedHide": true
+    }}>
+      <Input type="tel" name="subscriber_number"/>
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
 
 電話番号や被保険者番号など、入力を桁数で分割するパターンです。
 
