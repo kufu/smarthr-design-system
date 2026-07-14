@@ -1,0 +1,195 @@
+---
+title: '複数の入力要素を持つ入力フィールド'
+description: '1つの項目に対して複数の入力欄が並ぶUIのルールを定義します。'
+order: 14
+---
+
+1つのラベルに対して複数の入力要素が並ぶ入力フィールドのルールを定義します。
+
+## 用語定義
+
+| 用語 | 説明 |
+| --- | --- |
+| 複数入力フィールド | 1つの可視ラベルに対して、複数の入力要素が並んでいるUI。<br/>例: 電話番号（3分割）、日付の期間指定（前〜後）など |
+| 補助テキスト | 各入力要素を区別するためにアクセシブルネームに追加するテキスト。<br/>例:「開始日」「最初の4桁」など |
+
+
+## 基本的な考え方
+
+複数入力フィールドは、入力項目を書類のフォーマットに合わせたい場合や、複数の入力項目をセットとして扱いたい場合に採用します。
+
+[WIP]
+
+### アクセシビリティ
+
+入力要素には、要素を特定するための個別のアクセシブルネームが必要です。複数の入力がある場合は、以下の対応で個別にアクセシブルネームを設定します。
+
+- 入力要素のアクセシブルネームを **「可視ラベル + 補助テキスト」** の形式で設定し、支援技術の利用者が入力要素の役割を理解できるようにする
+- 視覚的な区切り文字や条件文（「〜」「歳以上」「-」など）は `aria-hidden="true"` で装飾テキストとして扱い、アクセシブルネームには含めない
+
+## 構成
+
+複数入力フィールドは以下の3つの要素で構成されます。
+
+1. ラベル
+2. 入力要素
+3. 区切り文字や条件文
+
+![複数入力フィールドの構成要素を示した図。ラベル、入力要素、区切り文字や条件文で構成される。](./images/split-input-overview.png)
+
+## 種類
+
+複数入力フィールドのユースケースは以下の2パターンに大別されます。
+
+1. 2つの入力欄で範囲の開始と終了を指定するパターン
+2. 入力を桁数で分割するパターン
+
+
+### 2つの入力欄で範囲の開始と終了を指定するパターン
+
+```tsx editable hideCode canvas=800 background=BACKGROUND
+<Fieldset legend="入社年月日">
+  <Cluster align="center">
+    <FormControl label={{
+      "text": "開始日",
+      "unrecommendedHide": true
+    }}>
+      <Input type="date" name="start_date"/>
+    </FormControl>
+    <span aria-hidden="true">〜</span>
+    <FormControl label={{
+      "text": "終了日",
+      "unrecommendedHide": true
+    }}>
+      <Input type="date" name="end_date"/>
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
+
+#### アクセシビリティ
+
+1. 入力要素のアクセシブルネームは「可視ラベルのテキスト + 補助テキスト」となるようにする
+2. 視覚的な条件文（「歳以上」「〜」「から」「まで」など）は `aria-hidden="true"` で装飾テキストとして表示する
+
+詳しくは [実装上の注意](#h2-4) を参照してください。
+
+補助テキストは以下のルールを参考にしつつ、コンテキストに合わせたテキストを採用します。
+
+| データの種類 | 補助テキスト（1つ目） | 補助テキスト（2つ目） |
+| --- | --- | --- |
+| 日付 | 開始日 | 終了日 |
+| 時刻 | 開始 | 終了 |
+| 年齢 | 最小 | 最大 |
+| 数値 | 最小 | 最大 |
+
+### 入力を桁数で分割するパターン
+
+```tsx editable hideCode canvas=800 background=BACKGROUND
+<Fieldset legend="電話番号">
+  <Cluster align="center">
+    <FormControl label={{
+      "text": "市外局番",
+      "unrecommendedHide": true
+    }}>
+      <Input type="tel" name="area_code"/>
+    </FormControl>
+    <span aria-hidden="true">-</span>
+    <FormControl label={{
+      "text": "市内局番",
+      "unrecommendedHide": true
+    }}>
+      <Input type="tel" name="local_code"/>
+    </FormControl>
+    <span aria-hidden="true">-</span>
+    <FormControl label={{
+      "text": "個別番号",
+      "unrecommendedHide": true
+    }}>
+      <Input type="tel" name="subscriber_number"/>
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
+
+電話番号や被保険者番号など、入力を桁数で分割するパターンです。
+
+#### 例
+
+- 電話番号
+- 郵便番号
+- 雇用保険被保険者番号
+
+#### アクセシビリティ
+
+1. 入力要素のアクセシブルネームは **「可視ラベル + 桁の位置を示す補助テキスト」** となるようにする
+2. 視覚的な区切り文字（「-」など）は `aria-hidden="true"` で装飾テキストとして扱う
+
+##### 入力欄が2つの場合
+
+1つ目の入力フィールドでは最初のN桁とし、2つ目の入力フィールドでは残りのM桁とします。例えば、郵便番号では次のように補助テキストを指定します。
+
+| 位置 | 補助テキスト |
+| --- | --- |
+| 1つ目 | 最初の3桁 |
+| 2つ目 | 残りの4桁 |
+
+##### 入力欄が3つ以上の場合
+
+入力欄が3つ以上の場合、最初と最後の入力欄は2つの場合と同じ扱いとし、間の入力欄は入力させる桁の番号を具体的に指定します。例えば、クレジットカードでは次のように補助テキストを指定します。
+
+| 位置 | 補助テキスト |
+| --- | --- |
+| 1つ目 | 最初の4桁 |
+| 2つ目 | 5桁目から8桁目 |
+| 3つ目 | 9桁目から12桁目 |
+| 4つ目 | 最後の4桁 |
+
+##### 例外: 電話番号
+
+電話番号は地域によって桁数が異なるため、桁数ではなく意味で区別して分割し、補助テキストを指定します。
+
+| 位置 | 補助テキスト |
+| --- | --- |
+| 1つ目 | 市外局番 |
+| 2つ目 | 市内局番 |
+| 3つ目 | 個別番号 |
+
+
+## 実装上の注意
+
+### Fieldset + FormControl コンポーネントを使用する
+
+SmartHR UIコンポーネントには以下の実装をすることで、各入力要素のアクセシブルネームが自動的に「可視ラベル + 補助テキスト」の形式になります。
+
+- 可視ラベル: `Fieldset` コンポーネントの `legend` を使用する
+- 補助テキスト: `FormControl` コンポーネントの `label: { text: "補助テキスト", unrecommendedHide: true }` を使用する
+
+
+```tsx editable canvas=800 background=BACKGROUND
+<Fieldset legend="入社年月日">
+  <Cluster align="center">
+    <FormControl label={{
+      "text": "開始日",
+      "unrecommendedHide": true
+    }}>
+      <Input type="date" name="start_date"/>
+    </FormControl>
+    <span aria-hidden="true">〜</span>
+    <FormControl label={{
+      "text": "終了日",
+      "unrecommendedHide": true
+    }}>
+      <Input type="date" name="end_date"/>
+    </FormControl>
+  </Cluster>
+</Fieldset>
+```
+
+
+
+## 参考文献
+
+- [入力する内容や、操作がラベルとして表示されている | ウェブアクセシビリティ簡易チェックリスト | SmartHR Design System](https://smarthr.design/accessibility/check-list/label/)
+- [フォームパーツにアクセシブルネームがある | ウェブアクセシビリティ簡易チェックリスト | SmartHR Design System](https://smarthr.design/accessibility/check-list/accessible-name/)
+- [ARIA9: Using aria-labelledby to concatenate a label from several text nodes | WAI | W3C](https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9)
