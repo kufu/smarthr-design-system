@@ -452,7 +452,7 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 以下の場合に使います。
 
 - 画面内で強調させたい最も重要な操作要素の背景色
-- 選択状態を表すための背景色・線
+- 選択状態を表すための背景色、線
 
 コンポーネント内部での使用例：variant propsが`primary`の[Button](/products/components/button) の背景色、選択状態の[Checkbox](/products/components/checkbox/)の背景色
 
@@ -464,7 +464,7 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 以下の場合に使います。
 
-- 視覚的グルーピングに使う背景色
+- 視覚的グルーピングのための矩形の背景色
 - 操作可能な状態を示すための背景色
 
 コンポーネント内部での使用例：[Base](/products/components/base/)の背景色、[Dialog](/products/components/dialog/)の背景色、操作可能な状態の[Checkbox](/products/components/checkbox/)の背景色
@@ -482,15 +482,15 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 #### 使用上の注意
 
-警告時（削除前などのアクション前）には`WARNING_YELLOW`を使ってください。
+エラー状態や破壊的操作ではないが、注意を促す警告には`WARNING_YELLOW`を使ってください。
 
 ### `WARNING_YELLOW`
 
-警告を示す要素の背景色、線の色に使います。
+警告を示す要素の背景色、線に使います。
 
 #### 使用上の注意
 
-削除の実行アクションには`DANGER`を使ってください。
+エラー状態や、破壊的な操作を示す場合には`DANGER`を使ってください。
 
 ### `TEXT_BLACK`
 
@@ -503,32 +503,27 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 ### `TEXT_GREY`
 
-本文に対して補足として扱う文字の色に使います。
+以下の場合に使います。
 
-コンポーネント内部での使用例：[DefinitionList](/products/components/definition-list/)の文字の色、[Heading](/products/components/heading/)の文字の色
+- 本文に対しての補足の文字色
+- 文字の階層や強弱を文字の大きさ（ジャンプ率）で表現しづらい場合の文字色
 
-#### 使用上の注意
-
-通常の文字の色には`TEXT_BLACK`を使ってください。
+コンポーネント内部での使用例：[DefinitionList](/products/components/definition-list/)の文字色、[Heading](/products/components/heading/)の文字色
 
 ### `TEXT_LINK`
 
 以下の場合に使います。
 
-- リンクを表す文字の色、下線
-- インタラクション可能な要素の文字の色
+- リンクを表す文字色、下線
+- インタラクション可能な要素の文字色
 
-コンポーネント内部での使用例：variant propsが`tertiary`の[Button](/products/components/button/)の文字の色
-
-#### 使用上の注意
-
-文字やアイコン以外の塗りつぶしや線には`MAIN`を使ってください。
+コンポーネント内部での使用例：[TextLink](/products/components/text-link/)、variant propsが`tertiary`の[Button](/products/components/button/)の文字色
 
 ### `TEXT_DISABLED`
 
-非活性状態を表す文字の色に使います。
+非活性状態を表す文字色に使います。
 
-コンポーネント内部での使用例：非活性状態の[Button](/products/components/button/)の文字の色
+コンポーネント内部での使用例：非活性状態の[Button](/products/components/button/)の文字色
 
 #### 使用上の注意
 
@@ -538,9 +533,9 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 ### `TEXT_WHITE`
 
-`DANGER`、`MAIN`などの強い塗りの上にある文字の色に使います。
+`DANGER`、`MAIN`などの強い塗りの上にある文字色に使います。
 
-コンポーネント内部での使用例：variant propsが`primary`の[Button](/products/components/button/)の文字の色
+コンポーネント内部での使用例：variant propsが`primary`の[Button](/products/components/button/)の文字色
 
 #### 使用上の注意
 
@@ -554,7 +549,7 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 
 ### `ACTION_BACKGROUND`
 
-操作する要素を配置するための視覚的グルーピングとして、前後の背景に`WHITE`、`OVER_BACKGROUND`、`COLUMN`などが使われており差別化するときに使います。
+周囲の要素の背景色に`WHITE`、`OVER_BACKGROUND`、`COLUMN`などがすでに使われている状況で、操作要素を配置する領域をそれらと区別したい場合に背景色として使います。
 
 コンポーネント内部での使用例：[Table](/products/components/table)のTableBulkActionAreaの背景色
 
@@ -567,7 +562,7 @@ import TableWrapper from '@/components/article/TableWrapper.astro'
 以下の場合に使います。
 
 - テーブルヘッダーの背景色
-- 視覚的グルーピングの`OVER_BACKGROUND`以上のネストが必要なとき
+- 視覚的グルーピングの`COLUMN`以上のネストが必要なとき
 
 コンポーネント内部での使用例：[Table](/products/components/table)のテーブルヘッダーの背景色
 
