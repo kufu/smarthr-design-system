@@ -80,7 +80,7 @@ importers:
     devDependencies:
       '@astrojs/tailwind':
         specifier: ^6.0.2
-        version: 6.0.2(astro@6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.0)(yaml@2.9.0))(tailwindcss@3.4.19(tsx@4.23.0)(yaml@2.9.0))
+        version: 6.0.2(astro@6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.0)(yaml@2.9.0))(tailwindcss@4.3.2)
       '@eslint/eslintrc':
         specifier: ^3.3.5
         version: 3.3.5
@@ -157,8 +157,8 @@ importers:
         specifier: 0.35.3
         version: 0.35.3(@types/node@25.7.0)
       tailwindcss:
-        specifier: '3'
-        version: 3.4.19(tsx@4.23.0)(yaml@2.9.0)
+        specifier: 4.3.2
+        version: 4.3.2
       textlint:
         specifier: ^15.7.1
         version: 15.7.1
@@ -5854,6 +5854,9 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
+  tailwindcss@4.3.2:
+    resolution: {integrity: sha512-WtctNNSH8A9jlMIqxzuYumOHU5uGZyRv0Q5svQl+oEPy5w84YpBxdb7MdqyiSPQge5jTJ6zFQLq0PFygdccSBA==}
+
   tar-fs@2.1.5:
     resolution: {integrity: sha512-OboTd8mmMhZDNPV+UjQcK9yKAatXu2aJ+r1w4im1Otd4M4fl2hwvdoXUxIYHFTHWK/3y3FarBP70v3vwmGlOxw==}
 
@@ -6893,13 +6896,13 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.4.3
 
-  '@astrojs/tailwind@6.0.2(astro@6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.0)(yaml@2.9.0))(tailwindcss@3.4.19(tsx@4.23.0)(yaml@2.9.0))':
+  '@astrojs/tailwind@6.0.2(astro@6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.0)(yaml@2.9.0))(tailwindcss@4.3.2)':
     dependencies:
       astro: 6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.0)(yaml@2.9.0)
       autoprefixer: 10.5.0(postcss@8.5.14)
       postcss: 8.5.14
       postcss-load-config: 4.0.2(postcss@8.5.14)
-      tailwindcss: 3.4.19(tsx@4.23.0)(yaml@2.9.0)
+      tailwindcss: 4.3.2
     transitivePeerDependencies:
       - ts-node
 
@@ -13541,6 +13544,8 @@ snapshots:
     transitivePeerDependencies:
       - tsx
       - yaml
+
+  tailwindcss@4.3.2: {}
 
   tar-fs@2.1.5:
     dependencies:
