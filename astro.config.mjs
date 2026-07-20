@@ -1,5 +1,6 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
+import { unified } from '@astrojs/markdown-remark';
 import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
@@ -32,7 +33,7 @@ export default defineConfig({
   ],
   markdown: {
     syntaxHighlight: false,
-    remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
+    processor: unified({ remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji] }),
   },
   vite: {
     define: {
