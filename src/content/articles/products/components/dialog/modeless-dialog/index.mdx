@@ -5,7 +5,6 @@ description: '背面の画面操作を妨げないモードレスダイアログ
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import DialogBaseSize from '../_components/DialogBaseSize.mdx'
 
 背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。
 
@@ -24,7 +23,45 @@ ModelessDialogは、ユーザーが直前まで見ていた画面の一部を覆
 
 ### 基準サイズ
 
-<DialogBaseSize />
+SmartHR UIでは、ダイアログの横幅をサイズ（`size`props）で指定できます。各サイズの基準値は[幅のセマンティックトークン](/products/design-tokens/width/#h3-2)を参照しています。
+
+大きさ | 幅トークン | 値（px）
+:--- | :--- | :---
+`XS` | `col3` | 424px
+`S` | `col4` | 576px
+`M` | `col5` | 728px
+`L` | `col6` | 880px
+`XL` | `col7` | 1032px
+`XXL` | `col8` | 1184px
+`FULL` | - | `width: 100%`
+
+#### `XS`
+
+入力要素を1つだけ持つダイアログなど、内容が極めて少ないダイアログに使います。
+
+#### `S`
+
+要素が少なく、要素が垂直方向に並ぶ、広い横幅を必要としないダイアログに使います。
+
+#### `M`
+
+数行に渡るテキストを表示したり、水平方向に要素を並べて表示したりする標準的なダイアログに使います。
+
+#### `L`
+
+テーブルを表示したり、ダイアログを複数カラムに分割するなど、広い横幅が必要なダイアログに使います。
+
+#### `XL`
+
+テーブルを表示したり、ダイアログを複数カラムに分割するなど、広い横幅が必要なダイアログに使います。`L`ではどうしてもコンテンツが収まりきらない場合に使います。
+
+#### `XXL`
+
+テーブルを表示したり、ダイアログを複数カラムに分割するなど、広い横幅が必要なダイアログに使います。`XL`ではどうしてもコンテンツが収まりきらない場合に使います。
+
+#### `FULL`
+
+テーブルを表示したり、ダイアログを複数カラムに分割するなど、広い横幅が必要なダイアログに使います。`XXL`ではどうしてもコンテンツが収まりきらない場合に使います。
 
 ### 表示位置
 
