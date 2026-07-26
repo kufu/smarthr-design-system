@@ -7,19 +7,17 @@ order: 11
 
 
 ## 基本的な考え方
-基本的にデフォルト値は設定せず、**何も入力がない状態**で表示します。  
-ユーザーの入力作業が向上したり、ミスを減らせる場合にのみデフォルト値を設定するようにします。
+基本的にデフォルト値は設定せず、**何も入力がない状態**で表示します。ユーザーの入力作業が向上したり、ミスを減らせる場合にのみデフォルト値を設定するようにします。
 
+RadioButton、RadioButtonPanelコンポーネントは常に1つの選択肢が選択されているコンポーネントのため、デフォルト値を設定します。具体的な値はコンポーネントのページを参照してください。
 
-### コンポーネントごとのデフォルト値
+## デフォルト値を設定できるコンポーネント
 
-Inputコンポーネントではデフォルト値は設定せず、何も入力されていない状態にします。
-
-Checkboxコンポーネントではどの選択肢もチェックされていない状態にします。
-
-Selectコンポーネントでは**空の選択肢をデフォルトにする**ことで何も入力がない状態を表現します。
-
-RadioButtonとRadioButtonPanelコンポーネントでは、選択肢のうちの1つをデフォルト値に設定します。
+- [Checkbox](/products/components/checkbox/#h3-3)
+- [RadioButton](/products/components/radio-button/#h3-2)
+- [RadioButtonPanel](/products/components/radio-button-panel/#h3-2)
+- [Select](/products/components/select/#h3-3)
+- [Input](/products/components/input/#h3-4)
 
 ### デフォルト値に設定する値
 デフォルト値を設定する場合は、以下のような値を検討してください。
@@ -27,12 +25,3 @@ RadioButtonとRadioButtonPanelコンポーネントでは、選択肢のうち�
 - 大半のユーザーが選択することを想定される値
 - ユーザーのリスクの少ない値
 - 一般的、中立的な値
-
-## 関連するコンポーネント
-以下のコンポーネントでデフォルト値を設定できます。
-
-- [Checkbox](/products/components/checkbox/#h3-3)
-- [RadioButton](/products/components/radio-button/#h3-2)
-- [RadioButtonPanel](/products/components/radio-button-panel/#h3-2)
-- [Select](/products/components/select/#h3-3)
-- [Input](/products/components/input/#h3-4)
