@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // TODO SmartHR な Dark テーマほしいな!!!
 import { Highlight, themes } from 'prism-react-renderer';
-import * as ui from 'smarthr-ui';
+import { IntlProvider, TextLink } from 'smarthr-ui';
 
 import { PATTERNS_STORYBOOK_URL } from '@/constants/application';
 import { CSS_COLOR } from '@/constants/style';
@@ -55,11 +55,9 @@ export default function CodeBlock({
   const rawCode = code || '';
   const codeString = renderingComponent ? `${rawCode}\nrender(<${renderingComponent} ${renderingPropsText} />)` : rawCode.trim();
 
-  const TextLink = ui.TextLink;
-
   if (editable) {
     return (
-      <ui.IntlProvider locale="ja">
+      <IntlProvider locale="ja">
         <div className={styles.wrapper}>
           {renderingComponent && (
             <div className={styles.linkWrapper}>
@@ -78,7 +76,7 @@ export default function CodeBlock({
             canvas={canvas}
           />
         </div>
-      </ui.IntlProvider>
+      </IntlProvider>
     );
   }
 
