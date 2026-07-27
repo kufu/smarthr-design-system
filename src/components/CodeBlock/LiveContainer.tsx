@@ -1,6 +1,6 @@
 import { themes } from 'prism-react-renderer';
 // eslint-disable-next-line no-restricted-imports
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import { CssBaseLine } from 'smarthr-normalize-css';
