@@ -36,7 +36,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
     helpMessage="登録するユーザー情報を入力してください。"
 >
     <Stack gap={1.25}>
-        <Cluster gap={0.5}>
+        <Cluster>
             <FormControl
                 label={{ text: "姓", styleType: "subBlockTitle" }}
             >
@@ -91,7 +91,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
             legend={{ text: "電話番号", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
-            <Cluster gap={0.5}>
+            <Cluster>
                 <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
                     <Input width="100px" name="phone_number1" />
                 </FormControl>
@@ -158,7 +158,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
     disabled
 >
     <Stack gap={1.25}>
-        <Cluster gap={0.5}>
+        <Cluster>
             <FormControl
                 label={{ text: "姓", styleType: "subBlockTitle" }}
             >
@@ -213,7 +213,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
             legend={{ text: "電話番号", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
-            <Cluster gap={0.5}>
+            <Cluster>
                 <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
                     <Input width="100px" name="phone_number1" />
                 </FormControl>
@@ -266,7 +266,7 @@ Fieldset自体には、読み取り専用の状態は存在しません。
     legend={{ text: "電話番号", styleType: "subBlockTitle" }}
     innerMargin={0.5}
 >
-    <Cluster gap={0.5}>
+    <Cluster>
         <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
             <Input
                 width="100px"
