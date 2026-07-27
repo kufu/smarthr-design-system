@@ -1,15 +1,19 @@
+import { fixupConfigRules } from '@eslint/compat';
 import smarthr from 'eslint-config-smarthr';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import * as mdx from 'eslint-plugin-mdx';
 
+// eslint-config-smarthr が内包するプラグイン（eslint-plugin-react / -smarthr / -mdx など）は
+// ESLint 10 で削除された context.getFilename() / getScope() 等の非推奨 API をまだ利用しているため、
+// @eslint/compat の fixupConfigRules でラップして互換シムを注入する。
 export default [
-  ...smarthr,
-  {
+  ...fixupConfigRules(smarthr),
+  ...fixupConfigRules({
     ...mdx.flat,
     files: ['**/*.mdx'],
-  },
-  ...eslintPluginAstro.configs.recommended,
-  ...eslintPluginAstro.configs['jsx-a11y-recommended'],
+  }),
+  ...fixupConfigRules(eslintPluginAstro.configs.recommended),
+  ...fixupConfigRules(eslintPluginAstro.configs['jsx-a11y-recommended']),
   {
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
