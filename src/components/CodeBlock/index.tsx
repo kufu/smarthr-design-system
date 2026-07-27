@@ -11,7 +11,7 @@ import LiveContainer from './LiveContainer';
 import styles from './index.module.scss';
 import sharedStyles from './shared.module.scss';
 
-import type { LiveContainerProps } from './types';
+import type { LiveContainerInternalProps } from './types';
 
 type Props = {
   className?: string;
@@ -19,7 +19,7 @@ type Props = {
   isStorybook?: boolean;
   renderingComponent?: string;
   componentTitle?: string;
-} & LiveContainerProps;
+} & LiveContainerInternalProps;
 
 const theme = {
   ...themes.github,

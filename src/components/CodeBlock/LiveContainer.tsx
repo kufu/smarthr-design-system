@@ -15,9 +15,9 @@ import CopyButton from './CopyButton';
 import styles from './LiveContainer.module.scss';
 import sharedStyles from './shared.module.scss';
 
-import type { LiveContainerProps } from './types';
+import type { LiveContainerInternalProps } from './types';
 
-type Props = LiveContainerProps;
+type Props = LiveContainerInternalProps;
 
 const smarthrTheme = ui.createTheme();
 
