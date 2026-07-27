@@ -80,7 +80,7 @@ importers:
     devDependencies:
       '@astrojs/tailwind':
         specifier: ^6.0.2
-        version: 6.0.2(astro@6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.1)(yaml@2.9.0))(tailwindcss@3.4.19(tsx@4.23.1)(yaml@2.9.0))
+        version: 6.0.2(astro@6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.1)(yaml@2.9.0))(tailwindcss@4.3.3)
       '@eslint/eslintrc':
         specifier: ^3.3.6
         version: 3.3.6
@@ -157,8 +157,8 @@ importers:
         specifier: 0.35.3
         version: 0.35.3(@types/node@25.7.0)
       tailwindcss:
-        specifier: '3'
-        version: 3.4.19(tsx@4.23.1)(yaml@2.9.0)
+        specifier: 4.3.3
+        version: 4.3.3
       textlint:
         specifier: ^15.7.1
         version: 15.7.1
@@ -5719,6 +5719,9 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
+  tailwindcss@4.3.3:
+    resolution: {integrity: sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==}
+
   tar-fs@2.1.5:
     resolution: {integrity: sha512-OboTd8mmMhZDNPV+UjQcK9yKAatXu2aJ+r1w4im1Otd4M4fl2hwvdoXUxIYHFTHWK/3y3FarBP70v3vwmGlOxw==}
 
@@ -6747,13 +6750,13 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.4.3
 
-  '@astrojs/tailwind@6.0.2(astro@6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.1)(yaml@2.9.0))(tailwindcss@3.4.19(tsx@4.23.1)(yaml@2.9.0))':
+  '@astrojs/tailwind@6.0.2(astro@6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.1)(yaml@2.9.0))(tailwindcss@4.3.3)':
     dependencies:
       astro: 6.3.7(@types/node@25.7.0)(jiti@1.21.7)(lightningcss@1.32.0)(rollup@4.60.3)(sass-embedded@1.100.0)(sass@1.100.0)(tsx@4.23.1)(yaml@2.9.0)
       autoprefixer: 10.5.0(postcss@8.5.14)
       postcss: 8.5.14
       postcss-load-config: 4.0.2(postcss@8.5.14)
-      tailwindcss: 3.4.19(tsx@4.23.1)(yaml@2.9.0)
+      tailwindcss: 4.3.3
     transitivePeerDependencies:
       - ts-node
 
@@ -7700,7 +7703,7 @@ snapshots:
       detect-libc: 2.1.2
       is-glob: 4.0.3
       node-addon-api: 7.1.1
-      picomatch: 4.0.4
+      picomatch: 4.0.5
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.5.6
       '@parcel/watcher-darwin-arm64': 2.5.6
@@ -13180,6 +13183,8 @@ snapshots:
     transitivePeerDependencies:
       - tsx
       - yaml
+
+  tailwindcss@4.3.3: {}
 
   tar-fs@2.1.5:
     dependencies:
