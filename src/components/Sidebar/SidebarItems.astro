@@ -41,10 +41,13 @@ const { path, items, showDepth1Item = false } = Astro.props;
       margin: 0;
       padding: 0;
       list-style: none;
+    }
 
-      &[aria-hidden='true'] {
-        display: none;
-      }
+    /**
+     * astro が差し込んでくる [data-astro-cid-*] のせいで属性セレクタも global() の中に入れないと期待通りに動作しない
+    */
+    :global(ul[aria-hidden='true']) {
+      display: none;
     }
 
     > :global(ul) {
@@ -81,17 +84,6 @@ const { path, items, showDepth1Item = false } = Astro.props;
         }
       }
 
-      &[aria-current='true'],
-      &[aria-current='true']:hover {
-        background-color: var(--color-dark-grey-1);
-        color: var(--color-white);
-
-        /* CaretButtonがアイランドのため astro-island でラップされる */
-        + :global(astro-island) > :global(button) {
-          color: var(--color-white);
-        }
-      }
-
       &:hover {
         background-color: var(--color-divider);
       }
@@ -101,12 +93,26 @@ const { path, items, showDepth1Item = false } = Astro.props;
       }
     }
 
+    & :global(li) :global(a[aria-current='true']) {
+      /* :hover は上の a:hover と詳細度が同じなので、明示的に上書きする必要がある */
+      &,
+      &:hover {
+        background-color: var(--color-dark-grey-1);
+        color: var(--color-white);
+      }
+
+      /* CaretButtonがアイランドのため astro-island でラップされる */
+      + :global(astro-island) > :global(button) {
+        color: var(--color-white);
+      }
+    }
+
     & :global(div):hover {
       > :global(a) {
         background-color: var(--color-divider);
       }
 
-      > :global(a)[aria-current='true'] {
+      > :global(a[aria-current='true']) {
         background-color: var(--color-dark-grey-1);
         color: var(--color-white);
 
