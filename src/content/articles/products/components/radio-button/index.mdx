@@ -88,14 +88,13 @@ import radioButtonMobileDont from './images/radio-button-mobile-dont.png';
 </Cluster>
 
 
-## 状態 
+## 状態
 
 ### デフォルト
 
 RadioButtonは常に1つの選択肢が選択されているコンポーネントのため、選択肢の中から1つデフォルト値に設定するものを決めてください。（参考：[デフォルト値に設定する値](/products/design-patterns/default_value/#h3-0)）
 
-![radiobuttonに１つの選択肢が選択されているイメージ](./images/radio-button-unselected-option.png)
-
+![RadioButtonにデフォルト値が設定されているイメージ](./images/radio-button-unselected-option.png)
 
 ## デザインパターン
 
@@ -112,7 +111,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 >
     <BaseColumn>
         <Cluster gap={{ row: 1, column: 1.5 }}>
-            <RadioButton name="sample">選択肢 1</RadioButton>
+            <RadioButton name="sample" checked>選択肢 1</RadioButton>
             <RadioButton name="sample">選択肢 2</RadioButton>
             <RadioButton name="sample">選択肢 3</RadioButton>
             <RadioButton name="sample">選択肢 4</RadioButton>
@@ -154,7 +153,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 >
   <BaseColumn>
     <Cluster gap={{ row: 1, column: 1.5 }}>
-      <RadioButton name="notification">
+      <RadioButton name="notification" checked>
         メール
       </RadioButton>
       <RadioButton name="notification">
@@ -177,7 +176,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 
 // ❌ 何について選択するグループなのか伝わらない
 <div>
-  <RadioButton name="notification">メール</RadioButton>
+  <RadioButton name="notification" checked>メール</RadioButton>
   <RadioButton name="notification">SMS</RadioButton>
 </div>
 ```
