@@ -1,14 +1,4 @@
-import {
-  Cluster,
-  FaAngleRightIcon,
-  FaArrowUpIcon,
-  Stack,
-  StatusLabel,
-  Text,
-  TextLink,
-  defaultBorder,
-  defaultSpacing,
-} from 'smarthr-ui';
+import { Cluster, FaAngleRightIcon, FaArrowUpIcon, Stack, StatusLabel, Text, TextLink, defaultBorder } from 'smarthr-ui';
 
 import styles from './ChecklistPanel.module.scss';
 

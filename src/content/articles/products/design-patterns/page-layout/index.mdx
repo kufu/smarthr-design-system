@@ -240,8 +240,8 @@ const CollectionTableLayout = () => {
             </InformationPanel>
           </Stack>
           <Section>
-            <Stack gap={1}>
-              <Cluster align="center" justify="space-between" gap={0.5}>
+            <Stack>
+              <Cluster align="center" justify="space-between">
                 <Heading>オブジェクト一覧</Heading>
                 <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
               </Cluster>
@@ -252,7 +252,7 @@ const CollectionTableLayout = () => {
                     <Cluster justify="space-between" align="center" className="shr-p-1">
                       <form onSubmit={(e) => e.preventDefault()}>
                         <Cluster align="center" gap={1}>
-                          <Cluster gap={0.5}>
+                          <Cluster>
                             <SearchInput tooltipMessage="オブジェクト名で検索できます。" name="search" />
                             <Button type="submit">検索</Button>
                           </Cluster>
@@ -446,7 +446,7 @@ const SingleOneColumnLayout = () => {
       </NotificationBar>
       <Container>
         <Stack gap={2}>
-          <Stack gap={1}>
+          <Stack>
             <UpwardLink href="#">一覧に戻る</UpwardLink>
             <Cluster align="center" justify="space-between">
               <div className="shr-inline-black">
@@ -462,14 +462,14 @@ const SingleOneColumnLayout = () => {
             </Cluster>
             <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
           </Stack>
-          <Stack gap={1} className="shr-mt-1.5">
-            <Cluster align="center" justify="space-between" gap={0.5}>
+          <Stack className="shr-mt-1.5">
+            <Cluster align="center" justify="space-between">
               <Heading>セクションタイトル</Heading>
               <Button>ボタン</Button>
             </Cluster>
             <Base padding={1.5}>
               <Stack gap={1.5}>
-                <Stack gap={1}>
+                <Stack>
                   <Heading type="blockTitle">ブロックタイトル</Heading>
                   <DefinitionList>
                     <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
@@ -480,7 +480,7 @@ const SingleOneColumnLayout = () => {
                     <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
                   </DefinitionList>
                 </Stack>
-                <Stack gap={1}>
+                <Stack>
                   <Heading type="blockTitle">ブロックタイトル</Heading>
                   <DefinitionList>
                     <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
@@ -491,8 +491,8 @@ const SingleOneColumnLayout = () => {
               </Stack>
             </Base>
           </Stack>
-          <Stack gap={1}>
-            <Cluster align="center" justify="space-between" gap={0.5}>
+          <Stack>
+            <Cluster align="center" justify="space-between">
               <Heading>セクションタイトル</Heading>
               <Button prefix={<FaCirclePlusIcon />}>追加</Button>
             </Cluster>
@@ -503,7 +503,7 @@ const SingleOneColumnLayout = () => {
                   <Cluster justify="space-between" align="center" className="shr-p-1">
                     <form onSubmit={(e) => e.preventDefault()}>
                       <Cluster align="center" gap={1}>
-                        <Cluster gap={0.5}>
+                        <Cluster>
                           <SearchInput tooltipMessage="社員番号、氏名で検索できます。" name="search" />
                           <Button type="submit">検索</Button>
                         </Cluster>

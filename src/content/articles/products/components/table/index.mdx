@@ -20,7 +20,7 @@ relatedComponents:
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
+import { Button, BulkActionRow, Table, Cluster } from 'smarthr-ui'
 
 `table`要素の代替として表形式でデータを表示するためのコンポーネントです。データを行列で一覧表示するとき、レコードを並べて比較するビューを提示するときに使います。
 
@@ -70,7 +70,7 @@ import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
   <thead>
     <BulkActionRow>
       <Cluster align="center">
-        <Text>このページの「オブジェクト名」50件すべて選択されています。</Text>
+        このページの「オブジェクト名」50件すべて選択されています。
         <Button variant="tertiary" size="S">
           一覧の「オブジェクト名」1000件すべてを選択
         </Button>
