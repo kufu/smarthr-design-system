@@ -36,3 +36,6 @@ RadioButtonPanel に直接関連する eslint-plugin-smarthr のルールは現�
 - [avoid] RadioButtonPanel 内にアンカーリンクやボタンなど、ユーザーが操作可能な要素を配置しない
   - リンクを置きたい場合は、Fieldset の `helpMessage` props などを使用する
   - 選択肢に応じて段階的に別の操作をさせたい場合は、RadioButton と `disabled` 状態の組み合わせ、またはステップを複数に分けたモードを検討する
+
+### 状態 > デフォルト
+- [must] 選択肢の中から 1 つデフォルト値に設定するものを決める
