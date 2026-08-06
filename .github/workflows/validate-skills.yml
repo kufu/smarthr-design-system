@@ -23,6 +23,9 @@ concurrency:
   group: validate-skills-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+env:
+  NPM_CONFIG_IGNORE_SCRIPTS: 'true'
+
 jobs:
   validate:
     runs-on: ubuntu-latest

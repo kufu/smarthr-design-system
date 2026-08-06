@@ -35,6 +35,9 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  NPM_CONFIG_IGNORE_SCRIPTS: 'true'
+
 jobs:
   generate:
     # フォーク PR からのトリガーは構造上発生しないが、念のため二重防御。
