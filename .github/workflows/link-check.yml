@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: '0 2 * * 1' # Monday, 2am(UTC+0)
 
+env:
+  NPM_CONFIG_IGNORE_SCRIPTS: 'true'
+
 jobs:
   check:
     runs-on: ubuntu-latest

@@ -3,6 +3,9 @@ name: Deploy to netlify
 on:
   workflow_dispatch:
 
+env:
+  NPM_CONFIG_IGNORE_SCRIPTS: 'true'
+
 jobs:
   build-prod:
     runs-on: ubuntu-latest

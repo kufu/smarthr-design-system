@@ -3,6 +3,9 @@ name: 'Clear cache and deploy site on Netlify'
 on:
   workflow_dispatch:
 
+env:
+  NPM_CONFIG_IGNORE_SCRIPTS: 'true'
+
 jobs:
   build:
     runs-on: ubuntu-latest
