@@ -170,10 +170,11 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 ## アクセシビリティ
 ### 開発時の考慮点
 #### HTMLの見出しレベルが`h1`～`h6`の順になっているかを確認する
-HTMLの見出しレベルは[SectioningContent](https://smarthr.design/products/components/sectioning-content/)を併用することで自動的に決定されます。
+[PageHeading](http://localhost:4321/products/components/heading/page-heading)は`h1`要素が自動的に設定されます。
+以降のHTMLの見出しレベルは[SectioningContent](https://smarthr.design/products/components/sectioning-content/)を併用することで自動的に決定されます。
 実装後、HTMLを見て以下を確認してください。
-- `Heading`のタイプ（`type`props）とHTMLの見出しレベル（`h1`～`h6`）が合致しているか
-- 見出しレベルを`h1`～`h6`の順で使用しているか
+- `Heading`のタイプ（`type`props）とHTMLの見出しレベル（`h2`～`h6`）が合致しているか
+- ページにある見出しが`h1`～`h6`の順でマークアップされているか
 
 ### 関連ページ
 
