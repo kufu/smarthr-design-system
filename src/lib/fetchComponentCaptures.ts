@@ -73,10 +73,13 @@ const doesFileExist = async (...filePaths: string[]) => {
  * @returns StoryGroup[]
  */
 export async function fetchComponentCaptures() {
+  console.time('fetchtimer');
   const indexJsonUrl = new URL('index.json', STORYBOOK_URL);
   const response = await fetch(indexJsonUrl.toString());
 
   const storiesJson: StoryIndex = await response.json();
+
+  console.timeLog('fetchtimer', 'stories fetched');
 
   const storiesMap = storiesJson.entries;
   const storyGroups: StoryGroup[] = [];
@@ -156,5 +159,6 @@ export async function fetchComponentCaptures() {
   // 名前昇順でソート
   storyGroups.map((group) => group.storyKinds.sort((a, b) => a.displayName.localeCompare(b.displayName)));
 
+  console.timeEnd('fetchtimer');
   return storyGroups;
 }
