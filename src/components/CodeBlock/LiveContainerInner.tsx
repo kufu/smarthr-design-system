@@ -4,8 +4,8 @@ import React, { useEffect, useId, useRef } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import { CssBaseLine } from 'smarthr-normalize-css';
-import * as ui from 'smarthr-ui';
 import styled, { StyleSheetManager, ThemeProvider, css } from 'styled-components';
+import * as ui from 'virtual:smarthr-ui-scope';
 
 import { CSS_COLOR } from '@/constants/style';
 
