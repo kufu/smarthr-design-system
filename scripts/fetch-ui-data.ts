@@ -4,7 +4,9 @@ import path from 'node:path';
 import metadata from 'smarthr-ui/metadata.json';
 import packageInfo from 'smarthr-ui/package.json';
 
-import type { PropsData, UIData, UIProps, UIStories } from '../src/types/ui';
+import { SHRUI_STORYBOOK_URL } from '../src/constants/application';
+
+import type { PropsData, StoryIndexItem, UIData, UIProps, UIStories } from '../src/types/ui';
 import type { StoryIndex } from '@storybook/types';
 
 type GitHubAPIResponse = {
@@ -161,6 +163,31 @@ async function fetchStories(commitHash: string): Promise<Record<string, UIStorie
   return uiStories;
 }
 
+/**
+ * 公開Storybookから、コンポーネント一覧の生成に使うstoryの情報を取得
+ *
+ * `fetchStories()` が取得するChromaticのものと違い、こちらは最新バージョンのStorybookを参照します。
+ * ページのレンダリング中に取得するとビルドが遅くなるため、ここでキャッシュに含めています。
+ */
+async function fetchStoryIndex(): Promise<StoryIndexItem[]> {
+  const endpoint = new URL('index.json', SHRUI_STORYBOOK_URL);
+
+  const res = await fetch(endpoint.toString());
+  if (!res.ok) {
+    throw new Error(`公開Storybookから index.json を取得できませんでした: ${res.statusText}`);
+  }
+
+  const json: StoryIndex = await res.json();
+  if (!json?.entries) {
+    throw new Error('index.json に entries が含まれていませんでした');
+  }
+
+  // ドキュメントはコンポーネント一覧として表示しないため除外する
+  return Object.values(json.entries)
+    .filter((entry) => entry.type !== 'docs')
+    .map(({ id, title, importPath }) => ({ id, title, importPath }));
+}
+
 const UI_DATA_CACHE_DIR = path.resolve(import.meta.dirname, '../node_modules/.cache');
 const VERSION_CACHE_DIR = path.join(UI_DATA_CACHE_DIR, `smarthr-ui@v${packageInfo.version}`);
 const VERSION_CACHE_FILE = path.join(VERSION_CACHE_DIR, 'data.json');
@@ -169,11 +196,19 @@ const VERSION_CACHE_FILE = path.join(VERSION_CACHE_DIR, 'data.json');
  * バージョン別キャッシュからデータを読み込む
  */
 function loadFromVersionCache(): UIData | null {
-  if (fs.existsSync(VERSION_CACHE_FILE)) {
-    const raw = fs.readFileSync(VERSION_CACHE_FILE, 'utf-8');
-    return JSON.parse(raw) as UIData;
+  if (!fs.existsSync(VERSION_CACHE_FILE)) {
+    return null;
   }
-  return null;
+
+  const raw = fs.readFileSync(VERSION_CACHE_FILE, 'utf-8');
+  const data = JSON.parse(raw) as UIData;
+
+  // 項目が追加される前に作られた古いキャッシュは、キャッシュミスとして扱って作り直す
+  if (!data.storyIndex) {
+    return null;
+  }
+
+  return data;
 }
 
 /**
@@ -202,6 +237,9 @@ if (cached) {
   console.log('📚️ stories.json を取得中');
   const uiStories = await fetchStories(commitHash);
 
+  console.log('🖼️ コンポーネント一覧用の index.json を取得中');
+  const storyIndex = await fetchStoryIndex();
+
   console.log('✅️ 取得完了');
 
   uiVersion = {
@@ -210,6 +248,7 @@ if (cached) {
     commitDate: usedVersionRelease.commit.author.date,
     uiProps: getUIProps(),
     uiStories: Object.values(uiStories),
+    storyIndex,
   };
 
   console.log('💾 バージョンキャッシュに保存中');
