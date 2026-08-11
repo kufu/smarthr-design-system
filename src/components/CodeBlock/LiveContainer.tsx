@@ -1,4 +1,9 @@
 import { Suspense, lazy } from 'react';
+import { Loader } from 'smarthr-ui';
+
+import ComponentPreview from '../ComponentPreview/ComponentPreview';
+
+import styles from './LiveContainer.module.scss';
 
 import type { LiveContainerInternalProps } from './types';
 
@@ -10,9 +15,16 @@ type Props = LiveContainerInternalProps;
 const LiveContainerInner = lazy(() => import('./LiveContainerInner'));
 
 export default function LiveContainer(props: Props) {
-  // TODO: fallback の見た目を用意する
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <ComponentPreview background={props.background} canvas={props.canvas}>
+          <div className={styles.loading}>
+            <Loader size="S" alt="実行結果を読み込み中" />
+          </div>
+        </ComponentPreview>
+      }
+    >
       <LiveContainerInner {...props} />
     </Suspense>
   );
