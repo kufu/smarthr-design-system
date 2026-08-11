@@ -41,6 +41,11 @@ const collectExistLinks = async () => {
       headingCount[level] += 1;
     }
 
+    // 明示的に埋め込まれたアンカー（`{<span id="..." />}`）も配列に入れておく
+    for (const anchor of content.matchAll(/<span[^>]*\sid="([A-Za-z0-9_-]+)"/g)) {
+      existPathList.push(`${pagePath}#${anchor[1]}`);
+    }
+
     // 対象のファイルでなければスキップ
     if (targetFiles.length > 0 && !targetFiles.includes(file)) continue;
 
