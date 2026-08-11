@@ -41,10 +41,13 @@ const SEVERITY_MONOTONE_MIN_ITEMS = 6;
 const NON_RULE_HEADING_PATTERNS: RegExp[] = [
   /^Props$/,
   /^関連リンク$/,
+  /^関連ページ$/,
   /^関連するチェックリスト$/,
   /^参考文献$/,
   /^実装例$/,
   /との違い$/,
+  // checklist.yaml 自体を表示する節。抽出対象外（自己参照・循環防止）のため原理的にカバーできない
+  /^使い方チェックリスト$/,
 ];
 
 function findChecklistFiles(): string[] {
