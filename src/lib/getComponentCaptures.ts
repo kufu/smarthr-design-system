@@ -75,7 +75,7 @@ const doesFileExist = async (...filePaths: string[]) => {
  *
  * @returns StoryGroup[]
  */
-export async function fetchComponentCaptures() {
+export async function getComponentCaptures() {
   const storyGroups: StoryGroup[] = [];
 
   for (const { id, title, importPath } of UI_STORY_INDEX) {

@@ -1,5 +1,5 @@
 <!-- textlint-disable -->
-## fetchComponentCaptures.ts
+## getComponentCaptures.ts
 
 [SmartHR UIのStorybook](https://story.smarthr-ui.dev/)上の各コンポーネントグループの名前やサムネイル画像のパスなどを取得します。
 
