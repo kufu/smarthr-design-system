@@ -35,7 +35,8 @@ subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.or
 
         return (
           <>
-            <Heading class="pageTitleHeadings">
+            {/* ページ内目次（IndexNav）のリンク先になるため、見出しには必ずidを振る */}
+            <Heading class="pageTitleHeading" id={`${Heading}-${pageFileName}`}>
               <a href={join('/', page.id)}>{page.data.deprecated ? `${page.data.title}（非推奨）` : page.data.title}</a>
             </Heading>
             {hasSlot ? <Fragment set:html={description} /> : <p>{description}</p>}
@@ -65,7 +66,7 @@ subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.or
     font-weight: bold;
 
     a {
-      text-decoration: undeline;
+      text-decoration: underline;
     }
   }
 </style>
