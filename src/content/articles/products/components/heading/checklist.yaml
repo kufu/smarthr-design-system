@@ -10,3 +10,11 @@ items:
   - severity: must
     text: '画面のタイトルには PageHeading コンポーネントを使う'
     source_section: '種類 > 画面タイトル'
+
+  # アクセシビリティ > 開発時の考慮点 > HTMLの見出しレベルが`h1`～`h6`の順になっているかを確認する
+  - severity: must
+    text: 'HTMLの見出しレベルが`h1`～`h6`の順になっているかを確認する'
+    source_section: 'アクセシビリティ > 開発時の考慮点 > HTMLの見出しレベルが`h1`～`h6`の順になっているかを確認する'
+    sub_items:
+      - '`Heading`のタイプ（`type`props）とHTMLの見出しレベル（`h2`～`h6`）が合致しているか'
+      - 'ページにある見出しが`h1`～`h6`の順でマークアップされているか'
