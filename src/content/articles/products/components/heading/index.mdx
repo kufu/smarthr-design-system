@@ -9,7 +9,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 import CodeBlock from '@/components/article/CodeBlock.astro'
 import TableWrapper from '@/components/article/TableWrapper.astro'
 
-import { Heading, Stack, Table, Td, Th, Text } from 'smarthr-ui'
+import { Heading, Table, Td, Th } from 'smarthr-ui'
 
 見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「[セクション](/products/design-patterns/visual-grouping/#h3-5)」や「[ブロック](/products/design-patterns/visual-grouping/#h3-6)」に見出しをつけるときに使います。
 
@@ -168,6 +168,12 @@ SmartHR UIでは、タイプ（`type`props）で種類を指定できます。
 ![アウトラインに合わせた使用例](./images/heading-sample.png)
 
 ## アクセシビリティ
+### 開発時の考慮点
+#### HTMLの見出しレベルが`h1`～`h6`の順になっているかを確認する
+[PageHeading](https://smarthr.design/products/components/heading/page-heading/)は`h1`要素が自動的に設定され、以降の見出しは[SectioningContent](https://smarthr.design/products/components/sectioning-content/)を併用することで自動的に見出しレベルが設定されます。
+実装後、HTMLを見て以下を確認してください。
+- `Heading`のタイプ（`type`props）とHTMLの見出しレベル（`h2`～`h6`）が合致しているか
+- ページにある見出しが`h1`～`h6`の順でマークアップされているか
 
 ### 関連ページ
 

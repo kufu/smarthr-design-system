@@ -2,22 +2,7 @@
 title: 'Tooltip'
 description: '補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。'
 ---
-import {
-  WarningIcon,
-  FaArrowDownIcon,
-  FaArrowLeftIcon,
-  FaArrowRightIcon,
-  FaArrowUpIcon,
-  FaCircleInfoIcon,
-  FaCirclePlusIcon,
-  FaFileIcon,
-  FaUserLargeIcon,
-  TextLink,
-  Button,
-  Cluster,
-  Tooltip,
-  Text,
-} from 'smarthr-ui'
+import { FaCircleInfoIcon } from 'smarthr-ui'
 import { Image } from 'astro:assets'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
@@ -98,10 +83,10 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 ### Tooltipのトリガーパターン
 トリガーは、用途によっていくつかの種類に分けられます。
 
-- A. [テキスト＋アイコン](#h4-6)
-- B. [アイコンのみ](#h4-7)
-- C. [アイコンボタン](#h4-8)
-- D. [省略テキスト](#h4-9)
+- A. [テキスト＋アイコン](#h4-2)
+- B. [アイコンのみ](#h4-3)
+- C. [アイコンボタン](#h4-4)
+- D. [省略テキスト](#h4-5)
 
 #### A. テキスト＋アイコン
 <ComponentPreview>
@@ -110,7 +95,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 テキストに対して、Tooltipでさらに補足したい場合に使います。
 補足する対象となるテキストの横に「<FaCircleInfoIcon color="TEXT_GREY" />」アイコン（`FaCircleInfoIcon`）を配置し、Tooltipの存在を明確に示します。
-アイコンの色には[`TEXT_GRAY`](/products/design-tokens/color/#3-2)を使います。
+アイコンの色には[`TEXT_GREY`](/products/design-tokens/color/#h3-2)を使います。
 
 #### B. アイコンのみ
 <ComponentPreview>
@@ -130,7 +115,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 </ComponentPreview>
 
 トリガーとなるのはアイコンのみで、タイトルや[よくあるテーブルのオブジェクト名](/products/design-patterns/smarthr-table/#h4-0)のテキストとあわせて使います。
-アイコンの色には[`TEXT_GRAY`](/products/design-tokens/color/#h3-2)を使います。
+アイコンの色には[`TEXT_GREY`](/products/design-tokens/color/#h3-2)を使います。
 
 ##### ステータスの補足に使用
 <ComponentPreview>
@@ -217,7 +202,7 @@ Tooltipの内容をラベルとして利用しているが、`type="label"`を�
 
 ### 関連ページ
 
-- [hoverで表示されるコンテンツはポインタを乗せても表示を維持できる | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision-check-list/hover/)
+- [hoverで表示されるコンテンツはポインタを乗せても表示を維持できる | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/hover/)
 
 ## モバイル
 モバイルではTooltipを使わないでください。画面内の領域が小さいため、Tooltipの表示が他のUIの利用を妨げることがあります。
