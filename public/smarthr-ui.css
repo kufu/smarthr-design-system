@@ -1074,10 +1074,6 @@ a {
   min-width: 0;
 }
 
-.shr-min-w-\[0\] {
-  min-width: 0;
-}
-
 .shr-min-w-\[1\.75em\] {
   min-width: 1.75em;
 }
@@ -2236,10 +2232,6 @@ a {
 
 .shr-border-default\/50 {
   border-color: rgb(214 211 208 / 0.5);
-}
-
-.shr-border-disabled {
-  border-color: rgb(214 211 208 / 50%);
 }
 
 .shr-border-green {
@@ -4537,6 +4529,10 @@ a {
   pointer-events: none;
 }
 
+.has-\[\.smarthr-ui-DropZone-Button\:disabled\]\:shr-cursor-not-allowed:has(.smarthr-ui-DropZone-Button:disabled) {
+  cursor: not-allowed;
+}
+
 .has-\[\:disabled\]\:shr-cursor-default:has(:disabled) {
   cursor: default;
 }
@@ -4547,6 +4543,10 @@ a {
 
 .has-\[\:disabled\]\:shr-border-\[theme\(borderColor\.default\)\]:has(:disabled) {
   border-color: #d6d3d0;
+}
+
+.has-\[\:disabled\]\:shr-border-disabled:has(:disabled) {
+  border-color: rgb(214 211 208 / 50%);
 }
 
 .has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]) {
@@ -4585,6 +4585,11 @@ a {
 
 .has-\[\+_\&\]\:shr-pb-2:has(+ .has-\[\+_\&\]\:shr-pb-2) {
   padding-bottom: 32px;
+}
+
+.has-\[\:disabled\]\:shr-text-disabled:has(:disabled) {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1));
 }
 
 .has-\[\.smarthr-ui-ModelessDialog-handle\:focus-visible\]\:shr-transition-colors:has(.smarthr-ui-ModelessDialog-handle:focus-visible) {
@@ -4627,6 +4632,15 @@ a {
 .has-\[input\:disabled\:not\(\:checked\)\]\:before\:shr-bg-\[theme\(textColor\.disabled\)\]:has(input:disabled:not(:checked))::before {
   content: var(--tw-content);
   background-color: #c1bdb7;
+}
+
+.has-\[\:disabled\]\:hover\:shr-border-disabled:hover:has(:disabled) {
+  border-color: rgb(214 211 208 / 50%);
+}
+
+.has-\[\:disabled\]\:hover\:shr-text-disabled:hover:has(:disabled) {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1));
 }
 
 .shr-group\/label:has(:hover,:focus-visible) .group-has-\[\:hover\2c \:focus-visible\]\/label\:shr-not-sr-only {
@@ -4818,6 +4832,16 @@ a {
 
 .data-\[favorite\=\"false\"\]\:shr-grid-cols-\[1fr_1rem\][data-favorite="false"] {
   grid-template-columns: 1fr 1rem;
+}
+
+.data-\[error\]\:shr-border-danger[data-error] {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1));
+}
+
+.data-\[files-dragged-over\]\:shr-border-main[data-files-dragged-over] {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1));
 }
 
 .data-\[active\=false\]\:shr-bg-white[data-active="false"] {
@@ -5114,6 +5138,11 @@ a {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
+  .forced-colors\:shr-outline {
+    outline-style: solid;
+    outline-color: #0077c7;
+  }
+
   .forced-colors\:before\:shr-bg-\[ButtonBorder\]::before {
     content: var(--tw-content);
     background-color: ButtonBorder;
@@ -5176,25 +5205,26 @@ a {
   white-space: normal;
 }
 
-.\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\] {
-  border-color: #f8f7f6;
-}
-
-.\[\&\&\&\]\:shr-border-default\/50.\[\&\&\&\]\:shr-border-default\/50.\[\&\&\&\]\:shr-border-default\/50 {
-  border-color: rgb(214 211 208 / 0.5);
-}
-
 .\[\&\&\&\]\:shr-border-transparent.\[\&\&\&\]\:shr-border-transparent.\[\&\&\&\]\:shr-border-transparent {
   border-color: transparent;
 }
 
-.\[\&\&\&\]\:shr-bg-column.\[\&\&\&\]\:shr-bg-column.\[\&\&\&\]\:shr-bg-column {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1));
+.\[\&\&\&\]\:has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]).\[\&\&\&\]\:has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]).\[\&\&\&\]\:has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]) {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1));
 }
 
 .has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50:has(:disabled) {
   border-color: rgb(214 211 208 / 0.5);
+}
+
+.has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\].has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\].has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\]:has([readonly]:not(:disabled)) {
+  border-color: #f8f7f6;
+}
+
+.has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-bg-column.has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-bg-column.has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-bg-column:has([readonly]:not(:disabled)) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1));
 }
 
 .aria-current-page\:\[\&\&\&\]\:shr-cursor-default.aria-current-page\:\[\&\&\&\]\:shr-cursor-default.aria-current-page\:\[\&\&\&\]\:shr-cursor-default[aria-current="page"] {
@@ -5680,6 +5710,10 @@ a {
 .\[\&\:not\(\[aria-checked\=\"true\"\]\)\:not\(\:last-child\)\:focus-visible\]\:after\:shr-block:not([aria-checked="true"]):not(:last-child):focus-visible::after {
   content: var(--tw-content);
   display: block;
+}
+
+.\[\&\:not\(\[data-files-dragged-over\]\)\]\:shr-border-dashed:not([data-files-dragged-over]) {
+  border-style: dashed;
 }
 
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
@@ -6346,12 +6380,21 @@ a {
   list-style-type: none;
 }
 
-.smarthr-ui-Base > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:first-child .\[\.smarthr-ui-Base_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:first-child_\&\]\:shr-rounded-t-l {
+.smarthr-ui-Input:has(:disabled) .\[\.smarthr-ui-Input\:has\(\:disabled\)_\&\]\:shr-text-disabled {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+.smarthr-ui-Input:has(:disabled) .\[\.smarthr-ui-Input\:has\(\:disabled\)_\&\]\:shr-opacity-100 {
+  opacity: 1;
+}
+
+.smarthr-ui-Panel > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:first-child .\[\.smarthr-ui-Panel_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:first-child_\&\]\:shr-rounded-t-l {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
-.smarthr-ui-Base > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:last-child .\[\.smarthr-ui-Base_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:last-child_\&\]\:shr-rounded-b-l {
+.smarthr-ui-Panel > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:last-child .\[\.smarthr-ui-Panel_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:last-child_\&\]\:shr-rounded-b-l {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -6435,6 +6478,16 @@ a {
 [aria-sort="none"] .\[\[aria-sort\=\"none\"\]_\&\]\:shr-text-disabled {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+[data-active="false"]>.\[\[data-active\=\"false\"\]\>\&\]\:shr-rounded-b-l {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+[data-active="false"]>.\[\[data-active\=\"false\"\]\>\&\]\:shr-py-1 {
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 [data-current=false]:not(:first-child) .\[\[data-current\=false\]\:not\(\:first-child\)_\&\:focus-visible\]\:before\:shr-block:focus-visible::before {
