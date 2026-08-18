@@ -10,18 +10,17 @@ import { NotificationBar } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v98.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| layer | 0 \| 1 \| 2 \| 3 \| 4 | - | - | - |
 | base | "base" \| "none" | - | - | - |
 | animate | boolean | - | - | - |
-| bold | boolean | - | - | - |
 | type | "error" \| "warning" \| "info" \| "success" \| "sync" | - | ✓ | - |
-| subActionArea | ReactNode | - | - | コンポーネント右の領域 |
 | onClose | () => void | - | - | 閉じるボタン押下時に発火させる関数 |
-| role | "alert" \| "status" | - | - | role 属性 |
-| layer | 0 \| 1 \| 2 \| 3 \| 4 | - | - | - |
+| bold | boolean | - | - | - |
+| subActionArea | ReactNode | - | - | コンポーネント右の領域 |
 
 ## 実装ルール
 

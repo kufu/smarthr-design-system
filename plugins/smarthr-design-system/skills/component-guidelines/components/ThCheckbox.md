@@ -12,13 +12,13 @@ import { ThCheckbox } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v98.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | error | boolean | - | - | チェックボックスにエラーがあるかどうか |
 | mixed | boolean | - | - | `true` のとき、チェック状態を `mixed` にする |
-| vAlign | "bottom" \| "middle" \| "baseline" | - | - | - |
+| vAlign | "baseline" \| "bottom" \| "middle" | - | - | - |
 | fixed | "left" \| "right" | - | - | 横スクロール時、カラムを左右いずれかに固定 |
 
 ## 実装ルール

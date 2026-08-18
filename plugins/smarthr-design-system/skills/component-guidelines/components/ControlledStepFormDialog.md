@@ -12,7 +12,7 @@ import { StepFormDialogItem, ControlledStepFormDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v98.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### StepFormDialogItem
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -23,27 +23,27 @@ import { StepFormDialogItem, ControlledStepFormDialog } from 'smarthr-ui'
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | className | string | - | - | - |
-| onSubmit | (e: FormEvent<HTMLFormElement>, helpers: StepFormHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 @param e フォームイベント @param helpers ステップ操作用のヘルパー関数群 |
 | responseStatus | ResponseStatus | - | - | - |
 | contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
 | firstStep | { id: string; stepNumber: number; } | - | ✓ | - |
-| onClickClose | () => void | - | ✓ | - |
 | stepLength | number | - | ✓ | ステップの総数 |
-| onClickBack | () => void | - | - | - |
 | size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
 | width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
 | firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
 | ariaLabel | string | - | - | ダイアログの `aria-label` |
 | ariaLabelledby | string | - | - | ダイアログの `aria-labelledby` |
 | isOpen | boolean | - | ✓ | ダイアログを開いているかどうか |
-| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 |
-| onPressEscape | () => void | - | - | エスケープキーを押下した時に発火するコールバック関数 |
+| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 @todo イベントハンドラー命名規則に従い handleClickOverlay に変更すべき（影響範囲大のため別PR） |
+| onPressEscape | () => void | - | - | エスケープキーを押下した時に発火するコールバック関数 @todo イベントハンドラー命名規則に従い handlePressEscape に変更すべき（影響範囲大のため別PR） |
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
 | submitButton | ButtonArgType \| ObjectButtonType | - | ✓ | - |
 | closeButton | ButtonArgType \| ObjectButtonType | - | - | - |
 | backButton | ButtonArgType \| ObjectButtonType | - | - | - |
+| onSubmit | (e: FormEvent<HTMLFormElement>, helpers: StepFormHelpers) => void | - | ✓ | - |
+| onClickClose | () => void | - | ✓ | - |
+| onClickBack | () => void | - | - | - |
 
 ## 実装ルール
 

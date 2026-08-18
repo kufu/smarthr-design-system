@@ -1,16 +1,18 @@
-# BaseColumn
+# Groupbox
 
 BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。
+
+// TODO: v99.3.1 で Panel に戻す
 
 ## import
 
 ```ts
-import { BaseColumn } from 'smarthr-ui'
+import { Groupbox } from 'smarthr-ui'
 ```
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v98.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -21,7 +23,7 @@ import { BaseColumn } from 'smarthr-ui'
 
 ## 実装ルール
 
-BaseColumn に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+Groupbox に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
 
 ## 使い方チェックリスト
 

@@ -10,16 +10,16 @@ import { InformationPanel } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v98.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | パネルのタイトル |
 | toggleable | boolean | - | - | `true` のとき、開閉ボタンを表示する |
+| active | boolean | true | - | `true` のとき、パネルを開く |
 | onClickTrigger | (active: boolean) => void | - | - | 開閉ボタン押下時に発火するコールバック関数 |
 | type | "error" \| "warning" \| "info" \| "success" \| "sync" | info | - | - |
 | bold | boolean | - | - | - |
-| active | boolean | true | - | - |
 | ref | Ref<HTMLDivElement> | - | - | - |
 
 ## 実装ルール
