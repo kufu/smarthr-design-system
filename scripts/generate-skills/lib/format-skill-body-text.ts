@@ -1,6 +1,6 @@
 /** src/constants/site.ts の SITE_URL と同値（generate-skills は Astro に依存しない） */
-export const SITE_URL = 'https://smarthr.design';
-export const COMPONENT_PATH_PREFIX = '/products/components/';
+const SITE_URL = 'https://smarthr.design';
+const COMPONENT_PATH_PREFIX = '/products/components/';
 
 /** デザインシステムサイト上のコンポーネントページ URL を組み立てる */
 export function componentDocUrl(designSystemDirName: string): string {
