@@ -9,6 +9,7 @@ import { parseChecklist } from './lib/parse-checklist.js';
 import { parseIndexMdx, type IndexMdxInfo } from './lib/parse-index-mdx.js';
 import { collectRelatedComponents } from './lib/related-components.js';
 import { buildDirMapping, loadManualMappings, toDocFileName } from './lib/name-mapping.js';
+import { componentDocUrl } from './lib/format-skill-body-text.js';
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
 import { validateCoverage, printCoverageReport, loadCoverageBaseline, applyCoverageBaseline } from './lib/validate-coverage.js';
@@ -134,18 +135,18 @@ async function main() {
 
   for (const [dirName, group] of groups) {
     const designSystemDirName = dirMapping.get(dirName);
+    const rel = relatedSkills.get(dirName);
+    // related component は独立ページを持たないため、親コンポーネントのページ URL を使う。
+    const docDirName = designSystemDirName ?? (rel && dirMapping.get(rel.parentName));
     let indexInfo: IndexMdxInfo | null = null;
     let checklist = null;
-    // related component は独立ページを持たないため、親コンポーネントのページ URL を使う。
-    let docDirName = designSystemDirName;
 
     if (designSystemDirName) {
       const compDir = path.join(DESIGN_SYSTEM_DIR, designSystemDirName);
       indexInfo = parseIndexMdx(path.join(compDir, 'index.mdx'));
       checklist = parseChecklist(path.join(compDir, 'checklist.yaml'));
       if (checklist !== null) withLayer3++;
-    } else if (relatedSkills.has(dirName)) {
-      const rel = relatedSkills.get(dirName)!;
+    } else if (rel) {
       indexInfo = {
         ...rel.parentInfo,
         title: rel.name,
@@ -153,7 +154,6 @@ async function main() {
         relatedComponents: [],
       };
       const parentDesignDirName = dirMapping.get(rel.parentName);
-      docDirName = parentDesignDirName;
       if (parentDesignDirName) {
         const parentCompDir = path.join(DESIGN_SYSTEM_DIR, parentDesignDirName);
         checklist = parseChecklist(path.join(parentCompDir, 'checklist.yaml'));
@@ -170,7 +170,7 @@ async function main() {
     }
     const eslintRules = [...eslintRulesSet.values()];
 
-    const docUrl = docDirName ? `https://smarthr.design/products/components/${docDirName}/` : undefined;
+    const docUrl = docDirName ? componentDocUrl(docDirName) : undefined;
     const content = renderSkill({ group, indexInfo, eslintRules, checklist, smarthrUiVersion: SMARTHR_UI_VERSION, docUrl });
     const docFileName = toDocFileName(dirName);
     fs.writeFileSync(path.join(COMPONENTS_DIR, docFileName), content, 'utf-8');
