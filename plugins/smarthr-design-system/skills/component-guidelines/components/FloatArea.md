@@ -1,5 +1,7 @@
 # FloatArea
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/float-area/
+
 画面内に固定表示する領域のためのコンポーネントです。スクロール位置によらずフォーム送信ボタンや主要アクションを常時見せるときに使います。
 
 主にモーダルなUI（https://smarthr.design/products/design-patterns/modal-ui/）を作るために使います。

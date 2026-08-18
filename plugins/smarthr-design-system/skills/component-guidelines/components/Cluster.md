@@ -1,5 +1,7 @@
 # Cluster
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/layout/cluster/
+
 要素を水平方向に並べるためのレイアウトコンポーネントです。幅に収まり切らない場合は折り返します。ボタンやテキストなどあらゆる要素を横並びで配置するときに使います。
 
 Every Layout（https://every-layout.dev/）のClusterを参考にしています。 折り返すのではなく、要素を水平方向にスクロールさせたいときはReelを使います。

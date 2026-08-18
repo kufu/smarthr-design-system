@@ -1,5 +1,7 @@
 # PageHeading
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/heading/page-heading/
+
 画面全体の最上位見出しを表示するためのコンポーネントです。h1要素として画面タイトルを示すときに使います。
 
 ## import

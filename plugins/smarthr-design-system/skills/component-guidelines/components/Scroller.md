@@ -1,5 +1,7 @@
 # Scroller
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/scroller/
+
 コンテンツをスクロール可能な領域に収めるためのコンポーネントです。広いテーブルや要素群を限られた領域に収めて任意方向にスクロール表示するときに使います。
 
 ## import

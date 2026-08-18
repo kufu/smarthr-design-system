@@ -1,5 +1,7 @@
 # Header
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/header/
+
 アカウント設定やアプリ切替などSmartHR共通の横断機能を提供するヘッダーコンポーネントです。基本はAppHeaderの利用を推奨し、独自のヘッダー構成が必要なときのみHeader単体で使います。
 
 複数のSmartHRのプロダクトを使っていたとしても同じSmartHRブランドの製品であることをユーザーが認知できるよう、共通のHeaderを提供します。

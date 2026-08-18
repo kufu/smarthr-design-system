@@ -1,5 +1,7 @@
 # TimestampFormatter
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/formatter/timestamp-formatter/
+
 日付と時刻データを任意の形式にフォーマットして表示するコンポーネントです。日付と時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。
 
 ## import

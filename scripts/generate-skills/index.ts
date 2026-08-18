@@ -136,6 +136,8 @@ async function main() {
     const designSystemDirName = dirMapping.get(dirName);
     let indexInfo: IndexMdxInfo | null = null;
     let checklist = null;
+    // related component は独立ページを持たないため、親コンポーネントのページ URL を使う。
+    let docDirName = designSystemDirName;
 
     if (designSystemDirName) {
       const compDir = path.join(DESIGN_SYSTEM_DIR, designSystemDirName);
@@ -151,6 +153,7 @@ async function main() {
         relatedComponents: [],
       };
       const parentDesignDirName = dirMapping.get(rel.parentName);
+      docDirName = parentDesignDirName;
       if (parentDesignDirName) {
         const parentCompDir = path.join(DESIGN_SYSTEM_DIR, parentDesignDirName);
         checklist = parseChecklist(path.join(parentCompDir, 'checklist.yaml'));
@@ -167,7 +170,8 @@ async function main() {
     }
     const eslintRules = [...eslintRulesSet.values()];
 
-    const content = renderSkill({ group, indexInfo, eslintRules, checklist, smarthrUiVersion: SMARTHR_UI_VERSION });
+    const docUrl = docDirName ? `https://smarthr.design/products/components/${docDirName}/` : undefined;
+    const content = renderSkill({ group, indexInfo, eslintRules, checklist, smarthrUiVersion: SMARTHR_UI_VERSION, docUrl });
     const docFileName = toDocFileName(dirName);
     fs.writeFileSync(path.join(COMPONENTS_DIR, docFileName), content, 'utf-8');
     generated++;

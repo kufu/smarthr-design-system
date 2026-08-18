@@ -1,5 +1,7 @@
 # Groupbox
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/base/base-column/
+
 BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。
 
 // TODO: v99.3.1 で Panel に戻す

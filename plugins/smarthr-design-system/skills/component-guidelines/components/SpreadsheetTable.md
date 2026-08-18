@@ -1,5 +1,7 @@
 # SpreadsheetTable
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/spreadsheet-table/
+
 表データを表計算ソフト風に表示するためのコンポーネントです。CSVインポート画面などで利用者にスプレッドシートを想像させるときに使います。
 
 ## import

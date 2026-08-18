@@ -1,5 +1,7 @@
 # SectioningContent
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/sectioning-content/
+
 header、footer、section、articleなどのセクショニング要素を表現するためのコンポーネントです。Headingと組み合わせて見出しレベルを自動計算するときに使います。
 
 ## import

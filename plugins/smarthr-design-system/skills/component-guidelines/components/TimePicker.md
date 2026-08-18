@@ -1,5 +1,7 @@
 # TimePicker
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/picker/time-picker/
+
 > ⚠️ **非推奨**: TimePickerは非推奨です。Input[type="time"]を使ってください。
 
 ユーザーに時刻（時と分、任意で秒）を入力させる際に使用するコンポーネントです。

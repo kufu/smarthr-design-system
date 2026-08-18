@@ -1,5 +1,7 @@
 # Panel
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/base/
+
 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。
 
 // TODO: v99.3.1 で Base に戻す

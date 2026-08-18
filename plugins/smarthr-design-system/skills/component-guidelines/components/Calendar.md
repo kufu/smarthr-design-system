@@ -1,5 +1,7 @@
 # Calendar
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/calendar/
+
 カレンダーを表示し日付を選択するためのコンポーネントです。基本的にWarekiPickerやDatePicker（非推奨）の内部部品として使われるため、単独では使用しません。
 
 ## import

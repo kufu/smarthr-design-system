@@ -12,15 +12,22 @@ export type SkillRenderOptions = {
   eslintRules: EslintRuleWithContent[];
   checklist: ChecklistSection[] | null;
   smarthrUiVersion: string;
+  /** デザインシステムサイト上の該当ページ URL。対応ページがないコンポーネントでは undefined。 */
+  docUrl?: string;
 };
 
 export function renderSkill(opts: SkillRenderOptions): string {
-  const { group, indexInfo, eslintRules, checklist, smarthrUiVersion } = opts;
+  const { group, indexInfo, eslintRules, checklist, smarthrUiVersion, docUrl } = opts;
   const groupName = group.dirName;
 
   const parts: string[] = [];
   parts.push(`# ${groupName}`);
   parts.push('');
+
+  if (docUrl) {
+    parts.push(`> 📖 公式ドキュメント: ${docUrl}`);
+    parts.push('');
+  }
 
   if (indexInfo) {
     if (indexInfo.deprecated) {

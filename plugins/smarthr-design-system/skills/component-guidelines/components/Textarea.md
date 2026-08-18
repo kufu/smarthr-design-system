@@ -1,5 +1,7 @@
 # Textarea
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/textarea/
+
 textarea要素の代替としてテキストを複数行で入力させるコンポーネントです。長文を入力させるとき、文字数カウンタが必要なときに使います。
 
 入力によって自動で領域が広がる機能を備えています。

@@ -1,5 +1,7 @@
 # AuthErrorScreen
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/auth-error-screen/
+
 認証フローで問題が発生したことを表示する全画面コンポーネントです。SSOやOAuthなどログイン処理に失敗したときに使います。
 
 ユーザーがログインしていない状態で認証が必要なページにアクセスした場合や、ログインに問題が発生した場合に表示します。 「SmartHRに戻る」のリンク先はアプリケーションのホームではなく、SmartHRのホームにしてください。

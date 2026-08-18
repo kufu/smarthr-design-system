@@ -1,5 +1,7 @@
 # SmartHRAILogo
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/smarthr-ai-logo/
+
 SmartHRのAI関連の機能ラベルを表示するためのコンポーネントです。
 
 ## import

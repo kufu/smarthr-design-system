@@ -1,5 +1,7 @@
 # Browser
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/browser/
+
 階層構造を持つデータを選択するためのコンポーネントです。カテゴリや組織、フォルダなどのツリー状のデータをドリルダウンで選択するときに使います。
 
 ## import

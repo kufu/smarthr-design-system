@@ -1,5 +1,7 @@
 # SideMenu
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/side-menu/
+
 複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。
 
 ## import

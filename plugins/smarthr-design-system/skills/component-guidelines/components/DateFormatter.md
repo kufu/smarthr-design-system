@@ -1,5 +1,7 @@
 # DateFormatter
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/formatter/date-formatter/
+
 日付データを任意の形式にフォーマットして表示するコンポーネントです。日付をユーザーの言語や地域設定に適した形式で表示するときに使います。
 
 ## import

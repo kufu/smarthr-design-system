@@ -1,5 +1,7 @@
 # Select
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/select/
+
 select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。
 
 Inputと見た目を揃えるために存在します。

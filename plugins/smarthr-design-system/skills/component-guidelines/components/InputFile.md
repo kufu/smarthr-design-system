@@ -1,5 +1,7 @@
 # InputFile
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/input-file/
+
 input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。
 
 DropZoneの内部でも使用されています。

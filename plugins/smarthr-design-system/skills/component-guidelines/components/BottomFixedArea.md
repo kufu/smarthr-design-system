@@ -1,5 +1,7 @@
 # BottomFixedArea
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/bottom-fixed-area/
+
 > ⚠️ **非推奨**: FloatAreaと役割が重複しているためBottomFixedAreaは非推奨です。より柔軟に使えるFloatAreaを使ってください。
 
 画面下部に固定表示する領域のためのコンポーネントです。

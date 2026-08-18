@@ -1,5 +1,7 @@
 # Stack
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/layout/stack/
+
 要素を垂直方向に並べるためのレイアウトコンポーネントです。ページの「セクション」や「ブロック」、段落、フォーム項目などあらゆる要素を垂直に積み重ねて配置するときに使います。
 
 Every Layout（https://every-layout.dev/）のStackを参考にしています。

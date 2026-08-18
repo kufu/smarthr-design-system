@@ -1,5 +1,7 @@
 # HelpLink
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/text-link/help-link/
+
 ヘルプページを開くためのテキストリンクコンポーネントです。SmartHRのヘルプセンターへ誘導するリンクを置くときに使います。
 
 ## import

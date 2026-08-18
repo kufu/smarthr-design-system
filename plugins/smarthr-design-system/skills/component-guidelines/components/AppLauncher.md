@@ -1,5 +1,7 @@
 # AppLauncher
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/header/app-launcher/
+
 > ⚠️ **非推奨**: AppLauncherは古いコンポーネントです。代わりにAppHeaderのアプリランチャー（features props）を使用してください。
 
 Header内に配置されるSmartHRの複数のアプリケーション間を遷移するためのランチャーコンポーネントです。

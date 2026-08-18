@@ -1,5 +1,7 @@
 # VisuallyHiddenText
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/visually-hidden-text/
+
 視覚的には隠しつつスクリーンリーダーには読み上げさせたいテキスト用のコンポーネントです。見出しやラベルが自明で、表示すると視覚的に冗長になるときなどに使います。
 
 ## import

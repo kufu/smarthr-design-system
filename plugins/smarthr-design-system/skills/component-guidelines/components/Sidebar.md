@@ -1,5 +1,7 @@
 # Sidebar
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/layout/sidebar/
+
 メインコンテンツとサイドコンテンツの2カラムを配置するためのレイアウトコンポーネントです。「コレクションとシングルの2カラム（https://smarthr.design/products/design-patterns/page-layout/#h3-13）」ページレイアウトなど、メインとサブの関係がある要素を左右に並べるときに使います。メインコンテンツが指定した最小幅未満になると折り返します。
 
 ## import

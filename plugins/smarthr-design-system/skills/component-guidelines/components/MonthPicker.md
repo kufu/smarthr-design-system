@@ -1,5 +1,7 @@
 # MonthPicker
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/picker/month-picker/
+
 > ⚠️ **非推奨**: MonthPickerは非推奨です。Input[type="month"]を使ってください。
 
 ユーザーに年と月を入力させる際に使用するコンポーネントです。

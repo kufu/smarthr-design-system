@@ -1,5 +1,7 @@
 # Checkbox
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/checkbox/
+
 input[type='checkbox']要素の代替としてオン/オフや真偽の状態を入力させるコンポーネントです。5個以下の選択肢から複数の値を選択させるとき、即時反映ではなく送信ボタンで確定させるときに使います。
 
 ## import

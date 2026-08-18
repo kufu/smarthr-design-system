@@ -1,5 +1,7 @@
 # Pagination
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/pagination/
+
 「よくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。使用する場所によって機能を落とせます。
 
 ## import

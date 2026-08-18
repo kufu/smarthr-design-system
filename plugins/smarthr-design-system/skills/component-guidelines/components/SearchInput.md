@@ -1,5 +1,7 @@
 # SearchInput
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/input/search-input/
+
 検索キーワードを入力させるためのコンポーネントです。検索フォームで検索語句を入力させるときに使います。
 
 よくあるテーブルのオブジェクトの検索（https://smarthr.design/products/design-patterns/smarthr-table/#h4-4）などに使用します。 prefixは検索アイコン「<FaMagnifyingGlassIcon alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン" />」に固定されています。

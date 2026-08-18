@@ -1,5 +1,7 @@
 # TdRadioButton
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/table/
+
 RadioButtonを内包するデータセル（Td）の派生コンポーネントです。テーブル各行から1行だけ選ばせるときに使います。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法はよくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）を参照してください。

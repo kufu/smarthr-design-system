@@ -1,5 +1,7 @@
 # SmartHRLogo
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/smarthr-logo/
+
 SmartHRのロゴを表示するためのコンポーネントです。
 
 ## import

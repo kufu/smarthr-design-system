@@ -1,5 +1,7 @@
 # Heading
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/heading/
+
 見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。
 
 ## import

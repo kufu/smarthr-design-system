@@ -1,5 +1,7 @@
 # NotFoundErrorScreen
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/not-found-error-screen/
+
 存在しないページであることを表示する全画面コンポーネントです。404相当のエラーを伝えるときに使います。
 
 ユーザーが存在しないページにアクセスした場合、ページ自体が移動・削除された可能性の提示と、アプリケーションのホームへ戻るリンクを表示します。

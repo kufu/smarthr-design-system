@@ -1,5 +1,7 @@
 # EmptyTableBody
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/table/
+
 テーブルにデータがない場合に空状態を表示するtbodyコンポーネントです。空状態のメッセージを提示するときに使います。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法はよくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）を参照してください。

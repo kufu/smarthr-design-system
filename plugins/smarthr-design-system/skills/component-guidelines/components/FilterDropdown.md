@@ -1,5 +1,7 @@
 # FilterDropdown
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/dropdown/filter-dropdown/
+
 「よくあるテーブル」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。Checkbox/RadioButton/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。
 
 ## import

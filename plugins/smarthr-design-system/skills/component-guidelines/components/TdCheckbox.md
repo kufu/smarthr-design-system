@@ -1,5 +1,7 @@
 # TdCheckbox
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/table/
+
 Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法はよくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）を参照してください。

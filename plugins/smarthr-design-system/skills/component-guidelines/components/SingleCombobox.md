@@ -1,5 +1,7 @@
 # SingleCombobox
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/combobox/single-combobox/
+
 選択肢から1つの値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら1つを選択するときに使います。
 
 ## import

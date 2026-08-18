@@ -1,5 +1,7 @@
 # FormDialog
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/form-dialog/
+
 フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるためのActionDialog派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、Enterキーでの送信が必要なときに使います。
 
 各種基準はActionDialogと共通です。

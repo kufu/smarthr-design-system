@@ -1,5 +1,7 @@
 # RequiredLabel
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/status-label/required-label/
+
 FormControlやFieldsetで入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。
 
 ## import

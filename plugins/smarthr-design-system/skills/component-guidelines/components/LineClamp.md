@@ -1,5 +1,7 @@
 # LineClamp
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/line-clamp/
+
 テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。
 
 最大行数maxLinesに1〜6を指定すると、その行数に収まらなかったテキストが「…」で省略されます。

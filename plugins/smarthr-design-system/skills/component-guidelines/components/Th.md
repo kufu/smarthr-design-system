@@ -1,5 +1,7 @@
 # Th
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/table/
+
 th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法はよくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）を参照してください。

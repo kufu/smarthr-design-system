@@ -1,5 +1,7 @@
 # UpwardLink
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/text-link/upward-link/
+
 一階層上のコンテンツに戻るためのテキストリンクコンポーネントです。詳細画面から一覧画面など親階層へ戻る導線を置くときに使います。
 
 ## import

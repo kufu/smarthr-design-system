@@ -1,5 +1,7 @@
 # ModelessDialog
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/modeless-dialog/
+
 背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。
 
 ## import

@@ -1,5 +1,7 @@
 # Loader
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/loader/
+
 読み込み中や処理中であることを伝えるためのコンポーネントです。
 
 ## import

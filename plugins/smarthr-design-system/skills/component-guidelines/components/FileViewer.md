@@ -1,5 +1,7 @@
 # FileViewer
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/file-viewer/
+
 画像やPDFファイルを表示・拡大縮小・回転できるファイルビューアーコンポーネントです。ファイルの内容をプレビューするときに使います。
 
 ## import

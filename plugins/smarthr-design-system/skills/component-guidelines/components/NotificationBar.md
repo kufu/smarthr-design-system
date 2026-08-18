@@ -1,5 +1,7 @@
 # NotificationBar
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/notification-bar/
+
 システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。
 
 ## import

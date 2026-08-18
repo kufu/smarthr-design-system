@@ -1,5 +1,7 @@
 # DatePicker
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/date-picker/
+
 > ⚠️ **非推奨**: DatePickerは非推奨です。Input[type=date] を使ってください。
 
 ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。

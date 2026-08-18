@@ -1,5 +1,7 @@
 # SortDropdown
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/dropdown/sort-dropdown/
+
 コレクションの並べ替えを提供するためのドロップダウンコンポーネントです。主にテーブル以外のリストやカード一覧の並べ替え項目と並び順を設定するときに使います。
 
 ## import

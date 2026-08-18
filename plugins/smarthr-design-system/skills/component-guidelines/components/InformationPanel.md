@@ -1,5 +1,7 @@
 # InformationPanel
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/information-panel/
+
 ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。
 
 ## import

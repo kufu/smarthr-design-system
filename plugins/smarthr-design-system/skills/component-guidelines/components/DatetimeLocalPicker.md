@@ -1,5 +1,7 @@
 # DatetimeLocalPicker
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/picker/datetime-local-picker/
+
 > ⚠️ **非推奨**: DatetimeLocalPickerは非推奨です。Input[type="datetime-local"]を使ってください。
 
 ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。

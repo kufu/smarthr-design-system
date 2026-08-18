@@ -1,5 +1,7 @@
 # Timeline
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/timeline/
+
 情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。
 
 ## import

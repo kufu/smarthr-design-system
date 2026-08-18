@@ -1,5 +1,7 @@
 # PageCounter
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/page-counter/
+
 「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。
 
 ## import

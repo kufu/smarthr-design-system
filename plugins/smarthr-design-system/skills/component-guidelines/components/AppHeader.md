@@ -1,5 +1,7 @@
 # AppHeader
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/app-header/
+
 画面上部に配置するSmartHR共通ヘッダーコンポーネントです。HeaderとAppNaviを結合し、各アプリケーションの表示を共通化します。
 
 ## import

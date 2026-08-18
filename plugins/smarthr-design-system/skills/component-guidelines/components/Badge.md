@@ -1,5 +1,7 @@
 # Badge
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/badge/
+
 件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。
 
 ## import

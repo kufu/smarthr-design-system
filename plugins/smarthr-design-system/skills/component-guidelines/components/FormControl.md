@@ -1,5 +1,7 @@
 # FormControl
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/form-control/
+
 単一の入力要素にラベル、ヘルプ/エラー/補足のメッセージテキスト、入力必須か否かを紐づけるためのコンポーネントです。1つの入力欄にラベル付けするとき、入力欄にエラーや補足メッセージを表示するときに使います。
 
 ## import

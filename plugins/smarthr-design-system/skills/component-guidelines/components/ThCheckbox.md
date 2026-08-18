@@ -1,5 +1,7 @@
 # ThCheckbox
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/table/
+
 Checkboxを内包する列見出しセル（Th）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル全行の一括選択UIを列見出しに配置するときに使います。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法はよくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）を参照してください。

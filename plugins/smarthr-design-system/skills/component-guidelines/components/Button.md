@@ -1,5 +1,7 @@
 # Button
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/button/
+
 button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。
 
 ## import

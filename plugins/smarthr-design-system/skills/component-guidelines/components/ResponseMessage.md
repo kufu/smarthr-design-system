@@ -1,5 +1,7 @@
 # ResponseMessage
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/response-message/
+
 システムからの通知を表示するためのアイコン付きテキストコンポーネントです。要素の状態や操作結果のフィードバックを要素の近くに表示するときに使います。
 
 ## import

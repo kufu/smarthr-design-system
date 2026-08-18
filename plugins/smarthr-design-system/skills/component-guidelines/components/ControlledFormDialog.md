@@ -1,5 +1,7 @@
 # ControlledFormDialog
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/form-dialog/
+
 FormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
 
 各種基準はActionDialogと共通です。

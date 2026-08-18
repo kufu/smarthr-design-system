@@ -1,5 +1,7 @@
 # ErrorScreen
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/
+
 エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。
 
 なんらかのエラーによってユーザーが操作できなくなった場合や、ユーザーに操作をさせたくない場合に使用してください。

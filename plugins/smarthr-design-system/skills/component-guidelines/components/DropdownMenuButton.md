@@ -1,5 +1,7 @@
 # DropdownMenuButton
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/dropdown/dropdown-menu-button/
+
 同じ対象に関連する複数の操作をまとめてドロップダウン表示するメニューボタンコンポーネントです。編集・複製・削除など、オブジェクトに対する複数アクションをまとめるときに使います。
 
 ## import

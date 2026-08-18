@@ -1,5 +1,7 @@
 # Dropdown
 
+> 📖 公式ドキュメント: https://smarthr.design/products/components/dropdown/
+
 ボタンを押すとパネルが開く動作を提供するプリミティブコンポーネントです。DropdownMenuButton/FilterDropdown/SortDropdownで実現できない独自のドロップダウンUIを提供するときに使います。
 
 大きく分けるとパネルを開くための引き金となるDropdownTriggerとパネル自体を指すDropdownContentから構成されます。
