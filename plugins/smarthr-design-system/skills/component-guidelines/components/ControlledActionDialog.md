@@ -47,3 +47,6 @@ ControlledActionDialog に直接関連する eslint-plugin-smarthr のルール�
 
 ### 使用上の注意 > 複数のモーダルダイアログを同時に表示しない (via MultipleModalWarning.mdx)
 - [avoid] モーダルダイアログを 1 つの操作で複数個表示したり、モーダルダイアログ上の操作によって 2 つ目のモーダルダイアログを表示したりしない
+
+### 使用上の注意 > ダイアログコンテンツにフォームが含まれている場合は、FormDialogの使用を検討する
+- [should] ダイアログコンテンツにフォーム要素を含む場合は FormDialog の使用を検討する

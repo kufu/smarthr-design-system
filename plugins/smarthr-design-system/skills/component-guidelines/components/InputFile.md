@@ -35,13 +35,13 @@ InputFile に直接関連する eslint-plugin-smarthr のルールは現時点�
   - DropZone を一定以上の大きさでレイアウトすることが難しい場合は InputFile を推奨する
   - 1 つの画面に複数のファイル選択 UI を配置する必要がある場合は InputFile を推奨する
 
-### アクセシビリティ
+### アクセシビリティ > 開発時の考慮点
 - [must] InputFile では入力すべき内容をユーザーに明確に伝えるラベルと、支援技術向けの Accessible Name を設定する
 
-### アクセシビリティ > InputFileでラベルを提供する
+### アクセシビリティ > 開発時の考慮点 > InputFileでラベルを提供する
 - [must] 入力要素として「何を入力すべきか」を示すラベルを FormControl の `title` で設定する
 
-### アクセシビリティ > InputFileでラベルを省略する場合
+### アクセシビリティ > 開発時の考慮点 > InputFileでラベルを省略する場合
 - [must] ラベルを省略する場合も Accessible Name を漏れなく提供する
   - FormControl の `label.dangerouslyHide` を使用してラベルを不可視化する
   - `aria-label` で入力する内容を特定できる Accessible Name を設定する
