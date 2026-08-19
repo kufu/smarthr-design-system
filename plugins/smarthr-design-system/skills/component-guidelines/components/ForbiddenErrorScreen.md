@@ -1,7 +1,5 @@
 # ForbiddenErrorScreen
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/forbidden-error-screen/
-
 アクセス権限がないことを表示する全画面コンポーネントです。403相当の権限エラーを伝えるときに使います。
 
 ユーザーがページにアクセスする権限をもっていない場合、所属企業の担当者（管理者）へ問い合わせるという対応策と、アプリケーションのホームへ戻るリンクを表示します。
@@ -27,3 +25,7 @@ ForbiddenErrorScreen に直接関連する eslint-plugin-smarthr のルールは
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/forbidden-error-screen/

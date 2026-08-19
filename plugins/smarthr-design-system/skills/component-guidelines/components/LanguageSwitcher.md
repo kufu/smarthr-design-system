@@ -1,7 +1,5 @@
 # LanguageSwitcher
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/header/language-switcher/
-
 表示言語を切り替えるためのコンポーネントです。多言語対応したアプリケーションで利用者に言語選択UIを提供するときに使います。
 
 通常はAppHeaderの中に組み込んで使用します。詳細はAppHeaderを参照してください。
@@ -33,3 +31,7 @@ LanguageSwitcher に直接関連する eslint-plugin-smarthr のルールは現�
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/header/language-switcher/

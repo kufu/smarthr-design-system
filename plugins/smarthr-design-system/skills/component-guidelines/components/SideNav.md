@@ -1,7 +1,5 @@
 # SideNav
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/side-nav/
-
 同一画面内のビューを縦方向に並べて切り替えるためのナビゲーションコンポーネントです。「コレクションとシングルの2カラム」ページレイアウトのコレクション領域で一覧から選んだオブジェクトの詳細を切り替えるとき、設定画面などで1つの画面内に並ぶビューを切り替えるときに使います。
 
 ## import
@@ -55,3 +53,7 @@ SideNav に直接関連する eslint-plugin-smarthr のルールは現時点で�
 
 ### モバイル
 - [must] SideNav を使った 2 カラムのレイアウトはモバイルに適さないため、ページを分割するか SideNav をドロワーで表示する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/side-nav/

@@ -1,7 +1,5 @@
 # Container
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/layout/container/
-
 ページの主要コンテンツの横幅と外側のパディングを制御するレイアウトコンポーネントです。すべてのページで本文領域の最大幅と上下左右の余白を設定するときに使います。
 
 ## import
@@ -36,3 +34,7 @@ smarthr-ui/Layoutsに属するコンポーネント(Center,Cluster,Container,Ree
 ### レイアウト > コンテナの大きさ
 - [should] 大量のデータを表示する場合や 2 カラムレイアウトで 1 つのカラムに 1 ページ相当の情報を表示する場合は `WIDE` や `FULL` を検討する
 - [should] ページに表示する情報が少ない場合や入力要素が中心の画面の場合は `NARROW` を検討する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/layout/container/

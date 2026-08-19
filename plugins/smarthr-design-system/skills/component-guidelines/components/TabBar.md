@@ -1,7 +1,5 @@
 # TabBar
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/tab-bar/
-
 異なるオブジェクトやビューを横方向のタブで切り替えるためのコンポーネントです。同一画面内で並列関係にあるビューを切り替えるとき、影響範囲を下線で明確にしながらタブを並べるときに使います。
 
 ## import
@@ -50,3 +48,7 @@ TabBar に直接関連する eslint-plugin-smarthr のルールは現時点で�
 ### モバイル > タブが少ない場合の表示
 - [should] タブが 2〜3 程度の場合、TabBar を画面幅いっぱいに広げて各タブを均等に配置する
   - タブに表示するテキストが長い場合は、このパターンには適していない
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/tab-bar/

@@ -1,7 +1,5 @@
 # RequiredLabel
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/status-label/required-label/
-
 FormControlやFieldsetで入力必須を表すためのラベルコンポーネントです。フォーム項目に必須アイコンをつけるときに使います。
 
 ## import
@@ -23,3 +21,7 @@ RequiredLabel に直接関連する eslint-plugin-smarthr のルールは現時�
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/status-label/required-label/

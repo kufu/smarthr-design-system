@@ -1,7 +1,5 @@
 # Input
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/input/
-
 input[type='text']やinput[type='number']などの代替としてテキストや数値を1行で入力させるコンポーネントです。テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するときに使います。
 
 ## import
@@ -153,3 +151,7 @@ input や textarea などの入力要素に対してplaceholder属性を設定�
 
 ### アクセシビリティ > 開発時の考慮点 > アクセシブルネームの確認
 - [must] 設定したラベルが Input のアクセシブルネームとして正しく関連付けられていることを確認する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/input/

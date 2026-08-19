@@ -1,7 +1,5 @@
 # UpwardLink
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/text-link/upward-link/
-
 一階層上のコンテンツに戻るためのテキストリンクコンポーネントです。詳細画面から一覧画面など親階層へ戻る導線を置くときに使います。
 
 ## import
@@ -33,3 +31,7 @@ UpwardLink に直接関連する eslint-plugin-smarthr のルールは現時点�
 ### ライティング
 - [must] リンクテキストは基本的に `{一階層上の画面名}に戻る` と表記する
   - パーマリンクで直接移動してきた場合など一階層上のコンテンツの特定や類推が難しい場合は、`{一階層上の画面名}{一階層上のコンテンツの種類}に戻る` と表記する（例: コレクションは `{画面名}一覧に戻る`）
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/text-link/upward-link/

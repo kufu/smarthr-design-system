@@ -1,7 +1,5 @@
 # WarekiPicker
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/wareki-picker/
-
 和暦で日付を入力させ西暦に変換する機能を備えた入力コンポーネントです。和暦の日付入力が必要なときに使います。
 
 例えば、「令和4年12月3日」という日付を入力欄に貼り付けると「2022-12-03」に変換する機能を備えています。
@@ -39,3 +37,7 @@ WarekiPicker に直接関連する eslint-plugin-smarthr のルールは現時�
 
 ### 使用上の注意 > 和暦を西暦に変換できることを明示する
 - [must] 和暦変換できることをラベルや説明文を使って明示する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/wareki-picker/

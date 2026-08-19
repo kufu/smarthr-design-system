@@ -1,7 +1,5 @@
 # ControlledStepFormDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/step-form-dialog/
-
 StepFormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
@@ -65,3 +63,7 @@ ControlledStepFormDialog に直接関連する eslint-plugin-smarthr のルー�
 ### モバイル > レイアウト > フッターエリアのレイアウト
 - [must] モバイルで［戻る］ボタンと Primary ボタンを Cluster で横いっぱいに並べる
   - ［キャンセル］ボタンは Button 群の下部に配置する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/step-form-dialog/

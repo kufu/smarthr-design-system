@@ -1,7 +1,5 @@
 # Heading
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/heading/
-
 見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。
 
 ## import
@@ -91,3 +89,7 @@ Headingレベルの自動計算用のコンポーネントであるSectioningFra
 - [must] HTMLの見出しレベルが`h1`～`h6`の順になっているかを確認する
   - `Heading`のタイプ（`type`props）とHTMLの見出しレベル（`h2`～`h6`）が合致しているか
   - ページにある見出しが`h1`～`h6`の順でマークアップされているか
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/heading/

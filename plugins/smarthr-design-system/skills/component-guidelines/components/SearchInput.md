@@ -1,7 +1,5 @@
 # SearchInput
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/input/search-input/
-
 検索キーワードを入力させるためのコンポーネントです。検索フォームで検索語句を入力させるときに使います。
 
 よくあるテーブルのオブジェクトの検索（https://smarthr.design/products/design-patterns/smarthr-table/#h4-4）などに使用します。 prefixは検索アイコン「<FaMagnifyingGlassIcon alt="FaMagnifyingGlassIcon 虫眼鏡のアイコン" />」に固定されています。
@@ -35,3 +33,7 @@ SearchInput に直接関連する eslint-plugin-smarthr のルールは現時点
 
 ### 使用上の注意 > tooltipMessageで入力内容を補足する
 - [must] `tooltipMessage` を使用して入力内容に対する説明を補足する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/input/search-input/

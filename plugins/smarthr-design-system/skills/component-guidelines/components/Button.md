@@ -1,7 +1,5 @@
 # Button
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/button/
-
 button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。
 
 ## import
@@ -204,3 +202,7 @@ Dialogのボタンテキストにアイコンコンポーネント（名前が"I
 - [must] 複数の操作を並べる場合は Primary ボタンの位置を一貫させる
   - 水平方向に並べる場合は、識字方向の後方に Primary ボタンが来るようにレイアウトする（LTR では右側）
   - 垂直方向に並べる場合は、Primary ボタンの下に Secondary ボタンを置く
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/button/

@@ -1,7 +1,5 @@
 # MessageDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/message-dialog/
-
 ユーザーに情報を提示するためのダイアログコンポーネントです。入力などの操作を伴わずにメッセージや情報をダイアログで提示するときに使います。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
@@ -67,3 +65,7 @@ MessageDialog に直接関連する eslint-plugin-smarthr のルールは現時�
   - 採用を検討するケース: ダイアログ内で多くのスクロールを伴う場合・入力や編集などキーボード入力操作が多い場合
   - ［閉じる］ボタンはタイトルの右端に配置する
   - ダイアログの左右と裏側の領域（スクリムで隠されている領域）のパディングは `0（0px）` とする
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/message-dialog/

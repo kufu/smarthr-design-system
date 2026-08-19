@@ -1,7 +1,5 @@
 # UnauthorizedErrorScreen
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/unauthorized-error-screen/
-
 セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。
 
 ユーザーが一定時間操作しなかった場合、自動でログアウトしたことがわかるメッセージとログインボタンを表示します。ログインボタンを押せば、再ログインできるようにしてください。
@@ -28,3 +26,7 @@ UnauthorizedErrorScreen に直接関連する eslint-plugin-smarthr のルール
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/unauthorized-error-screen/

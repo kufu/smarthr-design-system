@@ -1,7 +1,5 @@
 # Groupbox
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/base/base-column/
-
 BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。
 
 // TODO: v99.3.1 で Panel に戻す
@@ -32,3 +30,7 @@ Groupbox に直接関連する eslint-plugin-smarthr のルールは現時点で
 ### デザインパターン > メッセージを表示するパターン
 - [should] Base や各種 Dialog（`contentBgColor` が `WHITE` の場合）の内側など、InformationPanel が配置できない場合に、見出しと内容のセットで注意事項や補足事項を表示するために使う
   - Base の内側では InformationPanel の代わりに BaseColumn で注意事項を表示する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/base/base-column/

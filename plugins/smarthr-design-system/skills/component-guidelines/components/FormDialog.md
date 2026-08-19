@@ -1,7 +1,5 @@
 # FormDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/form-dialog/
-
 フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるためのActionDialog派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、Enterキーでの送信が必要なときに使います。
 
 各種基準はActionDialogと共通です。
@@ -50,3 +48,7 @@ FormDialog に直接関連する eslint-plugin-smarthr のルールは現時点�
 - [should] ダイアログコンテンツにフォーム要素を含む場合は FormDialog の使用を検討する
   - `Enter` キーの押下でアクションボタンの送信処理を実行する
   - アクション系コールバックは `onSubmit` で、引数は `FormEvent<HTMLFormElement>` を受け取る
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/form-dialog/

@@ -1,7 +1,5 @@
 # Tooltip
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/tooltip/
-
 補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
 
 - 補足的な説明テキストを表示する場合
@@ -87,3 +85,7 @@ Tooltip に直接関連する eslint-plugin-smarthr のルールは現時点で�
 
 ### モバイル > やむを得ずモバイルでTooltipを表示する例 > disabledReason
 - [should] モバイルでも、よくあるリストのリスト操作エリアなどテキストで理由を表示するスペースを確保できない無効状態のボタンには `disabledReason` を用いて Tooltip を表示する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/tooltip/

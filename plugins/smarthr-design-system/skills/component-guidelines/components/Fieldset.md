@@ -1,7 +1,5 @@
 # Fieldset
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/fieldset/
-
 fieldset要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。
 
 姓名や期間の開始・終了のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
@@ -169,3 +167,7 @@ const AnyComponent = (
 ### 状態 > 読み取り専用
 - [should] 入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、Input の `readOnly` を使用する
 - [should] Fieldset 内の値を readOnly で表示する場合、分割されたフォームの値をそれぞれコピーする必要があり手間になる点に注意する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/fieldset/

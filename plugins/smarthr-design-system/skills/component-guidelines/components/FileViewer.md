@@ -1,7 +1,5 @@
 # FileViewer
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/file-viewer/
-
 画像やPDFファイルを表示・拡大縮小・回転できるファイルビューアーコンポーネントです。ファイルの内容をプレビューするときに使います。
 
 ## import
@@ -31,3 +29,7 @@ FileViewer に直接関連する eslint-plugin-smarthr のルールは現時点�
 
 ### モバイル
 - [should] FileViewer をダイアログで表示する際は、画面いっぱいに広げる拡大したダイアログの使用を検討する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/file-viewer/

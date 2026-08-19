@@ -1,7 +1,5 @@
 # Dialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/
-
 ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。
 
 ダイアログは、ユーザーに入力や選択などの操作を求めたり、情報を提示するために使われます。ユーザーの操作を起点として表示され、ユーザーの操作によって閉じられます。
@@ -93,3 +91,7 @@ Dialogのボタンテキストにアイコンコンポーネント（名前が"I
 
 ### Dialogを使用したコンポーネント > StepFormDialog
 - [should] タスクの完了に複数の操作が必要な場合は StepFormDialog を使う
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/

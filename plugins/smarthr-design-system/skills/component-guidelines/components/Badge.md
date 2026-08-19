@@ -1,7 +1,5 @@
 # Badge
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/badge/
-
 件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。
 
 ## import
@@ -30,3 +28,7 @@ Badge に直接関連する eslint-plugin-smarthr のルールは現時点では
 
 ### アクセシビリティ > 開発時の考慮点 > ドット表示の場合は状態が伝わるテキストを提供する
 - [must] テキストなしのドットバッジには `VisuallyHiddenText` を使用して支援テキストを提供する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/badge/

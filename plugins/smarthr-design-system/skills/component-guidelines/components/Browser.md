@@ -1,7 +1,5 @@
 # Browser
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/browser/
-
 階層構造を持つデータを選択するためのコンポーネントです。カテゴリや組織、フォルダなどのツリー状のデータをドリルダウンで選択するときに使います。
 
 ## import
@@ -27,3 +25,7 @@ Browser に直接関連する eslint-plugin-smarthr のルールは現時点で�
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/browser/

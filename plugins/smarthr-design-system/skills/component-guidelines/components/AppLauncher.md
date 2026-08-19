@@ -1,7 +1,5 @@
 # AppLauncher
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/header/app-launcher/
-
 > ⚠️ **非推奨**: AppLauncherは古いコンポーネントです。代わりにAppHeaderのアプリランチャー（features props）を使用してください。
 
 Header内に配置されるSmartHRの複数のアプリケーション間を遷移するためのランチャーコンポーネントです。
@@ -32,3 +30,7 @@ AppLauncher に直接関連する eslint-plugin-smarthr のルールは現時点
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/header/app-launcher/

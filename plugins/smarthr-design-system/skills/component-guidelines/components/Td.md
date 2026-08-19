@@ -1,7 +1,5 @@
 # Td
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/table/
-
 td要素の代替としてテーブルのデータセルを表すコンポーネントです。
 
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法はよくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）を参照してください。
@@ -67,3 +65,7 @@ import { Td } from 'smarthr-ui'
 ### アクセシビリティ > TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
 - [must] TdCheckbox および TdRadioButton を利用する場合は `aria-labelledby` 属性を必ず指定し、それだけで行を一意に判別できる要素への ID 参照を指定する
 - [must] オブジェクト名だけで一意に判別できないオブジェクトでは、複数の要素の ID 参照をスペース区切りで指定する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/table/

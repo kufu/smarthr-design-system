@@ -1,7 +1,5 @@
 # FormControl
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/form-control/
-
 単一の入力要素にラベル、ヘルプ/エラー/補足のメッセージテキスト、入力必須か否かを紐づけるためのコンポーネントです。1つの入力欄にラベル付けするとき、入力欄にエラーや補足メッセージを表示するときに使います。
 
 ## import
@@ -153,3 +151,7 @@ const Sample2 = () => (
 
 ### 状態 > 読み取り専用
 - [must] 入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、Input など内包する要素の `readOnly` を使用する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/form-control/

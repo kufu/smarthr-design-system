@@ -1,7 +1,5 @@
 # SmartHRLogo
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/smarthr-logo/
-
 SmartHRのロゴを表示するためのコンポーネントです。
 
 ## import
@@ -28,3 +26,7 @@ SmartHRLogo に直接関連する eslint-plugin-smarthr のルールは現時点
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/smarthr-logo/

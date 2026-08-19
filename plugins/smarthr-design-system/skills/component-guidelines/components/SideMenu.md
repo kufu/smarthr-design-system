@@ -1,7 +1,5 @@
 # SideMenu
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/side-menu/
-
 複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。
 
 ## import
@@ -42,3 +40,7 @@ SideMenu に直接関連する eslint-plugin-smarthr のルールは現時点で
 
 ### モバイル
 - [avoid] 横幅の狭いモバイルでは SideMenu を使わない
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/side-menu/

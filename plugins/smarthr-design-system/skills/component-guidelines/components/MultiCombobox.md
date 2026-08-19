@@ -1,7 +1,5 @@
 # MultiCombobox
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/combobox/multi-combobox/
-
 選択肢から複数の値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら複数を選択するときに使います。
 
 ## import
@@ -66,3 +64,7 @@ MultiCombobox に直接関連する eslint-plugin-smarthr のルールは現時�
 
 ### 状態 > 選択肢にない値の追加
 - [should] ユーザーがその場で選択肢を追加できるようにしたい場合は、`creatable` を適用してコールバック関数 `onAdd` を適切に実装する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/combobox/multi-combobox/

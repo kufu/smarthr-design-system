@@ -1,7 +1,5 @@
 # DropdownMenuButton
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dropdown/dropdown-menu-button/
-
 同じ対象に関連する複数の操作をまとめてドロップダウン表示するメニューボタンコンポーネントです。編集・複製・削除など、オブジェクトに対する複数アクションをまとめるときに使います。
 
 ## import
@@ -72,3 +70,7 @@ DropdownMenuButton に直接関連する eslint-plugin-smarthr のルールは�
 
 ### 状態 > 無効(disabled) > ドロップダウンパネルの操作の無効
 - [must] ドロップダウンパネル内の操作を無効にする場合、Button の `disabledReason` を使って無効状態の理由を表示する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dropdown/dropdown-menu-button/

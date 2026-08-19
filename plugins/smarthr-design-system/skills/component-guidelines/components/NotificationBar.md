@@ -1,7 +1,5 @@
 # NotificationBar
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/notification-bar/
-
 システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。
 
 ## import
@@ -59,3 +57,7 @@ NotificationBar に直接関連する eslint-plugin-smarthr のルールは現�
 
 ### モバイル > 特定の操作範囲へのフィードバックでの表示位置
 - [should] モバイルで NotificationBar が操作範囲外に表示される場合は、ユーザーがフィードバックを確認できる位置での表示方法を検討する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/notification-bar/

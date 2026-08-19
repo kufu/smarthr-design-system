@@ -1,7 +1,5 @@
 # Select
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/select/
-
 select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。
 
 Inputと見た目を揃えるために存在します。
@@ -76,3 +74,7 @@ input, textarea, select など入力要素に name 属性を設定すること�
 ### 状態 > デフォルト
 - [should] デフォルトは空の状態で表示する
   - ユーザーの入力作業が向上したりミスを減らせる場合には他の選択肢を設定することを検討する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/select/

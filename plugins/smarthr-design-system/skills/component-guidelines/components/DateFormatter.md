@@ -1,7 +1,5 @@
 # DateFormatter
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/formatter/date-formatter/
-
 日付データを任意の形式にフォーマットして表示するコンポーネントです。日付をユーザーの言語や地域設定に適した形式で表示するときに使います。
 
 ## import
@@ -28,3 +26,7 @@ DateFormatter に直接関連する eslint-plugin-smarthr のルールは現時�
 
 ### 使用上の注意 > 日付をフォーマットする機能だけ必要な場合
 - [must] フォーマットされた日付の文字列だけが必要な場合は `useDateFormat` の `formatDate` を使う
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/formatter/date-formatter/

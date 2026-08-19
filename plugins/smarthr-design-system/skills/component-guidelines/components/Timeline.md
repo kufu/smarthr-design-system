@@ -1,7 +1,5 @@
 # Timeline
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/timeline/
-
 情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。
 
 ## import
@@ -34,3 +32,7 @@ Timeline に直接関連する eslint-plugin-smarthr のルールは現時点で
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/timeline/

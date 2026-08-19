@@ -1,7 +1,5 @@
 # AccordionPanel
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/accordion-panel/
-
 縦に積まれた見出しのリストで、関連する詳細の表示・非表示を切り替えられるコンポーネントです。情報量が多い場合に表示内容を絞るときに使います。
 
 補足的な情報を折りたたんで画面をシンプルに保つことで、情報量が増えてもユーザーが重要な情報にたどりつきやすくなります。また、ページの要素が多くスクロールが生じる画面において、まず見出しだけを表示してユーザーに全体像を把握させたい場合にも使用できます。
@@ -62,3 +60,7 @@ AccordionPanel に直接関連する eslint-plugin-smarthr のルールは現時
 ### アクセシビリティ > ユーザーが操作していないリストを勝手に閉じない
 - [must] `expandableMultiply` props は `expandableMultiply={true}` に指定する
   - `expandableMultiply={false}` だと、1つのリストを展開するとすでに展開している別のリストが同時に閉じ、ユーザーが予測・意図していない動きが発生するため非推奨
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/accordion-panel/

@@ -1,7 +1,5 @@
 # DefinitionList
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/definition-list/
-
 見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。
 
 ## import
@@ -100,3 +98,7 @@ import { DefinitionListItem, DefinitionList } from 'smarthr-ui'
 
 ### レイアウト > 表示項目が1つしかない場合
 - [should] 表示項目が 1 つしかない場合に罫線が視線誘導を妨げるなら別の意匠を検討する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/definition-list/

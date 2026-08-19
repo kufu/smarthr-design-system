@@ -1,7 +1,5 @@
 # Chip
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/chip/
-
 テキストをタグのように装飾して表示するためのコンポーネントです。
 
 Chipを用いて装飾するのに向いているテキストはオブジェクトのプロパティで、タグやカテゴリーなどが該当します。
@@ -41,3 +39,7 @@ Chip に直接関連する eslint-plugin-smarthr のルールは現時点では�
 
 ### 使用上の注意 > アクションの要素を含めない
 - [should] Chip にアクションの要素を含めず、アクション要素を持たせたい場合は Button などの使用を検討する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/chip/

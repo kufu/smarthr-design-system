@@ -1,7 +1,5 @@
 # Switch
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/switch/
-
 オン/オフを即時に切り替えるスイッチコンポーネントです。機能の有効/無効や表示切替をユーザー操作で即座にシステムに反映させるときに使います。
 
 ## import
@@ -34,3 +32,7 @@ Switch に直接関連する eslint-plugin-smarthr のルールは現時点で�
 
 ### レイアウト > [WIP] モバイル
 - [must] モバイルでは Switch のサイズを大きくする
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/switch/

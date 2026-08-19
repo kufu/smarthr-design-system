@@ -1,7 +1,5 @@
 # AppNavi
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/app-navi/
-
 アプリケーション内の主要機能を切り替えるグローバルナビゲーションコンポーネントです。機能間を行き来するとき、機能切替以外でアプリ全体に関わる頻繁な操作を常設するときに使います。
 
 レイアウトなどはAppHeaderを参照してください。
@@ -69,3 +67,7 @@ AppNavi に直接関連する eslint-plugin-smarthr のルールは現時点で�
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/app-navi/

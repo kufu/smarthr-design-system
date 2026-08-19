@@ -1,7 +1,5 @@
 # ControlledMessageDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/message-dialog/
-
 MessageDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
@@ -65,3 +63,7 @@ ControlledMessageDialog に直接関連する eslint-plugin-smarthr のルール
   - 採用を検討するケース: ダイアログ内で多くのスクロールを伴う場合・入力や編集などキーボード入力操作が多い場合
   - ［閉じる］ボタンはタイトルの右端に配置する
   - ダイアログの左右と裏側の領域（スクリムで隠されている領域）のパディングは `0（0px）` とする
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/message-dialog/

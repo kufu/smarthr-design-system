@@ -1,7 +1,5 @@
 # TimeFormatter
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/formatter/time-formatter/
-
 時刻データを任意の形式にフォーマットして表示するコンポーネントです。時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。
 
 ## import
@@ -28,3 +26,7 @@ TimeFormatter に直接関連する eslint-plugin-smarthr のルールは現時�
 
 ### 使用上の注意 > 時刻をフォーマットする機能だけ必要な場合
 - [must] フォーマットされた時刻の文字列だけが必要な場合は `useDateFormat` の `formatTime` を使う
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/formatter/time-formatter/

@@ -1,7 +1,5 @@
 # InputFile
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/input-file/
-
 input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。
 
 DropZoneの内部でも使用されています。
@@ -50,3 +48,7 @@ InputFile に直接関連する eslint-plugin-smarthr のルールは現時点�
 
 ### モバイル
 - [should] 目的のファイルを選択するステップが複数回に分かれるケースでは、必要に応じて `multiple={{ appendable: true }}` props の利用を検討する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/input-file/

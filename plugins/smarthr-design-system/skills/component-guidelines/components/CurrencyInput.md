@@ -1,7 +1,5 @@
 # CurrencyInput
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/input/currency-input/
-
 金額を入力させるためのコンポーネントです。給与・税額など金額値を入力させるときに使います。入力値が整数であった場合、入力欄からフォーカスを外したときに3桁ごとにカンマが入った値で表示されます。
 
 ## import
@@ -40,3 +38,7 @@ CurrencyInput に直接関連する eslint-plugin-smarthr のルールは現時�
 - [must] 通貨記号や単位は `prefix` または `suffix` で補足する
   - 一般的に内容に対して前方に置かれる単位（例: 米ドル）には `prefix` を用いる
   - 後方に置かれる単位（例: 日本円）には `suffix` を用いる
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/input/currency-input/

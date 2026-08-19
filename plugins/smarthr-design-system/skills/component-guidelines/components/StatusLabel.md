@@ -1,7 +1,5 @@
 # StatusLabel
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/status-label/
-
 オブジェクトの状態を短いラベルで伝えるためのコンポーネントです。Table内のステータス欄や、オブジェクト詳細の画面タイトルで状態を提示するときに使います。
 
 重要度によって2種類の見た目を使い分けます。警告やエラーは特別な状態として見た目を持っています。
@@ -41,3 +39,7 @@ StatusLabel に直接関連する eslint-plugin-smarthr のルールは現時点
 
 ### 状態 > 強調の有無
 - [should] 他のステータスと区別して視覚的に目立たせたい場合は、背景色と文字色を反転させた「強調あり」のラベルを使う
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/status-label/

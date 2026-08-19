@@ -1,7 +1,5 @@
 # Reel
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/layout/reel/
-
 要素を水平方向に並べ、はみ出した場合は水平方向にスクロールさせるレイアウトコンポーネントです。複数の要素を水平方向にスクロールさせて見せるときに使います。
 
 Every Layout（https://every-layout.dev/）のReelを参考にしています。 要素を折り返して並べたいときはClusterを使います。
@@ -31,3 +29,7 @@ smarthr-ui/Layoutsに属するコンポーネント(Center,Cluster,Container,Ree
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/layout/reel/

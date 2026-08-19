@@ -1,7 +1,5 @@
 # MonthPicker
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/picker/month-picker/
-
 > ⚠️ **非推奨**: MonthPickerは非推奨です。Input[type="month"]を使ってください。
 
 ユーザーに年と月を入力させる際に使用するコンポーネントです。
@@ -27,3 +25,7 @@ MonthPicker に直接関連する eslint-plugin-smarthr のルールは現時点
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/picker/month-picker/

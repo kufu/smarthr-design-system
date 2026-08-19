@@ -24,11 +24,6 @@ export function renderSkill(opts: SkillRenderOptions): string {
   parts.push(`# ${groupName}`);
   parts.push('');
 
-  if (docUrl) {
-    parts.push(`> 📖 公式ドキュメント: ${docUrl}`);
-    parts.push('');
-  }
-
   if (indexInfo) {
     if (indexInfo.deprecated) {
       const messagePlain = stripHtml(indexInfo.deprecatedMessage).trim();
@@ -140,6 +135,13 @@ export function renderSkill(opts: SkillRenderOptions): string {
       }
       parts.push('');
     }
+  }
+
+  if (docUrl) {
+    parts.push('## 参考');
+    parts.push('');
+    parts.push(`- 📖 公式ドキュメント: ${docUrl}`);
+    parts.push('');
   }
 
   return parts.join('\n');

@@ -1,7 +1,5 @@
 # ControlledFormDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/form-dialog/
-
 FormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
 
 各種基準はActionDialogと共通です。
@@ -48,3 +46,7 @@ ControlledFormDialog に直接関連する eslint-plugin-smarthr のルールは
 - [should] ダイアログコンテンツにフォーム要素を含む場合は FormDialog の使用を検討する
   - `Enter` キーの押下でアクションボタンの送信処理を実行する
   - アクション系コールバックは `onSubmit` で、引数は `FormEvent<HTMLFormElement>` を受け取る
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/form-dialog/

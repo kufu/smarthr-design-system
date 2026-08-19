@@ -1,7 +1,5 @@
 # InformationPanel
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/information-panel/
-
 ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。
 
 ## import
@@ -49,3 +47,7 @@ InformationPanelを白背景に配置することを禁止します。
 ### 状態 > デフォルト
 - [should] 全文表示したままだと操作の妨げになるなど、利用者の使い勝手に影響する場合は開閉ボタンの表示を検討する
 - [should] 開閉ボタンを表示する際は、利用者のストレスを避けるため開閉状態の保持を合わせて検討する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/information-panel/

@@ -1,7 +1,5 @@
 # FloatArea
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/float-area/
-
 画面内に固定表示する領域のためのコンポーネントです。スクロール位置によらずフォーム送信ボタンや主要アクションを常時見せるときに使います。
 
 主にモーダルなUI（https://smarthr.design/products/design-patterns/modal-ui/）を作るために使います。
@@ -48,3 +46,7 @@ FloatArea に直接関連する eslint-plugin-smarthr のルールは現時点�
 - [must] モバイルで FloatArea を画面の下部に固定する場合、左右の余白をなくし画面幅いっぱいに表示する
 - [must] モバイルで Secondary ボタン（任意）と Primary ボタンは横いっぱいに並べる
 - [must] モバイルで Tertiary ボタン（任意）は、Secondary・Primary ボタン群の下部に配置する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/float-area/

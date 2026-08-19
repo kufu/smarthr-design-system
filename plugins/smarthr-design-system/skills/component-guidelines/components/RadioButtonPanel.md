@@ -1,7 +1,5 @@
 # RadioButtonPanel
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/radio-button-panel/
-
 RadioButtonをパネル型に視覚的強化した単一選択コンポーネントです。選択肢に説明やステータスを付加するとき、視覚的に強調して操作領域を確保するときに使います。
 
 ## import
@@ -41,3 +39,7 @@ RadioButtonPanel に直接関連する eslint-plugin-smarthr のルールは現�
 
 ### 状態 > デフォルト
 - [must] 選択肢の中から 1 つデフォルト値に設定するものを決める
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/radio-button-panel/

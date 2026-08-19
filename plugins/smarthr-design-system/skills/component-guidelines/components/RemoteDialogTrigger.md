@@ -1,7 +1,5 @@
 # RemoteDialogTrigger
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/remote-dialog-trigger/
-
 別コンポーネント階層から離れた位置のダイアログを開くためのトリガーコンポーネントです。ボタン配置とダイアログ定義を分離して管理するときに使います。
 
 たとえば、一覧テーブルの各行に置いた「削除」ボタンから、共通の削除確認ダイアログを開きたい場合に使えます。各行ごとに同じダイアログを書く必要がなく、テーブルの外に1つだけ配置したダイアログを、各行のボタンから共通で開くことができます。
@@ -47,3 +45,7 @@ RemoteDialogTrigger、RemoteTriggerXxxxDialogのベストプラクティスを�
 ### 使用上の注意 > ボタンとダイアログを同じ場所に書ける場合は、通常のダイアログコンポーネントを使用する
 - [must] ボタンとダイアログを同じ場所に書ける場合は ActionDialog や FormDialog などのダイアログコンポーネントを使う
   - `RemoteDialogTrigger` は、同じダイアログを複数の場所から開きたい場合や、ボタンとダイアログを同じ場所に置きづらい場合にのみ使う
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/remote-dialog-trigger/

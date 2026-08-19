@@ -1,7 +1,5 @@
 # DropZone
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/drop-zone/
-
 ドラッグアンドドロップでのファイル選択を主目的としたコンポーネントです。広いドロップ領域でファイルをアップロードさせるときに使います。
 
 ドラッグアンドドロップでファイル選択させるためのコンポーネントです。広いドロップ領域でファイルをアップロードさせるときに使います。
@@ -49,3 +47,7 @@ DropZone に直接関連する eslint-plugin-smarthr のルールは現時点で
 
 ### モバイル
 - [must] モバイル中心のユースケースでは InputFile を使う
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/drop-zone/

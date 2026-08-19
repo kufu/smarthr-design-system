@@ -1,7 +1,5 @@
 # ActionDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/action-dialog/
-
 ユーザーに確認や単純な操作を求めるためのダイアログコンポーネントです。フォーム要素を含まない確認・実行のダイアログを表示するときに使います。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
@@ -51,3 +49,7 @@ ActionDialog に直接関連する eslint-plugin-smarthr のルールは現時�
 
 ### 使用上の注意 > 複数のモーダルダイアログを同時に表示しない (via MultipleModalWarning.mdx)
 - [avoid] モーダルダイアログを 1 つの操作で複数個表示したり、モーダルダイアログ上の操作によって 2 つ目のモーダルダイアログを表示したりしない
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/action-dialog/

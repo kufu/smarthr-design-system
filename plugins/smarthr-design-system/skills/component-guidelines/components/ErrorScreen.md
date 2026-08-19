@@ -1,7 +1,5 @@
 # ErrorScreen
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/
-
 エラーを全画面で表示するためのプリミティブコンポーネントです。Auth/Forbidden/NotFound/Unauthorized/Unexpectedの各ErrorScreenで実現できない独自のエラー画面を提供するときに使います。
 
 なんらかのエラーによってユーザーが操作できなくなった場合や、ユーザーに操作をさせたくない場合に使用してください。
@@ -45,3 +43,7 @@ ErrorScreen に直接関連する eslint-plugin-smarthr のルールは現時点
 
 ### レイアウト > リンク
 - [should] エラーになったときにユーザーの助けになるようなページへ誘導できる場合はリンクを表示する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/error-screen/

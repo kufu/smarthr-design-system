@@ -1,7 +1,5 @@
 # PageHeading
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/heading/page-heading/
-
 画面全体の最上位見出しを表示するためのコンポーネントです。h1要素として画面タイトルを示すときに使います。
 
 ## import
@@ -30,3 +28,7 @@ PageHeading に直接関連する eslint-plugin-smarthr のルールは現時点
 
 ### 使用上の注意 > 画面ごとに1度しか使わない
 - [must] PageHeading は画面のタイトルとして画面ごとに 1 度しか使わない
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/heading/page-heading/

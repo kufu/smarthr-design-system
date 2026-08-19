@@ -1,7 +1,5 @@
 # Disclosure
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/disclosure/
-
 トリガーやコンテンツに装飾を持たない、コンテンツの表示・非表示を切り替えるためのプリミティブコンポーネントです。開閉動作だけを提供するとき、AccordionPanelで実現できない独自の開閉UIを提供するときに使います。
 
 ## import
@@ -45,3 +43,7 @@ DropdownTriggerやDialogTrigger, DisclosureTrigger内にbutton要素を設置す
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/disclosure/

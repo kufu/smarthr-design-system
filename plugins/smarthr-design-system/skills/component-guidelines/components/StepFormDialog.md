@@ -1,7 +1,5 @@
 # StepFormDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/step-form-dialog/
-
 複数ステップに分けたフォームを内包するダイアログコンポーネントです。ウィザード形式で複数の操作を順に進めるタスクをダイアログで提供するときに使います。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
@@ -61,3 +59,7 @@ StepFormDialog に直接関連する eslint-plugin-smarthr のルールは現時
 ### モバイル > レイアウト > フッターエリアのレイアウト
 - [must] モバイルで［戻る］ボタンと Primary ボタンを Cluster で横いっぱいに並べる
   - ［キャンセル］ボタンは Button 群の下部に配置する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/step-form-dialog/

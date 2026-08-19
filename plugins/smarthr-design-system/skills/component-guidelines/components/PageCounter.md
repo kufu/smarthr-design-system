@@ -1,7 +1,5 @@
 # PageCounter
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/page-counter/
-
 「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。
 
 ## import
@@ -29,3 +27,7 @@ PageCounter に直接関連する eslint-plugin-smarthr のルールは現時点
 ### モバイル
 - [must] PageCounter は Pagination と合わせて使う
 - [avoid] モバイルで Pagination を表示していない場合（代わりに「さらに表示」ボタンを表示している場合など）は PageCounter を使わない
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/page-counter/

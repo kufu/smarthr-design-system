@@ -1,7 +1,5 @@
 # Text
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/text/
-
 タイポグラフィのデザイントークンを使ってテキストを表示するためのコンポーネントです。本文や説明文、ラベルテキストにデザイントークン準拠のフォントサイズ・ウェイト・色・行送り・見出しスタイルなどを適用するときに使います。
 
 ## import
@@ -47,3 +45,7 @@ Textコンポーネントの適切な使用を促進するルールです。以�
 
 ### 種類 > 見出しスタイル
 - [must] 見出しとして使う場合は Text ではなく Heading を使う
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/text/

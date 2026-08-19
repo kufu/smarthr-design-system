@@ -1,7 +1,5 @@
 # SmartHRAILogo
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/smarthr-ai-logo/
-
 SmartHRのAI関連の機能ラベルを表示するためのコンポーネントです。
 
 ## import
@@ -27,3 +25,7 @@ SmartHRAILogo に直接関連する eslint-plugin-smarthr のルールは現時�
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/smarthr-ai-logo/

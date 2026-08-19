@@ -1,7 +1,5 @@
 # Textarea
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/textarea/
-
 textarea要素の代替としてテキストを複数行で入力させるコンポーネントです。長文を入力させるとき、文字数カウンタが必要なときに使います。
 
 入力によって自動で領域が広がる機能を備えています。
@@ -91,3 +89,7 @@ input や textarea などの入力要素に対してplaceholder属性を設定�
 - [must] モバイル向けブラウザでの意図しない拡大を避けるため、Textarea のフォントサイズは `M` 以上を使う
 - [should] モバイルでは `autoResize` props を指定し、`maxRows` props は指定しないことを推奨する
   - 一部のモバイル向けブラウザでは Textarea のリサイズに対応していないことがあり、Textarea 内でスクロールが発生すると操作しづらくなるため
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/textarea/

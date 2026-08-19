@@ -1,7 +1,5 @@
 # Panel
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/base/
-
 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。
 
 // TODO: v99.3.1 で Base に戻す
@@ -36,3 +34,7 @@ InformationPanelを白背景に配置することを禁止します。
 - [avoid] レイヤー順序が 2 以上の要素（InformationPanel など）を Base の上に配置しない
 - [should] Base の上で矩形によるグルーピングをする場合は基本的に BaseColumn を使う
 - [must] レイアウト上 Base を重ねる必要がある場合は、背景色が同色（WHITE）にならないよう OVER_BACKGROUND などに変更してレイヤー順序を表現する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/base/

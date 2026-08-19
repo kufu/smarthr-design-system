@@ -1,7 +1,5 @@
 # Loader
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/loader/
-
 読み込み中や処理中であることを伝えるためのコンポーネントです。
 
 ## import
@@ -33,3 +31,7 @@ Loader に直接関連する eslint-plugin-smarthr のルールは現時点で�
 
 ### 使用上の注意 > 読み込みが1秒未満で終わる場合は使用しない
 - [avoid] 読み込み時間が 1 秒未満の場合は Loader を使用しない
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/loader/

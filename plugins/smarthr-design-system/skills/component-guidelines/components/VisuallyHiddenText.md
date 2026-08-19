@@ -1,7 +1,5 @@
 # VisuallyHiddenText
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/visually-hidden-text/
-
 視覚的には隠しつつスクリーンリーダーには読み上げさせたいテキスト用のコンポーネントです。見出しやラベルが自明で、表示すると視覚的に冗長になるときなどに使います。
 
 ## import
@@ -25,3 +23,7 @@ VisuallyHiddenText に直接関連する eslint-plugin-smarthr のルールは�
 ### 使用上の注意
 - [avoid] VisuallyHiddenText を必要以上に使いすぎない
 - [should] 文脈をしっかり考慮し、スクリーンリーダーユーザーにとって価値のある情報を提供する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/visually-hidden-text/

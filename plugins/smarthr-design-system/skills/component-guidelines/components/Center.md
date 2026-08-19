@@ -1,7 +1,5 @@
 # Center
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/layout/center/
-
 要素を上下左右中央に配置するためのレイアウトコンポーネントです。コンテンツを画面中央に置くとき、ボックス内に中央寄せをするときに使います。
 
 Every Layout（https://every-layout.dev/）のCenterを参考にしています。
@@ -33,3 +31,7 @@ smarthr-ui/Layoutsに属するコンポーネント(Center,Cluster,Container,Ree
 ## 使い方チェックリスト
 
 使い方チェックリスト（Layer 3）は設定されていません。
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/layout/center/

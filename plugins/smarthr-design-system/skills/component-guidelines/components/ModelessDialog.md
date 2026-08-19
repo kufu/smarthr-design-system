@@ -1,7 +1,5 @@
 # ModelessDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/modeless-dialog/
-
 背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。
 
 ## import
@@ -51,3 +49,7 @@ ModelessDialog に直接関連する eslint-plugin-smarthr のルールは現時
 
 ### モバイル
 - [must] モバイルでは ModelessDialog の代わりに MessageDialog を利用する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/modeless-dialog/

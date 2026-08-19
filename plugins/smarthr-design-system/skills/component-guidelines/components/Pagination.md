@@ -1,7 +1,5 @@
 # Pagination
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/pagination/
-
 「よくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。使用する場所によって機能を落とせます。
 
 ## import
@@ -34,3 +32,7 @@ Pagination に直接関連する eslint-plugin-smarthr のルールは現時点�
 - [should] モバイルでは Pagination の代わりに、データを追加で読み込んで表示するボタン（例: よくあるリストの「さらに表示」ボタン）の利用を検討する
   - ただし、表示されるデータの件数が多いと想定される場合や、一覧上から特定のデータを探して操作することが主要な使われ方として想定される場合は、モバイルでも Pagination が適していることがある
 - [must] モバイルで Pagination を表示する場合は、`withoutNumber` props を有効にするか、`padding` props に 0〜1 の値を設定する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/pagination/

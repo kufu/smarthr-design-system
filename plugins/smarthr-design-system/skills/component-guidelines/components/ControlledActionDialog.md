@@ -1,7 +1,5 @@
 # ControlledActionDialog
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/action-dialog/
-
 ActionDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
@@ -49,3 +47,7 @@ ControlledActionDialog に直接関連する eslint-plugin-smarthr のルール�
 
 ### 使用上の注意 > 複数のモーダルダイアログを同時に表示しない (via MultipleModalWarning.mdx)
 - [avoid] モーダルダイアログを 1 つの操作で複数個表示したり、モーダルダイアログ上の操作によって 2 つ目のモーダルダイアログを表示したりしない
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/dialog/action-dialog/

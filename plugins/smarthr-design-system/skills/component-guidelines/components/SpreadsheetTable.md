@@ -1,7 +1,5 @@
 # SpreadsheetTable
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/spreadsheet-table/
-
 表データを表計算ソフト風に表示するためのコンポーネントです。CSVインポート画面などで利用者にスプレッドシートを想像させるときに使います。
 
 ## import
@@ -30,3 +28,7 @@ SpreadsheetTable に直接関連する eslint-plugin-smarthr のルールは現�
 
 ### レイアウト
 - [should] セル内で改行数が多くなるなど可読性が下がる場合は、セル内のテキストを折り返さずに表示できるよう、Reel を使用して SpreadsheetTable を水平方向にスクロールさせる
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/spreadsheet-table/

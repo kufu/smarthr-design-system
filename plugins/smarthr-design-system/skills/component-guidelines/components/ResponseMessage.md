@@ -1,7 +1,5 @@
 # ResponseMessage
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/response-message/
-
 システムからの通知を表示するためのアイコン付きテキストコンポーネントです。要素の状態や操作結果のフィードバックを要素の近くに表示するときに使います。
 
 ## import
@@ -122,3 +120,7 @@ ResponseMessageコンポーネントの適切な使用を促すルールです�
 
 ### 種類
 - [should] `status="sync"` は NotificationBar のために存在するため、基本的に使わない
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/response-message/

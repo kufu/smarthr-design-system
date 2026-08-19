@@ -1,7 +1,5 @@
 # SegmentedControl
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/segmented-control/
-
 同一オブジェクトの異なる状態や視点を切り替えるためのコンポーネントです。リスト表示とカード表示の切替など、選択と同時に即座に表示を変えるときに使います。
 
 特定のオブジェクトに対して異なる状態を切り替える具体例としては、以下が挙げられます。
@@ -43,3 +41,7 @@ SegmentedControl に直接関連する eslint-plugin-smarthr のルールは現�
   - ボタンのラベルを折り返す
   - Reel を使用して水平方向にスクロールさせる
   - `S` サイズの SegmentedControl を使用する（どうしようもないときにのみ）
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/segmented-control/

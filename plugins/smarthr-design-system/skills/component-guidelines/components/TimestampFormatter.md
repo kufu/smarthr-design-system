@@ -1,7 +1,5 @@
 # TimestampFormatter
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/formatter/timestamp-formatter/
-
 日付と時刻データを任意の形式にフォーマットして表示するコンポーネントです。日付と時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。
 
 ## import
@@ -27,3 +25,7 @@ TimestampFormatter に直接関連する eslint-plugin-smarthr のルールは�
 
 ### 使用上の注意 > タイムスタンプをフォーマットする機能だけ必要な場合
 - [must] フォーマットされたタイムスタンプの文字列だけが必要な場合は `useDateFormat` の `formatTimestamp` を使う
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/formatter/timestamp-formatter/

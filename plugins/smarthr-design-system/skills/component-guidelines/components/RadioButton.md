@@ -1,7 +1,5 @@
 # RadioButton
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/radio-button/
-
 input[type='radio']要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。
 
 ## import
@@ -87,3 +85,7 @@ import { RadioButton } from 'smarthr-ui'
 ### モバイル
 - [should] モバイルでは画面幅が狭いため基本的に縦並びにする
 - [must] 誤操作を防ぐため、小さい要素間のマージンに従って十分なマージンを確保する
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/radio-button/

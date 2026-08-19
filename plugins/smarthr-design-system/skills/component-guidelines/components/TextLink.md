@@ -1,7 +1,5 @@
 # TextLink
 
-> 📖 公式ドキュメント: https://smarthr.design/products/components/text-link/
-
 a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。
 
 ## import
@@ -72,3 +70,7 @@ import { TextLink } from 'smarthr-ui'
 
 ### アクセシビリティ > 開発時の考慮点 > リンク先がわかるテキストを設定する
 - [must] リンクテキストは、リンク先や実行される内容がわかる文言にする
+
+## 参考
+
+- 📖 公式ドキュメント: https://smarthr.design/products/components/text-link/
