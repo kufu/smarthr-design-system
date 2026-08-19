@@ -31,7 +31,7 @@ type Report = {
 };
 
 const ITEM_MIN = 1;
-const ITEM_MAX = 30;
+const ITEM_MAX = 40;
 const TEXT_MIN = 10;
 const TEXT_MAX = 200;
 const VALID_SEVERITIES: Severity[] = ['must', 'should', 'avoid'];
