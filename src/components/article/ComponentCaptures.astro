@@ -1,9 +1,9 @@
 ---
 import { Section } from 'smarthr-ui';
 
-import { fetchComponentCaptures } from '@/lib/fetchComponentCaptures';
+import { getComponentCaptures } from '@/lib/getComponentCaptures';
 
-const storyGroups = await fetchComponentCaptures();
+const storyGroups = await getComponentCaptures();
 ---
 
 <div>
