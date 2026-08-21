@@ -16,7 +16,7 @@ importers:
         version: 7.2.2(supports-color@9.4.0)
       '@astrojs/mdx':
         specifier: ^7.0.5
-        version: 7.0.5(@astrojs/markdown-satteri@0.3.5)(astro@7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0))(supports-color@9.4.0)
+        version: 7.0.5(@astrojs/markdown-satteri@0.3.5)(astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0))(supports-color@9.4.0)
       '@astrojs/partytown':
         specifier: ^2.1.7
         version: 2.1.7
@@ -36,8 +36,8 @@ importers:
         specifier: ^5.56.0
         version: 5.56.0
       astro:
-        specifier: 7.2.1
-        version: 7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0)
+        specifier: 7.2.2
+        version: 7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -83,7 +83,7 @@ importers:
     devDependencies:
       '@astrojs/tailwind':
         specifier: ^6.0.2
-        version: 6.0.2(astro@7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0))(tailwindcss@3.4.19(tsx@4.23.12)(yaml@2.9.0))
+        version: 6.0.2(astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0))(tailwindcss@3.4.19(tsx@4.23.12)(yaml@2.9.0))
       '@eslint/eslintrc':
         specifier: ^3.3.6
         version: 3.3.6(supports-color@9.4.0)
@@ -2114,8 +2114,8 @@ packages:
     resolution: {integrity: sha512-idgbHE8cjEU9f4Ne46RiGgwEviXYarNVoQoTZr+H1j7mbNCKp8EGGov2bR64/cvMpfBsX3XNPu9+muxAhK84eg==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
 
-  astro@7.2.1:
-    resolution: {integrity: sha512-ynyMTiyF//GLcd8+gRNbvcKgS1ht+qTgp/fkkHIpGYNILLseQqQRuPZ9PqXYKfsact4J1emZaXRDpg2bl35Pag==}
+  astro@7.2.2:
+    resolution: {integrity: sha512-OvLWCpXpb43lVYcWzSBJ0sk44qcEYYRZCjadtalLfAwb2RaC3P/zT+blZykBw/o6suw6sQQkn00ugN36akD8Mw==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     peerDependencies:
@@ -2352,6 +2352,10 @@ packages:
   commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
+
+  commander@14.0.3:
+    resolution: {integrity: sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw==}
+    engines: {node: '>=20'}
 
   commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
@@ -2807,6 +2811,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -2942,6 +2947,10 @@ packages:
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
+
+  find-process@2.1.1:
+    resolution: {integrity: sha512-SrQDx3QhlmHM90iqn9rdjCQcw/T+WlpOkHFsjoRgB+zTpDfltNA1VSNYeYELwhUTJy12UFxqjWhmhOrJc+o4sA==}
+    hasBin: true
 
   find-up-simple@1.0.1:
     resolution: {integrity: sha512-afd4O7zpqHeRyg4PfDQsXmlDe2PfdHtJt6Akt8jOWaApLOZk5JXs6VMR29lz03pRe9mpykrRCYIYxaJYcfpncQ==}
@@ -3724,6 +3733,10 @@ packages:
 
   lodash@4.18.1:
     resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
+
+  loglevel@1.9.2:
+    resolution: {integrity: sha512-HgMmCqIJSAKqo68l0rS2AanEWfkxaZ5wNiEFb5ggm08lDs9Xl2KxBlX3PTcaD2chBM1gXAYf491/M2Rv8Jwayg==}
+    engines: {node: '>= 0.6.0'}
 
   longest-streak@2.0.4:
     resolution: {integrity: sha512-vM6rUVCVUJJt33bnmHiZEvr7wPT78ztX7rojL+LW51bHtLh6HTjx84LA5W4+oa6aKEJA7jJu5LR6vQRBpA5DVg==}
@@ -6333,13 +6346,13 @@ snapshots:
       hast-util-from-html: 2.0.3
       satteri: 0.9.5
 
-  '@astrojs/mdx@7.0.5(@astrojs/markdown-satteri@0.3.5)(astro@7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0))(supports-color@9.4.0)':
+  '@astrojs/mdx@7.0.5(@astrojs/markdown-satteri@0.3.5)(astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0))(supports-color@9.4.0)':
     dependencies:
       '@astrojs/internal-helpers': 0.10.2
       '@astrojs/markdown-remark': 7.2.2(supports-color@9.4.0)
       '@mdx-js/mdx': 3.1.1(supports-color@9.4.0)
       acorn: 8.16.0
-      astro: 7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0)
+      astro: 7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0)
       es-module-lexer: 2.1.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -6396,9 +6409,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.4.3
 
-  '@astrojs/tailwind@6.0.2(astro@7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0))(tailwindcss@3.4.19(tsx@4.23.12)(yaml@2.9.0))':
+  '@astrojs/tailwind@6.0.2(astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0))(tailwindcss@3.4.19(tsx@4.23.12)(yaml@2.9.0))':
     dependencies:
-      astro: 7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0)
+      astro: 7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0)
       autoprefixer: 10.5.0(postcss@8.5.14)
       postcss: 8.5.14
       postcss-load-config: 4.0.2(postcss@8.5.14)
@@ -8157,7 +8170,7 @@ snapshots:
       - '@emnapi/runtime'
       - supports-color
 
-  astro@7.2.1(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0):
+  astro@7.2.2(@astrojs/markdown-remark@7.2.2(supports-color@9.4.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.7.0)(jiti@1.21.7)(sass-embedded@1.102.0)(sass@1.102.0)(tsx@4.23.12)(yaml@2.9.0):
     dependencies:
       '@astrojs/compiler-rs': 0.3.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
       '@astrojs/internal-helpers': 0.10.2
@@ -8178,6 +8191,7 @@ snapshots:
       dset: 3.1.4
       es-module-lexer: 2.1.0
       esbuild: 0.28.0
+      find-process: 2.1.1
       flattie: 1.1.1
       fontace: 0.4.1
       get-tsconfig: 5.0.0-beta.4
@@ -8467,6 +8481,8 @@ snapshots:
   comma-separated-tokens@2.0.3: {}
 
   commander@11.1.0: {}
+
+  commander@14.0.3: {}
 
   commander@4.1.1: {}
 
@@ -9271,6 +9287,12 @@ snapshots:
   fill-range@7.1.1:
     dependencies:
       to-regex-range: 5.0.1
+
+  find-process@2.1.1:
+    dependencies:
+      chalk: 4.1.2
+      commander: 14.0.3
+      loglevel: 1.9.2
 
   find-up-simple@1.0.1: {}
 
@@ -10127,6 +10149,8 @@ snapshots:
   lodash.uniqwith@4.5.0: {}
 
   lodash@4.18.1: {}
+
+  loglevel@1.9.2: {}
 
   longest-streak@2.0.4: {}
 
