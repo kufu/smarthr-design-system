@@ -23,24 +23,6 @@ items:
     text: '入力項目の説明や例を載せる場合は FormControl の `helpMessage` や `exampleMessage` を用い別途表示する'
     source_section: '使用上の注意 > 入力項目の説明や例をプレースホルダで表示しない'
 
-  # Inputを使用したコンポーネント > CurrencyInput
-  - severity: must
-    text: '金額を入力するときは CurrencyInput を使用する'
-    source_section: 'Inputを使用したコンポーネント > CurrencyInput'
-
-  # Inputを使用したコンポーネント > SearchInput
-  - severity: should
-    text: 'SearchInput はよくあるテーブルのオブジェクトの検索などに使用する'
-    source_section: 'Inputを使用したコンポーネント > SearchInput'
-
-  - severity: must
-    text: 'SearchInput では `tooltipMessage` を使用して入力内容に対する説明を補足する'
-    source_section: 'Inputを使用したコンポーネント > SearchInput'
-
-  - severity: must
-    text: '検索ボタンのあるフォーム（インクリメンタル検索をしないフォーム）内の SearchInput では、入力内容のクリアボタンで検索まで実行せず入力内容の削除にとどめる'
-    source_section: 'Inputを使用したコンポーネント > SearchInput'
-
   # レイアウト > プレフィックス・サフィックス > 要素の設置判断基準
   - severity: should
     text: 'プレフィックス（`prefix`）の要素は入力内容を想起させるために使用する'
@@ -80,10 +62,10 @@ items:
       - '送信内容に含めたい値はフォームには表示しないか `readOnly` の使用を検討する'
       - 'そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討する'
 
-  # モバイル > フォントサイズはMを使用する
+  # モバイル > フォントサイズは`M`以上を使用する
   - severity: must
     text: 'モバイルでの意図しない拡大を避けるため、Input のフォントサイズは `M` 以上を使用する'
-    source_section: 'モバイル > フォントサイズはMを使用する'
+    source_section: 'モバイル > フォントサイズは`M`以上を使用する'
 
   # アクセシビリティ > 開発時の考慮点 > FormControlと併用する
   - severity: must
