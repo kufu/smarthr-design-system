@@ -13,7 +13,7 @@ import { Cluster, CurrencyInput, Text } from 'smarthr-ui'
 import Grid from '@/components/article/Grid.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
-import {SampleInputWithPrefixIcon, SampleInputWithSuffixIcon} from './_components'
+import {SampleInputWithPrefixIcon, SampleInputWithPrefixText, SampleInputWithSuffixIcon, SampleInputWithSuffixText} from './_components'
 
 import inputWidthDo from './images/input-width-do.png'
 import inputWidthDont from './images/input-width-dont.png'
@@ -87,9 +87,9 @@ import MobileFontSize from './images/mobile-font-size.png'
 | 位置 | 要素の種類 | 表示例 | 要素の役割 |
 | :-- | :-- | :-- | :-- |
 | プレフィックス（`prefix`）| アイコン | <SampleInputWithPrefixIcon /> | 入力内容を想起させるために使用します。 |
-| プレフィックス（`prefix`）| テキスト| <CurrencyInput name="exampleprefixtext" defaultValue="1000" prefix="$" client:load /> | 入力内容を想起させるために使用します。 <br /> 一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いてください。 |
+| プレフィックス（`prefix`）| テキスト| <SampleInputWithPrefixText client:load /> | 入力内容を想起させるために使用します。 <br /> 一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いてください。 |
 | サフィックス（`suffix`）| アイコン | <SampleInputWithSuffixIcon />| 操作を想起させるため、または操作を提供するために使用します。 |
-| サフィックス（`suffix`）| テキスト | <CurrencyInput name="examplesuffixtext" defaultValue="1000" suffix="円" client:load /> | 入力内容を想起させるために使用します。<br />一般的に内容に対して後方に置かれる単位（例: 日本円）に用いてください。 |
+| サフィックス（`suffix`）| テキスト | <SampleInputWithSuffixText client:load /> | 入力内容を想起させるために使用します。<br />一般的に内容に対して後方に置かれる単位（例: 日本円）に用いてください。 |
 
 入力内容を想起させるアイコンは、以下の判断基準を参考につけてください。
 
