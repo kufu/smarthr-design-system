@@ -54,6 +54,13 @@ items:
     text: '当該画面では編集できないが、別の場所で入力済みの値をフォームの送信内容に含めて表示することが重要な場合は `readOnly` を使用する'
     source_section: '状態 > 読み取り専用（readOnly）'
 
+  # 状態 > 読み取り専用（readOnly） > BaseColumnなど色のついた下地に置くときは`bgColor`を指定する
+  - severity: must
+    text: '`readOnly` の Input を BaseColumn の中など `COLUMN` と同じ色の下地に置く場合は、`bgColor` に `HEAD` を指定して下地と区別できるようにする'
+    source_section: '状態 > 読み取り専用（readOnly） > BaseColumnなど色のついた下地に置くときは`bgColor`を指定する'
+    sub_items:
+      - '`WHITE` のような明るい色は編集できる入力欄に見えてしまうため `readOnly` の Input には使用しない'
+
   # 状態 > 無効（disabled）
   - severity: should
     text: '通常は編集できるが一時的または権限の制約により編集できない場合に `disabled` を使用する'
