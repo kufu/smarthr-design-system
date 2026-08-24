@@ -331,6 +331,12 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
         :global(ol:first-child) {
           margin-block-start: 0;
         }
+
+        /* 「使用上の注意：」などのリード文に続くリストは、リード文とひと続きに見せる */
+        :global(p + ul),
+        :global(p + ol) {
+          margin-block-start: 0;
+        }
       }
     }
 

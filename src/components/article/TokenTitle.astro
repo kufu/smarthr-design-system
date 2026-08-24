@@ -1,0 +1,67 @@
+---
+import { FaLinkIcon } from 'smarthr-ui';
+
+type Props = {
+  name: string;
+};
+
+const { name } = Astro.props;
+
+// トークン名をそのままフラグメント識別子にする（例: #TEXT_DISABLED）
+const id = name;
+---
+
+{/* data-index-nav: ページ内目次（IndexNav）に含める h4 であることを示す */}
+<h4 class="wrapper" id={id} data-index-nav>
+  <a href={`#${id}`}>
+    <code>{name}</code>
+    <FaLinkIcon className="icon" />
+  </a>
+</h4>
+
+<style lang="scss">
+  /*
+   * 記事本文の見出しスタイル（ArticleLayout の `.mdxStyleWrapper[…] h4`）を打ち消したいため、
+   * 属性セレクタを併記して詳細度を上げている
+   */
+  .wrapper[data-index-nav] {
+    /* 表のセル内で使うため、大きい文字サイズと上マージンを打ち消す */
+    margin-block: 0;
+    font-size: var(--font-size-18);
+    line-height: 1.5;
+    font-weight: normal;
+    scroll-margin-top: 80px;
+
+    a {
+      /*
+       * inline ではトークン名が長いときにアイコンだけが次の行に折り返され、
+       * 非表示（visibility: hidden）のまま空行になってしまうため inline-flex にする
+       */
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: inherit;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        code {
+          text-decoration: underline;
+        }
+
+        .icon {
+          visibility: visible;
+        }
+      }
+    }
+
+    code {
+      font-size: inherit;
+    }
+
+    .icon {
+      visibility: hidden;
+      font-size: var(--font-size-14);
+    }
+  }
+</style>
