@@ -8,7 +8,8 @@ export type UIData = {
 };
 
 /**
- * 公開Storybookの`index.json`から、コンポーネント一覧の生成に必要な情報だけを抜き出したもの
+ * 利用中のバージョンのStorybook（Chromaticのパーマリンク）の`index.json`から、
+ * コンポーネント一覧の生成に必要な情報だけを抜き出したもの
  * （ドキュメントのエントリは除外済み）
  */
 export type StoryIndexItem = {

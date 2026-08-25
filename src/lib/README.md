@@ -5,10 +5,14 @@
 
 ## データの取得
 
-1. 最新バージョン（https://story.smarthr-ui.devにデプロイされているもの）の`index.json`を`scripts/fetch-ui-data.ts`が取得し、キャッシュに保存
+1. 利用中のバージョンのStorybook（Chromaticのパーマリンク）の`index.json`を`scripts/fetch-ui-data.ts`が取得し、キャッシュに保存
 1. キャッシュしたstory情報から各コンポーネントの名前、属するグループ名などを抜き出す
 1. 抜き出した情報を元に各コンポーネントの記事 (MDX) のパスを作成
 1. 記事が存在する場合データを登録
+
+`index.json`は https://story.smarthr-ui.dev から取得していましたが、Netlifyの内部ビルダーからアクセスできず
+ビルドが失敗するため、Chromaticのパーマリンクから取得しています。
+なお、iframeUrlはブラウザ（とサムネイル生成のPuppeteer）からのアクセスなので https://story.smarthr-ui.dev のままです。
 
 `index.json`の取得をこの関数の中で行うと、ページのレンダリング中に毎回ネットワークアクセスが発生してビルドが遅くなります。
 そのためキャッシュ経由で参照しています。この関数の中でネットワークアクセスを追加しないでください。

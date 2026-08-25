@@ -4,7 +4,7 @@ import path from 'node:path';
 import metadata from 'smarthr-ui/metadata.json';
 import packageInfo from 'smarthr-ui/package.json';
 
-import { SHRUI_STORYBOOK_URL } from '../src/constants/application';
+import { SHRUI_CHROMATIC_ID } from '../src/constants/application';
 
 import type { PropsData, StoryIndexItem, UIData, UIProps, UIStories } from '../src/types/ui';
 import type { StoryIndex } from '@storybook/types';
@@ -35,7 +35,7 @@ type PropsResponse = {
 };
 
 const GH_API_BASE_URL = 'https://api.github.com';
-const CHROMATIC_DOMAIN = '63d0ccabb5d2dd29825524ab.chromatic.com';
+const CHROMATIC_DOMAIN = `${SHRUI_CHROMATIC_ID}.chromatic.com`;
 
 /**
  * GitHub API から SmartHR UI のリリース情報を取得
@@ -164,17 +164,18 @@ async function fetchStories(commitHash: string): Promise<Record<string, UIStorie
 }
 
 /**
- * 公開Storybookから、コンポーネント一覧の生成に使うstoryの情報を取得
+ * コンポーネント一覧の生成に使うstoryの情報を取得
  *
- * `fetchStories()` が取得するChromaticのものと違い、こちらは最新バージョンのStorybookを参照します。
+ * story.smarthr-ui.dev はNetlifyの内部ビルダーからアクセスできないため、`index.json` は
+ * `fetchStories()` と同じく、利用中のバージョンのChromaticのパーマリンクから取得します。
  * ページのレンダリング中に取得するとビルドが遅くなるため、ここでキャッシュに含めています。
  */
-async function fetchStoryIndex(): Promise<StoryIndexItem[]> {
-  const endpoint = new URL('index.json', SHRUI_STORYBOOK_URL);
+async function fetchStoryIndex(commitHash: string): Promise<StoryIndexItem[]> {
+  const endpoint = new URL('index.json', `https://${commitHash}--${CHROMATIC_DOMAIN}`);
 
   const res = await fetch(endpoint.toString());
   if (!res.ok) {
-    throw new Error(`公開Storybookから index.json を取得できませんでした: ${res.statusText}`);
+    throw new Error(`Chromatic から index.json を取得できませんでした: ${res.statusText}`);
   }
 
   const json: StoryIndex = await res.json();
@@ -238,7 +239,7 @@ if (cached) {
   const uiStories = await fetchStories(commitHash);
 
   console.log('🖼️ コンポーネント一覧用の index.json を取得中');
-  const storyIndex = await fetchStoryIndex();
+  const storyIndex = await fetchStoryIndex(commitHash);
 
   console.log('✅️ 取得完了');
 

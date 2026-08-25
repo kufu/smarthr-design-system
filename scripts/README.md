@@ -5,7 +5,7 @@
 ## fetch-ui-data.ts
 
 GitHubからSmartHR UIのリリース情報を、ChromaticからStory、Propsの情報を取得しJSON形式で保存するスクリプトです。
-あわせて、コンポーネント一覧（`/products/components/`）の生成に使うstory情報を[公開Storybook](https://story.smarthr-ui.dev/)から取得します。
+あわせて、コンポーネント一覧（`/products/components/`）の生成に使うstory情報をChromaticから取得します。
 
 ```sh
 pnpm tsx ./scripts/fetch-ui-data.ts

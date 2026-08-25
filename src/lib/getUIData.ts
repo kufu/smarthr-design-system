@@ -19,7 +19,7 @@ if (!uiData.storyIndex) {
   throw new Error(`キャッシュに storyIndex がありません。\`pnpm update:ui-data\` を実行してください: ${cacheFile}`);
 }
 
-/** 公開Storybookのstory情報（コンポーネント一覧の生成に使う） */
+/** 利用中のバージョンのStorybook（Chromatic）のstory情報（コンポーネント一覧の生成に使う） */
 export const UI_STORY_INDEX: StoryIndexItem[] = uiData.storyIndex;
 
 /**
