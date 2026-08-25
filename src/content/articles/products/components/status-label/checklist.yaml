@@ -9,6 +9,22 @@ items:
     text: 'StatusLabel 単体でリンクやアクションボタンの機能を持たせない'
     source_section: '使用上の注意 > StatusLabelをリンクやアクションボタンの代替にしない'
 
+  # 使用上の注意 > 1つのオブジェクトに複数のStatusLabelを設定しない
+  - severity: avoid
+    text: '1つのオブジェクトに対して複数の StatusLabel を設定しない'
+    source_section: '使用上の注意 > 1つのオブジェクトに複数のStatusLabelを設定しない'
+    sub_items:
+      - 'ステータスをあらわすプロパティが複数ある場合、ユーザーにとって主な管理対象となるステータスに StatusLabel を使用し、他のプロパティは文字列で表現する'
+      - '文字列では区別しづらい場合は Chip や Icon の使用を検討する'
+
+  # 使用上の注意 > ラベルに可変の文字列を設定しない
+  - severity: avoid
+    text: 'StatusLabel のラベルに可変の文字列を設定しない'
+    source_section: '使用上の注意 > ラベルに可変の文字列を設定しない'
+    sub_items:
+      - 'StatusLabel は、インスタンス間でラベルが揃っているステータスに適用する'
+      - '日数や件数などインスタンスごとに値が変わるものは文字列で表現し、区別しづらい場合は Chip などの使用を検討する'
+
   # 種類
   - severity: must
     text: 'ステータスの種類に応じて色を使い分ける'
