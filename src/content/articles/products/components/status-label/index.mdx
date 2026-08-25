@@ -31,33 +31,33 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Text slot="label">オブジェクトの主な管理対象となる「在籍状況」のステータスをStatusLabelで表現し、その他のステータスは文字列で表示する。</Text>
+    <Text slot="label">オブジェクトの主な管理対象となる「対応状況」のステータスをStatusLabelで表現し、その他のステータスは文字列で表示する。</Text>
     <div slot="img">
 ```tsx editable canvas=560 background=BACKGROUND hideCode
 <Base padding={0} overflow="clip" className="shr-w-full">
   <Table>
     <thead>
       <tr>
-        <Th>在籍状況</Th>
+        <Th>対応状況</Th>
         <Th>従業員名</Th>
-        <Th>入社手続き</Th>
+        <Th>在籍状況</Th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <Td><StatusLabel type="blue">在職中</StatusLabel></Td>
+        <Td><StatusLabel type="blue">対応中</StatusLabel></Td>
         <Td>山田 太郎</Td>
-        <Td>手続き中</Td>
+        <Td>在職中</Td>
       </tr>
       <tr>
-        <Td><StatusLabel type="blue">在職中</StatusLabel></Td>
+        <Td><StatusLabel type="grey">完了</StatusLabel></Td>
         <Td>佐藤 花子</Td>
-        <Td>完了</Td>
+        <Td>在職中</Td>
       </tr>
       <tr>
-        <Td><StatusLabel type="grey">退職済</StatusLabel></Td>
+        <Td><StatusLabel type="grey">完了</StatusLabel></Td>
         <Td>田中 一郎</Td>
-        <Td>完了</Td>
+        <Td>退職済</Td>
       </tr>
     </tbody>
   </Table>
@@ -67,33 +67,33 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Text slot="label">「在籍状況」と「入社手続き」が同じ種類のStatusLabelで表現されており、主な管理対象となるステータスがわかりづらくなる。</Text>
+    <Text slot="label">「対応状況」と「在籍状況」が同じ種類のStatusLabelで表現されており、主な管理対象となるステータスがわかりづらくなる。</Text>
     <div slot="img">
 ```tsx editable canvas=560 background=BACKGROUND hideCode
 <Base padding={0} overflow="clip" className="shr-w-full">
   <Table>
     <thead>
       <tr>
-        <Th>在籍状況</Th>
+        <Th>対応状況</Th>
         <Th>従業員名</Th>
-        <Th>入社手続き</Th>
+        <Th>在籍状況</Th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <Td><StatusLabel type="blue">在職中</StatusLabel></Td>
+        <Td><StatusLabel type="blue">対応中</StatusLabel></Td>
         <Td>山田 太郎</Td>
-        <Td><StatusLabel type="blue">手続き中</StatusLabel></Td>
-      </tr>
-      <tr>
         <Td><StatusLabel type="blue">在職中</StatusLabel></Td>
-        <Td>佐藤 花子</Td>
-        <Td><StatusLabel type="grey">完了</StatusLabel></Td>
       </tr>
       <tr>
-        <Td><StatusLabel type="grey">退職済</StatusLabel></Td>
-        <Td>田中 一郎</Td>
         <Td><StatusLabel type="grey">完了</StatusLabel></Td>
+        <Td>佐藤 花子</Td>
+        <Td><StatusLabel type="blue">在職中</StatusLabel></Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="grey">完了</StatusLabel></Td>
+        <Td>田中 一郎</Td>
+        <Td><StatusLabel type="grey">退職済</StatusLabel></Td>
       </tr>
     </tbody>
   </Table>
