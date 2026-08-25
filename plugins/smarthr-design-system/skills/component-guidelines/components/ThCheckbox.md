@@ -38,9 +38,9 @@ import { ThCheckbox } from 'smarthr-ui'
 
 ## 使い方チェックリスト
 
-### アクセシビリティ > セル内にチェックボックスやラジオボタンをそのまま配置しない
+### アクセシビリティ > 開発時の考慮点 > セル内にチェックボックスやラジオボタンをそのまま配置しない
 - [avoid] セルの内部に Checkbox や RadioButton をそのまま配置せず、TdCheckbox / ThCheckbox / TdRadioButton を利用する
 
-### アクセシビリティ > TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
+### アクセシビリティ > 開発時の考慮点 > TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
 - [must] TdCheckbox および TdRadioButton を利用する場合は `aria-labelledby` 属性を必ず指定し、それだけで行を一意に判別できる要素への ID 参照を指定する
 - [must] オブジェクト名だけで一意に判別できないオブジェクトでは、複数の要素の ID 参照をスペース区切りで指定する
