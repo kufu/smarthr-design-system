@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm run build:prod"
+  command = "curl -sSv --max-time 20 https://story.smarthr-ui.dev/index.json -o /dev/null; curl -sS4 -o /dev/null -w 'ipv4:%{http_code}\\n' https://story.smarthr-ui.dev/index.json; pnpm run build:prod"
   publish = "dist"
 [dev]
   command = 'pnpm run dev'
