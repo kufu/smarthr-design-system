@@ -84,6 +84,7 @@ const GroupedView = ({ groups }: { groups: ChecklistGroup[] }) => (
           gap={0.75}
           style={{
             listStyle: 'none',
+            marginBlockStart: 0,
             paddingInline: 0,
           }}
         >
