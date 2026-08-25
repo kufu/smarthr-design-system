@@ -3178,17 +3178,6 @@ a {
   border-color: #d6d3d0;
 }
 
-:where(.data-\[active\=true\]\:shr-focus-indicator[data-active="true"]) {
-  isolation: isolate;
-  box-shadow: inset 0 0 0 4px #fff;
-  outline: 2px solid #0077c7;
-  outline-offset: -2px;
-}
-
-:where(.data-\[active\=true\]\:shr-focus-indicator[data-active="true"]).shr-border-shorthand:not(.shr-border-none) {
-  box-shadow: inset 0 0 0 calc(4px - 1px) #fff;
-}
-
 @media (prefers-contrast: more) {
   .contrast-more\:shr-border-shorthand:where(.shr-focus-indicator):not(.shr-border-none) {
     box-shadow: inset 0 0 0 calc(4px - 1px) #fff;
@@ -4906,6 +4895,11 @@ a {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.data-\[active\=true\]\:shr-bg-white-darken[data-active="true"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1));
+}
+
 .data-\[current\=true\]\:shr-bg-main[data-current="true"] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
@@ -5027,9 +5021,9 @@ a {
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
 }
 
-.data-\[active\=true\]\:aria-selected\:shr-bg-main[aria-selected="true"][data-active="true"] {
+.data-\[active\=true\]\:aria-selected\:shr-bg-main-darken[aria-selected="true"][data-active="true"] {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
+  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1));
 }
 
 @supports (not selector(:has(+ *))) {
@@ -6016,20 +6010,6 @@ a {
   .\[\&\[aria-sort\=none\]_\.smarthr-ui-Icon\]\:forced-colors\:shr-fill-\[GrayText\][aria-sort=none] .smarthr-ui-Icon {
     fill: GrayText;
   }
-}
-
-.\[\&\[data-active\=true\]\:not\(\:first-child\)\:not\(\[aria-selected\=true\]\)\]\:before\:shr-block[data-active=true]:not(:first-child):not([aria-selected=true])::before {
-  content: var(--tw-content);
-  display: block;
-}
-
-.\[\&\[data-active\=true\]\:not\(\:last-child\)\:not\(\[aria-selected\=true\]\)\]\:after\:shr-block[data-active=true]:not(:last-child):not([aria-selected=true])::after {
-  content: var(--tw-content);
-  display: block;
-}
-
-.\[\&\[data-active\=true\]\]\:shr-z-1[data-active=true] {
-  z-index: 1;
 }
 
 .\[\&\[type\=\"datetime-local\"\]\]\:shr-min-w-\[11em\][type="datetime-local"] {
