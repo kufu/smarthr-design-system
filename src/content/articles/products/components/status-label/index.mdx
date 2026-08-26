@@ -34,8 +34,8 @@ StatusLabelは、オブジェクトのライフサイクルを表すステータ
     <Text slot="label">絞り込みや並べ替えの基準となる「対応状況」のステータスをStatusLabelで表現し、その他のステータスは文字列で表示する。</Text>
     <div slot="img">
 ```tsx editable canvas=560 background=BACKGROUND hideCode
-<Base padding={0} overflow="clip" className="shr-w-full">
-  <Table>
+<Base padding={0} className="shr-w-full">
+  <Table rounded>
     <thead>
       <tr>
         <Th>対応状況</Th>
@@ -70,8 +70,8 @@ StatusLabelは、オブジェクトのライフサイクルを表すステータ
     <Text slot="label">「対応状況」と「在籍状況」が同じ種類のStatusLabelで表現されており、基準となるステータスがわかりづらくなる。</Text>
     <div slot="img">
 ```tsx editable canvas=560 background=BACKGROUND hideCode
-<Base padding={0} overflow="clip" className="shr-w-full">
-  <Table>
+<Base padding={0} className="shr-w-full">
+  <Table rounded>
     <thead>
       <tr>
         <Th>対応状況</Th>
@@ -114,8 +114,8 @@ StatusLabelは、「開始前・進行中・完了」のように取りうるラ
     <Text slot="label">「提出状況」はラベルを揃え、インスタンスごとに異なる「残り日数」は別の列に文字列で表示する。</Text>
     <div slot="img">
 ```tsx editable canvas=560 background=BACKGROUND hideCode
-<Base padding={0} overflow="clip" className="shr-w-full">
-  <Table>
+<Base padding={0} className="shr-w-full">
+  <Table rounded>
     <thead>
       <tr>
         <Th>提出状況</Th>
@@ -150,8 +150,8 @@ StatusLabelは、「開始前・進行中・完了」のように取りうるラ
     <Text slot="label">「提出状況」のラベルがインスタンスごとに異なるため、同じ状態のオブジェクトを見分けにくい。</Text>
     <div slot="img">
 ```tsx editable canvas=560 background=BACKGROUND hideCode
-<Base padding={0} overflow="clip" className="shr-w-full">
-  <Table>
+<Base padding={0} className="shr-w-full">
+  <Table rounded>
     <thead>
       <tr>
         <Th>提出状況</Th>
