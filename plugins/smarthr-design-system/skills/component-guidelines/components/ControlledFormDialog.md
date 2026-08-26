@@ -12,7 +12,7 @@ import { ControlledFormDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -32,7 +32,7 @@ import { ControlledFormDialog } from 'smarthr-ui'
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
 | actionButton | ReactNode \| { text: ReactNode; theme?: "primary" \| "danger" \| "secondary"; disabled?: boolean; } | - | ✓ | - |
-| closeButton | ReactNode \| { text: ReactNode; disabled?: boolean; } | - | - | - |
+| closeButton | ReactNode \| { text?: ReactNode; disabled?: boolean; } | - | - | - |
 | onSubmit | (e: FormEvent<HTMLFormElement>, helpers: FormDialogHelpers) => void | - | ✓ | フォーム送信時に発火するコールバック関数 |
 | onClickClose | () => void | - | ✓ | 閉じるボタンをクリックした時に発火するコールバック関数 |
 

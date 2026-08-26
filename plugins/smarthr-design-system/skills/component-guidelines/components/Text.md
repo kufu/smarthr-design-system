@@ -10,13 +10,13 @@ import { Text } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | size | "XXS" \| "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" | - | - | - |
 | color | "inherit" \| "TEXT_BLACK" \| "TEXT_WHITE" \| "TEXT_GREY" \| "TEXT_DISABLED" \| "TEXT_LINK" | - | - | - |
-| weight | "bold" \| "normal" | emphasis ? 'bold' : undefined | - | - |
+| weight | "normal" \| "bold" | emphasis ? 'bold' : undefined | - | - |
 | italic | boolean | - | - | - |
 | leading | "NONE" \| "TIGHT" \| "NORMAL" \| "LOOSE" | - | - | - |
 | whiteSpace | "pre" \| "normal" \| "nowrap" \| "pre-line" \| "pre-wrap" | - | - | - |
