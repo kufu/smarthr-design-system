@@ -27,11 +27,11 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
 
 1つのオブジェクトに対して、複数のStatusLabelを設定しないでください。
 
-ステータスをあらわすプロパティが複数ある場合、ユーザーにとって主な管理対象となるステータスにStatusLabelを使用し、他のプロパティは文字列で表現してください。文字列では区別しづらい場合は[Chip](/products/components/chip/)や[Icon](/products/components/icon/)の使用を検討してください。
+StatusLabelは、オブジェクトのライフサイクルを表すステータス（例：開始前・進行中・完了）に主に使用します。ステータスをあらわすプロパティが複数ある場合は、値が1つに定まり、オブジェクトの絞り込みや並べ替えの基準になるものにStatusLabelを使用し、他のプロパティは文字列で表現します。文字列では区別しづらい場合は[Chip](/products/components/chip/)や[Icon](/products/components/icon/)の使用を検討してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Text slot="label">オブジェクトの主な管理対象となる「対応状況」のステータスをStatusLabelで表現し、その他のステータスは文字列で表示する。</Text>
+    <Text slot="label">絞り込みや並べ替えの基準となる「対応状況」のステータスをStatusLabelで表現し、その他のステータスは文字列で表示する。</Text>
     <div slot="img">
 ```tsx editable canvas=560 background=BACKGROUND hideCode
 <Base padding={0} overflow="clip" className="shr-w-full">
@@ -67,7 +67,7 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
   </DoAndDont>
 
   <DoAndDont type="dont" width="calc(50% - 8px)">
-    <Text slot="label">「対応状況」と「在籍状況」が同じ種類のStatusLabelで表現されており、主な管理対象となるステータスがわかりづらくなる。</Text>
+    <Text slot="label">「対応状況」と「在籍状況」が同じ種類のStatusLabelで表現されており、基準となるステータスがわかりづらくなる。</Text>
     <div slot="img">
 ```tsx editable canvas=560 background=BACKGROUND hideCode
 <Base padding={0} overflow="clip" className="shr-w-full">
@@ -103,11 +103,11 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
   </DoAndDont>
 </Cluster>
 
-### ラベルに可変の文字列を設定しない
+### インスタンスごとに異なる値をラベルに埋め込まない
 
-StatusLabelのラベルには、可変の文字列を設定しないでください。同じ状態のオブジェクトを見分けられにくくなります。
+StatusLabelのラベルには、インスタンスごとに異なる値を埋め込まないでください。同じ状態のオブジェクトを見分けづらくなります。
 
-StatusLabelは、インスタンス間でラベルが揃っているステータスに適用します。日数や件数などインスタンスごとに値が変わるものは文字列で表現してください。文字列では区別しづらい場合は[Chip](/products/components/chip/)などの使用を検討してください。
+StatusLabelは、「開始前・進行中・完了」のように取りうるラベルの種類が決まっていて、同じ状態であれば同じラベルになるステータスに使用します。日数や件数などインスタンスごとに値が変わるものは文字列で表現してください。文字列では区別しづらい場合は[Chip](/products/components/chip/)などの使用を検討してください。
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
