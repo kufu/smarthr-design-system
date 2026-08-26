@@ -43,6 +43,7 @@
     "export:zip-images": "tsx ./scripts/zipImages.ts",
     "update:ui-data": "tsx ./scripts/fetch-ui-data.ts",
     "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
+    "pregenerate:thumbnails": "run-s update:ui-data",
     "generate:thumbnails": "cd ./scripts/component-thumbnails && pnpm install && cd ../.. && tsx ./scripts/component-thumbnails/componentThumbnails.ts",
     "copy:smarthr-ui-css": "cp node_modules/smarthr-ui/smarthr-ui.css public/",
     "upgrade:smarthr-ui": "pnpm -r upgrade smarthr-ui@latest",
@@ -51,17 +52,17 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
-    "@astrojs/markdown-remark": "^7.2.2",
-    "@astrojs/mdx": "^7.0.5",
+    "@astrojs/markdown-remark": "^7.2.3",
+    "@astrojs/mdx": "^7.0.6",
     "@astrojs/partytown": "^2.1.7",
-    "@astrojs/react": "^6.0.2",
+    "@astrojs/react": "^6.0.3",
     "@astrojs/sitemap": "^3.7.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "algoliasearch": "^5.56.0",
-    "astro": "7.2.2",
+    "algoliasearch": "^5.57.0",
+    "astro": "7.2.3",
     "clsx": "^2.1.1",
-    "marked": "^18.0.9",
+    "marked": "^18.0.10",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -70,8 +71,8 @@
     "react-instantsearch-core": "^7.44.1",
     "react-live": "^4.1.8",
     "smarthr-normalize-css": "^1.1.0",
-    "smarthr-ui": "99.3.0",
-    "styled-components": "^6.5.2",
+    "smarthr-ui": "^99.1.0",
+    "styled-components": "^6.5.3",
     "typescript": "^6.0.3",
     "yaml": "^2.9.0"
   },
@@ -112,5 +113,5 @@
     "tsx": "^4.23.12",
     "unist-util-visit": "^5.1.0"
   },
-  "packageManager": "pnpm@11.21.0"
+  "packageManager": "pnpm@11.22.0"
 }

@@ -2,9 +2,18 @@ import fs from 'fs/promises';
 import { cwd } from 'node:process';
 import path from 'path';
 
+import { SHRUI_CHROMATIC_ID } from '@/constants/application';
+import { UI_COMMIT_HASH } from '@/lib/getUIData';
+
 import type { StoryIndex } from '@storybook/types';
 
 const STORYBOOK_URL = 'https://story.smarthr-ui.dev';
+
+// NOTE:
+// story.smarthr-ui.dev はNetlifyの内部ビルダーからアクセスできないため、`index.json` は
+// ComponentStoryと同じく、利用中のバージョンのChromaticのパーマリンクから取得する。
+// iframeUrlはブラウザ（とサムネイル生成のPuppeteer）からのアクセスなので story.smarthr-ui.dev のままにしている。
+const CHROMATIC_STORYBOOK_URL = `https://${UI_COMMIT_HASH}--${SHRUI_CHROMATIC_ID}.chromatic.com/`;
 
 type StoryKind = {
   kindName: string;
@@ -73,8 +82,11 @@ const doesFileExist = async (...filePaths: string[]) => {
  * @returns StoryGroup[]
  */
 export async function fetchComponentCaptures() {
-  const indexJsonUrl = new URL('index.json', STORYBOOK_URL);
+  const indexJsonUrl = new URL('index.json', CHROMATIC_STORYBOOK_URL);
   const response = await fetch(indexJsonUrl.toString());
+  if (!response.ok) {
+    throw new Error(`Chromatic から index.json を取得できませんでした: ${response.statusText}`);
+  }
 
   const storiesJson: StoryIndex = await response.json();
 
