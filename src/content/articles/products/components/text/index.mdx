@@ -110,6 +110,20 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 </Stack>
 ```
 
+### アイコン
+`icon` propsでテキストの左右に[Icon](/products/components/icon/)を配置できます。
+
+アイコンのみを渡すと、テキストの左（プレフィックス）に配置されます。`prefix`・`suffix`・`gap`を指定すると、左右の配置やテキストとの間隔を制御できます。  
+アイコンの色や代替テキストの扱いは、[Icon](/products/components/icon/)を参照してください。
+
+```tsx editable
+<Stack>
+  <Text icon={<FaFileLinesIcon color="TEXT_GREY" />}>左にアイコンがあるテキスト</Text>
+  <Text icon={{ suffix: <FaCircleInfoIcon color="TEXT_GREY" /> }}>右にアイコンがあるテキスト</Text>
+  <Text icon={{ prefix: <FaLightbulbIcon color="MAIN" />, gap: 0.5 }}>間隔を広げたテキスト</Text>
+</Stack>
+```
+
 
 
 ## 使い方チェックリスト
