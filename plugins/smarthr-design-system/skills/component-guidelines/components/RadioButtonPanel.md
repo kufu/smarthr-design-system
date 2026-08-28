@@ -10,7 +10,7 @@ import { RadioButtonPanel } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -36,3 +36,6 @@ RadioButtonPanel に直接関連する eslint-plugin-smarthr のルールは現�
 - [avoid] RadioButtonPanel 内にアンカーリンクやボタンなど、ユーザーが操作可能な要素を配置しない
   - リンクを置きたい場合は、Fieldset の `helpMessage` props などを使用する
   - 選択肢に応じて段階的に別の操作をさせたい場合は、RadioButton と `disabled` 状態の組み合わせ、またはステップを複数に分けたモードを検討する
+
+### 状態 > デフォルト
+- [must] 選択肢の中から 1 つデフォルト値に設定するものを決める

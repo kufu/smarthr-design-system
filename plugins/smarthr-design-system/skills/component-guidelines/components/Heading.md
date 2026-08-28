@@ -10,15 +10,16 @@ import { Heading } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| size | "L" \| "XL" \| "XXL" | 'L' | - | テキストのサイズ  `sectionTitle`の場合、`XXL`か`XL`か`L`を指定してください |
+| type | "sectionTitle" \| "blockTitle" \| "subBlockTitle" \| "subSubBlockTitle" | - | - | テキストのスタイル テキストのスタイル  screenTitleを使用する場合、PageHeadingコンポーネントを使用してください |
+| icon | any | - | - | テキスト左に設置するアイコン |
 | unrecommendedTag | "h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" | - | - | 可能な限り利用せず、SectioningContent(Article, Aside, Nav, Section)を使ってHeadingと関連する範囲を明確に指定する方法を検討してください |
 | visuallyHidden | boolean | - | - | 視覚的に非表示にするフラグ |
-| icon | any | - | - | テキスト左に設置するアイコン |
-| type | "sectionTitle" \| "blockTitle" \| "subBlockTitle" \| "subSubBlockTitle" | - | - | テキストのスタイル テキストのスタイル  screenTitleを使用する場合、PageHeadingコンポーネントを使用してください |
-| size | "L" \| "XL" \| "XXL" | 'L' | - | テキストのサイズ  `sectionTitle`の場合、`XXL`か`XL`か`L`を指定してください |
+| ref | Ref<HTMLHeadingElement> | - | - | - |
 
 ## 実装ルール
 
@@ -84,3 +85,11 @@ Headingレベルの自動計算用のコンポーネントであるSectioningFra
 
 ### 種類 > 画面タイトル
 - [must] 画面のタイトルには PageHeading コンポーネントを使う
+
+### アクセシビリティ > 開発時の考慮点 > HTMLの見出しレベルが`h1`～`h6`の順になっているかを確認する
+- [must] HTMLの見出しレベルが`h1`～`h6`の順になっているかを確認する
+  - `Heading`のタイプ（`type`props）とHTMLの見出しレベル（`h2`～`h6`）が合致しているか
+  - ページにある見出しが`h1`～`h6`の順でマークアップされているか
+
+### ライティング
+- [must] 画面タイトルや項目名には名詞を使用する

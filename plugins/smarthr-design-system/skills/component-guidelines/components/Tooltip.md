@@ -14,7 +14,7 @@ import { Tooltip } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -55,7 +55,7 @@ Tooltip に直接関連する eslint-plugin-smarthr のルールは現時点で�
 
 ### デザインパターン > Tooltipのトリガーパターン > A. テキスト＋アイコン
 - [must] 補足する対象となるテキストの横に `FaCircleInfoIcon` を配置し、Tooltip の存在を明確に示す
-- [must] テキスト＋アイコンパターンのアイコンの色には `TEXT_GRAY` を使う
+- [must] テキスト＋アイコンパターンのアイコンの色には `TEXT_GREY` を使う
 
 ### デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ
 - [must] アイコン単体をトリガーにするパターンは、どうしても他に方法がないときだけ使用する
@@ -64,7 +64,7 @@ Tooltip に直接関連する eslint-plugin-smarthr のルールは現時点で�
 - [must] アイコン単体でテキストなど他の要素と合わせず配置する場合は、リンク色（`TEXT_LINK`）を使う
 
 ### デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > テキストとあわせて使用
-- [must] テキストとあわせて使うアイコンの色には `TEXT_GRAY` を使う
+- [must] テキストとあわせて使うアイコンの色には `TEXT_GREY` を使う
 
 ### デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > ステータスの補足に使用
 - [must] ステータスの補足説明を加えるときはアイコンをテキストの左に配置し、ステータスの色に合わせる

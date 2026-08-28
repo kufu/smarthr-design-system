@@ -1,16 +1,18 @@
-# Base
+# Panel
 
 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。
+
+{/* TODO: v99.3.1 で Base に戻す */}
 
 ## import
 
 ```ts
-import { Base } from 'smarthr-ui'
+import { Panel } from 'smarthr-ui'
 ```
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -21,7 +23,10 @@ import { Base } from 'smarthr-ui'
 
 ## 実装ルール
 
-Base に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
+### design-system-guideline-prohibit-information-panel-in-white-bg
+InformationPanelを白背景に配置することを禁止します。
+
+詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
 

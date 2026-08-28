@@ -12,7 +12,7 @@ import { AppNaviDropdownMenuButton, AppNaviDropdown, AppNaviCustomTag, AppNaviBu
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### AppNaviDropdownMenuButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -25,7 +25,7 @@ import { AppNaviDropdownMenuButton, AppNaviDropdown, AppNaviCustomTag, AppNaviBu
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | dropdownContent | ReactNode | - | ✓ | ドロップダウンのコンテンツ |
-| icon | ComponentType<any> | - | - | 表示するアイコンタイプ |
+| icon | ComponentType<BaseProps<T> & { selectedItems: (ComboboxItem<T> & { deletable?: boolean; })[]; selectedItemEllipsis?: boolean; inputValue?: string; onDelete?: (item: ComboboxItem<T>) => void; ... 4 more ...; noResultText?: ReactNode; }<T> & { selectedItems: (ComboboxItem<T> & { deletable?: boolean; })[]; selectedItemEllipsis?: boolean; inputValue?: string; onDelete?: (item: ComboboxItem<T>) => void; ... 4 more ...; noResultText?: ReactNode; } & Omit<...>> | - | - | 表示するアイコンタイプ |
 | current | boolean | - | - | アクティブ状態であるかどうか |
 | displayCaret | boolean | - | - | - |
 
@@ -33,13 +33,13 @@ import { AppNaviDropdownMenuButton, AppNaviDropdown, AppNaviCustomTag, AppNaviBu
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | tag | ComponentType<any> | - | ✓ | このボタンのカスタムタグ |
-| icon | ComponentType<any> | - | - | 表示するアイコンタイプ |
+| icon | ComponentType<BaseProps<T> & { selectedItems: (ComboboxItem<T> & { deletable?: boolean; })[]; selectedItemEllipsis?: boolean; inputValue?: string; onDelete?: (item: ComboboxItem<T>) => void; ... 4 more ...; noResultText?: ReactNode; }<T> & { selectedItems: (ComboboxItem<T> & { deletable?: boolean; })[]; selectedItemEllipsis?: boolean; inputValue?: string; onDelete?: (item: ComboboxItem<T>) => void; ... 4 more ...; noResultText?: ReactNode; } & Omit<...>> | - | - | 表示するアイコンタイプ |
 | current | boolean | - | - | アクティブ状態であるかどうか |
 
 ### AppNaviButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| icon | ComponentType<any> | - | - | 表示するアイコンタイプ |
+| icon | ComponentType<BaseProps<T> & { selectedItems: (ComboboxItem<T> & { deletable?: boolean; })[]; selectedItemEllipsis?: boolean; inputValue?: string; onDelete?: (item: ComboboxItem<T>) => void; ... 4 more ...; noResultText?: ReactNode; }<T> & { selectedItems: (ComboboxItem<T> & { deletable?: boolean; })[]; selectedItemEllipsis?: boolean; inputValue?: string; onDelete?: (item: ComboboxItem<T>) => void; ... 4 more ...; noResultText?: ReactNode; } & Omit<...>> | - | - | 表示するアイコンタイプ |
 | current | boolean | - | - | アクティブ状態であるかどうか |
 | onClick | (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void | - | - | クリックイベントのハンドラ |
 
@@ -47,7 +47,7 @@ import { AppNaviDropdownMenuButton, AppNaviDropdown, AppNaviCustomTag, AppNaviBu
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | href | string | - | - | アンカーの href |
-| icon | ComponentType<any> | - | - | 表示するアイコンタイプ |
+| icon | ComponentType<BaseProps<T> & { selectedItems: (ComboboxItem<T> & { deletable?: boolean; })[]; selectedItemEllipsis?: boolean; inputValue?: string; onDelete?: (item: ComboboxItem<T>) => void; ... 4 more ...; noResultText?: ReactNode; }<T> & { selectedItems: (ComboboxItem<T> & { deletable?: boolean; })[]; selectedItemEllipsis?: boolean; inputValue?: string; onDelete?: (item: ComboboxItem<T>) => void; ... 4 more ...; noResultText?: ReactNode; } & Omit<...>> | - | - | 表示するアイコンタイプ |
 | current | boolean | - | - | アクティブ状態であるかどうか |
 | elementAs | ElementType | - | - | next/link などのカスタムコンポーネントを指定します。指定がない場合はデフォルトで `a` タグが使用されます。 |
 | ref | any | - | - | - |

@@ -5,6 +5,8 @@ description: 'オブジェクトの状態を短いラベルで伝えるための
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Cluster, Text } from 'smarthr-ui'
 
 オブジェクトの状態を短いラベルで伝えるためのコンポーネントです。[Table](/products/components/table/)内のステータス欄や、オブジェクト詳細の画面タイトルで状態を提示するときに使います。
 
@@ -21,6 +23,162 @@ StatusLabelはオブジェクトの状態を伝えるために利用し、オブ
 
 StatusLabel単体でリンクやアクションボタンの機能を持たないようにしてください。オブジェクト名とStatusLabelをまとめてリンクとする場合は許容します。
 
+### 1つのオブジェクトに複数のStatusLabelを設定しない
+
+1つのオブジェクトに対して、複数のStatusLabelを設定しないでください。
+
+StatusLabelは、オブジェクトのライフサイクルを表すステータス（例：開始前・進行中・完了）に主に使用します。ステータスをあらわすプロパティが複数ある場合は、値が1つに定まり、オブジェクトの絞り込みや並べ替えの基準になるものにStatusLabelを使用し、他のプロパティは文字列で表現します。文字列では区別しづらい場合は[Chip](/products/components/chip/)や[Icon](/products/components/icon/)の使用を検討してください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Text slot="label">絞り込みや並べ替えの基準となる「対応状況」のステータスをStatusLabelで表現し、その他のステータスは文字列で表示する。</Text>
+    <div slot="img">
+```tsx editable canvas=560 background=BACKGROUND hideCode
+<Base padding={0} className="shr-w-full">
+  <Table rounded>
+    <thead>
+      <tr>
+        <Th>対応状況</Th>
+        <Th>従業員名</Th>
+        <Th>在籍状況</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td><StatusLabel type="blue">対応中</StatusLabel></Td>
+        <Td>山田 太郎</Td>
+        <Td>在職中</Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="grey">完了</StatusLabel></Td>
+        <Td>佐藤 花子</Td>
+        <Td>在職中</Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="grey">完了</StatusLabel></Td>
+        <Td>田中 一郎</Td>
+        <Td>退職済</Td>
+      </tr>
+    </tbody>
+  </Table>
+</Base>
+```
+    </div>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Text slot="label">「対応状況」と「在籍状況」が同じ種類のStatusLabelで表現されており、基準となるステータスがわかりづらくなる。</Text>
+    <div slot="img">
+```tsx editable canvas=560 background=BACKGROUND hideCode
+<Base padding={0} className="shr-w-full">
+  <Table rounded>
+    <thead>
+      <tr>
+        <Th>対応状況</Th>
+        <Th>従業員名</Th>
+        <Th>在籍状況</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td><StatusLabel type="blue">対応中</StatusLabel></Td>
+        <Td>山田 太郎</Td>
+        <Td><StatusLabel type="blue">在職中</StatusLabel></Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="grey">完了</StatusLabel></Td>
+        <Td>佐藤 花子</Td>
+        <Td><StatusLabel type="blue">在職中</StatusLabel></Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="grey">完了</StatusLabel></Td>
+        <Td>田中 一郎</Td>
+        <Td><StatusLabel type="grey">退職済</StatusLabel></Td>
+      </tr>
+    </tbody>
+  </Table>
+</Base>
+```
+    </div>
+  </DoAndDont>
+</Cluster>
+
+### インスタンスごとに異なる値をラベルに埋め込まない
+
+StatusLabelのラベルには、インスタンスごとに異なる値を埋め込まないでください。同じ状態のオブジェクトを見分けづらくなります。
+
+StatusLabelは、「開始前・進行中・完了」のように取りうるラベルの種類が決まっていて、同じ状態であれば同じラベルになるステータスに使用します。日数や件数などインスタンスごとに値が変わるものは文字列で表現してください。文字列では区別しづらい場合は[Chip](/products/components/chip/)などの使用を検討してください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Text slot="label">「提出状況」はラベルを揃え、インスタンスごとに異なる「残り日数」は別の列に文字列で表示する。</Text>
+    <div slot="img">
+```tsx editable canvas=560 background=BACKGROUND hideCode
+<Base padding={0} className="shr-w-full">
+  <Table rounded>
+    <thead>
+      <tr>
+        <Th>提出状況</Th>
+        <Th>従業員名</Th>
+        <Th>残り日数</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td><StatusLabel type="warning">未提出</StatusLabel></Td>
+        <Td>山田 太郎</Td>
+        <Td>3日</Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="warning">未提出</StatusLabel></Td>
+        <Td>佐藤 花子</Td>
+        <Td>12日</Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="grey">提出済み</StatusLabel></Td>
+        <Td>田中 一郎</Td>
+        <Td><Text color="TEXT_DISABLED">-</Text></Td>
+      </tr>
+    </tbody>
+  </Table>
+</Base>
+```
+    </div>
+  </DoAndDont>
+
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Text slot="label">「提出状況」のラベルがインスタンスごとに異なるため、同じ状態のオブジェクトを見分けにくい。</Text>
+    <div slot="img">
+```tsx editable canvas=560 background=BACKGROUND hideCode
+<Base padding={0} className="shr-w-full">
+  <Table rounded>
+    <thead>
+      <tr>
+        <Th>提出状況</Th>
+        <Th>従業員名</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td><StatusLabel type="warning">残り3日</StatusLabel></Td>
+        <Td>山田 太郎</Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="warning">残り12日</StatusLabel></Td>
+        <Td>佐藤 花子</Td>
+      </tr>
+      <tr>
+        <Td><StatusLabel type="grey">提出済み</StatusLabel></Td>
+        <Td>田中 一郎</Td>
+      </tr>
+    </tbody>
+  </Table>
+</Base>
+```
+    </div>
+  </DoAndDont>
+</Cluster>
+
 ## 種類
 
 特殊なステータスを表す場合は、背景色に警告色やエラー色を使います。  
@@ -28,7 +186,7 @@ StatusLabel単体でリンクやアクションボタンの機能を持たない
 
 すべての人が同じように色を認識できるわけではありません。  
 色のみでステータスを伝えることは避け、[ライティング](#h2-2)を参考に適切な名前を付けましょう。
-（参考：[カラーユニバーサルデザイン](/accessibility/#h3-2)）
+（参考：[色や、形、音、レイアウト情報のみでコンテンツを説明していない](/accessibility/guidelines/sensory-characteristics/)）
 
 ```tsx editable
 <Stack>

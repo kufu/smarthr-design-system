@@ -12,7 +12,7 @@ import { MessageDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -23,8 +23,8 @@ import { MessageDialog } from 'smarthr-ui'
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
 | closeButton | ReactNode | - | - | 閉じるボタン |
 | firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
-| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 |
-| onPressEscape | (() => void) & ((close: () => void) => void) | - | - | エスケープキーを押下した時に発火するコールバック関数 |
+| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 @todo イベントハンドラー命名規則に従い handleClickOverlay に変更すべき（影響範囲大のため別PR） |
+| onPressEscape | (() => void) & ((close: () => void) => void) | - | - | エスケープキーを押下した時に発火するコールバック関数 @todo イベントハンドラー命名規則に従い handlePressEscape に変更すべき（影響範囲大のため別PR） |
 | ariaLabel | string | - | - | ダイアログの `aria-label` |
 | ariaLabelledby | string | - | - | ダイアログの `aria-labelledby` |
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
@@ -59,9 +59,3 @@ MessageDialog に直接関連する eslint-plugin-smarthr のルールは現時�
 
 ### 構成 > 3. アクションボタン
 - [must] ダイアログを閉じるボタンを配置し、ラベルは `閉じる` とする
-
-### モバイル
-- [should] モバイルで情報量が多い場合は拡大したダイアログの採用を検討する
-  - 採用を検討するケース: ダイアログ内で多くのスクロールを伴う場合・入力や編集などキーボード入力操作が多い場合
-  - ［閉じる］ボタンはタイトルの右端に配置する
-  - ダイアログの左右と裏側の領域（スクリムで隠されている領域）のパディングは `0（0px）` とする

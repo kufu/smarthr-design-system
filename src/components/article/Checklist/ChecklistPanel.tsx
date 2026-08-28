@@ -1,14 +1,4 @@
-import {
-  Cluster,
-  FaAngleRightIcon,
-  FaArrowUpIcon,
-  Stack,
-  StatusLabel,
-  Text,
-  TextLink,
-  defaultBorder,
-  defaultSpacing,
-} from 'smarthr-ui';
+import { Cluster, FaAngleRightIcon, FaArrowUpIcon, Stack, StatusLabel, Text, TextLink, defaultBorder } from 'smarthr-ui';
 
 import styles from './ChecklistPanel.module.scss';
 
@@ -94,6 +84,7 @@ const GroupedView = ({ groups }: { groups: ChecklistGroup[] }) => (
           gap={0.75}
           style={{
             listStyle: 'none',
+            marginBlockStart: 0,
             paddingInline: 0,
           }}
         >

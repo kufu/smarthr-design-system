@@ -12,7 +12,7 @@ import { Fieldset } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -167,3 +167,10 @@ const AnyComponent = (
 ### 状態 > 読み取り専用
 - [should] 入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、Input の `readOnly` を使用する
 - [should] Fieldset 内の値を readOnly で表示する場合、分割されたフォームの値をそれぞれコピーする必要があり手間になる点に注意する
+
+### アクセシビリティ > 開発時の考慮点 > 関連する入力項目はFieldsetでグループ化する
+- [must] 複数の入力項目が同じ質問や設定に関するものである場合は、Fieldset コンポーネントを使用してグループ化する
+  - Checkbox や RadioButton の選択肢だけでなく、住所入力のような複数の入力項目をまとめる場合にも有効
+
+### アクセシビリティ > 開発時の考慮点 > legendでグループの目的を示す
+- [must] `legend` props には、グループ全体が何についての入力項目なのかがわかるテキストを設定する

@@ -22,7 +22,7 @@ import { Cluster, Text } from 'smarthr-ui'
 チェックボックスは選択肢を複数選択できる場合に使用します。
 
 - 複数の選択肢から単一選択しかできず、表示領域に余裕がある場合は原則として[RadioButton](/products/components/radio-button/)を検討してください。
-- 選択肢が多い場合や表示領域が狭い場合は、[MultiCombobox](/products/components/combo-box/multi-combo-box/)を検討してください。
+- 選択肢が多い場合や表示領域が狭い場合は、[MultiCombobox](/products/components/combobox/multi-combobox/)を検討してください。
 
 選択操作に関わるコンポーネントの使い分けは[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
 
@@ -85,7 +85,7 @@ import { Cluster, Text } from 'smarthr-ui'
     innerMargin={0.5}
   >
     <BaseColumn className="shr-w-fit">
-      <Stack gap={1}>
+      <Stack>
         <Checkbox name="sample">選択肢 1</Checkbox>
         <Checkbox name="sample">選択肢 2</Checkbox>
         <Checkbox name="sample">選択肢 3</Checkbox>
@@ -110,7 +110,7 @@ import { Cluster, Text } from 'smarthr-ui'
   innerMargin={0.5}
 >
   <BaseColumn className="shr-w-fit">
-    <Stack gap={1}>
+    <Stack>
       <Checkbox name="sample">比較的長いテキストの選択肢 1</Checkbox>
       <Checkbox name="sample">比較的長いテキストの選択肢 2</Checkbox>
       <Checkbox name="sample">比較的長いテキストの選択肢 3</Checkbox>
@@ -387,11 +387,11 @@ import { Cluster, Text } from 'smarthr-ui'
 
 ### 関連ページ
 
-- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/check-list/accessible-name/)
-- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/check-list/label/)
+- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
+- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
 
 ## モバイル
-モバイル表示時は、画面の幅が狭いため基本的に縦並びにします。誤操作を防ぐために、[小さい要素間のマージン](/products/design-patterns/spacing-layout-pattern/#h5-4)に従って十分なマージンを確保してください。
+モバイル表示時は、画面の幅が狭いため基本的に縦並びにします。誤操作を防ぐために、[小さい要素間のマージン](/products/design-patterns/spacing-layout-pattern/#h4-4)に従って十分なマージンを確保してください。
 
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">

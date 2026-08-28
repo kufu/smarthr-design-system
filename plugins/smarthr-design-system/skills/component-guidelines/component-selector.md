@@ -2,7 +2,7 @@
 
 UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、対応するガイドファイルを参照してください。
 
-> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v99.3.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ## コンポーネント一覧
 
@@ -15,8 +15,6 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | AppNavi | アプリケーション内の主要機能を切り替えるグローバルナビゲーションコンポーネントです。機能間を行き来するとき、機能切替以外でアプリ全体に関わる頻繁な操作を常設するときに使います。 | [components/AppNavi.md](components/AppNavi.md) |
 | AuthErrorScreen | 認証フローで問題が発生したことを表示する全画面コンポーネントです。SSOやOAuthなどログイン処理に失敗したときに使います。 | [components/AuthErrorScreen.md](components/AuthErrorScreen.md) |
 | Badge | 件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。 | [components/Badge.md](components/Badge.md) |
-| Base | 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。 | [components/Base.md](components/Base.md) |
-| BaseColumn | BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。 | [components/BaseColumn.md](components/BaseColumn.md) |
 | ⚠️ BottomFixedArea（非推奨） | 【非推奨】画面下部に固定表示する領域のためのコンポーネントです。 | [components/BottomFixedArea.md](components/BottomFixedArea.md) |
 | Browser | 階層構造を持つデータを選択するためのコンポーネントです。カテゴリや組織、フォルダなどのツリー状のデータをドリルダウンで選択するときに使います。 | [components/Browser.md](components/Browser.md) |
 | BulkActionRow | テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。 | [components/BulkActionRow.md](components/BulkActionRow.md) |
@@ -50,6 +48,7 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | ForbiddenErrorScreen | アクセス権限がないことを表示する全画面コンポーネントです。403相当の権限エラーを伝えるときに使います。 | [components/ForbiddenErrorScreen.md](components/ForbiddenErrorScreen.md) |
 | FormControl | 単一の入力要素にラベル、ヘルプ/エラー/補足のメッセージテキスト、入力必須か否かを紐づけるためのコンポーネントです。1つの入力欄にラベル付けするとき、入力欄にエラーや補足メッセージを表示するときに使います。 | [components/FormControl.md](components/FormControl.md) |
 | FormDialog | フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるためのActionDialog派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、Enterキーでの送信が必要なときに使います。 | [components/FormDialog.md](components/FormDialog.md) |
+| Groupbox | BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。 | [components/Groupbox.md](components/Groupbox.md) |
 | Header | アカウント設定やアプリ切替などSmartHR共通の横断機能を提供するヘッダーコンポーネントです。基本はAppHeaderの利用を推奨し、独自のヘッダー構成が必要なときのみHeader単体で使います。 | [components/Header.md](components/Header.md) |
 | Heading | 見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。 | [components/Heading.md](components/Heading.md) |
 | HelpLink | ヘルプページを開くためのテキストリンクコンポーネントです。SmartHRのヘルプセンターへ誘導するリンクを置くときに使います。 | [components/HelpLink.md](components/HelpLink.md) |
@@ -68,6 +67,7 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | PageCounter | 「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。 | [components/PageCounter.md](components/PageCounter.md) |
 | PageHeading | 画面全体の最上位見出しを表示するためのコンポーネントです。h1要素として画面タイトルを示すときに使います。 | [components/PageHeading.md](components/PageHeading.md) |
 | Pagination | 「よくあるテーブル」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。 | [components/Pagination.md](components/Pagination.md) |
+| Panel | 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。 | [components/Panel.md](components/Panel.md) |
 | RadioButton | input[type='radio']要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。 | [components/RadioButton.md](components/RadioButton.md) |
 | RadioButtonPanel | RadioButtonをパネル型に視覚的強化した単一選択コンポーネントです。選択肢に説明やステータスを付加するとき、視覚的に強調して操作領域を確保するときに使います。 | [components/RadioButtonPanel.md](components/RadioButtonPanel.md) |
 | Reel | 要素を水平方向に並べ、はみ出した場合は水平方向にスクロールさせるレイアウトコンポーネントです。複数の要素を水平方向にスクロールさせて見せるときに使います。 | [components/Reel.md](components/Reel.md) |

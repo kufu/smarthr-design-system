@@ -1,8 +1,10 @@
 items:
+  # 状態 > PDF内テキスト検索の表示
+  - severity: should
+    text: 'モバイルなど画面サイズが限られる場面では、検索フォームがコンテンツ領域を圧迫する場合があるため、`searchable={false}` の指定を検討する'
+    source_section: '状態 > PDF内テキスト検索の表示'
+
   # モバイル
   - severity: should
     text: 'FileViewer をダイアログで表示する際は、画面いっぱいに広げる拡大したダイアログの使用を検討する'
     source_section: 'モバイル'
-  - severity: should
-    text: 'PDF 表示時に検索フォームが画面を圧迫する場合は、`searchable` props を `false` に設定して検索フォームを非表示にすることを検討する'
-    source_section: 'モバイル > 検索フォームの非表示'

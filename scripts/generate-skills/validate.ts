@@ -31,7 +31,7 @@ type Report = {
 };
 
 const ITEM_MIN = 1;
-const ITEM_MAX = 30;
+const ITEM_MAX = 40;
 const TEXT_MIN = 10;
 const TEXT_MAX = 200;
 const VALID_SEVERITIES: Severity[] = ['must', 'should', 'avoid'];
@@ -41,11 +41,21 @@ const SEVERITY_MONOTONE_MIN_ITEMS = 6;
 const NON_RULE_HEADING_PATTERNS: RegExp[] = [
   /^Props$/,
   /^関連リンク$/,
+  /^関連ページ$/,
   /^関連するチェックリスト$/,
   /^参考文献$/,
   /^実装例$/,
   /との違い$/,
+  // checklist.yaml 自体を表示する節。抽出対象外（自己参照・循環防止）のため原理的にカバーできない
+  /^使い方チェックリスト$/,
 ];
+
+// source_section のセグメントのうち、見出しではなく mdx 冒頭（最初の見出しより前の説明文）を
+// 指す擬似セグメント。実在する見出しがないため逆方向チェックの対象外とする。
+const LEAD_PARAGRAPH_SEGMENT = '冒頭';
+
+// `使用上の注意 > ... (via MultipleModalWarning.mdx)` の由来注記。セグメント分解の前に落とす。
+const VIA_SUFFIX_PATTERN = /\s*\(via [^)]+\)\s*$/;
 
 function findChecklistFiles(): string[] {
   const result: string[] = [];
@@ -77,6 +87,50 @@ function extractHeadings(indexMdxPath: string): string[] {
   return headings;
 }
 
+/**
+ * mdx の見出し階層を `親 > 子 > 孫` 形式のフルパスとして列挙する。
+ * source_section と同じ表記になるため、そのまま突き合わせに使える。
+ */
+function extractHeadingPaths(mdxPath: string): string[] {
+  if (!fs.existsSync(mdxPath)) return [];
+  const paths: string[] = [];
+  let stack: string[] = [];
+  let inCode = false;
+  for (const line of fs.readFileSync(mdxPath, 'utf-8').split('\n')) {
+    if (/^\s*```/.test(line)) {
+      inCode = !inCode;
+      continue;
+    }
+    if (inCode) continue;
+    const m = line.match(/^(#{2,6})\s+(.+?)\s*$/);
+    if (!m) continue;
+    const level = m[1].length;
+    stack = stack.slice(0, level - 2);
+    stack[level - 2] = m[2].trim();
+    paths.push(stack.filter(Boolean).join(' > '));
+  }
+  return paths;
+}
+
+/**
+ * source_section が指しうる見出しパスの集合。
+ *
+ * index.mdx に加えて import される `.mdx`（`_components/*.mdx` および親階層の同ディレクトリ）の
+ * 見出しも含める。現状 import 先の mdx は見出しを持たず、`(via xxx.mdx)` 付きの source_section も
+ * 展開先である親 index.mdx の見出しパスを使う規約だが、import 先が見出しを持つようになったときに
+ * 誤検知しないよう先に含めておく。
+ */
+function collectKnownHeadingPaths(componentDir: string): string[] {
+  const paths = extractHeadingPaths(path.join(componentDir, 'index.mdx'));
+  for (const dir of [path.join(componentDir, '_components'), path.join(componentDir, '..', '_components')]) {
+    if (!fs.existsSync(dir)) continue;
+    for (const entry of fs.readdirSync(dir)) {
+      if (entry.endsWith('.mdx')) paths.push(...extractHeadingPaths(path.join(dir, entry)));
+    }
+  }
+  return paths;
+}
+
 function validateOne(yamlPath: string): Report {
   const componentDir = path.dirname(yamlPath);
   const component = path.relative(COMPONENTS_DIR, componentDir);
@@ -106,7 +160,8 @@ function validateOne(yamlPath: string): Report {
     issues.push({ level: 'warn', code: 'ITEM_COUNT_TOO_MANY', message: `項目数 ${itemCount} (上限 ${ITEM_MAX})` });
   }
 
-  const sourceSections = new Set<string>();
+  // source_section → 最初に出現した item index（逆方向チェックの報告位置に使う）
+  const sourceSections = new Map<string, number>();
   items.forEach((item, i) => {
     if (!item || typeof item !== 'object') {
       issues.push({ level: 'error', code: 'INVALID_ITEM', message: 'item が object でない', itemIndex: i });
@@ -146,8 +201,8 @@ function validateOne(yamlPath: string): Report {
 
     if (typeof src !== 'string' || src.length === 0) {
       issues.push({ level: 'error', code: 'MISSING_SOURCE_SECTION', message: 'source_section 欠落', itemIndex: i });
-    } else {
-      sourceSections.add(src);
+    } else if (!sourceSections.has(src)) {
+      sourceSections.set(src, i);
     }
   });
 
@@ -160,9 +215,53 @@ function validateOne(yamlPath: string): Report {
     });
   }
 
+  // 逆方向チェック: source_section が mdx の見出しを正しく指しているか。
+  // 順方向のカバー率（見出し → source_section）は「拾えていない見出し」しか見ないため、
+  // 出典側が消えた・改名された・階層を書き間違えたといった出典とのズレを検出できない。
+  //
+  // 2 段階で見る:
+  //   1. セグメントが実在するか      → SOURCE_SECTION_NOT_FOUND（見出しの削除・改名・転記ミス）
+  //   2. 階層（フルパス）が一致するか → SOURCE_SECTION_HIERARCHY_MISMATCH（中間の見出しの抜け等）
+  // 1 を通っても 2 で落ちる例: `レイアウト > [WIP] モバイル > X` は各セグメントが実在しても、
+  // 実際の階層が `レイアウト > 2. ドロップダウンパネル > [WIP] モバイル > X` ならパスとしては誤り。
+  const knownPaths = collectKnownHeadingPaths(componentDir);
+  const knownPathSet = new Set(knownPaths);
+  const knownHeadings = new Set(knownPaths.flatMap((p) => p.split('>').map((s) => s.trim())));
+  for (const [src, itemIndex] of sourceSections) {
+    const cleaned = src.replace(VIA_SUFFIX_PATTERN, '');
+    const segments = cleaned
+      .split('>')
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const unknown = segments.filter((s) => s !== LEAD_PARAGRAPH_SEGMENT && !knownHeadings.has(s));
+    if (unknown.length > 0) {
+      issues.push({
+        level: 'error',
+        code: 'SOURCE_SECTION_NOT_FOUND',
+        message: `source_section "${src}" に mdx の見出しと一致しないセグメントがある: ${unknown.join(', ')}`,
+        itemIndex,
+      });
+      continue;
+    }
+
+    // 冒頭（見出しではない擬似セグメント）を含むものは実在するパスを持たないため階層チェックの対象外
+    if (segments.includes(LEAD_PARAGRAPH_SEGMENT) || knownPathSet.has(cleaned)) continue;
+
+    const leaf = segments[segments.length - 1];
+    const correct = knownPaths.filter((p) => p.split('>').pop()?.trim() === leaf);
+    issues.push({
+      level: 'error',
+      code: 'SOURCE_SECTION_HIERARCHY_MISMATCH',
+      message:
+        `source_section "${src}" の見出し階層が mdx と一致しない` + (correct.length > 0 ? `。正しくは "${correct[0]}"` : ''),
+      itemIndex,
+    });
+  }
+
   const allHeadings = extractHeadings(indexMdxPath);
   const headings = allHeadings.filter((h) => !NON_RULE_HEADING_PATTERNS.some((p) => p.test(h)));
-  const sectionsConcat = Array.from(sourceSections).join(' || ');
+  const sectionsConcat = Array.from(sourceSections.keys()).join(' || ');
   const missing: string[] = [];
   let covered = 0;
   for (const h of headings) {

@@ -3,7 +3,7 @@ title: 'Button'
 description: 'button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。'
 ---
 
-import { Base, BaseColumn, Button, FormControl, Input, Stack, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon, NotificationBar, ResponseMessage } from 'smarthr-ui'
+import { Base, BaseColumn, Button, FormControl, Input, Stack, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { OpenInNewTabIconInAnchorButton, SampleButton } from './_components'
@@ -120,7 +120,7 @@ Textボタンは、画面内の通常の操作をユーザーに示す役割を�
 Secondaryボタンと役割は同じですが、Secondaryボタンの装飾（枠線）が過剰な場合に使います。例えば、次のような場合です。
 
 - コンポーネントに内包する場合
-  - 例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/) 
+  - 例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)
 - 多くのボタンを並べて表示する場合
 
 Textボタンは、背景色やボーダーがなく、テキストのみで表示されるため、操作できる要素だと気づきにくい場合があります。
@@ -212,7 +212,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
   </Button>
   <Button size="S">
     <FaCirclePlusIcon alt="追加" />
-  </Button> 
+  </Button>
   <Button variant="text">
     <FaCirclePlusIcon alt="追加" />
   </Button>
@@ -287,7 +287,7 @@ TertiaryボタンやTextボタンは、主にテキスト色の違いによっ�
 アイコンボタンは、視覚的にはアイコンによって操作内容を伝えられますが、スクリーンリーダーを使用するユーザーには操作内容が伝わりません。
 そのため、アイコンコンポーネントの `alt` props に操作内容を表すテキストを設定してください。設定したテキストはアクセシブルネームとして利用されます。
 
-詳しくは、[Iconコンポーネントのアクセシビリティ](./icon/#h2-3)を参照してください。
+詳しくは、[Iconコンポーネントのアクセシビリティ](/products/components/icon/#h2-3)を参照してください。
 
 
 ##### 良い実装例
@@ -323,10 +323,16 @@ TertiaryボタンやTextボタンは、主にテキスト色の違いによっ�
 
 アイコンボタンに代替テキストがない場合、スクリーンリーダーでは操作内容が伝わりません。また、代替テキストが曖昧な場合は、何を実行するボタンなのか判断できません。
 
+#### AnchorButtonはリンク先がわかるテキストを使用する
+
+AnchorButtonはリンク（`a`要素）としてレンダリングされるため、テキストはリンク先がわかる文言にしてください。
+
+詳しくは、[リンクのテキストからリンク先が判別できる](/accessibility/guidelines/link-text/) を参照してください。
+
 ### 関連ページ
 
-- [画像に代替テキストが付与されている | アクセシビリティガイドライン](/accessibility/check-list/alternative-text/)
-- [装飾目的の装飾目的の画像が無視できるようになっている | アクセシビリティガイドライン](/accessibility/check-list/decorative-image/)
+- [画像に代替テキストが付与されている | アクセシビリティガイドライン](/accessibility/guidelines/alternative-text/)
+- [装飾目的の装飾目的の画像が無視できるようになっている | アクセシビリティガイドライン](/accessibility/guidelines/decorative-image/)
 - [同一の操作や説明には一貫したアイコンを使用する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/consistent-icon/)
 - [画面の左側に見出しやUIを配置する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/left-layout/)
 - [関連するフォームパーツは隣り合う位置に配置する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/adjacent-fields/)
