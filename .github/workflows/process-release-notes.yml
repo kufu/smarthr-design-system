@@ -1,0 +1,187 @@
+name: Process Release Notes
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  process-release-notes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: |
+          COMMIT_SHA="${{ github.sha }}"
+          PR_NUMBER=$(gh pr list --state merged --limit 100 --json number,mergeCommit | jq -r --arg sha "$COMMIT_SHA" '.[] | select(.mergeCommit.oid == $sha) | .number')
+          
+          if [ -n "$PR_NUMBER" ]; then
+            echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+            echo "Found merged PR: #$PR_NUMBER"
+          else
+            echo "No merged PR found for this commit"
+            exit 0
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract release note from PR
+        id: extract-release-note
+        if: steps.get-pr.outputs.pr_number != ''
+        run: |
+          PR_NUMBER=${{ steps.get-pr.outputs.pr_number }}
+          PR_BODY=$(gh pr view $PR_NUMBER --json body -q '.body')
+          
+          # リリースノートセクションを抽出
+          RELEASE_NOTE_SECTION=$(echo "$PR_BODY" | sed -n '/## リリースノート/,/## /p' | sed '$d')
+          
+          # タイトルを抽出
+          TITLE=$(echo "$RELEASE_NOTE_SECTION" | grep "**タイトル:**" | sed 's/.*\*\*タイトル:\*\* *//' | sed 's/<!-- .* -->//' | xargs)
+          
+          # 説明を抽出
+          DESCRIPTION=$(echo "$RELEASE_NOTE_SECTION" | grep "**説明:**" | sed 's/.*\*\*説明:\*\* *//' | sed 's/<!-- .* -->//' | xargs)
+          
+          # X投稿フラグを確認
+          POST_TO_X=$(echo "$RELEASE_NOTE_SECTION" | grep -q "\[x\].*リリース時にXに投稿する" && echo "true" || echo "false")
+          
+          # 画像URLを抽出（PRの本文から）
+          IMAGES=$(echo "$PR_BODY" | grep -oE 'https://[^[:space:]]+\.(png|jpg|jpeg|gif|webp)' | head -5 | tr '\n' '|' | sed 's/|$//')
+          
+          if [ -n "$TITLE" ] && [ -n "$DESCRIPTION" ]; then
+            echo "title=$TITLE" >> $GITHUB_OUTPUT
+            echo "description=$DESCRIPTION" >> $GITHUB_OUTPUT
+            echo "post_to_x=$POST_TO_X" >> $GITHUB_OUTPUT
+            echo "images=$IMAGES" >> $GITHUB_OUTPUT
+            echo "has_release_note=true" >> $GITHUB_OUTPUT
+            echo "Release note found:"
+            echo "Title: $TITLE"
+            echo "Description: $DESCRIPTION"
+            echo "Post to X: $POST_TO_X"
+            echo "Images: $IMAGES"
+          else
+            echo "has_release_note=false" >> $GITHUB_OUTPUT
+            echo "No valid release note found in PR #$PR_NUMBER"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download images
+        id: download-images
+        if: steps.extract-release-note.outputs.has_release_note == 'true' && steps.extract-release-note.outputs.images != ''
+        run: |
+          IMAGES="${{ steps.extract-release-note.outputs.images }}"
+          DOWNLOADED_IMAGES=""
+          
+          if [ -n "$IMAGES" ]; then
+            # publicディレクトリ内にrelease-imagesディレクトリを作成
+            mkdir -p public/images/release-notes
+            
+            # 画像をダウンロード
+            IFS='|' read -ra IMAGE_ARRAY <<< "$IMAGES"
+            for IMAGE_URL in "${IMAGE_ARRAY[@]}"; do
+              if [ -n "$IMAGE_URL" ]; then
+                # ファイル名を生成（日付とランダム文字列を含む）
+                EXTENSION="${IMAGE_URL##*.}"
+                FILENAME="$(date +%Y%m%d)-$(openssl rand -hex 4).$EXTENSION"
+                
+                # 画像をダウンロード
+                if curl -L "$IMAGE_URL" -o "public/images/release-notes/$FILENAME"; then
+                  echo "Downloaded: $IMAGE_URL -> $FILENAME"
+                  if [ -n "$DOWNLOADED_IMAGES" ]; then
+                    DOWNLOADED_IMAGES="$DOWNLOADED_IMAGES|/images/release-notes/$FILENAME"
+                  else
+                    DOWNLOADED_IMAGES="/images/release-notes/$FILENAME"
+                  fi
+                else
+                  echo "Failed to download: $IMAGE_URL"
+                fi
+              fi
+            done
+          fi
+          
+          echo "downloaded_images=$DOWNLOADED_IMAGES" >> $GITHUB_OUTPUT
+
+      - name: Create release note
+        if: steps.extract-release-note.outputs.has_release_note == 'true'
+        run: |
+          TITLE="${{ steps.extract-release-note.outputs.title }}"
+          DESCRIPTION="${{ steps.extract-release-note.outputs.description }}"
+          RELEASE_DATE=$(date +%Y-%m-%d)
+          IMAGES="${{ steps.download-images.outputs.downloaded_images }}"
+          
+          # 画像引数を準備
+          IMAGE_ARGS=""
+          if [ -n "$IMAGES" ]; then
+            IFS='|' read -ra IMAGE_ARRAY <<< "$IMAGES"
+            for IMAGE_PATH in "${IMAGE_ARRAY[@]}"; do
+              if [ -n "$IMAGE_PATH" ]; then
+                IMAGE_ARGS="$IMAGE_ARGS \"$IMAGE_PATH\""
+              fi
+            done
+          fi
+          
+          # リリースノートを作成
+          eval "pnpm add-release-note \"$TITLE\" \"$DESCRIPTION\" \"$RELEASE_DATE\" \"\" $IMAGE_ARGS"
+
+      - name: Create Pull Request for release note
+        if: steps.extract-release-note.outputs.has_release_note == 'true'
+        run: |
+          # 変更があるかチェック
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          # ブランチ名を生成
+          BRANCH_NAME="release-note/$(date +%Y%m%d)-$(openssl rand -hex 4)"
+          
+          # 新しいブランチを作成してコミット
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git checkout -b "$BRANCH_NAME"
+          git add .
+          git commit -m "feat: add release note - ${{ steps.extract-release-note.outputs.title }}"
+          git push origin "$BRANCH_NAME"
+          
+          # PRのボディを準備
+          PR_BODY="## 概要
+          
+          リリースノートを追加しました。
+          
+          **タイトル:** ${{ steps.extract-release-note.outputs.title }}
+          **説明:** ${{ steps.extract-release-note.outputs.description }}
+          
+          ## リリースノート
+          
+          **タイトル:** ${{ steps.extract-release-note.outputs.title }}
+          
+          **説明:** ${{ steps.extract-release-note.outputs.description }}
+          
+          **画像:** ${{ steps.download-images.outputs.downloaded_images }}
+          
+          - [${{ steps.extract-release-note.outputs.post_to_x == 'true' && 'x' || ' ' }}] **リリース時にXに投稿する**"
+          
+          # PRを作成
+          gh pr create \
+            --title "feat: リリースノート追加 - ${{ steps.extract-release-note.outputs.title }}" \
+            --body "$PR_BODY" \
+            --head "$BRANCH_NAME" \
+            --base main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
