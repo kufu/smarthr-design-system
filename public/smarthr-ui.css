@@ -787,6 +787,10 @@ a {
   height: 4em;
 }
 
+.shr-h-\[50\%\] {
+  height: 50%;
+}
+
 .shr-h-\[500px\] {
   height: 500px;
 }
@@ -795,8 +799,16 @@ a {
   height: 509px;
 }
 
+.shr-h-\[50vh\] {
+  height: 50vh;
+}
+
 .shr-h-\[90vh\] {
   height: 90vh;
+}
+
+.shr-h-\[calc\(100svh-1rem\)\] {
+  height: calc(100svh - 1rem);
 }
 
 .shr-h-\[calc\(1em_\*_theme\(lineHeight\.normal\)\)\] {
@@ -850,6 +862,10 @@ a {
 
 .shr-max-h-\[calc\(100dvh-theme\(spacing\.2\)\)\] {
   max-height: calc(100dvh - 32px);
+}
+
+.shr-max-h-\[calc\(100svh-theme\(spacing\[0\.5\]\)\)\] {
+  max-height: calc(100svh - 8px);
 }
 
 .shr-max-h-\[inherit\] {
@@ -1074,10 +1090,6 @@ a {
   min-width: 0;
 }
 
-.shr-min-w-\[0\] {
-  min-width: 0;
-}
-
 .shr-min-w-\[1\.75em\] {
   min-width: 1.75em;
 }
@@ -1143,6 +1155,10 @@ a {
   max-width: calc(100dvw - 16px);
 }
 
+.shr-max-w-\[calc\(100vw-theme\(spacing\[0\.5\]\)\)\] {
+  max-width: calc(100vw - 8px);
+}
+
 .shr-max-w-\[theme\(width\.1\/3\)\] {
   max-width: 33.333333%;
 }
@@ -1205,6 +1221,10 @@ a {
 
 .shr-basis-\[300px\] {
   flex-basis: 300px;
+}
+
+.shr-basis-\[calc\(\(45em_-_100\%\)\*999\)\] {
+  flex-basis: calc((45em - 100%) * 999);
 }
 
 .shr-basis-col6 {
@@ -1583,10 +1603,6 @@ a {
   cursor: move;
 }
 
-.shr-cursor-not-allowed {
-  cursor: not-allowed;
-}
-
 .shr-cursor-pointer {
   cursor: pointer;
 }
@@ -1701,10 +1717,6 @@ a {
 
 .shr-justify-stretch {
   justify-content: stretch;
-}
-
-.shr-justify-items-center {
-  justify-items: center;
 }
 
 .shr-gap-0 {
@@ -1936,100 +1948,20 @@ a {
   row-gap: 128px;
 }
 
-.shr-space-y-0 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-0\.25 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(4px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(4px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-0\.5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(8px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(8px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-0\.75 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(12px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(12px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-1 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(16px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(16px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-1\.25 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(20px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(20px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-1\.5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(24px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(24px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(32px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(32px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-2\.5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(40px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(40px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-3 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(48px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(48px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-3\.5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(56px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(56px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(64px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(64px * var(--tw-space-y-reverse));
-}
-
-.shr-space-y-8 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(128px * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(128px * var(--tw-space-y-reverse));
-}
-
-.shr-divide-x > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-x-reverse: 0;
-  border-right-width: calc(1px * var(--tw-divide-x-reverse));
-  border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
-}
-
-.shr-divide-solid > :not([hidden]) ~ :not([hidden]) {
-  border-style: solid;
-}
-
 .shr-self-center {
   align-self: center;
 }
 
 .shr-self-stretch {
   align-self: stretch;
+}
+
+.shr-justify-self-center {
+  justify-self: center;
+}
+
+.shr-justify-self-stretch {
+  justify-self: stretch;
 }
 
 .shr-overflow-auto {
@@ -2092,6 +2024,12 @@ a {
   overscroll-behavior: contain;
 }
 
+.shr-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .shr-overflow-ellipsis {
   text-overflow: ellipsis;
 }
@@ -2126,6 +2064,10 @@ a {
 
 .shr-break-words {
   overflow-wrap: break-word;
+}
+
+.shr-break-all {
+  word-break: break-all;
 }
 
 .shr-rounded-\[50\%\] {
@@ -2186,6 +2128,11 @@ a {
   border-bottom-right-radius: 0;
 }
 
+.shr-rounded-s-none {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
 .shr-rounded-t-l {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -2236,13 +2183,12 @@ a {
   border-right-width: 1px;
 }
 
-.shr-border-y-0 {
-  border-top-width: 0px;
-  border-bottom-width: 0px;
-}
-
 .shr-border-b {
   border-bottom-width: 1px;
+}
+
+.shr-border-s-0 {
+  border-inline-start-width: 0px;
 }
 
 .shr-border-s-4 {
@@ -2269,10 +2215,6 @@ a {
   border-style: none;
 }
 
-.shr-border-\[theme\(borderColor\.default\)\] {
-  border-color: #d6d3d0;
-}
-
 .shr-border-\[theme\(colors\.main\)\] {
   border-color: #0077c7;
 }
@@ -2289,14 +2231,6 @@ a {
 .shr-border-default {
   --tw-border-opacity: 1;
   border-color: rgb(214 211 208 / var(--tw-border-opacity, 1));
-}
-
-.shr-border-default\/50 {
-  border-color: rgb(214 211 208 / 0.5);
-}
-
-.shr-border-disabled {
-  border-color: rgb(214 211 208 / 50%);
 }
 
 .shr-border-green {
@@ -2478,10 +2412,6 @@ a {
 .shr-bg-white-darken {
   --tw-bg-opacity: 1;
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1));
-}
-
-.shr-bg-white\/50 {
-  background-color: rgb(255 255 255 / 0.5);
 }
 
 .shr-bg-\[radial-gradient\(theme\(textColor\.black\)_1px\,_transparent_0\)\] {
@@ -3210,11 +3140,22 @@ a {
   outline-offset: -2px;
 }
 
+:where(.has-\[\[role\=combobox\]\[aria-expanded\=true\]\]\:shr-focus-indicator:has([role=combobox][aria-expanded=true])) {
+  isolation: isolate;
+  box-shadow: inset 0 0 0 4px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: -2px;
+}
+
 :where(.has-\[\.smarthr-ui-ModelessDialog-handle\:focus-visible\]\:shr-focus-indicator:has(.smarthr-ui-ModelessDialog-handle:focus-visible)).shr-border-shorthand:not(.shr-border-none) {
   box-shadow: inset 0 0 0 calc(4px - 1px) #fff;
 }
 
 :where(.has-\[\:focus-visible\]\:shr-focus-indicator:has(:focus-visible)).shr-border-shorthand:not(.shr-border-none) {
+  box-shadow: inset 0 0 0 calc(4px - 1px) #fff;
+}
+
+:where(.has-\[\[role\=combobox\]\[aria-expanded\=true\]\]\:shr-focus-indicator:has([role=combobox][aria-expanded=true])).shr-border-shorthand:not(.shr-border-none) {
   box-shadow: inset 0 0 0 calc(4px - 1px) #fff;
 }
 
@@ -3235,6 +3176,17 @@ a {
   border-width: 1px;
   border-style: solid;
   border-color: #d6d3d0;
+}
+
+:where(.data-\[active\=true\]\:shr-focus-indicator[data-active="true"]) {
+  isolation: isolate;
+  box-shadow: inset 0 0 0 4px #fff;
+  outline: 2px solid #0077c7;
+  outline-offset: -2px;
+}
+
+:where(.data-\[active\=true\]\:shr-focus-indicator[data-active="true"]).shr-border-shorthand:not(.shr-border-none) {
+  box-shadow: inset 0 0 0 calc(4px - 1px) #fff;
 }
 
 @media (prefers-contrast: more) {
@@ -3564,11 +3516,6 @@ a {
   left: calc((0.8571428571428571rem / 2) - 1px);
 }
 
-.before\:shr-left-\[calc\(theme\(fontSize\.sm\)-theme\(spacing\[0\.75\]\)\)\]::before {
-  content: var(--tw-content);
-  left: calc(0.8571428571428571rem - 12px);
-}
-
 .before\:shr-right-0\.5::before {
   content: var(--tw-content);
   right: 8px;
@@ -3612,12 +3559,6 @@ a {
 .before\:shr-hidden::before {
   content: var(--tw-content);
   display: none;
-}
-
-.before\:shr-size-0\.75::before {
-  content: var(--tw-content);
-  width: 12px;
-  height: 12px;
 }
 
 .before\:shr-size-\[theme\(fontSize\.base\)\]::before {
@@ -3769,22 +3710,9 @@ a {
   background-color: rgb(214 211 208 / var(--tw-bg-opacity, 1));
 }
 
-.before\:shr-bg-main::before {
-  content: var(--tw-content);
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
-}
-
 .before\:shr-p-\[calc\(theme\(spacing\[0\.25\]\)_\/_2\)\]::before {
   content: var(--tw-content);
   padding: calc(4px / 2);
-}
-
-.before\:shr-shadow-\[0_0_0_2px_white\2c 0_0_0_4px_theme\(colors\.main\)\]::before {
-  content: var(--tw-content);
-  --tw-shadow: 0 0 0 2px white,0 0 0 4px #0077c7;
-  --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color), 0 0 0 4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .before\:shr-transition-\[transform\2c margin\]::before {
@@ -4160,10 +4088,6 @@ a {
 
 .last\:shr-rounded-tr-m:last-child {
   border-top-right-radius: 6px;
-}
-
-.empty\:\!shr-mt-0:empty {
-  margin-top: 0 !important;
 }
 
 .empty\:shr-gap-0:empty {
@@ -4598,8 +4522,24 @@ a {
   pointer-events: none;
 }
 
+.has-\[\[role\=combobox\]\[aria-expanded\=false\]\]\:shr-pointer-events-none:has([role=combobox][aria-expanded=false]) {
+  pointer-events: none;
+}
+
+.has-\[\[role\=combobox\]\[aria-expanded\=false\]\]\:shr-absolute:has([role=combobox][aria-expanded=false]) {
+  position: absolute;
+}
+
+.has-\[\.smarthr-ui-DropZone-Button\[aria-disabled\]\]\:shr-cursor-not-allowed:has(.smarthr-ui-DropZone-Button[aria-disabled]) {
+  cursor: not-allowed;
+}
+
 .has-\[\:disabled\]\:shr-cursor-default:has(:disabled) {
   cursor: default;
+}
+
+.has-\[\[role\=combobox\]\:disabled\]\:shr-cursor-not-allowed:has([role=combobox]:disabled) {
+  cursor: not-allowed;
 }
 
 .has-\[\:checked\]\:shr-border-\[theme\(colors\.main\)\]:has(:checked) {
@@ -4610,6 +4550,10 @@ a {
   border-color: #d6d3d0;
 }
 
+.has-\[\:disabled\]\:shr-border-disabled:has(:disabled) {
+  border-color: rgb(214 211 208 / 50%);
+}
+
 .has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]) {
   --tw-border-opacity: 1;
   border-color: rgb(224 30 90 / var(--tw-border-opacity, 1));
@@ -4617,6 +4561,15 @@ a {
 
 .has-\[\[readonly\]\]\:shr-border-\[theme\(backgroundColor\.column\)\]:has([readonly]) {
   border-color: #f8f7f6;
+}
+
+.has-\[\[role\=combobox\]\:disabled\]\:shr-border-default\/50:has([role=combobox]:disabled) {
+  border-color: rgb(214 211 208 / 0.5);
+}
+
+.has-\[\[role\=combobox\]\[aria-invalid\]\]\:shr-border-danger:has([role=combobox][aria-invalid]) {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1));
 }
 
 .has-\[\.smarthr-ui-ModelessDialog-handle\:focus-visible\]\:shr-bg-white-darken:has(.smarthr-ui-ModelessDialog-handle:focus-visible) {
@@ -4644,8 +4597,27 @@ a {
   background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1));
 }
 
+.has-\[\[role\=combobox\]\:disabled\]\:shr-bg-white-darken:has([role=combobox]:disabled) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1));
+}
+
 .has-\[\+_\&\]\:shr-pb-2:has(+ .has-\[\+_\&\]\:shr-pb-2) {
   padding-bottom: 32px;
+}
+
+.has-\[\:disabled\]\:shr-text-disabled:has(:disabled) {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+.has-\[\[role\=combobox\]\:disabled\]\:shr-text-disabled:has([role=combobox]:disabled) {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+.has-\[\[role\=combobox\]\[aria-expanded\=false\]\]\:shr-opacity-0:has([role=combobox][aria-expanded=false]) {
+  opacity: 0;
 }
 
 .has-\[\.smarthr-ui-ModelessDialog-handle\:focus-visible\]\:shr-transition-colors:has(.smarthr-ui-ModelessDialog-handle:focus-visible) {
@@ -4690,6 +4662,15 @@ a {
   background-color: #c1bdb7;
 }
 
+.has-\[\:disabled\]\:hover\:shr-border-disabled:hover:has(:disabled) {
+  border-color: rgb(214 211 208 / 50%);
+}
+
+.has-\[\:disabled\]\:hover\:shr-text-disabled:hover:has(:disabled) {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
 .shr-group\/label:has(:hover,:focus-visible) .group-has-\[\:hover\2c \:focus-visible\]\/label\:shr-not-sr-only {
   position: static;
   width: auto;
@@ -4711,6 +4692,11 @@ a {
 
 .aria-disabled\:shr-cursor-not-allowed[aria-disabled="true"] {
   cursor: not-allowed;
+}
+
+.aria-disabled\:\!shr-border-default[aria-disabled="true"] {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(214 211 208 / var(--tw-border-opacity, 1)) !important;
 }
 
 .aria-disabled\:shr-border-danger\/50[aria-disabled="true"] {
@@ -4872,8 +4858,47 @@ a {
   color: rgb(35 34 30 / var(--tw-text-opacity, 1));
 }
 
+.shr-group[aria-current] .group-aria-\[current\]\:before\:shr-left-\[calc\(theme\(fontSize\.sm\)-theme\(spacing\[0\.75\]\)\)\]::before {
+  content: var(--tw-content);
+  left: calc(0.8571428571428571rem - 12px);
+}
+
+.shr-group[aria-current] .group-aria-\[current\]\:before\:shr-z-1::before {
+  content: var(--tw-content);
+  z-index: 1;
+}
+
+.shr-group[aria-current] .group-aria-\[current\]\:before\:shr-size-0\.75::before {
+  content: var(--tw-content);
+  width: 12px;
+  height: 12px;
+}
+
+.shr-group[aria-current] .group-aria-\[current\]\:before\:shr-bg-main::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
+}
+
+.shr-group[aria-current] .group-aria-\[current\]\:before\:shr-shadow-\[0_0_0_2px_white\2c 0_0_0_4px_theme\(colors\.main\)\]::before {
+  content: var(--tw-content);
+  --tw-shadow: 0 0 0 2px white,0 0 0 4px #0077c7;
+  --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color), 0 0 0 4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .data-\[favorite\=\"false\"\]\:shr-grid-cols-\[1fr_1rem\][data-favorite="false"] {
   grid-template-columns: 1fr 1rem;
+}
+
+.data-\[error\]\:shr-border-danger[data-error] {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1));
+}
+
+.data-\[files-dragged-over\]\:shr-border-main[data-files-dragged-over] {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 119 199 / var(--tw-border-opacity, 1));
 }
 
 .data-\[active\=false\]\:shr-bg-white[data-active="false"] {
@@ -4881,14 +4906,13 @@ a {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.data-\[active\=true\]\:shr-bg-white-darken[data-active="true"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1));
-}
-
 .data-\[current\=true\]\:shr-bg-main[data-current="true"] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
+}
+
+.data-\[disabled\]\:shr-bg-white\/50[data-disabled] {
+  background-color: rgb(255 255 255 / 0.5);
 }
 
 .data-\[with-releasenote\=\"true\"\]\:shr-pe-0[data-with-releasenote="true"] {
@@ -4898,6 +4922,21 @@ a {
 .data-\[current\=true\]\:shr-text-white[data-current="true"] {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.data-\[disabled\]\:shr-text-disabled[data-disabled] {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+.data-\[error\]\:shr-text-danger[data-error] {
+  --tw-text-opacity: 1;
+  color: rgb(224 30 90 / var(--tw-text-opacity, 1));
+}
+
+.data-\[filtered\=true\]\:shr-text-main[data-filtered="true"] {
+  --tw-text-opacity: 1;
+  color: rgb(0 119 199 / var(--tw-text-opacity, 1));
 }
 
 .data-\[current\=true\]\:after\:shr-absolute[data-current="true"]::after {
@@ -4988,9 +5027,9 @@ a {
   background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
 }
 
-.data-\[active\=true\]\:aria-selected\:shr-bg-main-darken[aria-selected="true"][data-active="true"] {
+.data-\[active\=true\]\:aria-selected\:shr-bg-main[aria-selected="true"][data-active="true"] {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 104 174 / var(--tw-bg-opacity, 1));
+  background-color: rgb(0 119 199 / var(--tw-bg-opacity, 1));
 }
 
 @supports (not selector(:has(+ *))) {
@@ -5170,14 +5209,21 @@ a {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
+  .forced-colors\:shr-outline {
+    outline-style: solid;
+  }
+
+  .forced-colors\:shr-outline-1 {
+    outline-width: 1px;
+  }
+
+  .forced-colors\:shr-outline {
+    outline-color: #0077c7;
+  }
+
   .forced-colors\:before\:shr-bg-\[ButtonBorder\]::before {
     content: var(--tw-content);
     background-color: ButtonBorder;
-  }
-
-  .forced-colors\:before\:shr-bg-\[Mark\]::before {
-    content: var(--tw-content);
-    background-color: Mark;
   }
 
   .forced-colors\:after\:shr-bg-\[Highlight\]::after {
@@ -5221,6 +5267,11 @@ a {
     content: var(--tw-content);
     background-color: Highlight;
   }
+
+  .shr-group[aria-current] .forced-colors\:group-aria-\[current\]\:before\:shr-bg-\[Mark\]::before {
+    content: var(--tw-content);
+    background-color: Mark;
+  }
 }
 
 .\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto.\[\&\&\&\]\:shr-my-auto {
@@ -5228,37 +5279,30 @@ a {
   margin-bottom: auto;
 }
 
-.\[\&\&\&\]\:shr--mt-0.\[\&\&\&\]\:shr--mt-0.\[\&\&\&\]\:shr--mt-0 {
-  margin-top: 0;
-}
-
-.\[\&\&\&\]\:shr-mt-0.\[\&\&\&\]\:shr-mt-0.\[\&\&\&\]\:shr-mt-0 {
-  margin-top: 0;
-}
-
 .\[\&\&\&\]\:shr-whitespace-normal.\[\&\&\&\]\:shr-whitespace-normal.\[\&\&\&\]\:shr-whitespace-normal {
   white-space: normal;
-}
-
-.\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\].\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\] {
-  border-color: #f8f7f6;
-}
-
-.\[\&\&\&\]\:shr-border-default\/50.\[\&\&\&\]\:shr-border-default\/50.\[\&\&\&\]\:shr-border-default\/50 {
-  border-color: rgb(214 211 208 / 0.5);
 }
 
 .\[\&\&\&\]\:shr-border-transparent.\[\&\&\&\]\:shr-border-transparent.\[\&\&\&\]\:shr-border-transparent {
   border-color: transparent;
 }
 
-.\[\&\&\&\]\:shr-bg-column.\[\&\&\&\]\:shr-bg-column.\[\&\&\&\]\:shr-bg-column {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1));
+.\[\&\&\&\]\:has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]).\[\&\&\&\]\:has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]).\[\&\&\&\]\:has-\[\[aria-invalid\]\]\:shr-border-danger:has([aria-invalid]) {
+  --tw-border-opacity: 1;
+  border-color: rgb(224 30 90 / var(--tw-border-opacity, 1));
 }
 
 .has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50.has-\[\:disabled\]\:\[\&\&\&\]\:shr-border-default\/50:has(:disabled) {
   border-color: rgb(214 211 208 / 0.5);
+}
+
+.has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\].has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\].has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-border-\[theme\(backgroundColor\.column\)\]:has([readonly]:not(:disabled)) {
+  border-color: #f8f7f6;
+}
+
+.has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-bg-column.has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-bg-column.has-\[\[readonly\]\:not\(\:disabled\)\]\:\[\&\&\&\]\:shr-bg-column:has([readonly]:not(:disabled)) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1));
 }
 
 .aria-current-page\:\[\&\&\&\]\:shr-cursor-default.aria-current-page\:\[\&\&\&\]\:shr-cursor-default.aria-current-page\:\[\&\&\&\]\:shr-cursor-default[aria-current="page"] {
@@ -5616,6 +5660,10 @@ a {
   display: none;
 }
 
+.\[\&\:has\(\.smarthr-ui-Input-input\:disabled\)\]\:shr-cursor-not-allowed:has(.smarthr-ui-Input-input:disabled) {
+  cursor: not-allowed;
+}
+
 .\[\&\:has\(\:disabled\)\]\:shr-text-disabled:has(:disabled) {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity, 1));
@@ -5744,6 +5792,10 @@ a {
 .\[\&\:not\(\[aria-checked\=\"true\"\]\)\:not\(\:last-child\)\:focus-visible\]\:after\:shr-block:not([aria-checked="true"]):not(:last-child):focus-visible::after {
   content: var(--tw-content);
   display: block;
+}
+
+.\[\&\:not\(\[data-files-dragged-over\]\)\]\:shr-border-dashed:not([data-files-dragged-over]) {
+  border-style: dashed;
 }
 
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
@@ -5966,6 +6018,20 @@ a {
   }
 }
 
+.\[\&\[data-active\=true\]\:not\(\:first-child\)\:not\(\[aria-selected\=true\]\)\]\:before\:shr-block[data-active=true]:not(:first-child):not([aria-selected=true])::before {
+  content: var(--tw-content);
+  display: block;
+}
+
+.\[\&\[data-active\=true\]\:not\(\:last-child\)\:not\(\[aria-selected\=true\]\)\]\:after\:shr-block[data-active=true]:not(:last-child):not([aria-selected=true])::after {
+  content: var(--tw-content);
+  display: block;
+}
+
+.\[\&\[data-active\=true\]\]\:shr-z-1[data-active=true] {
+  z-index: 1;
+}
+
 .\[\&\[type\=\"datetime-local\"\]\]\:shr-min-w-\[11em\][type="datetime-local"] {
   min-width: 11em;
 }
@@ -6050,8 +6116,9 @@ a {
   border-radius: 0;
 }
 
-.\[\&_\.smarthr-ui-Button\]\:shr-border-\[transparent\] .smarthr-ui-Button {
-  border-color: transparent;
+.\[\&_\.smarthr-ui-Button\]\:shr-border-x-\[0\] .smarthr-ui-Button {
+  border-left-width: 0;
+  border-right-width: 0;
 }
 
 .\[\&_\.smarthr-ui-DropdownMenuButton-trigger\:has\(\[aria-current\]\)\]\:shr-relative .smarthr-ui-DropdownMenuButton-trigger:has([aria-current]) {
@@ -6176,6 +6243,11 @@ a {
 
 .\[\&_\.smarthr-ui-Input\]\:shr-w-full .smarthr-ui-Input {
   width: 100%;
+}
+
+.\[\&_\.smarthr-ui-Input\]\:shr-rounded-e-none .smarthr-ui-Input {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
 }
 
 .\[\&_\.smarthr-ui-Loader-line\]\:shr-border-disabled .smarthr-ui-Loader-line {
@@ -6405,12 +6477,21 @@ a {
   list-style-type: none;
 }
 
-.smarthr-ui-Base > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:first-child .\[\.smarthr-ui-Base_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:first-child_\&\]\:shr-rounded-t-l {
+.smarthr-ui-Input:has(:disabled) .\[\.smarthr-ui-Input\:has\(\:disabled\)_\&\]\:shr-text-disabled {
+  --tw-text-opacity: 1;
+  color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+.smarthr-ui-Input:has(:disabled) .\[\.smarthr-ui-Input\:has\(\:disabled\)_\&\]\:shr-opacity-100 {
+  opacity: 1;
+}
+
+.smarthr-ui-Panel > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:first-child .\[\.smarthr-ui-Panel_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:first-child_\&\]\:shr-rounded-t-l {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
-.smarthr-ui-Base > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:last-child .\[\.smarthr-ui-Base_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:last-child_\&\]\:shr-rounded-b-l {
+.smarthr-ui-Panel > .smarthr-ui-AccordionPanel .smarthr-ui-AccordionPanel-item:last-child .\[\.smarthr-ui-Panel_\>_\.smarthr-ui-AccordionPanel_\.smarthr-ui-AccordionPanel-item\:last-child_\&\]\:shr-rounded-b-l {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -6442,10 +6523,6 @@ a {
 
 :not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-0\.5 {
   margin-top: 8px;
-}
-
-:not([hidden]) ~ .\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1.\[\:not\(\[hidden\]\)_\~_\&\&\&\]\:shr-mt-1 {
-  margin-top: 16px;
 }
 
 [aria-pressed="true"]>.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-bg-main.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-bg-main.\[\[aria-pressed\=\"true\"\]\>\&\&\&\]\:shr-bg-main {
@@ -6498,6 +6575,20 @@ a {
 [aria-sort="none"] .\[\[aria-sort\=\"none\"\]_\&\]\:shr-text-disabled {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+[data-active="false"]>.\[\[data-active\=\"false\"\]\>\&\]\:shr-rounded-b-l {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+[data-active="false"]>.\[\[data-active\=\"false\"\]\>\&\]\:shr-py-1 {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+[data-clear-button-hidden=true] .\[\[data-clear-button-hidden\=true\]_\&\]\:shr-hidden {
+  display: none;
 }
 
 [data-current=false]:not(:first-child) .\[\[data-current\=false\]\:not\(\:first-child\)_\&\:focus-visible\]\:before\:shr-block:focus-visible::before {
