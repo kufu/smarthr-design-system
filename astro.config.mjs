@@ -1,7 +1,6 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
 import { unified } from '@astrojs/markdown-remark';
-import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
@@ -19,18 +18,7 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
-  integrations: [
-    react(),
-    mdx(),
-    partytown({
-      config: {
-        // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
-        forward: ['dataLayer.push'],
-      },
-    }),
-    tailwind(),
-    sitemap(),
-  ],
+  integrations: [react(), mdx(), tailwind(), sitemap()],
   markdown: {
     syntaxHighlight: false,
     processor: unified({
