@@ -29,3 +29,6 @@ items:
   - severity: should
     text: '目的のファイルを選択するステップが複数回に分かれるケースでは、必要に応じて `multiple={{ appendable: true }}` props の利用を検討する'
     source_section: 'モバイル'
+  - severity: should
+    text: '`previewable` を使用している場合、PDF 検索フォームが画面を圧迫するときは `previewable={{ searchable: false }}` で非表示にすることを検討する'
+    source_section: 'モバイル > プレビューダイアログ内の検索フォームの非表示'
