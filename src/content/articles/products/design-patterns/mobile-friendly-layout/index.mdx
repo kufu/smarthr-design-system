@@ -3,7 +3,7 @@ title: 'モバイルレイアウト'
 description: 'モバイル対応をする基準と、その対応方法を定義します。'
 order: 5
 ---
-import DoAndDont from '@/components/article/DoAndDont.astro'
+
 import { BaseColumn, ResponseMessage } from 'smarthr-ui'
 
 モバイル対応をする基準と、その対応方法を定義します。
@@ -73,6 +73,80 @@ export const YourComponent = () => {
 }
 ```
 
+### モバイルからの利用を推奨しない管理者向けの画面にはNotificationBarを表示する
+
+モバイルからの利用を推奨しない管理者向けの画面には、デスクトップでの利用を促す[NotificationBar](/products/components/notification-bar/)を表示します。レスポンシブ/アダプティブレイアウトが十分に適用されていないことで、ユーザーのページの理解や操作が妨げられる可能性があるためです。
+
+`warning`の[NotificationBar](/products/components/notification-bar/)を表示します。文言は`管理者向け機能は、スマートフォンで正常に動作しない場合があります。`とし、[SmartHRの動作環境](https://support.smarthr.jp/ja/help/articles/360035170054/)への[HelpLink](/products/components/text-link/help-link/)も合わせて表示します。
+
+<div style="max-width: 448px">
+```tsx editable background=DOT hideCode
+<EnvironmentProvider environment={{ mobile: true }}>
+  <div className="shr-w-full shr-bg-background">
+    <AppHeader
+      appName="すごいアプリ"
+      currentTenantId="tenant-1"
+      features={[
+        {
+          favorite: false,
+          id: 'feature-1',
+          name: '従業員リスト',
+          position: null,
+          url: 'https://example.com'
+        },
+      ]}
+      navigations={[
+        {
+          children: 'ホーム',
+          href: 'https://example.com'
+        },
+      ]}
+      helpPageUrl="https://example.com"
+      schoolUrl="https://example.com"
+      userInfo={{
+        accountUrl: 'https://example.com',
+        email: 'smarthr@example.com',
+        empCode: '001',
+        firstName: '須磨',
+        lastName: '栄子'
+      }}
+    />
+    <NotificationBar type="warning" onClose={() => {}}>
+      { /* メッセージ領域はflexなので、本文とリンクを分けると別カラムに折り返される。1つの要素にまとめて本文中に流す。 */ }
+      <span>
+        管理者向け機能は、スマートフォンで正常に動作しない場合があります。
+        <HelpLink href="https://support.smarthr.jp/ja/help/articles/360035170054/" target="_blank">SmartHRの動作環境</HelpLink>
+      </span>
+    </NotificationBar>
+    <Container>
+      <Stack gap={2}>
+        <Stack>
+          { /* プロダクトではautoPageTitleはtrueがデフォルトですが、デザインシステムでは例にもかかわらずページの見出しが変わってしまうためfalseにしています。 */ }
+          <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
+          <p>このページについての説明。</p>
+        </Stack>
+        <Stack>
+          <Cluster align="center" justify="space-between">
+            <Heading>セクションタイトル</Heading>
+            <Button>ボタン</Button>
+          </Cluster>
+          <Base padding={{ block: 1.5, inline: 1 }}>
+            <Stack>
+              <Heading type="blockTitle">ブロックタイトル</Heading>
+              <DefinitionList>
+                <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+                <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
+              </DefinitionList>
+            </Stack>
+          </Base>
+        </Stack>
+      </Stack>
+    </Container>
+  </div>
+</EnvironmentProvider>
+```
+</div>
 
 ## 参考
 
