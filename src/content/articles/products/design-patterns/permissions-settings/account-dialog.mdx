@@ -1,20 +1,69 @@
 ---
 title: 'アカウント追加・編集ダイアログのパターン'
-description: '権限設定の一覧画面から「アカウントの追加」「アカウントの編集」を行う際に使う、ダイアログの型の使い分け方針をまとめています。'
-order: 1
+description: 'アカウントの追加・編集ダイアログの構成要素と、ダイアログの型（ワンダイアログ式／ステップダイアログ式）の使い分け方針をまとめています。'
+order: 2
 ---
 
-権限設定の一覧画面から「アカウントの追加」「アカウントの編集」を行う際に使う、ダイアログの型の使い分け方針をまとめています。
+import Grid from '@/components/article/Grid.astro'
+import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
+
+一覧画面から「アカウントの追加」「アカウントの編集」を行うダイアログの構成と、型の使い分け方針をまとめています。
 対象は[権限設定](/products/design-patterns/permissions-settings/)ページのRBACパターンのうち、ガイドライン化対象であるA・B・Cパターンです。
 
-## 概要
+- [ダイアログの構成要素](#h2-0)
+- [ダイアログの型](#h2-1)
 
-アカウント追加・編集ダイアログには、大きく2つの型があります。
+## ダイアログの構成要素
 
-- [ワンダイアログ式](#h2-1)
-- [ステップダイアログ式](#h2-2)
+[一覧](/products/design-patterns/permissions-settings/list/)の[（アカウントを）追加]、または[（アカウントを）編集]ボタンを押したときに[ActionDialog](/products/components/dialog/action-dialog/)で表示します。
+例はすべて追加時のスクリーンショットです。必要に応じて編集に読み替えてください。
 
-どちらを採用するかは、権限を付与したいアカウント数や、独自オブジェクト権限の数などによって判断します。
+構成要素は次のとおりです。
+
+- [1. ダイアログタイトル](#h3-0)
+- [2. アカウントの選択](#h3-1)
+- [3. 操作の権限](#h3-2)
+- [4. 独自の権限設定](#h3-3)
+
+**詳細ダイアログ（アカウントのみ）**
+![スクリーンショット:1〜3とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3でグルーピングされている。](./images/permissions-settings1-dialog.png)
+
+**詳細ダイアログ（独自の権限設定がある場合）**
+![スクリーンショット:1〜4とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3、独自の権限設定が4でグルーピングされている。](./images/permissions-settings2-dialog.png)
+
+### 1. ダイアログタイトル
+
+追加の場合は、「アカウントの追加」とします。編集の場合は、「アカウントの編集」とします。
+
+### 2. アカウントの選択
+
+SmartHRのアカウントを選択します。単一選択の場合は[SingleCombobox](/products/components/combobox/single-combobox/)を使ってください。複数まとめて追加する場合は[MultiCombobox](/products/components/combobox/multi-combobox/)を使ってください。
+
+![スクリーンショット:アカウントのSingleComboboxを開いたとき](./images/permissions-settings-dialog-account.png)
+
+Comboboxのパネル内の説明には`{検索対象名1}、{検索対象名2}で検索できます。`と、検索できる項目を明記します。
+
+### 3. 操作の権限
+
+アカウントに対して操作の権限（役割）を設定します。以下に代表的な役割として **「機能管理者」「業務担当者」** の2つを定義します。必要に応じて見直してください。
+
+- 機能管理者：すべての操作の権限を持つ
+- 業務担当者：業務に必要な操作の権限のみを持つ
+
+操作の権限の指定には、[RadioButtonPanel](/products/components/radio-button-panel/)を使用してください。
+
+**「カスタム権限」** として、操作の権限をユーザーが増やせるプロダクトもあります。この場合は[SingleCombobox](/products/components/combobox/single-combobox/)や[Select](/products/components/select/)を使ってください。
+
+### 4. 独自の権限設定
+
+独自の権限設定がある場合に表示します。用途によって設定が異なるため、基準やパターンは定めません。
+
+## ダイアログの型
+
+構成要素の並べ方には、大きく2つの型があります。権限を付与したいアカウント数や、独自オブジェクト権限の数などによって、どちらを採用するかを判断します。
+
+- [ワンダイアログ式](#h2-2)：1つのダイアログにすべての入力欄を並べる
+- [ステップダイアログ式](#h2-3)：プロパティごとにステップを分ける
 
 ## ワンダイアログ式
 
@@ -33,26 +82,47 @@ Cの場合にワンダイアログ式で表示できる独自オブジェクト�
 
 ### 画面例
 
-**ダイアログの初期値**
-![スクリーンショット:「アカウントの追加」ダイアログ。上から順に、アカウントのCombobox、ロール名のComboboxと閲覧できる従業員の範囲の表示エリア、操作の権限のRadioButtonPanelが縦に並んでいる。いずれも未入力の状態。](./images/account-dialog-one1.png)
-
 ロール名を選ぶと、そのロールで閲覧できる従業員の範囲がロール名の下に展開されます。表示される情報量はロールの設定内容によって変わります。
 
-**ロールの表示バリエーション1（閲覧できる従業員の範囲が単純な場合）**
-![スクリーンショット:アカウントに2件のアカウントが選択され、ロール名に「すべての従業員」が選択された状態のダイアログ。閲覧できる従業員の範囲に「すべての従業員」、除外する従業員に「なし」と表示されている。](./images/account-dialog-one2.png)
+<Grid size="300px">
 
-**ロールの表示バリエーション2（閲覧できる従業員の範囲が細かく指定されている場合）**
-![スクリーンショット:ロール名に個別のロールが選択された状態のダイアログ。閲覧できる従業員の範囲が、部署・雇用形態・除外する従業員の3つに分かれて展開されている。](./images/account-dialog-one3.png)
+  <ImgWithDesc description="ダイアログの初期値">
 
-**B（基本+カスタム操作権限パターン）の場合**
-![スクリーンショット:Bパターンのダイアログ。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/account-dialog-one-b.png)
+  ![スクリーンショット:「アカウントの追加」ダイアログ。上から順に、アカウントのCombobox、ロール名のComboboxと閲覧できる従業員の範囲の表示エリア、操作の権限のRadioButtonPanelが縦に並んでいる。いずれも未入力の状態。](./images/account-dialog-one1.png)
 
-操作の権限はユーザーが増やせるため、[RadioButtonPanel](/products/components/radio-button-panel/)ではなく[SingleCombobox](/products/components/combobox/single-combobox/)を使います。
+  </ImgWithDesc>
 
-**C（基本+独自オブジェクト権限パターン）の場合**
-![スクリーンショット:Cパターンのダイアログ。操作の権限のRadioButtonPanelの下に、独自オブジェクト名のRadioButtonが1つ追加されている。](./images/account-dialog-one-c.png)
+  <ImgWithDesc description="閲覧できる従業員の範囲が単純な場合">
 
-操作の権限の下に、独自オブジェクトの入力欄を追加します。表示できる独自オブジェクトは1つまでです。
+  ![スクリーンショット:アカウントに2件のアカウントが選択され、ロール名に「すべての従業員」が選択された状態のダイアログ。閲覧できる従業員の範囲に「すべての従業員」、除外する従業員に「なし」と表示されている。](./images/account-dialog-one2.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="閲覧できる従業員の範囲が細かく指定されている場合">
+
+  ![スクリーンショット:ロール名に個別のロールが選択された状態のダイアログ。閲覧できる従業員の範囲が、部署・雇用形態・除外する従業員の3つに分かれて展開されている。](./images/account-dialog-one3.png)
+
+  </ImgWithDesc>
+
+</Grid>
+
+BとCでは、操作の権限や独自オブジェクトの入力欄が加わります。Bでは操作の権限をユーザーが増やせるため、[RadioButtonPanel](/products/components/radio-button-panel/)ではなく[SingleCombobox](/products/components/combobox/single-combobox/)を使います。Cでは操作の権限の下に、独自オブジェクトの入力欄を追加します。
+
+<Grid size="300px">
+
+  <ImgWithDesc description="B（基本+カスタム操作権限パターン）の場合">
+
+  ![スクリーンショット:Bパターンのダイアログ。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/account-dialog-one-b.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="C（基本+独自オブジェクト権限パターン）の場合。表示できる独自オブジェクトは1つまで">
+
+  ![スクリーンショット:Cパターンのダイアログ。操作の権限のRadioButtonPanelの下に、独自オブジェクト名のRadioButtonが1つ追加されている。](./images/account-dialog-one-c.png)
+
+  </ImgWithDesc>
+
+</Grid>
 
 ## ステップダイアログ式
 
@@ -72,20 +142,33 @@ A, B, Cで、アカウント選択時にアカウント名以外の情報も確�
 
 基本パターンの3つのプロパティをそれぞれステップに表示します。A, Bパターンで使用します。
 
-**ステップ1：アカウント選択**
-![スクリーンショット:ステップダイアログの1/3「従業員の選択」。左側にアカウント名・部署・役職・雇用形態・入社年月日の列を持つTableがあり、4件のアカウントにチェックが入っている。右側に入力内容の確認エリアがあり、選択したアカウントが一覧表示されている。](./images/account-dialog-step1.png)
+<Grid size="300px">
 
-アカウント名だけでなく、所属部署や役職なども確認しながら選択できるようにします。
+  <ImgWithDesc description="ステップ1：アカウント選択。所属部署や役職なども確認しながら選択できるようにする">
 
-**ステップ2：ロール選択**
-![スクリーンショット:ステップダイアログの2/3「ロールの選択」。ロール名のComboboxと、閲覧できる従業員の範囲が部署・雇用形態・除外する従業員に分かれて表示されている。](./images/account-dialog-step2.png)
+  ![スクリーンショット:ステップダイアログの1/3「従業員の選択」。左側にアカウント名・部署・役職・雇用形態・入社年月日の列を持つTableがあり、4件のアカウントにチェックが入っている。右側に入力内容の確認エリアがあり、選択したアカウントが一覧表示されている。](./images/account-dialog-step1.png)
 
-**ステップ3：操作の権限選択**
-![スクリーンショット:ステップダイアログの3/3「操作権限の選択」。業務担当者と機能管理者のRadioButtonPanelが表示されている。](./images/account-dialog-step3.png)
+  </ImgWithDesc>
 
-カスタム操作権限を持つ場合は、[RadioButtonPanel](/products/components/radio-button-panel/)ではなく[SingleCombobox](/products/components/combobox/single-combobox/)が望ましいです。
+  <ImgWithDesc description="ステップ2：ロール選択">
 
-![スクリーンショット:ステップダイアログの3/3「操作権限の選択」。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/account-dialog-step3-combobox.png)
+  ![スクリーンショット:ステップダイアログの2/3「ロールの選択」。ロール名のComboboxと、閲覧できる従業員の範囲が部署・雇用形態・除外する従業員に分かれて表示されている。](./images/account-dialog-step2.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="ステップ3：操作の権限選択">
+
+  ![スクリーンショット:ステップダイアログの3/3「操作権限の選択」。業務担当者と機能管理者のRadioButtonPanelが表示されている。](./images/account-dialog-step3.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="ステップ3：カスタム操作権限を持つ場合はSingleComboboxが望ましい">
+
+  ![スクリーンショット:ステップダイアログの3/3「操作権限の選択」。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/account-dialog-step3-combobox.png)
+
+  </ImgWithDesc>
+
+</Grid>
 
 ### ステップダイアログ式の派生系
 
@@ -97,14 +180,27 @@ A, B, Cで、アカウント選択時にアカウント名以外の情報も確�
 
 例えばキャリア台帳では、ロールに強く関連する項目をステップ2にまとめています。また、全体的に設定できる項目数が多いが無理にステップを増やさず、ヘルプメッセージで適切な補足をつけています。
 
-**ステップ1：アカウント選択**
-![スクリーンショット:キャリア台帳のステップ1/3「従業員の選択」。右側の入力内容の確認に、ロール、操作の権限、タレントタグの表示、メモの表示といった、このプロダクト固有の項目が並んでいる。](./images/account-dialog-career-step1.png)
+<Grid size="300px">
 
-**ステップ2：ロール選択**
-![スクリーンショット:キャリア台帳のステップ2/3「ロールの選択」。ロール名と閲覧できる従業員の範囲の下に、ロールに強く関連する「従業員情報の表示設定」の入力欄が同じステップにまとめられている。](./images/account-dialog-career-step2.png)
+  <ImgWithDesc description="ステップ1：アカウント選択">
 
-**ステップ3：操作の権限選択**
-![スクリーンショット:キャリア台帳のステップ3/3「操作権限の選択」。操作の権限の下に、タレントタグ表示の有無とメモ表示の有無が、それぞれ補足のヘルプメッセージつきで並んでいる。](./images/account-dialog-career-step3.png)
+  ![スクリーンショット:キャリア台帳のステップ1/3「従業員の選択」。右側の入力内容の確認に、ロール、操作の権限、タレントタグの表示、メモの表示といった、このプロダクト固有の項目が並んでいる。](./images/account-dialog-career-step1.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="ステップ2：ロールに強く関連する「従業員情報の表示設定」を同じステップにまとめている">
+
+  ![スクリーンショット:キャリア台帳のステップ2/3「ロールの選択」。ロール名と閲覧できる従業員の範囲の下に、ロールに強く関連する「従業員情報の表示設定」の入力欄が同じステップにまとめられている。](./images/account-dialog-career-step2.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="ステップ3：項目数が多いため、ヘルプメッセージで補足している">
+
+  ![スクリーンショット:キャリア台帳のステップ3/3「操作権限の選択」。操作の権限の下に、タレントタグ表示の有無とメモ表示の有無が、それぞれ補足のヘルプメッセージつきで並んでいる。](./images/account-dialog-career-step3.png)
+
+  </ImgWithDesc>
+
+</Grid>
 
 ## アカウント編集ダイアログ
 
@@ -112,15 +208,33 @@ A, B, Cで、アカウント選択時にアカウント名以外の情報も確�
 
 対象アカウントは[FormControl](/products/components/form-control/)ではなく、[DefinitionList](/products/components/definition-list/)を使用してアカウント名を表示します。
 
-**基本パターン（A）の場合**
-![スクリーンショット:「アカウントの編集」ダイアログ。アカウントはComboboxではなくDefinitionListでアカウント名が表示されている。その下にロールと操作の権限の入力欄が並んでいる。](./images/account-dialog-edit1.png)
+<Grid size="300px">
 
-**独自オブジェクト権限がある（C）場合**
-![スクリーンショット:独自オブジェクト権限を持つ場合の「アカウントの編集」ダイアログ。操作の権限のRadioButtonPanelの下に、独自オブジェクトの入力欄が3つ並んでいる。](./images/account-dialog-edit2.png)
+  <ImgWithDesc description="基本パターン（A）の場合">
 
-**カスタム操作権限と独自オブジェクト権限がある場合**
-![スクリーンショット:カスタム操作権限と独自オブジェクト権限を持つ場合の「アカウントの編集」ダイアログ。操作の権限がSingleComboboxになり、その下に独自オブジェクトの入力欄が3つ並んでいる。](./images/account-dialog-edit3.png)
+  ![スクリーンショット:「アカウントの編集」ダイアログ。アカウントはComboboxではなくDefinitionListでアカウント名が表示されている。その下にロールと操作の権限の入力欄が並んでいる。](./images/account-dialog-edit1.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="独自オブジェクト権限がある（C）場合">
+
+  ![スクリーンショット:独自オブジェクト権限を持つ場合の「アカウントの編集」ダイアログ。操作の権限のRadioButtonPanelの下に、独自オブジェクトの入力欄が3つ並んでいる。](./images/account-dialog-edit2.png)
+
+  </ImgWithDesc>
+
+  <ImgWithDesc description="カスタム操作権限と独自オブジェクト権限がある場合">
+
+  ![スクリーンショット:カスタム操作権限と独自オブジェクト権限を持つ場合の「アカウントの編集」ダイアログ。操作の権限がSingleComboboxになり、その下に独自オブジェクトの入力欄が3つ並んでいる。](./images/account-dialog-edit3.png)
+
+  </ImgWithDesc>
+
+</Grid>
+
+## 構成（ABAC）
+
+［WIP］
 
 ## 関連リンク
 
 - [権限設定](/products/design-patterns/permissions-settings/)（親ページ）
+- [一覧画面のパターン](/products/design-patterns/permissions-settings/list/)
