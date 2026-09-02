@@ -10,7 +10,7 @@ MDXファイル内のリンク（アンカーリンク含む）と画像につ�
 
 #### 手動での実行
 ```sh
-pnpx tsx scripts/content-checker/linkChecker.ts --fix ./src/content/articles/**/*.mdx
+pnpm exec tsx scripts/content-checker/linkChecker.ts --fix ./src/content/articles/**/*.mdx
 ```
 
 - `--fix`オプションをつけると、末尾スラッシュについては自動的に修正します。
@@ -34,7 +34,7 @@ pnpx tsx scripts/content-checker/linkChecker.ts --fix ./src/content/articles/**/
 
 #### 手動での実行
 ```
-pnpx tsx ./scripts/content-checker/storybookUrlChecker.ts
+pnpm exec tsx ./scripts/content-checker/storybookUrlChecker.ts
 ```
 
 指定できるオプションはありません。
