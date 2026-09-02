@@ -8,7 +8,7 @@ on:
 env:
   NPM_CONFIG_IGNORE_SCRIPTS: 'true'
   NPM_CONFIG_BEFORE: ''
-  PNPM_CONFIG_MINIMUM_RELEASE_AGE: '1' # days
+  PNPM_CONFIG_MINIMUM_RELEASE_AGE: '1440' # minutes (1 day)
 
 jobs:
   build:
