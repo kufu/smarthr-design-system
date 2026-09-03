@@ -23,7 +23,6 @@ type ReleaseResponse = {
 
 type CommitResponse = {
   sha: string;
-  parents?: { sha: string }[];
 };
 
 type PropsResponse = {
@@ -109,54 +108,23 @@ const getUIProps = (): UIProps[] => {
   return uiProps;
 };
 
-const CHROMATIC_SHA_LOOKUP_LIMIT = 5;
-
-/**
- * Chromatic の SHA パーマリンクから index.json を取得する。
- * リリースコミット自体にビルドが無い場合があるため、親コミットも順に探す。
- */
-async function fetchChromaticIndex(startSha: string): Promise<{ commitHash: string; json: StoryIndex }> {
-  let sha = startSha;
-
-  for (let attempt = 0; attempt < CHROMATIC_SHA_LOOKUP_LIMIT; attempt++) {
-    const commitHash = sha.substring(0, 7);
-    const endpoint = new URL('index.json', `https://${commitHash}--${CHROMATIC_DOMAIN}`);
-    const res = await fetch(endpoint.toString());
-
-    if (res.ok) {
-      const json: StoryIndex = await res.json();
-      if (json) {
-        if (attempt > 0) {
-          console.log(`ℹ️ Chromatic は親コミット ${commitHash} の Storybook を使用します`);
-        }
-        return { commitHash, json };
-      }
-    }
-
-    const commitEndpoint = new URL(`/repos/kufu/smarthr-ui/commits/${sha}`, GH_API_BASE_URL);
-    const commitRes = await fetch(commitEndpoint.toString());
-    if (!commitRes.ok) {
-      break;
-    }
-
-    const commit: CommitResponse = await commitRes.json();
-    const parentSha = commit.parents?.[0]?.sha;
-    if (!parentSha) {
-      break;
-    }
-
-    console.log(`⚠️ Chromatic に ${commitHash} の Storybook がありません。親コミット ${parentSha.substring(0, 7)} を試します`);
-    sha = parentSha;
-  }
-
-  throw new Error(`Chromatic から index.json を取得できませんでした（起点: ${startSha.substring(0, 7)}）`);
-}
-
 /**
  * Chromatic から Storybook の情報を取得
- * @param json Chromatic の index.json
+ * @param commitHash 対象のコミットハッシュ
  */
-function fetchStories(json: StoryIndex): Record<string, UIStories> {
+async function fetchStories(commitHash: string): Promise<Record<string, UIStories>> {
+  const endpoint = new URL('index.json', `https://${commitHash}--${CHROMATIC_DOMAIN}`);
+
+  const res = await fetch(endpoint.toString());
+  if (!res.ok) {
+    throw new Error(`Chromatic から index.json を取得できませんでした: ${res.statusText}`);
+  }
+
+  const json: StoryIndex = await res.json();
+  if (!json) {
+    throw new Error('index.json が見つかりませんでした');
+  }
+
   // *.stories.tsxのファイルごとに、storyの情報をまとめる
   const uiStories: Record<string, UIStories> = {};
 
@@ -229,9 +197,10 @@ if (cached) {
   console.log('📦️ リリース情報を取得中');
   const usedVersionRelease = await fetchSmartHRUIRelease();
 
+  const commitHash = usedVersionRelease.sha.substring(0, 7);
+
   console.log('📚️ stories.json を取得中');
-  const { commitHash, json } = await fetchChromaticIndex(usedVersionRelease.sha);
-  const uiStories = fetchStories(json);
+  const uiStories = await fetchStories(commitHash);
 
   console.log('✅️ 取得完了');
 
