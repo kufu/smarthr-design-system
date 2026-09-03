@@ -10,7 +10,7 @@ import { UnstyledButton, Button, AnchorButton } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.3.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### UnstyledButton
 （固有 Props なし）
@@ -29,8 +29,8 @@ import { UnstyledButton, Button, AnchorButton } from 'smarthr-ui'
 ### AnchorButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| size | "S" \| "M" | M | - | ボタンの大きさ |
 | prefix | ReactNode | - | - | ボタン内の先頭に表示する内容。 通常は、アイコンを表示するために用いる。 |
+| size | "S" \| "M" | M | - | ボタンの大きさ |
 | suffix | ReactNode | - | - | ボタン内の末尾に表示する内容。 通常は、アイコンを表示するために用いる。 |
 | loading | boolean | - | - | 処理が走ってるかどうか |
 | wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
