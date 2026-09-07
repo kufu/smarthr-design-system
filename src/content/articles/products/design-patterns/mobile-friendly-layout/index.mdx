@@ -77,7 +77,7 @@ export const YourComponent = () => {
 
 モバイルからの利用を推奨しない管理者向けの画面には、デスクトップでの利用を促す[NotificationBar](/products/components/notification-bar/)を表示します。レスポンシブ/アダプティブレイアウトが十分に適用されていないことで、ユーザーのページの理解や操作が妨げられる可能性があるためです。
 
-`warning`の[NotificationBar](/products/components/notification-bar/)を表示します。文言は`管理者向け機能は、スマートフォンで正常に動作しない場合があります。`とし、[SmartHRの動作環境](https://support.smarthr.jp/ja/help/articles/360035170054/)への[HelpLink](/products/components/text-link/help-link/)も合わせて表示します。
+`info`の[NotificationBar](/products/components/notification-bar/)を表示します。文言は`スマートフォンでは、この画面のレイアウトが正しく表示されない場合があります。`とします。
 
 <div style="max-width: 448px">
 ```tsx editable background=DOT hideCode
@@ -111,12 +111,8 @@ export const YourComponent = () => {
         lastName: '栄子'
       }}
     />
-    <NotificationBar type="warning" onClose={() => {}}>
-      { /* メッセージ領域はflexなので、本文とリンクを分けると別カラムに折り返される。1つの要素にまとめて本文中に流す。 */ }
-      <span>
-        管理者向け機能は、スマートフォンで正常に動作しない場合があります。
-        <HelpLink href="https://support.smarthr.jp/ja/help/articles/360035170054/" target="_blank">SmartHRの動作環境</HelpLink>
-      </span>
+    <NotificationBar type="info" onClose={() => {}}>
+        スマートフォンでは、この画面のレイアウトが正しく表示されない場合があります。
     </NotificationBar>
     <Container>
       <Stack gap={2}>
