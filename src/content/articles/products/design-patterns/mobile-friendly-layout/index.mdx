@@ -77,7 +77,7 @@ export const YourComponent = () => {
 
 モバイルからの利用を推奨しない管理者向けの画面には、デスクトップでの利用を促す[NotificationBar](/products/components/notification-bar/)を表示します。レスポンシブ/アダプティブレイアウトが十分に適用されていないことで、ユーザーのページの理解や操作が妨げられる可能性があるためです。
 
-`info`の[NotificationBar](/products/components/notification-bar/)を表示します。文言は`スマートフォンでは、この画面のレイアウトが正しく表示されない場合があります。`とします。
+`info`の[NotificationBar](/products/components/notification-bar/)を表示します。文言は`管理者・担当者向け画面はスマートフォンで正しく表示されない場合があります。`とします。
 
 <div style="max-width: 448px">
 ```tsx editable background=DOT hideCode
@@ -112,7 +112,7 @@ export const YourComponent = () => {
       }}
     />
     <NotificationBar type="info" onClose={() => {}}>
-        スマートフォンでは、この画面のレイアウトが正しく表示されない場合があります。
+        管理者・担当者向け画面はスマートフォンで正しく表示されない場合があります。
     </NotificationBar>
     <Container>
       <Stack gap={2}>
