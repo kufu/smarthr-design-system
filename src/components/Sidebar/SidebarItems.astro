@@ -21,7 +21,8 @@ const { path, items, showDepth1Item = false } = Astro.props;
         {/* 第1階層 */}
         {showDepth1Item && (
           <h2 class="depth1Heading">
-            <a href={depth1Item.link} aria-current={depth1Item.link === path}>
+            {/* href は末尾スラッシュ付きの正規URLにする。省略するとホスティング側で301を挟む */}
+            <a href={`${depth1Item.link}/`} aria-current={depth1Item.link === path}>
               {depth1Item.title}
             </a>
           </h2>
