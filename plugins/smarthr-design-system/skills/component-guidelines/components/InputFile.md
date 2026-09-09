@@ -12,15 +12,15 @@ import { InputFile } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.3.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | label | ReactNode | - | ✓ | フォームのラベル |
-| multiple | boolean \| { appendable?: boolean; } | - | - | - |
-| size | "S" \| "M" | - | - | - |
 | onChange | (files: File[]) => void | - | - | ファイルの選択に変更があったときに発火するコールバック関数 |
 | error | boolean | - | - | - |
+| size | "S" \| "M" | - | - | - |
+| multiple | boolean \| { appendable?: boolean; } | - | - | - |
 | previewable | boolean \| PreviewableObjectType | - | - | ファイルのプレビュー機能を有効にするかどうか |
 | hasFileList | boolean | - | - | ファイルリストを表示するかどうか |
 
