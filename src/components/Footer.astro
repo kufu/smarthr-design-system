@@ -56,7 +56,7 @@ const { isArticlePage } = Astro.props;
                 <ul>
                   {depth2Pages.map(({ id, data }) => (
                     <li>
-                      <a class="link" href={`/${id}`}>
+                      <a class="link" href={`/${id}/`}>
                         {data.title}
                       </a>
                     </li>

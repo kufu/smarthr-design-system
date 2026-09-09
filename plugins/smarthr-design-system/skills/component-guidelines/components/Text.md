@@ -10,12 +10,12 @@ import { Text } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.3.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| size | "XXS" \| "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" | - | - | - |
 | color | "inherit" \| "TEXT_BLACK" \| "TEXT_WHITE" \| "TEXT_GREY" \| "TEXT_DISABLED" \| "TEXT_LINK" | - | - | - |
+| size | "XXS" \| "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" | - | - | - |
 | weight | "normal" \| "bold" | emphasis ? 'bold' : undefined | - | - |
 | italic | boolean | - | - | - |
 | leading | "NONE" \| "TIGHT" \| "NORMAL" \| "LOOSE" | - | - | - |
@@ -23,7 +23,7 @@ import { Text } from 'smarthr-ui'
 | maxLines | 1 \| 2 \| 3 \| 4 \| 5 \| 6 | - | - | - |
 | emphasis | boolean | - | - | 強調するかどうかの真偽値。指定すると em 要素になる |
 | styleType | "screenTitle" \| "sectionTitle" \| "blockTitle" \| "subBlockTitle" \| "subSubBlockTitle" | - | - | 見た目の種類 |
-| icon | any | - | - | 設置するアイコン |
+| icon | ReactNode \| { prefix?: ReactNode; suffix?: ReactNode; gap?: any; } | - | - | 設置するアイコン |
 
 ## 実装ルール
 

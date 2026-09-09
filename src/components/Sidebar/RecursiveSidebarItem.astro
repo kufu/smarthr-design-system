@@ -24,7 +24,8 @@ if (items.length <= 0) {
     return (
       <li>
         <div class={`depth${depth}Item`}>
-          <a href={item.link} aria-current={item.link === currentPath}>
+          {/* href は末尾スラッシュ付きの正規URLにする。省略するとホスティング側で301を挟む */}
+          <a href={`${item.link}/`} aria-current={item.link === currentPath}>
             {item.title}
           </a>
           {item.children.length > 0 && (
