@@ -37,7 +37,8 @@ subPages.sort((a, b) => (a.data.order && b.data.order ? a.data.order - b.data.or
           <>
             {/* ページ内目次（IndexNav）のリンク先になるため、見出しには必ずidを振る */}
             <Heading class="pageTitleHeading" id={`${Heading}-${pageFileName}`}>
-              <a href={join('/', page.id)}>{page.data.deprecated ? `${page.data.title}（非推奨）` : page.data.title}</a>
+              {/* href は末尾スラッシュ付きの正規URLにする。join() は末尾スラッシュを落とすため使わない */}
+              <a href={`/${page.id}/`}>{page.data.deprecated ? `${page.data.title}（非推奨）` : page.data.title}</a>
             </Heading>
             {hasSlot ? <Fragment set:html={description} /> : <p>{description}</p>}
           </>

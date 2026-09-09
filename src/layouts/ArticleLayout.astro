@@ -70,7 +70,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
               prevSidebarItem !== null && (
                 <li class="prevArticleLinkWrapper">
                   <RoundedBoxLink
-                    path={prevSidebarItem.link}
+                    path={`${prevSidebarItem.link}/`}
                     label="前へ"
                     title={prevSidebarItem.title}
                     align="left"
@@ -83,7 +83,7 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
               nextSidebarItem !== null && (
                 <li class="nextArticleLinkWrapper">
                   <RoundedBoxLink
-                    path={nextSidebarItem.link}
+                    path={`${nextSidebarItem.link}/`}
                     label="次へ"
                     title={nextSidebarItem.title}
                     align="right"
