@@ -22,3 +22,13 @@
     }
   }
 }
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 読み込み後の実行結果と極端に高さが変わらないよう、最低限の高さを確保する */
+  min-height: 6rem;
+  width: 100%;
+}

@@ -16,3 +16,7 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+declare module 'virtual:smarthr-ui-scope' {
+  export * from 'smarthr-ui';
+}

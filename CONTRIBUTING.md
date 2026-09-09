@@ -63,6 +63,24 @@ Astroの機能や導入しているプラグインの概要です。
 また、コードの表示・ライブエディタやSmartHR UIのStorybookを表示しているコンポーネントなどは、Reactで実装されています。
 詳しくはそれぞれの階層以下にあるREADME.mdを参照してください。
 
+#### importしたSmartHR UIコンポーネントを直接アイランドにせずにラップする
+
+MDXや`.astro`で`client:load`などのクライアントディレクティブを付ける場合、`smarthr-ui`から直接importしたコンポーネントに付けないでください。
+
+```jsx
+// NG: smarthr-uiのbarrel自体がクライアントエントリーになり、smarthr-ui全体（pdfjsなども含む）が全ページ共通のチャンクに入ってしまう
+import { CurrencyInput } from 'smarthr-ui'
+;<CurrencyInput name="example" client:load />
+```
+
+`_components/`以下にラッパーとなるReactコンポーネントを作り、そちらにクライアントディレクティブを付けてください。
+
+```jsx
+// OK: ラッパーがエントリーになるため、使っているコンポーネントだけがバンドルされる
+import { SampleInputWithPrefixText } from './_components'
+;<SampleInputWithPrefixText client:load />
+```
+
 ### キャッシュ
 
 ビルド時に`scripts/fetch-ui-data.ts`を実行してSmartHR UIのデータを取得し、`src/cache/`以下に保存しています。
