@@ -80,67 +80,148 @@ export const YourComponent = () => {
 [NotificationBar](/products/components/notification-bar/)（`info`タイプ）で`管理者・担当者向け画面はスマートフォンで正しく表示されない場合があります。`と表示します。
 
 <div style="max-width: 448px">
-```tsx editable background=DOT hideCode
-<EnvironmentProvider environment={{ mobile: true }}>
-  <div className="shr-w-full shr-bg-background">
-    <AppHeader
-      appName="すごいアプリ"
-      currentTenantId="tenant-1"
-      features={[
-        {
-          favorite: false,
-          id: 'feature-1',
-          name: '従業員リスト',
-          position: null,
-          url: 'https://example.com'
-        },
-      ]}
-      navigations={[
-        {
-          children: 'ホーム',
-          href: 'https://example.com'
-        },
-      ]}
-      helpPageUrl="https://example.com"
-      schoolUrl="https://example.com"
-      userInfo={{
-        accountUrl: 'https://example.com',
-        email: 'smarthr@example.com',
-        empCode: '001',
-        firstName: '須磨',
-        lastName: '栄子'
-      }}
-    />
-    <NotificationBar type="info" onClose={() => {}}>
-        管理者・担当者向け画面はスマートフォンで正しく表示されない場合があります。
-    </NotificationBar>
-    <Container>
-      <Stack gap={2}>
-        <Stack>
-          { /* プロダクトではautoPageTitleはtrueがデフォルトですが、デザインシステムでは例にもかかわらずページの見出しが変わってしまうためfalseにしています。 */ }
-          <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
-          <p>このページについての説明。</p>
-        </Stack>
-        <Stack>
-          <Cluster align="center" justify="space-between">
-            <Heading>セクションタイトル</Heading>
-            <Button>ボタン</Button>
-          </Cluster>
-          <Base padding={{ block: 1.5, inline: 1 }}>
+```tsx editable background=DOT hideCode withStyled
+const MobileUnsupportedPage = () => {
+  const pagination = {
+    currentPage: 1,
+    limitValue: 25,
+    totalCount: 100,
+    totalPages: 4,
+  }
+  const sampleObjects = [...Array(3).fill(0)].map((_, i) => ({
+    id: `${i}`,
+    href: '#',
+    empCode: `SHR${`${i}`.padStart(3, '0')}`,
+    name: `須磨 英子`,
+    status: 'ステータス',
+  }))
+
+  const { totalPages, currentPage, totalCount, limitValue } = pagination
+  const isInitialState = totalCount === 0
+  const hasNoSearchResult = totalCount === 0
+
+  return (
+    <EnvironmentProvider environment={{ mobile: true }}>
+      <div className="shr-w-full shr-bg-background">
+        <AppHeader
+          appName="すごいアプリ"
+          currentTenantId="tenant-1"
+          features={[
+            {
+              favorite: false,
+              id: 'feature-1',
+              name: '従業員リスト',
+              position: null,
+              url: 'https://example.com'
+            },
+          ]}
+          navigations={[
+            {
+              children: 'ホーム',
+              href: 'https://example.com'
+            },
+          ]}
+          helpPageUrl="https://example.com"
+          schoolUrl="https://example.com"
+          userInfo={{
+            accountUrl: 'https://example.com',
+            email: 'smarthr@example.com',
+            empCode: '001',
+            firstName: '須磨',
+            lastName: '栄子'
+          }}
+        />
+        <NotificationBar type="info" onClose={() => {}}>
+          管理者・担当者向け画面はスマートフォンで正しく表示されない場合があります。
+        </NotificationBar>
+        <Container>
+          <Stack gap={2}>
             <Stack>
-              <Heading type="blockTitle">ブロックタイトル</Heading>
-              <DefinitionList>
-                <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
-                <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
-                <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
-              </DefinitionList>
+              { /* プロダクトではautoPageTitleはtrueがデフォルトですが、デザインシステムでは例にもかかわらずページの見出しが変わってしまうためfalseにしています。 */ }
+              <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
+              <p>このページについての説明。</p>
             </Stack>
-          </Base>
-        </Stack>
-      </Stack>
-    </Container>
-  </div>
-</EnvironmentProvider>
+            <Section>
+              <Stack>
+                <Cluster align="center" justify="space-between">
+                  <Heading>セクションタイトル</Heading>
+                  <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
+                </Cluster>
+
+                <Stack gap={1.5}>
+                  <Base>
+                    <Cluster justify="space-between" align="center" className="shr-p-1">
+                      <form onSubmit={(e) => e.preventDefault()}>
+                        <Cluster align="center" gap={1}>
+                          <Cluster>
+                            <SearchInput tooltipMessage="オブジェクト名で検索できます。" name="search" />
+                            <Button type="submit">検索</Button>
+                          </Cluster>
+                          <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+                          <Button type="submit" prefix={<FaCloudArrowDownIcon />}>
+                            ダウンロード
+                          </Button>
+                        </Cluster>
+                      </form>
+                      <Cluster gap={1} align="center">
+                        <PageCounter start={1 + (currentPage - 1) * limitValue} end={currentPage * limitValue} total={totalCount} />
+                        <Pagination current={currentPage} total={totalPages} withoutNumbers onClick={() => null} />
+                      </Cluster>
+                    </Cluster>
+
+                    <Table reel rounded="bottom">
+                      <thead>
+                        <tr>
+                          <ThCheckbox name="allRowCheckbox" />
+                          <Th>ステータス</Th>
+                          <Th>社員番号</Th>
+                          <Th>氏名</Th>
+                          <Th>操作</Th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sampleObjects.map(({ id, status, href, empCode, name }) => {
+                          const ariaLabelledBy = `name-${id}`
+                          return (
+                            <tr key={id}>
+                              <TdCheckbox name="tableCheckbox" aria-labelledby={ariaLabelledBy} />
+                              <Td contentWidth="1px">
+                                <StatusLabel>{status}</StatusLabel>
+                              </Td>
+                              <Td>{empCode}</Td>
+                              <Td id={ariaLabelledBy}><TextLink href={href}>{name}</TextLink></Td>
+                              <Td contentWidth="1px">
+                                <Cluster inline className="shr-min-w-max">
+                                  <Button size="S" prefix={<FaPenIcon />}>
+                                    操作1
+                                  </Button>
+                                  <Button size="S" prefix={<FaCopyIcon />}>
+                                    操作2
+                                  </Button>
+                                  <Button size="S" prefix={<FaTrashCanIcon/>}>
+                                    操作3
+                                  </Button>
+                                </Cluster>
+                              </Td>
+                            </tr>
+                        )})}
+                      </tbody>
+                    </Table>
+                  </Base>
+                  <Center>
+                    <Pagination current={currentPage} total={totalPages} onClick={() => null} />
+                  </Center>
+                </Stack>
+              </Stack>
+            </Section>
+          </Stack>
+        </Container>
+      </div>
+    </EnvironmentProvider>
+  )
+}
+
+render(<MobileUnsupportedPage />)
 ```
 </div>
 
