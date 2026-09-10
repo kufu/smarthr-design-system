@@ -1,19 +1,22 @@
 <!-- textlint-disable -->
-## fetchComponentCaptures.ts
+## getComponentCaptures.ts
 
 [SmartHR UIのStorybook](https://story.smarthr-ui.dev/)上の各コンポーネントグループの名前やサムネイル画像のパスなどを取得します。
 
 ## データの取得
 
-1. 利用中のバージョンのStorybook（Chromaticのパーマリンク）の`index.json`を取得
-1. `index.json`から各コンポーネントの名前、属するグループ名などを抜き出す
+1. 利用中のバージョンのStorybook（Chromaticのパーマリンク）の`index.json`を`scripts/fetch-ui-data.ts`が取得し、キャッシュに保存
+1. キャッシュしたstory情報から各コンポーネントの名前、属するグループ名などを抜き出す
 1. 抜き出した情報を元に各コンポーネントの記事 (MDX) のパスを作成
 1. 記事が存在する場合データを登録
 
 `index.json`は https://story.smarthr-ui.dev から取得していましたが、Netlifyの内部ビルダーからアクセスできず
 ビルドが失敗するため、Chromaticのパーマリンクから取得しています。
-パーマリンクの生成に使うコミットハッシュは`getUIData.ts`（`scripts/fetch-ui-data.ts`が作るキャッシュ）から取得しているため、
-この関数を使う前に`pnpm update:ui-data`が実行されている必要があります。
+なお、iframeUrlはブラウザ（とサムネイル生成のPuppeteer）からのアクセスなので https://story.smarthr-ui.dev のままです。
+
+`index.json`の取得をこの関数の中で行うと、ページのレンダリング中に毎回ネットワークアクセスが発生してビルドが遅くなります。
+そのためキャッシュ経由で参照しています。この関数の中でネットワークアクセスを追加しないでください。
+キャッシュを参照するため、この関数を使う前に`pnpm update:ui-data`が実行されている必要があります。
 
 ### サムネイル画像の生成
 
