@@ -196,25 +196,14 @@ function fetchStories(json: StoryIndex): Record<string, UIStories> {
 }
 
 /**
- * コンポーネント一覧の生成に使うstoryの情報を取得
+ * コンポーネント一覧の生成に使うstoryの情報を取り出す
  *
- * story.smarthr-ui.dev はNetlifyの内部ビルダーからアクセスできないため、`index.json` は
- * `fetchStories()` と同じく、利用中のバージョンのChromaticのパーマリンクから取得します。
- * ページのレンダリング中に取得するとビルドが遅くなるため、ここでキャッシュに含めています。
+ * ページのレンダリング中に `index.json` を取得するとビルドが遅くなるため、ここでキャッシュに含めています。
+ * `fetchStories()` と同じく、`fetchChromaticIndex()` が取得済みの `index.json` から必要な項目だけを抜き出します。
+ *
+ * @param json Chromatic の index.json
  */
-async function fetchStoryIndex(commitHash: string): Promise<StoryIndexItem[]> {
-  const endpoint = new URL('index.json', `https://${commitHash}--${CHROMATIC_DOMAIN}`);
-
-  const res = await fetch(endpoint.toString());
-  if (!res.ok) {
-    throw new Error(`Chromatic から index.json を取得できませんでした: ${res.statusText}`);
-  }
-
-  const json: StoryIndex = await res.json();
-  if (!json?.entries) {
-    throw new Error('index.json に entries が含まれていませんでした');
-  }
-
+function getStoryIndex(json: StoryIndex): StoryIndexItem[] {
   // ドキュメントはコンポーネント一覧として表示しないため除外する
   return Object.values(json.entries)
     .filter((entry) => entry.type !== 'docs')
@@ -268,9 +257,7 @@ if (cached) {
   console.log('📚️ stories.json を取得中');
   const { commitHash, json } = await fetchChromaticIndex(usedVersionRelease.sha);
   const uiStories = fetchStories(json);
-
-  console.log('🖼️ コンポーネント一覧用の index.json を取得中');
-  const storyIndex = await fetchStoryIndex(commitHash);
+  const storyIndex = getStoryIndex(json);
 
   console.log('✅️ 取得完了');
 
