@@ -1,13 +1,13 @@
 ---
 title: 'アカウント追加・編集ダイアログのパターン'
-description: 'アカウントの追加・編集ダイアログの構成要素と、ダイアログの型（ワンダイアログ式／ステップダイアログ式）の使い分け方針をまとめています。'
+description: 'アカウントの追加・編集ダイアログの構成要素と、ダイアログのパターン（ActionDialog版 / StepFormDialog版）の使い分け方針をまとめています。'
 order: 2
 ---
 
 import Grid from '@/components/article/Grid.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
-一覧画面から「アカウントの追加」「アカウントの編集」を行うダイアログの構成と、型の使い分け方針をまとめています。
+一覧画面から「アカウントの追加」「アカウントの編集」を行うダイアログの構成と、パターンの使い分け方針をまとめています。
 対象は[権限設定](/products/design-patterns/permissions-settings/)ページのRBACパターンのうち、ガイドライン化対象であるA・B・Cパターンです。
 
 - [ダイアログの構成要素](#h2-0)
@@ -15,7 +15,7 @@ import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
 ## ダイアログの構成要素
 
-[一覧](/products/design-patterns/permissions-settings/list/)の[（アカウントを）追加]、または[（アカウントを）編集]ボタンを押したときに[ActionDialog](/products/components/dialog/action-dialog/)で表示します。
+[一覧](/products/design-patterns/permissions-settings/collection/)の[（アカウントを）追加]、または[（アカウントを）編集]ボタンを押したときに[ActionDialog](/products/components/dialog/action-dialog/)で表示します。
 例はすべて追加時のスクリーンショットです。必要に応じて編集に読み替えてください。
 
 構成要素は次のとおりです。
@@ -62,10 +62,10 @@ Comboboxのパネル内の説明には`{検索対象名1}、{検索対象名2}�
 
 構成要素の並べ方には、大きく2つの型があります。権限を付与したいアカウント数や、独自オブジェクト権限の数などによって、どちらを採用するかを判断します。
 
-- [ワンダイアログ式](#h2-2)：1つのダイアログにすべての入力欄を並べる
-- [ステップダイアログ式](#h2-3)：プロパティごとにステップを分ける
+- [ActionDialog版](#h2-2)：1つのダイアログにすべての入力欄を並べる
+- [StepFormDialog版](#h2-3)：プロパティごとにステップを分ける
 
-## ワンダイアログ式
+## ActionDialog版
 
 A, B, Cで、アカウント選択のUIがシンプルでよい場合のデザインです。[ActionDialog](/products/components/dialog/action-dialog/)コンポーネントを使用し、ダイアログコンテンツに基本パターンの3プロパティの入力欄を設けます。
 
@@ -78,7 +78,7 @@ A, B, Cで、アカウント選択のUIがシンプルでよい場合のデザ�
 
 ### 制約
 
-Cの場合にワンダイアログ式で表示できる独自オブジェクトは1つまでとし、2つ以降はステップダイアログ式にします。
+Cの場合にActionDialog版で表示できる独自オブジェクトは1つまでとし、2つ以降はStepFormDialog版にします。
 
 ### 画面例
 
@@ -124,7 +124,7 @@ BとCでは、操作の権限や独自オブジェクトの入力欄が加わり
 
 </Grid>
 
-## ステップダイアログ式
+## StepFormDialog版
 
 A, B, Cで、アカウント選択時にアカウント名以外の情報も確認しながら操作した場合のデザインです。[StepFormDialog](/products/components/dialog/step-form-dialog/)コンポーネントを使用し、3ステップに分けて各プロパティの入力欄を設けます。
 
@@ -138,7 +138,7 @@ A, B, Cで、アカウント選択時にアカウント名以外の情報も確�
 
 特にアカウント選択は、権限付与のミスを防ぐため所属部署や役職などの従業員情報も確認できるように[Table](/products/components/table/)コンポーネントを使って表示します。
 
-### ステップダイアログ式の基本形
+### StepFormDialog版の基本形
 
 基本パターンの3つのプロパティをそれぞれステップに表示します。A, Bパターンで使用します。
 
@@ -146,35 +146,35 @@ A, B, Cで、アカウント選択時にアカウント名以外の情報も確�
 
   <ImgWithDesc description="ステップ1：アカウント選択。所属部署や役職なども確認しながら選択できるようにする">
 
-  ![スクリーンショット:ステップダイアログの1/3「従業員の選択」。左側にアカウント名・部署・役職・雇用形態・入社年月日の列を持つTableがあり、4件のアカウントにチェックが入っている。右側に入力内容の確認エリアがあり、選択したアカウントが一覧表示されている。](./images/account-dialog-step1.png)
+  ![スクリーンショット:StepFormDialog版1/3「従業員の選択」。左側にアカウント名・部署・役職・雇用形態・入社年月日の列を持つTableがあり、4件のアカウントにチェックが入っている。右側に入力内容の確認エリアがあり、選択したアカウントが一覧表示されている。](./images/account-dialog-step1.png)
 
   </ImgWithDesc>
 
   <ImgWithDesc description="ステップ2：ロール選択">
 
-  ![スクリーンショット:ステップダイアログの2/3「ロールの選択」。ロール名のComboboxと、閲覧できる従業員の範囲が部署・雇用形態・除外する従業員に分かれて表示されている。](./images/account-dialog-step2.png)
+  ![スクリーンショット:StepFormDialog版2/3「ロールの選択」。ロール名のComboboxと、閲覧できる従業員の範囲が部署・雇用形態・除外する従業員に分かれて表示されている。](./images/account-dialog-step2.png)
 
   </ImgWithDesc>
 
   <ImgWithDesc description="ステップ3：操作の権限選択">
 
-  ![スクリーンショット:ステップダイアログの3/3「操作権限の選択」。業務担当者と機能管理者のRadioButtonPanelが表示されている。](./images/account-dialog-step3.png)
+  ![スクリーンショット:StepFormDialog版3/3「操作権限の選択」。業務担当者と機能管理者のRadioButtonPanelが表示されている。](./images/account-dialog-step3.png)
 
   </ImgWithDesc>
 
   <ImgWithDesc description="ステップ3：カスタム操作権限を持つ場合はSingleComboboxが望ましい">
 
-  ![スクリーンショット:ステップダイアログの3/3「操作権限の選択」。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/account-dialog-step3-combobox.png)
+  ![スクリーンショット:StepFormDialog版3/3「操作権限の選択」。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/account-dialog-step3-combobox.png)
 
   </ImgWithDesc>
 
 </Grid>
 
-### ステップダイアログ式の派生系
+### StepFormDialog版の派生系
 
 独自オブジェクト権限を持っているCパターンでは、ステップ3で操作の権限と一緒に入力欄を設けます。コンテキストや数を考慮し、必要があれば4ステップ目に切り出します。
 
-![スクリーンショット:ステップダイアログの3/3「操作権限とその他の選択」。操作の権限のRadioButtonPanelの下に、独自オブジェクトの入力欄が3つ並んでいる。右側の入力内容の確認にも、追加した項目が反映されている。](./images/account-dialog-step3-object.png)
+![スクリーンショット:StepFormDialog版3/3「操作権限とその他の選択」。操作の権限のRadioButtonPanelの下に、独自オブジェクトの入力欄が3つ並んでいる。右側の入力内容の確認にも、追加した項目が反映されている。](./images/account-dialog-step3-object.png)
 
 #### 権限項目のコンテキストに合わせてステップごとの入力欄を調整する
 
@@ -204,7 +204,7 @@ A, B, Cで、アカウント選択時にアカウント名以外の情報も確�
 
 ## アカウント編集ダイアログ
 
-一覧画面の編集ボタンから呼び出すダイアログです。ここでは対象のアカウントは一意に定まっているので、多少長くなってもワンダイアログ式のデザインを採用します。
+一覧画面の編集ボタンから呼び出すダイアログです。ここでは対象のアカウントは一意に定まっているので、多少長くなってもActionDialog版のデザインを採用します。
 
 対象アカウントは[FormControl](/products/components/form-control/)ではなく、[DefinitionList](/products/components/definition-list/)を使用してアカウント名を表示します。
 
@@ -230,11 +230,7 @@ A, B, Cで、アカウント選択時にアカウント名以外の情報も確�
 
 </Grid>
 
-## 構成（ABAC）
-
-［WIP］
-
 ## 関連リンク
 
 - [権限設定](/products/design-patterns/permissions-settings/)（親ページ）
-- [一覧画面のパターン](/products/design-patterns/permissions-settings/list/)
+- [一覧画面のパターン](/products/design-patterns/permissions-settings/collection/)
