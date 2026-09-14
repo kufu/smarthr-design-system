@@ -78,8 +78,7 @@ const { path, items, showDepth1Item = false } = Astro.props;
       @include breakpointMobile3 {
         padding-inline: 16px;
 
-        /* CaretButtonがアイランドのため astro-island でラップされる */
-        + :global(astro-island) > :global(button) {
+        + :global(button) {
           width: 2rem;
           padding-inline: 0;
         }
@@ -102,8 +101,7 @@ const { path, items, showDepth1Item = false } = Astro.props;
         color: var(--color-white);
       }
 
-      /* CaretButtonがアイランドのため astro-island でラップされる */
-      + :global(astro-island) > :global(button) {
+      + :global(button) {
         color: var(--color-white);
       }
     }
@@ -117,8 +115,7 @@ const { path, items, showDepth1Item = false } = Astro.props;
         background-color: var(--color-dark-grey-1);
         color: var(--color-white);
 
-        /* CaretButtonがアイランドのため astro-island でラップされる */
-        + :global(astro-island) > :global(button) {
+        + :global(button) {
           background-color: var(--color-dark-grey-1);
           color: var(--color-white);
 
