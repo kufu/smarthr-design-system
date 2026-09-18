@@ -15,25 +15,23 @@ const { path, items, showDepth1Item = false } = Astro.props;
 ---
 
 <Nav className="sidebarNav">
-  {
-    items.map((depth1Item) => (
-      <Fragment key={depth1Item.link}>
-        {/* 第1階層 */}
-        {showDepth1Item && (
-          <h2 class="depth1Heading">
-            {/* href は末尾スラッシュ付きの正規URLにする。省略するとホスティング側で301を挟む */}
-            <a href={`${depth1Item.link}/`} aria-current={depth1Item.link === path}>
-              {depth1Item.title}
-            </a>
-          </h2>
-        )}
-        {/* 第2～4階層 */}
-        <ul>
-          <RecursiveSidebarItem currentPath={path} items={depth1Item.children} depth={2} parentIndex={null} />
-        </ul>
-      </Fragment>
-    ))
-  }
+  {items.map((depth1Item) => (
+    <Fragment key={depth1Item.link}>
+      {/* 第1階層 */}
+      {showDepth1Item && (
+        <h2 class="depth1Heading">
+          {/* href は末尾スラッシュ付きの正規URLにする。省略するとホスティング側で301を挟む */}
+          <a href={`${depth1Item.link}/`} aria-current={depth1Item.link === path}>
+            {depth1Item.title}
+          </a>
+        </h2>
+      )}
+      {/* 第2～4階層 */}
+      <ul>
+        <RecursiveSidebarItem currentPath={path} items={depth1Item.children} depth={2} parentIndex={null} />
+      </ul>
+    </Fragment>
+  ))}
 </Nav>
 
 <style lang="scss">
