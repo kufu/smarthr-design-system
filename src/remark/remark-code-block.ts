@@ -19,11 +19,7 @@ const remarkCodeBlock = () => (tree: Node) => {
       type: 'paragraph',
       data: {
         hName: 'code-block',
-        hProperties: {
-          code: value,
-          ...(lang ? { language: lang } : {}),
-          ...(meta ? { meta } : {}),
-        },
+        hProperties: { ...(lang ? { language: lang } : {}), ...(meta ? { meta } : {}), code: value },
       },
       children: [],
     } as Paragraph);

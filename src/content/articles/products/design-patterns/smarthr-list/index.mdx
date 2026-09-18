@@ -13,7 +13,7 @@ import doOmitHeading from './images/smarthr-list-do-omit-heading.png'
 import dontOmitHeading from './images/smarthr-list-dont-omit-heading.png'
 
 <BaseColumn>
-  <ResponseMessage type="info">よくあるリストを実現しやすくするための、Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
+  <ResponseMessage status="info">よくあるリストを実現しやすくするための、Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
 </BaseColumn>
 
 リスト形式でオブジェクトを一覧表示するUIのパターンをまとめています。
@@ -45,7 +45,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 ![スクリーンショット: よくあるリストの見出し](./images/smarthr-list-heading.png)
 
-[画面タイトル](/products/components/heading/#h3-0)が`よくあるリスト`の見出しを兼ねる場合は、見出しを省略できます。
+[画面タイトル](/products/components/heading/page-heading/)が`よくあるリスト`の見出しを兼ねる場合は、見出しを省略できます。
 
 ただし、後述の[リスト操作エリア](#h3-1)が生じる場合はリストの左上に不要な余白が生まれるため、見出しを省略できません。
 
@@ -83,7 +83,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 #### 検索フォーム
 
-[SearchInput](/products/components/input/#h3-4)を使います。
+[SearchInput](/products/components/input/search-input/)を使います。
 キーボードのリターンキーが押されたら、検索処理を実行します。
 
 #### 絞り込みボタン
@@ -94,7 +94,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 ### 4. リスト
 
 <BaseColumn>
-  <ResponseMessage type="info">Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
+  <ResponseMessage status="info">Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
 </BaseColumn>
 
 オブジェクトをリスト形式で垂直方向に積み重ねて表示します。
@@ -164,7 +164,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 ### モバイル
 
 <BaseColumn>
-  <ResponseMessage type="info">Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
+  <ResponseMessage status="info">Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
 </BaseColumn>
 
 #### 要素間の余白
@@ -180,17 +180,19 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 多様な画面幅で見やすいレイアウトとなるよう、[見出し](#h3-0)と[リスト操作エリア](#h3-1)は、[Sidebar](/products/components/layout/sidebar/)を使って配置します。
 
 ```tsx editable noIframe
-<div style={{ width: '100%' }}>
-<Sidebar gap={0.5} align="center" right>
-    <Heading>とても長いリストタイトルとても長いリストタイトル</Heading>
-    <Cluster>
-        <Button prefix={<FaCirclePlusIcon />}>追加</Button>
-        <DropdownMenuButton label="操作" onlyIconTrigger>
-            <Button>並べ替え</Button>
-        </DropdownMenuButton>
-    </Cluster>
-</Sidebar>
-</div>
+<Section>
+  <div style={{ width: '100%' }}>
+  <Sidebar gap={0.5} align="center" right>
+      <Heading>とても長いリストタイトルとても長いリストタイトル</Heading>
+      <Cluster>
+          <Button prefix={<FaCirclePlusIcon />}>追加</Button>
+          <DropdownMenuButton trigger={{ children: "操作", onlyIcon: true }}>
+              <Button>並べ替え</Button>
+          </DropdownMenuButton>
+      </Cluster>
+  </Sidebar>
+  </div>
+</Section>
 ```
 
 #### リストの各項目をBaseでグルーピングするパターン

@@ -13,25 +13,13 @@ main branch: https://smarthr-design-system.netlify.app
 3. `pnpm` to install dependencies
 4. `pnpm dev` to start the dev server
 
-## 開発の進め方
+## 関連ドキュメント
 
-https://smarthr-inc.docbase.io/posts/1726096
-
-## SmartHR Design System 環境構築の手引き 〜GitHubはじめての人向け〜
-
-https://smarthr-inc.docbase.io/posts/2162922
-
-## コンテンツを追加するまでの道のり 〜GitHubそんなにわからない人向けバージョン〜
-
-https://smarthr-inc.docbase.io/posts/2083788
-
-## ローカル環境やプレビューで困ったときの解決メモ
-
-https://smarthr-inc.docbase.io/posts/2289638
-
-## Gatsbyやコンポーネントに関する開発者向けドキュメント
-
-https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md
+- [開発の進め方](https://www.notion.so/SmartHR-Design-System-32637b6398eb80e5a142c87abc0c746e)
+- [SmartHR Design System 環境構築の手引き 〜GitHubはじめての人向け〜](https://www.notion.so/SmartHR-Design-System-GitHub-28c37b6398eb81fdb060cb5c8c4168ab)
+- [コンテンツを追加するまでの道のり 〜GitHubそんなにわからない人向けバージョン〜](https://www.notion.so/SmartHR-Design-System-GitHub-32237b6398eb80b99206f84cab4d90b0)
+- [ローカル環境やプレビューで困ったときの解決メモ](https://www.notion.so/SDS-32237b6398eb80db93a7ca2b0c82cdfe)
+- [Astroやコンポーネントに関する開発者向けドキュメント](https://github.com/kufu/smarthr-design-system/blob/main/CONTRIBUTING.md)
 
 ## コンテンツを編集するときに注意すること
 
@@ -95,7 +83,7 @@ Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](http
 
 アップロードすると、Cloudinary上で名前がつきますので、`/src/data/gotchaItem.json`にその画像名と、タイトルなどの情報を記載してください。
 
-※Cloudinaryは、1回目の画像アクセス時に画像の最適化・キャッシュを行なうので、初回表示時のみ数秒程度の時間がかかるかもしれません。2回目以降の表示が高速であれば問題ありません。
+※Cloudinaryは、1回目の画像アクセス時に画像の最適化・キャッシュを作成するので、初回表示時のみ数秒程度の時間がかかるかもしれません。2回目以降の表示が高速であれば問題ありません。
 
 アイテムを削除したい場合は、`/src/data/gotchaItem.json`から該当の項目を削除すれば表示されなくなります。Cloudinary上の画像もあわせて削除しても構いません。
 

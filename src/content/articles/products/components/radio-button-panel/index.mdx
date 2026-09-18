@@ -1,9 +1,10 @@
 ---
 title: 'RadioButtonPanel'
-description: 'パネル型の選択肢の中から単一の値を選択して入力できるコンポーネントです。'
+description: 'RadioButtonをパネル型に視覚的強化した単一選択コンポーネントです。選択肢に説明やステータスを付加するとき、視覚的に強調して操作領域を確保するときに使います。'
 ---
 import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Cluster, Text } from 'smarthr-ui'
@@ -11,7 +12,7 @@ import { Cluster, Text } from 'smarthr-ui'
 import RadioButtonPanelDo from './images/radio-button-panel-do.png';
 import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 
-パネル型の選択肢の中から単一の値を選択して入力できるコンポーネントです。
+[RadioButton](/products/components/radio-button/)をパネル型に視覚的強化した単一選択コンポーネントです。選択肢に説明やステータスを付加するとき、視覚的に強調して操作領域を確保するときに使います。
 
 <ComponentStory name="RadioButtonPanel" />
 
@@ -25,6 +26,8 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
 
 - 選択肢を適切に選択させるために、補足説明のテキストやステータスラベルを含む複数の要素を追加したい場合
 - ラベルテキストが短く画面内の他の要素と比べて認識しづらいなどの理由で、選択肢を視覚的に強調して表示したい場合
+
+選択操作に関わるコンポーネントの使い分けは[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
 
 #### ビューの切り替えを操作するUIとして使用しない
 
@@ -53,6 +56,18 @@ import RadioButtonPanelDont from './images/radio-button-panel-dont.png';
     {/* textlint-enable */}
   </DoAndDont>
 </Cluster>
+
+## 状態
+
+### デフォルト
+
+RadioButtonPanelは常に1つの選択肢が選択されているコンポーネントのため、選択肢の中から1つデフォルト値に設定するものを決めてください。（参考：[デフォルト値に設定する値](/products/design-patterns/default_value/#h3-0)）
+
+![RadioButtonPanelにデフォルト値が設定されているイメージ](./images/radio-button-panel_default-value.png)
+
+## 使い方チェックリスト
+
+<Checklist name="RadioButtonPanel" />
 
 ## Props
 

@@ -1,0 +1,8 @@
+items:
+  # 使用上の注意 > ダイアログコンテンツにフォームが含まれている場合は、FormDialogの使用を検討する
+  - severity: should
+    text: 'ダイアログコンテンツにフォーム要素を含む場合は FormDialog の使用を検討する'
+    source_section: '使用上の注意 > ダイアログコンテンツにフォームが含まれている場合は、FormDialogの使用を検討する'
+    sub_items:
+      - '`Enter` キーの押下でアクションボタンの送信処理を実行する'
+      - 'アクション系コールバックは `onSubmit` で、引数は `FormEvent<HTMLFormElement>` を受け取る'

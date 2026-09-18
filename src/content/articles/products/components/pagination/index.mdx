@@ -1,13 +1,14 @@
 ---
 title: 'Pagination'
-description: '主に「よくあるテーブル」などコレクションにおけるページを切り替えるためのコンポーネントです。'
+description: '「よくあるテーブル」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
-主に「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などコレクションにおけるページを切り替えるためのコンポーネントです。使用する場所によって機能を落とせます。
+「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。使用する場所によって機能を落とせます。
 
 <ComponentStory name="Pagination" />
 
@@ -34,6 +35,10 @@ import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 <ImgWithDesc description="paddingを1に設定したPagination">
     ![スクリーンショット：paddingを1に設定したPagination](./images/pagination-padding-1.png)
 </ImgWithDesc>
+
+## 使い方チェックリスト
+
+<Checklist name="Pagination" />
 
 ## Props
 

@@ -1,9 +1,13 @@
 ---
 title: 'ActionDialog'
-description: 'ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。'
+description: 'ユーザーに確認や単純な操作を求めるためのダイアログコンポーネントです。フォーム要素を含まない確認・実行のダイアログを表示するときに使います。'
+relatedComponents:
+  - name: ControlledActionDialog
+    description: 'ActionDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。'
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import MultipleModalWarning from '../_components/MultipleModalWarning.mdx'
 import DialogBaseSize from '../_components/DialogBaseSize.mdx'
@@ -15,7 +19,7 @@ import imageExpandedActionDialog from '../images/expanded_action_dialog_mobile.p
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Image } from 'astro:assets'
 
-ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。
+ユーザーに確認や単純な操作を求めるためのダイアログコンポーネントです。フォーム要素を含まない確認・実行のダイアログを表示するときに使います。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
@@ -36,6 +40,11 @@ ActionDialogの表示中、ユーザーの操作範囲は強制的に制限さ�
 
 <MultipleModalWarning />
 
+### ダイアログコンテンツにフォームが含まれている場合は、FormDialogの使用を検討する
+
+ダイアログコンテンツにフォーム要素を含む場合にはFormDialogの使用を検討します。  
+詳しくは[FormDialog](/products/components/dialog/form-dialog/)を参照してください。
+
 ## レイアウト
 
 ### 基準サイズ
@@ -44,11 +53,13 @@ ActionDialogの表示中、ユーザーの操作範囲は強制的に制限さ�
 
 ### 表示位置
 
-表示位置は、画面の天地左右中央に表示されます。
+表示位置は、画面の上下左右中央に表示されます。
 
 ## アクセシビリティ
 
-### キーボード操作
+### 基本的なアクセシビリティ機能
+
+#### キーボード操作
 
 `ESC`キーを押すことでダイアログを閉じることができます。
 
@@ -61,7 +72,7 @@ ActionDialogの表示中、ユーザーの操作範囲は強制的に制限さ�
 ## モバイル
 
 <BaseColumn className="shr-mt-1">
-  <ResponseMessage type="info">拡大したActionDialogはsmarthr-uiに実装予定です。</ResponseMessage>
+  <ResponseMessage status="info">拡大したActionDialogはsmarthr-uiに実装予定です。</ResponseMessage>
 </BaseColumn>
 
 モバイルでは、通常のダイアログに加えて、拡大したダイアログを使用できます。
@@ -102,7 +113,11 @@ ActionDialogの表示中、ユーザーの操作範囲は強制的に制限さ�
 
 ![SubActionAreaを表示した拡大したアクションダイアログの例](../images/focus_expanded_action_dialog_mobile_sub_action_area.png)
 
+## 使い方チェックリスト
+
+<Checklist name="ActionDialog" />
+
 ## Props
 
 <ComponentPropsTable name="ActionDialog" showTitle />
-<ComponentPropsTable name="FormDialog" showTitle />
+<ComponentPropsTable name="ControlledActionDialog" showTitle />

@@ -17,9 +17,9 @@ export const AvatarIcon = ({ src, alt }: AvatarIconProps) => {
     overflow: 'hidden',
   };
 
-  if (src) {
-    return (
-      <div style={containerStyle}>
+  return (
+    <div style={containerStyle}>
+      {src ? (
         <img
           src={src}
           alt={alt || ''}
@@ -29,13 +29,9 @@ export const AvatarIcon = ({ src, alt }: AvatarIconProps) => {
             objectFit: 'cover',
           }}
         />
-      </div>
-    );
-  }
-
-  return (
-    <div style={containerStyle}>
-      <FaUserIcon />
+      ) : (
+        <FaUserIcon />
+      )}
     </div>
   );
 };

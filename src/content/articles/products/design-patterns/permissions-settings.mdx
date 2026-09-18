@@ -16,37 +16,47 @@ SmartHRにおける「権限設定」のパターンをまとめています。
 
 ## 権限の分類
 
-SmartHRにおける権限は、大きく2つに分けられます。分類によって、権限オブジェクトの考え方や画面設計が異なります。
-新しくプロダクトを作る場合は、どちらの分類になるかを理解したうえで設計を進めてください。
+権限の設計方式は一般に、ユーザーに割り当てた役割（ロール）に基づいて操作の許可を制御するRBAC（Role-Based Access Control）と、ユーザーやリソースが持つ属性（部署、雇用形態、操作範囲など）に基づいて操作の許可を制御するABAC（Attribute-Based Access Control）に大別されます。
 
-- [RBAC(Role-Based Access Control)パターン](#h3-0)
-- [ABAC(Attribute-Based Access Control)パターン](#h3-1)
+SmartHRにおける権限は、現状すべてRBACです。将来的にABAC構造を持つプロダクトの開発も想定していますが、現時点でABACを採用しているプロダクトはありません。
+新しくプロダクトを作る場合は、どの分類になるかを理解したうえで設計を進めてください。
 
-### RBAC(Role-Based Access Control)パターン
+- [RBAC](#h3-0)
+- [ABAC](#h3-1)
 
-RBACは、ユーザーに役割（例：業務担当者、機能管理者）を割り当て、その役割に応じた特定の行動許可を設定するパターンです。
+### RBAC
+
+権限を共通設定から継承するか、プロダクト独自に管理するかで、さらに2つのパターンに分けられます。分類によって、権限オブジェクトの考え方や画面設計が異なります。
+
+#### 独自権限パターン
+
+共通設定の権限とは切り離し、プロダクト独自にアカウントと権限（役割）を紐づけて管理するパターンです。ユーザーに役割（例：業務担当者、機能管理者）を割り当て、その役割に応じた特定の行動許可を設定します。
 
 例えば、SmartHRにおいて対象となるプロダクトは以下のとおりです。
 
 - [配置シミュレーション](https://smarthr.jp/function/simulation/)
-- [スキル管理](https://smarthr.jp/function/skill/)
+- [スキル・資格・研修](https://smarthr.jp/function/skill/)
 - [組織図](https://smarthr.jp/function/organization/)
 - [人事評価](https://smarthr.jp/function/evaluation/)
 
-### ABAC(Attribute-Based Access Control)パターン
+#### 共通設定権限継承パターン
 
-ABACは、対象の属性（操作範囲）に基づいて、特定の行動（例：依頼と確認、書類のダウンロード）の許可を選択するパターンです。
+共通設定で定義された権限（役割）をそのまま継承し、特定の行動（例：依頼と確認、書類のダウンロード）の許可を設定するパターンです。
 
 例えば、SmartHRにおいて対象となるプロダクトは以下のとおりです。
 
 - [文書配付](https://smarthr.jp/function/distribution/)
 - [年末調整](https://smarthr.jp/function/nc/)
 
+### ABAC
+
+現時点でABACを採用しているプロダクトはありません。対象の属性（操作範囲など）に基づいて行動の許可を制御するプロダクトが登場した際に、このセクションへパターンを追記します。
+
 ## 一覧
 
 一覧ではアカウントを、[よくあるテーブル](/products/design-patterns/smarthr-table/)のパターンで表示します。
 
-### 構成（RBAC）
+### 独自権限パターン
 
 構成は[よくあるテーブル](/products/design-patterns/smarthr-table/)のパターンに従います。
 [よくあるテーブル](/products/design-patterns/smarthr-table/)の詳細はレイアウトパターンを参照してください。
@@ -101,7 +111,7 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 
 基本は[よくあるテーブルの初期表示](/products/design-patterns/smarthr-table/#h3-7)のパターンに従いますが、メッセージ部分は、`{機能名}の権限を持つアカウントはまだ登録されていません。`とします。
 
-### 構成（ABAC）
+### 共通設定権限継承パターン
 
 ［WIP］
 
@@ -110,14 +120,14 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 一覧の[（アカウントを）追加]、または[（アカウントを）編集]ボタンを押したときに[ActionDialog](/products/components/dialog/action-dialog/)で表示します。
 例はすべて追加時のスクリーンショットです。必要に応じて編集に読み替えてください。
 
-### 構成（RBAC）
+### 独自権限パターン
 
 構成要素は次のとおりです。
 
-- [1. ダイアログタイトル](#h4-3)
-- [2. アカウントの選択](#h4-4)
-- [3. 操作の権限](#h4-5)
-- [4. 独自のオブジェクト設定](#h4-6)
+- [1. ダイアログタイトル](#h4-5)
+- [2. アカウントの選択](#h4-6)
+- [3. 操作の権限](#h4-7)
+- [4. 独自のオブジェクト設定](#h4-8)
 
 **詳細ダイアログ（アカウントのみ）**
 ![スクリーンショット:1〜3とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3でグルーピングされている。](./images/permissions-settings/permissions-settings1-dialog.png)
@@ -131,7 +141,7 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 
 #### 2. アカウントの選択
 
-SmartHRのアカウントを選択します。単一選択の場合は[SingleCombobox](/products/components/combo-box/)を使ってください。複数まとめて追加する場合は[MultiCombobox](/products/components/combo-box/)を使ってください。
+SmartHRのアカウントを選択します。単一選択の場合は[SingleCombobox](/products/components/combobox/)を使ってください。複数まとめて追加する場合は[MultiCombobox](/products/components/combobox/)を使ってください。
 
 ![スクリーンショット:アカウントのSingleComboboxを開いたとき](./images/permissions-settings/permissions-settings-dialog-account.png)
 
@@ -146,13 +156,13 @@ Comboboxのパネル内の説明には`{検索対象名1}、{検索対象名2}�
 
 操作の権限の指定には、[RadioButtonPanel](/products/components/radio-button-panel/)を使用してください。
 
-**「カスタム権限」** として、操作の権限をユーザーが増やせるプロダクトもあります。この場合は[SingleCombobox](/products/components/combo-box/)や[Select](/products/components/select/)を使ってください。
+**「カスタム権限」** として、操作の権限をユーザーが増やせるプロダクトもあります。この場合は[SingleCombobox](/products/components/combobox/)や[Select](/products/components/select/)を使ってください。
 
 #### 4. 独自の権限設定
 
 独自の権限設定がある場合に表示します。用途によって設定が異なるため、基準やパターンは定めません。
 
-### 構成（ABAC）
+### 共通設定権限継承パターン
 
 ［WIP］
 

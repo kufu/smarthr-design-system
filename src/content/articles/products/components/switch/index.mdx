@@ -1,13 +1,14 @@
 ---
 title: 'Switch'
-description: 'オン・オフを切り替えるコンポーネントです。状態の切り替えは即時で反映されます。'
+description: 'オン/オフを即時に切り替えるスイッチコンポーネントです。機能の有効/無効や表示切替をユーザー操作で即座にシステムに反映させるときに使います。'
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
-Switchコンポーネントは、オン・オフを切り替えます。状態の切り替えは即時で反映されます。
+オン/オフを即時に切り替えるスイッチコンポーネントです。機能の有効/無効や表示切替をユーザー操作で即座にシステムに反映させるときに使います。
 
 <ComponentStory name="Switch" />
 
@@ -24,7 +25,7 @@ Switchは操作時に即時実行されます。Checkboxと異なり、送信ボ
 Switchはオン・オフのどちらか1つの状態を表します。対する概念ではあるが、異なる状態を表す場合はSegmentedControlを使ってください。
 
 ```tsx editable
-<SegmentedControl size="s" options={[
+<SegmentedControl size="S" options={[
   { value: 'list view', content: 'リスト表示' },
   { value: 'map view', content: 'マップ表示' },
 ]} value="list view" />
@@ -56,12 +57,16 @@ Switchは小さくモバイルでは操作しづらいため、サイズを大�
 </Switch>
 ```
 
+## 使い方チェックリスト
+
+<Checklist name="Switch" />
+
 ## Props
 
 <ComponentPropsTable name="Switch" />
 
 ## 関連リンク
 
-* [Checkbox](/products/components/check-box/)
+* [Checkbox](/products/components/checkbox/)
 * [SegmentedControl](/products/components/segmented-control/)
 * [ARIA: switch ロール - アクセシビリティ | MDN](https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/Roles/switch_role)

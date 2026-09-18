@@ -1,0 +1,1 @@
+../../../.claude/skills/generate-checklist/SKILL.md

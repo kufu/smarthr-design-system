@@ -45,7 +45,7 @@ FigmaのAutoLayoutを活用することで実装（CSS）に近いコンポー�
 Branchの利用によって、誰でも安全に更新できるようになります。
 
 Publishやコミュニティへの公開は管理者メンバーのみ実施できます。  
-具体的な使用方法は、[FigmaのSmartHR UI（UIコンポーネントライブラリ）に追加や編集を加えて適用する方法｜DocBase](https://smarthr-inc.docbase.io/posts/2372849)を参照してください。
+具体的な使用方法は、[デザインデータ（Figma）の更新をライブラリに適用する手順](/products/design-data/figma-library-update/)を参照してください。
 
 
 #### コンポーネントのFrameの整理
@@ -81,14 +81,14 @@ https://help.figma.com/hc/en-us/articles/360040449513-Add-icons-to-text-layers-w
 | コンポーネント | パスカルケース | ***PrimaryButton*** |
 | バリエーション | キャメルケース | *PrimaryButton*/***iconRight*** |
 | ステート | キャメルケース | *PrimaryButton/iconRight*/***hover*** |
-| アイコン | Icon/Fa + アイコン名（パスカルケース）※ | ***Icon/FaInfoCircle*** |
+| アイコン | Icon/Fa + アイコン名（パスカルケース）※ | ***Icon/FaCircleInfo*** |
 | 上記以外 | キャメルケース | *assets/Dialog*/***titleArea*** |
 
 - <small>※ 名前の先頭にIcon/Faをつける理由は、Font Awesomeアイコンを利用しているReactコンポーネントの命名規則に準拠しているためです。</small>
 
 #### コンポーネント名
 コンポーネント単体でユニークな名称にしてください。
-基本的に[Reactコンポーネントの名称や構造](https://github.com/kufu/smarthr-ui/tree/master/src/components)と一致させます。
+基本的に[Reactコンポーネントの名称や構造](https://github.com/kufu/smarthr-ui/tree/master/packages/smarthr-ui/src/components)と一致させます。
 
 #### バリエーション名、ステート名
 コンポーネントの種類や状態を指し、FigmaではVariantsやレイヤー名で表現されます。
@@ -136,4 +136,4 @@ https://help.figma.com/hc/en-us/articles/360040449513-Add-icons-to-text-layers-w
 Branchの利用が開始したことにより、Reviewerに管理者メンバーを含めることで、Merge後にCommunityへ公開（Publish）します。  
 お急ぎの場合は、社内Slack`#design_system`チャンネルでお知らせください。
 
-- [FigmaのSmartHR UI（UIコンポーネントライブラリ）に追加や編集を加えて適用する方法｜DocBase](https://smarthr-inc.docbase.io/posts/2372849)
+- [デザインデータ（Figma）の更新をライブラリに適用する手順](/products/design-data/figma-library-update/)

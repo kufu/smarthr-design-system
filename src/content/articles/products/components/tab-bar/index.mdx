@@ -1,14 +1,15 @@
 ---
 title: 'TabBar'
-description: 'ユーザーの関心が近いものを並列化し、ビューを切り替えるためのコンポーネントです。'
+description: '異なるオブジェクトやビューを横方向のタブで切り替えるためのコンポーネントです。同一画面内で並列関係にあるビューを切り替えるとき、影響範囲を下線で明確にしながらタブを並べるときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { TabBarWithReel } from './_components'
 import { BaseColumn, Text } from 'smarthr-ui'
 
-ユーザーの関心が近いものを並列化し、ビューを切り替えるためのコンポーネントです。
+異なるオブジェクトやビューを横方向のタブで切り替えるためのコンポーネントです。同一画面内で並列関係にあるビューを切り替えるとき、影響範囲を下線で明確にしながらタブを並べるときに使います。
 
 <ComponentStory name="TabBar" />
 
@@ -31,11 +32,11 @@ TabBarを使用する際は、影響するビューの範囲を明確にして�
 ## レイアウト
 
 ### IconやBadgeの有無
-TabBarItem内にIconやBadgeを追加することでタブそのものやタブ内のビューに関する情報を補足できます。具体例は以下のとおりです。
+TabBarItem内に[Icon](/products/components/icon/)や[Badge](/products/components/badge/)を追加することでタブそのものやタブ内のビューに関する情報を補足できます。具体例は以下のとおりです。
 
-* タブ内のビューで選択しているオブジェクトの数をBadgeで示す
-* タブ内のビューでエラーが発生していることをIconで示す
-    * Iconはデフォルトではテキスト情報を持たないため、視覚情報と同等の情報を代替テキストなどを使って提供してください
+- タブ内のビューで選択しているオブジェクトの数をBadgeで示す
+- タブ内のビューでエラーが発生していることをIconで示す
+    - Iconはデフォルトではテキスト情報を持たないため、視覚情報と同等の情報を代替テキストなどを使って提供してください
 
 ```tsx editable noIframe
 <TabBar>
@@ -45,7 +46,7 @@ TabBarItem内にIconやBadgeを追加することでタブそのものやタブ�
   <TabItem suffix={<FaCircleExclamationIcon color="DANGER" alt="エラーあり"/>} id="tabitem2" onClick={() => null}>
     家族情報
   </TabItem>
-  <TabItem disabled disabledReason={{ message: 'この情報は使えません。' }} id="tabitem3">
+  <TabItem disabled disabledReason={{ message: 'この情報は使えません。' }} id="tabitem3" onClick={() => null}>
     その他
   </TabItem>
 </TabBar>
@@ -71,6 +72,10 @@ TabBarItem内にIconやBadgeを追加することでタブそのものやタブ�
 タブが2~3程度の場合、TabBarを画面幅いっぱいに広げて各タブを均等に配置できます。ターゲット領域が広がるため、操作性の向上を期待できます。ただし、タブに表示するテキストが長い場合には適していません。
 
 ![タブバーとBaseが並んでいる](./images/tab-bar-stretched.png)
+
+## 使い方チェックリスト
+
+<Checklist name="TabBar" />
 
 ## Props
 

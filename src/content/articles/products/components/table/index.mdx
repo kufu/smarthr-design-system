@@ -1,26 +1,45 @@
 ---
 title: 'Table'
-description: '表形式でデータを表示するためのコンポーネントです。'
+description: 'table要素の代替として表形式でデータを表示するためのコンポーネントです。データを行列で一覧表示するとき、レコードを並べて比較するビューを提示するときに使います。'
+relatedComponents:
+  - name: Th
+    description: 'th要素の代替としてテーブルの列見出しセルを表すコンポーネントです。'
+  - name: Td
+    description: 'td要素の代替としてテーブルのデータセルを表すコンポーネントです。'
+  - name: ThCheckbox
+    description: 'Checkboxを内包する列見出しセル（Th）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル全行の一括選択UIを列見出しに配置するときに使います。'
+  - name: TdCheckbox
+    description: 'Checkboxを内包するデータセル（Td）の派生コンポーネントです。「テーブル内の一括操作」パターンにおいて、テーブル各行を選択するときに使います。'
+  - name: TdRadioButton
+    description: 'RadioButtonを内包するデータセル（Td）の派生コンポーネントです。テーブル各行から1行だけ選ばせるときに使います。'
+  - name: BulkActionRow
+    description: 'テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。'
+  - name: EmptyTableBody
+    description: 'テーブルにデータがない場合に空状態を表示するtbodyコンポーネントです。空状態のメッセージを提示するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
-表形式でデータを表示するためのコンポーネントです。  
+`table`要素の代替として表形式でデータを表示するためのコンポーネントです。データを行列で一覧表示するとき、レコードを並べて比較するビューを提示するときに使います。
+
 他のコンポーネントと組み合わせることが多いため、具体的な使用方法は[よくあるテーブル](/products/design-patterns/smarthr-table/)を参照してください。
 
 <ComponentStory name="Table" />
 
 ## アクセシビリティ
 
-### セル内にチェックボックスやラジオボタンをそのまま配置しない
+### 開発時の考慮点
+
+#### セル内にチェックボックスやラジオボタンをそのまま配置しない
 
 `<Td><Checkbox /></Td>`、`<Th><Checkbox /></Th>`、および`<Td><RadioButton /></Td>`などのように、セルの内部にチェックボックスやラジオボタンをそのまま配置してはいけません。それぞれの場合で`TdCheckbox`、`ThCheckbox`、および`TdRadioButton`という専用のコンポーネントが提供されているため、代わりにこれらを利用してください。
 
-これらの専用のコンポーネントを利用せずにチェックボックスやラジオボタンを配置すると、アクセシブルネームが設定されず、[ウェブアクセシビリティ簡易チェックリスト](/accessibility/check-list/)の「[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)」に違反するおそれがあります。
+これらの専用のコンポーネントを利用せずにチェックボックスやラジオボタンを配置すると、アクセシブルネームが設定されず、[ガイドライン](/accessibility/guidelines/)の「[フォームパーツにアクセシブルネームがある](/accessibility/guidelines/accessible-name/)」に違反するおそれがあります。
 
 なお、チェックボックスおよびラジオボタンのアクセシブルネームについては[eslint-plugin-smarthr](https://npm.im/eslint-plugin-smarthr)のルール[smarthr/a11y-prohibit-checkbox-or-radio-in-table-cell](https://github.com/kufu/tamatebako/tree/master/packages/eslint-plugin-smarthr/rules/a11y-prohibit-checkbox-or-radio-in-table-cell)を用いることで自動的に検証できます。
 
-### TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
+#### TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
 
 `TdCheckbox`および`TdRadioButton`を利用する場合は、`aria-labelledby`属性を必ず指定しなければなりません。この属性には、それだけで行を一意に判別できる要素へのID参照を指定します。多くのオブジェクトでは、この属性値はしばしば[オブジェクト名](/products/design-patterns/smarthr-table/#h4-0)へのID参照になるでしょう。
 
@@ -31,7 +50,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 </tr>
 ```
 
-オブジェクト名だけでは一意に判別できない可能性があるオブジェクトでは、[オブジェクトの情報](https://smarthr.design/products/design-patterns/smarthr-table/#h4-1)を含む複数の要素のID参照をスペース区切りで指定しなければなりません。例えば、従業員は同姓同名の人物が在籍する場合もあることから、以下のように社員番号と組み合わせます。
+オブジェクト名だけでは一意に判別できない可能性があるオブジェクトでは、[オブジェクトの情報](/products/design-patterns/smarthr-table/#h4-1)を含む複数の要素のID参照をスペース区切りで指定しなければなりません。例えば、従業員は同姓同名の人物が在籍する場合もあることから、以下のように社員番号と組み合わせます。
 
 ```tsx
 <tr key={key}>
@@ -41,10 +60,36 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 </tr>
 ```
 
+#### BulkActionRowではTertiaryボタンを使用する
+
+`BulkActionRow`内で[「すべてのオブジェクトを選択」や「選択解除」](/products/design-patterns/table-bulk-action/#h4-2)ボタンを実装する際は、必ず`Button`コンポーネントの`variant="tertiary"`を使用してください。
+
+`Button`の`variant="tertiary"`を使用することで、`BulkActionRow`の背景色に対してコントラスト比4.5:1を確保できるように内部的に実装されているため、視覚的に見やすくなります。
+
+```tsx editable noIframe
+<Table>
+  <thead>
+    <BulkActionRow>
+      <Cluster align="center">
+        このページの「オブジェクト名」50件すべて選択されています。
+        <Button variant="tertiary" size="S">
+          一覧の「オブジェクト名」1000件すべてを選択
+        </Button>
+      </Cluster>
+    </BulkActionRow>
+  </thead>
+</Table>
+```
+
 ## モバイル
 
-モバイルでは、画面幅を越えたテーブルは[2次元スクロール](/products/design-patterns/mobile-friendly-layout/#h3-3)を招くため、垂直方向に積みあげることを推奨します。  
+モバイルでは、画面幅を越えたテーブルは[2次元スクロール](/products/design-patterns/mobile-friendly-layout/#h3-3)を招くため、垂直方向に積みあげることを推奨します。
+
 [よくあるテーブルの「モバイル」セクション](/products/design-patterns/smarthr-table/#h2-3)を参照し、レイアウトに応じてListコンポーネント（WIP）への置き換えを検討してください。
+
+## 使い方チェックリスト
+
+<Checklist name="Table" />
 
 ## Props
 
@@ -54,9 +99,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 <ComponentPropsTable name="Td" showTitle />
 <ComponentPropsTable name="TdCheckbox" showTitle />
 <ComponentPropsTable name="TdRadioButton" showTitle />
-<ComponentPropsTable name="TableReel" showTitle />
 <ComponentPropsTable name="BulkActionRow" showTitle />
-<ComponentPropsTable name="WakuWakuButton" showTitle />
 <ComponentPropsTable name="EmptyTableBody" showTitle />
 
 ## 関連リンク

@@ -6,6 +6,7 @@ dist/
 
 # dependencies
 node_modules/
+.pnpm-store/
 
 # logs
 npm-debug.log*
@@ -26,6 +27,11 @@ pnpm-debug.log*
 # Cache
 .cache
 src/cache/
+.pnpm-store/
+
+# Claude Code session data
+.claude/*
+!.claude/skills/
 
 # Storybook static build files
 storybook-static/
@@ -34,3 +40,6 @@ storybook-static/
 .netlify
 
 # Gatsbyのなごり
+
+# Code block type checking files
+**/_check/

@@ -1,9 +1,10 @@
 ---
 title: 'RadioButton'
-description: "選択肢の中から単一の値を選択して入力できるコンポーネントです。"
+description: "input[type='radio']要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。"
 ---
 import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Cluster, Text } from 'smarthr-ui'
@@ -15,8 +16,7 @@ import RadioButtonAlignmenDont from './images/radio-button-alignment-dont.png';
 import radioButtonMobileDo from './images/radio-button-mobile-do.png';
 import radioButtonMobileDont from './images/radio-button-mobile-dont.png';
 
-選択肢の中から単一の値を選択して入力できるコンポーネントです。
-`input[type='radio']`の代わりとして使用します。
+`input[type="radio"]`要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。
 
 <ComponentStory name="RadioButton" />
 
@@ -28,8 +28,10 @@ import radioButtonMobileDont from './images/radio-button-mobile-dont.png';
 
 基本的に、選択肢の中から単一の値を選択して入力させる場合は、初期状態で選択肢が一覧しやすいラジオボタンを使用します。
 
-- 選択肢のラベルテキストが長大になる場合や、選択肢が表示領域内にすべて表示しきれないほど存在する場合では、[Select](/products/components/select/)や[SingleCombobox](/products/components/combo-box/single-combo-box/)も検討します。
+- 選択肢のラベルテキストが長大になる場合や、選択肢が表示領域内にすべて表示しきれないほど存在する場合では、[Select](/products/components/select/)や[SingleCombobox](/products/components/combobox/single-combobox/)も検討します。
   - ただし選択肢の一覧性が下がり、操作の手間が増えるので、選択肢の数が不定で予測できないなどの理由がない限りはラジオボタンの使用を推奨します。
+
+選択操作に関わるコンポーネントの使い分けは[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
 
 #### 選択肢のラベルテキストはなるべく簡潔に同程度の文量で収める
 
@@ -86,14 +88,13 @@ import radioButtonMobileDont from './images/radio-button-mobile-dont.png';
 </Cluster>
 
 
-## 状態 
+## 状態
 
 ### デフォルト
 
 RadioButtonは常に1つの選択肢が選択されているコンポーネントのため、選択肢の中から1つデフォルト値に設定するものを決めてください。（参考：[デフォルト値に設定する値](/products/design-patterns/default_value/#h3-0)）
 
-![radiobuttonに１つの選択肢が選択されているイメージ](./images/radio-button-unselected-option.png)
-
+![RadioButtonにデフォルト値が設定されているイメージ](./images/radio-button-unselected-option.png)
 
 ## デザインパターン
 
@@ -104,26 +105,92 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 [共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)のデザインパターンもあわせて参考にしてください。
 
 ```tsx editable
-<>
-    <Fieldset
-        legend="設定項目"
-        innerMargin={0.5}
-    >
-        <BaseColumn>
-            <Cluster gap={{ row: 1, column: 1.5 }}>
-                <RadioButton name="sample">選択肢 1</RadioButton>
-                <RadioButton name="sample">選択肢 2</RadioButton>
-                <RadioButton name="sample">選択肢 3</RadioButton>
-                <RadioButton name="sample">選択肢 4</RadioButton>
-                <RadioButton name="sample">選択肢 5</RadioButton>
-            </Cluster>
-        </BaseColumn>
-    </Fieldset>
-</>
+<Fieldset
+    legend="設定項目"
+    innerMargin={0.5}
+>
+    <BaseColumn>
+        <Cluster gap={{ row: 1, column: 1.5 }}>
+            <RadioButton name="sample" checked>選択肢 1</RadioButton>
+            <RadioButton name="sample">選択肢 2</RadioButton>
+            <RadioButton name="sample">選択肢 3</RadioButton>
+            <RadioButton name="sample">選択肢 4</RadioButton>
+            <RadioButton name="sample">選択肢 5</RadioButton>
+        </Cluster>
+    </BaseColumn>
+</Fieldset>
 ```
 
+## アクセシビリティ
+
+### 開発時の考慮点
+
+#### テーブルのセル内に直接配置しない
+
+テーブル内に`RadioButton`を配置する場合は、専用のコンポーネント（`TdRadioButton`）を使用してください。
+セル内に直接`RadioButton`コンポーネントを配置すると、`RadioButton`と同じ行のテキストが関連付かず、スクリーンリーダーでは「どの項目を選択するための`RadioButton`か」がわかりにくくなる場合があります。
+
+`TdRadioButton`を利用することで、`RadioButton`と同じ行のテキストが関連付けられ、スクリーンリーダーを使用するユーザーにも、どの項目を選択するための`RadioButton`かが伝わりやすくなります。
+
+詳しい実装方法と注意点については、以下の[Table](/products/components/table/)コンポーネントのドキュメントを参照してください。
+
+- [セル内にチェックボックスやラジオボタンをそのまま配置しない](/products/components/table/#h4-0)
+- [`TdCheckbox`および`TdRadioButton`では行を特定できる要素をIDで参照する](/products/components/table/#h4-1)
+
+#### Fieldsetでグループ化する
+`RadioButton`は、複数の選択肢から1つだけ選択するためのコンポーネントです。
+[Fieldset](/products/components/fieldset/)コンポーネントを使用してグループ化し、`legend` propsでグループの目的を説明してください。
+
+これにより、関連する`RadioButton`を「同じ質問に対する選択肢のグループ」としてスクリーンリーダーへ正しく伝えられます。
+
+##### 良い実装例
+
+```tsx
+// Fieldset でグループ化された RadioButton
+<Fieldset
+  legend="通知方法"
+  innerMargin={0.5}
+>
+  <BaseColumn>
+    <Cluster gap={{ row: 1, column: 1.5 }}>
+      <RadioButton name="notification" checked>
+        メール
+      </RadioButton>
+      <RadioButton name="notification">
+        SMS
+      </RadioButton>
+      <RadioButton name="notification">
+        プッシュ通知
+      </RadioButton>
+    </Cluster>
+  </BaseColumn>
+</Fieldset>
+```
+
+##### 悪い実装例
+
+```tsx
+// ❌ ラジオボタンとラベルが関連付けられていない
+<input type="radio" name="notification" />
+<span>メール</span>
+
+// ❌ 何について選択するグループなのか伝わらない
+<div>
+  <RadioButton name="notification" checked>メール</RadioButton>
+  <RadioButton name="notification">SMS</RadioButton>
+</div>
+```
+
+ラベルが関連付けられていない場合、スクリーンリーダーでは「ラジオボタン」とだけ読み上げられ、何を選択するためのラジオボタンかわかりません。
+また、グループ化されていない場合、何について選択するための選択肢なのかが伝わりにくくなります。
+
+### 関連ページ
+
+- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
+- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
+
 ## モバイル
-モバイル表示時は、画面の幅が狭いため基本的に縦並びにします。誤操作を防ぐために、[小さい要素間のマージン](/products/design-patterns/spacing-layout-pattern/#h5-4)に従って十分なマージンを確保してください。
+モバイル表示時は、画面の幅が狭いため基本的に縦並びにします。誤操作を防ぐために、[小さい要素間のマージン](/products/design-patterns/spacing-layout-pattern/#h4-4)に従って十分なマージンを確保してください。
 
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">
@@ -136,6 +203,10 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
     <Text slot="label">折り返しによって不揃いなレイアウトになる上、隣り合う要素の誤タップも起きやすい</Text>
   </DoAndDont>
 </Cluster>
+
+## 使い方チェックリスト
+
+<Checklist name="RadioButton" />
 
 ## Props
 

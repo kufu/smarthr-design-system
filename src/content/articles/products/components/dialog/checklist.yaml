@@ -1,0 +1,24 @@
+items:
+  # Dialogを使用したコンポーネント > ActionDialog、FormDialog
+  - severity: should
+    text: 'ユーザーに入力や選択などの操作を求める場合は ActionDialog / FormDialog を使う'
+    source_section: 'Dialogを使用したコンポーネント > ActionDialog、FormDialog'
+
+  - severity: should
+    text: 'ダイアログコンテンツにフォームが含まれている場合は FormDialog を使う'
+    source_section: 'Dialogを使用したコンポーネント > ActionDialog、FormDialog'
+
+  # Dialogを使用したコンポーネント > MessageDialog
+  - severity: should
+    text: 'ユーザーに情報を提示する場合は MessageDialog を使う'
+    source_section: 'Dialogを使用したコンポーネント > MessageDialog'
+
+  # Dialogを使用したコンポーネント > ModelessDialog
+  - severity: should
+    text: 'ダイアログと裏側の画面を同時並行で閲覧・操作する場合は ModelessDialog を使う'
+    source_section: 'Dialogを使用したコンポーネント > ModelessDialog'
+
+  # Dialogを使用したコンポーネント > StepFormDialog
+  - severity: should
+    text: 'タスクの完了に複数の操作が必要な場合は StepFormDialog を使う'
+    source_section: 'Dialogを使用したコンポーネント > StepFormDialog'

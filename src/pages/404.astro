@@ -1,8 +1,8 @@
 ---
-import { PageHeading } from 'smarthr-ui';
-import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/Header/Header.astro';
 import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header/Header.astro';
+import NotFoundPage from '@/components/NotFoundPage';
+import Layout from '@/layouts/Layout.astro';
 ---
 
 <Layout
@@ -16,34 +16,7 @@ import Footer from '@/components/Footer.astro';
 >
   <Header />
 
-  <div class="notFoundContent">
-    <PageHeading>404</PageHeading>
-    <p>お探しのページは見つかりませんでした</p>
-  </div>
+  <NotFoundPage homeUrl="/" />
 
   <Footer />
 </Layout>
-
-<style lang="scss">
-  .notFoundContent {
-    margin-top: var(--header-height);
-    padding-inline: 16px;
-    text-align: center;
-
-    > h1 {
-      margin-block: 0;
-      font-weight: bold;
-      font-size: 4.5rem;
-      line-height: 1.5;
-      letter-spacing: 1px;
-    }
-
-    > p {
-      margin-block: 12px 0;
-      font-size: 1rem;
-      font-weight: bold;
-      line-height: 1.5;
-      letter-spacing: 1px;
-    }
-  }
-</style>

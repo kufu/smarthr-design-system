@@ -1,12 +1,14 @@
 ---
 title: 'TextLink'
-description: 'aタグの代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。'
+description: 'a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import { OpenInNewTabIconInTextLink } from './_components/OpenInNewTabIconInTextLink'
+import PageIndex from '@/components/article/PageIndex.astro'
+import { OpenInNewTabIconInTextLink } from './_components'
 
-`a`タグの代わりに使用するコンポーネントです。前後にアイコンを差し込めます。またリンクであることを表すために下線を強制します。
+`a`要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、[HelpLink](/products/components/text-link/help-link/)や[UpwardLink](/products/components/text-link/upward-link/)で表現できないテキストリンクを提供するときに使います。
 
 <ComponentStory name="TextLink" />
 
@@ -17,6 +19,12 @@ import { OpenInNewTabIconInTextLink } from './_components/OpenInNewTabIconInText
 `TextLink`は、ページを移動するためのリンクです。それ以外の処理を実行するボタンとして使わないでください。
 
 視覚的優先度の低いボタンを表現したい場合は、[Tertiaryボタン](/products/components/button/#h3-3)を使ってください。
+
+## TextLinkを使用したコンポーネント
+
+開発で頻繁に利用する実装をコンポーネント化しています。
+
+<PageIndex basePath="/products/components/text-link/" heading="h3" />
 
 ## レイアウト
 
@@ -67,6 +75,33 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 ```tsx editable
   <UpwardLink href="/">オブジェクト一覧に戻る</UpwardLink>
 ```
+
+## アクセシビリティ
+
+### 基本的なアクセシビリティ機能
+
+#### 新規ウィンドウで開くリンクであることを伝える
+`target="_blank"` を指定した場合、TextLinkは新規ウィンドウ（新規タブ）で開くことを示すアイコンを自動で表示します。
+
+これにより、リンクを開いた際に別タブへ移動することが視覚的に伝わります。また、アイコンには「別タブで開く」のアクセシブルネームが設定されているため、スクリーンリーダーを使用するユーザーにも新規ウィンドウで開くことが伝わります。
+
+### 開発時の考慮点
+
+#### リンク先がわかるテキストを設定する
+
+リンクテキストは、リンク先や実行される内容がわかる文言にしてください。
+リンク先がわからない曖昧なテキストは、ユーザーがリンクの目的を理解しづらくなり、意図したページへ移動できるか判断しにくくなる場合があります。
+
+詳しい書き方や例については、[リンクのテキストからリンク先が判別できる](/accessibility/guidelines/link-text/)の達成方法を参照してください。
+
+### 関連ページ
+
+- [リンクテキストからリンク先が判別できる | アクセシビリティガイドライン](/accessibility/guidelines/link-text/)
+- [リンクテキストに下線がある | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/link-underline/)
+
+## 使い方チェックリスト
+
+<Checklist name="TextLink" />
 
 ## Props
 

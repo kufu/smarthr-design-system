@@ -1,11 +1,12 @@
 ---
 title: 'WarekiPicker'
-description: '和暦の日付を西暦に変換する機能と和暦をプレビューする機能をもった入力要素です。'
+description: '和暦で日付を入力させ西暦に変換する機能を備えた入力コンポーネントです。和暦の日付入力が必要なときに使います。'
 ---
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 
-和暦の日付を西暦に変換する機能と和暦をプレビューする機能をもった入力要素です。
+和暦で日付を入力させ西暦に変換する機能を備えた入力コンポーネントです。和暦の日付入力が必要なときに使います。
 
 例えば、「令和4年12月3日」という日付を入力欄に貼り付けると「2022-12-03」に変換する機能を備えています。
 
@@ -23,9 +24,29 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
   helpMessage="和暦と西暦のどちらでも入力できます。"
   exampleMessage="例： 平成27年4月1日、H27.4.1、2015/4/1、2015-4-1"
 >
-  <WarekiPicker />
+  <WarekiPicker name="input" />
 </FormControl>
 ```
+
+## アクセシビリティ
+
+### 開発時の考慮点
+
+#### FormControlと併用する
+
+WarekiPickerコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を入力すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも入力の目的が伝達されます。
+
+eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、WarekiPickerにFormControlを組み合わせることを促すものです。支援技術に入力の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
+
+### 関連ページ
+
+- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
+- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
+
+
+## 使い方チェックリスト
+
+<Checklist name="WarekiPicker" />
 
 ## Props
 

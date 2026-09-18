@@ -36,4 +36,4 @@ const { code, language, meta } = Astro.props;
 const props = parseMeta(meta);
 ---
 
-<ReactCodeBlock code={code} language={language} {...props} client:only="react" />
+<ReactCodeBlock {...props} code={code} language={language} client:only="react" />

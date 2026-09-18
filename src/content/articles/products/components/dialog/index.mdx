@@ -1,24 +1,23 @@
 ---
 title: 'Dialog'
-description: 'ダイアログボックス（もしくは単に「ダイアログ」）と呼ばれる、ページの前面に表示される領域のためのコンポーネントです。'
+description: 'ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。'
+relatedComponents:
+  - name: ActionDialog
+  - name: FormDialog
+  - name: MessageDialog
+  - name: ModelessDialog
+  - name: StepFormDialog
+  - name: RemoteDialogTrigger
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
-import {
-  ActionDialog,
-  Button,
-  Dialog,
-  MessageDialog,
-  ModelessDialog,
-  StepFormDialog,
-  Stack,
-  Text,
-  TextLink,
-} from 'smarthr-ui'
 
-Dialogコンポーネントは、ダイアログボックス（もしくは単に「ダイアログ」）と呼ばれる、ページの前面に表示される領域のためのコンポーネントです。
+import { DynamicActionDialog, DynamicMessageDialog, DynamicModelessDialog, DynamicStepFormDialog } from './_components'
+
+ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。
 
 ダイアログは、ユーザーに入力や選択などの操作を求めたり、情報を提示するために使われます。ユーザーの操作を起点として表示され、ユーザーの操作によって閉じられます。
 
@@ -28,19 +27,14 @@ Dialogコンポーネントは、ダイアログボックス（もしくは単�
 
 頻繁に利用するダイアログのパターンを、スタイリングやpropsを整えたコンポーネントとして用意しています。
 
-import DynamicActionDialog from './_components/DynamicActionDialog'
-import DynamicMessageDialog from './_components/DynamicMessageDialog'
-import DynamicModelessDialog from './_components/DynamicModelessDialog'
-import DynamicStepFormDialog from './_components/DynamicStepFormDialog'
-
 ### ActionDialog、FormDialog
 
 ユーザーに入力や選択などの操作を求めるためのダイアログです。ユーザーは操作内容をシステムに送信できます。
-ダイアログコンテンツにフォームが含まれている場合は、FormDialogを使用できます。
+ダイアログコンテンツにフォームが含まれている場合は、[FormDialog](/products/components/dialog/form-dialog/)を使用できます。
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
-詳しい使い方は、[ActionDialog](./action-dialog/)を参照してください。 
+詳しい使い方は、[ActionDialog](/products/components/dialog/action-dialog/)、[FormDialog](/products/components/dialog/form-dialog/)を参照してください。
 
 <ComponentPreview>
   <DynamicActionDialog client:load />
@@ -52,7 +46,7 @@ import DynamicStepFormDialog from './_components/DynamicStepFormDialog'
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
-詳しい使い方は、[MessageDialog](./message-dialog/)を参照してください。
+詳しい使い方は、[MessageDialog](/products/components/dialog/message-dialog/)を参照してください。
 
 <ComponentPreview>
   <DynamicMessageDialog client:load />
@@ -64,7 +58,7 @@ import DynamicStepFormDialog from './_components/DynamicStepFormDialog'
 
 基本的に、ダイアログと裏側の画面を同時並行で閲覧・操作する場合に使います。
 
-詳しい使い方は、[ModelessDialog](./modeless-dialog/)を参照してください。
+詳しい使い方は、[ModelessDialog](/products/components/dialog/modeless-dialog/)を参照してください。
 
 <ComponentPreview>
   <DynamicModelessDialog client:load />
@@ -76,13 +70,25 @@ import DynamicStepFormDialog from './_components/DynamicStepFormDialog'
 
 モーダルなダイアログです。ダイアログの表示中、ダイアログの裏側の領域はスクリム（幕）で隠され、操作を受け付けません。
 
-詳しい使い方は、[StepFormDialog](./step-form-dialog/)を参照してください。
+詳しい使い方は、[StepFormDialog](/products/components/dialog/step-form-dialog/)を参照してください。
 
 <ComponentPreview>
   <DynamicStepFormDialog client:load />
 </ComponentPreview>
 
 
+## 使い方チェックリスト
+
+<Checklist name="Dialog" />
+
 ## Props
 
-<ComponentPropsTable name="Dialog" />
+<ComponentPropsTable name="Dialog" showTitle />
+
+<ComponentPropsTable name="DialogWrapper" showTitle />
+
+<ComponentPropsTable name="DialogTrigger" showTitle />
+
+<ComponentPropsTable name="DialogContent" showTitle />
+
+<ComponentPropsTable name="DialogCloser" showTitle />

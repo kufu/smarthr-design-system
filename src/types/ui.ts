@@ -18,7 +18,7 @@ export type PropsData = {
   required: boolean;
   type: {
     name: string;
-    value: Array<{ value: string }>;
+    value?: Array<{ value: string }>;
   };
 };
 

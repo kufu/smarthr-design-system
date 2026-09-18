@@ -1,13 +1,14 @@
 ---
 title: 'NotificationBar'
-description: '操作の結果などをシステムからの通知として表示するためのコンポーネントです。'
+description: 'システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。'
 ---
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import VideoEmbed from '@/components/article/VideoEmbed.astro'
 
-操作の結果などをシステムからの通知として表示するためのコンポーネントです。
+システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。
 
 <ComponentStory name="NotificationBar" />
 
@@ -15,7 +16,7 @@ import VideoEmbed from '@/components/article/VideoEmbed.astro'
 
 ### フィードバックではないサービス運営上のお知らせなどを画面全体（ヘッダーの下）で使用しない
 
-NotificationBarを画面全体（ヘッダーの下）で使用する場合は、ユーザーが行なった操作への応答や、操作が反映されている状態を示すなどの、システムからの[フィードバック](/products/design-patterns/feedback/)の表示に限定します。限定する理由は次のとおりです。
+NotificationBarを画面全体（ヘッダーの下）で使用する場合は、ユーザーが行った操作への応答や、操作が反映されている状態を示すなどの、システムからの[フィードバック](/products/design-patterns/feedback/)の表示に限定します。限定する理由は次のとおりです。
 
 - 画面全体での表示はユーザーに強めの注意を促す効果があることから、一連の業務やタスクを遂行する上で必要なフィードバックを表示する一貫性を担保し、ユーザーに適切な操作を促すため
 - サービス運営上の利用促進や訴求といった、システムからの通知ではないメッセージを画面全体で使用した場合、ユーザーに都度システムからの応答なのか運営者からの情報なのかの判断が必要になることを回避するため
@@ -49,7 +50,7 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 ユーザーへのアテンションを高めたい場合は、`bold`にすることを検討します。代表的なユースケースは次のとおりです。
 
-- ユーザーが行なった操作の成功・失敗などの結果を画面全体（ヘッダーの下）に表示する場合
+- ユーザーが行った操作の成功・失敗などの結果を画面全体（ヘッダーの下）に表示する場合
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
@@ -63,7 +64,7 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 メッセージが表示されたことを強調したい場合は、`animate`にすることでスライドインのアニメーション効果を追加できます。
 
-import AnimateNotificationBar from './_components/AnimateNotificationBar'
+import { AnimateNotificationBar } from './_components'
 
 <ComponentPreview>
   <AnimateNotificationBar client:load />
@@ -110,7 +111,7 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
   <NotificationBar type="info" onClose={()=>{}}>
     ボタンやテキストリンクを表示できます。
-    <Button size="s">編集</Button>
+    <Button size="S">編集</Button>
     <TextLink href="#">
       <Text size="S">ヘルプ</Text>
     </TextLink>
@@ -128,9 +129,8 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 - ユーザーにメッセージが表示されたことを強調するために、[アニメーションを有効](#h3-3)にします。
 - ユーザーの明示的な操作で非表示にします。時間の経過で閉じることは非推奨です（[※1](#h2-5)）。
 
-#### オブジェクトに関する操作を行なった直後にページ全体にフィードバックを表示
+#### オブジェクトに関する操作をした直後にページ全体にフィードバックを表示
 
-コレクションへのオブジェクトの追加・削除など、オブジェクトに関する操作を行なった直後に、結果を表示する典型的な例です。  
 以下の例では操作が成功したため`type="success"`を表示しています。エラーの場合は`type="error"`を指定します。
 
 <VideoEmbed
@@ -157,38 +157,42 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 主に「複数の要素が存在する画面内での操作後、特定の対象範囲にのみ反映されたとき」に使います。
 画面内にオブジェクトに関する操作やアクションが複数存在する場合に、特定の対象範囲への結果を表示する目的で使用します。
 
-#### 操作を行なった直後に操作範囲内にフィードバックを表示
+#### 操作した直後に操作範囲内にフィードバックを表示
 
 設定値の保存・適用や、ファイルの取り込み操作など、操作の結果を表示する典型的な例です。
 
 以下の例では、「保存」操作が成功した結果として、操作範囲の[Base](/products/components/base/)内に`type="success"`を表示しています。エラーの場合は`type="error"`を指定します。
 
 ```tsx editable
-<Stack>
-  <Heading type="sectionTitle">セクションタイトル</Heading>
-  <Base overflow="auto">
-    <NotificationBar type="success" bold>値の保存に成功しました。</NotificationBar>
-    <Stack align="start" style={{padding: '16px'}}>
-      <Fieldset
-        legend="設定項目"
-        innerMargin={0.5}
-      >
-        <BaseColumn>
-          <Cluster gap={{ row: 1, column: 1.5 }}>
-            <Checkbox name="sample" checked >選択肢 1</Checkbox>
-            <Checkbox name="sample">選択肢 2</Checkbox>
-            <Checkbox name="sample">選択肢 3</Checkbox>
-            <Checkbox name="sample">選択肢 4</Checkbox>
-            <Checkbox name="sample">選択肢 5</Checkbox>
-          </Cluster>
-        </BaseColumn>
-      </Fieldset>
-      <Button type="submit" variant="primary" >
-        保存
-      </Button>
-    </Stack>
-  </Base>
-</Stack>
+<Section>
+  <Stack>
+    <Heading>セクションタイトル</Heading>
+    <Base overflow="auto">
+      <NotificationBar type="success" bold>値の保存に成功しました。</NotificationBar>
+        <form onSubmit={(e) => {e.preventDefault()}}>
+        <Stack align="start" style={{padding: '16px'}}>
+          <Fieldset
+            legend="設定項目"
+            innerMargin={0.5}
+          >
+            <BaseColumn>
+              <Cluster gap={{ row: 1, column: 1.5 }}>
+                <Checkbox name="sample" checked >選択肢 1</Checkbox>
+                <Checkbox name="sample">選択肢 2</Checkbox>
+                <Checkbox name="sample">選択肢 3</Checkbox>
+                <Checkbox name="sample">選択肢 4</Checkbox>
+                <Checkbox name="sample">選択肢 5</Checkbox>
+              </Cluster>
+            </BaseColumn>
+          </Fieldset>
+          <Button type="submit" variant="primary" >
+            保存
+          </Button>
+        </Stack>
+      </form>
+    </Base>
+  </Stack>
+</Section>
 ```
 ## モバイル
 ### メッセージの折り返し
@@ -200,6 +204,10 @@ import AnimateNotificationBar from './_components/AnimateNotificationBar'
 ### 特定の操作範囲へのフィードバックでの表示位置
 モバイルでは、操作範囲の大きさによってはNotificationBarが画面外に表示される場合があります。
 その場合は、ユーザーがフィードバックを確認できる位置での表示方法を検討してください。
+
+## 使い方チェックリスト
+
+<Checklist name="NotificationBar" />
 
 ## Props
 

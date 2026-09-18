@@ -1,11 +1,13 @@
 ---
 title: 'Select'
-description: 'select要素の代わりに使用するコンポーネントです。'
+description: 'select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
-`select`の代わりに使用するコンポーネントです。[Input](/products/components/input/)と見た目を揃えるために存在します。
+`select`要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。
+[Input](/products/components/input/)と見た目を揃えるために存在します。
 
 <ComponentStory name="Select" />
 
@@ -15,7 +17,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 基本的に選択肢の数が6個以上になる場合はSelectを使用します。初期状態では選択肢を一覧できないことに注意してください。
 
-ユーザーがスムーズに操作できるよう、選択肢の数に応じてSelectコンポーネント以外の使用も考えられます。
+ユーザーがスムーズに操作できるよう、選択肢の数に応じてSelectコンポーネント以外の使用も考えられます。詳細は[選択コンポーネントの使い分け](/products/design-patterns/selection-component-usage/)を参照してください。
 
 #### 選択肢が5個以下の場合
 
@@ -28,7 +30,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ### SingleComboboxとの使い分け
 
-単一選択かつ、ユーザーに選択肢をフィルタリングさせたい場合は[SingleCombobox](/products/components/combo-box/single-combo-box/)の使用を検討してください。
+単一選択かつ、ユーザーに選択肢をフィルタリングさせたい場合は[SingleCombobox](/products/components/combobox/single-combobox/)の使用を検討してください。
 
 ### 即時反映が期待されるビューの切り替えには使わない
 
@@ -45,6 +47,59 @@ Selectは入力後に、送信や保存といったtype属性が`submit`のボ�
 ユーザーの入力作業が向上したり、ミスを減らせる場合には他の選択肢を設定することを検討します。
 
 ![selectに「空」の選択肢があるイメージ](./images/select-unselected-option.png)
+
+## アクセシビリティ
+
+### 開発時の考慮点
+
+#### FormControlと併用する
+
+Selectコンポーネントは必ずFormControlコンポーネントと併用して、ユーザーが何を選択すべきかを示すラベルを設定してください。FormControlと併用することで、支援技術にも選択の目的が伝達されます。
+
+eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、SelectにFormControlを組み合わせることを促すものです。支援技術に選択の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
+
+#### 良い実装例
+
+```tsx
+<FormControl label="都道府県">
+  <Select
+    name="prefecture"
+    options={[
+      { label: '都道府県を選択してください', value: '' },
+      { label: '北海道', value: 'hokkaido' },
+      { label: '青森県', value: 'aomori' },
+      // ...
+    ]}
+  />
+</FormControl>
+```
+
+#### 悪い実装例
+
+```tsx
+// ❌ ラベルとSelectが関連付けられていない
+<Stack gap={0.5}>
+  <Text styleType="blockTitle">都道府県</Text>
+  <Select
+    name="prefecture"
+    options={[
+      { label: '北海道', value: 'hokkaido' },
+      { label: '青森県', value: 'aomori' },
+    ]}
+  />
+</Stack>
+```
+
+ラベルとSelectが関連付けられていない場合、スクリーンリーダーでは何を選択するための項目なのかが伝わりません。
+
+### 関連ページ
+
+- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
+- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
+
+## 使い方チェックリスト
+
+<Checklist name="Select" />
 
 ## Props
 

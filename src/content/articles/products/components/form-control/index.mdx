@@ -1,22 +1,18 @@
 ---
 title: 'FormControl'
-description: 'フォームとしての入力要素に対応するラベルとメッセージテキストを表示するためのコンポーネントです。'
+description: '単一の入力要素にラベル、ヘルプ/エラー/補足のメッセージテキスト、入力必須か否かを紐づけるためのコンポーネントです。1つの入力欄にラベル付けするとき、入力欄にエラーや補足メッセージを表示するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { Image } from 'astro:assets'
-import {
-  FaCircleExclamationIcon,
-  StatusLabel,
-  Cluster,
-  Text
-} from 'smarthr-ui'
+import { FaCircleExclamationIcon, StatusLabel, Cluster, Text } from 'smarthr-ui'
 
 import formControlErrorSampleDo from '../fieldset/images/fieldset_error_sample.png'
 import formControlErrorSampleDont from './image/formcontrol_error_sample_dont.png'
 
-FormControlコンポーネントは、フォームとしての入力要素に対応するラベルとメッセージテキストを表示するためのコンポーネントです。
+単一の入力要素にラベル、ヘルプ/エラー/補足のメッセージテキスト、入力必須か否かを紐づけるためのコンポーネントです。1つの入力欄にラベル付けするとき、入力欄にエラーや補足メッセージを表示するときに使います。
 
 <ComponentStory name="FormControl" />
 
@@ -30,7 +26,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 #### 複数のフォームを横に並べる場合
 
-入力要素をグルーピングできる場合は、基本的に[Fieldset](/products/components/fieldset/)を使用してください。エラーが表示された際のレイアウト崩れを防ぐことができます。（[エラーの表示方法](/products/components/fieldset#h3-1)）
+入力要素をグルーピングできる場合は、基本的に[Fieldset](/products/components/fieldset/)を使用してください。エラーが表示された際のレイアウト崩れを防ぐことができます。（[エラーの表示方法](/products/components/fieldset/#h3-1)）
 
 表示領域の都合などでやむを得ずFormControlを横に並べる場合は、エラーの表示時にレイアウトが崩れないか注意してください。
 
@@ -75,7 +71,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 ```tsx editable
 <FormControl
   label="タイトル"
-  statusLabelProps={{ type: 'grey', children: '任意' }}
+  statusLabels={<StatusLabel type="grey">任意</StatusLabel>}
 >
   <Input name="defaultInput" />
 </FormControl>
@@ -103,7 +99,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 | :--- | :--- | :--- |
 | ヘルプメッセージ | `helpMessage` | 入力して欲しい内容を具体的に伝えるテキストを入力要素の上に表示します。必要に応じて関連するヘルプページなどへのテキストリンクを設置できます。テキストリンクの詳細は[ヘルプページへの動線](/products/contents/ui-text/help-link/#h3-2)を参照してください。 |
 | 入力例 | `exampleMessage` | フォームの入力例を入力要素の上に表示します。原則として入力要素の`placeholder`はユーザビリティおよびアクセシビリティの観点から非推奨としているため、その代替として使用してください。 |
-| エラーメッセージ | `errorMessages` | フォームバリデーションなどで、適切な値が入力されていないことを伝えるテキストを、<FaCircleExclamationIcon alt="エラーメッセージ" color="DANGER" /> アイコン（`FaExclamationCircle`）とあわせて入力要素の上に表示します。 |
+| エラーメッセージ | `errorMessages` | フォームバリデーションなどで、適切な値が入力されていないことを伝えるテキストを、<FaCircleExclamationIcon alt="エラーメッセージ" color="DANGER" /> アイコン（`FaCircleExclamation`）とあわせて入力要素の上に表示します。 |
 | 補足メッセージ | `supplementaryMessage` | 入力時にユーザーが把握しなくても操作に影響のない情報を入力要素の下に表示します。 |
 
 #### メッセージテキストの表示例
@@ -113,10 +109,10 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
   label="タイトル"
   helpMessage="ヘルプメッセージ"
   exampleMessage="入力例"
-  errorMessages={'エラーメッセージ'}
+  errorMessages="エラーメッセージ"
   supplementaryMessage="補足メッセージ"
 >
-  <Input error />
+  <Input name="input" error />
 </FormControl>
 ```
 
@@ -148,7 +144,7 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
   label="氏名"
   helpMessage="氏名を入力してください。"
   exampleMessage="入力例：須磨栄子"
-  errorMessages={'氏名が入力されていません。'}
+  errorMessages="氏名が入力されていません。"
   supplementaryMessage="その他ご不明な点がありましたら、サポートまでお問い合わせください。"
 >
   <Input error name="fullname" width="100%" />
@@ -184,6 +180,44 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
   <Input name="fullname" value="草野栄一郎" readOnly />
 </FormControl>
 ```
+
+## アクセシビリティ
+
+### 基本的なアクセシビリティ機能
+
+#### ラベルと入力要素を関連づける
+
+FormControlコンポーネントは、`label` propsで指定したテキストを入力要素と関連づけます。
+これにより、スクリーンリーダーを使用するユーザーにも、何を入力するための項目なのかが伝わります。
+
+#### エラーメッセージを関連づける
+
+`errorMessages` propsを設定すると、エラーメッセージが入力要素と関連づけられます。
+これにより、スクリーンリーダーを使用するユーザーにも、エラーの発生とその内容が伝わります。
+
+#### 補足情報を関連づける
+
+`helpMessage` や `supplementaryMessage` を設定すると、それらの情報が入力要素と関連づけられます。
+これにより、スクリーンリーダーを使用するユーザーにも、入力時に参照できる補足情報として伝わります。
+
+### 開発時の考慮点
+
+#### 入力要素と組み合わせて利用する
+
+入力要素を使用する場合は、FormControlコンポーネントを利用してラベルを設定してください。
+これにより、ラベルと入力要素が関連づけられ、何を入力または選択するための項目なのかが支援技術にも伝わります。
+
+eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、入力要素にFormControlを組み合わせることを促すものです。支援技術に入力の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
+
+### 関連ページ
+
+- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
+- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
+- [エラーの発生とエラーの内容が特定できる | アクセシビリティガイドライン](/accessibility/guidelines/error/)
+
+## 使い方チェックリスト
+
+<Checklist name="FormControl" />
 
 ## Props
 

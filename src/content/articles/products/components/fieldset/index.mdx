@@ -1,13 +1,14 @@
 ---
 title: 'Fieldset'
-description: 'フォームにおける複数の入力要素をグルーピングするためのコンポーネントです。'
+description: 'fieldset要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
-Fieldsetコンポーネントは、フォームにおける複数の入力要素をグルーピングするためのコンポーネントです。
+`fieldset`要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。
 
-姓名や期間の開始・終了のように値を分割して入力する場合や、CheckboxやRadioButtonといった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
+姓名や期間の開始・終了のように値を分割して入力する場合や、[Checkbox](/products/components/checkbox/)や[RadioButton](/products/components/radio-button/)といった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
 
 <ComponentStory name="Fieldset" />
 
@@ -35,34 +36,29 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
     helpMessage="登録するユーザー情報を入力してください。"
 >
     <Stack gap={1.25}>
-        <Cluster gap={0.5}>
+        <Cluster>
             <FormControl
-                label="姓"
-                titleType="subBlockTitle"
+                label={{ text: "姓", styleType: "subBlockTitle" }}
             >
                 <Input name="lastName" />
             </FormControl>
             <FormControl
-                label="名"
-                titleType="subBlockTitle"
+                label={{ text: "名", styleType: "subBlockTitle" }}
             >
                 <Input name="firstName" />
             </FormControl>
         </Cluster>
         <Fieldset
-            legend="住所"
-            titleType="subBlockTitle"
+            legend={{ text: "住所", styleType: "subBlockTitle" }}
         >
             <Stack>
                 <FormControl
-                    label="郵便番号"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "郵便番号", styleType: "subSubBlockTitle" }}
                 >
                     <Input name="address_postalCode" />
                 </FormControl>
                 <FormControl
-                    label="都道府県"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "都道府県", styleType: "subSubBlockTitle" }}
                 >
                     <Select
                         name="address_prefecture"
@@ -75,39 +71,40 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
                     />
                 </FormControl>
                 <FormControl
-                    label="市区町村"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "市区町村", styleType: "subSubBlockTitle" }}
                 >
                     <Input name="address_city" />
                 </FormControl>
                 <FormControl
-                    label="番地"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "番地", styleType: "subSubBlockTitle" }}
                 >
                     <Input name="address_streetNumber" />
                 </FormControl>
                 <FormControl
-                    label="建物名・部屋番号"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "建物名・部屋番号", styleType: "subSubBlockTitle" }}
                 >
                     <Input name="address_buildingName" />
                 </FormControl>
             </Stack>
         </Fieldset>
         <Fieldset
-            legend="電話番号"
-            titleType="subBlockTitle"
+            legend={{ text: "電話番号", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
-            <Cluster gap={0.5}>
-                <Input width="100px" name="phone_number1" />
-                <Input width="100px" name="phone_number2" />
-                <Input width="100px" name="phone_number3" />
+            <Cluster>
+                <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
+                    <Input width="100px" name="phone_number1" />
+                </FormControl>
+                <FormControl label={{ text: "電話番号2", unrecommendedHide: true }}>
+                    <Input width="100px" name="phone_number2" />
+                </FormControl>
+                <FormControl label={{ text: "電話番号3", unrecommendedHide: true }}>
+                    <Input width="100px" name="phone_number3" />
+                </FormControl>
             </Cluster>
         </Fieldset>
         <Fieldset
-            legend="性別"
-            titleType="subBlockTitle"
+            legend={{ text: "性別", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
             <Cluster gap={1.25}>
@@ -117,8 +114,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
             </Cluster>
         </Fieldset>
         <FormControl
-            label="職業"
-            titleType="subBlockTitle"
+            label={{ text: "職業", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
             <Select
@@ -162,34 +158,29 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
     disabled
 >
     <Stack gap={1.25}>
-        <Cluster gap={0.5}>
+        <Cluster>
             <FormControl
-                label="姓"
-                titleType="subBlockTitle"
+                label={{ text: "姓", styleType: "subBlockTitle" }}
             >
                 <Input name="lastName" />
             </FormControl>
             <FormControl
-                label="名"
-                titleType="subBlockTitle"
+                label={{ text: "名", styleType: "subBlockTitle" }}
             >
                 <Input name="firstName" />
             </FormControl>
         </Cluster>
         <Fieldset
-            legend="住所"
-            titleType="subBlockTitle"
+            legend={{ text: "住所", styleType: "subBlockTitle" }}
         >
             <Stack>
                 <FormControl
-                    label="郵便番号"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "郵便番号", styleType: "subSubBlockTitle" }}
                 >
                     <Input name="address_postalCode" />
                 </FormControl>
                 <FormControl
-                    label="都道府県"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "都道府県", styleType: "subSubBlockTitle" }}
                 >
                     <Select
                         name="address_prefecture"
@@ -202,39 +193,40 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
                     />
                 </FormControl>
                 <FormControl
-                    label="市区町村"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "市区町村", styleType: "subSubBlockTitle" }}
                 >
                     <Input name="address_city" />
                 </FormControl>
                 <FormControl
-                    label="番地"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "番地", styleType: "subSubBlockTitle" }}
                 >
                     <Input name="address_streetNumber" />
                 </FormControl>
                 <FormControl
-                    label="建物名・部屋番号"
-                    titleType="subSubBlockTitle"
+                    label={{ text: "建物名・部屋番号", styleType: "subSubBlockTitle" }}
                 >
                     <Input name="address_buildingName" />
                 </FormControl>
             </Stack>
         </Fieldset>
         <Fieldset
-            legend="電話番号"
-            titleType="subBlockTitle"
+            legend={{ text: "電話番号", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
-            <Cluster gap={0.5}>
-                <Input width="100px" name="phone_number1" />
-                <Input width="100px" name="phone_number2" />
-                <Input width="100px" name="phone_number3" />
+            <Cluster>
+                <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
+                    <Input width="100px" name="phone_number1" />
+                </FormControl>
+                <FormControl label={{ text: "電話番号2", unrecommendedHide: true }}>
+                    <Input width="100px" name="phone_number2" />
+                </FormControl>
+                <FormControl label={{ text: "電話番号3", unrecommendedHide: true }}>
+                    <Input width="100px" name="phone_number3" />
+                </FormControl>
             </Cluster>
         </Fieldset>
         <Fieldset
-            legend="性別"
-            titleType="subBlockTitle"
+            legend={{ text: "性別", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
             <Cluster gap={1.25}>
@@ -244,8 +236,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
             </Cluster>
         </Fieldset>
         <FormControl
-            label="職業"
-            titleType="subBlockTitle"
+            label={{ text: "職業", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
             <Select
@@ -272,32 +263,115 @@ Fieldset自体には、読み取り専用の状態は存在しません。
 
 ```tsx editable
 <Fieldset
-    legend="電話番号"
-    titleType="subBlockTitle"
+    legend={{ text: "電話番号", styleType: "subBlockTitle" }}
     innerMargin={0.5}
 >
-    <Cluster gap={0.5}>
-        <Input
-            width="100px"
-            name="phoneNumber1"
-            value="00"
-            readOnly
-        />
-        <Input
-            width="100px"
-            name="phoneNumber2"
-            value="0000"
-            readOnly
-        />
-        <Input
-            width="100px"
-            name="phoneNumber3"
-            value="0000"
-            readOnly
-        />
+    <Cluster>
+        <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
+            <Input
+                width="100px"
+                name="phoneNumber1"
+                value="00"
+                readOnly
+            />
+        </FormControl>
+        <FormControl label={{ text: "電話番号2", unrecommendedHide: true }}>
+            <Input
+                width="100px"
+                name="phoneNumber2"
+                value="0000"
+                readOnly
+            />
+        </FormControl>
+        <FormControl label={{ text: "電話番号3", unrecommendedHide: true }}>
+            <Input
+                width="100px"
+                name="phoneNumber3"
+                value="0000"
+                readOnly
+            />
+        </FormControl>
     </Cluster>
 </Fieldset>
 ```
+
+## アクセシビリティ
+
+### 基本的なアクセシビリティ機能
+
+#### 関連する入力項目をグループ化する
+
+`Fieldset`コンポーネントは、関連する複数の入力項目を`<fieldset>`要素でグループ化し、`legend` propsで指定した内容をグループ名として提供します。
+これにより、支援技術を使用するユーザーにも、入力項目同士の関係性やグループの目的が伝わります。
+
+### 開発時の考慮点
+
+#### 関連する入力項目はFieldsetでグループ化する
+
+複数の入力項目が同じ質問や設定に関するものである場合は、`Fieldset`コンポーネントを使用してグループ化してください。
+`Fieldset`を利用することで、支援技術にも入力項目同士の関係性やグループの目的を伝えられます。これは、[Checkbox](/products/components/checkbox/)や[RadioButton](/products/components/radio-button/)の選択肢だけでなく、住所入力のような複数の入力項目をまとめる場合にも有効です。
+
+#### legendでグループの目的を示す
+
+`legend` propsには、グループ全体が何についての入力項目なのかがわかるテキストを設定してください。
+
+#### 良い実装例
+
+```tsx
+<Fieldset
+  legend="通知設定"
+  innerMargin={0.5}
+>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+    <Checkbox name="emailNotification">メール通知</Checkbox>
+    <Checkbox name="smsNotification">SMS通知</Checkbox>
+    <Checkbox name="pushNotification">プッシュ通知</Checkbox>
+  </Cluster>
+</Fieldset>
+
+<Fieldset
+  legend="住所"
+  helpMessage="ご自宅の住所を入力してください"
+>
+  <Stack gap={1}>
+    <FormControl label="郵便番号">
+      <Input name="postalCode" />
+    </FormControl>
+    <FormControl label="都道府県">
+      <Select
+        name="prefecture"
+        options={[
+          { label: '都道府県を選択してください', value: '' },
+        ]}
+      />
+    </FormControl>
+  </Stack>
+</Fieldset>
+```
+
+#### 悪い実装例
+
+```tsx
+// ❌ Fieldset を使用せず見た目だけグループ化
+<div>
+  <Text styleType="blockTitle">通知設定</Text>
+  <Cluster gap={{ row: 1, column: 1.5 }}>
+    <Checkbox name="emailNotification">メール通知</Checkbox>
+    <Checkbox name="smsNotification">SMS通知</Checkbox>
+  </Cluster>
+</div>
+```
+
+`Fieldset`を使用せず見た目だけでグループ化すると、支援技術には入力項目同士の関係性やグループの目的が伝わりません。
+
+### 関連ページ
+
+- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
+- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
+
+## 使い方チェックリスト
+
+<Checklist name="Fieldset" />
 
 ## Props
 

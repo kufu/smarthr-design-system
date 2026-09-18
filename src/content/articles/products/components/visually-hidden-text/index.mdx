@@ -1,11 +1,12 @@
 ---
 title: 'VisuallyHiddenText'
-description: 'スクリーンリーダーによる音声読み上げを可能にしながら、テキストを視覚的に隠したい場合に使用するコンポーネントです。'
+description: '視覚的には隠しつつスクリーンリーダーには読み上げさせたいテキスト用のコンポーネントです。見出しやラベルが自明で、表示すると視覚的に冗長になるときなどに使います。'
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 
-VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠しつつ、スクリーンリーダーで読み上げるテキストを提供する場合に使用します。見出しやラベルが自明で、表示すると視覚的に冗長になる場合などに使います。
+視覚的には隠しつつスクリーンリーダーには読み上げさせたいテキスト用のコンポーネントです。見出しやラベルが自明で、表示すると視覚的に冗長になるときなどに使います。
 
 ## 使用上の注意
 
@@ -15,25 +16,25 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
 
 ## VisuallyHiddenTextを使用したコンポーネント
 
-### FormControlの[label.dangerouslyHide]props
-「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`FormControl`の`label.dangerouslyHide`propsを使用している。
+### FormControlの[label.unrecommendedHide]props
+「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`FormControl`の`label.unrecommendedHide`propsを使用している。
 
 ```tsx editable
 <Fieldset legend="入社年月日" >
-  <Cluster gap={0.5} align="center">
+  <Cluster align="center">
     <FormControl 
       label={{
         text: '開始日',
-        dangerouslyHide: true,
+        unrecommendedHide: true,
       }}
     >
       <DatePicker name="startAtDate" />
     </FormControl>
-    <Text>〜</Text>
+    <span>〜</span>
     <FormControl 
       label={{
         text: '終了日',
-        dangerouslyHide: true,
+        unrecommendedHide: true,
       }}
     >
       <DatePicker name="EndAtDate" />
@@ -42,6 +43,10 @@ VisuallyHiddenTextコンポーネントは、テキストを視覚的に隠し�
 </Fieldset>
 ```
 
+
+## 使い方チェックリスト
+
+<Checklist name="VisuallyHiddenText" />
 
 ## Props
 
