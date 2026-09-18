@@ -126,6 +126,27 @@ Inputの意匠を残しつつデータを表示し、入力は受け付けない
 </FormControl>
 ```
 
+#### BaseColumnなど色のついた下地に置くときは`bgColor`を指定する
+
+`readOnly`のInputは、背景色と枠線色に`COLUMN`（`WHITE`の上で使う囲み色）を使います。そのため、[BaseColumn](/products/components/base/base-column/)の中など`COLUMN`と同じ色の下地に置くと、Inputの背景も枠線も下地と同化して入力欄の領域がわからなくなります。画面の背景（`BACKGROUND`）の上に直接置く場合も同様です。
+
+このような場合は、`bgColor`に`HEAD`を指定して下地と区別できるようにしてください。`WHITE`のような明るい色は編集できる入力欄に見えてしまうため、`readOnly`のInputには使用しません（Inputの`bgColor`に`WHITE`は用意していません）。
+
+```tsx editable background=BACKGROUND
+<Base padding={1.5}>
+  <BaseColumn>
+    <FormControl label="メールアドレス">
+      <Input
+        name="email"
+        value="example@example.com"
+        readOnly
+        bgColor="HEAD"
+      />
+    </FormControl>
+  </BaseColumn>
+</Base>
+```
+
 ### 無効（disabled）
 
 入力を受け付けない状態を表現したスタイルです。
