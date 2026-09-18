@@ -1,21 +1,20 @@
 ---
 title: 'アカウントの詳細'
-description: 'アカウントのの詳細の構成要素と、ダイアログのパターン（ActionDialog版 / StepFormDialog版）の使い分け方針をまとめています。'
+description: 'アカウントの詳細の画面設計をまとめています。'
 order: 2
 ---
 
 import Grid from '@/components/article/Grid.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
-一覧画面から「アカウントの追加」「アカウントの編集」を行うダイアログの構成と、パターンの使い分け方針をまとめています。
-対象は[権限設定](/products/design-patterns/permissions-settings/)ページのRBACパターンのうち、ガイドライン化対象であるA・B・Cパターンです。
+RBACの独自権限パターンにおけるアカウント詳細の画面設計をまとめています。
 
 - [ダイアログの構成要素](#h2-0)
 - [ダイアログの型](#h2-1)
 
 ## ダイアログの構成要素
 
-[一覧](/products/design-patterns/permissions-settings/collection/)の[（アカウントを）追加]、または[（アカウントを）編集]ボタンを押したときに[ActionDialog](/products/components/dialog/action-dialog/)で表示します。
+[一覧](/products/design-patterns/permissions-settings/rbac-standalone/collection/)の[（アカウントを）追加]、または[（アカウントを）編集]ボタンを押したときに[ActionDialog](/products/components/dialog/action-dialog/)で表示します。
 例はすべて追加時のスクリーンショットです。必要に応じて編集に読み替えてください。
 
 構成要素は次のとおりです。
@@ -232,5 +231,5 @@ A, B, Cで、アカウント選択時にアカウント名以外の情報も確�
 
 ## 関連リンク
 
-- [権限設定](/products/design-patterns/permissions-settings/)（親ページ）
-- [一覧画面のパターン](/products/design-patterns/permissions-settings/collection/)
+- [独自権限パターン](/products/design-patterns/permissions-settings/rbac-standalone/)（親ページ）
+- [一覧画面のパターン](/products/design-patterns/permissions-settings/rbac-standalone/collection/)
