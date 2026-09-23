@@ -1,0 +1,159 @@
+---
+title: '余白'
+description: '余白トークンは、主にレイアウトで使われるトークンです。'
+order: 3
+---
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+
+余白トークンは、主にレイアウトで使われるトークンです。
+
+CSSでは`margin`や`padding`, `top`, `left`, `bottom`, `right`が関連します。
+
+## 基準値
+ベースの基準サイズは`16px`です。
+
+## プリミティブトークン
+
+| トークン名 | 値（rem） | 値（px） |
+| :--- | :--- | :--- |
+| `0`    | 0       | 0    |
+| `0.25` | 0.25rem | 4px  |
+| `0.5`  | 0.5rem  | 8px  |
+| `0.75` | 0.75rem | 12px |
+| `1`    | 1rem    | 16px |
+| `1.25` | 1.25rem | 20px |
+| `1.5`  | 1.5rem  | 24px |
+| `2`    | 2rem    | 32px |
+| `2.5`  | 2.5rem  | 40px |
+| `3`    | 3rem    | 48px |
+| `4`    | 4rem    | 64px |
+
+### `0.25`（4px）
+
+以下の場合に使用します。
+
+- [StatusLabel](/products/components/status-label/)やアイコンなどの要素をテキストと組み合わせる場合
+  - [InformationPanel](/products/components/information-panel/)や[FormControl](/products/components/form-control/)、[Fieldset](/products/components/fieldset/)、[TextLink](/products/components/text-link/)を利用することで、自動的に適用されます。その他の場合は、[Cluster](/products/components/layout/cluster/)を使用して余白を指定してください。
+  - 明確な理由がない場合、`0.5`（8px）を使用してください。
+
+### `0.5`（8px）
+
+以下の場合に使用します。
+
+- [StatusLabel](/products/components/status-label/)やアイコンなどの要素をテキストと組み合わせる場合
+  - 明確な理由がない場合、`0.5`（8px）を使用してください。
+- ブロックの見出しや[Input](/products/components/input/)にラベルや説明テキストを複合的に組み合わせる場合
+  - `<Heading type="blockTitle">` と直後のコンテンツ（`BaseColumn` など）の間はこのケースに該当します。
+  - 明確な理由がない場合、`1`（16px）を使用してください。
+- [Button](/products/components/button/)同士の間
+  - 明確な理由がない場合、`1`（16px）を使用してください。
+
+### `0.75`（12px）
+
+以下の場合に使用します。
+
+- [モバイル] `0.5`（8px）の余白では小さく、`1`（16px）の余白では大きい場合
+
+### `1`（16px）
+
+[Stack](/products/components/layout/stack/)の`gap`のデフォルト値です。`gap`を省略した場合は `1`（16px）が適用されます。
+
+以下の場合に使用します。
+
+- セクション内の見出しとコンテンツの間
+  - `<Heading>`（セクション見出し）とコンテンツの間が該当します。`<Heading type="blockTitle">`（ブロック見出し）は「ブロックの見出しを複合的に組み合わせる場合」に該当するため `0.5` を使います。
+- フォーム要素内の説明テキストとフォームの間
+- 各セクションの見出しとコンテンツの間
+- [UpwardLink](/products/components/text-link/upward-link/)と画面タイトルの間
+- ブロックの見出しや[Input](/products/components/input/)にラベルや説明テキストを複合的に組み合わせる場合
+  - [FormControl](/products/components/form-control/)や[Fieldset](/products/components/fieldset/)を利用することで、自動的に適用されます。
+- [Checkbox](/products/components/checkbox/)または[RadioButton](/products/components/radio-button/)の`gap.row`
+- フォームを横並びにする際の`gap.row`
+- [Button](/products/components/button/)同士の間
+  - 明確な理由がない場合、`1`（16px）を使用してください。
+- 代表的なページ内レイアウトのパディング
+  - [モバイル] メインコンテンツのパディング：[Container](/products/components/layout/container/)を利用することで、自動的に適用されます。`padding` propsで値を指定できます。[UpwardLink](/products/components/text-link/upward-link/)がある場合は、[UpwardLink](/products/components/text-link/upward-link/)がある場合のパディングを参照して、[Container](/products/components/layout/container/)の`padding` propsを指定してください。
+    - 明確な理由がない場合、`1`（16px）を使用してください。
+  - [モバイル] コンテンツエリアのパディング：[Base](/products/components/base/)の`padding` propsで値を指定してください。
+  - コンテンツエリア内のグループのパディング：[BaseColumn](/products/components/base/base-column/)を利用することで、自動的に適用されます。
+- 代表的なダイアログ内レイアウトのパディング
+  - [モバイル] コンテンツエリアのパディング：[Dialog](/products/components/dialog/)の各種コンポーネントを利用することで、自動的に適用されます。値は`contentPadding` propsで指定できます。
+  - コンテンツエリア内のグループのパディング：[BaseColumn](/products/components/base/base-column/)を利用することで、自動的に適用されます。
+- よくあるテーブルにおいてオブジェクトの数が0のとき、メッセージ下端と[Button](/products/components/button/)の距離
+- よくあるリストにおいてオブジェクトの数が0のとき、メッセージ下端と[Button](/products/components/button/)の距離
+- よくあるテーブルのタイトルエリアとテーブルの上端の間のマージン
+
+### `1.5`（24px）
+
+以下の場合に使用します。
+
+- 代表的なページ内レイアウトのマージン
+  - セクション同士の間
+    - [視覚的に余白が大きく見える場合のマージン](https://smarthr.design/products/design-patterns/spacing-layout-pattern/#h4-5)の場合に、`1.5`（24px）を使用します。
+  - セクション内の要素同士の間
+- 代表的なダイアログ内レイアウトのマージン
+  - フォーム要素同士の間
+- タイトルエリアに [InformationPanel](/products/components/information-panel/) を配置しない場合のタイトルエリアと最初のセクションの間
+- [Checkbox](/products/components/checkbox/) や [RadioButton](/products/components/radio-button/) の `gap.column`
+  - [Cluster](/products/components/layout/cluster/)の`gap.column` propsを使用して余白を指定してください
+- [モバイル]メインコンテンツのパディング
+  - [Container](/products/components/layout/container/) を使用することで、自動的に適用されます。`padding` propsで値を指定できます。[UpwardLink](/products/components/text-link/upward-link/) がある場合は、[UpwardLink](/products/components/text-link/upward-link/) がある場合のパディングを参照して [Container](/products/components/layout/container/) の `padding` propsを指定してください。
+  - 明確な理由がない場合、`1`（16px）を使用してください。
+- コンテンツエリアのパディング
+  - [Base](/products/components/base/) の `padding` propsに値を指定してください。
+- 代表的なダイアログ内レイアウトのパディング
+  - コンテンツエリアのパディング
+    - [Dialog](/products/components/dialog/) の各コンポーネントを使用することで、自動的に適用されます。`contentPadding` propsで値を指定できます。
+- [モバイル] [UpwardLink](/products/components/text-link/upward-link/)の上の余白
+  - 代表的なページ内レイアウトのパディング
+- [Table](/products/components/table/) の下部と [Pagination](/products/components/pagination/) のマージン
+
+### `2`（32px）
+
+以下の場合に使用します。
+
+- セクション同士の間
+  - 明確な理由がない場合、`2`（32px）を使用してください。
+- メインコンテンツのパディング
+  - [Container](/products/components/layout/container/)を使用することで、自動的に適用されます。`padding` propsで値を指定できます。[UpwardLink](/products/components/text-link/upward-link/)がある場合は、[UpwardLink](/products/components/text-link/upward-link/)がある場合のパディングを参照して[Container](/products/components/layout/container/)の`padding` propsを指定してください。
+- 代表的なダイアログ内レイアウトのマージン
+  - 説明テキストとフォーム要素のセクションの間
+- [UpwardLink](/products/components/text-link/upward-link/)の上の余白
+  - 代表的なページ内レイアウトのパディング
+
+### `3`（48px）
+
+以下の場合に使用します。
+
+- よくあるリストのオブジェクトの数が0件の場合、[Base](/products/components/base/)の上部からテキストまでの距離
+- よくあるリストのオブジェクトの数が0件の場合、[Base](/products/components/base/)の下部から[Button](/products/components/button/)までの距離
+- よくあるリストのオブジェクトの検索結果や絞り込み結果が0件であった場合、[Base](/products/components/base/)の上部・下部からテキストまでの距離
+
+### `4`（64px）
+
+以下の場合に使用します。
+
+- よくあるテーブルのオブジェクトの数が0件の場合、[Base](/products/components/base/)の上部からテキストまでの距離
+- よくあるテーブルのオブジェクトの数が0件の場合、[Base](/products/components/base/)の下部から[Button](/products/components/button/)までの距離
+- よくあるテーブルのオブジェクトの検索結果や絞り込み結果が0件であった場合がない場合、[Base](/products/components/base/)の上部・下部からテキストまでの距離
+
+## ［非推奨］セマンティックトークン
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage status="info">セマンティックトークンでの予約の指定は非推奨です。プリミティブトークンで指定してください。</ResponseMessage>
+</BaseColumn>
+
+| トークン名 | 値（rem） | 値（px） |
+| :--- | :--- | :--- |
+| `X3S`  | 0.25rem | 4px  |
+| `XXS`  | 0.5rem  | 8px  |
+| `XS`   | 1rem    | 16px |
+| `S`    | 1.5rem  | 24px |
+| `M`    | 2rem    | 32px |
+| `L`    | 2.5rem  | 40px |
+| `XL`   | 3rem    | 48px |
+| `XXL`  | 4rem    | 64px |
+| `NONE` | 0       | 0    |
+
+## ［WIP］コード
+
