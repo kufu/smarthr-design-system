@@ -8,7 +8,7 @@ import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import Grid from '@/components/article/Grid.astro'
 import Caption from './_components/Caption.astro'
-import { BaseColumn, Cluster, Text, ResponseMessage } from 'smarthr-ui'
+import { Groupbox, Cluster, Text, ResponseMessage } from 'smarthr-ui'
 
 ビューポート内にどのような要素をどのような順序で配置するかをページレイアウトと呼びます。
 SmartHRプロダクトの基本的なページレイアウトのパターンをまとめています。
@@ -44,11 +44,11 @@ SmartHRで提供するページでは、リード文を見出し領域に表示�
 
 <Grid>
   <ImgWithDesc description="テキストを省略した場合の初期表示">
-    ![Base上に見出しと3行のテキストとターシャリボタン「すべてを表示」が表示されている。](./images/text-with-disclosure-closed.png)
+    ![Panel上に見出しと3行のテキストとターシャリボタン「すべてを表示」が表示されている。](./images/text-with-disclosure-closed.png)
   </ImgWithDesc>
 
   <ImgWithDesc description="省略されたテキストを展開した場合の表示">
-    ![Base上に見出しと8行のテキストとターシャリボタン「折りたたむ」が表示されている。](./images/text-with-disclosure-opened.png)
+    ![Panel上に見出しと8行のテキストとターシャリボタン「折りたたむ」が表示されている。](./images/text-with-disclosure-opened.png)
   </ImgWithDesc>
 </Grid>
 
@@ -72,18 +72,18 @@ TabBarやSideNavを使った例は、[視覚的グルーピング](/products/des
     <div slot="img">
 ```tsx editable hideCode background=BACKGROUND
 <Sidebar>
-  <Base padding={1} style={{ width: '1rem' }}>
+  <Panel padding={1} style={{ width: '1rem' }}>
     <Stack gap={0.5}>
       <Heading type="blockTitle">複数カラムのレイアウトを避ける</Heading>
       <p>折り返しの多すぎるコンテンツの理解は難しいです。</p>
     </Stack>
-  </Base>
-  <Base padding={1} style={{ flexGrow: 1 }}>
+  </Panel>
+  <Panel padding={1} style={{ flexGrow: 1 }}>
     <Stack>
       <p>構造関係の理解も難しくなります。</p>
       <p>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
     </Stack>
-  </Base>
+  </Panel>
 </Sidebar>
 ```
     </div>
@@ -94,18 +94,18 @@ TabBarやSideNavを使った例は、[視覚的グルーピング](/products/des
     <div slot="img">
 ```tsx editable hideCode background=BACKGROUND
 <Stack>
-  <Base padding={1}>
+  <Panel padding={1}>
     <Stack gap={0.5}>
       <Heading type="blockTitle">複数カラムのレイアウトを避ける</Heading>
       <p>折り返しの多すぎるコンテンツの理解は難しいです。</p>
     </Stack>
-  </Base>
-  <Base padding={1}>
+  </Panel>
+  <Panel padding={1}>
     <Stack>
       <p>構造関係の理解も難しくなります。</p>
       <p>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
     </Stack>
-  </Base>
+  </Panel>
 </Stack>
 ```
     </div>
@@ -247,7 +247,7 @@ const CollectionTableLayout = () => {
               </Cluster>
 
               <Stack gap={1.5}>
-                <Base>
+                <Panel>
                   {!isInitialState && (
                     <Cluster justify="space-between" align="center" className="shr-p-1">
                       <form onSubmit={(e) => e.preventDefault()}>
@@ -330,7 +330,7 @@ const CollectionTableLayout = () => {
                       </tbody>
                   )}
                   </Table>
-                </Base>
+                </Panel>
                 {totalPages > 1 && !isInitialState && !hasNoSearchResult && (
                   <Center>
                     <Pagination current={currentPage} total={totalPages} onClick={() => null} />
@@ -467,7 +467,7 @@ const SingleOneColumnLayout = () => {
               <Heading>セクションタイトル</Heading>
               <Button>ボタン</Button>
             </Cluster>
-            <Base padding={1.5}>
+            <Panel padding={1.5}>
               <Stack gap={1.5}>
                 <Stack>
                   <Heading type="blockTitle">ブロックタイトル</Heading>
@@ -489,7 +489,7 @@ const SingleOneColumnLayout = () => {
                   </DefinitionList>
                 </Stack>
               </Stack>
-            </Base>
+            </Panel>
           </Stack>
           <Stack>
             <Cluster align="center" justify="space-between">
@@ -498,7 +498,7 @@ const SingleOneColumnLayout = () => {
             </Cluster>
             
             <Stack gap={1.5}>
-              <Base>
+              <Panel>
                 {!isInitialState && (
                   <Cluster justify="space-between" align="center" className="shr-p-1">
                     <form onSubmit={(e) => e.preventDefault()}>
@@ -569,7 +569,7 @@ const SingleOneColumnLayout = () => {
                     </tbody>
                   )}
                 </Table>
-              </Base>
+              </Panel>
               {totalPages > 1 && !isInitialState && !hasNoSearchResult && (
                 <Center>
                   <Pagination current={currentPage} total={totalPages} onClick={() => null} />
@@ -591,7 +591,7 @@ render(<SingleOneColumnLayout />)
 
 ##### セクションが1つの場合のレイアウト
 
-セクションが1つの場合、コンテンツ領域にBaseを使わずレイアウトできます。Baseの代わりに、コンテンツ領域の背景色が`WHITE`になるよう領域を区切ります。Baseに関連する余白がなくなるため、横幅を広く使いたいケースで特に有効です。
+セクションが1つの場合、コンテンツ領域にPanelを使わずレイアウトできます。Panelの代わりに、コンテンツ領域の背景色が`WHITE`になるよう領域を区切ります。Panelに関連する余白がなくなるため、横幅を広く使いたいケースで特に有効です。
 
 このレイアウトにおける余白の取り方は、[余白の取り方](/products/design-patterns/spacing-layout-pattern/#h3-6)を参照してください。
 
@@ -663,7 +663,7 @@ render(<SingleOneColumnLayout />)
           <Section>
             <Stack>
               <Heading>セクションタイトル</Heading>
-              <Base padding={1.5}>
+              <Panel padding={1.5}>
                 <Stack gap={2}>
                   <Stack gap={1.5}>
                     <Heading type="blockTitle">見出し</Heading>
@@ -679,13 +679,13 @@ render(<SingleOneColumnLayout />)
                     </DefinitionList>
                   </Stack>
                 </Stack>
-              </Base>
+              </Panel>
             </Stack>
           </Section>
           <Section>
             <Stack>
               <Heading>セクションタイトル</Heading>
-              <Base padding={1.5}>
+              <Panel padding={1.5}>
                 <Stack gap={2}>
                   <Stack gap={1.5}>
                     <Heading type="blockTitle">見出し</Heading>
@@ -700,14 +700,14 @@ render(<SingleOneColumnLayout />)
                     </DefinitionList>
                   </Stack>
                 </Stack>
-              </Base>
+              </Panel>
             </Stack>
           </Section>
         </Stack>
         <Section>
           <Stack>
             <Heading>セクションタイトル</Heading>
-            <Base padding={1.5}>
+            <Panel padding={1.5}>
               <Stack gap={2}>
                 <Stack gap={1.5}>
                   <Heading type="blockTitle">見出し</Heading>
@@ -732,7 +732,7 @@ render(<SingleOneColumnLayout />)
                   </DefinitionList>
                 </Stack>
               </Stack>
-            </Base>
+            </Panel>
           </Stack>
         </Section>
       </Sidebar>
@@ -839,7 +839,7 @@ render(<SingleOneColumnLayout />)
         <Section>
           <Stack>
             <Heading>見出し</Heading>
-            <Base padding={1.5}>
+            <Panel padding={1.5}>
               <DefinitionList>
                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
@@ -848,13 +848,13 @@ render(<SingleOneColumnLayout />)
                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
               </DefinitionList>
-            </Base>
+            </Panel>
           </Stack>
         </Section>
         <Section>
           <Stack>
             <Heading>見出し</Heading>
-            <Base padding={1.5}>
+            <Panel padding={1.5}>
               <DefinitionList>
                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
@@ -863,7 +863,7 @@ render(<SingleOneColumnLayout />)
                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
               </DefinitionList>
-            </Base>
+            </Panel>
           </Stack>
         </Section>
       </Stack>
@@ -926,10 +926,10 @@ render(<SingleOneColumnLayout />)
           <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
         </Stack>
       </Stack>
-      <Base>
-        <BaseColumn rounded bgColor="OVER_BACKGROUND" padding={0}>
+      <Panel>
+        <Groupbox rounded bgColor="OVER_BACKGROUND" padding={0}>
           <Sidebar gap={0}>
-            <BaseColumn style={{ flexBasis: '15em' }} padding={{ block: 0.5, inline: 0 }} rounded="left" className="shr-shadow-layer-1" bgColor="WHITE">
+            <Groupbox style={{ flexBasis: '15em' }} padding={{ block: 0.5, inline: 0 }} rounded="left" className="shr-shadow-layer-1" bgColor="WHITE">
               <SideNav className="shr-bg-white">
                 <SideNavItemAnchor id="nav-1" href="#" current>項目1</SideNavItemAnchor>
                 <SideNavItemAnchor id="nav-2" href="#" >項目2</SideNavItemAnchor>
@@ -942,7 +942,7 @@ render(<SingleOneColumnLayout />)
                 <SideNavItemAnchor id="nav-9" href="#" >項目9</SideNavItemAnchor>
                 <SideNavItemAnchor id="nav-10" href="#">項目10</SideNavItemAnchor>
               </SideNav>
-            </BaseColumn>
+            </Groupbox>
             <Section className="shr-p-1.5">
               <Stack gap={2}>
                 <Heading size="XL">見出し</Heading>
@@ -952,12 +952,12 @@ render(<SingleOneColumnLayout />)
                       <Heading>見出し</Heading>
                       <Button>操作</Button>
                     </Sidebar>
-                    <Base padding={1.5}>
+                    <Panel padding={1.5}>
                       <Stack gap={1.5}>
                         <p>説明テキスト。</p>
                         <Stack gap={0.5}>
                           <Heading type="blockTitle">タイトル</Heading>
-                          <BaseColumn>
+                          <Groupbox>
                             <Stack>
                               <p>説明テキスト。</p>
                               <DefinitionList>
@@ -965,10 +965,10 @@ render(<SingleOneColumnLayout />)
                                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
                               </DefinitionList>
                             </Stack>
-                          </BaseColumn>
+                          </Groupbox>
                         </Stack>
                       </Stack>
-                    </Base>
+                    </Panel>
                   </Stack>
                 </Section>
                 <Section>
@@ -977,12 +977,12 @@ render(<SingleOneColumnLayout />)
                       <Heading>見出し</Heading>
                       <Button>操作</Button>
                     </Sidebar>
-                    <Base padding={1.5}>
+                    <Panel padding={1.5}>
                       <Stack gap={1.5}>
                         <p>説明テキスト。</p>
                         <Stack gap={0.5}>
                           <Heading type="blockTitle">タイトル</Heading>
-                          <BaseColumn>
+                          <Groupbox>
                             <Stack>
                               <p>説明テキスト。</p>
                               <DefinitionList>
@@ -990,18 +990,18 @@ render(<SingleOneColumnLayout />)
                                 <DefinitionListItem maxColumns={3} term="項目">内容</DefinitionListItem>
                               </DefinitionList>
                             </Stack>
-                          </BaseColumn>
+                          </Groupbox>
                         </Stack>
                       </Stack>
-                    </Base>
+                    </Panel>
                   </Stack>
                 </Section>
 
               </Stack>
             </Section>
           </Sidebar>
-        </BaseColumn>
-      </Base>
+        </Groupbox>
+      </Panel>
     </Stack>
   </Container>
 </div>
@@ -1027,19 +1027,19 @@ render(<SingleOneColumnLayout />)
 
 ##### [WIP] SideNavをドロワーで表示する
 
-<BaseColumn className="shr-mt-1">
+<Groupbox className="shr-mt-1">
     <ResponseMessage status="info">SideNavをドロワーで表示できるよう、smarthr-uiでの対応を検討中です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 [SideNav](/products/components/side-nav/)を使ったコレクションをドロワーで表示します。コレクションがなくなるため、ページレイアウトは[シングル（1カラム）](#h3-9)の形を取ります。ドロワーは該当のセクション内で開閉できます。ドロワーを開くボタンをセクション内に表示してください。
 
 
 <Grid>
     <ImgWithDesc description="ドロワーが閉じている初期状態">
-    ![実例画像：縦長の画面に、ヘッダー・見出し領域・Baseが垂直方向に積み重なっている。Base内に、メニューと書かれたボタンと複数のセクションが垂直方向に積み重なっている。](./images/collection-and-single-2column-mobile-drawer-1.png)
+    ![実例画像：縦長の画面に、ヘッダー・見出し領域・Panelが垂直方向に積み重なっている。Panel内に、メニューと書かれたボタンと複数のセクションが垂直方向に積み重なっている。](./images/collection-and-single-2column-mobile-drawer-1.png)
     </ImgWithDesc>
 
     <ImgWithDesc description="ドロワーが開いた状態">
-    ![実例画像：縦長の画面に、ヘッダー・見出し領域・Baseが垂直方向に積み重なっている。Base上に、ナビゲーションのリストが表示されている。](./images/collection-and-single-2column-mobile-drawer-2.png)
+    ![実例画像：縦長の画面に、ヘッダー・見出し領域・Panelが垂直方向に積み重なっている。Panel上に、ナビゲーションのリストが表示されている。](./images/collection-and-single-2column-mobile-drawer-2.png)
     </ImgWithDesc>
 </Grid>

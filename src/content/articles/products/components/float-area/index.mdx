@@ -3,7 +3,7 @@ title: 'FloatArea'
 description: '画面内に固定表示する領域のためのコンポーネントです。スクロール位置によらずフォーム送信ボタンや主要アクションを常時見せるときに使います。'
 ---
 import { Image } from 'astro:assets'
-import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import { Groupbox, Cluster, ResponseMessage, Text } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
@@ -70,9 +70,9 @@ DOMの順序と画面上の視覚的な順序を一致させることで、自�
 
 ## モバイル
 
-<BaseColumn className="shr-mt-1">
+<Groupbox className="shr-mt-1">
   <ResponseMessage status="info">モバイル対応したFloatAreaはsmarthr-uiに実装予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 モバイル環境は画面が狭いため、FloatAreaが常に画面の下部に固定されていると対象の領域の閲覧や操作の妨げとなってしまいます。
 
@@ -108,9 +108,9 @@ FloatAreaを画面の下部に固定する場合は、仮想キーボードの�
 
 #### 画面の下部に固定する場合
 
-<BaseColumn className="shr-mt-1">
+<Groupbox className="shr-mt-1">
   <ResponseMessage status="info">以下のレイアウトを実現するFloatAreaはsmarthr-uiに実装予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 FloatAreaを画面の下部に固定する場合、左右の余白をなくし画面幅いっぱいに表示します。
 

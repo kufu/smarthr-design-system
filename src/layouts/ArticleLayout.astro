@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getEntry } from 'astro:content';
-import { Article, BaseColumn, ResponseMessage } from 'smarthr-ui';
+import { Article, Groupbox, ResponseMessage } from 'smarthr-ui';
 
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header/Header.astro';
@@ -54,11 +54,11 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
         <h1 class="articleTitle">{displayTitle}</h1>
         <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
           {data.deprecated && data.deprecatedMessage && (
-            <BaseColumn>
+            <Groupbox>
               <ResponseMessage status="warning">
                 <span set:html={data.deprecatedMessage} />
               </ResponseMessage>
-            </BaseColumn>
+            </Groupbox>
           )}
           <slot />
         </div>

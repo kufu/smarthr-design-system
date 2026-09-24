@@ -6,7 +6,7 @@ description: 'オン/オフを即時に切り替えるスイッチコンポー�
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import { ResponseMessage, BaseColumn } from 'smarthr-ui'
+import { ResponseMessage, Groupbox } from 'smarthr-ui'
 
 オン/オフを即時に切り替えるスイッチコンポーネントです。機能の有効/無効や表示切替をユーザー操作で即座にシステムに反映させるときに使います。
 
@@ -45,9 +45,9 @@ Switchは基本的にラベルを必要とします。周囲のコンテキス�
 
 ### [WIP] モバイル
 
-<BaseColumn className="shr-mt-2">
+<Groupbox className="shr-mt-2">
   <ResponseMessage>モバイルで自動的に切り替わるようにコンポーネントを改修予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 Switchは小さくモバイルでは操作しづらいため、サイズを大きくしてください。
 

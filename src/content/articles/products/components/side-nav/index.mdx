@@ -5,7 +5,7 @@ description: '同一画面内のビューを縦方向に並べて切り替える
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
-import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+import { Groupbox, ResponseMessage } from 'smarthr-ui'
 
 同一画面内のビューを縦方向に並べて切り替えるためのナビゲーションコンポーネントです。「[コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)」ページレイアウトのコレクション領域で一覧から選んだオブジェクトの詳細を切り替えるとき、設定画面などで1つの画面内に並ぶビューを切り替えるときに使います。
 
@@ -20,9 +20,9 @@ SideNavは、異なるオブジェクトやビューを縦方向にスタック�
 SideNavの影響範囲内のビューでは、SideNavの使用を避けてください。SideNav内のビューを分割したい場合は[TabBar](/products/components/tab-bar/)を使用してください。また、TabBar内でビューを分割したい場合はSideNavを使用してください。
 
 ## モバイル
-<BaseColumn className="shr-mt-1">
+<Groupbox className="shr-mt-1">
   <ResponseMessage status="info">SideNavをドロワーで表示できるよう、smarthr-uiでの対応を検討中です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 SideNavを使った2カラムのレイアウトは広い横幅を必要とするため、画面の横幅が狭いモバイルには適していません。ページを分割するか、SideNavをドロワーで表示してください。詳しくは、[ページレイアウト](/products/design-patterns/page-layout/#h4-2)を参照してください。
 

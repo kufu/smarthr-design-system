@@ -1,0 +1,48 @@
+---
+title: 'Groupbox'
+description: 'PanelやDialogの内部に置き、矩形で視覚的に要素をグルーピングするコンポーネントです。Panel内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。'
+---
+
+import Checklist from '@/components/article/Checklist/Checklist.astro'
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Text } from 'smarthr-ui'
+
+[Panel](/products/components/panel/)や[Dialog](/products/components/dialog/)の内部に置き、[矩形](/products/design-patterns/visual-grouping/#h3-3)で視覚的に要素をグルーピングするコンポーネントです。Panel内やダイアログコンテンツ内でコンテンツを囲んで「[ブロック](/products/design-patterns/visual-grouping/#h3-6)」領域として示すときに使います。
+
+<ComponentStory name="Groupbox" dirName="Panel" />
+
+## デザインパターン
+
+### メッセージを表示するパターン
+
+注意事項や補足事項などを見出しと内容のセットで伝えるパターンです。Panelや各種Dialog（`contentBgColor`が`WHITE`の場合）の内側など、[InformationPanel](/products/components/information-panel/)が配置できない場合に主に使います。
+
+<DoAndDont type="do">
+  <Text slot="label">Panelの内側ではInformationPanelの代わりにGroupboxで注意事項を表示する。</Text>
+  <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Panel padding={1.5}>
+  <Groupbox>
+    <Stack>
+      <Heading type="blockTitle" icon={<WarningIcon />}>
+        注意事項
+      </Heading>
+      <p>
+        注意事項内容テキスト。注意事項内容テキスト。注意事項内容テキスト。
+      </p>
+    </Stack>
+  </Groupbox>
+</Panel>
+```
+  </div>
+</DoAndDont>
+
+## 使い方チェックリスト
+
+<Checklist name="Groupbox" />
+
+## Props
+
+<ComponentPropsTable name="Groupbox" />
