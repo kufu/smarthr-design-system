@@ -2,17 +2,12 @@
 title: 'InformationPanel'
 description: 'ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、ResponseMessageやNotificationBarでは収まらない量のフィードバック情報などを表示するときに使います。'
 ---
-import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import { Text, ResponseMessage, Groupbox } from 'smarthr-ui'
-
-import imageDo1 from './images/information-panel-on-base-do1.png'
-import imageDo2 from './images/information-panel-on-base-do2.png'
-import imageDont from './images/information-panel-on-base-dont.png'
 
 ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、[ResponseMessage](/products/components/response-message/)や[NotificationBar](/products/components/notification-bar/)では収まらない量のフィードバック情報などを表示するときに使います。
 
@@ -35,17 +30,45 @@ InformationPanelの背景色は白いため、[Panel](/products/components/panel
 InformationPanelでは視覚的に強調されすぎる場合は、[削除ダイアログの注意事項](/products/design-patterns/delete-dialog/#h3-4)のようにGroupboxを使った代替パターンも検討してください。
 
 <DoAndDont type="do">
-  <Image slot="img" src={imageDo1} alt="Do" />
+  <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Panel padding={1.5} className="shr-w-full shr-bg-over-background">
+  <InformationPanel type="warning" heading="Panelの中で目立たせたい情報">
+    <p>Panelの中で目立たせたい内容。</p>
+  </InformationPanel>
+</Panel>
+```
+  </div>
   <Text slot="label">Panelの背景色が`OVER_BACKGROUND`になっている</Text>
 </DoAndDont>
 
 <DoAndDont type="do">
-  <Image slot="img" src={imageDo2} alt="Do" />
+  <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Panel padding={1.5} className="shr-w-full">
+  <Groupbox>
+    <Stack>
+      <Heading type="blockTitle" icon={<WarningIcon />}>Panelの中で目立たせたい情報</Heading>
+      <p>Panelの中で目立たせたい内容。</p>
+    </Stack>
+  </Groupbox>
+</Panel>
+```
+  </div>
   <Text slot="label">PanelのなかでGroupboxを使って代替されている</Text>
 </DoAndDont>
 
 <DoAndDont type="dont">
-  <Image slot="img" src={imageDont} alt="Dont" />
+  <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Panel padding={1.5} className="shr-w-full">
+  {/* eslint-disable-next-line smarthr/design-system-guideline-prohibit-information-panel-in-white-bg */}
+  <InformationPanel type="warning" heading="Panelの中で目立たせたい情報">
+    <p>Panelの中で目立たせたい内容。</p>
+  </InformationPanel>
+</Panel>
+```
+  </div>
   <Text slot="label">Panelが白背景のままInformationPanelが置かれている</Text>
 </DoAndDont>
 
