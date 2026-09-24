@@ -180,7 +180,7 @@ importers:
         version: 2.1.7
       '@astrojs/react':
         specifier: ^6.0.5
-        version: 6.0.5(@types/node@25.7.0)(@types/react-dom@19.2.7(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.0)(jiti@1.21.7)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass-embedded@1.104.1)(sass@1.102.0)(supports-color@9.4.0)(tsx@4.23.13)(yaml@2.9.1)
+        version: 6.0.5(@types/node@25.7.0)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.0)(jiti@1.21.7)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass-embedded@1.104.1)(sass@1.102.0)(supports-color@9.4.0)(tsx@4.23.13)(yaml@2.9.1)
       '@astrojs/sitemap':
         specifier: ^3.7.4
         version: 3.7.4
@@ -188,8 +188,8 @@ importers:
         specifier: ^19.3.0
         version: 19.3.0
       '@types/react-dom':
-        specifier: ^19.2.7
-        version: 19.2.7(@types/react@19.3.0)
+        specifier: ^19.3.0
+        version: 19.3.0(@types/react@19.3.0)
       algoliasearch:
         specifier: ^5.59.0
         version: 5.59.0
@@ -2018,10 +2018,10 @@ packages:
   '@types/qs@6.15.1':
     resolution: {integrity: sha512-GZHUBZR9hckSUhrxmp1nG6NwdpM9fCunJwyThLW1X3AyHgd9IlHb6VANpQQqDr2o/qQp6McZ3y/IA2rVzKzSbw==}
 
-  '@types/react-dom@19.2.7':
-    resolution: {integrity: sha512-I8bPpDLcHBv1qiIiXDCy71Rt8eQDKJP0sMSWJphDdAcdqiJ1sGpZamavoEIRZmYzjia9LuEb2HlYdDpmoENpvQ==}
+  '@types/react-dom@19.3.0':
+    resolution: {integrity: sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==}
     peerDependencies:
-      '@types/react': ^19.2.0
+      '@types/react': ^19.3.0
 
   '@types/react@19.3.0':
     resolution: {integrity: sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==}
@@ -6663,11 +6663,11 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/react@6.0.5(@types/node@25.7.0)(@types/react-dom@19.2.7(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.0)(jiti@1.21.7)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass-embedded@1.104.1)(sass@1.102.0)(supports-color@9.4.0)(tsx@4.23.13)(yaml@2.9.1)':
+  '@astrojs/react@6.0.5(@types/node@25.7.0)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.0)(jiti@1.21.7)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass-embedded@1.104.1)(sass@1.102.0)(supports-color@9.4.0)(tsx@4.23.13)(yaml@2.9.1)':
     dependencies:
       '@astrojs/internal-helpers': 0.11.0
       '@types/react': 19.3.0
-      '@types/react-dom': 19.2.7(@types/react@19.3.0)
+      '@types/react-dom': 19.3.0(@types/react@19.3.0)
       '@vitejs/plugin-react': 5.2.0(supports-color@9.4.0)(vite@8.1.5(@types/node@25.7.0)(esbuild@0.28.0)(jiti@1.21.7)(sass-embedded@1.104.1)(sass@1.102.0)(tsx@4.23.13)(yaml@2.9.1))
       devalue: 5.8.1
       react: 19.2.8
@@ -8030,7 +8030,7 @@ snapshots:
 
   '@types/qs@6.15.1': {}
 
-  '@types/react-dom@19.2.7(@types/react@19.3.0)':
+  '@types/react-dom@19.3.0(@types/react@19.3.0)':
     dependencies:
       '@types/react': 19.3.0
 
