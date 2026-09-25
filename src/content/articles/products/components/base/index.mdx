@@ -1,0 +1,22 @@
+---
+title: 'Base'
+description: 'Panelの旧名称です。BaseはPanelに名称変更されました。'
+deprecated: true
+deprecatedMessage: 'BaseはPanelに名称変更されたため非推奨です。<a href="/products/components/panel/">Panel</a>を使ってください。'
+---
+
+Panelの旧名称です。BaseはPanelに名称変更されました。
+
+機能やPropsは同じで、コンポーネント名だけが変わっています。使い方は[Panel](/products/components/panel/)を参照してください。
+
+```tsx
+// 変更前
+import { Base } from 'smarthr-ui'
+
+<Base padding={1.5}>...</Base>
+
+// 変更後
+import { Panel } from 'smarthr-ui'
+
+<Panel padding={1.5}>...</Panel>
+```
