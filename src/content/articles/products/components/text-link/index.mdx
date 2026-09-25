@@ -3,6 +3,7 @@ title: 'TextLink'
 description: 'a要素の代わりに使用する汎用テキストリンクコンポーネントです。本文中にリンクを置くとき、HelpLinkやUpwardLinkで表現できないテキストリンクを提供するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import PageIndex from '@/components/article/PageIndex.astro'
 import { OpenInNewTabIconInTextLink } from './_components'
@@ -91,12 +92,16 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 リンクテキストは、リンク先や実行される内容がわかる文言にしてください。
 リンク先がわからない曖昧なテキストは、ユーザーがリンクの目的を理解しづらくなり、意図したページへ移動できるか判断しにくくなる場合があります。
 
-詳しい書き方や例については、[リンクのテキストからリンク先が判別できる](/accessibility/check-list/link-text/)の達成方法を参照してください。
+詳しい書き方や例については、[リンクのテキストからリンク先が判別できる](/accessibility/guidelines/link-text/)の達成方法を参照してください。
 
 ### 関連ページ
 
-- [リンクテキストからリンク先が判別できる | アクセシビリティガイドライン](/accessibility/check-list/link-text/)
-- [リンクテキストに下線がある | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/low-vision-check-list/link-underline/)
+- [リンクテキストからリンク先が判別できる | アクセシビリティガイドライン](/accessibility/guidelines/link-text/)
+- [リンクテキストに下線がある | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/link-underline/)
+
+## 使い方チェックリスト
+
+<Checklist name="TextLink" />
 
 ## Props
 

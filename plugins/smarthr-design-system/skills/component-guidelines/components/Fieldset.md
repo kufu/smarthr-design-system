@@ -12,20 +12,20 @@ import { Fieldset } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v96.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| disabled | boolean | - | - | `true` のとき、文字色を `TEXT_DISABLED` にする |
 | subActionArea | ReactNode | - | - | タイトル右の領域 |
 | innerMargin | Gap | - | - | タイトル群と子要素の間の間隔調整用（基本的には不要） |
-| statusLabels | FunctionComponentElement<any> \| FunctionComponentElement<any>[] | - | - | タイトルの隣に表示する `StatusLabel` の配列 |
+| statusLabels | StatusLabelType \| StatusLabelType[] | - | - | タイトルの隣に表示する `StatusLabel` の配列 |
 | helpMessage | ReactNode | - | - | タイトルの下に表示するヘルプメッセージ |
 | exampleMessage | ReactNode | - | - | タイトルの下に表示する入力例 |
 | errorMessages | ReactNode \| ReactNode[] | - | - | タイトルの下に表示するエラーメッセージ |
-| autoBindErrorInput | boolean | - | - | エラーがある場合に自動的に入力要素を error にするかどうか |
+| autoBindErrorInput | boolean | true | - | エラーがある場合に自動的に入力要素を error にするかどうか |
 | supplementaryMessage | ReactNode | - | - | フォームコントロールの下に表示する補足メッセージ |
-| legend | ReactNode \| Omit<{ text: ReactNode; styleType?: TextProps; icon?: any; unrecommendedHide?: boolean; htmlFor?: string; id?: string; }, "htmlFor"> | - | ✓ | - |
+| legend | ReactNode \| Omit<ObjectLabelType, "htmlFor"> | - | ✓ | - |
+| disabled | boolean | - | - | `true` のとき、文字色を `TEXT_DISABLED` にする |
 
 ## 実装ルール
 
@@ -167,3 +167,10 @@ const AnyComponent = (
 ### 状態 > 読み取り専用
 - [should] 入力内容の確認時など、すでに入力済みの書き換えできない値として表示する際は、Input の `readOnly` を使用する
 - [should] Fieldset 内の値を readOnly で表示する場合、分割されたフォームの値をそれぞれコピーする必要があり手間になる点に注意する
+
+### アクセシビリティ > 開発時の考慮点 > 関連する入力項目はFieldsetでグループ化する
+- [must] 複数の入力項目が同じ質問や設定に関するものである場合は、Fieldset コンポーネントを使用してグループ化する
+  - Checkbox や RadioButton の選択肢だけでなく、住所入力のような複数の入力項目をまとめる場合にも有効
+
+### アクセシビリティ > 開発時の考慮点 > legendでグループの目的を示す
+- [must] `legend` props には、グループ全体が何についての入力項目なのかがわかるテキストを設定する

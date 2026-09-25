@@ -3,9 +3,10 @@ title: 'MultiCombobox'
 description: '選択肢から複数の値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら複数を選択するときに使います。'
 ---
 import { Image } from 'astro:assets'
-import { Text, MultiCombobox, Cluster, BaseColumn, ResponseMessage } from 'smarthr-ui'
+import { Text, Cluster, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import multiComboboxDo from '../images/multi-combo-box-do.png'
 import multiComboboxDont from '../images/multi-combo-box-dont.png'
@@ -25,7 +26,7 @@ import multiComboboxDont from '../images/multi-combo-box-dont.png'
 
 #### 選択肢が6個以上の場合に使用する
 
-一般的に人は4±1個の情報のまとまりまでしか短期的に記憶できないと言われています。選択肢が5個以下であれば、初期状態で選択肢が一覧できる[Checkbox](/products/components/check-box/)を使用してください。
+一般的に人は4±1個の情報のまとまりまでしか短期的に記憶できないと言われています。選択肢が5個以下であれば、初期状態で選択肢が一覧できる[Checkbox](/products/components/checkbox/)を使用してください。
 ただし、Checkboxを配置する十分なスペースがない場合は、MultiComboboxの使用を検討します。
 
 選択肢の数が6個以上で、ユーザーにテキスト入力で値を追加させたり、値を絞り込んで選択させたい場合はMultiComboboxを使用します。
@@ -125,7 +126,7 @@ MultiComboboxコンポーネントは必ずFormControlコンポーネントと�
 
 eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、MultiComboboxにFormControlを組み合わせることを促すものです。支援技術に選択の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
 
-## 関連ページ
+### 関連ページ
 
 - [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
 - [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
@@ -136,6 +137,10 @@ eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/
 <ResponseMessage>モバイルに適したMultiComboboxを提供予定です。</ResponseMessage>
 </BaseColumn>
 
+## 使い方チェックリスト
+
+<Checklist name="MultiCombobox" />
+
 ## Props
 
-<ComponentPropsTable name="MultiCombobox" showTitle />
+<ComponentPropsTable name="MultiCombobox" />

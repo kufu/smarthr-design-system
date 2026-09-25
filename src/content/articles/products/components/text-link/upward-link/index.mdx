@@ -4,6 +4,7 @@ description: '一階層上のコンテンツに戻るためのテキストリン
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { FaArrowLeftIcon } from 'smarthr-ui'
 
@@ -42,6 +43,10 @@ import { FaArrowLeftIcon } from 'smarthr-ui'
 | :--- | :--- | :--- |
 | コレクション<br />（[よくあるテーブル](/products/design-patterns/smarthr-table/)） | `{一階層上の画面名}一覧に戻る` | *「権限一覧に戻る」*<br />（「権限に戻る」だけでは、上の階層に権限に関するどのコンテンツかを類推しにくいため） |
 
+## 使い方チェックリスト
+
+<Checklist name="UpwardLink" />
+
 ## Props
 
-<ComponentPropsTable name="UpwardLink" showTitle />
+<ComponentPropsTable name="UpwardLink" />

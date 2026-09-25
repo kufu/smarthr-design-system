@@ -3,7 +3,8 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { parseMetadata, loadPublicExports, type ComponentGroup } from './lib/parse-metadata.js';
+import { parseMetadata, loadPublicExports } from './lib/parse-metadata.js';
+import { autoSplitGroups } from './lib/auto-split-groups.js';
 import { fetchEslintRules, buildComponentRuleMap, type EslintRuleWithContent } from './lib/fetch-eslint-rules.js';
 import { parseChecklist } from './lib/parse-checklist.js';
 import { parseIndexMdx, type IndexMdxInfo } from './lib/parse-index-mdx.js';
@@ -27,50 +28,6 @@ const COVERAGE_BASELINE_PATH = path.join(__dirname, 'coverage-baseline.json');
 const ESLINT_SNAPSHOT_PATH = path.join(__dirname, 'eslint-rules-snapshot.json');
 const ESLINT_RULE_NAMES_PATH = path.join(REPO_ROOT, '.github/data/eslint-rule-names.txt');
 
-/**
- * smarthr-ui の親ディレクトリ単位グループから、design-system 側の `relatedComponents` 宣言に
- * 含まれる displayName を個別グループとして分離する。残った displayName は元の親グループ名
- * で保持する。
- *
- * 例: smarthr-ui `Dialog/RemoteDialogTrigger/` 配下に `ActionDialog/FormDialog/MessageDialog/
- * StepFormDialog/RemoteDialogTrigger` がまとめられている場合、design-system `dialog/index.mdx`
- * の `relatedComponents` 宣言を起点に各 displayName を独立グループへ分離する。
- */
-function autoSplitGroups(groups: Map<string, ComponentGroup>, relatedNames: Set<string>): Map<string, ComponentGroup> {
-  const result = new Map<string, ComponentGroup>();
-  for (const [dirName, group] of groups) {
-    const splitTargets = group.components.filter((c) => relatedNames.has(c.displayName));
-    // 分離トリガは「relatedComponents 宣言が 2 件以上 group 内に存在する」ときに発動する。
-    // これにより、smarthr-ui の親ディレクトリに複数の displayName が同居しているグループ
-    // (例: `Dialog/RemoteDialogTrigger/` 配下に 5 つの Dialog) のみが分離対象となる。
-    // 1 件以下の場合は元グループをそのまま保持し、`ControlledStepFormDialog` グループの
-    // `StepFormDialogItem` のような同居 named export を取りこぼさない。
-    if (splitTargets.length < 2) {
-      result.set(dirName, group);
-      continue;
-    }
-    for (const target of splitTargets) {
-      result.set(target.displayName, {
-        dirName: target.displayName,
-        displayNames: [target.displayName],
-        components: [target],
-      });
-    }
-    // 親グループ自体は、group 名と同名の displayName のみを含める。
-    // group 名と一致しない displayName(例: smarthr-ui の Table 配下にある WakuWakuButton や
-    // TableScrollContext 等の内部部品で `relatedComponents` 宣言もないもの) は SKILL 生成対象外とする。
-    const primary = group.components.filter((c) => c.displayName === dirName);
-    if (primary.length > 0) {
-      result.set(dirName, {
-        dirName,
-        displayNames: primary.map((c) => c.displayName),
-        components: primary,
-      });
-    }
-  }
-  return result;
-}
-
 async function main() {
   console.log('📂 metadata.json を読み込み中…');
   const publicExports = loadPublicExports();
@@ -81,7 +38,7 @@ async function main() {
   const relatedSkills = collectRelatedComponents(DESIGN_SYSTEM_DIR);
   console.log(`   ${relatedSkills.size} 件の relatedComponents 宣言を検出`);
 
-  const groups = autoSplitGroups(rawGroups, new Set(relatedSkills.keys()));
+  const groups = autoSplitGroups(rawGroups, new Set(relatedSkills.keys()), DESIGN_SYSTEM_DIR);
   console.log(`   ${groups.size} コンポーネントグループを検出`);
 
   console.log('🌐 eslint-plugin-smarthr ルール README を読み込み中…（コミット済みスナップショット優先）');

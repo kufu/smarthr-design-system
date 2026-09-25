@@ -3,6 +3,7 @@ title: 'SegmentedControl'
 description: '同一オブジェクトの異なる状態や視点を切り替えるためのコンポーネントです。リスト表示とカード表示の切替など、選択と同時に即座に表示を変えるときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
 同一オブジェクトの異なる状態や視点を切り替えるためのコンポーネントです。リスト表示とカード表示の切替など、選択と同時に即座に表示を変えるときに使います。
@@ -24,7 +25,7 @@ SegmentedControlは、ビューに存在するオブジェクト自体を切り�
 ### オン・オフを切り替える場合にはSwitchを使用する
 SegmentedControlは異なる状態を切り替えるためのコンポーネントですが、オンとオフの2つの状態を切り替えるときは[Switch](/products/components/switch/)を使ってください。
 
-### 選択とは別に適用操作を行なう場合はRadioButtonを使用する
+### 選択とは別に適用操作をする場合はRadioButtonを使用する
 「複数の選択肢から1つを選ぶ」という振る舞いは[RadioButton](/products/components/radio-button/)と似ていますが、SegmentedControlは操作すると即座にビューに対して影響が発生することが特徴です。
 
 選択操作後に、`送信`や`保存`などのボタンを押して入力内容を適用する場合は、RadioButtonを使ってください。
@@ -40,7 +41,7 @@ SegmentedControlは異なる状態を切り替えるためのコンポーネン�
 - `S`サイズのSegmentedControlを使用する（どうしようもないときにのみ）
 
 import DoAndDont from '@/components/article/DoAndDont.astro'
-import { BaseColumn, Cluster, Center, Text } from 'smarthr-ui'
+import { BaseColumn, Cluster, Text } from 'smarthr-ui'
 import { Dont, DoWithWrap, DoWithReel } from './_components'
 
 <Cluster gap={{ row: 0, column: 1 }}>
@@ -71,6 +72,10 @@ import { Dont, DoWithWrap, DoWithReel } from './_components'
     </DoAndDont>
   </Cluster>
 </Cluster>
+
+## 使い方チェックリスト
+
+<Checklist name="SegmentedControl" />
 
 ## Props
 

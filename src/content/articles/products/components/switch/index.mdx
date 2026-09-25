@@ -4,6 +4,7 @@ description: 'オン/オフを即時に切り替えるスイッチコンポー�
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
@@ -56,12 +57,16 @@ Switchは小さくモバイルでは操作しづらいため、サイズを大�
 </Switch>
 ```
 
+## 使い方チェックリスト
+
+<Checklist name="Switch" />
+
 ## Props
 
 <ComponentPropsTable name="Switch" />
 
 ## 関連リンク
 
-* [Checkbox](/products/components/check-box/)
+* [Checkbox](/products/components/checkbox/)
 * [SegmentedControl](/products/components/segmented-control/)
 * [ARIA: switch ロール - アクセシビリティ | MDN](https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/Roles/switch_role)

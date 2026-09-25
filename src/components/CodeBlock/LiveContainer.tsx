@@ -1,6 +1,6 @@
 import { themes } from 'prism-react-renderer';
 // eslint-disable-next-line no-restricted-imports
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import { CssBaseLine } from 'smarthr-normalize-css';
@@ -15,9 +15,9 @@ import CopyButton from './CopyButton';
 import styles from './LiveContainer.module.scss';
 import sharedStyles from './shared.module.scss';
 
-import type { LiveContainerProps } from './types';
+import type { LiveContainerInternalProps } from './types';
 
-type Props = LiveContainerProps;
+type Props = LiveContainerInternalProps;
 
 const smarthrTheme = ui.createTheme();
 
@@ -56,10 +56,9 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
           return;
         }
 
-        const newHeight = height + 8;
         // state を使わず、直接 iframe の高さを更新（再レンダリングを避ける）
         if (iframe && iframe.style) {
-          iframe.style.height = `${newHeight}px`;
+          iframe.style.height = `${height + 8}px`;
         }
       });
 
@@ -69,9 +68,8 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
       // 初期高さの計算
       const initialHeight = innerWindow.document.body.scrollHeight;
       if (initialHeight > 0) {
-        const newHeight = initialHeight + 8;
         if (iframe && iframe.style) {
-          iframe.style.height = `${newHeight}px`;
+          iframe.style.height = `${initialHeight + 8}px`;
         }
       }
     };

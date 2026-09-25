@@ -3,6 +3,7 @@ title: 'Text'
 description: 'タイポグラフィのデザイントークンを使ってテキストを表示するためのコンポーネントです。本文や説明文、ラベルテキストにデザイントークン準拠のフォントサイズ・ウェイト・色・行送り・見出しスタイルなどを適用するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
 [タイポグラフィのデザイントークン](/products/design-tokens/typography/)を使ってテキストを表示するためのコンポーネントです。本文や説明文、ラベルテキストにデザイントークン準拠のフォントサイズ・ウェイト・色・行送り・見出しスタイルなどを適用するときに使います。
@@ -86,7 +87,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
   <Text leading="NONE">行送りがないテキスト<br />行送りがないテキスト</Text>
   <Text leading="TIGHT">行送りが狭いテキスト<br />行送りが狭いテキスト</Text>
   <Text leading="NORMAL">通常の行送りのテキスト<br />通常の行送りのテキスト</Text>
-  <Text leading="RELEXED">行送りが広いテキスト<br />行送りが広いテキスト</Text>
+  <Text leading="LOOSE">行送りが広いテキスト<br />行送りが広いテキスト</Text>
 </Stack>
 ```
 
@@ -109,7 +110,25 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 </Stack>
 ```
 
+### アイコン
+`icon` propsでテキストの左右に[Icon](/products/components/icon/)を配置できます。
 
+アイコンのみを渡すと、テキストの左（プレフィックス）に配置されます。`prefix`・`suffix`・`gap`を指定すると、左右の配置やテキストとの間隔を制御できます。  
+アイコンの色や代替テキストの扱いは、[Icon](/products/components/icon/)を参照してください。
+
+```tsx editable
+<Stack>
+  <Text icon={<FaFileLinesIcon color="TEXT_GREY" />}>左にアイコンがあるテキスト</Text>
+  <Text icon={{ suffix: <FaCircleInfoIcon color="TEXT_GREY" /> }}>右にアイコンがあるテキスト</Text>
+  <Text icon={{ prefix: <FaLightbulbIcon color="MAIN" />, gap: 0.5 }}>間隔を広げたテキスト</Text>
+</Stack>
+```
+
+
+
+## 使い方チェックリスト
+
+<Checklist name="Text" />
 
 ## Props
 

@@ -4,6 +4,7 @@ description: 'ページの主要コンテンツの横幅と外側のパディン
 ---
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 
 ページの主要コンテンツの横幅と外側のパディングを制御するレイアウトコンポーネントです。すべてのページで本文領域の最大幅と上下左右の余白を設定するときに使います。
 
@@ -44,6 +45,10 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 #### モバイルでの表示
 
 デフォルトで上下1.5文字（`24px`）、左右1文字（`16px`）ずつのパディングが設定されます。`padding`propsの`narrowModeBlock`と`narrowModeInline`で上書き可能です。
+
+## 使い方チェックリスト
+
+<Checklist name="Container" />
 
 ## Props
 

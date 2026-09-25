@@ -12,7 +12,7 @@ import { SegmentedControl } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v96.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -33,7 +33,7 @@ SegmentedControl に直接関連する eslint-plugin-smarthr のルールは現�
 ### 使用上の注意 > オン・オフを切り替える場合にはSwitchを使用する
 - [must] オンとオフの 2 つの状態を切り替えるときは Switch を使う
 
-### 使用上の注意 > 選択とは別に適用操作を行なう場合はRadioButtonを使用する
+### 使用上の注意 > 選択とは別に適用操作をする場合はRadioButtonを使用する
 - [must] 選択操作後に `送信` や `保存` などのボタンを押して入力内容を適用する場合は RadioButton を使う
 
 ### モバイル > ボタンを折り返して表示しない

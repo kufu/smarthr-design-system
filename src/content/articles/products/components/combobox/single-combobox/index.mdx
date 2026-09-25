@@ -3,9 +3,10 @@ title: 'SingleCombobox'
 description: '選択肢から1つの値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら1つを選択するときに使います。'
 ---
 import { Image } from 'astro:assets'
-import { SingleCombobox, Cluster, Text, BaseColumn, ResponseMessage } from 'smarthr-ui'
+import { Cluster, Text, BaseColumn, ResponseMessage } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import singleComboboxDo from '../images/single-combo-box-do.png'
 import singleComboboxDont from '../images/single-combo-box-dont.png'
@@ -121,7 +122,7 @@ SingleComboboxコンポーネントは必ずFormControlコンポーネントと�
 
 eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/kufu/eslint-plugin-smarthr/tree/main/rules/a11y-input-in-form-control/)ルールは、SingleComboboxにFormControlを組み合わせることを促すものです。支援技術に選択の目的が伝わらないリスクを防ぐため、有効にして使用することを推奨します。
 
-## 関連ページ
+### 関連ページ
 
 - [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
 - [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
@@ -132,6 +133,10 @@ eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/
   <ResponseMessage>モバイルに適したSingleComboboxを提供予定です。</ResponseMessage>
 </BaseColumn>
 
+## 使い方チェックリスト
+
+<Checklist name="SingleCombobox" />
+
 ## Props
 
-<ComponentPropsTable name="SingleCombobox" showTitle />
+<ComponentPropsTable name="SingleCombobox" />

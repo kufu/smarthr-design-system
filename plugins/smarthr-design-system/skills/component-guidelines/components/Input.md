@@ -10,16 +10,16 @@ import { Input } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v96.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| placeholder | string | - | - | @deprecated placeholder属性は非推奨です。別途ヒント用要素を設置するか、それらの領域を確保出来ない場合はTooltipコンポーネントの利用を検討してください。 |
 | type | string | - | - | input 要素の `type` 値 |
-| width | string \| number | - | - | コンポーネントの幅 |
 | autoFocus | boolean | - | - | オートフォーカスを行うかどうか |
 | prefix | ReactNode | - | - | コンポーネント内の先頭に表示する内容 |
+| placeholder | string | - | - | @deprecated placeholder属性は非推奨です。別途ヒント用要素を設置するか、それらの領域を確保出来ない場合はTooltipコンポーネントの利用を検討してください。 |
 | error | boolean | - | - | フォームにエラーがあるかどうか |
+| width | string \| number | - | - | コンポーネントの幅 |
 | suffix | ReactNode | - | - | コンポーネント内の末尾に表示する内容 |
 | bgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| "BORDER" \| "ACTION_BACKGROUND" | - | - | 背景色。readOnly を下地の上に載せる場合に使う |
 
@@ -115,14 +115,6 @@ input や textarea などの入力要素に対してplaceholder属性を設定�
 ### 使用上の注意 > 入力項目の説明や例をプレースホルダで表示しない
 - [must] 入力項目の説明や例を載せる場合は FormControl の `helpMessage` や `exampleMessage` を用い別途表示する
 
-### Inputを使用したコンポーネント > CurrencyInput
-- [must] 金額を入力するときは CurrencyInput を使用する
-
-### Inputを使用したコンポーネント > SearchInput
-- [should] SearchInput はよくあるテーブルのオブジェクトの検索などに使用する
-- [must] SearchInput では `tooltipMessage` を使用して入力内容に対する説明を補足する
-- [must] 検索ボタンのあるフォーム（インクリメンタル検索をしないフォーム）内の SearchInput では、入力内容のクリアボタンで検索まで実行せず入力内容の削除にとどめる
-
 ### レイアウト > プレフィックス・サフィックス > 要素の設置判断基準
 - [should] プレフィックス（`prefix`）の要素は入力内容を想起させるために使用する
   - テキストの場合、一般的に内容に対して前方に置かれる単位（例: 米ドル）に用いる
@@ -138,12 +130,16 @@ input や textarea などの入力要素に対してplaceholder属性を設定�
 ### 状態 > 読み取り専用（readOnly）
 - [should] 当該画面では編集できないが、別の場所で入力済みの値をフォームの送信内容に含めて表示することが重要な場合は `readOnly` を使用する
 
+### 状態 > 読み取り専用（readOnly） > BaseColumnなど色のついた下地に置くときは`bgColor`を指定する
+- [must] `readOnly` の Input を BaseColumn の中など `COLUMN` と同じ色の下地に置く場合は、`bgColor` に `HEAD` を指定して下地と区別できるようにする
+  - `WHITE` のような明るい色は編集できる入力欄に見えてしまうため `readOnly` の Input には使用しない
+
 ### 状態 > 無効（disabled）
 - [should] 通常は編集できるが一時的または権限の制約により編集できない場合に `disabled` を使用する
   - 送信内容に含めたい値はフォームには表示しないか `readOnly` の使用を検討する
   - そもそも無効ではなくフォーム自体を非表示にしたり、無効状態の理由を付近に表示することを検討する
 
-### モバイル > フォントサイズはMを使用する
+### モバイル > フォントサイズは`M`以上を使用する
 - [must] モバイルでの意図しない拡大を避けるため、Input のフォントサイズは `M` 以上を使用する
 
 ### アクセシビリティ > 開発時の考慮点 > FormControlと併用する

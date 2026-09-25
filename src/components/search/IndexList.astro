@@ -11,67 +11,63 @@ const { nestedArticleMetaItems } = await createArticleMetaItems('/');
 ---
 
 <div class="wrapper">
-  {
-    navigationItem.map(({ key }) => {
-      const level2Item = nestedArticleMetaItems.find((item) => item.link === `/${key}`);
-      if (!level2Item) {
-        return null;
-      }
+  {navigationItem.map(({ key }) => {
+    const level2Item = nestedArticleMetaItems.find((item) => item.link === `/${key}`);
+    if (!level2Item) {
+      return null;
+    }
 
-      const level3Items = level2Item.children;
+    const level3Items = level2Item.children;
 
-      return (
-        <Section key={level2Item.link}>
-          <h2>
-            <a href={`${level2Item.link}/`}>{level2Item.title}</a>
-          </h2>
+    return (
+      <Section key={level2Item.link}>
+        <h2>
+          <a href={`${level2Item.link}/`}>{level2Item.title}</a>
+        </h2>
 
-          {/* 第3階層 */}
-          {level3Items.map((level3Item) => {
-            const level4Items = level3Item.children;
+        {/* 第3階層 */}
+        {level3Items.map((level3Item) => {
+          const level4Items = level3Item.children;
 
-            return (
-              <Section key={level3Item.link}>
-                <h3>
-                  <a href={`${level3Item.link}/`}>{level3Item.title}</a>
-                </h3>
+          return (
+            <Section key={level3Item.link}>
+              <h3>
+                <a href={`${level3Item.link}/`}>{level3Item.title}</a>
+              </h3>
 
-                {/* 第4階層 */}
-                {level4Items.length !== 0 && (
-                  <ul>
-                    {level4Items.map((level4Item) => (
-                      <li>
-                        <a href={`${level4Item.link}/`}>{level4Item.title}</a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </Section>
-            );
-          })}
-        </Section>
-      );
-    })
-  }
+              {/* 第4階層 */}
+              {level4Items.length !== 0 && (
+                <ul>
+                  {level4Items.map((level4Item) => (
+                    <li>
+                      <a href={`${level4Item.link}/`}>{level4Item.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </Section>
+          );
+        })}
+      </Section>
+    );
+  })}
 
   <hr />
 
-  {
-    SUB_LINKS.map((linkName) => {
-      const level2Item = nestedArticleMetaItems.find(({ link }) => link === `/${linkName}`);
-      if (!level2Item) {
-        return null;
-      }
+  {SUB_LINKS.map((linkName) => {
+    const level2Item = nestedArticleMetaItems.find(({ link }) => link === `/${linkName}`);
+    if (!level2Item) {
+      return null;
+    }
 
-      return (
-        <Section key={level2Item.link}>
-          <h3>
-            <a href={`${level2Item.link}/`}>{level2Item.title}</a>
-          </h3>
-        </Section>
-      );
-    })
-  }
+    return (
+      <Section key={level2Item.link}>
+        <h3>
+          <a href={`${level2Item.link}/`}>{level2Item.title}</a>
+        </h3>
+      </Section>
+    );
+  })}
 </div>
 
 <style lang="scss">

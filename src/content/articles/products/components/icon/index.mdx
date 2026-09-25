@@ -4,32 +4,20 @@ description: '意味やアクションを視覚的に表すアイコンを表示
 ---
 
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
 import { ButtonWithPlusIcon, ButtonWithFilterIcon } from './components/ButtonExamples'
 import { AvatarIcon } from './components/AvatarIcon'
 import { ChipWithButton } from './components/ChipWithButton'
 import {
-  FaAddressBookIcon,
-  FaAddressCardIcon,
-  FaAnglesLeftIcon,
-  FaAnglesRightIcon,
   FaCirclePlusIcon,
   FaArrowRightIcon,
-  FaUserLargeIcon,
   FaPenIcon,
-  FaCircleXmarkIcon,
-  OpenInNewTabIcon,
-  WarningIcon,
-  FaGearIcon,
   Cluster,
-  Text,
-  TextLink,
   Button,
-  Td,
   DefinitionList,
   DefinitionListItem,
-  Chip,
 } from 'smarthr-ui'
 
 意味やアクションを視覚的に表すアイコンを表示するためのコンポーネントです。[Button](/products/components/button/)に削除・追加・編集などのアクションを明示するとき、[DefinitionList](/products/components/definition-list/)などのスペースが取れない項目に「編集可能」を示すなど状態を併記するときに使います。
@@ -56,6 +44,8 @@ Font Awesomeから必要なものを取り込んでいます。
 
 ## アクセシビリティ
 
+### 開発時の考慮点
+
 装飾以外の目的でアイコンを使用する場合、 `alt` propsに適切な代替テキストを付与してください。
 
 
@@ -65,10 +55,10 @@ Font Awesomeから必要なものを取り込んでいます。
 </Button>
 ```
 
-適切な代替テキストの判断は、[SmartHR alt ディシジョンツリー](/accessibility/alternative-text/#h2-2)を参考にしてください。
+適切な代替テキストの判断は、[SmartHR alt ディシジョンツリー](/accessibility/insight/alternative-text/#h2-2)を参考にしてください。
 
 
-### 代替テキストが必要なアイコンの例
+#### 代替テキストが必要なアイコンの例
 
 | 代替テキスト | 表示例 | 理由 |
 | :-- | :-- | :-- |
@@ -77,7 +67,7 @@ Font Awesomeから必要なものを取り込んでいます。
 | `削除` | <ChipWithButton /> | アイコンのみでチップが削除可能なことを示しているため |
 | `追加` | <Button><FaCirclePlusIcon alt="追加"/></Button> | ボタンのテキストがなくアイコンのみで表現しているため |
 
-### 代替テキストが必要ないアイコンの例
+#### 代替テキストが必要ないアイコンの例
 
 |使われ方・用途|表示例|理由|
 |:--|:--|:--|
@@ -88,7 +78,7 @@ Font Awesomeから必要なものを取り込んでいます。
 
 - [画像に代替テキストが付与されている | アクセシビリティガイドライン](/accessibility/guidelines/alternative-text/)
 - [装飾目的の装飾目的の画像が無視できるようになっている | アクセシビリティガイドライン](/accessibility/guidelines/decorative-image/)
-- [同一の操作や説明には一貫したアイコンを使用する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision-check-list/consistent-icon/)
+- [同一の操作や説明には一貫したアイコンを使用する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/consistent-icon/)
 
 ## デザインパターン
 
@@ -103,6 +93,10 @@ Font Awesomeから必要なものを取り込んでいます。
 * https://www.lightningdesignsystem.com/icons/
 * https://www.carbondesignsystem.com/elements/icons/usage/
 
+
+## 使い方チェックリスト
+
+<Checklist name="Icon" />
 
 ## Props
 

@@ -15,24 +15,23 @@ const { path, items, showDepth1Item = false } = Astro.props;
 ---
 
 <Nav className="sidebarNav">
-  {
-    items.map((depth1Item) => (
-      <Fragment key={depth1Item.link}>
-        {/* 第1階層 */}
-        {showDepth1Item && (
-          <h2 class="depth1Heading">
-            <a href={depth1Item.link} aria-current={depth1Item.link === path}>
-              {depth1Item.title}
-            </a>
-          </h2>
-        )}
-        {/* 第2～4階層 */}
-        <ul>
-          <RecursiveSidebarItem currentPath={path} items={depth1Item.children} depth={2} parentIndex={null} />
-        </ul>
-      </Fragment>
-    ))
-  }
+  {items.map((depth1Item) => (
+    <Fragment key={depth1Item.link}>
+      {/* 第1階層 */}
+      {showDepth1Item && (
+        <h2 class="depth1Heading">
+          {/* href は末尾スラッシュ付きの正規URLにする。省略するとホスティング側で301を挟む */}
+          <a href={`${depth1Item.link}/`} aria-current={depth1Item.link === path}>
+            {depth1Item.title}
+          </a>
+        </h2>
+      )}
+      {/* 第2～4階層 */}
+      <ul>
+        <RecursiveSidebarItem currentPath={path} items={depth1Item.children} depth={2} parentIndex={null} />
+      </ul>
+    </Fragment>
+  ))}
 </Nav>
 
 <style lang="scss">
@@ -41,10 +40,13 @@ const { path, items, showDepth1Item = false } = Astro.props;
       margin: 0;
       padding: 0;
       list-style: none;
+    }
 
-      &[aria-hidden='true'] {
-        display: none;
-      }
+    /**
+     * astro が差し込んでくる [data-astro-cid-*] のせいで属性セレクタも global() の中に入れないと期待通りに動作しない
+    */
+    :global(ul[aria-hidden='true']) {
+      display: none;
     }
 
     > :global(ul) {
@@ -81,17 +83,6 @@ const { path, items, showDepth1Item = false } = Astro.props;
         }
       }
 
-      &[aria-current='true'],
-      &[aria-current='true']:hover {
-        background-color: var(--color-dark-grey-1);
-        color: var(--color-white);
-
-        /* CaretButtonがアイランドのため astro-island でラップされる */
-        + :global(astro-island) > :global(button) {
-          color: var(--color-white);
-        }
-      }
-
       &:hover {
         background-color: var(--color-divider);
       }
@@ -101,12 +92,26 @@ const { path, items, showDepth1Item = false } = Astro.props;
       }
     }
 
+    & :global(li) :global(a[aria-current='true']) {
+      /* :hover は上の a:hover と詳細度が同じなので、明示的に上書きする必要がある */
+      &,
+      &:hover {
+        background-color: var(--color-dark-grey-1);
+        color: var(--color-white);
+      }
+
+      /* CaretButtonがアイランドのため astro-island でラップされる */
+      + :global(astro-island) > :global(button) {
+        color: var(--color-white);
+      }
+    }
+
     & :global(div):hover {
       > :global(a) {
         background-color: var(--color-divider);
       }
 
-      > :global(a)[aria-current='true'] {
+      > :global(a[aria-current='true']) {
         background-color: var(--color-dark-grey-1);
         color: var(--color-white);
 

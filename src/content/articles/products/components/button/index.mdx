@@ -3,11 +3,12 @@ title: 'Button'
 description: 'button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。'
 ---
 
-import { Base, BaseColumn, Button,FormControl, Input, Stack, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon, NotificationBar, ResponseMessage } from 'smarthr-ui'
+import { Base, BaseColumn, Button, FormControl, Input, Stack, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { OpenInNewTabIconInAnchorButton, SampleButton } from './_components'
 import DoAndDont from '@/components/article/DoAndDont.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import Caption from './_components/Caption.astro'
 
 `button`要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。
@@ -95,7 +96,7 @@ Tertiaryボタンは、背景色やボーダーがなく、テキストのみで
 ```
 
 ### Danger
-Dangerボタンは、[ワンクッション必要な操作](/products/design-patterns/confirmation-step/)を行なうときに、ユーザーに注意を促す役割を持ちます。
+Dangerボタンは、[ワンクッション必要な操作](/products/design-patterns/confirmation-step/)をするときに、ユーザーに注意を促す役割を持ちます。
 
 - 主に[削除ダイアログ](/products/design-patterns/delete-dialog/)で使用します。具体的な使用方法は、[視覚的表現で目立ちにくくする](/products/design-patterns/confirmation-step/#h3-3)を参照してください。
 - すべてのユーザーが色を見たり、理解できるわけではありません。警告を促す赤色（[`DANGER`](/products/design-tokens/color/#h3-8)）に頼らず、ボタン配置のコンテキストやラベルテキストだけでもユーザーに伝わるように検討してください。
@@ -119,7 +120,7 @@ Textボタンは、画面内の通常の操作をユーザーに示す役割を�
 Secondaryボタンと役割は同じですが、Secondaryボタンの装飾（枠線）が過剰な場合に使います。例えば、次のような場合です。
 
 - コンポーネントに内包する場合
-  - 例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/) 
+  - 例：[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)
 - 多くのボタンを並べて表示する場合
 
 Textボタンは、背景色やボーダーがなく、テキストのみで表示されるため、操作できる要素だと気づきにくい場合があります。
@@ -211,7 +212,7 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
   </Button>
   <Button size="S">
     <FaCirclePlusIcon alt="追加" />
-  </Button> 
+  </Button>
   <Button variant="text">
     <FaCirclePlusIcon alt="追加" />
   </Button>
@@ -241,7 +242,9 @@ SmartHR UIでは、`アイコン付き（左）`はプレフィックス（`pref
 ```
 
 ## ライティング
-[ボタンラベルには動詞の終止形を使用する](/products/contents/ui-text/app-writing/#h2-1)
+関連するライティングガイドラインを参照してください。
+- [ボタンラベルには動詞の終止形を使用する](/products/contents/ui-text/app-writing/#use-finite-verbs-in-button-labels)
+- [実行されるアクションをボタンラベルで示す](/products/contents/ui-text/app-writing/#show-executed-action-in-button-label)
 
 ## アクセシビリティ
 
@@ -279,17 +282,17 @@ TertiaryボタンやTextボタンは、主にテキスト色の違いによっ�
 ラベルは、簡潔でわかりやすく、アイコンや見た目だけに依存せず内容が伝わることが重要です。
 操作内容が伝わるラベルを設定することで、スクリーンリーダーを使用するユーザーにもボタンの目的が伝わりやすくなり、誤操作の防止にもつながります。
 
-詳しくは、[ボタンラベルには動詞の終止形を使用する](/products/contents/ui-text/app-writing/#h2-1) を参照してください。
+詳しくは、[ボタンラベルには動詞の終止形を使用する](/products/contents/ui-text/app-writing/#use-finite-verbs-in-button-labels) を参照してください。
 
 #### アイコンボタンにはアクセシブルネームを設定する
 
 アイコンボタンは、視覚的にはアイコンによって操作内容を伝えられますが、スクリーンリーダーを使用するユーザーには操作内容が伝わりません。
 そのため、アイコンコンポーネントの `alt` props に操作内容を表すテキストを設定してください。設定したテキストはアクセシブルネームとして利用されます。
 
-詳しくは、[Iconコンポーネントのアクセシビリティ](./icon/#h2-3)を参照してください。
+詳しくは、[Iconコンポーネントのアクセシビリティ](/products/components/icon/#h2-3)を参照してください。
 
 
-#### 良い実装例
+##### 良い実装例
 
 ```tsx
 // テキストを含むボタン
@@ -306,7 +309,7 @@ TertiaryボタンやTextボタンは、主にテキスト色の違いによっ�
 </Button>
 ```
 
-#### 悪い実装例
+##### 悪い実装例
 
 ```tsx
 // ❌ アイコンボタンに代替テキストがない
@@ -322,13 +325,19 @@ TertiaryボタンやTextボタンは、主にテキスト色の違いによっ�
 
 アイコンボタンに代替テキストがない場合、スクリーンリーダーでは操作内容が伝わりません。また、代替テキストが曖昧な場合は、何を実行するボタンなのか判断できません。
 
+#### AnchorButtonはリンク先がわかるテキストを使用する
+
+AnchorButtonはリンク（`a`要素）としてレンダリングされるため、テキストはリンク先がわかる文言にしてください。
+
+詳しくは、[リンクのテキストからリンク先が判別できる](/accessibility/guidelines/link-text/) を参照してください。
+
 ### 関連ページ
 
-- [画像に代替テキストが付与されている | アクセシビリティガイドライン](/accessibility/check-list/alternative-text/)
-- [装飾目的の装飾目的の画像が無視できるようになっている | アクセシビリティガイドライン](/accessibility/check-list/decorative-image/)
-- [同一の操作や説明には一貫したアイコンを使用する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/low-vision-check-list/consistent-icon/)
-- [画面の左側に見出しやUIを配置する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/low-vision-check-list/left-layout/)
-- [関連するフォームパーツは隣り合う位置に配置する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/low-vision-check-list/adjacent-fields/)
+- [画像に代替テキストが付与されている | アクセシビリティガイドライン](/accessibility/guidelines/alternative-text/)
+- [装飾目的の装飾目的の画像が無視できるようになっている | アクセシビリティガイドライン](/accessibility/guidelines/decorative-image/)
+- [同一の操作や説明には一貫したアイコンを使用する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/consistent-icon/)
+- [画面の左側に見出しやUIを配置する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/left-layout/)
+- [関連するフォームパーツは隣り合う位置に配置する | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/adjacent-fields/)
 
 ## モバイル
 
@@ -413,9 +422,18 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
 </Cluster>
 
 
+## 使い方チェックリスト
+
+<Checklist name="Button" />
+
+
 ## Props
 
-<ComponentPropsTable name="Button" />
+<ComponentPropsTable name="Button" showTitle />
+
+<ComponentPropsTable name="AnchorButton" showTitle />
+
+<ComponentPropsTable name="UnstyledButton" showTitle />
 
 
 ## 参考文献

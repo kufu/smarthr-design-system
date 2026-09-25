@@ -3,6 +3,7 @@ title: 'Select'
 description: 'select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
 `select`要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。
@@ -29,7 +30,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 ### SingleComboboxとの使い分け
 
-単一選択かつ、ユーザーに選択肢をフィルタリングさせたい場合は[SingleCombobox](/products/components/combo-box/single-combo-box/)の使用を検討してください。
+単一選択かつ、ユーザーに選択肢をフィルタリングさせたい場合は[SingleCombobox](/products/components/combobox/single-combobox/)の使用を検討してください。
 
 ### 即時反映が期待されるビューの切り替えには使わない
 
@@ -91,10 +92,14 @@ eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/
 
 ラベルとSelectが関連付けられていない場合、スクリーンリーダーでは何を選択するための項目なのかが伝わりません。
 
-## 関連ページ
+### 関連ページ
 
 - [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
 - [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
+
+## 使い方チェックリスト
+
+<Checklist name="Select" />
 
 ## Props
 

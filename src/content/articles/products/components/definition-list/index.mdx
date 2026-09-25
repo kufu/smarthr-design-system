@@ -3,6 +3,7 @@ title: 'DefinitionList'
 description: '見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
 見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。
@@ -91,7 +92,7 @@ DefinitionListItemの `maxColumns` propsを指定することで、最大列数�
 ```tsx editable noIframe
 <div className="shr-bg-background shr-p-1.5">
   <Stack>
-    <Heading type="sectionTitle">従業員情報</Heading>
+    <Heading>従業員情報</Heading>
     <Base padding={1.5}>
       <DefinitionList>
         <DefinitionListItem maxColumns={2} term={{ styleType: 'blockTitle', text: '氏名' }}>
@@ -120,6 +121,10 @@ descriptionが値を持っていない場合の表示については、[値が�
 ただし、罫線が視線誘導を妨げる場合は、別の意匠を検討してください。
 
 ![表示項目が1つしかない場合](./images/definition-list-1item.png)
+
+## 使い方チェックリスト
+
+<Checklist name="DefinitionList" />
 
 ## Props
 

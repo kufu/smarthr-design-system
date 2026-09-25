@@ -3,9 +3,10 @@ title: 'DropdownMenuButton'
 description: '同じ対象に関連する複数の操作をまとめてドロップダウン表示するメニューボタンコンポーネントです。編集・複製・削除など、オブジェクトに対する複数アクションをまとめるときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { Image } from 'astro:assets'
-import { ResponseMessage, BaseColumn, Cluster, Text, DropdownMenuButton, FaCaretDownIcon, FaEllipsisIcon } from 'smarthr-ui'
+import { ResponseMessage, BaseColumn, Cluster, Text, FaCaretDownIcon } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 
 import DropdownMenuButtonPanelWidthDo from '../images/dropdown-menu-button-panel-width-do.png'
@@ -135,7 +136,7 @@ import DropdownMenuButtonPanelHeightDont from '../images/dropdown-menu-button-pa
 | 要素 | 説明 |
 | :--- | :--- |
 | トリガー | ラベルは`{オブジェクト名}の操作`とします。 |
-| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行う操作を入れます。 |
 
 ```tsx editable noIframe
 <DropdownMenuButton trigger="｛オブジェクト名｝の操作">
@@ -151,7 +152,7 @@ import DropdownMenuButtonPanelHeightDont from '../images/dropdown-menu-button-pa
 | 要素 | 説明 |
 | :--- | :--- |
 | トリガー | 基本的に「A. 単一のオブジェクトに対する操作」のようにオブジェクト名を表示しますが、狭い場所にレイアウトするときにオブジェクト名を省けます。ラベルは`操作`にします。  |
-| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行なう操作を入れます。トリガーのラベルと同様にオブジェクト名を省けます。 |
+| <span style={{ whiteSpace: 'nowrap' }}>ドロップダウンパネル</span> | オブジェクトに対して行う操作を入れます。トリガーのラベルと同様にオブジェクト名を省けます。 |
 
 ```tsx editable noIframe
 <DropdownMenuButton trigger={{ size: "S", children: "操作" }}>
@@ -245,6 +246,12 @@ DropdownMenuButton自体を無効にすると、ドロップダウンパネル�
 ```
 
 
+## 使い方チェックリスト
+
+<Checklist name="DropdownMenuButton" />
+
 ## Props
 
-<ComponentPropsTable name="DropdownMenuButton" />
+<ComponentPropsTable name="DropdownMenuButton" showTitle />
+
+<ComponentPropsTable name="DropdownMenuGroup" showTitle />

@@ -22,7 +22,7 @@ const gotchaItem = gotchaItemJson as GotchaItem[];
 
 export default function Gotcha() {
   // ランダムな画像＋説明文の表示をするため、ビルド時と表示内容が異なる可能性があり、コンソールにエラーが出る。
-  // エラー回避のためビルド時はindexを固定し、CSR時のみ実行される`useEffect`内でランダムアイテムの選択を行う。
+  // エラー回避のためビルド時はindexを固定し、CSR時のみ実行される`useEffect`内でランダムアイテムの選択をする。
   const [currentItemIndex, setCurrentItemIndex] = useState(-1);
   const [nextItemIndex, setNextItemIndex] = useState(-1);
 
