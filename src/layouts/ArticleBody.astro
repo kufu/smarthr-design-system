@@ -39,45 +39,39 @@ const headings = getNestedHeadings({ contentHtml, ignoreH3Nav: data.ignoreH3Nav 
 <Article className="article">
   <h1 class="articleTitle">{displayTitle}</h1>
   <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
-    {
-      data.deprecated && data.deprecatedMessage && (
-        <BaseColumn>
-          <ResponseMessage status="warning">
-            <span set:html={data.deprecatedMessage} />
-          </ResponseMessage>
-        </BaseColumn>
-      )
-    }
+    {data.deprecated && data.deprecatedMessage && (
+      <BaseColumn>
+        <ResponseMessage status="warning">
+          <span set:html={data.deprecatedMessage} />
+        </ResponseMessage>
+      </BaseColumn>
+    )}
     <Fragment set:html={contentHtml} />
   </div>
   <nav>
     <ul class="articleLinks">
-      {
-        prevSidebarItem !== null && (
-          <li class="prevArticleLinkWrapper">
-            <RoundedBoxLink
-              path={`${prevSidebarItem.link}/`}
-              label="前へ"
-              title={prevSidebarItem.title}
-              align="left"
-              caretPosition="left"
-            />
-          </li>
-        )
-      }
-      {
-        nextSidebarItem !== null && (
-          <li class="nextArticleLinkWrapper">
-            <RoundedBoxLink
-              path={`${nextSidebarItem.link}/`}
-              label="次へ"
-              title={nextSidebarItem.title}
-              align="right"
-              caretPosition="right"
-            />
-          </li>
-        )
-      }
+      {prevSidebarItem !== null && (
+        <li class="prevArticleLinkWrapper">
+          <RoundedBoxLink
+            path={`${prevSidebarItem.link}/`}
+            label="前へ"
+            title={prevSidebarItem.title}
+            align="left"
+            caretPosition="left"
+          />
+        </li>
+      )}
+      {nextSidebarItem !== null && (
+        <li class="nextArticleLinkWrapper">
+          <RoundedBoxLink
+            path={`${nextSidebarItem.link}/`}
+            label="次へ"
+            title={nextSidebarItem.title}
+            align="right"
+            caretPosition="right"
+          />
+        </li>
+      )}
     </ul>
   </nav>
 </Article>

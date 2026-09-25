@@ -4,7 +4,9 @@
 // 番号列が必要以上に広くなるため、1 列目だけ min-width を解除して内容幅に収める。
 ---
 
-<div class="numberedTable"><slot /></div>
+<div class="numberedTable">
+  <slot />
+</div>
 
 <style>
   /* No.列（1列目）のみ、グローバルの min-width: 7em を解除して内容幅に収める */

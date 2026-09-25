@@ -19,4 +19,6 @@ type Props = {
 const { texts, as: As } = Astro.props as Props;
 ---
 
-{texts.map((text) => <As>{text}</As>)}
+{texts.map((text) => (
+  <As>{text}</As>
+))}
