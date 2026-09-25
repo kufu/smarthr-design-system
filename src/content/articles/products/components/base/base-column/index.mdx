@@ -1,22 +1,45 @@
 ---
 title: 'BaseColumn'
-description: 'Groupboxの旧名称です。BaseColumnはGroupboxに名称変更されました。'
+description: 'BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。'
 deprecated: true
 deprecatedMessage: 'BaseColumnはGroupboxに名称変更されたため非推奨です。<a href="/products/components/groupbox/">Groupbox</a>を使ってください。'
 ---
 
-Groupboxの旧名称です。BaseColumnはGroupboxに名称変更されました。
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+import { Text } from 'smarthr-ui'
 
-機能やPropsは同じで、コンポーネント名だけが変わっています。使い方は[Groupbox](/products/components/groupbox/)を参照してください。
+[Base](/products/components/base/)や[Dialog](/products/components/dialog/)の内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「[ブロック](/products/design-patterns/visual-grouping/#h3-6)」領域として示すときに使います。
 
-```tsx
-// 変更前
-import { BaseColumn } from 'smarthr-ui'
+<ComponentStory name="Groupbox" dirName="Panel" />
 
-<BaseColumn>...</BaseColumn>
+## デザインパターン
 
-// 変更後
-import { Groupbox } from 'smarthr-ui'
+### メッセージを表示するパターン
 
-<Groupbox>...</Groupbox>
+注意事項や補足事項などを見出しと内容のセットで伝えるパターンです。Baseや各種Dialog（`contentBgColor`が`WHITE`の場合）の内側など、[InformationPanel](/products/components/information-panel/)が配置できない場合に主に使います。
+
+<DoAndDont type="do">
+  <Text slot="label">Baseの内側ではInformationPanelの代わりにBaseColumnで注意事項を表示する。</Text>
+  <div slot="img">
+```tsx editable background=BACKGROUND hideCode
+<Base padding={1.5}>
+  <BaseColumn>
+    <Stack>
+      <Heading type="blockTitle" icon={<WarningIcon />}>
+        注意事項
+      </Heading>
+      <p>
+        注意事項内容テキスト。注意事項内容テキスト。注意事項内容テキスト。
+      </p>
+    </Stack>
+  </BaseColumn>
+</Base>
 ```
+  </div>
+</DoAndDont>
+
+## Props
+
+<ComponentPropsTable name="Groupbox" />
