@@ -168,7 +168,7 @@ importers:
     dependencies:
       '@astrojs/check':
         specifier: ^0.9.10
-        version: 0.9.10(prettier-plugin-astro@1.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7))(prettier@3.9.7)(typescript@6.0.3)
+        version: 0.9.10(prettier-plugin-astro@1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7))(prettier@3.9.7)(typescript@6.0.3)
       '@astrojs/markdown-remark':
         specifier: ^7.3.1
         version: 7.3.1(supports-color@9.4.0)
@@ -303,8 +303,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       prettier-plugin-astro:
-        specifier: ^1.0.0
-        version: 1.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7)
+        specifier: ^1.0.1
+        version: 1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7)
       remark:
         specifier: ^15.0.1
         version: 15.0.1(supports-color@9.4.0)
@@ -4727,8 +4727,8 @@ packages:
   prettier-config-smarthr@1.0.1:
     resolution: {integrity: sha512-aDP9aa/NF+PCisEyuU4k6RXYvmwEqhGNvWVnPVMJTdvlYDhRUyDiVV8HExs55aL+n2y/1lNtSYy99E4QDYgn0g==}
 
-  prettier-plugin-astro@1.0.0:
-    resolution: {integrity: sha512-xOlwKNSaPkPPiJeOhiFk8/MA2eH5A+in99dID+weTJhPcq+FBdIaB/3UNFdy9ckmc8/bT7QNyxSb78cnopgElQ==}
+  prettier-plugin-astro@1.0.1:
+    resolution: {integrity: sha512-FKLtmNgyAoUbUixxmgkyO9ZMjEWCpHgMLtci8IakhCIzr8b+ML9YssBqsMfNoDdd/iE27BixwBZSq2amWDwpFQ==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       prettier: ^3.5.3
@@ -6460,9 +6460,9 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@astrojs/check@0.9.10(prettier-plugin-astro@1.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7))(prettier@3.9.7)(typescript@6.0.3)':
+  '@astrojs/check@0.9.10(prettier-plugin-astro@1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7))(prettier@3.9.7)(typescript@6.0.3)':
     dependencies:
-      '@astrojs/language-server': 2.16.8(prettier-plugin-astro@1.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7))(prettier@3.9.7)(typescript@6.0.3)
+      '@astrojs/language-server': 2.16.8(prettier-plugin-astro@1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7))(prettier@3.9.7)(typescript@6.0.3)
       chokidar: 4.0.3
       kleur: 4.1.5
       typescript: 6.0.3
@@ -6592,7 +6592,7 @@ snapshots:
       smol-toml: 1.6.1
       unified: 11.0.5
 
-  '@astrojs/language-server@2.16.8(prettier-plugin-astro@1.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7))(prettier@3.9.7)(typescript@6.0.3)':
+  '@astrojs/language-server@2.16.8(prettier-plugin-astro@1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7))(prettier@3.9.7)(typescript@6.0.3)':
     dependencies:
       '@astrojs/compiler': 2.13.1
       '@astrojs/yaml2ts': 0.2.3
@@ -6614,7 +6614,7 @@ snapshots:
       vscode-uri: 3.1.0
     optionalDependencies:
       prettier: 3.9.7
-      prettier-plugin-astro: 1.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7)
+      prettier-plugin-astro: 1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7)
     transitivePeerDependencies:
       - typescript
 
@@ -11562,7 +11562,7 @@ snapshots:
 
   prettier-config-smarthr@1.0.1: {}
 
-  prettier-plugin-astro@1.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7):
+  prettier-plugin-astro@1.0.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(prettier@3.9.7):
     dependencies:
       '@astrojs/compiler-rs': 0.4.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)
       '@prettier/parse-srcset': 3.1.0
