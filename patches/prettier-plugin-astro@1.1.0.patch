@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index 63cd786c4203ae108a61c4050e79fdd36b2ba780..5db8fb711ddb066daa5e55e9d132c9fb6778da05 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1344,7 +1344,7 @@ const printer = {
+     embed,
+     willPrintOwnComments(path, options) {
+         return delegatesJsxCommentsToPrettier(path.node, options)
+-            ? (estree.willPrintOwnComments?.(path) ?? false)
++            ? (estree.willPrintOwnComments?.(path, options) ?? false)
+             : false;
+     },
+     getVisitorKeys(node, nonTraversableKeys) {

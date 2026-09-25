@@ -3,9 +3,17 @@ packages:
 
 minimumReleaseAge: 10080
 
+# 1.0.1 の不具合（複数行 CSS コメントのインデントが整形のたびにずれる）を直すため、1.1.0 だけ待機期間の対象外にする
+minimumReleaseAgeExclude:
+  - prettier-plugin-astro@1.1.0
+
 allowBuilds:
   '@parcel/watcher': true
   canvas: true
   esbuild: true
   puppeteer: true
   sharp: true
+
+# 1.1.0 時点で未修正の不具合（テンプレート内の式の文の直前にコメントがあると TypeError になる）を直すパッチ。上流で修正されたら削除する
+patchedDependencies:
+  prettier-plugin-astro@1.1.0: patches/prettier-plugin-astro@1.1.0.patch
