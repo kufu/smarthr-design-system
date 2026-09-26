@@ -3,7 +3,7 @@ title: 'Button'
 description: 'button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。'
 ---
 
-import { Base, BaseColumn, Button, FormControl, Input, Stack, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
+import { Panel, Groupbox, Button, FormControl, Input, Stack, Cluster, FaCaretDownIcon, FaCloudArrowDownIcon, FaFilterIcon, FaCirclePlusIcon } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { OpenInNewTabIconInAnchorButton, SampleButton } from './_components'
@@ -355,19 +355,19 @@ AnchorButtonはリンク（`a`要素）としてレンダリングされるた�
 
 <Cluster gap={1}>
   <DoAndDont type="do" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
+    <Groupbox slot="img" as="figure" aria-labelledby="caption4" style={{ margin: 'unset' }}>
         <Button variant="primary" wide>保存</Button>
-    </BaseColumn>
+    </Groupbox>
     <figcaption slot="label" id="caption4">
       <Caption>幅いっぱいに広げ、十分に操作領域を取る。</Caption>
     </figcaption>
   </DoAndDont>
   <DoAndDont type="do" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
+    <Groupbox slot="img" as="figure" aria-labelledby="caption3" style={{ margin: 'unset' }}>
           <div style={{ display: 'flex', justifyContent: 'end'}}>
           <Button variant="primary">保存</Button>
           </div>
-    </BaseColumn>
+    </Groupbox>
     <figcaption slot="label" id="caption3">
       <Caption>視線誘導やレイアウトを加味して内包コンテンツに合わせた幅に調整する。</Caption>
     </figcaption>
@@ -384,8 +384,8 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
 #### 実装例
 <Cluster gap={1}>
   <DoAndDont type="do" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
-      <Base padding={1}>
+    <Groupbox slot="img" as="figure" aria-labelledby="caption6" style={{ margin: 'unset' }}>
+      <Panel padding={1}>
         <Stack gap={1.5}>
           <FormControl label="何らかの入力">
             <Input />
@@ -395,15 +395,15 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
             <Button>キャンセル</Button>
           </Stack>
         </Stack>
-      </Base>
-    </BaseColumn>
+      </Panel>
+    </Groupbox>
     <figcaption slot="label" id="caption6">
       <Caption>垂直方向に並べる場合はPrimaryボタンを上に置く。</Caption>
     </figcaption>
   </DoAndDont>
   <DoAndDont type="do" width={320}>
-    <BaseColumn slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
-      <Base padding={1}>
+    <Groupbox slot="img" as="figure" aria-labelledby="caption5" style={{ margin: 'unset' }}>
+      <Panel padding={1}>
         <Stack gap={1.5}>
           <FormControl label="何らかの入力">
             <Input />
@@ -413,8 +413,8 @@ PrimaryボタンとSecondaryボタンなど複数の操作を水平方向に並�
             <Button variant="primary" wide>保存</Button>
           </div>
         </Stack>
-      </Base>
-    </BaseColumn>
+      </Panel>
+    </Groupbox>
     <figcaption slot="label" id="caption5">
       <Caption>水平方向に並べる場合は後方にPrimaryボタンを置く。</Caption>
     </figcaption>

@@ -7,7 +7,7 @@ import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import { TabBarWithReel } from './_components'
-import { BaseColumn, Text } from 'smarthr-ui'
+import { Groupbox, Text } from 'smarthr-ui'
 
 異なるオブジェクトやビューを横方向のタブで切り替えるためのコンポーネントです。同一画面内で並列関係にあるビューを切り替えるとき、影響範囲を下線で明確にしながらタブを並べるときに使います。
 
@@ -59,9 +59,9 @@ TabBarItem内に[Icon](/products/components/icon/)や[Badge](/products/component
 モバイル表示など横幅の狭い画面で、TabBarが画面に収まらない場合、[Reel](/products/components/layout/reel/)を使ってください。水平方向にスクロールして、すべてのタブを操作できるようにします。
 
 <DoAndDont type="do" width={320}>
-  <BaseColumn slot="img" as="figure" aria-labelledby="caption" style={{ display: 'flex', alignItems: 'center', margin: 'unset', minHeight: '6rem' }}>
+  <Groupbox slot="img" as="figure" aria-labelledby="caption" style={{ display: 'flex', alignItems: 'center', margin: 'unset', minHeight: '6rem' }}>
     <TabBarWithReel />
-  </BaseColumn>
+  </Groupbox>
       <Text as="figcaption" slot="label" id="caption">
       <p style={{ lineHeight: 1.5 }}>Reelを使用して水平方向にスクロールさせる。</p>
     </Text>
@@ -71,7 +71,7 @@ TabBarItem内に[Icon](/products/components/icon/)や[Badge](/products/component
 
 タブが2~3程度の場合、TabBarを画面幅いっぱいに広げて各タブを均等に配置できます。ターゲット領域が広がるため、操作性の向上を期待できます。ただし、タブに表示するテキストが長い場合には適していません。
 
-![タブバーとBaseが並んでいる](./images/tab-bar-stretched.png)
+![タブバーとPanelが並んでいる](./images/tab-bar-stretched.png)
 
 ## 使い方チェックリスト
 

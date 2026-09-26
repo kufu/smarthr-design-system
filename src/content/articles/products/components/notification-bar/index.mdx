@@ -75,7 +75,7 @@ import { AnimateNotificationBar } from './_components'
 #### ベースあり
 
 画面内の操作UIの近くに、操作に必要な情報を補足的に表示する場合などでは、`base="base"`を使用します。
-[特定の操作範囲へのフィードバック](/products/components/notification-bar/#h4-4)など[Base](/products/components/base/)内に配置する場合を除き、画面内に単体で配置する場合は基本的に`base="base"`を使用してください。
+[特定の操作範囲へのフィードバック](/products/components/notification-bar/#h4-4)など[Panel](/products/components/panel/)内に配置する場合を除き、画面内に単体で配置する場合は基本的に`base="base"`を使用してください。
 
 [フィードバック](/products/design-patterns/feedback/)としてのシステム通知だけでなく、画面内の操作を進めるにあたってユーザーに伝えるべきメッセージなどを表示する場合にも使用できます。
 
@@ -161,13 +161,13 @@ import { AnimateNotificationBar } from './_components'
 
 設定値の保存・適用や、ファイルの取り込み操作など、操作の結果を表示する典型的な例です。
 
-以下の例では、「保存」操作が成功した結果として、操作範囲の[Base](/products/components/base/)内に`type="success"`を表示しています。エラーの場合は`type="error"`を指定します。
+以下の例では、「保存」操作が成功した結果として、操作範囲の[Panel](/products/components/panel/)内に`type="success"`を表示しています。エラーの場合は`type="error"`を指定します。
 
 ```tsx editable
 <Section>
   <Stack>
     <Heading>セクションタイトル</Heading>
-    <Base overflow="auto">
+    <Panel overflow="auto">
       <NotificationBar type="success" bold>値の保存に成功しました。</NotificationBar>
         <form onSubmit={(e) => {e.preventDefault()}}>
         <Stack align="start" style={{padding: '16px'}}>
@@ -175,7 +175,7 @@ import { AnimateNotificationBar } from './_components'
             legend="設定項目"
             innerMargin={0.5}
           >
-            <BaseColumn>
+            <Groupbox>
               <Cluster gap={{ row: 1, column: 1.5 }}>
                 <Checkbox name="sample" checked >選択肢 1</Checkbox>
                 <Checkbox name="sample">選択肢 2</Checkbox>
@@ -183,14 +183,14 @@ import { AnimateNotificationBar } from './_components'
                 <Checkbox name="sample">選択肢 4</Checkbox>
                 <Checkbox name="sample">選択肢 5</Checkbox>
               </Cluster>
-            </BaseColumn>
+            </Groupbox>
           </Fieldset>
           <Button type="submit" variant="primary" >
             保存
           </Button>
         </Stack>
       </form>
-    </Base>
+    </Panel>
   </Stack>
 </Section>
 ```

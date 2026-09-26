@@ -17,7 +17,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
-import { parseMetadata, loadPublicExports } from './lib/parse-metadata.js';
+import { parseMetadata, loadPublicExports, loadPublicExportAliases, addAliasGroups } from './lib/parse-metadata.js';
 import { autoSplitGroups } from './lib/auto-split-groups.js';
 import { collectRelatedComponents } from './lib/related-components.js';
 import { buildDirMapping, loadManualMappings } from './lib/name-mapping.js';
@@ -39,7 +39,7 @@ const COVERAGE_BASELINE_PATH = path.join(__dirname, 'coverage-baseline.json');
 function main() {
   console.log('📂 metadata.json を読み込み中…');
   const publicExports = loadPublicExports();
-  const rawGroups = parseMetadata(publicExports);
+  const rawGroups = addAliasGroups(parseMetadata(publicExports), loadPublicExportAliases(), DESIGN_SYSTEM_DIR);
 
   console.log('🧬 relatedComponents 宣言を集約中…');
   const relatedSkills = collectRelatedComponents(DESIGN_SYSTEM_DIR);
