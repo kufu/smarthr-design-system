@@ -3,18 +3,12 @@ title: 'よくあるテーブル'
 description: 'SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。'
 order: 9
 ---
-import { Image } from 'astro:assets'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import ComponentStoryfrom from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import Grid from '@/components/article/Grid.astro'
-import { Cluster, Text, FaCloudArrowDownIcon } from 'smarthr-ui'
-
-import noTitleDo from './images/pattern-no-title-do.png'
-import noTitleDont from './images/pattern-no-title-dont.png'
-import onlyPaginationDo from './images/smarthr-table-only-pagination-do.png'
-import onlyPaginationDont from './images/smarthr-table-only-pagination-dont.png'
+import { Text, FaCloudArrowDownIcon } from 'smarthr-ui'
 
 SmartHRに頻出する、表形式で一覧表示するUIのパターンをまとめています。
 
@@ -45,14 +39,86 @@ OOUIにおける「コレクション」と、コレクションに関連する�
 オブジェクトの[詳細ビュー](/products/design-patterns/main-admin-core-features/#h2-2)へ移動する場合、オブジェクト名にリンクを設定します。
 テキストリンクによる移動は「オブジェクトの操作」にはあたらないため、アクションボタンは使いません。
 
-![スクリーンショット: 遷移リンクのスタイル](./images/smarthr-table-configure1.png)
+```tsx editable hideCode background=BACKGROUND
+<Panel className="shr-w-full">
+  <Table rounded>
+    <thead>
+      <tr>
+        <Th>オブジェクト名</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td>
+          <TextLink href="#">オブジェクト1</TextLink>
+        </Td>
+      </tr>
+      <tr>
+        <Td>
+          <TextLink href="#">オブジェクト2</TextLink>
+        </Td>
+      </tr>
+      <tr>
+        <Td>
+          <TextLink href="#">オブジェクト3</TextLink>
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</Panel>
+```
 
 #### オブジェクトの情報
 オブジェクトごとに表示する情報を指します。  
 テーブルにはオブジェクトの持つすべての情報を表示する必要はありません。
 ユーザーが、それぞれのオブジェクトを識別・比較できる情報を検討して表示します。
 
-![スクリーンショット: オブジェクトの情報の表現](./images/smarthr-table-configure2.png)
+```tsx editable hideCode background=BACKGROUND
+<Panel className="shr-w-full">
+  <Table rounded>
+    <thead>
+      <tr>
+        <Th>ステータス</Th>
+        <Th>オブジェクト名</Th>
+        <Th>オブジェクトの情報</Th>
+        <Th>オブジェクトの情報</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td contentWidth="1px">
+          <StatusLabel>ステータス</StatusLabel>
+        </Td>
+        <Td>
+          <TextLink href="#">オブジェクト1</TextLink>
+        </Td>
+        <Td>1</Td>
+        <Td>2021-01-01</Td>
+      </tr>
+      <tr>
+        <Td contentWidth="1px">
+          <StatusLabel>ステータス</StatusLabel>
+        </Td>
+        <Td>
+          <TextLink href="#">オブジェクト2</TextLink>
+        </Td>
+        <Td>2</Td>
+        <Td>2021-01-02</Td>
+      </tr>
+      <tr>
+        <Td contentWidth="1px">
+          <StatusLabel>ステータス</StatusLabel>
+        </Td>
+        <Td>
+          <TextLink href="#">オブジェクト3</TextLink>
+        </Td>
+        <Td>3</Td>
+        <Td>2021-01-03</Td>
+      </tr>
+    </tbody>
+  </Table>
+</Panel>
+```
 
 ##### オブジェクトの情報量および表示領域の幅
 各機能のユースケースや仕様によって異なるため、オブジェクトの情報量（列数）および表示領域の幅には制限を設けません。
@@ -69,7 +135,65 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 情報を指定幅以上に表示したい、またはセル内で情報を複数行で表示させたくない場合、[LineClamp](/products/components/line-clamp/)などを使ってセル上の情報に三点リーダーをつけて省略します。
 省略した情報は、マウスオーバーした際に[Tooltip](/products/components/tooltip/)を表示し、すべての情報を示してください。
 
-![スクリーンショット: 情報の省略表現](./images/smarthr-table-configure3.png)
+```tsx editable hideCode background=BACKGROUND canvas=800
+<Panel className="shr-w-full">
+  <Table rounded>
+    <thead>
+      <tr>
+        <Th>ステータス</Th>
+        <Th>オブジェクト名</Th>
+        <Th>オブジェクトの情報</Th>
+        <Th>オブジェクトの情報</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td contentWidth="1px">
+          <StatusLabel>ステータス</StatusLabel>
+        </Td>
+        <Td>
+          {/* 指定した幅を超える情報は、LineClampで三点リーダーをつけて省略する。省略した場合はマウスオーバーでTooltipが表示される。 */}
+          <div style={{ width: '12em' }}>
+            <LineClamp maxLines={1}>
+              <TextLink href="#">オブジェクト1</TextLink>
+            </LineClamp>
+          </div>
+        </Td>
+        <Td>1</Td>
+        <Td>2021-01-01</Td>
+      </tr>
+      <tr>
+        <Td contentWidth="1px">
+          <StatusLabel>ステータス</StatusLabel>
+        </Td>
+        <Td>
+          <div style={{ width: '12em' }}>
+            <LineClamp maxLines={1}>
+              <TextLink href="#">長そうでそんなに長くないオブジェクト2</TextLink>
+            </LineClamp>
+          </div>
+        </Td>
+        <Td>2</Td>
+        <Td>2021-01-02</Td>
+      </tr>
+      <tr>
+        <Td contentWidth="1px">
+          <StatusLabel>ステータス</StatusLabel>
+        </Td>
+        <Td>
+          <div style={{ width: '12em' }}>
+            <LineClamp maxLines={1}>
+              <TextLink href="#">オブジェクト3</TextLink>
+            </LineClamp>
+          </div>
+        </Td>
+        <Td>3</Td>
+        <Td>2021-01-03</Td>
+      </tr>
+    </tbody>
+  </Table>
+</Panel>
+```
 
 ##### ステータス
 
@@ -101,22 +225,110 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 
 - [Heading](/products/components/heading/)を使用し、適切な見出しレベルを設定してください。
 - 多くの場合、`{オブジェクト名}`という表記を採用しています。
-    - [よくあるテーブルの見出しに「一覧」はつけない](/products/contents/ui-text/app-writing/#h2-5)
+    - [よくあるテーブルの見出しに「一覧」はつけない](/products/contents/ui-text/app-writing/#dont-use-ichiran-in-common-tables)
 
 [画面タイトル](/products/components/heading/page-heading/)が`よくあるテーブル`の見出しを兼ねる場合は、タイトルエリアを省略できます。  
 ただし、後述の[テーブル操作エリア](#h3-2)が生じる場合はテーブルの左上に不要な余白が生まれるため、見出しを省略できません。
 
-<Cluster gap={1}>
-  <DoAndDont type="do">
-    <Image slot="img" src={noTitleDo} alt="Do" />
-    <Text slot="label">画面タイトルとテーブルの間に余白ができない場合は省略できる</Text>
-  </DoAndDont>
+<DoAndDont type="do">
+  <Text slot="label">画面タイトルとテーブルの間に余白ができない場合は省略できる</Text>
+  <div slot="img">
+```tsx editable hideCode background=BACKGROUND canvas=800
+<Stack gap={1.5} className="shr-w-full">
+  <Stack>
+    {/* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */}
+    <PageHeading autoPageTitle={false}>画面タイトル</PageHeading>
+    <p>ページの説明。</p>
+  </Stack>
+  {/* 画面タイトルがよくあるテーブルの見出しを兼ねるため、見出しを省略している */}
+  <Panel>
+    <Table rounded>
+      <thead>
+        <tr>
+          <Th>オブジェクト名</Th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <Td>
+            <TextLink href="#">オブジェクト1</TextLink>
+          </Td>
+        </tr>
+        <tr>
+          <Td>
+            <TextLink href="#">オブジェクト2</TextLink>
+          </Td>
+        </tr>
+        <tr>
+          <Td>
+            <TextLink href="#">オブジェクト3</TextLink>
+          </Td>
+        </tr>
+      </tbody>
+    </Table>
+  </Panel>
+  <Center>
+    <Pagination current={1} total={100} onClick={() => null} />
+  </Center>
+</Stack>
+```
+  </div>
+</DoAndDont>
 
-  <DoAndDont type="dont" width="auto">
-    <Image slot="img" src={noTitleDont} alt="Dont" />
-    <Text slot="label">画面タイトルとテーブルの間にテーブル操作エリアがあり、テーブルの左上に不要な余白ができる</Text>
-  </DoAndDont>
-</Cluster>
+<DoAndDont type="dont">
+  <Text slot="label">画面タイトルとテーブルの間にテーブル操作エリアがあり、テーブルの左上に不要な余白ができる</Text>
+  <div slot="img">
+```tsx editable hideCode background=BACKGROUND canvas=800
+<Stack gap={1.5} className="shr-w-full">
+  <Stack>
+    {/* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */}
+    <PageHeading autoPageTitle={false}>画面タイトル</PageHeading>
+    <p>ページの説明。</p>
+  </Stack>
+  <Stack>
+    {/* テーブル操作エリアがあるのに見出しを省略すると、テーブルの左上に不要な余白ができる */}
+    <Cluster justify="flex-end">
+      <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
+      <DropdownMenuButton trigger="一括操作">
+        <Button>一括追加（CSV）</Button>
+        <Button>一括更新（CSV）</Button>
+      </DropdownMenuButton>
+      <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
+    </Cluster>
+    <Panel>
+      <Table rounded>
+        <thead>
+          <tr>
+            <Th>オブジェクト名</Th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <Td>
+              <TextLink href="#">オブジェクト1</TextLink>
+            </Td>
+          </tr>
+          <tr>
+            <Td>
+              <TextLink href="#">オブジェクト2</TextLink>
+            </Td>
+          </tr>
+          <tr>
+            <Td>
+              <TextLink href="#">オブジェクト3</TextLink>
+            </Td>
+          </tr>
+        </tbody>
+      </Table>
+    </Panel>
+  </Stack>
+  <Center>
+    <Pagination current={1} total={100} onClick={() => null} />
+  </Center>
+</Stack>
+```
+  </div>
+</DoAndDont>
 
 ### 3. テーブル操作エリア
 テーブルにオブジェクト（行）を追加したり、オブジェクト全体を一括で変更するなどの、**データの追加・一括変更などに関わる操作をまとめたエリア**です。
@@ -168,17 +380,117 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 #### Panel内の上部にテーブルのページ送りを単体で配置しない
 一時操作エリアに置く機能が`テーブルのページ送り`のみの場合、Panel外の下部にのみ配置します。このとき、テーブルの左上に不要な余白が生まれるため、Panel内の上部のエリアは表示しないでください。
 
-<Cluster gap={1}>
-  <DoAndDont type="do">
-    <Image slot="img" src={onlyPaginationDo} alt="Do" />
-    <Text slot="label">Panel内の上部のエリアごと非表示にする。</Text>
-  </DoAndDont>
+<DoAndDont type="do">
+  <Text slot="label">Panel内の上部のエリアごと非表示にする。</Text>
+  <div slot="img">
+```tsx editable hideCode background=BACKGROUND canvas=800
+<Section className="shr-w-full">
+  <Stack gap={1.5}>
+    <Stack>
+      <Cluster align="center" justify="space-between">
+        <Heading>よくあるテーブルのタイトル</Heading>
+        <Cluster>
+          <DropdownMenuButton trigger="一括操作">
+            <Button>一括追加（CSV）</Button>
+            <Button>一括更新（CSV）</Button>
+          </DropdownMenuButton>
+          <Button prefix={<FaCirclePlusIcon />}>項目を追加</Button>
+        </Cluster>
+      </Cluster>
+      {/* 一時操作エリアに置く操作がページ送りのみのため、Panel内の上部のエリアは表示しない */}
+      <Panel>
+        <Table rounded>
+          <thead>
+            <tr>
+              <Th>オブジェクト名</Th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <Td>
+                <TextLink href="#">オブジェクト1</TextLink>
+              </Td>
+            </tr>
+            <tr>
+              <Td>
+                <TextLink href="#">オブジェクト2</TextLink>
+              </Td>
+            </tr>
+            <tr>
+              <Td>
+                <TextLink href="#">オブジェクト3</TextLink>
+              </Td>
+            </tr>
+          </tbody>
+        </Table>
+      </Panel>
+    </Stack>
+    <Center>
+      <Pagination current={1} total={100} onClick={() => null} />
+    </Center>
+  </Stack>
+</Section>
+```
+  </div>
+</DoAndDont>
 
-  <DoAndDont type="dont">
-    <Image slot="img" src={onlyPaginationDont} alt="Dont" />
-    <Text slot="label">テーブルのページ送りのみ配置すると、左に不要な余白ができるため、視線誘導として不適切。</Text>
-  </DoAndDont>
-</Cluster>
+<DoAndDont type="dont">
+  <Text slot="label">テーブルのページ送りのみ配置すると、左に不要な余白ができるため、視線誘導として不適切。</Text>
+  <div slot="img">
+```tsx editable hideCode background=BACKGROUND canvas=800
+<Section className="shr-w-full">
+  <Stack gap={1.5}>
+    <Stack>
+      <Cluster align="center" justify="space-between">
+        <Heading>よくあるテーブルのタイトル</Heading>
+        <Cluster>
+          <DropdownMenuButton trigger="一括操作">
+            <Button>一括追加（CSV）</Button>
+            <Button>一括更新（CSV）</Button>
+          </DropdownMenuButton>
+          <Button prefix={<FaCirclePlusIcon />}>項目を追加</Button>
+        </Cluster>
+      </Cluster>
+      <Panel>
+        {/* ページ送りだけをPanel内の上部に配置すると、左に不要な余白ができる */}
+        <Cluster align="center" justify="flex-end" gap={1} className="shr-p-1">
+          <PageCounter start={1} end={50} total={5000} />
+          <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
+        </Cluster>
+        <Table rounded="bottom">
+          <thead>
+            <tr>
+              <Th>オブジェクト名</Th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <Td>
+                <TextLink href="#">オブジェクト1</TextLink>
+              </Td>
+            </tr>
+            <tr>
+              <Td>
+                <TextLink href="#">オブジェクト2</TextLink>
+              </Td>
+            </tr>
+            <tr>
+              <Td>
+                <TextLink href="#">オブジェクト3</TextLink>
+              </Td>
+            </tr>
+          </tbody>
+        </Table>
+      </Panel>
+    </Stack>
+    <Center>
+      <Pagination current={1} total={100} onClick={() => null} />
+    </Center>
+  </Stack>
+</Section>
+```
+  </div>
+</DoAndDont>
 
 ## レイアウト
 
@@ -195,19 +507,592 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 
 ![スクリーンショット: 「デフォルトのレイアウト」の要素間の余白](./images/smarthr-table-layout.png)
 
+| 要素 | 余白 |
+| :--- | :--- |
+| 見出し・テーブル操作エリアと、テーブルを含むPanelの間 | `1（16px）` |
+| テーブル操作エリアのボタン同士の間 | `0.5（8px）` |
+| Panel内の上部の一時操作エリアのパディング | `1（16px）` |
+| 検索フォームの入力ボックスと検索ボタンの間 | `0.5（8px）` |
+| Panel内の上部の一時操作エリアの操作同士の間 | `1（16px）` |
+| テーブルを含むPanelと、Panel外の下部の一時操作エリアの間 | `1.5（24px）` |
+
+実装例：
+
+```tsx editable hideCode background=DOT canvas=1400
+<div className="shr-bg-background" style={{ width: '100%' }}>
+  <div className="shr-relative shr-z-1">
+    <AppHeader
+      appName="すごいプロダクト"
+      userInfo={{ empCode: '001', firstName: '須磨', lastName: '栄子' }}
+      navigations={[
+        { children: 'ダッシュボード', href: '#', current: true },
+        { children: '設定', childNavigations: [{ children: 'マスター設定', href: '#' }] },
+      ]}
+    />
+  </div>
+  <Container>
+    <Stack gap={2}>
+      <Stack>
+        {/* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */}
+        <PageHeading autoPageTitle={false}>画面タイトル</PageHeading>
+        <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+      </Stack>
+      <Section>
+        <Stack gap={1.5}>
+          <Stack>
+            <Cluster align="center" justify="space-between">
+              <Heading>よくあるテーブルのタイトル</Heading>
+              <Cluster>
+                <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
+                <DropdownMenuButton trigger="一括操作">
+                  <Button>一括追加（CSV）</Button>
+                  <Button>一括更新（CSV）</Button>
+                </DropdownMenuButton>
+                <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
+              </Cluster>
+            </Cluster>
+            <Panel>
+              <Cluster align="center" justify="space-between" className="shr-p-1">
+                <Cluster align="center" gap={1}>
+                  <Cluster>
+                    <SearchInput name="search" tooltipMessage="オブジェクト名で検索できます。" />
+                    <Button>検索</Button>
+                  </Cluster>
+                  <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+                  <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
+                </Cluster>
+                <Cluster align="center" gap={1}>
+                  <PageCounter start={1} end={50} total={5000} />
+                  <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
+                </Cluster>
+              </Cluster>
+              <Table rounded="bottom">
+                <thead>
+                  <tr>
+                    <ThCheckbox name="allRowCheckbox" />
+                    <Th>ステータス</Th>
+                    <Th>オブジェクト名</Th>
+                    <Th>オブジェクトの情報</Th>
+                    <Th>オブジェクトの情報</Th>
+                    <Th>操作</Th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <TdCheckbox name="rowCheckbox" aria-labelledby="object-1" />
+                    <Td contentWidth="1px">
+                      <StatusLabel>ステータス</StatusLabel>
+                    </Td>
+                    <Td id="object-1">オブジェクト1</Td>
+                    <Td>1</Td>
+                    <Td>2021-01-01</Td>
+                    <Td contentWidth="1px">
+                      <Cluster inline className="shr-min-w-max">
+                        <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                        <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                      </Cluster>
+                    </Td>
+                  </tr>
+                  <tr>
+                    <TdCheckbox name="rowCheckbox" aria-labelledby="object-2" />
+                    <Td contentWidth="1px">
+                      <StatusLabel>ステータス</StatusLabel>
+                    </Td>
+                    <Td id="object-2">オブジェクト2</Td>
+                    <Td>2</Td>
+                    <Td>2021-01-02</Td>
+                    <Td contentWidth="1px">
+                      <Cluster inline className="shr-min-w-max">
+                        <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                        <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                      </Cluster>
+                    </Td>
+                  </tr>
+                  <tr>
+                    <TdCheckbox name="rowCheckbox" aria-labelledby="object-3" />
+                    <Td contentWidth="1px">
+                      <StatusLabel>ステータス</StatusLabel>
+                    </Td>
+                    <Td id="object-3">オブジェクト3</Td>
+                    <Td>3</Td>
+                    <Td>2021-01-03</Td>
+                    <Td contentWidth="1px">
+                      <Cluster inline className="shr-min-w-max">
+                        <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                        <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                      </Cluster>
+                    </Td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Panel>
+          </Stack>
+          <Center>
+            <Pagination current={1} total={100} onClick={() => null} />
+          </Center>
+        </Stack>
+      </Section>
+    </Stack>
+  </Container>
+</div>
+```
+
 ### フルスクリーンレイアウト
 画面幅いっぱいにテーブル、一時操作エリアを配置するレイアウトです。  
 表示項目が多く、テーブルを閲覧・操作することが主たる業務となりうるときに使用します。
 
 フルスクリーンレイアウトを使用する場合、1つの画面内で複数のテーブルは使用できません。
 
+要素間の余白は以下のとおりです。（コンポーネント内の余白は省略）
+
 ![スクリーンショット: 「フルスクリーンレイアウト」の要素間の余白](./images/full-screen-table-layout.png)
+
+| 要素 | 余白 |
+| :--- | :--- |
+| ヘッダーと画面タイトルの間 | `1.5（24px）` |
+| 画面タイトル・リード文と、画面の左右の端の間 | `1（16px）` |
+| リード文と、見出し・テーブル操作エリアの間 | `1.5（24px）` |
+| 見出し・テーブル操作エリアと、画面の左右の端の間 | `1（16px）` |
+| 見出し・テーブル操作エリアと、一時操作エリアの間 | `1（16px）` |
+| テーブルと、テーブル下部の一時操作エリアの間 | `1.5（24px）` |
+
+実装例：
+
+```tsx editable hideCode background=DOT canvas=1400
+<div className="shr-bg-background" style={{ width: '100%' }}>
+  <div className="shr-relative shr-z-1">
+    <AppHeader
+      appName="すごいプロダクト"
+      userInfo={{ empCode: '001', firstName: '須磨', lastName: '栄子' }}
+      navigations={[
+        { children: 'ダッシュボード', href: '#', current: true },
+        { children: '設定', childNavigations: [{ children: 'マスター設定', href: '#' }] },
+      ]}
+    />
+  </div>
+  <Stack gap={1.5} className="shr-py-1.5">
+    <Stack className="shr-px-1">
+      {/* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */}
+      <PageHeading autoPageTitle={false}>画面タイトル</PageHeading>
+      <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+    </Stack>
+    <Section>
+      <Stack gap={1.5}>
+        <Stack>
+          <Cluster align="center" justify="space-between" className="shr-px-1">
+            <Heading>よくあるテーブルのタイトル</Heading>
+            <Cluster>
+              <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
+              <DropdownMenuButton trigger="一括操作">
+                <Button>一括追加（CSV）</Button>
+                <Button>一括更新（CSV）</Button>
+              </DropdownMenuButton>
+              <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
+            </Cluster>
+          </Cluster>
+          {/* 一時操作エリアとテーブルを画面の左右いっぱいに配置するため、Panelの角丸をなくしている */}
+          <Panel className="shr-rounded-none">
+            <Cluster align="center" justify="space-between" className="shr-p-1">
+              <Cluster align="center" gap={1}>
+                <Cluster>
+                  <SearchInput name="search" tooltipMessage="オブジェクト名で検索できます。" />
+                  <Button>検索</Button>
+                </Cluster>
+                <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+                <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
+              </Cluster>
+              <Cluster align="center" gap={1}>
+                <PageCounter start={1} end={50} total={5000} />
+                <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
+              </Cluster>
+            </Cluster>
+            <Table>
+              <thead>
+                <tr>
+                  <ThCheckbox name="allRowCheckbox" />
+                  <Th>ステータス</Th>
+                  <Th>オブジェクト名</Th>
+                  <Th>オブジェクトの情報</Th>
+                  <Th>オブジェクトの情報</Th>
+                  <Th>操作</Th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <TdCheckbox name="rowCheckbox" aria-labelledby="object-1" />
+                  <Td contentWidth="1px">
+                    <StatusLabel>ステータス</StatusLabel>
+                  </Td>
+                  <Td id="object-1">オブジェクト1</Td>
+                  <Td>1</Td>
+                  <Td>2021-01-01</Td>
+                  <Td contentWidth="1px">
+                    <Cluster inline className="shr-min-w-max">
+                      <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                      <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                    </Cluster>
+                  </Td>
+                </tr>
+                <tr>
+                  <TdCheckbox name="rowCheckbox" aria-labelledby="object-2" />
+                  <Td contentWidth="1px">
+                    <StatusLabel>ステータス</StatusLabel>
+                  </Td>
+                  <Td id="object-2">オブジェクト2</Td>
+                  <Td>2</Td>
+                  <Td>2021-01-02</Td>
+                  <Td contentWidth="1px">
+                    <Cluster inline className="shr-min-w-max">
+                      <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                      <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                    </Cluster>
+                  </Td>
+                </tr>
+                <tr>
+                  <TdCheckbox name="rowCheckbox" aria-labelledby="object-3" />
+                  <Td contentWidth="1px">
+                    <StatusLabel>ステータス</StatusLabel>
+                  </Td>
+                  <Td id="object-3">オブジェクト3</Td>
+                  <Td>3</Td>
+                  <Td>2021-01-03</Td>
+                  <Td contentWidth="1px">
+                    <Cluster inline className="shr-min-w-max">
+                      <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                      <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                    </Cluster>
+                  </Td>
+                </tr>
+              </tbody>
+            </Table>
+          </Panel>
+        </Stack>
+        <Center>
+          <Pagination current={1} total={100} onClick={() => null} />
+        </Center>
+      </Stack>
+    </Section>
+  </Stack>
+</div>
+```
 
 #### スクロールの挙動
 テーブルを包む要素内で部分的にスクロールさせるのではなく、ブラウザのスクロールによってテーブルもスクロールできるようにします。  
 また、縦にスクロールしたときは、[fixedHead](/products/components/table/#props-Table) propsを用いてテーブルヘッダー（`thead`）を画面上部に固定します。
 
-![スクリーンショット: 縦にスクロールしたときはヘッダーを上部に固定](./images/full-screen-table-scroll.png)
+```tsx editable hideCode background=DOT canvas=1400 withStyled
+// Tableは内部にスクロール領域（Scroller）を持つため、fixedHeadで固定したtheadはそのスクロール領域を基準に固定される。
+// ブラウザのスクロールに合わせてtheadを画面上部に固定するため、Table内部のスクロール領域のoverflowを解除している。
+const TableWrapper = styled.div`
+  > .smarthr-ui-Scroller {
+    overflow: visible;
+  }
+`
+
+// デザインシステム上でブラウザのスクロールを再現するため、高さを指定した外側のdivをブラウザの表示領域に見立てている。
+render(
+  <div style={{ width: '100%', height: '600px', overflow: 'auto' }}>
+    <div className="shr-bg-background" style={{ width: '100%' }}>
+      <div className="shr-relative shr-z-1">
+        <AppHeader
+          appName="すごいプロダクト"
+          userInfo={{ empCode: '001', firstName: '須磨', lastName: '栄子' }}
+          navigations={[
+            { children: 'ダッシュボード', href: '#', current: true },
+            { children: '設定', childNavigations: [{ children: 'マスター設定', href: '#' }] },
+          ]}
+        />
+      </div>
+      <Stack gap={1.5} className="shr-py-1.5">
+        <Stack className="shr-px-1">
+          {/* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */}
+          <PageHeading autoPageTitle={false}>画面タイトル</PageHeading>
+          <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+        </Stack>
+        <Section>
+          <Stack gap={1.5}>
+            <Stack>
+              <Cluster align="center" justify="space-between" className="shr-px-1">
+                <Heading>よくあるテーブルのタイトル</Heading>
+                <Cluster>
+                  <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
+                  <DropdownMenuButton trigger="一括操作">
+                    <Button>一括追加（CSV）</Button>
+                    <Button>一括更新（CSV）</Button>
+                  </DropdownMenuButton>
+                  <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
+                </Cluster>
+              </Cluster>
+              {/* 一時操作エリアとテーブルを画面の左右いっぱいに配置するため、Panelの角丸をなくしている */}
+              <Panel className="shr-rounded-none">
+                <Cluster align="center" justify="space-between" className="shr-p-1">
+                  <Cluster align="center" gap={1}>
+                    <Cluster>
+                      <SearchInput name="search" tooltipMessage="オブジェクト名で検索できます。" />
+                      <Button>検索</Button>
+                    </Cluster>
+                    <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+                    <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
+                  </Cluster>
+                  <Cluster align="center" gap={1}>
+                    <PageCounter start={1} end={50} total={5000} />
+                    <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
+                  </Cluster>
+                </Cluster>
+                {/* Table内部のスクロール領域を解除したTableWrapperで包み、ブラウザのスクロールでtheadを画面上部に固定する */}
+                <TableWrapper>
+                  <Table fixedHead>
+                    <thead>
+                      <tr>
+                        <ThCheckbox name="allRowCheckbox" />
+                        <Th>ステータス</Th>
+                        <Th>オブジェクト名</Th>
+                        <Th>オブジェクトの情報</Th>
+                        <Th>オブジェクトの情報</Th>
+                        <Th>操作</Th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-1" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-1">オブジェクト1</Td>
+                        <Td>1</Td>
+                        <Td>2021-01-01</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-2" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-2">オブジェクト2</Td>
+                        <Td>2</Td>
+                        <Td>2021-01-02</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-3" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-3">オブジェクト3</Td>
+                        <Td>3</Td>
+                        <Td>2021-01-03</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-4" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-4">オブジェクト4</Td>
+                        <Td>4</Td>
+                        <Td>2021-01-04</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-5" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-5">オブジェクト5</Td>
+                        <Td>5</Td>
+                        <Td>2021-01-05</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-6" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-6">オブジェクト6</Td>
+                        <Td>6</Td>
+                        <Td>2021-01-06</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-7" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-7">オブジェクト7</Td>
+                        <Td>7</Td>
+                        <Td>2021-01-07</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-8" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-8">オブジェクト8</Td>
+                        <Td>8</Td>
+                        <Td>2021-01-08</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-9" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-9">オブジェクト9</Td>
+                        <Td>9</Td>
+                        <Td>2021-01-09</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-10" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-10">オブジェクト10</Td>
+                        <Td>10</Td>
+                        <Td>2021-01-10</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-11" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-11">オブジェクト11</Td>
+                        <Td>11</Td>
+                        <Td>2021-01-11</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-12" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-12">オブジェクト12</Td>
+                        <Td>12</Td>
+                        <Td>2021-01-12</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-13" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-13">オブジェクト13</Td>
+                        <Td>13</Td>
+                        <Td>2021-01-13</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-14" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-14">オブジェクト14</Td>
+                        <Td>14</Td>
+                        <Td>2021-01-14</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                      <tr>
+                        <TdCheckbox name="rowCheckbox" aria-labelledby="object-15" />
+                        <Td contentWidth="1px">
+                          <StatusLabel>ステータス</StatusLabel>
+                        </Td>
+                        <Td id="object-15">オブジェクト15</Td>
+                        <Td>15</Td>
+                        <Td>2021-01-15</Td>
+                        <Td contentWidth="1px">
+                          <Cluster inline className="shr-min-w-max">
+                            <Button size="S" prefix={<FaPenIcon />}>操作1</Button>
+                            <Button size="S" prefix={<FaTrashCanIcon />}>操作2</Button>
+                          </Cluster>
+                        </Td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </TableWrapper>
+              </Panel>
+            </Stack>
+            <Center>
+              <Pagination current={1} total={100} onClick={() => null} />
+            </Center>
+          </Stack>
+        </Section>
+      </Stack>
+    </div>
+  </div>
+)
+```
 
 ### 列の固定
 [Table](/products/components/table/)は、デフォルトで横スクロールします（`reel` propsを`false`にすることで解除できます）。
@@ -215,7 +1100,7 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 列を固定することにより、画面の表示幅の変更等により意図せぬ横スクロールが発生した場合にも操作性が担保できます。
 [Th](/products/components/table/#props-Th)と[Td](/products/components/table/#props-Td)の`fixed`propsで`left`または`right`を指定することで、左右どちらでも固定できます。
 
-```tsx editable
+```tsx editable hideCode
 
 <div style={{ width: '100%' }}>
     <Table>
@@ -332,7 +1217,29 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
     - 操作対象のオブジェクトが存在しないため、一時操作エリアは**非表示**とします。
     - テーブルのページ送りも**非表示**とします。
 
-![スクリーンショット: 「よくあるテーブル」の初期表示の例](./images/smarthr-table-variation1.png)
+```tsx editable hideCode background=BACKGROUND canvas=800
+<Section className="shr-w-full">
+  <Stack>
+    <Cluster align="center" justify="space-between">
+      <Heading>カスタムマスター項目</Heading>
+      {/* オブジェクトがないと成立しない操作（並べ替え、一括更新（CSV））は表示しない */}
+      <Cluster>
+        <DropdownMenuButton trigger="一括操作">
+          <Button>一括追加（CSV）</Button>
+        </DropdownMenuButton>
+        <Button prefix={<FaCirclePlusIcon />}>項目を追加</Button>
+      </Cluster>
+    </Cluster>
+    {/* テーブルと一時操作エリアは表示せず、Panel内にメッセージとオブジェクト追加を促すボタンを表示する */}
+    <Panel>
+      <Stack align="center" className="shr-px-4 shr-py-4">
+        <p>カスタムマスター項目はありません。</p>
+        <Button size="S" prefix={<FaCirclePlusIcon />}>項目を追加</Button>
+      </Stack>
+    </Panel>
+  </Stack>
+</Section>
+```
 
 ### 検索結果なし
 オブジェクトの検索結果や絞り込み結果が0件であった場合の表示パターンです。
@@ -349,7 +1256,51 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
     - 一時操作エリアは表示したままとします。
     - テーブルのページ送りは**非表示**とします。
 
-![スクリーンショット: 検索結果がない「よくあるテーブル」の例](./images/smarthr-table-variation2.png)
+```tsx editable hideCode background=BACKGROUND canvas=800
+<Section className="shr-w-full">
+  <Stack>
+    <Cluster align="center" justify="space-between">
+      <Heading>カスタムマスター項目</Heading>
+      <Cluster>
+        <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
+        <DropdownMenuButton trigger="一括操作">
+          <Button>一括追加（CSV）</Button>
+          <Button>一括更新（CSV）</Button>
+        </DropdownMenuButton>
+        <Button prefix={<FaCirclePlusIcon />}>項目を追加</Button>
+      </Cluster>
+    </Cluster>
+    <Panel>
+      {/* 一時操作エリアは表示したまま、テーブルのページ送りは表示しない */}
+      <Cluster align="center" gap={1} className="shr-p-1">
+        <Cluster>
+          <SearchInput name="search" tooltipMessage="項目名、項目コードで検索できます。" />
+          <Button>検索</Button>
+        </Cluster>
+        <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+        <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
+      </Cluster>
+      <Table rounded="bottom">
+        <thead>
+          <tr>
+            <Th>項目名</Th>
+            <Th>項目コード</Th>
+            <Th>操作</Th>
+          </tr>
+        </thead>
+        {/* テーブルヘッダーは表示したまま、メッセージを上下左右中央に表示する */}
+        <EmptyTableBody>
+          <p>
+            該当するカスタムマスター項目はありません。
+            <br />
+            別の条件を試してください。
+          </p>
+        </EmptyTableBody>
+      </Table>
+    </Panel>
+  </Stack>
+</Section>
+```
 
 
 ### 1ページ以内
@@ -364,7 +1315,78 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 4. 一時操作エリア
     - テーブルのページ送りは**非表示**とします。
 
-![スクリーンショット: 1ページ以内の「よくあるテーブル」の例](./images/smarthr-table-variation3.png)
+```tsx editable hideCode background=BACKGROUND canvas=800
+<Section className="shr-w-full">
+  <Stack>
+    <Cluster align="center" justify="space-between">
+      <Heading>カスタムマスター項目</Heading>
+      <Cluster>
+        <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
+        <DropdownMenuButton trigger="一括操作">
+          <Button>一括追加（CSV）</Button>
+          <Button>一括更新（CSV）</Button>
+        </DropdownMenuButton>
+        <Button prefix={<FaCirclePlusIcon />}>項目を追加</Button>
+      </Cluster>
+    </Cluster>
+    <Panel>
+      <Cluster align="center" justify="space-between" className="shr-p-1">
+        <Cluster align="center" gap={1}>
+          <Cluster>
+            <SearchInput name="search" tooltipMessage="項目名、項目コードで検索できます。" />
+            <Button>検索</Button>
+          </Cluster>
+          <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+          <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
+        </Cluster>
+        {/* オブジェクトが1ページに収まるため、テーブルのページ送りは表示しない */}
+        <PageCounter start={1} end={3} total={3} />
+      </Cluster>
+      <Table rounded="bottom">
+        <thead>
+          <tr>
+            <Th>項目名</Th>
+            <Th>項目コード</Th>
+            <Th>操作</Th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <Td>項目1</Td>
+            <Td>0001</Td>
+            <Td contentWidth="1px">
+              <Cluster inline className="shr-min-w-max">
+                <Button size="S" prefix={<FaPenIcon />}>編集</Button>
+                <Button size="S" prefix={<FaTrashCanIcon />}>削除</Button>
+              </Cluster>
+            </Td>
+          </tr>
+          <tr>
+            <Td>項目2</Td>
+            <Td>0002</Td>
+            <Td contentWidth="1px">
+              <Cluster inline className="shr-min-w-max">
+                <Button size="S" prefix={<FaPenIcon />}>編集</Button>
+                <Button size="S" prefix={<FaTrashCanIcon />}>削除</Button>
+              </Cluster>
+            </Td>
+          </tr>
+          <tr>
+            <Td>項目3</Td>
+            <Td>0003</Td>
+            <Td contentWidth="1px">
+              <Cluster inline className="shr-min-w-max">
+                <Button size="S" prefix={<FaPenIcon />}>編集</Button>
+                <Button size="S" prefix={<FaTrashCanIcon />}>削除</Button>
+              </Cluster>
+            </Td>
+          </tr>
+        </tbody>
+      </Table>
+    </Panel>
+  </Stack>
+</Section>
+```
 
 ## モバイル
 
@@ -382,7 +1404,111 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 
 <Grid>
     <ImgWithDesc description="よくあるテーブル">
-    ![スクリーンショット: よくあるテーブル](./images/smarthr-table-conversion.png)
+```tsx editable hideCode background=BACKGROUND canvas=1000
+<Section className="shr-w-full">
+  <Stack gap={1.5}>
+    <Stack>
+      <Cluster align="center" justify="space-between">
+        <Heading>対象従業員</Heading>
+        <Cluster>
+          <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
+          <DropdownMenuButton trigger="一括操作">
+            <Button>一括登録</Button>
+            <Button>一括更新</Button>
+          </DropdownMenuButton>
+          <Button prefix={<FaCirclePlusIcon />}>対象従業員を追加</Button>
+        </Cluster>
+      </Cluster>
+      <Panel>
+        <Cluster align="center" justify="space-between" className="shr-p-1">
+          <Cluster align="center" gap={1}>
+            <Cluster>
+              <SearchInput name="search" tooltipMessage="社員番号、氏名で検索できます。" />
+              <Button>検索</Button>
+            </Cluster>
+            <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
+            <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
+          </Cluster>
+          <Cluster align="center" gap={1}>
+            <PageCounter start={1} end={50} total={5000} />
+            <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
+          </Cluster>
+        </Cluster>
+        <Table rounded="bottom">
+          <thead>
+            <tr>
+              <ThCheckbox name="allRowCheckbox" />
+              <Th>ステータス</Th>
+              <Th>対象従業員名</Th>
+              <Th>部署</Th>
+              <Th>役職</Th>
+              <Th>雇用形態</Th>
+              <Th>入社日</Th>
+              <Th>操作</Th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <TdCheckbox name="rowCheckbox" aria-labelledby="object-1" />
+              <Td contentWidth="1px">
+                <StatusLabel>進行中</StatusLabel>
+              </Td>
+              <Td id="object-1">SHR0001 須磨 栄子</Td>
+              <Td>営業部</Td>
+              <Td>部長</Td>
+              <Td>正社員</Td>
+              <Td>2025-11-17</Td>
+              <Td contentWidth="1px">
+                <Cluster inline className="shr-min-w-max">
+                  <Button size="S" prefix={<FaPenIcon />}>編集</Button>
+                  <Button size="S" prefix={<FaTrashCanIcon />}>削除</Button>
+                </Cluster>
+              </Td>
+            </tr>
+            <tr>
+              <TdCheckbox name="rowCheckbox" aria-labelledby="object-2" />
+              <Td contentWidth="1px">
+                <StatusLabel>進行中</StatusLabel>
+              </Td>
+              <Td id="object-2">SHR0001 須磨 栄子</Td>
+              <Td>営業部</Td>
+              <Td>部長</Td>
+              <Td>正社員</Td>
+              <Td>2025-11-17</Td>
+              <Td contentWidth="1px">
+                <Cluster inline className="shr-min-w-max">
+                  <Button size="S" prefix={<FaPenIcon />}>編集</Button>
+                  <Button size="S" prefix={<FaTrashCanIcon />}>削除</Button>
+                </Cluster>
+              </Td>
+            </tr>
+            <tr>
+              <TdCheckbox name="rowCheckbox" aria-labelledby="object-3" />
+              <Td contentWidth="1px">
+                <StatusLabel>進行中</StatusLabel>
+              </Td>
+              <Td id="object-3">SHR0001 須磨 栄子</Td>
+              <Td>営業部</Td>
+              <Td>部長</Td>
+              <Td>正社員</Td>
+              <Td>2025-11-17</Td>
+              <Td contentWidth="1px">
+                <Cluster inline className="shr-min-w-max">
+                  <Button size="S" prefix={<FaPenIcon />}>編集</Button>
+                  <Button size="S" prefix={<FaTrashCanIcon />}>削除</Button>
+                </Cluster>
+              </Td>
+            </tr>
+          </tbody>
+        </Table>
+      </Panel>
+    </Stack>
+    <Center>
+      <Pagination current={1} total={100} onClick={() => null} />
+    </Center>
+  </Stack>
+</Section>
+```
     </ImgWithDesc>
     <ImgWithDesc description="よくあるリスト">
     ![スクリーンショット: よくあるリスト](./images/smarthr-list-conversion.png)
