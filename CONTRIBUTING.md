@@ -78,16 +78,18 @@ MDXや`.astro`で`client:load`などのクライアントディレクティブ�
 
 ```jsx
 // NG: smarthr-uiのbarrel自体がクライアントエントリーになり、smarthr-ui全体（pdfjsなども含む）が全ページ共通のチャンクに入ってしまう
-import { CurrencyInput } from 'smarthr-ui'
-;<CurrencyInput name="example" client:load />
+import { CurrencyInput } from 'smarthr-ui';
+
+<CurrencyInput name="example" client:load />
 ```
 
 `_components/`以下にラッパーとなるReactコンポーネントを作り、そちらにクライアントディレクティブを付けてください。
 
 ```jsx
 // OK: ラッパーがエントリーになるため、使っているコンポーネントだけがバンドルされる
-import { SampleInputWithPrefixText } from './_components'
-;<SampleInputWithPrefixText client:load />
+import { SampleInputWithPrefixText } from './_components';
+
+<SampleInputWithPrefixText client:load />
 ```
 
 ### キャッシュ
