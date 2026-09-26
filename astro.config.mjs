@@ -9,6 +9,7 @@ import remarkEmoji from 'remark-emoji';
 
 import remarkCodeBlock from './src/remark/remark-code-block';
 import remarkIndexIdHeader from './src/remark/remark-index-id-header';
+import smarthrUiScope from './src/vite/vite-plugin-smarthr-ui-scope';
 
 import sitemap from '@astrojs/sitemap';
 
@@ -38,6 +39,7 @@ export default defineConfig({
     }),
   },
   vite: {
+    plugins: [smarthrUiScope()],
     define: {
       process: 'globalThis.process',
     },
