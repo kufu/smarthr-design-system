@@ -8,20 +8,20 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import VideoEmbed from '@/components/article/VideoEmbed.astro'
 
-システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。
+システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に状態を伝えるときに使います。
 
 <ComponentStory name="NotificationBar" />
 
 ## 使用上の注意
 
-### フィードバックではないサービス運営上のお知らせなどを画面全体（ヘッダーの下）で使用しない
+### サービス運営上のお知らせなどを画面全体（ヘッダーの下）で使用しない
 
-NotificationBarを画面全体（ヘッダーの下）で使用する場合は、ユーザーが行った操作への応答や、操作が反映されている状態を示すなどの、システムからの[フィードバック](/products/design-patterns/feedback/)の表示に限定します。限定する理由は次のとおりです。
+NotificationBarを画面全体（ヘッダーの下）で使用する場合は、ユーザーが行った操作への[フィードバック](/products/design-patterns/feedback/)や、操作が反映されている状態を示すなどの、システムからの通知の表示に限定します。限定する理由は次のとおりです。
 
-- 画面全体での表示はユーザーに強めの注意を促す効果があることから、一連の業務やタスクを遂行する上で必要なフィードバックを表示する一貫性を担保し、ユーザーに適切な操作を促すため
+- 画面全体での表示はユーザーに強めの注意を促す効果があることから、一連の業務やタスクを遂行する上で必要な通知を表示する一貫性を担保し、ユーザーに適切な操作を促すため
 - サービス運営上の利用促進や訴求といった、システムからの通知ではないメッセージを画面全体で使用した場合、ユーザーに都度システムからの応答なのか運営者からの情報なのかの判断が必要になることを回避するため
 
-システムからの応答としてのフィードバックではない、その他の重要なお知らせや情報などの表示が必要な場合は、[ベースあり](#h4-0)や、[InformationPanel](/products/components/information-panel/)などを使用してください。
+システムからの通知ではない、その他のサービス運営上の情報などの表示が必要な場合は、[ベースあり](#h4-0)や、[InformationPanel](/products/components/information-panel/)などを使用してください。
 
 ### メッセージは省略表示しない
 
@@ -32,7 +32,7 @@ NotificationBarのメッセージは簡潔な一行程度の文章になるよ�
 
 ## 種類
 
-フィードバックとして伝えたいことや、フィードバックする内容の重要度に合わせて5種類を定義しています。
+通知として伝えたいことの重要度に合わせて5種類を定義しています。
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
@@ -77,7 +77,7 @@ import { AnimateNotificationBar } from './_components'
 画面内の操作UIの近くに、操作に必要な情報を補足的に表示する場合などでは、`base="base"`を使用します。
 [特定の操作範囲へのフィードバック](/products/components/notification-bar/#h4-4)など[Base](/products/components/base/)内に配置する場合を除き、画面内に単体で配置する場合は基本的に`base="base"`を使用してください。
 
-[フィードバック](/products/design-patterns/feedback/)としてのシステム通知だけでなく、画面内の操作を進めるにあたってユーザーに伝えるべきメッセージなどを表示する場合にも使用できます。
+[フィードバック](/products/design-patterns/feedback/)だけでなく、システムの状態や画面内の操作を進めるにあたってユーザーに伝えるべきメッセージなどを表示する場合にも使用できます。
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
