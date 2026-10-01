@@ -5,7 +5,7 @@ description: '「よくあるテーブル」などで絞り込み条件を入力
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import { ResponseMessage, BaseColumn } from 'smarthr-ui'
+import { ResponseMessage, Groupbox } from 'smarthr-ui'
 
 「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などで絞り込み条件を入力するためのドロップダウンコンポーネントです。[Checkbox](/products/components/checkbox/)/[RadioButton](/products/components/radio-button/)/日付などの入力要素をドロップダウンパネル内に配置し、絞り込みの適用・解除を提供するときに使います。
 
@@ -26,9 +26,9 @@ import { ResponseMessage, BaseColumn } from 'smarthr-ui'
 
 ### [WIP] モバイル
 
-<BaseColumn className="shr-mt-2">
+<Groupbox className="shr-mt-2">
   <ResponseMessage>モバイルで自動的に切り替わるようにコンポーネントを改修予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 #### ドロップダウンパネル
 

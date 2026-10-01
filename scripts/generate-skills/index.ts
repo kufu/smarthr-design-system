@@ -3,7 +3,7 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { parseMetadata, loadPublicExports } from './lib/parse-metadata.js';
+import { parseMetadata, loadPublicExports, loadPublicExportAliases, addAliasGroups } from './lib/parse-metadata.js';
 import { autoSplitGroups } from './lib/auto-split-groups.js';
 import { fetchEslintRules, buildComponentRuleMap, type EslintRuleWithContent } from './lib/fetch-eslint-rules.js';
 import { parseChecklist } from './lib/parse-checklist.js';
@@ -32,7 +32,7 @@ async function main() {
   console.log('📂 metadata.json を読み込み中…');
   const publicExports = loadPublicExports();
   console.log(`   ${publicExports.size} 個の public named exports を取得`);
-  const rawGroups = parseMetadata(publicExports);
+  const rawGroups = addAliasGroups(parseMetadata(publicExports), loadPublicExportAliases(), DESIGN_SYSTEM_DIR);
 
   console.log('🧬 relatedComponents 宣言を集約中…');
   const relatedSkills = collectRelatedComponents(DESIGN_SYSTEM_DIR);

@@ -6,7 +6,7 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import { Image } from 'astro:assets'
-import { ResponseMessage, BaseColumn, Cluster, Text, FaCaretDownIcon } from 'smarthr-ui'
+import { ResponseMessage, Groupbox, Cluster, Text, FaCaretDownIcon } from 'smarthr-ui'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 
 import DropdownMenuButtonPanelWidthDo from '../images/dropdown-menu-button-panel-width-do.png'
@@ -59,9 +59,9 @@ import DropdownMenuButtonPanelHeightDont from '../images/dropdown-menu-button-pa
 
 ##### 操作項目の高さは通常サイズのボタンに揃える
 
-<BaseColumn className="shr-mt-2">
+<Groupbox className="shr-mt-2">
   <ResponseMessage>モバイルで自動的に調整されるようコンポーネントを改修予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 デフォルトではドロップダウンパネル内の操作項目の高さは[`小`サイズのボタン](/products/components/button/#h3-7)に揃えられています。  
 モバイルでは、操作しやすいように通常サイズのボタンに揃えてください（TODO: ボタンの基準にリンクする）。
@@ -75,9 +75,9 @@ import DropdownMenuButtonPanelHeightDont from '../images/dropdown-menu-button-pa
 
 ##### 横幅は画面幅の2/3程度までに収まるように調整する
 
-<BaseColumn className="shr-mt-2">
+<Groupbox className="shr-mt-2">
   <ResponseMessage>モバイルで自動的に調整されるようコンポーネントを改修予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 ドロップダウンパネルの横幅は画面幅の2/3程度までに収まるように調整してください。
 
@@ -98,9 +98,9 @@ import DropdownMenuButtonPanelHeightDont from '../images/dropdown-menu-button-pa
 
 ##### 縦幅は画面内に収まるように調整する
 
-<BaseColumn className="shr-mt-2">
+<Groupbox className="shr-mt-2">
   <ResponseMessage>モバイルで自動的に調整されるようコンポーネントを改修予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 
 ドロップダウンパネルの縦幅は画面内に収まるように調整し、必要に応じてスクロールできるようにしてください。

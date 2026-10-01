@@ -100,7 +100,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
 
 ### 選択肢のグルーピング
 
-例えば設定画面などで、チェックボックスやラジオボタンのように複数の選択肢を持つ項目を、いくつも並べて表示する場合は、ラベルがかかる範囲や設定項目ごとの選択肢を区別しやすくするために[BaseColumn](/products/components/base/base-column/)でグルーピングする場合があります。
+例えば設定画面などで、チェックボックスやラジオボタンのように複数の選択肢を持つ項目を、いくつも並べて表示する場合は、ラベルがかかる範囲や設定項目ごとの選択肢を区別しやすくするために[Groupbox](/products/components/groupbox/)でグルーピングする場合があります。
 
 [共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)のデザインパターンもあわせて参考にしてください。
 
@@ -109,7 +109,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
     legend="設定項目"
     innerMargin={0.5}
 >
-    <BaseColumn>
+    <Groupbox>
         <Cluster gap={{ row: 1, column: 1.5 }}>
             <RadioButton name="sample" checked>選択肢 1</RadioButton>
             <RadioButton name="sample">選択肢 2</RadioButton>
@@ -117,7 +117,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
             <RadioButton name="sample">選択肢 4</RadioButton>
             <RadioButton name="sample">選択肢 5</RadioButton>
         </Cluster>
-    </BaseColumn>
+    </Groupbox>
 </Fieldset>
 ```
 
@@ -151,7 +151,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
   legend="通知方法"
   innerMargin={0.5}
 >
-  <BaseColumn>
+  <Groupbox>
     <Cluster gap={{ row: 1, column: 1.5 }}>
       <RadioButton name="notification" checked>
         メール
@@ -163,7 +163,7 @@ RadioButtonは常に1つの選択肢が選択されているコンポーネン�
         プッシュ通知
       </RadioButton>
     </Cluster>
-  </BaseColumn>
+  </Groupbox>
 </Fieldset>
 ```
 

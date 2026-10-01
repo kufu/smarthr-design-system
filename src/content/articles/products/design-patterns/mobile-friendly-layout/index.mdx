@@ -4,7 +4,7 @@ description: 'モバイル対応をする基準と、その対応方法を定義
 order: 5
 ---
 
-import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+import { Groupbox, ResponseMessage } from 'smarthr-ui'
 
 モバイル対応をする基準と、その対応方法を定義します。
 
@@ -53,9 +53,9 @@ SmartHRにおいて、従業員のモバイルからの利用は全体の7割以
 
 `useEnvironment`フックを使って`mobile`を取得し、必要に応じてコンポーネントに割り当ててください。各プロダクトでユーザーエージェントの判定を実装する必要はありません。
 
-<BaseColumn className="shr-mt-2">
+<Groupbox className="shr-mt-2">
   <ResponseMessage>SmartHR UIのコンポーネントはレイアウトやスタイルが自動的に切り替わるよう順次改修予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 ```tsx
 import { useEnvironment } from 'smarthr-ui'
@@ -149,7 +149,7 @@ const MobileUnsupportedPage = () => {
                 </Cluster>
 
                 <Stack gap={1.5}>
-                  <Base>
+                  <Panel>
                     <Cluster justify="space-between" align="center" className="shr-p-1">
                       <form onSubmit={(e) => e.preventDefault()}>
                         <Cluster align="center" gap={1}>
@@ -207,7 +207,7 @@ const MobileUnsupportedPage = () => {
                         )})}
                       </tbody>
                     </Table>
-                  </Base>
+                  </Panel>
                   <Center>
                     <Pagination current={currentPage} total={totalPages} onClick={() => null} />
                   </Center>

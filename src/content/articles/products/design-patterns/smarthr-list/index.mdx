@@ -7,14 +7,14 @@ import { Image } from 'astro:assets'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import Grid from '@/components/article/Grid.astro'
-import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import { Groupbox, Cluster, ResponseMessage, Text } from 'smarthr-ui'
 
 import doOmitHeading from './images/smarthr-list-do-omit-heading.png'
 import dontOmitHeading from './images/smarthr-list-dont-omit-heading.png'
 
-<BaseColumn>
+<Groupbox>
   <ResponseMessage status="info">よくあるリストを実現しやすくするための、Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 リスト形式でオブジェクトを一覧表示するUIのパターンをまとめています。
 
@@ -64,7 +64,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 ### 2. リスト操作エリア
 リストにオブジェクトを追加したり、オブジェクト全体を一括で変更するなどの、**データの追加・一括変更などに関わる操作をまとめたエリア**です。
 
-このエリアは、リストを含む[Base](/products/components/base/)外の右上（見出しの右側）に配置します。
+このエリアは、リストを含む[Panel](/products/components/panel/)外の右上（見出しの右側）に配置します。
 
 - [Button](/products/components/button/)や、[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)を配置できます。
 - `よくあるリスト`が主に想定しているモバイル環境では画面の幅が狭いことから、 ボタンは**最大2つまでとします**。
@@ -77,7 +77,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 **リストのデータには影響しない一時的な操作のためのボタンやフォームをまとめたエリア**です。リストの検索と絞り込みに使います。
 
-リストを含む[Base](/products/components/base/)内の上部に配置します。
+リストを含む[Panel](/products/components/panel/)内の上部に配置します。
 
 ![スクリーンショット: 一時操作エリア](./images/smarthr-list-temporal-actions.png)
 
@@ -93,9 +93,9 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 ### 4. リスト
 
-<BaseColumn>
+<Groupbox>
   <ResponseMessage status="info">Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 オブジェクトをリスト形式で垂直方向に積み重ねて表示します。
 
@@ -163,9 +163,9 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 ### モバイル
 
-<BaseColumn>
+<Groupbox>
   <ResponseMessage status="info">Listコンポーネントをsmarthr-uiで実装予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 #### 要素間の余白
 
@@ -195,9 +195,9 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 </Section>
 ```
 
-#### リストの各項目をBaseでグルーピングするパターン
+#### リストの各項目をPanelでグルーピングするパターン
 
-次のような場合、リストの各項目をBaseでグルーピングして表示できます。[構成](#h2-0)や[種類](#h2-2)に変更はありません。
+次のような場合、リストの各項目をPanelでグルーピングして表示できます。[構成](#h2-0)や[種類](#h2-2)に変更はありません。
 
 - リストに表示する各項目の連続性が低く、表示の独立性を高めたい場合
     - 例：ユーザー投稿の一覧
@@ -220,7 +220,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
     - **一時操作エリアは表示しません。**
 4. リスト
     - **リストは表示しません。**
-    - 代わりにBase内部に、`{オブジェクト名}はありません。`というメッセージと、オブジェクト追加を促すボタンを上下左右中央に表示します。
+    - 代わりにPanel内部に、`{オブジェクト名}はありません。`というメッセージと、オブジェクト追加を促すボタンを上下左右中央に表示します。
         - オブジェクト追加を促すボタンは、基本的に[Secondaryボタンのサイズ小](/products/components/button/#h3-2)を使います。
         - オブジェクト名が人を指す名詞などで「`ありません`」がそぐわない場合は、オブジェクト名を明記しない「`表示するデータはありません。`」というメッセージを表示します。
 5. 「さらに表示」ボタン
@@ -240,7 +240,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
     - 表示の制約はありません。
 4. リスト
     - **リストは表示しません。**
-    - 代わりにBase内部に、`該当する{オブジェクト名}はありません。<br />別の条件を試してください。`というメッセージを上下左右中央に表示します。
+    - 代わりにPanel内部に、`該当する{オブジェクト名}はありません。<br />別の条件を試してください。`というメッセージを上下左右中央に表示します。
 5. 「さらに表示」ボタン
     - **「さらに表示」ボタンは表示しません。**
 
