@@ -1,0 +1,67 @@
+---
+title: '権限設定'
+description: 'SmartHRにおける「権限設定」のパターンをまとめています。'
+order: 17
+---
+
+SmartHRにおける「権限設定」のパターンをまとめています。
+
+## 基本的な考え方
+
+プロダクトごとにアカウントの権限を管理するための画面です。権限の応じたコンテンツの表示変更については[権限による表示制御](/products/design-patterns/access-control-pattern/)を参照してください。
+
+基本機能については[「基本機能」の共通設定](/products/design-patterns/main-admin-core-features/)と[「基本機能」の共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)を参照してください。
+
+## 権限の分類
+
+権限の設計方式は一般に、ユーザーに割り当てた役割（ロール）に基づいて操作の許可を制御するRBAC（Role-Based Access Control）と、ユーザーやリソースが持つ属性（部署、雇用形態、操作範囲など）に基づいて操作の許可を制御するABAC（Attribute-Based Access Control）に大別されます。分類によって、権限オブジェクトの考え方や画面設計が異なります。
+
+SmartHRにおける権限は、現状すべてRBACです。将来的にABAC構造を持つプロダクトの開発も想定していますが、現時点でABACを採用しているプロダクトはありません。
+新しくプロダクトを作る場合は、どの分類になるかを理解したうえで設計を進めてください。
+
+- [RBAC](#h3-0)
+- [ABAC](#h3-1)
+
+### RBAC
+
+権限を共通設定から継承するか、プロダクト独自に管理するかで、さらに2つのパターンに分けられます。
+
+#### 共通設定権限継承パターン
+
+共通設定で定義された権限（役割）をそのまま継承し、特定の行動（例：依頼と確認、書類のダウンロード）の許可を設定するパターンです。
+
+例えば、SmartHRにおいて対象となるプロダクトは以下のとおりです。
+
+- [文書配付](https://smarthr.jp/function/distribution/)
+- [年末調整](https://smarthr.jp/function/nc/)
+
+{/* 共通設定権限継承パターンのガイドラインは、独自権限パターンに合わせてディレクトリを分けてください（例えば `./rbac-inherit/`） */}
+
+#### 独自権限パターン
+
+共通設定の権限とは切り離し、プロダクト独自にアカウントと権限（役割）を紐づけて管理するパターンです。ユーザーに役割（例：業務担当者、機能管理者）を割り当て、その役割に応じた特定の行動許可を設定します。
+
+例えば、SmartHRにおいて対象となるプロダクトは以下のとおりです。
+
+- [従業員サーベイ](https://smarthr.jp/function/survey/)
+- [人事評価](https://smarthr.jp/function/evaluation/)
+- [配置シミュレーション](https://smarthr.jp/function/simulation/)
+- [スキル・資格・研修](https://smarthr.jp/function/skill/)
+- [キャリア台帳](https://smarthr.jp/function/career/)
+- [HRアナリティクス](https://smarthr.jp/function/hr-analytics/)
+- [採用管理](https://smarthr.jp/function/ats/)
+- 社内公募
+
+さらに、主要なプロパティの組み合わせによってA〜Fの6パターンに分けられます。詳しくは[RBACの独自権限パターン](/products/design-patterns/permissions-settings/rbac-standalone/)を参照してください。
+
+### ABAC
+
+現時点でABACを採用しているプロダクトはありません。対象の属性（操作範囲など）に基づいて行動の許可を制御するプロダクトが登場した際に、このセクションへパターンを追記します。
+
+## 関連リンク
+
+- [RBACの独自権限パターン](/products/design-patterns/permissions-settings/rbac-standalone/)
+- [権限による表示制御](/products/design-patterns/access-control-pattern/)
+- [「基本機能」の共通設定](/products/design-patterns/main-admin-core-features/)
+- [「基本機能」の共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)
+- [アプリケーションにおける権限設計の課題 - kenfdev’s blog](https://kenfdev.hateblo.jp/entry/2020/01/13/115032)
