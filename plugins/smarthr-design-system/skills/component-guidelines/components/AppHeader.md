@@ -10,7 +10,7 @@ import { AppHeader } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -32,6 +32,7 @@ import { AppHeader } from 'smarthr-ui'
 | desktopNavigationAdditionalContent | ReactNode | - | - | - |
 | releaseNote | ReleaseNoteProps | - | - | - |
 | features | { id: string; name: string; url: string; favorite: boolean; position?: number; }[] | - | - | - |
+| fetchFeatures | () => Promise<{ id: string; name: string; url: string; favorite: boolean; position?: number; }[]> | - | - | 指定するとアプリランチャーを開いたタイミングでアプリ一覧を取得します（遅延ロード）。 指定した場合、features は無視されます。 |
 | mobileAdditionalContent | ReactNode | - | - | - |
 
 ## 実装ルール

@@ -12,16 +12,16 @@ import { Th } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | sort | "desc" \| "none" \| "asc" | - | - | 並び替え状態 |
 | onSort | () => void | - | - | 並び替えをクリックした時に発火するコールバック関数 |
-| fixed | "left" \| "right" | - | - | 横スクロール時、カラムを左右いずれかに固定 |
+| fixed | "right" \| "left" | - | - | 横スクロール時、カラムを左右いずれかに固定 |
 | contentWidth | CellContentWidth | - | - | - |
-| align | "left" \| "right" | - | - | - |
-| vAlign | "bottom" \| "middle" \| "baseline" | - | - | - |
+| align | "right" \| "left" | - | - | テキストの水平方向の配置 |
+| vAlign | "bottom" \| "middle" \| "baseline" | - | - | テキストの垂直方向の配置 |
 
 ## 実装ルール
 

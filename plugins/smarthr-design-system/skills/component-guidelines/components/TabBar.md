@@ -5,12 +5,17 @@
 ## import
 
 ```ts
-import { TabItem, TabBar } from 'smarthr-ui'
+import { TabBar, TabItem } from 'smarthr-ui'
 ```
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+
+### TabBar
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| bordered | boolean | - | - | `true` のとき、TabBar に下線を表示する |
 
 ### TabItem
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -20,11 +25,6 @@ import { TabItem, TabBar } from 'smarthr-ui'
 | disabled | boolean | - | - | `true` のとき、タブを無効状態にしてクリック不能にする |
 | disabledReason | { icon?: ReactNode; message: ReactNode; } | - | - | 無効な理由 |
 | onClick | (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void | - | ✓ | タブをクリックした時に発火するコールバック関数 |
-
-### TabBar
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| bordered | boolean | - | - | `true` のとき、TabBar に下線を表示する |
 
 ## 実装ルール
 

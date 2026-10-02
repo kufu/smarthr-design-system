@@ -12,15 +12,14 @@ import { ActionDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | className | string | - | - | - |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
-| width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
 | size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
-| closeButton | ReactNode \| { text?: ReactNode; disabled?: boolean; } | - | - | - |
+| width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
 | subActionArea | ReactNode | - | - | ダイアログフッターの左端操作領域 |
 | responseStatus | ResponseStatus | - | - | - |
 | firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
@@ -29,8 +28,9 @@ import { ActionDialog } from 'smarthr-ui'
 | ariaLabel | string | - | - | ダイアログの `aria-label` |
 | ariaLabelledby | string | - | - | ダイアログの `aria-labelledby` |
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
-| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
+| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | コンテンツ部分の背景色 |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
+| closeButton | ReactNode \| { text?: ReactNode; disabled?: boolean; } | - | - | - |
 | actionButton | ReactNode \| { text: ReactNode; theme?: "primary" \| "danger" \| "secondary"; disabled?: boolean; } | - | ✓ | - |
 | onClickAction | (e: MouseEvent<Element, MouseEvent>, helpers: ActionDialogHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 |
 | onClickClose | (close: () => void) => void | - | - | - |
