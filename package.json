@@ -8,15 +8,16 @@
     "src/**/*.{astro,ts,tsx}": [
       "pnpm prelint",
       "pnpm run-p lint:ts:content lint:ts:codeblock lint:check -- ",
-      "pnpm run-p format:eslint format:prettier -- "
+      "eslint --fix",
+      "prettier --write"
     ],
     "src/**/*.md{,x}": [
       "pnpm prelint",
       "pnpm run-p lint:check lint:text -- ",
-      "pnpm run-p format:text format:prettier -- "
+      "textlint --fix"
     ],
     "!(src/**/*.{astro,ts,tsx,md,mdx})": [
-      "pnpm format:prettier"
+      "prettier --write --ignore-unknown"
     ]
   },
   "scripts": {
@@ -92,7 +93,7 @@
     "gray-matter": "^4.0.3",
     "hast-util-select": "^6.0.4",
     "husky": "^9.1.7",
-    "lint-staged": "^17.5.1",
+    "lint-staged": "^17.6.0",
     "node-html-parser": "^9.0.4",
     "npm-run-all2": "9.0.3",
     "prettier": "^3.9.9",
