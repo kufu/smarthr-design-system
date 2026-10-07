@@ -1,6 +1,6 @@
 # NotificationBar
 
-システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。
+システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックのほか、システムの状態や、操作を進めるうえで伝えるべき注意事項などを、ページ全体や特定領域に表示するときに使います。
 
 ## import
 
@@ -10,17 +10,18 @@ import { NotificationBar } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| layer | 0 \| 1 \| 2 \| 3 \| 4 | - | - | - |
-| base | "base" \| "none" | - | - | - |
-| animate | boolean | - | - | - |
-| type | "error" \| "warning" \| "info" \| "success" \| "sync" | - | ✓ | - |
-| onClose | () => void | - | - | 閉じるボタン押下時に発火させる関数 |
-| bold | boolean | - | - | - |
 | subActionArea | ReactNode | - | - | コンポーネント右の領域 |
+| onClose | () => void | - | - | 閉じるボタン押下時に発火させる関数 |
+| role | "alert" \| "status" | - | - | role 属性 |
+| base | "base" \| "none" | - | - | 下地 |
+| type | "error" \| "warning" \| "info" \| "success" \| "sync" | - | ✓ | メッセージの種類 |
+| bold | boolean | - | - | 強調するかどうか |
+| animate | boolean | - | - | スライドインするかどうか |
+| layer | 0 \| 1 \| 2 \| 3 \| 4 | - | - | 影のレイヤー |
 
 ## 実装ルール
 
@@ -28,9 +29,9 @@ NotificationBar に直接関連する eslint-plugin-smarthr のルールは現�
 
 ## 使い方チェックリスト
 
-### 使用上の注意 > フィードバックではないサービス運営上のお知らせなどを画面全体（ヘッダーの下）で使用しない
-- [must] NotificationBar を画面全体（ヘッダーの下）で使用する場合は、システムからのフィードバックの表示に限定する
-- [must] システムからの応答としてのフィードバックではない、その他の重要なお知らせや情報の表示が必要な場合は、ベースありや InformationPanel などを使用する
+### 使用上の注意 > サービス運営上のお知らせなどを画面全体（ヘッダーの下）で使用しない
+- [must] NotificationBar を画面全体（ヘッダーの下）で使用する場合は、ユーザーが行った操作へのフィードバックや操作が反映されている状態を示すなど、システムからの通知の表示に限定する
+- [must] システムからの通知ではない、その他のサービス運営上の情報などの表示が必要な場合は、ベースありや InformationPanel などを使用する
 
 ### 使用上の注意 > メッセージは省略表示しない
 - [avoid] NotificationBar のメッセージを LineClamp で省略表示しない

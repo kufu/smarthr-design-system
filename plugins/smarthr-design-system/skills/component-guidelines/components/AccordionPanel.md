@@ -12,7 +12,7 @@ import { AccordionPanelTrigger, AccordionPanelItem, AccordionPanelContent, Accor
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### AccordionPanelTrigger
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -31,11 +31,11 @@ import { AccordionPanelTrigger, AccordionPanelItem, AccordionPanelContent, Accor
 ### AccordionPanel
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| iconPosition | "left" \| "right" | left | - | アイコンの左右位置 |
+| iconPosition | "right" \| "left" | left | - | アイコンの左右位置 |
 | expandableMultiply | boolean | true | - | 複数のパネルを同時に開くことを許容するかどうか |
 | defaultExpanded | string[] | [] | - | デフォルトで開いた状態にするアイテムの `name` の配列 |
 | onClick | (expandedItems: string[]) => void | - | - | トリガのクリックイベントを処理するハンドラ |
-| rounded | boolean \| "all" \| "top" \| "bottom" \| "left" \| "right" | - | - | - |
+| rounded | boolean \| "right" \| "left" \| "top" \| "bottom" \| "all" | - | - | 角丸を適用する範囲 |
 
 ## 実装ルール
 

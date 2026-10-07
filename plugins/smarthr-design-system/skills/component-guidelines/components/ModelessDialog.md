@@ -10,7 +10,7 @@ import { ModelessDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -27,10 +27,10 @@ import { ModelessDialog } from 'smarthr-ui'
 | right | string \| number | - | - | ダイアログを開いたときの初期 right 位置 |
 | bottom | string \| number | - | - | ダイアログを開いたときの初期 bottom 位置 |
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | ポータルの container となる DOM 要素を追加する親要素 |
+| resizable | boolean | false | - | リサイズ可能かどうか |
 | className | string | - | - | - |
-| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
+| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | コンテンツ部分の背景色 |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
-| resizable | boolean | false | - | - |
 
 ## 実装ルール
 

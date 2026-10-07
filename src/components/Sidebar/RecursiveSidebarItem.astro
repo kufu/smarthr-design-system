@@ -1,7 +1,7 @@
 ---
 import type { ArticleMeta } from '@/types/article';
 
-import CaretButton from './CaretButton';
+import CaretButton from './CaretButton.astro';
 
 type Props = {
   currentPath: `/${string}`;
@@ -28,7 +28,13 @@ if (items.length <= 0) {
           {item.title}
         </a>
         {item.children.length > 0 && (
-          <CaretButton currentPath={currentPath} itemLink={item.link} depth={depth} currentIndex={currentIndex} client:load />
+          <CaretButton
+            currentPath={currentPath}
+            itemLink={item.link}
+            itemTitle={item.title}
+            depth={depth}
+            currentIndex={currentIndex}
+          />
         )}
       </div>
       {item.children.length > 0 && (

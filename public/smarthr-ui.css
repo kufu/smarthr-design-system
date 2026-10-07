@@ -215,10 +215,6 @@ a {
   pointer-events: none;
 }
 
-.shr-visible {
-  visibility: visible;
-}
-
 .shr-invisible {
   visibility: hidden;
 }
@@ -407,10 +403,6 @@ a {
 
 .shr-z-overlap-base {
   z-index: 10000;
-}
-
-.-shr-m-px {
-  margin: -1px;
 }
 
 .shr-m-0 {
@@ -1649,10 +1641,6 @@ a {
 
 .shr-grid-rows-\[auto_1fr\] {
   grid-template-rows: auto 1fr;
-}
-
-.shr-flex-row-reverse {
-  flex-direction: row-reverse;
 }
 
 .shr-flex-col {
@@ -4887,8 +4875,16 @@ a {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.data-\[dropdown-active\]\:shr-visible[data-dropdown-active] {
+  visibility: visible;
+}
+
 .data-\[favorite\=\"false\"\]\:shr-grid-cols-\[1fr_1rem\][data-favorite="false"] {
   grid-template-columns: 1fr 1rem;
+}
+
+.data-\[loading\]\:shr-flex-row-reverse[data-loading] {
+  flex-direction: row-reverse;
 }
 
 .data-\[error\]\:shr-border-danger[data-error] {
@@ -4927,11 +4923,6 @@ a {
 .data-\[disabled\]\:shr-text-disabled[data-disabled] {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity, 1));
-}
-
-.data-\[error\]\:shr-text-danger[data-error] {
-  --tw-text-opacity: 1;
-  color: rgb(224 30 90 / var(--tw-text-opacity, 1));
 }
 
 .data-\[filtered\=true\]\:shr-text-main[data-filtered="true"] {
@@ -5674,6 +5665,10 @@ a {
 }
 
 .\[\&\:has\(\>_span_\>_\.smarthr-ui-Icon\:only-child\)\]\:shr-p-0\.75:has(> span > .smarthr-ui-Icon:only-child) {
+  padding: 12px;
+}
+
+.\[\&\:has\(\[data-square\]\)\]\:shr-p-0\.75:has([data-square]) {
   padding: 12px;
 }
 
@@ -6631,4 +6626,26 @@ a {
 [data-disabled=true]>.\[\[data-disabled\=true\]\>\&\]\:shr-text-disabled {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+[data-size=M] .\[\[data-size\=M\]_\&\]\:shr-p-1 {
+  padding: 16px;
+}
+
+[data-size=M] .\[\[data-size\=M\]_\&\]\:shr-text-base {
+  font-size: 1rem;
+}
+
+[data-size=S] .\[\[data-size\=S\]_\&\]\:shr-px-1 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+[data-size=S] .\[\[data-size\=S\]_\&\]\:shr-py-0\.5 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+[data-size=S] .\[\[data-size\=S\]_\&\]\:shr-text-sm {
+  font-size: 0.8571428571428571rem;
 }

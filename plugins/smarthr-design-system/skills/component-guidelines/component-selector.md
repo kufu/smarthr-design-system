@@ -2,7 +2,7 @@
 
 UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、対応するガイドファイルを参照してください。
 
-> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ## コンポーネント一覧
 
@@ -63,7 +63,7 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | ⚠️ MonthPicker（非推奨） | 【非推奨】ユーザーに年と月を入力させる際に使用するコンポーネントです。 | [components/MonthPicker.md](components/MonthPicker.md) |
 | MultiCombobox | 選択肢から複数の値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら複数を選択するときに使います。 | [components/MultiCombobox.md](components/MultiCombobox.md) |
 | NotFoundErrorScreen | 存在しないページであることを表示する全画面コンポーネントです。404相当のエラーを伝えるときに使います。 | [components/NotFoundErrorScreen.md](components/NotFoundErrorScreen.md) |
-| NotificationBar | システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。 | [components/NotificationBar.md](components/NotificationBar.md) |
+| NotificationBar | システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックのほか、システムの状態や、操作を進めるうえで伝えるべき注意事項などを、ページ全体や特定領域に表示するときに使います。 | [components/NotificationBar.md](components/NotificationBar.md) |
 | PageCounter | 「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。 | [components/PageCounter.md](components/PageCounter.md) |
 | PageHeading | 画面全体の最上位見出しを表示するためのコンポーネントです。h1要素として画面タイトルを示すときに使います。 | [components/PageHeading.md](components/PageHeading.md) |
 | Pagination | 「よくあるテーブル」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。 | [components/Pagination.md](components/Pagination.md) |

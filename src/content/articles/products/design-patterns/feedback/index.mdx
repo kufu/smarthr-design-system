@@ -55,7 +55,56 @@ order: 6
 
 入力要素に対するエラーメッセージは、[FormControl](/products/components/form-control/)か[Fieldset](/products/components/fieldset/)の`errorMessages`で表示します。入力要素にも`error`状態を付加して意匠を変化させます。
 
-![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「タイトルは50文字以下で入力してください。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-blur.png)
+```tsx editable hideCode withStyled
+const TITLE_MAX_LENGTH = 50
+const DEFAULT_TITLE = 'これはタイトルです。'.repeat(6)
+
+const validateTitle = (title: string) =>
+  [...title].length > TITLE_MAX_LENGTH ? `タイトルは${TITLE_MAX_LENGTH}文字以下で入力してください。` : undefined
+
+const ValidateOnBlurForm = () => {
+  const [title, setTitle] = React.useState(DEFAULT_TITLE)
+  // 入力要素からフォーカスが外れた直後の状態を示すため、初期状態からエラーメッセージを表示している
+  const [errorMessage, setErrorMessage] = React.useState(validateTitle(DEFAULT_TITLE))
+
+  return (
+    <Stack
+      as="form"
+      align="flex-start"
+      onSubmit={(e) => {
+        e.preventDefault()
+        setErrorMessage(validateTitle(title))
+      }}
+    >
+      <FormControl label="タイトル" errorMessages={errorMessage}>
+        <Textarea
+          name="title"
+          value={title}
+          maxLetters={TITLE_MAX_LENGTH}
+          width="30em"
+          rows={3}
+          error={!!errorMessage}
+          onBlur={() => {
+            // フォーカスが外れたタイミングで値を検証する
+            setErrorMessage(validateTitle(title))
+          }}
+          onChange={(e) => {
+            const { value } = e.currentTarget
+            setTitle(value)
+            // エラーの原因が解消されたら、エラーメッセージの表示を止める
+            if (errorMessage && !validateTitle(value)) {
+              setErrorMessage(undefined)
+            }
+          }}
+        />
+      </FormControl>
+      <Button type="submit" variant="primary">追加</Button>
+    </Stack>
+  )
+}
+
+render(<ValidateOnBlurForm />)
+```
 
 #### フォームの送信時に値が不正であることを判定する場合
 
@@ -65,7 +114,52 @@ order: 6
 
 送信ボタンに対するエラーメッセージは、`error`状態の[ResponseMessage](/products/components/response-message/)（[ActionDialog](/products/components/dialog/action-dialog/)の場合は`responseStatus`）を利用して表示します。
 
-![スクリーンショット: Inputを持つFormControlを内包するActionDialog。Inputの枠線は赤く表示され、Inputの上部に「利用できない文字「$」が含まれています。」というエラーメッセージが表示されたResponseMessageがある。ActionDialogのPrimaryボタンの下部に「入力内容に不備があります。」というエラーメッセージが表示されたResponseMessageがある。](./images/form-control-error-on-submit.png)
+```tsx editable hideCode withStyled
+const DEFAULT_TITLE = 'Aさんの情報$'
+
+const validateTitle = (title: string) =>
+  title.includes('$') ? '利用できない文字「$」が含まれています。' : undefined
+
+const ValidateOnSubmitForm = () => {
+  const [title, setTitle] = React.useState(DEFAULT_TITLE)
+  // 送信ボタンを押した直後の状態を示すため、初期状態からエラーメッセージを表示している
+  const [errorMessage, setErrorMessage] = React.useState(validateTitle(DEFAULT_TITLE))
+
+  return (
+    <Stack
+      as="form"
+      align="flex-start"
+      onSubmit={(e) => {
+        e.preventDefault()
+        // 送信ボタンを押したタイミングで値を検証する
+        setErrorMessage(validateTitle(title))
+      }}
+    >
+      <FormControl label="タイトル" errorMessages={errorMessage}>
+        <Input
+          name="title"
+          value={title}
+          error={!!errorMessage}
+          onChange={(e) => {
+            const { value } = e.currentTarget
+            setTitle(value)
+            // エラーの原因が解消されたら、エラーメッセージの表示を止める
+            if (errorMessage && !validateTitle(value)) {
+              setErrorMessage(undefined)
+            }
+          }}
+        />
+      </FormControl>
+      <Cluster align="center">
+        <Button type="submit" variant="primary">追加</Button>
+        {errorMessage && <ResponseMessage status="error">入力内容に不備があります。</ResponseMessage>}
+      </Cluster>
+    </Stack>
+  )
+}
+
+render(<ValidateOnSubmitForm />)
+```
 
 ### 同期的な処理を開始したとき
 
@@ -73,7 +167,15 @@ order: 6
 
 処理が完了したら表示を切り替え、[同期的な処理が完了したとき](#h3-5)のフィードバックを表示します。
 
-![スクリーンショット: Inputを持つFormControlを内包するActionDialog。ActionDialogのPrimaryボタンがloading状態で表示されている。](./images/button-loading.png)
+```tsx editable hideCode
+<Stack as="form" align="flex-start" onSubmit={(e) => e.preventDefault()}>
+  <FormControl label="タイトル">
+    <Input name="title" defaultValue="Aさんの情報" />
+  </FormControl>
+  {/* 処理中は実行したButtonをloading状態にする */}
+  <Button type="submit" variant="primary" loading>追加</Button>
+</Stack>
+```
 
 #### Buttonの状態変化で伝えることが難しい場合
 
@@ -81,31 +183,325 @@ order: 6
 
 処理が完了したら表示を切り替え、[同期的な処理が完了したとき](#h3-5)のフィードバックを表示します。
 
-![スクリーンショット: HeaderとAppNaviとNotificationBarが表示されている。NotificationBarはsync状態で、「処理を実行中です。」というメッセージが表示されている。](./images/notification-bar-loading.png)
+```tsx editable hideCode background=DOT canvas=1400
+<div className="shr-bg-background" style={{ width: '100%' }}>
+  <div className="shr-z-1 shr-relative">
+    <AppHeader
+      appName="機能名"
+      tenants={[{ id: 'smarthr', name: '株式会社SmartHR' }]}
+      currentTenantId="smarthr"
+      helpPageUrl="#"
+      locale={{ onSelectLocale: () => null }}
+      features={[{ id: 'app', name: 'アプリ', url: '#', favorite: true }]}
+      userInfo={{ empCode: '001', email: 'info@example.com', firstName: '須磨', lastName: '栄子' }}
+      navigations={[
+        { children: 'ナビゲーション', href: '#', current: true },
+        { children: 'ナビゲーション', href: '#' },
+      ]}
+      releaseNote={{ indexUrl: '#', links: [{ title: 'リリースノート', url: '#' }] }}
+    />
+  </div>
+  <NotificationBar type="sync" onClose={() => {}} className="shr-sticky shr-top-0 shr-z-1">
+    処理を実行中です。
+  </NotificationBar>
+  <Container>
+    <Stack>
+      { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+      <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
+      <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+    </Stack>
+  </Container>
+</div>
+```
 
 ### 同期的な処理が完了したとき
 
 ユーザーが直前に操作していたButtonなどの近くに、成功時には`success`状態、失敗時には`error`状態で[ResponseMessage](/products/components/response-message/)を表示します。再度処理を実行するタイミングでメッセージの表示を止めます。
 
-![スクリーンショット: 「実行」と書かれたsecondaryボタンの右側に「処理に成功しました。」というメッセージが表示されたsuccess状態のResponseMessageと、「処理に失敗しました。」というメッセージが表示されたerror状態のResponseMessageがある。](./images/response-message-result.png)
+```tsx editable hideCode background=BACKGROUND
+<Cluster gap={4}>
+  <Cluster align="center">
+    <Button>実行</Button>
+    <ResponseMessage status="success">処理に成功しました。</ResponseMessage>
+  </Cluster>
+  <Cluster align="center">
+    <Button>実行</Button>
+    <ResponseMessage status="error">処理に失敗しました。</ResponseMessage>
+  </Cluster>
+</Cluster>
+```
 
 #### Buttonの近くに表示するのが難しい場合
 
 操作後に画面全体の切り替えが発生する場合など、ユーザーが直前に操作していたButtonの近くに表示することが難しい場合は、成功時には`success`状態、失敗時には`error`状態で[NotificationBar[bold]](/products/components/notification-bar/)を表示します。
 
-![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはsuccess状態で、「処理に成功しました。」というメッセージが表示されている。](./images/notification-bar-success.png)
+```tsx editable hideCode background=DOT canvas=1400
+<div className="shr-bg-background" style={{ width: '100%' }}>
+  <div className="shr-z-1 shr-relative">
+    <AppHeader
+      appName="機能名"
+      tenants={[{ id: 'smarthr', name: '株式会社SmartHR' }]}
+      currentTenantId="smarthr"
+      helpPageUrl="#"
+      locale={{ onSelectLocale: () => null }}
+      features={[{ id: 'app', name: 'アプリ', url: '#', favorite: true }]}
+      userInfo={{ empCode: '001', email: 'info@example.com', firstName: '須磨', lastName: '栄子' }}
+      navigations={[
+        { children: 'ナビゲーション', href: '#', current: true },
+        { children: 'ナビゲーション', href: '#' },
+      ]}
+      releaseNote={{ indexUrl: '#', links: [{ title: 'リリースノート', url: '#' }] }}
+    />
+  </div>
+  <NotificationBar type="success" bold onClose={() => {}} className="shr-sticky shr-top-0 shr-z-1">
+    処理に成功しました。
+  </NotificationBar>
+  <Container>
+    <Stack>
+      { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+      <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
+      <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+    </Stack>
+  </Container>
+</div>
+```
 
-![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはerror状態で、「処理に失敗しました。」というメッセージが表示されている。](./images/notification-bar-error.png)
+```tsx editable hideCode background=DOT canvas=1400
+<div className="shr-bg-background" style={{ width: '100%' }}>
+  <div className="shr-z-1 shr-relative">
+    <AppHeader
+      appName="機能名"
+      tenants={[{ id: 'smarthr', name: '株式会社SmartHR' }]}
+      currentTenantId="smarthr"
+      helpPageUrl="#"
+      locale={{ onSelectLocale: () => null }}
+      features={[{ id: 'app', name: 'アプリ', url: '#', favorite: true }]}
+      userInfo={{ empCode: '001', email: 'info@example.com', firstName: '須磨', lastName: '栄子' }}
+      navigations={[
+        { children: 'ナビゲーション', href: '#', current: true },
+        { children: 'ナビゲーション', href: '#' },
+      ]}
+      releaseNote={{ indexUrl: '#', links: [{ title: 'リリースノート', url: '#' }] }}
+    />
+  </div>
+  <NotificationBar type="error" bold onClose={() => {}} className="shr-sticky shr-top-0 shr-z-1">
+    処理に失敗しました。
+  </NotificationBar>
+  <Container>
+    <Stack>
+      { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+      <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
+      <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+    </Stack>
+  </Container>
+</div>
+```
 
 #### 記載する情報が多い場合
 
 補足情報としてTextLinkやButtonを表示する場合は、成功時には`success`状態、失敗時には`error`状態で[NotificationBar[bold]](/products/components/notification-bar/)を表示します。
 
-![スクリーンショット: HeaderとAppNaviとNotificationBarが垂直方向に積み重なっている。NotificationBarはerror状態で、「処理に失敗しました。」というメッセージと「情報を修正」というボタン、ヘルプページへのリンクが表示されている。](./images/notification-bar-error-alt.png)
+```tsx editable hideCode background=DOT canvas=1400
+<div className="shr-bg-background" style={{ width: '100%' }}>
+  <div className="shr-z-1 shr-relative">
+    <AppHeader
+      appName="機能名"
+      tenants={[{ id: 'smarthr', name: '株式会社SmartHR' }]}
+      currentTenantId="smarthr"
+      helpPageUrl="#"
+      locale={{ onSelectLocale: () => null }}
+      features={[{ id: 'app', name: 'アプリ', url: '#', favorite: true }]}
+      userInfo={{ empCode: '001', email: 'info@example.com', firstName: '須磨', lastName: '栄子' }}
+      navigations={[
+        { children: 'ナビゲーション', href: '#', current: true },
+        { children: 'ナビゲーション', href: '#' },
+      ]}
+      releaseNote={{ indexUrl: '#', links: [{ title: 'リリースノート', url: '#' }] }}
+    />
+  </div>
+  <NotificationBar
+    type="error"
+    bold
+    onClose={() => {}}
+    subActionArea={
+      <>
+        <Button size="S">情報を修正</Button>
+        { /* 背景色とのコントラストを確保するため、テキストリンクの文字色を白にしている。 */ }
+        <HelpLink href="/" target="_blank" className="shr-text-white">ヘルプページ</HelpLink>
+      </>
+    }
+    className="shr-sticky shr-top-0 shr-z-1"
+  >
+    処理に失敗しました。
+  </NotificationBar>
+  <Container>
+    <Stack>
+      { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+      <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
+      <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+    </Stack>
+  </Container>
+</div>
+```
 
 複数行のテキストなど多くの情報を表示する場合は、成功時には`success`状態、失敗時には`error`状態で[InformationPanel](/products/components/information-panel/)を表示します。
 
-![スクリーンショット: HeaderとInformationPanelが垂直方向に積み重なっている。InformationPanelはerror状態で、「入力内容に不備があります。以下の内容を確認してください。経路名が入力されていません。承認ステップ 2:部署が指定されていません。移動。承認ステップ 2:役職が指定されていません。移動。承認ステップ 2:必要な承認数が指定されていません。移動。承認ステップ 2:部署が指定されていません。移動。承認ステップ 3:部署1で指定できる役職が1つもありません。移動。承認ステップ 3:必要な承認数3人に対して承認者が足りません。移動。承認ステップ 3:部署が指定されていません。移動。」というメッセージが表示されている。](./images/information-panel-error.png)
+```tsx editable hideCode background=DOT canvas=1400 withStyled
+type ApprovalStep = {
+  department: string
+  position: string
+  approvalCount: string
+  errors: Partial<Record<'department' | 'position' | 'approvalCount', string>>
+}
+
+const DEPARTMENT_OPTIONS = [
+  { label: '営業部', value: 'sales' },
+  { label: '開発部', value: 'development' },
+  { label: '人事部', value: 'hr' },
+]
+const POSITION_OPTIONS = [
+  { label: '部長', value: 'manager' },
+  { label: '課長', value: 'section-manager' },
+]
+
+const approvalSteps: ApprovalStep[] = [
+  { department: 'sales', position: 'manager', approvalCount: '1', errors: {} },
+  {
+    department: '',
+    position: '',
+    approvalCount: '',
+    errors: {
+      department: '部署を指定してください。',
+      position: '役職を指定してください。',
+      approvalCount: '必要な承認数を入力してください。',
+    },
+  },
+  {
+    department: '',
+    position: 'section-manager',
+    approvalCount: '3',
+    errors: {
+      department: '部署を指定してください。',
+      approvalCount: '必要な承認数3人に対して承認者が足りません。',
+    },
+  },
+]
+
+// エラーの一覧。各項目から該当する入力要素へ移動できるようにする
+const errorSummaries = [
+  { text: '経路名が入力されていません。', targetId: 'route-name' },
+  { text: '承認ステップ 2：部署が指定されていません。', targetId: 'step-2-department' },
+  { text: '承認ステップ 2：役職が指定されていません。', targetId: 'step-2-position' },
+  { text: '承認ステップ 2：必要な承認数が入力されていません。', targetId: 'step-2-approval-count' },
+  { text: '承認ステップ 3：部署が指定されていません。', targetId: 'step-3-department' },
+  { text: '承認ステップ 3：必要な承認数3人に対して承認者が足りません。', targetId: 'step-3-approval-count' },
+]
+
+const InformationPanelErrorLayout = () => (
+  <div className="shr-bg-background" style={{ width: '100%' }}>
+    <div className="shr-z-1 shr-relative">
+      <AppHeader
+        tenants={[{ id: 'smarthr', name: '株式会社SmartHR' }]}
+        currentTenantId="smarthr"
+        helpPageUrl="#"
+        features={[{ id: 'app', name: 'アプリ', url: '#', favorite: true }]}
+        userInfo={{ empCode: '001', email: 'info@example.com', firstName: '須磨', lastName: '栄子' }}
+      />
+    </div>
+    <Container>
+      <Stack gap={2}>
+        <Stack gap={1.5}>
+          { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+          <PageHeading autoPageTitle={false}>上長承認経路の追加</PageHeading>
+          <InformationPanel type="error" heading="入力内容に不備があります。以下の内容を確認してください。">
+            <ul className="shr-ps-1.5" style={{ listStyleType: 'disc' }}>
+              {errorSummaries.map(({ text, targetId }) => (
+                <li key={targetId}>
+                  {text}
+                  <TextLink
+                    href={`#${targetId}`}
+                    onClick={(e) => {
+                      // 該当する入力要素にフォーカスを移動する
+                      e.preventDefault()
+                      e.currentTarget.ownerDocument.getElementById(targetId)?.focus()
+                    }}
+                    className="shr-ms-0.5"
+                  >
+                    確認
+                  </TextLink>
+                </li>
+              ))}
+            </ul>
+          </InformationPanel>
+        </Stack>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <Stack gap={2}>
+            <Fieldset legend={{ text: '申請情報', styleType: 'sectionTitle' }} innerMargin={1}>
+              <Base padding={1.5}>
+                <FormControl label="経路名" statusLabels={<RequiredLabel />} errorMessages="経路名を入力してください。">
+                  <Input id="route-name" name="routeName" width="100%" error />
+                </FormControl>
+              </Base>
+            </Fieldset>
+            <Fieldset legend={{ text: '承認ステップ', styleType: 'sectionTitle' }} innerMargin={1}>
+              <Base padding={1.5}>
+                <Stack gap={2}>
+                  {approvalSteps.map(({ department, position, approvalCount, errors }, index) => {
+                    const step = index + 1
+                    return (
+                      <Fieldset key={step} legend={`承認ステップ ${step}`}>
+                        <Cluster gap={1.5}>
+                          <FormControl label={{ text: '部署', styleType: 'subBlockTitle' }} errorMessages={errors.department}>
+                            <Select
+                              id={`step-${step}-department`}
+                              name={`steps[${index}].department`}
+                              options={DEPARTMENT_OPTIONS}
+                              defaultValue={department}
+                              hasBlank
+                              error={!!errors.department}
+                            />
+                          </FormControl>
+                          <FormControl label={{ text: '役職', styleType: 'subBlockTitle' }} errorMessages={errors.position}>
+                            <Select
+                              id={`step-${step}-position`}
+                              name={`steps[${index}].position`}
+                              options={POSITION_OPTIONS}
+                              defaultValue={position}
+                              hasBlank
+                              error={!!errors.position}
+                            />
+                          </FormControl>
+                          <FormControl label={{ text: '必要な承認数', styleType: 'subBlockTitle' }} errorMessages={errors.approvalCount}>
+                            <Input
+                              id={`step-${step}-approval-count`}
+                              name={`steps[${index}].approvalCount`}
+                              type="number"
+                              defaultValue={approvalCount}
+                              suffix="人"
+                              error={!!errors.approvalCount}
+                            />
+                          </FormControl>
+                        </Cluster>
+                      </Fieldset>
+                    )
+                  })}
+                </Stack>
+              </Base>
+            </Fieldset>
+            <FloatArea
+              primaryButton={<Button type="submit" variant="primary">追加</Button>}
+              secondaryButton={<Button>キャンセル</Button>}
+              responseStatus={{ status: 'error', text: '入力内容に不備があります。' }}
+            />
+          </Stack>
+        </form>
+      </Stack>
+    </Container>
+  </div>
+)
+
+render(<InformationPanelErrorLayout />)
+```
 
 ### ページ・要素の読み込みを開始したとき
 
@@ -113,7 +509,47 @@ order: 6
 
 処理が完了したら表示を切り替え、[ページ・要素の読み込みが完了したとき](#h3-7)のフィードバックを表示します。
 
-![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとよくあるテーブルの見出しと新規追加ボタンが垂直方向に積み重なっている。Tableが表示されるべき場所に、Loaderが表示されている。](./images/table-loading.png)
+```tsx editable hideCode background=DOT canvas=1400
+<div className="shr-bg-background" style={{ width: '100%' }}>
+  <div className="shr-z-1 shr-relative">
+    <AppHeader
+      appName="機能名"
+      tenants={[{ id: 'smarthr', name: '株式会社SmartHR' }]}
+      currentTenantId="smarthr"
+      helpPageUrl="#"
+      locale={{ onSelectLocale: () => null }}
+      features={[{ id: 'app', name: 'アプリ', url: '#', favorite: true }]}
+      userInfo={{ empCode: '001', email: 'info@example.com', firstName: '須磨', lastName: '栄子' }}
+      navigations={[
+        { children: 'ナビゲーション', href: '#', current: true },
+        { children: 'ナビゲーション', href: '#' },
+      ]}
+      releaseNote={{ indexUrl: '#', links: [{ title: 'リリースノート', url: '#' }] }}
+    />
+  </div>
+  <Container>
+    <Stack gap={2}>
+      <Stack>
+        { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+        <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
+        <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+      </Stack>
+      <Section>
+        <Stack>
+          <Cluster align="center" justify="space-between">
+            <Heading>オブジェクト一覧</Heading>
+            <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
+          </Cluster>
+          {/* テーブルが表示される領域にLoaderを表示する */}
+          <Center padding={2}>
+            <Loader />
+          </Center>
+        </Stack>
+      </Section>
+    </Stack>
+  </Container>
+</div>
+```
 
 ### ページ・要素の読み込みが完了したとき
 
@@ -125,4 +561,44 @@ order: 6
 
 要素が本来表示される場所に、`error`状態の[NotificationBar[bold]](/products/components/notification-bar/)を表示します。
 
-![スクリーンショット: HeaderとAppNaviとPageHeadingとページの説明テキストとよくあるテーブルの見出しと新規追加ボタンが垂直方向に積み重なっている。Tableが表示されるべき場所に、「情報の取得に失敗しました。時間をおいて画面を再読み込みしてください。」というメッセージが表示されたerror状態のNotificationBarがある。](./images/table-error.png)
+```tsx editable hideCode background=DOT canvas=1400
+<div className="shr-bg-background" style={{ width: '100%' }}>
+  <div className="shr-z-1 shr-relative">
+    <AppHeader
+      appName="機能名"
+      tenants={[{ id: 'smarthr', name: '株式会社SmartHR' }]}
+      currentTenantId="smarthr"
+      helpPageUrl="#"
+      locale={{ onSelectLocale: () => null }}
+      features={[{ id: 'app', name: 'アプリ', url: '#', favorite: true }]}
+      userInfo={{ empCode: '001', email: 'info@example.com', firstName: '須磨', lastName: '栄子' }}
+      navigations={[
+        { children: 'ナビゲーション', href: '#', current: true },
+        { children: 'ナビゲーション', href: '#' },
+      ]}
+      releaseNote={{ indexUrl: '#', links: [{ title: 'リリースノート', url: '#' }] }}
+    />
+  </div>
+  <Container>
+    <Stack gap={2}>
+      <Stack>
+        { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
+        <PageHeading autoPageTitle={false}>ページタイトル</PageHeading>
+        <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
+      </Stack>
+      <Section>
+        <Stack>
+          <Cluster align="center" justify="space-between">
+            <Heading>オブジェクト一覧</Heading>
+            <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
+          </Cluster>
+          {/* テーブルが表示される領域にNotificationBarを表示する */}
+          <NotificationBar base="base" type="error" bold onClose={() => {}}>
+            情報の取得に失敗しました。時間をおいて画面を再読み込みしてください。
+          </NotificationBar>
+        </Stack>
+      </Section>
+    </Stack>
+  </Container>
+</div>
+```

@@ -35,14 +35,23 @@ Astroの機能や導入しているプラグインの概要です。
 #### ArticleLayout.astro でやっていること
 
 - 左サイドバーに表示するメニューの生成
-- 右サイドバーに表示する目次の生成
-- 各ページ最後にある「前へ」「次へ」リンクの生成
+- ページ全体（ヘッダー・サイドバー・フッター）のレイアウト
+- 記事本文まわり（目次・本文・前後リンク）は`ArticleBody.astro`に委譲
 
 詳しくはテンプレート内のコメントもあわせて参照してください。
 
+#### ArticleBody.astro でやっていること
+
+- 記事本文のレンダリング
+- 右サイドバーに表示する目次の生成
+- 各ページ最後にある「前へ」「次へ」リンクの生成
+
+目次にはMDX内に埋め込まれたコンポーネントが生成する見出しも含める必要があるため、`Astro.slots.render()`で本文を一度だけHTML文字列にレンダリングし、
+そのHTMLから見出しを抽出（`src/lib/getNestedHeadings.ts`）しつつ、同じHTMLを本文としても出力しています。
+本文をレイアウト側ではなくこのコンポーネントで文字列化しているのは、ドキュメント上の出現順どおりにレンダリングさせるためです（詳細はファイル内のコメントを参照）。
+
 #### [...slug].astro でやっていること
 
-- 目次のための見出し情報の生成
 - タグ変換時のカスタムコンポーネントの適用
 - MDXのレンダリング
 
@@ -62,6 +71,26 @@ Astroの機能や導入しているプラグインの概要です。
 
 また、コードの表示・ライブエディタやSmartHR UIのStorybookを表示しているコンポーネントなどは、Reactで実装されています。
 詳しくはそれぞれの階層以下にあるREADME.mdを参照してください。
+
+#### importしたSmartHR UIコンポーネントを直接アイランドにせずにラップする
+
+MDXや`.astro`で`client:load`などのクライアントディレクティブを付ける場合、`smarthr-ui`から直接importしたコンポーネントに付けないでください。
+
+```jsx
+// NG: smarthr-uiのbarrel自体がクライアントエントリーになり、smarthr-ui全体（pdfjsなども含む）が全ページ共通のチャンクに入ってしまう
+import { CurrencyInput } from 'smarthr-ui';
+
+<CurrencyInput name="example" client:load />
+```
+
+`_components/`以下にラッパーとなるReactコンポーネントを作り、そちらにクライアントディレクティブを付けてください。
+
+```jsx
+// OK: ラッパーがエントリーになるため、使っているコンポーネントだけがバンドルされる
+import { SampleInputWithPrefixText } from './_components';
+
+<SampleInputWithPrefixText client:load />
+```
 
 ### キャッシュ
 

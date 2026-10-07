@@ -12,27 +12,27 @@ import { DropZone, DropZone } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.5.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### DropZone
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| disabled | boolean | - | - | - |
 | name | string | - | - | - |
-| error | boolean | - | - | フォームにエラーがあるかどうか |
+| disabled | boolean | - | - | - |
 | accept | string | - | - | 許可するファイル型を表す1つ以上の固有ファイル型指定子 <b>（ドラッグ&ドロップの挙動には影響しません）</b> |
 | multiple | boolean | true | - | 複数ファイルを選択できるかどうか |
+| error | boolean | - | - | フォームにエラーがあるかどうか |
 | onSelectFiles | (e: ChangeEvent<HTMLInputElement> \| DragEvent<HTMLElement>, files: FileList) => void | - | ✓ | ボタンまたはドラッグ&ドロップでファイルが追加された時に発火するコールバック関数 |
 | selectButtonLabel | string | - | - | ファイル選択ボタンのラベル |
 
 ### DropZone
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| disabled | boolean | - | - | - |
 | name | string | - | - | - |
-| error | boolean | - | - | フォームにエラーがあるかどうか |
+| disabled | boolean | - | - | - |
 | accept | string | - | - | 許可するファイル型を表す1つ以上の固有ファイル型指定子 <b>（ドラッグ&ドロップの挙動には影響しません）</b> |
 | multiple | boolean | true | - | 複数ファイルを選択できるかどうか |
+| error | boolean | - | - | フォームにエラーがあるかどうか |
 | onSelectFiles | (e: ChangeEvent<HTMLInputElement> \| DragEvent<HTMLElement>, files: FileList) => void | - | ✓ | ボタンまたはドラッグ&ドロップでファイルが追加された時に発火するコールバック関数 |
 | selectButtonLabel | string | - | - | ファイル選択ボタンのラベル |
 

@@ -3,7 +3,8 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { parseMetadata, loadPublicExports } from './lib/parse-metadata.js';
+import { parseMetadata, loadPublicExports, assertSmarthrUiVersionMatchesRoot } from './lib/parse-metadata.js';
+import { collectPropsTablePages, regroupByPropsTable } from './lib/props-table-groups.js';
 import { autoSplitGroups } from './lib/auto-split-groups.js';
 import { fetchEslintRules, buildComponentRuleMap, type EslintRuleWithContent } from './lib/fetch-eslint-rules.js';
 import { parseChecklist } from './lib/parse-checklist.js';
@@ -30,6 +31,7 @@ const ESLINT_RULE_NAMES_PATH = path.join(REPO_ROOT, '.github/data/eslint-rule-na
 
 async function main() {
   console.log('📂 metadata.json を読み込み中…');
+  assertSmarthrUiVersionMatchesRoot(REPO_ROOT);
   const publicExports = loadPublicExports();
   console.log(`   ${publicExports.size} 個の public named exports を取得`);
   const rawGroups = parseMetadata(publicExports);
@@ -38,7 +40,9 @@ async function main() {
   const relatedSkills = collectRelatedComponents(DESIGN_SYSTEM_DIR);
   console.log(`   ${relatedSkills.size} 件の relatedComponents 宣言を検出`);
 
-  const groups = autoSplitGroups(rawGroups, new Set(relatedSkills.keys()), DESIGN_SYSTEM_DIR);
+  const relatedNames = new Set(relatedSkills.keys());
+  const pageGroups = regroupByPropsTable(rawGroups, collectPropsTablePages(DESIGN_SYSTEM_DIR), relatedNames);
+  const groups = autoSplitGroups(pageGroups, relatedNames, DESIGN_SYSTEM_DIR);
   console.log(`   ${groups.size} コンポーネントグループを検出`);
 
   console.log('🌐 eslint-plugin-smarthr ルール README を読み込み中…（コミット済みスナップショット優先）');

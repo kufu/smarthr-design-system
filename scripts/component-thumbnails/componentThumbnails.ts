@@ -8,7 +8,7 @@ puppeteerは、このディレクトリである/scripts/component-thumbnailsに
 */
 import puppeteer from 'puppeteer';
 
-import { type StoryGroup, fetchComponentCaptures } from '../../src/lib/fetchComponentCaptures';
+import { type StoryGroup, getComponentCaptures } from '../../src/lib/getComponentCaptures';
 
 const thumbnailsDir = path.resolve(import.meta.dirname, '../../public/thumbnails/component-stories/');
 const cacheFilePath = path.resolve(import.meta.dirname, './thumbnails-cache.json');
@@ -117,7 +117,7 @@ const ensureThumbnailDir = async () => {
 // メイン処理
 const main = async () => {
   await ensureThumbnailDir();
-  const storyGroups = await fetchComponentCaptures();
+  const storyGroups = await getComponentCaptures();
   await generateThumbnails(storyGroups);
   console.log('✅️ 完了しました');
 };
