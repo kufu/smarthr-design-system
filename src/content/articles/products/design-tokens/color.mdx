@@ -6,6 +6,9 @@ order: 1
 
 import ColorPalette from '@/components/article/ColorPalette.astro'
 import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro'
+import { Table, Td, Th, BaseColumn, ResponseMessage } from 'smarthr-ui'
+import TableWrapper from '@/components/article/TableWrapper.astro'
+import TokenTitle from '@/components/article/TokenTitle.astro'
 
 プロダクトを構成するために必要な最低限の色を定義しています。
 
@@ -21,24 +24,121 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
 
 プライマリーカラーは、プロダクトの印象を司る箇所に使います。具体的な使用箇所は、各コンポーネントを参照してください。
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#0077c7" colorName="MAIN" description="プライマリーカラー（プロダクトの印象を司る箇所に使う）" />
-  <ColorPalette colorValue="#fff" colorName="WHITE" description="コンポーネントの背景色（Baseコンポーネントなど）" />
-</ColorPalettesWrapper>
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>トークン名/色</Th>
+        <Th>利用用途</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#0077c7', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="MAIN" />
+              <div>#0077c7</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(0,119,199)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          - 画面内で強調させたい最も重要な操作要素の背景色
+          - 選択状態を表すための背景色、線
 
+          コンポーネント内部での使用例：
+          - variant propsが`primary`の[Button](/products/components/button) の背景色
+          - 選択状態の[Checkbox](/products/components/checkbox/)の背景色
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#fff', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="WHITE" />
+              <div>#fff</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(255,255,255)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          - 視覚的グルーピングのための矩形の背景色
+          - 操作可能な状態を示すための背景色
+
+          コンポーネント内部での使用例：
+          - [Base](/products/components/base/)の背景色
+          - [Dialog](/products/components/dialog/)の背景色
+          - 操作可能な状態の[Checkbox](/products/components/checkbox/)の背景色
+
+          使用上の注意：
+          - テキストには`TEXT_WHITE`を使ってください。
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 ### アクセント
+
 コンテキストに応じた色を定めています。
 
 `MAIN`と合わせて、ユーザーのメインアクションや、アクションに対する結果、ヘルプの表示、オブジェクトの状態を表します。
 
 具体的な使用箇所は、各コンポーネントを参照してください。
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#e01e5a" colorName="DANGER" description="エラー色（操作前に、個人情報の流出や金銭的／法的リスクなど、強い警告をする場合も含む）" />
-  <ColorPalette colorValue="#ffcc17" colorName="WARNING_YELLOW" description="警告色（削除やUndoなどの破壊的アクションをする前の注意に使う）。必ずTEXT_BLACKと組み合わせて使う" />
-</ColorPalettesWrapper>
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>トークン名/色</Th>
+        <Th>利用用途</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#e01e5a', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="DANGER" />
+              <div>#e01e5a</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(224,30,90)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          - エラー状態を示す要素の背景色、線
+          - 削除など破壊的な操作を示す要素の背景色、線
 
+          使用上の注意：
+          - エラー状態や破壊的操作ではないが、注意を促す警告には`WARNING_YELLOW`を使ってください。
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#ffcc17', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="WARNING_YELLOW" />
+              <div>#ffcc17</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(255,204,23)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          警告を示す要素の背景色、線に使います。
+
+          使用上の注意：
+
+          - エラー状態や、破壊的な操作を示す場合には`DANGER`を使ってください。
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 ### 文字
 
@@ -46,33 +146,328 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
 
 強調などの文字スタイルは、[タイポグラフィ](/products/design-tokens/typography/)を参照してください。
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#23221e" colorName="TEXT_BLACK" description="基本的な文字の色" />
-  <ColorPalette colorValue="#706d65" colorName="TEXT_GREY" description="TEXT_BLACKからジャンプ率を確保するときに使う文字の色" />
-  <ColorPalette colorValue="#0071c1" colorName="TEXT_LINK" description="リンクを表す文字の色" />
-  <ColorPalette colorValue="#c1bdb7" colorName="TEXT_DISABLED" description="disabled状態を表す文字の色" />
-  <ColorPalette colorValue="#fff" colorName="TEXT_WHITE" description="暗い地色やMAINに対して使う文字の色" />
-</ColorPalettesWrapper>
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>トークン名/色</Th>
+        <Th>利用用途</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#23221e', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="TEXT_BLACK" />
+              <div>#23221e</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(35,34,30)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          標準的な[見出し](https://smarthr.design/products/design-tokens/typography/#h3-2)、[段落テキスト](https://smarthr.design/products/design-tokens/typography/#h3-3)、[ラベルテキスト](https://smarthr.design/products/design-tokens/typography/#h3-4)に使います。
+          **特別な意図がない場合にはこのトークンを選択します**。
 
+          使用上の注意：
+          - ジャンプ率が文字の大きさで確保できないときは`TEXT_GREY`を使ってください。
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#706d65', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="TEXT_GREY" />
+              <div>#706d65</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(112,109,101)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          - 本文に対しての補足の文字色
+          - 文字の階層や強弱を文字の大きさ（ジャンプ率）で表現しづらい場合の文字色
 
-### コンポーネント
+          コンポーネント内部での使用例：
+          - [DefinitionList](/products/components/definition-list/)の文字色
+          - [Heading](/products/components/heading/)の文字色
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#0071c1', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="TEXT_LINK" />
+              <div>#0071c1</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(0,113,193)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          - リンクを表す文字色、下線
+          - インタラクション可能な要素の文字色
 
-コンポーネントを構成する要素に必要な色を定めています。
+          コンポーネント内部での使用例：
+          - [TextLink](/products/components/text-link/)
+          - variant propsが`tertiary`の[Button](/products/components/button/)の文字色
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#c1bdb7', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="TEXT_DISABLED" />
+              <div>#c1bdb7</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(193,189,183)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          非活性状態を表す文字色に使います。
 
+          コンポーネント内部での使用例：
+          - 非活性状態の[Button](/products/components/button/)の文字色
+
+          使用上の注意：
+          - 単なるグレーテキストの場合は使わない
+            - ジャンプ率を確保したいだけのときは`TEXT_GREY`を使ってください。
+          - 線や塗りの色には使わない
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#fff', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="TEXT_WHITE" />
+              <div>#fff</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(255,255,255)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          `DANGER`、`MAIN`などの強い塗りの上にある文字色に使います。
+
+          コンポーネント内部での使用例：
+          - variant propsが`primary`の[Button](/products/components/button/)の文字色
+
+          使用上の注意：
+          - 線や塗りには`WHITE`を使ってください。
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
+
+### 線
+
+線の色を定めています。
 具体的な使用箇所は、各コンポーネントを参照してください。
 
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#d6d3d0" colorName="BORDER" description="枠線・罫線の色" />
-  <ColorPalette colorValue="#d6d3d0" colorName="ACTION_BACKGROUND" description="TableBulkActionAreaの背景色" />
-  <ColorPalette colorValue="#edebe8" colorName="HEAD" description="テーブルヘッダーの背景色" />
-  <ColorPalette colorValue="#f2f1f0" colorName="OVER_BACKGROUND" description="BACKGROUNDの上で使う囲み色（要素をグルーピングするときに使う色）" />
-  <ColorPalette colorValue="#f8f7f6" colorName="COLUMN" description="WHITEの上で使う囲み色（要素をグルーピングするときに使う色）" />
-  <ColorPalette colorValue="#f8f7f6" colorName="BACKGROUND" description="画面の背景色" />
-  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="OVERLAY" description="ボタンなどhover時に重ねる色" />
-  <ColorPalette colorValue="rgba(3,3,2,0.5)" colorName="SCRIM" description="モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色" />
-  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="TRANSPARENT" description="デザインツールだけで使う専用スタイル。コンポーネントの枠線などを消すときのAppearanceに使用" />
-</ColorPalettesWrapper>
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>トークン名/色</Th>
+        <Th>利用用途</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#d6d3d0', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="BORDER" />
+              <div>#d6d3d0</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(214,211,208)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          線の色に使います。
 
+          コンポーネント内部での使用例：
+          - variant propsが`secondary`の[Button](/products/components/button/)の枠線の色
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: 'rgba(255,255,255,0)', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="TRANSPARENT" />
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgba(255,255,255,0)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          例外的に、コンポーネントの枠線などを消すときに使います。
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
+
+### 背景
+
+背景の色を定めています。
+具体的な使用箇所は、各コンポーネントを参照してください。
+
+<TableWrapper>
+  <Table>
+    <thead>
+      <tr>
+        <Th>トークン名/色</Th>
+        <Th>利用用途</Th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#d6d3d0', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="ACTION_BACKGROUND" />
+              <div>#d6d3d0</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(214,211,208)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          周囲の要素の背景色に`WHITE`、`OVER_BACKGROUND`、`COLUMN`などがすでに使われている状況で、操作要素を配置する領域をそれらと区別したい場合に背景色として使います。
+
+          コンポーネント内部での使用例：
+          - [Table](/products/components/table)のTableBulkActionRowの背景色
+
+          使用上の注意：
+          - テーブルヘッダーの背景色には`HEAD`を使ってください。
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#edebe8', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="HEAD" />
+              <div>#edebe8</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(237,235,232)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          - テーブルヘッダーの背景色
+          - 視覚的グルーピングの`COLUMN`以上のネストが必要なとき
+
+          コンポーネント内部での使用例：
+          - [Table](/products/components/table)のテーブルヘッダーの背景色
+
+          使用上の注意：
+          - TableBulkActionRowには`ACTION_BACKGROUND`を使ってください。
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#f2f1f0', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="OVER_BACKGROUND" />
+              <div>#f2f1f0</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(242,241,240)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          `BACKGROUND`の上で使う囲み色（要素をグルーピングするときに使う色）に使います。
+
+          使用上の注意：
+          - 画面の背景色では使わない
+            - `BACKGROUND`を使ってください。
+          - [Base](/products/components/base/)の中など、`WHITE`の上では使わない
+            - `COLUMN`を使ってください。
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#f8f7f6', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="COLUMN" />
+              <div>#f8f7f6</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(248,247,246)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          `WHITE`の上で使う囲み色（要素をグルーピングするときに使う色）に使います。
+
+          コンポーネント内部での使用例：
+          - [DropZone](/products/components/drop-zone/)の背景色
+          - [SideNav](/products/components/side-nav/)の背景色
+
+          使用上の注意：
+          - 画面の背景色では使わない
+            - `BACKGROUND`を使ってください。
+          - `BACKGROUND`の上では使わない
+            - 色が`BACKGROUND`と同じなため、`BACKGROUND`の上にはおかないでください。
+            - `OVER_BACKGROUND`を使ってください。
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: '#f8f7f6', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="BACKGROUND" />
+              <div>#f8f7f6</div>
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgb(248,247,246)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          ページの最背面の背景色に使います。
+
+          使用上の注意：
+          - `WHITE`の上では`COLUMN`を使ってください。
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: 'rgba(3,3,2,0.15)', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="OVERLAY" />
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgba(3,3,2,0.15)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          ボタンなどhover時に重ねる色に使います。
+          <BaseColumn className="shr-mt-1">
+            <ResponseMessage status="info">現在`OVERLAY`は使用されていません。</ResponseMessage>
+          </BaseColumn>
+        </Td>
+      </tr>
+      <tr>
+        <Td style={{ verticalAlign: 'top', padding: '20px 16px' }}>
+          <div>
+            <div style={{ width: '126px', height: '80px', backgroundColor: 'rgba(3,3,2,0.5)', flexShrink: 0, boxShadow: 'rgb(235, 236, 240) 0 0 0 1.2px' , marginBottom: '8px' }}></div>
+            <div>
+              <TokenTitle name="SCRIM" />
+              <div style={{ fontSize: '0.857rem', color: '#706d65' }}>rgba(3,3,2,0.5)</div>
+            </div>
+          </div>
+        </Td>
+        <Td style={{ verticalAlign: 'top', padding: '12px 16px' }}>
+          モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色に使います。
+        </Td>
+      </tr>
+    </tbody>
+  </Table>
+</TableWrapper>
 
 ### チャート（グラフ）
 
@@ -81,35 +476,27 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
 #### 多色チャート
 
 <ColorPalettesWrapper>
-  <ColorPalette colorValue="#00c4cc" colorName="CHART_COLOR_1" description="多色チャート色1" />
-  <ColorPalette colorValue="#ffcd00" colorName="CHART_COLOR_2" description="多色チャート色2" />
+  <ColorPalette colorValue="#00c4cc" colorName="CHART_COLOR_1" description="多色チャート色1"/>
+  <ColorPalette colorValue="#ffcd00" colorName="CHART_COLOR_2" description="多色チャート色2"/>
   <ColorPalette colorValue="#ff9100" colorName="CHART_COLOR_3" description="多色チャート色3" />
   <ColorPalette colorValue="#e65537" colorName="CHART_COLOR_4" description="多色チャート色4" />
   <ColorPalette colorValue="#2d4b9b" colorName="CHART_COLOR_5" description="多色チャート色5" />
   <ColorPalette colorValue="#2d7df0" colorName="CHART_COLOR_6" description="多色チャート色6" />
   <ColorPalette colorValue="#69d7ff" colorName="CHART_COLOR_7" description="多色チャート色7" />
   <ColorPalette colorValue="#4bb47d" colorName="CHART_COLOR_8" description="多色チャート色8" />
-  <ColorPalette colorValue="#05878c" colorName="CHART_COLOR_9" description="多色チャート色9" />
-  <ColorPalette colorValue="#005a64" colorName="CHART_COLOR_10" description="多色チャート色10" />
+  <ColorPalette colorValue="#05878c" colorName="CHART_COLOR_9" description="多色チャート色9"/>
+  <ColorPalette colorValue="#005a64" colorName="CHART_COLOR_10" description="多色チャート色10"/>
 </ColorPalettesWrapper>
 
 #### 単色チャート
 
 <ColorPalettesWrapper>
-  <ColorPalette colorValue="#a1e3e6" colorName="SINGLE_CHART_COLOR_1" description="単色チャート色1" />
-  <ColorPalette colorValue="#00c4cc" colorName="SINGLE_CHART_COLOR_2" description="単色チャート色2" />
+  <ColorPalette colorValue="#a1e3e6" colorName="SINGLE_CHART_COLOR_1" description="単色チャート色1"/>
+  <ColorPalette colorValue="#00c4cc" colorName="SINGLE_CHART_COLOR_2" description="単色チャート色2"/>
   <ColorPalette colorValue="#00acb3" colorName="SINGLE_CHART_COLOR_3" description="単色チャート色3" />
   <ColorPalette colorValue="#05868b" colorName="SINGLE_CHART_COLOR_4" description="単色チャート色4" />
   <ColorPalette colorValue="#055659" colorName="SINGLE_CHART_COLOR_5" description="単色チャート色5" />
   <ColorPalette colorValue="#033033" colorName="SINGLE_CHART_COLOR_6" description="単色チャート色6" />
-</ColorPalettesWrapper>
-
-#### その他のチャート色
-
-その他のチャート色は、チャート内の「その他」を示す項目に使います。
-
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="#ebebeb" colorName="OTHER_CHART_COLOR" description="「その他」項目に使う色" />
 </ColorPalettesWrapper>
 
 
@@ -218,7 +605,7 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
   <ColorPalette colorValue="#fff" colorName="新" />
 </ColorPalettesWrapper>
 
-### コンポーネント
+### 線
 #### BORDER
 
 <ColorPalettesWrapper>
@@ -226,6 +613,14 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
   <ColorPalette colorValue="#d6d6d6" colorName="旧" />
 </ColorPalettesWrapper>
 
+#### TRANSPARENT
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="新 ※変更なし" />
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="旧" />
+</ColorPalettesWrapper>
+
+### 背景
 #### ACTION_BACKGROUND（新のみ）
 
 <ColorPalettesWrapper>
@@ -270,11 +665,4 @@ import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro
 <ColorPalettesWrapper>
   <ColorPalette colorValue="rgba(3,3,3,0.4)" colorName="新" />
   <ColorPalette colorValue="rgba(0,0,0,0.5)" colorName="旧" />
-</ColorPalettesWrapper>
-
-#### TRANSPARENT
-
-<ColorPalettesWrapper>
-  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="新 ※変更なし" />
-  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="旧" />
 </ColorPalettesWrapper>
