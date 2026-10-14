@@ -35,6 +35,10 @@ export default defineConfig({
     syntaxHighlight: false,
     processor: unified({
       remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
+      remarkRehype: {
+        footnoteLabel: '脚注',
+        footnoteBackLabel: '脚注へ戻る',
+      },
     }),
   },
   vite: {
