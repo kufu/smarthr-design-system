@@ -54,6 +54,29 @@ export function loadPublicExports(): Set<string> {
 }
 
 /**
+ * generate-skills が参照する smarthr-ui と、リポジトリルート（ドキュメントサイト）が参照する smarthr-ui の
+ * バージョンが一致しているかを検査し、ずれていれば例外を投げる。
+ *
+ * smarthr-ui をルートだけ更新すると、サイトの Props テーブルは新しい metadata.json から作られる一方、
+ * スキルのガイドは古い metadata.json から生成され続け、props の追加が反映されない。
+ */
+export function assertSmarthrUiVersionMatchesRoot(repoRoot: string): void {
+  const require = createRequire(import.meta.url);
+  const skillVersion = (require('smarthr-ui/package.json') as { version: string }).version;
+  const rootPkgPath = require.resolve('smarthr-ui/package.json', { paths: [repoRoot] });
+  const rootVersion = (JSON.parse(fs.readFileSync(rootPkgPath, 'utf-8')) as { version: string }).version;
+
+  if (skillVersion !== rootVersion) {
+    throw new Error(
+      [
+        `scripts/generate-skills の smarthr-ui (v${skillVersion}) がリポジトリルートの smarthr-ui (v${rootVersion}) と一致していません。`,
+        'ルートと scripts/generate-skills の package.json の smarthr-ui を同じバージョンにしてください。',
+      ].join('\n'),
+    );
+  }
+}
+
+/**
  * smarthr-ui の metadata.json をコンポーネントグループに整形して返す。
  *
  * 対応する filePath:
@@ -69,14 +92,17 @@ export function parseMetadata(publicExports?: Set<string>): Map<string, Componen
   const groups = new Map<string, ComponentGroup>();
 
   for (const component of data) {
-    const isComponentsDir = component.filePath.startsWith('src/components/');
-    const isIntlDir = component.filePath.startsWith('src/intl/');
+    // smarthr-ui v99.7 以降、クライアントコンポーネントは `src/components/<Component>/client/` 配下に置かれる。
+    // `client` はグルーピングに使わないため、取り除いた filePath で判定する。
+    const filePath = component.filePath.replace(/\/client\//, '/');
+    const isComponentsDir = filePath.startsWith('src/components/');
+    const isIntlDir = filePath.startsWith('src/intl/');
     if (!isComponentsDir && !isIntlDir) continue;
 
     if (isComponentsDir) {
       // 内部実装パターン (例: src/components/AppHeader/components/desktop/AppLauncher.tsx) を除外。
       // 同一 displayName が別所で公開エクスポートされる場合はそちらの定義のみ採用。
-      const rest = component.filePath.slice('src/components/'.length);
+      const rest = filePath.slice('src/components/'.length);
       if (rest.includes('/components/')) continue;
     }
     if (/^Fa.+Icon$/.test(component.displayName)) continue;
@@ -92,7 +118,7 @@ export function parseMetadata(publicExports?: Set<string>): Map<string, Componen
       // (design-system 側のディレクトリ名 kebab-case と pascalToKebab 経由で対応付け可能)。
       dirName = component.displayName;
     } else {
-      const parts = component.filePath.split('/');
+      const parts = filePath.split('/');
       if (parts.length < 3) continue;
       dirName = parts[parts.length - 2];
     }

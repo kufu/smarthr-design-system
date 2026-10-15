@@ -1,4 +1,4 @@
-import { useInstantSearch } from 'react-instantsearch-core';
+import { useInstantSearch } from 'react-instantsearch';
 import { Base } from 'smarthr-ui';
 
 import styles from './SearchResultOuter.module.scss';

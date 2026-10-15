@@ -15,21 +15,19 @@ const { source, poster, title, youtubeUrl, tracks } = Astro.props;
   <video controls poster={poster}>
     <source src={source} type="video/mp4" title={title} />
     <p>
-      {
-        youtubeUrl
-          ? '動画を再生できない場合は以下のYouTubeリンク先を参照してください。'
-          : '動画再生に対応した環境でご覧ください。'
-      }
+      {youtubeUrl
+        ? '動画を再生できない場合は以下のYouTubeリンク先を参照してください。'
+        : '動画再生に対応した環境でご覧ください。'}
     </p>
-    {tracks?.map((track) => <track {...track} />)}
+    {tracks?.map((track) => (
+      <track {...track} />
+    ))}
   </video>
-  {
-    youtubeUrl && (
-      <a href={youtubeUrl} target="_blank" rel="noopener noreferrer">
-        {title} | YouTube
-      </a>
-    )
-  }
+  {youtubeUrl && (
+    <a href={youtubeUrl} target="_blank" rel="noopener noreferrer">
+      {title} | YouTube
+    </a>
+  )}
 </>
 
 <style lang="scss">

@@ -12,15 +12,15 @@ import { ControlledMessageDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.8.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | children | ReactNode | - | - | ダイアログの説明 |
 | className | string | - | - | - |
-| closeButton | ReactNode | - | - | 閉じるボタン |
-| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
+| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | コンテンツ部分の背景色 |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
+| closeButton | ReactNode | - | - | 閉じるボタン |
 | size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
 | width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
 | firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
@@ -57,9 +57,3 @@ ControlledMessageDialog に直接関連する eslint-plugin-smarthr のルール
 
 ### 構成 > 3. アクションボタン
 - [must] ダイアログを閉じるボタンを配置し、ラベルは `閉じる` とする
-
-### モバイル
-- [should] モバイルで情報量が多い場合は拡大したダイアログの採用を検討する
-  - 採用を検討するケース: ダイアログ内で多くのスクロールを伴う場合・入力や編集などキーボード入力操作が多い場合
-  - ［閉じる］ボタンはタイトルの右端に配置する
-  - ダイアログの左右と裏側の領域（スクリムで隠されている領域）のパディングは `0（0px）` とする

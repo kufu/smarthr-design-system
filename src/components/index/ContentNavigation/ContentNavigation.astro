@@ -5,13 +5,11 @@ import Category from './Category.astro';
 ---
 
 <ul>
-  {
-    indexContentJson.map((child) => (
-      <li>
-        <Category data={child} />
-      </li>
-    ))
-  }
+  {indexContentJson.map((child) => (
+    <li>
+      <Category data={child} />
+    </li>
+  ))}
 </ul>
 
 <style lang="scss">

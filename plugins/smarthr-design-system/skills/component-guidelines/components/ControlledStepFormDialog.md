@@ -12,7 +12,7 @@ import { StepFormDialogItem, ControlledStepFormDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.8.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### StepFormDialogItem
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -24,7 +24,7 @@ import { StepFormDialogItem, ControlledStepFormDialog } from 'smarthr-ui'
 |---|---|---|---|---|
 | className | string | - | - | - |
 | responseStatus | ResponseStatus | - | - | - |
-| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
+| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | コンテンツ部分の背景色 |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
 | firstStep | { id: string; stepNumber: number; } | - | ✓ | - |
 | stepLength | number | - | ✓ | ステップの総数 |

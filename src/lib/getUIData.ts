@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import packageInfo from 'smarthr-ui/package.json';
 
-import type { UIData, UIProps, UIStories } from '@/types/ui';
+import type { StoryIndexItem, UIData, UIProps, UIStories } from '@/types/ui';
 
 const cacheFile = path.resolve(process.cwd(), `node_modules/.cache/smarthr-ui@v${packageInfo.version}/data.json`);
 const uiData: UIData = JSON.parse(fs.readFileSync(cacheFile, 'utf-8'));
@@ -13,6 +13,14 @@ export const UI_VERSION = uiData.version;
 
 /** Smarthr UIのコミットハッシュ */
 export const UI_COMMIT_HASH = uiData.commitHash;
+
+// storyIndex を持たない古いキャッシュのままだと、参照側で分かりにくいエラーになるため、ここで気づけるようにする
+if (!uiData.storyIndex) {
+  throw new Error(`キャッシュに storyIndex がありません。\`pnpm update:ui-data\` を実行してください: ${cacheFile}`);
+}
+
+/** 利用中のバージョンのStorybook（Chromatic）のstory情報（コンポーネント一覧の生成に使う） */
+export const UI_STORY_INDEX: StoryIndexItem[] = uiData.storyIndex;
 
 /**
  * Storyを取得

@@ -12,17 +12,17 @@ import { InputFile } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.8.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | label | ReactNode | - | ✓ | フォームのラベル |
-| multiple | boolean \| { appendable?: boolean; } | - | - | - |
-| size | "S" \| "M" | - | - | - |
 | onChange | (files: File[]) => void | - | - | ファイルの選択に変更があったときに発火するコールバック関数 |
+| size | "S" \| "M" | - | - | コンポーネントのサイズ |
+| multiple | boolean \| { appendable?: boolean; } | - | - | - |
 | error | boolean | - | - | - |
-| previewable | boolean | - | - | ファイルのプレビュー機能を有効にするかどうか |
 | hasFileList | boolean | - | - | ファイルリストを表示するかどうか |
+| previewable | boolean \| PreviewableObjectType | - | - | ファイルのプレビュー機能を有効にするかどうか |
 
 ## 実装ルール
 
@@ -48,3 +48,4 @@ InputFile に直接関連する eslint-plugin-smarthr のルールは現時点�
 
 ### モバイル
 - [should] 目的のファイルを選択するステップが複数回に分かれるケースでは、必要に応じて `multiple={{ appendable: true }}` props の利用を検討する
+- [should] `previewable` を使用している場合、PDF 検索フォームが画面を圧迫するときは `previewable={{ searchable: false }}` で非表示にすることを検討する
