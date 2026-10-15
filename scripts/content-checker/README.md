@@ -17,8 +17,7 @@ pnpm exec tsx scripts/content-checker/linkChecker.ts --fix ./src/content/article
 - 対象ファイルはglob形式で複数指定できます。指定がない場合は`src/content/articles/**/*.mdx`が対象になります。
 
 #### 自動実行
-- コミット時に、ステージングされているファイルを対象に自動的に実行します。
-- GitHub Actionsにより毎週月曜日の午前11時（UTC+9）にも実行されます。
+- GitHub Actionsにより毎週月曜日の午前11時（UTC+9）に実行されます。
 
 ## storybookUrlChecker.ts
 
