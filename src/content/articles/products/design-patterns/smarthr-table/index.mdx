@@ -132,7 +132,7 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 やむを得ず横スクロールが生じる場合、後述の[列の固定](#h3-6)により主要な操作を見つけやすくしたり、[フルスクリーンレイアウト](#h3-5)を使用して表示幅を広げたりできます。
 
 ##### 情報の省略
-情報を指定幅以上に表示したい、またはセル内で情報を複数行で表示させたくない場合、[LineClamp](/products/components/line-clamp/)などを使ってセル上の情報に三点リーダーをつけて省略します。
+情報を指定幅以上に表示したい、またはセル内で情報を複数行で表示させたくない場合、[Text](/products/components/text/)の`maxLines`などを使ってセル上の情報に三点リーダーをつけて省略します。
 省略した情報は、マウスオーバーした際に[Tooltip](/products/components/tooltip/)を表示し、すべての情報を示してください。
 
 ```tsx editable hideCode background=BACKGROUND canvas=800
@@ -152,11 +152,11 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
           <StatusLabel>ステータス</StatusLabel>
         </Td>
         <Td>
-          {/* 指定した幅を超える情報は、LineClampで三点リーダーをつけて省略する。省略した場合はマウスオーバーでTooltipが表示される。 */}
+          {/* 指定した幅を超える情報は、TextのmaxLinesで三点リーダーをつけて省略する。省略した場合はマウスオーバーでTooltipが表示される。 */}
           <div style={{ width: '12em' }}>
-            <LineClamp maxLines={1}>
+            <Text maxLines={{ max: 1, tooltip: true }}>
               <TextLink href="#">オブジェクト1</TextLink>
-            </LineClamp>
+            </Text>
           </div>
         </Td>
         <Td>1</Td>
@@ -168,9 +168,9 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
         </Td>
         <Td>
           <div style={{ width: '12em' }}>
-            <LineClamp maxLines={1}>
+            <Text maxLines={{ max: 1, tooltip: true }}>
               <TextLink href="#">長そうでそんなに長くないオブジェクト2</TextLink>
-            </LineClamp>
+            </Text>
           </div>
         </Td>
         <Td>2</Td>
@@ -182,9 +182,9 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
         </Td>
         <Td>
           <div style={{ width: '12em' }}>
-            <LineClamp maxLines={1}>
+            <Text maxLines={{ max: 1, tooltip: true }}>
               <TextLink href="#">オブジェクト3</TextLink>
-            </LineClamp>
+            </Text>
           </div>
         </Td>
         <Td>3</Td>
