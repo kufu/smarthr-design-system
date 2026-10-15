@@ -349,5 +349,13 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
       width: 100%;
       max-width: 100%;
     }
+
+    /* 脚注 */
+    :global(sup:has(a[data-footnote-ref]) a)::before {
+      content: '[';
+    }
+    :global(sup:has(a[data-footnote-ref]) a)::after {
+      content: ']';
+    }
   }
 </style>

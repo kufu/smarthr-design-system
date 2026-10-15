@@ -37,7 +37,7 @@ export default defineConfig({
       remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
       remarkRehype: {
         footnoteLabel: '脚注',
-        footnoteBackLabel: '脚注へ戻る',
+        footnoteBackLabel: '注釈元へ戻る',
       },
     }),
   },
