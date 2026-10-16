@@ -22,7 +22,7 @@ export default function DynamicStepFormDialog() {
   const lastStep = steps[steps.length - 1];
 
   const handleSubmit = (
-    _e: React.FormEvent<HTMLFormElement>,
+    _e: React.SyntheticEvent<HTMLFormElement>,
     { goto, close, currentStep }: { goto: (step: Step) => void; close: () => void; currentStep: Step },
   ) => {
     if (currentStep.id === lastStep.id) {

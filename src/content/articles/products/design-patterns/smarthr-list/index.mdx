@@ -7,7 +7,8 @@ import { Image } from 'astro:assets'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import Grid from '@/components/article/Grid.astro'
-import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import { ResponseMessage } from '@/components/ResponseMessage'
+import { BaseColumn, Cluster, Text } from 'smarthr-ui'
 
 import doOmitHeading from './images/smarthr-list-do-omit-heading.png'
 import dontOmitHeading from './images/smarthr-list-dont-omit-heading.png'
@@ -41,7 +42,7 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 - [Heading](/products/components/heading/)を使ってください。
 - 多くの場合、`{オブジェクト名}`という表記を採用します。
-    - [よくあるテーブルの見出しに「一覧」はつけない](/products/contents/ui-text/app-writing/#h2-5)
+    - [よくあるテーブルの見出しに「一覧」はつけない](/products/contents/ui-text/app-writing/#dont-use-ichiran-in-common-tables)
 
 ![スクリーンショット: よくあるリストの見出し](./images/smarthr-list-heading.png)
 

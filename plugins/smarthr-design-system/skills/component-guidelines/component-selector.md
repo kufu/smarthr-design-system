@@ -2,7 +2,7 @@
 
 UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、対応するガイドファイルを参照してください。
 
-> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ## コンポーネント一覧
 
@@ -15,8 +15,6 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | AppNavi | アプリケーション内の主要機能を切り替えるグローバルナビゲーションコンポーネントです。機能間を行き来するとき、機能切替以外でアプリ全体に関わる頻繁な操作を常設するときに使います。 | [components/AppNavi.md](components/AppNavi.md) |
 | AuthErrorScreen | 認証フローで問題が発生したことを表示する全画面コンポーネントです。SSOやOAuthなどログイン処理に失敗したときに使います。 | [components/AuthErrorScreen.md](components/AuthErrorScreen.md) |
 | Badge | 件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。 | [components/Badge.md](components/Badge.md) |
-| Base | 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。 | [components/Base.md](components/Base.md) |
-| BaseColumn | BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。 | [components/BaseColumn.md](components/BaseColumn.md) |
 | ⚠️ BottomFixedArea（非推奨） | 【非推奨】画面下部に固定表示する領域のためのコンポーネントです。 | [components/BottomFixedArea.md](components/BottomFixedArea.md) |
 | Browser | 階層構造を持つデータを選択するためのコンポーネントです。カテゴリや組織、フォルダなどのツリー状のデータをドリルダウンで選択するときに使います。 | [components/Browser.md](components/Browser.md) |
 | BulkActionRow | テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。 | [components/BulkActionRow.md](components/BulkActionRow.md) |
@@ -50,6 +48,7 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | ForbiddenErrorScreen | アクセス権限がないことを表示する全画面コンポーネントです。403相当の権限エラーを伝えるときに使います。 | [components/ForbiddenErrorScreen.md](components/ForbiddenErrorScreen.md) |
 | FormControl | 単一の入力要素にラベル、ヘルプ/エラー/補足のメッセージテキスト、入力必須か否かを紐づけるためのコンポーネントです。1つの入力欄にラベル付けするとき、入力欄にエラーや補足メッセージを表示するときに使います。 | [components/FormControl.md](components/FormControl.md) |
 | FormDialog | フォーム要素を内包し、ユーザーに入力や選択などの操作を求めるためのActionDialog派生のダイアログコンポーネントです。ダイアログ内で入力フォームを送信するとき、Enterキーでの送信が必要なときに使います。 | [components/FormDialog.md](components/FormDialog.md) |
+| Groupbox | BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。 | [components/Groupbox.md](components/Groupbox.md) |
 | Header | アカウント設定やアプリ切替などSmartHR共通の横断機能を提供するヘッダーコンポーネントです。基本はAppHeaderの利用を推奨し、独自のヘッダー構成が必要なときのみHeader単体で使います。 | [components/Header.md](components/Header.md) |
 | Heading | 見出し要素の代替として直後のコンテンツの見出しを示すコンポーネントです。「セクション」や「ブロック」に見出しをつけるときに使います。 | [components/Heading.md](components/Heading.md) |
 | HelpLink | ヘルプページを開くためのテキストリンクコンポーネントです。SmartHRのヘルプセンターへ誘導するリンクを置くときに使います。 | [components/HelpLink.md](components/HelpLink.md) |
@@ -57,17 +56,18 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | Input | input[type='text']やinput[type='number']などの代替としてテキストや数値を1行で入力させるコンポーネントです。テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するときに使います。 | [components/Input.md](components/Input.md) |
 | InputFile | input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。 | [components/InputFile.md](components/InputFile.md) |
 | LanguageSwitcher | 表示言語を切り替えるためのコンポーネントです。多言語対応したアプリケーションで利用者に言語選択UIを提供するときに使います。 | [components/LanguageSwitcher.md](components/LanguageSwitcher.md) |
-| LineClamp | テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。 | [components/LineClamp.md](components/LineClamp.md) |
+| ⚠️ LineClamp（非推奨） | 【非推奨】テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。 | [components/LineClamp.md](components/LineClamp.md) |
 | Loader | 読み込み中や処理中であることを伝えるためのコンポーネントです。 | [components/Loader.md](components/Loader.md) |
 | MessageDialog | ユーザーに情報を提示するためのダイアログコンポーネントです。入力などの操作を伴わずにメッセージや情報をダイアログで提示するときに使います。 | [components/MessageDialog.md](components/MessageDialog.md) |
 | ModelessDialog | 背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。 | [components/ModelessDialog.md](components/ModelessDialog.md) |
 | ⚠️ MonthPicker（非推奨） | 【非推奨】ユーザーに年と月を入力させる際に使用するコンポーネントです。 | [components/MonthPicker.md](components/MonthPicker.md) |
 | MultiCombobox | 選択肢から複数の値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら複数を選択するときに使います。 | [components/MultiCombobox.md](components/MultiCombobox.md) |
 | NotFoundErrorScreen | 存在しないページであることを表示する全画面コンポーネントです。404相当のエラーを伝えるときに使います。 | [components/NotFoundErrorScreen.md](components/NotFoundErrorScreen.md) |
-| NotificationBar | システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックを表示するとき、ページ全体や特定領域に重要な状態を伝えるときに使います。 | [components/NotificationBar.md](components/NotificationBar.md) |
+| NotificationBar | システムからの通知を表示するためのコンポーネントです。操作結果のフィードバックのほか、システムの状態や、操作を進めるうえで伝えるべき注意事項などを、ページ全体や特定領域に表示するときに使います。 | [components/NotificationBar.md](components/NotificationBar.md) |
 | PageCounter | 「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。 | [components/PageCounter.md](components/PageCounter.md) |
 | PageHeading | 画面全体の最上位見出しを表示するためのコンポーネントです。h1要素として画面タイトルを示すときに使います。 | [components/PageHeading.md](components/PageHeading.md) |
 | Pagination | 「よくあるテーブル」などの一覧のページを切り替えるためのコンポーネントです。大量データを分割表示し、ページ単位で前後移動させるときに使います。 | [components/Pagination.md](components/Pagination.md) |
+| Panel | 矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。 | [components/Panel.md](components/Panel.md) |
 | RadioButton | input[type='radio']要素の代替として選択肢から1つだけ選ばせる選択コンポーネントです。5個以下の選択肢をラベル短く一覧で見せるときに使います。 | [components/RadioButton.md](components/RadioButton.md) |
 | RadioButtonPanel | RadioButtonをパネル型に視覚的強化した単一選択コンポーネントです。選択肢に説明やステータスを付加するとき、視覚的に強調して操作領域を確保するときに使います。 | [components/RadioButtonPanel.md](components/RadioButtonPanel.md) |
 | Reel | 要素を水平方向に並べ、はみ出した場合は水平方向にスクロールさせるレイアウトコンポーネントです。複数の要素を水平方向にスクロールさせて見せるときに使います。 | [components/Reel.md](components/Reel.md) |
@@ -106,7 +106,7 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | Timeline | 情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。 | [components/Timeline.md](components/Timeline.md) |
 | ⚠️ TimePicker（非推奨） | 【非推奨】ユーザーに時刻（時と分、任意で秒）を入力させる際に使用するコンポーネントです。 | [components/TimePicker.md](components/TimePicker.md) |
 | TimestampFormatter | 日付と時刻データを任意の形式にフォーマットして表示するコンポーネントです。日付と時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。 | [components/TimestampFormatter.md](components/TimestampFormatter.md) |
-| Tooltip | 補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。 | [components/Tooltip.md](components/Tooltip.md) |
+| Tooltip | 補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、TextのmaxLinesで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。 | [components/Tooltip.md](components/Tooltip.md) |
 | UnauthorizedErrorScreen | セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。 | [components/UnauthorizedErrorScreen.md](components/UnauthorizedErrorScreen.md) |
 | UnexpectedErrorScreen | 予期しないエラーが発生したことを表示する全画面コンポーネントです。500相当のサーバーエラーを伝えるときに使います。 | [components/UnexpectedErrorScreen.md](components/UnexpectedErrorScreen.md) |
 | UpwardLink | 一階層上のコンテンツに戻るためのテキストリンクコンポーネントです。詳細画面から一覧画面など親階層へ戻る導線を置くときに使います。 | [components/UpwardLink.md](components/UpwardLink.md) |

@@ -23,7 +23,7 @@ items:
     source_section: '使用上の注意 > 例外'
     sub_items:
       - 'ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的'
-      - 'LineClamp で折り返して表示することがどうしても難しい場合'
+      - 'Text の maxLines で折り返して表示することがどうしても難しい場合'
       - 'SearchInput で検索結果が得られなかったときの再検索ヒントを補助として使う場合（再検索ヒント自体は必ず見える場所に表示する）'
       - 'Button の disabledReason: DropdownMenuButton 内の Button で使う場合'
       - 'Button の disabledReason: Button 単独でも付加的情報を表示する目的で使う場合'
@@ -43,7 +43,7 @@ items:
     source_section: 'デザインパターン > Tooltipのトリガーパターン > A. テキスト＋アイコン'
 
   - severity: must
-    text: 'テキスト＋アイコンパターンのアイコンの色には `TEXT_GRAY` を使う'
+    text: 'テキスト＋アイコンパターンのアイコンの色には `TEXT_GREY` を使う'
     source_section: 'デザインパターン > Tooltipのトリガーパターン > A. テキスト＋アイコン'
 
   # デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ
@@ -65,7 +65,7 @@ items:
 
   # デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > テキストとあわせて使用
   - severity: must
-    text: 'テキストとあわせて使うアイコンの色には `TEXT_GRAY` を使う'
+    text: 'テキストとあわせて使うアイコンの色には `TEXT_GREY` を使う'
     source_section: 'デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > テキストとあわせて使用'
 
   # デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > ステータスの補足に使用
@@ -88,7 +88,7 @@ items:
     source_section: 'デザインパターン > Tooltipのトリガーパターン > D. 省略テキスト'
 
   - severity: must
-    text: '単純に文章を省略したい場合は LineClamp を使用する'
+    text: '単純に文章を省略したい場合は Text の maxLines を使用する'
     source_section: 'デザインパターン > Tooltipのトリガーパターン > D. 省略テキスト'
 
   # アクセシビリティ > 開発時の考慮点 > Tooltipの内容に応じてtypeを使い分ける

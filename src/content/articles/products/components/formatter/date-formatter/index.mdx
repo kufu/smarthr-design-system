@@ -15,11 +15,11 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### 日付をフォーマットする機能だけ必要な場合
 
 DateFormatterは日付を`time`要素としてレンダリングします。  
-フォーマットされた日付の文字列だけが必要な場合は、`useIntl`の`formatDate`を使用してください。
+フォーマットされた日付の文字列だけが必要な場合は、`useDateFormat`の`formatDate`を使用してください。
 
 ```tsx editable noIframe withStyled
 const FormatDateExample = () => {
-  const { formatDate } = useIntl()
+  const { formatDate } = useDateFormat()
   return (
     <span>今日は{formatDate({ date: new Date(2025, 7 - 1, 10) })}ではありません。</span>
   )

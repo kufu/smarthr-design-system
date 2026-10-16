@@ -8,7 +8,7 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 `fieldset`要素の代替として複数の入力要素をグルーピングするコンポーネントです。関連する入力欄を1つの見出しでまとめるときに使います。
 
-姓名や期間の開始・終了のように値を分割して入力する場合や、[Checkbox](/products/components/check-box/)や[RadioButton](/products/components/radio-button/)といった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
+姓名や期間の開始・終了のように値を分割して入力する場合や、[Checkbox](/products/components/checkbox/)や[RadioButton](/products/components/radio-button/)といった複数の入力要素を持つフォームに対してラベルやメッセージテキストを表示したい場合に適しています。
 
 <ComponentStory name="Fieldset" />
 
@@ -36,7 +36,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
     helpMessage="登録するユーザー情報を入力してください。"
 >
     <Stack gap={1.25}>
-        <Cluster gap={0.5}>
+        <Cluster>
             <FormControl
                 label={{ text: "姓", styleType: "subBlockTitle" }}
             >
@@ -91,7 +91,7 @@ Fieldsetに内包されるフォーム要素のタイトルは、グルーピン
             legend={{ text: "電話番号", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
-            <Cluster gap={0.5}>
+            <Cluster>
                 <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
                     <Input width="100px" name="phone_number1" />
                 </FormControl>
@@ -158,7 +158,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
     disabled
 >
     <Stack gap={1.25}>
-        <Cluster gap={0.5}>
+        <Cluster>
             <FormControl
                 label={{ text: "姓", styleType: "subBlockTitle" }}
             >
@@ -213,7 +213,7 @@ Fieldsetに`disabled`を適用すると、内包するフォーム要素にも�
             legend={{ text: "電話番号", styleType: "subBlockTitle" }}
             innerMargin={0.5}
         >
-            <Cluster gap={0.5}>
+            <Cluster>
                 <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
                     <Input width="100px" name="phone_number1" />
                 </FormControl>
@@ -266,7 +266,7 @@ Fieldset自体には、読み取り専用の状態は存在しません。
     legend={{ text: "電話番号", styleType: "subBlockTitle" }}
     innerMargin={0.5}
 >
-    <Cluster gap={0.5}>
+    <Cluster>
         <FormControl label={{ text: "電話番号1", unrecommendedHide: true }}>
             <Input
                 width="100px"
@@ -366,8 +366,8 @@ Fieldset自体には、読み取り専用の状態は存在しません。
 
 ### 関連ページ
 
-- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/check-list/label/)
-- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/check-list/accessible-name/)
+- [入力する内容や、操作がラベルとして表示されている | アクセシビリティガイドライン](/accessibility/guidelines/label/)
+- [フォームパーツにアクセシブルネームがある | アクセシビリティガイドライン](/accessibility/guidelines/accessible-name/)
 
 ## 使い方チェックリスト
 

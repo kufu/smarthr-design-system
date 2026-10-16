@@ -1,23 +1,8 @@
 ---
 title: 'Tooltip'
-description: '補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。'
+description: '補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、TextのmaxLinesで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。'
 ---
-import {
-  WarningIcon,
-  FaArrowDownIcon,
-  FaArrowLeftIcon,
-  FaArrowRightIcon,
-  FaArrowUpIcon,
-  FaCircleInfoIcon,
-  FaCirclePlusIcon,
-  FaFileIcon,
-  FaUserLargeIcon,
-  TextLink,
-  Button,
-  Cluster,
-  Tooltip,
-  Text,
-} from 'smarthr-ui'
+import { FaCircleInfoIcon } from 'smarthr-ui'
 import { Image } from 'astro:assets'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 import ComponentPreview from '@/components/ComponentPreview/ComponentPreview'
@@ -37,7 +22,7 @@ import {
 
 <Warning />
 
-補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、[LineClamp](/products/components/line-clamp/)で省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
+補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、[Text](/products/components/text/)の`maxLines`で省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
 
 - 補足的な説明テキストを表示する場合
 - アイコンだけのボタンにラベルを表示する場合
@@ -60,7 +45,7 @@ Tooltip内の情報は隠れるため、操作に必要な情報の表示への�
 ### 例外
 - ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的での使用
 - Tooltipによる表示が提供されているコンポーネントにおいて、利用基準に沿った使用
-  - [LineClamp](/products/components/line-clamp/)
+  - [Text](/products/components/text/)の`maxLines`
     - 折り返して表示することがどうしても難しい場合
   - [SearchInput](/products/components/input/search-input/)
     - 検索キーワードに該当する検索結果が得られなかったとき、再検索のためのヒントを見える場所に必ず表示したうえで、補助としてTooltipのメッセージを使う場合
@@ -90,7 +75,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 ## ライティング
 関連するライティングガイドラインを参照してください。
-- [Tooltipのライティング](/products/contents/ui-text/app-writing/#h2-8)
+- [Tooltipのライティング](/products/contents/ui-text/app-writing/#tooltip-writing)
 
 
 ## デザインパターン
@@ -98,10 +83,10 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 ### Tooltipのトリガーパターン
 トリガーは、用途によっていくつかの種類に分けられます。
 
-- A. [テキスト＋アイコン](#h4-6)
-- B. [アイコンのみ](#h4-7)
-- C. [アイコンボタン](#h4-8)
-- D. [省略テキスト](#h4-9)
+- A. [テキスト＋アイコン](#h4-2)
+- B. [アイコンのみ](#h4-3)
+- C. [アイコンボタン](#h4-4)
+- D. [省略テキスト](#h4-5)
 
 #### A. テキスト＋アイコン
 <ComponentPreview>
@@ -110,7 +95,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 テキストに対して、Tooltipでさらに補足したい場合に使います。
 補足する対象となるテキストの横に「<FaCircleInfoIcon color="TEXT_GREY" />」アイコン（`FaCircleInfoIcon`）を配置し、Tooltipの存在を明確に示します。
-アイコンの色には[`TEXT_GRAY`](/products/design-tokens/color/#3-2)を使います。
+アイコンの色には[`TEXT_GREY`](/products/design-tokens/color/#h3-2)を使います。
 
 #### B. アイコンのみ
 <ComponentPreview>
@@ -130,7 +115,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 </ComponentPreview>
 
 トリガーとなるのはアイコンのみで、タイトルや[よくあるテーブルのオブジェクト名](/products/design-patterns/smarthr-table/#h4-0)のテキストとあわせて使います。
-アイコンの色には[`TEXT_GRAY`](/products/design-tokens/color/#h3-2)を使います。
+アイコンの色には[`TEXT_GREY`](/products/design-tokens/color/#h3-2)を使います。
 
 ##### ステータスの補足に使用
 <ComponentPreview>
@@ -160,7 +145,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 テキストは、`ellipsis`を使い省略されていることを示します。
 
-単純に文章を省略したい場合には、[LineClamp](/products/components/line-clamp/)を使用してください。
+単純に文章を省略したい場合には、[Text](/products/components/text/)の`maxLines`を使用してください。
 
 ## アクセシビリティ
 
@@ -217,7 +202,7 @@ Tooltipの内容をラベルとして利用しているが、`type="label"`を�
 
 ### 関連ページ
 
-- [hoverで表示されるコンテンツはポインタを乗せても表示を維持できる | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision-check-list/hover/)
+- [hoverで表示されるコンテンツはポインタを乗せても表示を維持できる | 弱視・ロービジョンのユーザビリティチェックリスト](/accessibility/insight/low-vision/hover/)
 
 ## モバイル
 モバイルではTooltipを使わないでください。画面内の領域が小さいため、Tooltipの表示が他のUIの利用を妨げることがあります。

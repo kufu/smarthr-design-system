@@ -15,11 +15,11 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### 時刻をフォーマットする機能だけ必要な場合
 
 TimeFormatterは時刻を`time`要素としてレンダリングします。  
-フォーマットされた時刻の文字列だけが必要な場合は、`useIntl`の`formatTime`を使用してください。
+フォーマットされた時刻の文字列だけが必要な場合は、`useDateFormat`の`formatTime`を使用してください。
 
 ```tsx editable noIframe withStyled
 const FormatTimeExample = () => {
-  const { formatTime } = useIntl()
+  const { formatTime } = useDateFormat()
   return (
     <span>現在時刻は{formatTime({ date: new Date(2026, 4, 18, 14, 30, 0) })}です。</span>
   )

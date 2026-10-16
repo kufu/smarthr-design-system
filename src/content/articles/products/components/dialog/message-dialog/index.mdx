@@ -12,7 +12,8 @@ import MultipleModalWarning from '../_components/MultipleModalWarning.mdx'
 import DialogBaseSize from '../_components/DialogBaseSize.mdx'
 import ExpandedDialogUsecase from '../_components/ExpandedDialogUsecase.mdx'
 import ExpandedDialogPadding from '../_components/ExpandedDialogPadding.mdx'
-import { BaseColumn, Cluster, ResponseMessage, Text } from 'smarthr-ui'
+import { ResponseMessage } from '@/components/ResponseMessage'
+import { BaseColumn, Cluster, Text } from 'smarthr-ui'
 import imageMessageDialog from '../images/message_dialog_mobile.png'
 import imageExpandedMessageDialog from '../images/expanded_message_dialog_mobile.png'
 import DoAndDont from '@/components/article/DoAndDont.astro'
@@ -46,7 +47,7 @@ MessageDialogは、表示したままダイアログ外の操作ができず、�
 - 処理が成功した場合、ユーザーは次の操作をする前にダイアログを閉じる一手間が発生する
 - 処理が失敗した場合、表示されたエラーメッセージを参照しながら操作できない
 
-フィードバックには[NotificationBar](/products/components/notificationbar/)や[ResponseMessage](/products/components/responsemessage/)などを使います。詳しくは、[フィードバック](/products/design-patterns/feedback/)を参照してください。
+フィードバックには[NotificationBar](/products/components/notification-bar/)や[ResponseMessage](/products/components/response-message/)などを使います。詳しくは、[フィードバック](/products/design-patterns/feedback/)を参照してください。
 
 ## レイアウト
 
@@ -60,7 +61,9 @@ MessageDialogは、表示したままダイアログ外の操作ができず、�
 
 ## アクセシビリティ
 
-### キーボード操作
+### 基本的なアクセシビリティ機能
+
+#### キーボード操作
 
 `ESC`キーを押すことでダイアログを閉じることができます。
 

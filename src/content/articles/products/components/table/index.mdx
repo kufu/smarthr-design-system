@@ -20,7 +20,6 @@ relatedComponents:
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
-import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
 
 `table`要素の代替として表形式でデータを表示するためのコンポーネントです。データを行列で一覧表示するとき、レコードを並べて比較するビューを提示するときに使います。
 
@@ -30,15 +29,17 @@ import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
 
 ## アクセシビリティ
 
-### セル内にチェックボックスやラジオボタンをそのまま配置しない
+### 開発時の考慮点
+
+#### セル内にチェックボックスやラジオボタンをそのまま配置しない
 
 `<Td><Checkbox /></Td>`、`<Th><Checkbox /></Th>`、および`<Td><RadioButton /></Td>`などのように、セルの内部にチェックボックスやラジオボタンをそのまま配置してはいけません。それぞれの場合で`TdCheckbox`、`ThCheckbox`、および`TdRadioButton`という専用のコンポーネントが提供されているため、代わりにこれらを利用してください。
 
-これらの専用のコンポーネントを利用せずにチェックボックスやラジオボタンを配置すると、アクセシブルネームが設定されず、[ウェブアクセシビリティ簡易チェックリスト](/accessibility/check-list/)の「[フォームパーツにアクセシブルネームがある](/accessibility/check-list/accessible-name/)」に違反するおそれがあります。
+これらの専用のコンポーネントを利用せずにチェックボックスやラジオボタンを配置すると、アクセシブルネームが設定されず、[ガイドライン](/accessibility/guidelines/)の「[フォームパーツにアクセシブルネームがある](/accessibility/guidelines/accessible-name/)」に違反するおそれがあります。
 
 なお、チェックボックスおよびラジオボタンのアクセシブルネームについては[eslint-plugin-smarthr](https://npm.im/eslint-plugin-smarthr)のルール[smarthr/a11y-prohibit-checkbox-or-radio-in-table-cell](https://github.com/kufu/tamatebako/tree/master/packages/eslint-plugin-smarthr/rules/a11y-prohibit-checkbox-or-radio-in-table-cell)を用いることで自動的に検証できます。
 
-### TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
+#### TdCheckboxおよびTdRadioButtonでは行を特定できる要素をIDで参照する
 
 `TdCheckbox`および`TdRadioButton`を利用する場合は、`aria-labelledby`属性を必ず指定しなければなりません。この属性には、それだけで行を一意に判別できる要素へのID参照を指定します。多くのオブジェクトでは、この属性値はしばしば[オブジェクト名](/products/design-patterns/smarthr-table/#h4-0)へのID参照になるでしょう。
 
@@ -59,7 +60,7 @@ import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
 </tr>
 ```
 
-### BulkActionRowではTertiaryボタンを使用する
+#### BulkActionRowではTertiaryボタンを使用する
 
 `BulkActionRow`内で[「すべてのオブジェクトを選択」や「選択解除」](/products/design-patterns/table-bulk-action/#h4-2)ボタンを実装する際は、必ず`Button`コンポーネントの`variant="tertiary"`を使用してください。
 
@@ -70,7 +71,7 @@ import { Button, Text, BulkActionRow, Table, Cluster } from 'smarthr-ui'
   <thead>
     <BulkActionRow>
       <Cluster align="center">
-        <Text>このページの「オブジェクト名」50件すべて選択されています。</Text>
+        このページの「オブジェクト名」50件すべて選択されています。
         <Button variant="tertiary" size="S">
           一覧の「オブジェクト名」1000件すべてを選択
         </Button>

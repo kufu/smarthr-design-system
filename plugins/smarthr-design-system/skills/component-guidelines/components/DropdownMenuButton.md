@@ -10,7 +10,7 @@ import { DropdownMenuGroup, DropdownMenuButton } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### DropdownMenuGroup
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -20,7 +20,7 @@ import { DropdownMenuGroup, DropdownMenuButton } from 'smarthr-ui'
 ### DropdownMenuButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| trigger | ReactNode \| { children: ReactNode; size?: ButtonProps; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | ✓ | 引き金となるボタン |
+| trigger | ReactNode \| { children: ReactNode; size?: any; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | ✓ | 引き金となるボタン |
 | children | ReactNode \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<...> \| ReactNode \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<...>[] | - | ✓ | 操作群 |
 | onOpen | () => void | - | - | ドロップダウンメニューが開かれた際のイベント |
 | onClose | () => void | - | - | ドロップダウンメニューが閉じられた際のイベント |
@@ -40,13 +40,13 @@ DropdownMenuButton に直接関連する eslint-plugin-smarthr のルールは�
   - 典型的な順序の例: 編集 → 複製 → 削除
 - [must] 破壊的なアクション（例: オブジェクトの削除）は操作の順序を下げて配置する
 
-### レイアウト > [WIP] モバイル > 操作項目の高さは通常サイズのボタンに揃える
+### レイアウト > 2. ドロップダウンパネル > [WIP] モバイル > 操作項目の高さは通常サイズのボタンに揃える
 - [must] モバイルでは、ドロップダウンパネル内の操作項目の高さを通常サイズのボタンに揃える
 
-### レイアウト > [WIP] モバイル > 横幅は画面幅の2/3程度までに収まるように調整する
+### レイアウト > 2. ドロップダウンパネル > [WIP] モバイル > 横幅は画面幅の2/3程度までに収まるように調整する
 - [must] モバイルでは、ドロップダウンパネルの横幅を画面幅の 2/3 程度までに収まるように調整する
 
-### レイアウト > [WIP] モバイル > 縦幅は画面内に収まるように調整する
+### レイアウト > 2. ドロップダウンパネル > [WIP] モバイル > 縦幅は画面内に収まるように調整する
 - [must] モバイルでは、ドロップダウンパネルの縦幅を画面内に収まるように調整し、必要に応じてスクロールできるようにする
 
 ### デザインパターン > A. 単一のオブジェクトに対する操作

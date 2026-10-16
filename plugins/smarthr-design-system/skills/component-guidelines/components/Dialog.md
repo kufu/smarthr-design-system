@@ -12,7 +12,7 @@ import { DialogWrapper, DialogTrigger, DialogContent, DialogCloser, Dialog } fro
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v97.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### DialogWrapper
 （固有 Props なし）
@@ -41,10 +41,10 @@ import { DialogWrapper, DialogTrigger, DialogContent, DialogCloser, Dialog } fro
 | firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
 | ariaLabel | string | - | - | ダイアログの `aria-label` |
 | ariaLabelledby | string | - | - | ダイアログの `aria-labelledby` |
-| isOpen | boolean | - | ✓ | ダイアログを開いているかどうか |
-| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 |
-| onPressEscape | () => void | - | - | エスケープキーを押下した時に発火するコールバック関数 |
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
+| isOpen | boolean | - | ✓ | ダイアログを開いているかどうか |
+| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 @todo イベントハンドラー命名規則に従い handleClickOverlay に変更すべき（影響範囲大のため別PR） |
+| onPressEscape | () => void | - | - | エスケープキーを押下した時に発火するコールバック関数 @todo イベントハンドラー命名規則に従い handlePressEscape に変更すべき（影響範囲大のため別PR） |
 
 ## 実装ルール
 

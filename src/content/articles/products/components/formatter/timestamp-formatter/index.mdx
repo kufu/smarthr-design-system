@@ -15,11 +15,11 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### タイムスタンプをフォーマットする機能だけ必要な場合
 
 TimestampFormatterは日付と時刻を`time`要素としてレンダリングします。  
-フォーマットされたタイムスタンプの文字列だけが必要な場合は、`useIntl`の`formatTimestamp`を使用してください。
+フォーマットされたタイムスタンプの文字列だけが必要な場合は、`useDateFormat`の`formatTimestamp`を使用してください。
 
 ```tsx editable noIframe withStyled
 const FormatTimestampExample = () => {
-  const { formatTimestamp } = useIntl()
+  const { formatTimestamp } = useDateFormat()
   return (
     <span>更新日時：{formatTimestamp({ date: new Date(2026, 4, 18, 14, 30, 0) })}</span>
   )

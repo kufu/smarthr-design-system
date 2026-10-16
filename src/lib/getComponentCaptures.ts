@@ -2,9 +2,8 @@ import fs from 'fs/promises';
 import { cwd } from 'node:process';
 import path from 'path';
 
-import type { StoryIndex } from '@storybook/types';
-
-const STORYBOOK_URL = 'https://story.smarthr-ui.dev';
+import { SHRUI_STORYBOOK_URL } from '@/constants/application';
+import { UI_STORY_INDEX } from '@/lib/getUIData';
 
 type StoryKind = {
   kindName: string;
@@ -70,34 +69,17 @@ const doesFileExist = async (...filePaths: string[]) => {
 
 /**
  * [SmartHR UIのStorybook](https://story.smarthr-ui.dev/)上の各コンポーネントグループの名前やサムネイル画像のパスなどを取得
+ *
+ * story情報は `scripts/fetch-ui-data.ts` がキャッシュしたものを参照します。
+ * この関数はページのレンダリング中に呼ばれるため、ここでネットワークアクセスをしてはいけません。
+ *
  * @returns StoryGroup[]
  */
-export async function fetchComponentCaptures() {
-  const indexJsonUrl = new URL('index.json', STORYBOOK_URL);
-  const response = await fetch(indexJsonUrl.toString());
-
-  const storiesJson: StoryIndex = await response.json();
-
-  const storiesMap = storiesJson.entries;
+export async function getComponentCaptures() {
   const storyGroups: StoryGroup[] = [];
 
-  for (const id in storiesMap) {
-    const { title, type, importPath } = storiesMap[id];
-
-    // ドキュメントはコンポーネント一覧として表示しない
-    if (type === 'docs') {
-      continue;
-    }
-
-    const groupName = title.split('/')[0];
+  for (const { id, title, importPath } of UI_STORY_INDEX) {
     const displayName = title.split('/')[1];
-    const thumbnailFileName = `${groupName}-${displayName}.png`;
-
-    const iframeUrl = new URL('iframe.html', STORYBOOK_URL);
-    iframeUrl.searchParams.set('id', id);
-    iframeUrl.searchParams.set('viewMode', 'story');
-    iframeUrl.searchParams.set('shortcuts', 'false');
-    iframeUrl.searchParams.set('singleStory', 'true');
 
     // コンポーネントのパスを取得
     const componentPath = getComponentPath(importPath, displayName);
@@ -110,6 +92,15 @@ export async function fetchComponentCaptures() {
     if (!exist) {
       continue;
     }
+
+    const groupName = title.split('/')[0];
+    const thumbnailFileName = `${groupName}-${displayName}.png`;
+
+    const iframeUrl = new URL('iframe.html', SHRUI_STORYBOOK_URL);
+    iframeUrl.searchParams.set('id', id);
+    iframeUrl.searchParams.set('viewMode', 'story');
+    iframeUrl.searchParams.set('shortcuts', 'false');
+    iframeUrl.searchParams.set('singleStory', 'true');
 
     // Groupが存在しない場合は新規作成
     const storyGroup = storyGroups.find((item) => item.groupName === groupName);
