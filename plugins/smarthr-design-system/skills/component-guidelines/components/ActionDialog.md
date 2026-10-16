@@ -12,10 +12,11 @@ import { ActionDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.8.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| ref | Ref<HTMLDivElement> | - | - | - |
 | className | string | - | - | - |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
 | size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
@@ -32,7 +33,7 @@ import { ActionDialog } from 'smarthr-ui'
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
 | closeButton | ReactNode \| { text?: ReactNode; disabled?: boolean; } | - | - | - |
 | actionButton | ReactNode \| { text: ReactNode; theme?: "primary" \| "danger" \| "secondary"; disabled?: boolean; } | - | ✓ | - |
-| onClickAction | (e: MouseEvent<Element, MouseEvent>, helpers: ActionDialogHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 |
+| onClickAction | (e: MouseEvent<Element, MouseEvent>, helpers: { close: () => void; }) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 |
 | onClickClose | (close: () => void) => void | - | - | - |
 | onToggle | (isOpen: boolean) => void | - | - | - |
 | onOpen | () => void | - | - | - |

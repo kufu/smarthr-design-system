@@ -10,15 +10,15 @@ import { PageHeading } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.8.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| size | "L" \| "XL" \| "XXL" | 'XL' | - | テキストのサイズ |
+| size | any | 'XL' | - | テキストのサイズ |
 | visuallyHidden | boolean | - | - | 視覚的に非表示にするフラグ |
 | autoPageTitle | boolean | - | - | title要素の自動生成フラグ  Next.js 環境ではこの値にかかわらずtitleは自動生成されません。metadataなどの方法を利用してください。 |
 | pageTitle | string | - | - | title要素のprefix |
-| pageTitleSuffix | string | - | - | title要素のsuffix |
+| pageTitleSuffix | string | SmartHR（スマートHR） | - | title要素のsuffix |
 | ref | Ref<HTMLHeadingElement> | - | - | - |
 
 ## 実装ルール

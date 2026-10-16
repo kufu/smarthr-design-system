@@ -10,7 +10,7 @@ import { NotificationBar } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.8.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -34,7 +34,7 @@ NotificationBar に直接関連する eslint-plugin-smarthr のルールは現�
 - [must] システムからの通知ではない、その他のサービス運営上の情報などの表示が必要な場合は、ベースありや InformationPanel などを使用する
 
 ### 使用上の注意 > メッセージは省略表示しない
-- [avoid] NotificationBar のメッセージを LineClamp で省略表示しない
+- [avoid] NotificationBar のメッセージを Text の maxLines などで省略表示しない
 - [should] NotificationBar のメッセージは簡潔な一行程度の文章になるように調整する
 - [should] どうしても情報量や他の要素を併記する必要がある場合は、テキストリンクで移動先のヘルプページなどに情報を記載するか、ベースありや InformationPanel などを使用して十分な表示領域を確保する
 

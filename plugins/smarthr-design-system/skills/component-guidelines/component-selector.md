@@ -2,7 +2,7 @@
 
 UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、対応するガイドファイルを参照してください。
 
-> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v99.8.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ## コンポーネント一覧
 
@@ -56,7 +56,7 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | Input | input[type='text']やinput[type='number']などの代替としてテキストや数値を1行で入力させるコンポーネントです。テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するときに使います。 | [components/Input.md](components/Input.md) |
 | InputFile | input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。 | [components/InputFile.md](components/InputFile.md) |
 | LanguageSwitcher | 表示言語を切り替えるためのコンポーネントです。多言語対応したアプリケーションで利用者に言語選択UIを提供するときに使います。 | [components/LanguageSwitcher.md](components/LanguageSwitcher.md) |
-| LineClamp | テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。 | [components/LineClamp.md](components/LineClamp.md) |
+| ⚠️ LineClamp（非推奨） | 【非推奨】テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。 | [components/LineClamp.md](components/LineClamp.md) |
 | Loader | 読み込み中や処理中であることを伝えるためのコンポーネントです。 | [components/Loader.md](components/Loader.md) |
 | MessageDialog | ユーザーに情報を提示するためのダイアログコンポーネントです。入力などの操作を伴わずにメッセージや情報をダイアログで提示するときに使います。 | [components/MessageDialog.md](components/MessageDialog.md) |
 | ModelessDialog | 背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。 | [components/ModelessDialog.md](components/ModelessDialog.md) |
@@ -106,7 +106,7 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | Timeline | 情報を時間の流れに沿って整理・表示するためのコンポーネントです。操作履歴や更新履歴を時系列で見せるときに使います。 | [components/Timeline.md](components/Timeline.md) |
 | ⚠️ TimePicker（非推奨） | 【非推奨】ユーザーに時刻（時と分、任意で秒）を入力させる際に使用するコンポーネントです。 | [components/TimePicker.md](components/TimePicker.md) |
 | TimestampFormatter | 日付と時刻データを任意の形式にフォーマットして表示するコンポーネントです。日付と時刻をユーザーの言語や地域設定に適した形式で表示するときに使います。 | [components/TimestampFormatter.md](components/TimestampFormatter.md) |
-| Tooltip | 補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。 | [components/Tooltip.md](components/Tooltip.md) |
+| Tooltip | 補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、TextのmaxLinesで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。 | [components/Tooltip.md](components/Tooltip.md) |
 | UnauthorizedErrorScreen | セッション切れなど認証が必要な状態を伝える全画面コンポーネントです。401相当のエラーで再ログインが必要なときに使います。 | [components/UnauthorizedErrorScreen.md](components/UnauthorizedErrorScreen.md) |
 | UnexpectedErrorScreen | 予期しないエラーが発生したことを表示する全画面コンポーネントです。500相当のサーバーエラーを伝えるときに使います。 | [components/UnexpectedErrorScreen.md](components/UnexpectedErrorScreen.md) |
 | UpwardLink | 一階層上のコンテンツに戻るためのテキストリンクコンポーネントです。詳細画面から一覧画面など親階層へ戻る導線を置くときに使います。 | [components/UpwardLink.md](components/UpwardLink.md) |
