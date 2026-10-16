@@ -10,7 +10,7 @@ Astroの機能や導入しているプラグインの概要です。
 
 ### Astro本体
 
-バージョン4系を使っています。
+バージョン7系を使っています。
 
 ### ページとルーティング
 
@@ -94,9 +94,9 @@ import { SampleInputWithPrefixText } from './_components';
 
 ### キャッシュ
 
-ビルド時に`scripts/fetch-ui-data.ts`を実行してSmartHR UIのデータを取得し、`src/cache/`以下に保存しています。
+ビルド時に`scripts/fetch-ui-data.ts`を実行してSmartHR UIのデータを取得し、`node_modules/.cache/smarthr-ui@v<バージョン>/data.json`に保存しています。同じバージョンのキャッシュがあれば再取得しません。
 
-このディレクトリは`.gitignore`に登録されているため、リポジトリには含まれません。
+キャッシュは`node_modules`配下にあるため、リポジトリには含まれません。
 
 ## SDS独自の機能
 
@@ -116,7 +116,7 @@ Astroと直接関連しない、独自の機能もいくつかあります。
 
 検索機能にAlgoliaを利用しています。Algoliaのインデックスは、mainブランチのビルド時に更新されます。
 
-インデックスの登録には`scripts/update-algoliasearch.ts`を、検索UIには[algloliasearch](https://www.npmjs.com/package/algoliasearch)と[react-instantsearch-dom](https://www.npmjs.com/package/react-instantsearch-dom)を使っています。
+インデックスの登録には`scripts/update-algoliasearch.ts`を、検索UIには[algoliasearch](https://www.npmjs.com/package/algoliasearch)と[react-instantsearch](https://www.npmjs.com/package/react-instantsearch)を使っています。
 
 ### Cloudinary
 
@@ -289,4 +289,4 @@ relatedComponents:
 | `.github/prompts/generate-checklist.md` | 抽出ルールの詳細仕様 |
 | `.github/prompts/update-checklist.md` | 差分更新プロンプトの詳細仕様 |
 | `scripts/generate-skills/validate.ts` | バリデーションスクリプト |
-| `scripts/generate-skills/index.ts` | `SKILL.md`再生成スクリプト |
+| `scripts/generate-skills/index.ts` | コンポーネントガイド（`components/*.md`・`component-selector.md`）の再生成スクリプト |

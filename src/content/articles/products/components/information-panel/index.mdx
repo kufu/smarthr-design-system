@@ -7,7 +7,8 @@ import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
-import { Text, ResponseMessage, Groupbox } from 'smarthr-ui'
+import { ResponseMessage } from '@/components/ResponseMessage'
+import { Text, Groupbox } from 'smarthr-ui'
 
 ユーザーに伝えたい情報を視覚的に目立たせるパネルコンポーネントです。複数行のテキストや複数項目の不備一覧など、[ResponseMessage](/products/components/response-message/)や[NotificationBar](/products/components/notification-bar/)では収まらない量のフィードバック情報などを表示するときに使います。
 
@@ -33,6 +34,7 @@ InformationPanelでは視覚的に強調されすぎる場合は、[削除ダイ
   <div slot="img">
 ```tsx editable background=BACKGROUND hideCode
 <Panel padding={1.5} className="shr-w-full shr-bg-over-background">
+  {/* eslint-disable-next-line smarthr/design-system-guideline-prohibit-information-panel-in-white-bg -- className で背景色を OVER_BACKGROUND に変更しているが、ルールが className を考慮しないため */}
   <InformationPanel type="warning" heading="Panelの中で目立たせたい情報">
     <p>Panelの中で目立たせたい内容。</p>
   </InformationPanel>

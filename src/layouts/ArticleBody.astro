@@ -1,7 +1,8 @@
 ---
-import { Article, Groupbox, ResponseMessage } from 'smarthr-ui';
+import { Article, Groupbox } from 'smarthr-ui';
 
 import IndexNav from '@/components/IndexNav';
+import { ResponseMessage } from '@/components/ResponseMessage';
 import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
 import { getNestedHeadings } from '@/lib/getNestedHeadings';
 import type { ArticleMeta } from '@/types/article';
@@ -263,6 +264,14 @@ const headings = getNestedHeadings({ contentHtml, ignoreH3Nav: data.ignoreH3Nav 
       aspect-ratio: 16/9;
       width: 100%;
       max-width: 100%;
+    }
+
+    /* 脚注 */
+    :global(sup:has(a[data-footnote-ref]) a)::before {
+      content: '[';
+    }
+    :global(sup:has(a[data-footnote-ref]) a)::after {
+      content: ']';
     }
   }
 </style>

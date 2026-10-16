@@ -20,3 +20,15 @@ interface ImportMeta {
 declare module 'virtual:smarthr-ui-scope' {
   export * from 'smarthr-ui';
 }
+
+// jsxImportSource による解決が効かない経路（エディタが扱う .astro の仮想ファイルなど）では、
+// グローバルの JSX 名前空間にフォールバックする。
+// @types/react v19 がグローバルの JSX 名前空間を提供しなくなったため、そのままだと HTML 要素が型エラーになる
+// （instantsearch-ui-components が空の JSX.IntrinsicElements を宣言しているため、エラーは TS2339 になる）。
+// 実際の型付けは .astro なら astroHTML.JSX、.tsx なら react/jsx-runtime が担うので、
+// ここではフォールバック経路が壊れないようインデックスシグネチャだけを補う。
+declare namespace JSX {
+  interface IntrinsicElements {
+    [name: string]: any;
+  }
+}

@@ -79,15 +79,7 @@ export async function getComponentCaptures() {
   const storyGroups: StoryGroup[] = [];
 
   for (const { id, title, importPath } of UI_STORY_INDEX) {
-    const groupName = title.split('/')[0];
     const displayName = title.split('/')[1];
-    const thumbnailFileName = `${groupName}-${displayName}.png`;
-
-    const iframeUrl = new URL('iframe.html', SHRUI_STORYBOOK_URL);
-    iframeUrl.searchParams.set('id', id);
-    iframeUrl.searchParams.set('viewMode', 'story');
-    iframeUrl.searchParams.set('shortcuts', 'false');
-    iframeUrl.searchParams.set('singleStory', 'true');
 
     // コンポーネントのパスを取得
     const componentPath = getComponentPath(importPath, displayName);
@@ -100,6 +92,15 @@ export async function getComponentCaptures() {
     if (!exist) {
       continue;
     }
+
+    const groupName = title.split('/')[0];
+    const thumbnailFileName = `${groupName}-${displayName}.png`;
+
+    const iframeUrl = new URL('iframe.html', SHRUI_STORYBOOK_URL);
+    iframeUrl.searchParams.set('id', id);
+    iframeUrl.searchParams.set('viewMode', 'story');
+    iframeUrl.searchParams.set('shortcuts', 'false');
+    iframeUrl.searchParams.set('singleStory', 'true');
 
     // Groupが存在しない場合は新規作成
     const storyGroup = storyGroups.find((item) => item.groupName === groupName);

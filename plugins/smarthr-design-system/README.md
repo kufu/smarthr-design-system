@@ -56,7 +56,7 @@ SmartHRプロダクトのページレイアウトやUIパターンを正しく�
 skills/design-pattern-guidelines/
 ├── SKILL.md                       エントリポイント（手動管理）
 ├── pattern-selector.md            パターン選定ガイド（手動管理）
-└── patterns/                      各パターンガイド（手動管理）
+└── patterns/                      各パターンガイド（src/content へのシンボリックリンク）
     ├── page-layout.mdx
     ├── smarthr-table.mdx
     └── ...（22件）
@@ -70,7 +70,7 @@ skills/design-pattern-guidelines/
 
 ### design-pattern-guidelines
 
-`patterns/*.mdx`はデザインシステムサイトのコンテンツ（`src/content/`）から自動生成される。既存パターンの更新には追従するが、新規パターンの追加には対応できないため、新しいパターンを追加する場合は手動で対応が必要。`SKILL.md`と`pattern-selector.md`は手動管理。
+`patterns/*.mdx`はデザインシステムサイトのコンテンツ（`src/content/articles/products/design-patterns/`）へのシンボリックリンク。既存パターンの更新にはそのまま追従するが、新規パターンを追加した場合はシンボリックリンクを手動で追加する必要がある。`SKILL.md`と`pattern-selector.md`は手動管理。
 
 ### ローカル動作確認
 

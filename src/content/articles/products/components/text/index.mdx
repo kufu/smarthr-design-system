@@ -28,6 +28,32 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 </Text>
 ```
 
+### 省略表示したテキストは隠れたままになることに注意する
+
+`maxLines`で省略したテキストの全文表示には[Tooltip](/products/components/tooltip/)もしくはDisclosureを利用します。ユーザーが能動的に表示しないと情報は隠れたままであることに注意してください。
+
+#### 省略表示を推奨するケース
+
+次のケースでは`maxLines`での省略表示を推奨します。
+
+- 付加的な情報を表示する場合
+  - ユーザーの操作過程で「確認が必須ではない」程度の情報を表示する目的の場合
+- 全文表示するとレイアウトが崩れて視認性が下がる場合
+  - テーブルのセル内やリスト形式のUIにおいて視認性を確保する目的の場合
+
+#### 省略表示を避けるケース
+
+単に情報を省略する目的では使用しないでください。ただし、十分に表示領域を確保したうえでレイアウトが崩れる場合は、前述の「全文表示するとレイアウトが崩れて視認性が下がる場合」が適用されるものとし、`maxLines`での省略表示を推奨します。
+
+また、ユーザーが把握しておかないと操作が進められないような重要な情報は省略せず、常に表示することを検討してください。
+
+重要な情報の具体例は次のとおりです。
+
+- パスワードに使用できる文字や、エラーになる入力値などの入力要件
+- 入力エラーとなった際のエラーメッセージ
+- 操作補助になる情報（ショートカットなど）
+- ボタンなどの操作UIのラベル
+
 ## 種類
 
 ### フォントサイズ
@@ -94,6 +120,21 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ### 折り返し
 `whiteSpace` propsで指定できます。
 
+### 最大行数
+`maxLines` propsで指定できます。1〜6を指定すると、その行数に収まらなかったテキストが「…」で省略されます。
+
+`{ max, tooltip }`のオブジェクト形式で指定し`tooltip`を`true`にすると、テキストが省略されたときだけ[Tooltip](/products/components/tooltip/)で全文を表示します。省略表示を使ってよいケースは[省略表示したテキストは隠れたままになることに注意する](#h3-1)を参照してください。
+
+```tsx editable
+<Stack>
+  <div style={{ width: '20em' }}>
+    <Text maxLines={2}>最大行数を超えたテキストは「…」で省略されます。省略されたテキストの全文は表示されません。</Text>
+  </div>
+  <div style={{ width: '20em' }}>
+    <Text maxLines={{ max: 2, tooltip: true }}>最大行数を超えたテキストは「…」で省略されます。省略されたときはTooltipで全文を表示します。</Text>
+  </div>
+</Stack>
+```
 
 ### 見出しスタイル
 `styleType` propsで指定できます。
@@ -125,6 +166,10 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 ```
 
 
+
+## モバイル
+
+タッチデバイスではhover表示を前提としたTooltipは使用せず、Disclosureを使用してください。
 
 ## 使い方チェックリスト
 

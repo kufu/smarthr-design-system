@@ -113,6 +113,7 @@ baseline 適用後の結果のみが表示されます。baseline で隠れて�
 - エントリポイント `SKILL.md` は手動管理の固定ファイルで、`description` と `paths` を持ちます。コンポーネントの増減で変更不要です。
 - コンポーネント選定ガイド（`component-selector.md`）はコンポーネント一覧とガイドファイルへの相対パスを持つドキュメントです。
 - サブコンポーネント（`Controlled*` 派生、Table 系内部部品、Dialog/ErrorScreen/Picker 配下のカテゴリメンバーなど）は親 mdx の `relatedComponents` 宣言で接続し、本文・checklist を継承します。`description` のみ派生先固有の文を採用します。smarthr-ui の親ディレクトリ単位グループから `relatedComponents` 宣言済みの displayName を自動分離し、個別ドキュメントを生成します。
+- smarthr-ui のディレクトリ構成が変わってもガイドの構成が変わらないよう、親ディレクトリ単位のグループは、各 index.mdx の `<ComponentPropsTable name="..." />` の記述に合わせて組み替えます（`lib/props-table-groups.ts`）。ページの 1 つ目に書かれた displayName をそのページの主コンポーネントとみなし、2 つ目以降の displayName は主コンポーネントと同じドキュメントにまとめます（例: `DropdownMenuGroup` は `DropdownMenuButton.md`）。
 - 生成時にインストール済みの smarthr-ui の `package.json` からバージョンを読み取り、各コンポーネントドキュメントの Props セクションと `component-selector.md` の冒頭にバージョン注記を埋め込みます。利用プロジェクトの smarthr-ui バージョンが異なる場合のワークアラウンドも併記されます。
 - スクリプトの詳細仕様は Notion の「M1: SKILL.md 自動生成スクリプト 入出力仕様書」と「M4 プラグイン設計調査」を参照してください。
 

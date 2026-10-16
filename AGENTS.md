@@ -6,7 +6,7 @@
 
 [SmartHR Design System](https://smarthr.design/) のドキュメントサイトです。Astro + MDX で構築されています。記事コンテンツ（`src/content/articles/`）が本体で、デザインガイドラインやコンポーネントの利用ルールを掲載しています。
 
-- フレームワーク: Astro（v4 系）/ 記事フォーマット: MDX
+- フレームワーク: Astro（v7 系）/ 記事フォーマット: MDX
 - ローカル環境構築・コンテンツの書き方 → [README.md](./README.md)
 - Astro の内部構成・独自機能・デプロイ → [CONTRIBUTING.md](./CONTRIBUTING.md)
 
@@ -29,7 +29,7 @@
 - `src/layouts/` — ページレイアウト
 - `src/remark/` — 独自 remark プラグイン
 - `scripts/` — コンテンツ生成・チェック用スクリプト（`generate-skills` など）
-- `plugins/` — 配布する AI スキルプラグイン（`component-guidelines` / `design-pattern-guidelines`）
+- `plugins/` — 配布する AI スキルプラグイン（`smarthr-design-system`。スキル `component-guidelines` / `design-pattern-guidelines` を含む）
 - `public/` — 静的アセット / `.github/workflows/` — CI
 
 ## PR を作成するときの注意
