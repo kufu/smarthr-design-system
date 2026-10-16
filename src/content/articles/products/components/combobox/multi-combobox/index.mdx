@@ -40,8 +40,42 @@ MultiComboboxで入力補助のヒントメッセージを表示したい場合�
 
 <Cluster gap={{ row: 0, column: 1 }}>
   <DoAndDont type="do" width="calc(50% - 8px)">
-    <Image slot="img" src={multiComboboxDo} alt="Do" width="346" />
     <Text slot="label">ユーザーがテキストを入力しても入力補助としてヒントメッセージを確認できる</Text>
+    <Image slot="img" src={multiComboboxDo} alt="Do" width="346" />
+    <div slot="img">
+```tsx editable hideCode
+<Fieldset legent="例">
+  <Stack>
+    <FormControl label="FormControlのhelpMessageを使用" helpMessage="従業員氏名・社員番号で検索できます。">
+      <MultiCombobox
+        name="dropdownHelpMessage"
+        items={[
+          { label: 'SHR0001 須磨 英子', value: 'value-1' },
+          { label: 'SHR0002 草野 宗一郎', value: 'value-2' },
+          { label: 'SHR0003 Robert Smith', value: 'value-3' }
+        ]}
+        selectedItems={[
+          { label: 'SHR0001 須磨 英子', value: 'value-1' },
+        ]}
+      />
+    </FormControl>
+    <FormControl label="FormControlのhelpMessageを使用" helpMessage="従業員氏名・社員番号で検索できます。">
+      <MultiCombobox
+        name="dropdownHelpMessage"
+        items={[
+          { label: 'SHR0001 須磨 英子', value: 'value-1' },
+          { label: 'SHR0002 草野 宗一郎', value: 'value-2' },
+          { label: 'SHR0003 Robert Smith', value: 'value-3' }
+        ]}
+        selectedItems={[
+          { label: 'SHR0001 須磨 英子', value: 'value-1' },
+        ]}
+      />
+    </FormControl>
+  </Stack>
+</Fieldset>
+```
+    </div>
   </DoAndDont>
   <DoAndDont type="dont" width="calc(50% - 8px)">
     <Image slot="img" src={multiComboboxDont} alt="Dont" width="346" />
