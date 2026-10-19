@@ -3,6 +3,7 @@ title: 'PageCounter'
 description: '「よくあるテーブル」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。Paginationと併用し件数を提示するときに使います。'
 ---
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 
 「[よくあるテーブル](/products/design-patterns/smarthr-table/)」などの一覧の総件数と現在ページの件数を表示するためのコンポーネントです。[Pagination](/products/components/pagination/)と併用し件数を提示するときに使います。
@@ -13,6 +14,10 @@ import ComponentStory from '@/components/article/ComponentStory.astro'
 
 PageCounterはコレクションにページがあることを前提とするため、Paginationと合わせて使います。  
 モバイルでPaginationを表示していない場合（代わりに[よくあるリストの「さらに表示」ボタン](/products/design-patterns/smarthr-list/#h3-4)を表示している場合など）、そのコレクションにはページがないためPageCounterは使いません。
+
+## 使い方チェックリスト
+
+<Checklist name="PageCounter" />
 
 ## Props
 

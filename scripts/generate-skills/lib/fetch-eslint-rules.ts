@@ -13,6 +13,16 @@ export type EslintRuleRaw = {
   readme: string;
 };
 
+/**
+ * コミット済みスナップショットのフォーマット。
+ * `allRuleNames` は除外前の全ルール名一覧（`eslint-rule-names.txt` の出力元）。
+ * `rules` は README 取得済み（除外後）のルール本体。
+ */
+export type EslintRulesSnapshot = {
+  allRuleNames: string[];
+  rules: EslintRuleRaw[];
+};
+
 export type EslintRuleWithContent = {
   name: string;
   description: string;
@@ -76,10 +86,29 @@ async function ghFetch(url: string, options: GhFetchOptions = {}): Promise<Respo
  * `ruleNamesOutputPath` を渡した場合、上流のルールディレクトリ名一覧 (除外前の全件) を
  * 改行区切りで書き出す。AI プロンプト (`.github/prompts/generate-checklist.md` 等) から参照される。
  */
+function writeRuleNames(ruleNamesOutputPath: string, allRuleNames: string[]): void {
+  fs.mkdirSync(path.dirname(ruleNamesOutputPath), { recursive: true });
+  fs.writeFileSync(ruleNamesOutputPath, allRuleNames.join('\n') + '\n');
+}
+
 export async function fetchEslintRules(snapshotPath: string, ruleNamesOutputPath?: string): Promise<EslintRuleRaw[]> {
   if (fs.existsSync(snapshotPath)) {
     const raw = JSON.parse(fs.readFileSync(snapshotPath, 'utf-8'));
-    if (Array.isArray(raw)) return raw as EslintRuleRaw[];
+
+    // 旧フォーマット（配列）: ルール本体のみで全ルール名一覧を持たない。
+    if (Array.isArray(raw)) {
+      if (ruleNamesOutputPath) {
+        console.warn(
+          '⚠️  スナップショットが旧フォーマット（配列）のため、eslint-rule-names.txt に除外前の全ルール名を復元できません。除外後のルール名のみ書き出します。全件に更新するにはスナップショットを再生成してください（README.md の手順参照）。',
+        );
+        writeRuleNames(ruleNamesOutputPath, (raw as EslintRuleRaw[]).map((r) => r.name).sort());
+      }
+      return raw as EslintRuleRaw[];
+    }
+
+    const snapshot = raw as EslintRulesSnapshot;
+    if (ruleNamesOutputPath) writeRuleNames(ruleNamesOutputPath, snapshot.allRuleNames);
+    return snapshot.rules;
   }
 
   if (!process.env.GITHUB_TOKEN) {
@@ -96,10 +125,7 @@ export async function fetchEslintRules(snapshotPath: string, ruleNamesOutputPath
     .map((e) => e.name)
     .sort();
 
-  if (ruleNamesOutputPath) {
-    fs.mkdirSync(path.dirname(ruleNamesOutputPath), { recursive: true });
-    fs.writeFileSync(ruleNamesOutputPath, allRuleNames.join('\n') + '\n');
-  }
+  if (ruleNamesOutputPath) writeRuleNames(ruleNamesOutputPath, allRuleNames);
 
   const rules: EslintRuleRaw[] = [];
   for (const ruleName of allRuleNames) {
@@ -116,7 +142,8 @@ export async function fetchEslintRules(snapshotPath: string, ruleNamesOutputPath
   }
 
   fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
-  fs.writeFileSync(snapshotPath, JSON.stringify(rules, null, 2));
+  const snapshot: EslintRulesSnapshot = { allRuleNames, rules };
+  fs.writeFileSync(snapshotPath, JSON.stringify(snapshot, null, 2));
   return rules;
 }
 

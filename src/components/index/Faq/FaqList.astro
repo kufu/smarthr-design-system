@@ -9,13 +9,11 @@ import FaqItem from './FaqItem.astro';
 <Section className="indexFaqSection">
   <h2>よくあるご質問</h2>
   <ul>
-    {
-      data.map((item) => (
-        <li>
-          <FaqItem data={item} />
-        </li>
-      ))
-    }
+    {data.map((item) => (
+      <li>
+        <FaqItem data={item} />
+      </li>
+    ))}
   </ul>
 </Section>
 
