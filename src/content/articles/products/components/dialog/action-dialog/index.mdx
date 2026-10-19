@@ -14,7 +14,7 @@ import DialogBaseSize from '../_components/DialogBaseSize.mdx'
 import ExpandedDialogUsecase from '../_components/ExpandedDialogUsecase.mdx'
 import ExpandedDialogPadding from '../_components/ExpandedDialogPadding.mdx'
 import { ResponseMessage } from '@/components/ResponseMessage'
-import { BaseColumn, Cluster, Text } from 'smarthr-ui'
+import { Groupbox, Cluster, Text } from 'smarthr-ui'
 import imageActionDialog from '../images/action_dialog_mobile.png'
 import imageExpandedActionDialog from '../images/expanded_action_dialog_mobile.png'
 import DoAndDont from '@/components/article/DoAndDont.astro'
@@ -72,9 +72,9 @@ ActionDialogの表示中、ユーザーの操作範囲は強制的に制限さ�
 
 ## モバイル
 
-<BaseColumn className="shr-mt-1">
+<Groupbox className="shr-mt-1">
   <ResponseMessage status="info">拡大したActionDialogはsmarthr-uiに実装予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 モバイルでは、通常のダイアログに加えて、拡大したダイアログを使用できます。
 
