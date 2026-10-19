@@ -11,20 +11,20 @@ items:
   # 使用上の注意 > 白背景の中に配置しない
   # (Layer 2 でカバー: design-system-guideline-prohibit-information-panel-in-white-bg)
   - severity: should
-    text: 'InformationPanel では視覚的に強調されすぎる場合は、BaseColumn を使った代替パターンも検討する'
+    text: 'InformationPanel では視覚的に強調されすぎる場合は、Groupbox を使った代替パターンも検討する'
     source_section: '使用上の注意 > 白背景の中に配置しない'
 
   # レイアウト > [WIP] モバイル > 開閉ボタン
   - severity: must
     text: 'モバイルでは開閉ボタンをアイコンボタンで表示する'
     source_section: 'レイアウト > [WIP] モバイル > 開閉ボタン'
-    note: 'smarthr-ui 未実装（WIP: モバイル自動切替予定）。除外検討'
+    note: 'smarthr-ui 未実装（WIP: モバイル自動切替予定）。要人間判断'
 
   # レイアウト > [WIP] モバイル > 余白
   - severity: must
     text: 'モバイルではコンポーネント内部の余白を 16px に変更する'
     source_section: 'レイアウト > [WIP] モバイル > 余白'
-    note: 'smarthr-ui 未実装（WIP: モバイル自動切替予定）。除外検討'
+    note: 'smarthr-ui 未実装（WIP: モバイル自動切替予定）。要人間判断'
 
   # 状態 > デフォルト
   - severity: should

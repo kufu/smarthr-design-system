@@ -32,6 +32,8 @@ export default [
       'import/order': 'off',
       'arrow-body-style': 'off',
       'react/jsx-no-useless-fragments': 'off',
+      // サンプルコードの読みやすさを優先し、aria-labelledbyとidの値はuseIdなどで変数化せずベタ書きしているため、オフにしています
+      'smarthr/a11y-aria-labelledby': 'off',
     },
   },
   {
