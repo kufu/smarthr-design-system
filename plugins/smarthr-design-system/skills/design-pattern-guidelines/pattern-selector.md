@@ -13,7 +13,7 @@ UI要件からどのパターンドキュメントを読むべきかを決定す
 | オブジェクトの詳細を2カラムで表示する | `patterns/page-layout.mdx`（シングル（2カラム）セクション） |
 | サイドナビゲーション付きページ | `patterns/page-layout.mdx`（サイドナビゲーションとコンテンツの2カラムセクション） |
 | 余白の取り方・spacing トークン | `patterns/spacing-layout-pattern.mdx` |
-| 視覚的グルーピング・Base/Section の使い分け | `patterns/visual-grouping.mdx` |
+| 視覚的グルーピング・Panel/Section の使い分け | `patterns/visual-grouping.mdx` |
 | 視線誘導 | `patterns/visual-guidance.mdx` |
 | モバイルレイアウト | `patterns/mobile-friendly-layout.mdx` |
 

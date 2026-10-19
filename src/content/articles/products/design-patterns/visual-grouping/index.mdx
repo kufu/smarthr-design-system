@@ -107,7 +107,7 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
   </DoAndDont>
 </Cluster>
 
-矩形は[Base](/products/components/base/)や[BaseColumn](/products/components/base/base-column/)を用いて表現できます。
+矩形は[Panel](/products/components/panel/)や[Groupbox](/products/components/groupbox/)を用いて表現できます。
 
 ### 罫線
 関連する要素のグループと他のグループとの境界に線を引くことで要素のまとまりを示します。領域を直線の罫線で区切ったり、領域の四方を罫線で囲むことで明確な境界を示せます。
@@ -136,21 +136,21 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
 ## デザインパターン
 
 ### セクション
-見出し領域（[セクションタイトル](/products/components/heading/#h3-1)と操作）とコンテンツを内包する[Base](/products/components/base/)によって構成されるグループをセクションと呼びます。セクションについての説明はBaseの内部に含めます。[よくあるテーブル](/products/design-patterns/smarthr-table/)もセクションの一種です。
+見出し領域（[セクションタイトル](/products/components/heading/#h3-1)と操作）とコンテンツを内包する[Panel](/products/components/panel/)によって構成されるグループをセクションと呼びます。セクションについての説明はPanelの内部に含めます。[よくあるテーブル](/products/design-patterns/smarthr-table/)もセクションの一種です。
 
 ![スクリーンショット:セクションの例](./images/section-basic.png)
 
-基本的に見出し領域とBaseを垂直方向に積み重ねてレイアウトしますが、以下のようにセクションの範囲を視覚的に明確に示したい場合にはBaseの中に見出し領域を含めることもできます。
+基本的に見出し領域とPanelを垂直方向に積み重ねてレイアウトしますが、以下のようにセクションの範囲を視覚的に明確に示したい場合にはPanelの中に見出し領域を含めることもできます。
 
 <ImgWithDesc description="ドラッグ&ドロップによってセクションをユーザーが並べ替える場合">
-![スクリーンショット:Baseの中に見出し領域を含める例](./images/section-alt.png)
+![スクリーンショット:Panelの中に見出し領域を含める例](./images/section-alt.png)
 </ImgWithDesc>
 
 #### セクションの内容を切り替えるレイアウト
 [TabBar](/products/components/tab-bar/)または[SideNav](/products/components/side-nav/)を使用し、セクションの内容を切り替えるコントロールを提供できます。
 
 ##### TabBarを使う場合
-見出し領域にTabBarを配置し、Baseを切り替えます。
+見出し領域にTabBarを配置し、Panelを切り替えます。
 
 - 見出しは省略できます。（ただし、Headingの`visuallyHidden`propsを使うなどマシンリーダブルになるよう注意してください。）
 - 操作の対象がタブごとに異なる場合は[DropdownMenuButton](/products/components/dropdown/dropdown-menu-button/)で操作をまとめます。
@@ -158,7 +158,7 @@ SmartHRの製品開発では、ゲシュタルト心理学におけるゲシュ�
 ![スクリーンショット:TabBarを使用したセクションの例](./images/section-with-tabbar.png)
 
 ##### SideNavを使う場合
-Baseを左右に2分割しSideNavとコンテンツを配置し、左のSideNavで右のコンテンツを切り替えます。
+Panelを左右に2分割しSideNavとコンテンツを配置し、左のSideNavで右のコンテンツを切り替えます。
 
 ![スクリーンショット:SideNavを使用したセクションの例](./images/section-with-sidenav.png)
 
@@ -167,13 +167,13 @@ Baseを左右に2分割しSideNavとコンテンツを配置し、左のSideNav�
 
 ![スクリーンショット:ブロックの例](./images/block-basic.png)
 
-コンテンツは基本的に余白でグルーピングしますが、以下のようにまとまりを示しづらい場合には[BaseColumn](/products/components/base/base-column/)を使い、矩形により明確に領域を示すこともできます。
+コンテンツは基本的に余白でグルーピングしますが、以下のようにまとまりを示しづらい場合には[Groupbox](/products/components/groupbox/)を使い、矩形により明確に領域を示すこともできます。
 
 - RadioButtonやCheckboxが並んでおり、グループの領域がわかりづらい場合
 - ドラッグ&ドロップによって項目をユーザーが並べ替える場合
-- 前後のブロックのコンテンツがBaseColumnでグルーピングされており、視覚的な印象を揃えたい場合（例：下記の画像左）
+- 前後のブロックのコンテンツがGroupboxでグルーピングされており、視覚的な印象を揃えたい場合（例：下記の画像左）
 
-![スクリーンショット:BaseColumnを使用たブロックの例](./images/block-alt.png)
+![スクリーンショット:Groupboxを使用たブロックの例](./images/block-alt.png)
 
 ### 複数のセクションを内包するグループ
 複数のセクションを[TabBar](/products/components/tab-bar/)や[SideNav](/products/components/side-nav/)で切り替える場合、複数のセクションを視覚的にグルーピングします。これによりユーザーが切り替えの影響範囲を明確に理解したうえで操作を行えます。
@@ -183,8 +183,8 @@ Baseを左右に2分割しSideNavとコンテンツを配置し、左のSideNav�
 #### TabBarを使う場合
 TabBarを使う場合は以下のようなレイアウトを採用します。
 
-- TabBarの下に複数セクションを配置したBaseを配置する。
-- TabBarによって、Baseを切り替える。
+- TabBarの下に複数セクションを配置したPanelを配置する。
+- TabBarによって、Panelを切り替える。
 
 ![スクリーンショット:TabBarを使用した複数のセクションを内包するグループの例](./images/sections-tabbar.png)
 
@@ -193,7 +193,7 @@ TabBarを使う場合は以下のようなレイアウトを採用します。
 #### SideNavを使う場合
 SideNavを使う場合は以下のようなレイアウトを採用します。
 
-- Baseを左右に2分割しSideNavとコンテンツを配置する。
+- Panelを左右に2分割しSideNavとコンテンツを配置する。
 - 右カラムのコンテンツ内に複数のセクションを配置する。
 - 左カラムのSideNavによって、右カラムのコンテンツを切り替える。
 

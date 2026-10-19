@@ -4,7 +4,7 @@ description: '選択肢から複数の値を選択しつつテキスト入力で
 ---
 import { Image } from 'astro:assets'
 import { ResponseMessage } from '@/components/ResponseMessage'
-import { Text, Cluster, BaseColumn } from 'smarthr-ui'
+import { Text, Cluster, Groupbox } from 'smarthr-ui'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
@@ -134,9 +134,9 @@ eslint-plugin-smarthrの[smarthr/a11y-input-in-form-control](https://github.com/
 
 ## [WIP] モバイル
 
-<BaseColumn className="shr-mt-2">
+<Groupbox className="shr-mt-2">
 <ResponseMessage>モバイルに適したMultiComboboxを提供予定です。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 ## 使い方チェックリスト
 

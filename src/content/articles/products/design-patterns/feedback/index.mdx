@@ -437,14 +437,14 @@ const InformationPanelErrorLayout = () => (
         <form onSubmit={(e) => e.preventDefault()}>
           <Stack gap={2}>
             <Fieldset legend={{ text: '申請情報', styleType: 'sectionTitle' }} innerMargin={1}>
-              <Base padding={1.5}>
+              <Panel padding={1.5}>
                 <FormControl label="経路名" statusLabels={<RequiredLabel />} errorMessages="経路名を入力してください。">
                   <Input id="route-name" name="routeName" width="100%" error />
                 </FormControl>
-              </Base>
+              </Panel>
             </Fieldset>
             <Fieldset legend={{ text: '承認ステップ', styleType: 'sectionTitle' }} innerMargin={1}>
-              <Base padding={1.5}>
+              <Panel padding={1.5}>
                 <Stack gap={2}>
                   {approvalSteps.map(({ department, position, approvalCount, errors }, index) => {
                     const step = index + 1
@@ -486,7 +486,7 @@ const InformationPanelErrorLayout = () => (
                     )
                   })}
                 </Stack>
-              </Base>
+              </Panel>
             </Fieldset>
             <FloatArea
               primaryButton={<Button type="submit" variant="primary">追加</Button>}
