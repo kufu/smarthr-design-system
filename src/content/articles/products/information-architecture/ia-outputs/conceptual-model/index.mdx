@@ -30,21 +30,6 @@ import { BaseColumn } from 'smarthr-ui'
 
 また、プロダクトの現在地を整理する目的で、既存機能や既存業務のメンタルモデルの可視化にも使えます。
 
-## 概念モデルのバリエーション
-
-主要な概念が多い場合や、登場人物ごとに扱う概念が大きくが異なる場合は、1つの概念モデルにまとめると複雑でわかりにくくなります。
-
-こうした場合は特に重要な概念のみを記載した簡易版を書いたり、登場人物ごとに概念モデルを書くこともできます。また、具体的なデザインの前の企画段階では、概念の境界や用語を議論するのに十分な簡易版の概念モデルから設計を始めることも有効です。
-
-<Grid>
-  <ImgWithDesc description="簡易版の概念モデル">
-  ![簡易版の概念モデルの例](./images/conceptual-model_simplified.png)
-  </ImgWithDesc>
-  <ImgWithDesc description="登場人物ごとの概念モデル">
-  ![登場人物ごとの概念モデルの例](./images/conceptual-model_per-character.png)
-  </ImgWithDesc>
-</Grid>
-
 ## 他の図との違い
 
 ### オブジェクトモデルとの違い
@@ -96,6 +81,20 @@ import { BaseColumn } from 'smarthr-ui'
     - 「0..1」のように2つの数を..で繋げて表記することで、「0または1を取る」というように値の範囲を表せます。
 - 矢印の方向は、親→子、参照→被参照とします。
 
+## 概念モデルのバリエーション
+
+主要な概念が多い場合や、登場人物ごとに扱う概念が大きくが異なる場合は、1つの概念モデルにまとめると複雑でわかりにくくなります。
+
+こうした場合は特に重要な概念のみを記載した簡易版を書いたり、登場人物ごとに概念モデルを書くこともできます。また、具体的なデザインの前の企画段階では、概念の境界や用語を議論するのに十分な簡易版の概念モデルから設計を始めることも有効です。
+
+<Grid>
+  <ImgWithDesc description="簡易版の概念モデル">
+  ![簡易版の概念モデルの例](./images/conceptual-model_simplified.png)
+  </ImgWithDesc>
+  <ImgWithDesc description="登場人物ごとの概念モデル">
+  ![登場人物ごとの概念モデルの例](./images/conceptual-model_per-character.png)
+  </ImgWithDesc>
+</Grid>
 
 ## 作成手順
 
