@@ -51,7 +51,7 @@ CSSでは`box-shadow`や`drop-shadow`を指しています。
 
 背景の上に表示する視覚的グルーピングのための矩形に使います。
 
-コンポーネント内部での使用例：[AppNavi](/products/components/app-navi/)、[Base](/products/components/base/#h3-0)
+コンポーネント内部での使用例：[AppNavi](/products/components/app-navi/)、[Panel](/products/components/panel/#h3-0)
 
 ### `LAYER2`
 
@@ -59,16 +59,16 @@ CSSでは`box-shadow`や`drop-shadow`を指しています。
 
 - マウスオーバー時のみ表示される要素
     - コンポーネント内部での使用例：[Tooltip](/products/components/tooltip/)
-- 矩形（主に[Base](/products/components/base)）を垂直方向または水平方向に分割し、それぞれが異なるスクロール領域を持つ場合
+- 情報の上位・下位の関係を高低差で視覚的に示したい場合（`LAYER1`による[Panel](/products/components/panel/)などの領域の区切りよりも強く見せたいとき）
 
 ### `LAYER3`
 
 以下の場合に使います。
 
 - スクロールに関わらず画面内に固定表示する場合
-    - コンポーネント内部での使用例：[FloatArea](/products/components/float-area/)
+    - コンポーネント内部での使用例：[BottomFixedArea](/products/components/bottom-fixed-area/)（上方向）、[FloatArea](/products/components/float-area/)
 - 一時的に要素の上に重なって表示され、ユーザーによる明示的な操作で閉じられる場合
-    - コンポーネント内部での使用例：[Calendar](/products/components/calendar/)、[Dropdown](/products/components/dropdown/)
+    - コンポーネント内部での使用例：[Calendar](/products/components/calendar/)、[Dialog](/products/components/dialog/)、[Dropdown](/products/components/dropdown/)
 - 一時的に既存の要素間に割り込んで表示される要素を視覚的に目立たせたい場合
     - コンポーネント内部での使用例：[InformationPanel](/products/components/information-panel/)
 
