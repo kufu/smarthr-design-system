@@ -1,0 +1,74 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+import { getCollection } from 'astro:content';
+
+import { getSectionAnchorMap, normalizeSectionText, stripSectionNote } from '@/lib/getSectionAnchorMap';
+
+import { ChecklistPanel } from './ChecklistPanel';
+
+type Props = {
+  /** コンポーネント名（ComponentStory と同じ PascalCase。例: Button / ActionDialog） */
+  name: string;
+  /** 見出しに表示する名前。省略時は name をそのまま使う */
+  title?: string;
+  /** 折りたたみのトリガーに見出しを設定するか。true で h3 見出し（目次に含む）、false で span にして見出し階層・目次に含めない */
+  showHeading?: boolean;
+};
+
+const { name, title, showHeading = false } = Astro.props;
+
+// PascalCase の name を checklist.yaml のディレクトリ id（kebab-case）に変換（例: Button → button, ActionDialog → action-dialog）
+const dirName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+
+// yamlGlobLoader の defaultId はファイル相対パスから拡張子を落としたもの（例: button/checklist.yaml → "button/checklist"）。
+// ネストしたサブコンポーネントにも対応するため、末尾一致でも引く（例: dialog/action-dialog/checklist）。
+const checklists = await getCollection('checklists');
+const entry = checklists.find((c) => c.id === `${dirName}/checklist` || c.id.endsWith(`/${dirName}/checklist`));
+
+if (!entry) {
+  throw new Error(`checklist が見つかりませんでした: name=${name} (dirName=${dirName})`);
+}
+
+const items = entry.data.items;
+
+// 同ディレクトリの index.mdx から source_section → 本文見出し id（例: 'h3-1'）の対応表を作る。
+// raw markdown から算出するため smartypants 変換の影響を受けず、解決できない場合はリンクなしにフォールバックする。
+let anchorMap = new Map<string, string>();
+const checklistPath = (entry as { filePath?: string }).filePath;
+if (checklistPath) {
+  try {
+    anchorMap = getSectionAnchorMap(fs.readFileSync(path.join(path.dirname(checklistPath), 'index.mdx'), 'utf-8'));
+  } catch {
+    anchorMap = new Map();
+  }
+}
+
+// source_section ごとにグループ化（初出順を保持）し、本文見出し id を解決して付与。
+// 出典注記 (via xxx.mdx) は人間表示・id 突合の両方で不要なため除去する。
+const groups: Array<{ section: string; sectionId?: string; items: typeof items }> = [];
+for (const item of items) {
+  const section = stripSectionNote(item.source_section);
+  let group = groups.find((g) => g.section === section);
+  if (!group) {
+    group = {
+      section,
+      sectionId: anchorMap.get(normalizeSectionText(section)),
+      items: [],
+    };
+    groups.push(group);
+  }
+  group.items.push(item);
+}
+
+// Disclosure / 見出しアンカーに使う一意な DOM id
+const panelId = `checklist-${dirName}`;
+
+const displayName = title ?? name;
+
+// showHeading 指定時は h3 見出し、未指定時は span（見出しにせず目次に含めない）
+const resolvedHeadingTag = showHeading ? 'h3' : 'span';
+---
+
+<ChecklistPanel groups={groups} id={panelId} title={displayName} headingTag={resolvedHeadingTag} />

@@ -1,6 +1,6 @@
 # Tooltip
 
-補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
+補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、TextのmaxLinesで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
 
 - 補足的な説明テキストを表示する場合
 - アイコンだけのボタンにラベルを表示する場合
@@ -14,15 +14,16 @@ import { Tooltip } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v96.0.1** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | message | ReactNode | - | ✓ | ツールチップ内に表示するメッセージ |
+| type | "label" \| "description" | description | - | ツールチップの種類。`label` の場合は children の要素に `aria-labelledby` を付与しアクセシブルネームとして機能する。`description`（デフォルト）の場合は `aria-describedby` を付与し補足説明として機能する |
 | triggerType | "text" \| "icon" | - | - | ツールチップを表示する対象のタイプ。アイコンの場合は `icon` を指定する |
 | ellipsisOnly | boolean | - | - | `true` のとき、ツールチップを表示する対象が省略されている場合のみツールチップ表示を有効にする |
-| tabIndex | number | 0 | - | ツールチップを表示する対象の tabIndex 値 |
-| ariaDescribedbyTarget | "wrapper" \| "inner" | wrapper | - | ツールチップを内包要素に紐付けるかどうか |
+| tabIndex | number | - | - | ツールチップを表示する対象の tabIndex 値 |
+| ariaDescribedbyTarget | "wrapper" \| "inner" | wrapper | - | `type` が `description` の場合に `aria-describedby` を付与する対象。children が focusable な場合は常に children に付与されるため無視される |
 
 ## 実装ルール
 
@@ -40,10 +41,10 @@ Tooltip に直接関連する eslint-plugin-smarthr のルールは現時点で�
   - 入力エラーとなった際のエラーメッセージ
   - 操作補助になる情報（ショートカットなど）
 
-### 使用上の注意 > Tooltipの使用を避けるケース > 例外
+### 使用上の注意 > 例外
 - [should] Tooltip の使用は例外ケースに限定する（付加的情報の表示、Tooltip 提供コンポーネントの利用基準に沿った使用）
   - ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的
-  - LineClamp で折り返して表示することがどうしても難しい場合
+  - Text の maxLines で折り返して表示することがどうしても難しい場合
   - SearchInput で検索結果が得られなかったときの再検索ヒントを補助として使う場合（再検索ヒント自体は必ず見える場所に表示する）
   - Button の disabledReason: DropdownMenuButton 内の Button で使う場合
   - Button の disabledReason: Button 単独でも付加的情報を表示する目的で使う場合
@@ -54,7 +55,7 @@ Tooltip に直接関連する eslint-plugin-smarthr のルールは現時点で�
 
 ### デザインパターン > Tooltipのトリガーパターン > A. テキスト＋アイコン
 - [must] 補足する対象となるテキストの横に `FaCircleInfoIcon` を配置し、Tooltip の存在を明確に示す
-- [must] テキスト＋アイコンパターンのアイコンの色には `TEXT_GRAY` を使う
+- [must] テキスト＋アイコンパターンのアイコンの色には `TEXT_GREY` を使う
 
 ### デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ
 - [must] アイコン単体をトリガーにするパターンは、どうしても他に方法がないときだけ使用する
@@ -63,7 +64,7 @@ Tooltip に直接関連する eslint-plugin-smarthr のルールは現時点で�
 - [must] アイコン単体でテキストなど他の要素と合わせず配置する場合は、リンク色（`TEXT_LINK`）を使う
 
 ### デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > テキストとあわせて使用
-- [must] テキストとあわせて使うアイコンの色には `TEXT_GRAY` を使う
+- [must] テキストとあわせて使うアイコンの色には `TEXT_GREY` を使う
 
 ### デザインパターン > Tooltipのトリガーパターン > B. アイコンのみ > ステータスの補足に使用
 - [must] ステータスの補足説明を加えるときはアイコンをテキストの左に配置し、ステータスの色に合わせる
@@ -74,7 +75,10 @@ Tooltip に直接関連する eslint-plugin-smarthr のルールは現時点で�
 
 ### デザインパターン > Tooltipのトリガーパターン > D. 省略テキスト
 - [must] 省略テキストパターンでは、テキストは `ellipsis` を使い省略されていることを示す
-- [must] 単純に文章を省略したい場合は LineClamp を使用する
+- [must] 単純に文章を省略したい場合は Text の maxLines を使用する
+
+### アクセシビリティ > 開発時の考慮点 > Tooltipの内容に応じてtypeを使い分ける
+- [must] Tooltipの内容を要素のアクセシブルネームとして利用する場合は `type="label"` を使用する（補足説明の場合は指定不要）
 
 ### モバイル
 - [avoid] モバイルでは Tooltip を使わない

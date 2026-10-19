@@ -37,3 +37,8 @@ iframeの表示には[react-frame-component](https://www.npmjs.com/package/react
 
 ### TypeScript
 ライブエディタでは、コードをTypeScriptとしてトランスパイルするようになっています。
+
+### 読み込みの分割
+ライブエディタの実装は`LiveContainerInner.tsx`にあり、`LiveContainer.tsx`から動的に`import`しています。
+
+react-liveのscopeにsmarthr-uiの全コンポーネントを渡している都合上このチャンクは大きくなるため、`editable`なコードブロックがあるページでだけ読み込まれるようにしています。scopeに渡すsmarthr-uiのエクスポートは`virtual:smarthr-ui-scope`（`src/vite/vite-plugin-smarthr-ui-scope.ts`）が提供しています。

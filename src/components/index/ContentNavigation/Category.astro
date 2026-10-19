@@ -19,29 +19,27 @@ const { data } = Astro.props;
     <FloatingTextLink path={data.path}>もっと詳しく</FloatingTextLink>
   </div>
   <div class="navigationLinksContainer">
-    {
-      data.imagePath ? (
-        <div class="categoryImageWrapper">
-          <a href={data.path}>
-            <img src={data.imagePath} width="832" height="144" alt="基本原則" />
-          </a>
-        </div>
-      ) : (
-        <ul class="navigationLinks">
-          {data.items.map((item) => (
-            <li>
-              <a href={item.path}>
-                <div class="thumbnailImageWrapper">
-                  {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
-                  <img src={item.imagePath} width="262" height="144" alt="" />
-                </div>
-                <p>{item.title}</p>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )
-    }
+    {data.imagePath ? (
+      <div class="categoryImageWrapper">
+        <a href={data.path}>
+          <img src={data.imagePath} width="832" height="144" alt="基本原則" />
+        </a>
+      </div>
+    ) : (
+      <ul class="navigationLinks">
+        {data.items.map((item) => (
+          <li>
+            <a href={item.path}>
+              <div class="thumbnailImageWrapper">
+                {/* この画像はリンクテキストと同等の内容なので、altは空が適切 */}
+                <img src={item.imagePath} width="262" height="144" alt="" />
+              </div>
+              <p>{item.title}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
   </div>
 </Section>
 
