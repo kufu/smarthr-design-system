@@ -18,10 +18,12 @@
 
 ### lint-staged
 
-lint-stagedをとおして、ステージングされているファイルを対象に以下を実行しています。lint-stagedの設定は`package.json`にあります。
+lint-stagedをとおして、ステージングされているファイルを対象に以下を実行しています。lint-stagedの設定は`lint-staged.config.mjs`にあります。
 
 - `src/`以下の`.astro`/`.ts`/`.tsx`：型チェック（tsc・astro check）、ESLint、Prettier
 - `src/`以下の`.md`/`.mdx`：astro check、textlint
 - それ以外のファイル：Prettier
+
+型チェックや astro check などプロジェクト全体を対象にするチェックは、`.astro`/`.ts`/`.tsx`と`.md`/`.mdx`を同時にコミットしても1回だけ実行します。
 
 リンクチェック（`/scripts/content-checker/linkChecker.ts`）はコミット時には実行しません。GitHub Actionsで毎週実行しています。

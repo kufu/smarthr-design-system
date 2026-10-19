@@ -4,22 +4,6 @@
   "author": "SmartHR Design System Team",
   "license": "MIT",
   "type": "module",
-  "lint-staged": {
-    "src/**/*.{astro,ts,tsx}": [
-      "pnpm prelint",
-      "pnpm run-p lint:ts:content lint:ts:codeblock lint:check -- ",
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "src/**/*.md{,x}": [
-      "pnpm prelint",
-      "pnpm run-p lint:check lint:text -- ",
-      "textlint --fix"
-    ],
-    "!(src/**/*.{astro,ts,tsx,md,mdx})": [
-      "prettier --write --ignore-unknown"
-    ]
-  },
   "scripts": {
     "clean": "rm -rf dist && find src/content/articles -type d -name '_check' -exec rm -rf {} +",
     "predev": "run-s update:ui-data",
