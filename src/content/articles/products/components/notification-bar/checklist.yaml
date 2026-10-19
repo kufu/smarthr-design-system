@@ -10,7 +10,7 @@ items:
 
   # 使用上の注意 > メッセージは省略表示しない
   - severity: avoid
-    text: 'NotificationBar のメッセージを LineClamp で省略表示しない'
+    text: 'NotificationBar のメッセージを Text の maxLines などで省略表示しない'
     source_section: '使用上の注意 > メッセージは省略表示しない'
 
   - severity: should
@@ -30,7 +30,7 @@ items:
 
   # 状態 > レイアウト > ベースあり
   - severity: should
-    text: '特定の操作範囲へのフィードバックなど Base 内に配置する場合を除き、画面内に単体で配置する場合は基本的に `base="base"` を使用する'
+    text: '特定の操作範囲へのフィードバックなど Panel 内に配置する場合を除き、画面内に単体で配置する場合は基本的に `base="base"` を使用する'
     source_section: '状態 > レイアウト > ベースあり'
 
   # デザインパターン > ページ全体の操作へのフィードバック

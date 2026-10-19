@@ -25,6 +25,9 @@ smarthr-ui のコンポーネントを正しく選択・使用するためのガ
 コード中の import 名がそのままファイル名になっている。
 例: `import { ActionDialog } from 'smarthr-ui'` → `components/ActionDialog.md`
 
+ガイドの冒頭に「⚠️ **非推奨**」とある場合、そのコンポーネントは新しく使わず、案内されている代替コンポーネントのガイドを読んでから実装すること。既存コードで使われている場合も、代替コンポーネントへの置き換えを提案する。
+例: `import { Base } from 'smarthr-ui'` → `components/Base.md`（非推奨。`Panel` に名称変更）→ `components/Panel.md`
+
 ## ガイドの構成
 
 各コンポーネントガイドは 3 層で構成される:
