@@ -3,8 +3,7 @@ title: 'FloatArea'
 description: '画面内に固定表示する領域のためのコンポーネントです。スクロール位置によらずフォーム送信ボタンや主要アクションを常時見せるときに使います。'
 ---
 import { Image } from 'astro:assets'
-import { ResponseMessage } from '@/components/ResponseMessage'
-import { BaseColumn, Cluster, Text } from 'smarthr-ui'
+import { Cluster, Text } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
@@ -71,14 +70,9 @@ DOMの順序と画面上の視覚的な順序を一致させることで、自�
 
 ## モバイル
 
-<BaseColumn className="shr-mt-1">
-  <ResponseMessage status="info">モバイル対応したFloatAreaはsmarthr-uiに実装予定です。</ResponseMessage>
-</BaseColumn>
+モバイル環境は画面が狭いため、FloatAreaが常に画面の下部に固定されていると対象領域の閲覧や操作の妨げになります。そのため、モバイル環境においてFloatAreaは画面の下部に固定されず、対象領域の末尾に表示されます。
 
-モバイル環境は画面が狭いため、FloatAreaが常に画面の下部に固定されていると対象の領域の閲覧や操作の妨げとなってしまいます。
-
-そのため、FloatAreaを画面の下部に固定せず、対象の領域の末尾に置くことを推奨します。
-ただしユースケースに応じて必要な場合はFloatAreaを画面の下部に固定できます。
+ユースケースに応じて画面の下部に固定する必要がある場合は、`fixedOnMobile`を指定してください。
 
 <Grid>
   <ImgWithDesc description="［推奨］FloatAreaを対象の領域の後に配置する">
@@ -90,8 +84,7 @@ DOMの順序と画面上の視覚的な順序を一致させることで、自�
   </ImgWithDesc>
 </Grid>
 
-
-FloatAreaを画面の下部に固定する場合は、仮想キーボードの入力操作の妨げにならないよう、キーボード入力時（入力要素にフォーカス中）はFloatAreaの固定を解除することで、操作領域を確保します。
+`fixedOnMobile`を指定すると、テキスト入力時は仮想キーボード操作の妨げにならないよう、自動で固定が解除されます。
 
 <Cluster gap={1}>
   <DoAndDont type="do" width="calc(50% - 8px)">
@@ -108,10 +101,6 @@ FloatAreaを画面の下部に固定する場合は、仮想キーボードの�
 ### レイアウト
 
 #### 画面の下部に固定する場合
-
-<BaseColumn className="shr-mt-1">
-  <ResponseMessage status="info">以下のレイアウトを実現するFloatAreaはsmarthr-uiに実装予定です。</ResponseMessage>
-</BaseColumn>
 
 FloatAreaを画面の下部に固定する場合、左右の余白をなくし画面幅いっぱいに表示します。
 
