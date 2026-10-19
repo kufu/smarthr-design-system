@@ -1,0 +1,88 @@
+.wrapper {
+  margin-block-start: 72px;
+}
+
+.summary {
+  /*
+   * 左列の幅をそろえ、トークンごとに本文の開始位置がずれないようにする
+   * 縦積みになったとき（Sidebar により flex-grow される）も広がりすぎないよう max-width も指定する
+   */
+  width: 14rem;
+  max-width: 14rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /*
+   * 記事本文の見出し・code スタイル（ArticleBody の `.mdxStyleWrapper[data-astro-cid-*] h4` など）を
+   * 打ち消したいため、親のクラスと属性セレクタを併記して詳細度を上げている
+   */
+  .title[data-index-nav] {
+    margin: 0;
+    font-size: var(--font-size-18);
+    line-height: 1.5;
+    scroll-margin-top: 80px;
+
+    a {
+      /*
+       * inline ではトークン名が長いときにアイコンだけが次の行に折り返され、
+       * 非表示（visibility: hidden）のまま空行になってしまうため inline-flex にする
+       */
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: inherit;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        code {
+          text-decoration: underline;
+        }
+
+        .icon {
+          visibility: visible;
+        }
+      }
+    }
+
+    code {
+      margin: 0;
+      font-size: inherit;
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  visibility: hidden;
+  font-size: var(--font-size-14);
+}
+
+.swatch {
+  /* 左列の幅いっぱいに広げ、本文との間を空けすぎないようにする */
+  width: 100%;
+  height: 80px;
+  box-shadow: rgb(235, 236, 240) 0 0 0 1.2px;
+}
+
+.values {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-16);
+  line-height: 1.5;
+}
+
+.sub {
+  font-size: var(--font-size-14);
+  color: var(--color-text-grey);
+}
+
+/*
+ * 本文の先頭を見出しの高さにそろえる
+ * 記事本文の `p` / `ul` の上マージンより詳細度を上げるため、親のクラスを併記している
+ */
+.wrapper .body > :first-child {
+  margin-block-start: 0;
+}
