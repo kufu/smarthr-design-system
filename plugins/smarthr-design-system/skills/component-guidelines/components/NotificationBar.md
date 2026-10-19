@@ -10,7 +10,7 @@ import { NotificationBar } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -34,7 +34,7 @@ NotificationBar に直接関連する eslint-plugin-smarthr のルールは現�
 - [must] システムからの通知ではない、その他のサービス運営上の情報などの表示が必要な場合は、ベースありや InformationPanel などを使用する
 
 ### 使用上の注意 > メッセージは省略表示しない
-- [avoid] NotificationBar のメッセージを LineClamp で省略表示しない
+- [avoid] NotificationBar のメッセージを Text の maxLines などで省略表示しない
 - [should] NotificationBar のメッセージは簡潔な一行程度の文章になるように調整する
 - [should] どうしても情報量や他の要素を併記する必要がある場合は、テキストリンクで移動先のヘルプページなどに情報を記載するか、ベースありや InformationPanel などを使用して十分な表示領域を確保する
 
@@ -43,7 +43,7 @@ NotificationBar に直接関連する eslint-plugin-smarthr のルールは現�
   - ユーザーが行った操作の成功・失敗などの結果を画面全体（ヘッダーの下）に表示する場合
 
 ### 状態 > レイアウト > ベースあり
-- [should] 特定の操作範囲へのフィードバックなど Base 内に配置する場合を除き、画面内に単体で配置する場合は基本的に `base="base"` を使用する
+- [should] 特定の操作範囲へのフィードバックなど Panel 内に配置する場合を除き、画面内に単体で配置する場合は基本的に `base="base"` を使用する
 
 ### デザインパターン > ページ全体の操作へのフィードバック
 - [must] ページ全体の操作へのフィードバックでは、メッセージが表示されたことを強調するためにアニメーションを有効にする

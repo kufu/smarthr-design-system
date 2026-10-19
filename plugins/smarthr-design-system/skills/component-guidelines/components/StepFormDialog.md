@@ -12,10 +12,11 @@ import { StepFormDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| ref | Ref<HTMLDivElement> | - | - | - |
 | className | string | - | - | - |
 | onSubmit | (e: FormEvent<HTMLFormElement>, helpers: StepFormHelpers) => void | - | ✓ | - |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
@@ -30,10 +31,10 @@ import { StepFormDialog } from 'smarthr-ui'
 | portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
 | contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | コンテンツ部分の背景色 |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
-| submitButton | ButtonArgType \| ObjectButtonType | - | ✓ | - |
-| closeButton | ButtonArgType \| ObjectButtonType | - | - | - |
-| backButton | ButtonArgType \| ObjectButtonType | - | - | - |
-| firstStep | { id: string; stepNumber: number; } | - | ✓ | - |
+| submitButton | ReactNode \| ((currentStep: StepItem, defaultText: ReactNode) => ReactNode) \| { text?: ButtonArgType; hidden?: boolean \| VariableFunctionType<boolean>; disabled?: boolean \| VariableFunctionType<boolean>; theme?: ButtonThemeType \| VariableFunctionType<...>; } \| (currentStep: StepItem, defaultText: ReactNode) => ButtonResolverResult | - | ✓ | - |
+| closeButton | ReactNode \| ((currentStep: StepItem, defaultText: ReactNode) => ReactNode) \| { text?: ButtonArgType; hidden?: boolean \| VariableFunctionType<boolean>; disabled?: boolean \| VariableFunctionType<boolean>; theme?: ButtonThemeType \| VariableFunctionType<...>; } \| (currentStep: StepItem, defaultText: ReactNode) => ButtonResolverResult | - | - | - |
+| backButton | ReactNode \| ((currentStep: StepItem, defaultText: ReactNode) => ReactNode) \| { text?: ButtonArgType; hidden?: boolean \| VariableFunctionType<boolean>; disabled?: boolean \| VariableFunctionType<boolean>; theme?: ButtonThemeType \| VariableFunctionType<...>; } \| (currentStep: StepItem, defaultText: ReactNode) => ButtonResolverResult | - | - | - |
+| firstStep | StepItem | - | ✓ | - |
 | stepLength | number | - | ✓ | ステップの総数 |
 | onClickBack | () => void | - | - | - |
 | onClickClose | (close: () => void) => void | - | - | - |

@@ -345,8 +345,8 @@ a {
   left: 50%;
 }
 
-.shr-left-\[calc\(50\%\+\(theme\(fontSize\.base\)\/2\)\+4px\+5px\)\] {
-  left: calc(50% + (1rem / 2) + 4px + 5px);
+.shr-left-\[calc\(50\%\+\(theme\(fontSize\.base\)\/2\)\+9px\)\] {
+  left: calc(50% + (1rem / 2) + 9px);
 }
 
 .shr-right-0 {
@@ -375,6 +375,10 @@ a {
 
 .shr-top-\[50\%\] {
   top: 50%;
+}
+
+.shr-top-\[calc\(50\%-\(theme\(fontSize\.base\)\/2\)-8px\)\] {
+  top: calc(50% - (1rem / 2) - 8px);
 }
 
 .shr-z-0 {
@@ -2826,6 +2830,10 @@ a {
   font-style: italic;
 }
 
+.shr-not-italic {
+  font-style: normal;
+}
+
 .shr-tabular-nums {
   --tw-numeric-spacing: tabular-nums;
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
@@ -4004,11 +4012,6 @@ a {
   opacity: 0;
 }
 
-.after\:shr-opacity-100::after {
-  content: var(--tw-content);
-  opacity: 1;
-}
-
 .after\:shr-transition-opacity::after {
   content: var(--tw-content);
   transition-property: opacity;
@@ -4875,7 +4878,7 @@ a {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.data-\[dropdown-active\]\:shr-visible[data-dropdown-active] {
+.data-\[dropdown-mounted\]\:shr-visible[data-dropdown-mounted] {
   visibility: visible;
 }
 
@@ -5001,6 +5004,11 @@ a {
 .data-\[current\=true\]\:after\:shr-border-t-transparent[data-current="true"]::after {
   content: var(--tw-content);
   border-top-color: transparent;
+}
+
+.data-\[smarthr-ui-shadow\=true\]\:after\:shr-opacity-100[data-smarthr-ui-shadow="true"]::after {
+  content: var(--tw-content);
+  opacity: 1;
 }
 
 .data-\[current\=true\]\:after\:shr-content-\[\"\"\][data-current="true"]::after {

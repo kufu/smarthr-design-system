@@ -8,7 +8,8 @@ import ColorPalette from '@/components/article/ColorPalette.astro'
 import ColorPaletteList from '@/components/article/ColorPaletteList.astro'
 import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro'
 import ColorToken from '@/components/article/ColorToken/ColorToken'
-import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+import { Groupbox } from 'smarthr-ui'
+import { ResponseMessage } from '@/components/ResponseMessage'
 import {
   BASE_COLORS,
   CHART_COLORS,
@@ -49,7 +50,7 @@ import {
 - 操作可能な状態を示すための背景色
 
 コンポーネント内部での使用例：
-- [Base](/products/components/base/)の背景色
+- [Panel](/products/components/panel/)の背景色
 - [Dialog](/products/components/dialog/)の背景色
 - 操作可能な状態の[Checkbox](/products/components/checkbox/)の背景色
 
@@ -206,7 +207,7 @@ import {
 使用上の注意：
 - 画面の背景色では使わない
   - `BACKGROUND`を使ってください。
-- [Base](/products/components/base/)の中など、`WHITE`の上では使わない
+- [Panel](/products/components/panel/)の中など、`WHITE`の上では使わない
   - `COLUMN`を使ってください。
 
 </ColorToken>
@@ -241,9 +242,9 @@ import {
 
 ボタンなどhover時に重ねる色に使います。
 
-<BaseColumn className="shr-mt-1">
+<Groupbox className="shr-mt-1">
   <ResponseMessage status="info">現在`OVERLAY`は使用されていません。</ResponseMessage>
-</BaseColumn>
+</Groupbox>
 
 </ColorToken>
 

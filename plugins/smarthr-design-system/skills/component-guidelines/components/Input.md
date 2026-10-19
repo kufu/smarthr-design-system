@@ -10,7 +10,7 @@ import { Input } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -130,8 +130,8 @@ input や textarea などの入力要素に対してplaceholder属性を設定�
 ### 状態 > 読み取り専用（readOnly）
 - [should] 当該画面では編集できないが、別の場所で入力済みの値をフォームの送信内容に含めて表示することが重要な場合は `readOnly` を使用する
 
-### 状態 > 読み取り専用（readOnly） > BaseColumnなど色のついた下地に置くときは`bgColor`を指定する
-- [must] `readOnly` の Input を BaseColumn の中など `COLUMN` と同じ色の下地に置く場合は、`bgColor` に `HEAD` を指定して下地と区別できるようにする
+### 状態 > 読み取り専用（readOnly） > Groupboxなど色のついた下地に置くときは`bgColor`を指定する
+- [must] `readOnly` の Input を Groupbox の中など `COLUMN` と同じ色の下地に置く場合は、`bgColor` に `HEAD` を指定して下地と区別できるようにする
   - `WHITE` のような明るい色は編集できる入力欄に見えてしまうため `readOnly` の Input には使用しない
 
 ### 状態 > 無効（disabled）

@@ -46,7 +46,7 @@ pnpm tsx ./scripts/update-smarthr-ui-css.ts
 
 ## zipImages.ts
 
-イラストレーションやロゴのダウンロード用ZIPファイルを生成するスクリプトです。
+アイコンのダウンロード用ZIPファイルを生成するスクリプトです。
 
 対象のディレクトリは`src/constants/zip.ts`に定義されています。
 

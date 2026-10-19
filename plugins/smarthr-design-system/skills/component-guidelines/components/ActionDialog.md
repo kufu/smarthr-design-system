@@ -12,10 +12,11 @@ import { ActionDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| ref | Ref<HTMLDivElement> | - | - | - |
 | className | string | - | - | - |
 | heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
 | size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
@@ -32,7 +33,7 @@ import { ActionDialog } from 'smarthr-ui'
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
 | closeButton | ReactNode \| { text?: ReactNode; disabled?: boolean; } | - | - | - |
 | actionButton | ReactNode \| { text: ReactNode; theme?: "primary" \| "danger" \| "secondary"; disabled?: boolean; } | - | ✓ | - |
-| onClickAction | (e: MouseEvent<Element, MouseEvent>, helpers: ActionDialogHelpers) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 |
+| onClickAction | (e: MouseEvent<Element, MouseEvent>, helpers: { close: () => void; }) => void | - | ✓ | アクションボタンをクリックした時に発火するコールバック関数 |
 | onClickClose | (close: () => void) => void | - | - | - |
 | onToggle | (isOpen: boolean) => void | - | - | - |
 | onOpen | () => void | - | - | - |
@@ -52,3 +53,24 @@ ActionDialog に直接関連する eslint-plugin-smarthr のルールは現時�
 
 ### 使用上の注意 > ダイアログコンテンツにフォームが含まれている場合は、FormDialogの使用を検討する
 - [should] ダイアログコンテンツにフォーム要素を含む場合は FormDialog の使用を検討する
+
+### レイアウト > 基準サイズ > `XS`
+- [should] 入力要素を 1 つだけ持つなど、内容が極めて少ないダイアログには `XS` を使う
+
+### レイアウト > 基準サイズ > `S`
+- [should] 要素が少なく、要素が垂直方向に並ぶ、広い横幅を必要としないダイアログには `S` を使う
+
+### レイアウト > 基準サイズ > `M`
+- [should] 数行に渡るテキストの表示や、水平方向に要素を並べて表示する標準的なダイアログには `M` を使う
+
+### レイアウト > 基準サイズ > `L`
+- [should] テーブルの表示やダイアログを複数カラムに分割するなど、広い横幅が必要なダイアログには `L` を使う
+
+### レイアウト > 基準サイズ > `XL`
+- [should] 広い横幅が必要で、`L` ではコンテンツが収まりきらないダイアログには `XL` を使う
+
+### レイアウト > 基準サイズ > `XXL`
+- [should] 広い横幅が必要で、`XL` ではコンテンツが収まりきらないダイアログには `XXL` を使う
+
+### レイアウト > 基準サイズ > `FULL`
+- [should] 広い横幅が必要で、`XXL` ではコンテンツが収まりきらないダイアログには `FULL` を使う

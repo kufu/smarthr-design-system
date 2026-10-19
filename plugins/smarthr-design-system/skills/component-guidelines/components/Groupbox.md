@@ -1,6 +1,6 @@
 # Groupbox
 
-BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。
+PanelやDialogの内部に置き、矩形で視覚的に要素をグルーピングするコンポーネントです。Panel内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。
 
 ## import
 
@@ -10,7 +10,7 @@ import { Groupbox } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.7.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -26,5 +26,5 @@ Groupbox に直接関連する eslint-plugin-smarthr のルールは現時点で
 ## 使い方チェックリスト
 
 ### デザインパターン > メッセージを表示するパターン
-- [should] Base や各種 Dialog（`contentBgColor` が `WHITE` の場合）の内側など、InformationPanel が配置できない場合に、見出しと内容のセットで注意事項や補足事項を表示するために使う
-  - Base の内側では InformationPanel の代わりに BaseColumn で注意事項を表示する
+- [should] Panel や各種 Dialog（`contentBgColor` が `WHITE` の場合）の内側など、InformationPanel が配置できない場合に、見出しと内容のセットで注意事項や補足事項を表示するために使う
+  - Panel の内側では InformationPanel の代わりに Groupbox で注意事項を表示する
