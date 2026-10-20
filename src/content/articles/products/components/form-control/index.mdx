@@ -41,21 +41,20 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
     </DoAndDont>
 </Cluster>
 
-### 必須項目のエラーはブラウザ標準のツールチップではなく、FormControlで表示する
+### 必須項目には入力要素に`required`属性を設定し、エラーはFormControl[errorMessages]で表示する
 
-入力必須の項目には、入力要素に`required`を指定してください。必須ラベルの表示だけでは、未入力時のフォーム送信を防げません。
+入力必須の項目には、未入力時のフォーム送信を防ぐため、入力要素に`required`を指定してください。
 
-未入力時のエラーは、ブラウザ標準のツールチップではなく、FormControlの`errorMessages`で表示してください。入力要素にも`error`を指定し、エラー状態を見た目に反映します。
+未入力時のエラーメッセージは、ブラウザ標準のツールチップではなく、FormControlの`errorMessages`で表示してください。
+入力要素にも`error`を指定し、エラー状態を見た目に反映します。
 
-`required`による検証でエラーになると、`onSubmit`は実行されません。`onInvalid`でエラーを捕捉し、`preventDefault()`で標準ツールチップを抑制したうえで、エラーメッセージを設定してください。標準ツールチップを抑制しても、未入力時の送信はブロックされます。
-
-以下は、[FormDialog](/products/components/dialog/form-dialog/)内の1つの入力項目を必須にする例です。ダイアログの開閉や送信処理などは省略しています。
+`required`がついた入力要素の未入力によるエラーになると、`onSubmit`は実行されないため、`onInvalid`でエラーを捕捉する必要があります。
+`onInvalid`でエラーを捕捉し、`preventDefault()`で標準ツールチップを抑制したうえで、エラーメッセージを設定してください。
 
 ```tsx
 const [errorMessages, setErrorMessages] = useState<string[]>([])
 
-// FormDialogのほかの必須propsは省略
-<FormDialog
+<form
   onInvalid={(event) => {
     event.preventDefault()
     setErrorMessages(['氏名を入力してください。'])
@@ -73,10 +72,8 @@ const [errorMessages, setErrorMessages] = useState<string[]>([])
       }}
     />
   </FormControl>
-</FormDialog>
+</form>
 ```
-
-この例は入力項目が1つの場合です。複数の項目がある場合は、エラーになった項目に対応するFormControlへエラーメッセージを設定してください。
 
 ## レイアウト
 
