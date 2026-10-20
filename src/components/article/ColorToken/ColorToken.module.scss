@@ -1,5 +1,8 @@
 .wrapper {
-  margin-block-start: 72px;
+  /* トークン同士の境界がわかるよう、各トークンの上に区切り線を引く */
+  margin-block-start: 36px;
+  padding-block-start: 36px;
+  border-top: 1px solid var(--color-light-grey-1);
 }
 
 .summary {
