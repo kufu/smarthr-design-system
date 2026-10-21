@@ -41,15 +41,15 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
     </DoAndDont>
 </Cluster>
 
-### 必須項目には入力要素に`required`属性を設定し、エラーはFormControl[errorMessages]で表示する
+### 必須項目には入力要素に`required`属性を設定し、エラーはFormControlの`errorMessages`で表示する
 
 入力必須の項目には、未入力時のフォーム送信を防ぐため、入力要素に`required`を指定してください。
 
 未入力時のエラーメッセージは、ブラウザ標準のツールチップではなく、FormControlの`errorMessages`で表示してください。
 入力要素にも`error`を指定し、エラー状態を見た目に反映します。
 
-`required`がついた入力要素の未入力によるエラーになると、`onSubmit`は実行されないため、`onInvalid`でエラーを捕捉する必要があります。
-`onInvalid`でエラーを捕捉し、`preventDefault()`で標準ツールチップを抑制したうえで、エラーメッセージを設定してください。
+`required`を指定した入力要素が未入力の場合、フォームの送信がブロックされ、onSubmit は実行されません。
+エラーの処理は `onInvalid` で行い、`preventDefault()` でブラウザ標準のツールチップを抑制してください。
 
 ```tsx
 const [errorMessages, setErrorMessages] = useState<string[]>([])
