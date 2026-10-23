@@ -41,6 +41,56 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
     </DoAndDont>
 </Cluster>
 
+### 必須項目には入力要素にrequired属性を設定し、エラーはFormControlのerrorMessagesで表示する
+
+入力必須の項目は、必須要素であることを機械的に判断できるようにしつつ、ブラウザ標準のツールチップによる警告を適切に処理するように、次のように実装してください。
+
+**入力要素**
+
+-   `required`を指定し、未入力時のフォーム送信を防ぐ
+-   `error`を指定し、エラー状態を見た目に反映する
+
+**FormControl**
+
+-   `errorMessages`でエラーメッセージを表示する
+
+**`<form>`要素**
+
+-   `onInvalid`でエラーを処理する
+-   `preventDefault()`でブラウザ標準のツールチップを抑制する
+
+なお、`required`を指定した入力要素が未入力の場合、フォームの送信がブロックされ、`onSubmit`内の処理は実行されないことに注意してください。
+
+```tsx editable withStyled
+render(() => {
+  const [errorMessages, setErrorMessages] = useState<string[]>([])
+  return (
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      onInvalid={(e) => {
+        e.preventDefault()
+        setErrorMessages(['氏名を入力してください。'])
+      }}
+    >
+      <Cluster align="end">
+        <FormControl label="氏名" errorMessages={errorMessages}>
+          <Input
+            name="name"
+            required
+            error={errorMessages.length > 0}
+            onChange={(event) => {
+              if (event.currentTarget.value !== '') {
+                setErrorMessages([])
+              }
+            }}
+          />
+        </FormControl>
+        <Button type="submit" variant="primary">送信</Button>
+      </Cluster>
+    </form>
+)})
+```
+
 ## レイアウト
 
 ステータスラベルやメッセージテキストの有無で、コンポーネント内のレイアウトにバリエーションがあります。
