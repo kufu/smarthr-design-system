@@ -61,28 +61,34 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 
 なお、`required`を指定した入力要素が未入力の場合、フォームの送信がブロックされ、`onSubmit`内の処理は実行されないことに注意してください。
 
-```tsx
-const [errorMessages, setErrorMessages] = useState<string[]>([])
-
-<form
-  onInvalid={(event) => {
-    event.preventDefault()
-    setErrorMessages(['氏名を入力してください。'])
-  }}
->
-  <FormControl label="氏名" errorMessages={errorMessages}>
-    <Input
-      name="name"
-      required
-      error={errorMessages.length > 0}
-      onChange={(event) => {
-        if (event.currentTarget.value !== '') {
-          setErrorMessages([])
-        }
+```tsx editable withStyled
+render(() => {
+  const [errorMessages, setErrorMessages] = useState<string[]>([])
+  return (
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      onInvalid={(e) => {
+        e.preventDefault()
+        setErrorMessages(['氏名を入力してください。'])
       }}
-    />
-  </FormControl>
-</form>
+    >
+      <Cluster align="end">
+        <FormControl label="氏名" errorMessages={errorMessages}>
+          <Input
+            name="name"
+            required
+            error={errorMessages.length > 0}
+            onChange={(event) => {
+              if (event.currentTarget.value !== '') {
+                setErrorMessages([])
+              }
+            }}
+          />
+        </FormControl>
+        <Button type="submit" variant="primary">送信</Button>
+      </Cluster>
+    </form>
+)})
 ```
 
 ## レイアウト
