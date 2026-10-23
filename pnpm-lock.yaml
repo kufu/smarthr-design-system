@@ -219,13 +219,13 @@ importers:
         version: 5.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       smarthr-normalize-css:
         specifier: ^1.1.0
-        version: 1.1.0(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
+        version: 1.1.0(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
       smarthr-ui:
         specifier: 99.9.0
-        version: 99.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-intl@10.1.6(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tsx@4.23.15)(yaml@2.9.1)
+        version: 99.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-intl@10.1.6(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tsx@4.23.15)(yaml@2.9.1)
       styled-components:
-        specifier: ^6.5.3
-        version: 6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^6.6.0
+        version: 6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -367,7 +367,7 @@ importers:
         version: 5.4.3
       smarthr-ui:
         specifier: 99.9.0
-        version: 99.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-intl@10.1.6(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tsx@4.23.15)(yaml@2.9.1)
+        version: 99.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-intl@10.1.6(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tsx@4.23.15)(yaml@2.9.1)
     devDependencies:
       '@types/js-yaml':
         specifier: ^4.0.9
@@ -2183,6 +2183,9 @@ packages:
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
 
+  '@types/stylis@4.2.7':
+    resolution: {integrity: sha512-VgDNokpBoKF+wrdvhAAfS55OMQpL6QRglwTwNC3kIgBrzZxA4WsFj+2eLfEA/uMUDzBcEhYmjSbwQakn/i3ajA==}
+
   '@types/supports-color@8.1.3':
     resolution: {integrity: sha512-Hy6UMpxhE3j1tLpl27exp1XqHD7n8chAiNPzWfz16LPZoMMoSc4dzLl6w9qijkEb/r5O1ozdu1CWGA2L83ZeZg==}
 
@@ -2631,6 +2634,9 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
+  camelize@1.0.1:
+    resolution: {integrity: sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==}
+
   caniuse-lite@1.0.30001792:
     resolution: {integrity: sha512-hVLMUZFgR4JJ6ACt1uEESvQN1/dBVqPAKY0hgrV70eN3391K6juAfTjKZLKvOMsx8PxA7gsY1/tLMMTcfFLLpw==}
 
@@ -2770,11 +2776,18 @@ packages:
   crypt@0.0.2:
     resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
 
+  css-color-keywords@1.0.0:
+    resolution: {integrity: sha512-FyyrDHZKEjXDpNJYvVsV960FiqQyXc/LlYmsxl2BcdMb2WPx0OGRVgTg55rPSyLSNMqP52R9r8geSp7apN3Ofg==}
+    engines: {node: '>=4'}
+
   css-select@5.2.2:
     resolution: {integrity: sha512-TizTzUddG/xYLA3NXodFM0fSbNizXjOKhqiQQwvhlspadZokn1KDy0NZFS0wuEubIYAV5/c1/lAr0TaaFXEXzw==}
 
   css-select@6.0.0:
     resolution: {integrity: sha512-rZZVSLle8v0+EY8QAkDWrKhpgt6SA5OtHsgBnsj6ZaLb5dmDVOWUDtQitd9ydxxvEjhewNudS6eTVU7uOyzvXw==}
+
+  css-to-react-native@3.2.0:
+    resolution: {integrity: sha512-e8RKaLXMOFii+02mOlqwjbD00KSEKqblnpO9e++1aXS1fPQOpS1YoqdVHBqPjHNoxeF2mimzVqawm2KCbEdtHQ==}
 
   css-tree@2.2.1:
     resolution: {integrity: sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA==}
@@ -5568,17 +5581,14 @@ packages:
   style-to-object@1.0.14:
     resolution: {integrity: sha512-LIN7rULI0jBscWQYaSswptyderlarFkjQ+t79nzty8tcIAceVomEVlLzH5VP4Cmsv6MtKhs7qaAiwlcp+Mgaxw==}
 
-  styled-components@6.5.3:
-    resolution: {integrity: sha512-vAX79sfpmUerP9fsTTxoTrBDE0RuO4ahjInyWYoohNgqrdg63Ms4q6FJ/o2Fyity82NU3cujOT8Ewl9TThBdwg==}
+  styled-components@6.6.0:
+    resolution: {integrity: sha512-drKKsqvDBxVRn4ySU67iQ5nQBuo/1xyYeBfdhDde112PkqrS3+95KPnpDs5hFRcmrW+q6+gbyywYYYR14oWFtw==}
     engines: {node: '>= 16'}
     peerDependencies:
-      css-to-react-native: '>= 3.2.0'
       react: '>= 16.8.0'
       react-dom: '>= 16.8.0'
       react-native: '>= 0.68.0'
     peerDependenciesMeta:
-      css-to-react-native:
-        optional: true
       react-dom:
         optional: true
       react-native:
@@ -8215,6 +8225,8 @@ snapshots:
     dependencies:
       '@types/node': 22.20.1
 
+  '@types/stylis@4.2.7': {}
+
   '@types/supports-color@8.1.3': {}
 
   '@types/unist@2.0.11': {}
@@ -8837,6 +8849,8 @@ snapshots:
 
   camelcase-css@2.0.1: {}
 
+  camelize@1.0.1: {}
+
   caniuse-lite@1.0.30001792: {}
 
   ccount@1.1.0: {}
@@ -8959,6 +8973,8 @@ snapshots:
 
   crypt@0.0.2: {}
 
+  css-color-keywords@1.0.0: {}
+
   css-select@5.2.2:
     dependencies:
       boolbase: 1.0.0
@@ -8974,6 +8990,12 @@ snapshots:
       domhandler: 5.0.3
       domutils: 3.2.2
       nth-check: 2.1.1
+
+  css-to-react-native@3.2.0:
+    dependencies:
+      camelize: 1.0.1
+      css-color-keywords: 1.0.0
+      postcss-value-parser: 4.2.0
 
   css-tree@2.2.1:
     dependencies:
@@ -12423,13 +12445,13 @@ snapshots:
 
   slide@1.1.6: {}
 
-  smarthr-normalize-css@1.1.0(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
+  smarthr-normalize-css@1.1.0(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
     dependencies:
-      styled-reset: 4.5.2(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
+      styled-reset: 4.5.2(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
     transitivePeerDependencies:
       - styled-components
 
-  smarthr-ui@99.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-intl@10.1.6(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tsx@4.23.15)(yaml@2.9.1):
+  smarthr-ui@99.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-intl@10.1.6(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tsx@4.23.15)(yaml@2.9.1):
     dependencies:
       '@smarthr/wareki': 1.3.1
       dayjs: 1.11.23
@@ -12446,7 +12468,7 @@ snapshots:
       react-intl: 10.1.6(@types/react@19.3.0)(react@19.3.0)
       react-pdf: 10.5.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react-transition-group: 4.4.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      styled-components: 6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      styled-components: 6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       tailwind-variants: 0.3.1(tailwindcss@3.4.19(tsx@4.23.15)(yaml@2.9.1))
       tailwindcss: 3.4.19(tsx@4.23.15)(yaml@2.9.1)
     transitivePeerDependencies:
@@ -12608,18 +12630,20 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.7
 
-  styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
+      '@types/stylis': 4.2.7
+      css-to-react-native: 3.2.0
       csstype: 3.2.3
       react: 19.3.0
       stylis: 4.3.6
     optionalDependencies:
       react-dom: 19.3.0(react@19.3.0)
 
-  styled-reset@4.5.2(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
+  styled-reset@4.5.2(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
     dependencies:
-      styled-components: 6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      styled-components: 6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
 
   stylis@4.3.6: {}
 
