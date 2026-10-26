@@ -35,10 +35,13 @@ import {
 
 <ColorToken name="MAIN">
 
+##### 利用用途
+
 - 画面内で強調させたい最も重要な操作要素の背景色
 - 選択状態を表すための背景色、線
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - variant propsが`primary`の[Button](/products/components/button) の背景色
 - 選択状態の[Checkbox](/products/components/checkbox/)の背景色
 
@@ -46,15 +49,19 @@ import {
 
 <ColorToken name="WHITE">
 
+##### 利用用途
+
 - 視覚的グルーピングのための矩形の背景色
 - 操作可能な状態を示すための背景色
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - [Panel](/products/components/panel/)の背景色
 - [Dialog](/products/components/dialog/)の背景色
 - 操作可能な状態の[Checkbox](/products/components/checkbox/)の背景色
 
-使用上の注意：
+##### 使用上の注意
+
 - テキストには`TEXT_WHITE`を使ってください。
 
 </ColorToken>
@@ -69,19 +76,25 @@ import {
 
 <ColorToken name="DANGER">
 
+##### 利用用途
+
 - エラー状態を示す要素の背景色、線
 - 削除など破壊的な操作を示す要素の背景色、線
 
-使用上の注意：
+##### 使用上の注意
+
 - エラー状態や破壊的操作ではないが、注意を促す警告には`WARNING_YELLOW`を使ってください。
 
 </ColorToken>
 
 <ColorToken name="WARNING_YELLOW">
 
+##### 利用用途
+
 警告を示す要素の背景色、線に使います。
 
-使用上の注意：
+##### 使用上の注意
+
 - エラー状態や、破壊的な操作を示す場合には`DANGER`を使ってください。
 
 </ColorToken>
@@ -94,20 +107,26 @@ import {
 
 <ColorToken name="TEXT_BLACK">
 
+##### 利用用途
+
 標準的な[見出し](https://smarthr.design/products/design-tokens/typography/#h3-2)、[段落テキスト](https://smarthr.design/products/design-tokens/typography/#h3-3)、[ラベルテキスト](https://smarthr.design/products/design-tokens/typography/#h3-4)に使います。
 **特別な意図がない場合にはこのトークンを選択します**。
 
-使用上の注意：
+##### 使用上の注意
+
 - ジャンプ率が文字の大きさで確保できないときは`TEXT_GREY`を使ってください。
 
 </ColorToken>
 
 <ColorToken name="TEXT_GREY">
 
+##### 利用用途
+
 - 本文に対しての補足の文字色
 - 文字の階層や強弱を文字の大きさ（ジャンプ率）で表現しづらい場合の文字色
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - [DefinitionList](/products/components/definition-list/)の文字色
 - [Heading](/products/components/heading/)の文字色
 
@@ -115,10 +134,13 @@ import {
 
 <ColorToken name="TEXT_LINK">
 
+##### 利用用途
+
 - リンクを表す文字色、下線
 - インタラクション可能な要素の文字色
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - [TextLink](/products/components/text-link/)
 - variant propsが`tertiary`の[Button](/products/components/button/)の文字色
 
@@ -126,12 +148,16 @@ import {
 
 <ColorToken name="TEXT_DISABLED">
 
+##### 利用用途
+
 非活性状態を表す文字色に使います。
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - 非活性状態の[Button](/products/components/button/)の文字色
 
-使用上の注意：
+##### 使用上の注意
+
 - 単なるグレーテキストの場合は使わない
   - ジャンプ率を確保したいだけのときは`TEXT_GREY`を使ってください。
 - 線や塗りの色には使わない
@@ -140,12 +166,16 @@ import {
 
 <ColorToken name="TEXT_WHITE">
 
+##### 利用用途
+
 `DANGER`、`MAIN`などの強い塗りの上にある文字色に使います。
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - variant propsが`primary`の[Button](/products/components/button/)の文字色
 
-使用上の注意：
+##### 使用上の注意
+
 - 線や塗りには`WHITE`を使ってください。
 
 </ColorToken>
@@ -157,14 +187,19 @@ import {
 
 <ColorToken name="BORDER">
 
+##### 利用用途
+
 線の色に使います。
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - variant propsが`secondary`の[Button](/products/components/button/)の枠線の色
 
 </ColorToken>
 
 <ColorToken name="TRANSPARENT">
+
+##### 利用用途
 
 例外的に、コンポーネントの枠線などを消すときに使います。
 
@@ -177,34 +212,45 @@ import {
 
 <ColorToken name="ACTION_BACKGROUND">
 
+##### 利用用途
+
 周囲の要素の背景色に`WHITE`、`OVER_BACKGROUND`、`COLUMN`などがすでに使われている状況で、操作要素を配置する領域をそれらと区別したい場合に背景色として使います。
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - [Table](/products/components/table)のTableBulkActionRowの背景色
 
-使用上の注意：
+##### 使用上の注意
+
 - テーブルヘッダーの背景色には`HEAD`を使ってください。
 
 </ColorToken>
 
 <ColorToken name="HEAD">
 
+##### 利用用途
+
 - テーブルヘッダーの背景色
 - 視覚的グルーピングの`COLUMN`以上のネストが必要なとき
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - [Table](/products/components/table)のテーブルヘッダーの背景色
 
-使用上の注意：
+##### 使用上の注意
+
 - TableBulkActionRowには`ACTION_BACKGROUND`を使ってください。
 
 </ColorToken>
 
 <ColorToken name="OVER_BACKGROUND">
 
+##### 利用用途
+
 `BACKGROUND`の上で使う囲み色（要素をグルーピングするときに使う色）に使います。
 
-使用上の注意：
+##### 使用上の注意
+
 - 画面の背景色では使わない
   - `BACKGROUND`を使ってください。
 - [Panel](/products/components/panel/)の中など、`WHITE`の上では使わない
@@ -214,13 +260,17 @@ import {
 
 <ColorToken name="COLUMN">
 
+##### 利用用途
+
 `WHITE`の上で使う囲み色（要素をグルーピングするときに使う色）に使います。
 
-コンポーネント内部での使用例：
+##### コンポーネント内部での使用例
+
 - [DropZone](/products/components/drop-zone/)の背景色
 - [SideNav](/products/components/side-nav/)の背景色
 
-使用上の注意：
+##### 使用上の注意
+
 - 画面の背景色では使わない
   - `BACKGROUND`を使ってください。
 - `BACKGROUND`の上では使わない
@@ -231,14 +281,19 @@ import {
 
 <ColorToken name="BACKGROUND">
 
+##### 利用用途
+
 ページの最背面の背景色に使います。
 
-使用上の注意：
+##### 使用上の注意
+
 - `WHITE`の上では`COLUMN`を使ってください。
 
 </ColorToken>
 
 <ColorToken name="OVERLAY">
+
+##### 利用用途
 
 ボタンなどhover時に重ねる色に使います。
 
@@ -249,6 +304,8 @@ import {
 </ColorToken>
 
 <ColorToken name="SCRIM">
+
+##### 利用用途
 
 モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色に使います。
 
