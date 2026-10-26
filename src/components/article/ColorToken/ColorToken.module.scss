@@ -1,8 +1,14 @@
 .wrapper {
-  /* トークン同士の境界がわかるよう、各トークンの上に区切り線を引く */
   margin-block-start: 36px;
-  padding-block-start: 36px;
-  border-top: 1px solid var(--color-light-grey-1);
+
+  /*
+   * トークン同士の境界がわかるよう、トークンとトークンの間にだけ区切り線を引く
+   * 先頭・末尾にも引くと、「メイン」などの見出しごとに囲んでいるように見えるため
+   */
+  & + & {
+    padding-block-start: 36px;
+    border-top: 1px solid var(--color-light-grey-1);
+  }
 }
 
 .summary {
