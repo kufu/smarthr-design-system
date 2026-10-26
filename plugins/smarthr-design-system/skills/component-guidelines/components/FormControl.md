@@ -126,6 +126,11 @@ const Sample2 = () => (
 - [should] 入力要素をグルーピングできる場合は基本的に Fieldset を使用する
 - [must] やむを得ず FormControl を横に並べる場合はエラー表示時にレイアウトが崩れないか注意する
 
+### 使用上の注意 > 必須項目には入力要素にrequired属性を設定し、エラーはFormControlのerrorMessagesで表示する
+- [must] 入力必須の項目には、未入力時のフォーム送信を防ぐために入力要素に `required` を指定する
+- [must] 未入力時のエラーは、ブラウザ標準のツールチップではなく FormControl の `errorMessages` で表示する
+- [must] `onInvalid` でエラーを処理し、`preventDefault()` でブラウザ標準のツールチップを抑制する
+
 ### レイアウト > ステータスラベルの有無
 - [should] フォーム入力が必須か任意かをユーザーが区別できるようにステータスラベルを使用する
 
