@@ -36,7 +36,7 @@ InformationPanelを白背景に配置することを禁止します。
 - [should] 短い一文で説明できる場合は、ResponseMessage や NotificationBar の使用を検討する
 
 ### (Layer 2 でカバー: design-system-guideline-prohibit-information-panel-in-white-bg)
-- [should] InformationPanel では視覚的に強調されすぎる場合は、BaseColumn を使った代替パターンも検討する
+- [should] InformationPanel では視覚的に強調されすぎる場合は、Groupbox を使った代替パターンも検討する
 
 ### レイアウト > [WIP] モバイル > 開閉ボタン
 - [must] モバイルでは開閉ボタンをアイコンボタンで表示する

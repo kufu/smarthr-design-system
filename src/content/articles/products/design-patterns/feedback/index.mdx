@@ -161,6 +161,8 @@ const ValidateOnSubmitForm = () => {
 render(<ValidateOnSubmitForm />)
 ```
 
+必須項目の未入力エラーを表示する実装方法は、FormControlの[必須項目のエラーはブラウザ標準のツールチップではなく、FormControlで表示する](/products/components/form-control/#h3-1)を参照してください。
+
 ### 同期的な処理を開始したとき
 
 実行した[Button](/products/components/button/)を`loading`状態に変化させます（[ActionDialog](/products/components/dialog/action-dialog/)の場合は`responseStatus`を利用）。
@@ -437,14 +439,14 @@ const InformationPanelErrorLayout = () => (
         <form onSubmit={(e) => e.preventDefault()}>
           <Stack gap={2}>
             <Fieldset legend={{ text: '申請情報', styleType: 'sectionTitle' }} innerMargin={1}>
-              <Base padding={1.5}>
+              <Panel padding={1.5}>
                 <FormControl label="経路名" statusLabels={<RequiredLabel />} errorMessages="経路名を入力してください。">
                   <Input id="route-name" name="routeName" width="100%" error />
                 </FormControl>
-              </Base>
+              </Panel>
             </Fieldset>
             <Fieldset legend={{ text: '承認ステップ', styleType: 'sectionTitle' }} innerMargin={1}>
-              <Base padding={1.5}>
+              <Panel padding={1.5}>
                 <Stack gap={2}>
                   {approvalSteps.map(({ department, position, approvalCount, errors }, index) => {
                     const step = index + 1
@@ -486,7 +488,7 @@ const InformationPanelErrorLayout = () => (
                     )
                   })}
                 </Stack>
-              </Base>
+              </Panel>
             </Fieldset>
             <FloatArea
               primaryButton={<Button type="submit" variant="primary">追加</Button>}

@@ -52,7 +52,7 @@ order: 13
         <DefinitionListItem term={{ text: '削除する{オブジェクト名}', styleType: 'blockTitle' }}>{`{インスタンス名}`}</DefinitionListItem>
       </DefinitionList>
       <Stack gap={0.5}>
-        <BaseColumn>
+        <Groupbox>
           <Stack>
             <Heading type="blockTitle" icon={<WarningIcon />}>注意事項</Heading>
             <ul className="shr-ps-1">
@@ -60,10 +60,10 @@ order: 13
               <li>{'{選択したオブジェクトのインスタンス名}に含まれる{オブジェクト名}も削除されます。'}</li>
             </ul>
           </Stack>
-        </BaseColumn>
-        <BaseColumn>
+        </Groupbox>
+        <Groupbox>
           <Checkbox name="delete_confirm" required>注意事項を確認しました。</Checkbox>
-        </BaseColumn>
+        </Groupbox>
       </Stack>
     </Stack>
   </FormDialog>

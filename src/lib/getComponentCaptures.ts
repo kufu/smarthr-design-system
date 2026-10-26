@@ -67,6 +67,37 @@ const doesFileExist = async (...filePaths: string[]) => {
   return false;
 };
 
+const doesArticleExist = (componentPath: string) => doesFileExist(`${componentPath}.mdx`, `${componentPath}/index.mdx`);
+
+/**
+ * storyに対応するコンポーネントの記事のパスと、一覧に表示する名前を取得
+ */
+const getComponentArticle = async (title: string, importPath: string) => {
+  const titleName = title.split('/')[1];
+  const titleBasedPath = getComponentPath(importPath, titleName);
+  if (!titleBasedPath) {
+    return;
+  }
+
+  // NOTE:
+  // smarthr-uiでは、コンポーネントがコンポーネント名と異なる名前のディレクトリに置かれていたり
+  // （例: Panel/stories/Groupbox.stories.tsx、FormGroup/stories/Fieldset.stories.tsx）、
+  // 名称変更後もStorybookのタイトルが旧名のままだったり（例: Panelのタイトルが Components/Base）することがある
+  // この場合はタイトルとディレクトリ名から求めたパスでは記事が見つからないため、
+  // storyファイル名（= コンポーネント名）と同名の記事がトップレベルにあれば、そちらを優先する
+  const componentName = importPath.match(/\/([^/]+)\.stories\.tsx$/)?.[1];
+  if (componentName) {
+    const componentNameBasedPath = convertKebab(componentName);
+    if (componentNameBasedPath !== titleBasedPath && (await doesArticleExist(componentNameBasedPath))) {
+      return { displayName: componentName, componentPath: componentNameBasedPath };
+    }
+  }
+
+  if (await doesArticleExist(titleBasedPath)) {
+    return { displayName: titleName, componentPath: titleBasedPath };
+  }
+};
+
 /**
  * [SmartHR UIのStorybook](https://story.smarthr-ui.dev/)上の各コンポーネントグループの名前やサムネイル画像のパスなどを取得
  *
@@ -79,20 +110,13 @@ export async function getComponentCaptures() {
   const storyGroups: StoryGroup[] = [];
 
   for (const { id, title, importPath } of UI_STORY_INDEX) {
-    const displayName = title.split('/')[1];
-
-    // コンポーネントのパスを取得
-    const componentPath = getComponentPath(importPath, displayName);
-    if (!componentPath) {
+    // コンポーネントの記事を取得（記事が存在しないstoryは一覧に含めない）
+    const article = await getComponentArticle(title, importPath);
+    if (!article) {
       continue;
     }
 
-    // コンポーネントのパスからMDXファイルが存在するか確認
-    const exist = await doesFileExist(`${componentPath}.mdx`, `${componentPath}/index.mdx`);
-    if (!exist) {
-      continue;
-    }
-
+    const { displayName, componentPath } = article;
     const groupName = title.split('/')[0];
     const thumbnailFileName = `${groupName}-${displayName}.png`;
 

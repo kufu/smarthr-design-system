@@ -17,7 +17,13 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
-import { parseMetadata, loadPublicExports, assertSmarthrUiVersionMatchesRoot } from './lib/parse-metadata.js';
+import {
+  parseMetadata,
+  loadPublicExports,
+  loadPublicExportAliases,
+  addAliasGroups,
+  assertSmarthrUiVersionMatchesRoot,
+} from './lib/parse-metadata.js';
 import { collectPropsTablePages, regroupByPropsTable } from './lib/props-table-groups.js';
 import { autoSplitGroups } from './lib/auto-split-groups.js';
 import { collectRelatedComponents } from './lib/related-components.js';
@@ -41,7 +47,7 @@ function main() {
   console.log('📂 metadata.json を読み込み中…');
   assertSmarthrUiVersionMatchesRoot(REPO_ROOT);
   const publicExports = loadPublicExports();
-  const rawGroups = parseMetadata(publicExports);
+  const rawGroups = addAliasGroups(parseMetadata(publicExports), loadPublicExportAliases(), DESIGN_SYSTEM_DIR);
 
   console.log('🧬 relatedComponents 宣言を集約中…');
   const relatedSkills = collectRelatedComponents(DESIGN_SYSTEM_DIR);
