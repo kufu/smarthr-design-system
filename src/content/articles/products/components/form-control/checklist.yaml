@@ -17,18 +17,18 @@ items:
     text: 'やむを得ず FormControl を横に並べる場合はエラー表示時にレイアウトが崩れないか注意する'
     source_section: '使用上の注意 > 入力要素が1つの場合にのみ使用する > 複数のフォームを横に並べる場合'
 
-  # 使用上の注意 > 必須項目には入力要素に`required`属性を設定し、エラーはFormControlの`errorMessages`で表示する
+  # 使用上の注意 > 必須項目には入力要素にrequired属性を設定し、エラーはFormControlのerrorMessagesで表示する
   - severity: must
     text: '入力必須の項目には、未入力時のフォーム送信を防ぐために入力要素に `required` を指定する'
-    source_section: '使用上の注意 > 必須項目には入力要素に`required`属性を設定し、エラーはFormControlの`errorMessages`で表示する'
+    source_section: '使用上の注意 > 必須項目には入力要素にrequired属性を設定し、エラーはFormControlのerrorMessagesで表示する'
 
   - severity: must
     text: '未入力時のエラーは、ブラウザ標準のツールチップではなく FormControl の `errorMessages` で表示する'
-    source_section: '使用上の注意 > 必須項目には入力要素に`required`属性を設定し、エラーはFormControlの`errorMessages`で表示する'
+    source_section: '使用上の注意 > 必須項目には入力要素にrequired属性を設定し、エラーはFormControlのerrorMessagesで表示する'
 
   - severity: must
     text: '`onInvalid` でエラーを処理し、`preventDefault()` でブラウザ標準のツールチップを抑制する'
-    source_section: '使用上の注意 > 必須項目には入力要素に`required`属性を設定し、エラーはFormControlの`errorMessages`で表示する'
+    source_section: '使用上の注意 > 必須項目には入力要素にrequired属性を設定し、エラーはFormControlのerrorMessagesで表示する'
 
   # レイアウト > ステータスラベルの有無
   - severity: should
