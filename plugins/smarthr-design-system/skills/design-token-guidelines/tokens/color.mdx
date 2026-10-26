@@ -1,0 +1,402 @@
+---
+title: '色'
+description: 'ブランドカラーを反映した意味のある色によって、プロダクトの印象に統一感を与えます。'
+order: 1
+---
+
+import ColorPalette from '@/components/article/ColorPalette.astro'
+import ColorPalettesWrapper from '@/components/article/ColorPaletteWrapper.astro'
+import { BaseColumn, ResponseMessage } from 'smarthr-ui'
+
+プロダクトを構成するために必要な最低限の色を定義しています。
+
+コンポーネントの設計において、色を選択する手間を効率化するために、それぞれの色には**役割に応じた名前**を割り当てています。
+
+色は情報を伝え、動作を示し、反応を促しますが、唯一の視覚的手段にしてはいけません。すべての利用者が同じ情報を知覚できる必要があります。
+
+## セマンティックトークン
+
+### `MAIN`
+
+以下の場合に使います。
+
+- プライマリーカラーとして使うアイコン、背景色、枠線
+- プライマリーカラーとして使うコンポーネントの背景色、枠線
+- フォーカスリングの枠線
+- `selected`になっているコンポーネントの背景色、枠線
+  - [NotificationBar](/products/components/notification-bar/)
+  - [RadioButton](/products/components/radio-button/)
+- `current`になっているコンポーネントの背景色、枠線
+  - [SideMenu](/products/components/side-menu/)
+  - [SideNav](/products/components/side-nav/)
+- `checked`になっているコンポーネントの背景色
+  - [Checkbox](/products/components/checkbox/)
+  - [Switch](/products/components/switch/)
+
+#### 使用上の注意
+
+- テキストには使わない
+  - `TEXT_LINK`を使ってください。
+
+### `WHITE`
+
+コンポーネントの背景色（[Base](/products/components/base/)コンポーネントなど）に使用します
+  - [Dialog](/products/components/dialog/)
+  - [Dropdown](/products/components/dropdown/)など
+
+#### 使用上の注意
+
+- テキストには使わない
+  - `TEXT_WHITE`を使ってください。
+
+### `DANGER`
+
+以下の場合に使います。
+
+- エラー時のコンポーネントの文字色、背景色、線
+- 削除など破壊的な変更を行なうアイコン、ボタン、文字色、背景色、枠線
+
+#### 使用上の注意
+
+- 警告時には使わない（削除前などのアクション前）
+  - `WARNING_YELLOW`を使ってください。
+
+### `WARNING_YELLOW`
+
+以下の場合に使います。
+
+- 警告時のコンポーネントの背景色、WarningIconなどのアイコン
+- 削除やUndoなどの破壊的アクションをする前の注意に使う
+
+#### 使用上の注意
+
+- 削除の実行アクションには使わない
+  - `DANGER`を使ってください。
+
+### `TEXT_BLACK`
+
+以下の場合に使います。
+
+- 基本的な文字の色、アイコンの色
+- [Button](/products/components/button/)などのコンポーネントの通常時の文字の色
+
+#### 使用上の注意
+
+- ジャンプ率が文字の大きさで確保できないときは使わない
+  - `TEXT_GREY`を使うことでジャンプ率を確保してください。
+
+### `TEXT_GREY`
+
+以下の場合に使います。
+
+- `TEXT_BLACK`からジャンプ率を確保するときに使う文字の色、アイコンの色
+- [DefinitionList](/products/components/definition-list/)、[Heading](/products/components/heading/)などのジャンプ率を確保した見出しコンポーネントの文字の色
+
+#### 使用上の注意
+
+- 通常の文字の色には使わない
+  - 基本的には`TEXT_BLACK`を使ってください。
+
+### `TEXT_LINK`
+
+以下の場合に使います。
+
+- リンクを表す文字の色、下線、アイコン
+- [Button](/products/components/button/)の`tertiary`の文字の色
+
+#### 使用上の注意
+
+- 文字やアイコン以外の塗りつぶしや線には使わない
+  - `MAIN`を使ってください。
+
+### `TEXT_DISABLED`
+
+以下の場合に使います。
+
+- `disabled`状態を表す文字の色
+- [Button](/products/components/button/)、[SegmentedControl](/products/components/segmented-control/)、[Select](/products/components/select/)、[Input](/products/components/input/)など
+
+#### 使用上の注意
+
+- 単なるグレーテキストの場合は使わない
+  - ジャンプ率を確保したいだけのときは`TEXT_GREY`を使ってください。
+- 線や塗りの色には使わない
+
+### `TEXT_WHITE`
+
+`DANGER`、`MAIN`に対して使う文字、アイコンの色に使います。
+  - [Button](/products/components/button/)、[AppHeader](/products/components/app-header/)など
+
+#### 使用上の注意
+
+- 線や塗りには使わない
+  - `WHITE`を使ってください。
+
+### `BORDER`
+
+以下の場合に使います。
+
+- 基本的な枠線・罫線の色
+  - [Button](/products/components/button/)などの通常時のコンポーネントの枠線
+
+### `ACTION_BACKGROUND`
+
+以下の場合に使います。
+
+- `TableBulkActionArea`の背景色に使います。
+- `OVER_BACKGROUND`の上に置く色として使われることもあります
+
+#### 使用上の注意
+
+- テーブルヘッダーの背景色では使わない
+  - `HEAD`を使ってください。
+
+### `BORDER`
+
+以下の場合に使います。
+
+- 基本的な枠線・罫線の色
+- [Button](/products/components/button/)などの通常時のコンポーネントの枠線
+
+### `HEAD`
+
+以下の場合に使います。
+
+- テーブルヘッダーの背景色
+- 視覚的グルーピングの`COLUMN`以上のネストが必要なとき
+
+#### 使用上の注意
+
+- TableBulkActionAreaでは使わない
+  - `ACTION_BACKGROUND`を使ってください。
+
+### `OVER_BACKGROUND`
+
+以下の場合に使います。
+
+- `BACKGROUND`の上で使う囲み色（要素をグルーピングするときに使う色）
+- hover時に`COLUMN`を使っている場合の背景色
+
+#### 使用上の注意
+
+- 画面の背景色では使わない
+  - `BACKGROUND`を使ってください。
+- [Base](/products/components/base/)の中など、`WHITE`の上では使わない
+  - `COLUMN`を使ってください。
+
+### `COLUMN`
+
+以下の場合に使います。
+
+- `WHITE`の上で使う囲み色（要素をグルーピングするときに使う色）
+- 各コンポーネントの背景色
+  - [DropZone](/products/components/drop-zone/)、[SideNav](/products/components/side-nav/)など
+
+#### 使用上の注意
+
+- 画面の背景色では使わない
+  - `BACKGROUND`を使ってください。
+- `BACKGROUND`の上では使わない
+  - 色が`BACKGROUND`と同じため、`BACKGROUND`の上にはおかないでください。
+  - `OVER_BACKGROUND`を使ってください。
+
+### `BACKGROUND`
+
+以下の場合に使います。
+
+- 画面の背景色
+- [Dialog](/products/components/dialog/)の`contentBgColor`として、Dialog の children に [Base](/products/components/base/) を直接含めるレイアウトで使う
+  - Dialog は `WHITE` ベースのため通常は `COLUMN` を使いますが、children に `Base` を置いて `WHITE` として浮かせたい場合は `contentBgColor="BACKGROUND"` にすることで `Base` との間にレイヤーの差を作れます。
+
+#### 使用上の注意
+
+- `WHITE`の上では使わない
+  - `COLUMN`を使ってください。
+  - ただし上記の通り、Dialog で `Base` を children に含める場合は例外です。
+
+### `OVERLAY`
+
+<BaseColumn className="shr-mt-1">
+  <ResponseMessage status="info">現在`OVERLAY`は使用されていません。</ResponseMessage>
+</BaseColumn>
+
+ボタンなどhover時に重ねる色に使います。
+
+### `SCRIM`
+
+モーダル表示時のスクリム（モーダルの下の画面に重ねる）の色に使います。
+
+### `TRANSPARENT`
+
+コンポーネントの枠線などを消すときのAppearanceに使用に使います。
+
+### その他の`CHART_COLOR`
+
+「その他」項目に使う色に使います。チャートの表示に主に使われます。
+
+## プリミティブトークン
+**セマンティックトークンだけで視覚設計を十分に行なえない場合のみ**、プリミティブトークンから色を使用できます。
+
+### 基本色
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#030302" colorName="BLACK" />
+  <ColorPalette colorValue="#fff" colorName="WHITE"/>
+  <ColorPalette colorValue="#0077c7" colorName="BLUE_100" />
+  <ColorPalette colorValue="#0071c1" colorName="BLUE_101" />
+  <ColorPalette colorValue="#0f7f85" colorName="GREEN_100" />
+  <ColorPalette colorValue="#f56121" colorName="ORANGE_100" />
+  <ColorPalette colorValue="#e01e5a" colorName="RED_100" />
+  <ColorPalette colorValue="#ffcc17" colorName="YELLOW_100" />
+  <ColorPalette colorValue="#00c4cc" colorName="SMARTHR_BLUE"/>
+</ColorPalettesWrapper>
+
+### グレースケール
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#f8f7f6" colorName="GREY_5" />
+  <ColorPalette colorValue="#f5f4f3" colorName="GREY_6"/>
+  <ColorPalette colorValue="#f2f1f0" colorName="GREY_7" />
+  <ColorPalette colorValue="#edebe8" colorName="GREY_9" />
+  <ColorPalette colorValue="#d6d3d0" colorName="GREY_20" />
+  <ColorPalette colorValue="#c1bdb7" colorName="GREY_30" />
+  <ColorPalette colorValue="#706d65" colorName="GREY_65" />
+  <ColorPalette colorValue="#23221e" colorName="GREY_100"/>
+</ColorPalettesWrapper>
+
+### 透明色
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="TRANSPARENCY_15"/>
+  <ColorPalette colorValue="rgba(3,3,2,0.30)" colorName="TRANSPARENCY_30" />
+  <ColorPalette colorValue="rgba(3,3,2,0.50)" colorName="TRANSPARENCY_50" />
+</ColorPalettesWrapper>
+
+## 色の新旧比較
+2021年2月にプロダクトの色をアップデートしました。
+
+概要は、お知らせ「[SmartHR の画面のカラーが新しくなります](https://smarthr.jp/update/21763)」を参考にしてください。
+
+### メイン
+#### MAIN
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#0077c7" colorName="新" />
+  <ColorPalette colorValue="#00a5ab" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### WHITE
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#fff" colorName="新 ※変更なし" />
+  <ColorPalette colorValue="#fff" colorName="旧" />
+</ColorPalettesWrapper>
+
+### アクセント
+#### DANGER
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#e01e5a" colorName="新" />
+  <ColorPalette colorValue="#ef475b" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### WARNING（WARNING_YELLOW）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#ffcc17" colorName="新" />
+  <ColorPalette colorValue="#ff8800" colorName="旧" />
+</ColorPalettesWrapper>
+
+### 文字
+#### TEXT_BLACK
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#23221e" colorName="新" />
+  <ColorPalette colorValue="#333333" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TEXT_GREY
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#706d65" colorName="新" />
+  <ColorPalette colorValue="#767676" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TEXT_LINK
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#0071c1" colorName="新" />
+  <ColorPalette colorValue="#007bc2" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TEXT_DISABLED
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#c1bdb7" colorName="新" />
+  <ColorPalette colorValue="#c1c1c1" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TEXT_WHITE（新のみ）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#fff" colorName="新" />
+</ColorPalettesWrapper>
+
+### コンポーネント
+#### BORDER
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#d6d3d0" colorName="新" />
+  <ColorPalette colorValue="#d6d6d6" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### ACTION_BACKGROUND（新のみ）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#d6d3d0" colorName="新" />
+</ColorPalettesWrapper>
+
+#### HEAD（新のみ）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#edebe8" colorName="新" />
+</ColorPalettesWrapper>
+
+#### OVER_BACKGROUND（新のみ）
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#f2f1f0" colorName="新" />
+</ColorPalettesWrapper>
+
+#### COLUMN
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#f8f7f6" colorName="新" />
+  <ColorPalette colorValue="#f9f9f9" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### BACKGROUND
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="#f8f7f6" colorName="新" />
+  <ColorPalette colorValue="#f5f6fa" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### OVERLAY
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(3,3,2,0.15)" colorName="新" />
+  <ColorPalette colorValue="rgba(0,0,0,0.15)" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### SCRIM
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(3,3,3,0.4)" colorName="新" />
+  <ColorPalette colorValue="rgba(0,0,0,0.5)" colorName="旧" />
+</ColorPalettesWrapper>
+
+#### TRANSPARENT
+
+<ColorPalettesWrapper>
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="新 ※変更なし" />
+  <ColorPalette colorValue="rgba(255,255,255,0)" colorName="旧" />
+</ColorPalettesWrapper>
+

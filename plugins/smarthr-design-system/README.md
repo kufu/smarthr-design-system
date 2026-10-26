@@ -1,9 +1,10 @@
 # smarthr-design-system プラグイン
 
-SmartHR Design SystemのコンポーネントガイドラインとデザインパターンガイドラインをAIコーディングエージェント（Claude Code / Cursor / Codex）に提供するプラグイン。
+SmartHR Design Systemのコンポーネントガイドライン・デザインパターンガイドライン・デザイントークンガイドラインをAIコーディングエージェント（Claude Code / Cursor / Codex）に提供するプラグイン。
 
 - smarthr-uiのコンポーネントを正しく選択・使用するための知識（Props仕様・eslintルール・使い方チェックリスト）
 - SmartHRプロダクトのページレイアウトやUIパターンを正しく実装するためのデザインパターンガイドライン
+- SmartHRプロダクトのデザイントークン（色・行送・角丸・影・余白・タイポグラフィ・幅など）を正しく選択するためのデザイントークンガイドライン
 
 をスキルとして配布する。
 
@@ -24,7 +25,7 @@ Settings > Plugins > Browse Marketplaceから「SmartHR Design System」を検�
 
 ## スキル構成
 
-プラグインは**2つのスキル**を提供する。いずれも[Progressive Disclosureパターン](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#progressive-disclosure-patterns)を採用しており、AIが必要に応じて段階的にドキュメントを読み込む。
+プラグインは**3つのスキル**を提供する。いずれも[Progressive Disclosureパターン](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#progressive-disclosure-patterns)を採用しており、AIが必要に応じて段階的にドキュメントを読み込む。
 
 ### `component-guidelines`
 
@@ -62,6 +63,20 @@ skills/design-pattern-guidelines/
     └── ...（22件）
 ```
 
+### `design-token-guidelines`
+
+SmartHRプロダクトのデザイントークン値を正しく選択するためのガイド。
+
+```
+skills/design-token-guidelines/
+├── SKILL.md                       エントリポイント（手動管理）
+├── token-selector.md              トークン選定ガイド（手動管理）
+└── tokens/                        各トークンガイド（手動管理）
+    ├── spacing.mdx
+    ├── color.mdx
+    └── ...（7件）
+```
+
 ## 開発者向け情報
 
 ### component-guidelines
@@ -71,6 +86,10 @@ skills/design-pattern-guidelines/
 ### design-pattern-guidelines
 
 `patterns/*.mdx`はデザインシステムサイトのコンテンツ（`src/content/articles/products/design-patterns/`）へのシンボリックリンク。既存パターンの更新にはそのまま追従するが、新規パターンを追加した場合はシンボリックリンクを手動で追加する必要がある。`SKILL.md`と`pattern-selector.md`は手動管理。
+
+### design-token-guidelines
+
+`tokens/*.mdx`はデザインシステムサイトのコンテンツ（`src/content/`）から手動で作成・管理する。`SKILL.md`と`token-selector.md`も手動管理。
 
 ### ローカル動作確認
 
