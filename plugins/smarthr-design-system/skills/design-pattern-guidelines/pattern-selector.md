@@ -24,6 +24,7 @@ UI要件からどのパターンドキュメントを読むべきかを決定す
 | テーブルの構成・見出し・操作エリア・ボタン配置 | `patterns/smarthr-table.mdx` |
 | テーブル内の一括操作（チェックボックス＋まとめて操作） | `patterns/table-bulk-action.mdx` |
 | リストの構成 | `patterns/smarthr-list.mdx` |
+| ドラッグ&ドロップによるアイテムの並べ替え（ハンドル・キーボード操作・キャンセル） | `patterns/drag-and-drop.mdx` |
 
 ## ダイアログ・モーダル・フロー
 
@@ -43,6 +44,7 @@ UI要件からどのパターンドキュメントを読むべきかを決定す
 | デフォルト値の表示 | `patterns/default_value.mdx` |
 | 値がない項目の表示（空欄・未設定） | `patterns/empty-data.mdx` |
 | 選択コンポーネントの使い分け（Select/RadioButton/Checkboxなど） | `patterns/selection-component-usage.mdx` |
+| 1つの項目に複数の入力欄が並ぶフィールド（期間の開始・終了、電話番号・郵便番号の分割入力など） | `patterns/multiple-inputs-field.mdx` |
 
 ## 権限・アクセス制御
 

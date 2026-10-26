@@ -59,7 +59,7 @@ skills/design-pattern-guidelines/
 └── patterns/                      各パターンガイド（src/content へのシンボリックリンク）
     ├── page-layout.mdx
     ├── smarthr-table.mdx
-    └── ...（22件）
+    └── ...（24件）
 ```
 
 ## 開発者向け情報
