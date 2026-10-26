@@ -62,8 +62,8 @@ FormControlは、入力要素が1つだけの場合にのみ使用できます�
 なお、`required`を指定した入力要素が未入力の場合、フォームの送信がブロックされ、`onSubmit`内の処理は実行されないことに注意してください。
 
 ```tsx editable withStyled
-render(() => {
-  const [errorMessages, setErrorMessages] = useState<string[]>([])
+const FormSample = () => {
+  const [errorMessages, setErrorMessages] = React.useState<string[]>([])
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -88,7 +88,9 @@ render(() => {
         <Button type="submit" variant="primary">送信</Button>
       </Cluster>
     </form>
-)})
+  )
+}
+render(<FormSample />)
 ```
 
 ## レイアウト
