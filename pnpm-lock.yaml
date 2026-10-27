@@ -258,8 +258,8 @@ importers:
         specifier: ^9.39.5
         version: 9.39.5(jiti@1.21.7)(supports-color@9.4.0)
       eslint-config-smarthr:
-        specifier: ^14.12.0
-        version: 14.12.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(react@19.3.1)(supports-color@9.4.0)(typescript@6.0.3)
+        specifier: ^14.12.1
+        version: 14.13.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(react@19.3.1)(supports-color@9.4.0)(typescript@6.0.3)
       eslint-plugin-astro:
         specifier: ^3.2.1
         version: 3.2.1(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(@typescript-eslint/parser@8.71.2(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@6.0.3))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0)))(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(supports-color@9.4.0)(typescript-eslint@8.64.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@6.0.3))
@@ -3059,8 +3059,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-config-smarthr@14.12.0:
-    resolution: {integrity: sha512-QgqM+a+ufZsGC52THJY7q8K9asihq+zxnwcbRRLN7enLn5rR0Sngw5ZlOk7v/PEtqDKyQyjDdztuSTRI0DszkA==}
+  eslint-config-smarthr@14.13.0:
+    resolution: {integrity: sha512-gHWuF057UNRxHgeCF5/VYNCJRGpnu4p9OXETxgB288vMvUgBA85FXOY1g7LD6/55NjZXvabOYP4C/d6c/dwKzQ==}
     peerDependencies:
       eslint: ^9.0.0
       react: ^16.8.6 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -3153,8 +3153,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
-  eslint-plugin-smarthr@6.26.0:
-    resolution: {integrity: sha512-G5TntEinKlaaGbLsWctKgklhzFSdeifVNlANoBDG5turttv0TjO+OjIh3bziE1bCBGMd/pYmStRfQ+6HNnJiow==}
+  eslint-plugin-smarthr@6.27.0:
+    resolution: {integrity: sha512-DiZ569pj54OytjnSiYyIeOPb+1UFuKjcoCbeBR8w+U8taMcS2kgnfgq5UChulJHWiJvpbbCx4R7552Fjpuy2Ng==}
     peerDependencies:
       eslint: ^9
 
@@ -6417,9 +6417,6 @@ packages:
   zod@4.4.3:
     resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
-  zod@4.5.4:
-    resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
-
   zod@4.6.5:
     resolution: {integrity: sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==}
 
@@ -6852,10 +6849,10 @@ snapshots:
       '@babel/helper-compilation-targets': 7.28.6
       '@babel/helper-module-transforms': 7.28.6(@babel/core@7.29.0(supports-color@9.4.0))(supports-color@9.4.0)
       '@babel/helpers': 7.29.2
-      '@babel/parser': 7.29.3
+      '@babel/parser': 7.29.9
       '@babel/template': 7.28.6
       '@babel/traverse': 7.29.0(supports-color@9.4.0)
-      '@babel/types': 7.29.0
+      '@babel/types': 7.29.8
       '@jridgewell/remapping': 2.3.5
       convert-source-map: 2.0.0
       debug: 4.4.3(supports-color@9.4.0)
@@ -6867,8 +6864,8 @@ snapshots:
 
   '@babel/generator@7.29.1':
     dependencies:
-      '@babel/parser': 7.29.3
-      '@babel/types': 7.29.0
+      '@babel/parser': 7.29.9
+      '@babel/types': 7.29.8
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
       jsesc: 3.1.0
@@ -6886,7 +6883,7 @@ snapshots:
   '@babel/helper-module-imports@7.28.6(supports-color@9.4.0)':
     dependencies:
       '@babel/traverse': 7.29.0(supports-color@9.4.0)
-      '@babel/types': 7.29.0
+      '@babel/types': 7.29.8
     transitivePeerDependencies:
       - supports-color
 
@@ -6894,7 +6891,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.0(supports-color@9.4.0)
       '@babel/helper-module-imports': 7.28.6(supports-color@9.4.0)
-      '@babel/helper-validator-identifier': 7.28.5
+      '@babel/helper-validator-identifier': 7.29.7
       '@babel/traverse': 7.29.0(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
@@ -6912,7 +6909,7 @@ snapshots:
   '@babel/helpers@7.29.2':
     dependencies:
       '@babel/template': 7.28.6
-      '@babel/types': 7.29.0
+      '@babel/types': 7.29.8
 
   '@babel/parser@7.29.3':
     dependencies:
@@ -6927,17 +6924,17 @@ snapshots:
   '@babel/template@7.28.6':
     dependencies:
       '@babel/code-frame': 7.29.0
-      '@babel/parser': 7.29.3
-      '@babel/types': 7.29.0
+      '@babel/parser': 7.29.9
+      '@babel/types': 7.29.8
 
   '@babel/traverse@7.29.0(supports-color@9.4.0)':
     dependencies:
       '@babel/code-frame': 7.29.0
       '@babel/generator': 7.29.1
       '@babel/helper-globals': 7.28.0
-      '@babel/parser': 7.29.3
+      '@babel/parser': 7.29.9
       '@babel/template': 7.28.6
-      '@babel/types': 7.29.0
+      '@babel/types': 7.29.8
       debug: 4.4.3(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
@@ -9338,7 +9335,7 @@ snapshots:
     dependencies:
       eslint: 9.39.5(jiti@1.21.7)(supports-color@9.4.0)
 
-  eslint-config-smarthr@14.12.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(react@19.3.1)(supports-color@9.4.0)(typescript@6.0.3):
+  eslint-config-smarthr@14.13.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(react@19.3.1)(supports-color@9.4.0)(typescript@6.0.3):
     dependencies:
       '@eslint/js': 9.39.5
       '@typescript-eslint/eslint-plugin': 8.64.0(@typescript-eslint/parser@8.71.2(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@6.0.3))(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@6.0.3)
@@ -9349,7 +9346,7 @@ snapshots:
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))
       eslint-plugin-react: 7.37.5(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))
       eslint-plugin-react-hooks: 7.1.1(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(supports-color@9.4.0)
-      eslint-plugin-smarthr: 6.26.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))
+      eslint-plugin-smarthr: 6.27.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))
       globals: 17.13.0
       react: 19.3.1
       typescript: 6.0.3
@@ -9486,11 +9483,11 @@ snapshots:
   eslint-plugin-react-hooks@7.1.1(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0))(supports-color@9.4.0):
     dependencies:
       '@babel/core': 7.29.0(supports-color@9.4.0)
-      '@babel/parser': 7.29.3
+      '@babel/parser': 7.29.9
       eslint: 9.39.5(jiti@1.21.7)(supports-color@9.4.0)
       hermes-parser: 0.25.1
-      zod: 4.5.4
-      zod-validation-error: 4.0.2(zod@4.5.4)
+      zod: 4.6.7
+      zod-validation-error: 4.0.2(zod@4.6.7)
     transitivePeerDependencies:
       - supports-color
 
@@ -9516,7 +9513,7 @@ snapshots:
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-smarthr@6.26.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0)):
+  eslint-plugin-smarthr@6.27.0(eslint@9.39.5(jiti@1.21.7)(supports-color@9.4.0)):
     dependencies:
       eslint: 9.39.5(jiti@1.21.7)(supports-color@9.4.0)
       json5: 2.2.3
@@ -13634,13 +13631,11 @@ snapshots:
 
   zlibjs@0.3.1: {}
 
-  zod-validation-error@4.0.2(zod@4.5.4):
+  zod-validation-error@4.0.2(zod@4.6.7):
     dependencies:
-      zod: 4.5.4
+      zod: 4.6.7
 
   zod@4.4.3: {}
-
-  zod@4.5.4: {}
 
   zod@4.6.5: {}
 
