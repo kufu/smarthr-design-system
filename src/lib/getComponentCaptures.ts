@@ -2,18 +2,8 @@ import fs from 'fs/promises';
 import { cwd } from 'node:process';
 import path from 'path';
 
-import { SHRUI_CHROMATIC_ID } from '@/constants/application';
-import { UI_COMMIT_HASH } from '@/lib/getUIData';
-
-import type { StoryIndex } from '@storybook/types';
-
-const STORYBOOK_URL = 'https://story.smarthr-ui.dev';
-
-// NOTE:
-// story.smarthr-ui.dev はNetlifyの内部ビルダーからアクセスできないため、`index.json` は
-// ComponentStoryと同じく、利用中のバージョンのChromaticのパーマリンクから取得する。
-// iframeUrlはブラウザ（とサムネイル生成のPuppeteer）からのアクセスなので story.smarthr-ui.dev のままにしている。
-const CHROMATIC_STORYBOOK_URL = `https://${UI_COMMIT_HASH}--${SHRUI_CHROMATIC_ID}.chromatic.com/`;
+import { SHRUI_STORYBOOK_URL } from '@/constants/application';
+import { UI_STORY_INDEX } from '@/lib/getUIData';
 
 type StoryKind = {
   kindName: string;
@@ -77,51 +67,64 @@ const doesFileExist = async (...filePaths: string[]) => {
   return false;
 };
 
+const doesArticleExist = (componentPath: string) => doesFileExist(`${componentPath}.mdx`, `${componentPath}/index.mdx`);
+
 /**
- * [SmartHR UIのStorybook](https://story.smarthr-ui.dev/)上の各コンポーネントグループの名前やサムネイル画像のパスなどを取得
- * @returns StoryGroup[]
+ * storyに対応するコンポーネントの記事のパスと、一覧に表示する名前を取得
  */
-export async function fetchComponentCaptures() {
-  const indexJsonUrl = new URL('index.json', CHROMATIC_STORYBOOK_URL);
-  const response = await fetch(indexJsonUrl.toString());
-  if (!response.ok) {
-    throw new Error(`Chromatic から index.json を取得できませんでした: ${response.statusText}`);
+const getComponentArticle = async (title: string, importPath: string) => {
+  const titleName = title.split('/')[1];
+  const titleBasedPath = getComponentPath(importPath, titleName);
+  if (!titleBasedPath) {
+    return;
   }
 
-  const storiesJson: StoryIndex = await response.json();
+  // NOTE:
+  // smarthr-uiでは、コンポーネントがコンポーネント名と異なる名前のディレクトリに置かれていたり
+  // （例: Panel/stories/Groupbox.stories.tsx、FormGroup/stories/Fieldset.stories.tsx）、
+  // 名称変更後もStorybookのタイトルが旧名のままだったり（例: Panelのタイトルが Components/Base）することがある
+  // この場合はタイトルとディレクトリ名から求めたパスでは記事が見つからないため、
+  // storyファイル名（= コンポーネント名）と同名の記事がトップレベルにあれば、そちらを優先する
+  const componentName = importPath.match(/\/([^/]+)\.stories\.tsx$/)?.[1];
+  if (componentName) {
+    const componentNameBasedPath = convertKebab(componentName);
+    if (componentNameBasedPath !== titleBasedPath && (await doesArticleExist(componentNameBasedPath))) {
+      return { displayName: componentName, componentPath: componentNameBasedPath };
+    }
+  }
 
-  const storiesMap = storiesJson.entries;
+  if (await doesArticleExist(titleBasedPath)) {
+    return { displayName: titleName, componentPath: titleBasedPath };
+  }
+};
+
+/**
+ * [SmartHR UIのStorybook](https://story.smarthr-ui.dev/)上の各コンポーネントグループの名前やサムネイル画像のパスなどを取得
+ *
+ * story情報は `scripts/fetch-ui-data.ts` がキャッシュしたものを参照します。
+ * この関数はページのレンダリング中に呼ばれるため、ここでネットワークアクセスをしてはいけません。
+ *
+ * @returns StoryGroup[]
+ */
+export async function getComponentCaptures() {
   const storyGroups: StoryGroup[] = [];
 
-  for (const id in storiesMap) {
-    const { title, type, importPath } = storiesMap[id];
-
-    // ドキュメントはコンポーネント一覧として表示しない
-    if (type === 'docs') {
+  for (const { id, title, importPath } of UI_STORY_INDEX) {
+    // コンポーネントの記事を取得（記事が存在しないstoryは一覧に含めない）
+    const article = await getComponentArticle(title, importPath);
+    if (!article) {
       continue;
     }
 
+    const { displayName, componentPath } = article;
     const groupName = title.split('/')[0];
-    const displayName = title.split('/')[1];
     const thumbnailFileName = `${groupName}-${displayName}.png`;
 
-    const iframeUrl = new URL('iframe.html', STORYBOOK_URL);
+    const iframeUrl = new URL('iframe.html', SHRUI_STORYBOOK_URL);
     iframeUrl.searchParams.set('id', id);
     iframeUrl.searchParams.set('viewMode', 'story');
     iframeUrl.searchParams.set('shortcuts', 'false');
     iframeUrl.searchParams.set('singleStory', 'true');
-
-    // コンポーネントのパスを取得
-    const componentPath = getComponentPath(importPath, displayName);
-    if (!componentPath) {
-      continue;
-    }
-
-    // コンポーネントのパスからMDXファイルが存在するか確認
-    const exist = await doesFileExist(`${componentPath}.mdx`, `${componentPath}/index.mdx`);
-    if (!exist) {
-      continue;
-    }
 
     // Groupが存在しない場合は新規作成
     const storyGroup = storyGroups.find((item) => item.groupName === groupName);

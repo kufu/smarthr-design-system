@@ -10,13 +10,18 @@
 
 ### ダウンロード用zipファイルの作成
 
-以下のディレクトリ内のファイル（画像ファイルを想定）に変化があった場合に、zipファイルを作り直します。
+以下のディレクトリ内のファイル（アイコン画像を想定）に変化があった場合に、zipファイルを作り直します。
 
-- `/src/content/articles/basics/illustration/images`
 - `/src/content/articles/basics/icons/images`
 
 また、同行するreadmeファイル（`/scripts/downloads/readme.txt`）に変更があった場合も作り直します。zipを作成するスクリプトは`/scripts/zipImages.ts`です。
 
 ### lint-staged
 
-lint-stagedをとおして、ステージングされているファイルを対象にLint（ESLint/Stylelint/textlint）とリンクチェックを実行しています。リンクチェックのスクリプトは`/scripts/content-checker/linkChecker.ts`です。また、lint-stagedの設定は`package.json`にあります。
+lint-stagedをとおして、ステージングされているファイルを対象に以下を実行しています。lint-stagedの設定は`package.json`にあります。
+
+- `src/`以下の`.astro`/`.ts`/`.tsx`：型チェック（tsc・astro check）、ESLint、Prettier
+- `src/`以下の`.md`/`.mdx`：astro check、textlint
+- それ以外のファイル：Prettier
+
+リンクチェック（`/scripts/content-checker/linkChecker.ts`）はコミット時には実行しません。GitHub Actionsで毎週実行しています。

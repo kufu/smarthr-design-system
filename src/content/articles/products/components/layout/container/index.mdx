@@ -18,22 +18,33 @@ import Checklist from '@/components/article/Checklist/Checklist.astro'
 
 `size` props を使ってコンテナの大きさを指定できます。デフォルトは`DEFAULT`です。
 
-次のような場合には、`WIDE`や`FULL`を検討します。
-
-- 大量のデータを表示する場合
-- [サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)や[コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)など、1つのカラムに1ページ相当の情報を表示する場合
-
-次のような場合には、`NARROW`を検討します。
-
-- ページに表示する情報が少ない場合
-- 入力要素が中心の画面の場合
-
 大きさ | 幅トークン | 値（px）
 :--- | :--- | :---
 `NARROW` | `col6` | 880px
 `DEFAULT` | `col8` | 1184px
 `WIDE` | `col9` | 1336px
 `FULL` | - | `width: 100%`
+
+#### `NARROW`
+
+フォーム要素が中心の画面など、ページ内の要素が横幅を広く必要とせず、`DEFAULT`では不要な余白が大きくなってしまう画面に使います。
+
+#### `DEFAULT`
+
+コレクションやシングルの標準的な画面に使います。特に理由がない場合にはこの幅を使います。
+
+#### `WIDE`
+
+複数カラムのレイアウトで1つのカラムに1ページ相当の情報を表示する画面に使います。
+
+主に以下のページレイアウトが対象です。
+- [サイドナビゲーションとコンテンツの2カラム](/products/design-patterns/page-layout/#h3-12)
+- [コレクションとシングルの2カラム](/products/design-patterns/page-layout/#h3-13)
+- [シングル（2カラム）](/products/design-patterns/page-layout/#h3-10)
+
+#### `FULL`
+
+横スクロールを必須とするような大量のデータを表示する画面に使います。
 
 ### コンテナのパディング
 

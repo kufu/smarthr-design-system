@@ -27,16 +27,14 @@ const convertHexToRGBA = (_colorValue: string): string => {
   <div class="thumbnail" style={{ backgroundColor: colorValue }}></div>
   <div>
     <div class:list={['colorName', 'text']}>{colorName}</div>
-    {
-      colorValue.startsWith('#') ? (
-        <>
-          <div class="text">{colorValue}</div>
-          <div class="text">{convertHexToRGBA(colorValue)}</div>
-        </>
-      ) : (
+    {colorValue.startsWith('#') ? (
+      <>
         <div class="text">{colorValue}</div>
-      )
-    }
+        <div class="text">{convertHexToRGBA(colorValue)}</div>
+      </>
+    ) : (
+      <div class="text">{colorValue}</div>
+    )}
     <p class="text">{description}</p>
   </div>
 </div>

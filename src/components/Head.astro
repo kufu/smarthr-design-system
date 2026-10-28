@@ -49,13 +49,13 @@ const ogImageUrl = createOgImageUrl(ogTitle);
   <meta name="application-name" content={SITE_TITLE} />
 
   <!-- Google Tag Manager -->
-  <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-HNCBKCD85V"></script>
-  <script is:inline type="text/partytown">
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HNCBKCD85V"></script>
+  <script is:inline>
     if (!(navigator.doNotTrack === '1' || window.doNotTrack === '1')) {
       window.dataLayer = window.dataLayer || [];
       function gtag() {
-        // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-unused-expressions
-        window.dataLayer && window.dataLayer.push(arguments);
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer.push(arguments);
       }
       gtag('js', new Date());
       gtag('config', 'G-HNCBKCD85V');

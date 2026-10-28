@@ -10,19 +10,19 @@ import { FormControl } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.3.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| label | ReactNode \| { text: ReactNode; styleType?: TextProps; icon?: any; unrecommendedHide?: boolean; htmlFor?: string; id?: string; } | - | ✓ | グループのラベル名 |
 | subActionArea | ReactNode | - | - | タイトル右の領域 |
-| innerMargin | Gap | - | - | タイトル群と子要素の間の間隔調整用（基本的には不要） |
-| statusLabels | FunctionComponentElement<any> \| FunctionComponentElement<any>[] | - | - | タイトルの隣に表示する `StatusLabel` の配列 |
+| innerMargin | PositiveGap | - | - | タイトル群と子要素の間の間隔調整用（基本的には不要） |
+| statusLabels | "grey" \| "blue" \| "green" \| "red" \| "warning" \| "error" \| "grey" \| "blue" \| "green" \| "red" \| "warning" \| "error"[] | - | - | タイトルの隣に表示する `StatusLabel` の配列 |
 | helpMessage | ReactNode | - | - | タイトルの下に表示するヘルプメッセージ |
 | exampleMessage | ReactNode | - | - | タイトルの下に表示する入力例 |
 | errorMessages | ReactNode \| ReactNode[] | - | - | タイトルの下に表示するエラーメッセージ |
-| autoBindErrorInput | boolean | true | - | エラーがある場合に自動的に入力要素を error にするかどうか |
+| autoBindErrorInput | boolean | - | - | エラーがある場合に自動的に入力要素を error にするかどうか |
 | supplementaryMessage | ReactNode | - | - | フォームコントロールの下に表示する補足メッセージ |
+| label | ReactNode \| ObjectLabelType | - | ✓ | - |
 
 ## 実装ルール
 
@@ -125,6 +125,11 @@ const Sample2 = () => (
 ### 使用上の注意 > 入力要素が1つの場合にのみ使用する > 複数のフォームを横に並べる場合
 - [should] 入力要素をグルーピングできる場合は基本的に Fieldset を使用する
 - [must] やむを得ず FormControl を横に並べる場合はエラー表示時にレイアウトが崩れないか注意する
+
+### 使用上の注意 > 必須項目には入力要素にrequired属性を設定し、エラーはFormControlのerrorMessagesで表示する
+- [must] 入力必須の項目には、未入力時のフォーム送信を防ぐために入力要素に `required` を指定する
+- [must] 未入力時のエラーは、ブラウザ標準のツールチップではなく FormControl の `errorMessages` で表示する
+- [must] `onInvalid` でエラーを処理し、`preventDefault()` でブラウザ標準のツールチップを抑制する
 
 ### レイアウト > ステータスラベルの有無
 - [should] フォーム入力が必須か任意かをユーザーが区別できるようにステータスラベルを使用する

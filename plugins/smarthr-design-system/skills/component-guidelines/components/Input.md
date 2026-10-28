@@ -10,17 +10,17 @@ import { Input } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.3.2** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| placeholder | string | - | - | @deprecated placeholder属性は非推奨です。別途ヒント用要素を設置するか、それらの領域を確保出来ない場合はTooltipコンポーネントの利用を検討してください。 |
-| type | string | - | - | input 要素の `type` 値 |
-| width | string \| number | - | - | コンポーネントの幅 |
 | autoFocus | boolean | - | - | オートフォーカスを行うかどうか |
 | prefix | ReactNode | - | - | コンポーネント内の先頭に表示する内容 |
-| error | boolean | - | - | フォームにエラーがあるかどうか |
+| type | string | - | - | input 要素の `type` 値 |
 | suffix | ReactNode | - | - | コンポーネント内の末尾に表示する内容 |
+| width | string \| number | - | - | コンポーネントの幅 |
+| placeholder | string | - | - | @deprecated placeholder属性は非推奨です。別途ヒント用要素を設置するか、それらの領域を確保出来ない場合はTooltipコンポーネントの利用を検討してください。 |
+| error | boolean | - | - | フォームにエラーがあるかどうか |
 | bgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| "BORDER" \| "ACTION_BACKGROUND" | - | - | 背景色。readOnly を下地の上に載せる場合に使う |
 
 ## 実装ルール
@@ -129,6 +129,10 @@ input や textarea などの入力要素に対してplaceholder属性を設定�
 
 ### 状態 > 読み取り専用（readOnly）
 - [should] 当該画面では編集できないが、別の場所で入力済みの値をフォームの送信内容に含めて表示することが重要な場合は `readOnly` を使用する
+
+### 状態 > 読み取り専用（readOnly） > Groupboxなど色のついた下地に置くときは`bgColor`を指定する
+- [must] `readOnly` の Input を Groupbox の中など `COLUMN` と同じ色の下地に置く場合は、`bgColor` に `HEAD` を指定して下地と区別できるようにする
+  - `WHITE` のような明るい色は編集できる入力欄に見えてしまうため `readOnly` の Input には使用しない
 
 ### 状態 > 無効（disabled）
 - [should] 通常は編集できるが一時的または権限の制約により編集できない場合に `disabled` を使用する

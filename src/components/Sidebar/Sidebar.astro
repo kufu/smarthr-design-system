@@ -10,7 +10,7 @@ const { path, items } = Astro.props;
 ---
 
 {/* PC表示 */}
-<div class="navWrapper">
+<div class="navWrapper" id="sidebar-nav-wrapper">
   <SidebarItems path={path} items={items} showDepth1Item />
 </div>
 
@@ -24,6 +24,31 @@ const { path, items } = Astro.props;
     </div>
   )
 }
+
+<script>
+  // サイドバーが長くスクロールする場合、ページ遷移直後は現在地の項目が表示領域外にあることがあるため、
+  // サイドバー内のスクロール位置を調整して現在地を見えるようにする
+  const wrapper = document.querySelector('#sidebar-nav-wrapper');
+  // モバイル表示ではこの要素は display: none のため、スクロールの余地がなければ何もしない
+  const isScrollable = wrapper !== null && wrapper.scrollHeight > wrapper.clientHeight;
+  const currentItem = isScrollable ? wrapper.querySelector('a[aria-current="true"]') : null;
+
+  if (wrapper && currentItem) {
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const currentItemRect = currentItem.getBoundingClientRect();
+    // サイドバーは position: sticky なため、ページのスクロール位置によってはヘッダーやウィンドウ外にはみ出す。
+    // 実際に見えている範囲を基準にする
+    const visibleTop = Math.max(wrapperRect.top, 0);
+    const visibleBottom = Math.min(wrapperRect.bottom, window.innerHeight);
+    const isVisible = currentItemRect.top >= visibleTop && currentItemRect.bottom <= visibleBottom;
+
+    if (!isVisible) {
+      // 現在地の前後の項目も見えるよう、表示領域の中央に寄せる。
+      // ページ全体のスクロール位置に影響しないよう、scrollIntoView ではなくサイドバー自身のスクロール量を変更する
+      wrapper.scrollTop += currentItemRect.top - visibleTop - (visibleBottom - visibleTop - currentItemRect.height) / 2;
+    }
+  }
+</script>
 
 <style lang="scss">
   .navWrapper {

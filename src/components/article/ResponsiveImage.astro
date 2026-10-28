@@ -15,13 +15,11 @@ const imageUrl = typeof src === 'string' ? src : src.src;
 
 <span class="wrapper">
   <a href={imageUrl} target="_blank" rel="noopener noreferrer">
-    {
-      typeof src === 'string' ? (
-        <img src={src} alt={alt} />
-      ) : (
-        <Picture src={src} widths={[1600]} formats={['png']} quality="high" alt={alt} />
-      )
-    }
+    {typeof src === 'string' ? (
+      <img src={src} alt={alt} />
+    ) : (
+      <Picture src={src} widths={[1600]} formats={['png']} quality="high" alt={alt} />
+    )}
   </a>
 </span>
 

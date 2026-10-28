@@ -39,41 +39,37 @@ const Link2 = [
 ---
 
 <ul class="large">
-  {
-    Link1.map(({ title, path, isExternal }) => (
-      <li>
-        {isExternal ? (
-          <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
-            {title}
-          </a>
-        ) : (
-          <a class="link" href={path}>
-            {title}
-          </a>
-        )}
-      </li>
-    ))
-  }
+  {Link1.map(({ title, path, isExternal }) => (
+    <li>
+      {isExternal ? (
+        <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
+          {title}
+        </a>
+      ) : (
+        <a class="link" href={path}>
+          {title}
+        </a>
+      )}
+    </li>
+  ))}
 </ul>
 <ul>
-  {
-    Link2.map(({ title, path, isExternal }) => (
-      <li>
-        {isExternal ? (
-          // NOTE: タイトルとアイコンの間に空白文字が入るのを避けるためにくっつけておく
-          // prettier-ignore
-          <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
+  {Link2.map(({ title, path, isExternal }) => (
+    <li>
+      {isExternal ? (
+        // NOTE: タイトルとアイコンの間に空白文字が入るのを避けるためにくっつけておく
+        // prettier-ignore
+        <a class="anchor" href={path} target="_blank" rel="noopener noreferrer">
             {title}
             <OpenInNewTabIcon />
           </a>
-        ) : (
-          <a class="link" href={path}>
-            {title}
-          </a>
-        )}
-      </li>
-    ))
-  }
+      ) : (
+        <a class="link" href={path}>
+          {title}
+        </a>
+      )}
+    </li>
+  ))}
 </ul>
 
 <style lang="scss">

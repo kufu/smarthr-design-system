@@ -231,7 +231,7 @@ DOM確認が有効な場合（両方ともeditable）：
 - `/accessibility/guidelines/**`
   → アクセシビリティガイドライン
 
-- `/accessibility/insight/low-vision-check-list/**`
+- `/accessibility/insight/low-vision/low-vision-check-list/**`
   → 弱視・ロービジョンのユーザビリティチェックリスト
 
 記載形式:

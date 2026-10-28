@@ -28,45 +28,43 @@ const { isArticlePage } = Astro.props;
     </div>
 
     <div class="col2Container">
-      {
-        navigationItem.map(async ({ title, key, path }) => {
-          const subPages = await getSubPageCollection(path);
+      {navigationItem.map(async ({ title, key, path }) => {
+        const subPages = await getSubPageCollection(path);
 
-          const depth2Pages = subPages.filter((page) => {
-            const depth = page.id.split('/').length;
-            return depth === 2;
-          });
+        const depth2Pages = subPages.filter((page) => {
+          const depth = page.id.split('/').length;
+          return depth === 2;
+        });
 
-          // order昇順でソート
-          depth2Pages.sort(({ data: a }, { data: b }) => {
-            const orderA = a.order || 0;
-            const orderB = b.order || 0;
+        // order昇順でソート
+        depth2Pages.sort(({ data: a }, { data: b }) => {
+          const orderA = a.order || 0;
+          const orderB = b.order || 0;
 
-            return orderA - orderB;
-          });
+          return orderA - orderB;
+        });
 
-          return (
-            <Section style={{ gridArea: key }}>
-              <h3>
-                <a class="link" href={path}>
-                  {title}
-                </a>
-              </h3>
-              {depth2Pages.length > 0 && (
-                <ul>
-                  {depth2Pages.map(({ id, data }) => (
-                    <li>
-                      <a class="link" href={`/${id}/`}>
-                        {data.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </Section>
-          );
-        })
-      }
+        return (
+          <Section style={{ gridArea: key }}>
+            <h3>
+              <a class="link" href={path}>
+                {title}
+              </a>
+            </h3>
+            {depth2Pages.length > 0 && (
+              <ul>
+                {depth2Pages.map(({ id, data }) => (
+                  <li>
+                    <a class="link" href={`/${id}/`}>
+                      {data.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Section>
+        );
+      })}
     </div>
 
     <div class="copyrightContainer">

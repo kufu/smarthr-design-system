@@ -11,19 +11,17 @@ const { isMobileMenu = false } = Astro.props;
 const currentPathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 ---
 
-{
-  navigationItem.map(({ title, path }) => {
-    const isCurrent = currentPathname.startsWith(path);
+{navigationItem.map(({ title, path }) => {
+  const isCurrent = currentPathname.startsWith(path);
 
-    return (
-      <li>
-        <a href={path} class:list={{ default: !isMobileMenu, mobile: isMobileMenu, '-active': isCurrent }}>
-          {title}
-        </a>
-      </li>
-    );
-  })
-}
+  return (
+    <li>
+      <a href={path} class:list={{ default: !isMobileMenu, mobile: isMobileMenu, '-active': isCurrent }}>
+        {title}
+      </a>
+    </li>
+  );
+})}
 
 <style lang="scss">
   .default {

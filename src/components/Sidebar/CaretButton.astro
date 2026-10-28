@@ -1,0 +1,51 @@
+---
+import { FaChevronDownIcon } from 'smarthr-ui';
+
+import type { ArticleMeta } from '@/types/article';
+
+import styles from './CaretButton.module.scss';
+
+type Props = {
+  currentPath: `/${string}`;
+  itemLink: ArticleMeta['link'];
+  itemTitle: ArticleMeta['title'];
+  depth: ArticleMeta['depth'];
+  currentIndex: string;
+};
+
+const { currentPath, itemLink, itemTitle, depth, currentIndex } = Astro.props;
+
+const isExpanded = currentPath === itemLink || currentPath.startsWith(`${itemLink}/`);
+---
+
+<button
+  class={styles.caretButton}
+  type="button"
+  aria-controls={`Depth${depth + 1}Items__${currentIndex}`}
+  aria-expanded={isExpanded}
+  aria-label={`${itemTitle}の下層ページ`}
+  data-caret-button
+>
+  <FaChevronDownIcon />
+</button>
+
+<script>
+  // 開閉状態は aria 属性だけで表現しているため、イベント移譲で開閉する
+  document.addEventListener('click', (event) => {
+    const clicked = event.target instanceof Element ? event.target.closest('[data-caret-button]') : null;
+
+    if (!clicked) {
+      return;
+    }
+
+    const isOpen = clicked.getAttribute('aria-expanded') === 'true';
+    const targetId = clicked.getAttribute('aria-controls');
+
+    // PC表示とSP表示で同じツリーを描画しているため、両方の開閉状態を揃える
+    for (const targetUl of document.querySelectorAll(`[data-items-id="${targetId}"]`)) {
+      targetUl.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+    }
+
+    clicked.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+</script>
