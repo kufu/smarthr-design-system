@@ -117,18 +117,22 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
             <FrameContextConsumer>
               {({ document }) => (
                 <StyleSheetManager target={document?.head}>
-                  <ComponentPreview background={background} canvas={canvas}>
-                    <CssBaseLine />
-                    <LivePreview Component={React.Fragment} />
-                  </ComponentPreview>
+                  <ui.IntlProvider locale="ja">
+                    <ComponentPreview background={background} canvas={canvas}>
+                      <CssBaseLine />
+                      <LivePreview Component={React.Fragment} />
+                    </ComponentPreview>
+                  </ui.IntlProvider>
                 </StyleSheetManager>
               )}
             </FrameContextConsumer>
           </Frame>
         ) : (
-          <ComponentPreview background={background} canvas={canvas}>
-            <LivePreview Component={React.Fragment} />
-          </ComponentPreview>
+          <ui.IntlProvider locale="ja">
+            <ComponentPreview background={background} canvas={canvas}>
+              <LivePreview Component={React.Fragment} />
+            </ComponentPreview>
+          </ui.IntlProvider>
         )}
         <div
           style={{

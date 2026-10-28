@@ -1,11 +1,12 @@
 ---
 import { type CollectionEntry, getEntry } from 'astro:content';
-import { Article, BaseColumn, ResponseMessage } from 'smarthr-ui';
+import { Article, Groupbox } from 'smarthr-ui';
 
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header/Header.astro';
 import IndexNav from '@/components/IndexNav';
 import type { IndexNavItemsProps } from '@/components/IndexNav/IndexNavItems';
+import { ResponseMessage } from '@/components/ResponseMessage';
 import RoundedBoxLink from '@/components/RoundedBoxLink.astro';
 import Sidebar from '@/components/Sidebar/Sidebar.astro';
 import Layout from '@/layouts/Layout.astro';
@@ -55,11 +56,11 @@ const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaI
         <div class="mdxStyleWrapper" id={MDX_STYLE_WRAPPER_ID}>
           {
             data.deprecated && data.deprecatedMessage && (
-              <BaseColumn>
+              <Groupbox>
                 <ResponseMessage status="warning">
                   <span set:html={data.deprecatedMessage} />
                 </ResponseMessage>
-              </BaseColumn>
+              </Groupbox>
             )
           }
           <slot />

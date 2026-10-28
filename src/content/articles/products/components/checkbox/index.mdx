@@ -57,20 +57,20 @@ import { Cluster, Text } from 'smarthr-ui'
     <Text slot="label">横幅に十分なスペースがある場合は、基本的に横並びにします。</Text>
     <div slot="img">
 ```tsx editable canvas=480 background=BACKGROUND hideCode
-<Base padding={1.5} className="shr-w-full">
+<Panel padding={1.5} className="shr-w-full">
   <Fieldset
     legend="タイトル"
     innerMargin={0.5}
   >
-    <BaseColumn className="shr-w-fit">
+    <Groupbox className="shr-w-fit">
       <Cluster gap={{ row: 1, column: 1.5 }}>
         <Checkbox name="sample">選択肢 1</Checkbox>
         <Checkbox name="sample">選択肢 2</Checkbox>
         <Checkbox name="sample">選択肢 3</Checkbox>
       </Cluster>
-    </BaseColumn>
+    </Groupbox>
   </Fieldset>
-</Base>
+</Panel>
 ```
     </div>
   </DoAndDont>
@@ -79,20 +79,20 @@ import { Cluster, Text } from 'smarthr-ui'
     <Text slot="label">縦並びにすると、親項目の幅に対して要素の配置が偏ってしまい、視認性が低下する恐れがあります。</Text>
     <div slot="img">
 ```tsx editable canvas=480 background=BACKGROUND hideCode
-<Base padding={1.5} className="shr-w-full">
+<Panel padding={1.5} className="shr-w-full">
   <Fieldset
     legend="タイトル"
     innerMargin={0.5}
   >
-    <BaseColumn className="shr-w-fit">
+    <Groupbox className="shr-w-fit">
       <Stack>
         <Checkbox name="sample">選択肢 1</Checkbox>
         <Checkbox name="sample">選択肢 2</Checkbox>
         <Checkbox name="sample">選択肢 3</Checkbox>
       </Stack>
-    </BaseColumn>
+    </Groupbox>
   </Fieldset>
-</Base>
+</Panel>
 ```
     </div>
   </DoAndDont>
@@ -104,20 +104,20 @@ import { Cluster, Text } from 'smarthr-ui'
   <Text slot="label">選択肢の文字が長い場合は縦並びにしても要素の配置が偏らず、視認性が低下しません。</Text>
   <div slot="img">
 ```tsx editable canvas=480 background=BACKGROUND hideCode
-<Base padding={1.5} className="shr-w-full">
+<Panel padding={1.5} className="shr-w-full">
 <Fieldset
   legend="タイトル"
   innerMargin={0.5}
 >
-  <BaseColumn className="shr-w-fit">
+  <Groupbox className="shr-w-fit">
     <Stack>
       <Checkbox name="sample">比較的長いテキストの選択肢 1</Checkbox>
       <Checkbox name="sample">比較的長いテキストの選択肢 2</Checkbox>
       <Checkbox name="sample">比較的長いテキストの選択肢 3</Checkbox>
     </Stack>
-  </BaseColumn>
+  </Groupbox>
 </Fieldset>
-</Base>
+</Panel>
 ```
   </div>
 </DoAndDont>
@@ -136,7 +136,7 @@ import { Cluster, Text } from 'smarthr-ui'
     <Text slot="label">すべての選択肢が明示的に表示されているため、現在の状態が把握しやすい</Text>
     <div slot="img">
 ```tsx editable canvas=480 background=BACKGROUND hideCode
-<Base padding={1.5} className="shr-w-full">
+<Panel padding={1.5} className="shr-w-full">
   <Fieldset
     legend="従業員に表示"
     innerMargin={0.5}
@@ -147,7 +147,7 @@ import { Cluster, Text } from 'smarthr-ui'
       <RadioButton name="sample">オフ（管理者にのみ表示）</RadioButton>
     </Cluster>
   </Fieldset>
-</Base>
+</Panel>
 ```
     </div>
   </DoAndDont>
@@ -156,7 +156,7 @@ import { Cluster, Text } from 'smarthr-ui'
     <Text slot="label">「従業員に表示しない」という選択肢が暗黙的であり、現在の状態をラベルとチェック状態から推測しなければならない</Text>
     <div slot="img">
 ```tsx editable canvas=480 background=BACKGROUND hideCode
-<Base padding={1.5} className="shr-w-full">
+<Panel padding={1.5} className="shr-w-full">
   <Fieldset
     legend="従業員に表示"
     innerMargin={0.5}
@@ -164,7 +164,7 @@ import { Cluster, Text } from 'smarthr-ui'
   >
     <Checkbox name="sample">従業員にも表示する</Checkbox>
   </Fieldset>
-</Base>
+</Panel>
 ```
     </div>
   </DoAndDont>
@@ -177,7 +177,7 @@ import { Cluster, Text } from 'smarthr-ui'
   <Text slot="label">2択の切り替えの入力だが、前後のコンテキストから両方の選択肢が明示的であり現在の状態が把握しやすい。</Text>
   <div slot="img">
 ```tsx editable background=BACKGROUND hideCode
-<Base padding={1.5} className="shr-w-full">
+<Panel padding={1.5} className="shr-w-full">
   <Fieldset
     legend="氏名の表示設定"
     innerMargin={0.5}
@@ -185,7 +185,7 @@ import { Cluster, Text } from 'smarthr-ui'
   >
     <Checkbox name="sample" defaultChecked>ビジネスネームを優先的に表示する</Checkbox>
   </Fieldset>
-</Base>
+</Panel>
 ```
   </div>
 </DoAndDont>
@@ -216,15 +216,15 @@ import { Cluster, Text } from 'smarthr-ui'
         </DefinitionListItem>
       </DefinitionList>
       <Stack gap={0.5}>
-        <BaseColumn>
+        <Groupbox>
           <Stack>
             <Heading type="blockTitle" icon={<WarningIcon />}>注意事項</Heading>
             <p>オブジェクトを削除すると起きる影響についての説明</p>
           </Stack>
-        </BaseColumn>
-        <BaseColumn>
+        </Groupbox>
+        <Groupbox>
           <Checkbox name="confirm" required>注意事項を確認しました。</Checkbox>
-        </BaseColumn>
+        </Groupbox>
       </Stack>
     </Stack>
   </FormDialog>
@@ -243,7 +243,7 @@ import { Cluster, Text } from 'smarthr-ui'
     <Text slot="label">ユーザーは選択する操作に集中でき、それ以外の操作と区別しやすい</Text>
     <div slot="img">
 ```tsx editable background=BACKGROUND hideCode
-<Base padding={1.5} className="shr-w-full">
+<Panel padding={1.5} className="shr-w-full">
   <Fieldset
     legend="利用規約への同意"
     innerMargin={0.5}
@@ -251,7 +251,7 @@ import { Cluster, Text } from 'smarthr-ui'
   >
     <Checkbox name="agreement">利用規約に同意します</Checkbox>
   </Fieldset>
-</Base>
+</Panel>
 ```
     </div>
   </DoAndDont>
@@ -260,14 +260,14 @@ import { Cluster, Text } from 'smarthr-ui'
     <Text slot="label">ユーザーが選択操作に集中できず、操作難易度が上がる</Text>
     <div slot="img">
 ```tsx editable background=BACKGROUND hideCode
-<Base padding={1.5} className="shr-w-full">
+<Panel padding={1.5} className="shr-w-full">
   <Fieldset
     legend="利用規約への同意"
     innerMargin={0.5}
   >
     <Checkbox name="agreement"><TextLink target="_blank" href="#">利用規約</TextLink>に同意します</Checkbox>
   </Fieldset>
-</Base>
+</Panel>
 ```
     </div>
   </DoAndDont>
@@ -290,7 +290,7 @@ import { Cluster, Text } from 'smarthr-ui'
 
 ### 選択肢のグルーピング
 
-例えば設定画面などで、チェックボックスやラジオボタンのように複数の選択肢を持つ項目を、いくつも並べて表示する場合は、ラベルがかかる範囲や設定項目ごとの選択肢を区別しやすくするために[BaseColumn](/products/components/base/base-column/)でグルーピングする場合があります。
+例えば設定画面などで、チェックボックスやラジオボタンのように複数の選択肢を持つ項目を、いくつも並べて表示する場合は、ラベルがかかる範囲や設定項目ごとの選択肢を区別しやすくするために[Groupbox](/products/components/groupbox/)でグルーピングする場合があります。
 
 [共通設定の操作権限項目](/products/design-patterns/access-control-setting-pattern-core-features/)のデザインパターンもあわせて参考にしてください。
 
@@ -299,7 +299,7 @@ import { Cluster, Text } from 'smarthr-ui'
     legend="設定項目"
     innerMargin={0.5}
 >
-  <BaseColumn>
+  <Groupbox>
     <Cluster gap={{ row: 1, column: 1.5 }}>
       <Checkbox name="sample">選択肢 1</Checkbox>
       <Checkbox name="sample">選択肢 2</Checkbox>
@@ -307,7 +307,7 @@ import { Cluster, Text } from 'smarthr-ui'
       <Checkbox name="sample">選択肢 4</Checkbox>
       <Checkbox name="sample">選択肢 5</Checkbox>
     </Cluster>
-  </BaseColumn>
+  </Groupbox>
 </Fieldset>
 ```
 
@@ -334,7 +334,7 @@ import { Cluster, Text } from 'smarthr-ui'
 ##### 良い実装例
 
 ```tsx
-<BaseColumn>
+<Groupbox>
   <Cluster gap={0.5} align="center">
     <Heading type="screenTitle">
       <WarningIcon color="WARNING_YELLOW" />
@@ -346,13 +346,13 @@ import { Cluster, Text } from 'smarthr-ui'
     {オブジェクトの削除に付随する影響について説明する}
   </Text>
   
-  <BaseColumn bgColor="COLUMN" padding={1.5}>
+  <Groupbox bgColor="COLUMN" padding={1.5}>
     {/* 単一のCheckbox  */}
     <Checkbox name="confirm">
       注意事項を確認しました。
     </Checkbox>
-  </BaseColumn>
-</BaseColumn>
+  </Groupbox>
+</Groupbox>
 
 
 // Fieldsetでグループ化されたCheckbox
@@ -435,7 +435,7 @@ import { Cluster, Text } from 'smarthr-ui'
           <PageHeading autoPageTitle={false}>見出し</PageHeading>
           <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
         </Stack>
-        <Base padding={{ block: 1.5, inline: 1}}>
+        <Panel padding={{ block: 1.5, inline: 1}}>
          <Fieldset
             legend="タイトル"
           >
@@ -447,7 +447,7 @@ import { Cluster, Text } from 'smarthr-ui'
               <Checkbox name="sample">長いラベルテキスト長いラベルテキスト</Checkbox>
             </Stack>
           </Fieldset>
-        </Base>
+        </Panel>
       </Stack>
     </Container>
   </div>
@@ -497,7 +497,7 @@ import { Cluster, Text } from 'smarthr-ui'
           <PageHeading autoPageTitle={false}>見出し</PageHeading>
           <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
         </Stack>
-        <Base padding={{ block: 1.5, inline: 1}}>
+        <Panel padding={{ block: 1.5, inline: 1}}>
          <Fieldset
             legend="タイトル"
           >
@@ -509,7 +509,7 @@ import { Cluster, Text } from 'smarthr-ui'
               <Checkbox name="sample">長いラベルテキスト長いラベルテキスト</Checkbox>
             </Cluster>
           </Fieldset>
-        </Base>
+        </Panel>
       </Stack>
     </Container>
   </div>

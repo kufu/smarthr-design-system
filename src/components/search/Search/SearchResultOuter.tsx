@@ -1,5 +1,5 @@
 import { useInstantSearch } from 'react-instantsearch-core';
-import { Base } from 'smarthr-ui';
+import { Panel } from 'smarthr-ui';
 
 import styles from './SearchResultOuter.module.scss';
 
@@ -17,7 +17,7 @@ export default function SearchResultOuter({ children }: Props) {
   const hasResults = hits.length > 0;
 
   return (
-    <Base className={styles.searchPanel} aria-live="polite">
+    <Panel className={styles.searchPanel} aria-live="polite">
       <div className={styles.searchPanelHeader}>検索結果</div>
       <div className={styles.searchPanelBody}>
         {hasResults ? (
@@ -29,6 +29,6 @@ export default function SearchResultOuter({ children }: Props) {
           <p>検索結果は見つかりませんでした。</p>
         )}
       </div>
-    </Base>
+    </Panel>
   );
 }

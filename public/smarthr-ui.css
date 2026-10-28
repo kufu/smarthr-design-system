@@ -215,10 +215,6 @@ a {
   pointer-events: none;
 }
 
-.shr-visible {
-  visibility: visible;
-}
-
 .shr-invisible {
   visibility: hidden;
 }
@@ -349,8 +345,8 @@ a {
   left: 50%;
 }
 
-.shr-left-\[calc\(50\%\+\(theme\(fontSize\.base\)\/2\)\+4px\+5px\)\] {
-  left: calc(50% + (1rem / 2) + 4px + 5px);
+.shr-left-\[calc\(50\%\+\(theme\(fontSize\.base\)\/2\)\+9px\)\] {
+  left: calc(50% + (1rem / 2) + 9px);
 }
 
 .shr-right-0 {
@@ -381,6 +377,10 @@ a {
   top: 50%;
 }
 
+.shr-top-\[calc\(50\%-\(theme\(fontSize\.base\)\/2\)-8px\)\] {
+  top: calc(50% - (1rem / 2) - 8px);
+}
+
 .shr-z-0 {
   z-index: 0;
 }
@@ -407,10 +407,6 @@ a {
 
 .shr-z-overlap-base {
   z-index: 10000;
-}
-
-.-shr-m-px {
-  margin: -1px;
 }
 
 .shr-m-0 {
@@ -725,6 +721,10 @@ a {
 .shr-size-\[theme\(fontSize\.base\)\] {
   width: 1rem;
   height: 1rem;
+}
+
+.shr-h-0 {
+  height: 0;
 }
 
 .shr-h-1 {
@@ -1649,10 +1649,6 @@ a {
 
 .shr-grid-rows-\[auto_1fr\] {
   grid-template-rows: auto 1fr;
-}
-
-.shr-flex-row-reverse {
-  flex-direction: row-reverse;
 }
 
 .shr-flex-col {
@@ -2838,6 +2834,10 @@ a {
   font-style: italic;
 }
 
+.shr-not-italic {
+  font-style: normal;
+}
+
 .shr-tabular-nums {
   --tw-numeric-spacing: tabular-nums;
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
@@ -3040,6 +3040,10 @@ a {
   forced-color-adjust: none;
 }
 
+.\[align-items\:inherit\] {
+  align-items: inherit;
+}
+
 .\[box-shadow\:_0_-4px_8px_2px_rgba\(0\2c _0\2c _0\2c _0\.24\)\] {
   box-shadow: 0 -4px 8px 2px rgba(0, 0, 0, 0.24);
 }
@@ -3052,8 +3056,16 @@ a {
   clip: rect(0 0 0 0);
 }
 
+.\[contain\:inline-size\] {
+  contain: inline-size;
+}
+
 .\[display\:-webkit-box\] {
   display: -webkit-box;
+}
+
+.\[gap\:inherit\] {
+  gap: inherit;
 }
 
 .\[inset-block-start\:0\] {
@@ -3062,6 +3074,10 @@ a {
 
 .\[inset-inline-end\:0\] {
   inset-inline-end: 0;
+}
+
+.\[justify-content\:inherit\] {
+  justify-content: inherit;
 }
 
 .before\:shr-border-b-shorthand::before {
@@ -4016,11 +4032,6 @@ a {
   opacity: 0;
 }
 
-.after\:shr-opacity-100::after {
-  content: var(--tw-content);
-  opacity: 1;
-}
-
 .after\:shr-transition-opacity::after {
   content: var(--tw-content);
   transition-property: opacity;
@@ -4263,10 +4274,6 @@ a {
   background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1));
 }
 
-.disabled\:shr-bg-transparent:disabled {
-  background-color: transparent;
-}
-
 .disabled\:shr-bg-white-darken:disabled {
   --tw-bg-opacity: 1;
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1));
@@ -4331,10 +4338,6 @@ a {
   border-radius: 9999px;
 }
 
-.shr-group\/tabitem:disabled .group-disabled\/tabitem\:shr-text-grey\/50 {
-  color: rgb(112 109 101 / 0.5);
-}
-
 .shr-group\/iconWrapper .group-\[\]\/iconWrapper\:shr-shrink-0 {
   flex-shrink: 0;
 }
@@ -4344,12 +4347,12 @@ a {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.shr-group:not(:disabled):hover .group-\[\:not\(\:disabled\)\]\:group-hover\:shr-bg-base-grey {
+.shr-group:not([aria-disabled]):hover .group-\[\:not\(\[aria-disabled\]\)\]\:group-hover\:shr-bg-base-grey {
   --tw-bg-opacity: 1;
   background-color: rgb(245 244 243 / var(--tw-bg-opacity, 1));
 }
 
-.shr-group:not(:disabled):hover .group-\[\:not\(\:disabled\)\]\:group-hover\:shr-text-black {
+.shr-group:not([aria-disabled]):hover .group-\[\:not\(\[aria-disabled\]\)\]\:group-hover\:shr-text-black {
   --tw-text-opacity: 1;
   color: rgb(35 34 30 / var(--tw-text-opacity, 1));
 }
@@ -4843,6 +4846,10 @@ a {
   background-color: rgb(226 223 218 / var(--tw-bg-opacity, 1));
 }
 
+.shr-group\/tabitem[aria-disabled="true"] .group-aria-disabled\/tabitem\:shr-text-grey\/50 {
+  color: rgb(112 109 101 / 0.5);
+}
+
 .shr-group[aria-expanded="true"] .group-aria-expanded\:-shr-rotate-180 {
   --tw-rotate: -180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -4887,8 +4894,16 @@ a {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.data-\[dropdown-mounted\]\:shr-visible[data-dropdown-mounted] {
+  visibility: visible;
+}
+
 .data-\[favorite\=\"false\"\]\:shr-grid-cols-\[1fr_1rem\][data-favorite="false"] {
   grid-template-columns: 1fr 1rem;
+}
+
+.data-\[loading\]\:shr-flex-row-reverse[data-loading] {
+  flex-direction: row-reverse;
 }
 
 .data-\[error\]\:shr-border-danger[data-error] {
@@ -4927,11 +4942,6 @@ a {
 .data-\[disabled\]\:shr-text-disabled[data-disabled] {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity, 1));
-}
-
-.data-\[error\]\:shr-text-danger[data-error] {
-  --tw-text-opacity: 1;
-  color: rgb(224 30 90 / var(--tw-text-opacity, 1));
 }
 
 .data-\[filtered\=true\]\:shr-text-main[data-filtered="true"] {
@@ -5010,6 +5020,11 @@ a {
 .data-\[current\=true\]\:after\:shr-border-t-transparent[data-current="true"]::after {
   content: var(--tw-content);
   border-top-color: transparent;
+}
+
+.data-\[smarthr-ui-shadow\=true\]\:after\:shr-opacity-100[data-smarthr-ui-shadow="true"]::after {
+  content: var(--tw-content);
+  opacity: 1;
 }
 
 .data-\[current\=true\]\:after\:shr-content-\[\"\"\][data-current="true"]::after {
@@ -5268,6 +5283,10 @@ a {
     background-color: Highlight;
   }
 
+  .shr-group\/tabitem[aria-disabled="true"] .group-aria-disabled\/tabitem\:forced-colors\:shr-text-\[GrayText\] {
+    color: GrayText;
+  }
+
   .shr-group[aria-current] .forced-colors\:group-aria-\[current\]\:before\:shr-bg-\[Mark\]::before {
     content: var(--tw-content);
     background-color: Mark;
@@ -5382,6 +5401,58 @@ a {
 .\[\&\&\]\:shr-my-0\.5.\[\&\&\]\:shr-my-0\.5 {
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+.\[\&\&\]\:shr-mb-0.\[\&\&\]\:shr-mb-0 {
+  margin-bottom: 0;
+}
+
+.\[\&\&\]\:shr-mb-0\.25.\[\&\&\]\:shr-mb-0\.25 {
+  margin-bottom: 4px;
+}
+
+.\[\&\&\]\:shr-mb-0\.5.\[\&\&\]\:shr-mb-0\.5 {
+  margin-bottom: 8px;
+}
+
+.\[\&\&\]\:shr-mb-0\.75.\[\&\&\]\:shr-mb-0\.75 {
+  margin-bottom: 12px;
+}
+
+.\[\&\&\]\:shr-mb-1.\[\&\&\]\:shr-mb-1 {
+  margin-bottom: 16px;
+}
+
+.\[\&\&\]\:shr-mb-1\.25.\[\&\&\]\:shr-mb-1\.25 {
+  margin-bottom: 20px;
+}
+
+.\[\&\&\]\:shr-mb-1\.5.\[\&\&\]\:shr-mb-1\.5 {
+  margin-bottom: 24px;
+}
+
+.\[\&\&\]\:shr-mb-2.\[\&\&\]\:shr-mb-2 {
+  margin-bottom: 32px;
+}
+
+.\[\&\&\]\:shr-mb-2\.5.\[\&\&\]\:shr-mb-2\.5 {
+  margin-bottom: 40px;
+}
+
+.\[\&\&\]\:shr-mb-3.\[\&\&\]\:shr-mb-3 {
+  margin-bottom: 48px;
+}
+
+.\[\&\&\]\:shr-mb-3\.5.\[\&\&\]\:shr-mb-3\.5 {
+  margin-bottom: 56px;
+}
+
+.\[\&\&\]\:shr-mb-4.\[\&\&\]\:shr-mb-4 {
+  margin-bottom: 64px;
+}
+
+.\[\&\&\]\:shr-mb-8.\[\&\&\]\:shr-mb-8 {
+  margin-bottom: 128px;
 }
 
 .\[\&\&\]\:shr-box-border.\[\&\&\]\:shr-box-border {
@@ -5677,6 +5748,10 @@ a {
   padding: 12px;
 }
 
+.\[\&\:has\(\[data-square\]\)\]\:shr-p-0\.75:has([data-square]) {
+  padding: 12px;
+}
+
 .\[\&\:has\(thead\)_tr\:not\(\:where\(thead_tr\)\)_\:is\(\.smarthr-ui-Th\2c \.smarthr-ui-Td\)\]\:shr-border-t:has(thead) tr:not(:where(thead tr)) :is(.smarthr-ui-Th,.smarthr-ui-Td) {
   border-top-width: 1px;
 }
@@ -5796,6 +5871,10 @@ a {
 
 .\[\&\:not\(\[data-files-dragged-over\]\)\]\:shr-border-dashed:not([data-files-dragged-over]) {
   border-style: dashed;
+}
+
+.\[\&\:not\(\[data-measured\]\)\]\:shr-overflow-hidden:not([data-measured]) {
+  overflow: hidden;
 }
 
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
@@ -6631,4 +6710,26 @@ a {
 [data-disabled=true]>.\[\[data-disabled\=true\]\>\&\]\:shr-text-disabled {
   --tw-text-opacity: 1;
   color: rgb(193 189 183 / var(--tw-text-opacity, 1));
+}
+
+[data-size=M] .\[\[data-size\=M\]_\&\]\:shr-p-1 {
+  padding: 16px;
+}
+
+[data-size=M] .\[\[data-size\=M\]_\&\]\:shr-text-base {
+  font-size: 1rem;
+}
+
+[data-size=S] .\[\[data-size\=S\]_\&\]\:shr-px-1 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+[data-size=S] .\[\[data-size\=S\]_\&\]\:shr-py-0\.5 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+[data-size=S] .\[\[data-size\=S\]_\&\]\:shr-text-sm {
+  font-size: 0.8571428571428571rem;
 }

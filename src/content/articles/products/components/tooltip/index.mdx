@@ -1,6 +1,6 @@
 ---
 title: 'Tooltip'
-description: '補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、LineClampで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。'
+description: '補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、TextのmaxLinesで省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。'
 ---
 import { FaCircleInfoIcon } from 'smarthr-ui'
 import { Image } from 'astro:assets'
@@ -22,7 +22,7 @@ import {
 
 <Warning />
 
-補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、[LineClamp](/products/components/line-clamp/)で省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
+補足説明テキストをホバーやフォーカスで一時的に表示するためのツールチップコンポーネントです。アイコンのみボタンへのラベル付け、[Text](/products/components/text/)の`maxLines`で省略したテキストの全文表示など、限られたスペースで補足情報を添えるときに使います。
 
 - 補足的な説明テキストを表示する場合
 - アイコンだけのボタンにラベルを表示する場合
@@ -45,7 +45,7 @@ Tooltip内の情報は隠れるため、操作に必要な情報の表示への�
 ### 例外
 - ユーザーの操作過程で「確認が必須ではない」程度の付加的な情報を表示する目的での使用
 - Tooltipによる表示が提供されているコンポーネントにおいて、利用基準に沿った使用
-  - [LineClamp](/products/components/line-clamp/)
+  - [Text](/products/components/text/)の`maxLines`
     - 折り返して表示することがどうしても難しい場合
   - [SearchInput](/products/components/input/search-input/)
     - 検索キーワードに該当する検索結果が得られなかったとき、再検索のためのヒントを見える場所に必ず表示したうえで、補助としてTooltipのメッセージを使う場合
@@ -145,7 +145,7 @@ Tooltipが表示されるきっかけとなる要素を「トリガー」と呼�
 
 テキストは、`ellipsis`を使い省略されていることを示します。
 
-単純に文章を省略したい場合には、[LineClamp](/products/components/line-clamp/)を使用してください。
+単純に文章を省略したい場合には、[Text](/products/components/text/)の`maxLines`を使用してください。
 
 ## アクセシビリティ
 
