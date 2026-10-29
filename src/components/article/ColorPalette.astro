@@ -1,40 +1,22 @@
 ---
+import { hexToRgb } from '@/constants/colorTokens';
+
 type Props = {
   colorName: string;
   colorValue: string;
-  description: string;
+  description?: string;
 };
 
 const { colorName, colorValue, description } = Astro.props;
-
-// source: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
-const convertHexToRGBA = (_colorValue: string): string => {
-  let hex = _colorValue && _colorValue.replace('#', '');
-
-  if (hex.length === 3) {
-    hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
-  }
-
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-
-  return `rgb(${r},${g},${b})`;
-};
+const rgb = hexToRgb(colorValue);
 ---
 
 <div class="wrapper">
   <div class="thumbnail" style={{ backgroundColor: colorValue }}></div>
   <div>
     <div class:list={['colorName', 'text']}>{colorName}</div>
-    {colorValue.startsWith('#') ? (
-      <>
-        <div class="text">{colorValue}</div>
-        <div class="text">{convertHexToRGBA(colorValue)}</div>
-      </>
-    ) : (
-      <div class="text">{colorValue}</div>
-    )}
+    <div class="text">{colorValue}</div>
+    {rgb && <div class="text">{rgb}</div>}
     <p class="text">{description}</p>
   </div>
 </div>
