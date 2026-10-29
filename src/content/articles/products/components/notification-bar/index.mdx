@@ -74,16 +74,16 @@ import { AnimateNotificationBar } from './_components'
 
 #### ベースあり
 
-画面内の操作UIの近くに、操作に必要な情報を補足的に表示する場合などでは、`base="base"`を使用します。
-[特定の操作範囲へのフィードバック](/products/components/notification-bar/#h4-4)など[Panel](/products/components/panel/)内に配置する場合を除き、画面内に単体で配置する場合は基本的に`base="base"`を使用してください。
+画面内の操作UIの近くに、操作に必要な情報を補足的に表示する場合などでは、`paneled` propsを使用します。
+[特定の操作範囲へのフィードバック](/products/components/notification-bar/#h4-4)など[Panel](/products/components/panel/)内に配置する場合を除き、画面内に単体で配置する場合は基本的に`paneled` propsを使用してください。
 
 [フィードバック](/products/design-patterns/feedback/)だけでなく、システムの状態や画面内の操作を進めるにあたってユーザーに伝えるべきメッセージなどを表示する場合にも使用できます。
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar base="base" type="info">このデータは読み取り専用です。</NotificationBar>
-  <NotificationBar base="base" type="warning">フォームに入力された値は保存されていません。</NotificationBar>
-  <NotificationBar base="base" type="error" onClose={()=>{}}>タスクの削除に失敗しました。</NotificationBar>
+  <NotificationBar paneled type="info">このデータは読み取り専用です。</NotificationBar>
+  <NotificationBar paneled type="warning">フォームに入力された値は保存されていません。</NotificationBar>
+  <NotificationBar paneled type="error" onClose={()=>{}}>タスクの削除に失敗しました。</NotificationBar>
 </Stack>
 ```
 
@@ -95,11 +95,11 @@ import { AnimateNotificationBar } from './_components'
 
 ```tsx editable
 <Stack style={{width: '100%', background: '#f8f7f6', padding: '8px'}}>
-  <NotificationBar base="base" type="info" layer={0}>このNotificationBarは「layer=0」です。</NotificationBar>
-  <NotificationBar base="base" type="info" layer={1}>このNotificationBarは「layer=1」です。</NotificationBar>
-  <NotificationBar base="base" type="info" layer={2}>このNotificationBarは「layer=2」です。</NotificationBar>
-  <NotificationBar base="base" type="info" layer={3}>このNotificationBarは「layer=3」です。</NotificationBar>
-  <NotificationBar base="base" type="info" layer={4}>このNotificationBarは「layer=4」です。</NotificationBar>
+  <NotificationBar paneled type="info" layer={0}>このNotificationBarは「layer=0」です。</NotificationBar>
+  <NotificationBar paneled type="info" layer={1}>このNotificationBarは「layer=1」です。</NotificationBar>
+  <NotificationBar paneled type="info" layer={2}>このNotificationBarは「layer=2」です。</NotificationBar>
+  <NotificationBar paneled type="info" layer={3}>このNotificationBarは「layer=3」です。</NotificationBar>
+  <NotificationBar paneled type="info" layer={4}>このNotificationBarは「layer=4」です。</NotificationBar>
 </Stack>
 ```
 

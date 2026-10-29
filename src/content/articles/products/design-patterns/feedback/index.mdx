@@ -595,7 +595,7 @@ render(<InformationPanelErrorLayout />)
             <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
           </Cluster>
           {/* テーブルが表示される領域にNotificationBarを表示する */}
-          <NotificationBar base="base" type="error" bold onClose={() => {}}>
+          <NotificationBar paneled type="error" bold onClose={() => {}}>
             情報の取得に失敗しました。時間をおいて画面を再読み込みしてください。
           </NotificationBar>
         </Stack>

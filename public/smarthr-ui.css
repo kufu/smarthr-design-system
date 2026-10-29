@@ -723,6 +723,10 @@ a {
   height: 1rem;
 }
 
+.shr-h-0 {
+  height: 0;
+}
+
 .shr-h-1 {
   height: 16px;
 }
@@ -3036,6 +3040,10 @@ a {
   forced-color-adjust: none;
 }
 
+.\[align-items\:inherit\] {
+  align-items: inherit;
+}
+
 .\[box-shadow\:_0_-4px_8px_2px_rgba\(0\2c _0\2c _0\2c _0\.24\)\] {
   box-shadow: 0 -4px 8px 2px rgba(0, 0, 0, 0.24);
 }
@@ -3048,8 +3056,16 @@ a {
   clip: rect(0 0 0 0);
 }
 
+.\[contain\:inline-size\] {
+  contain: inline-size;
+}
+
 .\[display\:-webkit-box\] {
   display: -webkit-box;
+}
+
+.\[gap\:inherit\] {
+  gap: inherit;
 }
 
 .\[inset-block-start\:0\] {
@@ -3058,6 +3074,10 @@ a {
 
 .\[inset-inline-end\:0\] {
   inset-inline-end: 0;
+}
+
+.\[justify-content\:inherit\] {
+  justify-content: inherit;
 }
 
 .before\:shr-border-b-shorthand::before {
@@ -4254,10 +4274,6 @@ a {
   background-color: rgb(248 247 246 / var(--tw-bg-opacity, 1));
 }
 
-.disabled\:shr-bg-transparent:disabled {
-  background-color: transparent;
-}
-
 .disabled\:shr-bg-white-darken:disabled {
   --tw-bg-opacity: 1;
   background-color: rgb(242 242 242 / var(--tw-bg-opacity, 1));
@@ -4322,10 +4338,6 @@ a {
   border-radius: 9999px;
 }
 
-.shr-group\/tabitem:disabled .group-disabled\/tabitem\:shr-text-grey\/50 {
-  color: rgb(112 109 101 / 0.5);
-}
-
 .shr-group\/iconWrapper .group-\[\]\/iconWrapper\:shr-shrink-0 {
   flex-shrink: 0;
 }
@@ -4335,12 +4347,12 @@ a {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.shr-group:not(:disabled):hover .group-\[\:not\(\:disabled\)\]\:group-hover\:shr-bg-base-grey {
+.shr-group:not([aria-disabled]):hover .group-\[\:not\(\[aria-disabled\]\)\]\:group-hover\:shr-bg-base-grey {
   --tw-bg-opacity: 1;
   background-color: rgb(245 244 243 / var(--tw-bg-opacity, 1));
 }
 
-.shr-group:not(:disabled):hover .group-\[\:not\(\:disabled\)\]\:group-hover\:shr-text-black {
+.shr-group:not([aria-disabled]):hover .group-\[\:not\(\[aria-disabled\]\)\]\:group-hover\:shr-text-black {
   --tw-text-opacity: 1;
   color: rgb(35 34 30 / var(--tw-text-opacity, 1));
 }
@@ -4834,6 +4846,10 @@ a {
   background-color: rgb(226 223 218 / var(--tw-bg-opacity, 1));
 }
 
+.shr-group\/tabitem[aria-disabled="true"] .group-aria-disabled\/tabitem\:shr-text-grey\/50 {
+  color: rgb(112 109 101 / 0.5);
+}
+
 .shr-group[aria-expanded="true"] .group-aria-expanded\:-shr-rotate-180 {
   --tw-rotate: -180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -5267,6 +5283,10 @@ a {
     background-color: Highlight;
   }
 
+  .shr-group\/tabitem[aria-disabled="true"] .group-aria-disabled\/tabitem\:forced-colors\:shr-text-\[GrayText\] {
+    color: GrayText;
+  }
+
   .shr-group[aria-current] .forced-colors\:group-aria-\[current\]\:before\:shr-bg-\[Mark\]::before {
     content: var(--tw-content);
     background-color: Mark;
@@ -5381,6 +5401,58 @@ a {
 .\[\&\&\]\:shr-my-0\.5.\[\&\&\]\:shr-my-0\.5 {
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+.\[\&\&\]\:shr-mb-0.\[\&\&\]\:shr-mb-0 {
+  margin-bottom: 0;
+}
+
+.\[\&\&\]\:shr-mb-0\.25.\[\&\&\]\:shr-mb-0\.25 {
+  margin-bottom: 4px;
+}
+
+.\[\&\&\]\:shr-mb-0\.5.\[\&\&\]\:shr-mb-0\.5 {
+  margin-bottom: 8px;
+}
+
+.\[\&\&\]\:shr-mb-0\.75.\[\&\&\]\:shr-mb-0\.75 {
+  margin-bottom: 12px;
+}
+
+.\[\&\&\]\:shr-mb-1.\[\&\&\]\:shr-mb-1 {
+  margin-bottom: 16px;
+}
+
+.\[\&\&\]\:shr-mb-1\.25.\[\&\&\]\:shr-mb-1\.25 {
+  margin-bottom: 20px;
+}
+
+.\[\&\&\]\:shr-mb-1\.5.\[\&\&\]\:shr-mb-1\.5 {
+  margin-bottom: 24px;
+}
+
+.\[\&\&\]\:shr-mb-2.\[\&\&\]\:shr-mb-2 {
+  margin-bottom: 32px;
+}
+
+.\[\&\&\]\:shr-mb-2\.5.\[\&\&\]\:shr-mb-2\.5 {
+  margin-bottom: 40px;
+}
+
+.\[\&\&\]\:shr-mb-3.\[\&\&\]\:shr-mb-3 {
+  margin-bottom: 48px;
+}
+
+.\[\&\&\]\:shr-mb-3\.5.\[\&\&\]\:shr-mb-3\.5 {
+  margin-bottom: 56px;
+}
+
+.\[\&\&\]\:shr-mb-4.\[\&\&\]\:shr-mb-4 {
+  margin-bottom: 64px;
+}
+
+.\[\&\&\]\:shr-mb-8.\[\&\&\]\:shr-mb-8 {
+  margin-bottom: 128px;
 }
 
 .\[\&\&\]\:shr-box-border.\[\&\&\]\:shr-box-border {
@@ -5799,6 +5871,10 @@ a {
 
 .\[\&\:not\(\[data-files-dragged-over\]\)\]\:shr-border-dashed:not([data-files-dragged-over]) {
   border-style: dashed;
+}
+
+.\[\&\:not\(\[data-measured\]\)\]\:shr-overflow-hidden:not([data-measured]) {
+  overflow: hidden;
 }
 
 .\[\&\:not\(\[href\]\)\]\:shr-cursor-not-allowed:not([href]) {
