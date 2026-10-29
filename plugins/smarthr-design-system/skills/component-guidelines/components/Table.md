@@ -12,16 +12,17 @@ import { Table } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| reel | boolean | true | - | - |
+| ref | Ref<HTMLTableElement> | - | - | - |
+| fixedHead | boolean | - | - | ヘッダーを固定するかどうか |
 | borderType | "horizontal" \| "vertical" \| "both" \| "all" \| "outer" | - | - | 罫線の種類 |
 | borderStyle | "solid" \| "dotted" \| "dashed" | - | - | 罫線のスタイル |
 | rounded | boolean \| "right" \| "left" \| "top" \| "bottom" \| "all" | - | - | 角丸を適用する範囲 |
 | layout | "fixed" \| "auto" | - | - | テーブルのレイアウト |
-| fixedHead | boolean | - | - | ヘッダーを固定するかどうか |
-| reel | boolean | true | - | - |
 
 ## 実装ルール
 

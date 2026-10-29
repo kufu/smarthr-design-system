@@ -10,16 +10,15 @@ import { TextLink } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| size | "XS" \| "S" \| "M" | - | - | テキストのサイズ |
 | onClick | (e: MouseEvent<Element, MouseEvent>) => void | - | - | リンクをクリックした時に発火するコールバック関数 |
 | prefix | ReactNode | - | - | テキストの前に表示するアイコン |
+| size | "XS" \| "S" \| "M" | - | - | テキストのサイズ |
 | suffix | ReactNode | - | - | テキストの後ろに表示するアイコン |
 | elementAs | ElementType | - | - | TextLinkを利用しつつnext/linkなどと併用する場合に指定する |
-| ref | any | - | - | - |
 
 ## 実装ルール
 

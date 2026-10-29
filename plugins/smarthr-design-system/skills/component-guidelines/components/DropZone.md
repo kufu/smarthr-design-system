@@ -12,11 +12,12 @@ import { DropZone, DropZone } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### DropZone
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| ref | Ref<HTMLInputElement> | - | - | input[type="file"]要素へのref |
 | name | string | - | - | - |
 | disabled | boolean | - | - | - |
 | accept | string | - | - | 許可するファイル型を表す1つ以上の固有ファイル型指定子 <b>（ドラッグ&ドロップの挙動には影響しません）</b> |
@@ -28,6 +29,7 @@ import { DropZone, DropZone } from 'smarthr-ui'
 ### DropZone
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| ref | Ref<HTMLInputElement> | - | - | input[type="file"]要素へのref |
 | name | string | - | - | - |
 | disabled | boolean | - | - | - |
 | accept | string | - | - | 許可するファイル型を表す1つ以上の固有ファイル型指定子 <b>（ドラッグ&ドロップの挙動には影響しません）</b> |

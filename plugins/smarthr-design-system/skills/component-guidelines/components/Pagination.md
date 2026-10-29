@@ -10,17 +10,17 @@ import { Pagination } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| total | number | - | ✓ | 全ページ数 |
+| onClick | ButtonOnClickType \| AnchorOnClickType | - | - | ボタンを押下したときに発火するコールバック関数 リンクを押下したときに発火するコールバック関数 |
 | current | number | - | ✓ | 現在のページ |
 | padding | number | - | - | 現在のページの前後に表示するページ番号のボタンの数 |
-| withoutNumbers | boolean | - | - | `true` のとき、ページ番号のボタンを表示しない |
-| onClick | ButtonOnClickType \| AnchorOnClickType | - | - | ボタンを押下したときに発火するコールバック関数 リンクを押下したときに発火するコールバック関数 |
 | hrefTemplate | HrefTemplateType | - | - | href属性生成用関数。設定した場合、番号やarrowがbuttonからa要素に置き換わります |
 | linkAs | ElementType | - | - | next/linkなどのカスタムコンポーネントを指定します。指定がない場合はデフォルトで `a` タグが使用されます。 |
+| total | number | - | ✓ | 全ページ数 |
+| withoutNumbers | boolean | - | - | `true` のとき、ページ番号のボタンを表示しない |
 | onDelegateClick | ButtonOnClickType \| AnchorOnClickType | - | - | - |
 
 ## 実装ルール

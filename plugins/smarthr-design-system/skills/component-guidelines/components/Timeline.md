@@ -10,7 +10,7 @@ import { TimelineItem, Timeline } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### TimelineItem
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -21,9 +21,12 @@ import { TimelineItem, Timeline } from 'smarthr-ui'
 | dateSuffixArea | ReactNode | - | - | 日付のサフィックス領域 |
 | sideActionArea | ReactNode | - | - | サイドアクション領域 |
 | current | boolean | - | - | 現在のアイテムかどうか |
+| ref | Ref<HTMLDivElement> | - | - | - |
 
 ### Timeline
-（固有 Props なし）
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| ref | Ref<HTMLOListElement> | - | - | - |
 
 ## 実装ルール
 

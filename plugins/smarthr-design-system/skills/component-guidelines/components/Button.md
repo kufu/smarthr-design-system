@@ -10,34 +10,36 @@ import { UnstyledButton, Button, AnchorButton } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### UnstyledButton
-（固有 Props なし）
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| ref | Ref<HTMLButtonElement> | - | - | - |
 
 ### Button
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| size | "S" \| "M" | M | - | ボタンの大きさ |
-| disabledReason | { icon?: FunctionComponent<{}>; message: ReactNode; } | - | - | 無効な理由 |
 | prefix | ReactNode | - | - | ボタン内の先頭に表示する内容。 通常は、アイコンを表示するために用いる。 |
-| suffix | ReactNode | - | - | ボタン内の末尾に表示する内容。 通常は、アイコンを表示するために用いる。 |
-| wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
-| variant | "text" \| "primary" \| "secondary" \| "tertiary" \| "danger" \| "skeleton" | secondary | - | ボタンのスタイルの種類 |
 | loading | boolean | false | - | 処理が走ってるかどうか |
+| size | "S" \| "M" | M | - | ボタンの大きさ |
+| suffix | ReactNode | - | - | ボタン内の末尾に表示する内容。 通常は、アイコンを表示するために用いる。 |
+| variant | "text" \| "danger" \| "primary" \| "secondary" \| "tertiary" \| "skeleton" | secondary | - | ボタンのスタイルの種類 |
+| disabledReason | { icon?: FunctionComponent<{}>; message: ReactNode; } | - | - | 無効な理由 |
+| wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
+| ref | Ref<HTMLButtonElement> | - | - | - |
 
 ### AnchorButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | prefix | ReactNode | - | - | ボタン内の先頭に表示する内容。 通常は、アイコンを表示するために用いる。 |
+| loading | boolean | - | - | 処理が走ってるかどうか |
 | size | "S" \| "M" | M | - | ボタンの大きさ |
 | suffix | ReactNode | - | - | ボタン内の末尾に表示する内容。 通常は、アイコンを表示するために用いる。 |
-| loading | boolean | - | - | 処理が走ってるかどうか |
-| wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
 | elementAs | ElementType | - | - | next/linkなどのカスタムコンポーネントを指定します。指定がない場合はデフォルトで `a` タグが使用されます。 |
-| variant | "text" \| "primary" \| "secondary" \| "danger" \| "skeleton" | secondary | - | - |
+| variant | "text" \| "danger" \| "primary" \| "secondary" \| "skeleton" | secondary | - | - |
+| wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
 | inactiveReason | { icon?: FunctionComponent<{}>; message: ReactNode; } | - | - | - |
-| ref | any | - | - | - |
 
 ## 実装ルール
 

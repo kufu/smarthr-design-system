@@ -10,18 +10,18 @@ import { NotificationBar } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| subActionArea | ReactNode | - | - | コンポーネント右の領域 |
-| onClose | () => void | - | - | 閉じるボタン押下時に発火させる関数 |
-| role | "alert" \| "status" | - | - | role 属性 |
-| base | "base" \| "none" | - | - | 下地 |
-| type | "error" \| "warning" \| "info" \| "success" \| "sync" | - | ✓ | メッセージの種類 |
-| bold | boolean | - | - | 強調するかどうか |
 | animate | boolean | - | - | スライドインするかどうか |
+| type | "error" \| "warning" \| "info" \| "success" \| "sync" | - | ✓ | メッセージの種類 |
+| role | "alert" \| "status" | - | - | role 属性 |
+| onClose | () => void | - | - | 閉じるボタン押下時に発火させる関数 |
+| bold | boolean | - | - | 強調するかどうか |
 | layer | 0 \| 1 \| 2 \| 3 \| 4 | - | - | 影のレイヤー |
+| subActionArea | ReactNode | - | - | コンポーネント右の領域 |
+| paneled | boolean | - | - | Panel で囲むかどうか |
 
 ## 実装ルール
 
@@ -43,7 +43,7 @@ NotificationBar に直接関連する eslint-plugin-smarthr のルールは現�
   - ユーザーが行った操作の成功・失敗などの結果を画面全体（ヘッダーの下）に表示する場合
 
 ### 状態 > レイアウト > ベースあり
-- [should] 特定の操作範囲へのフィードバックなど Panel 内に配置する場合を除き、画面内に単体で配置する場合は基本的に `base="base"` を使用する
+- [should] 特定の操作範囲へのフィードバックなど Panel 内に配置する場合を除き、画面内に単体で配置する場合は基本的に `paneled` propsを使用する
 
 ### デザインパターン > ページ全体の操作へのフィードバック
 - [must] ページ全体の操作へのフィードバックでは、メッセージが表示されたことを強調するためにアニメーションを有効にする

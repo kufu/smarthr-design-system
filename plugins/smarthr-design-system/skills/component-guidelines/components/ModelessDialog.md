@@ -10,28 +10,28 @@ import { ModelessDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| heading | ReactNode | - | ✓ | ダイアログのタイトルの内容 |
 | footer | ReactNode | - | - | ダイアログのフッタ部分の内容 |
-| isOpen | boolean | - | ✓ | ダイアログが開かれているかどうかの真偽値 |
-| onClickClose | (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void | - | - | 閉じるボタンを押下したときのハンドラ |
-| onPressEscape | () => void | - | - | ダイアログが開いている状態で Escape キーを押下したときのハンドラ |
+| height | string \| number | - | - | ダイアログの高さ |
 | width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
 | size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
-| height | string \| number | - | - | ダイアログの高さ |
-| top | string \| number | - | - | ダイアログを開いたときの初期 top 位置 |
-| left | string \| number | - | - | ダイアログを開いたときの初期 left 位置 |
 | right | string \| number | - | - | ダイアログを開いたときの初期 right 位置 |
+| left | string \| number | - | - | ダイアログを開いたときの初期 left 位置 |
+| top | string \| number | - | - | ダイアログを開いたときの初期 top 位置 |
 | bottom | string \| number | - | - | ダイアログを開いたときの初期 bottom 位置 |
-| portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | ポータルの container となる DOM 要素を追加する親要素 |
-| resizable | boolean | false | - | リサイズ可能かどうか |
-| ref | Ref<HTMLDivElement> | - | - | - |
-| className | string | - | - | - |
+| heading | ReactNode | - | ✓ | ダイアログのタイトルの内容 |
+| isOpen | boolean | - | ✓ | ダイアログが開かれているかどうかの真偽値 |
+| onPressEscape | (e: KeyboardEvent) => void | - | - | ダイアログが開いている状態で Escape キーを押下したときのハンドラ |
 | contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | コンテンツ部分の背景色 |
 | contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
+| portalParent | HTMLElement | - | - | ポータルの container となる DOM 要素を追加する親要素。 ダイアログのマウントと同時に確定していない要素（例: ダイアログの祖先要素の ref）を 渡すと、その要素がまだ DOM に存在しない可能性があるため意図通りに動作しない。 呼び出し側で要素が確定してから渡すこと。 |
+| onClickClose | (e?: MouseEvent<HTMLButtonElement, MouseEvent> \| KeyboardEvent) => void | - | - | 閉じるボタンを押下したときのハンドラ |
+| resizable | boolean | false | - | リサイズ可能かどうか |
+| ref | Ref<HTMLDivElement> | - | - | - |
+| padding | Gap \| { block?: Gap; inline?: Gap; } | - | - | 境界とコンテンツの間の余白 |
 
 ## 実装ルール
 

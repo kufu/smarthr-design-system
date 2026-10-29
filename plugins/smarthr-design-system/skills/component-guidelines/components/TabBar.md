@@ -10,7 +10,7 @@ import { TabBar, TabItem } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### TabBar
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -20,11 +20,12 @@ import { TabBar, TabItem } from 'smarthr-ui'
 ### TabItem
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| suffix | ReactNode | - | - | ボタン内の末尾に表示する内容 |
-| selected | boolean | false | - | `true` のとき、タブが選択状態のスタイルになる |
-| disabled | boolean | - | - | `true` のとき、タブを無効状態にしてクリック不能にする |
-| disabledReason | { icon?: ReactNode; message: ReactNode; } | - | - | 無効な理由 |
 | onClick | (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void | - | ✓ | タブをクリックした時に発火するコールバック関数 |
+| disabled | boolean | - | - | `true` のとき、タブを無効状態にしてクリック不能にする |
+| selected | boolean | false | - | `true` のとき、タブが選択状態のスタイルになる |
+| suffix | ReactNode | - | - | ボタン内の末尾に表示する内容 |
+| disabledReason | { icon?: ReactNode; message: ReactNode; } | - | - | 無効な理由 |
+| ref | Ref<HTMLButtonElement> | - | - | - |
 
 ## 実装ルール
 

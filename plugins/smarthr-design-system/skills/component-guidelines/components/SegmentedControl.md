@@ -12,14 +12,15 @@ import { SegmentedControl } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | options | Option[] | - | ✓ | 選択肢の配列 |
+| defaultValue | string | - | - | デフォルトで選択する値 |
 | value | string | - | - | 選択中の値 |
-| onClickOption | (value: string) => void | - | - | 選択肢を押下したときに発火するコールバック関数 |
 | size | "S" \| "M" | M | - | 各ボタンの大きさ |
+| onClickOption | (value: string) => void | - | - | 選択肢を押下したときに発火するコールバック関数 |
 
 ## 実装ルール
 

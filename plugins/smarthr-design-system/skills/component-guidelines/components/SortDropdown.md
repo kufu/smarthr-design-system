@@ -10,20 +10,20 @@ import { SortDropdown } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
+| onCancel | MouseEventHandler<HTMLButtonElement> | - | - | キャンセル時に発火するイベント |
+| applyText | ReactNode | - | - | - |
+| cancelText | ReactNode | - | - | - |
+| onApply | (args: { field: string; order: "desc" \| "asc"; newfields: SortFieldType[]; }) => void | - | ✓ | 適用時に発火するイベント |
 | sortFields | SortFieldType[] | - | ✓ | 並び替え項目 |
 | defaultOrder | "desc" \| "asc" | - | ✓ | 並び順の初期値 |
 | sortFieldLabel | ReactNode | - | - | - |
 | sortOrderLegend | ReactNode | - | - | - |
 | ascLabel | ReactNode | - | - | - |
 | descLabel | ReactNode | - | - | - |
-| applyText | ReactNode | - | - | - |
-| cancelText | ReactNode | - | - | - |
-| onApply | (args: ArgsOnApply) => void | - | ✓ | 適用時に発火するイベント |
-| onCancel | MouseEventHandler<HTMLButtonElement> | - | - | キャンセル時に発火するイベント |
 | ref | Ref<HTMLButtonElement> | - | - | - |
 
 ## 実装ルール

@@ -10,13 +10,14 @@ import { Browser } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| items | ItemNodeLike[] | - | ✓ | 表示する item の配列 |
 | value | string | - | - | 選択中の item の値 |
+| items | ItemNodeLike[] | - | ✓ | 表示する item の配列 |
 | onSelectItem | (value: string) => void | - | - | 選択された際に呼び出されるコールバック。第一引数に item の value を取る。 |
+| ref | Ref<HTMLDivElement> | - | - | - |
 
 ## 実装ルール
 

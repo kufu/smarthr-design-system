@@ -5,40 +5,72 @@
 ## import
 
 ```ts
-import { MultiCombobox } from 'smarthr-ui'
+import { MultiCombobox, MultiCombobox } from 'smarthr-ui'
 ```
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v99.9.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
+### MultiCombobox
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| items | ComboboxItem<T>[] | - | ✓ | 選択可能なアイテムのリスト |
-| name | string | - | - | input 要素の `name` 属性の値 |
-| disabled | boolean | false | - | input 要素の `disabled` 属性の値 |
-| required | boolean | false | - | input 要素の `required` 属性の値 |
 | className | string | - | - | コンポーネント内の一番外側の要素に適用するクラス名 |
-| error | boolean | false | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
-| creatable | boolean | false | - | `true` のとき、 `items` 内に存在しないアイテムを新しく追加できるようになる |
-| placeholder | string |  | - | input 要素の `placeholder` 属性の値 |
-| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
+| name | string | - | - | input 要素の `name` 属性の値 |
 | width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
+| onFocus | () => void | - | - | コンポーネントがフォーカスされたときに発火するコールバック関数 |
+| onBlur | () => void | - | - | コンポーネントからフォーカスが外れた時に発火するコールバック関数 |
+| onChange | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 @deprecated `onChange` は非推奨なため、 代わりに `onChangeInput` を使用してください。 |
+| onSelect | (item: ComboboxItem<T>) => void | - | - | アイテムが選択された時に発火するコールバック関数 |
+| disabled | boolean | false | - | input 要素の `disabled` 属性の値 |
+| placeholder | string |  | - | input 要素の `placeholder` 属性の値 |
+| required | boolean | false | - | input 要素の `required` 属性の値 |
+| error | boolean | false | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
+| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
+| items | ComboboxItem<T>[] | - | ✓ | 選択可能なアイテムのリスト |
+| creatable | boolean | false | - | `true` のとき、 `items` 内に存在しないアイテムを新しく追加できるようになる |
 | dropdownHelpMessage | ReactNode | - | - | ドロップダウンリスト内に表示するヘルプメッセージ |
 | dropdownWidth | string \| number | auto | - | ドロップダウンリストの `width` スタイルに適用する値 |
 | onChangeInput | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
 | onAdd | (label: string) => void | - | - | `items` 内に存在しないアイテムが追加されたときに発火するコールバック関数 |
-| onSelect | (item: ComboboxItem<T>) => void | - | - | アイテムが選択された時に発火するコールバック関数 |
-| onChange | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 @deprecated `onChange` は非推奨なため、 代わりに `onChangeInput` を使用してください。 |
+| onChangeSelected | (selectedItems: ComboboxItem<T>[]) => void | - | - | 選択されているアイテムのリストが変わった時に発火するコールバック関数 |
+| noResultText | ReactNode | - | - | 検索結果が0件の時に表示するコンテンツ |
 | selectedItems | (ComboboxItem<T> & { deletable?: boolean; })[] | - | ✓ | 選択されているアイテムのリスト |
 | selectedItemEllipsis | boolean | - | - | 選択されているアイテムのラベルを省略表示するかどうか |
 | inputValue | string | - | - | テキストボックスの `value` 属性の値。 `onChangeInput` と併せて設定することで、テキストボックスの挙動が制御可能になる。 |
 | onDelete | (item: ComboboxItem<T>) => void | - | - | 選択されているアイテムの削除ボタンがクリックされた時に発火するコールバック関数 |
-| onChangeSelected | (selectedItems: ComboboxItem<T>[]) => void | - | - | 選択されているアイテムのリストが変わった時に発火するコールバック関数 |
+| isItemSelected | (targetItem: ComboboxItem<T>, selectedItems: ComboboxItem<T>[]) => boolean | - | - | アイテムが選択されたときに選択済みかどうかを判定するコールバック関数/ |
+| ref | Ref<HTMLInputElement> | - | - | - |
+
+### MultiCombobox
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| className | string | - | - | コンポーネント内の一番外側の要素に適用するクラス名 |
+| name | string | - | - | input 要素の `name` 属性の値 |
+| width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
 | onFocus | () => void | - | - | コンポーネントがフォーカスされたときに発火するコールバック関数 |
 | onBlur | () => void | - | - | コンポーネントからフォーカスが外れた時に発火するコールバック関数 |
-| isItemSelected | (targetItem: ComboboxItem<T>, selectedItems: ComboboxItem<T>[]) => boolean | - | - | アイテムが選択されたときに選択済みかどうかを判定するコールバック関数/ |
+| onChange | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 @deprecated `onChange` は非推奨なため、 代わりに `onChangeInput` を使用してください。 |
+| onSelect | (item: ComboboxItem<T>) => void | - | - | アイテムが選択された時に発火するコールバック関数 |
+| disabled | boolean | false | - | input 要素の `disabled` 属性の値 |
+| placeholder | string |  | - | input 要素の `placeholder` 属性の値 |
+| required | boolean | false | - | input 要素の `required` 属性の値 |
+| error | boolean | false | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
+| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
+| items | ComboboxItem<T>[] | - | ✓ | 選択可能なアイテムのリスト |
+| creatable | boolean | false | - | `true` のとき、 `items` 内に存在しないアイテムを新しく追加できるようになる |
+| dropdownHelpMessage | ReactNode | - | - | ドロップダウンリスト内に表示するヘルプメッセージ |
+| dropdownWidth | string \| number | auto | - | ドロップダウンリストの `width` スタイルに適用する値 |
+| onChangeInput | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
+| onAdd | (label: string) => void | - | - | `items` 内に存在しないアイテムが追加されたときに発火するコールバック関数 |
+| onChangeSelected | (selectedItems: ComboboxItem<T>[]) => void | - | - | 選択されているアイテムのリストが変わった時に発火するコールバック関数 |
 | noResultText | ReactNode | - | - | 検索結果が0件の時に表示するコンテンツ |
+| selectedItems | (ComboboxItem<T> & { deletable?: boolean; })[] | - | ✓ | 選択されているアイテムのリスト |
+| selectedItemEllipsis | boolean | - | - | 選択されているアイテムのラベルを省略表示するかどうか |
+| inputValue | string | - | - | テキストボックスの `value` 属性の値。 `onChangeInput` と併せて設定することで、テキストボックスの挙動が制御可能になる。 |
+| onDelete | (item: ComboboxItem<T>) => void | - | - | 選択されているアイテムの削除ボタンがクリックされた時に発火するコールバック関数 |
+| isItemSelected | (targetItem: ComboboxItem<T>, selectedItems: ComboboxItem<T>[]) => boolean | - | - | アイテムが選択されたときに選択済みかどうかを判定するコールバック関数/ |
+| ref | Ref<HTMLInputElement> | - | - | - |
 
 ## 実装ルール
 
