@@ -1,0 +1,38 @@
+name: figma-inventory selftest
+
+# plugins/figma-inventory の圧縮スクリプト（scripts/）か試験データ（tests/）を変えた PR のときだけ、
+# extract_figma.py --selftest を回す。
+# - required status check には指定しない。必須でなければ、paths で起動を絞っても
+#   「Expected — Waiting for status」で PR が止まることはない（validate-skills.yml の注記を参照）。
+# - スクリプトは Python の標準ライブラリだけで動くので、依存のインストールは無い。
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/figma-inventory/scripts/**'
+      - 'plugins/figma-inventory/tests/**'
+      - '.github/workflows/figma-inventory-selftest.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: figma-inventory-selftest-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # 利用者の環境で動く最小の版（README の前提）で確かめる
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.8'
+
+      - name: Run selftest
+        run: python3 plugins/figma-inventory/scripts/extract_figma.py --selftest
