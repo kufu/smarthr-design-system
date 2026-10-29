@@ -222,10 +222,21 @@ import { DynamicMessageDialog } from './_components'
 
 
 ## Props
-コンポーネントが持つPropsを網羅して書きます。  
-グループに複数のサブコンポーネント（例: Dialog 配下の DialogTrigger / DialogContent など）がある場合は、それぞれ`ComponentPropsTable`を並べ、区別のため`showTitle`を付けます。
+`<ComponentPropsTable />`を使って、コンポーネントが持つPropsを網羅して書きます。`name`にはコンポーネント名を指定します。
 
 <ComponentPropsTable name="Button" />
+
+グループに複数のサブコンポーネント（例: AppNavi 配下の AppNaviButton / AppNaviAnchor など）がある場合は、それぞれ`ComponentPropsTable`を並べ、区別のため`showTitle`を付けます。
+
+```tsx
+<ComponentPropsTable name="AppNavi" showTitle />
+
+<ComponentPropsTable name="AppNaviButton" showTitle />
+
+<ComponentPropsTable name="AppNaviAnchor" showTitle />
+
+...
+```
 
 
 ## 関連リンク
