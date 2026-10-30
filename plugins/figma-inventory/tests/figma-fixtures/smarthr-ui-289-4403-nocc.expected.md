@@ -1,0 +1,260 @@
+# Figma インベントリ（smarthr-ui-289-4403-nocc.raw.json）
+
+凡例: «レイヤー名» はコンポーネント外のフレーム。フレームの `|` の後ろは見た目の値（固定の寸法・角丸・背景・境目）。`→ guide:` は Code Connect の import 先から解決したcomponent-guidelines のガイド。`Figma:` は Figma のプロパティ値そのまま（smarthr-ui の props ではない）。Code Connect のあるコンポーネントの見た目（色・形・大きさ）は出ないので、スクリーンショットで確かめる。「アセット画像（Code Connect なし）」は Figma に置かれた画像で、smarthr-ui のアイコンとして紐づいていない。省略したもの: ノード ID・インスタンススワップの ID、false のブール、Variant の -/False/Off/default/enabled/false/normal/off、オフのスロットの値、import 名（レイヤー名由来）。
+
+⚠ component-guidelines のガイド一覧が見つからず、ガイド名を確認できていない（smarthr-design-system プラグインを入れると付く）。
+
+## 構造
+
+- «collection» 縦 align=center | 幅1400px
+  - 未紐づけ（関数 AppHeader）
+    - «無名» 縦 | 幅1400px
+      - «Header» 横 gap縦=4px(token 0.25) align=center justify=between | 余白=横20px 背景=brand
+        - «group» 横 gap=4px(token 0.25) align=center
+          - «SmartHRLogo» アセット画像（Code Connect なし）
+          - 未紐づけ «HeaderDropdownMenuButton» 横
+            - «DropdownTrigger» 横 gap=8px(token 0.5) align=center justify=center | 余白=上13 下13 左5px 角丸6px 枠線
+              - 「株式会社SmartHR」 文字色=text_white 太字 ⚠フォント=W4 / weight 変数=bold
+              - «Icon» アセット画像（Code Connect なし）
+        - «group» 横 gap=8px(token 0.5) align=center justify=end | 高さ48px
+          - 未紐づけ（関数 AppHeaderAssetsDesktopAppLauncher）
+            - 未紐づけ «DropdownTrigger» <button> 横 gap=8px(token 0.5) align=center justify=center | 余白=上13 下13 左5px 角丸6px 枠線
+              - «Icon» アセット画像（Code Connect なし）
+              - 「アプリ」 文字色=text_white 太字 ⚠フォント=W4 / weight 変数=bold
+          - 未紐づけ «HeaderLink» 横 gap=4px(token 0.25) align=center justify=center | 余白=横4px（同じ形 ×2。2 件目以降は文言のみ）
+            - «Icon» アセット画像（Code Connect なし）
+            - 「スクール」 文字色=text_white
+            - 2 件目の文言（1 件目と同じ順）:
+              - 「ヘルプ」
+          - 未紐づけ（関数 HeaderLanguageSwitcher）
+            - «Trigger» <button> 横 gap=8px(token 0.5) align=center justify=center | 余白=縦13 横5px 角丸6px 枠線
+              - «Icon» アセット画像（Code Connect なし）
+              - 「Language」 文字色=text_white
+              - «Icon» アセット画像（Code Connect なし）
+          - 未紐づけ «HeaderDropdownMenuButton» 横
+            - «DropdownTrigger» 横 gap=8px(token 0.5) align=center justify=center | 余白=上13 下13 左5px 角丸6px 枠線
+              - 「須磨 栄子（SHR0001）」 文字色=text_white 太字 ⚠フォント=W4 / weight 変数=bold
+              - «Icon» アセット画像（Code Connect なし）
+      - 未紐づけ «AppNavi» 横 gap=16px(token 1) align=center | 余白=左24px 背景=white 影
+        - «StatusLabel» 「機能名」 文字色=text_grey 文字=S 太字
+        - «group» 横 gap=16px(token 1) align=center
+          - «AppNaviButton 1» 「ナビゲーション」 太字
+          - «AppNaviButton 2» 「ナビゲーション」 文字色=text_grey 太字
+          - «AppNaviButton 3» 「ナビゲーション」 文字色=text_grey 太字
+          - «AppNaviButton 4» 「ナビゲーション」 文字色=text_grey 太字
+          - «AppNaviButton 5» 横 gap=8px(token 0.5) align=center | 余白=縦12 横8px
+            - 「ナビゲーション」 文字色=text_grey 太字
+            - «Icon» アセット画像（Code Connect なし）
+        - 未紐づけ（関数 Spacer） | Figma: grid=false
+          - «Spacer» | «包み»: 大きさ128px（空）
+        - «group» 横 align=center
+          - 未紐づけ（関数 AppNaviAssetsReleaseNoteButton）
+            - «無名» <button> 横 gap=8px(token 0.5) align=center | 余白12px 罫線(左)
+              - 「リリースノート」
+              - «Icon» アセット画像（Code Connect なし）
+  - «Container» > «group» 縦 gap=32px(token 2) | 幅1184px | «Container»: 余白32px
+    - «group» 縦 gap=24px(token 1.5)
+      - «headingArea» 縦 gap=16px(token 1)
+        - 未紐づけ（関数 TextLinkUpwardLink）
+          - 未紐づけ «TextLink» 横 gap=4px(token 0.25) align=center | 罫線(下) | «包み»: 幅80px 高さ21px
+            - «Icon» アセット画像（Code Connect なし）
+            - 「一覧に戻る」 文字色=text_link
+        - «Heading» 「タイトルテキスト」 文字=XL
+        - 「画面説明テキスト×56」
+      - 未紐づけ «InformationPanel[deprecated]» 縦 | 角丸8px 背景=white 影
+        - «group» 横 gap=8px(token 0.5) align=center | 余白24px
+          - «ResponseMessage» 横 gap=8px(token 0.5) align=center
+            - «無名» アセット画像（Code Connect なし）
+            - 「パネル見出し」 ⚠フォント=W7 / weight 変数=normal
+          - «group» > «Button» <button> 横 gap=8px(token 0.5) align=center justify=center | 余白9px 角丸6px 背景=white 枠線 | «group»: 幅82px 高さ16px
+            - 「閉じる」 文字=S 太字
+            - «Icon» アセット画像（Code Connect なし）
+        - «group» 「内容テキスト×57」
+    - 未紐づけ «ListStatusSummary» 縦 gap=16px(token 1)
+      - «Heading» 「一覧ステータスサマリ」 文字=L
+      - «Contents» 縦 gap=24px(token 1.5) | 余白24px 角丸8px 背景=white 影
+        - 「件数を押すと該当する条件で絞り込みます。」
+        - «Statuses» 横 gap=16px(token 1)
+          - «Status 1» 横 gap=8px(token 0.5) align=center
+            - «StatusLabel» 「ステータス」 文字色=text_grey 文字=S 太字
+            - 「99件」 文字色=text_link
+          - «Status 2» 横 gap=8px(token 0.5) align=center
+            - «StatusLabel» 「ステータス」 文字色=main 文字=S 太字
+            - 「99件」 文字色=text_link
+          - «Status 3» 横 gap=8px(token 0.5) align=center
+            - «StatusLabel» 「ステータス」 文字色=green_100 文字=S 太字
+            - 「99件」 文字色=text_link
+          - «Status 4» 横 gap=8px(token 0.5) align=center
+            - «StatusLabel» 「ステータス」 文字色=danger 文字=S 太字
+            - 「99件」 文字色=text_link
+          - «Status 5» 横 gap=8px(token 0.5) align=center
+            - «StatusLabel» 「ステータス」 文字色=text_white 文字=S 太字
+            - 「99件」 文字色=text_link
+          - «Status 6» 横 gap=8px(token 0.5) align=center
+            - «StatusLabel» 「ステータス」 文字色=text_white 文字=S 太字
+            - 「99件」 文字色=text_link
+          - «Status 7» 横 gap=8px(token 0.5) align=center
+            - «StatusLabel» 「ステータス」 文字色=text_white 文字=S 太字
+            - 「99件」 文字色=text_link
+          - «Status 8» 横 gap=8px(token 0.5) align=center
+            - «StatusLabel» 「ステータス」 文字色=text_white 文字=S 太字
+            - 「99件」 文字色=text_link
+    - «よくあるテーブル» 縦 gap=16px(token 1)
+      - «Title» 横 align=center
+        - «Heading» 「一覧見出し」 文字=L
+        - «spacer»（空）
+        - 未紐づけ «Button» 横 gap=8px(token 0.5) align=center justify=center | 余白=縦13 横17px 角丸6px 背景=white 枠線
+          - icon FaCirclePlus
+          - 「新規追加」 太字
+      - «Base» 縦 | 角丸8px 背景=white 影
+        - 未紐づけ «ListSearchField» 横 gap=16px(token 1) align=center | 余白16px
+          - «search buttons» 横 gap=16px(token 1)
+            - «SearchForm» 横 gap=8px(token 0.5)
+              - «Input/SearchInput» 縦 gap=4px(token 0.25) | 幅210px
+                - «Input» 横 gap=8px(token 0.5) align=center | 余白=縦13 横9px 角丸6px 背景=white 枠線
+                  - «Icon» アセット画像（Code Connect なし）
+              - «検索» 横 gap=8px(token 0.5) align=center justify=center | 余白=縦13 横17px 角丸6px 背景=white 枠線
+                - 「検索」 太字
+            - «FilterDropdown» > «Button» 横 gap=8px(token 0.5) align=center justify=center | 余白=縦13 横17px 角丸6px 背景=white 枠線
+              - 「絞り込み」 太字
+              - «Icon» アセット画像（Code Connect なし）
+            - «ダウンロード» 横 gap=8px(token 0.5) align=center justify=center | 余白=縦13 横17px 角丸6px 背景=white 枠線
+              - «Icon» アセット画像（Code Connect なし）
+              - 「ダウンロード」 太字
+          - 未紐づけ（関数 Spacer） | Figma: grid=false
+            - «Spacer» | «包み»: 大きさ128px（空）
+          - «Pagination» 横 gap=16px(token 1) align=center justify=center
+            - «PageCounter» 横 gap=4px(token 0.25) align=center
+              - «group» 横 gap=4px(token 0.25) align=center
+                - 「1」 太字
+                - 「–」
+                - 「50」 太字
+              - «group» 横 gap=4px(token 0.25) align=center
+                - 「/」
+                - 「5,000」 太字
+            - «group» 横 gap=16px(token 1)
+              - «Button 1» > «group» | 角丸6px 枠線 ⚠トークン外 border-[rgba(214,211,208,0.5)]
+                - «無名» | 角丸6px
+                  - «無名» | 角丸6px 背景=white（空）
+                  - «無名» | 角丸6px ⚠トークン外 bg-[rgba(0,0,0,0.05)]（空）
+                - «無名» アセット画像（Code Connect なし）
+              - «group» 横 gap=8px(token 0.5)
+                - «Button 2» > «group» | 角丸6px 枠線 ⚠トークン外 border-[rgba(214,211,208,0.5)]
+                  - «無名» | 角丸6px
+                    - «無名» | 角丸6px 背景=white（空）
+                    - «無名» | 角丸6px ⚠トークン外 bg-[rgba(0,0,0,0.05)]（空）
+                  - «無名» アセット画像（Code Connect なし）
+                - «Button 3» アセット画像（Code Connect なし）
+              - «Button 4» アセット画像（Code Connect なし）
+        - «Table» 縦
+          - «Head» 横
+            - 未紐づけ（関数 TableTh）
+              - «無名» gap=10px ⚠非トークン justify=center
+                - 未紐づけ（関数 CheckboxAssetsCheckboxInput）
+                  - «base» | 角丸4px 背景=white 枠線 | «包み»: 大きさ16px（空）
+            - «Head» 「ステータス」 文字=S 太字
+            - 未紐づけ（関数 TableTh） | Figma: textValue=社員番号 type=default
+              - «無名» gap=10px ⚠非トークン justify=center
+                - 「社員番号」 文字=S 太字
+            - «Head» 「氏名」 文字=S 太字
+            - 未紐づけ（関数 TableTh） | Figma: textValue=部署 type=default
+              - «無名» gap=10px ⚠非トークン justify=center
+                - 「部署」 文字=S 太字
+            - 未紐づけ（関数 TableTh） | Figma: textValue=役職 type=default
+              - «無名» gap=10px ⚠非トークン justify=center
+                - 「役職」 文字=S 太字
+            - 未紐づけ（関数 TableTh） | Figma: textValue=雇用形態 type=default
+              - «無名» gap=10px ⚠非トークン justify=center
+                - 「雇用形態」 文字=S 太字
+            - 未紐づけ（関数 TableTh） | Figma: textValue=入社年月日 type=default
+              - «無名» gap=10px ⚠非トークン justify=center
+                - 「入社年月日」 文字=S 太字
+          - 未紐づけ «TableBulkActionRow» 横 gap=16px(token 1) align=center | 余白=上17 下16 左16 右16px 背景=action_background 罫線(上)
+            - 「{オブジェクト名}が選択されていません。」
+            - «group» 横 gap=8px(token 0.5)
+              - «Button 1» > «group» | 角丸6px 枠線 ⚠トークン外 border-[rgba(214,211,208,0.5)]
+                - «無名» | 角丸6px
+                  - «無名» | 角丸6px 背景=white（空）
+                  - «無名» | 角丸6px ⚠トークン外 bg-[rgba(0,0,0,0.05)]（空）
+                - «無名» 横 gap=8px(token 0.5) align=center justify=center | 余白9px
+                  - 「ボタン」 文字色=text_disabled 文字=S 太字
+              - «Button 2» > «group» | 角丸6px 枠線 ⚠トークン外 border-[rgba(214,211,208,0.5)]
+                - «無名» | 角丸6px
+                  - «無名» | 角丸6px 背景=white（空）
+                  - «無名» | 角丸6px ⚠トークン外 bg-[rgba(0,0,0,0.05)]（空）
+                - «無名» 横 gap=8px(token 0.5) align=center justify=center | 余白9px
+                  - 「ボタン」 文字色=text_disabled 文字=S 太字
+              - «Button 3» > «group» | 角丸6px 枠線 ⚠トークン外 border-[rgba(214,211,208,0.5)]
+                - «無名» | 角丸6px
+                  - «無名» | 角丸6px 背景=white（空）
+                  - «無名» | 角丸6px ⚠トークン外 bg-[rgba(0,0,0,0.05)]（空）
+                - «無名» 横 gap=8px(token 0.5) align=center justify=center | 余白9px
+                  - 「ボタン」 文字色=text_disabled 文字=S 太字
+              - «Button 4» > «group» | 角丸6px 枠線 ⚠トークン外 border-[rgba(214,211,208,0.5)]
+                - «無名» | 角丸6px
+                  - «無名» | 角丸6px 背景=white（空）
+                  - «無名» | 角丸6px ⚠トークン外 bg-[rgba(0,0,0,0.05)]（空）
+                - «無名» 横 gap=8px(token 0.5) align=center justify=center | 余白9px
+                  - 「ボタン」 文字色=text_disabled 文字=S 太字
+          - «tr» 横（×10 同一）
+            - 未紐づけ «TableTd» 横 align=center justify=center | 高さ48px 余白=上9 下8 左16 右16px 罫線(上)
+              - «Checkbox» > «base» | 角丸4px 背景=white 枠線 大きさ16px（空）
+            - 未紐づけ «TableTd» 横 align=center justify=center | 高さ48px 余白=上9 下8 左16 右16px 罫線(上)
+              - «StatusLabel» | 背景=white 枠線
+                - 「ステータス」 文字色=text_grey 文字=S 太字
+            - 未紐づけ «TableTd» 横 align=center | 幅158.833px 高さ48px 余白=上9 下8 左16 右16px 罫線(上)
+              - 「SHR0001」
+            - 未紐づけ «TableTd» 横 align=center | 幅158.833px 高さ48px 余白=上9 下8 左16 右16px 罫線(上)
+              - «group» 横 align=center | 罫線(下)
+                - 「須磨栄子」 文字色=text_link
+            - 未紐づけ «TableTd» 横 align=center | 幅158.833px 高さ48px 余白=上9 下8 左16 右16px 罫線(上)（同じ形 ×4。2 件目以降は文言のみ）
+              - 「営業部」
+              - 2〜4 件目の文言（1 件目と同じ順）:
+                - 「部長」
+                - 「正社員」
+                - 「2021/12/12」
+      - «Pagination» 縦 align=center
+        - 未紐づけ «Pagination» 横 gap=16px(token 1)
+          - «group» 横 gap=8px(token 0.5)
+            - «Button 1» > «group» | 角丸6px 枠線 ⚠トークン外 border-[rgba(214,211,208,0.5)]
+              - «無名» | 角丸6px
+                - «無名» | 角丸6px 背景=white（空）
+                - «無名» | 角丸6px ⚠トークン外 bg-[rgba(0,0,0,0.05)]（空）
+              - «無名» アセット画像（Code Connect なし）
+            - «Button 2» > «group» | 角丸6px 枠線 ⚠トークン外 border-[rgba(214,211,208,0.5)]
+              - «無名» | 角丸6px
+                - «無名» | 角丸6px 背景=white（空）
+                - «無名» | 角丸6px ⚠トークン外 bg-[rgba(0,0,0,0.05)]（空）
+              - «無名» アセット画像（Code Connect なし）
+          - «group» 横 gap=8px(token 0.5)
+            - «Button 3» > «Button» 横 gap=8px(token 0.5) align=center justify=center | 余白9px 角丸6px 背景=main 枠線
+              - 「1」 文字色=text_white 文字=S 太字
+            - «Button 4» > «Button» 横 gap=8px(token 0.5) align=center justify=center | 余白9px 角丸6px 背景=white 枠線
+              - 「2」 文字=S 太字
+            - «Button 5» > «Button» 横 gap=8px(token 0.5) align=center justify=center | 余白9px 角丸6px 背景=white 枠線
+              - 「3」 文字=S 太字
+            - «Button 6» > «Button» 横 gap=8px(token 0.5) align=center justify=center | 余白9px 角丸6px 背景=white 枠線
+              - 「4」 文字=S 太字
+            - «Button 7» > «Button» 横 gap=8px(token 0.5) align=center justify=center | 余白9px 角丸6px 背景=white 枠線
+              - 「5」 文字=S 太字
+            - «PaginationDots» 縦 align=center justify=center | 余白=上7 下6px
+              - 「…」
+            - «Button 8» > «Button» 横 gap=8px(token 0.5) align=center justify=center | 余白9px 角丸6px 背景=white 枠線
+              - 「99」 文字=S 太字
+          - «group» アセット画像（Code Connect なし）
+
+## 要確認（スクリプトでは判断しない）
+
+- 未紐づけ（Code Connect なし。レイヤー名と構造のみ）: 関数 AppHeader、«HeaderDropdownMenuButton»（×2）、関数 AppHeaderAssetsDesktopAppLauncher、«DropdownTrigger»、«HeaderLink»（×2）、関数 HeaderLanguageSwitcher、«AppNavi»、関数 Spacer（×2）、関数 AppNaviAssetsReleaseNoteButton、関数 TextLinkUpwardLink、«TextLink»、«InformationPanel[deprecated]»、«ListStatusSummary»、«Button»、«ListSearchField»、関数 TableTh（×6）、関数 CheckboxAssetsCheckboxInput、«TableBulkActionRow»、«TableTd»（×80）、«Pagination»（×2）
+- フォントとウェイト変数の矛盾（どちらが正か不明）: 「株式会社SmartHR」 フォント=W4 / weight 変数=bold、「アプリ」 フォント=W4 / weight 変数=bold、「須磨 栄子（SHR0001）」 フォント=W4 / weight 変数=bold、「パネル見出し」 フォント=W7 / weight 変数=normal
+- トークンに当てはまらない gap: «div» gap=10px ⚠非トークン（×6）
+- トークン化されていない色: «group» border-[rgba(214,211,208,0.5)]（×10）、«div» bg-[rgba(0,0,0,0.05)]（×10）
+- 除外した非表示レイヤー: fixedLeft=false → «ReelShadowRight»（×6）、isDefault=false → «p»、isDefault=false → «ReelShadowLeft»、isDefault=false → «ReelShadowRight»、isCheckbox=false → «CheckboxAssetsCheckboxInput»（×5）、isCheckbox=false → «ReelShadowRight»（×5）、fixedRight=false → «ReelShadowLeft»（×5）
+
+## 次にすること（スクリプトでは判断していないこと）
+
+- スクリーンショットと照合し、インベントリに無い文言（プロパティとして公開されていないテキストの上書き）を拾う
+- ブールだけでアイコン名が無いもの（prefixIcon など）は、スクリーンショットでアイコンの形を確かめる
+- 「要確認」の各項目は、スクリーンショットで見た目を確かめてから判断する。ここでは解決しない
+- 「ボタン」「テーブル内容」のような Figma の既定の文言は、スクリーンショットでも同じか確かめる。勝手に置き換えない
+- props への変換は、component-guidelines の該当ガイド（`→ guide:` の名前）を読んでから行う。Figma の構造よりガイドの実装ルールを優先する。プロジェクトの smarthr-ui のバージョンがガイドと違うときは d.ts を正とする

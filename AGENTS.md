@@ -29,7 +29,7 @@
 - `src/layouts/` — ページレイアウト
 - `src/remark/` — 独自 remark プラグイン
 - `scripts/` — コンテンツ生成・チェック用スクリプト（`generate-skills` など）
-- `plugins/` — 配布する AI スキルプラグイン（`smarthr-design-system`。スキル `component-guidelines` / `design-pattern-guidelines` を含む）
+- `plugins/` — 配布する AI プラグイン（`smarthr-design-system`: スキル `component-guidelines` / `design-pattern-guidelines` を含む。`figma-inventory`: Figma MCP の応答を hook で圧縮する）
 - `public/` — 静的アセット / `.github/workflows/` — CI
 
 ## PR を作成するときの注意
@@ -49,4 +49,5 @@ Conventional Commits（`feat:` / `fix:` / `docs:` / `chore:` など）に従う�
 ドキュメントサイトに加えて、smarthr-ui を使う AI コーディングエージェント（Claude Code / Cursor / Codex）向けのスキルプラグインを `plugins/smarthr-design-system/` で配布しています。コンポーネントの利用ガイドやデザインパターンをスキルとして提供するものです。
 
 - 概要・構成・開発方法 → [plugins/smarthr-design-system/README.md](./plugins/smarthr-design-system/README.md)
+- Figma MCP（`get_design_context`）の応答を hook でインベントリに圧縮するプラグイン `figma-inventory` も同じマーケットプレイスで配布しています（Claude Code / Cursor）。概要・selftest・fixture の制約（公開リポジトリなのでプロダクトの Figma の応答を置かない）→ [plugins/figma-inventory/README.md](./plugins/figma-inventory/README.md)
 - スキルの合成元になる `checklist.yaml` の作成・更新（AI スキルに任せられます）→ [CONTRIBUTING.md](./CONTRIBUTING.md)「smarthr-ui コンポーネント向け AI スキルの整備」
