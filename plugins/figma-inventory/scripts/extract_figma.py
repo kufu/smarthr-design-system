@@ -834,6 +834,18 @@ def unexpanded_slots(node):
             if k.startswith("slot") and k[4:5].isupper() and t == "str" and NODE_ID_RE.match(v)]
 
 
+def render_snippet_component(ctx, snippet, el, context_guide, indent):
+    """スニペットの中のコンポーネント 1 つ。options の形でも子要素の形でも、スロット未展開を見る。"""
+    block = render_component(ctx, el, context_guide, indent)
+    slots = unexpanded_slots(el)
+    if slots:
+        block[0] += " ⚠スロット未展開 " + ",".join(slots)
+        name = node_name(snippet) or "CodeConnectSnippet"
+        for s in slots:
+            ctx.notes["slot"].append(f"«{name}»（インスタンス {node_id(snippet) or 'ID 不明'}）の {s}")
+    return block
+
+
 def render_snippet_options(ctx, node, indent, context_guide):
     """`<CodeConnectSnippet options={[<A … />, <A … />]} />`（複数の候補を並べる形式）。
     候補を描き、同じ行になるものは 1 つにまとめる。スロット未展開は「要確認」節に回す。
@@ -844,7 +856,6 @@ def render_snippet_options(ctx, node, indent, context_guide):
         expr = expr[1:-1]
     opts = [c for c in parse_jsx(expr, ctx.notes["parse"]).children
             if not c.tag.startswith("#")]
-    name = node_name(node) or "CodeConnectSnippet"
     blocks = []
     seen = []
     for opt in opts:
@@ -854,14 +865,9 @@ def render_snippet_options(ctx, node, indent, context_guide):
             if sig in seen:
                 continue
             seen.append(sig)
-        block = render_component(ctx, opt, context_guide, indent)
-        slots = unexpanded_slots(opt)
-        if slots:
-            block[0] += " ⚠スロット未展開 " + ",".join(slots)
+        block = render_snippet_component(ctx, node, opt, context_guide, indent)
         if block not in blocks:
             blocks.append(block)
-        for s in slots:
-            ctx.notes["slot"].append(f"«{name}»（インスタンス {node_id(node) or 'ID 不明'}）の {s}")
     if len(blocks) > 1:
         blocks = [[b[0] + f"（options の {i} 件目）"] + b[1:] for i, b in enumerate(blocks, 1)]
     return [line for b in blocks for line in b]
@@ -900,7 +906,7 @@ def render_node(ctx, node, indent, context_guide, env=None):
         lines = []
         for c in node.children:
             if is_component_tag(c.tag):
-                lines.extend(render_component(ctx, c, context_guide, indent))
+                lines.extend(render_snippet_component(ctx, node, c, context_guide, indent))
             else:
                 lines.extend(render_node(ctx, c, indent, context_guide, env))
         return lines
@@ -1040,24 +1046,37 @@ def compact_line(line):
 def render_row(ctx, kids):
     cells = []
     cell_tag = None
+    guides = []
     for c in kids:
         el = next(x for x in c.children if is_component_tag(x.tag))
         cell_tag = re.sub(r"\d+$", "", el.tag)
+        cands = ctx.r.candidates(el.tag)
+        if len(cands) == 1:
+            guide = ctx.r.resolve_path(cands[0])[0]
+            if guide and guide not in guides:
+                guides.append(guide)
         props = classify_props(el.attrs)
-        parts, texts = fmt_props(props, ctx.hoisted.get(cell_tag, frozenset()))
         inner = []
         for ch in el.children:
-            if is_component_tag(ch.tag):
+            if ch.tag == "#text":
+                props.append(("text", "text", ch.text))  # セルの中に直接書かれた文言
+            elif is_component_tag(ch.tag):
                 # 入れ子の行（DropdownMenuButton の中のトリガーの文言や state など）も落とさず 1 行に連ねる
                 sub = render_component(ctx, ch, cell_tag, "")
                 inner.append(" > ".join(compact_line(line) for line in sub))
+            else:
+                sub = render_node(ctx, ch, "", cell_tag)
+                if sub:
+                    inner.append(" > ".join(compact_line(line) for line in sub))
+        parts, texts = fmt_props(props, ctx.hoisted.get(cell_tag, frozenset()))
         cell = " ".join(parts)
         if texts:
             cell += ("" if not cell else " ") + " ".join(f"「{t}」" for t in texts)
         if inner:
             cell += " [" + "; ".join(inner) + "]"
         cells.append(cell or "（空）")
-    return f"{cell_tag} 行: " + " / ".join(cells)
+    guide_note = "（→ guide: " + ", ".join(f"{g}.md" for g in guides) + "）" if guides else ""
+    return f"{cell_tag} 行{guide_note}: " + " / ".join(cells)
 
 
 TEXT_RE = re.compile(r"「[^」]*」")
@@ -1258,6 +1277,8 @@ def load_guides(args):
 PREFIX = "[figma-inventory]"
 SCRIPT = Path(__file__).resolve()
 PERSISTED_RE = re.compile(r"Output has been saved to (\S+?)\.?(?:\s|$)")
+# 退避の知らせとして扱う長さの上限（文字）。知らせは数百文字で、参照コードは数万文字ある
+PERSISTED_NOTICE_MAX = 2000
 # Cursor が大きい結果を退避したファイルを探すとき、duration に足す余裕（秒）
 SPILL_MARGIN_SEC = 5
 
@@ -1265,20 +1286,36 @@ SPILL_MARGIN_SEC = 5
 class PersistedUnreadable(Exception):
     """退避の知らせはあったが、退避ファイルを読めなかった。"""
 
-    def __init__(self, path, notice):
+    def __init__(self, path, notice, outside=False):
         super().__init__(path)
         self.path = path
         self.notice = notice
+        self.outside = outside  # Claude Code の退避フォルダの外を指していた
 
 
 def text_blocks(resp):
     return [b.get("text", "") for b in resp if isinstance(b, dict) and b.get("type") == "text"]
 
 
-def resolve_persisted(resp):
+def persisted_root(data):
+    """Claude Code が上限超えの結果を退避するフォルダの親（~/.claude/projects/<プロジェクト>/）。
+    transcript_path から辿る（サブエージェントの transcript は <セッション>/subagents/ の下にある）。"""
+    tp = data.get("transcript_path")
+    if not tp:
+        return None
+    start = Path(tp).resolve().parent
+    for d in [start, *start.parents]:
+        if d.parent.name == "projects":
+            return d
+    return start
+
+
+def resolve_persisted(resp, root):
     """上限を超えた結果は、Claude Code（2.1.286 以降）が PostToolUse より先にファイルへ退避し、
     hook には「Output has been saved to <パス>」という知らせだけが渡る。その場合はファイルを読んで
-    生の応答（content block の配列）に戻す。知らせでなければそのまま返す。"""
+    生の応答（content block の配列）に戻す。知らせでなければそのまま返す。
+    Figma のテキストに同じ文面を書けば任意のパスを指せるので、知らせは短いものだけを扱い、
+    読むのは root の下の tool-results/ にあるファイルだけにする。"""
     if isinstance(resp, list):
         texts = text_blocks(resp)
         if len(texts) != 1:
@@ -1288,12 +1325,15 @@ def resolve_persisted(resp):
         text = resp
     else:
         return resp
-    if "Output has been saved to" not in text:
+    if "Output has been saved to" not in text or len(text) > PERSISTED_NOTICE_MAX:
         return resp
     m = PERSISTED_RE.search(text)
     path = Path(m.group(1)) if m else None
     if path is None or not path.is_file():
         raise PersistedUnreadable(str(path) if path else None, text)
+    real = path.resolve()
+    if root is None or real.parent.name != "tool-results" or root not in real.parents:
+        raise PersistedUnreadable(str(path), text, outside=True)
     try:
         return load_blocks(path)
     except ValueError:
@@ -1307,6 +1347,18 @@ def output_dir(data):
         return Path(data["scratchpad_dir"]) / "figma-inventory"
     session = re.sub(r"[^A-Za-z0-9_-]", "_", str(data.get("session_id") or "no-session"))
     return Path(tempfile.gettempdir()) / "figma-inventory" / session
+
+
+def make_output_dir(base):
+    """出力先を本人だけが読める権限（0700）で作る。Linux の /tmp は他のユーザーと共有されるため。
+    figma-inventory/ が他のユーザーの持ち物なら変えられないが、その下の自分のフォルダは 0700 にする。"""
+    base.mkdir(mode=0o700, parents=True, exist_ok=True)
+    for d in (base.parent, base) if base.parent.name == "figma-inventory" else (base,):
+        try:
+            os.chmod(d, 0o700)
+        except OSError:
+            if d == base:
+                raise
 
 
 def file_stem(tin):
@@ -1394,7 +1446,7 @@ def handle_screenshot(base, stem, resp, added):
     画像を直接 context に載せると等倍画像の分だけ重く、URL からのダウンロードは権限で止まりやすいため。"""
     try:
         b64, media_type = find_image(resp)
-        base.mkdir(parents=True, exist_ok=True)
+        make_output_dir(base)
         path = base / f"{stem}.screenshot.{image_ext(media_type)}"
         raw = base64.b64decode(b64)
         path.write_bytes(raw)
@@ -1434,7 +1486,7 @@ def no_code_message(resp, added):
 
 def handle_design_context(args, tin, base, stem, resp, added):
     try:
-        base.mkdir(parents=True, exist_ok=True)
+        make_output_dir(base)
         raw_path = base / f"{stem}.raw.json"
         raw_path.write_text(json.dumps(resp, ensure_ascii=False), encoding="utf-8")
     except Exception as e:
@@ -1478,6 +1530,13 @@ def handle_design_context(args, tin, base, stem, resp, added):
 
 
 def persisted_unreadable_message(e, base, stem, added):
+    if e.outside:
+        return "\n".join([
+            f"{PREFIX} ⚠ 退避の知らせのパスが Claude Code の退避フォルダ（tool-results/）の外を指していたので、読まなかった。"
+            f"hook が足した引数: {added}",
+            f"- 知らせのパス: {e.path}",
+            "- このパスのファイルは読まない。user に報告し、判断を仰ぐ（呼び直さない）。",
+        ])
     lines = [f"{PREFIX} ⚠ 退避の知らせを読めなかった。退避ファイル: {e.path or '不明'}。hook が足した引数: {added}",
              "- 退避ファイルは読まない（20 万文字ほどある）。user に報告し、判断を仰ぐ（呼び直さない）。"]
     if e.path:
@@ -1496,7 +1555,7 @@ def process(args, data):
     base, stem = output_dir(data), file_stem(tin)
     added = added_args(tool, tin)
     try:
-        resp = resolve_persisted(data.get("tool_response"))
+        resp = resolve_persisted(data.get("tool_response"), persisted_root(data))
     except PersistedUnreadable as e:
         return persisted_unreadable_message(e, base, stem, added)
     if not isinstance(resp, list):
@@ -1710,18 +1769,36 @@ def selftest_hook():
         tempfile.tempdir = str(tmp / "os-tmp")  # 出力先の既定（OS の一時ディレクトリ）をテスト用に差し替える
         (tmp / "os-tmp").mkdir()
         try:
+            # Claude Code の配置: projects/<プロジェクト>/<セッション>.jsonl と <セッション>/tool-results/
+            claude_project = tmp / "projects" / "p"
+            tool_results = claude_project / "s1" / "tool-results"
+            tool_results.mkdir(parents=True)
             claude = {"session_id": "s1", "tool_name": "mcp__figma-remote__get_design_context", "tool_input": tin,
-                      "scratchpad_dir": str(tmp / "scratch")}
+                      "scratchpad_dir": str(tmp / "scratch"), "transcript_path": str(claude_project / "s1.jsonl")}
             check("コードを含む応答を圧縮する", "claude", dict(claude, tool_response=blocks),
                   lambda o, t: t.startswith(compressed) and added_all in t and str(tmp / "scratch" / "figma-inventory") in t
                   and "スクリーンショット: 未取得" in t and inventory_ok(t))
-            persisted = tmp / "persisted.json"
+
+            def saved_notice(path):
+                return [{"type": "text", "text": "Error: result (52,000 tokens) exceeds maximum allowed tokens. "
+                                                 f"Output has been saved to {path}.\nUse offset and limit ..."}]
+
+            persisted = tool_results / "persisted.json"
             persisted.write_text(json.dumps(blocks, ensure_ascii=False), encoding="utf-8")
-            notice = [{"type": "text", "text": "Error: result (52,000 tokens) exceeds maximum allowed tokens. "
-                                               f"Output has been saved to {persisted}.\nUse offset and limit ..."}]
-            check("先に退避された応答を読んで圧縮する", "claude", dict(claude, tool_response=notice),
+            check("先に退避された応答を読んで圧縮する", "claude", dict(claude, tool_response=saved_notice(persisted)),
                   lambda o, t: t.startswith(compressed) and inventory_ok(t))
-            missing = [{"type": "text", "text": f"Output has been saved to {tmp / 'missing.json'}."}]
+            sub_transcript = str(claude_project / "s1" / "subagents" / "agent-a.jsonl")
+            check("サブエージェントでも退避された応答を読む", "claude",
+                  dict(claude, transcript_path=sub_transcript, tool_response=saved_notice(persisted)),
+                  lambda o, t: t.startswith(compressed))
+            outside = tmp / "outside.json"
+            outside.write_text(json.dumps(blocks, ensure_ascii=False), encoding="utf-8")
+            check("退避フォルダの外を指す知らせのファイルは読まない", "claude", dict(claude, tool_response=saved_notice(outside)),
+                  lambda o, t: "退避フォルダ（tool-results/）の外" in t and "手で圧縮" not in t)
+            check("transcript_path が無ければ退避ファイルを読まない", "claude",
+                  dict({k: v for k, v in claude.items() if k != "transcript_path"}, tool_response=saved_notice(persisted)),
+                  lambda o, t: "退避フォルダ（tool-results/）の外" in t)
+            missing = [{"type": "text", "text": f"Output has been saved to {tool_results / 'missing.json'}."}]
             check("退避ファイルが無ければ手で圧縮するコマンドを返す", "claude", dict(claude, tool_response=missing),
                   lambda o, t: t.startswith(f"{PREFIX} ⚠ 退避の知らせを読めなかった") and str(SCRIPT) in t)
             gate = [{"type": "text", "text": "missing code connect mappings. Please ask the user ..."}]
@@ -1739,6 +1816,9 @@ def selftest_hook():
             no_scratch = {k: v for k, v in claude.items() if k != "scratchpad_dir"}
             check("scratchpad_dir が無ければ OS の一時ディレクトリに書く", "claude", dict(no_scratch, tool_response=blocks),
                   lambda o, t: str(tmp / "os-tmp" / "figma-inventory" / "s1") in t)
+            check("OS の一時ディレクトリの出力先は本人だけが読める（0700）", "claude", dict(no_scratch, tool_response=blocks),
+                  lambda o, t: all((d.stat().st_mode & 0o777) == 0o700
+                                   for d in (tmp / "os-tmp" / "figma-inventory", tmp / "os-tmp" / "figma-inventory" / "s1")))
             check("FIGMA_INVENTORY_HOOK=off なら何もしない", "claude", dict(claude, tool_response=blocks),
                   lambda o, t: o is None, env={"FIGMA_INVENTORY_HOOK": "off"})
 
@@ -1821,6 +1901,40 @@ def selftest_guides():
     return failed
 
 
+def selftest_render():
+    """fixture に出てこない形。SmartHR UI のライブラリファイルで再現するフレームが無いので、手で書いた最小のコードで確かめる。"""
+    def inventory(imports, body, guides):
+        code = "".join(f'import {name} from "https://example.com/{SMARTHR_UI_PREFIX}{path}";\n'
+                       for name, path in imports.items())
+        code += f'export default function Frame() {{\n  return (<div data-name="画面">{body}</div>);\n}}\n'
+        return build_inventory([{"type": "text", "text": code}], guides, "selftest")
+
+    def td(text):
+        return f'<CodeConnectSnippet data-name="Td"><Td type="text">{text}</Td></CodeConnectSnippet>'
+
+    cases = [
+        ("表の行のセルに直接書かれた文言を残す",
+         inventory({"Td": "Table/Td.tsx"}, f'<div data-name="tr">{td("社員A")}{td("部署B")}</div>', {"Td"}),
+         lambda inv: "Td 行" in inv and "「社員A」" in inv and "「部署B」" in inv),
+        ("表の行にガイド名を付ける",
+         inventory({"Td": "Table/Td.tsx"}, f'<div data-name="tr">{td("a")}{td("b")}</div>', {"Td"}),
+         lambda inv: "Td 行（→ guide: Td.md）" in inv),
+        ("子要素の形のスニペットでもスロット未展開を見つける",
+         inventory({"ActionDialog": "Dialog/ActionDialog.tsx"},
+                   '<CodeConnectSnippet data-node-id="1:3" data-name="ActionDialog">'
+                   '<ActionDialog slotContentsArea="1:4" /></CodeConnectSnippet>', {"ActionDialog"}),
+         lambda inv: "⚠スロット未展開 contentsArea" in inv and "«ActionDialog»（インスタンス 1:3）の contentsArea" in inv),
+    ]
+    failed = 0
+    for label, inv, ok in cases:
+        if not ok(inv or ""):
+            failed += 1
+            print(f"FAIL render: {label}\n{inv}")
+    if not failed:
+        print(f"ok   render（{len(cases)} 件）")
+    return failed
+
+
 def run_selftest(args):
     # fixture はガイドの一覧なしで比べる（ガイドの増減・改名で期待出力が変わらないように）。
     # ガイド名の付け方は selftest_guides で確かめる
@@ -1839,6 +1953,7 @@ def run_selftest(args):
         else:
             print(f"ok   {name}")
     failed += selftest_guides()
+    failed += selftest_render()
     failed += selftest_pre()
     failed += selftest_hook()
     return 1 if failed else 0

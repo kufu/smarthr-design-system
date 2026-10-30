@@ -24,7 +24,7 @@ Figma MCPの`get_design_context`が返す大きな応答（React + Tailwindの�
 - Claude Code: セッションのscratchpad（hookに渡る`scratchpad_dir`）の`figma-inventory/`
 - Cursor: OSの一時ディレクトリの`figma-inventory/<session_id>/`
 
-リポジトリの中には書かない。
+リポジトリの中には書かない。出力先のフォルダは本人だけが読める権限（0700）で作る。
 
 ## 導入方法
 
