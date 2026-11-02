@@ -30,7 +30,7 @@ export const AvatarIcon = ({ src, alt }: AvatarIconProps) => {
           }}
         />
       ) : (
-        <FaUserIcon />
+        <FaUserIcon alt={alt} />
       )}
     </div>
   );
