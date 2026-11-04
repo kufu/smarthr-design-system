@@ -23,7 +23,8 @@ permissions:
 
 jobs:
   selftest:
-    runs-on: ubuntu-latest
+    # ubuntu-latest（26.04）には Python 3.8 の配布が無いので、3.8 が入る 24.04 に固定する
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
