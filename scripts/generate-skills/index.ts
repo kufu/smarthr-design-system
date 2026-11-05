@@ -19,6 +19,7 @@ import { collectRelatedComponents } from './lib/related-components.js';
 import { buildDirMapping, loadManualMappings, toDocFileName } from './lib/name-mapping.js';
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
+import { collectPatternChecklists, renderPatternChecklist } from './lib/pattern-checklists.js';
 import { validateCoverage, printCoverageReport, loadCoverageBaseline, applyCoverageBaseline } from './lib/validate-coverage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,6 +30,8 @@ const SMARTHR_UI_VERSION: string = JSON.parse(
 ).version;
 
 const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/components');
+const DESIGN_PATTERNS_DIR =
+  process.env.DESIGN_PATTERNS_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/design-patterns');
 const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
 const COVERAGE_BASELINE_PATH = path.join(__dirname, 'coverage-baseline.json');
@@ -148,6 +151,33 @@ async function main() {
   const routerPath = path.join(COMPONENT_GUIDELINES_DIR, 'component-selector.md');
   fs.writeFileSync(routerPath, renderRouterSkill(routerEntries, SMARTHR_UI_VERSION), 'utf-8');
   console.log(`   → ${path.relative(REPO_ROOT, routerPath)}`);
+
+  // デザインパターンは Layer 3（checklist.yaml）のみを checklists/<slug>.md として生成する。
+  // パターン本文（patterns/<slug>.mdx）は src/content へのシンボリックリンクのまま配布する。
+  console.log('🧩 デザインパターンのチェックリストを生成中…');
+  const PATTERN_GUIDELINES_DIR = path.join(OUTPUT_DIR, 'design-pattern-guidelines');
+  const PATTERN_CHECKLISTS_DIR = path.join(PATTERN_GUIDELINES_DIR, 'checklists');
+  const patternChecklists = collectPatternChecklists(DESIGN_PATTERNS_DIR);
+  fs.mkdirSync(PATTERN_CHECKLISTS_DIR, { recursive: true });
+
+  const expectedPatternFiles = new Set(patternChecklists.map((p) => `${p.slug}.md`));
+  for (const existing of fs.readdirSync(PATTERN_CHECKLISTS_DIR, { withFileTypes: true })) {
+    if (!existing.isFile() || !existing.name.endsWith('.md')) continue;
+    if (!expectedPatternFiles.has(existing.name)) {
+      console.log(`   🗑️  古いチェックリストを削除: ${existing.name}`);
+      fs.rmSync(path.join(PATTERN_CHECKLISTS_DIR, existing.name), { force: true });
+    }
+  }
+
+  for (const pattern of patternChecklists) {
+    if (!fs.existsSync(path.join(PATTERN_GUIDELINES_DIR, 'patterns', `${pattern.slug}.mdx`))) {
+      console.warn(
+        `   ⚠️  patterns/${pattern.slug}.mdx のシンボリックリンクがありません。チェックリストから本文へのリンクが切れます`,
+      );
+    }
+    fs.writeFileSync(path.join(PATTERN_CHECKLISTS_DIR, `${pattern.slug}.md`), renderPatternChecklist(pattern), 'utf-8');
+  }
+  console.log(`   ${patternChecklists.length} 件 → ${path.relative(REPO_ROOT, PATTERN_CHECKLISTS_DIR)}`);
 
   console.log('🎉 完了');
 }

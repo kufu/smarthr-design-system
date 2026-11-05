@@ -3,10 +3,12 @@ description: >-
   smarthr-design-system のコンポーネント mdx から checklist.yaml を生成・更新する。
   「checklist を作って」「checklist.yaml を生成して」「Layer 3 を整備して」等の
   依頼に対応する。対象コンポーネントの index.mdx を読み、使い分けガイドを
-  YAML 形式で抽出する。
+  YAML 形式で抽出する。デザインパターン（ページレイアウト等）の index.mdx にも対応する。
 globs:
   - "src/content/articles/products/components/**/index.mdx"
   - "src/content/articles/products/components/**/checklist.yaml"
+  - "src/content/articles/products/design-patterns/**/index.mdx"
+  - "src/content/articles/products/design-patterns/**/checklist.yaml"
 ---
 
 # checklist.yaml 生成 SKILL
@@ -22,6 +24,22 @@ smarthr-design-system のコンポーネントページ（index.mdx）から、A
 - 抽出ルール詳細: `.github/prompts/generate-checklist.md`（severity 推測の語気手がかり、Do/Don't 変換の具体例等）
 - ディレクトリ名解決: `src/content/articles/products/components/` 配下を直接探索する（コンポーネント名を kebab-case 化したディレクトリ名。ネストする場合あり）
 - 参考例: `src/content/articles/products/components/button/checklist.yaml`
+- 対象がデザインパターンの場合: 次の「デザインパターンの場合」節の差分を適用したうえで生成フローを進める
+
+## デザインパターンの場合
+
+対象が `src/content/articles/products/design-patterns/` 配下のパターン（例: ページレイアウト）の場合は、以下の差分を適用する。生成した checklist.yaml は、マージ後に CI が `plugins/smarthr-design-system/skills/design-pattern-guidelines/checklists/<slug>.md` として配布し、`design-pattern-guidelines` スキルが元の mdx（`patterns/<slug>.mdx`）と併せて読む。
+
+- **パス**: `src/content/articles/products/design-patterns/<slug>/index.mdx` を読み、同じディレクトリに `checklist.yaml` を置く。`<slug>` はパターンのディレクトリ名（例: `page-layout`）。1 ファイル構成のパターン（`design-patterns/<slug>.mdx`）は未対応のため作成せず、ディレクトリ構成（`<slug>/index.mdx`）への移行が必要と報告する
+- **参考例**: `src/content/articles/products/design-patterns/page-layout/checklist.yaml`
+- **抽出時の追加ルール**: `.github/prompts/generate-checklist.md` の「デザインパターンページの追加ルール」に従う（実装例のコードブロック・利用例・DoAndDont・パターン間の参照の扱い）
+- **スキップ判定**: コンポーネント固有のパターン（Every Layout 委譲・自動挙動・props 規約・deprecated）は当てはまらない。概念説明や索引のみで指示文がないパターンはスキップする
+- **Layer 1 / Layer 2 は対象外**: smarthr-ui の metadata・eslint ルールとは紐付かないため、eslint ルールによる除外（絶対ルール 3）と Step 6 の Layer 1 重複チェックは行わない。「冒頭」見出しの記述を含めない（絶対ルール 2）は同じで、frontmatter の description はチェックリストの冒頭に表示される
+- **コンポーネント名は text に残す**: 「ヘッダーには AppHeader を使う」のように、パターン内でどのコンポーネントを使うかはパターン固有のルールのため省略しない
+- **項目数の目安**: パターンページは長く節が多いため、1〜40 項目（validate の warn 上限）を目安にする。超える場合は sub_items への統合を検討する
+- **severity 横串確認（Step 4-2）**: grep 対象に `src/content/articles/products/design-patterns/**/checklist.yaml` も含める
+- **サイトには表示しない**: パターンページには `## 使い方チェックリスト` 節や `<Checklist />` を追加しない（サイトのチェックリスト表示はコンポーネントのみ対応）
+- **CI**: `validate` の対象になるが、`checklist-sync`（index.mdx と checklist.yaml の同期チェック）の対象外。パターンの index.mdx を変更したときは、自主的に `update-checklist` SKILL を実行する
 
 ## 生成フロー
 
@@ -138,7 +156,7 @@ Layer 3 に入れようとしている項目が Layer 1（mdx 冒頭の説明文
 
 ## 成果物とコミット
 
-この SKILL の成果物は `checklist.yaml` のみ。**コミット対象は `checklist.yaml` だけ**で、コンポーネントガイド（`plugins/...`）への反映はマージ後に CI（`generate-skills.yml`）が自動実行する。ローカルで `pnpm generate` を実行して生成物をコミットする必要はない。
+この SKILL の成果物は `checklist.yaml` のみ。**コミット対象は `checklist.yaml` だけ**で、コンポーネントガイド・パターンのチェックリスト（`plugins/...`）への反映はマージ後に CI（`generate-skills.yml`）が自動実行する。ローカルで `pnpm generate` を実行して生成物をコミットする必要はない。
 
 ## checklist.yaml のフォーマット
 
