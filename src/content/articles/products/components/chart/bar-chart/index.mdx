@@ -1,0 +1,24 @@
+---
+title: 'BarChart'
+description: '棒グラフを表示するためのコンポーネントです。カテゴリごとの値を棒の長さで比較するときに使います。'
+---
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+棒グラフを表示するためのコンポーネントです。カテゴリごとの値を棒の長さで比較するときに使います。
+
+<ComponentStory name="BarChart" />
+
+## 種類
+
+### 向き
+
+`orientation`に`horizontal`または`vertical`を渡して、棒の向きを切り替えます。
+
+### 積み上げ
+
+`stacked`を渡すと、系列を積み上げて表示します。
+
+## Props
+
+<ComponentPropsTable name="BarChart" />
