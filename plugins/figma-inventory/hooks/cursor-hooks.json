@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "command": "python3 \"${CURSOR_PLUGIN_ROOT}/scripts/pre_figma.py\" cursor",
+        "matcher": "MCP:get_design_context"
+      },
+      {
+        "command": "python3 \"${CURSOR_PLUGIN_ROOT}/scripts/pre_figma.py\" cursor",
+        "matcher": "MCP:get_screenshot"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "python3 \"${CURSOR_PLUGIN_ROOT}/scripts/extract_figma.py\" --hook cursor",
+        "matcher": "MCP:get_design_context"
+      },
+      {
+        "command": "python3 \"${CURSOR_PLUGIN_ROOT}/scripts/extract_figma.py\" --hook cursor",
+        "matcher": "MCP:get_screenshot"
+      }
+    ]
+  }
+}
