@@ -4,7 +4,9 @@ import path from 'node:path';
 import metadata from 'smarthr-ui/metadata.json';
 import packageInfo from 'smarthr-ui/package.json';
 
-import type { PropsData, UIData, UIProps, UIStories } from '../src/types/ui';
+import { SHRUI_CHROMATIC_ID } from '../src/constants/application';
+
+import type { PropsData, StoryIndexItem, UIData, UIProps, UIStories } from '../src/types/ui';
 import type { StoryIndex } from '@storybook/types';
 
 type GitHubAPIResponse = {
@@ -23,6 +25,7 @@ type ReleaseResponse = {
 
 type CommitResponse = {
   sha: string;
+  parents?: { sha: string }[];
 };
 
 type PropsResponse = {
@@ -33,7 +36,7 @@ type PropsResponse = {
 };
 
 const GH_API_BASE_URL = 'https://api.github.com';
-const CHROMATIC_DOMAIN = '63d0ccabb5d2dd29825524ab.chromatic.com';
+const CHROMATIC_DOMAIN = `${SHRUI_CHROMATIC_ID}.chromatic.com`;
 
 /**
  * GitHub API から SmartHR UI のリリース情報を取得
@@ -108,23 +111,54 @@ const getUIProps = (): UIProps[] => {
   return uiProps;
 };
 
+const CHROMATIC_SHA_LOOKUP_LIMIT = 5;
+
+/**
+ * Chromatic の SHA パーマリンクから index.json を取得する。
+ * リリースコミット自体にビルドが無い場合があるため、親コミットも順に探す。
+ */
+async function fetchChromaticIndex(startSha: string): Promise<{ commitHash: string; json: StoryIndex }> {
+  let sha = startSha;
+
+  for (let attempt = 0; attempt < CHROMATIC_SHA_LOOKUP_LIMIT; attempt++) {
+    const commitHash = sha.substring(0, 7);
+    const endpoint = new URL('index.json', `https://${commitHash}--${CHROMATIC_DOMAIN}`);
+    const res = await fetch(endpoint.toString());
+
+    if (res.ok) {
+      const json: StoryIndex = await res.json();
+      if (json) {
+        if (attempt > 0) {
+          console.log(`ℹ️ Chromatic は親コミット ${commitHash} の Storybook を使用します`);
+        }
+        return { commitHash, json };
+      }
+    }
+
+    const commitEndpoint = new URL(`/repos/kufu/smarthr-ui/commits/${sha}`, GH_API_BASE_URL);
+    const commitRes = await fetch(commitEndpoint.toString());
+    if (!commitRes.ok) {
+      break;
+    }
+
+    const commit: CommitResponse = await commitRes.json();
+    const parentSha = commit.parents?.[0]?.sha;
+    if (!parentSha) {
+      break;
+    }
+
+    console.log(`⚠️ Chromatic に ${commitHash} の Storybook がありません。親コミット ${parentSha.substring(0, 7)} を試します`);
+    sha = parentSha;
+  }
+
+  throw new Error(`Chromatic から index.json を取得できませんでした（起点: ${startSha.substring(0, 7)}）`);
+}
+
 /**
  * Chromatic から Storybook の情報を取得
- * @param commitHash 対象のコミットハッシュ
+ * @param json Chromatic の index.json
  */
-async function fetchStories(commitHash: string): Promise<Record<string, UIStories>> {
-  const endpoint = new URL('index.json', `https://${commitHash}--${CHROMATIC_DOMAIN}`);
-
-  const res = await fetch(endpoint.toString());
-  if (!res.ok) {
-    throw new Error(`Chromatic から index.json を取得できませんでした: ${res.statusText}`);
-  }
-
-  const json: StoryIndex = await res.json();
-  if (!json) {
-    throw new Error('index.json が見つかりませんでした');
-  }
-
+function fetchStories(json: StoryIndex): Record<string, UIStories> {
   // *.stories.tsxのファイルごとに、storyの情報をまとめる
   const uiStories: Record<string, UIStories> = {};
 
@@ -161,6 +195,21 @@ async function fetchStories(commitHash: string): Promise<Record<string, UIStorie
   return uiStories;
 }
 
+/**
+ * コンポーネント一覧の生成に使うstoryの情報を取り出す
+ *
+ * ページのレンダリング中に `index.json` を取得するとビルドが遅くなるため、ここでキャッシュに含めています。
+ * `fetchStories()` と同じく、`fetchChromaticIndex()` が取得済みの `index.json` から必要な項目だけを抜き出します。
+ *
+ * @param json Chromatic の index.json
+ */
+function getStoryIndex(json: StoryIndex): StoryIndexItem[] {
+  // ドキュメントはコンポーネント一覧として表示しないため除外する
+  return Object.values(json.entries)
+    .filter((entry) => entry.type !== 'docs')
+    .map(({ id, title, importPath }) => ({ id, title, importPath }));
+}
+
 const UI_DATA_CACHE_DIR = path.resolve(import.meta.dirname, '../node_modules/.cache');
 const VERSION_CACHE_DIR = path.join(UI_DATA_CACHE_DIR, `smarthr-ui@v${packageInfo.version}`);
 const VERSION_CACHE_FILE = path.join(VERSION_CACHE_DIR, 'data.json');
@@ -169,11 +218,19 @@ const VERSION_CACHE_FILE = path.join(VERSION_CACHE_DIR, 'data.json');
  * バージョン別キャッシュからデータを読み込む
  */
 function loadFromVersionCache(): UIData | null {
-  if (fs.existsSync(VERSION_CACHE_FILE)) {
-    const raw = fs.readFileSync(VERSION_CACHE_FILE, 'utf-8');
-    return JSON.parse(raw) as UIData;
+  if (!fs.existsSync(VERSION_CACHE_FILE)) {
+    return null;
   }
-  return null;
+
+  const raw = fs.readFileSync(VERSION_CACHE_FILE, 'utf-8');
+  const data = JSON.parse(raw) as UIData;
+
+  // 項目が追加される前に作られた古いキャッシュは、キャッシュミスとして扱って作り直す
+  if (!data.storyIndex) {
+    return null;
+  }
+
+  return data;
 }
 
 /**
@@ -197,10 +254,10 @@ if (cached) {
   console.log('📦️ リリース情報を取得中');
   const usedVersionRelease = await fetchSmartHRUIRelease();
 
-  const commitHash = usedVersionRelease.sha.substring(0, 7);
-
   console.log('📚️ stories.json を取得中');
-  const uiStories = await fetchStories(commitHash);
+  const { commitHash, json } = await fetchChromaticIndex(usedVersionRelease.sha);
+  const uiStories = fetchStories(json);
+  const storyIndex = getStoryIndex(json);
 
   console.log('✅️ 取得完了');
 
@@ -210,6 +267,7 @@ if (cached) {
     commitDate: usedVersionRelease.commit.author.date,
     uiProps: getUIProps(),
     uiStories: Object.values(uiStories),
+    storyIndex,
   };
 
   console.log('💾 バージョンキャッシュに保存中');

@@ -1,0 +1,17 @@
+---
+import ColorPalette from './ColorPalette.astro';
+import ColorPalettesWrapper from './ColorPaletteWrapper.astro';
+
+type Props = {
+  /** トークン名と色の組み合わせ。並び順のまま表示する */
+  colors: Record<string, string>;
+};
+
+const { colors } = Astro.props;
+---
+
+<ColorPalettesWrapper>
+  {Object.entries(colors).map(([name, value]) => (
+    <ColorPalette colorName={name} colorValue={value} />
+  ))}
+</ColorPalettesWrapper>

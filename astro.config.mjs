@@ -1,6 +1,6 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
-import partytown from '@astrojs/partytown';
+import { unified } from '@astrojs/markdown-remark';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
@@ -8,6 +8,7 @@ import remarkEmoji from 'remark-emoji';
 
 import remarkCodeBlock from './src/remark/remark-code-block';
 import remarkIndexIdHeader from './src/remark/remark-index-id-header';
+import smarthrUiScope from './src/vite/vite-plugin-smarthr-ui-scope';
 
 import sitemap from '@astrojs/sitemap';
 
@@ -18,23 +19,19 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
-  integrations: [
-    react(),
-    mdx(),
-    partytown({
-      config: {
-        // https://partytown.builder.io/google-tag-manager#google-analytics-4-ga4
-        forward: ['dataLayer.push'],
-      },
-    }),
-    tailwind(),
-    sitemap(),
-  ],
+  integrations: [react(), mdx(), tailwind(), sitemap()],
   markdown: {
     syntaxHighlight: false,
-    remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
+    processor: unified({
+      remarkPlugins: [remarkIndexIdHeader, remarkCodeBlock, remarkEmoji],
+      remarkRehype: {
+        footnoteLabel: '脚注',
+        footnoteBackLabel: '注釈元へ戻る',
+      },
+    }),
   },
   vite: {
+    plugins: [smarthrUiScope()],
     define: {
       process: 'globalThis.process',
     },

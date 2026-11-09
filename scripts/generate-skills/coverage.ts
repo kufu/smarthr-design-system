@@ -17,7 +17,15 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
-import { parseMetadata, loadPublicExports, type ComponentGroup } from './lib/parse-metadata.js';
+import {
+  parseMetadata,
+  loadPublicExports,
+  loadPublicExportAliases,
+  addAliasGroups,
+  assertSmarthrUiVersionMatchesRoot,
+} from './lib/parse-metadata.js';
+import { collectPropsTablePages, regroupByPropsTable } from './lib/props-table-groups.js';
+import { autoSplitGroups } from './lib/auto-split-groups.js';
 import { collectRelatedComponents } from './lib/related-components.js';
 import { buildDirMapping, loadManualMappings } from './lib/name-mapping.js';
 import {
@@ -35,46 +43,18 @@ const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
 const COVERAGE_BASELINE_PATH = path.join(__dirname, 'coverage-baseline.json');
 
-/**
- * index.ts と同じ autoSplitGroups ロジック。coverage 単独で実行する際にも
- * groups を split 後の形に揃える必要があるため複製している。
- */
-function autoSplitGroups(groups: Map<string, ComponentGroup>, relatedNames: Set<string>): Map<string, ComponentGroup> {
-  const result = new Map<string, ComponentGroup>();
-  for (const [dirName, group] of groups) {
-    const splitTargets = group.components.filter((c) => relatedNames.has(c.displayName));
-    if (splitTargets.length < 2) {
-      result.set(dirName, group);
-      continue;
-    }
-    for (const target of splitTargets) {
-      result.set(target.displayName, {
-        dirName: target.displayName,
-        displayNames: [target.displayName],
-        components: [target],
-      });
-    }
-    const primary = group.components.filter((c) => c.displayName === dirName);
-    if (primary.length > 0) {
-      result.set(dirName, {
-        dirName,
-        displayNames: primary.map((c) => c.displayName),
-        components: primary,
-      });
-    }
-  }
-  return result;
-}
-
 function main() {
   console.log('📂 metadata.json を読み込み中…');
+  assertSmarthrUiVersionMatchesRoot(REPO_ROOT);
   const publicExports = loadPublicExports();
-  const rawGroups = parseMetadata(publicExports);
+  const rawGroups = addAliasGroups(parseMetadata(publicExports), loadPublicExportAliases(), DESIGN_SYSTEM_DIR);
 
   console.log('🧬 relatedComponents 宣言を集約中…');
   const relatedSkills = collectRelatedComponents(DESIGN_SYSTEM_DIR);
 
-  const groups = autoSplitGroups(rawGroups, new Set(relatedSkills.keys()));
+  const relatedNames = new Set(relatedSkills.keys());
+  const pageGroups = regroupByPropsTable(rawGroups, collectPropsTablePages(DESIGN_SYSTEM_DIR), relatedNames);
+  const groups = autoSplitGroups(pageGroups, relatedNames, DESIGN_SYSTEM_DIR);
 
   console.log('🗺️  デザインシステムディレクトリのマッピング構築中…');
   const manualMappings = loadManualMappings(MANUAL_MAPPING_PATH);

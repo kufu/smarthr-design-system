@@ -7,25 +7,29 @@
 ## import
 
 ```ts
-import { DropdownTrigger, DropdownContent, DropdownCloser, Dropdown } from 'smarthr-ui'
+import { DropdownCloser, DropdownTrigger, DropdownContent, Dropdown } from 'smarthr-ui'
 ```
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v96.0.1** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+
+### DropdownCloser
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| ref | Ref<HTMLDivElement> | - | - | - |
 
 ### DropdownTrigger
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | tooltip | { message: ReactNode; show?: boolean; } | - | - | - |
+| className | string | - | - | - |
 
 ### DropdownContent
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | controllable | boolean | false | - | `true` のとき、ドロップダウン内のコンテンツをクリックしてもドロップダウンが閉じなくなる。。  この場合は、 `DropdownCloser` を用いてドロップダウンを閉じることができる。 |
-
-### DropdownCloser
-（固有 Props なし）
+| ref | Ref<HTMLDivElement> | - | - | - |
 
 ### Dropdown
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |

@@ -17,19 +17,17 @@ const actualWidth = typeof width === 'number' ? `${width}px` : width;
   </div>
   <div class="labelArea">
     <div class="status">
-      {
-        type === 'do' ? (
-          <>
-            <FaCircleCheckIcon className="icon" />
-            Do
-          </>
-        ) : (
-          <>
-            <FaCircleXmarkIcon className="icon" />
-            Don&apos;t
-          </>
-        )
-      }
+      {type === 'do' ? (
+        <>
+          <FaCircleCheckIcon className="icon" />
+          Do
+        </>
+      ) : (
+        <>
+          <FaCircleXmarkIcon className="icon" />
+          Don&apos;t
+        </>
+      )}
     </div>
     <slot name="label" />
   </div>

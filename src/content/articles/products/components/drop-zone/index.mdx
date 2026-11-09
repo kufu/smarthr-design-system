@@ -5,6 +5,7 @@ description: 'ドラッグアンドドロップでのファイル選択を主目
 import { Image } from 'astro:assets'
 import { Cluster, Text } from 'smarthr-ui'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import DoAndDont from '@/components/article/DoAndDont.astro'
 import InputFileDo from './images/input-file-do.png'
@@ -35,6 +36,10 @@ DropZoneは操作しやすさを担保するため一定以上の大きさでレ
 
 モバイルではドラッグアンドドロップでファイルを選択できません。
 モバイル中心のユースケースでは、[InputFile](/products/components/input-file/)を使ってください。
+
+## 使い方チェックリスト
+
+<Checklist name="DropZone" />
 
 ## Props
 

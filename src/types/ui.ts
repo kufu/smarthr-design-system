@@ -4,6 +4,18 @@ export type UIData = {
   version: string;
   uiProps: UIProps[];
   uiStories: UIStories[];
+  storyIndex: StoryIndexItem[];
+};
+
+/**
+ * 利用中のバージョンのStorybook（Chromaticのパーマリンク）の`index.json`から、
+ * コンポーネント一覧の生成に必要な情報だけを抜き出したもの
+ * （ドキュメントのエントリは除外済み）
+ */
+export type StoryIndexItem = {
+  id: string;
+  title: string;
+  importPath: string;
 };
 
 export type UIProps = {

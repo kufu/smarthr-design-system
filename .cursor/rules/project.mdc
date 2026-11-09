@@ -1,0 +1,8 @@
+---
+description: リポジトリ共通の作業コンテキストと PR 作成時の注意
+alwaysApply: true
+---
+
+このリポジトリの AI エージェント向け指示は、ルートの `AGENTS.md` に集約しています。作業前に `AGENTS.md` を参照してください。
+
+特に PR を作成するときは、`.github/PULL_REQUEST_TEMPLATE.md` を読み、その見出し構成に沿って本文を書くこと。`gh pr create` や API ではテンプレートが本文に自動挿入されないため、必ず自分でテンプレートを開いて構成を写すこと。

@@ -1,0 +1,1 @@
+../../../.claude/skills/add-component-a11y-content/SKILL.md

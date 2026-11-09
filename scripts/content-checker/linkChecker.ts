@@ -41,6 +41,24 @@ const collectExistLinks = async () => {
       headingCount[level] += 1;
     }
 
+    // 明示的に埋め込まれたアンカー（`{<span id="..." />}`）も配列に入れておく
+    for (const anchor of content.matchAll(/<span[^>]*\sid="([A-Za-z0-9_-]+)"/g)) {
+      existPathList.push(`${pagePath}#${anchor[1]}`);
+    }
+
+    // ComponentPropsTableがshowTitle指定時に生成するアンカー（`#props-Xxx`）も配列に入れておく
+    for (const propsTable of content.matchAll(/<ComponentPropsTable\s([^>]*)\/>/g)) {
+      const attributes = propsTable[1];
+      // nameがあるか
+      const name = attributes.match(/\bname="([^"]+)"/)?.[1];
+      // showTitle属性があるか
+      const showTitle = /\bshowTitle\b/.test(attributes);
+      // name と showTitle がある場合のみ existPathList に格納する
+      if (name && showTitle) {
+        existPathList.push(`${pagePath}#props-${name.replace(' ', '-')}`);
+      }
+    }
+
     // 対象のファイルでなければスキップ
     if (targetFiles.length > 0 && !targetFiles.includes(file)) continue;
 

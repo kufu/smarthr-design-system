@@ -10,9 +10,11 @@ import { RadioButton } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v96.0.1** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
-（固有 Props なし）
+| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
+|---|---|---|---|---|
+| ref | Ref<HTMLInputElement> | - | - | - |
 
 ## 実装ルール
 
@@ -77,7 +79,7 @@ import { RadioButton } from 'smarthr-ui'
 - [must] 選択肢の中から 1 つデフォルト値に設定するものを決める
 
 ### デザインパターン > 選択肢のグルーピング
-- [should] 複数の選択肢を持つ項目をいくつも並べて表示する場合は、ラベルがかかる範囲や設定項目ごとの選択肢を区別しやすくするため BaseColumn でグルーピングする
+- [should] 複数の選択肢を持つ項目をいくつも並べて表示する場合は、ラベルがかかる範囲や設定項目ごとの選択肢を区別しやすくするため Groupbox でグルーピングする
 
 ### アクセシビリティ > 開発時の考慮点 > Fieldsetでグループ化する
 - [must] Fieldset コンポーネントを使用してグループ化し、`legend` props でグループの目的を説明する

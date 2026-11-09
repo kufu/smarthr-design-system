@@ -12,26 +12,26 @@ import { ControlledMessageDialog } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v96.0.1** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| children | ReactNode | - | - | ダイアログの説明 |
-| className | string | - | - | - |
-| closeButton | ReactNode | - | - | 閉じるボタン |
-| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | - |
-| contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
-| onClickClose | () => void | - | ✓ | - |
-| size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
+| ref | Ref<HTMLDivElement> | - | - | - |
+| children | ReactNode | - | ✓ | ダイアログの説明 |
 | width | string \| number | - | - | @deprecated ダイアログの幅を指定する場合は、`width` ではなく `size` を使用してください。 ダイアログの幅 |
+| size | "XS" \| "S" \| "M" \| "L" \| "XL" \| "XXL" \| "FULL" | - | - | ダイアログの大きさ |
+| heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
 | firstFocusTarget | RefObject<HTMLElement> | - | - | ダイアログを開いた時にフォーカスする対象 |
+| isOpen | boolean | - | ✓ | ダイアログを開いているかどうか |
+| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 @todo イベントハンドラー命名規則に従い handleClickOverlay に変更すべき（影響範囲大のため別PR） |
+| onPressEscape | (e: KeyboardEvent) => void | - | - | エスケープキーを押下した時に発火するコールバック関数 @todo イベントハンドラー命名規則に従い handlePressEscape に変更すべき（影響範囲大のため別PR） |
 | ariaLabel | string | - | - | ダイアログの `aria-label` |
 | ariaLabelledby | string | - | - | ダイアログの `aria-labelledby` |
-| isOpen | boolean | - | ✓ | ダイアログを開いているかどうか |
-| onClickOverlay | () => void | - | - | オーバーレイをクリックした時に発火するコールバック関数 |
-| onPressEscape | () => void | - | - | エスケープキーを押下した時に発火するコールバック関数 |
-| portalParent | HTMLElement \| RefObject<HTMLElement> | - | - | DOM 上でダイアログの要素を追加する親要素 |
-| heading | ReactNode \| ObjectHeadingType | - | ✓ | - |
+| contentBgColor | "BACKGROUND" \| "COLUMN" \| "BASE_GREY" \| "OVER_BACKGROUND" \| "HEAD" \| ... 他8個 | - | - | コンテンツ部分の背景色 |
+| contentPadding | Gap \| { block?: Gap; inline?: Gap; } | - | - | - |
+| portalParent | HTMLElement | - | - | DOM 上でダイアログの要素を追加する親要素。 ダイアログのマウントと同時に確定していない要素（例: ダイアログの祖先要素の ref）を 渡すと、その要素がまだ DOM に存在しない可能性があるため意図通りに動作しない。 呼び出し側で要素が確定してから渡すこと。 |
+| closeButton | ReactNode | - | - | 閉じるボタン |
+| onClickClose | (e?: MouseEvent<HTMLButtonElement, MouseEvent> \| KeyboardEvent) => void | - | ✓ | - |
 
 ## 実装ルール
 
@@ -48,6 +48,27 @@ ControlledMessageDialog に直接関連する eslint-plugin-smarthr のルール
 ### 使用上の注意 > フィードバックとして使わない
 - [must] MessageDialog を原則として処理結果のフィードバックには使わず、フィードバックには NotificationBar や ResponseMessage などを使う
 
+### レイアウト > 基準サイズ > `XS`
+- [should] 入力要素を 1 つだけ持つなど、内容が極めて少ないダイアログには `XS` を使う
+
+### レイアウト > 基準サイズ > `S`
+- [should] 要素が少なく、要素が垂直方向に並ぶ、広い横幅を必要としないダイアログには `S` を使う
+
+### レイアウト > 基準サイズ > `M`
+- [should] 数行に渡るテキストの表示や、水平方向に要素を並べて表示する標準的なダイアログには `M` を使う
+
+### レイアウト > 基準サイズ > `L`
+- [should] テーブルの表示やダイアログを複数カラムに分割するなど、広い横幅が必要なダイアログには `L` を使う
+
+### レイアウト > 基準サイズ > `XL`
+- [should] 広い横幅が必要で、`L` ではコンテンツが収まりきらないダイアログには `XL` を使う
+
+### レイアウト > 基準サイズ > `XXL`
+- [should] 広い横幅が必要で、`XL` ではコンテンツが収まりきらないダイアログには `XXL` を使う
+
+### レイアウト > 基準サイズ > `FULL`
+- [should] 広い横幅が必要で、`XXL` ではコンテンツが収まりきらないダイアログには `FULL` を使う
+
 ### 構成 > 1. タイトル
 - [must] このダイアログで表示する情報を簡潔に表現するタイトルをつける
 - [should] サブタイトルは基本的に使わない
@@ -57,9 +78,3 @@ ControlledMessageDialog に直接関連する eslint-plugin-smarthr のルール
 
 ### 構成 > 3. アクションボタン
 - [must] ダイアログを閉じるボタンを配置し、ラベルは `閉じる` とする
-
-### モバイル
-- [should] モバイルで情報量が多い場合は拡大したダイアログの採用を検討する
-  - 採用を検討するケース: ダイアログ内で多くのスクロールを伴う場合・入力や編集などキーボード入力操作が多い場合
-  - ［閉じる］ボタンはタイトルの右端に配置する
-  - ダイアログの左右と裏側の領域（スクリムで隠されている領域）のパディングは `0（0px）` とする

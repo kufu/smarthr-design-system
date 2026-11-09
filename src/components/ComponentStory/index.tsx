@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 import { AnchorButton, Cluster, IntlProvider, Loader, TabBar, TabItem, TextLink } from 'smarthr-ui';
 
 import { SHRUI_CHROMATIC_ID, SHRUI_GITHUB_PATH } from '@/constants/application';
@@ -40,7 +40,8 @@ export default function ComponentStory({ code, stories, uiVersion, uiCommitHash,
   const githubSourcePath = stories.filePath.replace(/(stories\/)?[^/]*?\.tsx$/, '');
   const githubUrl = new URL(`smarthr-ui-v${uiVersion}/${githubSourcePath}`, SHRUI_GITHUB_PATH);
 
-  const onClickTabItem = (itemId: string) => {
+  const onClickTabItem = (e: MouseEvent<HTMLButtonElement>) => {
+    const itemId = e.currentTarget.id;
     if (itemId === currentIframe) {
       return;
     }

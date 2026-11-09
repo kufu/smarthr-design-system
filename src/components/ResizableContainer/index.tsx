@@ -21,8 +21,7 @@ export default function ResizableContainer({ defaultWidth, defaultHeight, childr
 
   const container = useRef<HTMLDivElement>(null);
 
-  const handlePointerMove = (e: Event) => {
-    const event: PointerEvent<HTMLDivElement> = e as unknown as PointerEvent<HTMLDivElement>;
+  const handlePointerMove = (event: globalThis.PointerEvent) => {
     if (container.current === null) return;
     //幅変更の場合
     if (pointerPositionRef.current.x !== null) {

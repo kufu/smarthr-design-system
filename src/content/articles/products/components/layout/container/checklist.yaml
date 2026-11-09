@@ -1,9 +1,20 @@
 items:
-  # レイアウト > コンテナの大きさ
+  # レイアウト > コンテナの大きさ > `NARROW`
   - severity: should
-    text: '大量のデータを表示する場合や 2 カラムレイアウトで 1 つのカラムに 1 ページ相当の情報を表示する場合は `WIDE` や `FULL` を検討する'
-    source_section: 'レイアウト > コンテナの大きさ'
+    text: 'フォーム要素が中心で `DEFAULT` では余白が大きくなりすぎる画面の場合は `NARROW` を検討する'
+    source_section: 'レイアウト > コンテナの大きさ > `NARROW`'
 
+  # レイアウト > コンテナの大きさ > `DEFAULT`
   - severity: should
-    text: 'ページに表示する情報が少ない場合や入力要素が中心の画面の場合は `NARROW` を検討する'
-    source_section: 'レイアウト > コンテナの大きさ'
+    text: 'コレクションやシングルの標準的な画面や、特に理由がない場合は `DEFAULT` を使う'
+    source_section: 'レイアウト > コンテナの大きさ > `DEFAULT`'
+
+  # レイアウト > コンテナの大きさ > `WIDE`
+  - severity: should
+    text: '複数カラムのレイアウトで 1 つのカラムに 1 ページ相当の情報を表示する場合は `WIDE` を検討する'
+    source_section: 'レイアウト > コンテナの大きさ > `WIDE`'
+
+  # レイアウト > コンテナの大きさ > `FULL`
+  - severity: should
+    text: '横スクロールを必須とするような大量のデータを表示する場合は `FULL` を検討する'
+    source_section: 'レイアウト > コンテナの大きさ > `FULL`'

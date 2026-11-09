@@ -1,0 +1,27 @@
+.summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+/* デフォルトの開閉マーカー（三角）を消す */
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.caret {
+  transition: transform 0.1s;
+}
+
+/* 開いているときは caret を回転 */
+details[open] > .summary .caret {
+  transform: rotate(90deg);
+  align-self: center;
+}
+
+.severity {
+  flex-wrap: nowrap;
+
+  @include breakpointMobile2 {
+    flex-direction: column;
+  }
+}

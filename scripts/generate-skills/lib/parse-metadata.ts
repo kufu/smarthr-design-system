@@ -4,6 +4,8 @@ import { createRequire } from 'node:module';
 
 import metadata from 'smarthr-ui/metadata.json' with { type: 'json' };
 
+import { buildDirMapping } from './name-mapping.js';
+
 export type PropType = {
   name: string;
   raw?: string;
@@ -31,26 +33,112 @@ export type ComponentGroup = {
   components: ComponentMeta[];
 };
 
-/**
- * smarthr-ui の lib/index.d.ts から public named exports の Set を返す。
- * この Set でフィルタすることで内部実装コンポーネントを除外できる。
- */
-export function loadPublicExports(): Set<string> {
+type ExportSpecifier = {
+  /** smarthr-ui 内部での名前（`Panel as Base` の `Panel`） */
+  local: string;
+  /** 公開名（`Panel as Base` の `Base`。別名でなければ local と同じ） */
+  exported: string;
+};
+
+function loadExportSpecifiers(): ExportSpecifier[] {
   const require = createRequire(import.meta.url);
   const pkgDir = path.dirname(require.resolve('smarthr-ui/package.json'));
   const dtsPath = path.join(pkgDir, 'lib', 'index.d.ts');
-  const src = fs.readFileSync(dtsPath, 'utf-8');
-  const names = new Set<string>();
+  return parseExportSpecifiers(fs.readFileSync(dtsPath, 'utf-8'));
+}
+
+/**
+ * smarthr-ui の lib/index.d.ts の `export { ... } from` 行から、大文字始まりの export 指定子を返す。
+ */
+export function parseExportSpecifiers(src: string): ExportSpecifier[] {
+  const specifiers: ExportSpecifier[] = [];
   for (const line of src.split('\n')) {
     if (!line.startsWith('export {')) continue;
     const m = line.match(/\{([^}]+)\}/);
     if (!m) continue;
     for (const token of m[1].split(',')) {
-      const name = token.trim();
-      if (name && /^[A-Z]/.test(name)) names.add(name);
+      const [local, exported = local] = token.trim().split(/\s+as\s+/);
+      if (exported && /^[A-Z]/.test(exported)) specifiers.push({ local, exported });
     }
   }
-  return names;
+  return specifiers;
+}
+
+/**
+ * smarthr-ui の lib/index.d.ts から public named exports の Set を返す。
+ * この Set でフィルタすることで内部実装コンポーネントを除外できる。
+ * `export { Panel as Base }` のような別名 export は公開名（`Base`）で登録する。
+ */
+export function loadPublicExports(): Set<string> {
+  return new Set(loadExportSpecifiers().map((s) => s.exported));
+}
+
+/**
+ * smarthr-ui の lib/index.d.ts から別名 export を「公開名 → 元の名前」で返す。
+ * 例: `export { Panel, Panel as Base }` → `Base` → `Panel`
+ */
+export function loadPublicExportAliases(): Map<string, string> {
+  const aliases = new Map<string, string>();
+  for (const { local, exported } of loadExportSpecifiers()) {
+    if (local !== exported) aliases.set(exported, local);
+  }
+  return aliases;
+}
+
+/**
+ * 別名 export のうち design-system 側に専用ページ（index.mdx）があるものを、元コンポーネントの
+ * metadata を引き継いだ独立グループとして追加する。
+ *
+ * 名称変更後も旧名称が別名 export として残っている間（例: Base → Panel）、旧名称の非推奨ページ
+ * （`base/index.mdx`）からドキュメントを生成し、旧名称を使うコードベースでも新名称への移行を
+ * エージェントに伝えるため。metadata.json に同名の displayName がある場合（smarthr-ui 側で
+ * 実体のあるコンポーネントになった場合）はそちらを優先し、追加しない。
+ */
+export function addAliasGroups(
+  groups: Map<string, ComponentGroup>,
+  aliases: Map<string, string>,
+  designSystemDir: string,
+): Map<string, ComponentGroup> {
+  const componentsByName = new Map<string, ComponentMeta>();
+  for (const group of groups.values()) {
+    for (const component of group.components) componentsByName.set(component.displayName, component);
+  }
+  const pageMapping = buildDirMapping([...aliases.keys()], designSystemDir, {});
+
+  for (const [alias, original] of aliases) {
+    if (groups.has(alias) || componentsByName.has(alias) || !pageMapping.has(alias)) continue;
+    const target = componentsByName.get(original);
+    if (!target) continue;
+    groups.set(alias, {
+      dirName: alias,
+      displayNames: [alias],
+      components: [{ ...target, displayName: alias }],
+    });
+  }
+  return groups;
+}
+
+/**
+ * generate-skills が参照する smarthr-ui と、リポジトリルート（ドキュメントサイト）が参照する smarthr-ui の
+ * バージョンが一致しているかを検査し、ずれていれば例外を投げる。
+ *
+ * smarthr-ui をルートだけ更新すると、サイトの Props テーブルは新しい metadata.json から作られる一方、
+ * スキルのガイドは古い metadata.json から生成され続け、props の追加が反映されない。
+ */
+export function assertSmarthrUiVersionMatchesRoot(repoRoot: string): void {
+  const require = createRequire(import.meta.url);
+  const skillVersion = (require('smarthr-ui/package.json') as { version: string }).version;
+  const rootPkgPath = require.resolve('smarthr-ui/package.json', { paths: [repoRoot] });
+  const rootVersion = (JSON.parse(fs.readFileSync(rootPkgPath, 'utf-8')) as { version: string }).version;
+
+  if (skillVersion !== rootVersion) {
+    throw new Error(
+      [
+        `scripts/generate-skills の smarthr-ui (v${skillVersion}) がリポジトリルートの smarthr-ui (v${rootVersion}) と一致していません。`,
+        'ルートと scripts/generate-skills の package.json の smarthr-ui を同じバージョンにしてください。',
+      ].join('\n'),
+    );
+  }
 }
 
 /**
@@ -69,14 +157,17 @@ export function parseMetadata(publicExports?: Set<string>): Map<string, Componen
   const groups = new Map<string, ComponentGroup>();
 
   for (const component of data) {
-    const isComponentsDir = component.filePath.startsWith('src/components/');
-    const isIntlDir = component.filePath.startsWith('src/intl/');
+    // smarthr-ui v99.7 以降、クライアントコンポーネントは `src/components/<Component>/client/` 配下に置かれる。
+    // `client` はグルーピングに使わないため、取り除いた filePath で判定する。
+    const filePath = component.filePath.replace(/\/client\//, '/');
+    const isComponentsDir = filePath.startsWith('src/components/');
+    const isIntlDir = filePath.startsWith('src/intl/');
     if (!isComponentsDir && !isIntlDir) continue;
 
     if (isComponentsDir) {
       // 内部実装パターン (例: src/components/AppHeader/components/desktop/AppLauncher.tsx) を除外。
       // 同一 displayName が別所で公開エクスポートされる場合はそちらの定義のみ採用。
-      const rest = component.filePath.slice('src/components/'.length);
+      const rest = filePath.slice('src/components/'.length);
       if (rest.includes('/components/')) continue;
     }
     if (/^Fa.+Icon$/.test(component.displayName)) continue;
@@ -92,7 +183,7 @@ export function parseMetadata(publicExports?: Set<string>): Map<string, Componen
       // (design-system 側のディレクトリ名 kebab-case と pascalToKebab 経由で対応付け可能)。
       dirName = component.displayName;
     } else {
-      const parts = component.filePath.split('/');
+      const parts = filePath.split('/');
       if (parts.length < 3) continue;
       dirName = parts[parts.length - 2];
     }

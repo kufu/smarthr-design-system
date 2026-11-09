@@ -11,4 +11,4 @@ fi
 
 pnpm --prefix scripts/content-checker install --prefer-offline
 
-pnpm lint-staged
+pnpm lint-staged --hide-unstaged

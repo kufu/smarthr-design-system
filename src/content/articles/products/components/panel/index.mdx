@@ -1,0 +1,236 @@
+---
+title: 'Panel'
+description: 'ページ背景の上に一段重ねて置き、矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。'
+---
+
+import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
+import ComponentStory from '@/components/article/ComponentStory.astro'
+
+import { Image } from 'astro:assets'
+import { Text, Cluster } from 'smarthr-ui'
+import DoAndDont from '@/components/article/DoAndDont.astro'
+
+ページ背景の上に一段重ねて置き、[矩形](/products/design-patterns/visual-grouping/#h3-3)で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「[セクション](/products/design-patterns/visual-grouping/#h3-5)」領域として示すときに使います。
+
+<ComponentStory name="Panel" dirName="Panel" />
+
+## 使用上の注意
+
+### レイヤー順序に注意する
+
+Panelの[レイヤー順序](/products/design-tokens/shadow/#h2-1)は`1`です。レイヤー順序が`2`以上の要素（[InformationPanel](/products/components/information-panel/)など）をPanelの上に配置しないでください、
+
+Panelの上にPanelを重ねることもレイヤー順序を把握しづらくさせます。Panelの上で矩形によるグルーピングをする場合は基本的に[Groupbox](/products/components/groupbox/)を使ってください。
+
+<Cluster gap={{ row: 0, column: 1 }}>
+  <DoAndDont type="dont" width="calc(50% - 8px)">
+    <Text slot="label">Panel上にInformationPanelとPanelが配置されており、レイヤー順序が把握しづらい。</Text>
+    <div slot="img">
+```tsx editable background=BACKGROUND canvas=560 hideCode
+<Stack>
+  <Cluster align="center" justify="space-between">
+    <Heading>見出し</Heading>
+    <Button>ボタン</Button>
+  </Cluster>
+  <Panel padding={1.5}>
+    <Stack gap={1.5}>
+      {/* eslint-disable-next-line smarthr/design-system-guideline-prohibit-information-panel-in-white-bg */}
+      <InformationPanel type="warning" heading="設定が無効です">
+        <p>
+          設定が無効です。有効にするには設定してください。このような注意書きが入ります。
+        </p>
+      </InformationPanel>
+      <Stack>
+        <Cluster align="center" justify="space-between">
+          <Heading type="blockTitle">見出し</Heading>
+          <Button size="S" prefix={<FaPencilIcon />}>編集</Button>
+        </Cluster>
+        <Panel padding={1.5}>
+          <Stack>
+            <p>説明テキスト</p>
+            <DefinitionList>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+            </DefinitionList>
+          </Stack>
+        </Panel>
+      </Stack>
+    </Stack>
+  </Panel>
+</Stack>
+```
+    </div>
+  </DoAndDont>
+
+  <DoAndDont type="do" width="calc(50% - 8px)">
+    <Text slot="label">Panel上のグルーピングにGroupboxが使われており、レイヤー順序が把握しやすい。</Text>
+    <div slot="img">
+```tsx editable background=BACKGROUND canvas=560 hideCode
+<Stack>
+  <Cluster align="center" justify="space-between">
+    <Heading>見出し</Heading>
+    <Button>ボタン</Button>
+  </Cluster>
+  <Panel padding={1.5}>
+    <Stack gap={1.5}>
+      <Groupbox>
+        <Stack>
+          <Heading type="blockTitle" icon={<WarningIcon />}>設定が無効です</Heading>
+          <p>設定が無効です。有効にするには設定してください。このような注意書きが入ります。</p>
+        </Stack>
+      </Groupbox>
+      <Stack gap={0.5}>
+        <Cluster align="center" justify="space-between">
+          <Heading type="blockTitle">見出し</Heading>
+          <Button size="S" prefix={<FaPencilIcon />}>編集</Button>
+        </Cluster>
+        <Groupbox>
+          <Stack>
+            <p>説明テキスト</p>
+            <DefinitionList>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+              <DefinitionListItem term="見出し">
+                テキスト
+              </DefinitionListItem>
+            </DefinitionList>
+          </Stack>
+        </Groupbox>
+      </Stack>
+    </Stack>
+  </Panel>
+</Stack>
+```
+    </div>
+  </DoAndDont>
+</Cluster>
+
+レイアウト上Panelを重ねる必要がある場合は、背景色が同色（`WHITE`）にならないように[`OVER_BACKGROUND`](/products/design-tokens/color/#h3-3)などに変更してレイヤー順序を表現してください。（例：[複数のセクションを内包するグループ](/products/design-patterns/visual-grouping/#h3-7)）
+
+```tsx editable background=BACKGROUND canvas=1400 hideCode
+<Container>
+  <Stack>
+    <TabBar bordered={false}>
+      <TabItem id="tab1" onClick={() => {}} selected >タブ1</TabItem>
+      <TabItem id="tab2" onClick={() => {}}>タブ2</TabItem>
+      <TabItem id="tab3" onClick={() => {}}>タブ3</TabItem>
+    </TabBar>
+    <Panel>
+      <Groupbox rounded bgColor="OVER_BACKGROUND" padding={1.5}>
+        <Stack gap={2}>
+          <Stack>
+            <Cluster align="center" justify="space-between">
+              <Heading>見出し</Heading>
+              <Button>ボタン</Button>
+            </Cluster>
+            <Panel padding={1.5}>
+              <Stack gap={1.5}>
+                <p>説明テキスト</p>
+                <form>
+                  <FormControl
+                    label="タイトル"
+                  >
+                    <Input name="sample" defaultValue="テキスト" />
+                  </FormControl>
+                </form>
+                <Stack gap={0.5}>
+                  <Heading type="blockTitle">見出し</Heading>
+                  <Groupbox>
+                    <Stack>
+                      <p>説明テキスト</p>
+                      <DefinitionList>
+                        <DefinitionListItem term="見出し">
+                          テキスト
+                        </DefinitionListItem>
+                        <DefinitionListItem term="見出し">
+                          テキスト
+                        </DefinitionListItem>
+                      </DefinitionList>
+                    </Stack>
+                  </Groupbox>
+                </Stack>
+              </Stack>
+            </Panel>
+          </Stack>
+          <Stack>
+            <Cluster align="center" justify="space-between">
+              <Heading>見出し</Heading>
+              <Button>ボタン</Button>
+            </Cluster>
+            <Panel padding={1.5}>
+              <Stack gap={1.5}>
+                <p>説明テキスト</p>
+                <form>
+                  <FormControl
+                    label="タイトル"
+                  >
+                    <Input name="sample" defaultValue="テキスト" />
+                  </FormControl>
+                </form>
+                <Stack gap={0.5}>
+                  <Heading type="blockTitle">見出し</Heading>
+                  <Groupbox>
+                    <Stack>
+                      <p>説明テキスト</p>
+                      <DefinitionList>
+                        <DefinitionListItem term="見出し">
+                          テキスト
+                        </DefinitionListItem>
+                        <DefinitionListItem term="見出し">
+                          テキスト
+                        </DefinitionListItem>
+                      </DefinitionList>
+                    </Stack>
+                  </Groupbox>
+                </Stack>
+              </Stack>
+            </Panel>
+          </Stack>
+        </Stack>
+      </Groupbox>
+    </Panel>
+  </Stack>
+</Container>
+```
+
+## 使い方チェックリスト
+
+<Checklist name="Panel" />
+
+## Props
+
+<ComponentPropsTable name="Panel" />
+
+
+## 関連リンク
+
+* [レイヤー順序](/products/design-tokens/z-index/)
+
+
+## 参考文献
+
+* https://design-system.service.gov.uk/components/panel/

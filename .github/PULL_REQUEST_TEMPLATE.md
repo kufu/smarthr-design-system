@@ -30,14 +30,15 @@ e.g.
 ## checklist.yaml の更新
 
 <!--
-コンポーネントの index.mdx を変更/追加した場合のみチェックしてください。
+コンポーネントの index.mdx / _components/*.mdx を変更・追加した場合は、まず生成/更新スキル（generate-checklist / update-checklist）を実行してください。更新要否はスキルが判定します（typo・description のみの軽微な変更でも、まずスキルを実行）。
+index.mdx を変更していない場合は、この節を削除して構いません。
+差分が出なかった理由（スキルの報告内容）を description に記載するとレビューしやすくなります。
 詳細は CONTRIBUTING.md「smarthr-ui コンポーネント向け AI スキルの整備」を参照。
 -->
 
-- [ ] checklist.yaml を新規作成 or 更新した
-- [ ] generate-checklist SKILL の判定でスキップ対象だった（理由: ）→ `skip-checklist-update` ラベルを付与
-- [ ] index.mdx の変更が軽微（typo / description のみ等）→ `skip-checklist-update` ラベルを付与
-- [ ] index.mdx の変更なし
+- [ ] checklist.yaml に差分が出たコンポーネントは、その差分を PR に含めた
+- [ ] 一部のコンポーネントで差分が出なかった（差分あり・なしが混在）→ `skip-checklist-update` ラベルを付与
+- [ ] すべてのコンポーネントで差分が出なかった → `skip-checklist-update` ラベルを付与
 
 ## キャプチャ
 

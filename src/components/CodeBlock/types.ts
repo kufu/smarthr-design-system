@@ -16,3 +16,12 @@ export type LiveContainerProps = {
     background?: ComponentPreviewProps['background'];
     canvas?: ComponentPreviewProps['canvas'];
   };
+
+/**
+ * CodeBlock / LiveContainer の内部実装で使う型。
+ * noIframe は利用者向けに非推奨（`@deprecated`）だが、内部での props 受け渡しで
+ * deprecation の警告が出ないよう、マーカーを外した noIframe を持たせている。
+ */
+export type LiveContainerInternalProps = Omit<LiveContainerProps, 'noIframe'> & {
+  noIframe?: boolean;
+};

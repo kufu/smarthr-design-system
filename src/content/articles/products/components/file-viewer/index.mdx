@@ -4,6 +4,7 @@ description: '画像やPDFファイルを表示・拡大縮小・回転できる
 ---
 import ComponentStory from '@/components/article/ComponentStory.astro'
 import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
+import Checklist from '@/components/article/Checklist/Checklist.astro'
 
 画像やPDFファイルを表示・拡大縮小・回転できるファイルビューアーコンポーネントです。ファイルの内容をプレビューするときに使います。
 
@@ -15,10 +16,23 @@ import ComponentPropsTable from '@/components/article/ComponentPropsTable.astro'
 - **画像ファイル**: JPEG、PNG、GIF など（`image/*` のMIMEタイプ）
 - **PDFファイル**: `application/pdf`
 
+## 状態
+
+### PDF内テキスト検索の表示
+
+PDF表示時は、デフォルトで検索フォームを表示し、PDF内のテキストを検索できます。
+`searchable` propsに`false`を指定すると、検索フォームを非表示にできます。
+
+モバイルなど画面サイズが限られる場面では、検索フォームがコンテンツ領域を圧迫する場合があるため、`searchable={false}`の指定を検討してください。
+
 ## モバイル
 FileViewerをダイアログで表示する際は、ユーザーがファイルの内容に集中できるように、画面いっぱいに広げる[拡大したダイアログ](/products/components/dialog/message-dialog/#h3-9)の使用を検討してください。
 
 ![FileViewerを拡大したダイアログで表示](images/fileviewer_expanded_message_dialog.png)
+
+## 使い方チェックリスト
+
+<Checklist name="FileViewer" />
 
 ## Props
 

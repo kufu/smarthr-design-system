@@ -22,8 +22,9 @@ export default function IndexNav({ targetId, headings, ignoreH3Nav = false }: Pr
       const target = document.getElementById(targetId);
       if (!target) return;
 
-      const headingList = Array.from(target.querySelectorAll('h2, h3')).filter(
-        (element) => !(element.tagName === 'H3' && ignoreH3Nav),
+      // getNestedHeadings と同じ条件で見出しを集める
+      const headingList = Array.from(target.querySelectorAll('h2, h3, h4[data-index-nav]')).filter(
+        (element) => !(element.tagName !== 'H2' && ignoreH3Nav),
       );
 
       const _currentHeading = headingList.find((element, index) => {

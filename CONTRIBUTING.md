@@ -10,7 +10,7 @@ Astroの機能や導入しているプラグインの概要です。
 
 ### Astro本体
 
-バージョン4系を使っています。
+バージョン7系を使っています。
 
 ### ページとルーティング
 
@@ -35,20 +35,29 @@ Astroの機能や導入しているプラグインの概要です。
 #### ArticleLayout.astro でやっていること
 
 - 左サイドバーに表示するメニューの生成
-- 右サイドバーに表示する目次の生成
-- 各ページ最後にある「前へ」「次へ」リンクの生成
+- ページ全体（ヘッダー・サイドバー・フッター）のレイアウト
+- 記事本文まわり（目次・本文・前後リンク）は`ArticleBody.astro`に委譲
 
 詳しくはテンプレート内のコメントもあわせて参照してください。
 
+#### ArticleBody.astro でやっていること
+
+- 記事本文のレンダリング
+- 右サイドバーに表示する目次の生成
+- 各ページ最後にある「前へ」「次へ」リンクの生成
+
+目次にはMDX内に埋め込まれたコンポーネントが生成する見出しも含める必要があるため、`Astro.slots.render()`で本文を一度だけHTML文字列にレンダリングし、
+そのHTMLから見出しを抽出（`src/lib/getNestedHeadings.ts`）しつつ、同じHTMLを本文としても出力しています。
+本文をレイアウト側ではなくこのコンポーネントで文字列化しているのは、ドキュメント上の出現順どおりにレンダリングさせるためです（詳細はファイル内のコメントを参照）。
+
 #### [...slug].astro でやっていること
 
-- 目次のための見出し情報の生成
 - タグ変換時のカスタムコンポーネントの適用
 - MDXのレンダリング
 
 #### remarkプラグイン
 
-以下のプラグインで、マークダウン変換時に絵文字の変換やマークアップに必要なデータの生成などを行なっています。
+以下のプラグインで、マークダウン変換時に絵文字の変換やマークアップに必要なデータの生成などをしています。
 
 - remark-emoji
 - remark-code-block (独自)
@@ -63,11 +72,31 @@ Astroの機能や導入しているプラグインの概要です。
 また、コードの表示・ライブエディタやSmartHR UIのStorybookを表示しているコンポーネントなどは、Reactで実装されています。
 詳しくはそれぞれの階層以下にあるREADME.mdを参照してください。
 
+#### importしたSmartHR UIコンポーネントを直接アイランドにせずにラップする
+
+MDXや`.astro`で`client:load`などのクライアントディレクティブを付ける場合、`smarthr-ui`から直接importしたコンポーネントに付けないでください。
+
+```jsx
+// NG: smarthr-uiのbarrel自体がクライアントエントリーになり、smarthr-ui全体（pdfjsなども含む）が全ページ共通のチャンクに入ってしまう
+import { CurrencyInput } from 'smarthr-ui';
+
+<CurrencyInput name="example" client:load />
+```
+
+`_components/`以下にラッパーとなるReactコンポーネントを作り、そちらにクライアントディレクティブを付けてください。
+
+```jsx
+// OK: ラッパーがエントリーになるため、使っているコンポーネントだけがバンドルされる
+import { SampleInputWithPrefixText } from './_components';
+
+<SampleInputWithPrefixText client:load />
+```
+
 ### キャッシュ
 
-ビルド時に`scripts/fetch-ui-data.ts`を実行してSmartHR UIのデータを取得し、`src/cache/`以下に保存しています。
+ビルド時に`scripts/fetch-ui-data.ts`を実行してSmartHR UIのデータを取得し、`node_modules/.cache/smarthr-ui@v<バージョン>/data.json`に保存しています。同じバージョンのキャッシュがあれば再取得しません。
 
-このディレクトリは`.gitignore`に登録されているため、リポジトリには含まれません。
+キャッシュは`node_modules`配下にあるため、リポジトリには含まれません。
 
 ## SDS独自の機能
 
@@ -87,7 +116,7 @@ Astroと直接関連しない、独自の機能もいくつかあります。
 
 検索機能にAlgoliaを利用しています。Algoliaのインデックスは、mainブランチのビルド時に更新されます。
 
-インデックスの登録には`scripts/update-algoliasearch.ts`を、検索UIには[algloliasearch](https://www.npmjs.com/package/algoliasearch)と[react-instantsearch-dom](https://www.npmjs.com/package/react-instantsearch-dom)を使っています。
+インデックスの登録には`scripts/update-algoliasearch.ts`を、検索UIには[algoliasearch](https://www.npmjs.com/package/algoliasearch)と[react-instantsearch](https://www.npmjs.com/package/react-instantsearch)を使っています。
 
 ### Cloudinary
 
@@ -183,9 +212,11 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 
 `checklist-sync`が失敗した場合の対応は以下のいずれか:
 
-1. ローカルで`checklist.yaml`を更新（または新規作成）してPRに追加
-2. `generate-checklist` SKILLの判定で「スキップ対象」だった場合 → スキップ理由をPR descriptionに書き、PRに `skip-checklist-update` ラベルを付与
-3. typo / description のみ等の軽微修正で更新不要な場合 → PRに `skip-checklist-update` ラベルを付与
+まず対象コンポーネントで生成/更新スキル（`generate-checklist` / `update-checklist`）を実行します。typo・descriptionのみの軽微な変更でも、更新要否は作業者が判断せずスキルに委ねます。実行結果に応じて以下のいずれかで対応します。
+
+1. スキルが差分を出した場合 → その`checklist.yaml`をPRに含める
+2. スキルを実行したが差分が出なかった場合（既存項目でカバー済み、または新規コンポーネントでスキップ判定）→ 差分が出なかった理由をPR descriptionに書き、PRに `skip-checklist-update` ラベルを付与
+3. 複数コンポーネントを変更し、一部は差分あり・一部は差分なしが混在する場合 → 差分ありの`checklist.yaml`をPRに含めたうえで、`checklist-sync`は現状PR単位判定のため `skip-checklist-update` ラベルを付与する。このときラベルは「更新がない」意味ではなく「CIをPR単位でスキップする」ためのもの。差分が出なかったコンポーネントと理由はPR descriptionに明記し、レビュアーが妥当性を確認できるようにする
 
 **スキップ判定の典型例**（`generate-checklist` SKILLが自動判定します）:
 
@@ -258,4 +289,4 @@ relatedComponents:
 | `.github/prompts/generate-checklist.md` | 抽出ルールの詳細仕様 |
 | `.github/prompts/update-checklist.md` | 差分更新プロンプトの詳細仕様 |
 | `scripts/generate-skills/validate.ts` | バリデーションスクリプト |
-| `scripts/generate-skills/index.ts` | `SKILL.md`再生成スクリプト |
+| `scripts/generate-skills/index.ts` | コンポーネントガイド（`components/*.md`・`component-selector.md`）の再生成スクリプト |

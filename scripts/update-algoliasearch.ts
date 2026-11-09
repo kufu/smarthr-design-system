@@ -54,12 +54,10 @@ if (isReplaceAllMode) {
     objects: sendData,
   });
 } else {
-  const requests = sendData.map(
-    (data): BatchRequest => ({
-      action: 'updateObject',
-      body: data,
-    }),
-  );
+  const requests = sendData.map((data): BatchRequest => ({
+    action: 'updateObject',
+    body: data,
+  }));
 
   // オブジェクトを更新する
   await client.batch({
