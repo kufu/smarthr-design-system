@@ -38,7 +38,7 @@ smarthr-design-system のコンポーネントページ（index.mdx）から、A
 - **コンポーネント名は text に残す**: 「ヘッダーには AppHeader を使う」のように、パターン内でどのコンポーネントを使うかはパターン固有のルールのため省略しない
 - **項目数の目安**: パターンページは長く節が多いため、1〜40 項目（validate の warn 上限）を目安にする。超える場合は sub_items への統合を検討する
 - **severity 横串確認（Step 4-2）**: grep 対象に `src/content/articles/products/design-patterns/**/checklist.yaml` も含める
-- **サイトには表示しない**: パターンページには `## 使い方チェックリスト` 節や `<Checklist />` を追加しない（サイトのチェックリスト表示はコンポーネントのみ対応）
+- **サイトにも表示する**: checklist.yaml を新しく作ったパターンは、index.mdx の末尾に `## 使い方チェックリスト` 節を置き、`<Checklist name="<slug の PascalCase>" title="<frontmatter の title>" />` を追加する（例: page-layout の `<Checklist name="PageLayout" title="ページレイアウト" />`。`Checklist` の import も必要）。コミット対象は checklist.yaml とこの index.mdx の変更
 - **CI**: `validate` の対象になるが、`checklist-sync`（index.mdx と checklist.yaml の同期チェック）の対象外。パターンの index.mdx を変更したときは、自主的に `update-checklist` SKILL を実行する
 
 ## 生成フロー

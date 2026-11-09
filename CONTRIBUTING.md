@@ -286,7 +286,7 @@ relatedComponents:
 - **置き場所**: `design-patterns/<slug>/checklist.yaml`（`index.mdx`と同じディレクトリ）。1ファイル構成のパターン（`design-patterns/<slug>.mdx`）は、先に`<slug>/index.mdx`へ移す必要があります
 - **反映先**: マージ後にCIが`plugins/smarthr-design-system/skills/design-pattern-guidelines/checklists/<slug>.md`を生成し、`design-pattern-guidelines`スキルがパターンのmdxと併せて読みます。コンポーネントのLayer 1・Layer 2に当たる情報はありません
 - **CIでのチェック**: `validate`の対象です。`checklist-sync`の対象外のため、パターンの`index.mdx`を変更したときは自主的に`update-checklist` SKILLを実行してください
-- **サイトでの表示**: パターンページにはチェックリストを表示しません（`<Checklist />`はコンポーネントページのみ対応）
+- **サイトでの表示**: コンポーネントページと同様に、`index.mdx`の末尾に`## 使い方チェックリスト`節を置き、`<Checklist name="PageLayout" title="ページレイアウト" />`のように書くとページに表示されます（`name`はディレクトリ名のPascalCase、`title`はページのタイトル）
 
 ### 関連ファイル（参考）
 
