@@ -1,3 +1,4 @@
+import matter from 'gray-matter';
 import { remark } from 'remark';
 import { visit } from 'unist-util-visit';
 
@@ -9,9 +10,12 @@ import type { Heading, PhrasingContent } from 'mdast';
  * id 採番は remark-index-id-header.ts と同一規則（レベルごとに 0 始まりの連番・出現順・depth>6 は除外）。
  * raw markdown から算出するため、レンダリング時の typographic 変換（smartypants による " → “” 等）の影響を受けず、
  * checklist.yaml の source_section（同じソース由来のテキスト）とそのまま突合できる。
+ *
+ * 本文の見出しは frontmatter を除いた MDX から採番されるため、先に frontmatter を取り除いてから解析する。
+ * 取り除かないと `---` / `title: ...` / `---` が「区切り線 + setext 見出し（h2）」と解釈され、h2 の採番が 1 つずれる。
  */
 export const getSectionAnchorMap = (markdown: string): Map<string, string> => {
-  const tree = remark().parse(markdown);
+  const tree = remark().parse(matter(markdown).content);
   const indexes: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
   const stack: Array<{ depth: number; text: string }> = [];
   const map = new Map<string, string>();
