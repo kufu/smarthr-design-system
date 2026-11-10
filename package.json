@@ -25,6 +25,7 @@
     "format:prettier": "prettier --write .",
     "format:text": "textlint --fix 'src/content/**/*.md{,x}'",
     "format": "run-p format:*",
+    "test": "node --import tsx --test \"src/**/*.test.ts\"",
     "export:zip-images": "tsx ./scripts/zipImages.ts",
     "update:ui-data": "tsx ./scripts/fetch-ui-data.ts",
     "update:smarthr-ui.css": "tsx scripts/update-smarthr-ui-css.ts",
