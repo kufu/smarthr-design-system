@@ -89,84 +89,87 @@ export default function LiveContainer({ code, language, scope, noIframe, withSty
 
   return (
     <ThemeProvider theme={smarthrTheme}>
-      {/* smarthr-ui の一部コンポーネント（Container・UpwardLink など）は内部で useEnvironment を使っており、
-          EnvironmentProvider の外では例外になるため、プレビュー全体を包んでおく。
-          environment を渡さない場合はメディアクエリから mobile を自動判定する。
-          コード例側で EnvironmentProvider を使っている場合は、入れ子の内側が優先される。 */}
-      <ui.EnvironmentProvider>
-        <LiveProvider
-          code={code}
-          language={language}
-          scope={{ ...React, ...ui, ...scope, styled, css }}
-          theme={{
-            ...themes.vsDark,
-            plain: {
-              color: CSS_COLOR.LIGHT_GREY_3,
-              backgroundColor: CSS_COLOR.TEXT_BLACK,
-            },
-          }}
-          noInline={withStyled}
-          transformCode={transformCode}
-          enableTypeScript
-        >
-          {/* smarthr-ui側が対応したらnoIframeの条件分岐は削除し、iframeのdocument.bodyをLiveEditorに渡してportalにする予定です。 */}
-          {!noIframe ? (
-            <Frame
-              ref={iframeRef}
-              width="100%"
-              height="600px"
-              style={{ border: 'none', overflow: 'hidden', display: 'block' }}
-              referrerPolicy="same-origin"
-              head={<link href="/smarthr-ui.css" rel="stylesheet" />}
-            >
-              <FrameContextConsumer>
-                {({ document }) => (
-                  <StyleSheetManager target={document?.head}>
-                    <ComponentPreview background={background} canvas={canvas}>
-                      <CssBaseLine />
-                      <LivePreview Component={React.Fragment} />
-                    </ComponentPreview>
-                  </StyleSheetManager>
-                )}
-              </FrameContextConsumer>
-            </Frame>
-          ) : (
-            <ComponentPreview background={background} canvas={canvas}>
-              <LivePreview Component={React.Fragment} />
-            </ComponentPreview>
-          )}
-          <div
-            style={{
-              backgroundColor: '#f8f7f6',
-              display: hideCode ? 'flex' : 'none',
-              justifyContent: 'flex-end',
-              width: '100%',
+      {/* smarthr-ui のコンポーネントは Provider の存在を前提にしているものがあり、外側では例外になる。
+          - EnvironmentProvider: Container・UpwardLink などが内部で useEnvironment を使う。
+            environment を渡さない場合はメディアクエリから mobile を自動判定する。
+          - IntlProvider: SegmentedControl などが内部でローカライズを使う。
+          いずれもコード例側で同じ Provider を使っている場合は、入れ子の内側が優先される。 */}
+      <ui.IntlProvider locale="ja">
+        <ui.EnvironmentProvider>
+          <LiveProvider
+            code={code}
+            language={language}
+            scope={{ ...React, ...ui, ...scope, styled, css }}
+            theme={{
+              ...themes.vsDark,
+              plain: {
+                color: CSS_COLOR.LIGHT_GREY_3,
+                backgroundColor: CSS_COLOR.TEXT_BLACK,
+              },
             }}
+            noInline={withStyled}
+            transformCode={transformCode}
+            enableTypeScript
           >
-            <ui.DisclosureTrigger targetId={id}>
-              {({ expanded }) => (
-                <ui.Button variant="tertiary" size="S">
-                  {expanded ? 'コードを折りたたむ' : 'コードを表示'}
-                </ui.Button>
-              )}
-            </ui.DisclosureTrigger>
-          </div>
-          <ui.DisclosureContent id={id} isOpen={hideCode === true ? undefined : true}>
-            <div className={styles.codeWrapper}>
-              <div className={styles.liveEditorContainer}>
-                <div>
-                  <div className={sharedStyles.preContainer}>
-                    <CopyButton text={code || ''} />
-                    {/* @ts-expect-error -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
-                    <LiveEditor padding={0} tabMode="focus" />
+            {/* smarthr-ui側が対応したらnoIframeの条件分岐は削除し、iframeのdocument.bodyをLiveEditorに渡してportalにする予定です。 */}
+            {!noIframe ? (
+              <Frame
+                ref={iframeRef}
+                width="100%"
+                height="600px"
+                style={{ border: 'none', overflow: 'hidden', display: 'block' }}
+                referrerPolicy="same-origin"
+                head={<link href="/smarthr-ui.css" rel="stylesheet" />}
+              >
+                <FrameContextConsumer>
+                  {({ document }) => (
+                    <StyleSheetManager target={document?.head}>
+                      <ComponentPreview background={background} canvas={canvas}>
+                        <CssBaseLine />
+                        <LivePreview Component={React.Fragment} />
+                      </ComponentPreview>
+                    </StyleSheetManager>
+                  )}
+                </FrameContextConsumer>
+              </Frame>
+            ) : (
+              <ComponentPreview background={background} canvas={canvas}>
+                <LivePreview Component={React.Fragment} />
+              </ComponentPreview>
+            )}
+            <div
+              style={{
+                backgroundColor: '#f8f7f6',
+                display: hideCode ? 'flex' : 'none',
+                justifyContent: 'flex-end',
+                width: '100%',
+              }}
+            >
+              <ui.DisclosureTrigger targetId={id}>
+                {({ expanded }) => (
+                  <ui.Button variant="tertiary" size="S">
+                    {expanded ? 'コードを折りたたむ' : 'コードを表示'}
+                  </ui.Button>
+                )}
+              </ui.DisclosureTrigger>
+            </div>
+            <ui.DisclosureContent id={id} isOpen={hideCode === true ? undefined : true}>
+              <div className={styles.codeWrapper}>
+                <div className={styles.liveEditorContainer}>
+                  <div>
+                    <div className={sharedStyles.preContainer}>
+                      <CopyButton text={code || ''} />
+                      {/* @ts-expect-error -- LiveEditorの型定義が正しくないようなので、エラーを無視。 https://github.com/FormidableLabs/react-live/pull/234 */}
+                      <LiveEditor padding={0} tabMode="focus" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <LiveError />
-          </ui.DisclosureContent>
-        </LiveProvider>
-      </ui.EnvironmentProvider>
+              <LiveError />
+            </ui.DisclosureContent>
+          </LiveProvider>
+        </ui.EnvironmentProvider>
+      </ui.IntlProvider>
     </ThemeProvider>
   );
 }
