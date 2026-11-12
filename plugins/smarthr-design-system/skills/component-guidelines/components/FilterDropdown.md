@@ -10,20 +10,20 @@ import { FilterDropdown } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | onReset | MouseEventHandler<HTMLButtonElement> | - | - | - |
 | onCancel | MouseEventHandler<HTMLButtonElement> | - | - | - |
 | onClose | () => void | - | - | - |
-| trigger | ReactNode \| { children: ReactNode; size?: any; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | - | 引き金となるボタン |
+| trigger | ReactNode \| { text: ReactNode; size?: any; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | - | 引き金となるボタン |
 | onOpen | () => void | - | - | - |
 | responseStatus | ResponseStatus | - | - | - |
 | applyText | ReactNode | - | - | - |
 | cancelText | ReactNode | - | - | - |
 | resetText | ReactNode | - | - | - |
-| filtered | boolean \| { iconAlt?: string; } | - | - | - |
+| filtered | boolean \| { alt?: string; } | - | - | - |
 | onApply | MouseEventHandler<HTMLButtonElement> | - | ✓ | - |
 | ref | Ref<HTMLButtonElement> | - | - | - |
 

@@ -2,7 +2,7 @@
 
 UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、対応するガイドファイルを参照してください。
 
-> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ## コンポーネント一覧
 
@@ -21,7 +21,7 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | Browser | 階層構造を持つデータを選択するためのコンポーネントです。カテゴリや組織、フォルダなどのツリー状のデータをドリルダウンで選択するときに使います。 | [components/Browser.md](components/Browser.md) |
 | BulkActionRow | テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。 | [components/BulkActionRow.md](components/BulkActionRow.md) |
 | Button | button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。 | [components/Button.md](components/Button.md) |
-| Calendar | カレンダーを表示し日付を選択するためのコンポーネントです。基本的にWarekiPickerやDatePicker（非推奨）の内部部品として使われるため、単独では使用しません。 | [components/Calendar.md](components/Calendar.md) |
+| Calendar | カレンダーを表示し日付を選択するためのコンポーネントです。基本的にWarekiPickerの内部部品として使われるため、単独では使用しません。 | [components/Calendar.md](components/Calendar.md) |
 | Center | 要素を上下左右中央に配置するためのレイアウトコンポーネントです。コンテンツを画面中央に置くとき、ボックス内に中央寄せをするときに使います。 | [components/Center.md](components/Center.md) |
 | Checkbox | input[type='checkbox']要素の代替としてオン/オフや真偽の状態を入力させるコンポーネントです。5個以下の選択肢から複数の値を選択させるとき、即時反映ではなく送信ボタンで確定させるときに使います。 | [components/Checkbox.md](components/Checkbox.md) |
 | Chip | テキストをタグのように装飾して表示するためのコンポーネントです。 | [components/Chip.md](components/Chip.md) |
@@ -33,7 +33,6 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | ControlledStepFormDialog | StepFormDialogの開閉状態を外部stateで制御する派生コンポーネントです。開閉状態をアプリケーション側で管理するときに使います。 | [components/ControlledStepFormDialog.md](components/ControlledStepFormDialog.md) |
 | CurrencyInput | 金額を入力させるためのコンポーネントです。給与・税額など金額値を入力させるときに使います。 | [components/CurrencyInput.md](components/CurrencyInput.md) |
 | DateFormatter | 日付データを任意の形式にフォーマットして表示するコンポーネントです。日付をユーザーの言語や地域設定に適した形式で表示するときに使います。 | [components/DateFormatter.md](components/DateFormatter.md) |
-| ⚠️ DatePicker（非推奨） | 【非推奨】ユーザーに日付を指定させる際に使用するコンポーネントです。フォーカスするとCalendarが開き、視覚的に日付を選択できます。 | [components/DatePicker.md](components/DatePicker.md) |
 | ⚠️ DatetimeLocalPicker（非推奨） | 【非推奨】ユーザーに日付と時刻を指定させる際に使用するコンポーネントです。 | [components/DatetimeLocalPicker.md](components/DatetimeLocalPicker.md) |
 | DefinitionList | 見出しと説明をペアで並べる定義リストコンポーネントです。フォーム入力内容の確認画面や編集不要のデータ表示など、ラベルと値のペアを参照用に並べるときに使います。 | [components/DefinitionList.md](components/DefinitionList.md) |
 | Dialog | ページ前面に表示されるダイアログ領域のプリミティブコンポーネントです。ActionDialog/MessageDialog/ModelessDialog/FormDialog/StepFormDialogで実現できない独自のダイアログを提供するときに使います。 | [components/Dialog.md](components/Dialog.md) |

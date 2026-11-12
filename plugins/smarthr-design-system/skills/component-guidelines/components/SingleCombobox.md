@@ -10,12 +10,12 @@ import { SingleCombobox } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | className | string | - | - | コンポーネント内の一番外側の要素に適用するクラス名 |
-| name | string | - | - | input 要素の `name` 属性の値 |
+| name | string | - | - | input 要素の `name` 属性の値。 `MultiCombobox` では、選択済みアイテムの値を保持する hidden input 群の `name` にそのまま使われ、 検索用テキストボックスの `name` には `query_${name}` が設定される。 複数の hidden input は同じ `name` を持つため、Railsなど配列として受け取りたい場合は `name="ids[]"` のように `[]` を含めて指定すること（自動では付与されない） |
 | width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
 | onFocus | () => void | - | - | コンポーネントがフォーカスされたときに発火するコールバック関数 |
 | onBlur | () => void | - | - | コンポーネントからフォーカスが外れた時に発火するコールバック関数 |
@@ -34,7 +34,7 @@ import { SingleCombobox } from 'smarthr-ui'
 | onChangeInput | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
 | onAdd | (label: string) => void | - | - | `items` 内に存在しないアイテムが追加されたときに発火するコールバック関数 |
 | selectedItem | ComboboxItem<T> | - | ✓ | 選択されているアイテム |
-| defaultItem | ComboboxItem<T> | - | - | デフォルトで選択されるアイテム |
+| emptySelectionFallbackItem | ComboboxItem<T> | - | - | フォーカスが外れた際、selectedItemが未選択の場合に自動選択されるアイテム |
 | onClear | () => void | - | - | 選択されているアイテムがクリアされた時に発火するコールバック関数 |
 | onClearClick | (e: MouseEvent<Element, MouseEvent>) => void | - | - | 選択されているアイテムがクリアされた時に発火するコールバック関数 指定している場合、クリア時にonClickを実行せずにonClearClickのみ実行する |
 | onChangeSelected | (selectedItem: ComboboxItem<T>) => void | - | - | 選択されているアイテムのリストが変わった時に発火するコールバック関数 |

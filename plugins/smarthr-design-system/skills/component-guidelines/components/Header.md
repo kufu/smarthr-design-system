@@ -12,7 +12,7 @@ import { HeaderLink, HeaderDropdownMenuButton, Header } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### HeaderLink
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -24,7 +24,7 @@ import { HeaderLink, HeaderDropdownMenuButton, Header } from 'smarthr-ui'
 |---|---|---|---|---|
 | children | ReactNode \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<...> \| ReactNode \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<...>[] | - | ✓ | 操作群 |
 | onClose | () => void | - | - | ドロップダウンメニューが閉じられた際のイベント |
-| trigger | ReactNode \| { children: ReactNode; size?: any; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | ✓ | 引き金となるボタン |
+| trigger | ReactNode \| { text: ReactNode; size?: any; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | ✓ | 引き金となるボタン |
 | onOpen | () => void | - | - | ドロップダウンメニューが開かれた際のイベント |
 | ref | Ref<HTMLButtonElement> | - | - | - |
 

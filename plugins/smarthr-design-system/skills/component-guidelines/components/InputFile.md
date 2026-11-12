@@ -12,7 +12,7 @@ import { InputFile } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -23,6 +23,8 @@ import { InputFile } from 'smarthr-ui'
 | error | boolean | - | - | - |
 | hasFileList | boolean | - | - | ファイルリストを表示するかどうか |
 | previewable | boolean \| PreviewableObjectType | - | - | ファイルのプレビュー機能を有効にするかどうか |
+| defaultExistingFiles | ExistingFile[] | - | - | 既にアップロード済みのファイルの初期一覧 |
+| onDeleteExistingFile | (file: ExistingFile, index: number) => void | - | - | アップロード済みファイルが削除されたときに発火するコールバック関数 |
 | ref | Ref<HTMLInputElement> | - | - | - |
 
 ## 実装ルール
