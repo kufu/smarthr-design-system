@@ -242,7 +242,7 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 
 ### マージ後の自動再生成（`generate-skills` ワークフロー）
 
-`main`にマージされると、コンポーネントガイド（`plugins/smarthr-design-system/skills/component-guidelines/`配下）が自動再生成され、差分があれば `github-actions[bot]` が自動コミット&pushします。手動で`pnpm --filter ./scripts/generate-skills generate`を実行する必要はありません。
+`main`にマージされると、コンポーネントガイド（`plugins/smarthr-design-system/skills/component-guidelines/`配下）とデザインパターンのチェックリスト（`plugins/smarthr-design-system/skills/design-pattern-guidelines/checklists/`配下）が自動再生成され、差分があれば `github-actions[bot]` が自動コミット&pushします。手動で`pnpm --filter ./scripts/generate-skills generate`を実行する必要はありません。
 
 ### バリデーション出力の見方
 
@@ -278,6 +278,16 @@ relatedComponents:
 | 内部部品 | `Th` / `Td`など | なし | 必須 |
 | カテゴリメンバー | `Dialog` / `ErrorScreen` / `Picker`配下 | あり | 省略可 |
 
+### デザインパターンのchecklist.yaml
+
+デザインパターン（`src/content/articles/products/design-patterns/`配下）でも、コンポーネントと同じ手順で`checklist.yaml`を作成・更新できます。段階導入中のため、現在はページレイアウト（`page-layout`）のみ整備しています。
+
+- **依頼例**: 「ページレイアウトの checklist.yaml を作って」「page-layout の checklist.yaml を更新して」。`generate-checklist` / `update-checklist` SKILLがパターン用の手順で処理します
+- **置き場所**: `design-patterns/<slug>/checklist.yaml`（`index.mdx`と同じディレクトリ）。1ファイル構成のパターン（`design-patterns/<slug>.mdx`）は、先に`<slug>/index.mdx`へ移す必要があります
+- **反映先**: マージ後にCIが`plugins/smarthr-design-system/skills/design-pattern-guidelines/checklists/<slug>.md`を生成し、`design-pattern-guidelines`スキルがパターンのmdxと併せて読みます。コンポーネントのLayer 1・Layer 2に当たる情報はありません
+- **CIでのチェック**: `validate`の対象です。`checklist-sync`の対象外のため、パターンの`index.mdx`を変更したときは自主的に`update-checklist` SKILLを実行してください
+- **サイトでの表示**: コンポーネントページと同様に、`index.mdx`の末尾に`## 使い方チェックリスト`節を置き、`<Checklist name="PageLayout" title="ページレイアウト" />`のように書くとページに表示されます（`name`はディレクトリ名のPascalCase、`title`はページのタイトル）
+
 ### 関連ファイル（参考）
 
 仕組みを詳しく知りたい開発者向けの参照先です。通常の運用では触りません。
@@ -289,4 +299,4 @@ relatedComponents:
 | `.github/prompts/generate-checklist.md` | 抽出ルールの詳細仕様 |
 | `.github/prompts/update-checklist.md` | 差分更新プロンプトの詳細仕様 |
 | `scripts/generate-skills/validate.ts` | バリデーションスクリプト |
-| `scripts/generate-skills/index.ts` | コンポーネントガイド（`components/*.md`・`component-selector.md`）の再生成スクリプト |
+| `scripts/generate-skills/index.ts` | コンポーネントガイド（`components/*.md`・`component-selector.md`）とデザインパターンのチェックリスト（`checklists/*.md`）の再生成スクリプト |

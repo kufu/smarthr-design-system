@@ -68,9 +68,9 @@ jobs:
             echo "scripts/generate-skills/** が変更されているため全件評価します。"
             exit 0
           fi
-          # 変更された checklist.yaml のみ収集 (削除ファイルは除外)
+          # 変更された checklist.yaml (コンポーネント / デザインパターン) のみ収集 (削除ファイルは除外)
           mapfile -t files < <(git diff --name-only --diff-filter=d "$BASE"...HEAD \
-            | grep -E '^src/content/articles/products/components/.*/checklist\.yaml$' || true)
+            | grep -E '^src/content/articles/products/(components|design-patterns)/.*/checklist\.yaml$' || true)
           if [ "${#files[@]}" -eq 0 ]; then
             echo "mode=none" >> "$GITHUB_OUTPUT"
             echo "変更された checklist.yaml はありません。validate をスキップします。"
@@ -119,6 +119,7 @@ jobs:
 
   # index.mdx を変更したのに同一コンポーネントの checklist.yaml が未更新の
   # PR を検知し、ラベル運用で例外を許す。設計詳細は CONTRIBUTING.md 参照。
+  # デザインパターン (design-patterns/) の checklist.yaml は段階導入中のため、現状は同期チェックの対象外。
   checklist-sync:
     runs-on: ubuntu-latest
     steps:

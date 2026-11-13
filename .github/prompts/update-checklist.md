@@ -1,6 +1,6 @@
 # smarthr-design-system: checklist.yaml 差分更新プロンプト
 
-あなたは SmartHR Design System のコンポーネントページ（index.mdx）の変更に応じて、既存の checklist.yaml を差分更新する作業者です。
+あなたは SmartHR Design System のコンポーネントページ（またはデザインパターンページ）の index.mdx の変更に応じて、既存の checklist.yaml を差分更新する作業者です。
 
 このプロンプトは **既存 checklist.yaml と再抽出結果の突き合わせ・差分マージ方法** に専念します。
 
@@ -62,6 +62,8 @@
 eslint-plugin-smarthr のルール名一覧を参照し、各ルール候補に対応する ESLint ルール名がある場合は **出力から除外する**（Layer 2 で自動取り込みされるため、checklist.yaml には含めない）。除外した項目はコミットメッセージに「Layer 2 でカバー済み」として列挙する。
 
 判断できない場合は除外しない（推測しない）。
+
+デザインパターンページの場合は eslint ルールと紐付かないため、このステップは行わない。
 
 > 新規生成側（`generate-checklist`）と方針を統一。`layer2_candidate` フィールドは廃止し、Layer 2 でカバーされる項目は最初から出力に含めない。
 

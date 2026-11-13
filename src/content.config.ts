@@ -29,8 +29,9 @@ export const checklistItemSchema = z.object({
 
 const checklistCollection = defineCollection({
   loader: yamlGlob({
-    pattern: '**/checklist.yaml',
-    base: './src/content/articles/products/components',
+    // コンポーネントと、ディレクトリ構成のデザインパターン（<slug>/index.mdx と同じ階層）の checklist.yaml
+    pattern: ['components/**/checklist.yaml', 'design-patterns/*/checklist.yaml'],
+    base: './src/content/articles/products',
   }),
   schema: z.object({
     items: z.array(checklistItemSchema),

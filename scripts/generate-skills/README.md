@@ -2,6 +2,8 @@
 
 `smarthr-design-system` プラグインのコンポーネントガイドドキュメントを生成するスクリプト。3 レイヤー（Layer 1: smarthr-ui `metadata.json` / Layer 2: `eslint-plugin-smarthr` の各ルール README / Layer 3: `src/content/articles/products/components/**/checklist.yaml`）を合成し、`plugins/smarthr-design-system/skills/component-guidelines/` 配下に書き出します。
 
+あわせて、デザインパターンの `src/content/articles/products/design-patterns/<slug>/checklist.yaml` から、`plugins/smarthr-design-system/skills/design-pattern-guidelines/checklists/<slug>.md` を生成します（Layer 3 のみ）。
+
 ## セットアップ
 
 リポジトリルートで依存をインストールします。
@@ -21,6 +23,7 @@ pnpm --filter ./scripts/generate-skills generate
 
 - `plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`（個別コンポーネントドキュメント）
 - `plugins/smarthr-design-system/skills/component-guidelines/component-selector.md`（コンポーネント選定ガイド）
+- `plugins/smarthr-design-system/skills/design-pattern-guidelines/checklists/<slug>.md`（デザインパターンのチェックリスト）
 
 エントリポイントの `plugins/smarthr-design-system/skills/component-guidelines/SKILL.md` は手動管理であり、`pnpm generate` では上書きしません。
 
@@ -32,6 +35,7 @@ pnpm --filter ./scripts/generate-skills generate
 | 1 (description / deprecated / relatedComponents) | `src/content/articles/products/components/**/index.mdx` の frontmatter | 同リポジトリ内、`parseIndexMdx` で抽出 |
 | 2 (eslint) | `kufu/tamatebako` の `packages/eslint-plugin-smarthr/rules/*/README.md` | コミット済みスナップショット `eslint-rules-snapshot.json` を読み込み（無い場合のみ GitHub API から取得） |
 | 3 (checklist) | `src/content/articles/products/components/**/checklist.yaml` | 同リポジトリ内、直接読み込み |
+| 3 (パターンの checklist) | `src/content/articles/products/design-patterns/<slug>/checklist.yaml` と同じディレクトリの `index.mdx` の frontmatter（title / description） | 同リポジトリ内、直接読み込み |
 
 Layer 2 のルール README はリポジトリにコミット済みのスナップショット `eslint-rules-snapshot.json` から読み込みます。**通常の `pnpm generate` はこのスナップショットを使うため、ネットワークも `GITHUB_TOKEN` も不要**です。
 
@@ -53,6 +57,7 @@ GITHUB_TOKEN=<token> pnpm --filter ./scripts/generate-skills generate   # API �
 | `GITHUB_TOKEN` | なし | GitHub API 認証（レートリミット緩和）。スナップショット再生成時のみ使用。通常の生成では不要 |
 | `OUTPUT_DIR` | `<repoRoot>/plugins/smarthr-design-system/skills` | 出力先 |
 | `DESIGN_SYSTEM_DIR` | `<repoRoot>/src/content/articles/products/components` | Layer 3 入力 |
+| `DESIGN_PATTERNS_DIR` | `<repoRoot>/src/content/articles/products/design-patterns` | デザインパターンの checklist 入力 |
 
 ## `coverage-baseline.json` の運用
 
@@ -114,6 +119,7 @@ baseline 適用後の結果のみが表示されます。baseline で隠れて�
 - コンポーネント選定ガイド（`component-selector.md`）はコンポーネント一覧とガイドファイルへの相対パスを持つドキュメントです。
 - サブコンポーネント（`Controlled*` 派生、Table 系内部部品、Dialog/ErrorScreen/Picker 配下のカテゴリメンバーなど）は親 mdx の `relatedComponents` 宣言で接続し、本文・checklist を継承します。`description` のみ派生先固有の文を採用します。smarthr-ui の親ディレクトリ単位グループから `relatedComponents` 宣言済みの displayName を自動分離し、個別ドキュメントを生成します。
 - smarthr-ui のディレクトリ構成が変わってもガイドの構成が変わらないよう、親ディレクトリ単位のグループは、各 index.mdx の `<ComponentPropsTable name="..." />` の記述に合わせて組み替えます（`lib/props-table-groups.ts`）。ページの 1 つ目に書かれた displayName をそのページの主コンポーネントとみなし、2 つ目以降の displayName は主コンポーネントと同じドキュメントにまとめます（例: `DropdownMenuGroup` は `DropdownMenuButton.md`）。
+- デザインパターンは smarthr-ui の metadata・eslint ルールと紐付かないため、Layer 3（`checklist.yaml`）だけから `design-pattern-guidelines/checklists/<slug>.md` を生成します（`lib/pattern-checklists.ts`）。パターン本文の `patterns/<slug>.mdx` はシンボリックリンクのまま配布し、チェックリストから相対リンクします。`checklist.yaml` は `<slug>/index.mdx` と同じディレクトリに置く前提のため、1 ファイル構成のパターン（`<slug>.mdx`）は対象外です。
 - 生成時にインストール済みの smarthr-ui の `package.json` からバージョンを読み取り、各コンポーネントドキュメントの Props セクションと `component-selector.md` の冒頭にバージョン注記を埋め込みます。利用プロジェクトの smarthr-ui バージョンが異なる場合のワークアラウンドも併記されます。
 - スクリプトの詳細仕様は Notion の「M1: SKILL.md 自動生成スクリプト 入出力仕様書」と「M4 プラグイン設計調査」を参照してください。
 

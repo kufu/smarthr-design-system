@@ -23,7 +23,7 @@ PRの作成・更新時に、`checklist.yaml`の形式検証、カバー率の�
 
 - `generate-skills.yml`
 
-コンポーネントの`index.mdx`や`checklist.yaml`などが変更されたときに、`plugins/smarthr-design-system/skills/`以下のコンポーネントガイドを再生成し、差分があればmainへ直接コミットします。
+コンポーネントやデザインパターンの`index.mdx`・`checklist.yaml`などが変更されたときに、`plugins/smarthr-design-system/skills/`以下のコンポーネントガイドとデザインパターンのチェックリストを再生成し、差分があればmainへ直接コミットします。
 
 ## デプロイ関連
 
