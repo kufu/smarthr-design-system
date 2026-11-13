@@ -83,6 +83,7 @@ smarthr-uiで実装されていない画面を渡すなど、圧縮しない方�
 - Codex・Devin・GitHub Copilotなど、hookの形が違うエージェントでは圧縮が効かない
 - Cursorのクラウドのエージェントでは、HTTPのMCPサーバーの結果が伏せられ、差し替えも引数の書き換えもできない
 - Cursorは大きい結果を先にファイルへ退避し、hookには本文が空の結果だけが渡る。hookは退避ファイルを探して圧縮するが、候補を1つに絞れないときは差し替えず、候補のパスと手で圧縮するコマンドを返す
+- Claude Codeのauto modeでは、hookが引数を足した呼び出しの1回目が「a hook changed this call's input after auto mode reviewed it」で止まり、足した引数のまま送り直すと通る（[auto modeの仕様](https://code.claude.com/docs/en/hooks.md)）。呼び出しごとに1往復増えるのを避けたいときは、`permissions.allow`に`mcp__<Figma MCPのサーバー名>__get_design_context`と`mcp__<Figma MCPのサーバー名>__get_screenshot`を足す。allowのルールに一致する呼び出しはauto modeの審査を通らない
 - FigmaのリモートMCPでCode Connectの参照がタイムアウトすると、`get_design_context`は知らせずにCode Connectなしのコードを返す。圧縮は動くが、インベントリに「未紐づけ」が増え、ガイド名が付かない。少し時間をおいて取り直す
 
 ## 開発者向け情報
