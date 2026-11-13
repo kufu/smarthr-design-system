@@ -24,10 +24,8 @@ import { FaCircleInfoIcon } from 'smarthr-ui'
 | C | 操作に関わるUIはdisabledとし、その理由を明示する。（[理由の表示方法](#h3-1)） | アカウントに紐づいているカスタム権限は削除できないため、disabledにする。<br />理由は、[disabledにしたボタンの`disabledReason`](/products/components/button/#h3-8)で伝える。 |
 | D | 操作に関わるUIを表示する。 | 上記に当てはまらない場合に編集・複製・削除ボタンを表示する。 |
 
-
 ### 表示パターンの判定フロー
 ![表示パターンの判定フロー](./images/access-control-decision-tree.png)
-
 
 ### 理由の表示方法
 表示パターンBやCの場合、利用者はなぜ非表示やdisabledになっているかわからないため、理由を明示する必要があります。
