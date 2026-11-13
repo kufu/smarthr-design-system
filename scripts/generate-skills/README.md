@@ -21,6 +21,7 @@ pnpm --filter ./scripts/generate-skills generate
 
 - `plugins/smarthr-design-system/skills/component-guidelines/components/<PascalCase>.md`（個別コンポーネントドキュメント）
 - `plugins/smarthr-design-system/skills/component-guidelines/component-selector.md`（コンポーネント選定ガイド）
+- `plugins/smarthr-design-system/skills/design-review/references/doc-urls.md`（ガイド → 公式ドキュメントの URL の対応表。design-review が指摘の根拠に URL を付けるために使う）
 
 エントリポイントの `plugins/smarthr-design-system/skills/component-guidelines/SKILL.md` は手動管理であり、`pnpm generate` では上書きしません。
 

@@ -4,6 +4,7 @@ SmartHR Design Systemのコンポーネントガイドラインとデザイン�
 
 - smarthr-uiのコンポーネントを正しく選択・使用するための知識（Props仕様・eslintルール・使い方チェックリスト）
 - SmartHRプロダクトのページレイアウトやUIパターンを正しく実装するためのデザインパターンガイドライン
+- 実装の変更差分を上の2つのガイドに照らしてレビューするデザインレビュー
 
 をスキルとして配布する。
 
@@ -24,7 +25,7 @@ Settings > Plugins > Browse Marketplaceから「SmartHR Design System」を検�
 
 ## スキル構成
 
-プラグインは**2つのスキル**を提供する。いずれも[Progressive Disclosureパターン](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#progressive-disclosure-patterns)を採用しており、AIが必要に応じて段階的にドキュメントを読み込む。
+プラグインは**3つのスキル**を提供する。ガイドの2つは[Progressive Disclosureパターン](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#progressive-disclosure-patterns)を採用しており、AIが必要に応じて段階的にドキュメントを読み込む。`design-review`はこの2つのガイドを使ってレビューする。
 
 ### `component-guidelines`
 
@@ -62,6 +63,34 @@ skills/design-pattern-guidelines/
     └── ...（24件）
 ```
 
+### `design-review`
+
+変更差分（`.tsx`/`.jsx`）を`component-guidelines`と`design-pattern-guidelines`に照らしてレビューし、重大度1〜5を付けて報告する。`--fix`を付けたときだけ、閾値以上の指摘を直す。
+
+```
+skills/design-review/
+├── SKILL.md                       エントリポイント（手動管理）
+└── references/
+    ├── reviewer-prompt.md         レビュアー（サブエージェント）への指示の雛形（手動管理）
+    └── doc-urls.md                ガイド → 公式ドキュメントのURLの対応表（自動生成）
+```
+
+使い方（Claude Code）:
+
+```
+/smarthr-design-system:design-review                  # 未コミットの変更をレビュー（報告のみ）
+/smarthr-design-system:design-review --fix            # レビューして、閾値以上の指摘を直す
+/smarthr-design-system:design-review 123              # PR #123 の差分
+/smarthr-design-system:design-review main             # main との差分
+/smarthr-design-system:design-review src/Foo.tsx      # 指定したファイルだけ
+/smarthr-design-system:design-review threshold=3      # 「要修正」にする重大度の下限を3にする（既定は4）
+```
+
+- pattern（`design-pattern-guidelines`）とcomponent（`component-guidelines`）の2つの観点を、サブエージェントが並列にレビューする
+- 根拠はガイドの文の引用。余白の値など、コードだけで判定できない指摘は「確認事項」に、既存のコードと同じ書き方は「リポジトリ全体の課題」に分けて出す
+- レビューのスキルは、AIが自分でできると判断して起動しないことがある。確実に使うときは名前で呼ぶ
+- `kufu/mio-claude-plugin`の`shr-design-review`を元にしている
+
 ## 開発者向け情報
 
 ### component-guidelines
@@ -71,6 +100,10 @@ skills/design-pattern-guidelines/
 ### design-pattern-guidelines
 
 `patterns/*.mdx`はデザインシステムサイトのコンテンツ（`src/content/articles/products/design-patterns/`）へのシンボリックリンク。既存パターンの更新にはそのまま追従するが、新規パターンを追加した場合はシンボリックリンクを手動で追加する必要がある。`SKILL.md`と`pattern-selector.md`は手動管理。
+
+### design-review
+
+`references/doc-urls.md`は`scripts/generate-skills/`で自動生成される。コンポーネントの対応はcomponent-guidelinesの生成と同じ対応付け（専用のページが無いものは`relatedComponents`の親のページ）から、パターンの対応は`patterns/*.mdx`のシンボリックリンクの先から作る。URLは人間向けの情報なので、AIが読むガイド本体には入れない。`SKILL.md`と`references/reviewer-prompt.md`は手動管理。
 
 ### ローカル動作確認
 
