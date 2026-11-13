@@ -1,6 +1,6 @@
 # Figma インベントリ（smarthr-ui-289-4403-nocc.raw.json）
 
-凡例: «レイヤー名» はコンポーネント外のフレーム。フレームの `|` の後ろは見た目の値（固定の寸法・角丸・背景・境目）。`→ guide:` は Code Connect の import 先から解決したcomponent-guidelines のガイド。`Figma:` は Figma のプロパティ値そのまま（smarthr-ui の props ではない）。Code Connect のあるコンポーネントの見た目（色・形・大きさ）は出ないので、スクリーンショットで確かめる。「アセット画像（Code Connect なし）」は Figma に置かれた画像で、smarthr-ui のアイコンとして紐づいていない。省略したもの: ノード ID・インスタンススワップの ID、false のブール、Variant の -/False/Off/default/enabled/false/normal/off、オフのスロットの値、import 名（レイヤー名由来）。
+凡例: «レイヤー名» はコンポーネント外のフレーム。フレームの `|` の後ろは見た目の値（固定の寸法・角丸・背景・境目）。`→ guide:` は Code Connect の import 先から解決したcomponent-guidelines のガイド。`Figma:` は Figma のプロパティ値そのまま（smarthr-ui の props ではない）。Code Connect のあるコンポーネントの見た目（色・形・大きさ）は出ないので、スクリーンショットで確かめる。「アセット画像（Code Connect なし）」は Figma に置かれた画像で、smarthr-ui のアイコンとして紐づいていない。省略したもの: ノード ID・インスタンススワップの ID、false のブール、Variant の -/False/Off/default/enabled/false/normal/off、オフのスロットの値、import 名（レイヤー名由来）、テキストの既定の見た目（文字色 text_black・大きさ M・太さ normal。`文字色=` `文字=` `太字` が無い行はこの値）。
 
 ⚠ component-guidelines のガイド一覧が見つからず、ガイド名を確認できていない（smarthr-design-system プラグインを入れると付く）。
 

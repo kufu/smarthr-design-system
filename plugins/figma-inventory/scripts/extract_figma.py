@@ -1213,7 +1213,8 @@ def build_inventory(blocks, guides, source_label):
                "Code Connect のあるコンポーネントの見た目（色・形・大きさ）は出ないので、スクリーンショットで確かめる。"
                "「アセット画像（Code Connect なし）」は Figma に置かれた画像で、smarthr-ui のアイコンとして紐づいていない。"
                f"省略したもの: ノード ID・インスタンススワップの ID、false のブール、Variant の {'/'.join(sorted(FALSY_VARIANT_VALUES))}、"
-               "オフのスロットの値、import 名（レイヤー名由来）。")
+               "オフのスロットの値、import 名（レイヤー名由来）、"
+               "テキストの既定の見た目（文字色 text_black・大きさ M・太さ normal。`文字色=` `文字=` `太字` が無い行はこの値）。")
     if guides is None:
         out.append("")
         out.append("⚠ component-guidelines のガイド一覧が見つからず、ガイド名を確認できていない"
