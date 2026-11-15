@@ -1,21 +1,21 @@
 ---
-title: 'ロールありの詳細画面'
-description: 'ロールがある構成の、アカウントの追加・編集・削除のダイアログの設計をまとめています。'
-order: 4
+title: '詳細画面'
+description: 'アカウントの追加・編集・削除のダイアログの設計をまとめています。'
+order: 2
 ---
 
 import Grid from '@/components/article/Grid.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
-RBACの独自権限パターンのうち、ロールがある構成の詳細画面（アカウントの追加・編集・削除のダイアログ）の設計をまとめています。[ロールなしの詳細画面](/products/design-patterns/permissions-settings/rbac-standalone/without-role-single/)の構成に「ロール」を加えた、「アカウント」「ロール」「操作の権限」の3つの要素を持つ構成です。アカウントの追加か編集かによって画面の構成が異なります。
+RBACの独自権限パターンにおける詳細画面（アカウントの追加・編集・削除のダイアログ）の設計をまとめています。ロールの有無や、アカウントの追加か編集かによって画面の構成が異なります。
 
-アカウントや独自の設定項目の一覧については、[ロールありの一覧画面](/products/design-patterns/permissions-settings/rbac-standalone/with-role-collection/)を参照してください。
+アカウントや独自の設定項目の一覧については、[一覧画面](/products/design-patterns/permissions-settings/rbac-standalone/collection/)を参照してください。
 
 ## アカウントの追加
 
-アカウントの追加は、[一覧](/products/design-patterns/permissions-settings/rbac-standalone/with-role-collection/)の[（アカウントを）追加]ボタンを押したときに、[モーダルダイアログ](/products/design-patterns/modal-ui/#h3-1)で表示します。
+アカウントの追加は、[一覧](/products/design-patterns/permissions-settings/rbac-standalone/collection/)の[（アカウントを）追加]ボタンを押したときに、[モーダルダイアログ](/products/design-patterns/modal-ui/#h3-1)で表示します。
 
-さらに、権限を付与したいアカウントや、独自の設定項目の数などに応じて、2つのダイアログを使い分けます。
+ロールがない場合は、ActionDialogパターンを使います。ロールがある場合は、権限を付与したいアカウントや、独自の設定項目の数などに応じて、2つのパターンを使い分けます。
 
 - [ActionDialogパターン](#h3-0)：1つのダイアログにすべての入力欄を並べる
 - [StepFormDialogパターン](#h3-1)：要素ごとにステップを分ける
@@ -24,33 +24,49 @@ RBACの独自権限パターンのうち、ロールがある構成の詳細画�
 
 [ActionDialog](/products/components/dialog/action-dialog/)コンポーネントを使用し、ダイアログコンテンツに入力欄を設けるパターンです。
 
-ActionDialogパターンは主に次のようなアカウント選択のUIがシンプルで良い場合に使います。
+ロールがある場合、ActionDialogパターンは主に次のようなアカウント選択のUIがシンプルで良い場合に使います。
 
 - 限られたユーザーしか機能を使わないなど、権限を付与したいアカウントが少数かつ自明なとき
 - 初期リリースの開発で実装工数を圧縮したいとき
 
-また、独自の設定項目がある場合、含められる独自の設定項目の入力欄は**1つまで**とし、2つ以上ある場合は[StepFormDialogパターン](#h3-1)を採用します。
+また、ロールがあり、独自の設定項目もある場合、含められる独自の設定項目の入力欄は**1つまで**とし、2つ以上ある場合は[StepFormDialogパターン](#h3-1)を採用します。
 
 #### 画面構成
 
-![スクリーンショット:1,2,3,4とグルーピングされた赤枠がスクリーンショット上に表示されている。アカウントが1、ロールが2、操作の権限が3、独自の設定項目が4でグルーピングされている。](./images/with-role-single-action-dialog.png)
+<Grid size="calc((100% - 24px * 1) / 2)">
+  <ImgWithDesc description="ロールがない場合">
+  ![スクリーンショット:1〜4とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3、独自の設定項目が4でグルーピングされている。](./images/without-role-single-action-dialog-product-setting.png)
+  </ImgWithDesc>
+  <ImgWithDesc description="ロールがある場合">
+  ![スクリーンショット:1,2,3,4とグルーピングされた赤枠がスクリーンショット上に表示されている。アカウントが1、ロールが2、操作の権限が3、独自の設定項目が4でグルーピングされている。](./images/with-role-single-action-dialog.png)
+  </ImgWithDesc>
+</Grid>
+
+ダイアログタイトルは`アカウントの追加`とします。
 
 |構成要素|説明|
 |:---|:---|
 | 1. アカウント | 複数のアカウントを一括で追加できるよう、[MultiCombobox](/products/components/combobox/multi-combobox/)を使います。アカウントの検索対象は、プロダクトの仕様に応じて、Comboboxのパネル内に`{検索対象名1}、{検索対象名2}で検索できます。`のように明記してください。 |
-| 2. ロール | [SingleCombobox](/products/components/combobox/single-combobox/)を使い、ロール名を選択します。ロール名を選ぶと、そのロールで閲覧できる従業員の範囲が展開されます。表示される情報量はロールの設定内容によって変わります。 |
+| 2. ロール | [SingleCombobox](/products/components/combobox/single-combobox/)を使い、ロール名を選択します。ロール名を選ぶと、そのロールで閲覧できる従業員の範囲が展開されます。表示される情報量はロールの設定内容によって変わります。<br/><br/>ロールがない構成では、この入力欄を表示しません。 |
 | 3. 操作の権限 | [RadioButtonPanel](/products/components/radio-button-panel/)を使い、操作の権限を選択します。代表的なプリセット操作権限は「機能管理者」（すべての操作ができる）と「業務担当者」（業務に必要な操作だけができる）です。プロダクトの仕様に応じて、必要な操作の権限を定義してください。カスタム操作権限がある場合は、SingleComboboxを使ってください。 |
 | <span style={{ whiteSpace: 'nowrap' }}>4. 独自の設定項目</span> | 設定項目の性質や項目数に応じて、[Combobox](/products/components/combobox/)、[RadioButton](/products/components/radio-button/)、RadioButtonPanelなどのコンポーネントを使い分けてください。 |
 
+<ImgWithDesc description="アカウントのComboboxのパネル内に、検索できる項目を明記する">
+![スクリーンショット:アカウントのComboboxを開いたとき。パネル内に「メールアドレス、氏名、社員番号で検索できます。」と表示されている。](./images/without-role-single-action-dialog_account.png)
+</ImgWithDesc>
+
 #### カスタム操作権限・独自の設定項目がない場合
 
-「アカウント」「ロール」「操作の権限」の3つの要素の入力欄をダイアログの中に縦に並べます。
+「アカウント」「操作の権限」の入力欄をダイアログの中に縦に並べます。ロールがある場合は、2つの間に「ロール」の入力欄を設けます。
 
 <Grid size="calc((100% - 24px * 1) / 2)">
-  <ImgWithDesc description="アカウント追加ダイアログの初期表示。ロールが未選択のとき、閲覧できる従業員の範囲は空にする">
+  <ImgWithDesc description="ロールがない場合">
+  ![スクリーンショット:1〜3とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3でグルーピングされている。](./images/without-role-single-action-dialog.png)
+  </ImgWithDesc>
+  <ImgWithDesc description="ロールがある場合の初期表示。ロールが未選択のとき、閲覧できる従業員の範囲は空にする">
   ![スクリーンショット:カスタム操作権限・独自の設定項目がない場合の「アカウントの追加」ダイアログ。上から順に、アカウントのCombobox、ロール名のComboboxと閲覧できる従業員の範囲の表示エリア、操作の権限のRadioButtonPanelが縦に並んでいる。いずれも未入力の状態。](./images/with-role-single-action-dialog_initial.png)
   </ImgWithDesc>
-  <ImgWithDesc description="ロールが選択されたら、設定内容に応じた閲覧範囲を表示する">
+  <ImgWithDesc description="ロールがある場合、ロールが選択されたら、設定内容に応じた閲覧範囲を表示する">
   ![スクリーンショット:カスタム操作権限・独自の設定項目がない場合のダイアログで、アカウントに2件のアカウントが選択され、ロール名に「すべての従業員」が選択された状態のダイアログ。閲覧できる従業員の範囲に「すべての従業員」、除外する従業員に「なし」と表示されている。](./images/with-role-single-action-dialog_filled.png)
   </ImgWithDesc>
 </Grid>
@@ -58,12 +74,12 @@ ActionDialogパターンは主に次のようなアカウント選択のUIがシ
 #### カスタム操作権限・独自の設定項目がある場合
 
 **カスタム操作権限がある場合**  
-カスタム操作権限・独自の設定項目がない場合と同じく、3つの要素の入力欄を縦に並べます。操作の権限の選択肢には、プリセット操作権限とカスタム操作権限をまとめて表示します。選択肢をユーザーが追加できるため、RadioButtonPanelではなくSingleComboboxを使います。
+カスタム操作権限・独自の設定項目がない場合と同じく、入力欄を縦に並べます。操作の権限の選択肢には、プリセット操作権限とカスタム操作権限をまとめて表示します。選択肢をユーザーが追加できるため、RadioButtonPanelではなくSingleComboboxを使います。
 
 **独自の設定項目がある場合**  
-「アカウント」「ロール」「操作の権限」「独自の設定項目」の4つの要素の入力欄をダイアログの中に縦に並べます。設定項目の性質や項目数に応じて、Combobox、RadioButton、RadioButtonPanelなどのコンポーネントを使い分けてください。
+操作の権限の下に「独自の設定項目」の入力欄を並べます。設定項目の性質や項目数に応じて、Combobox、RadioButton、RadioButtonPanelなどのコンポーネントを使い分けてください。
 
-ただし、独自の設定項目の入力欄は**1つまで**とし、2つ以上ある場合は[StepFormDialogパターン](#h3-1)を採用します。
+ただし、ロールがある場合は、独自の設定項目の入力欄は**1つまで**とし、2つ以上ある場合は[StepFormDialogパターン](#h3-1)を採用します。
 
 <Grid size="calc((100% - 24px * 1) / 2)">
   <ImgWithDesc description="カスタム操作権限がある場合は、操作の権限をSingleComboboxで表示する">
@@ -76,7 +92,7 @@ ActionDialogパターンは主に次のようなアカウント選択のUIがシ
 
 ### StepFormDialogパターン
 
-[StepFormDialog](/products/components/dialog/step-form-dialog/)コンポーネントを使用し、2ステップ以上に分けて各要素の入力欄を設けるパターンです。**アカウント選択時に部署や役職などの情報も確認しながら操作したい場合**に使います。
+ロールがある場合に使います。[StepFormDialog](/products/components/dialog/step-form-dialog/)コンポーネントを使用し、2ステップ以上に分けて各要素の入力欄を設けるパターンです。**アカウント選択時に部署や役職などの情報も確認しながら操作したい場合**に使います。
 
 StepFormDialogパターンは主に次のような場合に採用します。
 
@@ -158,9 +174,11 @@ StepFormDialogパターンは主に次のような場合に採用します。
 
 ## アカウントの編集
 
-[一覧](/products/design-patterns/permissions-settings/rbac-standalone/with-role-collection/)の[（アカウントを）編集]ボタンから呼び出すダイアログです。ここでは対象のアカウントは一意に定まっているので、ActionDialogコンポーネントを採用して1画面にまとめます。
+[一覧](/products/design-patterns/permissions-settings/rbac-standalone/collection/)の[（アカウントを）編集]ボタンから呼び出すダイアログです。ここでは対象のアカウントは一意に定まっているので、ActionDialogコンポーネントを採用して1画面にまとめます。
 
 ダイアログタイトルは`アカウントの編集` 、Primaryボタンのラベルは`更新` とします。
+
+ロールがない場合は、[ActionDialogパターン](#h3-0)の追加ダイアログと同じ構成です。以下はロールがある場合の構成です。
 
 ### 画面構成
 
@@ -182,10 +200,19 @@ StepFormDialogパターンは主に次のような場合に採用します。
 
 ## アカウントの削除
 
-[ロールなしの詳細画面のアカウントの削除](/products/design-patterns/permissions-settings/rbac-standalone/without-role-single/#h2-1)と同様です。
+一覧の[（アカウントを）削除]ボタンから呼び出すダイアログです。アカウントの編集と同様に対象のアカウントは一意に定まっているので、ActionDialogコンポーネントを採用します。ロールの有無にかかわらず共通です。
+
+基本的な考え方は[削除ダイアログ](/products/design-patterns/delete-dialog/)を参照してください。
+
+ダイアログタイトルは`アカウントの削除`とします。Submitには[Dangerボタン](/products/components/button/#h3-2)を使用してラベルは`削除`とします。
+
+### 画面構成
+
+![スクリーンショット:「アカウントの削除」ダイアログ。DefinitionListでアカウント名が表示されている。](./images/single-delete.png)
+
+削除ダイアログのライティングに従い、削除の対象となるオブジェクトをDefinitionListで提示します。
 
 ## 関連リンク
 
 - [RBACの独自権限パターン](/products/design-patterns/permissions-settings/rbac-standalone/)
-- [ロールありの一覧画面](/products/design-patterns/permissions-settings/rbac-standalone/with-role-collection/)
-- [ロールなしの詳細画面](/products/design-patterns/permissions-settings/rbac-standalone/without-role-single/)
+- [一覧画面](/products/design-patterns/permissions-settings/rbac-standalone/collection/)
