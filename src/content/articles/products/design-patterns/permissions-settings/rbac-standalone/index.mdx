@@ -18,7 +18,6 @@ import InformationBlock from '@/components/article/InformationBlock.astro'
 | 権限 | アカウントに付与するプロダクトの操作の許可のことです。権限は、アカウントに関連づける要素（操作の権限、ロール、独自の設定項目）の組み合わせで表します。 |
 | 要素 | 権限を構成する各部品のことです。 |
 | 構成 | 要素の組み合わせです。ロールの有無、操作の権限の種類、独自の設定項目の有無で表します。 |
-| <span style={{ whiteSpace: 'nowrap' }}>画面設計</span> | 権限設定画面のレイアウトや利用するコンポーネントの設計です。[一覧画面](/products/design-patterns/permissions-settings/rbac-standalone/collection/)と[詳細画面](/products/design-patterns/permissions-settings/rbac-standalone/single/)があります。 |
 
 ## 要素
 
@@ -75,6 +74,8 @@ RBACの独自権限パターンでは、「アカウント」と「操作の権�
 | - | ◯ | 社内公募 |
 | ◯ | ◯ | 採用管理 |
 
+<PageIndex basePath="/products/design-patterns/permissions-settings/rbac-standalone/" heading="h4" excludePaths={['/products/design-patterns/permissions-settings/rbac-standalone/with-role-collection', '/products/design-patterns/permissions-settings/rbac-standalone/with-role-single']} />
+
 ### ロールあり
 
 プロダクトがロールで閲覧範囲を制御する場合です。タレントマネジメントプロダクトのほとんどが該当します。
@@ -86,9 +87,4 @@ RBACの独自権限パターンでは、「アカウント」と「操作の権�
 | - | ◯ | キャリア台帳 |
 | ◯ | ◯ | 現状は対象プロダクトなし |
 
-## 画面設計
-
-要素の有無によって画面の構成が変わるため、プロダクトごとに画面設計を検討する必要があります。画面設計は、一覧画面と詳細画面の2種類があります。
-
-<PageIndex basePath="/products/design-patterns/permissions-settings/rbac-standalone/" heading="h3" />
-
+<PageIndex basePath="/products/design-patterns/permissions-settings/rbac-standalone/" heading="h4" excludePaths={['/products/design-patterns/permissions-settings/rbac-standalone/without-role-collection', '/products/design-patterns/permissions-settings/rbac-standalone/without-role-single']} />
