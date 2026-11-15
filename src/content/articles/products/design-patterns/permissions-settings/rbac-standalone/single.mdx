@@ -7,7 +7,7 @@ order: 2
 import Grid from '@/components/article/Grid.astro'
 import ImgWithDesc from '@/components/article/ImgWithDesc.astro'
 
-RBACの独自権限パターンにおける詳細画面の設計をまとめています。アカウントの追加と編集で画面の構成が異なります。
+RBACの独自権限パターンにおける詳細画面の設計をまとめています。アカウントの追加と編集で画面の構成が異なります。対象は、ロールがある[構成](/products/design-patterns/permissions-settings/rbac-standalone/#h2-2)です。
 
 アカウントや独自の設定項目の一覧については、RBAC独自権限の[一覧画面](/products/design-patterns/permissions-settings/rbac-standalone/collection/)を参照してください。
 
@@ -38,36 +38,36 @@ ActionDialogパターンは主に次のようなアカウント選択のUIがシ
 |構成要素|説明|
 |:---|:---|
 | 1. アカウント | 複数のアカウントを一括で追加できるよう、[MultiCombobox](/products/components/combobox/multi-combobox/)を使います。アカウントの検索対象は、プロダクトの仕様に応じて明記してください。 |
-| 2. 共通設定のロール | [SingleCombobox](/products/components/combobox/single-combobox/)を使い、ロール名を選択します。ロール名を選ぶと、そのロールで閲覧できる従業員の範囲が展開されます。表示される情報量はロールの設定内容によって変わります。 |
-| 3. 操作の権限 | [RadioButtonPanel](/products/components/radio-button-panel/)を使い、操作の権限を選択します。プロダクトの仕様に応じて、必要な操作の権限を定義してください。操作の権限の管理があるプロダクトでは、SingleComboboxを使ってください。 |
+| 2. ロール | [SingleCombobox](/products/components/combobox/single-combobox/)を使い、ロール名を選択します。ロール名を選ぶと、そのロールで閲覧できる従業員の範囲が展開されます。表示される情報量はロールの設定内容によって変わります。 |
+| 3. 操作の権限 | [RadioButtonPanel](/products/components/radio-button-panel/)を使い、操作の権限を選択します。プロダクトの仕様に応じて、必要な操作の権限を定義してください。カスタム操作権限がある場合は、SingleComboboxを使ってください。 |
 | <span style={{ whiteSpace: 'nowrap' }}>4. 独自の設定項目</span> | 設定項目の性質や項目数に応じて、[Combobox](/products/components/combobox/)、[RadioButton](/products/components/radio-button/)、RadioButtonPanelなどのコンポーネントを使い分けてください。 |
 
-#### 基本構成＋ロール
+#### カスタム操作権限・独自の設定項目がない場合
 
-「アカウント」「共通設定のロール」「操作の権限」の3つの要素の入力欄をダイアログの中に縦に並べます。
+「アカウント」「ロール」「操作の権限」の3つの要素の入力欄をダイアログの中に縦に並べます。
 
 <Grid size="calc((100% - 24px * 1) / 2)">
   <ImgWithDesc description="アカウント追加ダイアログの初期表示。ロールが未選択のとき、閲覧できる従業員の範囲は空にする">
-  ![スクリーンショット:基本構成＋ロールの「アカウントの追加」ダイアログ。上から順に、アカウントのCombobox、ロール名のComboboxと閲覧できる従業員の範囲の表示エリア、操作の権限のRadioButtonPanelが縦に並んでいる。いずれも未入力の状態。](./images/rbac-standalone-single-action-dialog-a_initial.png)
+  ![スクリーンショット:カスタム操作権限・独自の設定項目がない場合の「アカウントの追加」ダイアログ。上から順に、アカウントのCombobox、ロール名のComboboxと閲覧できる従業員の範囲の表示エリア、操作の権限のRadioButtonPanelが縦に並んでいる。いずれも未入力の状態。](./images/rbac-standalone-single-action-dialog-a_initial.png)
   </ImgWithDesc>
   <ImgWithDesc description="ロールが選択されたら、設定内容に応じた閲覧範囲を表示する">
-  ![スクリーンショット:基本構成＋ロールのダイアログで、アカウントに2件のアカウントが選択され、ロール名に「すべての従業員」が選択された状態のダイアログ。閲覧できる従業員の範囲に「すべての従業員」、除外する従業員に「なし」と表示されている。](./images/rbac-standalone-single-action-dialog-a_filled.png)
+  ![スクリーンショット:カスタム操作権限・独自の設定項目がない場合のダイアログで、アカウントに2件のアカウントが選択され、ロール名に「すべての従業員」が選択された状態のダイアログ。閲覧できる従業員の範囲に「すべての従業員」、除外する従業員に「なし」と表示されている。](./images/rbac-standalone-single-action-dialog-a_filled.png)
   </ImgWithDesc>
 </Grid>
 
-#### 操作の権限の管理・独自の設定項目がある場合
+#### カスタム操作権限・独自の設定項目がある場合
 
-**＋操作の権限の管理**  
-基本構成＋ロールと同じく3つの要素の入力欄を縦に並べます。操作の権限をユーザーが自由に追加できるため、RadioButtonPanelではなくSingleComboboxを使います。
+**カスタム操作権限がある場合**  
+カスタム操作権限・独自の設定項目がない場合と同じく、3つの要素の入力欄を縦に並べます。操作の権限の選択肢には、プリセット操作権限とカスタム操作権限をまとめて表示します。選択肢をユーザーが追加できるため、RadioButtonPanelではなくSingleComboboxを使います。
 
-**＋独自の設定項目**  
-「アカウント」「共通設定のロール」「操作の権限」「独自の設定項目」の4つの要素の入力欄をダイアログの中に縦に並べます。設定項目の性質や項目数に応じて、Combobox、RadioButton、RadioButtonPanelなどのコンポーネントを使い分けてください。
+**独自の設定項目がある場合**  
+「アカウント」「ロール」「操作の権限」「独自の設定項目」の4つの要素の入力欄をダイアログの中に縦に並べます。設定項目の性質や項目数に応じて、Combobox、RadioButton、RadioButtonPanelなどのコンポーネントを使い分けてください。
 
 ただし、独自の設定項目の入力欄は**1つまで**とし、2つ以上ある場合は[StepFormDialogパターン](#h3-1)を採用します。
 
 <Grid size="calc((100% - 24px * 1) / 2)">
-  <ImgWithDesc description="操作の権限の管理がある場合は、操作の権限をSingleComboboxで表示する">
-  ![スクリーンショット:操作の権限の管理がある場合のダイアログ。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/rbac-standalone-single-action-dialog-b_filled.png)
+  <ImgWithDesc description="カスタム操作権限がある場合は、操作の権限をSingleComboboxで表示する">
+  ![スクリーンショット:カスタム操作権限がある場合のダイアログ。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/rbac-standalone-single-action-dialog-b_filled.png)
   </ImgWithDesc>
   <ImgWithDesc description="独自の設定項目がある場合は、操作の権限の下に独自の設定項目の入力欄を表示する">
   ![スクリーンショット:独自の設定項目がある場合のダイアログ。操作の権限のRadioButtonPanelの下に、独自の設定項目のRadioButtonが1つ追加されている。](./images/rbac-standalone-single-action-dialog-c_filled.png)
@@ -108,12 +108,12 @@ StepFormDialogパターンは主に次のような場合に採用します。
 **全件表示**  
 すべてのアカウントを表示し、`FaAngleUpIcon`を`アイコン付き（左）`（プレフィックス）に設定したTertiaryボタンで`少なく表示`と表示します。
 
-#### 基本構成＋ロール、＋操作の権限の管理
+#### 独自の設定項目がない場合
 
 3つの要素をそれぞれステップに表示します。
 
 - ステップ1：アカウントの選択
-- ステップ2：共通設定のロールの選択
+- ステップ2：ロールの選択
 - ステップ3：操作の権限の選択
 
 <ImgWithDesc description="ステップ1：アカウント選択。所属部署や役職なども確認しながら選択できるようにする">
@@ -128,17 +128,17 @@ StepFormDialogパターンは主に次のような場合に採用します。
 ![スクリーンショット:StepFormDialog版3/3「操作の権限の選択」。業務担当者と機能管理者のRadioButtonPanelが表示されている。](./images/rbac-standalone-single-step-form-dialog-step3_a.png)
 </ImgWithDesc>
 
-<ImgWithDesc description="ステップ3：操作の権限の管理がある場合はSingleComboboxが望ましい">
+<ImgWithDesc description="ステップ3：カスタム操作権限がある場合はSingleComboboxが望ましい">
 ![スクリーンショット:StepFormDialog版3/3「操作の権限の選択」。操作の権限がRadioButtonPanelではなくSingleComboboxで表示されている。](./images/rbac-standalone-single-step-form-dialog-step3_b.png)
 </ImgWithDesc>
 
-#### ＋独自の設定項目
+#### 独自の設定項目がある場合
 
 3ステップ目の操作の権限の下に独自の設定項目の入力欄を設けます。コンテキストや数を考慮して4ステップ目に分けることも検討してください。
 
 ![スクリーンショット:StepFormDialog版3/3「操作権限とその他の選択」。操作の権限のRadioButtonPanelの下に、独自の設定項目の入力欄が3つ並んでいる。右側の入力内容の確認にも、追加した項目が反映されている。](./images/rbac-standalone-single-step-form-dialog-step3_c.png)
 
-#### ＋独自の設定項目の派生形
+#### 独自の設定項目がある場合の派生形
 
 独自の設定項目を必ずステップ3にまとめる必要はありません。設定項目の性質に応じて、適切なステップに配置してください。
 
@@ -165,7 +165,7 @@ StepFormDialogパターンは主に次のような場合に採用します。
 ### 画面構成
 
 <Grid size="calc((100% - 24px * 1) / 2)">
-  <ImgWithDesc description="基本構成＋ロールの場合">
+  <ImgWithDesc description="独自の設定項目がない場合">
   ![スクリーンショット:「アカウントの編集」ダイアログ。アカウントはComboboxではなくDefinitionListでアカウント名が表示されている。その下にロールと操作の権限の入力欄が並んでいる。](./images/rbac-standalone-single-edit_a.png)
   </ImgWithDesc>
   <ImgWithDesc description="独自の設定項目がある場合。操作の権限の下に独自の設定項目を列挙する">
@@ -176,8 +176,8 @@ StepFormDialogパターンは主に次のような場合に採用します。
 |要素|説明|
 |:---|:---|
 | 1. アカウント | 一意に定まり、かつ変更できないため、[DefinitionList](/products/components/definition-list/)を使ってアカウントを表示します。 |
-| 2. 共通設定のロール | SingleComboboxを使い、ロール名を選択します。ロール名の下には、そのロールで閲覧できる従業員の範囲が展開されます。ロール名を選ぶと、そのロールで閲覧できる従業員の範囲がロール名の下に展開されます。表示される情報量はロールの設定内容によって変わります。 |
-| 3. 操作の権限 | RadioButtonPanelを使い、操作の権限を選択します。プロダクトの仕様に応じて、必要な操作の権限を定義してください。操作の権限の管理があるプロダクトでは、[操作の権限の管理・独自の設定項目がある場合](#h4-2)にならってSingleComboboxを使ってください。 |
+| 2. ロール | SingleComboboxを使い、ロール名を選択します。ロール名の下には、そのロールで閲覧できる従業員の範囲が展開されます。ロール名を選ぶと、そのロールで閲覧できる従業員の範囲がロール名の下に展開されます。表示される情報量はロールの設定内容によって変わります。 |
+| 3. 操作の権限 | RadioButtonPanelを使い、操作の権限を選択します。プロダクトの仕様に応じて、必要な操作の権限を定義してください。カスタム操作権限がある場合は、[カスタム操作権限・独自の設定項目がある場合](#h4-2)にならってSingleComboboxを使ってください。 |
 | <span style={{ whiteSpace: 'nowrap' }}>4. 独自の設定項目</span> | 設定項目の性質や項目数に応じて、Combobox、RadioButton、RadioButtonPanelなどのコンポーネントを使い分けてください。 |
 
 
