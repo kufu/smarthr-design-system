@@ -1,0 +1,26 @@
+---
+import { Groupbox } from 'smarthr-ui';
+
+import { ResponseMessage } from '@/components/ResponseMessage';
+
+const MARGIN_TOP_CLASS_NAMES = {
+  1: 'shr-mt-1',
+} as const;
+
+type MarginTop = keyof typeof MARGIN_TOP_CLASS_NAMES;
+
+type Props = {
+  /** 上マージン。smarthr-ui のスペーシング（`shr-mt-*` と同じ値）で指定します */
+  marginTop?: MarginTop | `${MarginTop}`;
+};
+
+const { marginTop } = Astro.props;
+
+const className = marginTop === undefined ? undefined : MARGIN_TOP_CLASS_NAMES[marginTop];
+---
+
+<Groupbox className={className}>
+  <ResponseMessage status="info">
+    <slot />
+  </ResponseMessage>
+</Groupbox>
