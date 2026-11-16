@@ -12,23 +12,23 @@ import { WarekiPicker } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| ref | Ref<HTMLInputElement> | - | - | - |
-| name | string | - | - | input 要素の `name` 属性の値 |
 | width | string \| number | - | - | コンポーネントの幅 |
-| from | Date | - | - | 選択可能な期間の開始日 |
+| from | Date | new Date(1900, 0, 1) | - | 選択可能な期間の開始日 |
 | to | Date | - | - | 選択可能な期間の終了日 |
 | onChange | (e: ChangeEvent<HTMLInputElement>, other: { date: Date; formatValue: string; errors: string[]; }) => void | - | - | 選択された日付が変わった時に発火するコールバック関数 |
-| disabled | boolean | - | - | フォームを無効にするかどうか |
+| defaultValue | string | - | - | 非制御コンポーネントとして使う場合の初期値。`value` を指定した場合は無視される |
 | value | string | - | - | input 要素の `value` 属性の値 |
 | placeholder | string | - | - | placeholder属性は非推奨です。別途ヒント用要素を設置するか、それらの領域を確保出来ない場合はTooltipコンポーネントの利用を検討してください。 |
 | error | boolean | - | - | フォームにエラーがあるかどうか |
 | parseInput | (input: string) => Date | - | - | 入力を独自にパースする場合に、パース処理を記述する関数 |
 | formatDate | (date: Date) => string | - | - | 表示する日付を独自にフォーマットする場合に、フォーマット処理を記述する関数 |
+| showAlternative | boolean \| ((date: Date) => ReactNode) | - | - | 入出力用文字列と併記する別表記を制御する。 - 省略 / `true`: 和暦を別表記として表示する(デフォルト) - `false`: 別表記を表示しない - 関数: その関数の結果を別表記として使う |
 | onChangeDate | (date: Date, value: string, other: { errors: string[]; }) => void | - | - | @deprecated onChangeDate は非推奨です。onChange を使ってください。 |
+| ref | Ref<HTMLInputElement> | - | - | - |
 
 ## 実装ルール
 

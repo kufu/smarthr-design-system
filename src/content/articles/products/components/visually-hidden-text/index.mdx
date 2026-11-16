@@ -17,7 +17,7 @@ import Checklist from '@/components/article/Checklist/Checklist.astro'
 ## VisuallyHiddenTextを使用したコンポーネント
 
 ### FormControlの[label.unrecommendedHide]props
-「入社年月日」の見出しと`DatePicker`コンポーネントだけで開始日と終了日であることが自明で冗長になるので`FormControl`の`label.unrecommendedHide`propsを使用している。
+「入社年月日」の見出しと`Input[type=date]`だけで開始日と終了日であることが自明で冗長になるので`FormControl`の`label.unrecommendedHide`propsを使用している。
 
 ```tsx editable
 <Fieldset legend="入社年月日" >
@@ -28,7 +28,7 @@ import Checklist from '@/components/article/Checklist/Checklist.astro'
         unrecommendedHide: true,
       }}
     >
-      <DatePicker name="startAtDate" />
+      <Input type="date" name="startAtDate" />
     </FormControl>
     <span>〜</span>
     <FormControl 
@@ -37,7 +37,7 @@ import Checklist from '@/components/article/Checklist/Checklist.astro'
         unrecommendedHide: true,
       }}
     >
-      <DatePicker name="EndAtDate" />
+      <Input type="date" name="EndAtDate" />
     </FormControl>
   </Cluster>
 </Fieldset>

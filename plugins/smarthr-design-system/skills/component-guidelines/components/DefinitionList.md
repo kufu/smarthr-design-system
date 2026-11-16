@@ -10,20 +10,20 @@ import { DefinitionListItem, DefinitionList } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### DefinitionListItem
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | term | ReactNode \| { text: ReactNode; styleType?: "blockTitle" \| "subBlockTitle" \| "subSubBlockTitle"; } | - | ✓ | - |
+| ref | Ref<HTMLDivElement> | - | - | - |
 | fullWidth | boolean | - | - | - |
 | maxColumns | number | - | - | - |
-| className | string | - | - | - |
 
 ### DefinitionList
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| className | string | - | - | - |
+| ref | Ref<HTMLDListElement> | - | - | - |
 
 ## 実装ルール
 

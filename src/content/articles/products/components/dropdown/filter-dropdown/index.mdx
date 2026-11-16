@@ -36,24 +36,12 @@ import { Groupbox } from 'smarthr-ui'
 モバイル端末は画面が小さく誤操作しやすいため、ドロップダウンパネルは[ActionDialog](/products/components/dialog/action-dialog/)を用いてモーダルに表示します。
 
 ```tsx editable noIframe withStyled
-const FilterIcon = ({ filtered }: { filtered: boolean }) => (
-  <span className={`shr-relative shr-leading-none ${filtered ? 'shr-text-main' : ''}`}>
-    <FaFilterIcon />
-    {filtered && (
-      <FaCircleCheckIcon
-        aria-label="適用中"
-        className="shr-absolute shr-bottom-[2px] shr-right-[-4px] shr-h-[0.5em] shr-w-[0.5em]"
-      />
-    )}
-  </span>
-)
-
 const FilterDropdownForMobile = () => {
   const [filtered, setFiltered] = React.useState(false)
   return (
     <>
       <RemoteDialogTrigger targetId="filter-dropdown-dialog">
-        <Button suffix={<FilterIcon filtered={filtered} />}>絞り込み</Button>
+        <Button suffix={<FilterIcon checked={filtered} />}>絞り込み</Button>
       </RemoteDialogTrigger>
       <FormDialog
         id="filter-dropdown-dialog"

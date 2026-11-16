@@ -10,20 +10,20 @@ import { DropdownMenuGroup, DropdownMenuButton } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v100.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### DropdownMenuGroup
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | name | ReactNode | - | - | - |
-| className | string | - | - | - |
+| ref | Ref<HTMLLIElement> | - | - | - |
 
 ### DropdownMenuButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | children | ReactNode \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<...> \| ReactNode \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<any, string \| JSXElementConstructor<any>> \| ReactElement<...>[] | - | ✓ | 操作群 |
 | onClose | () => void | - | - | ドロップダウンメニューが閉じられた際のイベント |
-| trigger | ReactNode \| { children: ReactNode; size?: any; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | ✓ | 引き金となるボタン |
+| trigger | ReactNode \| { text: ReactNode; size?: any; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | ✓ | 引き金となるボタン |
 | onOpen | () => void | - | - | ドロップダウンメニューが開かれた際のイベント |
 | ref | Ref<HTMLButtonElement> | - | - | - |
 
@@ -67,7 +67,7 @@ DropdownMenuButton に直接関連する eslint-plugin-smarthr のルールは�
 - [avoid] デスクトップでは利用を避ける
 - [avoid] モバイルでも可能な限り利用を避ける
 - [avoid] 標準アイコン（`FaEllipsisIcon`）の変更は避ける
-- [must] 何のボタンか識別できるよう必ず `trigger.children` を設定する
+- [must] 何のボタンか識別できるよう必ず `trigger.text` を設定する
 
 ### 状態 > 無効(disabled) > ドロップダウンパネルの操作の無効
 - [must] ドロップダウンパネル内の操作を無効にする場合、Button の `disabledReason` を使って無効状態の理由を表示する
