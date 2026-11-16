@@ -29,7 +29,7 @@ export const checklistItemSchema = z.object({
 
 const checklistCollection = defineCollection({
   loader: yamlGlob({
-    // コンポーネントと、ディレクトリ構成のデザインパターン（<slug>/index.mdx と同じ階層）の checklist.yaml
+    // コンポーネントとデザインパターン（<slug>/index.mdx と同じ階層）の checklist.yaml
     pattern: ['components/**/checklist.yaml', 'design-patterns/*/checklist.yaml'],
     base: './src/content/articles/products',
   }),

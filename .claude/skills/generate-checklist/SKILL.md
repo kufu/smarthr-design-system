@@ -30,7 +30,7 @@ smarthr-design-system のコンポーネントページ（index.mdx）から、A
 
 対象が `src/content/articles/products/design-patterns/` 配下のパターン（例: ページレイアウト）の場合は、以下の差分を適用する。生成した checklist.yaml は、マージ後に CI が `plugins/smarthr-design-system/skills/design-pattern-guidelines/checklists/<slug>.md` として配布し、`design-pattern-guidelines` スキルが元の mdx（`patterns/<slug>.mdx`）と併せて読む。
 
-- **パス**: `src/content/articles/products/design-patterns/<slug>/index.mdx` を読み、同じディレクトリに `checklist.yaml` を置く。`<slug>` はパターンのディレクトリ名（例: `page-layout`）。1 ファイル構成のパターン（`design-patterns/<slug>.mdx`）は未対応のため作成せず、ディレクトリ構成（`<slug>/index.mdx`）への移行が必要と報告する
+- **パス**: `src/content/articles/products/design-patterns/<slug>/index.mdx` を読み、同じディレクトリに `checklist.yaml` を置く。`<slug>` はパターンのディレクトリ名（例: `page-layout`）
 - **参考例**: `src/content/articles/products/design-patterns/page-layout/checklist.yaml`
 - **抽出時の追加ルール**: `.github/prompts/generate-checklist.md` の「デザインパターンページの追加ルール」に従う（実装例のコードブロック・利用例・DoAndDont・パターン間の参照の扱い）
 - **スキップ判定**: コンポーネント固有のパターン（Every Layout 委譲・自動挙動・props 規約・deprecated）は当てはまらない。概念説明や索引のみで指示文がないパターンはスキップする
