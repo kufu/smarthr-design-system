@@ -62,10 +62,10 @@ SmartHRにおける権限は、現状すべてRBACです。将来的にABAC構�
 [よくあるテーブル](/products/design-patterns/smarthr-table/)の詳細はレイアウトパターンを参照してください。
 
 **一覧（アカウントのみ）**
-![スクリーンショット:1〜3とグルーピングされた赤枠がスクリーンショット上に表示されている。タイトルが1、画面説明テキストが2、テーブルが3でグルーピングされている。](./images/permissions-settings/permissions-settings1.png)
+![スクリーンショット:1〜3とグルーピングされた赤枠がスクリーンショット上に表示されている。タイトルが1、画面説明テキストが2、テーブルが3でグルーピングされている。](./images/permissions-settings1.png)
 
 **一覧（アカウントと独自の権限設定を扱う場合）**
-![スクリーンショット：1〜3とグルーピングされた赤枠がスクリーンショット上に表示されている。タイトルが1、画面説明テキストが2、テーブルが3でグルーピングされている。3のタイトルは一覧（アカウントのみ）とは異なり、TabBarで表示されている。](./images/permissions-settings/permissions-settings2.png)
+![スクリーンショット：1〜3とグルーピングされた赤枠がスクリーンショット上に表示されている。タイトルが1、画面説明テキストが2、テーブルが3でグルーピングされている。3のタイトルは一覧（アカウントのみ）とは異なり、TabBarで表示されている。](./images/permissions-settings2.png)
 
 #### 1. 画面タイトル
 
@@ -91,13 +91,13 @@ SmartHRにおける権限は、現状すべてRBACです。将来的にABAC構�
 
 ##### アカウントのみの場合
 
-![スクリーンショット:よくあるテーブルのヘッダー部分、画面タイトルとその操作が強調されている](./images/permissions-settings/permissions-settings1-heading.png)
+![スクリーンショット:よくあるテーブルのヘッダー部分、画面タイトルとその操作が強調されている](./images/permissions-settings1-heading.png)
 
 アカウントのみを扱う場合のセクションタイトルは`アカウント`、オブジェクトの追加ボタンラベルは`追加`としてください。
 
 ##### 独自の権限設定がある場合
 
-![スクリーンショット:よくあるテーブルのヘッダー部分、TabBarとその操作が強調されている](./images/permissions-settings/permissions-settings2-heading.png)
+![スクリーンショット:よくあるテーブルのヘッダー部分、TabBarとその操作が強調されている](./images/permissions-settings2-heading.png)
 
 アカウントに紐づけが必要な独自の権限設定がある場合は、[TabBar](/products/components/tab-bar/)を使って並列に表示します。
 
@@ -107,7 +107,7 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 
 ##### 初期表示
 
-![スクリーンショット:権限の一覧でよくあるテーブルを使った初期表示。メッセージ部分が強調されている](./images/permissions-settings/permissions-settings3-heading.png)
+![スクリーンショット:権限の一覧でよくあるテーブルを使った初期表示。メッセージ部分が強調されている](./images/permissions-settings3-heading.png)
 
 基本は[よくあるテーブルの初期表示](/products/design-patterns/smarthr-table/#h3-7)のパターンに従いますが、メッセージ部分は、`{機能名}の権限を持つアカウントはまだ登録されていません。`とします。
 
@@ -130,10 +130,10 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 - [4. 独自のオブジェクト設定](#h4-8)
 
 **詳細ダイアログ（アカウントのみ）**
-![スクリーンショット:1〜3とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3でグルーピングされている。](./images/permissions-settings/permissions-settings1-dialog.png)
+![スクリーンショット:1〜3とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3でグルーピングされている。](./images/permissions-settings1-dialog.png)
 
 **詳細ダイアログ（独自の権限設定がある場合）**
-![スクリーンショット:1〜4とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3、独自の権限設定が4でグルーピングされている。](./images/permissions-settings/permissions-settings2-dialog.png)
+![スクリーンショット:1〜4とグルーピングされた赤枠がスクリーンショット上に表示、強調されている。タイトルが1、アカウントの選択が2、操作の権限が3、独自の権限設定が4でグルーピングされている。](./images/permissions-settings2-dialog.png)
 
 #### 1. ダイアログタイトル
 
@@ -143,7 +143,7 @@ TabBarのタイトルは左から`アカウント`、`{独自オブジェクト}
 
 SmartHRのアカウントを選択します。単一選択の場合は[SingleCombobox](/products/components/combobox/)を使ってください。複数まとめて追加する場合は[MultiCombobox](/products/components/combobox/)を使ってください。
 
-![スクリーンショット:アカウントのSingleComboboxを開いたとき](./images/permissions-settings/permissions-settings-dialog-account.png)
+![スクリーンショット:アカウントのSingleComboboxを開いたとき](./images/permissions-settings-dialog-account.png)
 
 Comboboxのパネル内の説明には`{検索対象名1}、{検索対象名2}で検索できます。`と、検索できる項目を明記します。
 
