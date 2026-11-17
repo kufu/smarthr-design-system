@@ -65,7 +65,7 @@ skills/design-pattern-guidelines/
 
 ### `design-review`
 
-smarthr-uiを使った実装（`.tsx`/`.jsx`）を`component-guidelines`と`design-pattern-guidelines`に照らしてレビューし、ガイドと異なる箇所を重大度を付けて報告する。ガイドはルールではなく補助線なので、指摘は「どれくらい直すことを勧めるか」として伝え、デザインの意図があればガイドと異なるやり方を選んでよい。`--fix`を付けたときだけ、「直すことを勧める」指摘を直す。
+smarthr-uiを使った実装（`.tsx`/`.jsx`）を`component-guidelines`と`design-pattern-guidelines`に照らしてレビューし、ガイドと異なる箇所を重大度を付けて報告する。ガイドはルールではなく補助線なので、指摘は「どれくらい直すことを勧めるか」として伝え、ガイドに沿わせるかはデザインの意図を確かめて決める。`--fix`を付けたときだけ、「直すことを勧める」指摘を直す。
 
 | 重大度 | 意味 | 一覧の見出し |
 | --- | --- | --- |
