@@ -65,7 +65,14 @@ skills/design-pattern-guidelines/
 
 ### `design-review`
 
-変更差分（`.tsx`/`.jsx`）を`component-guidelines`と`design-pattern-guidelines`に照らしてレビューし、重大度1〜5を付けて報告する。`--fix`を付けたときだけ、閾値以上の指摘を直す。
+smarthr-uiを使った実装（`.tsx`/`.jsx`）を`component-guidelines`と`design-pattern-guidelines`に照らしてレビューし、ガイドと異なる箇所を重大度を付けて報告する。ガイドはルールではなく補助線なので、指摘は「どれくらい直すことを勧めるか」として伝え、デザインの意図があればガイドと異なるやり方を選んでよい。`--fix`を付けたときだけ、「直すことを勧める」指摘を直す。
+
+| 重大度 | 意味 | 一覧の見出し |
+| --- | --- | --- |
+| S4 | 動かない（存在しないpropや値、eslint-plugin-smarthrのルールへの違反） | 直すことを勧める |
+| S3 | 基本は直す（ガイドが求めている。`[must]`など） | 直すことを勧める |
+| S2 | 意図を確かめて決める（ガイドが勧めている、またはコードだけでは決められない） | デザインの意図を確かめる |
+| S1 | 参考（選択肢や参考になる情報） | 参考 |
 
 ```
 skills/design-review/
@@ -79,17 +86,16 @@ skills/design-review/
 
 ```
 /smarthr-design-system:design-review                  # 未コミットの変更をレビュー（報告のみ）
-/smarthr-design-system:design-review --fix            # レビューして、閾値以上の指摘を直す
+/smarthr-design-system:design-review --fix            # レビューして、「直すことを勧める」指摘を直す
 /smarthr-design-system:design-review 123              # PR #123 の差分
 /smarthr-design-system:design-review main             # main との差分
-/smarthr-design-system:design-review src/Foo.tsx      # 指定したファイルだけ
-/smarthr-design-system:design-review threshold=3      # 「要修正」にする重大度の下限を3にする（既定は4）
+/smarthr-design-system:design-review src/Foo.tsx      # 指定したファイル（差分が無ければファイル全体）
 ```
 
 - pattern（`design-pattern-guidelines`）とcomponent（`component-guidelines`）の2つの観点を、サブエージェントが並列にレビューする
-- 根拠はガイドの文の引用。余白の値など、コードだけで判定できない指摘は「確認事項」に、既存のコードと同じ書き方は「リポジトリ全体の課題」に分けて出す
+- 根拠はガイドの文の引用。重大度はガイドの文の強さで決まる。余白の値など、コードだけで判定できない指摘は「デザインの意図を確かめる」に、既存のコードと同じ書き方は「リポジトリ全体の課題」に分けて出す
+- ガイドと異なる箇所があれば、FigmaのURLを渡して実装とデザインカンプを突き合わせることや、デザイナーに意図を確かめることを案内する
 - レビューのスキルは、AIが自分でできると判断して起動しないことがある。確実に使うときは名前で呼ぶ
-- `kufu/mio-claude-plugin`の`shr-design-review`を元にしている
 
 ## 開発者向け情報
 
