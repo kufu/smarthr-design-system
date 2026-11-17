@@ -32,6 +32,8 @@ const SMARTHR_UI_VERSION: string = JSON.parse(
 const ARTICLES_DIR = path.join(REPO_ROOT, 'src/content/articles');
 const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(ARTICLES_DIR, 'products/components');
 const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
+// パターンのガイドは記事へのシンボリックリンクで、生成物ではないので、OUTPUT_DIR ではなくリポジトリ側から読む
+const PATTERNS_DIR = path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills/design-pattern-guidelines/patterns');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
 const COVERAGE_BASELINE_PATH = path.join(__dirname, 'coverage-baseline.json');
 const ESLINT_SNAPSHOT_PATH = path.join(__dirname, 'eslint-rules-snapshot.json');
@@ -159,7 +161,7 @@ async function main() {
   console.log(`   → ${path.relative(REPO_ROOT, routerPath)}`);
 
   console.log('🔗 design-review の公式ドキュメント URL 対応表を生成中…');
-  const patternDocUrls = collectPatternDocUrls(path.join(OUTPUT_DIR, 'design-pattern-guidelines/patterns'), ARTICLES_DIR);
+  const patternDocUrls = collectPatternDocUrls(PATTERNS_DIR, ARTICLES_DIR);
   const docUrlsPath = path.join(OUTPUT_DIR, 'design-review/references/doc-urls.md');
   fs.mkdirSync(path.dirname(docUrlsPath), { recursive: true });
   fs.writeFileSync(docUrlsPath, renderDocUrls([...docUrls, ...patternDocUrls]), 'utf-8');
