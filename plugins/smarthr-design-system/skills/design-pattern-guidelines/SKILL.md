@@ -24,6 +24,16 @@ SmartHRプロダクトのページレイアウトパターンを正しく実装�
 **`patterns/<pattern-name>.mdx` を必ず読んでから**実装すること。
 どのファイルを読むべきかは **[pattern-selector.md](pattern-selector.md)** を参照すること（ページレイアウト・テーブル/リスト・ダイアログ・フォーム・権限など全パターンの対応表がある）。
 
+## チェックリストがあるパターン
+
+`checklists/<pattern-name>.md` が存在するパターンは、mdx と併せて必ず読むこと。mdx から実装時に守るルールを抜き出したもので、見出しは mdx の見出し階層に対応している。
+
+- `[must]`: 必ず守る
+- `[should]`: 原則として守る
+- `[avoid]`: 避ける
+
+実装前に該当する節のルールを確認し、実装後はチェックリストの各項目に沿ってセルフレビューすること。チェックリストは要約のため、実装例やDoAndDontの詳細は mdx を正とする。
+
 ## コンポーネントの props を必ず確認する
 
 デザインパターンの実装例に登場するコンポーネントを使う際は、**`component-guidelines` スキルを併用して props・型・使用ルールを確認してから実装すること**。
@@ -32,9 +42,10 @@ SmartHRプロダクトのページレイアウトパターンを正しく実装�
 
 ### 手順
 
-1. デザインパターンドキュメント（`patterns/*.mdx`）で実装の全体構造を把握する
+1. デザインパターンドキュメント（`patterns/*.mdx`）で実装の全体構造を把握する。`checklists/<pattern-name>.md` があれば併せて読む
 2. 実装例に含まれる smarthr-ui コンポーネントについて、`component-guidelines` スキルの `components/<ComponentName>.md` を読んで props を確認する
 3. 確認した props に基づいて実装する
+4. `checklists/<pattern-name>.md` があれば、実装結果を各項目に照らしてセルフレビューする
 
 ## MDXの読み方
 

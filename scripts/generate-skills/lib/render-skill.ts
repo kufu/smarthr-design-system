@@ -3,6 +3,7 @@ import { formatType, formatDefault, escapeTableCell } from './parse-metadata.js'
 import type { EslintRuleWithContent } from './fetch-eslint-rules.js';
 import { getRelevantCodeExamples } from './fetch-eslint-rules.js';
 import type { ChecklistSection } from './parse-checklist.js';
+import { renderChecklistSections } from './render-checklist.js';
 import { formatSkillBodyText } from './format-skill-body-text.js';
 import { isLeadSupersetOfDescription, isSubstantivelyDuplicate, type IndexMdxInfo } from './parse-index-mdx.js';
 
@@ -121,18 +122,7 @@ export function renderSkill(opts: SkillRenderOptions): string {
     parts.push('使い方チェックリスト（Layer 3）は設定されていません。');
     parts.push('');
   } else {
-    for (const section of checklist) {
-      parts.push(`### ${section.category}`);
-      for (const item of section.items) {
-        parts.push(`- [${item.severity}] ${item.text}`);
-        if (item.sub_items && item.sub_items.length > 0) {
-          for (const sub of item.sub_items) {
-            parts.push(`  - ${sub}`);
-          }
-        }
-      }
-      parts.push('');
-    }
+    parts.push(...renderChecklistSections(checklist));
   }
 
   return parts.join('\n');

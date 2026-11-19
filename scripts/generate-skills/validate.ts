@@ -6,6 +6,14 @@ import { load } from 'js-yaml';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const COMPONENTS_DIR = path.join(REPO_ROOT, 'src/content/articles/products/components');
+const DESIGN_PATTERNS_DIR = path.join(REPO_ROOT, 'src/content/articles/products/design-patterns');
+
+// checklist.yaml を置けるルート。レポートの表示名はルートからの相対パスで、
+// デザインパターンはコンポーネントと区別できるよう `design-patterns/` を前置する。
+const CHECKLIST_ROOTS = [
+  { dir: COMPONENTS_DIR, labelPrefix: '' },
+  { dir: DESIGN_PATTERNS_DIR, labelPrefix: 'design-patterns/' },
+];
 
 type Severity = 'must' | 'should' | 'avoid';
 
@@ -45,6 +53,8 @@ const NON_RULE_HEADING_PATTERNS: RegExp[] = [
   /^関連するチェックリスト$/,
   /^参考文献$/,
   /^実装例$/,
+  // デザインパターンで実例画像のみを載せる節
+  /^利用例$/,
   /との違い$/,
   // checklist.yaml 自体を表示する節。抽出対象外（自己参照・循環防止）のため原理的にカバーできない
   /^使い方チェックリスト$/,
@@ -66,8 +76,12 @@ function findChecklistFiles(): string[] {
       else if (entry.isFile() && entry.name === 'checklist.yaml') result.push(p);
     }
   };
-  walk(COMPONENTS_DIR);
+  for (const root of CHECKLIST_ROOTS) walk(root.dir);
   return result.sort();
+}
+
+function findChecklistRoot(yamlPath: string) {
+  return CHECKLIST_ROOTS.find((root) => yamlPath.startsWith(root.dir + path.sep));
 }
 
 function extractHeadings(indexMdxPath: string): string[] {
@@ -133,7 +147,8 @@ function collectKnownHeadingPaths(componentDir: string): string[] {
 
 function validateOne(yamlPath: string): Report {
   const componentDir = path.dirname(yamlPath);
-  const component = path.relative(COMPONENTS_DIR, componentDir);
+  const root = findChecklistRoot(yamlPath) ?? CHECKLIST_ROOTS[0];
+  const component = root.labelPrefix + path.relative(root.dir, componentDir);
   const indexMdxPath = path.join(componentDir, 'index.mdx');
 
   const issues: Issue[] = [];
@@ -306,10 +321,10 @@ function main() {
   const jsonMode = process.argv.includes('--json');
   const explicit = parseFilesArg();
   const files = explicit
-    ? // 明示指定: REPO_ROOT 起点で解決し、components 配下かつ checklist.yaml のみに正規化
+    ? // 明示指定: REPO_ROOT 起点で解決し、components / design-patterns 配下かつ checklist.yaml のみに正規化
       explicit
         .map((f) => (path.isAbsolute(f) ? f : path.resolve(REPO_ROOT, f)))
-        .filter((f) => f.endsWith('/checklist.yaml') && f.startsWith(COMPONENTS_DIR + path.sep))
+        .filter((f) => f.endsWith('/checklist.yaml') && findChecklistRoot(f) !== undefined)
         .filter((f) => fs.existsSync(f))
     : findChecklistFiles();
 
