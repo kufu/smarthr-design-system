@@ -21,6 +21,8 @@ on:
       - 'src/content/articles/products/components/**/index.mdx'
       - 'src/content/articles/products/components/**/checklist.yaml'
       - 'src/content/articles/products/components/**/_components/**/*.mdx'
+      # パターンのシンボリックリンクを足したら、design-review の URL 対応表を作り直す
+      - 'plugins/smarthr-design-system/skills/design-pattern-guidelines/patterns/**'
       - 'scripts/generate-skills/**'
       - '.github/data/eslint-rule-names.txt'
       - '.github/workflows/generate-skills.yml'

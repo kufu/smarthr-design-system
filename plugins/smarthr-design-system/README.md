@@ -4,6 +4,7 @@ SmartHR Design Systemのコンポーネントガイドラインとデザイン�
 
 - smarthr-uiのコンポーネントを正しく選択・使用するための知識（Props仕様・eslintルール・使い方チェックリスト）
 - SmartHRプロダクトのページレイアウトやUIパターンを正しく実装するためのデザインパターンガイドライン
+- 実装の変更差分を上の2つのガイドに照らしてレビューするデザインレビュー
 
 をスキルとして配布する。
 
@@ -24,7 +25,7 @@ Settings > Plugins > Browse Marketplaceから「SmartHR Design System」を検�
 
 ## スキル構成
 
-プラグインは**2つのスキル**を提供する。いずれも[Progressive Disclosureパターン](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#progressive-disclosure-patterns)を採用しており、AIが必要に応じて段階的にドキュメントを読み込む。
+プラグインは**3つのスキル**を提供する。ガイドの2つは[Progressive Disclosureパターン](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#progressive-disclosure-patterns)を採用しており、AIが必要に応じて段階的にドキュメントを読み込む。`design-review`はこの2つのガイドを使ってレビューする。
 
 ### `component-guidelines`
 
@@ -62,6 +63,40 @@ skills/design-pattern-guidelines/
     └── ...（24件）
 ```
 
+### `design-review`
+
+smarthr-uiを使った実装（`.tsx`/`.jsx`）を`component-guidelines`と`design-pattern-guidelines`に照らしてレビューし、ガイドと異なる箇所を重大度を付けて報告する。ガイドはルールではなく補助線なので、指摘は「どれくらい直すことを勧めるか」として伝え、ガイドに沿わせるかはデザインの意図を確かめて決める。`--fix`を付けたときだけ、「直すことを勧める」指摘を直す。
+
+| 重大度 | 意味 | 一覧の見出し |
+| --- | --- | --- |
+| S4 | 動かない（存在しないpropや値、eslint-plugin-smarthrのルールへの違反） | 直すことを勧める |
+| S3 | 基本は直す（ガイドが求めている。`[must]`など） | 直すことを勧める |
+| S2 | 意図を確かめて決める（ガイドが勧めている、またはコードだけでは決められない） | デザインの意図を確かめる |
+| S1 | 参考（選択肢や参考になる情報） | 参考 |
+
+```
+skills/design-review/
+├── SKILL.md                       エントリポイント（手動管理）
+└── references/
+    ├── reviewer-prompt.md         レビュアー（サブエージェント）への指示の雛形（手動管理）
+    └── doc-urls.md                ガイド → 公式ドキュメントのURLの対応表（自動生成）
+```
+
+使い方（Claude Code）:
+
+```
+/smarthr-design-system:design-review                  # 未コミットの変更をレビュー（報告のみ）
+/smarthr-design-system:design-review --fix            # レビューして、「直すことを勧める」指摘を直す
+/smarthr-design-system:design-review 123              # PR #123 の差分
+/smarthr-design-system:design-review main             # main との差分
+/smarthr-design-system:design-review src/Foo.tsx      # 指定したファイル（差分が無ければファイル全体）
+```
+
+- pattern（`design-pattern-guidelines`）とcomponent（`component-guidelines`）の2つの観点を、サブエージェントが並列にレビューする
+- 根拠はガイドの文の引用。重大度はガイドの文の強さで決まる。余白の値など、コードだけで判定できない指摘は「デザインの意図を確かめる」に、既存のコードと同じ書き方は「リポジトリ全体の課題」に分けて出す
+- ガイドと異なる箇所があれば、FigmaのURLを渡して実装とデザインカンプを突き合わせることや、デザインの意図を確かめることを案内する
+- レビューのスキルは、AIが自分でできると判断して起動しないことがある。確実に使うときは名前で呼ぶ
+
 ## 開発者向け情報
 
 ### component-guidelines
@@ -71,6 +106,10 @@ skills/design-pattern-guidelines/
 ### design-pattern-guidelines
 
 `patterns/*.mdx`はデザインシステムサイトのコンテンツ（`src/content/articles/products/design-patterns/`）へのシンボリックリンク。既存パターンの更新にはそのまま追従するが、新規パターンを追加した場合はシンボリックリンクを手動で追加する必要がある。`SKILL.md`と`pattern-selector.md`は手動管理。
+
+### design-review
+
+`references/doc-urls.md`は`scripts/generate-skills/`で自動生成される。コンポーネントの対応はcomponent-guidelinesの生成と同じ対応付け（専用のページが無いものは`relatedComponents`の親のページ）から、パターンの対応は`patterns/*.mdx`のシンボリックリンクの先から作る。URLは人間向けの情報なので、AIが読むガイド本体には入れない。`SKILL.md`と`references/reviewer-prompt.md`は手動管理。
 
 ### ローカル動作確認
 
