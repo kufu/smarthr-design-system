@@ -132,7 +132,7 @@ smarthr-ui を使った実装（`.tsx` / `.jsx`）を SmartHR デザインシス
 
 ### ガイドラインと異なる箇所の扱い
 - 該当部分の Figma の URL を渡してもらえれば、余白や色などのずれが、Figma（デザインカンプ）の意図どおりかを機械的に確かめられます。同じマーケットプレイスの figma-inventory プラグインを入れておくと、Figma の大きな応答を小さくまとめて突き合わせやすくなります
-- デザインの意図を確かめ、ガイドラインに沿わせるか、今のやり方にするかを決めてください。判断に迷ったら、基準判定フローチャート（https://smarthr.design/products/usability/usability-checklist/#h3-5）を参考にしてください
+- デザインの意図を確かめ、ガイドラインに沿わせるか、今のやり方にするかを決めてください。判断に迷ったら、基準判定フローチャート（https://smarthr.design/products/usability/usability-checklist/#h3-6）を参考にしてください
 ```
 
 指摘が 1 件も無ければ、そう伝えて終わる。
