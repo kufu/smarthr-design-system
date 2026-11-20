@@ -178,20 +178,20 @@ SmartHRでは、リスト形式でオブジェクトを一覧表示するUIを�
 
 #### 見出しとリスト操作エリアのレイアウト
 
-多様な画面幅で見やすいレイアウトとなるよう、[見出し](#h3-0)と[リスト操作エリア](#h3-1)は、[Sidebar](/products/components/layout/sidebar/)を使って配置します。
+多様な画面幅で見やすいレイアウトとなるよう、[見出し](#h3-0)と[リスト操作エリア](#h3-1)は、[Cluster](/products/components/layout/cluster/)の`grow`属性を使って配置します。
 
 ```tsx editable noIframe
 <Section>
   <div style={{ width: '100%' }}>
-  <Sidebar gap={0.5} align="center" right>
+  <Cluster grow="start" align="center">
       <Heading>とても長いリストタイトルとても長いリストタイトル</Heading>
-      <Cluster>
+      <Cluster className="shr-grow">
           <Button prefix={<FaCirclePlusIcon />}>追加</Button>
           <DropdownMenuButton trigger={{ text: "操作", onlyIcon: true }}>
               <Button>並べ替え</Button>
           </DropdownMenuButton>
       </Cluster>
-  </Sidebar>
+  </Cluster>
   </div>
 </Section>
 ```

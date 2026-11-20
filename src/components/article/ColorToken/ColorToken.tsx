@@ -1,4 +1,4 @@
-import { FaLinkIcon, Sidebar } from 'smarthr-ui';
+import { Cluster, FaLinkIcon } from 'smarthr-ui';
 
 import { SEMANTIC_COLORS, type SemanticColorName, hexToRgb } from '@/constants/colorTokens';
 
@@ -14,9 +14,9 @@ type Props = {
 };
 
 /**
- * トークン名の見出し・色見本と、説明の本文を Sidebar で横並びにする
+ * トークン名の見出し・色見本と、説明の本文を Cluster の grow で横並びにする
  *
- * Sidebar は直下の1つ目と最後の子要素にレイアウト用のクラスを付けるため、
+ * Cluster の grow は直下の最後の子要素を伸ばすため、
  * Astro コンポーネントのスロット経由ではなく React から2つの子要素を直接渡している
  */
 export default function ColorToken({ name, children }: Props) {
@@ -24,7 +24,7 @@ export default function ColorToken({ name, children }: Props) {
   const rgb = hexToRgb(value);
 
   return (
-    <Sidebar gap={{ row: 1.5, column: 2 }} className={styles.wrapper}>
+    <Cluster grow="end" gap={{ row: 1.5, column: 2 }} className={styles.wrapper}>
       <div className={styles.summary}>
         {/* data-index-nav: ページ内目次（IndexNav）に含める h4 であることを示す */}
         <h4 id={name} className={styles.title} data-index-nav>
@@ -40,6 +40,6 @@ export default function ColorToken({ name, children }: Props) {
         </span>
       </div>
       <div className={styles.body}>{children}</div>
-    </Sidebar>
+    </Cluster>
   );
 }
