@@ -92,10 +92,12 @@ skills/design-review/
 /smarthr-design-system:design-review 123              # PR #123 の差分
 /smarthr-design-system:design-review main             # main との差分
 /smarthr-design-system:design-review src/Foo.tsx      # 指定したファイル（差分が無ければファイル全体）
+/smarthr-design-system:design-review src/Foo.tsx --no-existing  # 既存のコードと比べず、全体を新しいコードとして見る
 ```
 
 - pattern（`design-pattern-guidelines`）とcomponent（`component-guidelines`）の2つの観点を、サブエージェントが並列にレビューする
 - 根拠はガイドの文の引用。重大度はガイドの文の強さで決まる。余白の値など、コードだけで判定できない指摘は「デザインの意図を確かめる」に、既存のコードと同じ書き方は「リポジトリ全体の課題」に分けて出す
+- `--no-existing`を付けると、既存のコードと比べず、対象の全部を新しいコードとして扱う（重大度を下げず、「リポジトリ全体の課題」にも回さない）。独立した試作やサンプルが並び、ほかのファイルの書き方に合わせる理由が無いリポジトリ向け。コードを変えない引数なので、ほかのスキルから付けて呼んでもよい（`--fix`はユーザーが自分で書いたときだけ有効）
 - ガイドと異なる箇所があれば、FigmaのURLを渡して実装とデザインカンプを突き合わせることや、デザインの意図を確かめることを案内する
 - レビューのスキルは、AIが自分でできると判断して起動しないことがある。確実に使うときは名前で呼ぶ
 
