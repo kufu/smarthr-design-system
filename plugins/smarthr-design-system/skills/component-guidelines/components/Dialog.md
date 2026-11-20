@@ -39,6 +39,8 @@ Dialogのボタンテキストにアイコンコンポーネント（名前が"I
 
 ## 使い方チェックリスト
 
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
+
 ### Dialogを使用したコンポーネント > ActionDialog、FormDialog
 - [should] ユーザーに入力や選択などの操作を求める場合は ActionDialog / FormDialog を使う
 - [should] ダイアログコンテンツにフォームが含まれている場合は FormDialog を使う

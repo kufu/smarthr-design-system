@@ -20,6 +20,8 @@ VisuallyHiddenText に直接関連する eslint-plugin-smarthr のルールは�
 
 ## 使い方チェックリスト
 
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
+
 ### 使用上の注意
 - [avoid] VisuallyHiddenText を必要以上に使いすぎない
 - [should] 文脈をしっかり考慮し、スクリーンリーダーユーザーにとって価値のある情報を提供する
