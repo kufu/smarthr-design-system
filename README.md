@@ -69,6 +69,22 @@ import Hoge from '@/components/hoge'
 
 と書けるようになっています。積極的に利用してください。
 
+### 4. 見出しへのリンクは見出しの文字列で書く
+
+見出しには、見出しの文字列から作った id が付きます（GitHub と同じ規則。英字は小文字、空白は`-`、記号は除去、日本語はそのまま）。
+
+```mdx
+## 無効（disabled）
+
+[無効の状態](/products/components/button/#無効disabled)
+```
+
+- 同じページに同じ文字列の見出しがあると、2つ目以降は`-1`、`-2`…が付きます。
+- 見出しの文字列を変えると id も変わります。その見出しへのリンクは`pnpm lint:anchors`（PR の CI でも実行）で検出されるので、あわせて直してください。
+- 見出しの文字列を変えても残したい id は、`{<span id="use-finite-verbs-in-button-labels" />}`のように明示的に埋め込めます。
+- 以前の`#h3-2`のような形式（レベルごとの出現順）は、新しく書かないでください。見出しを足したり消したりすると、黙って別の見出しを指すようになります。`pnpm lint:anchors --fix`で今の id に書き換えられます。
+  - Slack などに貼られた古いリンクのために、見出しには以前の形式の id も残しています。
+
 ### アイコン画像の追加・削除・編集時の注意
 
 アイコン画像（`src/content/articles/basics/icons/images/icons`）はzipでダウンロードできるようにしているため、変更があった場合はzipも更新する必要があります。コミット時にpre-commitフックで自動的に作り直されますが、手動で更新する場合は下記のコマンドを実行してください。
@@ -95,7 +111,7 @@ Gotchaの画像はサイズが大きいため、画像配信CDN[Cloudinary](http
 
 - [GitHub Actions](./.github/workflows/README.md)
 - [Git hooksとhusky](./.husky/README.md)
-- [リンクチェック](./scripts/content-checker/README.md)
+- [リンクチェック](./scripts/content-checker/README.md)（アンカーリンクは`pnpm lint:anchors`）
 
 ### Reactコンポーネント
 

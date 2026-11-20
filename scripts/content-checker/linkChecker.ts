@@ -32,32 +32,7 @@ const collectExistLinks = async () => {
 
     const content = await fs.readFile(file, 'utf8');
 
-    // 見出しを探して、アンカーリンク付きのパスも配列に入れておく
-    const headingList = content.matchAll(/^(#{2,5})\s.*$/gm);
-    const headingCount: { [key in number]: number } = { 2: 0, 3: 0, 4: 0, 5: 0 };
-    for (const heading of headingList) {
-      const level = heading[1].length;
-      existPathList.push(`${pagePath}#h${level}-${headingCount[level]}`);
-      headingCount[level] += 1;
-    }
-
-    // 明示的に埋め込まれたアンカー（`{<span id="..." />}`）も配列に入れておく
-    for (const anchor of content.matchAll(/<span[^>]*\sid="([A-Za-z0-9_-]+)"/g)) {
-      existPathList.push(`${pagePath}#${anchor[1]}`);
-    }
-
-    // ComponentPropsTableがshowTitle指定時に生成するアンカー（`#props-Xxx`）も配列に入れておく
-    for (const propsTable of content.matchAll(/<ComponentPropsTable\s([^>]*)\/>/g)) {
-      const attributes = propsTable[1];
-      // nameがあるか
-      const name = attributes.match(/\bname="([^"]+)"/)?.[1];
-      // showTitle属性があるか
-      const showTitle = /\bshowTitle\b/.test(attributes);
-      // name と showTitle がある場合のみ existPathList に格納する
-      if (name && showTitle) {
-        existPathList.push(`${pagePath}#props-${name.replace(' ', '-')}`);
-      }
-    }
+    // アンカー（`#...`）のリンク切れは、PR ごとに scripts/check-anchor-links.ts（pnpm lint:anchors）でチェックする
 
     // 対象のファイルでなければスキップ
     if (targetFiles.length > 0 && !targetFiles.includes(file)) continue;
@@ -101,19 +76,14 @@ const check = async (existPathList: string[], linkList: LinkItem[]) => {
     if (IGNORE_LIST.includes(linkItem.link)) continue;
 
     // 「https://smarthr.design」部分は不要なので削除
-    const srcPath = linkItem.link.replace(/^https:\/\/smarthr.design/, '');
+    // アンカー（`#...`）は scripts/check-anchor-links.ts でチェックするので、ここではページの存在だけを見る
+    const srcPath = linkItem.link.replace(/^https:\/\/smarthr.design/, '').replace(/#.*$/, '');
 
     // 外部サイトへのリンクを除外
     if (/^http/.test(srcPath)) continue;
 
-    // Airtableコンテンツのアンカーはソースコードからは分からないので除外（例：#recHmpb0LwZk9yHir-0）
-    if (/#rec[a-zA-Z0-9]{14}-0/.test(srcPath)) continue;
-
-    // 同じページ内のアンカーへのリンクの場合（「#h2-0」など）
-    if (/^#/.test(srcPath)) {
-      if (!existPathList.includes(`${linkItem.pagePath}${srcPath}`)) list.push(linkItem);
-      continue;
-    }
+    // 同じページ内のアンカーへのリンク
+    if (srcPath === '') continue;
 
     //「/」で始まるルートパス表記の場合 - リンク
     if (/^\//.test(srcPath) && linkItem.type === 'link') {
@@ -166,13 +136,10 @@ const missingLinkList: LinkItem[] = await check(existPathList, linkList).catch((
 let fixedCount = 0;
 for (const item of missingLinkList) {
   let errorType = `Missing ${item.type === 'image' ? 'image source' : 'link'}`;
-  const normalizedLink = path.normalize(`${item.pagePath}/${item.link}`).replace(/^.*\/src\/content\/articles/, '');
-  const siteRootLink = item.link.replace(/https:\/\/smarthr.design/, '');
-  if (
-    existPathList.includes(`${siteRootLink}/`) ||
-    existPathList.includes(siteRootLink.replace('#', '/#')) ||
-    existPathList.includes(`${normalizedLink}/`)
-  ) {
+  const linkWithoutAnchor = item.link.replace(/#.*$/, '');
+  const normalizedLink = path.normalize(`${item.pagePath}/${linkWithoutAnchor}`).replace(/^.*\/src\/content\/articles/, '');
+  const siteRootLink = linkWithoutAnchor.replace(/https:\/\/smarthr.design/, '');
+  if (existPathList.includes(`${siteRootLink}/`) || existPathList.includes(`${normalizedLink}/`)) {
     if (isAutoFixEnabled) {
       try {
         await autoFixTrailingSlash(item);
