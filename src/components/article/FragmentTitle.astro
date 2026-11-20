@@ -6,13 +6,19 @@ type HeadingTagTypes = 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
 type Props = {
   id: string;
   tag?: HeadingTagTypes;
+  /**
+   * 以前の `h3-2` 形式（レベルごとの出現順）の id。Slack などに貼られた古いリンクで飛べるよう、
+   * 見出しの中に同じ id の空要素を置く（src/remark/remark-index-id-header.ts）
+   */
+  'data-legacy-id'?: string;
 };
 
-const { id, tag = 'h2' } = Astro.props;
+const { id, tag = 'h2', 'data-legacy-id': legacyId } = Astro.props;
 ---
 
 {tag === 'h2' && (
   <h2 class="wrapper" id={id}>
+    {legacyId && <span class="legacyAnchor" id={legacyId} />}
     <a href={`#${id}`}>
       <FaLinkIcon className="icon" />
       <slot />
@@ -21,6 +27,7 @@ const { id, tag = 'h2' } = Astro.props;
 )}
 {tag === 'h3' && (
   <h3 class="wrapper" id={id}>
+    {legacyId && <span class="legacyAnchor" id={legacyId} />}
     <a href={`#${id}`}>
       <FaLinkIcon className="icon" />
       <slot />
@@ -29,6 +36,7 @@ const { id, tag = 'h2' } = Astro.props;
 )}
 {tag === 'h4' && (
   <h4 class="wrapper" id={id}>
+    {legacyId && <span class="legacyAnchor" id={legacyId} />}
     <a href={`#${id}`}>
       <FaLinkIcon className="icon" />
       <slot />
@@ -37,6 +45,7 @@ const { id, tag = 'h2' } = Astro.props;
 )}
 {tag === 'h5' && (
   <h5 class="wrapper" id={id}>
+    {legacyId && <span class="legacyAnchor" id={legacyId} />}
     <a href={`#${id}`}>
       <FaLinkIcon className="icon" />
       <slot />
@@ -45,6 +54,7 @@ const { id, tag = 'h2' } = Astro.props;
 )}
 {tag === 'h6' && (
   <h6 class="wrapper" id={id}>
+    {legacyId && <span class="legacyAnchor" id={legacyId} />}
     <a href={`#${id}`}>
       <FaLinkIcon className="icon" />
       <slot />
@@ -53,6 +63,7 @@ const { id, tag = 'h2' } = Astro.props;
 )}
 {tag === 'span' && (
   <span class="wrapper" id={id}>
+    {legacyId && <span class="legacyAnchor" id={legacyId} />}
     <a href={`#${id}`}>
       <FaLinkIcon className="icon" />
       <slot />
@@ -78,6 +89,11 @@ const { id, tag = 'h2' } = Astro.props;
         }
       }
     }
+  }
+
+  .legacyAnchor {
+    display: block;
+    scroll-margin-top: 80px;
   }
 
   .icon {

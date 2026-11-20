@@ -1,47 +1,38 @@
-import { type Visitor, visit } from 'unist-util-visit';
+import { visit } from 'unist-util-visit';
 
-import type { Heading, ParagraphData } from 'mdast';
-import type { Node } from 'unist';
+import { createHeadingIdGenerator } from '../lib/headingId';
 
-const remarkIndexIdHeader = () => (tree: Node) => {
-  const indexes = {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-    6: 0,
-  };
+import type { Heading, Root } from 'mdast';
 
-  const visitor: Visitor<Heading> = (node, index, parent) => {
-    if (!parent || index === undefined) {
-      return;
-    }
+/**
+ * Markdown の見出しに、見出しの文字列から作った id を付ける（採番ルールは src/lib/headingId.ts）。
+ *
+ * 以前の `h3-2` 形式（レベルごとの出現順）の id も `dataLegacyId` として渡す。
+ * FragmentTitle.astro が見出しの中に同じ id の空要素を置くので、Slack などに貼られた古いリンクでも飛べる。
+ */
+const remarkIndexIdHeader = () => (tree: Root) => {
+  const generateId = createHeadingIdGenerator();
+  const legacyIndexes: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+
+  visit(tree, 'heading', (node: Heading, index, parent) => {
+    if (!parent || index === undefined) return;
 
     const { depth } = node;
-    if (depth > 6) return;
-
     const tag = `h${depth}`;
-
-    // ex) `h2-0`,`h2-1`...
-    const id = `${tag}-${indexes[depth]}`;
+    const id = generateId(node);
+    const legacyId = `${tag}-${legacyIndexes[depth]}`;
+    legacyIndexes[depth]++;
 
     node.data = {
       ...node.data,
       id,
-      htmlAttributes: {
-        id,
-      },
       hProperties: {
         id,
         tag,
+        dataLegacyId: legacyId,
       },
-    } as ParagraphData;
-
-    indexes[depth]++;
-  };
-
-  visit(tree, 'heading', visitor);
+    };
+  });
 };
 
 export default remarkIndexIdHeader;

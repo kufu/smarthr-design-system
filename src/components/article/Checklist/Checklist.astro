@@ -33,7 +33,7 @@ if (!entry) {
 
 const items = entry.data.items;
 
-// 同ディレクトリの index.mdx から source_section → 本文見出し id（例: 'h3-1'）の対応表を作る。
+// 同ディレクトリの index.mdx から source_section → 本文見出し id（例: '使用上の注意'）の対応表を作る。
 // raw markdown から算出するため smartypants 変換の影響を受けず、解決できない場合はリンクなしにフォールバックする。
 let anchorMap = new Map<string, string>();
 const checklistPath = (entry as { filePath?: string }).filePath;

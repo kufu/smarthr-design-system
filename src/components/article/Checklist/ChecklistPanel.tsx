@@ -11,7 +11,7 @@ export type ChecklistItemData = {
 
 export type ChecklistGroup = {
   section: string;
-  /** source_section を解決した本文見出しの id（例: 'h3-1'）。未解決ならリンクを出さない */
+  /** source_section を解決した本文見出しの id（例: '使用上の注意'）。未解決ならリンクを出さない */
   sectionId?: string;
   items: ChecklistItemData[];
 };
@@ -125,9 +125,7 @@ export const ChecklistPanel = ({ groups, id, title, headingTag }: Props) => {
           as={headingTag}
           id={id}
           weight="bold"
-          icon={{
-            prefix: <FaAngleRightIcon className={styles.caret} />,
-          }}
+          icon={<FaAngleRightIcon className={styles.caret} />}
           style={{
             margin: 0,
             fontSize: 'var(--font-size-26)',
