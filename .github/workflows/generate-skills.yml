@@ -151,10 +151,18 @@ jobs:
         # patch は依存パッケージのコードが動いた generate ジョブで作られるため、中身を信用しない。
         # git apply --index は patch 内の全パスを index に載せ、後続の commit はそれをすべて含めるので、
         # skills 以外のパスが 1 つでも変わっていたら push せずに失敗させる。
+        # また、生成スクリプトは通常ファイル（mode 100644）しか書かないので、シンボリックリンク・
+        # 実行権限・サブモジュールなど、それ以外のモードが関わる変更（追加・置換・削除）も止める。
+        # パス検証だけでは、skills 配下に置いた外部を指すシンボリックリンクを防げないため。
         run: |
           git apply --index "$RUNNER_TEMP/skills-patch/skills.patch"
           if git diff --cached --name-only --no-renames -z | grep -zv '^plugins/smarthr-design-system/skills/' | tr '\0' '\n' | grep .; then
             echo "::error::patch が plugins/smarthr-design-system/skills 以外のパスを変更しています。push を中止します。"
+            exit 1
+          fi
+          if ! git diff --cached --raw --no-renames --no-abbrev -z | tr '\0' '\n' \
+            | awk -F'[ \t]' '/^:/ { if (($1 != ":100644" && $1 != ":000000") || ($2 != "100644" && $2 != "000000")) { print; bad = 1 } } END { exit bad }'; then
+            echo "::error::patch が通常ファイル以外（シンボリックリンク・ファイルモードなど）を変更しています。push を中止します。"
             exit 1
           fi
 
