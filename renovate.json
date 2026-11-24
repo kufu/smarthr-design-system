@@ -1,5 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["local>kufu/renovate-config"],
-  "minimumReleaseAge": "7 days"
+  "minimumReleaseAge": "7 days",
+  "packageRules": [
+    {
+      "description": "figma-inventory の selftest は README の前提である最小の版（3.8）で回すため、Python の版を上げない",
+      "matchFileNames": [".github/workflows/figma-inventory-selftest.yml"],
+      "matchDepNames": ["python"],
+      "enabled": false
+    }
+  ]
 }
