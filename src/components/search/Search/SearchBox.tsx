@@ -27,8 +27,13 @@ function CustomSearchBox(props: UseSearchBoxProps) {
     const url = new URL(window.location.href);
 
     const searchQuery = event.target.value;
-    url.searchParams.set('query', searchQuery);
-    window.history.pushState({}, '', url);
+    if (searchQuery) {
+      url.searchParams.set('query', searchQuery);
+    } else {
+      url.searchParams.delete('query');
+    }
+    // 入力のたびに履歴を積むと「戻る」で前のページに戻れなくなるので、置き換える
+    window.history.replaceState({}, '', url);
 
     setSearchState(searchQuery);
   };
