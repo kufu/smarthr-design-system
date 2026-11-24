@@ -3,6 +3,13 @@ packages:
 
 minimumReleaseAge: 10080
 
+# @rolldown/binding-wasm32-wasi が @emnapi/* 2.0.0-beta を持ち込み、
+# @emnapi/core 1.x 固定の @astrojs/astro2tsx と runtime だけ 2.0 beta が混在して astro check が落ちるため 1.x に揃える。
+# astro2tsx 側が 2.x に対応したら外す。
+overrides:
+  '@emnapi/core': 1.11.3
+  '@emnapi/runtime': 1.11.3
+
 allowBuilds:
   '@parcel/watcher': true
   canvas: true

@@ -47,7 +47,7 @@ export function renderRouterSkill(entries: RouterEntry[], smarthrUiVersion: stri
   parts.push('');
   parts.push('1. 実装したい UI 要件を整理する（例: 「フォームを作る」「テーブルを表示する」）');
   parts.push('2. 上記の表から該当しそうなコンポーネントを特定する');
-  parts.push('3. そのコンポーネントのガイドファイルを読み、Props・実装ルール・使い方チェックリストに従って実装する');
+  parts.push('3. そのコンポーネントのガイドファイルを読み、Props・実装ルール・使い方チェックリストを確認して実装する');
   parts.push('');
   return parts.join('\n');
 }

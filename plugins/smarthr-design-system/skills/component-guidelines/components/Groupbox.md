@@ -27,6 +27,8 @@ Groupbox に直接関連する eslint-plugin-smarthr のルールは現時点で
 
 ## 使い方チェックリスト
 
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
+
 ### デザインパターン > メッセージを表示するパターン
 - [should] Panel や各種 Dialog（`contentBgColor` が `WHITE` の場合）の内側など、InformationPanel が配置できない場合に、見出しと内容のセットで注意事項や補足事項を表示するために使う
   - Panel の内側では InformationPanel の代わりに Groupbox で注意事項を表示する
