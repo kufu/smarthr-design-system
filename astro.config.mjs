@@ -19,7 +19,15 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
-  integrations: [react(), mdx(), tailwind(), sitemap()],
+  integrations: [
+    react(),
+    mdx(),
+    tailwind(),
+    sitemap({
+      // frontmatter で robotsNoIndex: true にしているページはサイトマップに載せない
+      filter: (page) => page !== 'https://smarthr.design/contact/',
+    }),
+  ],
   markdown: {
     syntaxHighlight: false,
     processor: unified({

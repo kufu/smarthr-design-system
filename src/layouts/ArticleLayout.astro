@@ -33,7 +33,12 @@ const prevSidebarItem = currentPageIndex > 0 ? (flatArticleMetaItems.at(currentP
 const nextSidebarItem = currentPageIndex < sidebarItemLength ? (flatArticleMetaItems.at(currentPageIndex + 1) ?? null) : null;
 ---
 
-<Layout title={headTitle} ogTitle={displayTitle} description={data.description}>
+<Layout
+  title={headTitle}
+  ogTitle={displayTitle}
+  description={data.description}
+  meta={data.robotsNoIndex ? [{ name: 'robots', content: 'noindex' }] : undefined}
+>
   <div class="wrapper">
     <Header />
 
