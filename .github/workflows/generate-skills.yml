@@ -11,6 +11,18 @@ name: generate-skills
 # main は保護ブランチ (Ruleset) だが、bypass_actors に当 App を bypass_mode: always で
 # 登録済みのため直接 push が許可される。push 主体を App トークンにすることで bypass が効く
 # （GITHUB_TOKEN は push に使わない）。
+#
+# 【ジョブ分割について】
+# App トークンは保護された main へ push できる強い権限なので、依存パッケージのコード
+# （install スクリプト・生成スクリプトの依存・husky の pre-commit フックなど）が
+# 動くジョブからは触れられないようにする。
+# - generate ジョブ: トークンなし（persist-credentials: false）で依存を入れて再生成し、
+#   差分を patch として artifact にアップロードするだけ。
+# - push ジョブ: Node/pnpm のセットアップも依存のインストールもせず、App トークンを
+#   発行して patch を当て、フックを無効にしてコミット&push する。
+# 差分は `git diff --binary` の patch で受け渡す。ディレクトリをそのまま artifact にすると
+# ファイルの削除が伝わらず、patterns/ のシンボリックリンクも実体化されてしまうため。
+# workflow_dispatch を main 以外のブランチで実行すると generate ジョブだけが動く（dry-run）。
 
 on:
   push:
@@ -38,7 +50,8 @@ permissions:
   contents: read
 
 env:
-  NPM_CONFIG_IGNORE_SCRIPTS: 'true'
+  NPM_CONFIG_IGNORE_SCRIPTS: 'true' # npx（netlify-cli など）向け。pnpm 12 は NPM_CONFIG_* を読まない
+  PNPM_CONFIG_IGNORE_SCRIPTS: 'true'
   NPM_CONFIG_BEFORE: ''
   PNPM_CONFIG_MINIMUM_RELEASE_AGE: '1440' # minutes (1 day)
 
@@ -47,23 +60,20 @@ jobs:
     # フォーク PR からのトリガーは構造上発生しないが、念のため二重防御。
     if: github.repository == 'kufu/smarthr-design-system'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
     steps:
       - name: Set NPM_CONFIG_BEFORE
         run: |
           echo "NPM_CONFIG_BEFORE=$(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
 
-      - name: Generate app token
-        id: app-token
-        uses: actions/create-github-app-token@v3.3.0
-        with:
-          app-id: ${{ secrets.SKILL_BOT_APP_ID }}
-          private-key: ${{ secrets.SKILL_BOT_APP_PRIVATE_KEY }}
-
       - name: Checkout
         uses: actions/checkout@v7.0.1
         with:
-          # App トークンで checkout し、後続の push も App として実行する（Ruleset の bypass 対象）。
-          token: ${{ steps.app-token.outputs.token }}
+          # 依存パッケージのコードが動くジョブなので、認証情報を .git/config に残さない。
+          persist-credentials: false
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6.1.1
@@ -74,7 +84,7 @@ jobs:
           node-version-file: '.node-version'
           cache: 'pnpm'
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Generate SKILL.md
         # eslint ルール README はコミット済みスナップショット (eslint-rules-snapshot.json) を
@@ -82,22 +92,82 @@ jobs:
         # 上流ルールを更新する場合はローカルでスナップショットを再生成してコミットする。
         run: pnpm --filter ./scripts/generate-skills generate
 
+      - name: Create patch if SKILL.md changed
+        id: diff
+        # 未追跡ファイル・削除・シンボリックリンクも含めるため、index に載せてから
+        # --binary で patch を作る（index はこのジョブ内だけのもので、コミットはしない）。
+        run: |
+          mkdir -p "$RUNNER_TEMP/skills-patch"
+          git add -A plugins/smarthr-design-system/skills
+          if git diff --cached --quiet -- plugins/smarthr-design-system/skills; then
+            echo "No SKILL.md changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git diff --cached --binary -- plugins/smarthr-design-system/skills > "$RUNNER_TEMP/skills-patch/skills.patch"
+          git diff --cached --stat -- plugins/smarthr-design-system/skills
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Upload patch
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: skills-patch
+          path: ${{ runner.temp }}/skills-patch/skills.patch
+          if-no-files-found: error
+          retention-days: 1
+
+  push:
+    needs: generate
+    # main 以外（workflow_dispatch でのブランチ実行）では push しない。
+    if: needs.generate.outputs.changed == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    # このジョブでは Node/pnpm のセットアップや依存のインストールをしない。
+    # App トークンを持つ間はリポジトリ内のコード（フック・スクリプト）を実行しない。
+    steps:
+      - name: Generate app token
+        id: app-token
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          app-id: ${{ secrets.SKILL_BOT_APP_ID }}
+          private-key: ${{ secrets.SKILL_BOT_APP_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          # generate ジョブと同じコミットを checkout し、patch がそのまま当たるようにする。
+          # App トークンで checkout し、後続の push も App として実行する（Ruleset の bypass 対象）。
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Download patch
+        uses: actions/download-artifact@v8.0.2
+        with:
+          name: skills-patch
+          path: ${{ runner.temp }}/skills-patch
+
+      - name: Apply patch
+        run: git apply --index "$RUNNER_TEMP/skills-patch/skills.patch"
+
       - name: Get app user id
         id: app-user
         # コミットの author/committer を App bot に正しく帰属させるため user id を取得する。
-        run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+        run: echo "user-id=$(gh api "/users/${APP_SLUG}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
 
-      - name: Commit & push if SKILL.md changed
+      - name: Commit & push
+        # 依存パッケージ由来の husky / lint-staged フックを動かさないよう、フックは無効にする。
+        # 生成中に main が進んでいても push できるよう、push 前に rebase する。
+        env:
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+          APP_USER_ID: ${{ steps.app-user.outputs.user-id }}
         run: |
-          if [ -z "$(git status --porcelain plugins/smarthr-design-system/skills)" ]; then
-            echo "No SKILL.md changes. Skipping commit."
-            exit 0
-          fi
-
-          git config user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
-          git config user.email '${{ steps.app-user.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email "${APP_USER_ID}+${APP_SLUG}[bot]@users.noreply.github.com"
           git add plugins/smarthr-design-system/skills
-          git commit -m "chore: SKILL.md 自動再生成 [skip ci]"
-          git push
+          git -c core.hooksPath=/dev/null commit -m "chore: SKILL.md 自動再生成 [skip ci]"
+          git -c core.hooksPath=/dev/null pull --rebase origin "$GITHUB_REF_NAME"
+          git -c core.hooksPath=/dev/null push origin "HEAD:$GITHUB_REF"
