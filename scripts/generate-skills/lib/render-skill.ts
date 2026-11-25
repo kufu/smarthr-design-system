@@ -121,6 +121,10 @@ export function renderSkill(opts: SkillRenderOptions): string {
     parts.push('使い方チェックリスト（Layer 3）は設定されていません。');
     parts.push('');
   } else {
+    parts.push(
+      '> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。',
+    );
+    parts.push('');
     for (const section of checklist) {
       parts.push(`### ${section.category}`);
       for (const item of section.items) {

@@ -1,9 +1,12 @@
 [build]
-  command = "pnpm run build:prod"
+  command = "pnpm run build"
   publish = "dist"
+# Algolia のインデックスは本番デプロイのときだけ更新する。
+# Deploy Preview などでも更新すると、未マージの記事が本番のインデックスに入ってしまう。
+[context.production]
+  command = "pnpm run build:prod"
 [dev]
   command = 'pnpm run dev'
   targetPort = 8000
   port = 8888
   publish = 'dist'
-

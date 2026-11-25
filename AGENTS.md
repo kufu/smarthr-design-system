@@ -4,11 +4,17 @@
 
 ## リポジトリ概要
 
-[SmartHR Design System](https://smarthr.design/) のドキュメントサイトです。Astro + MDX で構築されています。記事コンテンツ（`src/content/articles/`）が本体で、デザインガイドラインやコンポーネントの利用ルールを掲載しています。
+[SmartHR Design System](https://smarthr.design/) のドキュメントサイトです。Astro + MDX で構築されています。記事コンテンツ（`src/content/articles/`）が本体で、デザインガイドラインやコンポーネントの使い方の基準を掲載しています。
 
 - フレームワーク: Astro（v7 系）/ 記事フォーマット: MDX
 - ローカル環境構築・コンテンツの書き方 → [README.md](./README.md)
 - Astro の内部構成・独自機能・デプロイ → [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## ガイドラインの位置づけ
+
+このサイトに載っている基準やガイドラインは、プロダクト開発を助けるための「補助線」であり、守らなければならない規則ではありません。どこまで合わせるかは開発の現場の判断が優先され、合わせない場合は理由を説明できればよいというスタンスです（[ガイドラインとの向き合いかた](https://smarthr.design/products/#h2-2)）。
+
+記事・`checklist.yaml`・スキルを書くときや、スキルの出力を設計するときは、このスタンスを前提にしてください。基準を「違反してはならない規則」として伝える言い回しや、基準がないことを禁止と読める書き方は避けます。
 
 ## セットアップ / よく使うコマンド
 
@@ -29,7 +35,7 @@
 - `src/layouts/` — ページレイアウト
 - `src/remark/` — 独自 remark プラグイン
 - `scripts/` — コンテンツ生成・チェック用スクリプト（`generate-skills` など）
-- `plugins/` — 配布する AI プラグイン（`smarthr-design-system`: スキル `component-guidelines` / `design-pattern-guidelines` を含む。`figma-inventory`: Figma MCP の応答を hook で圧縮する）
+- `plugins/` — 配布する AI プラグイン（`smarthr-design-system`: スキル `component-guidelines` / `design-pattern-guidelines` / `design-review` を含む。`figma-inventory`: Figma MCP の応答を hook で圧縮する）
 - `public/` — 静的アセット / `.github/workflows/` — CI
 
 ## PR を作成するときの注意
@@ -46,7 +52,7 @@ Conventional Commits（`feat:` / `fix:` / `docs:` / `chore:` など）に従う�
 
 ## 配布しているプラグイン
 
-ドキュメントサイトに加えて、smarthr-ui を使う AI コーディングエージェント（Claude Code / Cursor / Codex）向けのスキルプラグインを `plugins/smarthr-design-system/` で配布しています。コンポーネントの利用ガイドやデザインパターンをスキルとして提供するものです。
+ドキュメントサイトに加えて、smarthr-ui を使う AI コーディングエージェント（Claude Code / Cursor / Codex）向けのスキルプラグインを `plugins/smarthr-design-system/` で配布しています。コンポーネントの利用ガイドやデザインパターンと、それらに照らして実装をレビューするスキル（`design-review`）を提供するものです。
 
 - 概要・構成・開発方法 → [plugins/smarthr-design-system/README.md](./plugins/smarthr-design-system/README.md)
 - Figma MCP（`get_design_context`）の応答を hook でインベントリに圧縮するプラグイン `figma-inventory` も同じマーケットプレイスで配布しています（Claude Code / Cursor）。概要・selftest・fixture の制約（公開リポジトリなのでプロダクトの Figma の応答を置かない）→ [plugins/figma-inventory/README.md](./plugins/figma-inventory/README.md)
