@@ -143,17 +143,17 @@ const MobileUnsupportedPage = () => {
             </Stack>
             <Section>
               <Stack>
-                <Cluster align="center" justify="space-between">
+                <Cluster inline align="center" justify="space-between">
                   <Heading>セクションタイトル</Heading>
                   <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
                 </Cluster>
 
                 <Stack gap={1.5}>
                   <Panel>
-                    <Cluster justify="space-between" align="center" className="shr-p-1">
+                    <Cluster grow="start" justify="space-between" align="center" className="shr-p-1">
                       <form onSubmit={(e) => e.preventDefault()}>
                         <Cluster align="center" gap={1}>
-                          <Cluster>
+                          <Cluster inline>
                             <SearchInput tooltipMessage="オブジェクト名で検索できます。" name="search" />
                             <Button type="submit">検索</Button>
                           </Cluster>
@@ -163,7 +163,7 @@ const MobileUnsupportedPage = () => {
                           </Button>
                         </Cluster>
                       </form>
-                      <Cluster gap={1} align="center">
+                      <Cluster inline gap={1} align="center">
                         <PageCounter start={1 + (currentPage - 1) * limitValue} end={currentPage * limitValue} total={totalCount} />
                         <Pagination current={currentPage} total={totalPages} withoutNumbers onClick={() => null} />
                       </Cluster>

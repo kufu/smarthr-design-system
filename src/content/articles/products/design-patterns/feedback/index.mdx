@@ -222,11 +222,11 @@ render(<ValidateOnSubmitForm />)
 
 ```tsx editable hideCode background=BACKGROUND
 <Cluster gap={4}>
-  <Cluster align="center">
+  <Cluster inline align="center">
     <Button>実行</Button>
     <ResponseMessage status="success">処理に成功しました。</ResponseMessage>
   </Cluster>
-  <Cluster align="center">
+  <Cluster inline align="center">
     <Button>実行</Button>
     <ResponseMessage status="error">処理に失敗しました。</ResponseMessage>
   </Cluster>
@@ -538,7 +538,7 @@ render(<InformationPanelErrorLayout />)
       </Stack>
       <Section>
         <Stack>
-          <Cluster align="center" justify="space-between">
+          <Cluster inline align="center" justify="space-between">
             <Heading>オブジェクト一覧</Heading>
             <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
           </Cluster>
@@ -590,7 +590,7 @@ render(<InformationPanelErrorLayout />)
       </Stack>
       <Section>
         <Stack>
-          <Cluster align="center" justify="space-between">
+          <Cluster inline align="center" justify="space-between">
             <Heading>オブジェクト一覧</Heading>
             <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
           </Cluster>

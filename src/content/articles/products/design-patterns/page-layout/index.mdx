@@ -242,7 +242,7 @@ const CollectionTableLayout = () => {
           </Stack>
           <Section>
             <Stack>
-              <Cluster align="center" justify="space-between">
+              <Cluster inline align="center" justify="space-between">
                 <Heading>オブジェクト一覧</Heading>
                 <Button prefix={<FaCirclePlusIcon />}>オブジェクトを追加</Button>
               </Cluster>
@@ -253,7 +253,7 @@ const CollectionTableLayout = () => {
                     <Cluster justify="space-between" align="center" className="shr-p-1">
                       <form onSubmit={(e) => e.preventDefault()}>
                         <Cluster align="center" gap={1}>
-                          <Cluster>
+                          <Cluster inline>
                             <SearchInput tooltipMessage="オブジェクト名で検索できます。" name="search" />
                             <Button type="submit">検索</Button>
                           </Cluster>
@@ -264,7 +264,7 @@ const CollectionTableLayout = () => {
                         </Cluster>
                       </form>
                       {totalCount > 0 && (
-                        <Cluster gap={1} align="center">
+                        <Cluster inline gap={1} align="center">
                           <PageCounter start={1 + (currentPage - 1) * limitValue} end={currentPage * limitValue} total={totalCount} />
                           <Pagination current={currentPage} total={totalPages} withoutNumbers onClick={() => null} />
                         </Cluster>
@@ -449,7 +449,7 @@ const SingleOneColumnLayout = () => {
         <Stack gap={2}>
           <Stack>
             <UpwardLink href="#">一覧に戻る</UpwardLink>
-            <Cluster align="center" justify="space-between">
+            <Cluster inline align="center" justify="space-between">
               <div className="shr-inline-black">
                 <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
                 { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
@@ -464,7 +464,7 @@ const SingleOneColumnLayout = () => {
             <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
           </Stack>
           <Stack className="shr-mt-1.5">
-            <Cluster align="center" justify="space-between">
+            <Cluster inline align="center" justify="space-between">
               <Heading>セクションタイトル</Heading>
               <Button>ボタン</Button>
             </Cluster>
@@ -493,7 +493,7 @@ const SingleOneColumnLayout = () => {
             </Panel>
           </Stack>
           <Stack>
-            <Cluster align="center" justify="space-between">
+            <Cluster inline align="center" justify="space-between">
               <Heading>セクションタイトル</Heading>
               <Button prefix={<FaCirclePlusIcon />}>追加</Button>
             </Cluster>
@@ -504,7 +504,7 @@ const SingleOneColumnLayout = () => {
                   <Cluster justify="space-between" align="center" className="shr-p-1">
                     <form onSubmit={(e) => e.preventDefault()}>
                       <Cluster align="center" gap={1}>
-                        <Cluster>
+                        <Cluster inline>
                           <SearchInput tooltipMessage="社員番号、氏名で検索できます。" name="search" />
                           <Button type="submit">検索</Button>
                         </Cluster>
@@ -513,7 +513,7 @@ const SingleOneColumnLayout = () => {
                       </Cluster>
                     </form>
                     {totalCount > 0 && (
-                      <Cluster gap={1} align="center">
+                      <Cluster inline gap={1} align="center">
                         <PageCounter start={1 + (currentPage - 1) * limitValue} end={currentPage * limitValue} total={totalCount} />
                         <Pagination current={currentPage} total={totalPages} withoutNumbers onClick={() => null} />
                       </Cluster>

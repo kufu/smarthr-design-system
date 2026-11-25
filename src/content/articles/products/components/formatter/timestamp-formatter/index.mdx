@@ -40,19 +40,19 @@ const TimestampPartsExample = () => {
 
   return (
     <Stack gap={0.5} as="dl">
-      <Cluster gap={1} align="center">
+      <Cluster inline gap={1} align="center">
         <Text styleType="blockTitle" as="dt">デフォルト（時：分）</Text>
         <dd>
           <TimestampFormatter date={date} />
         </dd>
       </Cluster>
-      <Cluster gap={1} align="center">
+      <Cluster inline gap={1} align="center">
         <Text styleType="blockTitle" as="dt">秒を含む（時：分：秒）</Text>
         <dd>
           <TimestampFormatter date={date} timeParts={['hour', 'minute', 'second']} />
         </dd>
       </Cluster>
-      <Cluster gap={1} align="center">
+      <Cluster inline gap={1} align="center">
         <Text styleType="blockTitle" as="dt">時のみ</Text>
         <dd>
           <TimestampFormatter date={date} timeParts={['hour']} />

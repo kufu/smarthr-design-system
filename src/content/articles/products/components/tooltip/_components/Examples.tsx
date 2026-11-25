@@ -37,13 +37,13 @@ export const IconOnly = () => (
 
 export const TextWithIcon = () => (
   <Cluster gap={1}>
-    <Cluster align="center" gap={0.25}>
+    <Cluster inline align="center" gap={0.25}>
       <Text color="TEXT_BLACK">テキスト</Text>
       <Tooltip message="補足テキストがはいります。" triggerType="icon">
         <FaCircleInfoIcon color="TEXT_GREY" />
       </Tooltip>
     </Cluster>
-    <Cluster align="center" gap={0.25}>
+    <Cluster inline align="center" gap={0.25}>
       <Text color="TEXT_BLACK" weight="bold">
         タイトル
       </Text>
@@ -56,13 +56,13 @@ export const TextWithIcon = () => (
 
 export const StatusSupplement = () => (
   <Cluster gap={1}>
-    <Cluster align="center" gap={0.25}>
+    <Cluster inline align="center" gap={0.25}>
       <Tooltip message="ステータスがはいります。" triggerType="icon">
         <WarningIcon color="WARNING" />
       </Tooltip>
       <TextLink href="#">警告</TextLink>
     </Cluster>
-    <Cluster align="center" gap={0.25}>
+    <Cluster inline align="center" gap={0.25}>
       <Tooltip message="ステータスがはいります。" triggerType="icon">
         <FaCircleInfoIcon color="DANGER" />
       </Tooltip>
