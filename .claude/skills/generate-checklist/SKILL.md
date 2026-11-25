@@ -57,7 +57,7 @@ sub-mdx がある場合（index.mdx 内で import されている .mdx）はそ�
 index.mdx を読んだ後、**ルール候補が 0 件の場合は checklist.yaml を作らずスキップ**する。1 件以上あれば生成する（1 件でも使い方ガイドとして意味があれば出力する）。
 
 スキップになりやすいパターン:
-- **Every Layout 外部委譲**: Stack / Cluster / Center / Sidebar / Reel 等。機能説明のみで指示文がない
+- **Every Layout 外部委譲**: Stack / Cluster / Center / Reel 等。機能説明のみで指示文がない
 - **索引のみの親ページ**: Combobox 親、Dropdown 親。子コンポーネントへのリンク集のみ
 - **機能説明のみ**: SectioningContent 等。「〜できます」の記述はあるが Do/Don't がない
 - **自動挙動・props 規約のみのコンポーネント**: AppHeader 等。「props を渡すと自動で〜になる」「props に入れる内容のフォーマット規約」のみで利用者の判断材料が少ない → スキップ
@@ -329,7 +329,7 @@ items:
 
 | パターン | 判断 |
 |---------|------|
-| Every Layout 委譲（Stack/Cluster/Center/Sidebar/Reel） | スキップ |
+| Every Layout 委譲（Stack/Cluster/Center/Reel） | スキップ |
 | 索引のみの親ページ（Combobox/Dropdown） | スキップ |
 | 自動挙動・props 規約のみ（AppHeader 等） | スキップ |
 | deprecated 指定のコンポーネント（AppLauncher 等） | スキップ |

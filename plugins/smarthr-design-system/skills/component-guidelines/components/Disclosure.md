@@ -10,7 +10,7 @@ import { DisclosureTrigger, DisclosureContent } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### DisclosureTrigger
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -21,9 +21,8 @@ import { DisclosureTrigger, DisclosureContent } from 'smarthr-ui'
 ### DisclosureContent
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| visuallyHidden | boolean | - | - | 閉じた状態でContentを要素として存在させるか。デフォルトでは要素は存在しない |
 | isOpen | boolean | - | - | 開閉状態。デフォルトは閉じている |
-| ref | Ref<HTMLDivElement> | - | - | - |
+| visuallyHidden | boolean | - | - | 閉じた状態でContentを要素として存在させるか。デフォルトでは要素は存在しない |
 
 ## 実装ルール
 

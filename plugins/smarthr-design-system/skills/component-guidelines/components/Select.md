@@ -12,16 +12,15 @@ import { Select } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| width | string \| number | - | - | コンポーネントの幅 |
 | size | "S" \| "M" | - | - | コンポーネントの大きさ |
+| width | string \| number | - | - | コンポーネントの幅 |
 | hasBlank | boolean | - | - | 空の選択肢を表示するかどうか |
 | blankLabel | string | - | - | 空の選択肢のラベル |
 | options | (Option<T> \| Optgroup<T>)[] | - | ✓ | 選択肢のデータの配列 |
-| ref | Ref<HTMLSelectElement> | - | - | - |
 | error | boolean | - | - | フォームの値にエラーがあるかどうか |
 | onChangeValue | (value: T) => void | - | - | フォームの値が変わったときに発火するコールバック関数 |
 
@@ -54,6 +53,8 @@ input, textarea, select など入力要素に name 属性を設定すること�
 詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
+
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
 
 ### 使用上の注意 > 選択肢が6個以上の場合に使用する
 - [should] 基本的に選択肢の数が 6 個以上になる場合は Select を使う

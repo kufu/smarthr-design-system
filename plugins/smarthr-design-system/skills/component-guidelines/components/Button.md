@@ -5,46 +5,40 @@ button要素の代替として操作や処理を実行するコンポーネン�
 ## import
 
 ```ts
-import { UnstyledButton, Button, AnchorButton } from 'smarthr-ui'
+import { Button, AnchorButton, UnstyledButton } from 'smarthr-ui'
 ```
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
-
-### UnstyledButton
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| ref | Ref<HTMLButtonElement> | - | - | - |
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### Button
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | prefix | ReactNode | - | - | ボタン内の先頭に表示する内容。 通常は、アイコンを表示するために用いる。 |
-| loading | boolean | false | - | 処理が走ってるかどうか |
 | size | "S" \| "M" | M | - | ボタンの大きさ |
 | suffix | ReactNode | - | - | ボタン内の末尾に表示する内容。 通常は、アイコンを表示するために用いる。 |
 | variant | "text" \| "danger" \| "primary" \| "secondary" \| "tertiary" \| "skeleton" | secondary | - | ボタンのスタイルの種類 |
 | disabledReason | ReactNode \| { icon?: ReactNode; text: ReactNode; } | - | - | 無効な理由。ReactNodeを直接指定した場合はtextとして扱われる |
 | wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
-| ref | Ref<HTMLButtonElement> | - | - | - |
+| loading | boolean | false | - | 処理が走ってるかどうか |
 
 ### AnchorButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | prefix | ReactNode | - | - | ボタン内の先頭に表示する内容。 通常は、アイコンを表示するために用いる。 |
-| loading | boolean | - | - | 処理が走ってるかどうか |
 | size | "S" \| "M" | M | - | ボタンの大きさ |
 | suffix | ReactNode | - | - | ボタン内の末尾に表示する内容。 通常は、アイコンを表示するために用いる。 |
 | elementAs | ElementType | - | - | next/linkなどのカスタムコンポーネントを指定します。指定がない場合はデフォルトで `a` タグが使用されます。 |
 | variant | "text" \| "danger" \| "primary" \| "secondary" \| "skeleton" | secondary | - | - |
 | wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
+| loading | boolean | - | - | 処理が走ってるかどうか |
 | inactiveReason | ReactNode \| { icon?: ReactNode; text: ReactNode; } | - | - | - |
 
-## 実装ルール
+### UnstyledButton
+（固有 Props なし）
 
-### best-practice-for-button-element
-button要素ではなく、smarthr-ui/Button、もしくはsmarthr-ui/UnstyledButtonの利用を促すルールです
+## 実装ルール
 
 ### a11y-clickable-element-has-text
 ButtonやAnchor,Link コンポーネントなどクリック可能（クリッカブル）な要素にテキストを設定することを促すルールです。
@@ -68,6 +62,17 @@ DropdownTriggerやDialogTrigger, DisclosureTrigger内にbutton要素を設置す
 <DropdownTrigger>
   <Button />
 </DropdownTrigger>
+```
+
+### best-practice-for-button-element
+button要素ではなく、smarthr-ui/Button、もしくはsmarthr-ui/UnstyledButtonの利用を促すルールです
+
+✅ OK:
+
+```jsx
+// smarthr-ui/Buttonを利用しているのでOK
+<Button>click</Button>
+<AnyButton>click</AnyButton>
 ```
 
 ### design-system-guideline-bulk-action-row-button
@@ -124,6 +129,8 @@ Dialogのボタンテキストにアイコンコンポーネント（名前が"I
 詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
+
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
 
 ### 使用上の注意 > type="button" について
 - [must] form submit を使う場合は `type="submit"` を明記する
@@ -182,6 +189,8 @@ Dialogのボタンテキストにアイコンコンポーネント（名前が"I
 
 ### ライティング
 - [must] ボタンラベルには動詞の終止形を使用する
+  - 名詞に「する」をつけたサ行変格活用動詞の場合は「する」を省略する（OK例: 「追加」「削除」、NG例: 「追加する」「削除する」）
+  - 動詞の終止形の前にオブジェクトを明記する場合、助詞は「を」を使う（OK例: 権限を追加、NG例: 権限の追加）
 - [must] 実行されるアクションをボタンラベルで示す
 
 ### アクセシビリティ > 開発時の考慮点 > 色以外の情報でもボタンであることを伝える

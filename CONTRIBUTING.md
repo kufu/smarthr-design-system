@@ -131,9 +131,9 @@ smarthr-uiを使うAIエージェント（Claude Code / Cursorなど）向けに
 
 - Layer 1: `metadata.json`（コンポーネント基本情報）
 - Layer 2: `eslint-plugin-smarthr`のルールREADME（自動検出可能なルール）
-- Layer 3: `checklist.yaml`（このリポジトリで管理する人手作成ルール）
+- Layer 3: `checklist.yaml`（このリポジトリで管理する、人手で作成する使い方の基準）
 
-このうちLayer 3の`checklist.yaml`は、`index.mdx`から「AIエージェントに伝えたいルール」を抜き出したファイルです。AIアシスタントに依頼すれば自動で作成・更新できるため、YAMLを手書きする必要はありません。あわせて`index.mdx`のfrontmatterで宣言する`relatedComponents`の運用についても本セクションで説明します。
+このうちLayer 3の`checklist.yaml`は、`index.mdx`から「AIエージェントに伝えたい使い方の基準」を抜き出したファイルです。各項目の`severity`（`must` / `should` / `avoid`）は基準の強さを表すもので、守らなければならない規則であることを意味しません（[ガイドラインとの向き合いかた](https://smarthr.design/products/#h2-2)）。AIアシスタントに依頼すれば自動で作成・更新できるため、YAMLを手書きする必要はありません。あわせて`index.mdx`のfrontmatterで宣言する`relatedComponents`の運用についても本セクションで説明します。
 
 ### 事前準備
 
@@ -158,7 +158,7 @@ pnpm install
    Button と Dialog の checklist.yaml を作って
    ```
 
-   依頼すると`generate-checklist` SKILLが自動で読み込まれ、`index.mdx`と`_components/*.mdx`からルールを抽出します。Cursorでも同じSKILLが動作します。
+   依頼すると`generate-checklist` SKILLが自動で読み込まれ、`index.mdx`と`_components/*.mdx`から基準を抽出します。Cursorでも同じSKILLが動作します。
 
 3. バリデーションを実行し、形式エラーがないことを確認します。
 
@@ -170,7 +170,7 @@ pnpm install
 
 4. `checklist.yaml`の内容を確認します。以下の観点でチェックし、必要に応じて修正します。
    - **`severity`の妥当性**: 各項目の`severity`（`must` / `should` / `avoid`）が`index.mdx`の語気と一致しているか
-   - **項目の網羅性**: `index.mdx`に書かれているルールが漏れなく抽出されているか
+   - **項目の網羅性**: `index.mdx`に書かれている基準が漏れなく抽出されているか
    - **不要項目の混入**: 自動挙動の説明やprops規約のみの項目など、AIエージェント向けの判断材料にならない項目が含まれていないか
    - **`text`の表現**: Do/Don't形・終止形になっているか（「〜してください」など強い指示の言い回しが残っていないか）
 5. `checklist.yaml`をコミットしてPRを出します。**コミット対象は`checklist.yaml`のみ**です。
@@ -197,7 +197,7 @@ pnpm install
 
 3. 差分の内容を確認します。AIアシスタントは追加・削除・更新の差分をレポートするため、以下の観点でチェックし、必要に応じて修正します。
    - **追加項目**: 提案された`severity`（`must` / `should` / `avoid`）が`index.mdx`の語気と一致しているか
-   - **削除項目**: 該当ルールが`index.mdx`から本当に削除されているか（誤削除でないか）
+   - **削除項目**: 該当する基準が`index.mdx`から本当に削除されているか（誤削除でないか）
    - **更新項目**: 変更前後のdiffが`index.mdx`の変更意図と一致しているか
    - **無変更項目**: 既存のレビュー済み項目が誤って書き換わっていないか
 4. `checklist.yaml`をコミットしてPRを出します。新規作成と同じく**コミット対象は`checklist.yaml`のみ**で、コンポーネントガイドへの反映はマージ後にCIが自動実行します。
@@ -220,7 +220,7 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 
 **スキップ判定の典型例**（`generate-checklist` SKILLが自動判定します）:
 
-- Every Layout の外部委譲（`Stack` / `Cluster` / `Center` / `Sidebar` / `Reel`）
+- Every Layout の外部委譲（`Stack` / `Cluster` / `Center` / `Reel`）
 - 索引のみの親ページ（`Combobox` 親、`Dropdown` 親）
 - 機能説明のみで指示文がないコンポーネント
 - 自動挙動・props 規約のみ（`AppHeader` 等）

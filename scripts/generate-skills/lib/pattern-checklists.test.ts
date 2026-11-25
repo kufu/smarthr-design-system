@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { after, describe, it } from 'node:test';
 import { collectPatternChecklists, renderPatternChecklist } from './pattern-checklists.js';
+import { CHECKLIST_LEGEND } from './render-checklist.js';
 
 const CHECKLIST_YAML = `items:
   # 基本的な考え方 > リード文を適切に設定する
@@ -65,9 +66,11 @@ describe('renderPatternChecklist', () => {
         '',
         'よくあるテーブル（https://smarthr.design/products/design-patterns/smarthr-table/）を使うパターン。',
         '',
-        '[patterns/page-layout.mdx](../patterns/page-layout.mdx) から、実装時に守るルールを抜き出したチェックリスト。実装例・図解・DoAndDont の詳細は元の mdx を参照すること。',
+        '[patterns/page-layout.mdx](../patterns/page-layout.mdx) から、実装時の基準を抜き出したチェックリスト。実装例・図解・DoAndDont の詳細は元の mdx を参照すること。',
         '',
         '## チェックリスト',
+        '',
+        CHECKLIST_LEGEND,
         '',
         '### 基本的な考え方 > リード文を適切に設定する',
         '- [must] リード文を見出し領域に表示する',

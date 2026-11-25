@@ -12,14 +12,13 @@ import { TdCheckbox } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | aria-labelledby | string | - | ✓ | Checkboxのaccessible nameとして設定するテキストを参照するためのid属性値。同じ親Tr配下のTdかTh、もしくはその子孫要素のidを指定する。複数要素のテキストを指定する場合は空白区切りでidをつなぐ |
 | fixed | "right" \| "left" | - | - | 横スクロール時、カラムを左右いずれかに固定 |
 | vAlign | "middle" \| "baseline" | - | - | テキストの垂直方向の配置 |
-| ref | Ref<HTMLInputElement> | - | - | - |
 | mixed | boolean | - | - | `true` のとき、チェック状態を `mixed` にする |
 | error | boolean | - | - | チェックボックスにエラーがあるかどうか |
 
@@ -39,6 +38,8 @@ import { TdCheckbox } from 'smarthr-ui'
 詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
+
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
 
 ### アクセシビリティ > 開発時の考慮点 > セル内にチェックボックスやラジオボタンをそのまま配置しない
 - [avoid] セルの内部に Checkbox や RadioButton をそのまま配置せず、TdCheckbox / ThCheckbox / TdRadioButton を利用する

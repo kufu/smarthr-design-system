@@ -10,25 +10,25 @@ import { SideNavItemButton, SideNavItemAnchor, SideNav } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### SideNavItemButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| onClick | (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void | - | - | アイテムを押下したときに発火するコールバック関数 |
 | prefix | ReactNode | - | - | タイトルのプレフィックスの内容。通常、StatusLabelやIconの配置に用います。 |
+| onClick | (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void | - | - | アイテムを押下したときに発火するコールバック関数 |
 | current | boolean | - | - | 選択されているアイテムかどうか |
 | suffix | ReactNode | - | - | タイトルのサフィックスの内容。通常、Prefixを使用済みの場合にStatusLabelやChipの配置に用います。 |
 
 ### SideNavItemAnchor
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| href | string | - | ✓ | - |
-| onClick | (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => void | - | - | アイテムを押下したときに発火するコールバック関数 |
 | prefix | ReactNode | - | - | タイトルのプレフィックスの内容。通常、StatusLabelやIconの配置に用います。 |
+| onClick | (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => void | - | - | アイテムを押下したときに発火するコールバック関数 |
 | current | boolean | - | - | 選択されているアイテムかどうか |
 | suffix | ReactNode | - | - | タイトルのサフィックスの内容。通常、Prefixを使用済みの場合にStatusLabelやChipの配置に用います。 |
 | elementAs | ElementType | - | - | next/link などのカスタムコンポーネントを指定します。指定がない場合はデフォルトで `a` タグが使用されます。 |
+| href | string | - | ✓ | - |
 
 ### SideNav
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -41,6 +41,8 @@ import { SideNavItemButton, SideNavItemAnchor, SideNav } from 'smarthr-ui'
 SideNav に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
 
 ## 使い方チェックリスト
+
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
 
 ### 使用上の注意 > TabBarで代用できないか検討する
 - [should] スタックするアイテムが多くなくナビゲーション機能が不要な場合は TabBar の使用を検討する

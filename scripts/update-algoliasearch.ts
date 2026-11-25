@@ -49,7 +49,7 @@ console.log('🚀 Algoliaにデータを送信中');
 
 if (isReplaceAllMode) {
   // 全てのオブジェクトを入れ替える
-  client.replaceAllObjects({
+  await client.replaceAllObjects({
     indexName: process.env.PUBLIC_ALGOLIA_INDEX_NAME ?? '',
     objects: sendData,
   });

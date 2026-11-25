@@ -10,28 +10,28 @@ import { SingleCombobox } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | className | string | - | - | コンポーネント内の一番外側の要素に適用するクラス名 |
-| name | string | - | - | input 要素の `name` 属性の値。 `MultiCombobox` では、選択済みアイテムの値を保持する hidden input 群の `name` にそのまま使われ、 検索用テキストボックスの `name` には `query_${name}` が設定される。 複数の hidden input は同じ `name` を持つため、Railsなど配列として受け取りたい場合は `name="ids[]"` のように `[]` を含めて指定すること（自動では付与されない） |
-| width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
+| prefix | ReactNode | - | - | コンポーネント内の先頭に表示する内容 |
 | onFocus | () => void | - | - | コンポーネントがフォーカスされたときに発火するコールバック関数 |
 | onBlur | () => void | - | - | コンポーネントからフォーカスが外れた時に発火するコールバック関数 |
-| onChange | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 @deprecated `onChange` は非推奨なため、 代わりに `onChangeInput` を使用してください。 |
 | onSelect | (item: ComboboxItem<T>) => void | - | - | アイテムが選択された時に発火するコールバック関数 |
-| prefix | ReactNode | - | - | コンポーネント内の先頭に表示する内容 |
+| error | boolean | - | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
 | disabled | boolean | - | - | input 要素の `disabled` 属性の値 |
+| name | string | - | - | input 要素の `name` 属性の値。 `MultiCombobox` では、選択済みアイテムの値を保持する hidden input 群の `name` にそのまま使われ、 検索用テキストボックスの `name` には `query_${name}` が設定される。 複数の hidden input は同じ `name` を持つため、Railsなど配列として受け取りたい場合は `name="ids[]"` のように `[]` を含めて指定すること（自動では付与されない） |
 | placeholder | string | - | - | input 要素の `placeholder` 属性の値 |
 | required | boolean | - | - | input 要素の `required` 属性の値 |
-| error | boolean | - | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
-| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
+| width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
 | items | ComboboxItem<T>[] | - | ✓ | 選択可能なアイテムのリスト |
 | creatable | boolean | - | - | `true` のとき、 `items` 内に存在しないアイテムを新しく追加できるようになる |
+| disableFiltering | boolean | - | - | `true` のとき、`inputValue` による絞り込みを無効化する。 サーバーサイド検索と組み合わせるなど、`items` が既に絞り込み済みの場合に指定する |
+| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
 | dropdownHelpMessage | ReactNode | - | - | ドロップダウンリスト内に表示するヘルプメッセージ |
 | dropdownWidth | string \| number | auto | - | ドロップダウンリストの `width` スタイルに適用する値 |
-| onChangeInput | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
+| onChangeInput | (e: ChangeEvent<HTMLInputElement, Element>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
 | onAdd | (label: string) => void | - | - | `items` 内に存在しないアイテムが追加されたときに発火するコールバック関数 |
 | selectedItem | ComboboxItem<T> | - | ✓ | 選択されているアイテム |
 | emptySelectionFallbackItem | ComboboxItem<T> | - | - | フォーカスが外れた際、selectedItemが未選択の場合に自動選択されるアイテム |
@@ -39,13 +39,14 @@ import { SingleCombobox } from 'smarthr-ui'
 | onClearClick | (e: MouseEvent<Element, MouseEvent>) => void | - | - | 選択されているアイテムがクリアされた時に発火するコールバック関数 指定している場合、クリア時にonClickを実行せずにonClearClickのみ実行する |
 | onChangeSelected | (selectedItem: ComboboxItem<T>) => void | - | - | 選択されているアイテムのリストが変わった時に発火するコールバック関数 |
 | noResultText | ReactNode | - | - | 検索結果が0件の時に表示するコンテンツ |
-| ref | Ref<HTMLInputElement> | - | - | - |
 
 ## 実装ルール
 
 SingleCombobox に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
 
 ## 使い方チェックリスト
+
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
 
 ### 使用上の注意 > 単一選択の場合に使用する
 - [must] 値を複数選択させたい場合は MultiCombobox を使用する

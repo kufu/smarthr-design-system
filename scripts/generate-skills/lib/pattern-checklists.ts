@@ -52,7 +52,7 @@ export function renderPatternChecklist({ slug, title, description, checklist }: 
     parts.push('');
   }
   parts.push(
-    `[patterns/${slug}.mdx](../patterns/${slug}.mdx) から、実装時に守るルールを抜き出したチェックリスト。実装例・図解・DoAndDont の詳細は元の mdx を参照すること。`,
+    `[patterns/${slug}.mdx](../patterns/${slug}.mdx) から、実装時の基準を抜き出したチェックリスト。実装例・図解・DoAndDont の詳細は元の mdx を参照すること。`,
   );
   parts.push('');
   parts.push('## チェックリスト');

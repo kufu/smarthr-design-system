@@ -12,19 +12,18 @@ import { Textarea } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
-| width | string \| number | - | - | コンポーネントの幅 |
 | autoFocus | boolean | - | - | 自動でフォーカスされるかどうか |
-| placeholder | string | - | - | placeholder属性は非推奨です。別途ヒント用要素の設置を検討してください。 |
-| rows | number | 2 | - | 行数の初期値。省略した場合は2 |
 | error | boolean | - | - | 入力値にエラーがあるかどうか |
+| placeholder | string | - | - | placeholder属性は非推奨です。別途ヒント用要素の設置を検討してください。 |
+| width | string \| number | - | - | コンポーネントの幅 |
+| rows | number | 2 | - | 行数の初期値。省略した場合は2 |
 | autoResize | boolean | false | - | 自動で広がるかどうか |
 | maxRows | number | - | - | 最大行数。超えるとスクロールする。初期値は無限 |
 | maxLetters | number | - | - | 入力可能な最大文字数。あと何文字入力できるかの表示が追加される。html的なvalidateは発生しない |
-| ref | Ref<HTMLTextAreaElement> | - | - | - |
 
 ## 実装ルール
 
@@ -61,6 +60,8 @@ input や textarea などの入力要素に対してplaceholder属性を設定�
 詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
+
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
 
 ### 使用上の注意 > 適切なサイズに調整して使用する
 - [must] 入力する内容をあらかじめ精査し適切なサイズになるよう調整して使う

@@ -25,15 +25,20 @@ jobs:
   selftest:
     # ubuntu-latest（26.04）には Python 3.8 の配布が無いので、3.8 が入る 24.04 に固定する
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.8: 利用者の環境で動く最小の版（README の前提）。Renovate で上げない（renovate.json の packageRules を参照）
+        # 3.x: 最新の安定版でも壊れていないかの確認
+        python-version: ['3.8', '3.x']
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
 
-      # 利用者の環境で動く最小の版（README の前提）で確かめる
       - name: Setup Python
-        uses: actions/setup-python@v7.0.0
+        uses: actions/setup-python@v7.1.0
         with:
-          python-version: '3.8'
+          python-version: ${{ matrix.python-version }}
 
       - name: Run selftest
         run: python3 plugins/figma-inventory/scripts/extract_figma.py --selftest

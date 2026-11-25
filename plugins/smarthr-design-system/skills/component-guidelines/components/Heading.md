@@ -10,7 +10,7 @@ import { Heading } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
@@ -19,7 +19,6 @@ import { Heading } from 'smarthr-ui'
 | icon | ReactNode \| { prefix?: ReactNode; suffix?: ReactNode; gap?: any; } | - | - | テキスト左に設置するアイコン |
 | visuallyHidden | boolean | - | - | 視覚的に非表示にするフラグ |
 | unrecommendedTag | "h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" | - | - | 可能な限り利用せず、SectioningContent(Article, Aside, Nav, Section)を使ってHeadingと関連する範囲を明確に指定する方法を検討してください |
-| ref | Ref<HTMLHeadingElement> | - | - | - |
 
 ## 実装ルール
 
@@ -78,6 +77,8 @@ Headingレベルの自動計算用のコンポーネントであるSectioningFra
 詳細は eslint-plugin-smarthr の各ルール README を参照してください。
 
 ## 使い方チェックリスト
+
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
 
 ### 使用上の注意
 - [must] Heading はコンテンツのアウトラインに沿って順に使用する

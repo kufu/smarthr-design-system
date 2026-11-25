@@ -10,7 +10,7 @@ import { TabBar, TabItem } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### TabBar
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -21,17 +21,18 @@ import { TabBar, TabItem } from 'smarthr-ui'
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | onClick | (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void | - | ✓ | タブをクリックした時に発火するコールバック関数 |
+| suffix | ReactNode | - | - | ボタン内の末尾に表示する内容 |
 | disabled | boolean | - | - | `true` のとき、タブを無効状態にしてクリック不能にする |
 | selected | boolean | false | - | `true` のとき、タブが選択状態のスタイルになる |
-| suffix | ReactNode | - | - | ボタン内の末尾に表示する内容 |
 | disabledReason | ReactNode \| { icon?: ReactNode; text: ReactNode; } | - | - | 無効な理由 |
-| ref | Ref<HTMLButtonElement> | - | - | - |
 
 ## 実装ルール
 
 TabBar に直接関連する eslint-plugin-smarthr のルールは現時点ではありません。
 
 ## 使い方チェックリスト
+
+> ℹ️ 各項目は SmartHR Design System の基準であり、守らなければならない規則ではありません。`[must]` は基本的に合わせる基準、`[should]` は状況に応じて判断する推奨、`[avoid]` は避けることを推奨する使い方です。`[must]` に合わせない場合や `[avoid]` の使い方を採用する場合は、理由を明示してください。
 
 ### 使用上の注意 > 同じオブジェクトの異なる状態を切り替えて表示する目的に使用しない
 - [should] TabBar は異なるオブジェクトやビューを切り替えるために使用し、同じオブジェクトの異なる状態を切り替えたい場合は SegmentedControl の使用を検討する

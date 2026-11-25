@@ -2,7 +2,7 @@
 
 UI 要件から該当するコンポーネントを特定するためのインデックスです。コンポーネントの詳細な使い方は、対応するガイドファイルを参照してください。
 
-> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ 各ガイドの Props・型情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合は、実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ## コンポーネント一覧
 
@@ -17,7 +17,6 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | Badge | 件数などの数値を視覚的に表すためのコンポーネントです。Iconなどの視覚情報が少ない要素に変化が発生していることを通知バッジとして知らせるときにも使います。 | [components/Badge.md](components/Badge.md) |
 | ⚠️ Base（非推奨） | 【非推奨】矩形で視覚的に要素をグルーピングするコンポーネントです。ページ背景上でコンテンツを囲んで「セクション」領域として示すときに使います。 | [components/Base.md](components/Base.md) |
 | ⚠️ BaseColumn（非推奨） | 【非推奨】BaseやDialogの内部で視覚的に要素をグルーピングするコンポーネントです。Base内やダイアログコンテンツ内でコンテンツを囲んで「ブロック」領域として示すときに使います。 | [components/BaseColumn.md](components/BaseColumn.md) |
-| ⚠️ BottomFixedArea（非推奨） | 【非推奨】画面下部に固定表示する領域のためのコンポーネントです。 | [components/BottomFixedArea.md](components/BottomFixedArea.md) |
 | Browser | 階層構造を持つデータを選択するためのコンポーネントです。カテゴリや組織、フォルダなどのツリー状のデータをドリルダウンで選択するときに使います。 | [components/Browser.md](components/Browser.md) |
 | BulkActionRow | テーブル内に一括操作UIを配置する行コンポーネントです。「テーブル内の一括操作」パターンにおいて、複数行を選択した状態でまとめて操作するときに使います。 | [components/BulkActionRow.md](components/BulkActionRow.md) |
 | Button | button要素の代替として操作や処理を実行するコンポーネントです。ユーザーに操作を促すとき、フォームを送信するとき、アクションを選択するときに使います。 | [components/Button.md](components/Button.md) |
@@ -57,7 +56,6 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | Input | input[type='text']やinput[type='number']などの代替としてテキストや数値を1行で入力させるコンポーネントです。テキスト・数値を1行で入力させるとき、フォームに入力欄を追加するときに使います。 | [components/Input.md](components/Input.md) |
 | InputFile | input[type='file']要素の代替としてファイルを選択させるコンポーネントです。ファイルをアップロードさせるときに使います。 | [components/InputFile.md](components/InputFile.md) |
 | LanguageSwitcher | 表示言語を切り替えるためのコンポーネントです。多言語対応したアプリケーションで利用者に言語選択UIを提供するときに使います。 | [components/LanguageSwitcher.md](components/LanguageSwitcher.md) |
-| ⚠️ LineClamp（非推奨） | 【非推奨】テキストが指定幅・高さを超えるときに省略表示しTooltipで全文を見せるためのコンポーネントです。長い文字列を行数制限で省略させるときに使います。 | [components/LineClamp.md](components/LineClamp.md) |
 | Loader | 読み込み中や処理中であることを伝えるためのコンポーネントです。 | [components/Loader.md](components/Loader.md) |
 | MessageDialog | ユーザーに情報を提示するためのダイアログコンポーネントです。入力などの操作を伴わずにメッセージや情報をダイアログで提示するときに使います。 | [components/MessageDialog.md](components/MessageDialog.md) |
 | ModelessDialog | 背面の画面操作を妨げないモードレスダイアログコンポーネントです。ダイアログと背面の画面を同時並行で閲覧・操作するときに使います。 | [components/ModelessDialog.md](components/ModelessDialog.md) |
@@ -80,7 +78,6 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 | SectioningContent | header、footer、section、articleなどのセクショニング要素を表現するためのコンポーネントです。Headingと組み合わせて見出しレベルを自動計算するときに使います。 | [components/SectioningContent.md](components/SectioningContent.md) |
 | SegmentedControl | 同一オブジェクトの異なる状態や視点を切り替えるためのコンポーネントです。リスト表示とカード表示の切替など、選択と同時に即座に表示を変えるときに使います。 | [components/SegmentedControl.md](components/SegmentedControl.md) |
 | Select | select要素の代替として選択肢から1つの値を選ばせるドロップダウンコンポーネントです。6個以上の選択肢から1つを選択するときに使います。 | [components/Select.md](components/Select.md) |
-| Sidebar | メインコンテンツとサイドコンテンツの2カラムを配置するためのレイアウトコンポーネントです。「コレクションとシングルの2カラム」ページレイアウトなど、メインとサブの関係がある要素を左右に並べるときに使います。 | [components/Sidebar.md](components/Sidebar.md) |
 | SideMenu | 複数のページを切り替えるためのサイドナビゲーションコンポーネントです。「サイドナビゲーションとコンテンツの2カラム」ページレイアウトで、AppNaviの下層に多数のページ項目を配置するときに使います。 | [components/SideMenu.md](components/SideMenu.md) |
 | SideNav | 同一画面内のビューを縦方向に並べて切り替えるためのナビゲーションコンポーネントです。「コレクションとシングルの2カラム」ページレイアウトのコレクション領域で一覧から選んだオブジェクトの詳細を切り替えるとき、設定画面などで1つの画面内に並ぶビューを切り替えるときに使います。 | [components/SideNav.md](components/SideNav.md) |
 | SingleCombobox | 選択肢から1つの値を選択しつつテキスト入力での絞り込みや値追加もできる選択コンポーネントです。6個以上の選択肢から検索しながら1つを選択するときに使います。 | [components/SingleCombobox.md](components/SingleCombobox.md) |
@@ -118,4 +115,4 @@ UI 要件から該当するコンポーネントを特定するためのイン�
 
 1. 実装したい UI 要件を整理する（例: 「フォームを作る」「テーブルを表示する」）
 2. 上記の表から該当しそうなコンポーネントを特定する
-3. そのコンポーネントのガイドファイルを読み、Props・実装ルール・使い方チェックリストに従って実装する
+3. そのコンポーネントのガイドファイルを読み、Props・実装ルール・使い方チェックリストを確認して実装する
