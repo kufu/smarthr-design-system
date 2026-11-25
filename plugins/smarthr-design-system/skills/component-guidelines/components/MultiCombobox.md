@@ -10,28 +10,28 @@ import { MultiCombobox, MultiCombobox } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### MultiCombobox
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | className | string | - | - | コンポーネント内の一番外側の要素に適用するクラス名 |
-| name | string | - | - | input 要素の `name` 属性の値。 `MultiCombobox` では、選択済みアイテムの値を保持する hidden input 群の `name` にそのまま使われ、 検索用テキストボックスの `name` には `query_${name}` が設定される。 複数の hidden input は同じ `name` を持つため、Railsなど配列として受け取りたい場合は `name="ids[]"` のように `[]` を含めて指定すること（自動では付与されない） |
-| width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
 | onFocus | () => void | - | - | コンポーネントがフォーカスされたときに発火するコールバック関数 |
 | onBlur | () => void | - | - | コンポーネントからフォーカスが外れた時に発火するコールバック関数 |
-| onChange | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 @deprecated `onChange` は非推奨なため、 代わりに `onChangeInput` を使用してください。 |
 | onSelect | (item: ComboboxItem<T>) => void | - | - | アイテムが選択された時に発火するコールバック関数 |
+| error | boolean | false | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
 | disabled | boolean | false | - | input 要素の `disabled` 属性の値 |
+| name | string | - | - | input 要素の `name` 属性の値。 `MultiCombobox` では、選択済みアイテムの値を保持する hidden input 群の `name` にそのまま使われ、 検索用テキストボックスの `name` には `query_${name}` が設定される。 複数の hidden input は同じ `name` を持つため、Railsなど配列として受け取りたい場合は `name="ids[]"` のように `[]` を含めて指定すること（自動では付与されない） |
 | placeholder | string |  | - | input 要素の `placeholder` 属性の値 |
 | required | boolean | false | - | input 要素の `required` 属性の値 |
-| error | boolean | false | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
-| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
+| width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
 | items | ComboboxItem<T>[] | - | ✓ | 選択可能なアイテムのリスト |
 | creatable | boolean | false | - | `true` のとき、 `items` 内に存在しないアイテムを新しく追加できるようになる |
+| disableFiltering | boolean | - | - | `true` のとき、`inputValue` による絞り込みを無効化する。 サーバーサイド検索と組み合わせるなど、`items` が既に絞り込み済みの場合に指定する |
+| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
 | dropdownHelpMessage | ReactNode | - | - | ドロップダウンリスト内に表示するヘルプメッセージ |
 | dropdownWidth | string \| number | auto | - | ドロップダウンリストの `width` スタイルに適用する値 |
-| onChangeInput | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
+| onChangeInput | (e: ChangeEvent<HTMLInputElement, Element>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
 | onAdd | (label: string) => void | - | - | `items` 内に存在しないアイテムが追加されたときに発火するコールバック関数 |
 | onChangeSelected | (selectedItems: ComboboxItem<T>[]) => void | - | - | 選択されているアイテムのリストが変わった時に発火するコールバック関数 |
 | noResultText | ReactNode | - | - | 検索結果が0件の時に表示するコンテンツ |
@@ -40,28 +40,27 @@ import { MultiCombobox, MultiCombobox } from 'smarthr-ui'
 | inputValue | string | - | - | テキストボックスの `value` 属性の値。 `onChangeInput` と併せて設定することで、テキストボックスの挙動が制御可能になる。 |
 | onDelete | (item: ComboboxItem<T>) => void | - | - | 選択されているアイテムの削除ボタンがクリックされた時に発火するコールバック関数 |
 | isItemSelected | (targetItem: ComboboxItem<T>, selectedItems: ComboboxItem<T>[]) => boolean | - | - | アイテムが選択されたときに選択済みかどうかを判定するコールバック関数/ |
-| ref | Ref<HTMLInputElement> | - | - | - |
 
 ### MultiCombobox
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | className | string | - | - | コンポーネント内の一番外側の要素に適用するクラス名 |
-| name | string | - | - | input 要素の `name` 属性の値。 `MultiCombobox` では、選択済みアイテムの値を保持する hidden input 群の `name` にそのまま使われ、 検索用テキストボックスの `name` には `query_${name}` が設定される。 複数の hidden input は同じ `name` を持つため、Railsなど配列として受け取りたい場合は `name="ids[]"` のように `[]` を含めて指定すること（自動では付与されない） |
-| width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
 | onFocus | () => void | - | - | コンポーネントがフォーカスされたときに発火するコールバック関数 |
 | onBlur | () => void | - | - | コンポーネントからフォーカスが外れた時に発火するコールバック関数 |
-| onChange | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 @deprecated `onChange` は非推奨なため、 代わりに `onChangeInput` を使用してください。 |
 | onSelect | (item: ComboboxItem<T>) => void | - | - | アイテムが選択された時に発火するコールバック関数 |
+| error | boolean | false | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
 | disabled | boolean | false | - | input 要素の `disabled` 属性の値 |
+| name | string | - | - | input 要素の `name` 属性の値。 `MultiCombobox` では、選択済みアイテムの値を保持する hidden input 群の `name` にそのまま使われ、 検索用テキストボックスの `name` には `query_${name}` が設定される。 複数の hidden input は同じ `name` を持つため、Railsなど配列として受け取りたい場合は `name="ids[]"` のように `[]` を含めて指定すること（自動では付与されない） |
 | placeholder | string |  | - | input 要素の `placeholder` 属性の値 |
 | required | boolean | false | - | input 要素の `required` 属性の値 |
-| error | boolean | false | - | `true` のとき、コンポーネントの外枠が `DANGER` カラーになる |
-| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
+| width | string \| number | - | - | input 要素の `width` スタイルに適用する値 |
 | items | ComboboxItem<T>[] | - | ✓ | 選択可能なアイテムのリスト |
 | creatable | boolean | false | - | `true` のとき、 `items` 内に存在しないアイテムを新しく追加できるようになる |
+| disableFiltering | boolean | - | - | `true` のとき、`inputValue` による絞り込みを無効化する。 サーバーサイド検索と組み合わせるなど、`items` が既に絞り込み済みの場合に指定する |
+| isLoading | boolean | - | - | `true` のとき、ドロップダウンリスト内にローダーを表示する |
 | dropdownHelpMessage | ReactNode | - | - | ドロップダウンリスト内に表示するヘルプメッセージ |
 | dropdownWidth | string \| number | auto | - | ドロップダウンリストの `width` スタイルに適用する値 |
-| onChangeInput | (e: ChangeEvent<HTMLInputElement>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
+| onChangeInput | (e: ChangeEvent<HTMLInputElement, Element>) => void | - | - | input 要素の `value` が変わった時に発火するコールバック関数 |
 | onAdd | (label: string) => void | - | - | `items` 内に存在しないアイテムが追加されたときに発火するコールバック関数 |
 | onChangeSelected | (selectedItems: ComboboxItem<T>[]) => void | - | - | 選択されているアイテムのリストが変わった時に発火するコールバック関数 |
 | noResultText | ReactNode | - | - | 検索結果が0件の時に表示するコンテンツ |
@@ -70,7 +69,6 @@ import { MultiCombobox, MultiCombobox } from 'smarthr-ui'
 | inputValue | string | - | - | テキストボックスの `value` 属性の値。 `onChangeInput` と併せて設定することで、テキストボックスの挙動が制御可能になる。 |
 | onDelete | (item: ComboboxItem<T>) => void | - | - | 選択されているアイテムの削除ボタンがクリックされた時に発火するコールバック関数 |
 | isItemSelected | (targetItem: ComboboxItem<T>, selectedItems: ComboboxItem<T>[]) => boolean | - | - | アイテムが選択されたときに選択済みかどうかを判定するコールバック関数/ |
-| ref | Ref<HTMLInputElement> | - | - | - |
 
 ## 実装ルール
 

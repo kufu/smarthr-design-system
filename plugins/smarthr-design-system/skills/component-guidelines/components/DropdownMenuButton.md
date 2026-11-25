@@ -10,13 +10,12 @@ import { DropdownMenuGroup, DropdownMenuButton } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### DropdownMenuGroup
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | name | ReactNode | - | - | - |
-| ref | Ref<HTMLLIElement> | - | - | - |
 
 ### DropdownMenuButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
@@ -25,7 +24,6 @@ import { DropdownMenuGroup, DropdownMenuButton } from 'smarthr-ui'
 | onClose | () => void | - | - | ドロップダウンメニューが閉じられた際のイベント |
 | trigger | ReactNode \| { text: ReactNode; size?: any; onlyIcon?: boolean \| { component?: ComponentType<any>; }; } | - | ✓ | 引き金となるボタン |
 | onOpen | () => void | - | - | ドロップダウンメニューが開かれた際のイベント |
-| ref | Ref<HTMLButtonElement> | - | - | - |
 
 ## 実装ルール
 

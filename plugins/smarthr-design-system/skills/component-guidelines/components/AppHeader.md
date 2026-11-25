@@ -10,19 +10,18 @@ import { AppHeader } from 'smarthr-ui'
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | enableNew | boolean | - | - | @deprecated internal-ui から利用するので使わないでください。 |
-| logo | ReactElement<any, string \| JSXElementConstructor<any>> | - | - | ロゴ |
+| logo | ReactElement<unknown, string \| JSXElementConstructor<any>> | - | - | ロゴ |
 | logoHref | string | - | - | ロゴリンク |
 | featureName | ReactNode | - | - | 機能名（enableNew と合わせて使います） |
 | apps | { type?: string; heading: ReactNode; items: AppItem[]; }[] | - | - | 機能群（enableNew と合わせて使います） |
 | tenants | PropsWithChildren<{ id: string; name: ReactNode; }>[] | - | - | テナント一覧 |
 | currentTenantId | string | - | - | 現在のテナント ID |
 | onTenantSelect | (id: string) => void | - | - | テナントが選択された時に発火するコールバック関数 |
-| ref | Ref<HTMLElement> | - | - | - |
 | locale | LocaleProps | - | - | - |
 | appName | ReactNode | - | - | - |
 | schoolUrl | string | - | - | - |

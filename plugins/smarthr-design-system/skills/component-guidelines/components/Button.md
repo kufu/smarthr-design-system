@@ -5,46 +5,40 @@ button要素の代替として操作や処理を実行するコンポーネン�
 ## import
 
 ```ts
-import { UnstyledButton, Button, AnchorButton } from 'smarthr-ui'
+import { Button, AnchorButton, UnstyledButton } from 'smarthr-ui'
 ```
 
 ## Props
 
-> ℹ️ この Props 情報は **smarthr-ui v102.0.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
-
-### UnstyledButton
-| Props 名 | 型 | デフォルト値 | 必須 | 説明 |
-|---|---|---|---|---|
-| ref | Ref<HTMLButtonElement> | - | - | - |
+> ℹ️ この Props 情報は **smarthr-ui v103.1.0** を基準に生成しています。利用中の smarthr-ui のバージョンが異なる場合、props がずれていることがあります。その場合は実際の型定義（エディタの型補完、`node_modules/smarthr-ui` の `.d.ts` / `metadata.json`）を正としてください。
 
 ### Button
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | prefix | ReactNode | - | - | ボタン内の先頭に表示する内容。 通常は、アイコンを表示するために用いる。 |
-| loading | boolean | false | - | 処理が走ってるかどうか |
 | size | "S" \| "M" | M | - | ボタンの大きさ |
 | suffix | ReactNode | - | - | ボタン内の末尾に表示する内容。 通常は、アイコンを表示するために用いる。 |
 | variant | "text" \| "danger" \| "primary" \| "secondary" \| "tertiary" \| "skeleton" | secondary | - | ボタンのスタイルの種類 |
 | disabledReason | ReactNode \| { icon?: ReactNode; text: ReactNode; } | - | - | 無効な理由。ReactNodeを直接指定した場合はtextとして扱われる |
 | wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
-| ref | Ref<HTMLButtonElement> | - | - | - |
+| loading | boolean | false | - | 処理が走ってるかどうか |
 
 ### AnchorButton
 | Props 名 | 型 | デフォルト値 | 必須 | 説明 |
 |---|---|---|---|---|
 | prefix | ReactNode | - | - | ボタン内の先頭に表示する内容。 通常は、アイコンを表示するために用いる。 |
-| loading | boolean | - | - | 処理が走ってるかどうか |
 | size | "S" \| "M" | M | - | ボタンの大きさ |
 | suffix | ReactNode | - | - | ボタン内の末尾に表示する内容。 通常は、アイコンを表示するために用いる。 |
 | elementAs | ElementType | - | - | next/linkなどのカスタムコンポーネントを指定します。指定がない場合はデフォルトで `a` タグが使用されます。 |
 | variant | "text" \| "danger" \| "primary" \| "secondary" \| "skeleton" | secondary | - | - |
 | wide | boolean | false | - | `true` のとき、ボタンの `width` を 100% にする。 |
+| loading | boolean | - | - | 処理が走ってるかどうか |
 | inactiveReason | ReactNode \| { icon?: ReactNode; text: ReactNode; } | - | - | - |
 
-## 実装ルール
+### UnstyledButton
+（固有 Props なし）
 
-### best-practice-for-button-element
-button要素ではなく、smarthr-ui/Button、もしくはsmarthr-ui/UnstyledButtonの利用を促すルールです
+## 実装ルール
 
 ### a11y-clickable-element-has-text
 ButtonやAnchor,Link コンポーネントなどクリック可能（クリッカブル）な要素にテキストを設定することを促すルールです。
@@ -68,6 +62,17 @@ DropdownTriggerやDialogTrigger, DisclosureTrigger内にbutton要素を設置す
 <DropdownTrigger>
   <Button />
 </DropdownTrigger>
+```
+
+### best-practice-for-button-element
+button要素ではなく、smarthr-ui/Button、もしくはsmarthr-ui/UnstyledButtonの利用を促すルールです
+
+✅ OK:
+
+```jsx
+// smarthr-ui/Buttonを利用しているのでOK
+<Button>click</Button>
+<AnyButton>click</AnyButton>
 ```
 
 ### design-system-guideline-bulk-action-row-button

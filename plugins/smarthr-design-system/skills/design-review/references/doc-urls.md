@@ -17,7 +17,6 @@ design-review の一覧で、指摘の根拠（`source`）に公式ドキュメ�
 | components/Badge.md | https://smarthr.design/products/components/badge/ |
 | components/Base.md | https://smarthr.design/products/components/base/ |
 | components/BaseColumn.md | https://smarthr.design/products/components/base/base-column/ |
-| components/BottomFixedArea.md | https://smarthr.design/products/components/bottom-fixed-area/ |
 | components/Browser.md | https://smarthr.design/products/components/browser/ |
 | components/BulkActionRow.md | https://smarthr.design/products/components/table/ |
 | components/Button.md | https://smarthr.design/products/components/button/ |
@@ -57,7 +56,6 @@ design-review の一覧で、指摘の根拠（`source`）に公式ドキュメ�
 | components/Input.md | https://smarthr.design/products/components/input/ |
 | components/InputFile.md | https://smarthr.design/products/components/input-file/ |
 | components/LanguageSwitcher.md | https://smarthr.design/products/components/header/language-switcher/ |
-| components/LineClamp.md | https://smarthr.design/products/components/line-clamp/ |
 | components/Loader.md | https://smarthr.design/products/components/loader/ |
 | components/MessageDialog.md | https://smarthr.design/products/components/dialog/message-dialog/ |
 | components/ModelessDialog.md | https://smarthr.design/products/components/dialog/modeless-dialog/ |
@@ -80,7 +78,6 @@ design-review の一覧で、指摘の根拠（`source`）に公式ドキュメ�
 | components/SectioningContent.md | https://smarthr.design/products/components/sectioning-content/ |
 | components/SegmentedControl.md | https://smarthr.design/products/components/segmented-control/ |
 | components/Select.md | https://smarthr.design/products/components/select/ |
-| components/Sidebar.md | https://smarthr.design/products/components/layout/sidebar/ |
 | components/SideMenu.md | https://smarthr.design/products/components/side-menu/ |
 | components/SideNav.md | https://smarthr.design/products/components/side-nav/ |
 | components/SingleCombobox.md | https://smarthr.design/products/components/combobox/single-combobox/ |
