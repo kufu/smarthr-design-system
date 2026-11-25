@@ -20,6 +20,7 @@ import { buildDirMapping, loadManualMappings, toDocFileName } from './lib/name-m
 import { renderSkill } from './lib/render-skill.js';
 import { renderRouterSkill, type RouterEntry } from './lib/render-router-skill.js';
 import { collectPatternChecklists, renderPatternChecklist } from './lib/pattern-checklists.js';
+import { articlePathToUrl, collectPatternDocUrls, renderDocUrls, type DocUrlEntry } from './lib/render-doc-urls.js';
 import { validateCoverage, printCoverageReport, loadCoverageBaseline, applyCoverageBaseline } from './lib/validate-coverage.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,10 +30,12 @@ const SMARTHR_UI_VERSION: string = JSON.parse(
   fs.readFileSync(createRequire(import.meta.url).resolve('smarthr-ui/package.json'), 'utf-8'),
 ).version;
 
-const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/components');
-const DESIGN_PATTERNS_DIR =
-  process.env.DESIGN_PATTERNS_DIR ?? path.join(REPO_ROOT, 'src/content/articles/products/design-patterns');
+const ARTICLES_DIR = path.join(REPO_ROOT, 'src/content/articles');
+const DESIGN_SYSTEM_DIR = process.env.DESIGN_SYSTEM_DIR ?? path.join(ARTICLES_DIR, 'products/components');
+const DESIGN_PATTERNS_DIR = process.env.DESIGN_PATTERNS_DIR ?? path.join(ARTICLES_DIR, 'products/design-patterns');
 const OUTPUT_DIR = process.env.OUTPUT_DIR ?? path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills');
+// パターンのガイドは記事へのシンボリックリンクで、生成物ではないので、OUTPUT_DIR ではなくリポジトリ側から読む
+const PATTERNS_DIR = path.join(REPO_ROOT, 'plugins/smarthr-design-system/skills/design-pattern-guidelines/patterns');
 const MANUAL_MAPPING_PATH = path.join(__dirname, 'mapping/component-dir-map.json');
 const COVERAGE_BASELINE_PATH = path.join(__dirname, 'coverage-baseline.json');
 const ESLINT_SNAPSHOT_PATH = path.join(__dirname, 'eslint-rules-snapshot.json');
@@ -99,6 +102,7 @@ async function main() {
   }
 
   const routerEntries: RouterEntry[] = [];
+  const docUrls: DocUrlEntry[] = [];
   let generated = 0;
   let withLayer3 = 0;
 
@@ -143,6 +147,12 @@ async function main() {
     generated++;
 
     routerEntries.push({ group, indexInfo, designSystemDir: designSystemDirName });
+
+    // 専用のページが無いもの（Th など）は relatedComponents を宣言した親のページを指す
+    const pageDir = designSystemDirName ?? relatedSkills.get(dirName)?.parentDir;
+    if (pageDir) {
+      docUrls.push({ guide: `components/${docFileName}`, url: articlePathToUrl(`products/components/${pageDir}`) });
+    }
   }
 
   console.log(`✅ ${generated} 個のコンポーネントドキュメントを生成（うち Layer 3 あり: ${withLayer3}）`);
@@ -155,8 +165,7 @@ async function main() {
   // デザインパターンは Layer 3（checklist.yaml）のみを checklists/<slug>.md として生成する。
   // パターン本文（patterns/<slug>.mdx）は src/content へのシンボリックリンクのまま配布する。
   console.log('🧩 デザインパターンのチェックリストを生成中…');
-  const PATTERN_GUIDELINES_DIR = path.join(OUTPUT_DIR, 'design-pattern-guidelines');
-  const PATTERN_CHECKLISTS_DIR = path.join(PATTERN_GUIDELINES_DIR, 'checklists');
+  const PATTERN_CHECKLISTS_DIR = path.join(OUTPUT_DIR, 'design-pattern-guidelines/checklists');
   const patternChecklists = collectPatternChecklists(DESIGN_PATTERNS_DIR);
   fs.mkdirSync(PATTERN_CHECKLISTS_DIR, { recursive: true });
 
@@ -170,7 +179,7 @@ async function main() {
   }
 
   for (const pattern of patternChecklists) {
-    if (!fs.existsSync(path.join(PATTERN_GUIDELINES_DIR, 'patterns', `${pattern.slug}.mdx`))) {
+    if (!fs.existsSync(path.join(PATTERNS_DIR, `${pattern.slug}.mdx`))) {
       console.warn(
         `   ⚠️  patterns/${pattern.slug}.mdx のシンボリックリンクがありません。チェックリストから本文へのリンクが切れます`,
       );
@@ -178,6 +187,15 @@ async function main() {
     fs.writeFileSync(path.join(PATTERN_CHECKLISTS_DIR, `${pattern.slug}.md`), renderPatternChecklist(pattern), 'utf-8');
   }
   console.log(`   ${patternChecklists.length} 件 → ${path.relative(REPO_ROOT, PATTERN_CHECKLISTS_DIR)}`);
+
+  console.log('🔗 design-review の公式ドキュメント URL 対応表を生成中…');
+  const patternDocUrls = collectPatternDocUrls(PATTERNS_DIR, ARTICLES_DIR);
+  const docUrlsPath = path.join(OUTPUT_DIR, 'design-review/references/doc-urls.md');
+  fs.mkdirSync(path.dirname(docUrlsPath), { recursive: true });
+  fs.writeFileSync(docUrlsPath, renderDocUrls([...docUrls, ...patternDocUrls]), 'utf-8');
+  console.log(
+    `   ${docUrls.length} コンポーネント・${patternDocUrls.length} パターン → ${path.relative(REPO_ROOT, docUrlsPath)}`,
+  );
 
   console.log('🎉 完了');
 }
