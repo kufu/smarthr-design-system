@@ -387,9 +387,9 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 <Section className="shr-w-full">
   <Stack gap={1.5}>
     <Stack>
-      <Cluster align="center" justify="space-between">
+      <Cluster inline align="center" justify="space-between">
         <Heading>よくあるテーブルのタイトル</Heading>
-        <Cluster>
+        <Cluster inline>
           <DropdownMenuButton trigger="一括操作">
             <Button>一括追加（CSV）</Button>
             <Button>一括更新（CSV）</Button>
@@ -441,9 +441,9 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
 <Section className="shr-w-full">
   <Stack gap={1.5}>
     <Stack>
-      <Cluster align="center" justify="space-between">
+      <Cluster inline align="center" justify="space-between">
         <Heading>よくあるテーブルのタイトル</Heading>
-        <Cluster>
+        <Cluster inline>
           <DropdownMenuButton trigger="一括操作">
             <Button>一括追加（CSV）</Button>
             <Button>一括更新（CSV）</Button>
@@ -453,9 +453,11 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
       </Cluster>
       <Panel>
         {/* ページ送りだけをPanel内の上部に配置すると、左に不要な余白ができる */}
-        <Cluster align="center" justify="flex-end" gap={1} className="shr-p-1">
-          <PageCounter start={1} end={50} total={5000} />
-          <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
+        <Cluster justify="flex-end" className="shr-p-1">
+          <Cluster inline align="center" gap={1}>
+            <PageCounter start={1} end={50} total={5000} />
+            <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
+          </Cluster>
         </Cluster>
         <Table rounded="bottom">
           <thead>
@@ -540,7 +542,7 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
       <Section>
         <Stack gap={1.5}>
           <Stack>
-            <Cluster align="center" justify="space-between">
+            <Cluster inline align="center" justify="space-between">
               <Heading>よくあるテーブルのタイトル</Heading>
               <Cluster>
                 <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
@@ -554,14 +556,14 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
             <Panel>
               <Cluster align="center" justify="space-between" className="shr-p-1">
                 <Cluster align="center" gap={1}>
-                  <Cluster>
+                  <Cluster inline>
                     <SearchInput name="search" tooltipMessage="オブジェクト名で検索できます。" />
                     <Button>検索</Button>
                   </Cluster>
                   <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
                   <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
                 </Cluster>
-                <Cluster align="center" gap={1}>
+                <Cluster inline align="center" gap={1}>
                   <PageCounter start={1} end={50} total={5000} />
                   <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
                 </Cluster>
@@ -679,7 +681,7 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
     <Section>
       <Stack gap={1.5}>
         <Stack>
-          <Cluster align="center" justify="space-between" className="shr-px-1">
+          <Cluster inline align="center" justify="space-between" className="shr-px-1">
             <Heading>よくあるテーブルのタイトル</Heading>
             <Cluster>
               <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
@@ -694,14 +696,14 @@ Tableは表示する情報が多くなるとデフォルトで横スクロール
           <Panel className="shr-rounded-none">
             <Cluster align="center" justify="space-between" className="shr-p-1">
               <Cluster align="center" gap={1}>
-                <Cluster>
+                <Cluster inline>
                   <SearchInput name="search" tooltipMessage="オブジェクト名で検索できます。" />
                   <Button>検索</Button>
                 </Cluster>
                 <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
                 <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
               </Cluster>
-              <Cluster align="center" gap={1}>
+              <Cluster inline align="center" gap={1}>
                 <PageCounter start={1} end={50} total={5000} />
                 <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
               </Cluster>
@@ -812,7 +814,7 @@ render(
         <Section>
           <Stack gap={1.5}>
             <Stack>
-              <Cluster align="center" justify="space-between" className="shr-px-1">
+              <Cluster inline align="center" justify="space-between" className="shr-px-1">
                 <Heading>よくあるテーブルのタイトル</Heading>
                 <Cluster>
                   <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
@@ -827,14 +829,14 @@ render(
               <Panel className="shr-rounded-none">
                 <Cluster align="center" justify="space-between" className="shr-p-1">
                   <Cluster align="center" gap={1}>
-                    <Cluster>
+                    <Cluster inline>
                       <SearchInput name="search" tooltipMessage="オブジェクト名で検索できます。" />
                       <Button>検索</Button>
                     </Cluster>
                     <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
                     <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
                   </Cluster>
-                  <Cluster align="center" gap={1}>
+                  <Cluster inline align="center" gap={1}>
                     <PageCounter start={1} end={50} total={5000} />
                     <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
                   </Cluster>
@@ -1223,7 +1225,7 @@ render(
     <Cluster align="center" justify="space-between">
       <Heading>カスタムマスター項目</Heading>
       {/* オブジェクトがないと成立しない操作（並べ替え、一括更新（CSV））は表示しない */}
-      <Cluster>
+      <Cluster inline>
         <DropdownMenuButton trigger="一括操作">
           <Button>一括追加（CSV）</Button>
         </DropdownMenuButton>
@@ -1259,7 +1261,7 @@ render(
 ```tsx editable hideCode background=BACKGROUND canvas=800
 <Section className="shr-w-full">
   <Stack>
-    <Cluster align="center" justify="space-between">
+    <Cluster inline align="center" justify="space-between">
       <Heading>カスタムマスター項目</Heading>
       <Cluster>
         <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
@@ -1273,7 +1275,7 @@ render(
     <Panel>
       {/* 一時操作エリアは表示したまま、テーブルのページ送りは表示しない */}
       <Cluster align="center" gap={1} className="shr-p-1">
-        <Cluster>
+        <Cluster inline>
           <SearchInput name="search" tooltipMessage="項目名、項目コードで検索できます。" />
           <Button>検索</Button>
         </Cluster>
@@ -1318,7 +1320,7 @@ render(
 ```tsx editable hideCode background=BACKGROUND canvas=800
 <Section className="shr-w-full">
   <Stack>
-    <Cluster align="center" justify="space-between">
+    <Cluster inline align="center" justify="space-between">
       <Heading>カスタムマスター項目</Heading>
       <Cluster>
         <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
@@ -1332,7 +1334,7 @@ render(
     <Panel>
       <Cluster align="center" justify="space-between" className="shr-p-1">
         <Cluster align="center" gap={1}>
-          <Cluster>
+          <Cluster inline>
             <SearchInput name="search" tooltipMessage="項目名、項目コードで検索できます。" />
             <Button>検索</Button>
           </Cluster>
@@ -1408,7 +1410,7 @@ render(
 <Section className="shr-w-full">
   <Stack gap={1.5}>
     <Stack>
-      <Cluster align="center" justify="space-between">
+      <Cluster inline align="center" justify="space-between">
         <Heading>対象従業員</Heading>
         <Cluster>
           <Button prefix={<FaUpDownIcon />}>並べ替え</Button>
@@ -1422,14 +1424,14 @@ render(
       <Panel>
         <Cluster align="center" justify="space-between" className="shr-p-1">
           <Cluster align="center" gap={1}>
-            <Cluster>
+            <Cluster inline>
               <SearchInput name="search" tooltipMessage="社員番号、氏名で検索できます。" />
               <Button>検索</Button>
             </Cluster>
             <FilterDropdown onApply={() => null}>絞り込みの中身</FilterDropdown>
             <Button prefix={<FaCloudArrowDownIcon />}>ダウンロード</Button>
           </Cluster>
-          <Cluster align="center" gap={1}>
+          <Cluster inline align="center" gap={1}>
             <PageCounter start={1} end={50} total={5000} />
             <Pagination current={1} total={100} withoutNumbers onClick={() => null} />
           </Cluster>

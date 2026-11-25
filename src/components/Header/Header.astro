@@ -14,7 +14,7 @@ const { isIndex } = Astro.props;
 ---
 
 <header class:list={{ wrapper: true, isIndex }}>
-  <Cluster gap={{ row: 0.75, column: 1 }} align="center" justify="space-between">
+  <Cluster inline gap={{ row: 0.75, column: 1 }} align="center" justify="space-between">
     <a class="siteNameLink" href="/">
       <img src="/images/logo_smarthr_design_system.svg" alt="SmartHR Design System" width="264" height="24" />
     </a>
@@ -44,6 +44,8 @@ const { isIndex } = Astro.props;
 
 <style lang="scss">
   .wrapper {
+    /* 子の Cluster（inline）を横幅いっぱいに広げるため grid にしている */
+    display: grid;
     /* サイト名やリンクに 10px の padding をもたせたので差し引いてる */
     padding-block: 30px;
     padding-inline: 70px;

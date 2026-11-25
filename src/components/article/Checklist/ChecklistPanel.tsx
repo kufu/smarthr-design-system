@@ -90,7 +90,7 @@ const GroupedView = ({ groups }: { groups: ChecklistGroup[] }) => (
         >
           {group.items.map((item, ii) => (
             <li key={ii}>
-              <Cluster gap={0.75} align="baseline" className={styles.severity}>
+              <Cluster grow="end" gap={0.75} align="baseline" className={styles.severity}>
                 <Badge severity={item.severity} />
                 <Stack gap={0.5}>
                   <Text leading="NORMAL" style={{ overflowWrap: 'anywhere' }}>
@@ -125,9 +125,7 @@ export const ChecklistPanel = ({ groups, id, title, headingTag }: Props) => {
           as={headingTag}
           id={id}
           weight="bold"
-          icon={{
-            prefix: <FaAngleRightIcon className={styles.caret} />,
-          }}
+          icon={<FaAngleRightIcon className={styles.caret} />}
           style={{
             margin: 0,
             fontSize: 'var(--font-size-26)',

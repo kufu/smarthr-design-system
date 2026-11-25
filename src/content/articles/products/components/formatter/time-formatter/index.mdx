@@ -40,19 +40,19 @@ const TimePartsExample = () => {
 
   return (
     <Stack gap={0.5} as="dl">
-      <Cluster gap={1} align="center">
+      <Cluster inline gap={1} align="center">
         <Text styleType="blockTitle" as="dt">デフォルト（時：分）</Text>
         <dd>
           <TimeFormatter date={date} />
         </dd>
       </Cluster>
-      <Cluster gap={1} align="center">
+      <Cluster inline gap={1} align="center">
         <Text styleType="blockTitle" as="dt">秒を含む（時：分：秒）</Text>
         <dd>
           <TimeFormatter date={date} parts={['hour', 'minute', 'second']} />
         </dd>
       </Cluster>
-      <Cluster gap={1} align="center">
+      <Cluster inline gap={1} align="center">
         <Text styleType="blockTitle" as="dt">時のみ</Text>
         <dd>
           <TimeFormatter date={date} parts={['hour']} />
@@ -75,13 +75,13 @@ const Hour12Example = () => {
 
   return (
     <Stack gap={0.5} as="dl">
-      <Cluster gap={1} align="center">
+      <Cluster inline gap={1} align="center">
         <Text styleType="blockTitle" as="dt">24時間形式</Text>
         <dd>
           <TimeFormatter date={date} />
         </dd>
       </Cluster>
-      <Cluster gap={1} align="center">
+      <Cluster inline gap={1} align="center">
         <Text styleType="blockTitle" as="dt">12時間形式</Text>
         <dd>
           <TimeFormatter date={date} options={{ hour12: true }} />
