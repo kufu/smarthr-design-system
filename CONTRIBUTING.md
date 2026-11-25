@@ -220,7 +220,7 @@ PRを出すと、GitHub Actionsで以下が自動実行されます。
 
 **スキップ判定の典型例**（`generate-checklist` SKILLが自動判定します）:
 
-- Every Layout の外部委譲（`Stack` / `Cluster` / `Center` / `Sidebar` / `Reel`）
+- Every Layout の外部委譲（`Stack` / `Cluster` / `Center` / `Reel`）
 - 索引のみの親ページ（`Combobox` 親、`Dropdown` 親）
 - 機能説明のみで指示文がないコンポーネント
 - 自動挙動・props 規約のみ（`AppHeader` 等）

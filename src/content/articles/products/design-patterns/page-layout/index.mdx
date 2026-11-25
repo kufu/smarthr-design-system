@@ -72,8 +72,8 @@ TabBarやSideNavを使った例は、[視覚的グルーピング](/products/des
     <Text slot="label">コンテンツが読みにくく、構造を把握しにくい。</Text>
     <div slot="img">
 ```tsx editable hideCode background=BACKGROUND
-<Sidebar>
-  <Panel padding={1} style={{ width: '1rem' }}>
+<Cluster grow="end" gap={1}>
+  <Panel padding={1} style={{ width: '1rem' }} className="shr-grow">
     <Stack gap={0.5}>
       <Heading type="blockTitle">複数カラムのレイアウトを避ける</Heading>
       <p>折り返しの多すぎるコンテンツの理解は難しいです。</p>
@@ -85,7 +85,7 @@ TabBarやSideNavを使った例は、[視覚的グルーピング](/products/des
       <p>DOMはそのままに、適切な幅で折り返し垂直方向に積み上げるなど代替レイアウトを検討してください。</p>
     </Stack>
   </Panel>
-</Sidebar>
+</Cluster>
 ```
     </div>
   </DoAndDont>
@@ -641,26 +641,26 @@ render(<SingleOneColumnLayout />)
       <Stack gap={1.5}>
         <Stack>
           <UpwardLink href="#">一覧に戻る</UpwardLink>
-          <Sidebar align="center" right>
+          <Cluster grow="start" gap={1} align="center">
             <div className="shr-inline-block">
               <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
               { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
               <PageHeading autoPageTitle={false} className="shr-inline">ページタイトル</PageHeading>
             </div>
-            <Cluster>
+            <Cluster className="shr-grow">
               <Button>操作</Button>
               <Button>操作</Button>
               <Button>操作</Button>
             </Cluster>
-          </Sidebar>
+          </Cluster>
           <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
         </Stack>
         <InformationPanel heading="オブジェクトの処理中です" type="sync">
           オブジェクトをバックグラウンド処理で処理中です。
         </InformationPanel>
       </Stack>
-      <Sidebar gap={2}>
-        <Stack gap={2} style={{ flexBasis: '1em' }}>
+      <Cluster grow="end" gap={2}>
+        <Stack gap={2} style={{ flexBasis: '1em' }} className="shr-grow">
           <Section>
             <Stack>
               <Heading>セクションタイトル</Heading>
@@ -736,7 +736,7 @@ render(<SingleOneColumnLayout />)
             </Panel>
           </Stack>
         </Section>
-      </Sidebar>
+      </Cluster>
     </Stack>
   </Container>
 </div>
@@ -811,8 +811,8 @@ Panelのある見出し領域でコンテンツ領域との境界を明確に示
     />
   </div>
   <Container>
-    <Sidebar gap={2}>
-      <div style={{ flexBasis: '15em' }}>
+    <Cluster grow="end" gap={2}>
+      <div style={{ flexBasis: '15em' }} className="shr-grow">
         <SideMenu>
           <SideMenuGroup heading="グループ1">
             <SideMenuItem current>項目1</SideMenuItem>
@@ -868,7 +868,7 @@ Panelのある見出し領域でコンテンツ領域との境界を明確に示
           </Stack>
         </Section>
       </Stack>
-    </Sidebar>
+    </Cluster>
   </Container>
 </div>
 ```
@@ -912,25 +912,25 @@ Panelのある見出し領域でコンテンツ領域との境界を明確に示
       <Stack gap={1.5}>
         <UpwardLink href="#">一覧に戻る</UpwardLink>
         <Stack>
-          <Sidebar align="center" right>
+          <Cluster grow="start" gap={1} align="center">
             <div className="shr-inline-block">
               <StatusLabel style={{ verticalAlign: 'text-bottom', marginInlineEnd: '0.5rem' }}>ステータス</StatusLabel>
               { /* デザインシステムではサイト側のタイトルを書き換えないようにするため、autoPageTitleをfalseにしている。 */ }
               <PageHeading autoPageTitle={false} size="XXL" className="shr-inline">ページタイトル</PageHeading>
             </div>
-            <Cluster>
+            <Cluster className="shr-grow">
               <Button>操作</Button>
               <Button>操作</Button>
               <Button>操作</Button>
             </Cluster>
-          </Sidebar>
+          </Cluster>
           <p>ページの説明。詳しくは<HelpLink href="/" target="_blank">ヘルプページ</HelpLink>を参照してください。</p>
         </Stack>
       </Stack>
       <Panel>
         <Groupbox rounded bgColor="OVER_BACKGROUND" padding={0} overflow="clip">
-          <Sidebar gap={0}>
-            <Groupbox style={{ flexBasis: '15em' }} padding={{ block: 0.5, inline: 0 }} rounded="left" className="shr-shadow-layer-2" bgColor="WHITE">
+          <Cluster grow="end" gap={0}>
+            <Groupbox style={{ flexBasis: '15em' }} padding={{ block: 0.5, inline: 0 }} rounded="left" className="shr-shadow-layer-2 shr-grow" bgColor="WHITE">
               <SideNav className="shr-bg-white">
                 <SideNavItemAnchor id="nav-1" href="#" current>項目1</SideNavItemAnchor>
                 <SideNavItemAnchor id="nav-2" href="#" >項目2</SideNavItemAnchor>
@@ -949,10 +949,10 @@ Panelのある見出し領域でコンテンツ領域との境界を明確に示
                 <Heading size="XL">見出し</Heading>
                 <Section>
                   <Stack>
-                    <Sidebar right align="center">
+                    <Cluster grow="start" gap={1} align="center">
                       <Heading>見出し</Heading>
-                      <Button>操作</Button>
-                    </Sidebar>
+                      <Button className="shr-grow">操作</Button>
+                    </Cluster>
                     <Panel padding={1.5}>
                       <Stack gap={1.5}>
                         <p>説明テキスト。</p>
@@ -974,10 +974,10 @@ Panelのある見出し領域でコンテンツ領域との境界を明確に示
                 </Section>
                 <Section>
                   <Stack>
-                    <Sidebar right align="center">
+                    <Cluster grow="start" gap={1} align="center">
                       <Heading>見出し</Heading>
-                      <Button>操作</Button>
-                    </Sidebar>
+                      <Button className="shr-grow">操作</Button>
+                    </Cluster>
                     <Panel padding={1.5}>
                       <Stack gap={1.5}>
                         <p>説明テキスト。</p>
@@ -1000,7 +1000,7 @@ Panelのある見出し領域でコンテンツ領域との境界を明確に示
 
               </Stack>
             </Section>
-          </Sidebar>
+          </Cluster>
         </Groupbox>
       </Panel>
     </Stack>
