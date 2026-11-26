@@ -91,7 +91,7 @@ export default function ComponentStory({ code, stories, uiVersion, uiCommitHash,
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <iframe
             className={styles.storyIframe}
-            title={stories.storyItems.find((item) => item?.name === currentIframe)?.label || ''}
+            title={stories.storyItems.find((item) => item?.iframeName === currentIframe)?.label || ''}
             src={iframeUrl.toString()}
             onLoad={onIframeLoaded}
           />
