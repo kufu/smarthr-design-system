@@ -24,7 +24,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NPM_CONFIG_IGNORE_SCRIPTS: 'true'
+  NPM_CONFIG_IGNORE_SCRIPTS: 'true' # npx（netlify-cli など）向け。pnpm 12 は NPM_CONFIG_* を読まない
+  PNPM_CONFIG_IGNORE_SCRIPTS: 'true'
   NPM_CONFIG_BEFORE: ''
   PNPM_CONFIG_MINIMUM_RELEASE_AGE: '1440' # minutes (1 day)
 
@@ -51,7 +52,7 @@ jobs:
           node-version-file: '.node-version'
           cache: 'pnpm'
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
 
       # 差分のみ検証する。検証ロジック自体が変更された場合 (scripts/generate-skills/**) は
       # 全件評価に切り替え、潜在的なリグレッションを拾えるようにする。
@@ -110,7 +111,7 @@ jobs:
           node-version-file: '.node-version'
           cache: 'pnpm'
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Run coverage check
         env:

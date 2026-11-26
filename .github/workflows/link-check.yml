@@ -8,7 +8,8 @@ on:
     - cron: '0 2 * * 1' # Monday, 2am(UTC+0)
 
 env:
-  NPM_CONFIG_IGNORE_SCRIPTS: 'true'
+  NPM_CONFIG_IGNORE_SCRIPTS: 'true' # npx（netlify-cli など）向け。pnpm 12 は NPM_CONFIG_* を読まない
+  PNPM_CONFIG_IGNORE_SCRIPTS: 'true'
   NPM_CONFIG_BEFORE: ''
   PNPM_CONFIG_MINIMUM_RELEASE_AGE: '1440' # minutes (1 day)
 
@@ -38,7 +39,7 @@ jobs:
 
       # Install packages
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       # リンクチェックの実行
       - id: linkCheck
