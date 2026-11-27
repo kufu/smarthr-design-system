@@ -83,7 +83,7 @@ const ValidateOnBlurForm = () => {
           maxLetters={TITLE_MAX_LENGTH}
           width="30em"
           rows={3}
-          error={!!errorMessage}
+          error={Boolean(errorMessage)}
           onBlur={() => {
             // フォーカスが外れたタイミングで値を検証する
             setErrorMessage(validateTitle(title))
@@ -139,7 +139,7 @@ const ValidateOnSubmitForm = () => {
         <Input
           name="title"
           value={title}
-          error={!!errorMessage}
+          error={Boolean(errorMessage)}
           onChange={(e) => {
             const { value } = e.currentTarget
             setTitle(value)
@@ -460,7 +460,7 @@ const InformationPanelErrorLayout = () => (
                               options={DEPARTMENT_OPTIONS}
                               defaultValue={department}
                               hasBlank
-                              error={!!errors.department}
+                              error={Boolean(errors.department)}
                             />
                           </FormControl>
                           <FormControl label={{ text: '役職', styleType: 'subBlockTitle' }} errorMessages={errors.position}>
@@ -470,7 +470,7 @@ const InformationPanelErrorLayout = () => (
                               options={POSITION_OPTIONS}
                               defaultValue={position}
                               hasBlank
-                              error={!!errors.position}
+                              error={Boolean(errors.position)}
                             />
                           </FormControl>
                           <FormControl label={{ text: '必要な承認数', styleType: 'subBlockTitle' }} errorMessages={errors.approvalCount}>
@@ -480,7 +480,7 @@ const InformationPanelErrorLayout = () => (
                               type="number"
                               defaultValue={approvalCount}
                               suffix="人"
-                              error={!!errors.approvalCount}
+                              error={Boolean(errors.approvalCount)}
                             />
                           </FormControl>
                         </Cluster>
