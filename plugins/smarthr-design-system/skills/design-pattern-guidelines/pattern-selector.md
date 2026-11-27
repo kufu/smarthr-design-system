@@ -59,4 +59,5 @@ UI要件からどのパターンドキュメントを読むべきかを決定す
 ## 注意
 
 - 各mdxファイルには `<DoAndDont type="dont">` によるアンチパターンが含まれている場合がある。mustで確認すること。
+- `patterns/<pattern-name>.mdx` に対応する `checklists/<pattern-name>.md` がある場合は、併せて読むこと。
 - 上記に該当しないパターンは `src/content/articles/products/design-patterns/` 以下を直接参照すること。

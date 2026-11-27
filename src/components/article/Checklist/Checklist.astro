@@ -9,7 +9,7 @@ import { getSectionAnchorMap, normalizeSectionText, stripSectionNote } from '@/l
 import { ChecklistPanel } from './ChecklistPanel';
 
 type Props = {
-  /** コンポーネント名（ComponentStory と同じ PascalCase。例: Button / ActionDialog） */
+  /** コンポーネント名（ComponentStory と同じ PascalCase。例: Button / ActionDialog）。デザインパターンはディレクトリ名の PascalCase（例: PageLayout） */
   name: string;
   /** 見出しに表示する名前。省略時は name をそのまま使う */
   title?: string;
@@ -22,8 +22,8 @@ const { name, title, showHeading = false } = Astro.props;
 // PascalCase の name を checklist.yaml のディレクトリ id（kebab-case）に変換（例: Button → button, ActionDialog → action-dialog）
 const dirName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
-// yamlGlobLoader の defaultId はファイル相対パスから拡張子を落としたもの（例: button/checklist.yaml → "button/checklist"）。
-// ネストしたサブコンポーネントにも対応するため、末尾一致でも引く（例: dialog/action-dialog/checklist）。
+// yamlGlobLoader の defaultId は products/ からの相対パスから拡張子を落としたもの（例: components/button/checklist.yaml → "components/button/checklist"）。
+// ネストしたサブコンポーネントやデザインパターンにも対応するため、末尾一致で引く（例: components/dialog/action-dialog/checklist, design-patterns/page-layout/checklist）。
 const checklists = await getCollection('checklists');
 const entry = checklists.find((c) => c.id === `${dirName}/checklist` || c.id.endsWith(`/${dirName}/checklist`));
 

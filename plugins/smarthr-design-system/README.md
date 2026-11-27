@@ -59,11 +59,15 @@ SmartHRプロダクトのページレイアウトやUIパターンを正しく�
 skills/design-pattern-guidelines/
 ├── SKILL.md                       エントリポイント（手動管理）
 ├── pattern-selector.md            パターン選定ガイド（手動管理）
-└── patterns/                      各パターンガイド（src/content へのシンボリックリンク）
-    ├── page-layout.mdx
-    ├── smarthr-table.mdx
-    └── ...（24件）
+├── patterns/                      各パターンガイド（src/content へのシンボリックリンク）
+│   ├── page-layout.mdx
+│   ├── smarthr-table.mdx
+│   └── ...（24件）
+└── checklists/                    パターンごとのチェックリスト（自動生成）
+    └── page-layout.md
 ```
+
+チェックリストは、パターンの`checklist.yaml`（人手レビュー済み）から生成する。`checklist.yaml`があるパターンのみ生成される。
 
 ### `design-review`
 
@@ -110,6 +114,8 @@ skills/design-review/
 ### design-pattern-guidelines
 
 `patterns/*.mdx`はデザインシステムサイトのコンテンツ（`src/content/articles/products/design-patterns/`）へのシンボリックリンク。既存パターンの更新にはそのまま追従するが、新規パターンを追加した場合はシンボリックリンクを手動で追加する必要がある。`SKILL.md`と`pattern-selector.md`は手動管理。
+
+`checklists/*.md`は`src/content/articles/products/design-patterns/<slug>/checklist.yaml`から`scripts/generate-skills/`で自動生成される。直接編集せず、`checklist.yaml`を更新して再生成すること。
 
 ### design-review
 

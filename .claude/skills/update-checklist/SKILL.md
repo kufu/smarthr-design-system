@@ -4,10 +4,12 @@ description: >-
   checklist.yaml を差分更新する。「checklist を更新して」「checklist.yaml を
   更新して」「index.mdx の変更を checklist に反映して」等の依頼に対応する。
   対象の index.mdx と既存 checklist.yaml を読み、差分のみを既存 items に
-  マージする。
+  マージする。デザインパターン（ページレイアウト等）の checklist.yaml にも対応する。
 globs:
   - "src/content/articles/products/components/**/index.mdx"
   - "src/content/articles/products/components/**/checklist.yaml"
+  - "src/content/articles/products/design-patterns/**/index.mdx"
+  - "src/content/articles/products/design-patterns/**/checklist.yaml"
 ---
 
 # checklist.yaml 差分更新 SKILL
@@ -27,6 +29,18 @@ globs:
 - 既存 `checklist.yaml` の確認: `src/content/articles/products/components/<dir>/checklist.yaml`
 - ディレクトリ名解決: `src/content/articles/products/components/` 配下を直接探索する（コンポーネント名を kebab-case 化したディレクトリ名。ネストする場合あり）
 - 参考例: `src/content/articles/products/components/button/checklist.yaml`
+- 対象がデザインパターンの場合: 次の「デザインパターンの場合」節の差分を適用したうえで更新フローを進める
+
+## デザインパターンの場合
+
+対象が `src/content/articles/products/design-patterns/<slug>/checklist.yaml` の場合は、`generate-checklist` SKILL の「デザインパターンの場合」節（パス・抽出時の追加ルール・スキップ判定・コンポーネント名の扱い・項目数の目安）を同様に適用する。更新フローでは加えて以下を読み替える。
+
+- **Step 2**: eslint ルール名一覧は読まない
+- **Step 3**: コンポーネント固有のスキップパターンは当てはまらない。更新後の index.mdx から指示文がなくなった場合のみスキップ（既存項目をすべて削除）を検討する
+- **Step 4 / Step 6**: Layer 2 でカバー済みの項目の除外・報告は行わない
+- **Step 5-2**: grep 対象に `src/content/articles/products/design-patterns/**/checklist.yaml` も含める
+- **Step 8**: Layer 1 重複チェックは行わない
+- **CI**: `checklist-sync` の対象外のため、パターンの index.mdx を変更した PR では自主的にこの SKILL を実行する
 
 ## 更新フロー
 
@@ -134,7 +148,7 @@ Layer 3 に入れようとしている項目が Layer 1（mdx 冒頭の説明文
 
 ## 成果物とコミット
 
-この SKILL の成果物は更新後の `checklist.yaml` のみ。**コミット対象は `checklist.yaml` だけ**で、コンポーネントガイド（`plugins/...`）への反映はマージ後に CI（`generate-skills.yml`）が自動実行する。ローカルで `pnpm generate` を実行して生成物をコミットする必要はない。
+この SKILL の成果物は更新後の `checklist.yaml` のみ。**コミット対象は `checklist.yaml` だけ**で、コンポーネントガイド・パターンのチェックリスト（`plugins/...`）への反映はマージ後に CI（`generate-skills.yml`）が自動実行する。ローカルで `pnpm generate` を実行して生成物をコミットする必要はない。
 
 ## やってはいけないこと
 
