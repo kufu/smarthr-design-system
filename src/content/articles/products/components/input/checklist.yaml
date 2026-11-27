@@ -23,6 +23,11 @@ items:
     text: '入力項目の説明や例を載せる場合は FormControl の `helpMessage` や `exampleMessage` を用い別途表示する'
     source_section: '使用上の注意 > 入力項目の説明や例をプレースホルダで表示しない'
 
+  # 使用上の注意 > 操作を提供する場合は `prefix` や `suffix` ではなく `subActionArea` を使用する
+  - severity: must
+    text: '`subActionArea` に操作を提供するアイコンを置く場合は UnstyledButton でラップする'
+    source_section: '使用上の注意 > 操作を提供する場合は `prefix` や `suffix` ではなく `subActionArea` を使用する'
+
   # レイアウト > プレフィックス・サフィックス > 要素の設置判断基準
   - severity: should
     text: 'プレフィックス（`prefix`）の要素は入力内容を想起させるために使用する'
@@ -34,7 +39,6 @@ items:
     text: 'サフィックス（`suffix`）のアイコンは操作を想起させるために使用する'
     source_section: 'レイアウト > プレフィックス・サフィックス > 要素の設置判断基準'
     sub_items:
-      - '操作を提供する場合は、ボタンなどを `subActionArea` に配置する'
       - 'テキストの場合は入力内容を想起させるために使用し、一般的に内容に対して後方に置かれる単位（例: 日本円）に用いる'
 
   - severity: must
