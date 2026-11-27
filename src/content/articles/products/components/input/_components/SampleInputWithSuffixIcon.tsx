@@ -6,7 +6,7 @@ export default function SampleInputWithSuffixIcon() {
     <Input
       name="examplesuffixicon"
       defaultValue="テキスト"
-      suffix={
+      subActionArea={
         <UnstyledButton>
           <VisuallyHiddenText>入力内容を削除</VisuallyHiddenText>
           <FaCircleXmarkIcon style={{ display: 'block' }} />
